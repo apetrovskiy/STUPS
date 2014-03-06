@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;using System.Windows.Automation;
+	extern alias UIANET;// using System.Windows.Automation;
 	using System;
 	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 
@@ -48,27 +48,27 @@ namespace UIAutomation
 			
 			public bool CanMaximize {
 				// get { return (bool)this._el.GetPatternPropertyValue(WindowPattern.CanMaximizeProperty, this._useCache); }
-				get { return (bool)this._windowPattern.GetParentElement().GetPatternPropertyValue(WindowPattern.CanMaximizeProperty, this._useCache); }
+				get { return (bool)this._windowPattern.GetParentElement().GetPatternPropertyValue(classic.WindowPattern.CanMaximizeProperty, this._useCache); }
 			}
 			public bool CanMinimize {
 				// get { return (bool)this._el.GetPatternPropertyValue(WindowPattern.CanMinimizeProperty, this._useCache); }
-				get { return (bool)this._windowPattern.GetParentElement().GetPatternPropertyValue(WindowPattern.CanMinimizeProperty, this._useCache); }
+				get { return (bool)this._windowPattern.GetParentElement().GetPatternPropertyValue(classic.WindowPattern.CanMinimizeProperty, this._useCache); }
 			}
 			public bool IsModal {
 				// get { return (bool)this._el.GetPatternPropertyValue(WindowPattern.IsModalProperty, this._useCache); }
-				get { return (bool)this._windowPattern.GetParentElement().GetPatternPropertyValue(WindowPattern.IsModalProperty, this._useCache); }
+				get { return (bool)this._windowPattern.GetParentElement().GetPatternPropertyValue(classic.WindowPattern.IsModalProperty, this._useCache); }
 			}
 			public classic.WindowVisualState WindowVisualState {
 				// get { return (WindowVisualState)this._el.GetPatternPropertyValue(WindowPattern.WindowVisualStateProperty, this._useCache); }
-				get { return (WindowVisualState)this._windowPattern.GetParentElement().GetPatternPropertyValue(WindowPattern.WindowVisualStateProperty, this._useCache); }
+				get { return (classic.WindowVisualState)this._windowPattern.GetParentElement().GetPatternPropertyValue(classic.WindowPattern.WindowVisualStateProperty, this._useCache); }
 			}
 			public classic.WindowInteractionState WindowInteractionState {
 				// get { return (WindowInteractionState)this._el.GetPatternPropertyValue(WindowPattern.WindowInteractionStateProperty, this._useCache); }
-				get { return (WindowInteractionState)this._windowPattern.GetParentElement().GetPatternPropertyValue(WindowPattern.WindowInteractionStateProperty, this._useCache); }
+				get { return (classic.WindowInteractionState)this._windowPattern.GetParentElement().GetPatternPropertyValue(classic.WindowPattern.WindowInteractionStateProperty, this._useCache); }
 			}
 			public bool IsTopmost {
 				// get { return (bool)this._el.GetPatternPropertyValue(WindowPattern.IsTopmostProperty, this._useCache); }
-				get { return (bool)this._windowPattern.GetParentElement().GetPatternPropertyValue(WindowPattern.IsTopmostProperty, this._useCache); }
+				get { return (bool)this._windowPattern.GetParentElement().GetPatternPropertyValue(classic.WindowPattern.IsTopmostProperty, this._useCache); }
 			}
 //			internal WindowPatternInformation(AutomationElement el, bool useCache)
 //			{
@@ -76,15 +76,15 @@ namespace UIAutomation
 //				this._useCache = useCache;
 //			}
 		}
-		public static readonly classic.AutomationPattern Pattern = WindowPatternIdentifiers.Pattern;
-		public static readonly classic.AutomationProperty CanMaximizeProperty = WindowPatternIdentifiers.CanMaximizeProperty;
-		public static readonly classic.AutomationProperty CanMinimizeProperty = WindowPatternIdentifiers.CanMinimizeProperty;
-		public static readonly classic.AutomationProperty IsModalProperty = WindowPatternIdentifiers.IsModalProperty;
-		public static readonly classic.AutomationProperty WindowVisualStateProperty = WindowPatternIdentifiers.WindowVisualStateProperty;
-		public static readonly classic.AutomationProperty WindowInteractionStateProperty = WindowPatternIdentifiers.WindowInteractionStateProperty;
-		public static readonly classic.AutomationProperty IsTopmostProperty = WindowPatternIdentifiers.IsTopmostProperty;
-		public static readonly classic.AutomationEvent WindowOpenedEvent = WindowPatternIdentifiers.WindowOpenedEvent;
-		public static readonly classic.AutomationEvent WindowClosedEvent = WindowPatternIdentifiers.WindowClosedEvent;
+		public static readonly classic.AutomationPattern Pattern = classic.WindowPatternIdentifiers.Pattern;
+		public static readonly classic.AutomationProperty CanMaximizeProperty = classic.WindowPatternIdentifiers.CanMaximizeProperty;
+		public static readonly classic.AutomationProperty CanMinimizeProperty = classic.WindowPatternIdentifiers.CanMinimizeProperty;
+		public static readonly classic.AutomationProperty IsModalProperty = classic.WindowPatternIdentifiers.IsModalProperty;
+		public static readonly classic.AutomationProperty WindowVisualStateProperty = classic.WindowPatternIdentifiers.WindowVisualStateProperty;
+		public static readonly classic.AutomationProperty WindowInteractionStateProperty = classic.WindowPatternIdentifiers.WindowInteractionStateProperty;
+		public static readonly classic.AutomationProperty IsTopmostProperty = classic.WindowPatternIdentifiers.IsTopmostProperty;
+		public static readonly classic.AutomationEvent WindowOpenedEvent = classic.WindowPatternIdentifiers.WindowOpenedEvent;
+		public static readonly classic.AutomationEvent WindowClosedEvent = classic.WindowPatternIdentifiers.WindowClosedEvent;
 		// private SafePatternHandle _hPattern;
 		// private bool _cached;
 		
@@ -140,7 +140,7 @@ namespace UIAutomation
 		
 		public void SetSourcePattern(object pattern)
 		{
-		    this._windowPattern = pattern as WindowPattern;
+		    this._windowPattern = pattern as classic.WindowPattern;
 		}
 		
 		public object GetSourcePattern()

@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;using System.Windows.Automation;
+    extern alias UIANET;// using System.Windows.Automation;
     using System;
     using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     using System.Collections;
@@ -33,8 +33,8 @@ namespace UIAutomation
             IUiElement result = null;
             
             var walker =
-                new TreeWalker(
-                    System.Windows.Automation.Condition.TrueCondition);
+                new classic.TreeWalker(
+                    classic.Condition.TrueCondition);
             /*
             TreeWalker walker =
                 new TreeWalker(
@@ -42,7 +42,7 @@ namespace UIAutomation
             */
             
             try {
-                result = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement() as AutomationElement));
+                result = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement() as classic.AutomationElement));
             }
             catch {}
             
@@ -57,8 +57,8 @@ namespace UIAutomation
         internal static IUiElement GetAncestorWithHandle(this IUiElement element)
         {
             var walker =
-                new TreeWalker(
-                    System.Windows.Automation.Condition.TrueCondition);
+                new classic.TreeWalker(
+                    classic.Condition.TrueCondition);
             
             /*
             TreeWalker walker =
@@ -70,13 +70,13 @@ namespace UIAutomation
                 
                 // 20140102
                 // IUiElement testparent = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement()));
-                IUiElement testparent = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement() as AutomationElement));
+                IUiElement testparent = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement() as classic.AutomationElement));
                 while (testparent != null &&
                        testparent.Current.NativeWindowHandle == 0) {
                     testparent =
                         // 20140102
                         // AutomationFactory.GetUiElement(walker.GetParent(testparent.GetSourceElement()));
-                        AutomationFactory.GetUiElement(walker.GetParent(testparent.GetSourceElement() as AutomationElement));
+                        AutomationFactory.GetUiElement(walker.GetParent(testparent.GetSourceElement() as classic.AutomationElement));
                     if (testparent != null &&
                         (int)testparent.Current.ProcessId > 0 &&
                         testparent.Current.NativeWindowHandle != 0) {
@@ -101,8 +101,8 @@ namespace UIAutomation
         internal static IUiElement[] GetParentOrAncestor(this IUiElement element, classic.TreeScope scope)
         {
             var walker =
-                new TreeWalker(
-                    System.Windows.Automation.Condition.TrueCondition);
+                new classic.TreeWalker(
+                    classic.Condition.TrueCondition);
             
             var ancestors =
                 new List<IUiElement>();
@@ -118,16 +118,16 @@ namespace UIAutomation
             
             try {
                 
-                IUiElement testParent = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement() as AutomationElement));
+                IUiElement testParent = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement() as classic.AutomationElement));
                     
-                if (scope == TreeScope.Parent || scope == TreeScope.Ancestors) {
+                if (scope == classic.TreeScope.Parent || scope == classic.TreeScope.Ancestors) {
                     
                     if (testParent.Current != UiElement.RootElement.Current) {
                         ancestors.Add(testParent);
                     }
                     
                     if ((testParent.Equals(UiElement.RootElement) && testParent.Current.Equals(UiElement.RootElement.Current)) ||
-                        scope == TreeScope.Parent) {
+                        scope == classic.TreeScope.Parent) {
                         return ancestors.ToArray();
                     }
                 }
@@ -136,7 +136,7 @@ namespace UIAutomation
                        !testParent.Current.Equals(UiElement.RootElement.Current)) {
                     
                     testParent =
-                        AutomationFactory.GetUiElement(walker.GetParent(testParent.GetSourceElement() as AutomationElement));
+                        AutomationFactory.GetUiElement(walker.GetParent(testParent.GetSourceElement() as classic.AutomationElement));
                     if (testParent != null &&
                         (int)testParent.Current.ProcessId > 0 &&
                         !testParent.Current.Equals(UiElement.RootElement.Current)) {
@@ -162,8 +162,8 @@ namespace UIAutomation
         internal static void CollectAncestors(this IUiElement element, TranscriptCmdletBase cmdlet, ref string errorMessage, ref bool errorOccured)
         {
             var walker =
-                new TreeWalker(
-                    System.Windows.Automation.Condition.TrueCondition);
+                new classic.TreeWalker(
+                    classic.Condition.TrueCondition);
             
             /*
             TreeWalker walker =
@@ -183,7 +183,7 @@ namespace UIAutomation
                     testParent =
                         // 20140102
                         // AutomationFactory.GetUiElement(walker.GetParent(testParent.GetSourceElement()));
-                        AutomationFactory.GetUiElement(walker.GetParent(testParent.GetSourceElement() as AutomationElement));
+                        AutomationFactory.GetUiElement(walker.GetParent(testParent.GetSourceElement() as classic.AutomationElement));
                     
                     if (testParent == null || (int) testParent.Current.ProcessId <= 0) continue;
                     if (testParent == cmdlet.OddRootElement)
@@ -217,7 +217,7 @@ namespace UIAutomation
                             //if (ObjectsFactory.GetUiElement(walker.GetParent(testParent.SourceElement)) == cmdlet.oddRootElement) {
                             // 20140102
                             // if (AutomationFactory.GetUiElement(walker.GetParent(testParent.GetSourceElement())) == cmdlet.OddRootElement) {
-                            if (AutomationFactory.GetUiElement(walker.GetParent(testParent.GetSourceElement() as AutomationElement)) == cmdlet.OddRootElement) {
+                            if (AutomationFactory.GetUiElement(walker.GetParent(testParent.GetSourceElement() as classic.AutomationElement)) == cmdlet.OddRootElement) {
                                 parentControlType = "Window";
                             }
                         }
@@ -465,7 +465,7 @@ namespace UIAutomation
             if (null == element.GetSourceElement()) return false;
             
             try {
-                var elementNet = element.GetSourceElement() as AutomationElement;
+                var elementNet = element.GetSourceElement() as classic.AutomationElement;
                 if (null != elementNet) {
                     try {
                         var testVariable = elementNet.Current.Name;
@@ -525,7 +525,7 @@ namespace UIAutomation
             string realValue = string.Empty;
             try {
                 realValue =
-                    (element.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern)).Current.Value;
+                    (element.GetCurrentPattern<IValuePattern>(classic.ValuePattern.Pattern)).Current.Value;
             }
             catch { //(Exception eGetCurrentPattern) {
                 // nothing to do

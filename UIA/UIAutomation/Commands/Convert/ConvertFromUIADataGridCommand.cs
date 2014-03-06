@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 namespace UIAutomation.Commands
 {
-    extern alias UIANET;using System.Windows.Automation;
+    extern alias UIANET;// using System.Windows.Automation;
     using System;
     using System.Management.Automation;
     using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
@@ -81,7 +81,7 @@ namespace UIAutomation.Commands
                             // 20131208
                             // SelectionPattern selPattern = inputObject.GetCurrentPattern(
                             // SelectionPattern selPattern = inputObject.GetCurrentPattern<ISelectionPattern, SelectionPattern>(
-                            ISelectionPattern selPattern = inputObject.GetCurrentPattern<ISelectionPattern>(SelectionPattern.Pattern);
+                            ISelectionPattern selPattern = inputObject.GetCurrentPattern<ISelectionPattern>(classic.SelectionPattern.Pattern);
                                 // SelectionPattern.Pattern)
                                 // as SelectionPattern;
                             /*

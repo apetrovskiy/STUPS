@@ -9,7 +9,7 @@
 
 namespace UIAutomation.Commands
 {
-    extern alias UIANET;using System.Windows.Automation;
+    extern alias UIANET;// using System.Windows.Automation;
     using System.Management.Automation;
     using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     using UIAutomation.Helpers.Commands;
@@ -24,7 +24,7 @@ namespace UIAutomation.Commands
         public RegisterUiaPropertyChangedEventCommand()
         {
             AutomationEventType = 
-                AutomationElement.AutomationPropertyChangedEvent;
+                classic.AutomationElement.AutomationPropertyChangedEvent;
             AutomationPropertyChangedEventHandler = 
                 OnUIAutomationPropertyChangedEvent;
         }
@@ -42,7 +42,7 @@ namespace UIAutomation.Commands
             // 20140217
             // base.AutomationProperty = 
             //     GridPattern.RowCountProperty;
-            AutomationProperty = new[] { GridPattern.RowCountProperty };
+            AutomationProperty = new[] { classic.GridPattern.RowCountProperty };
             /*
             base.AutomationProperty = 
                 TablePattern.RowCountProperty;
@@ -63,7 +63,7 @@ namespace UIAutomation.Commands
             // 20140217
             // base.AutomationProperty = 
             //     GridPattern.ColumnCountProperty;
-            AutomationProperty = new[] { GridPattern.ColumnCountProperty };
+            AutomationProperty = new[] { classic.GridPattern.ColumnCountProperty };
             /*
             base.AutomationProperty = 
                 TablePattern.ColumnCountProperty;
@@ -84,7 +84,7 @@ namespace UIAutomation.Commands
             // 20140217
             // base.AutomationProperty = 
             //     RangeValuePattern.ValueProperty;
-            AutomationProperty = new[] { RangeValuePattern.ValueProperty };
+            AutomationProperty = new[] { classic.RangeValuePattern.ValueProperty };
         }
         #endregion Constructor
     }
@@ -101,7 +101,7 @@ namespace UIAutomation.Commands
             // 20140217
             // base.AutomationProperty = 
             //     GridPattern.RowCountProperty;
-            AutomationProperty = new[] { TablePattern.RowCountProperty };
+            AutomationProperty = new[] { classic.TablePattern.RowCountProperty };
             /*
             base.AutomationProperty = 
                 TablePattern.RowCountProperty;
@@ -122,7 +122,7 @@ namespace UIAutomation.Commands
             // 20140217
             // base.AutomationProperty = 
             //     GridPattern.ColumnCountProperty;
-            AutomationProperty = new[] { TablePattern.ColumnCountProperty };
+            AutomationProperty = new[] { classic.TablePattern.ColumnCountProperty };
             /*
             base.AutomationProperty = 
                 TablePattern.ColumnCountProperty;
@@ -143,7 +143,7 @@ namespace UIAutomation.Commands
             // 20140217
             // base.AutomationProperty = 
             //     TogglePattern.ToggleStateProperty;
-            AutomationProperty = new[] { TogglePattern.ToggleStateProperty };
+            AutomationProperty = new[] { classic.TogglePattern.ToggleStateProperty };
         }
         #endregion Constructor
     }
@@ -160,7 +160,7 @@ namespace UIAutomation.Commands
             // 20140217
             // base.AutomationProperty = 
             //     ValuePattern.ValueProperty;
-            AutomationProperty = new[] { ValuePattern.ValueProperty };
+            AutomationProperty = new[] { classic.ValuePattern.ValueProperty };
         }
         #endregion Constructor
     }

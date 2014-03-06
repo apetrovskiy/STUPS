@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;using System.Windows.Automation;
+    extern alias UIANET;// using System.Windows.Automation;
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -267,26 +267,26 @@ namespace UIAutomation
                 data.Name = new string[]{ string.Empty };
             }
             
-            OrCondition conditionsSet = null;
+            classic.OrCondition conditionsSet = null;
             if (data.Recurse) {
                 conditionsSet =
-                    new OrCondition(
-                        new PropertyCondition(
-                            AutomationElement.ControlTypeProperty,
-                            ControlType.Window),
-                        Condition.FalseCondition);
+                    new classic.OrCondition(
+                        new classic.PropertyCondition(
+                            classic.AutomationElement.ControlTypeProperty,
+                            classic.ControlType.Window),
+                        classic.Condition.FalseCondition);
             } else {
                 conditionsSet =
-                    new OrCondition(
-                        new PropertyCondition(
-                            AutomationElement.ControlTypeProperty,
-                            ControlType.Window),
-                        new PropertyCondition(
-                            AutomationElement.ControlTypeProperty,
-                            ControlType.Pane),
-                        new PropertyCondition(
-                            AutomationElement.ControlTypeProperty,
-                            ControlType.Menu));
+                    new classic.OrCondition(
+                        new classic.PropertyCondition(
+                            classic.AutomationElement.ControlTypeProperty,
+                            classic.ControlType.Window),
+                        new classic.PropertyCondition(
+                            classic.AutomationElement.ControlTypeProperty,
+                            classic.ControlType.Pane),
+                        new classic.PropertyCondition(
+                            classic.AutomationElement.ControlTypeProperty,
+                            classic.ControlType.Menu));
             }
             
             foreach (string windowTitle in data.Name) {

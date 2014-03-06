@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;using System.Windows.Automation;
+	extern alias UIANET;// using System.Windows.Automation;
 	using System;
 	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 
@@ -55,7 +55,7 @@ namespace UIAutomation
 			
 			public classic.DockPosition DockPosition {
 				// get { return (DockPosition)this._el.GetPatternPropertyValue(DockPattern.DockPositionProperty, this._useCache); }
-				get { return (DockPosition)this._dockPattern.GetParentElement().GetPatternPropertyValue(DockPattern.DockPositionProperty, this._useCache); }
+				get { return (classic.DockPosition)this._dockPattern.GetParentElement().GetPatternPropertyValue(classic.DockPattern.DockPositionProperty, this._useCache); }
 			}
 //			internal DockPatternInformation(AutomationElement el, bool useCache)
 //			{
@@ -63,8 +63,8 @@ namespace UIAutomation
 //				this._useCache = useCache;
 //			}
 		}
-		public static readonly classic.AutomationPattern Pattern = DockPatternIdentifiers.Pattern;
-		public static readonly classic.AutomationProperty DockPositionProperty = DockPatternIdentifiers.DockPositionProperty;
+		public static readonly classic.AutomationPattern Pattern = classic.DockPatternIdentifiers.Pattern;
+		public static readonly classic.AutomationProperty DockPositionProperty = classic.DockPatternIdentifiers.DockPositionProperty;
 		// private SafePatternHandle _hPattern;
 		// private bool _cached;
 		
@@ -110,7 +110,7 @@ namespace UIAutomation
         
 		public void SetSourcePattern(object pattern)
 		{
-		    this._dockPattern = pattern as DockPattern;
+		    this._dockPattern = pattern as classic.DockPattern;
 		}
 		
 		public object GetSourcePattern()

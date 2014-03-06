@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;using System.Windows.Automation;
+    extern alias UIANET;// using System.Windows.Automation;
     using System;
     using System.Collections;
     using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
@@ -500,7 +500,7 @@ namespace UIAutomation
             Bind<IUiElement>()
                 .ToConstructor(
                     x =>
-                    new UiElement(x.Inject<System.Windows.Automation.AutomationElement>()))
+                    new UiElement(x.Inject<classic.AutomationElement>()))
                 .InScope(ctx => AutomationFactory.ScopeChangeFlag)
                 .Named("AutomationElement.NET");
             
@@ -551,7 +551,7 @@ namespace UIAutomation
             Bind<IUiEltCollection>()
                 .ToConstructor(
                     x => 
-                    new UiEltCollection(x.Inject<AutomationElementCollection>()))
+                    new UiEltCollection(x.Inject<classic.AutomationElementCollection>()))
                 .InScope(ctx => AutomationFactory.ScopeChangeFlag)
                 .Named("AutomationElementCollection.NET");
             
@@ -585,7 +585,7 @@ namespace UIAutomation
             Bind<IDockPattern>()
                 .ToConstructor(
                     x =>
-                    new UiaDockPattern(x.Inject<IUiElement>(), x.Inject<DockPattern>()))
+                    new UiaDockPattern(x.Inject<IUiElement>(), x.Inject<classic.DockPattern>()))
                 .InScope(ctx => AutomationFactory.ScopeChangeFlag)
                 .Named(AutomationFactory.NamedParameter_WithPattern);
             
@@ -599,7 +599,7 @@ namespace UIAutomation
             Bind<IDockPattern>()
                 .ToConstructor(
                     x =>
-                    new UiaDockPattern(x.Inject<DockPattern>()))
+                    new UiaDockPattern(x.Inject<classic.DockPattern>()))
                 .InScope(ctx => AutomationFactory.ScopeChangeFlag)
                 .Named(AutomationFactory.NamedParameter_WithoutElement);
             
@@ -610,7 +610,7 @@ namespace UIAutomation
             Bind<IExpandCollapsePattern>()
                 .ToConstructor(
                     x =>
-                    new UiaExpandCollapsePattern(x.Inject<IUiElement>(), x.Inject<ExpandCollapsePattern>()))
+                    new UiaExpandCollapsePattern(x.Inject<IUiElement>(), x.Inject<classic.ExpandCollapsePattern>()))
                 .InScope(ctx => AutomationFactory.ScopeChangeFlag)
                 .Named(AutomationFactory.NamedParameter_WithPattern);
             
@@ -624,7 +624,7 @@ namespace UIAutomation
             Bind<IExpandCollapsePattern>()
                 .ToConstructor(
                     x =>
-                    new UiaExpandCollapsePattern(x.Inject<ExpandCollapsePattern>()))
+                    new UiaExpandCollapsePattern(x.Inject<classic.ExpandCollapsePattern>()))
                 .InScope(ctx => AutomationFactory.ScopeChangeFlag)
                 .Named(AutomationFactory.NamedParameter_WithoutElement);
             
@@ -635,7 +635,7 @@ namespace UIAutomation
             Bind<IGridItemPattern>()
                 .ToConstructor(
                     x =>
-                    new UiaGridItemPattern(x.Inject<IUiElement>(), x.Inject<GridItemPattern>()))
+                    new UiaGridItemPattern(x.Inject<IUiElement>(), x.Inject<classic.GridItemPattern>()))
                 .InScope(ctx => AutomationFactory.ScopeChangeFlag)
                 .Named(AutomationFactory.NamedParameter_WithPattern);
             
@@ -653,7 +653,7 @@ namespace UIAutomation
             Bind<IGridPattern>()
                 .ToConstructor(
                     x =>
-                    new UiaGridPattern(x.Inject<IUiElement>(), x.Inject<GridPattern>()))
+                    new UiaGridPattern(x.Inject<IUiElement>(), x.Inject<classic.GridPattern>()))
                 .InScope(ctx => AutomationFactory.ScopeChangeFlag)
                 .Named(AutomationFactory.NamedParameter_WithPattern);
             
@@ -671,7 +671,7 @@ namespace UIAutomation
             Bind<IInvokePattern>()
                 .ToConstructor(
                     x =>
-                    new UiaInvokePattern(x.Inject<IUiElement>(), x.Inject<InvokePattern>()))
+                    new UiaInvokePattern(x.Inject<IUiElement>(), x.Inject<classic.InvokePattern>()))
                 .InScope(ctx => AutomationFactory.ScopeChangeFlag)
                 .Named(AutomationFactory.NamedParameter_WithPattern);
             
@@ -685,7 +685,7 @@ namespace UIAutomation
             Bind<IInvokePattern>()
                 .ToConstructor(
                     x =>
-                    new UiaInvokePattern(x.Inject<InvokePattern>()))
+                    new UiaInvokePattern(x.Inject<classic.InvokePattern>()))
                 .InScope(ctx => AutomationFactory.ScopeChangeFlag)
                 .Named(AutomationFactory.NamedParameter_WithoutElement);
             #endregion IInvokePattern
@@ -694,7 +694,7 @@ namespace UIAutomation
             Bind<IRangeValuePattern>()
                 .ToConstructor(
                     x =>
-                    new UiaRangeValuePattern(x.Inject<IUiElement>(), x.Inject<RangeValuePattern>()))
+                    new UiaRangeValuePattern(x.Inject<IUiElement>(), x.Inject<classic.RangeValuePattern>()))
                 .InScope(ctx => AutomationFactory.ScopeChangeFlag)
                 .Named(AutomationFactory.NamedParameter_WithPattern);
             
@@ -712,7 +712,7 @@ namespace UIAutomation
             Bind<IScrollItemPattern>()
                 .ToConstructor(
                     x =>
-                    new UiaScrollItemPattern(x.Inject<IUiElement>(), x.Inject<ScrollItemPattern>()))
+                    new UiaScrollItemPattern(x.Inject<IUiElement>(), x.Inject<classic.ScrollItemPattern>()))
                 .InScope(ctx => AutomationFactory.ScopeChangeFlag)
                 .Named(AutomationFactory.NamedParameter_WithPattern);
             
@@ -730,7 +730,7 @@ namespace UIAutomation
             Bind<IScrollPattern>()
                 .ToConstructor(
                     x =>
-                    new UiaScrollPattern(x.Inject<IUiElement>(), x.Inject<ScrollPattern>()))
+                    new UiaScrollPattern(x.Inject<IUiElement>(), x.Inject<classic.ScrollPattern>()))
                 .InScope(ctx => AutomationFactory.ScopeChangeFlag)
                 .Named(AutomationFactory.NamedParameter_WithPattern);
             
@@ -748,7 +748,7 @@ namespace UIAutomation
             Bind<ISelectionItemPattern>()
                 .ToConstructor(
                     x =>
-                    new UiaSelectionItemPattern(x.Inject<IUiElement>(), x.Inject<SelectionItemPattern>()))
+                    new UiaSelectionItemPattern(x.Inject<IUiElement>(), x.Inject<classic.SelectionItemPattern>()))
                 .InScope(ctx => AutomationFactory.ScopeChangeFlag)
                 .Named(AutomationFactory.NamedParameter_WithPattern);
             
@@ -766,7 +766,7 @@ namespace UIAutomation
             Bind<ISelectionPattern>()
                 .ToConstructor(
                     x =>
-                    new UiaSelectionPattern(x.Inject<IUiElement>(), x.Inject<SelectionPattern>()))
+                    new UiaSelectionPattern(x.Inject<IUiElement>(), x.Inject<classic.SelectionPattern>()))
                 .InScope(ctx => AutomationFactory.ScopeChangeFlag)
                 .Named(AutomationFactory.NamedParameter_WithPattern);
             
@@ -784,7 +784,7 @@ namespace UIAutomation
             Bind<ITableItemPattern>()
                 .ToConstructor(
                     x =>
-                    new UiaTableItemPattern(x.Inject<IUiElement>(), x.Inject<TableItemPattern>()))
+                    new UiaTableItemPattern(x.Inject<IUiElement>(), x.Inject<classic.TableItemPattern>()))
                 .InScope(ctx => AutomationFactory.ScopeChangeFlag)
                 .Named(AutomationFactory.NamedParameter_WithPattern);
             
@@ -802,7 +802,7 @@ namespace UIAutomation
             Bind<ITablePattern>()
                 .ToConstructor(
                     x =>
-                    new UiaTablePattern(x.Inject<IUiElement>(), x.Inject<TablePattern>()))
+                    new UiaTablePattern(x.Inject<IUiElement>(), x.Inject<classic.TablePattern>()))
                 .InScope(ctx => AutomationFactory.ScopeChangeFlag)
                 .Named(AutomationFactory.NamedParameter_WithPattern);
             
@@ -820,7 +820,7 @@ namespace UIAutomation
             Bind<ITextPattern>()
                 .ToConstructor(
                     x =>
-                    new UiaTextPattern(x.Inject<IUiElement>(), x.Inject<TextPattern>()))
+                    new UiaTextPattern(x.Inject<IUiElement>(), x.Inject<classic.TextPattern>()))
                 .InScope(ctx => AutomationFactory.ScopeChangeFlag)
                 .Named(AutomationFactory.NamedParameter_WithPattern);
             
@@ -836,7 +836,7 @@ namespace UIAutomation
             Bind<ITogglePattern>()
                 .ToConstructor(
                     x =>
-                    new UiaTogglePattern(x.Inject<IUiElement>(), x.Inject<TogglePattern>()))
+                    new UiaTogglePattern(x.Inject<IUiElement>(), x.Inject<classic.TogglePattern>()))
                 .InScope(ctx => AutomationFactory.ScopeChangeFlag)
                 .Named(AutomationFactory.NamedParameter_WithPattern);
             
@@ -854,7 +854,7 @@ namespace UIAutomation
             Bind<ITransformPattern>()
                 .ToConstructor(
                     x =>
-                    new UiaTransformPattern(x.Inject<IUiElement>(), x.Inject<TransformPattern>()))
+                    new UiaTransformPattern(x.Inject<IUiElement>(), x.Inject<classic.TransformPattern>()))
                 .InScope(ctx => AutomationFactory.ScopeChangeFlag)
                 .Named(AutomationFactory.NamedParameter_WithPattern);
             
@@ -872,7 +872,7 @@ namespace UIAutomation
             Bind<IValuePattern>()
                 .ToConstructor(
                     x =>
-                    new UiaValuePattern(x.Inject<IUiElement>(), x.Inject<ValuePattern>()))
+                    new UiaValuePattern(x.Inject<IUiElement>(), x.Inject<classic.ValuePattern>()))
                 .InScope(ctx => AutomationFactory.ScopeChangeFlag)
                 .Named(AutomationFactory.NamedParameter_WithPattern);
             
@@ -886,7 +886,7 @@ namespace UIAutomation
             Bind<IValuePattern>()
                 .ToConstructor(
                     x =>
-                    new UiaValuePattern(x.Inject<ValuePattern>()))
+                    new UiaValuePattern(x.Inject<classic.ValuePattern>()))
                 .InScope(ctx => AutomationFactory.ScopeChangeFlag)
                 .Named(AutomationFactory.NamedParameter_WithoutElement);
             
@@ -897,7 +897,7 @@ namespace UIAutomation
             Bind<IWindowPattern>()
                 .ToConstructor(
                     x =>
-                    new UiaWindowPattern(x.Inject<IUiElement>(), x.Inject<WindowPattern>()))
+                    new UiaWindowPattern(x.Inject<IUiElement>(), x.Inject<classic.WindowPattern>()))
                 .InScope(ctx => AutomationFactory.ScopeChangeFlag)
                 .Named(AutomationFactory.NamedParameter_WithPattern);
             

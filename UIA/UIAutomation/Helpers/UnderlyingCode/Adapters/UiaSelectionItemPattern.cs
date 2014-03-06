@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;using System.Windows.Automation;
+	extern alias UIANET;// using System.Windows.Automation;
 	using System;
 	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 
@@ -43,22 +43,22 @@ namespace UIAutomation
 			
 			public bool IsSelected {
 				get {
-			        return (bool)this._selectionItemPattern.GetParentElement().GetPatternPropertyValue(SelectionItemPattern.IsSelectedProperty, this._useCache);
+			        return (bool)this._selectionItemPattern.GetParentElement().GetPatternPropertyValue(classic.SelectionItemPattern.IsSelectedProperty, this._useCache);
 			    }
 			}
 			
 			public IUiElement SelectionContainer {
 				get {
-			        return AutomationFactory.GetUiElement(this._selectionItemPattern.GetParentElement().GetPatternPropertyValue(SelectionItemPattern.SelectionContainerProperty, this._useCache));
+			        return AutomationFactory.GetUiElement(this._selectionItemPattern.GetParentElement().GetPatternPropertyValue(classic.SelectionItemPattern.SelectionContainerProperty, this._useCache));
 			    }
 			}
 		}
-		public static readonly classic.AutomationPattern Pattern = SelectionItemPatternIdentifiers.Pattern;
-		public static readonly classic.AutomationProperty IsSelectedProperty = SelectionItemPatternIdentifiers.IsSelectedProperty;
-		public static readonly classic.AutomationProperty SelectionContainerProperty = SelectionItemPatternIdentifiers.SelectionContainerProperty;
-		public static readonly classic.AutomationEvent ElementAddedToSelectionEvent = SelectionItemPatternIdentifiers.ElementAddedToSelectionEvent;
-		public static readonly classic.AutomationEvent ElementRemovedFromSelectionEvent = SelectionItemPatternIdentifiers.ElementRemovedFromSelectionEvent;
-		public static readonly classic.AutomationEvent ElementSelectedEvent = SelectionItemPatternIdentifiers.ElementSelectedEvent;
+		public static readonly classic.AutomationPattern Pattern = classic.SelectionItemPatternIdentifiers.Pattern;
+		public static readonly classic.AutomationProperty IsSelectedProperty = classic.SelectionItemPatternIdentifiers.IsSelectedProperty;
+		public static readonly classic.AutomationProperty SelectionContainerProperty = classic.SelectionItemPatternIdentifiers.SelectionContainerProperty;
+		public static readonly classic.AutomationEvent ElementAddedToSelectionEvent = classic.SelectionItemPatternIdentifiers.ElementAddedToSelectionEvent;
+		public static readonly classic.AutomationEvent ElementRemovedFromSelectionEvent = classic.SelectionItemPatternIdentifiers.ElementRemovedFromSelectionEvent;
+		public static readonly classic.AutomationEvent ElementSelectedEvent = classic.SelectionItemPatternIdentifiers.ElementSelectedEvent;
         
 		public virtual ISelectionItemPatternInformation Cached {
 			get {
@@ -100,7 +100,7 @@ namespace UIAutomation
 		
 		public void SetSourcePattern(object pattern)
 		{
-		    this._selectionItemPattern = pattern as SelectionItemPattern;
+		    this._selectionItemPattern = pattern as classic.SelectionItemPattern;
 		}
 		
 		public object GetSourcePattern()

@@ -2,7 +2,7 @@
 //namespace AVG.Automation.Cmdlets
 namespace UIAutomation
 {
-    extern alias UIANET;using System.Windows.Automation;
+    extern alias UIANET;// using System.Windows.Automation;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -45,7 +45,7 @@ namespace UIAutomation
             {
                 // 20131208
                 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                // WindowPattern windowPattern = InputObject.GetCurrentPattern(WindowPattern.Pattern) as WindowPattern;
+                // WindowPattern windowPattern = InputObject.GetCurrentPattern(classic.WindowPattern.Pattern) as WindowPattern;
                 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 IWindowPattern windowPattern = InputObject.GetCurrentPattern<IWindowPattern>(classic.WindowPattern.Pattern);
 

@@ -9,7 +9,7 @@
 
 namespace UIAutomation.Commands
 {
-    extern alias UIANET;using System.Windows.Automation;
+    extern alias UIANET;// using System.Windows.Automation;
     using System.Management.Automation;
     using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     using UIAutomation.Helpers.Commands;
@@ -25,7 +25,7 @@ namespace UIAutomation.Commands
         public RegisterUiaStructureChangedEventCommand()
         {
             base.AutomationEventType = 
-                AutomationElement.StructureChangedEvent;
+                classic.AutomationElement.StructureChangedEvent;
             // base.AutomationEventHandler = OnUIStructureChangedEvent;
             base.StructureChangedEventHandler = 
                 OnUIStructureChangedEvent;

@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;using System.Windows.Automation;
+	extern alias UIANET;// using System.Windows.Automation;
 	using System;
 	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 	using System.Linq;
@@ -46,12 +46,12 @@ namespace UIAutomation
 			
 			public bool CanSelectMultiple {
 				get {
-			        return (bool)this._selectionPattern.GetParentElement().GetPatternPropertyValue(SelectionPattern.CanSelectMultipleProperty, this._useCache);
+			        return (bool)this._selectionPattern.GetParentElement().GetPatternPropertyValue(classic.SelectionPattern.CanSelectMultipleProperty, this._useCache);
 			    }
 			}
 			public bool IsSelectionRequired {
 				get {
-			        return (bool)this._selectionPattern.GetParentElement().GetPatternPropertyValue(SelectionPattern.IsSelectionRequiredProperty, this._useCache);
+			        return (bool)this._selectionPattern.GetParentElement().GetPatternPropertyValue(classic.SelectionPattern.IsSelectionRequiredProperty, this._useCache);
 			    }
 			}
             
@@ -59,7 +59,7 @@ namespace UIAutomation
 			{
                 // 20140302
 				// AutomationElement[] nativeElements = (AutomationElement[])this._selectionPattern.GetParentElement().GetPatternPropertyValue(SelectionPattern.SelectionProperty, this._useCache);
-                var nativeElements = (AutomationElement[])this._selectionPattern.GetParentElement().GetPatternPropertyValue(SelectionPattern.SelectionProperty, this._useCache);
+                var nativeElements = (classic.AutomationElement[])this._selectionPattern.GetParentElement().GetPatternPropertyValue(classic.SelectionPattern.SelectionProperty, this._useCache);
                 IUiEltCollection tempCollection = AutomationFactory.GetUiEltCollection(nativeElements);
 				if (null == tempCollection || 0 == tempCollection.Count) {
 				    return new UiElement[] {};
@@ -68,11 +68,11 @@ namespace UIAutomation
 				}
 			}
 		}
-		public static readonly classic.AutomationPattern Pattern = SelectionPatternIdentifiers.Pattern;
-		public static readonly classic.AutomationProperty SelectionProperty = SelectionPatternIdentifiers.SelectionProperty;
-		public static readonly classic.AutomationProperty CanSelectMultipleProperty = SelectionPatternIdentifiers.CanSelectMultipleProperty;
-		public static readonly classic.AutomationProperty IsSelectionRequiredProperty = SelectionPatternIdentifiers.IsSelectionRequiredProperty;
-		public static readonly classic.AutomationEvent InvalidatedEvent = SelectionPatternIdentifiers.InvalidatedEvent;
+		public static readonly classic.AutomationPattern Pattern = classic.SelectionPatternIdentifiers.Pattern;
+		public static readonly classic.AutomationProperty SelectionProperty = classic.SelectionPatternIdentifiers.SelectionProperty;
+		public static readonly classic.AutomationProperty CanSelectMultipleProperty = classic.SelectionPatternIdentifiers.CanSelectMultipleProperty;
+		public static readonly classic.AutomationProperty IsSelectionRequiredProperty = classic.SelectionPatternIdentifiers.IsSelectionRequiredProperty;
+		public static readonly classic.AutomationEvent InvalidatedEvent = classic.SelectionPatternIdentifiers.InvalidatedEvent;
         
 		public virtual ISelectionPatternInformation Cached {
 			get {
@@ -98,7 +98,7 @@ namespace UIAutomation
 		
 		public void SetSourcePattern(object pattern)
 		{
-		    this._selectionPattern = pattern as SelectionPattern;
+		    this._selectionPattern = pattern as classic.SelectionPattern;
 		}
 		
 		public object GetSourcePattern()

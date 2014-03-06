@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;using System.Windows.Automation;
+    extern alias UIANET;// using System.Windows.Automation;
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -471,7 +471,7 @@ namespace UIAutomation
         
         public classic.Condition[] GetControlsConditions(ControlSearcherData data)
         {
-            var conditions = new List<Condition>();
+            var conditions = new List<classic.Condition>();
             
             if (null != data.ControlType && 0 < data.ControlType.Length) {
                 foreach (string controlTypeName in data.ControlType)
@@ -485,14 +485,14 @@ namespace UIAutomation
         }
         
         #region condition methods
-        internal static UIANET::System.Windows.Automation.AndCondition GetAndCondition(List<classic.PropertyCondition> propertyCollection)
+        internal static classic.AndCondition GetAndCondition(List<classic.PropertyCondition> propertyCollection)
         {
             if (null == propertyCollection) return null;
             var resultCondition = new UIANET::System.Windows.Automation.AndCondition(propertyCollection.ToArray());
             return resultCondition;
         }
         
-        internal static UIANET::System.Windows.Automation.OrCondition GetOrCondition(List<classic.PropertyCondition> propertyCollection)
+        internal static classic.OrCondition GetOrCondition(List<classic.PropertyCondition> propertyCollection)
         {
             if (null == propertyCollection) return null;
             var resultCondition = new UIANET::System.Windows.Automation.OrCondition(propertyCollection.ToArray());
@@ -501,12 +501,12 @@ namespace UIAutomation
         
         internal static classic.Condition GetControlTypeCondition(IEnumerable<string> controlTypeNames)
         {
-            if (null == controlTypeNames) return Condition.TrueCondition;
+            if (null == controlTypeNames) return classic.Condition.TrueCondition;
             
-            List<PropertyCondition> controlTypeCollection =
+            List<classic.PropertyCondition> controlTypeCollection =
                 // 20140302
                 // controlTypeNames.Select(controlTypeName => new PropertyCondition(AutomationElement.ControlTypeProperty, UiaHelper.GetControlTypeByTypeName(controlTypeName))).ToList();
-                controlTypeNames.Select(controlTypeName => new PropertyCondition(AutomationElement.ControlTypeProperty, UiaHelper.GetControlTypeByTypeName(controlTypeName))).ToList<PropertyCondition>();
+                controlTypeNames.Select(controlTypeName => new classic.PropertyCondition(classic.AutomationElement.ControlTypeProperty, UiaHelper.GetControlTypeByTypeName(controlTypeName))).ToList<classic.PropertyCondition>();
 
             // return 1 == controlTypeCollection.Count ? controlTypeCollection[0] : GetOrCondition(controlTypeCollection);
             
@@ -514,7 +514,7 @@ namespace UIAutomation
 			// return 1 == controlTypeCollection.Count ? controlTypeCollection[0] : GetOrCondition(controlTypeCollection);
             
 			// 20140302
-			return 1 == controlTypeCollection.Count ? (Condition)controlTypeCollection[0] : (Condition)GetOrCondition(controlTypeCollection);
+			return 1 == controlTypeCollection.Count ? (classic.Condition)controlTypeCollection[0] : (classic.Condition)GetOrCondition(controlTypeCollection);
             /*
             if (1 == controlTypeCollection.Count) {
                 return controlTypeCollection[0];
@@ -528,38 +528,38 @@ namespace UIAutomation
         {
             if (string.IsNullOrEmpty(searchString)) return null;
             
-            PropertyConditionFlags flags =
-                caseSensitive1 ? PropertyConditionFlags.None : PropertyConditionFlags.IgnoreCase;
+            classic.PropertyConditionFlags flags =
+                caseSensitive1 ? classic.PropertyConditionFlags.None : classic.PropertyConditionFlags.IgnoreCase;
             
             var searchStringOrCondition =
-                new OrCondition(
-                    new PropertyCondition(
-                        AutomationElement.AutomationIdProperty,
+                new classic.OrCondition(
+                    new classic.PropertyCondition(
+                        classic.AutomationElement.AutomationIdProperty,
                         searchString,
                         flags),
-                    new PropertyCondition(
-                        AutomationElement.NameProperty,
+                    new classic.PropertyCondition(
+                        classic.AutomationElement.NameProperty,
                         searchString,
                         flags),
-                    new PropertyCondition(
-                        AutomationElement.ClassNameProperty,
+                    new classic.PropertyCondition(
+                        classic.AutomationElement.ClassNameProperty,
                         searchString,
                         flags),
-                    new PropertyCondition(
-                        ValuePattern.ValueProperty,
+                    new classic.PropertyCondition(
+                        classic.ValuePattern.ValueProperty,
                         searchString,
                         flags));
             
             if (null == controlTypeNames || 0 == controlTypeNames.Length) return searchStringOrCondition;
             
-            Condition controlTypeCondition =
+            classic.Condition controlTypeCondition =
                 GetControlTypeCondition(controlTypeNames);
             
             if (null == controlTypeCondition) return searchStringOrCondition;
             
             var resultCondition =
-                new AndCondition(
-                    new Condition[] {
+                new classic.AndCondition(
+                    new classic.Condition[] {
                         searchStringOrCondition,
                         controlTypeCondition
                     });
@@ -569,10 +569,10 @@ namespace UIAutomation
         
         internal static classic.Condition GetExactSearchCondition(ControlSearcherData data)
         {
-            PropertyConditionFlags flags =
-                data.CaseSensitive ? PropertyConditionFlags.None : PropertyConditionFlags.IgnoreCase;
+            classic.PropertyConditionFlags flags =
+                data.CaseSensitive ? classic.PropertyConditionFlags.None : classic.PropertyConditionFlags.IgnoreCase;
             
-            Condition controlTypeCondition = Condition.TrueCondition;
+            classic.Condition controlTypeCondition = classic.Condition.TrueCondition;
             if (null != data.ControlType && 0 < data.ControlType.Length) {
                 controlTypeCondition =
                     GetControlTypeCondition(
@@ -580,43 +580,43 @@ namespace UIAutomation
             }
             
             var propertyCollection =
-                new List<PropertyCondition>();
+                new List<classic.PropertyCondition>();
             
             if (!string.IsNullOrEmpty(data.Name)) {
                 propertyCollection.Add(
-                    new PropertyCondition(
-                        AutomationElement.NameProperty,
+                    new classic.PropertyCondition(
+                        classic.AutomationElement.NameProperty,
                         data.Name));
             }
             if (!string.IsNullOrEmpty(data.AutomationId)) {
                 propertyCollection.Add(
-                    new PropertyCondition(
-                        AutomationElement.AutomationIdProperty,
+                    new classic.PropertyCondition(
+                        classic.AutomationElement.AutomationIdProperty,
                         data.AutomationId));
             }
             if (!string.IsNullOrEmpty(data.Class)) {
                 propertyCollection.Add(
-                    new PropertyCondition(
-                        AutomationElement.ClassNameProperty,
+                    new classic.PropertyCondition(
+                        classic.AutomationElement.ClassNameProperty,
                         data.Class));
             }
             if (!string.IsNullOrEmpty(data.Value)) {
                 propertyCollection.Add(
-                    new PropertyCondition(
-                        ValuePattern.ValueProperty,
+                    new classic.PropertyCondition(
+                        classic.ValuePattern.ValueProperty,
                         data.Value));
             }
             
-            Condition propertyCondition =
+            classic.Condition propertyCondition =
                 0 == propertyCollection.Count ? null : (
-                    1 == propertyCollection.Count ? propertyCollection[0] : (Condition)GetAndCondition(propertyCollection)
+                    1 == propertyCollection.Count ? propertyCollection[0] : (classic.Condition)GetAndCondition(propertyCollection)
                    );
             
             if (null == propertyCondition) {
                 return controlTypeCondition;
             } else {
-                return null == controlTypeCondition ? propertyCondition : new AndCondition(
-                    new Condition[] {
+                return null == controlTypeCondition ? propertyCondition : new classic.AndCondition(
+                    new classic.Condition[] {
                         propertyCondition,
                         controlTypeCondition
                     });
@@ -625,7 +625,7 @@ namespace UIAutomation
         
         internal static classic.Condition GetWildcardSearchCondition(ControlSearcherData data)
         {
-            Condition controlTypeCondition = Condition.TrueCondition;
+            classic.Condition controlTypeCondition = classic.Condition.TrueCondition;
             if (null == data.ControlType || 0 == data.ControlType.Length) return controlTypeCondition;
             controlTypeCondition =
                 GetControlTypeCondition(

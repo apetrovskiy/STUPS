@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;using System.Windows.Automation;
+    extern alias UIANET;// using System.Windows.Automation;
     using System;
     using System.IO;
     using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
@@ -636,56 +636,56 @@ namespace UIAutomation
             bool result = false;
             // UiaHelper.Highlight(element);
             try {
-                CacheRequest cacheRequest = new CacheRequest
+                classic.CacheRequest cacheRequest = new classic.CacheRequest
                 {
-                    AutomationElementMode = AutomationElementMode.Full,
+                    AutomationElementMode = classic.AutomationElementMode.Full,
                     // 20140130
                     // TODO:
-                    TreeFilter = Automation.RawViewCondition
+                    TreeFilter = classic.Automation.RawViewCondition
                 };
                 //cacheRequest.AutomationElementMode = AutomationElementMode.None;
-                cacheRequest.Add(AutomationElement.NameProperty);
-                cacheRequest.Add(AutomationElement.AutomationIdProperty);
-                cacheRequest.Add(AutomationElement.ClassNameProperty);
-                cacheRequest.Add(AutomationElement.ControlTypeProperty);
-                cacheRequest.Add(AutomationElement.ProcessIdProperty);
+                cacheRequest.Add(classic.AutomationElement.NameProperty);
+                cacheRequest.Add(classic.AutomationElement.AutomationIdProperty);
+                cacheRequest.Add(classic.AutomationElement.ClassNameProperty);
+                cacheRequest.Add(classic.AutomationElement.ControlTypeProperty);
+                cacheRequest.Add(classic.AutomationElement.ProcessIdProperty);
                 cacheRequest.Add(classic.DockPattern.Pattern);
                 cacheRequest.Add(classic.ExpandCollapsePattern.Pattern);
                 cacheRequest.Add(classic.GridItemPattern.Pattern);
                 cacheRequest.Add(classic.GridPattern.Pattern);
-                cacheRequest.Add(InvokePattern.Pattern);
+                cacheRequest.Add(classic.InvokePattern.Pattern);
                 //                try {
                 //                    cacheRequest.Add(ItemContainerPattern.Pattern);
                 //                }
                 //                catch {}
-                cacheRequest.Add(MultipleViewPattern.Pattern);
-                cacheRequest.Add(RangeValuePattern.Pattern);
-                cacheRequest.Add(ScrollItemPattern.Pattern);
-                cacheRequest.Add(ScrollPattern.Pattern);
-                cacheRequest.Add(SelectionItemPattern.Pattern);
-                cacheRequest.Add(SelectionPattern.Pattern);
+                cacheRequest.Add(classic.MultipleViewPattern.Pattern);
+                cacheRequest.Add(classic.RangeValuePattern.Pattern);
+                cacheRequest.Add(classic.ScrollItemPattern.Pattern);
+                cacheRequest.Add(classic.ScrollPattern.Pattern);
+                cacheRequest.Add(classic.SelectionItemPattern.Pattern);
+                cacheRequest.Add(classic.SelectionPattern.Pattern);
                 //                try {
                 //                    cacheRequest.Add(SynchronizedInputPattern.Pattern);
                 //                }
                 //                catch {}
-                cacheRequest.Add(TableItemPattern.Pattern);
-                cacheRequest.Add(TablePattern.Pattern);
-                cacheRequest.Add(TextPattern.Pattern);
-                cacheRequest.Add(TogglePattern.Pattern);
-                cacheRequest.Add(TransformPattern.Pattern);
-                cacheRequest.Add(ValuePattern.Pattern);
+                cacheRequest.Add(classic.TableItemPattern.Pattern);
+                cacheRequest.Add(classic.TablePattern.Pattern);
+                cacheRequest.Add(classic.TextPattern.Pattern);
+                cacheRequest.Add(classic.TogglePattern.Pattern);
+                cacheRequest.Add(classic.TransformPattern.Pattern);
+                cacheRequest.Add(classic.ValuePattern.Pattern);
                 //                try {
                 //                    cacheRequest.Add(VirtualizedItemPattern.Pattern);
                 //                }
                 //                catch {}
-                cacheRequest.Add(WindowPattern.Pattern);
+                cacheRequest.Add(classic.WindowPattern.Pattern);
                 // cache patterns?
                 
                 // cacheRequest.Activate();
                 cacheRequest.Push();
                 
                 try{
-                    element.FindFirst(TreeScope.Element, System.Windows.Automation.Condition.TrueCondition);
+                    element.FindFirst(classic.TreeScope.Element, classic.Condition.TrueCondition);
                 }
                 catch {
                 }
@@ -729,9 +729,9 @@ namespace UIAutomation
                     try {
                         IValuePattern pattern =
                             // 20131208
-                            // element.GetCurrentPattern(ValuePattern.Pattern) as IValuePattern;
-                            // element.GetCurrentPattern<IValuePattern, ValuePattern>(ValuePattern.Pattern) as IValuePattern;
-                            element.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern);
+                            // element.GetCurrentPattern(classic.ValuePattern.Pattern) as IValuePattern;
+                            // element.GetCurrentPattern<IValuePattern, ValuePattern>(classic.ValuePattern.Pattern) as IValuePattern;
+                            element.GetCurrentPattern<IValuePattern>(classic.ValuePattern.Pattern);
                         if (null != pattern) {
                             elementVerbosity +=
                                 // 20131204
@@ -1284,7 +1284,7 @@ namespace UIAutomation
                 try {
                     
                     // cache request object for collecting properties
-                    CacheRequest cacheRequest = null;
+                    classic.CacheRequest cacheRequest = null;
                     
 // return;
                     
@@ -1323,108 +1323,108 @@ namespace UIAutomation
                             // 20131210
                             // switch ((pattern as AutomationPattern).ProgrammaticName) {
 //return;
-                            switch ((pattern.GetSourcePattern() as AutomationPattern).ProgrammaticName) {
+                            switch ((pattern.GetSourcePattern() as classic.AutomationPattern).ProgrammaticName) {
                                 case "SelectionItemPatternIdentifiers.Pattern":
                                     cmdlet.SubscribeToEvents(cmdlet,
                                                              element,
-                                                             SelectionItemPattern.ElementAddedToSelectionEvent,
+                                                             classic.SelectionItemPattern.ElementAddedToSelectionEvent,
                                                              null); //,
                                     //cmdlet.OnUIRecordingAutomationEvent);
                                     cmdlet.SubscribeToEvents(cmdlet,
                                                              element,
-                                                             SelectionItemPattern.ElementRemovedFromSelectionEvent,
+                                                             classic.SelectionItemPattern.ElementRemovedFromSelectionEvent,
                                                              null); //,
                                     //cmdlet.OnUIRecordingAutomationEvent);
                                     cmdlet.SubscribeToEvents(cmdlet,
                                                              element,
-                                                             SelectionItemPattern.ElementSelectedEvent,
+                                                             classic.SelectionItemPattern.ElementSelectedEvent,
                                                              null); //,
                                     //cmdlet.OnUIRecordingAutomationEvent);
                                     break;
                                 case "SelectionPatternIdentifiers.Pattern":
                                     cmdlet.SubscribeToEvents(cmdlet,
                                                              element,
-                                                             SelectionPattern.InvalidatedEvent,
+                                                             classic.SelectionPattern.InvalidatedEvent,
                                                              null); //,
                                     //cmdlet.OnUIRecordingAutomationEvent);
                                     break;
                                 case "InvokePatternIdentifiers.Pattern":
                                     cmdlet.SubscribeToEvents(cmdlet,
                                                              element,
-                                                             InvokePattern.InvokedEvent,
+                                                             classic.InvokePattern.InvokedEvent,
                                                              null); //,
                                     //cmdlet.OnUIRecordingAutomationEvent);
                                     break;
                                 case "AutomationElementIdentifiers.Pattern":
                                     cmdlet.SubscribeToEvents(cmdlet,
                                                              element,
-                                                             AutomationElement.AsyncContentLoadedEvent,
+                                                             classic.AutomationElement.AsyncContentLoadedEvent,
                                                              null); //,
                                     //cmdlet.OnUIRecordingAutomationEvent);
                                     cmdlet.SubscribeToEvents(cmdlet,
                                                              element,
-                                                             AutomationElement.LayoutInvalidatedEvent,
+                                                             classic.AutomationElement.LayoutInvalidatedEvent,
                                                              null); //,
                                     //cmdlet.OnUIRecordingAutomationEvent);
                                     cmdlet.SubscribeToEvents(cmdlet,
                                                              element,
-                                                             AutomationElement.MenuClosedEvent,
-                                                             null); //,
-                                    //cmdlet.OnUIRecordingAutomationEvent);
-                                    
-                                    cmdlet.SubscribeToEvents(cmdlet,
-                                                             element,
-                                                             AutomationElement.MenuOpenedEvent,
-                                                             null); //,
-                                    //cmdlet.OnUIRecordingAutomationEvent);
-                                    cmdlet.SubscribeToEvents(cmdlet,
-                                                             element,
-                                                             AutomationElement.ToolTipClosedEvent,
-                                                             null); //,
-                                    //cmdlet.OnUIRecordingAutomationEvent);
-                                    cmdlet.SubscribeToEvents(cmdlet,
-                                                             element,
-                                                             AutomationElement.ToolTipOpenedEvent,
+                                                             classic.AutomationElement.MenuClosedEvent,
                                                              null); //,
                                     //cmdlet.OnUIRecordingAutomationEvent);
                                     
                                     cmdlet.SubscribeToEvents(cmdlet,
                                                              element,
-                                                             AutomationElement.AutomationFocusChangedEvent,
+                                                             classic.AutomationElement.MenuOpenedEvent,
                                                              null); //,
                                     //cmdlet.OnUIRecordingAutomationEvent);
                                     cmdlet.SubscribeToEvents(cmdlet,
                                                              element,
-                                                             AutomationElement.AutomationPropertyChangedEvent,
+                                                             classic.AutomationElement.ToolTipClosedEvent,
                                                              null); //,
                                     //cmdlet.OnUIRecordingAutomationEvent);
                                     cmdlet.SubscribeToEvents(cmdlet,
                                                              element,
-                                                             AutomationElement.StructureChangedEvent,
+                                                             classic.AutomationElement.ToolTipOpenedEvent,
+                                                             null); //,
+                                    //cmdlet.OnUIRecordingAutomationEvent);
+                                    
+                                    cmdlet.SubscribeToEvents(cmdlet,
+                                                             element,
+                                                             classic.AutomationElement.AutomationFocusChangedEvent,
+                                                             null); //,
+                                    //cmdlet.OnUIRecordingAutomationEvent);
+                                    cmdlet.SubscribeToEvents(cmdlet,
+                                                             element,
+                                                             classic.AutomationElement.AutomationPropertyChangedEvent,
+                                                             null); //,
+                                    //cmdlet.OnUIRecordingAutomationEvent);
+                                    cmdlet.SubscribeToEvents(cmdlet,
+                                                             element,
+                                                             classic.AutomationElement.StructureChangedEvent,
                                                              null); //,
                                     //cmdlet.OnUIRecordingAutomationEvent);
                                     break;
                                 case "TextPatternIdentifiers.Pattern":
                                     cmdlet.SubscribeToEvents(cmdlet,
                                                              element,
-                                                             TextPattern.TextChangedEvent,
+                                                             classic.TextPattern.TextChangedEvent,
                                                              null); //,
                                     //cmdlet.OnUIRecordingAutomationEvent);
                                     cmdlet.SubscribeToEvents(cmdlet,
                                                              element,
-                                                             TextPattern.TextSelectionChangedEvent,
+                                                             classic.TextPattern.TextSelectionChangedEvent,
                                                              null); //,
                                     //cmdlet.OnUIRecordingAutomationEvent);
                                     break;
                                 case "WindowPatternIdentifiers.Pattern":
                                     cmdlet.SubscribeToEvents(cmdlet,
                                                              element,
-                                                             WindowPattern.WindowOpenedEvent,
+                                                             classic.WindowPattern.WindowOpenedEvent,
                                                              null); //,
                                     //cmdlet.OnUIRecordingAutomationEvent);
                                     cmdlet.SubscribeToEvents(cmdlet,
                                                              element,
-                                                             WindowPattern.WindowClosedEvent,
+                                                             classic.WindowPattern.WindowClosedEvent,
                                                              null); //,
                                     //cmdlet.OnUIRecordingAutomationEvent);
                                     break;
@@ -1437,7 +1437,7 @@ namespace UIAutomation
                                                 // pattern.ProgrammaticName +
                                                 // 20131210
                                                 // (pattern as AutomationPattern).ProgrammaticName +
-                                                (pattern.GetSourcePattern() as AutomationPattern).ProgrammaticName +
+                                                (pattern.GetSourcePattern() as classic.AutomationPattern).ProgrammaticName +
                                                 " event for " +
                                                 element.Current.Name);
                         }
@@ -1474,7 +1474,7 @@ namespace UIAutomation
                 for (int i = 0; i < cmdlet.SubscribedEvents.Count; i++) {
                     // 20140130
                     // TODO:
-                    Automation.RemoveAutomationEventHandler(
+                    classic.Automation.RemoveAutomationEventHandler(
                         // 20131202
                         // (AutomationEvent)cmdlet.SubscribedEventsIds[i],
                         cmdlet.SubscribedEventsIds[i],
@@ -1482,7 +1482,7 @@ namespace UIAutomation
                         // cmdlet.thePreviouslyUsedElement.GetSourceElement(),
                         // 20140130
                         // TODO:
-                        cmdlet.thePreviouslyUsedElement.GetSourceElement() as AutomationElement,
+                        cmdlet.thePreviouslyUsedElement.GetSourceElement() as classic.AutomationElement,
                         // 20131202
                         // (AutomationEventHandler)cmdlet.SubscribedEvents[i]);
                         cmdlet.SubscribedEvents[i]);
@@ -1525,7 +1525,7 @@ namespace UIAutomation
                 //element =
                 //    new UiElement(AutomationElement.FromHandle(pHwnd));
                 _element =
-                    AutomationFactory.GetUiElement(AutomationElement.FromHandle(pHwnd));
+                    AutomationFactory.GetUiElement(classic.AutomationElement.FromHandle(pHwnd));
                 if (_element != null) {
                     // cmdlet.WriteVerbose(cmdlet, _element.Current.Name);
                 }
@@ -1617,7 +1617,7 @@ namespace UIAutomation
         /// <returns></returns>
         internal static classic.AutomationPattern GetPatternByName(string patternName)
         {
-            AutomationPattern result = null;
+            classic.AutomationPattern result = null;
             // normalize name
             patternName =
                 patternName.Substring(0, patternName.Length - 7) +
@@ -1625,58 +1625,58 @@ namespace UIAutomation
             patternName.Replace("dock", "Dock"); // ??
             switch (patternName) {
                 case "DockPattern":
-                    result = DockPattern.Pattern;
+                    result = classic.DockPattern.Pattern;
                     break;
                 case "ExpandCollapsePattern":
-                    result = ExpandCollapsePattern.Pattern;
+                    result = classic.ExpandCollapsePattern.Pattern;
                     break;
                 case "GridItemPattern":
-                    result = GridItemPattern.Pattern;
+                    result = classic.GridItemPattern.Pattern;
                     break;
                 case "GridPattern":
-                    result = GridPattern.Pattern;
+                    result = classic.GridPattern.Pattern;
                     break;
                 case "InvokePattern":
-                    result = InvokePattern.Pattern;
+                    result = classic.InvokePattern.Pattern;
                     break;
                 case "MultipleViewPattern":
-                    result = MultipleViewPattern.Pattern;
+                    result = classic.MultipleViewPattern.Pattern;
                     break;
                 case "RangeValuePattern":
-                    result = RangeValuePattern.Pattern;
+                    result = classic.RangeValuePattern.Pattern;
                     break;
                 case "ScrollItemPattern":
-                    result = ScrollItemPattern.Pattern;
+                    result = classic.ScrollItemPattern.Pattern;
                     break;
                 case "ScrollPattern":
-                    result = ScrollPattern.Pattern;
+                    result = classic.ScrollPattern.Pattern;
                     break;
                 case "SelectionItemPattern":
-                    result = SelectionItemPattern.Pattern;
+                    result = classic.SelectionItemPattern.Pattern;
                     break;
                 case "SelectionPattern":
-                    result = SelectionPattern.Pattern;
+                    result = classic.SelectionPattern.Pattern;
                     break;
                 case "TableItemPattern":
-                    result = TableItemPattern.Pattern;
+                    result = classic.TableItemPattern.Pattern;
                     break;
                 case "TablePattern":
-                    result = TablePattern.Pattern;
+                    result = classic.TablePattern.Pattern;
                     break;
                 case "TextPattern":
-                    result = TextPattern.Pattern;
+                    result = classic.TextPattern.Pattern;
                     break;
                 case "TogglePattern":
-                    result = TogglePattern.Pattern;
+                    result = classic.TogglePattern.Pattern;
                     break;
                 case "TransformPattern":
-                    result = TransformPattern.Pattern;
+                    result = classic.TransformPattern.Pattern;
                     break;
                 case "ValuePattern":
-                    result = ValuePattern.Pattern;
+                    result = classic.ValuePattern.Pattern;
                     break;
                 case "WindowPattern":
-                    result = WindowPattern.Pattern;
+                    result = classic.WindowPattern.Pattern;
                     break;
                 default:
                     result = null;
@@ -1725,7 +1725,7 @@ namespace UIAutomation
                 // foreach (AutomationPattern ptrn in supportedPatterns.Where(ptrn => patternType.ProgrammaticName == ptrn.ProgrammaticName ||
                 // 20131210
                 // foreach (IBasePattern ptrn in supportedPatterns.Where(ptrn => patternType.ProgrammaticName == (ptrn as AutomationPattern).ProgrammaticName ||
-                foreach (IBasePattern ptrn in supportedPatterns.Where(ptrn => patternType.ProgrammaticName == (ptrn.GetSourcePattern() as AutomationPattern).ProgrammaticName ||
+                foreach (IBasePattern ptrn in supportedPatterns.Where(ptrn => patternType.ProgrammaticName == (ptrn.GetSourcePattern() as classic.AutomationPattern).ProgrammaticName ||
                                                                                    patternType == null))
                 {
                     object pattern = null;
@@ -1734,7 +1734,7 @@ namespace UIAutomation
                         // ptrn, out pattern)) continue;
                         // 20131210
                         // (ptrn as AutomationPattern), out pattern)) continue;
-                        (ptrn.GetSourcePattern() as AutomationPattern), out pattern)) continue;
+                        (ptrn.GetSourcePattern() as classic.AutomationPattern), out pattern)) continue;
                     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //                    object resPattern =
 //                        // 20131208
@@ -1748,7 +1748,7 @@ namespace UIAutomation
                         // element.GetCurrentPattern(ptrn);
                         // 20131210
                         // element.GetCurrentPattern((ptrn as AutomationPattern));
-                        element.GetCurrentPattern((ptrn.GetSourcePattern() as AutomationPattern));
+                        element.GetCurrentPattern((ptrn.GetSourcePattern() as classic.AutomationPattern));
                     return result;
                 }
 
@@ -1788,45 +1788,45 @@ namespace UIAutomation
             string controlTypeInUpperCase = controlType.ToUpper();
             switch (controlTypeInUpperCase)
             {
-                    case "BUTTON": { return ControlType.Button; }
-                    case "CALENDAR": { return ControlType.Calendar; }
-                    case "CHECKBOX": { return ControlType.CheckBox; }
-                    case "COMBOBOX": { return ControlType.ComboBox; }
-                    case "CUSTOM": { return ControlType.Custom; }
-                    case "DATAGRID": { return ControlType.DataGrid; }
-                    case "DATAITEM": { return ControlType.DataItem; }
-                    case "DOCUMENT": { return ControlType.Document; }
-                    case "EDIT": { return ControlType.Edit; }
-                    case "GROUP": { return ControlType.Group; }
-                    case "HEADER": { return ControlType.Header; }
-                    case "HEADERITEM": { return ControlType.HeaderItem; }
-                    case "HYPERLINK": { return ControlType.Hyperlink; }
-                    case "IMAGE": { return ControlType.Image; }
-                    case "LIST": { return ControlType.List; }
-                    case "LISTITEM": { return ControlType.ListItem; }
-                    case "MENU": { return ControlType.Menu; }
-                    case "MENUBAR": { return ControlType.MenuBar; }
-                    case "MENUITEM": { return ControlType.MenuItem; }
-                    case "PANE": { return ControlType.Pane; }
-                    case "PROGRESSBAR": { return ControlType.ProgressBar; }
-                    case "RADIOBUTTON": { return ControlType.RadioButton; }
-                    case "SCROLLBAR": { return ControlType.ScrollBar; }
-                    case "SEPARATOR": { return ControlType.Separator; }
-                    case "SLIDER": { return ControlType.Slider; }
-                    case "SPINNER": { return ControlType.Spinner; }
-                    case "SPLITBUTTON": { return ControlType.SplitButton; }
-                    case "STATUSBAR": { return ControlType.StatusBar; }
-                    case "TAB": { return ControlType.Tab; }
-                    case "TABITEM": { return ControlType.TabItem; }
-                    case "TABLE": { return ControlType.Table; }
-                    case "TEXT": { return ControlType.Text; }
-                    case "THUMB": { return ControlType.Thumb; }
-                    case "TITLEBAR": { return ControlType.TitleBar; }
-                    case "TOOLBAR": { return ControlType.ToolBar; }
-                    case "TOOLTIP": { return ControlType.ToolTip; }
-                    case "TREE": { return ControlType.Tree; }
-                    case "TREEITEM": { return ControlType.TreeItem; }
-                    case "WINDOW": { return ControlType.Window; }
+                    case "BUTTON": { return classic.ControlType.Button; }
+                    case "CALENDAR": { return classic.ControlType.Calendar; }
+                    case "CHECKBOX": { return classic.ControlType.CheckBox; }
+                    case "COMBOBOX": { return classic.ControlType.ComboBox; }
+                    case "CUSTOM": { return classic.ControlType.Custom; }
+                    case "DATAGRID": { return classic.ControlType.DataGrid; }
+                    case "DATAITEM": { return classic.ControlType.DataItem; }
+                    case "DOCUMENT": { return classic.ControlType.Document; }
+                    case "EDIT": { return classic.ControlType.Edit; }
+                    case "GROUP": { return classic.ControlType.Group; }
+                    case "HEADER": { return classic.ControlType.Header; }
+                    case "HEADERITEM": { return classic.ControlType.HeaderItem; }
+                    case "HYPERLINK": { return classic.ControlType.Hyperlink; }
+                    case "IMAGE": { return classic.ControlType.Image; }
+                    case "LIST": { return classic.ControlType.List; }
+                    case "LISTITEM": { return classic.ControlType.ListItem; }
+                    case "MENU": { return classic.ControlType.Menu; }
+                    case "MENUBAR": { return classic.ControlType.MenuBar; }
+                    case "MENUITEM": { return classic.ControlType.MenuItem; }
+                    case "PANE": { return classic.ControlType.Pane; }
+                    case "PROGRESSBAR": { return classic.ControlType.ProgressBar; }
+                    case "RADIOBUTTON": { return classic.ControlType.RadioButton; }
+                    case "SCROLLBAR": { return classic.ControlType.ScrollBar; }
+                    case "SEPARATOR": { return classic.ControlType.Separator; }
+                    case "SLIDER": { return classic.ControlType.Slider; }
+                    case "SPINNER": { return classic.ControlType.Spinner; }
+                    case "SPLITBUTTON": { return classic.ControlType.SplitButton; }
+                    case "STATUSBAR": { return classic.ControlType.StatusBar; }
+                    case "TAB": { return classic.ControlType.Tab; }
+                    case "TABITEM": { return classic.ControlType.TabItem; }
+                    case "TABLE": { return classic.ControlType.Table; }
+                    case "TEXT": { return classic.ControlType.Text; }
+                    case "THUMB": { return classic.ControlType.Thumb; }
+                    case "TITLEBAR": { return classic.ControlType.TitleBar; }
+                    case "TOOLBAR": { return classic.ControlType.ToolBar; }
+                    case "TOOLTIP": { return classic.ControlType.ToolTip; }
+                    case "TREE": { return classic.ControlType.Tree; }
+                    case "TREEITEM": { return classic.ControlType.TreeItem; }
+                    case "WINDOW": { return classic.ControlType.Window; }
                 default:
                     // WriteVerbose(this, "there's no ControlType value.");
                     // 20131119
@@ -1855,9 +1855,9 @@ namespace UIAutomation
             IUiEltCollection headerItems =
                 element.FindAll(
                     classic.TreeScope.Descendants,
-                    new PropertyCondition(
-                        AutomationElement.ControlTypeProperty,
-                        ControlType.HeaderItem));
+                    new classic.PropertyCondition(
+                        classic.AutomationElement.ControlTypeProperty,
+                        classic.ControlType.HeaderItem));
             if (headerItems == null || headerItems.Count == 0) {
                 // WriteVerbose(this, "no headers found");
                 strResultString =
@@ -1932,9 +1932,9 @@ namespace UIAutomation
             IUiEltCollection headerItems =
                 element.FindAll(
                     classic.TreeScope.Descendants,
-                    new PropertyCondition(
-                        AutomationElement.ControlTypeProperty,
-                        ControlType.Header));
+                    new classic.PropertyCondition(
+                        classic.AutomationElement.ControlTypeProperty,
+                        classic.ControlType.Header));
             if (headerItems == null || headerItems.Count == 0) {
                 // WriteVerbose(this, "no headers found");
                 strResultString =
@@ -2087,19 +2087,19 @@ namespace UIAutomation
             */
             
             IUiEltCollection rows =
-                control.FindAll(TreeScope.Children,
-                                new PropertyCondition(
-                                    AutomationElement.ControlTypeProperty,
-                                    ControlType.Custom));
+                control.FindAll(classic.TreeScope.Children,
+                                new classic.PropertyCondition(
+                                    classic.AutomationElement.ControlTypeProperty,
+                                    classic.ControlType.Custom));
             if (rows.Count > 0) {
                 
                 foreach(IUiElement row in rows) {
                     
                     IUiEltCollection rowItems =
-                        row.FindAll(TreeScope.Children,
-                                    new PropertyCondition(
-                                        AutomationElement.ControlTypeProperty,
-                                        ControlType.Custom));
+                        row.FindAll(classic.TreeScope.Children,
+                                    new classic.PropertyCondition(
+                                        classic.AutomationElement.ControlTypeProperty,
+                                        classic.ControlType.Custom));
                     if (rowItems.Count <= 0) continue;
                     string onerow = String.Empty;
                     
@@ -2111,7 +2111,7 @@ namespace UIAutomation
                         strValue += '"';
                         try
                         {
-                            IValuePattern valPattern = rowItem.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern);
+                            IValuePattern valPattern = rowItem.GetCurrentPattern<IValuePattern>(classic.ValuePattern.Pattern);
                             strValue += valPattern.Current.Value;
                         }
                         catch {
@@ -2129,7 +2129,7 @@ namespace UIAutomation
 //                        strValue += '"';
 //                        try {
 //                            valPattern =
-//                                rowItems[i].GetCurrentPattern(ValuePattern.Pattern)
+//                                rowItems[i].GetCurrentPattern(classic.ValuePattern.Pattern)
 //                                    as ValuePattern;
 //                            strValue += valPattern.Current.Value;
 //                        } catch {
@@ -2150,7 +2150,7 @@ namespace UIAutomation
                         strValue += '"';
                         try {
                             valPattern =
-                                rowItems[i].GetCurrentPattern(ValuePattern.Pattern)
+                                rowItems[i].GetCurrentPattern(classic.ValuePattern.Pattern)
                                     as ValuePattern;
                             strValue += valPattern.Current.Value;
                         } catch {
@@ -2177,7 +2177,7 @@ namespace UIAutomation
                             strValue += '"';
                             try {
                                 valPattern =
-                                    rowItems[i].GetCurrentPattern(ValuePattern.Pattern)
+                                    rowItems[i].GetCurrentPattern(classic.ValuePattern.Pattern)
                                     as ValuePattern;
                                 strValue += valPattern.Current.Value;
                             } catch {
@@ -2646,62 +2646,62 @@ namespace UIAutomation
                 supportedTypes.Add(typeof(ISupportsExtendedModel));
             }
             
-            if (element is AutomationElement) {
+            if (element is classic.AutomationElement) {
                 // AutomationElement aElement = element as AutomationElement;
-                var aElement = element as AutomationElement;
-                foreach (AutomationPattern pattern in aElement.GetSupportedPatterns()) {
+                var aElement = element as classic.AutomationElement;
+                foreach (classic.AutomationPattern pattern in aElement.GetSupportedPatterns()) {
                     // calculated patterns
-                    if (pattern == DockPattern.Pattern) {
+                    if (pattern == classic.DockPattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsDockPattern));
                     }
-                    if (pattern == ExpandCollapsePattern.Pattern) {
+                    if (pattern == classic.ExpandCollapsePattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsExpandCollapsePattern));
                     }
-                    if (pattern == GridItemPattern.Pattern) {
+                    if (pattern == classic.GridItemPattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsGridItemPattern));
                     }
-                    if (pattern == GridPattern.Pattern) {
+                    if (pattern == classic.GridPattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsGridPattern));
                         supportedTypes.Add(typeof(ISupportsExport));
                     }
-                    if (pattern == InvokePattern.Pattern) {
+                    if (pattern == classic.InvokePattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsInvokePattern));
                     }
-                    if (pattern == RangeValuePattern.Pattern) {
+                    if (pattern == classic.RangeValuePattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsRangeValuePattern));
                     }
-                    if (pattern == SelectionItemPattern.Pattern) {
+                    if (pattern == classic.SelectionItemPattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsSelectionItemPattern));
                     }
-                    if (pattern == SelectionPattern.Pattern) {
+                    if (pattern == classic.SelectionPattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsSelectionPattern));
                     }
-                    if (pattern == ScrollItemPattern.Pattern) {
+                    if (pattern == classic.ScrollItemPattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsScrollItemPattern));
                     }
-                    if (pattern == ScrollPattern.Pattern) {
+                    if (pattern == classic.ScrollPattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsScrollPattern));
                     }
-                    if (pattern == TableItemPattern.Pattern) {
+                    if (pattern == classic.TableItemPattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsTableItemPattern));
                     }
-                    if (pattern == TablePattern.Pattern) {
+                    if (pattern == classic.TablePattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsTablePattern));
                         supportedTypes.Add(typeof(ISupportsConversion));
                     }
-                    if (pattern == TextPattern.Pattern) {
+                    if (pattern == classic.TextPattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsTextPattern));
                     }
-                    if (pattern == TogglePattern.Pattern) {
+                    if (pattern == classic.TogglePattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsTogglePattern));
                     }
-                    if (pattern == TransformPattern.Pattern) {
+                    if (pattern == classic.TransformPattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsTransformPattern));
                     }
-                    if (pattern == ValuePattern.Pattern) {
+                    if (pattern == classic.ValuePattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsValuePattern));
                     }
-                    if (pattern == WindowPattern.Pattern) {
+                    if (pattern == classic.WindowPattern.Pattern) {
                         supportedTypes.Add(typeof(ISupportsWindowPattern));
                     }
                 }
@@ -2791,13 +2791,13 @@ namespace UIAutomation
         {
             switch (scope.ToUpper()) {
                 case "SUBTREE":
-                    return TreeScope.Subtree;
+                    return classic.TreeScope.Subtree;
                 case "CHILDREN":
                     return classic.TreeScope.Children;
                 case "DESCENDANTS":
                     return classic.TreeScope.Descendants;
                 case "ELEMENT":
-                    return TreeScope.Element;
+                    return classic.TreeScope.Element;
                 default:
                     return classic.TreeScope.Descendants;
             }

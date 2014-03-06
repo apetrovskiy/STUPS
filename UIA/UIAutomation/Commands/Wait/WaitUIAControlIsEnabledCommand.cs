@@ -9,7 +9,7 @@
 
 namespace UIAutomation.Commands
 {
-    extern alias UIANET;using System.Windows.Automation;
+    extern alias UIANET;// using System.Windows.Automation;
     using System;
     using System.Management.Automation;
     using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
@@ -138,7 +138,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaButtonIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaButtonIsEnabledCommand() { ControlType = ControlType.Button; } }
+    { public WaitUiaButtonIsEnabledCommand() { ControlType = classic.ControlType.Button; } }
 
     /// <summary>
     /// Description of WaitUiaCalendarIsEnabled.
@@ -147,7 +147,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaCalendarIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaCalendarIsEnabledCommand() { ControlType = ControlType.Calendar; } }
+    { public WaitUiaCalendarIsEnabledCommand() { ControlType = classic.ControlType.Calendar; } }
     
     /// <summary>
     /// Description of WaitUiaCheckBoxIsEnabled.
@@ -156,7 +156,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaCheckBoxIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaCheckBoxIsEnabledCommand() { ControlType = ControlType.CheckBox; } }
+    { public WaitUiaCheckBoxIsEnabledCommand() { ControlType = classic.ControlType.CheckBox; } }
     
     /// <summary>
     /// Description of WaitUiaComboBoxIsEnabled.
@@ -165,7 +165,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaComboBoxIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaComboBoxIsEnabledCommand() { ControlType = ControlType.ComboBox; } }
+    { public WaitUiaComboBoxIsEnabledCommand() { ControlType = classic.ControlType.ComboBox; } }
     
     /// <summary>
     /// Description of WaitUiaCustomIsEnabled.
@@ -174,7 +174,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaCustomIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaCustomIsEnabledCommand() { ControlType = ControlType.Custom; } }
+    { public WaitUiaCustomIsEnabledCommand() { ControlType = classic.ControlType.Custom; } }
     
     /// <summary>
     /// Description of WaitUiaDataGridIsEnabled.
@@ -183,7 +183,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaDataGridIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaDataGridIsEnabledCommand() { ControlType = ControlType.DataGrid; } }
+    { public WaitUiaDataGridIsEnabledCommand() { ControlType = classic.ControlType.DataGrid; } }
     
     /// <summary>
     /// Description of WaitUiaDataItemIsEnabled.
@@ -192,7 +192,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaDataItemIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaDataItemIsEnabledCommand() { ControlType = ControlType.DataItem; } }
+    { public WaitUiaDataItemIsEnabledCommand() { ControlType = classic.ControlType.DataItem; } }
     
     /// <summary>
     /// Description of WaitUiaDocumentIsEnabled.
@@ -201,7 +201,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaDocumentIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaDocumentIsEnabledCommand() { ControlType = ControlType.Document; } }
+    { public WaitUiaDocumentIsEnabledCommand() { ControlType = classic.ControlType.Document; } }
 
     /// <summary>
     /// Description of WaitUiaEditIsEnabled.
@@ -210,7 +210,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaEditIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaEditIsEnabledCommand() { ControlType = ControlType.Edit; } }
+    { public WaitUiaEditIsEnabledCommand() { ControlType = classic.ControlType.Edit; } }
     
     /// <summary>
     /// Description of WaitUiaTextBoxIsEnabled.
@@ -219,7 +219,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaTextBoxIsEnabledCommand : WaitUiaEditIsEnabledCommand
-    { public WaitUiaTextBoxIsEnabledCommand() { ControlType = ControlType.Edit; } }
+    { public WaitUiaTextBoxIsEnabledCommand() { ControlType = classic.ControlType.Edit; } }
     
     /// <summary>
     /// Description of WaitUiaGroupIsEnabled.
@@ -228,7 +228,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaGroupIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaGroupIsEnabledCommand() { ControlType = ControlType.Group; } }
+    { public WaitUiaGroupIsEnabledCommand() { ControlType = classic.ControlType.Group; } }
     
     /// <summary>
     /// Description of WaitUiaGroupBoxIsEnabled.
@@ -237,7 +237,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaGroupBoxIsEnabledCommand : WaitUiaGroupIsEnabledCommand
-    { public WaitUiaGroupBoxIsEnabledCommand() { ControlType = ControlType.Group; } }
+    { public WaitUiaGroupBoxIsEnabledCommand() { ControlType = classic.ControlType.Group; } }
     
     /// <summary>
     /// Description of WaitUiaHeaderIsEnabled.
@@ -246,7 +246,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaHeaderIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaHeaderIsEnabledCommand() { ControlType = ControlType.Header; } }
+    { public WaitUiaHeaderIsEnabledCommand() { ControlType = classic.ControlType.Header; } }
     
     /// <summary>
     /// Description of WaitUiaHeaderItemIsEnabled.
@@ -255,7 +255,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaHeaderItemIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaHeaderItemIsEnabledCommand() { ControlType = ControlType.HeaderItem; } }
+    { public WaitUiaHeaderItemIsEnabledCommand() { ControlType = classic.ControlType.HeaderItem; } }
     
     /// <summary>
     /// Description of WaitUiaHyperlinkIsEnabled.
@@ -264,7 +264,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaHyperlinkIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaHyperlinkIsEnabledCommand() { ControlType = ControlType.Hyperlink; } }
+    { public WaitUiaHyperlinkIsEnabledCommand() { ControlType = classic.ControlType.Hyperlink; } }
     
     /// <summary>
     /// Description of WaitUiaLinkLabelIsEnabled.
@@ -273,7 +273,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaLinkLabelIsEnabledCommand : WaitUiaHyperlinkIsEnabledCommand
-    { public WaitUiaLinkLabelIsEnabledCommand() { ControlType = ControlType.Hyperlink; } }
+    { public WaitUiaLinkLabelIsEnabledCommand() { ControlType = classic.ControlType.Hyperlink; } }
 
     /// <summary>
     /// Description of WaitUiaImageIsEnabled.
@@ -282,7 +282,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaImageIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaImageIsEnabledCommand() { ControlType = ControlType.Image; } }
+    { public WaitUiaImageIsEnabledCommand() { ControlType = classic.ControlType.Image; } }
     
     /// <summary>
     /// Description of WaitUiaListIsEnabled.
@@ -291,7 +291,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaListIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaListIsEnabledCommand() { ControlType = ControlType.List; } }
+    { public WaitUiaListIsEnabledCommand() { ControlType = classic.ControlType.List; } }
     
     /// <summary>
     /// Description of WaitUiaListItemIsEnabled.
@@ -300,7 +300,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaListItemIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaListItemIsEnabledCommand() { ControlType = ControlType.ListItem; } }
+    { public WaitUiaListItemIsEnabledCommand() { ControlType = classic.ControlType.ListItem; } }
     
     /// <summary>
     /// Description of WaitUiaMenuIsEnabled.
@@ -309,7 +309,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaMenuIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaMenuIsEnabledCommand() { ControlType = ControlType.Menu; } }
+    { public WaitUiaMenuIsEnabledCommand() { ControlType = classic.ControlType.Menu; } }
     
     /// <summary>
     /// Description of WaitUiaMenuBarIsEnabled.
@@ -318,7 +318,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaMenuBarIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaMenuBarIsEnabledCommand() { ControlType = ControlType.MenuBar; } }
+    { public WaitUiaMenuBarIsEnabledCommand() { ControlType = classic.ControlType.MenuBar; } }
 
     /// <summary>
     /// Description of WaitUiaMenuItemIsEnabled.
@@ -327,7 +327,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaMenuItemIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaMenuItemIsEnabledCommand() { ControlType = ControlType.MenuItem; } }
+    { public WaitUiaMenuItemIsEnabledCommand() { ControlType = classic.ControlType.MenuItem; } }
     
     /// <summary>
     /// Description of WaitUiaPaneIsEnabled.
@@ -336,7 +336,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaPaneIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaPaneIsEnabledCommand() { ControlType = ControlType.Pane; } }
+    { public WaitUiaPaneIsEnabledCommand() { ControlType = classic.ControlType.Pane; } }
     
     /// <summary>
     /// Description of WaitUiaProgressBarIsEnabled.
@@ -345,7 +345,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaProgressBarIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaProgressBarIsEnabledCommand() { ControlType = ControlType.ProgressBar; } }
+    { public WaitUiaProgressBarIsEnabledCommand() { ControlType = classic.ControlType.ProgressBar; } }
     
     /// <summary>
     /// Description of WaitUiaRadioButtonIsEnabled.
@@ -354,7 +354,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaRadioButtonIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaRadioButtonIsEnabledCommand() { ControlType = ControlType.RadioButton; } }
+    { public WaitUiaRadioButtonIsEnabledCommand() { ControlType = classic.ControlType.RadioButton; } }
     
     /// <summary>
     /// Description of WaitUiaScrollBarIsEnabled.
@@ -363,7 +363,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaScrollBarIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaScrollBarIsEnabledCommand() { ControlType = ControlType.ScrollBar; } }
+    { public WaitUiaScrollBarIsEnabledCommand() { ControlType = classic.ControlType.ScrollBar; } }
 
     /// <summary>
     /// Description of WaitUiaSeparatorIsEnabled.
@@ -372,7 +372,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaSeparatorIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaSeparatorIsEnabledCommand() { ControlType = ControlType.Separator; } }
+    { public WaitUiaSeparatorIsEnabledCommand() { ControlType = classic.ControlType.Separator; } }
     
     /// <summary>
     /// Description of WaitUiaSliderIsEnabled.
@@ -381,7 +381,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaSliderIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaSliderIsEnabledCommand() { ControlType = ControlType.Slider; } }
+    { public WaitUiaSliderIsEnabledCommand() { ControlType = classic.ControlType.Slider; } }
     
     /// <summary>
     /// Description of WaitUiaSpinnerIsEnabled.
@@ -390,7 +390,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaSpinnerIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaSpinnerIsEnabledCommand() { ControlType = ControlType.Spinner; } }
+    { public WaitUiaSpinnerIsEnabledCommand() { ControlType = classic.ControlType.Spinner; } }
     
     /// <summary>
     /// Description of WaitUiaSplitButtonIsEnabled.
@@ -399,7 +399,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaSplitButtonIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaSplitButtonIsEnabledCommand() { ControlType = ControlType.SplitButton; } }
+    { public WaitUiaSplitButtonIsEnabledCommand() { ControlType = classic.ControlType.SplitButton; } }
     
     /// <summary>
     /// Description of WaitUiaStatusBarIsEnabled.
@@ -408,7 +408,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaStatusBarIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaStatusBarIsEnabledCommand() { ControlType = ControlType.StatusBar; } }
+    { public WaitUiaStatusBarIsEnabledCommand() { ControlType = classic.ControlType.StatusBar; } }
 
     /// <summary>
     /// Description of WaitUiaTabIsEnabled.
@@ -417,7 +417,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaTabIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaTabIsEnabledCommand() { ControlType = ControlType.Tab; } }
+    { public WaitUiaTabIsEnabledCommand() { ControlType = classic.ControlType.Tab; } }
     
     /// <summary>
     /// Description of WaitUiaTabItemIsEnabled.
@@ -426,7 +426,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaTabItemIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaTabItemIsEnabledCommand() { ControlType = ControlType.TabItem; } }
+    { public WaitUiaTabItemIsEnabledCommand() { ControlType = classic.ControlType.TabItem; } }
     
     /// <summary>
     /// Description of WaitUiaTableIsEnabled.
@@ -435,7 +435,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaTableIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaTableIsEnabledCommand() { ControlType = ControlType.Table; } }
+    { public WaitUiaTableIsEnabledCommand() { ControlType = classic.ControlType.Table; } }
     
     /// <summary>
     /// Description of WaitUiaTextIsEnabled.
@@ -444,7 +444,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaTextIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaTextIsEnabledCommand() { ControlType = ControlType.Text; } }
+    { public WaitUiaTextIsEnabledCommand() { ControlType = classic.ControlType.Text; } }
     
     /// <summary>
     /// Description of WaitUiaLabelIsEnabled.
@@ -453,7 +453,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaLabelIsEnabledCommand : WaitUiaTextIsEnabledCommand
-    { public WaitUiaLabelIsEnabledCommand() { ControlType = ControlType.Text; } }
+    { public WaitUiaLabelIsEnabledCommand() { ControlType = classic.ControlType.Text; } }
     
     /// <summary>
     /// Description of WaitUiaThumbIsEnabled.
@@ -462,7 +462,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaThumbIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaThumbIsEnabledCommand() { ControlType = ControlType.Thumb; } }
+    { public WaitUiaThumbIsEnabledCommand() { ControlType = classic.ControlType.Thumb; } }
 
     /// <summary>
     /// Description of WaitUiaTitleBarIsEnabled.
@@ -471,7 +471,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaTitleBarIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaTitleBarIsEnabledCommand() { ControlType = ControlType.TitleBar; } }
+    { public WaitUiaTitleBarIsEnabledCommand() { ControlType = classic.ControlType.TitleBar; } }
     
     /// <summary>
     /// Description of WaitUiaToolBarIsEnabled.
@@ -480,7 +480,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaToolBarIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaToolBarIsEnabledCommand() { ControlType = ControlType.ToolBar; } }
+    { public WaitUiaToolBarIsEnabledCommand() { ControlType = classic.ControlType.ToolBar; } }
     
     /// <summary>
     /// Description of WaitUiaToolTipIsEnabled.
@@ -489,7 +489,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaToolTipIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaToolTipIsEnabledCommand() { ControlType = ControlType.ToolTip; } }
+    { public WaitUiaToolTipIsEnabledCommand() { ControlType = classic.ControlType.ToolTip; } }
     
     /// <summary>
     /// Description of WaitUiaTreeIsEnabled.
@@ -498,7 +498,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaTreeIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaTreeIsEnabledCommand() { ControlType = ControlType.Tree; } }
+    { public WaitUiaTreeIsEnabledCommand() { ControlType = classic.ControlType.Tree; } }
     
     /// <summary>
     /// Description of WaitUiaTreeItemIsEnabled.
@@ -507,7 +507,7 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaTreeItemIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaTreeItemIsEnabledCommand() { ControlType = ControlType.TreeItem; } }
+    { public WaitUiaTreeItemIsEnabledCommand() { ControlType = classic.ControlType.TreeItem; } }
     
     /// <summary>
     /// Description of WaitUiaChildWindowIsEnabled.
@@ -516,6 +516,6 @@ namespace UIAutomation.Commands
     [OutputType(typeof(object))]
     
     public class WaitUiaChildWindowIsEnabledCommand : WaitUiaControlIsEnabledCommand
-    { public WaitUiaChildWindowIsEnabledCommand() { ControlType = ControlType.Window; } }
+    { public WaitUiaChildWindowIsEnabledCommand() { ControlType = classic.ControlType.Window; } }
     
 }

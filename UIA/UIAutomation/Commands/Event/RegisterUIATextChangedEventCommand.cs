@@ -9,7 +9,7 @@
 
 namespace UIAutomation.Commands
 {
-    extern alias UIANET;using System.Windows.Automation;
+    extern alias UIANET;// using System.Windows.Automation;
     using System.Management.Automation;
     using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     using UIAutomation.Helpers.Commands;
@@ -24,7 +24,7 @@ namespace UIAutomation.Commands
         public RegisterUiaTextChangedEventCommand()
         {
             AutomationEventType = 
-                TextPattern.TextChangedEvent;
+                classic.TextPattern.TextChangedEvent;
             AutomationEventHandler = OnUIAutomationEvent;
         }
     }

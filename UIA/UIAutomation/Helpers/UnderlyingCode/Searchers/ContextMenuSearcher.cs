@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;using System.Windows.Automation;
+    extern alias UIANET;// using System.Windows.Automation;
     using System;
 //    using System.Collections;
     using System.Collections.Generic;
@@ -33,13 +33,13 @@ namespace UIAutomation
             var data = SearcherData as ContextMenuSearcherData;
             
             conditionsForContextMenuSearch =
-                new AndCondition(
-                    new PropertyCondition(
-                        AutomationElement.ProcessIdProperty,
+                new classic.AndCondition(
+                    new classic.PropertyCondition(
+                        classic.AutomationElement.ProcessIdProperty,
                         data.ProcessId),
-                    new PropertyCondition(
-                        AutomationElement.ControlTypeProperty,
-                        ControlType.Menu));
+                    new classic.PropertyCondition(
+                        classic.AutomationElement.ControlTypeProperty,
+                        classic.ControlType.Menu));
             
             ResultCollection = new List<IUiElement>();
         }

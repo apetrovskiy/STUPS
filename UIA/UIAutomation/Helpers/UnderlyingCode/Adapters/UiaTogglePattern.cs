@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;using System.Windows.Automation;
+	extern alias UIANET;// using System.Windows.Automation;
 	using System;
 	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 
@@ -42,11 +42,11 @@ namespace UIAutomation
 			}
 		    
 			public classic.ToggleState ToggleState {
-				get { return (ToggleState)this._togglePattern.GetParentElement().GetPatternPropertyValue(TogglePattern.ToggleStateProperty, this._useCache); }
+				get { return (classic.ToggleState)this._togglePattern.GetParentElement().GetPatternPropertyValue(classic.TogglePattern.ToggleStateProperty, this._useCache); }
 			}
 		}
-		public static readonly classic.AutomationPattern Pattern = TogglePatternIdentifiers.Pattern;
-		public static readonly classic.AutomationProperty ToggleStateProperty = TogglePatternIdentifiers.ToggleStateProperty;
+		public static readonly classic.AutomationPattern Pattern = classic.TogglePatternIdentifiers.Pattern;
+		public static readonly classic.AutomationProperty ToggleStateProperty = classic.TogglePatternIdentifiers.ToggleStateProperty;
 		
 		public virtual ITogglePatternInformation Cached {
 			get {
@@ -78,7 +78,7 @@ namespace UIAutomation
 		
 		public void SetSourcePattern(object pattern)
 		{
-		    this._togglePattern = pattern as TogglePattern;
+		    this._togglePattern = pattern as classic.TogglePattern;
 		}
 		
 		public object GetSourcePattern()

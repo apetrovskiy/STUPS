@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;using System.Windows.Automation;
+    extern alias UIANET;// using System.Windows.Automation;
     using System;
     using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 //    using System.Windows.Automation.Text;
@@ -29,13 +29,13 @@ namespace UIAutomation
 		{
 			IUiElement result = null;
 
-			var walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
+			var walker = new classic.TreeWalker(classic.Condition.TrueCondition);
             /*
             TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
             */
 
 			try {
-				result = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement() as AutomationElement));
+				result = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement() as classic.AutomationElement));
 			} catch {
 			}
 
@@ -46,13 +46,13 @@ namespace UIAutomation
 		{
 			IUiElement result = null;
 
-			var walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
+			var walker = new classic.TreeWalker(classic.Condition.TrueCondition);
             /*
             TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
             */
 
 			try {
-				result = AutomationFactory.GetUiElement(walker.GetFirstChild(element.GetSourceElement() as AutomationElement));
+				result = AutomationFactory.GetUiElement(walker.GetFirstChild(element.GetSourceElement() as classic.AutomationElement));
 			} catch {
 			}
 
@@ -63,10 +63,10 @@ namespace UIAutomation
 		{
 			IUiElement result = null;
 
-			TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
+			classic.TreeWalker walker = new classic.TreeWalker(classic.Condition.TrueCondition);
 
 			try {
-				result = AutomationFactory.GetUiElement(walker.GetLastChild(element.GetSourceElement() as AutomationElement));
+				result = AutomationFactory.GetUiElement(walker.GetLastChild(element.GetSourceElement() as classic.AutomationElement));
 			} catch {
 			}
 
@@ -77,14 +77,14 @@ namespace UIAutomation
 		{
 			IUiElement result = null;
 
-			var walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
+			var walker = new classic.TreeWalker(classic.Condition.TrueCondition);
             
             /*
             TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
             */
 
 			try {
-				result = AutomationFactory.GetUiElement(walker.GetNextSibling(element.GetSourceElement() as AutomationElement));
+				result = AutomationFactory.GetUiElement(walker.GetNextSibling(element.GetSourceElement() as classic.AutomationElement));
 			} catch {
 			}
 
@@ -95,14 +95,14 @@ namespace UIAutomation
 		{
 			IUiElement result = null;
 
-			var walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
+			var walker = new classic.TreeWalker(classic.Condition.TrueCondition);
             /*
             TreeWalker walker = new TreeWalker(System.Windows.Automation.Condition.TrueCondition);
             */
             
 			try {
                 
-				result = AutomationFactory.GetUiElement(walker.GetPreviousSibling(element.GetSourceElement() as AutomationElement));
+				result = AutomationFactory.GetUiElement(walker.GetPreviousSibling(element.GetSourceElement() as classic.AutomationElement));
 			} catch {
 			}
 

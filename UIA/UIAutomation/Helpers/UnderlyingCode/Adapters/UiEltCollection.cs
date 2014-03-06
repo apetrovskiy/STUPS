@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;using System.Windows.Automation;
+    extern alias UIANET;// using System.Windows.Automation;
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -84,7 +84,7 @@ namespace UIAutomation
         
 		public UiEltCollection(classic.AutomationElementCollection elements)
 		{
-		    foreach (AutomationElement element in elements.Cast<AutomationElement>().Where(element => null != element))
+		    foreach (classic.AutomationElement element in elements.Cast<classic.AutomationElement>().Where(element => null != element))
 		    {
 		        _collectionHolder.Add(AutomationFactory.GetUiElement(element));
 		    }
@@ -100,8 +100,8 @@ namespace UIAutomation
 
 	    public UiEltCollection(IEnumerable elements)
 	    {
-	        foreach (var element in elements.Cast<object>().Where(element => null != element && element is AutomationElement)) {
-	            _collectionHolder.Add(AutomationFactory.GetUiElement(element as AutomationElement));
+	        foreach (var element in elements.Cast<object>().Where(element => null != element && element is classic.AutomationElement)) {
+	            _collectionHolder.Add(AutomationFactory.GetUiElement(element as classic.AutomationElement));
 	        }
 	        foreach (var element in elements.Cast<object>().Where(element => null != element && element is IUiElement)) {
 	            _collectionHolder.Add((IUiElement)element);

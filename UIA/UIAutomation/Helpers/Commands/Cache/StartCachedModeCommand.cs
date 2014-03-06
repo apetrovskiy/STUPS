@@ -139,13 +139,13 @@ namespace UIAutomation.Helpers.Commands
 //                if (null == Pattern || 0 == Pattern.Length) {
 //                    WriteVerbose(this, "no patterns were provided");
 //                    CurrentData.CacheRequest.Add(classic.ExpandCollapsePattern.Pattern);
-//                    CurrentData.CacheRequest.Add(InvokePattern.Pattern);
-//                    CurrentData.CacheRequest.Add(ScrollItemPattern.Pattern);
-//                    CurrentData.CacheRequest.Add(SelectionItemPattern.Pattern);
-//                    CurrentData.CacheRequest.Add(SelectionPattern.Pattern);
-//                    CurrentData.CacheRequest.Add(TextPattern.Pattern);
-//                    CurrentData.CacheRequest.Add(TogglePattern.Pattern);
-//                    CurrentData.CacheRequest.Add(ValuePattern.Pattern);
+//                    CurrentData.CacheRequest.Add(classic.InvokePattern.Pattern);
+//                    CurrentData.CacheRequest.Add(classic.ScrollItemPattern.Pattern);
+//                    CurrentData.CacheRequest.Add(classic.SelectionItemPattern.Pattern);
+//                    CurrentData.CacheRequest.Add(classic.SelectionPattern.Pattern);
+//                    CurrentData.CacheRequest.Add(classic.TextPattern.Pattern);
+//                    CurrentData.CacheRequest.Add(classic.TogglePattern.Pattern);
+//                    CurrentData.CacheRequest.Add(classic.ValuePattern.Pattern);
 //                } else {
 //                    WriteVerbose(this, "using patterns that were provided");
 //                    foreach (string patternName in Pattern)
@@ -172,79 +172,79 @@ namespace UIAutomation.Helpers.Commands
 //                                break;
 //                            case "INVOKE":
 //                            case "INVOKEPATTERN":
-//                                CurrentData.CacheRequest.Add(InvokePattern.Pattern);
+//                                CurrentData.CacheRequest.Add(classic.InvokePattern.Pattern);
 //                                break;
 //                            case "MULTIPLEVIEW":
 //                            case "MULTIPLEVIEWPATTERN":
-//                                CurrentData.CacheRequest.Add(MultipleViewPattern.Pattern);
+//                                CurrentData.CacheRequest.Add(classic.MultipleViewPattern.Pattern);
 //                                break;
 //                            case "RANGEVALUE":
 //                            case "RANGEVALUEPATTERN":
-//                                CurrentData.CacheRequest.Add(RangeValuePattern.Pattern);
+//                                CurrentData.CacheRequest.Add(classic.RangeValuePattern.Pattern);
 //                                break;
 //                            case "SCROLLITEM":
 //                            case "SCROLLITEMPATTERN":
-//                                CurrentData.CacheRequest.Add(ScrollItemPattern.Pattern);
+//                                CurrentData.CacheRequest.Add(classic.ScrollItemPattern.Pattern);
 //                                break;
 //                            case "SCROLL":
 //                            case "SCROLLPATTERN":
-//                                CurrentData.CacheRequest.Add(ScrollPattern.Pattern);
+//                                CurrentData.CacheRequest.Add(classic.ScrollPattern.Pattern);
 //                                break;
 //                            case "SELECTIONITEM":
 //                            case "SELECTIONITEMPATTERN":
-//                                CurrentData.CacheRequest.Add(SelectionItemPattern.Pattern);
+//                                CurrentData.CacheRequest.Add(classic.SelectionItemPattern.Pattern);
 //                                break;
 //                            case "SELECTION":
 //                            case "SELECTIONPATTERN":
-//                                CurrentData.CacheRequest.Add(SelectionPattern.Pattern);
+//                                CurrentData.CacheRequest.Add(classic.SelectionPattern.Pattern);
 //                                break;
 //                            case "TABLEITEM":
 //                            case "TABLEITEMPATTERN":
-//                                CurrentData.CacheRequest.Add(TableItemPattern.Pattern);
+//                                CurrentData.CacheRequest.Add(classic.TableItemPattern.Pattern);
 //                                break;
 //                            case "TABLE":
 //                            case "TABLEPATTERN":
-//                                CurrentData.CacheRequest.Add(TablePattern.Pattern);
+//                                CurrentData.CacheRequest.Add(classic.TablePattern.Pattern);
 //                                break;
 //                            case "TEXT":
 //                            case "TEXTPATTERN":
-//                                CurrentData.CacheRequest.Add(TextPattern.Pattern);
+//                                CurrentData.CacheRequest.Add(classic.TextPattern.Pattern);
 //                                break;
 //                            case "TOGGLE":
 //                            case "TOGGLEPATTERN":
-//                                CurrentData.CacheRequest.Add(TogglePattern.Pattern);
+//                                CurrentData.CacheRequest.Add(classic.TogglePattern.Pattern);
 //                                break;
 //                            case "TRANSFORM":
 //                            case "TRANSFORMPATTERN":
-//                                CurrentData.CacheRequest.Add(TransformPattern.Pattern);
+//                                CurrentData.CacheRequest.Add(classic.TransformPattern.Pattern);
 //                                break;
 //                            case "VALUE":
 //                            case "VALUEPATTERN":
-//                                CurrentData.CacheRequest.Add(ValuePattern.Pattern);
+//                                CurrentData.CacheRequest.Add(classic.ValuePattern.Pattern);
 //                                break;
 //                            case "WINDOW":
 //                            case "WINDOWPATTERN":
-//                                CurrentData.CacheRequest.Add(WindowPattern.Pattern);
+//                                CurrentData.CacheRequest.Add(classic.WindowPattern.Pattern);
 //                                break;
 ////                            default:
 ////                                CurrentData.CacheRequest.Add(classic.DockPattern.Pattern);
 ////                                CurrentData.CacheRequest.Add(classic.ExpandCollapsePattern.Pattern);
 ////                                CurrentData.CacheRequest.Add(classic.GridItemPattern.Pattern);
 ////                                CurrentData.CacheRequest.Add(classic.GridPattern.Pattern);
-////                                CurrentData.CacheRequest.Add(InvokePattern.Pattern);
-////                                CurrentData.CacheRequest.Add(MultipleViewPattern.Pattern);
-////                                CurrentData.CacheRequest.Add(RangeValuePattern.Pattern);
-////                                CurrentData.CacheRequest.Add(ScrollItemPattern.Pattern);
-////                                CurrentData.CacheRequest.Add(ScrollPattern.Pattern);
-////                                CurrentData.CacheRequest.Add(SelectionItemPattern.Pattern);
-////                                CurrentData.CacheRequest.Add(SelectionPattern.Pattern);
-////                                CurrentData.CacheRequest.Add(TableItemPattern.Pattern);
-////                                CurrentData.CacheRequest.Add(TablePattern.Pattern);
-////                                CurrentData.CacheRequest.Add(TextPattern.Pattern);
-////                                CurrentData.CacheRequest.Add(TogglePattern.Pattern);
-////                                CurrentData.CacheRequest.Add(TransformPattern.Pattern);
-////                                CurrentData.CacheRequest.Add(ValuePattern.Pattern);
-////                                CurrentData.CacheRequest.Add(WindowPattern.Pattern);
+////                                CurrentData.CacheRequest.Add(classic.InvokePattern.Pattern);
+////                                CurrentData.CacheRequest.Add(classic.MultipleViewPattern.Pattern);
+////                                CurrentData.CacheRequest.Add(classic.RangeValuePattern.Pattern);
+////                                CurrentData.CacheRequest.Add(classic.ScrollItemPattern.Pattern);
+////                                CurrentData.CacheRequest.Add(classic.ScrollPattern.Pattern);
+////                                CurrentData.CacheRequest.Add(classic.SelectionItemPattern.Pattern);
+////                                CurrentData.CacheRequest.Add(classic.SelectionPattern.Pattern);
+////                                CurrentData.CacheRequest.Add(classic.TableItemPattern.Pattern);
+////                                CurrentData.CacheRequest.Add(classic.TablePattern.Pattern);
+////                                CurrentData.CacheRequest.Add(classic.TextPattern.Pattern);
+////                                CurrentData.CacheRequest.Add(classic.TogglePattern.Pattern);
+////                                CurrentData.CacheRequest.Add(classic.TransformPattern.Pattern);
+////                                CurrentData.CacheRequest.Add(classic.ValuePattern.Pattern);
+////                                CurrentData.CacheRequest.Add(classic.WindowPattern.Pattern);
 ////                                break;
 //                        }
 //                    }

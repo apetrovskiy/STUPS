@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;using System.Windows.Automation;
+    extern alias UIANET;// using System.Windows.Automation;
     using System;
     using Ninject;
     using Ninject.Modules;
@@ -433,8 +433,8 @@ namespace UIAutomation
 		
 		public static IUiElement GetUiElement(object element)
 		{
-            if (null != (element as AutomationElement)) {
-		        return GetUiElement(element as AutomationElement);
+            if (null != (element as classic.AutomationElement)) {
+		        return GetUiElement(element as classic.AutomationElement);
             } else if (null != (element as IUiElement)) {
 		        return GetUiElement(element as IUiElement);
 		    } else {
@@ -529,12 +529,12 @@ namespace UIAutomation
         			    ConvertToProxiedElement(
         			        adapterElement);
         			
-        			proxiedTypedUiElement.SetSourceElement<AutomationElement>(element);
+        			proxiedTypedUiElement.SetSourceElement<classic.AutomationElement>(element);
         			
         			return (IUiElement)proxiedTypedUiElement; // as IUiElement;
     			} else {
     			    
-    			    adapterElement.SetSourceElement<AutomationElement>(element);
+    			    adapterElement.SetSourceElement<classic.AutomationElement>(element);
     			    
     			    return adapterElement;
     			}

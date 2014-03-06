@@ -10,7 +10,7 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;using System.Windows.Automation;
+	extern alias UIANET;// using System.Windows.Automation;
 	using System;
 	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 
@@ -49,11 +49,11 @@ namespace UIAutomation
 			}
 			
 			public classic.ExpandCollapseState ExpandCollapseState {
-				get { return (ExpandCollapseState)this._expandCollapsePattern.GetParentElement().GetPatternPropertyValue(ExpandCollapsePattern.ExpandCollapseStateProperty, this._useCache); }
+				get { return (classic.ExpandCollapseState)this._expandCollapsePattern.GetParentElement().GetPatternPropertyValue(classic.ExpandCollapsePattern.ExpandCollapseStateProperty, this._useCache); }
 			}
 		}
-		public static readonly classic.AutomationPattern Pattern = ExpandCollapsePatternIdentifiers.Pattern;
-		public static readonly classic.AutomationProperty ExpandCollapseStateProperty = ExpandCollapsePatternIdentifiers.ExpandCollapseStateProperty;
+		public static readonly classic.AutomationPattern Pattern = classic.ExpandCollapsePatternIdentifiers.Pattern;
+		public static readonly classic.AutomationProperty ExpandCollapseStateProperty = classic.ExpandCollapsePatternIdentifiers.ExpandCollapseStateProperty;
         
 		public virtual IExpandCollapsePatternInformation Cached {
 			get {
@@ -90,7 +90,7 @@ namespace UIAutomation
 		
 		public void SetSourcePattern(object pattern)
 		{
-		    this._expandCollapsePattern = pattern as ExpandCollapsePattern;
+		    this._expandCollapsePattern = pattern as classic.ExpandCollapsePattern;
 		}
 		
 		public object GetSourcePattern()

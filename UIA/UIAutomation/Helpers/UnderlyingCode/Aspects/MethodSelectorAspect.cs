@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;using System.Windows.Automation;
+    extern alias UIANET;// using System.Windows.Automation;
     using System;
     using System.Reflection;
 	using System.Runtime.Remoting.Lifetime;
@@ -35,7 +35,10 @@ namespace UIAutomation
                     AlreadySelected = true;
                     
                     if (Preferences.Log) {
-                        LogMethodCall(invocation);
+                        // LogMethodCall(invocation);
+                        AutomationFactory.GetObject<LogHelper>().LogMethodCall(
+                            invocation.Method.Name,
+                            invocation.Arguments);
                     }
                     
                     switch (invocation.Method.Name) {
@@ -43,7 +46,7 @@ namespace UIAutomation
                         case "SetDockPosition":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).PerformSetDockPosition(
-                                    (DockPosition)invocation.Arguments[0]);
+                                    (classic.DockPosition)invocation.Arguments[0]);
                             break;
                         case "get_DockPosition":
                             invocation.ReturnValue =
@@ -207,18 +210,18 @@ namespace UIAutomation
                         case "Scroll": //(ScrollAmount horizontalAmount, ScrollAmount verticalAmount);
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).PerformScroll(
-                                    (ScrollAmount)invocation.Arguments[0],
-                                    (ScrollAmount)invocation.Arguments[1]);
+                                    (classic.ScrollAmount)invocation.Arguments[0],
+                                    (classic.ScrollAmount)invocation.Arguments[1]);
                             break;
                         case "ScrollHorizontal": //(ScrollAmount amount);
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).PerformScrollHorizontal(
-                                    (ScrollAmount)invocation.Arguments[0]);
+                                    (classic.ScrollAmount)invocation.Arguments[0]);
                             break;
                         case "ScrollVertical": //(ScrollAmount amount);
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).PerformScrollVertical(
-                                    (ScrollAmount)invocation.Arguments[0]);
+                                    (classic.ScrollAmount)invocation.Arguments[0]);
                             break;
                         case "get_HorizontalScrollPercent":
                             invocation.ReturnValue =
@@ -427,7 +430,7 @@ namespace UIAutomation
                         case "SetWindowVisualState": //(WindowVisualState state);
                             invocation.ReturnValue =
                                 (invocation.Proxy as IUiElement).PerformSetWindowVisualState(
-                                    (WindowVisualState)invocation.Arguments[0]);
+                                    (classic.WindowVisualState)invocation.Arguments[0]);
                             break;
                         case "Close":
                             invocation.ReturnValue =
@@ -520,7 +523,7 @@ namespace UIAutomation
                         case "get_Children":
                             invocation.ReturnValue =
                                 // 20140210
-                                (invocation.Proxy as IUiElement).GetExtendedModelHolder(TreeScope.Children);
+                                (invocation.Proxy as IUiElement).GetExtendedModelHolder(classic.TreeScope.Children);
                             // (invocation.Proxy as IUiElement).GetExtendedModelHolder(
                             //     classic.TreeScope.Children,
                             //     (int)invocation.Arguments[0]);
@@ -528,197 +531,197 @@ namespace UIAutomation
                         case "get_Buttons":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.Button);
+                                    classic.ControlType.Button);
                             break;
                         case "get_Calendars":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.Calendar);
+                                    classic.ControlType.Calendar);
                             break;
                         case "get_CheckBoxes":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.CheckBox);
+                                    classic.ControlType.CheckBox);
                             break;
                         case "get_ComboBoxes":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.ComboBox);
+                                    classic.ControlType.ComboBox);
                             break;
                         case "get_Customs":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.Custom);
+                                    classic.ControlType.Custom);
                             break;
                         case "get_DataGrids":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.DataGrid);
+                                    classic.ControlType.DataGrid);
                             break;
                         case "get_DataItems":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.DataItem);
+                                    classic.ControlType.DataItem);
                             break;
                         case "get_Documents":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.Document);
+                                    classic.ControlType.Document);
                             break;
                         case "get_Edits":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.Edit);
+                                    classic.ControlType.Edit);
                             break;
                         case "get_Groups":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.Group);
+                                    classic.ControlType.Group);
                             break;
                         case "get_Headers":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.Header);
+                                    classic.ControlType.Header);
                             break;
                         case "get_HeaderItems":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.HeaderItem);
+                                    classic.ControlType.HeaderItem);
                             break;
                         case "get_Hyperlinks":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.Hyperlink);
+                                    classic.ControlType.Hyperlink);
                             break;
                         case "get_Images":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.Image);
+                                    classic.ControlType.Image);
                             break;
                         case "get_Lists":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.List);
+                                    classic.ControlType.List);
                             break;
                         case "get_ListItems":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.ListItem);
+                                    classic.ControlType.ListItem);
                             break;
                         case "get_Menus":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.Menu);
+                                    classic.ControlType.Menu);
                             break;
                         case "get_MenuBars":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.MenuBar);
+                                    classic.ControlType.MenuBar);
                             break;
                         case "get_MenuItems":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.MenuItem);
+                                    classic.ControlType.MenuItem);
                             break;
                         case "get_Panes":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.Pane);
+                                    classic.ControlType.Pane);
                             break;
                         case "get_ProgressBars":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.ProgressBar);
+                                    classic.ControlType.ProgressBar);
                             break;
                         case "get_RadioButtons":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.RadioButton);
+                                    classic.ControlType.RadioButton);
                             break;
                         case "get_ScrollBars":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.ScrollBar);
+                                    classic.ControlType.ScrollBar);
                             break;
                         case "get_Separators":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.Separator);
+                                    classic.ControlType.Separator);
                             break;
                         case "get_Sliders":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.Slider);
+                                    classic.ControlType.Slider);
                             break;
                         case "get_Spinners":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.Spinner);
+                                    classic.ControlType.Spinner);
                             break;
                         case "get_SplitButtons":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.SplitButton);
+                                    classic.ControlType.SplitButton);
                             break;
                         case "get_StatusBars":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.StatusBar);
+                                    classic.ControlType.StatusBar);
                             break;
                         case "get_Tabs":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.Tab);
+                                    classic.ControlType.Tab);
                             break;
                         case "get_TabItems":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.TabItem);
+                                    classic.ControlType.TabItem);
                             break;
                         case "get_Tables":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.Table);
+                                    classic.ControlType.Table);
                             break;
                         case "get_Texts":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.Text);
+                                    classic.ControlType.Text);
                             break;
                         case "get_Thumbs":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.Thumb);
+                                    classic.ControlType.Thumb);
                             break;
                         case "get_TitleBars":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.TitleBar);
+                                    classic.ControlType.TitleBar);
                             break;
                         case "get_ToolBars":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.ToolBar);
+                                    classic.ControlType.ToolBar);
                             break;
                         case "get_ToolTips":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.ToolTip);
+                                    classic.ControlType.ToolTip);
                             break;
                         case "get_Trees":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.Tree);
+                                    classic.ControlType.Tree);
                             break;
                         case "get_TreeItems":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.TreeItem);
+                                    classic.ControlType.TreeItem);
                             break;
                         case "get_Windows":
                             invocation.ReturnValue =
                                 (invocation.Proxy as IExtendedModelHolder).PerformFindAll(
-                                    ControlType.Window);
+                                    classic.ControlType.Window);
                             break;
                             #endregion Extended
                             #region ControlInput
@@ -930,60 +933,60 @@ namespace UIAutomation
             }
         }
 
-        private void LogMethodCall(IInvocation invocation)
-        {
-            string methodName = invocation.Method.Name;
-            
-            if (string.IsNullOrEmpty(methodName)) return;
-            
-            var excludeList = new List<string> {
-                "get_Current",
-                "get_Cached",
-                "GetSourceElement",
-                "SetSourceElement",
-                "FindAll",
-                "FindFirst",
-                "GetSupportedPatterns",
-                "GetCurrentPattern",
-                "Equals",
-                "GetPatternPropertyValue",
-                "get_CachedChildren",
-                "get_CachedParent",
-                "get_Control",
-                "get_Descendants",
-                "get_Children",
-                "get_Mouse",
-                "get_Keyboard",
-                "OnStartHook",
-                "BeforeSearchHook",
-                // "SearchForElements(UIAutomation.WindowSearcherData)
-                "SearchForElements",
-                "AfterSearchHook",
-                "OnFailureHook",
-                "OnSuccessHook"
-            };
-            
-            if (!excludeList.Contains(methodName)) {
-            
-                if (methodName.Contains("get_")) {
-                    methodName = methodName.Replace("get_", string.Empty);
-                } else if (methodName.Contains("set_")) {
-                    methodName = methodName.Replace("set_", string.Empty);
-                } else {
-                    methodName += "(";
-                    foreach (var argument in invocation.Arguments) {
-                        methodName += argument.ToString();
-                        methodName += ",";
-                    }
-                    if (!string.IsNullOrEmpty(methodName) && methodName.Substring(methodName.Length - 1) == ",") {
-                        methodName = methodName.Substring(0, methodName.Length - 1);
-                    }
-                    methodName += ")";
-                }
-                if (!string.IsNullOrEmpty(methodName)) {
-                    AutomationFactory.GetLogHelper(string.Empty).Info(methodName);
-                }
-            }
-        }
+//        private void LogMethodCall(IInvocation invocation)
+//        {
+//            string methodName = invocation.Method.Name;
+//            
+//            if (string.IsNullOrEmpty(methodName)) return;
+//            
+//            var excludeList = new List<string> {
+//                "get_Current",
+//                "get_Cached",
+//                "GetSourceElement",
+//                "SetSourceElement",
+//                "FindAll",
+//                "FindFirst",
+//                "GetSupportedPatterns",
+//                "GetCurrentPattern",
+//                "Equals",
+//                "GetPatternPropertyValue",
+//                "get_CachedChildren",
+//                "get_CachedParent",
+//                "get_Control",
+//                "get_Descendants",
+//                "get_Children",
+//                "get_Mouse",
+//                "get_Keyboard",
+//                "OnStartHook",
+//                "BeforeSearchHook",
+//                // "SearchForElements(UIAutomation.WindowSearcherData)
+//                "SearchForElements",
+//                "AfterSearchHook",
+//                "OnFailureHook",
+//                "OnSuccessHook"
+//            };
+//            
+//            if (!excludeList.Contains(methodName)) {
+//            
+//                if (methodName.Contains("get_")) {
+//                    methodName = methodName.Replace("get_", string.Empty);
+//                } else if (methodName.Contains("set_")) {
+//                    methodName = methodName.Replace("set_", string.Empty);
+//                } else {
+//                    methodName += "(";
+//                    foreach (var argument in invocation.Arguments) {
+//                        methodName += argument.ToString();
+//                        methodName += ",";
+//                    }
+//                    if (!string.IsNullOrEmpty(methodName) && methodName.Substring(methodName.Length - 1) == ",") {
+//                        methodName = methodName.Substring(0, methodName.Length - 1);
+//                    }
+//                    methodName += ")";
+//                }
+//                if (!string.IsNullOrEmpty(methodName)) {
+//                    AutomationFactory.GetLogHelper(string.Empty).Info(methodName);
+//                }
+//            }
+//        }
     }
 }

@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;using System.Windows.Automation;
+    extern alias UIANET;// using System.Windows.Automation;
     using System;
     using System.Management.Automation;
     using System.Collections;
@@ -452,11 +452,11 @@ namespace UIAutomation
                                 "'";
                             
                             object vPattern = null;
-                            if (ae.TryGetCurrentPattern(ValuePattern.Pattern, out vPattern)) {
+                            if (ae.TryGetCurrentPattern(classic.ValuePattern.Pattern, out vPattern)) {
                                     
                                 reportString +=
                                     ", Value: '" +
-                                    ((ValuePattern)vPattern).Current.Value +
+                                    ((classic.ValuePattern)vPattern).Current.Value +
                                     "'";
                             }
                         }

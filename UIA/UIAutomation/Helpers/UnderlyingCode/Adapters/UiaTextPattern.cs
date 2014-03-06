@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;using System.Windows.Automation;
+	extern alias UIANET;// using System.Windows.Automation;
 	using System;
 	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 	// using System.Windows.Automation.Text;
@@ -40,41 +40,41 @@ namespace UIAutomation
 		    this._textPattern = textPattern;
 		}
 		
-		public static readonly object MixedAttributeValue = TextPatternIdentifiers.MixedAttributeValue;
-		public static readonly classic.AutomationTextAttribute AnimationStyleAttribute = TextPatternIdentifiers.AnimationStyleAttribute;
-		public static readonly classic.AutomationTextAttribute BackgroundColorAttribute = TextPatternIdentifiers.BackgroundColorAttribute;
-		public static readonly classic.AutomationTextAttribute BulletStyleAttribute = TextPatternIdentifiers.BulletStyleAttribute;
-		public static readonly classic.AutomationTextAttribute CapStyleAttribute = TextPatternIdentifiers.CapStyleAttribute;
-		public static readonly classic.AutomationTextAttribute CultureAttribute = TextPatternIdentifiers.CultureAttribute;
-		public static readonly classic.AutomationTextAttribute FontNameAttribute = TextPatternIdentifiers.FontNameAttribute;
-		public static readonly classic.AutomationTextAttribute FontSizeAttribute = TextPatternIdentifiers.FontSizeAttribute;
-		public static readonly classic.AutomationTextAttribute FontWeightAttribute = TextPatternIdentifiers.FontWeightAttribute;
-		public static readonly classic.AutomationTextAttribute ForegroundColorAttribute = TextPatternIdentifiers.ForegroundColorAttribute;
-		public static readonly classic.AutomationTextAttribute HorizontalTextAlignmentAttribute = TextPatternIdentifiers.HorizontalTextAlignmentAttribute;
-		public static readonly classic.AutomationTextAttribute IndentationFirstLineAttribute = TextPatternIdentifiers.IndentationFirstLineAttribute;
-		public static readonly classic.AutomationTextAttribute IndentationLeadingAttribute = TextPatternIdentifiers.IndentationLeadingAttribute;
-		public static readonly classic.AutomationTextAttribute IndentationTrailingAttribute = TextPatternIdentifiers.IndentationTrailingAttribute;
-		public static readonly classic.AutomationTextAttribute IsHiddenAttribute = TextPatternIdentifiers.IsHiddenAttribute;
-		public static readonly classic.AutomationTextAttribute IsItalicAttribute = TextPatternIdentifiers.IsItalicAttribute;
-		public static readonly classic.AutomationTextAttribute IsReadOnlyAttribute = TextPatternIdentifiers.IsReadOnlyAttribute;
-		public static readonly classic.AutomationTextAttribute IsSubscriptAttribute = TextPatternIdentifiers.IsSubscriptAttribute;
-		public static readonly classic.AutomationTextAttribute IsSuperscriptAttribute = TextPatternIdentifiers.IsSuperscriptAttribute;
-		public static readonly classic.AutomationTextAttribute MarginBottomAttribute = TextPatternIdentifiers.MarginBottomAttribute;
-		public static readonly classic.AutomationTextAttribute MarginLeadingAttribute = TextPatternIdentifiers.MarginLeadingAttribute;
-		public static readonly classic.AutomationTextAttribute MarginTopAttribute = TextPatternIdentifiers.MarginTopAttribute;
-		public static readonly classic.AutomationTextAttribute MarginTrailingAttribute = TextPatternIdentifiers.MarginTrailingAttribute;
-		public static readonly classic.AutomationTextAttribute OutlineStylesAttribute = TextPatternIdentifiers.OutlineStylesAttribute;
-		public static readonly classic.AutomationTextAttribute OverlineColorAttribute = TextPatternIdentifiers.OverlineColorAttribute;
-		public static readonly classic.AutomationTextAttribute OverlineStyleAttribute = TextPatternIdentifiers.OverlineStyleAttribute;
-		public static readonly classic.AutomationTextAttribute StrikethroughColorAttribute = TextPatternIdentifiers.StrikethroughColorAttribute;
-		public static readonly classic.AutomationTextAttribute StrikethroughStyleAttribute = TextPatternIdentifiers.StrikethroughStyleAttribute;
-		public static readonly classic.AutomationTextAttribute TabsAttribute = TextPatternIdentifiers.TabsAttribute;
-		public static readonly classic.AutomationTextAttribute TextFlowDirectionsAttribute = TextPatternIdentifiers.TextFlowDirectionsAttribute;
-		public static readonly classic.AutomationTextAttribute UnderlineColorAttribute = TextPatternIdentifiers.UnderlineColorAttribute;
-		public static readonly classic.AutomationTextAttribute UnderlineStyleAttribute = TextPatternIdentifiers.UnderlineStyleAttribute;
-		public static readonly classic.AutomationPattern Pattern = TextPatternIdentifiers.Pattern;
-		public static readonly classic.AutomationEvent TextSelectionChangedEvent = TextPatternIdentifiers.TextSelectionChangedEvent;
-		public static readonly classic.AutomationEvent TextChangedEvent = TextPatternIdentifiers.TextChangedEvent;
+		public static readonly object MixedAttributeValue = classic.TextPatternIdentifiers.MixedAttributeValue;
+		public static readonly classic.AutomationTextAttribute AnimationStyleAttribute = classic.TextPatternIdentifiers.AnimationStyleAttribute;
+		public static readonly classic.AutomationTextAttribute BackgroundColorAttribute = classic.TextPatternIdentifiers.BackgroundColorAttribute;
+		public static readonly classic.AutomationTextAttribute BulletStyleAttribute = classic.TextPatternIdentifiers.BulletStyleAttribute;
+		public static readonly classic.AutomationTextAttribute CapStyleAttribute = classic.TextPatternIdentifiers.CapStyleAttribute;
+		public static readonly classic.AutomationTextAttribute CultureAttribute = classic.TextPatternIdentifiers.CultureAttribute;
+		public static readonly classic.AutomationTextAttribute FontNameAttribute = classic.TextPatternIdentifiers.FontNameAttribute;
+		public static readonly classic.AutomationTextAttribute FontSizeAttribute = classic.TextPatternIdentifiers.FontSizeAttribute;
+		public static readonly classic.AutomationTextAttribute FontWeightAttribute = classic.TextPatternIdentifiers.FontWeightAttribute;
+		public static readonly classic.AutomationTextAttribute ForegroundColorAttribute = classic.TextPatternIdentifiers.ForegroundColorAttribute;
+		public static readonly classic.AutomationTextAttribute HorizontalTextAlignmentAttribute = classic.TextPatternIdentifiers.HorizontalTextAlignmentAttribute;
+		public static readonly classic.AutomationTextAttribute IndentationFirstLineAttribute = classic.TextPatternIdentifiers.IndentationFirstLineAttribute;
+		public static readonly classic.AutomationTextAttribute IndentationLeadingAttribute = classic.TextPatternIdentifiers.IndentationLeadingAttribute;
+		public static readonly classic.AutomationTextAttribute IndentationTrailingAttribute = classic.TextPatternIdentifiers.IndentationTrailingAttribute;
+		public static readonly classic.AutomationTextAttribute IsHiddenAttribute = classic.TextPatternIdentifiers.IsHiddenAttribute;
+		public static readonly classic.AutomationTextAttribute IsItalicAttribute = classic.TextPatternIdentifiers.IsItalicAttribute;
+		public static readonly classic.AutomationTextAttribute IsReadOnlyAttribute = classic.TextPatternIdentifiers.IsReadOnlyAttribute;
+		public static readonly classic.AutomationTextAttribute IsSubscriptAttribute = classic.TextPatternIdentifiers.IsSubscriptAttribute;
+		public static readonly classic.AutomationTextAttribute IsSuperscriptAttribute = classic.TextPatternIdentifiers.IsSuperscriptAttribute;
+		public static readonly classic.AutomationTextAttribute MarginBottomAttribute = classic.TextPatternIdentifiers.MarginBottomAttribute;
+		public static readonly classic.AutomationTextAttribute MarginLeadingAttribute = classic.TextPatternIdentifiers.MarginLeadingAttribute;
+		public static readonly classic.AutomationTextAttribute MarginTopAttribute = classic.TextPatternIdentifiers.MarginTopAttribute;
+		public static readonly classic.AutomationTextAttribute MarginTrailingAttribute = classic.TextPatternIdentifiers.MarginTrailingAttribute;
+		public static readonly classic.AutomationTextAttribute OutlineStylesAttribute = classic.TextPatternIdentifiers.OutlineStylesAttribute;
+		public static readonly classic.AutomationTextAttribute OverlineColorAttribute = classic.TextPatternIdentifiers.OverlineColorAttribute;
+		public static readonly classic.AutomationTextAttribute OverlineStyleAttribute = classic.TextPatternIdentifiers.OverlineStyleAttribute;
+		public static readonly classic.AutomationTextAttribute StrikethroughColorAttribute = classic.TextPatternIdentifiers.StrikethroughColorAttribute;
+		public static readonly classic.AutomationTextAttribute StrikethroughStyleAttribute = classic.TextPatternIdentifiers.StrikethroughStyleAttribute;
+		public static readonly classic.AutomationTextAttribute TabsAttribute = classic.TextPatternIdentifiers.TabsAttribute;
+		public static readonly classic.AutomationTextAttribute TextFlowDirectionsAttribute = classic.TextPatternIdentifiers.TextFlowDirectionsAttribute;
+		public static readonly classic.AutomationTextAttribute UnderlineColorAttribute = classic.TextPatternIdentifiers.UnderlineColorAttribute;
+		public static readonly classic.AutomationTextAttribute UnderlineStyleAttribute = classic.TextPatternIdentifiers.UnderlineStyleAttribute;
+		public static readonly classic.AutomationPattern Pattern = classic.TextPatternIdentifiers.Pattern;
+		public static readonly classic.AutomationEvent TextSelectionChangedEvent = classic.TextPatternIdentifiers.TextSelectionChangedEvent;
+		public static readonly classic.AutomationEvent TextChangedEvent = classic.TextPatternIdentifiers.TextChangedEvent;
 		// private SafePatternHandle _hPattern;
 		// private AutomationElement _element;
 		public classic.Text.TextPatternRange DocumentRange {
@@ -115,7 +115,7 @@ namespace UIAutomation
 //			return TextPatternRange.Wrap(hTextRange, this);
 		    // 20140102
 		    // return this._textPattern.RangeFromChild(childElement.GetSourceElement());
-		    return this._textPattern.RangeFromChild(childElement.GetSourceElement() as AutomationElement);
+		    return this._textPattern.RangeFromChild(childElement.GetSourceElement() as classic.AutomationElement);
 		}
 		public virtual classic.Text.TextPatternRange RangeFromPoint(Point screenLocation)
 		{
@@ -151,7 +151,7 @@ namespace UIAutomation
 		
 		public void SetSourcePattern(object pattern)
 		{
-		    this._textPattern = pattern as TextPattern;
+		    this._textPattern = pattern as classic.TextPattern;
 		}
 		
 		public object GetSourcePattern()

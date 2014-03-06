@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 namespace UIAutomation.Commands
 {
-    extern alias UIANET;using System.Windows.Automation;
+    extern alias UIANET;// using System.Windows.Automation;
     using System;
     using System.Management.Automation;
     using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
@@ -53,12 +53,12 @@ namespace UIAutomation.Commands
                 try {
                     tblPattern =
                         // 20120823
-                        //this.InputObject.GetCurrentPattern(TablePattern.Pattern)
+                        //this.InputObject.GetCurrentPattern(classic.TablePattern.Pattern)
                         // 20131208
-                        // inputObject.GetCurrentPattern(TablePattern.Pattern)
-                        // inputObject.GetCurrentPattern<ITablePattern, TablePattern>(TablePattern.Pattern)
+                        // inputObject.GetCurrentPattern(classic.TablePattern.Pattern)
+                        // inputObject.GetCurrentPattern<ITablePattern, TablePattern>(classic.TablePattern.Pattern)
                         // as TablePattern;
-                        inputObject.GetCurrentPattern<ITablePattern>(TablePattern.Pattern);
+                        inputObject.GetCurrentPattern<ITablePattern>(classic.TablePattern.Pattern);
                     
                     bool res1 = 
                         UiaHelper.GetHeaderItems(ref currentControl, out strData, Delimiter);
@@ -84,8 +84,8 @@ namespace UIAutomation.Commands
                             // SelectionPattern selPattern = inputObject.GetCurrentPattern<ISelectionPattern, SelectionPattern>(
                                 // SelectionPattern.Pattern)
                                 // as SelectionPattern;
-                            // SelectionPattern selPattern = inputObject.GetCurrentPattern<ISelectionPattern>(SelectionPattern.Pattern);
-                            ISelectionPattern selPattern = inputObject.GetCurrentPattern<ISelectionPattern>(SelectionPattern.Pattern);
+                            // SelectionPattern selPattern = inputObject.GetCurrentPattern<ISelectionPattern>(classic.SelectionPattern.Pattern);
+                            ISelectionPattern selPattern = inputObject.GetCurrentPattern<ISelectionPattern>(classic.SelectionPattern.Pattern);
                             
                             /*
                             System.Windows.Automation.SelectionPattern selPattern;

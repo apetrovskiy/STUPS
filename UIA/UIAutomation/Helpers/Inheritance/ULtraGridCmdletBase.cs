@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;using System.Windows.Automation;
+    extern alias UIANET;// using System.Windows.Automation;
     using System;
     using System.Management.Automation;
     using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
@@ -57,9 +57,9 @@ namespace UIAutomation
                     IUiEltCollection tableItems =
                         inputObject.FindAll(
                             classic.TreeScope.Children,
-                                     new PropertyCondition(
-                                         AutomationElement.ControlTypeProperty,
-                                         ControlType.Custom));
+                                     new classic.PropertyCondition(
+                                         classic.AutomationElement.ControlTypeProperty,
+                                         classic.ControlType.Custom));
                 
 //                foreach (AutomationElementCollection tableItems in ((IAutomationElementCollection)this.InputObject).Select(inputObject => inputObject.FindAll(
 //                    classic.TreeScope.Children,
@@ -78,10 +78,10 @@ namespace UIAutomation
                             // 20131109
                             //AutomationElementCollection row = 
                             IUiEltCollection row =
-                                child.FindAll(TreeScope.Children,
-                                    new PropertyCondition(
-                                        AutomationElement.ControlTypeProperty,
-                                        ControlType.Custom));
+                                child.FindAll(classic.TreeScope.Children,
+                                    new classic.PropertyCondition(
+                                        classic.AutomationElement.ControlTypeProperty,
+                                        classic.ControlType.Custom));
                             bool alreadyFoundInTheRow = false;
                             int counter = 0;
                             // 20131109
@@ -95,10 +95,10 @@ namespace UIAutomation
                                 try {
                                     valPattern =
                                         // 20131208
-                                        // grandchild.GetCurrentPattern(ValuePattern.Pattern)
-                                        // grandchild.GetCurrentPattern<IValuePattern, ValuePattern>(ValuePattern.Pattern)
+                                        // grandchild.GetCurrentPattern(classic.ValuePattern.Pattern)
+                                        // grandchild.GetCurrentPattern<IValuePattern, ValuePattern>(classic.ValuePattern.Pattern)
                                         //    as ValuePattern;
-                                        grandchild.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern);
+                                        grandchild.GetCurrentPattern<IValuePattern>(classic.ValuePattern.Pattern);
                                     WriteVerbose(this, 
                                         "getting the valuePattern of the control");
                                 } catch {
@@ -248,7 +248,7 @@ namespace UIAutomation
                                         ValuePattern valPattern = null;
                                         try {
                                             valPattern =
-                                                grandchild.GetCurrentPattern(ValuePattern.Pattern)
+                                                grandchild.GetCurrentPattern(classic.ValuePattern.Pattern)
                                                 as ValuePattern;
                                             WriteVerbose(this, 
                                                          "getting the valuePattern of the control");

@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;using System.Windows.Automation;
+    extern alias UIANET;// using System.Windows.Automation;
 	using System;
 	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     
@@ -54,7 +54,7 @@ namespace UIAutomation
 			public string Value {
 			    get
 			    {
-			        return null == this._valuePattern ? string.Empty : this._valuePattern.GetParentElement().GetPatternPropertyValue(ValuePattern.ValueProperty, this._useCache).ToString();
+			        return null == this._valuePattern ? string.Empty : this._valuePattern.GetParentElement().GetPatternPropertyValue(classic.ValuePattern.ValueProperty, this._useCache).ToString();
 			        /*
                     if (null == this._valuePattern) return string.Empty;
                     return this._valuePattern.GetParentElement().GetPatternPropertyValue(ValuePattern.ValueProperty, this._useCache).ToString(); }
@@ -63,7 +63,7 @@ namespace UIAutomation
 			}
 			public bool IsReadOnly {
 				get {
-					return null == this._valuePattern || (bool)this._valuePattern.GetParentElement().GetPatternPropertyValue(ValuePattern.IsReadOnlyProperty, this._useCache);
+					return null == this._valuePattern || (bool)this._valuePattern.GetParentElement().GetPatternPropertyValue(classic.ValuePattern.IsReadOnlyProperty, this._useCache);
                     /*
                     if (null == this._valuePattern) return true;
 				    return (bool)this._valuePattern.GetParentElement().GetPatternPropertyValue(ValuePattern.IsReadOnlyProperty, this._useCache);
@@ -71,9 +71,9 @@ namespace UIAutomation
 				}
 			}
 		}
-		public static readonly classic.AutomationPattern Pattern = ValuePatternIdentifiers.Pattern;
-		public static readonly classic.AutomationProperty ValueProperty = ValuePatternIdentifiers.ValueProperty;
-		public static readonly classic.AutomationProperty IsReadOnlyProperty = ValuePatternIdentifiers.IsReadOnlyProperty;
+		public static readonly classic.AutomationPattern Pattern = classic.ValuePatternIdentifiers.Pattern;
+		public static readonly classic.AutomationProperty ValueProperty = classic.ValuePatternIdentifiers.ValueProperty;
+		public static readonly classic.AutomationProperty IsReadOnlyProperty = classic.ValuePatternIdentifiers.IsReadOnlyProperty;
 		
 		public virtual IValuePatternInformation Cached {
 			get {
@@ -105,7 +105,7 @@ namespace UIAutomation
 		
 		public void SetSourcePattern(object pattern)
 		{
-		    this._valuePattern = pattern as ValuePattern;
+		    this._valuePattern = pattern as classic.ValuePattern;
 		}
 		
 		public object GetSourcePattern()

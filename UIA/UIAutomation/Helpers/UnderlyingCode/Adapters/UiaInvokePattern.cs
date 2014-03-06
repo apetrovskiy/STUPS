@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;using System.Windows.Automation;
+    extern alias UIANET;// using System.Windows.Automation;
 	using System;
 	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     
@@ -35,8 +35,8 @@ namespace UIAutomation
 		    this._invokePattern = InvokePattern;
 		}
 		
-		public static readonly classic.AutomationPattern Pattern = InvokePatternIdentifiers.Pattern;
-		public static readonly classic.AutomationEvent InvokedEvent = InvokePatternIdentifiers.InvokedEvent;
+		public static readonly classic.AutomationPattern Pattern = classic.InvokePatternIdentifiers.Pattern;
+		public static readonly classic.AutomationEvent InvokedEvent = classic.InvokePatternIdentifiers.InvokedEvent;
 		
 		public virtual void Invoke()
 		{
@@ -56,7 +56,7 @@ namespace UIAutomation
 		
 		public void SetSourcePattern(object pattern)
 		{
-		    this._invokePattern = pattern as InvokePattern;
+		    this._invokePattern = pattern as classic.InvokePattern;
 		}
 		
 		public object GetSourcePattern()

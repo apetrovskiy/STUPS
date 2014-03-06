@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;using System.Windows.Automation;
+    extern alias UIANET;// using System.Windows.Automation;
     using System;
     using System.Management.Automation;
     using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
@@ -521,134 +521,134 @@ namespace UIAutomation
             }
             
             try {
-                var cacheRequest = new CacheRequest
+                var cacheRequest = new classic.CacheRequest
                 // CacheRequest cacheRequest = new CacheRequest
                 {
-                    AutomationElementMode = AutomationElementMode.Full,
+                    AutomationElementMode = classic.AutomationElementMode.Full,
                     // 20140130
                     // TreeFilter = Automation.RawViewCondition
                     TreeFilter = UiaAutomation.RawViewCondition
                 };
-                cacheRequest.Add(AutomationElement.NameProperty);
-                cacheRequest.Add(AutomationElement.AutomationIdProperty);
-                cacheRequest.Add(AutomationElement.ClassNameProperty);
-                cacheRequest.Add(AutomationElement.ControlTypeProperty);
+                cacheRequest.Add(classic.AutomationElement.NameProperty);
+                cacheRequest.Add(classic.AutomationElement.AutomationIdProperty);
+                cacheRequest.Add(classic.AutomationElement.ClassNameProperty);
+                cacheRequest.Add(classic.AutomationElement.ControlTypeProperty);
                 //cacheRequest.Add(AutomationElement.ProcessIdProperty);
                 // cache patterns?
                 
                 // cacheRequest.Activate();
                 cacheRequest.Push();
                 
-                AutomationEventHandler uiaEventHandler;
+                classic.AutomationEventHandler uiaEventHandler;
                 switch (eventType.ProgrammaticName) {
                     case "InvokePatternIdentifiers.InvokedEvent":
                         UiaAutomation.AddAutomationEventHandler(
-                            InvokePattern.InvokedEvent,
+                            classic.InvokePattern.InvokedEvent,
                             inputObject,
-                            TreeScope.Element,
-                            uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
+                            classic.TreeScope.Element,
+                            uiaEventHandler = new classic.AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "TextPatternIdentifiers.TextChangedEvent":
                         UiaAutomation.AddAutomationEventHandler(
-                            TextPattern.TextChangedEvent,
+                            classic.TextPattern.TextChangedEvent,
                             inputObject,
-                            TreeScope.Element,
-                            uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
+                            classic.TreeScope.Element,
+                            uiaEventHandler = new classic.AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "TextPatternIdentifiers.TextSelectionChangedEvent":
                         UiaAutomation.AddAutomationEventHandler(
-                            TextPattern.TextSelectionChangedEvent,
+                            classic.TextPattern.TextSelectionChangedEvent,
                             inputObject,
-                            TreeScope.Element,
-                            uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
+                            classic.TreeScope.Element,
+                            uiaEventHandler = new classic.AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "WindowPatternIdentifiers.WindowOpenedProperty":
                         UiaAutomation.AddAutomationEventHandler(
-                            WindowPattern.WindowOpenedEvent,
+                            classic.WindowPattern.WindowOpenedEvent,
                             inputObject,
-                            TreeScope.Subtree,
-                            uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
+                            classic.TreeScope.Subtree,
+                            uiaEventHandler = new classic.AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "AutomationElementIdentifiers.AutomationPropertyChangedEvent":
                         if (properties != null) {
-                            AutomationPropertyChangedEventHandler uiaPropertyChangedEventHandler;
+                            classic.AutomationPropertyChangedEventHandler uiaPropertyChangedEventHandler;
                             UiaAutomation.AddAutomationPropertyChangedEventHandler(
                                 inputObject,
-                                TreeScope.Subtree,
+                                classic.TreeScope.Subtree,
                                 uiaPropertyChangedEventHandler = 
-                                    new AutomationPropertyChangedEventHandler(cmdlet.AutomationPropertyChangedEventHandler),
+                                    new classic.AutomationPropertyChangedEventHandler(cmdlet.AutomationPropertyChangedEventHandler),
                                 properties);
                             UiaHelper.WriteEventToCollection(cmdlet, uiaPropertyChangedEventHandler);
                             if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaPropertyChangedEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         }
                         break;
                     case "AutomationElementIdentifiers.StructureChangedEvent":
-                        StructureChangedEventHandler uiaStructureChangedEventHandler;
+                        classic.StructureChangedEventHandler uiaStructureChangedEventHandler;
                         UiaAutomation.AddStructureChangedEventHandler(
                             inputObject,
-                            TreeScope.Subtree,
+                            classic.TreeScope.Subtree,
                             uiaStructureChangedEventHandler = 
-                            new StructureChangedEventHandler(cmdlet.StructureChangedEventHandler));
+                            new classic.StructureChangedEventHandler(cmdlet.StructureChangedEventHandler));
                         UiaHelper.WriteEventToCollection(cmdlet, uiaStructureChangedEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaStructureChangedEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "WindowPatternIdentifiers.WindowClosedProperty":
                         UiaAutomation.AddAutomationEventHandler(
-                            WindowPattern.WindowClosedEvent,
+                            classic.WindowPattern.WindowClosedEvent,
                             inputObject,
-                            TreeScope.Subtree,
-                            uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
+                            classic.TreeScope.Subtree,
+                            uiaEventHandler = new classic.AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "AutomationElementIdentifiers.MenuClosedEvent":
                         UiaAutomation.AddAutomationEventHandler(
-                            AutomationElement.MenuClosedEvent,
+                            classic.AutomationElement.MenuClosedEvent,
                             inputObject,
-                            TreeScope.Subtree,
-                            uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
+                            classic.TreeScope.Subtree,
+                            uiaEventHandler = new classic.AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "AutomationElementIdentifiers.MenuOpenedEvent":
                         UiaAutomation.AddAutomationEventHandler(
-                            AutomationElement.MenuOpenedEvent,
+                            classic.AutomationElement.MenuOpenedEvent,
                             inputObject,
-                            TreeScope.Subtree,
-                            uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
+                            classic.TreeScope.Subtree,
+                            uiaEventHandler = new classic.AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "AutomationElementIdentifiers.ToolTipClosedEvent":
                         UiaAutomation.AddAutomationEventHandler(
-                            AutomationElement.ToolTipClosedEvent,
+                            classic.AutomationElement.ToolTipClosedEvent,
                             inputObject,
-                            TreeScope.Subtree,
-                            uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
+                            classic.TreeScope.Subtree,
+                            uiaEventHandler = new classic.AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "AutomationElementIdentifiers.ToolTipOpenedEvent":
                         UiaAutomation.AddAutomationEventHandler(
-                            AutomationElement.ToolTipOpenedEvent,
+                            classic.AutomationElement.ToolTipOpenedEvent,
                             inputObject,
-                            TreeScope.Subtree,
-                            uiaEventHandler = new AutomationEventHandler(cmdlet.AutomationEventHandler));
+                            classic.TreeScope.Subtree,
+                            uiaEventHandler = new classic.AutomationEventHandler(cmdlet.AutomationEventHandler));
                         UiaHelper.WriteEventToCollection(cmdlet, uiaEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
                     case "AutomationElementIdentifiers.AutomationFocusChangedEvent":
-                        AutomationFocusChangedEventHandler uiaFocusChangedEventHandler;
+                        classic.AutomationFocusChangedEventHandler uiaFocusChangedEventHandler;
                         UiaAutomation.AddAutomationFocusChangedEventHandler(
-                            uiaFocusChangedEventHandler = new AutomationFocusChangedEventHandler(cmdlet.AutomationEventHandler));
+                            uiaFocusChangedEventHandler = new classic.AutomationFocusChangedEventHandler(cmdlet.AutomationEventHandler));
                         UiaHelper.WriteEventToCollection(cmdlet, uiaFocusChangedEventHandler);
                         if (cmdlet.PassThru) { cmdlet.WriteObject(cmdlet, uiaFocusChangedEventHandler); } else { cmdlet.WriteObject(cmdlet, true); }
                         break;
@@ -680,7 +680,7 @@ namespace UIAutomation
             if (!checkNotNull(src, e)) return;
             RunEventScriptBlocks(this);
             try {
-                WriteVerbose(this, e.EventId + " on " + (src as AutomationElement) + " fired");
+                WriteVerbose(this, e.EventId + " on " + (src as classic.AutomationElement) + " fired");
             } catch { }
         }
         #endregion OnUIAutomationEvent
@@ -702,7 +702,7 @@ try {
                 RunEventScriptBlocks(this);
             }
             try {
-                WriteVerbose(this, e.EventId + "on " + (src as AutomationElement) + " fired");
+                WriteVerbose(this, e.EventId + "on " + (src as classic.AutomationElement) + " fired");
             } catch { }
         }
         #endregion OnUIAutomationPropertyChangedEvent
@@ -713,16 +713,16 @@ try {
             if (!checkNotNull(src, e)) return;
 
             // StructureChangeType
-            if ((e.StructureChangeType == StructureChangeType.ChildAdded && Child.ChildAdded) ||
-                (e.StructureChangeType == StructureChangeType.ChildRemoved && Child.ChildRemoved) ||
-                (e.StructureChangeType == StructureChangeType.ChildrenBulkAdded && Child.ChildrenBulkAdded) ||
-                (e.StructureChangeType == StructureChangeType.ChildrenBulkRemoved && Child.ChildrenBulkRemoved) ||
-                (e.StructureChangeType == StructureChangeType.ChildrenInvalidated && Child.ChildrenInvalidated) ||
-                (e.StructureChangeType == StructureChangeType.ChildrenReordered && Child.ChildrenReordered)) {
+            if ((e.StructureChangeType == classic.StructureChangeType.ChildAdded && Child.ChildAdded) ||
+                (e.StructureChangeType == classic.StructureChangeType.ChildRemoved && Child.ChildRemoved) ||
+                (e.StructureChangeType == classic.StructureChangeType.ChildrenBulkAdded && Child.ChildrenBulkAdded) ||
+                (e.StructureChangeType == classic.StructureChangeType.ChildrenBulkRemoved && Child.ChildrenBulkRemoved) ||
+                (e.StructureChangeType == classic.StructureChangeType.ChildrenInvalidated && Child.ChildrenInvalidated) ||
+                (e.StructureChangeType == classic.StructureChangeType.ChildrenReordered && Child.ChildrenReordered)) {
                 RunEventScriptBlocks(this);
             }
             try {
-                WriteVerbose(this, e.EventId + " on " + (src as AutomationElement) + " fired");
+                WriteVerbose(this, e.EventId + " on " + (src as classic.AutomationElement) + " fired");
             } catch { }
         }
         #endregion OnUIStructureChangedEvent
@@ -733,7 +733,7 @@ try {
             if (!checkNotNull(src, e)) return;
             RunEventScriptBlocks(this);
             try {
-                WriteVerbose(this, e.EventId + "on " + (src as AutomationElement) + " fired");
+                WriteVerbose(this, e.EventId + "on " + (src as classic.AutomationElement) + " fired");
             } catch { }
         }
         #endregion OnUIWindowClosedEvent
@@ -748,7 +748,7 @@ try {
             IUiElement sourceElement;
             string elementTitle = String.Empty;
             string elementType = String.Empty;
-            AutomationEvent eventId = null;
+            classic.AutomationEvent eventId = null;
             
             try {
                 
@@ -776,7 +776,7 @@ try {
                         return;
                     }
                 } catch { }
-            } catch (ElementNotAvailableException) {
+            } catch (classic.ElementNotAvailableException) {
                 return;
             }
             // try {
@@ -784,79 +784,79 @@ try {
                 string specificToEvent = String.Empty;
                 // 
                 try {
-                    if (eventId == AutomationElement.AsyncContentLoadedEvent) {
+                    if (eventId == classic.AutomationElement.AsyncContentLoadedEvent) {
                         specificToEvent = "#AsyncContentLoadedEvent triggered\r\n#source title: " + 
                             elementTitle + " of the type " + elementType;
                     }
-                    if (eventId == SelectionItemPattern.ElementAddedToSelectionEvent) {
+                    if (eventId == classic.SelectionItemPattern.ElementAddedToSelectionEvent) {
                         specificToEvent =
                             "SelectItem -AddToSelection:$true -ItemName " + 
                             elementTitle;
                     }
-                    if (eventId == SelectionItemPattern.ElementRemovedFromSelectionEvent) {
+                    if (eventId == classic.SelectionItemPattern.ElementRemovedFromSelectionEvent) {
                         specificToEvent =
                             "SelectItem -RemoveFromSelection:$true -ItemName " + 
                             elementTitle;
                     }
-                    if (eventId == SelectionItemPattern.ElementSelectedEvent) {
+                    if (eventId == classic.SelectionItemPattern.ElementSelectedEvent) {
                         specificToEvent =
                             "SelectItem -ItemName " + 
                             elementTitle;
                     }
-                    if (eventId == SelectionPattern.InvalidatedEvent) {
+                    if (eventId == classic.SelectionPattern.InvalidatedEvent) {
                         specificToEvent = "#InvalidatedEvent triggered\r\n#source title: " + 
                             elementTitle + " of the type " + elementType;
                     }
-                    if (eventId == InvokePattern.InvokedEvent) {
+                    if (eventId == classic.InvokePattern.InvokedEvent) {
                         specificToEvent = "Click";
                     }
-                    if (eventId == AutomationElement.LayoutInvalidatedEvent) {
+                    if (eventId == classic.AutomationElement.LayoutInvalidatedEvent) {
                         specificToEvent = "#LayoutInvalidatedEvent triggered\r\n#source title: " + 
                             elementTitle + " of the type " + elementType;
                     }
-                    if (eventId == AutomationElement.MenuClosedEvent) {
+                    if (eventId == classic.AutomationElement.MenuClosedEvent) {
                         specificToEvent = "#MenuClosedEvent triggered\r\n#source title: " + 
                             elementTitle + " of the type " + elementType;
                     }
-                    if (eventId == AutomationElement.MenuOpenedEvent) {
+                    if (eventId == classic.AutomationElement.MenuOpenedEvent) {
                         specificToEvent = "#MenuOpenedEvent triggered\r\n#source title: " + 
                             elementTitle + " of the type " + elementType;
                     }
-                    if (eventId == TextPattern.TextChangedEvent) {
+                    if (eventId == classic.TextPattern.TextChangedEvent) {
                         specificToEvent = "#TextChangedEvent triggered\r\n#source title: " + 
                             elementTitle + " of the type " + elementType;
                     }
-                    if (eventId == TextPattern.TextSelectionChangedEvent) {
+                    if (eventId == classic.TextPattern.TextSelectionChangedEvent) {
                         specificToEvent = "#TextSelectionChangedEvent triggered\r\n#source title: " + 
                             elementTitle + " of the type " + elementType;
                     }
-                    if (eventId == AutomationElement.ToolTipClosedEvent) {
+                    if (eventId == classic.AutomationElement.ToolTipClosedEvent) {
                         specificToEvent = "#ToolTipClosedEvent triggered\r\n#source title: " + 
                             elementTitle + " of the type " + elementType;
                     }
-                    if (eventId == AutomationElement.ToolTipOpenedEvent) {
+                    if (eventId == classic.AutomationElement.ToolTipOpenedEvent) {
                         specificToEvent = "#ToolTipOpenedEvent triggered\r\n#source title: " + 
                             elementTitle + " of the type " + elementType;
                     }
-                    if (eventId == WindowPattern.WindowOpenedEvent) {
+                    if (eventId == classic.WindowPattern.WindowOpenedEvent) {
                         specificToEvent = "#WindowOpenedEvent triggered\r\n#source title: " + 
                             elementTitle + " of the type " + elementType;
                     }
-                    if (eventId == AutomationElement.AutomationFocusChangedEvent) {
+                    if (eventId == classic.AutomationElement.AutomationFocusChangedEvent) {
                         specificToEvent = "#AutomationFocusChangedEvent triggered\r\n#source title: " + 
                             elementTitle + " of the type " + elementType;
                     }
-                    if (eventId == AutomationElement.AutomationPropertyChangedEvent) {
+                    if (eventId == classic.AutomationElement.AutomationPropertyChangedEvent) {
                         specificToEvent = "#AutomationPropertyChangedEvent triggered\r\n#source title: " + 
                             elementTitle + " of the type " + elementType;
                         // specificToEvent += "old value: ";
                         // specificToEvent += eventId.
                     }
-                    if (eventId == AutomationElement.StructureChangedEvent) {
+                    if (eventId == classic.AutomationElement.StructureChangedEvent) {
                         specificToEvent = "#StructureChangedEvent triggered\r\n#source title: " + 
                             elementTitle + " of the type " + elementType;
                     }
-                    if (eventId == WindowPattern.WindowClosedEvent) {
+                    if (eventId == classic.WindowPattern.WindowClosedEvent) {
                         specificToEvent = "#WindowClosedEvent triggered\r\n#source title: " + 
                             elementTitle + " of the type " + elementType;
                     }
@@ -899,7 +899,7 @@ try {
             } // experimental
             try {
                 // 20131109
-                WriteVerbose(this, e.EventId + "on " + (src as AutomationElement) + " fired");
+                WriteVerbose(this, e.EventId + "on " + (src as classic.AutomationElement) + " fired");
                 WriteVerbose(this, e.EventId + "on " + (src as IUiElement) + " fired");
             } catch { }
         }
@@ -921,7 +921,7 @@ try {
                 //sourceElement = objectToTest as AutomationElement;
                 // 20131118
                 //sourceElement = objectToTest as IUiElement;
-                AutomationElement sourceElement = objectToTest as AutomationElement;
+                classic.AutomationElement sourceElement = objectToTest as classic.AutomationElement;
                 // 20131109
                 //this.EventSource = sourceElement;
                 // 20131118

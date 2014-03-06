@@ -10,7 +10,7 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;using System.Windows.Automation;
+    extern alias UIANET;// using System.Windows.Automation;
     using System;
     using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 //    using System.Windows.Automation.Text;
@@ -92,7 +92,7 @@ namespace UIAutomation
                 return (holder as UiExtendedModelHolder).GetParentElement()
                     .FindAll(
                         holder.GetScope(),
-                        Condition.TrueCondition);
+                        classic.Condition.TrueCondition);
             } catch (Exception) {
                 return new UiEltCollection(true);
                 // throw;

@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;using System.Windows.Automation;
+    extern alias UIANET;// using System.Windows.Automation;
     using System;
     using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     using System.Collections;
@@ -53,12 +53,12 @@ namespace UIAutomation
                       wildcardAutomationId.IsMatch(collectionItem.Current.AutomationId) &&
                       wildcardClassName.IsMatch(collectionItem.Current.ClassName) &&
                       // 20131209
-                      // (collectionItem.GetSupportedPatterns().Contains(ValuePattern.Pattern) ?
+                      // (collectionItem.GetSupportedPatterns().Contains(classic.ValuePattern.Pattern) ?
                       (collectionItem.GetSupportedPatterns().AsQueryable<IBasePattern>().Any<IBasePattern>(p => p is IValuePattern) ?
                       // 20131208
-                      // wildcardValue.IsMatch((collectionItem.GetCurrentPattern(ValuePattern.Pattern) as IValuePattern).Current.Value) :
-                      // wildcardValue.IsMatch((collectionItem.GetCurrentPattern<IValuePattern, ValuePattern>(ValuePattern.Pattern) as IValuePattern).Current.Value) :
-                      wildcardValue.IsMatch(collectionItem.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern).Current.Value) :
+                      // wildcardValue.IsMatch((collectionItem.GetCurrentPattern(classic.ValuePattern.Pattern) as IValuePattern).Current.Value) :
+                      // wildcardValue.IsMatch((collectionItem.GetCurrentPattern<IValuePattern, ValuePattern>(classic.ValuePattern.Pattern) as IValuePattern).Current.Value) :
+                      wildcardValue.IsMatch(collectionItem.GetCurrentPattern<IValuePattern>(classic.ValuePattern.Pattern).Current.Value) :
                       // check whether the -Value parameter has or hasn't value
                       ("*" == txtValue ? true : false))
                 select collectionItem;

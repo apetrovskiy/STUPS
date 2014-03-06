@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;using System.Windows.Automation;
+    extern alias UIANET;// using System.Windows.Automation;
     using System;
     using System.Management.Automation;
     using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
@@ -177,12 +177,12 @@ namespace UIAutomation
             var resultCollection = new List<IUiElement>();
             
             var walker = 
-                new TreeWalker(
-                    Condition.TrueCondition);
+                new classic.TreeWalker(
+                    classic.Condition.TrueCondition);
             
             try {
                 
-                IUiElement oneMoreElement = AutomationFactory.GetUiElement(walker.GetFirstChild(element.GetSourceElement() as AutomationElement));
+                IUiElement oneMoreElement = AutomationFactory.GetUiElement(walker.GetFirstChild(element.GetSourceElement() as classic.AutomationElement));
                 
                 resultCollection = ProcessAutomationElement(
                         oneMoreElement,
@@ -205,7 +205,7 @@ namespace UIAutomation
                 
                 while (oneMoreElement != null) {
                     
-                    oneMoreElement = AutomationFactory.GetUiElement(walker.GetNextSibling(oneMoreElement.GetSourceElement() as AutomationElement));
+                    oneMoreElement = AutomationFactory.GetUiElement(walker.GetNextSibling(oneMoreElement.GetSourceElement() as classic.AutomationElement));
                     
                     resultCollection = ProcessAutomationElement(
                         oneMoreElement,
@@ -419,8 +419,8 @@ namespace UIAutomation
             if (!CheckAndPrepareInput(this)) { return; }
             
             var walker = 
-                new TreeWalker(
-                    Condition.TrueCondition);
+                new classic.TreeWalker(
+                    classic.Condition.TrueCondition);
             
             // 20120823
             // 20131109
@@ -455,7 +455,7 @@ namespace UIAutomation
                 IUiElement sibling = null;
                 // 20140102
                 // sibling = nextSibling ? AutomationFactory.GetUiElement(walker.GetNextSibling(inputObject.GetSourceElement())) : AutomationFactory.GetUiElement(walker.GetPreviousSibling(inputObject.GetSourceElement()));
-                sibling = nextSibling ? AutomationFactory.GetUiElement(walker.GetNextSibling(inputObject.GetSourceElement() as AutomationElement)) : AutomationFactory.GetUiElement(walker.GetPreviousSibling(inputObject.GetSourceElement() as AutomationElement));
+                sibling = nextSibling ? AutomationFactory.GetUiElement(walker.GetNextSibling(inputObject.GetSourceElement() as classic.AutomationElement)) : AutomationFactory.GetUiElement(walker.GetPreviousSibling(inputObject.GetSourceElement() as classic.AutomationElement));
                 
                 WriteObject(this, sibling);
             
@@ -496,13 +496,13 @@ namespace UIAutomation
             if (!CheckAndPrepareInput(this)) { return; }
             
             var walker = 
-                new TreeWalker(
-                    Condition.TrueCondition);
+                new classic.TreeWalker(
+                    classic.Condition.TrueCondition);
             
             IUiElement sibling =
                 firstChild ?
-                    AutomationFactory.GetUiElement(walker.GetFirstChild(inputObject.GetSourceElement() as AutomationElement)) :
-                        AutomationFactory.GetUiElement(walker.GetLastChild(inputObject.GetSourceElement() as AutomationElement));
+                    AutomationFactory.GetUiElement(walker.GetFirstChild(inputObject.GetSourceElement() as classic.AutomationElement)) :
+                        AutomationFactory.GetUiElement(walker.GetLastChild(inputObject.GetSourceElement() as classic.AutomationElement));
             
             WriteObject(this, sibling);
         }
@@ -523,7 +523,7 @@ namespace UIAutomation
                     var controlSearch =
                         AutomationFactory.GetSearcherImpl<ControlSearcher>() as ControlSearcher;
                     
-                    Condition conditions =
+                    classic.Condition conditions =
                         ControlSearcher.GetWildcardSearchCondition(
                             controlSearch.ConvertCmdletToControlSearcherData(this));
                     
@@ -542,7 +542,7 @@ namespace UIAutomation
                         temporaryResults =
                             inputObject.FindAll(
                                 scope,
-                                Condition.TrueCondition);
+                                classic.Condition.TrueCondition);
                         if (temporaryResults.Count > 0)
                         {
 //                            WriteVerbose(this, 
@@ -561,7 +561,7 @@ namespace UIAutomation
                     searchResults = null;
                 }
                 
-                if (scope != TreeScope.Parent && scope != TreeScope.Ancestors) continue;
+                if (scope != classic.TreeScope.Parent && scope != classic.TreeScope.Ancestors) continue;
                 
                 IUiElement[] outResult = inputObject.GetParentOrAncestor(scope);
                 WriteObject(this, outResult);

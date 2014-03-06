@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;using System.Windows.Automation;
+    extern alias UIANET;// using System.Windows.Automation;
     using System;
     using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     using System.Collections.Generic;
@@ -66,7 +66,7 @@ namespace UIAutomation
                 if (element.IsMatchWildcardPattern(resultCollection, wildcardName, element.Current.ClassName))
                     continue;
                 try {
-                    string elementValue = element.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern).Current.Value;
+                    string elementValue = element.GetCurrentPattern<IValuePattern>(classic.ValuePattern.Pattern).Current.Value;
                     if (element.IsMatchWildcardPattern(resultCollection, wildcardName, elementValue))
                         continue;
                     if (element.IsMatchWildcardPattern(resultCollection, wildcardValue, elementValue))

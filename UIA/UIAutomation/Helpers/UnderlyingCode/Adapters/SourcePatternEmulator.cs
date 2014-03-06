@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;using System.Windows.Automation;
+    extern alias UIANET;// using System.Windows.Automation;
     using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     
     /// <summary>
@@ -21,7 +21,7 @@ namespace UIAutomation
         
         public SourcePatternEmulator(object pattern)
         {
-            Pattern = pattern as AutomationPattern;
+            Pattern = pattern as classic.AutomationPattern;
         }
     }
 }

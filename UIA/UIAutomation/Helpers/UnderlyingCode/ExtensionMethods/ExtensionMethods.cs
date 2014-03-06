@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;using System.Windows.Automation;
+    extern alias UIANET;// using System.Windows.Automation;
     using System;
     using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
     using System.Collections;
@@ -34,7 +34,7 @@ namespace UIAutomation
         {
             var resultList =
                 new List<IBasePattern>();
-            foreach (AutomationPattern pattern in patterns) {
+            foreach (classic.AutomationPattern pattern in patterns) {
                 
                 // resultList.Add(AutomationFactory.GetPatternAdapter<IBasePattern>(element, pattern));
                 // 20131210

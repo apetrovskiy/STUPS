@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;using System.Windows.Automation;
+	extern alias UIANET;// using System.Windows.Automation;
 	using System;
 	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 
@@ -49,11 +49,11 @@ namespace UIAutomation
 			
 			public int RowCount {
 				// get { return (int)this._el.GetPatternPropertyValue(GridPattern.RowCountProperty, this._useCache); }
-				get { return (int)this._gridPattern.GetParentElement().GetPatternPropertyValue(GridPattern.RowCountProperty, this._useCache); }
+				get { return (int)this._gridPattern.GetParentElement().GetPatternPropertyValue(classic.GridPattern.RowCountProperty, this._useCache); }
 			}
 			public int ColumnCount {
 				// get { return (int)this._el.GetPatternPropertyValue(GridPattern.ColumnCountProperty, this._useCache); }
-				get { return (int)this._gridPattern.GetParentElement().GetPatternPropertyValue(GridPattern.ColumnCountProperty, this._useCache); }
+				get { return (int)this._gridPattern.GetParentElement().GetPatternPropertyValue(classic.GridPattern.ColumnCountProperty, this._useCache); }
 			}
 //			internal GridPatternInformation(AutomationElement el, bool useCache)
 //			{
@@ -61,9 +61,9 @@ namespace UIAutomation
 //				this._useCache = useCache;
 //			}
 		}
-		public static readonly classic.AutomationPattern Pattern = GridPatternIdentifiers.Pattern;
-		public static readonly classic.AutomationProperty RowCountProperty = GridPatternIdentifiers.RowCountProperty;
-		public static readonly classic.AutomationProperty ColumnCountProperty = GridPatternIdentifiers.ColumnCountProperty;
+		public static readonly classic.AutomationPattern Pattern = classic.GridPatternIdentifiers.Pattern;
+		public static readonly classic.AutomationProperty RowCountProperty = classic.GridPatternIdentifiers.RowCountProperty;
+		public static readonly classic.AutomationProperty ColumnCountProperty = classic.GridPatternIdentifiers.ColumnCountProperty;
 		// internal SafePatternHandle _hPattern;
 		// internal bool _cached;
 		
@@ -111,7 +111,7 @@ namespace UIAutomation
 		
 		public void SetSourcePattern(object pattern)
 		{
-		    this._gridPattern = pattern as GridPattern;
+		    this._gridPattern = pattern as classic.GridPattern;
 		}
 		
 		public object GetSourcePattern()

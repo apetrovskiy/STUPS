@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-    extern alias UIANET;using System.Windows.Automation;
+    extern alias UIANET;// using System.Windows.Automation;
     using System;
     using System.Management.Automation;
     using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
@@ -52,9 +52,9 @@ namespace UIAutomation
         protected internal IUiElement ElementToSubscribe;
         // list of all subscribed events
         protected internal readonly List<classic.AutomationEventHandler> SubscribedEvents =
-            new List<AutomationEventHandler>();
+            new List<classic.AutomationEventHandler>();
         protected internal readonly List<classic.AutomationEvent> SubscribedEventsIds =
-            new List<AutomationEvent>();
+            new List<classic.AutomationEvent>();
         
         // 20140130
         protected internal IAutomation UiaAutomation { get; set; }
@@ -75,7 +75,7 @@ namespace UIAutomation
                 if (hWnd == IntPtr.Zero) return result;
                 
                 result =
-                    AutomationFactory.GetUiElement(AutomationElement.FromHandle(hWnd));
+                    AutomationFactory.GetUiElement(classic.AutomationElement.FromHandle(hWnd));
                 WriteVerbose(this, 
                              "the active window element is " + 
                              result.Current.Name);

@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;using System.Windows.Automation;
+	extern alias UIANET;// using System.Windows.Automation;
 	using System;
 	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 
@@ -64,11 +64,11 @@ namespace UIAutomation
 //					}
 //					return (double)patternPropertyValue;
 //				}
-			    get { return (double)this._rangeValuePattern.GetParentElement().GetPatternPropertyValue(RangeValuePattern.ValueProperty, this._useCache); }
+			    get { return (double)this._rangeValuePattern.GetParentElement().GetPatternPropertyValue(classic.RangeValuePattern.ValueProperty, this._useCache); }
 			}
 			public bool IsReadOnly {
 				// get { return (bool)this._el.GetPatternPropertyValue(RangeValuePattern.IsReadOnlyProperty, this._useCache); }
-				get { return (bool)this._rangeValuePattern.GetParentElement().GetPatternPropertyValue(RangeValuePattern.IsReadOnlyProperty, this._useCache); }
+				get { return (bool)this._rangeValuePattern.GetParentElement().GetPatternPropertyValue(classic.RangeValuePattern.IsReadOnlyProperty, this._useCache); }
 			}
 			public double Maximum {
 //				get {
@@ -87,7 +87,7 @@ namespace UIAutomation
 //					}
 //					return (double)patternPropertyValue;
 //				}
-			    get { return (double)this._rangeValuePattern.GetParentElement().GetPatternPropertyValue(RangeValuePattern.MaximumProperty, this._useCache); }
+			    get { return (double)this._rangeValuePattern.GetParentElement().GetPatternPropertyValue(classic.RangeValuePattern.MaximumProperty, this._useCache); }
 			}
 			public double Minimum {
 //				get {
@@ -106,7 +106,7 @@ namespace UIAutomation
 //					}
 //					return (double)patternPropertyValue;
 //				}
-			    get { return (double)this._rangeValuePattern.GetParentElement().GetPatternPropertyValue(RangeValuePattern.MinimumProperty, this._useCache); }
+			    get { return (double)this._rangeValuePattern.GetParentElement().GetPatternPropertyValue(classic.RangeValuePattern.MinimumProperty, this._useCache); }
 			}
 			public double LargeChange {
 //				get {
@@ -125,7 +125,7 @@ namespace UIAutomation
 //					}
 //					return (double)patternPropertyValue;
 //				}
-			    get { return (double)this._rangeValuePattern.GetParentElement().GetPatternPropertyValue(RangeValuePattern.LargeChangeProperty, this._useCache); }
+			    get { return (double)this._rangeValuePattern.GetParentElement().GetPatternPropertyValue(classic.RangeValuePattern.LargeChangeProperty, this._useCache); }
 			}
 			public double SmallChange {
 //				get {
@@ -144,7 +144,7 @@ namespace UIAutomation
 //					}
 //					return (double)patternPropertyValue;
 //				}
-			    get { return (double)this._rangeValuePattern.GetParentElement().GetPatternPropertyValue(RangeValuePattern.SmallChangeProperty, this._useCache); }
+			    get { return (double)this._rangeValuePattern.GetParentElement().GetPatternPropertyValue(classic.RangeValuePattern.SmallChangeProperty, this._useCache); }
 			}
 //			internal RangeValuePatternInformation(AutomationElement el, bool useCache)
 //			{
@@ -152,13 +152,13 @@ namespace UIAutomation
 //				this._useCache = useCache;
 //			}
 		}
-		public static readonly classic.AutomationPattern Pattern = RangeValuePatternIdentifiers.Pattern;
-		public static readonly classic.AutomationProperty ValueProperty = RangeValuePatternIdentifiers.ValueProperty;
-		public static readonly classic.AutomationProperty IsReadOnlyProperty = RangeValuePatternIdentifiers.IsReadOnlyProperty;
-		public static readonly classic.AutomationProperty MinimumProperty = RangeValuePatternIdentifiers.MinimumProperty;
-		public static readonly classic.AutomationProperty MaximumProperty = RangeValuePatternIdentifiers.MaximumProperty;
-		public static readonly classic.AutomationProperty LargeChangeProperty = RangeValuePatternIdentifiers.LargeChangeProperty;
-		public static readonly classic.AutomationProperty SmallChangeProperty = RangeValuePatternIdentifiers.SmallChangeProperty;
+		public static readonly classic.AutomationPattern Pattern = classic.RangeValuePatternIdentifiers.Pattern;
+		public static readonly classic.AutomationProperty ValueProperty = classic.RangeValuePatternIdentifiers.ValueProperty;
+		public static readonly classic.AutomationProperty IsReadOnlyProperty = classic.RangeValuePatternIdentifiers.IsReadOnlyProperty;
+		public static readonly classic.AutomationProperty MinimumProperty = classic.RangeValuePatternIdentifiers.MinimumProperty;
+		public static readonly classic.AutomationProperty MaximumProperty = classic.RangeValuePatternIdentifiers.MaximumProperty;
+		public static readonly classic.AutomationProperty LargeChangeProperty = classic.RangeValuePatternIdentifiers.LargeChangeProperty;
+		public static readonly classic.AutomationProperty SmallChangeProperty = classic.RangeValuePatternIdentifiers.SmallChangeProperty;
 		// private SafePatternHandle _hPattern;
 		// private bool _cached;
 		
@@ -212,7 +212,7 @@ namespace UIAutomation
 		
 		public void SetSourcePattern(object pattern)
 		{
-		    this._rangeValuePattern = pattern as RangeValuePattern;
+		    this._rangeValuePattern = pattern as classic.RangeValuePattern;
 		}
 		
 		public object GetSourcePattern()

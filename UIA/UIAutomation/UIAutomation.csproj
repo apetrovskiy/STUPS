@@ -135,11 +135,11 @@
     <Reference Include="System.Xml" />
     <Reference Include="UIAutomationClient">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
-      <Aliases>global,UIANET</Aliases>
+      <Aliases>UIANET</Aliases>
     </Reference>
     <Reference Include="UIAutomationTypes">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
-      <Aliases>global,UIANET</Aliases>
+      <Aliases>UIANET</Aliases>
     </Reference>
     <Reference Include="WindowsBase">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>

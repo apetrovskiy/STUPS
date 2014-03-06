@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;using System.Windows.Automation;
+	extern alias UIANET;// using System.Windows.Automation;
 	using System;
 	// using UIANET::System.Windows.Automation;
 	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
@@ -66,7 +66,7 @@ namespace UIAutomation
 		{
 			// temporary
 			// later use here an empty proxy
-			_elementHolderNet = AutomationElement.RootElement;
+			_elementHolderNet = classic.AutomationElement.RootElement;
 			//
 			_innerElementType = InnerElementTypes.Empty;
 			// _innerElementType = InnerElementTypes.AutomationElementNet;
@@ -459,73 +459,73 @@ namespace UIAutomation
 		}
 
 		// static methods and properties
-		public static readonly object NotSupported = AutomationElementIdentifiers.NotSupported;
-		public static readonly classic.AutomationProperty IsControlElementProperty = AutomationElementIdentifiers.IsControlElementProperty;
-		public static readonly classic.AutomationProperty ControlTypeProperty = AutomationElementIdentifiers.ControlTypeProperty;
-		public static readonly classic.AutomationProperty IsContentElementProperty = AutomationElementIdentifiers.IsContentElementProperty;
-		public static readonly classic.AutomationProperty LabeledByProperty = AutomationElementIdentifiers.LabeledByProperty;
-		public static readonly classic.AutomationProperty NativeWindowHandleProperty = AutomationElementIdentifiers.NativeWindowHandleProperty;
-		public static readonly classic.AutomationProperty AutomationIdProperty = AutomationElementIdentifiers.AutomationIdProperty;
-		public static readonly classic.AutomationProperty ItemTypeProperty = AutomationElementIdentifiers.ItemTypeProperty;
-		public static readonly classic.AutomationProperty IsPasswordProperty = AutomationElementIdentifiers.IsPasswordProperty;
-		public static readonly classic.AutomationProperty LocalizedControlTypeProperty = AutomationElementIdentifiers.LocalizedControlTypeProperty;
-		public static readonly classic.AutomationProperty NameProperty = AutomationElementIdentifiers.NameProperty;
-		public static readonly classic.AutomationProperty AcceleratorKeyProperty = AutomationElementIdentifiers.AcceleratorKeyProperty;
-		public static readonly classic.AutomationProperty AccessKeyProperty = AutomationElementIdentifiers.AccessKeyProperty;
-		public static readonly classic.AutomationProperty HasKeyboardFocusProperty = AutomationElementIdentifiers.HasKeyboardFocusProperty;
-		public static readonly classic.AutomationProperty IsKeyboardFocusableProperty = AutomationElementIdentifiers.IsKeyboardFocusableProperty;
-		public static readonly classic.AutomationProperty IsEnabledProperty = AutomationElementIdentifiers.IsEnabledProperty;
-		public static readonly classic.AutomationProperty BoundingRectangleProperty = AutomationElementIdentifiers.BoundingRectangleProperty;
-		public static readonly classic.AutomationProperty ProcessIdProperty = AutomationElementIdentifiers.ProcessIdProperty;
-		public static readonly classic.AutomationProperty RuntimeIdProperty = AutomationElementIdentifiers.RuntimeIdProperty;
-		public static readonly classic.AutomationProperty ClassNameProperty = AutomationElementIdentifiers.ClassNameProperty;
-		public static readonly classic.AutomationProperty HelpTextProperty = AutomationElementIdentifiers.HelpTextProperty;
-		public static readonly classic.AutomationProperty ClickablePointProperty = AutomationElementIdentifiers.ClickablePointProperty;
-		public static readonly classic.AutomationProperty CultureProperty = AutomationElementIdentifiers.CultureProperty;
-		public static readonly classic.AutomationProperty IsOffscreenProperty = AutomationElementIdentifiers.IsOffscreenProperty;
-		public static readonly classic.AutomationProperty OrientationProperty = AutomationElementIdentifiers.OrientationProperty;
-		public static readonly classic.AutomationProperty FrameworkIdProperty = AutomationElementIdentifiers.FrameworkIdProperty;
-		public static readonly classic.AutomationProperty IsRequiredForFormProperty = AutomationElementIdentifiers.IsRequiredForFormProperty;
-		public static readonly classic.AutomationProperty ItemStatusProperty = AutomationElementIdentifiers.ItemStatusProperty;
-		public static readonly classic.AutomationProperty IsDockPatternAvailableProperty = AutomationElementIdentifiers.IsDockPatternAvailableProperty;
-		public static readonly classic.AutomationProperty IsExpandCollapsePatternAvailableProperty = AutomationElementIdentifiers.IsExpandCollapsePatternAvailableProperty;
-		public static readonly classic.AutomationProperty IsGridItemPatternAvailableProperty = AutomationElementIdentifiers.IsGridItemPatternAvailableProperty;
-		public static readonly classic.AutomationProperty IsGridPatternAvailableProperty = AutomationElementIdentifiers.IsGridPatternAvailableProperty;
-		public static readonly classic.AutomationProperty IsInvokePatternAvailableProperty = AutomationElementIdentifiers.IsInvokePatternAvailableProperty;
-		public static readonly classic.AutomationProperty IsMultipleViewPatternAvailableProperty = AutomationElementIdentifiers.IsMultipleViewPatternAvailableProperty;
-		public static readonly classic.AutomationProperty IsRangeValuePatternAvailableProperty = AutomationElementIdentifiers.IsRangeValuePatternAvailableProperty;
-		public static readonly classic.AutomationProperty IsSelectionItemPatternAvailableProperty = AutomationElementIdentifiers.IsSelectionItemPatternAvailableProperty;
-		public static readonly classic.AutomationProperty IsSelectionPatternAvailableProperty = AutomationElementIdentifiers.IsSelectionPatternAvailableProperty;
-		public static readonly classic.AutomationProperty IsScrollPatternAvailableProperty = AutomationElementIdentifiers.IsScrollPatternAvailableProperty;
-		public static readonly classic.AutomationProperty IsScrollItemPatternAvailableProperty = AutomationElementIdentifiers.IsScrollItemPatternAvailableProperty;
-		public static readonly classic.AutomationProperty IsTablePatternAvailableProperty = AutomationElementIdentifiers.IsTablePatternAvailableProperty;
-		public static readonly classic.AutomationProperty IsTableItemPatternAvailableProperty = AutomationElementIdentifiers.IsTableItemPatternAvailableProperty;
-		public static readonly classic.AutomationProperty IsTextPatternAvailableProperty = AutomationElementIdentifiers.IsTextPatternAvailableProperty;
-		public static readonly classic.AutomationProperty IsTogglePatternAvailableProperty = AutomationElementIdentifiers.IsTogglePatternAvailableProperty;
-		public static readonly classic.AutomationProperty IsTransformPatternAvailableProperty = AutomationElementIdentifiers.IsTransformPatternAvailableProperty;
-		public static readonly classic.AutomationProperty IsValuePatternAvailableProperty = AutomationElementIdentifiers.IsValuePatternAvailableProperty;
-		public static readonly classic.AutomationProperty IsWindowPatternAvailableProperty = AutomationElementIdentifiers.IsWindowPatternAvailableProperty;
-		public static readonly classic.AutomationEvent ToolTipOpenedEvent = AutomationElementIdentifiers.ToolTipOpenedEvent;
-		public static readonly classic.AutomationEvent ToolTipClosedEvent = AutomationElementIdentifiers.ToolTipClosedEvent;
-		public static readonly classic.AutomationEvent StructureChangedEvent = AutomationElementIdentifiers.StructureChangedEvent;
-		public static readonly classic.AutomationEvent MenuOpenedEvent = AutomationElementIdentifiers.MenuOpenedEvent;
-		public static readonly classic.AutomationEvent AutomationPropertyChangedEvent = AutomationElementIdentifiers.AutomationPropertyChangedEvent;
-		public static readonly classic.AutomationEvent AutomationFocusChangedEvent = AutomationElementIdentifiers.AutomationFocusChangedEvent;
-		public static readonly classic.AutomationEvent AsyncContentLoadedEvent = AutomationElementIdentifiers.AsyncContentLoadedEvent;
-		public static readonly classic.AutomationEvent MenuClosedEvent = AutomationElementIdentifiers.MenuClosedEvent;
-		public static readonly classic.AutomationEvent LayoutInvalidatedEvent = AutomationElementIdentifiers.LayoutInvalidatedEvent;
+		public static readonly object NotSupported = classic.AutomationElementIdentifiers.NotSupported;
+		public static readonly classic.AutomationProperty IsControlElementProperty = classic.AutomationElementIdentifiers.IsControlElementProperty;
+		public static readonly classic.AutomationProperty ControlTypeProperty = classic.AutomationElementIdentifiers.ControlTypeProperty;
+		public static readonly classic.AutomationProperty IsContentElementProperty = classic.AutomationElementIdentifiers.IsContentElementProperty;
+		public static readonly classic.AutomationProperty LabeledByProperty = classic.AutomationElementIdentifiers.LabeledByProperty;
+		public static readonly classic.AutomationProperty NativeWindowHandleProperty = classic.AutomationElementIdentifiers.NativeWindowHandleProperty;
+		public static readonly classic.AutomationProperty AutomationIdProperty = classic.AutomationElementIdentifiers.AutomationIdProperty;
+		public static readonly classic.AutomationProperty ItemTypeProperty = classic.AutomationElementIdentifiers.ItemTypeProperty;
+		public static readonly classic.AutomationProperty IsPasswordProperty = classic.AutomationElementIdentifiers.IsPasswordProperty;
+		public static readonly classic.AutomationProperty LocalizedControlTypeProperty = classic.AutomationElementIdentifiers.LocalizedControlTypeProperty;
+		public static readonly classic.AutomationProperty NameProperty = classic.AutomationElementIdentifiers.NameProperty;
+		public static readonly classic.AutomationProperty AcceleratorKeyProperty = classic.AutomationElementIdentifiers.AcceleratorKeyProperty;
+		public static readonly classic.AutomationProperty AccessKeyProperty = classic.AutomationElementIdentifiers.AccessKeyProperty;
+		public static readonly classic.AutomationProperty HasKeyboardFocusProperty = classic.AutomationElementIdentifiers.HasKeyboardFocusProperty;
+		public static readonly classic.AutomationProperty IsKeyboardFocusableProperty = classic.AutomationElementIdentifiers.IsKeyboardFocusableProperty;
+		public static readonly classic.AutomationProperty IsEnabledProperty = classic.AutomationElementIdentifiers.IsEnabledProperty;
+		public static readonly classic.AutomationProperty BoundingRectangleProperty = classic.AutomationElementIdentifiers.BoundingRectangleProperty;
+		public static readonly classic.AutomationProperty ProcessIdProperty = classic.AutomationElementIdentifiers.ProcessIdProperty;
+		public static readonly classic.AutomationProperty RuntimeIdProperty = classic.AutomationElementIdentifiers.RuntimeIdProperty;
+		public static readonly classic.AutomationProperty ClassNameProperty = classic.AutomationElementIdentifiers.ClassNameProperty;
+		public static readonly classic.AutomationProperty HelpTextProperty = classic.AutomationElementIdentifiers.HelpTextProperty;
+		public static readonly classic.AutomationProperty ClickablePointProperty = classic.AutomationElementIdentifiers.ClickablePointProperty;
+		public static readonly classic.AutomationProperty CultureProperty = classic.AutomationElementIdentifiers.CultureProperty;
+		public static readonly classic.AutomationProperty IsOffscreenProperty = classic.AutomationElementIdentifiers.IsOffscreenProperty;
+		public static readonly classic.AutomationProperty OrientationProperty = classic.AutomationElementIdentifiers.OrientationProperty;
+		public static readonly classic.AutomationProperty FrameworkIdProperty = classic.AutomationElementIdentifiers.FrameworkIdProperty;
+		public static readonly classic.AutomationProperty IsRequiredForFormProperty = classic.AutomationElementIdentifiers.IsRequiredForFormProperty;
+		public static readonly classic.AutomationProperty ItemStatusProperty = classic.AutomationElementIdentifiers.ItemStatusProperty;
+		public static readonly classic.AutomationProperty IsDockPatternAvailableProperty = classic.AutomationElementIdentifiers.IsDockPatternAvailableProperty;
+		public static readonly classic.AutomationProperty IsExpandCollapsePatternAvailableProperty = classic.AutomationElementIdentifiers.IsExpandCollapsePatternAvailableProperty;
+		public static readonly classic.AutomationProperty IsGridItemPatternAvailableProperty = classic.AutomationElementIdentifiers.IsGridItemPatternAvailableProperty;
+		public static readonly classic.AutomationProperty IsGridPatternAvailableProperty = classic.AutomationElementIdentifiers.IsGridPatternAvailableProperty;
+		public static readonly classic.AutomationProperty IsInvokePatternAvailableProperty = classic.AutomationElementIdentifiers.IsInvokePatternAvailableProperty;
+		public static readonly classic.AutomationProperty IsMultipleViewPatternAvailableProperty = classic.AutomationElementIdentifiers.IsMultipleViewPatternAvailableProperty;
+		public static readonly classic.AutomationProperty IsRangeValuePatternAvailableProperty = classic.AutomationElementIdentifiers.IsRangeValuePatternAvailableProperty;
+		public static readonly classic.AutomationProperty IsSelectionItemPatternAvailableProperty = classic.AutomationElementIdentifiers.IsSelectionItemPatternAvailableProperty;
+		public static readonly classic.AutomationProperty IsSelectionPatternAvailableProperty = classic.AutomationElementIdentifiers.IsSelectionPatternAvailableProperty;
+		public static readonly classic.AutomationProperty IsScrollPatternAvailableProperty = classic.AutomationElementIdentifiers.IsScrollPatternAvailableProperty;
+		public static readonly classic.AutomationProperty IsScrollItemPatternAvailableProperty = classic.AutomationElementIdentifiers.IsScrollItemPatternAvailableProperty;
+		public static readonly classic.AutomationProperty IsTablePatternAvailableProperty = classic.AutomationElementIdentifiers.IsTablePatternAvailableProperty;
+		public static readonly classic.AutomationProperty IsTableItemPatternAvailableProperty = classic.AutomationElementIdentifiers.IsTableItemPatternAvailableProperty;
+		public static readonly classic.AutomationProperty IsTextPatternAvailableProperty = classic.AutomationElementIdentifiers.IsTextPatternAvailableProperty;
+		public static readonly classic.AutomationProperty IsTogglePatternAvailableProperty = classic.AutomationElementIdentifiers.IsTogglePatternAvailableProperty;
+		public static readonly classic.AutomationProperty IsTransformPatternAvailableProperty = classic.AutomationElementIdentifiers.IsTransformPatternAvailableProperty;
+		public static readonly classic.AutomationProperty IsValuePatternAvailableProperty = classic.AutomationElementIdentifiers.IsValuePatternAvailableProperty;
+		public static readonly classic.AutomationProperty IsWindowPatternAvailableProperty = classic.AutomationElementIdentifiers.IsWindowPatternAvailableProperty;
+		public static readonly classic.AutomationEvent ToolTipOpenedEvent = classic.AutomationElementIdentifiers.ToolTipOpenedEvent;
+		public static readonly classic.AutomationEvent ToolTipClosedEvent = classic.AutomationElementIdentifiers.ToolTipClosedEvent;
+		public static readonly classic.AutomationEvent StructureChangedEvent = classic.AutomationElementIdentifiers.StructureChangedEvent;
+		public static readonly classic.AutomationEvent MenuOpenedEvent = classic.AutomationElementIdentifiers.MenuOpenedEvent;
+		public static readonly classic.AutomationEvent AutomationPropertyChangedEvent = classic.AutomationElementIdentifiers.AutomationPropertyChangedEvent;
+		public static readonly classic.AutomationEvent AutomationFocusChangedEvent = classic.AutomationElementIdentifiers.AutomationFocusChangedEvent;
+		public static readonly classic.AutomationEvent AsyncContentLoadedEvent = classic.AutomationElementIdentifiers.AsyncContentLoadedEvent;
+		public static readonly classic.AutomationEvent MenuClosedEvent = classic.AutomationElementIdentifiers.MenuClosedEvent;
+		public static readonly classic.AutomationEvent LayoutInvalidatedEvent = classic.AutomationElementIdentifiers.LayoutInvalidatedEvent;
 
 		public static IUiElement RootElement {
 			get {
 				switch (_innerElementType) {
 					case InnerElementTypes.AutomationElementNet:
-						return AutomationFactory.GetUiElement(AutomationElement.RootElement);
+						return AutomationFactory.GetUiElement(classic.AutomationElement.RootElement);
 //			        case InnerElementTypes.AutomationElementCom:
 //			            //
 					case InnerElementTypes.UiElement:
 						return RootElement;
 					default:
-						return AutomationFactory.GetUiElement(AutomationElement.RootElement);
+						return AutomationFactory.GetUiElement(classic.AutomationElement.RootElement);
 				}
 			}
 		}
@@ -534,13 +534,13 @@ namespace UIAutomation
 			get {
 				switch (_innerElementType) {
 					case InnerElementTypes.AutomationElementNet:
-						return AutomationFactory.GetUiElement(AutomationElement.FocusedElement);
+						return AutomationFactory.GetUiElement(classic.AutomationElement.FocusedElement);
 //		            case InnerElementTypes.AutomationElementCom:
 //		                //
 					case InnerElementTypes.UiElement:
 						return FocusedElement;
 					default:
-						return AutomationFactory.GetUiElement(AutomationElement.FocusedElement);
+						return AutomationFactory.GetUiElement(classic.AutomationElement.FocusedElement);
 				}
 			}
 		}
@@ -549,13 +549,13 @@ namespace UIAutomation
 		{
 			switch (_innerElementType) {
 				case InnerElementTypes.AutomationElementNet:
-					return AutomationFactory.GetUiElement(AutomationElement.FromPoint(pt));
+					return AutomationFactory.GetUiElement(classic.AutomationElement.FromPoint(pt));
 //		        case InnerElementTypes.AutomationElementCom:
 //		            //
 				case InnerElementTypes.UiElement:
 					return FromPoint(pt);
 				default:
-					return AutomationFactory.GetUiElement(AutomationElement.FromPoint(pt));
+					return AutomationFactory.GetUiElement(classic.AutomationElement.FromPoint(pt));
 			}
 		}
 
@@ -563,13 +563,13 @@ namespace UIAutomation
 		{
 			switch (_innerElementType) {
 				case InnerElementTypes.AutomationElementNet:
-					return AutomationFactory.GetUiElement(AutomationElement.FromHandle(controlHandle));
+					return AutomationFactory.GetUiElement(classic.AutomationElement.FromHandle(controlHandle));
 //		        case InnerElementTypes.AutomationElementCom:
 //		            //
 				case InnerElementTypes.UiElement:
 					return FromHandle(controlHandle);
 				default:
-					return AutomationFactory.GetUiElement(AutomationElement.FromHandle(controlHandle));
+					return AutomationFactory.GetUiElement(classic.AutomationElement.FromHandle(controlHandle));
 			}
 		}
 
@@ -601,8 +601,8 @@ namespace UIAutomation
 
 		public virtual void SetSourceElement<T>(T element)
 		{
-			if (element is AutomationElement) {
-				_elementHolderNet = element as AutomationElement;
+			if (element is classic.AutomationElement) {
+				_elementHolderNet = element as classic.AutomationElement;
 				_innerElementType = InnerElementTypes.AutomationElementNet;
 			}
 			// if com

@@ -9,7 +9,7 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;using System.Windows.Automation;
+	extern alias UIANET;// using System.Windows.Automation;
 	using System;
 	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
 
@@ -49,15 +49,15 @@ namespace UIAutomation
 			
 			public bool CanMove {
 				// get { return (bool)this._el.GetPatternPropertyValue(TransformPattern.CanMoveProperty, this._useCache); }
-				get { return (bool)this._transformPattern.GetParentElement().GetPatternPropertyValue(TransformPattern.CanMoveProperty, this._useCache); }
+				get { return (bool)this._transformPattern.GetParentElement().GetPatternPropertyValue(classic.TransformPattern.CanMoveProperty, this._useCache); }
 			}
 			public bool CanResize {
 				// get { return (bool)this._el.GetPatternPropertyValue(TransformPattern.CanResizeProperty, this._useCache); }
-				get { return (bool)this._transformPattern.GetParentElement().GetPatternPropertyValue(TransformPattern.CanResizeProperty, this._useCache); }
+				get { return (bool)this._transformPattern.GetParentElement().GetPatternPropertyValue(classic.TransformPattern.CanResizeProperty, this._useCache); }
 			}
 			public bool CanRotate {
 				// get { return (bool)this._el.GetPatternPropertyValue(TransformPattern.CanRotateProperty, this._useCache); }
-				get { return (bool)this._transformPattern.GetParentElement().GetPatternPropertyValue(TransformPattern.CanRotateProperty, this._useCache); }
+				get { return (bool)this._transformPattern.GetParentElement().GetPatternPropertyValue(classic.TransformPattern.CanRotateProperty, this._useCache); }
 			}
 //			internal TransformPatternInformation(AutomationElement el, bool useCache)
 //			{
@@ -65,10 +65,10 @@ namespace UIAutomation
 //				this._useCache = useCache;
 //			}
 		}
-		public static readonly classic.AutomationPattern Pattern = TransformPatternIdentifiers.Pattern;
-		public static readonly classic.AutomationProperty CanMoveProperty = TransformPatternIdentifiers.CanMoveProperty;
-		public static readonly classic.AutomationProperty CanResizeProperty = TransformPatternIdentifiers.CanResizeProperty;
-		public static readonly classic.AutomationProperty CanRotateProperty = TransformPatternIdentifiers.CanRotateProperty;
+		public static readonly classic.AutomationPattern Pattern = classic.TransformPatternIdentifiers.Pattern;
+		public static readonly classic.AutomationProperty CanMoveProperty = classic.TransformPatternIdentifiers.CanMoveProperty;
+		public static readonly classic.AutomationProperty CanResizeProperty = classic.TransformPatternIdentifiers.CanResizeProperty;
+		public static readonly classic.AutomationProperty CanRotateProperty = classic.TransformPatternIdentifiers.CanRotateProperty;
 		// private SafePatternHandle _hPattern;
 		// private bool _cached;
 		
@@ -124,7 +124,7 @@ namespace UIAutomation
 		
 		public void SetSourcePattern(object pattern)
 		{
-		    this._transformPattern = pattern as TransformPattern;
+		    this._transformPattern = pattern as classic.TransformPattern;
 		}
 		
 		public object GetSourcePattern()

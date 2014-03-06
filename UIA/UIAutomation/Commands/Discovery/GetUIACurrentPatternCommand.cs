@@ -9,7 +9,7 @@
 
 namespace UIAutomation.Commands
 {
-    extern alias UIANET;using System.Windows.Automation;
+    extern alias UIANET;// using System.Windows.Automation;
     using System.Management.Automation;
     
     using System.Linq;
@@ -60,7 +60,7 @@ namespace UIAutomation.Commands
             // 20131109
             //foreach (System.Windows.Automation.AutomationElement element in this.InputObject) {
             // 20131113
-            foreach (AutomationPattern p in InputObject.SelectMany(element => element.GetSupportedPatterns()))
+            foreach (classic.AutomationPattern p in InputObject.SelectMany(element => element.GetSupportedPatterns()))
             {
                 WriteVerbose(this, p.ProgrammaticName);
             }
@@ -92,7 +92,7 @@ namespace UIAutomation.Commands
             }
             */
 
-            AutomationPattern pattern = 
+            classic.AutomationPattern pattern = 
                 UiaHelper.GetPatternByName(Name);
             // 20131209
             result =

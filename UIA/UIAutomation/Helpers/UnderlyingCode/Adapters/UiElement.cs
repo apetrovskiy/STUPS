@@ -9,10 +9,11 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;// using System.Windows.Automation;
+	extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
 	using System;
 	// using UIANET::System.Windows.Automation;
-	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
+	using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
+	using System.Windows.Automation;
 	using Ninject;
 	using System.Windows;
 	using System.Linq;
@@ -29,6 +30,7 @@ namespace UIAutomation
 	{
 		private classic.AutomationElement _elementHolderNet;
 		// //private AutomationElement _elementHolderCom;
+		// private viacom. _elementHolderCom;
 		// private readonly IUiElement _elementHolderAdapter;
 		private IUiElement _elementHolderAdapter;
 		private static InnerElementTypes _innerElementType = InnerElementTypes.AutomationElementNet;

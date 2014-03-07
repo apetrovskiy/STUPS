@@ -9,14 +9,14 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET;// using System.Windows.Automation;
+	extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
 	using System;
 	using System.Collections;
 	
 //	using System.Collections.Generic;
 	
 	using System.ComponentModel;
-	using classic = UIANET::System.Windows.Automation; // using System.Windows.Automation;
+	using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
 	using System.Windows;
 
 	public interface IUiElement : IDisposable

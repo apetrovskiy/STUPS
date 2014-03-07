@@ -276,8 +276,10 @@ namespace UIAutomation
             fileTarget.Layout = "[${longdate}] [${level:uppercase=true}] ${message}";
             //fileTarget.Encoding = "iso-8859-2";
             fileTarget.Encoding = System.Text.Encoding.Unicode;
-
-            var rule = new LoggingRule("*", NLog.LogLevel.Info, fileTarget);
+            
+            // 20140307
+            // var rule = new LoggingRule("*", NLog.LogLevel.Info, fileTarget);
+            var rule = new LoggingRule("*", NLog.LogLevel.Debug, fileTarget);
             config.LoggingRules.Add(rule);
 
             LogManager.Configuration = config;

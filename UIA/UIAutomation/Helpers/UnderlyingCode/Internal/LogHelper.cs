@@ -269,6 +269,10 @@ namespace UIAutomation
             fileTarget.FileName =
                 System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) +
                 @"\UIA.log";
+            
+            // 20140312
+            fileTarget.AutoFlush = true;
+            
             //fileTarget.Layout = "${date:format=HH\\:MM\\:ss}: ${message}";
             //fileTarget.Layout = "[${date:format=DD/MM/YYYY HH\\:mm\\:ss}] [${}] ${message}";
             //"${longdate}|${level:uppercase=true}|${logger}|${message}";
@@ -276,6 +280,9 @@ namespace UIAutomation
             fileTarget.Layout = "[${longdate}] [${level:uppercase=true}] ${message}";
             //fileTarget.Encoding = "iso-8859-2";
             fileTarget.Encoding = System.Text.Encoding.Unicode;
+            fileTarget.ConcurrentWriteAttempts = 3;
+            fileTarget.ConcurrentWriteAttemptDelay = 2;
+            fileTarget.CreateDirs = true;
             
             // 20140307
             // var rule = new LoggingRule("*", NLog.LogLevel.Info, fileTarget);

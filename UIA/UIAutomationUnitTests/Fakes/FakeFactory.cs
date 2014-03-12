@@ -39,8 +39,8 @@ namespace UIAutomationUnitTests
             UIAutomation.Preferences.UseElementsSearchObjectModel = true;
             // 20140312
             Preferences.UseElementsCurrent = true;
-            // Preferences.UseElementsCached = false;
-            Preferences.UseElementsCached = true;
+            Preferences.UseElementsCached = false;
+            // Preferences.UseElementsCached = true;
         }
         
         public static void Reset()
@@ -378,31 +378,46 @@ namespace UIAutomationUnitTests
         {
             IFakeUiElement element = Substitute.For<FakeUiElement>();
             // 20140312
-            var current = Substitute.For<IUiElementInformation>();
-            
-            //
-            // element.GetSourceElement().Returns(AutomationElement.RootElement);
-            //
-            // 20140312
-//            element.Current.ProcessId.Returns(data.Current_ProcessId);
-//            element.Current.ControlType.Returns(data.Current_ControlType);
-//            element.Current.Name.Returns(!string.IsNullOrEmpty(data.Current_Name) ? data.Current_Name : string.Empty);
-//            element.Current.AutomationId.Returns(!string.IsNullOrEmpty(data.Current_AutomationId) ? data.Current_AutomationId : string.Empty);
-//            element.Current.ClassName.Returns(!string.IsNullOrEmpty(data.Current_ClassName) ? data.Current_ClassName : string.Empty);
-//            element.Current.NativeWindowHandle.Returns(data.Current_NativeWindowHandle);
-//            element.GetCurrent().ProcessId.Returns(data.Current_ProcessId);
-//            element.GetCurrent().ControlType.Returns(data.Current_ControlType);
-//            element.GetCurrent().Name.Returns(!string.IsNullOrEmpty(data.Current_Name) ? data.Current_Name : string.Empty);
-//            element.GetCurrent().AutomationId.Returns(!string.IsNullOrEmpty(data.Current_AutomationId) ? data.Current_AutomationId : string.Empty);
-//            element.GetCurrent().ClassName.Returns(!string.IsNullOrEmpty(data.Current_ClassName) ? data.Current_ClassName : string.Empty);
-//            element.GetCurrent().NativeWindowHandle.Returns(data.Current_NativeWindowHandle);
-            current.ProcessId.Returns(data.Current_ProcessId);
-            current.ControlType.Returns(data.Current_ControlType);
-            current.Name.Returns(!string.IsNullOrEmpty(data.Current_Name) ? data.Current_Name : string.Empty);
-            current.AutomationId.Returns(!string.IsNullOrEmpty(data.Current_AutomationId) ? data.Current_AutomationId : string.Empty);
-            current.ClassName.Returns(!string.IsNullOrEmpty(data.Current_ClassName) ? data.Current_ClassName : string.Empty);
-            current.NativeWindowHandle.Returns(data.Current_NativeWindowHandle);
-            element.GetCurrent().Returns(current);
+			if (Preferences.UseElementsCurrent) {
+	            var current = Substitute.For<IUiElementInformation>();
+	            
+	            //
+	            // element.GetSourceElement().Returns(AutomationElement.RootElement);
+	            //
+	            // 20140312
+	//            element.Current.ProcessId.Returns(data.Current_ProcessId);
+	//            element.Current.ControlType.Returns(data.Current_ControlType);
+	//            element.Current.Name.Returns(!string.IsNullOrEmpty(data.Current_Name) ? data.Current_Name : string.Empty);
+	//            element.Current.AutomationId.Returns(!string.IsNullOrEmpty(data.Current_AutomationId) ? data.Current_AutomationId : string.Empty);
+	//            element.Current.ClassName.Returns(!string.IsNullOrEmpty(data.Current_ClassName) ? data.Current_ClassName : string.Empty);
+	//            element.Current.NativeWindowHandle.Returns(data.Current_NativeWindowHandle);
+	//            element.GetCurrent().ProcessId.Returns(data.Current_ProcessId);
+	//            element.GetCurrent().ControlType.Returns(data.Current_ControlType);
+	//            element.GetCurrent().Name.Returns(!string.IsNullOrEmpty(data.Current_Name) ? data.Current_Name : string.Empty);
+	//            element.GetCurrent().AutomationId.Returns(!string.IsNullOrEmpty(data.Current_AutomationId) ? data.Current_AutomationId : string.Empty);
+	//            element.GetCurrent().ClassName.Returns(!string.IsNullOrEmpty(data.Current_ClassName) ? data.Current_ClassName : string.Empty);
+	//            element.GetCurrent().NativeWindowHandle.Returns(data.Current_NativeWindowHandle);
+	            current.ProcessId.Returns(data.Current_ProcessId);
+	            current.ControlType.Returns(data.Current_ControlType);
+	            current.Name.Returns(!string.IsNullOrEmpty(data.Current_Name) ? data.Current_Name : string.Empty);
+	            current.AutomationId.Returns(!string.IsNullOrEmpty(data.Current_AutomationId) ? data.Current_AutomationId : string.Empty);
+	            current.ClassName.Returns(!string.IsNullOrEmpty(data.Current_ClassName) ? data.Current_ClassName : string.Empty);
+	            current.NativeWindowHandle.Returns(data.Current_NativeWindowHandle);
+	            element.GetCurrent().Returns(current);
+			}
+			
+			if (Preferences.UseElementsCached) {
+				var cached = Substitute.For<IUiElementInformation>();
+				
+				cached.ProcessId.Returns(data.Cached_ProcessId);
+				cached.ControlType.Returns(data.Cached_ControlType);
+	            cached.Name.Returns(!string.IsNullOrEmpty(data.Cached_Name) ? data.Cached_Name : string.Empty);
+	            cached.AutomationId.Returns(!string.IsNullOrEmpty(data.Cached_AutomationId) ? data.Cached_AutomationId : string.Empty);
+	            cached.ClassName.Returns(!string.IsNullOrEmpty(data.Cached_ClassName) ? data.Cached_ClassName : string.Empty);
+	            cached.NativeWindowHandle.Returns(data.Cached_NativeWindowHandle);
+	            element.GetCached().Returns(cached);
+			}
+			
             element.Patterns.AddRange(patterns);
             element.GetSupportedPatterns().Returns(element.Patterns.ToArray());
             

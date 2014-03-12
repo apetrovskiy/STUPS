@@ -188,27 +188,49 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             // Assert
             // Assert.AreEqual(expectedValue as IUiElement, element.TableContainingGrid as IUiElement);
-            MbUnit.Framework.Assert.AreEqual(expectedValue.Current.Name, element.TableContainingGrid.Current.Name);
-            MbUnit.Framework.Assert.AreEqual(expectedValue.Current.AutomationId, element.TableContainingGrid.Current.AutomationId);
-            MbUnit.Framework.Assert.AreEqual(expectedValue.Current.ClassName, element.TableContainingGrid.Current.ClassName);
-            MbUnit.Framework.Assert.AreEqual(expectedValue.Current.ControlType, element.TableContainingGrid.Current.ControlType);
-            MbUnit.Framework.Assert.AreEqual(expectedValue.Current.BoundingRectangle, element.TableContainingGrid.Current.BoundingRectangle);
-            MbUnit.Framework.Assert.AreEqual(expectedValue.Current.NativeWindowHandle, element.TableContainingGrid.Current.NativeWindowHandle);
-            MbUnit.Framework.Assert.AreEqual(expectedValue.Current.ProcessId, element.TableContainingGrid.Current.ProcessId);
-            MbUnit.Framework.Assert.AreEqual(expectedValue.Current.IsEnabled, element.TableContainingGrid.Current.IsEnabled);
-            MbUnit.Framework.Assert.AreEqual(expectedValue.Current.IsOffscreen, element.TableContainingGrid.Current.IsOffscreen);
-            MbUnit.Framework.Assert.AreEqual(expectedValue.Current.AcceleratorKey, element.TableContainingGrid.Current.AcceleratorKey);
+            // 20140312
+//            MbUnit.Framework.Assert.AreEqual(expectedValue.Current.Name, element.TableContainingGrid.Current.Name);
+//            MbUnit.Framework.Assert.AreEqual(expectedValue.Current.AutomationId, element.TableContainingGrid.Current.AutomationId);
+//            MbUnit.Framework.Assert.AreEqual(expectedValue.Current.ClassName, element.TableContainingGrid.Current.ClassName);
+//            MbUnit.Framework.Assert.AreEqual(expectedValue.Current.ControlType, element.TableContainingGrid.Current.ControlType);
+//            MbUnit.Framework.Assert.AreEqual(expectedValue.Current.BoundingRectangle, element.TableContainingGrid.Current.BoundingRectangle);
+//            MbUnit.Framework.Assert.AreEqual(expectedValue.Current.NativeWindowHandle, element.TableContainingGrid.Current.NativeWindowHandle);
+//            MbUnit.Framework.Assert.AreEqual(expectedValue.Current.ProcessId, element.TableContainingGrid.Current.ProcessId);
+//            MbUnit.Framework.Assert.AreEqual(expectedValue.Current.IsEnabled, element.TableContainingGrid.Current.IsEnabled);
+//            MbUnit.Framework.Assert.AreEqual(expectedValue.Current.IsOffscreen, element.TableContainingGrid.Current.IsOffscreen);
+//            MbUnit.Framework.Assert.AreEqual(expectedValue.Current.AcceleratorKey, element.TableContainingGrid.Current.AcceleratorKey);
+//            
+//            Xunit.Assert.Equal(expectedValue.Current.Name, element.TableContainingGrid.Current.Name);
+//            Xunit.Assert.Equal(expectedValue.Current.AutomationId, element.TableContainingGrid.Current.AutomationId);
+//            Xunit.Assert.Equal(expectedValue.Current.ClassName, element.TableContainingGrid.Current.ClassName);
+//            Xunit.Assert.Equal(expectedValue.Current.ControlType, element.TableContainingGrid.Current.ControlType);
+//            Xunit.Assert.Equal(expectedValue.Current.BoundingRectangle, element.TableContainingGrid.Current.BoundingRectangle);
+//            Xunit.Assert.Equal(expectedValue.Current.NativeWindowHandle, element.TableContainingGrid.Current.NativeWindowHandle);
+//            Xunit.Assert.Equal(expectedValue.Current.ProcessId, element.TableContainingGrid.Current.ProcessId);
+//            Xunit.Assert.Equal(expectedValue.Current.IsEnabled, element.TableContainingGrid.Current.IsEnabled);
+//            Xunit.Assert.Equal(expectedValue.Current.IsOffscreen, element.TableContainingGrid.Current.IsOffscreen);
+//            Xunit.Assert.Equal(expectedValue.Current.AcceleratorKey, element.TableContainingGrid.Current.AcceleratorKey);
+            MbUnit.Framework.Assert.AreEqual(expectedValue.GetCurrent().Name, element.TableContainingGrid.GetCurrent().Name);
+            MbUnit.Framework.Assert.AreEqual(expectedValue.GetCurrent().AutomationId, element.TableContainingGrid.GetCurrent().AutomationId);
+            MbUnit.Framework.Assert.AreEqual(expectedValue.GetCurrent().ClassName, element.TableContainingGrid.GetCurrent().ClassName);
+            MbUnit.Framework.Assert.AreEqual(expectedValue.GetCurrent().ControlType, element.TableContainingGrid.GetCurrent().ControlType);
+            MbUnit.Framework.Assert.AreEqual(expectedValue.GetCurrent().BoundingRectangle, element.TableContainingGrid.GetCurrent().BoundingRectangle);
+            MbUnit.Framework.Assert.AreEqual(expectedValue.GetCurrent().NativeWindowHandle, element.TableContainingGrid.GetCurrent().NativeWindowHandle);
+            MbUnit.Framework.Assert.AreEqual(expectedValue.GetCurrent().ProcessId, element.TableContainingGrid.GetCurrent().ProcessId);
+            MbUnit.Framework.Assert.AreEqual(expectedValue.GetCurrent().IsEnabled, element.TableContainingGrid.GetCurrent().IsEnabled);
+            MbUnit.Framework.Assert.AreEqual(expectedValue.GetCurrent().IsOffscreen, element.TableContainingGrid.GetCurrent().IsOffscreen);
+            MbUnit.Framework.Assert.AreEqual(expectedValue.GetCurrent().AcceleratorKey, element.TableContainingGrid.GetCurrent().AcceleratorKey);
             
-            Xunit.Assert.Equal(expectedValue.Current.Name, element.TableContainingGrid.Current.Name);
-            Xunit.Assert.Equal(expectedValue.Current.AutomationId, element.TableContainingGrid.Current.AutomationId);
-            Xunit.Assert.Equal(expectedValue.Current.ClassName, element.TableContainingGrid.Current.ClassName);
-            Xunit.Assert.Equal(expectedValue.Current.ControlType, element.TableContainingGrid.Current.ControlType);
-            Xunit.Assert.Equal(expectedValue.Current.BoundingRectangle, element.TableContainingGrid.Current.BoundingRectangle);
-            Xunit.Assert.Equal(expectedValue.Current.NativeWindowHandle, element.TableContainingGrid.Current.NativeWindowHandle);
-            Xunit.Assert.Equal(expectedValue.Current.ProcessId, element.TableContainingGrid.Current.ProcessId);
-            Xunit.Assert.Equal(expectedValue.Current.IsEnabled, element.TableContainingGrid.Current.IsEnabled);
-            Xunit.Assert.Equal(expectedValue.Current.IsOffscreen, element.TableContainingGrid.Current.IsOffscreen);
-            Xunit.Assert.Equal(expectedValue.Current.AcceleratorKey, element.TableContainingGrid.Current.AcceleratorKey);
+            Xunit.Assert.Equal(expectedValue.GetCurrent().Name, element.TableContainingGrid.GetCurrent().Name);
+            Xunit.Assert.Equal(expectedValue.GetCurrent().AutomationId, element.TableContainingGrid.GetCurrent().AutomationId);
+            Xunit.Assert.Equal(expectedValue.GetCurrent().ClassName, element.TableContainingGrid.GetCurrent().ClassName);
+            Xunit.Assert.Equal(expectedValue.GetCurrent().ControlType, element.TableContainingGrid.GetCurrent().ControlType);
+            Xunit.Assert.Equal(expectedValue.GetCurrent().BoundingRectangle, element.TableContainingGrid.GetCurrent().BoundingRectangle);
+            Xunit.Assert.Equal(expectedValue.GetCurrent().NativeWindowHandle, element.TableContainingGrid.GetCurrent().NativeWindowHandle);
+            Xunit.Assert.Equal(expectedValue.GetCurrent().ProcessId, element.TableContainingGrid.GetCurrent().ProcessId);
+            Xunit.Assert.Equal(expectedValue.GetCurrent().IsEnabled, element.TableContainingGrid.GetCurrent().IsEnabled);
+            Xunit.Assert.Equal(expectedValue.GetCurrent().IsOffscreen, element.TableContainingGrid.GetCurrent().IsOffscreen);
+            Xunit.Assert.Equal(expectedValue.GetCurrent().AcceleratorKey, element.TableContainingGrid.GetCurrent().AcceleratorKey);
         }
         
         [Test][Fact]

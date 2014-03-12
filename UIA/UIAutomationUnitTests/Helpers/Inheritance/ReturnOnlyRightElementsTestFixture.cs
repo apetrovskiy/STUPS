@@ -95,28 +95,52 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             switch (selector) {
                 case UIAutomationUnitTests.Helpers.Inheritance.UsualWildcardRegex.Wildcard:
                     const WildcardOptions options = WildcardOptions.IgnoreCase;
-                    WildcardPattern namePattern = new WildcardPattern(name, options);
-                    WildcardPattern automationIdPattern = new WildcardPattern(automationId, options);
-                    WildcardPattern classNamePattern = new WildcardPattern(className, options);
-                    WildcardPattern txtValuePattern = new WildcardPattern(txtValue, options);
+                    // 20140312
+//                    WildcardPattern namePattern = new WildcardPattern(name, options);
+//                    WildcardPattern automationIdPattern = new WildcardPattern(automationId, options);
+//                    WildcardPattern classNamePattern = new WildcardPattern(className, options);
+//                    WildcardPattern txtValuePattern = new WildcardPattern(txtValue, options);
+                    var namePattern = new WildcardPattern(name, options);
+                    var automationIdPattern = new WildcardPattern(automationId, options);
+                    var classNamePattern = new WildcardPattern(className, options);
+                    var txtValuePattern = new WildcardPattern(txtValue, options);
                     
+                    // 20140312
+//                    if (!string.IsNullOrEmpty(name)) {
+//                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => namePattern.IsMatch(x.Current.Name));
+//                        resultList.All(x => namePattern.IsMatch(x.Current.Name));
+//                    }
+//                    if (!string.IsNullOrEmpty(automationId)) {
+//                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => automationIdPattern.IsMatch(x.Current.AutomationId));
+//                        resultList.All(x => automationIdPattern.IsMatch(x.Current.AutomationId));
+//                    }
+//                    if (!string.IsNullOrEmpty(className)) {
+//                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => classNamePattern.IsMatch(x.Current.ClassName));
+//                        resultList.All(x => classNamePattern.IsMatch(x.Current.ClassName));
+//                    }
+//                    controlTypeNames =
+//                        controlTypes.Select(ct => null != ct ? ct.ProgrammaticName.Substring(12) : string.Empty).ToArray();
+//                    if (null != controlType) {
+//                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => controlTypeNames.Contains(x.Current.ControlType.ProgrammaticName.Substring(12)));
+//                        resultList.All(x => controlTypeNames.Contains(x.Current.ControlType.ProgrammaticName.Substring(12)));
+//                    }
                     if (!string.IsNullOrEmpty(name)) {
-                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => namePattern.IsMatch(x.Current.Name));
-                        resultList.All(x => namePattern.IsMatch(x.Current.Name));
+                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => namePattern.IsMatch(x.GetCurrent().Name));
+                        resultList.All(x => namePattern.IsMatch(x.GetCurrent().Name));
                     }
                     if (!string.IsNullOrEmpty(automationId)) {
-                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => automationIdPattern.IsMatch(x.Current.AutomationId));
-                        resultList.All(x => automationIdPattern.IsMatch(x.Current.AutomationId));
+                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => automationIdPattern.IsMatch(x.GetCurrent().AutomationId));
+                        resultList.All(x => automationIdPattern.IsMatch(x.GetCurrent().AutomationId));
                     }
                     if (!string.IsNullOrEmpty(className)) {
-                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => classNamePattern.IsMatch(x.Current.ClassName));
-                        resultList.All(x => classNamePattern.IsMatch(x.Current.ClassName));
+                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => classNamePattern.IsMatch(x.GetCurrent().ClassName));
+                        resultList.All(x => classNamePattern.IsMatch(x.GetCurrent().ClassName));
                     }
                     controlTypeNames =
                         controlTypes.Select(ct => null != ct ? ct.ProgrammaticName.Substring(12) : string.Empty).ToArray();
                     if (null != controlType) {
-                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => controlTypeNames.Contains(x.Current.ControlType.ProgrammaticName.Substring(12)));
-                        resultList.All(x => controlTypeNames.Contains(x.Current.ControlType.ProgrammaticName.Substring(12)));
+                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => controlTypeNames.Contains(x.GetCurrent().ControlType.ProgrammaticName.Substring(12)));
+                        resultList.All(x => controlTypeNames.Contains(x.GetCurrent().ControlType.ProgrammaticName.Substring(12)));
                     }
                     
                     if (!string.IsNullOrEmpty(txtValue)) {
@@ -137,24 +161,44 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     }
                     break;
                 case UIAutomationUnitTests.Helpers.Inheritance.UsualWildcardRegex.Regex:
+                    // 20140312
+//                    if (!string.IsNullOrEmpty(name)) {
+//                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => Regex.IsMatch(x.Current.Name, name));
+//                        resultList.All(x => Regex.IsMatch(x.Current.Name, name));
+//                    }
+//                    if (!string.IsNullOrEmpty(automationId)) {
+//                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => Regex.IsMatch(x.Current.AutomationId, automationId));
+//                        resultList.All(x => Regex.IsMatch(x.Current.AutomationId, automationId));
+//                    }
+//                    if (!string.IsNullOrEmpty(className)) {
+//                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => Regex.IsMatch(x.Current.ClassName, className));
+//                        resultList.All(x => Regex.IsMatch(x.Current.ClassName, className));
+//                    }
+//                    controlTypeNames =
+//                        controlTypes.Select(ct => null != ct ? ct.ProgrammaticName.Substring(12) : string.Empty).ToArray();
+//                    if (null != controlType) {
+//                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => controlTypeNames.Contains(x.Current.ControlType.ProgrammaticName.Substring(12)));
+//                        resultList.All(x => controlTypeNames.Contains(x.Current.ControlType.ProgrammaticName.Substring(12)));
+//                    }
                     if (!string.IsNullOrEmpty(name)) {
-                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => Regex.IsMatch(x.Current.Name, name));
-                        resultList.All(x => Regex.IsMatch(x.Current.Name, name));
+                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => Regex.IsMatch(x.GetCurrent().Name, name));
+                        resultList.All(x => Regex.IsMatch(x.GetCurrent().Name, name));
                     }
                     if (!string.IsNullOrEmpty(automationId)) {
-                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => Regex.IsMatch(x.Current.AutomationId, automationId));
-                        resultList.All(x => Regex.IsMatch(x.Current.AutomationId, automationId));
+                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => Regex.IsMatch(x.GetCurrent().AutomationId, automationId));
+                        resultList.All(x => Regex.IsMatch(x.GetCurrent().AutomationId, automationId));
                     }
                     if (!string.IsNullOrEmpty(className)) {
-                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => Regex.IsMatch(x.Current.ClassName, className));
-                        resultList.All(x => Regex.IsMatch(x.Current.ClassName, className));
+                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => Regex.IsMatch(x.GetCurrent().ClassName, className));
+                        resultList.All(x => Regex.IsMatch(x.GetCurrent().ClassName, className));
                     }
                     controlTypeNames =
                         controlTypes.Select(ct => null != ct ? ct.ProgrammaticName.Substring(12) : string.Empty).ToArray();
                     if (null != controlType) {
-                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => controlTypeNames.Contains(x.Current.ControlType.ProgrammaticName.Substring(12)));
-                        resultList.All(x => controlTypeNames.Contains(x.Current.ControlType.ProgrammaticName.Substring(12)));
+                        MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => controlTypeNames.Contains(x.GetCurrent().ControlType.ProgrammaticName.Substring(12)));
+                        resultList.All(x => controlTypeNames.Contains(x.GetCurrent().ControlType.ProgrammaticName.Substring(12)));
                     }
+                    
                     if (!string.IsNullOrEmpty(txtValue)) {
                         MbUnit.Framework.Assert.ForAll(
                             resultList
@@ -261,7 +305,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     true);
             
             MbUnit.Framework.Assert.AreEqual(1, resultList.Count);
-            MbUnit.Framework.Assert.Exists(resultList, e => e.Current.Name == expectedName);
+            // 20140312
+            // MbUnit.Framework.Assert.Exists(resultList, e => e.Current.Name == expectedName);
+            MbUnit.Framework.Assert.Exists(resultList, e => e.GetCurrent().Name == expectedName);
         }
         
         [Test][Fact]
@@ -320,7 +366,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                     true);
             
             MbUnit.Framework.Assert.AreEqual(3, resultList.Count);
-            MbUnit.Framework.Assert.Exists(resultList, e => e.Current.Name == expectedName); // ??
+            // 20140312
+            // MbUnit.Framework.Assert.Exists(resultList, e => e.Current.Name == expectedName); // ??
+            MbUnit.Framework.Assert.Exists(resultList, e => e.GetCurrent().Name == expectedName); // ??
         }
         #endregion for starters
         

@@ -37,7 +37,9 @@ namespace UIAutomation
             var controlHandle = IntPtr.Zero;
             var controlHandles = new List<IntPtr>();
             var tempControlHandles = new List<IntPtr>();
-            var containerHandle = new IntPtr(containerElement.Current.NativeWindowHandle);
+            // 20140312
+            // var containerHandle = new IntPtr(containerElement.Current.NativeWindowHandle);
+            var containerHandle = new IntPtr(containerElement.GetCurrent().NativeWindowHandle);
             
             if (containerHandle == IntPtr.Zero) return controlHandles;
             

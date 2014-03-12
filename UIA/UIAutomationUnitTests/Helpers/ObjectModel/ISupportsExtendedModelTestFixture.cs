@@ -1373,9 +1373,13 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var elementImage = ((element as ISupportsExtendedModel).Children as IExtendedModel).Images[2];
             
             // Assert
-            MbUnit.Framework.Assert.AreEqual(ControlType.Button, elementButton.Current.ControlType); // (elementButton as IUiElement).Current.ControlType);
-            MbUnit.Framework.Assert.AreEqual(ControlType.Document, elementDocument.Current.ControlType); // (elementDocument as IUiElement).Current.ControlType);
-            MbUnit.Framework.Assert.AreEqual(ControlType.Image, elementImage.Current.ControlType); // (elementImage as IUiElement).Current.ControlType);
+            // 20140312
+//            MbUnit.Framework.Assert.AreEqual(ControlType.Button, elementButton.Current.ControlType); // (elementButton as IUiElement).Current.ControlType);
+//            MbUnit.Framework.Assert.AreEqual(ControlType.Document, elementDocument.Current.ControlType); // (elementDocument as IUiElement).Current.ControlType);
+//            MbUnit.Framework.Assert.AreEqual(ControlType.Image, elementImage.Current.ControlType); // (elementImage as IUiElement).Current.ControlType);
+            MbUnit.Framework.Assert.AreEqual(ControlType.Button, elementButton.GetCurrent().ControlType);
+            MbUnit.Framework.Assert.AreEqual(ControlType.Document, elementDocument.GetCurrent().ControlType);
+            MbUnit.Framework.Assert.AreEqual(ControlType.Image, elementImage.GetCurrent().ControlType);
 //            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Calendars);
 //            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).CheckBoxes);
 //            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Customs);
@@ -1384,9 +1388,13 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Trees);
 //            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Windows);
             
-            Xunit.Assert.Equal(ControlType.Button, elementButton.Current.ControlType);
-            Xunit.Assert.Equal(ControlType.Document, elementDocument.Current.ControlType);
-            Xunit.Assert.Equal(ControlType.Image, elementImage.Current.ControlType);
+            // 20140312
+//            Xunit.Assert.Equal(ControlType.Button, elementButton.Current.ControlType);
+//            Xunit.Assert.Equal(ControlType.Document, elementDocument.Current.ControlType);
+//            Xunit.Assert.Equal(ControlType.Image, elementImage.Current.ControlType);
+            Xunit.Assert.Equal(ControlType.Button, elementButton.GetCurrent().ControlType);
+            Xunit.Assert.Equal(ControlType.Document, elementDocument.GetCurrent().ControlType);
+            Xunit.Assert.Equal(ControlType.Image, elementImage.GetCurrent().ControlType);
         }
         
         [Test][Fact]
@@ -1412,9 +1420,13 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var elementImage = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Images[2];
             
             // Assert
-            MbUnit.Framework.Assert.AreEqual(ControlType.Button, elementButton.Current.ControlType); // (elementButton as IUiElement).Current.ControlType);
-            MbUnit.Framework.Assert.AreEqual(ControlType.Document, elementDocument.Current.ControlType); // (elementDocument as IUiElement).Current.ControlType);
-            MbUnit.Framework.Assert.AreEqual(ControlType.Image, elementImage.Current.ControlType); // (elementImage as IUiElement).Current.ControlType);
+            // 20140312
+//            MbUnit.Framework.Assert.AreEqual(ControlType.Button, elementButton.Current.ControlType); // (elementButton as IUiElement).Current.ControlType);
+//            MbUnit.Framework.Assert.AreEqual(ControlType.Document, elementDocument.Current.ControlType); // (elementDocument as IUiElement).Current.ControlType);
+//            MbUnit.Framework.Assert.AreEqual(ControlType.Image, elementImage.Current.ControlType); // (elementImage as IUiElement).Current.ControlType);
+            MbUnit.Framework.Assert.AreEqual(ControlType.Button, elementButton.GetCurrent().ControlType);
+            MbUnit.Framework.Assert.AreEqual(ControlType.Document, elementDocument.GetCurrent().ControlType);
+            MbUnit.Framework.Assert.AreEqual(ControlType.Image, elementImage.GetCurrent().ControlType);
 //            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Calendars);
 //            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).CheckBoxes);
 //            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Customs);
@@ -1423,9 +1435,13 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Trees);
 //            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Windows);
             
-            Xunit.Assert.Equal(ControlType.Button, elementButton.Current.ControlType);
-            Xunit.Assert.Equal(ControlType.Document, elementDocument.Current.ControlType);
-            Xunit.Assert.Equal(ControlType.Image, elementImage.Current.ControlType);
+            // 20140312
+//            Xunit.Assert.Equal(ControlType.Button, elementButton.Current.ControlType);
+//            Xunit.Assert.Equal(ControlType.Document, elementDocument.Current.ControlType);
+//            Xunit.Assert.Equal(ControlType.Image, elementImage.Current.ControlType);
+            Xunit.Assert.Equal(ControlType.Button, elementButton.GetCurrent().ControlType);
+            Xunit.Assert.Equal(ControlType.Document, elementDocument.GetCurrent().ControlType);
+            Xunit.Assert.Equal(ControlType.Image, elementImage.GetCurrent().ControlType);
         }
         
         // ==========================================================================================================================
@@ -1454,7 +1470,9 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var elementImage = ((element as ISupportsExtendedModel).Children as IExtendedModel).Images[expectedName][0];
             
             // Assert
-            MbUnit.Framework.Assert.AreEqual(expectedName, (elementButton as IUiElement).Current.Name);
+            // 20140312
+//            MbUnit.Framework.Assert.AreEqual(expectedName, (elementButton as IUiElement).Current.Name);
+            MbUnit.Framework.Assert.AreEqual(expectedName, (elementButton as IUiElement).GetCurrent().Name);
 //            MbUnit.Framework.Assert.IsNull(elementDocument);
 //            MbUnit.Framework.Assert.IsNull(elementImage);
 //            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Customs);
@@ -1463,7 +1481,9 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Trees);
 //            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Windows);
             
-            Xunit.Assert.Equal(expectedName, (elementButton as IUiElement).Current.Name);
+            // 20140312
+//            Xunit.Assert.Equal(expectedName, (elementButton as IUiElement).Current.Name);
+            Xunit.Assert.Equal(expectedName, (elementButton as IUiElement).GetCurrent().Name);
         }
         
         [Test][Fact]
@@ -1490,7 +1510,9 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var elementImage = ((element as ISupportsExtendedModel).Children as IExtendedModel).Images[expectedAutomationId][0];
             
             // Assert
-            MbUnit.Framework.Assert.AreEqual(expectedAutomationId, (elementButton as IUiElement).Current.AutomationId);
+            // 20140312
+//            MbUnit.Framework.Assert.AreEqual(expectedAutomationId, (elementButton as IUiElement).Current.AutomationId);
+            MbUnit.Framework.Assert.AreEqual(expectedAutomationId, (elementButton as IUiElement).GetCurrent().AutomationId);
 //            MbUnit.Framework.Assert.IsNull(elementDocument);
 //            MbUnit.Framework.Assert.IsNull(elementImage);
 //            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Customs);
@@ -1499,7 +1521,9 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Trees);
 //            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Windows);
             
-            Xunit.Assert.Equal(expectedAutomationId, (elementButton as IUiElement).Current.AutomationId);
+            // 20140312
+//            Xunit.Assert.Equal(expectedAutomationId, (elementButton as IUiElement).Current.AutomationId);
+            Xunit.Assert.Equal(expectedAutomationId, (elementButton as IUiElement).GetCurrent().AutomationId);
         }
         
         [Test][Fact]
@@ -1526,7 +1550,9 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var elementImage = ((element as ISupportsExtendedModel).Children as IExtendedModel).Images[expectedClassName][0];
             
             // Assert
-            MbUnit.Framework.Assert.AreEqual(expectedClassName, (elementButton as IUiElement).Current.ClassName);
+            // 20140312
+//            MbUnit.Framework.Assert.AreEqual(expectedClassName, (elementButton as IUiElement).Current.ClassName);
+            MbUnit.Framework.Assert.AreEqual(expectedClassName, (elementButton as IUiElement).GetCurrent().ClassName);
 //            MbUnit.Framework.Assert.IsNull(elementDocument);
 //            MbUnit.Framework.Assert.IsNull(elementImage);
 //            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Customs);
@@ -1535,7 +1561,9 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Trees);
 //            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Children as IExtendedModel).Windows);
             
-            Xunit.Assert.Equal(expectedClassName, (elementButton as IUiElement).Current.ClassName);
+            // 20140312
+//            Xunit.Assert.Equal(expectedClassName, (elementButton as IUiElement).Current.ClassName);
+            Xunit.Assert.Equal(expectedClassName, (elementButton as IUiElement).GetCurrent().ClassName);
         }
         
         [Test][Fact]
@@ -1562,7 +1590,9 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var elementImage = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Images[expectedName][0];
             
             // Assert
-            MbUnit.Framework.Assert.AreEqual(expectedName, (elementImage as IUiElement).Current.Name);
+            // 20140312
+//            MbUnit.Framework.Assert.AreEqual(expectedName, (elementImage as IUiElement).Current.Name);
+            MbUnit.Framework.Assert.AreEqual(expectedName, (elementImage as IUiElement).GetCurrent().Name);
 //            MbUnit.Framework.Assert.IsNull(elementButton);
 //            MbUnit.Framework.Assert.IsNull(elementDocument);
 //            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Calendars);
@@ -1573,7 +1603,9 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Trees);
 //            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Windows);
             
-            Xunit.Assert.Equal(expectedName, (elementImage as IUiElement).Current.Name);
+            // 20140312
+//            Xunit.Assert.Equal(expectedName, (elementImage as IUiElement).Current.Name);
+            Xunit.Assert.Equal(expectedName, (elementImage as IUiElement).GetCurrent().Name);
         }
         
         [Test][Fact]
@@ -1600,7 +1632,9 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var elementImage = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Images[expectedAutomationId][0];
             
             // Assert
-            MbUnit.Framework.Assert.AreEqual(expectedAutomationId, (elementImage as IUiElement).Current.AutomationId);
+            // 20140312
+//            MbUnit.Framework.Assert.AreEqual(expectedAutomationId, (elementImage as IUiElement).Current.AutomationId);
+            MbUnit.Framework.Assert.AreEqual(expectedAutomationId, (elementImage as IUiElement).GetCurrent().AutomationId);
 //            MbUnit.Framework.Assert.IsNull(elementButton);
 //            MbUnit.Framework.Assert.IsNull(elementDocument);
 //            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Calendars);
@@ -1611,7 +1645,9 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Trees);
 //            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Windows);
             
-            Xunit.Assert.Equal(expectedAutomationId, (elementImage as IUiElement).Current.AutomationId);
+            // 20140312
+//            Xunit.Assert.Equal(expectedAutomationId, (elementImage as IUiElement).Current.AutomationId);
+            Xunit.Assert.Equal(expectedAutomationId, (elementImage as IUiElement).GetCurrent().AutomationId);
         }
         
         [Test][Fact]
@@ -1638,7 +1674,9 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var elementImage = ((element as ISupportsExtendedModel).Descendants as IExtendedModel).Images[expectedClassName][0];
             
             // Assert
-            MbUnit.Framework.Assert.AreEqual(expectedClassName, (elementImage as IUiElement).Current.ClassName);
+            // 20140312
+//            MbUnit.Framework.Assert.AreEqual(expectedClassName, (elementImage as IUiElement).Current.ClassName);
+            MbUnit.Framework.Assert.AreEqual(expectedClassName, (elementImage as IUiElement).GetCurrent().ClassName);
 //            MbUnit.Framework.Assert.IsNull(elementButton);
 //            MbUnit.Framework.Assert.IsNull(elementDocument);
 //            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Calendars);
@@ -1649,7 +1687,9 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Trees);
 //            MbUnit.Framework.Assert.IsNull(((element as ISupportsExtendedModel).Descendants as IExtendedModel).Windows);
             
-            Xunit.Assert.Equal(expectedClassName, (elementImage as IUiElement).Current.ClassName);
+            // 20140312
+//            Xunit.Assert.Equal(expectedClassName, (elementImage as IUiElement).Current.ClassName);
+            Xunit.Assert.Equal(expectedClassName, (elementImage as IUiElement).GetCurrent().ClassName);
         }
         
         // ==========================================================================================================================

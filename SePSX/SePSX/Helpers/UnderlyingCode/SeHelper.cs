@@ -190,11 +190,15 @@ namespace SePSX
                         internalPaneCondition);
 Console.WriteLine("getWebElementCoordinates 000006");
                 driverCoordinates[0] =
-                    (int)internalPaneElement.Current.BoundingRectangle.X +
+                    // 20140312
+                    // (int)internalPaneElement.Current.BoundingRectangle.X +
+                    (int)internalPaneElement.GetCurrent().BoundingRectangle.X +
                     ((WebElementDecorator)element).Coordinates.LocationOnScreen.X;
 Console.WriteLine("getWebElementCoordinates 000007");
                 driverCoordinates[1] =
-                    (int)internalPaneElement.Current.BoundingRectangle.Y +
+                    // 20140312
+                    // (int)internalPaneElement.Current.BoundingRectangle.Y +
+                    (int)internalPaneElement.GetCurrent().BoundingRectangle.Y +
                     ((WebElementDecorator)element).Coordinates.LocationOnScreen.Y;
 Console.WriteLine("getWebElementCoordinates 000008");
             }
@@ -324,8 +328,11 @@ Console.WriteLine("Highlight 00000000000015");
                 try {
                     if (element != null) {
                         result =
-                            element.Current.BoundingRectangle.Height *
-                            element.Current.BoundingRectangle.Width;
+                            // 20140312
+//                            element.Current.BoundingRectangle.Height *
+//                            element.Current.BoundingRectangle.Width;
+                            element.GetCurrent().BoundingRectangle.Height *
+                            element.GetCurrent().BoundingRectangle.Width;
                     }
                 }
                 catch {}
@@ -981,8 +988,11 @@ Console.WriteLine("Highlight 00000000000015");
                                 absoluteCoordinates[1]));
                     
                     if (null != resultElement) {
-                        if (((RemoteWebElement)webDriverOrElement).Size.Height != resultElement.Current.BoundingRectangle.Height &&
-                            ((RemoteWebElement)webDriverOrElement).Size.Width != resultElement.Current.BoundingRectangle.Width) {
+                        // 20140312
+//                        if (((RemoteWebElement)webDriverOrElement).Size.Height != resultElement.Current.BoundingRectangle.Height &&
+//                            ((RemoteWebElement)webDriverOrElement).Size.Width != resultElement.Current.BoundingRectangle.Width) {
+                        if (((RemoteWebElement)webDriverOrElement).Size.Height != resultElement.GetCurrent().BoundingRectangle.Height &&
+                            ((RemoteWebElement)webDriverOrElement).Size.Width != resultElement.GetCurrent().BoundingRectangle.Width) {
                             
                             // nothing to return yet !!!!!!!!
                             cmdlet.WriteError(
@@ -1140,7 +1150,9 @@ Console.WriteLine("Highlight 00000000000015");
                             //foreach (AutomationElement wnd in driverWindows) {
                            foreach (IUiElement wnd in driverWindows) {
                                 
-                                cmdlet.WriteObject(cmdlet, wnd.Current.NativeWindowHandle);
+                                // 20140312
+                                // cmdlet.WriteObject(cmdlet, wnd.Current.NativeWindowHandle);
+                                cmdlet.WriteObject(cmdlet, wnd.GetCurrent().NativeWindowHandle);
                             }
                         }
                     }

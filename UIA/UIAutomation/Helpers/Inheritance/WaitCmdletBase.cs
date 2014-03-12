@@ -35,11 +35,13 @@ namespace UIAutomation
         {
             _control = InputObject.Cast<IUiElement>().ToArray()[0];
             
-            if (isEnabledOrIsVisible) {
-                Wait = !(_control.Current).IsEnabled;
-            } else {
-                Wait = (_control.Current).IsOffscreen;
-            }
+            // 20140312
+//            if (isEnabledOrIsVisible) {
+//                Wait = !(_control.Current).IsEnabled;
+//            } else {
+//                Wait = (_control.Current).IsOffscreen;
+//            }
+			Wait = isEnabledOrIsVisible ? !(_control.GetCurrent()).IsEnabled : (_control.GetCurrent()).IsOffscreen;
             do
             {
                 SleepAndRunScriptBlocks(this);
@@ -47,7 +49,9 @@ namespace UIAutomation
                 DateTime nowDate = DateTime.Now;
                 try {
                     string tempIsReport = string.Empty;
-                    tempIsReport = isEnabledOrIsVisible ? _control.Current.IsEnabled.ToString() : _control.Current.IsOffscreen.ToString();
+                    // 20140312
+                    // tempIsReport = isEnabledOrIsVisible ? _control.Current.IsEnabled.ToString() : _control.Current.IsOffscreen.ToString();
+                    tempIsReport = isEnabledOrIsVisible ? _control.GetCurrent().IsEnabled.ToString() : _control.GetCurrent().IsOffscreen.ToString();
                     
                 } catch { }
                 if (!CheckAndPrepareInput(this))
@@ -64,24 +68,36 @@ namespace UIAutomation
                     return;
                 }
                 
-                if (isEnabledOrIsVisible) {
-                    Wait = !(_control.Current).IsEnabled;
-                } else {
-                    Wait = (_control.Current).IsOffscreen;
-                }
+                // 20140312
+//                if (isEnabledOrIsVisible) {
+//                    Wait = !(_control.Current).IsEnabled;
+//                } else {
+//                    Wait = (_control.Current).IsOffscreen;
+//                }
+				Wait = isEnabledOrIsVisible ? !(_control.GetCurrent()).IsEnabled : (_control.GetCurrent()).IsOffscreen;
                 if ((nowDate - StartDate).TotalSeconds > Timeout / 1000)
                 {
-                    WriteVerbose(this, "timeout expired for AutomationId: " + 
-                                 _control.Current.AutomationId +
-                                ", title: " +
-                                 _control.Current.Name);
-                    
+                    // 20140312
+//                    WriteVerbose(this, "timeout expired for AutomationId: " + 
+//                                 _control.Current.AutomationId +
+//                                ", title: " +
+//                                 _control.Current.Name);
+                    // 20140312
+//                    WriteError(
+//                        this,
+//                        CmdletName(this) + ": timeout expired for AutomationId: " + 
+//                        _control.Current.AutomationId +
+//                        ", title: " +
+//                        _control.Current.Name,
+//                        "TimeoutExpired",
+//                        ErrorCategory.OperationTimeout,
+//                        true);
                     WriteError(
                         this,
                         CmdletName(this) + ": timeout expired for AutomationId: " + 
-                        _control.Current.AutomationId +
+                        _control.GetCurrent().AutomationId +
                         ", title: " +
-                        _control.Current.Name,
+                        _control.GetCurrent().Name,
                         "TimeoutExpired",
                         ErrorCategory.OperationTimeout,
                         true);

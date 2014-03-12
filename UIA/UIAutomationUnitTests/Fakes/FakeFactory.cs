@@ -37,6 +37,10 @@ namespace UIAutomationUnitTests
             AutomationFactory.InitUnitTests();
             UIAutomation.Preferences.UseElementsPatternObjectModel = true;
             UIAutomation.Preferences.UseElementsSearchObjectModel = true;
+            // 20140312
+            Preferences.UseElementsCurrent = true;
+            // Preferences.UseElementsCached = false;
+            Preferences.UseElementsCached = true;
         }
         
         public static void Reset()
@@ -373,15 +377,32 @@ namespace UIAutomationUnitTests
         internal static IFakeUiElement GetAutomationElement(ElementData data, IBasePattern[] patterns, bool expected)
         {
             IFakeUiElement element = Substitute.For<FakeUiElement>();
+            // 20140312
+            var current = Substitute.For<IUiElementInformation>();
+            
             //
             // element.GetSourceElement().Returns(AutomationElement.RootElement);
             //
-            element.Current.ProcessId.Returns(data.Current_ProcessId);
-            element.Current.ControlType.Returns(data.Current_ControlType);
-            element.Current.Name.Returns(!string.IsNullOrEmpty(data.Current_Name) ? data.Current_Name : string.Empty);
-            element.Current.AutomationId.Returns(!string.IsNullOrEmpty(data.Current_AutomationId) ? data.Current_AutomationId : string.Empty);
-            element.Current.ClassName.Returns(!string.IsNullOrEmpty(data.Current_ClassName) ? data.Current_ClassName : string.Empty);
-            element.Current.NativeWindowHandle.Returns(data.Current_NativeWindowHandle);
+            // 20140312
+//            element.Current.ProcessId.Returns(data.Current_ProcessId);
+//            element.Current.ControlType.Returns(data.Current_ControlType);
+//            element.Current.Name.Returns(!string.IsNullOrEmpty(data.Current_Name) ? data.Current_Name : string.Empty);
+//            element.Current.AutomationId.Returns(!string.IsNullOrEmpty(data.Current_AutomationId) ? data.Current_AutomationId : string.Empty);
+//            element.Current.ClassName.Returns(!string.IsNullOrEmpty(data.Current_ClassName) ? data.Current_ClassName : string.Empty);
+//            element.Current.NativeWindowHandle.Returns(data.Current_NativeWindowHandle);
+//            element.GetCurrent().ProcessId.Returns(data.Current_ProcessId);
+//            element.GetCurrent().ControlType.Returns(data.Current_ControlType);
+//            element.GetCurrent().Name.Returns(!string.IsNullOrEmpty(data.Current_Name) ? data.Current_Name : string.Empty);
+//            element.GetCurrent().AutomationId.Returns(!string.IsNullOrEmpty(data.Current_AutomationId) ? data.Current_AutomationId : string.Empty);
+//            element.GetCurrent().ClassName.Returns(!string.IsNullOrEmpty(data.Current_ClassName) ? data.Current_ClassName : string.Empty);
+//            element.GetCurrent().NativeWindowHandle.Returns(data.Current_NativeWindowHandle);
+            current.ProcessId.Returns(data.Current_ProcessId);
+            current.ControlType.Returns(data.Current_ControlType);
+            current.Name.Returns(!string.IsNullOrEmpty(data.Current_Name) ? data.Current_Name : string.Empty);
+            current.AutomationId.Returns(!string.IsNullOrEmpty(data.Current_AutomationId) ? data.Current_AutomationId : string.Empty);
+            current.ClassName.Returns(!string.IsNullOrEmpty(data.Current_ClassName) ? data.Current_ClassName : string.Empty);
+            current.NativeWindowHandle.Returns(data.Current_NativeWindowHandle);
+            element.GetCurrent().Returns(current);
             element.Patterns.AddRange(patterns);
             element.GetSupportedPatterns().Returns(element.Patterns.ToArray());
             

@@ -55,9 +55,13 @@ namespace UIAutomation
                     
                     var queryByStringData = from collectionItem
                         in this._collectionHolder //.ToArray()
-                        where wildcardInfoString.IsMatch(collectionItem.Current.Name) ||
-                              wildcardInfoString.IsMatch(collectionItem.Current.AutomationId) ||
-                              wildcardInfoString.IsMatch(collectionItem.Current.ClassName)
+                        // 20140312
+//                        where wildcardInfoString.IsMatch(collectionItem.Current.Name) ||
+//                              wildcardInfoString.IsMatch(collectionItem.Current.AutomationId) ||
+//                              wildcardInfoString.IsMatch(collectionItem.Current.ClassName)
+                            where wildcardInfoString.IsMatch(collectionItem.GetCurrent().Name) ||
+                        wildcardInfoString.IsMatch(collectionItem.GetCurrent().AutomationId) ||
+                        wildcardInfoString.IsMatch(collectionItem.GetCurrent().ClassName)
 //                        where collectionItem.Current.Name == infoString ||
 //                              collectionItem.Current.AutomationId == infoString ||
 //                              collectionItem.Current.ClassName == info

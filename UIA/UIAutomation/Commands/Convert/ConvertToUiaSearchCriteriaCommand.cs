@@ -172,78 +172,153 @@ namespace UIAutomation.Commands
                 result = propertyName;
                 result += "=";
                 
+                // 20140312
+//                switch (propertyName) {
+//                    case "Name":
+//                        result += PropertyToString(currentElement.Current.Name);
+//                        break;
+//                    case "AutomationId":
+//                        result += PropertyToString(currentElement.Current.AutomationId);
+//                        break;
+//                    case "ControlType":
+//                        result += PropertyToString(currentElement.Current.ControlType.ProgrammaticName.Substring(12));
+//                        break;
+//                    case "Class":
+//                        result += PropertyToString(currentElement.Current.ClassName);
+//                        break;
+//                    case "AcceleratorKey":
+//                        result += PropertyToString(currentElement.Current.AcceleratorKey);
+//                        break;
+//                    case "AccessKey":
+//                        result += PropertyToString(currentElement.Current.AccessKey);
+//                        break;
+//                    case "BoundingRectangle":
+//                        result += PropertyToString(currentElement.Current.BoundingRectangle.ToString());
+//                        break;
+//                    case "FrameworkId":
+//                        result += PropertyToString(currentElement.Current.FrameworkId);
+//                        break;
+//                    case "HasKeyboardFocus":
+//                        result += PropertyToString(currentElement.Current.HasKeyboardFocus.ToString());
+//                        break;
+//                    case "HelpText":
+//                        result += PropertyToString(currentElement.Current.HelpText);
+//                        break;
+//                    case "IsContentElement":
+//                        result += PropertyToString(currentElement.Current.IsContentElement.ToString());
+//                        break;
+//                    case "IsControlElement":
+//                        result += PropertyToString(currentElement.Current.IsControlElement.ToString());
+//                        break;
+//                    case "IsEnabled":
+//                        result += PropertyToString(currentElement.Current.IsEnabled.ToString());
+//                        break;
+//                    case "IsKeyboardFocusable":
+//                        result += PropertyToString(currentElement.Current.IsKeyboardFocusable.ToString());
+//                        break;
+//                    case "IsOffscreen":
+//                        result += PropertyToString(currentElement.Current.IsOffscreen.ToString());
+//                        break;
+//                    case "IsPassword":
+//                        result += PropertyToString(currentElement.Current.IsPassword.ToString());
+//                        break;
+//                    case "IsRequiredForForm":
+//                        result += PropertyToString(currentElement.Current.IsRequiredForForm.ToString());
+//                        break;
+//                    case "ItemStatus":
+//                        result += PropertyToString(currentElement.Current.ItemStatus);
+//                        break;
+//                    case "ItemType":
+//                        result += PropertyToString(currentElement.Current.ItemType);
+//                        break;
+//                        //case "LabeledBy":
+//                        //    result +=
+//                        //    break;
+//                    case "LocalizedControlType":
+//                        result += PropertyToString(currentElement.Current.LocalizedControlType);
+//                        break;
+//                    case "NativeWindowHandle":
+//                        result += PropertyToString(currentElement.Current.NativeWindowHandle.ToString());
+//                        break;
+//                    case "Orientation":
+//                        result += PropertyToString(currentElement.Current.Orientation.ToString());
+//                        break;
+//                    case "ProcessId":
+//                        result += PropertyToString(currentElement.Current.ProcessId.ToString());
+//                        break;
+//                }
                 switch (propertyName) {
                     case "Name":
-                        result += PropertyToString(currentElement.Current.Name);
+                        result += PropertyToString(currentElement.GetCurrent().Name);
                         break;
                     case "AutomationId":
-                        result += PropertyToString(currentElement.Current.AutomationId);
+                        result += PropertyToString(currentElement.GetCurrent().AutomationId);
                         break;
                     case "ControlType":
-                        result += PropertyToString(currentElement.Current.ControlType.ProgrammaticName.Substring(12));
+                        result += PropertyToString(currentElement.GetCurrent().ControlType.ProgrammaticName.Substring(12));
                         break;
                     case "Class":
-                        result += PropertyToString(currentElement.Current.ClassName);
+                        result += PropertyToString(currentElement.GetCurrent().ClassName);
                         break;
                     case "AcceleratorKey":
-                        result += PropertyToString(currentElement.Current.AcceleratorKey);
+                        result += PropertyToString(currentElement.GetCurrent().AcceleratorKey);
                         break;
                     case "AccessKey":
-                        result += PropertyToString(currentElement.Current.AccessKey);
+                        result += PropertyToString(currentElement.GetCurrent().AccessKey);
                         break;
                     case "BoundingRectangle":
-                        result += PropertyToString(currentElement.Current.BoundingRectangle.ToString());
+                        result += PropertyToString(currentElement.GetCurrent().BoundingRectangle.ToString());
                         break;
                     case "FrameworkId":
-                        result += PropertyToString(currentElement.Current.FrameworkId);
+                        result += PropertyToString(currentElement.GetCurrent().FrameworkId);
                         break;
                     case "HasKeyboardFocus":
-                        result += PropertyToString(currentElement.Current.HasKeyboardFocus.ToString());
+                        result += PropertyToString(currentElement.GetCurrent().HasKeyboardFocus.ToString());
                         break;
                     case "HelpText":
-                        result += PropertyToString(currentElement.Current.HelpText);
+                        result += PropertyToString(currentElement.GetCurrent().HelpText);
                         break;
                     case "IsContentElement":
-                        result += PropertyToString(currentElement.Current.IsContentElement.ToString());
+                        result += PropertyToString(currentElement.GetCurrent().IsContentElement.ToString());
                         break;
                     case "IsControlElement":
-                        result += PropertyToString(currentElement.Current.IsControlElement.ToString());
+                        result += PropertyToString(currentElement.GetCurrent().IsControlElement.ToString());
                         break;
                     case "IsEnabled":
-                        result += PropertyToString(currentElement.Current.IsEnabled.ToString());
+                        result += PropertyToString(currentElement.GetCurrent().IsEnabled.ToString());
                         break;
                     case "IsKeyboardFocusable":
-                        result += PropertyToString(currentElement.Current.IsKeyboardFocusable.ToString());
+                        result += PropertyToString(currentElement.GetCurrent().IsKeyboardFocusable.ToString());
                         break;
                     case "IsOffscreen":
-                        result += PropertyToString(currentElement.Current.IsOffscreen.ToString());
+                        result += PropertyToString(currentElement.GetCurrent().IsOffscreen.ToString());
                         break;
                     case "IsPassword":
-                        result += PropertyToString(currentElement.Current.IsPassword.ToString());
+                        result += PropertyToString(currentElement.GetCurrent().IsPassword.ToString());
                         break;
                     case "IsRequiredForForm":
-                        result += PropertyToString(currentElement.Current.IsRequiredForForm.ToString());
+                        result += PropertyToString(currentElement.GetCurrent().IsRequiredForForm.ToString());
                         break;
                     case "ItemStatus":
-                        result += PropertyToString(currentElement.Current.ItemStatus);
+                        result += PropertyToString(currentElement.GetCurrent().ItemStatus);
                         break;
                     case "ItemType":
-                        result += PropertyToString(currentElement.Current.ItemType);
+                        result += PropertyToString(currentElement.GetCurrent().ItemType);
                         break;
                         //case "LabeledBy":
                         //    result +=
                         //    break;
                     case "LocalizedControlType":
-                        result += PropertyToString(currentElement.Current.LocalizedControlType);
+                        result += PropertyToString(currentElement.GetCurrent().LocalizedControlType);
                         break;
                     case "NativeWindowHandle":
-                        result += PropertyToString(currentElement.Current.NativeWindowHandle.ToString());
+                        result += PropertyToString(currentElement.GetCurrent().NativeWindowHandle.ToString());
                         break;
                     case "Orientation":
-                        result += PropertyToString(currentElement.Current.Orientation.ToString());
+                        result += PropertyToString(currentElement.GetCurrent().Orientation.ToString());
                         break;
                     case "ProcessId":
-                        result += PropertyToString(currentElement.Current.ProcessId.ToString());
+                        result += PropertyToString(currentElement.GetCurrent().ProcessId.ToString());
                         break;
                 }
             }

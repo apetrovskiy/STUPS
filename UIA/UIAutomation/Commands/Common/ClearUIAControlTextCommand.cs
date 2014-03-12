@@ -25,7 +25,9 @@ namespace UIAutomation.Commands
             
             foreach (IUiElement inputObject in InputObject) {
                 
-                if (0 == inputObject.Current.NativeWindowHandle) {
+                // 20140312
+                // if (0 == inputObject.Current.NativeWindowHandle) {
+                if (0 == inputObject.GetCurrent().NativeWindowHandle) {
                         
                     WriteError(
                         this,
@@ -35,8 +37,11 @@ namespace UIAutomation.Commands
                         true);
                 }
                 
+                // 20140312
+//                var handle =
+//                    new IntPtr(inputObject.Current.NativeWindowHandle);
                 var handle =
-                    new IntPtr(inputObject.Current.NativeWindowHandle);
+                    new IntPtr(inputObject.GetCurrent().NativeWindowHandle);
                 /*
                 IntPtr handle =
                     new IntPtr(inputObject.Current.NativeWindowHandle);

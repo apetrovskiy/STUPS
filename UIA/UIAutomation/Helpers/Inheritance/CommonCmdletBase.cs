@@ -216,17 +216,20 @@ namespace UIAutomation
                 
                 element = outputObject as IUiElement;
                 if (null != element &&
-                    (int)element.Current.ProcessId > 0) {
+                    // 20140312
+                    // (int)element.Current.ProcessId > 0) {
+                    (int)element.GetCurrent().ProcessId > 0) {
                     
                     WriteVerbose(this, "current cmdlet: " + GetType().Name);
                     WriteVerbose(this, "highlighting the following element:");
-                    WriteVerbose(this, "Name = " + element.Current.Name);
-                    WriteVerbose(this, "AutomationId = " + element.Current.AutomationId);
-                    WriteVerbose(this, "ControlType = " + element.Current.ControlType.ProgrammaticName);
-                    WriteVerbose(this, "X = " + element.Current.BoundingRectangle.X.ToString());
-                    WriteVerbose(this, "Y = " + element.Current.BoundingRectangle.Y.ToString());
-                    WriteVerbose(this, "Width = " + element.Current.BoundingRectangle.Width.ToString());
-                    WriteVerbose(this, "Height = " + element.Current.BoundingRectangle.Height.ToString());
+                    // 20140312
+//                    WriteVerbose(this, "Name = " + element.Current.Name);
+//                    WriteVerbose(this, "AutomationId = " + element.Current.AutomationId);
+//                    WriteVerbose(this, "ControlType = " + element.Current.ControlType.ProgrammaticName);
+//                    WriteVerbose(this, "X = " + element.Current.BoundingRectangle.X.ToString());
+//                    WriteVerbose(this, "Y = " + element.Current.BoundingRectangle.Y.ToString());
+//                    WriteVerbose(this, "Width = " + element.Current.BoundingRectangle.Width.ToString());
+//                    WriteVerbose(this, "Height = " + element.Current.BoundingRectangle.Height.ToString());
                 }
             } catch { //(Exception eee) {
                 // nothing to do
@@ -234,7 +237,9 @@ namespace UIAutomation
             }
             // 20140113
             // if (element == null || !(element is IUiElement) || (int) element.Current.ProcessId <= 0) return;
-            if (element == null || !(element is IUiElement) || null == element.Current || (int) element.Current.ProcessId <= 0) return;
+            // 20140312
+            // if (element == null || !(element is IUiElement) || null == element.Current || (int) element.Current.ProcessId <= 0) return;
+            if (element == null || !(element is IUiElement) || null == element.GetCurrent() || (int) element.GetCurrent().ProcessId <= 0) return;
             
             WriteVerbose(this, "as it is an IUiElement, it should be highlighted");
             
@@ -244,7 +249,9 @@ namespace UIAutomation
                     if (Preferences.ShowInfoToolTip) {
                         // 20131204
                         // ExecutionPlan.Enqueue(element, HighlighterGeneration, "name: " + element.Current.Name);
-                        ExecutionPlan.Enqueue(element, "name: " + element.Current.Name);
+                        // 20140312
+                        // ExecutionPlan.Enqueue(element, "name: " + element.Current.Name);
+                        ExecutionPlan.Enqueue(element, "name: " + element.GetCurrent().Name);
                     } else {
                         // 20131204
                         // ExecutionPlan.Enqueue(element, HighlighterGeneration, string.Empty);
@@ -428,109 +435,127 @@ namespace UIAutomation
         {
             // 20140113
             try {
-            
-            if (!Preferences.AutoLog) return;
-            string reportString =
-                CmdletSignature(((CommonCmdletBase)cmdlet));
                 
-            switch (outputObject.GetType().Name) {
-                case "AutomationElement":
-                case "IUiElement":
-                    try {
-                        
-                        var ae = outputObject as IUiElement;
-                        // IUiElement ae = outputObject as IUiElement;
-                        if (null != ae) {
-                                
-                            reportString +=
-                                "Name: '" +
-                                ae.Current.Name +
-                                "', AutomationId: '" +
-                                ae.Current.AutomationId +
-                                "', Class: '" +
-                                ae.Current.ClassName +
-                                "'";
+                if (!Preferences.AutoLog) return;
+                string reportString =
+                    CmdletSignature(((CommonCmdletBase)cmdlet));
+                    
+                switch (outputObject.GetType().Name) {
+                    case "AutomationElement":
+                    case "IUiElement":
+                        try {
                             
-                            object vPattern = null;
-                            if (ae.TryGetCurrentPattern(classic.ValuePattern.Pattern, out vPattern)) {
-                                    
+                            var ae = outputObject as IUiElement;
+                            // IUiElement ae = outputObject as IUiElement;
+                            if (null != ae) {
+                                
+                                // 20140312
+//                                reportString +=
+//                                    "Name: '" +
+//                                    ae.Current.Name +
+//                                    "', AutomationId: '" +
+//                                    ae.Current.AutomationId +
+//                                    "', Class: '" +
+//                                    ae.Current.ClassName +
+//                                    "'";
                                 reportString +=
-                                    ", Value: '" +
-                                    ((classic.ValuePattern)vPattern).Current.Value +
+                                    "Name: '" +
+                                    ae.GetCurrent().Name +
+                                    "', AutomationId: '" +
+                                    ae.GetCurrent().AutomationId +
+                                    "', Class: '" +
+                                    ae.GetCurrent().ClassName +
                                     "'";
+                                
+                                object vPattern = null;
+                                if (ae.TryGetCurrentPattern(classic.ValuePattern.Pattern, out vPattern)) {
+                                        
+                                    reportString +=
+                                        ", Value: '" +
+                                        ((classic.ValuePattern)vPattern).Current.Value +
+                                        "'";
+                                }
                             }
                         }
-                    }
-                    catch {}
-                    break;
-                case "Wizard":
-                    reportString +=
-                        "Name: '" +
-                        ((Wizard)outputObject).Name +
-                        "', Steps count: " +
-                        ((Wizard)outputObject).Steps.Count.ToString();
-                    break;
-                case "WizardStep":
-                    reportString +=
-                        "Name: '" +
-                        ((WizardStep)outputObject).Name + 
-                        "'";
-                    break;
-                case "Hashtable":
-                    reportString +=
-                        ConvertHashtableToString((Hashtable)outputObject);
-                    break;
-                case "Hashtable[]":
-                    reportString +=
-                        ConvertHashtablesArrayToString((Hashtable[])outputObject);
-                    break;
-                case "Boolean":
-                    reportString +=
-                        outputObject.ToString();
-                    break;
-                case "String":
-                    reportString += outputObject;
-                    break;
-                default:
-                        
-                    try {
-                            
-                        if (cmdlet is GetControlStateCmdletBase) {
-                                
-                            Hashtable[] hashtables =
-                                ((GetControlStateCmdletBase)cmdlet).SearchCriteria;
-                            reportString +=
-                                ConvertHashtablesArrayToString(hashtables);
-                        }
-                        if (cmdlet is WaitUiaWindowCommand) {
-                                
-                            reportString +=
-                                "Name: '" +
-                                CurrentData.CurrentWindow.Current.Name +
-                                "', AutomationId: '" +
-                                CurrentData.CurrentWindow.Current.AutomationId +
-                                "', Class: '" +
-                                CurrentData.CurrentWindow.Current.ClassName +
-                                "'";
-                        }
-                        // 20131020
-                        if (cmdlet is DiscoveryCmdletBase) {
-                            reportString += outputObject.ToString();
-                        }
-                    }
-                    catch {
+                        catch {}
+                        break;
+                    case "Wizard":
                         reportString +=
-                            outputObject.GetType().Name;
-                    }
-                    break;
-            }
-                
-
-                
-            if (cmdlet != null && reportString != null && reportString != string.Empty) { //try { WriteVerbose(reportString);
-                WriteVerbose(reportString);
-            }
-            WriteLog(LogLevels.Info, reportString);
+                            "Name: '" +
+                            ((Wizard)outputObject).Name +
+                            "', Steps count: " +
+                            ((Wizard)outputObject).Steps.Count.ToString();
+                        break;
+                    case "WizardStep":
+                        reportString +=
+                            "Name: '" +
+                            ((WizardStep)outputObject).Name + 
+                            "'";
+                        break;
+                    case "Hashtable":
+                        reportString +=
+                            ConvertHashtableToString((Hashtable)outputObject);
+                        break;
+                    case "Hashtable[]":
+                        reportString +=
+                            ConvertHashtablesArrayToString((Hashtable[])outputObject);
+                        break;
+                    case "Boolean":
+                        reportString +=
+                            outputObject.ToString();
+                        break;
+                    case "String":
+                        reportString += outputObject;
+                        break;
+                    default:
+                            
+                        try {
+                                
+                            if (cmdlet is GetControlStateCmdletBase) {
+                                    
+                                Hashtable[] hashtables =
+                                    ((GetControlStateCmdletBase)cmdlet).SearchCriteria;
+                                reportString +=
+                                    ConvertHashtablesArrayToString(hashtables);
+                            }
+                            if (cmdlet is WaitUiaWindowCommand) {
+                                
+                                // 20140312
+//                                reportString +=
+//                                    "Name: '" +
+//                                    CurrentData.CurrentWindow.Current.Name +
+//                                    "', AutomationId: '" +
+//                                    CurrentData.CurrentWindow.Current.AutomationId +
+//                                    "', Class: '" +
+//                                    CurrentData.CurrentWindow.Current.ClassName +
+//                                    "'";
+                                reportString +=
+                                    "Name: '" +
+                                    CurrentData.CurrentWindow.GetCurrent().Name +
+                                    "', AutomationId: '" +
+                                    CurrentData.CurrentWindow.GetCurrent().AutomationId +
+                                    "', Class: '" +
+                                    CurrentData.CurrentWindow.GetCurrent().ClassName +
+                                    "'";
+                            }
+                            // 20131020
+                            if (cmdlet is DiscoveryCmdletBase) {
+                                reportString += outputObject.ToString();
+                            }
+                        }
+                        catch {
+                            reportString +=
+                                outputObject.GetType().Name;
+                        }
+                        break;
+                }
+                    
+    
+                    
+                if (cmdlet != null && reportString != null && reportString != string.Empty) { //try { WriteVerbose(reportString);
+                    WriteVerbose(reportString);
+                }
+                WriteLog(LogLevels.Info, reportString);
             
             }
             catch {}

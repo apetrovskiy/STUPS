@@ -162,11 +162,15 @@ namespace UIAutomation
             IUiElement whereTheHandle = 
                 whereToClick;
             
-            if (whereToClick.Current.NativeWindowHandle == 0) {
+            // 20140312
+            // if (whereToClick.Current.NativeWindowHandle == 0) {
+            if (whereToClick.GetCurrent().NativeWindowHandle == 0) {
                 
                 whereTheHandle =
                     whereToClick.GetAncestorWithHandle();
-                if (whereTheHandle.Current.NativeWindowHandle == 0) {
+                // 20140312
+                // if (whereTheHandle.Current.NativeWindowHandle == 0) {
+                if (whereTheHandle.GetCurrent().NativeWindowHandle == 0) {
                     
                     this.WriteError(
                         this,
@@ -193,15 +197,23 @@ namespace UIAutomation
             int y = 0;
             // these x and y are window-related coordinates
             if (settings.RelativeX != 0 && settings.RelativeY != 0) {
-                x = settings.RelativeX + (int)whereToClick.Current.BoundingRectangle.X;
-                y = settings.RelativeY + (int)whereToClick.Current.BoundingRectangle.Y;
+                // 20140312
+//                x = settings.RelativeX + (int)whereToClick.Current.BoundingRectangle.X;
+//                y = settings.RelativeY + (int)whereToClick.Current.BoundingRectangle.Y;
+                x = settings.RelativeX + (int)whereToClick.GetCurrent().BoundingRectangle.X;
+                y = settings.RelativeY + (int)whereToClick.GetCurrent().BoundingRectangle.Y;
             } else {
                 // these x and y are for the SetCursorPos call
                 // they are screen coordinates
-                x = (int)whereToClick.Current.BoundingRectangle.X + 
-                    ((int)whereToClick.Current.BoundingRectangle.Width / 2); // + 3;
-                y = (int)whereToClick.Current.BoundingRectangle.Y + 
-                    ((int)whereToClick.Current.BoundingRectangle.Height / 2); // + 3;
+                // 20140312
+//                x = (int)whereToClick.Current.BoundingRectangle.X + 
+//                    ((int)whereToClick.Current.BoundingRectangle.Width / 2); // + 3;
+//                y = (int)whereToClick.Current.BoundingRectangle.Y + 
+//                    ((int)whereToClick.Current.BoundingRectangle.Height / 2); // + 3;
+                x = (int)whereToClick.GetCurrent().BoundingRectangle.X + 
+                    ((int)whereToClick.GetCurrent().BoundingRectangle.Width / 2); // + 3;
+                y = (int)whereToClick.GetCurrent().BoundingRectangle.Y + 
+                    ((int)whereToClick.GetCurrent().BoundingRectangle.Height / 2); // + 3;
             }
             // if the -X and -Y paramters are supplied (only for SetCursorPos)
             
@@ -210,8 +222,11 @@ namespace UIAutomation
             uint uUp = 0;
             
             // these relative coordinates for SendMessage/PostMessage
-            settings.RelativeX = x - (int)whereTheHandle.Current.BoundingRectangle.X;
-            settings.RelativeY = y - (int)whereTheHandle.Current.BoundingRectangle.Y;
+            // 20140312
+//            settings.RelativeX = x - (int)whereTheHandle.Current.BoundingRectangle.X;
+//            settings.RelativeY = y - (int)whereTheHandle.Current.BoundingRectangle.Y;
+            settings.RelativeX = x - (int)whereTheHandle.GetCurrent().BoundingRectangle.X;
+            settings.RelativeY = y - (int)whereTheHandle.GetCurrent().BoundingRectangle.Y;
             
             // PostMessage's (click) third and fourth paramters (the third'll be reasigned later)
             IntPtr wParamDown = IntPtr.Zero;
@@ -300,7 +315,9 @@ namespace UIAutomation
                 ulAct = NativeMethods.MK_LBUTTON;
             }
             
-            var handle = new IntPtr(whereTheHandle.Current.NativeWindowHandle);
+            // 20140312
+            // var handle = new IntPtr(whereTheHandle.Current.NativeWindowHandle);
+            var handle = new IntPtr(whereTheHandle.GetCurrent().NativeWindowHandle);
             /*
             IntPtr handle =
                     new IntPtr(whereTheHandle.Current.NativeWindowHandle);
@@ -320,7 +337,9 @@ namespace UIAutomation
             // trying to heal context menu clicks
             Process windowProcess = 
                 Process.GetProcessById(
-                    whereTheHandle.Current.ProcessId);
+                    // 20140312
+                    // whereTheHandle.Current.ProcessId);
+                    whereTheHandle.GetCurrent().ProcessId);
             if (windowProcess != null) {
                 IntPtr mainWindow = 
                     windowProcess.MainWindowHandle;
@@ -667,7 +686,9 @@ namespace UIAutomation
                               "Unable to register event handler " +
                               eventType.ProgrammaticName +
                               " for " +
-                              inputObject.Current.Name);
+                    // 20140312
+                              // inputObject.Current.Name);
+                    inputObject.GetCurrent().Name);
                  WriteVerbose(cmdlet,
                               e.Message);
             }
@@ -744,42 +765,46 @@ try {
             classic.AutomationEventArgs e)
         {
             try { // experimental
-            
-            IUiElement sourceElement;
-            string elementTitle = String.Empty;
-            string elementType = String.Empty;
-            classic.AutomationEvent eventId = null;
-            
-            try {
                 
-                sourceElement = src as IUiElement;
-                try { elementTitle = sourceElement.Cached.Name; } catch { }
-                try {
-                    elementType =
-                        sourceElement.Cached.ControlType.ProgrammaticName;
-                } catch { }
-
-                try {
-                    elementType = 
-                        elementType.Substring(
-                        elementType.IndexOf('.') + 1);
-                    if (elementType.Length == 0) {
-                        return;
-                    }
-                } catch { }
+                IUiElement sourceElement;
+                string elementTitle = String.Empty;
+                string elementType = String.Empty;
+                classic.AutomationEvent eventId = null;
                 
                 try {
-                    eventId = e.EventId;
-                    if (sourceElement == null ||
-                        elementType.Length == 0 ||
-                        eventId == null) {
-                        return;
-                    }
-                } catch { }
-            } catch (classic.ElementNotAvailableException) {
-                return;
-            }
-            // try {
+                    
+                    sourceElement = src as IUiElement;
+                    // 20140312
+                    // try { elementTitle = sourceElement.Cached.Name; } catch { }
+                    try { elementTitle = (sourceElement as ISupportsCached).Cached.Name; } catch { }
+                    try {
+                        // 20140312
+                        elementType =
+                            // sourceElement.Cached.ControlType.ProgrammaticName;
+                            (sourceElement as ISupportsCached).Cached.ControlType.ProgrammaticName;
+                    } catch { }
+    
+                    try {
+                        elementType = 
+                            elementType.Substring(
+                            elementType.IndexOf('.') + 1);
+                        if (elementType.Length == 0) {
+                            return;
+                        }
+                    } catch { }
+                    
+                    try {
+                        eventId = e.EventId;
+                        if (sourceElement == null ||
+                            elementType.Length == 0 ||
+                            eventId == null) {
+                            return;
+                        }
+                    } catch { }
+                } catch (classic.ElementNotAvailableException) {
+                    return;
+                }
+                // try {
                 string whatToWrite = String.Empty;
                 string specificToEvent = String.Empty;
                 // 
@@ -862,8 +887,10 @@ try {
                     }
                 } catch (Exception e1) {
                     WriteVerbose(this,
-                                 "Event handling for element: " + 
-                                 sourceElement.Current.Name + 
+                                 "Event handling for element: " +
+                        // 20140312
+                                 // sourceElement.Current.Name +
+                        sourceElement.GetCurrent().Name + 
                                  " eventId: " +
                                  eventId + 
                                  " failed");

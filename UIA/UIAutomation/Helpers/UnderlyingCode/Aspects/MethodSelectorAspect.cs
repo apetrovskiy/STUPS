@@ -903,6 +903,26 @@ namespace UIAutomation
                             break;
                              */
                             #endregion TouchInput
+                            #region Cached
+                        case "get_Cached":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetCached();
+                            break;
+                        case "get_CachedChildren":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetCachedChildren();
+                            break;
+                        case "get_CachedParent":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetCachedParent();
+                            break;
+                            #endregion Cached
+                            #region Current
+                        case "get_Current":
+                            invocation.ReturnValue =
+                                (invocation.Proxy as IUiElement).GetCurrent();
+                            break;
+                            #endregion Current
 //                            #region Logger
 //                        case "Log":
 ////                            (invocation.Proxy as NLog.Logger).PerformLog(

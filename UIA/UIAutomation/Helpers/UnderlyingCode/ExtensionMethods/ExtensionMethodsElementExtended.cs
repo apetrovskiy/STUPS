@@ -332,8 +332,11 @@ namespace UIAutomation
             
             // inputSimulator.Mouse.MoveMouseTo(
             InputSimulator.Mouse.MoveMouseTo(
-                (element.Current.BoundingRectangle.X + Preferences.ClickOnControlByCoordX) / Screen.PrimaryScreen.Bounds.Width * 65535,
-                (element.Current.BoundingRectangle.Y + Preferences.ClickOnControlByCoordY) / Screen.PrimaryScreen.Bounds.Height * 65535);
+                // 20140312
+//                (element.Current.BoundingRectangle.X + Preferences.ClickOnControlByCoordX) / Screen.PrimaryScreen.Bounds.Width * 65535,
+//                (element.Current.BoundingRectangle.Y + Preferences.ClickOnControlByCoordY) / Screen.PrimaryScreen.Bounds.Height * 65535);
+                (element.GetCurrent().BoundingRectangle.X + Preferences.ClickOnControlByCoordX) / Screen.PrimaryScreen.Bounds.Width * 65535,
+                (element.GetCurrent().BoundingRectangle.Y + Preferences.ClickOnControlByCoordY) / Screen.PrimaryScreen.Bounds.Height * 65535);
         }
         
         internal static IUiElement PerformHorizontalScroll(this IMouseInputHolder holder, int scrollAmountInClicks)

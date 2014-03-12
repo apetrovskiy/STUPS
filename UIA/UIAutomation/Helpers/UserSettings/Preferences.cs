@@ -125,6 +125,10 @@ namespace UIAutomation
                 System.Management.Automation.ScriptBlock.Create(
                     @"$Keyboard = (New-Object WindowsInput.InputSimulator).Keyboard; " +
                     @"$Mouse = (New-Object WindowsInput.InputSimulator).Mouse; ");
+            
+            // 20140312
+            UseElementsCached = false;
+            UseElementsCurrent = true;
         }
         
         /// <summary>
@@ -390,6 +394,10 @@ namespace UIAutomation
         
         // 20140124
         internal static ScriptBlock ModuleEcoSystem { get; set; }
+        
+        // 20140312
+        public static bool UseElementsCurrent { get; set; }
+        public static bool UseElementsCached { get; set; }
     }
     
     public static class Mode

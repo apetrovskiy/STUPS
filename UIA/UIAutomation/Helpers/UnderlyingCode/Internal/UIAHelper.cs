@@ -60,11 +60,17 @@ namespace UIAutomation
                 
                 _highlighter =
                     new Highlighter(
-                        element.Current.BoundingRectangle.Height,
-                        element.Current.BoundingRectangle.Width,
-                        element.Current.BoundingRectangle.X,
-                        element.Current.BoundingRectangle.Y,
-                        element.Current.NativeWindowHandle,
+                        // 20140312
+//                        element.Current.BoundingRectangle.Height,
+//                        element.Current.BoundingRectangle.Width,
+//                        element.Current.BoundingRectangle.X,
+//                        element.Current.BoundingRectangle.Y,
+//                        element.Current.NativeWindowHandle,
+                        element.GetCurrent().BoundingRectangle.Height,
+                        element.GetCurrent().BoundingRectangle.Width,
+                        element.GetCurrent().BoundingRectangle.X,
+                        element.GetCurrent().BoundingRectangle.Y,
+                        element.GetCurrent().NativeWindowHandle,
                         Highlighters.Element,
                         Preferences.HighlighterColor);
             }
@@ -75,11 +81,17 @@ namespace UIAutomation
                 
             _highlighterParent =
                 new Highlighter(
-                    parent.Current.BoundingRectangle.Height,
-                    parent.Current.BoundingRectangle.Width,
-                    parent.Current.BoundingRectangle.X,
-                    parent.Current.BoundingRectangle.Y,
-                    parent.Current.NativeWindowHandle,
+                    // 20140312
+//                    parent.Current.BoundingRectangle.Height,
+//                    parent.Current.BoundingRectangle.Width,
+//                    parent.Current.BoundingRectangle.X,
+//                    parent.Current.BoundingRectangle.Y,
+//                    parent.Current.NativeWindowHandle,
+                    parent.GetCurrent().BoundingRectangle.Height,
+                    parent.GetCurrent().BoundingRectangle.Width,
+                    parent.GetCurrent().BoundingRectangle.X,
+                    parent.GetCurrent().BoundingRectangle.Y,
+                    parent.GetCurrent().NativeWindowHandle,
                     Highlighters.Parent,
                     Preferences.HighlighterColorParent);
         }
@@ -92,11 +104,17 @@ namespace UIAutomation
 
                 _highlighterCheckedControl =
                     new Highlighter(
-                        element.Current.BoundingRectangle.Height,
-                        element.Current.BoundingRectangle.Width,
-                        element.Current.BoundingRectangle.X,
-                        element.Current.BoundingRectangle.Y,
-                        element.Current.NativeWindowHandle,
+                        // 20140312
+//                        element.Current.BoundingRectangle.Height,
+//                        element.Current.BoundingRectangle.Width,
+//                        element.Current.BoundingRectangle.X,
+//                        element.Current.BoundingRectangle.Y,
+//                        element.Current.NativeWindowHandle,
+                        element.GetCurrent().BoundingRectangle.Height,
+                        element.GetCurrent().BoundingRectangle.Width,
+                        element.GetCurrent().BoundingRectangle.X,
+                        element.GetCurrent().BoundingRectangle.Y,
+                        element.GetCurrent().NativeWindowHandle,
                         Highlighters.Element,
                         Preferences.HighlighterColorCheckedControl);
             }
@@ -211,13 +229,21 @@ namespace UIAutomation
 //                cmdlet.WriteVerbose(cmdlet, "Y = " + absoluteY.ToString());
 //                cmdlet.WriteVerbose(cmdlet, "Height = " + absoluteHeight.ToString());
 //                cmdlet.WriteVerbose(cmdlet, "Width = " + absoluteWidth.ToString());
-
-                if (inputObject != null && (int)inputObject.Current.ProcessId > 0) {
+                
+                // 20140312
+//                if (inputObject != null && (int)inputObject.Current.ProcessId > 0) {
+//                    
+//                    absoluteRect.Left = (int)inputObject.Current.BoundingRectangle.X + relativeRect.Left;
+//                    absoluteRect.Top = (int)inputObject.Current.BoundingRectangle.Y + relativeRect.Top;
+//                    absoluteRect.Height = (int)inputObject.Current.BoundingRectangle.Height + relativeRect.Height;
+//                    absoluteRect.Width = (int)inputObject.Current.BoundingRectangle.Width + relativeRect.Width;
+//                }
+                if (inputObject != null && (int)inputObject.GetCurrent().ProcessId > 0) {
                     
-                    absoluteRect.Left = (int)inputObject.Current.BoundingRectangle.X + relativeRect.Left;
-                    absoluteRect.Top = (int)inputObject.Current.BoundingRectangle.Y + relativeRect.Top;
-                    absoluteRect.Height = (int)inputObject.Current.BoundingRectangle.Height + relativeRect.Height;
-                    absoluteRect.Width = (int)inputObject.Current.BoundingRectangle.Width + relativeRect.Width;
+                    absoluteRect.Left = (int)inputObject.GetCurrent().BoundingRectangle.X + relativeRect.Left;
+                    absoluteRect.Top = (int)inputObject.GetCurrent().BoundingRectangle.Y + relativeRect.Top;
+                    absoluteRect.Height = (int)inputObject.GetCurrent().BoundingRectangle.Height + relativeRect.Height;
+                    absoluteRect.Width = (int)inputObject.GetCurrent().BoundingRectangle.Width + relativeRect.Width;
                 }
                 
                 if (relativeRect.Height == 0) { relativeRect.Height = Screen.PrimaryScreen.Bounds.Height; }
@@ -255,7 +281,9 @@ namespace UIAutomation
                 if (Width == 0) {Width = Screen.PrimaryScreen.Bounds.Width; }
                 */
                 
-                if (inputObject != null && (int)inputObject.Current.ProcessId > 0) {
+                // 20140312
+                // if (inputObject != null && (int)inputObject.Current.ProcessId > 0) {
+                if (inputObject != null && (int)inputObject.GetCurrent().ProcessId > 0) {
                     
                     try {
                         
@@ -291,90 +319,106 @@ namespace UIAutomation
             
             try {
                 
-            if (Preferences.HideHighlighterOnScreenShotTaking &&
-                ! Preferences.ShowExecutionPlan) {
-                
-                HideHighlighters();
-            }
-            
-            cmdlet.WriteVerbose(cmdlet, "calculating the size");
-            // 20140111
-            ScreenshotRect absoluteRect =
-                new ScreenshotRect() {
-                Left = 0,
-                Top = 0,
-                Width = Screen.PrimaryScreen.Bounds.Width,
-                Height = Screen.PrimaryScreen.Bounds.Height
-            };
-//            int absoluteX = 0;
-//            int absoluteY = 0;
-//            int absoluteWidth =
-//                Screen.PrimaryScreen.Bounds.Width;
-//            int absoluteHeight =
-//                Screen.PrimaryScreen.Bounds.Height;
-            
-            /*
-            int absoluteX = 0;
-            int absoluteY = 0;
-            int absoluteWidth =
-                Screen.PrimaryScreen.Bounds.Width;
-            int absoluteHeight =
-                Screen.PrimaryScreen.Bounds.Height;
-            */
-            
-            if (null == element) {
-                if (relativeRect.Left > 0) { absoluteRect.Left = relativeRect.Left; }
-                if (relativeRect.Top > 0) { absoluteRect.Top = relativeRect.Top; }
-                if (relativeRect.Height > 0) { absoluteRect.Height = relativeRect.Height; }
-                if (relativeRect.Width > 0) { absoluteRect.Width = relativeRect.Width; }
-                /*
-                if (Left > 0) { absoluteX = Left; }
-                if (Top > 0) { absoluteY = Top; }
-                if (Height > 0) { absoluteHeight = Height; }
-                if (Width > 0) { absoluteWidth = Width; }
-                */
-            }
-//            cmdlet.WriteVerbose(cmdlet, "X = " + absoluteX.ToString());
-//            cmdlet.WriteVerbose(cmdlet, "Y = " + absoluteY.ToString());
-//            cmdlet.WriteVerbose(cmdlet, "Height = " + absoluteHeight.ToString());
-//            cmdlet.WriteVerbose(cmdlet, "Width = " + absoluteWidth.ToString());
-
-            if (null != element && 0 < (int)element.Current.ProcessId) {
-                absoluteRect.Left = (int)element.Current.BoundingRectangle.X + relativeRect.Left;
-                absoluteRect.Top = (int)element.Current.BoundingRectangle.Y + relativeRect.Top;
-                absoluteRect.Height = (int)element.Current.BoundingRectangle.Height + relativeRect.Height;
-                absoluteRect.Width = (int)element.Current.BoundingRectangle.Width + relativeRect.Width;
-                
-                /*
-                absoluteX = (int)element.Current.BoundingRectangle.X + Left;
-                absoluteY = (int)element.Current.BoundingRectangle.Y + Top;
-                absoluteHeight = (int)element.Current.BoundingRectangle.Height + Height;
-                absoluteWidth = (int)element.Current.BoundingRectangle.Width + Width;
-                */
-            }
-            
-            if (0 == relativeRect.Height) { relativeRect.Height = Screen.PrimaryScreen.Bounds.Height; }
-            if (0 == relativeRect.Width) { relativeRect.Width = Screen.PrimaryScreen.Bounds.Width; }
-
-            if (element != null && (int)element.Current.ProcessId > 0) {
-                
-                try {
+                if (Preferences.HideHighlighterOnScreenShotTaking &&
+                    ! Preferences.ShowExecutionPlan) {
                     
-                    element.SetFocus();
+                    HideHighlighters();
                 }
-                catch {
-                    // ??
-
+                
+                cmdlet.WriteVerbose(cmdlet, "calculating the size");
+                // 20140111
+                // 20140312
+//                ScreenshotRect absoluteRect =
+//                    new ScreenshotRect() {
+//                    Left = 0,
+//                    Top = 0,
+//                    Width = Screen.PrimaryScreen.Bounds.Width,
+//                    Height = Screen.PrimaryScreen.Bounds.Height
+//                };
+                var absoluteRect =
+                    new ScreenshotRect() {
+                    Left = 0,
+                    Top = 0,
+                    Width = Screen.PrimaryScreen.Bounds.Width,
+                    Height = Screen.PrimaryScreen.Bounds.Height
+                };
+    //            int absoluteX = 0;
+    //            int absoluteY = 0;
+    //            int absoluteWidth =
+    //                Screen.PrimaryScreen.Bounds.Width;
+    //            int absoluteHeight =
+    //                Screen.PrimaryScreen.Bounds.Height;
+                
+                /*
+                int absoluteX = 0;
+                int absoluteY = 0;
+                int absoluteWidth =
+                    Screen.PrimaryScreen.Bounds.Width;
+                int absoluteHeight =
+                    Screen.PrimaryScreen.Bounds.Height;
+                */
+                
+                if (null == element) {
+                    if (relativeRect.Left > 0) { absoluteRect.Left = relativeRect.Left; }
+                    if (relativeRect.Top > 0) { absoluteRect.Top = relativeRect.Top; }
+                    if (relativeRect.Height > 0) { absoluteRect.Height = relativeRect.Height; }
+                    if (relativeRect.Width > 0) { absoluteRect.Width = relativeRect.Width; }
+                    /*
+                    if (Left > 0) { absoluteX = Left; }
+                    if (Top > 0) { absoluteY = Top; }
+                    if (Height > 0) { absoluteHeight = Height; }
+                    if (Width > 0) { absoluteWidth = Width; }
+                    */
                 }
-            }
-            
-            GetScreenshotOfSquare(
-                cmdlet,
-                description,
-                save,
-                absoluteRect,
-                path,
-                format);
+    //            cmdlet.WriteVerbose(cmdlet, "X = " + absoluteX.ToString());
+    //            cmdlet.WriteVerbose(cmdlet, "Y = " + absoluteY.ToString());
+    //            cmdlet.WriteVerbose(cmdlet, "Height = " + absoluteHeight.ToString());
+    //            cmdlet.WriteVerbose(cmdlet, "Width = " + absoluteWidth.ToString());
+                
+                // 20140312
+    //            if (null != element && 0 < (int)element.Current.ProcessId) {
+    //                absoluteRect.Left = (int)element.Current.BoundingRectangle.X + relativeRect.Left;
+    //                absoluteRect.Top = (int)element.Current.BoundingRectangle.Y + relativeRect.Top;
+    //                absoluteRect.Height = (int)element.Current.BoundingRectangle.Height + relativeRect.Height;
+    //                absoluteRect.Width = (int)element.Current.BoundingRectangle.Width + relativeRect.Width;
+                if (null != element && 0 < (int)element.GetCurrent().ProcessId) {
+                    absoluteRect.Left = (int)element.GetCurrent().BoundingRectangle.X + relativeRect.Left;
+                    absoluteRect.Top = (int)element.GetCurrent().BoundingRectangle.Y + relativeRect.Top;
+                    absoluteRect.Height = (int)element.GetCurrent().BoundingRectangle.Height + relativeRect.Height;
+                    absoluteRect.Width = (int)element.GetCurrent().BoundingRectangle.Width + relativeRect.Width;
+                    
+                    /*
+                    absoluteX = (int)element.Current.BoundingRectangle.X + Left;
+                    absoluteY = (int)element.Current.BoundingRectangle.Y + Top;
+                    absoluteHeight = (int)element.Current.BoundingRectangle.Height + Height;
+                    absoluteWidth = (int)element.Current.BoundingRectangle.Width + Width;
+                    */
+                }
+                
+                if (0 == relativeRect.Height) { relativeRect.Height = Screen.PrimaryScreen.Bounds.Height; }
+                if (0 == relativeRect.Width) { relativeRect.Width = Screen.PrimaryScreen.Bounds.Width; }
+                
+                // 20140312
+                // if (element != null && (int)element.Current.ProcessId > 0) {
+                    if (element != null && (int)element.GetCurrent().ProcessId > 0) {
+                    
+                    try {
+                        
+                        element.SetFocus();
+                    }
+                    catch {
+                        // ??
+    
+                    }
+                }
+                
+                GetScreenshotOfSquare(
+                    cmdlet,
+                    description,
+                    save,
+                    absoluteRect,
+                    path,
+                    format);
             }
             catch {}
         }
@@ -604,7 +648,9 @@ namespace UIAutomation
                         // 20131114
                         //new System.Windows.Point(mouse.X, mouse.Y));
                         new System.Windows.Point(mousePoint.X, mousePoint.Y));
-                if (element != null && (int)element.Current.ProcessId > 0)
+                // 20140312
+                // if (element != null && (int)element.Current.ProcessId > 0)
+                if (element != null && (int)element.GetCurrent().ProcessId > 0)
                 {
                     ProcessingElement(cmdlet, element);
                 }
@@ -833,13 +879,19 @@ namespace UIAutomation
                                         case "SelectionItemPattern":
                                             string tempName = string.Empty;
                                             try {
-                                                if (element.Current.Name.Length > 0) {
-                                                    tempName = element.Current.Name;
+                                                // 20140312
+//                                                if (element.Current.Name.Length > 0) {
+//                                                    tempName = element.Current.Name;
+                                                if (element.GetCurrent().Name.Length > 0) {
+                                                    tempName = element.GetCurrent().Name;
                                                 }
                                             }
                                             catch {
-                                                if (element.Cached.Name.Length > 0) {
-                                                    tempName = element.Cached.Name;
+                                                // 20140312
+                                                // if (element.Cached.Name.Length > 0) {
+                                                if ((element as ISupportsCached).Cached.Name.Length > 0) {
+                                                    // tempName = element.Cached.Name;
+                                                    tempName = (element as ISupportsCached).Cached.Name;
                                                 }
                                             }
                                             strElementPatterns +=
@@ -1439,7 +1491,9 @@ namespace UIAutomation
                                                 // (pattern as AutomationPattern).ProgrammaticName +
                                                 (pattern.GetSourcePattern() as classic.AutomationPattern).ProgrammaticName +
                                                 " event for " +
-                                                element.Current.Name);
+                                // 20140312
+                                                // element.Current.Name);
+                                element.GetCurrent().Name);
                         }
                         //  // finish our cache request
                         // cacheRequest.Pop();
@@ -1875,7 +1929,9 @@ namespace UIAutomation
                     headersRow += '"';
                     // headersRow += elt.Current.Name;
                     headersRow +=
-                        headerItem.Current.Name;
+                        // 20140312
+                        // headerItem.Current.Name;
+                        headerItem.GetCurrent().Name;
                     headersRow += '"';
                     if (headersCounter < (headerItems.Count)) {
                         headersRow += delimiter;
@@ -1953,7 +2009,9 @@ namespace UIAutomation
                     headersRow += '"';
                     // headersRow += elt.Current.Name;
                     headersRow +=
-                        headerItem.Current.Name;
+                        // 20140312
+                        // headerItem.Current.Name;
+                        headerItem.GetCurrent().Name;
                     headersRow += '"';
                     if (headersCounter < (headerItems.Count)) {
                         headersRow += delimiter;
@@ -2024,7 +2082,9 @@ namespace UIAutomation
                 IUiElement cell;
                 if (pattern is IGridPattern) {
                     cell = (pattern as IGridPattern).GetItem(rowsCounter, columnsCounter);
-                    onerow += cell.Current.Name;
+                    // 20140312
+                    // onerow += cell.Current.Name;
+                    onerow += cell.GetCurrent().Name;
                 }
 //                if (pattern is ITablePattern) {
 //                    cell = (pattern as ITablePattern).
@@ -2356,7 +2416,9 @@ namespace UIAutomation
                         GetAutomationElementFromHandle(
                             // (DiscoveryCmdletBase)cmdlet,
                             resultHandle);
-                    if (treeItemName == resultElement.Current.Name) {
+                    // 20140312
+                    // if (treeItemName == resultElement.Current.Name) {
+                    if (treeItemName == resultElement.GetCurrent().Name) {
                         return resultElement;
                     }
                         
@@ -2373,7 +2435,9 @@ namespace UIAutomation
                         GetAutomationElementFromHandle(
                             // (DiscoveryCmdletBase)cmdlet,
                             childHandle);
-                    if (treeItemName == resultElement.Current.Name) {
+                    // 20140312
+                    // if (treeItemName == resultElement.Current.Name) {
+                    if (treeItemName == resultElement.GetCurrent().Name) {
                         return resultElement;
                     }
                             
@@ -2384,7 +2448,9 @@ namespace UIAutomation
                             hwndTreeView,
                             (IntPtr)childHandle,
                             treeItemName);
-                    if (treeItemName == resultElement.Current.Name) {
+                    // 20140312
+                    // if (treeItemName == resultElement.Current.Name) {
+                    if (treeItemName == resultElement.GetCurrent().Name) {
                         return resultElement;
                     }
 
@@ -2644,6 +2710,14 @@ namespace UIAutomation
             
             if (Preferences.UseElementsSearchObjectModel) {
                 supportedTypes.Add(typeof(ISupportsExtendedModel));
+            }
+            
+            // 20140312
+            if (Preferences.UseElementsCached) {
+                supportedTypes.Add(typeof(ISupportsCached));
+            }
+            if (Preferences.UseElementsCurrent) {
+                supportedTypes.Add(typeof(ISupportsCurrent));
             }
             
             if (element is classic.AutomationElement) {

@@ -34,6 +34,9 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         [TearDown]
         public void TearDown()
         {
+            // 20140312
+            Preferences.UseElementsCached = false;
+            Preferences.UseElementsCurrent = false;
         }
         
 //        [Test][Fact]
@@ -66,7 +69,9 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
             // Arrange
             // DockPosition expectedValue = DockPosition.Bottom;
-            ISupportsHighlighter element =
+            // 20140312
+            // ISupportsHighlighter element =
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsHighlighter;
             
@@ -83,7 +88,9 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
             // Arrange
             // DockPosition expectedValue = DockPosition.Bottom;
-            ISupportsNavigation element =
+            // 20140312
+            // ISupportsNavigation element =
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsNavigation;
             
@@ -104,7 +111,9 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
             // Arrange
             // DockPosition expectedValue = DockPosition.Bottom;
-            ISupportsConversion element =
+            // 20140312
+            // ISupportsConversion element =
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsConversion;
             
@@ -121,7 +130,9 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
             // Arrange
             // DockPosition expectedValue = DockPosition.Bottom;
-            ISupportsRefresh element =
+            // 20140312
+            // ISupportsRefresh element =
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsRefresh;
             
@@ -131,6 +142,50 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             // Assert
             // Assert.AreEqual(expectedValue, element.DockPosition);
+        }
+        
+        [Test][Fact]
+        public void Cached_On()
+        {
+            Preferences.UseElementsCached = true;
+            var element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsCached;
+            var testCached = element.Cached;
+            var testCachedChildren = element.CachedChildren;
+            var testCachedParent = element.CachedParent;
+        }
+        
+        [Test][Fact]
+        public void Cached_Off()
+        {
+            Preferences.UseElementsCached = false;
+            var element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsCached;
+            MbUnit.Framework.Assert.IsNull(element);
+            Xunit.Assert.Null(element);
+        }
+        
+        [Test][Fact]
+        public void Current_On()
+        {
+            Preferences.UseElementsCurrent = true;
+            var element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsCurrent;
+            var testCurrent = element.Current;
+        }
+        
+        [Test][Fact]
+        public void Current_Off()
+        {
+            Preferences.UseElementsCurrent = false;
+            var element =
+                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
+                    new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsCurrent;
+            MbUnit.Framework.Assert.IsNull(element);
+            Xunit.Assert.Null(element);
         }
     }
 }

@@ -40,8 +40,10 @@ namespace UIAutomation
         protected override void ProcessRecord()
         {
             base.ProcessRecord();
-
-            if (InputObject.Current.ControlType == classic.ControlType.Window)
+            
+            // 20140312
+            // if (InputObject.Current.ControlType == classic.ControlType.Window)
+            if (InputObject.GetCurrent().ControlType == classic.ControlType.Window)
             {
                 // 20131208
                 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -101,10 +103,14 @@ namespace UIAutomation
         protected override void ProcessRecord()
         {
             base.ProcessRecord();
-
-            if (InputObject.Current.NativeWindowHandle != 0)
+            
+            // 20140312
+            // if (InputObject.Current.NativeWindowHandle != 0)
+            if (InputObject.GetCurrent().NativeWindowHandle != 0)
             {
-                NativeMethods.SetForegroundWindow((IntPtr)InputObject.Current.NativeWindowHandle);
+                // 20140312
+                // NativeMethods.SetForegroundWindow((IntPtr)InputObject.Current.NativeWindowHandle);
+                NativeMethods.SetForegroundWindow((IntPtr)InputObject.GetCurrent().NativeWindowHandle);
             }
             else
             {
@@ -187,9 +193,13 @@ namespace UIAutomation
             // initialize SYSTEMTIME
             // int structMemLen = Marshal.SizeOf(typeof(SYSTEMTIME));
             int structMemLen = Marshal.SizeOf(typeof(NativeMethods.SYSTEMTIME));
-            byte[] buffer = new byte[structMemLen];
+            // 20140312
+            // byte[] buffer = new byte[structMemLen];
+            var buffer = new byte[structMemLen];
             // SYSTEMTIME sysTime = new SYSTEMTIME(Date);
-            NativeMethods.SYSTEMTIME sysTime = new NativeMethods.SYSTEMTIME(Date);
+            // 20140312
+            // NativeMethods.SYSTEMTIME sysTime = new NativeMethods.SYSTEMTIME(Date);
+            var sysTime = new NativeMethods.SYSTEMTIME(Date);
 
             // get memory size of SYSTEMTIME
             IntPtr dataPtr = Marshal.AllocHGlobal(structMemLen);
@@ -199,8 +209,11 @@ namespace UIAutomation
 
             IntPtr hndProc = IntPtr.Zero;
             IntPtr lpAddress = IntPtr.Zero;
-            int procId = InputObject.Current.ProcessId;
-            int inputHandle = InputObject.Current.NativeWindowHandle;
+            // 20140312
+//            int procId = InputObject.Current.ProcessId;
+//            int inputHandle = InputObject.Current.NativeWindowHandle;
+            int procId = InputObject.GetCurrent().ProcessId;
+            int inputHandle = InputObject.GetCurrent().NativeWindowHandle;
 
             try
             {

@@ -32,7 +32,9 @@ namespace UIAutomation.Helpers.Commands
             
             foreach (IUiElement inputObject in cmdlet.InputObject) {
                 
-                if (!Equals(cmdlet.ControlType, inputObject.Current.ControlType)) {
+                // 20140312
+                // if (!Equals(cmdlet.ControlType, inputObject.Current.ControlType)) {
+                if (!Equals(cmdlet.ControlType, inputObject.GetCurrent().ControlType)) {
                     
                     cmdlet.WriteError(
                         cmdlet,

@@ -59,11 +59,18 @@ namespace UIAutomation
             var wildcardValue = new WildcardPattern(controlSearcherData.Value ?? "*", options);
             
             foreach (IUiElement element in HandleCollector.GetElementsFromHandles(HandleCollector.CollectRecursively(controlSearcherData.InputObject, controlSearcherData.Name, 1))) {
-                if (element.IsMatchWildcardPattern(resultCollection, wildcardName, element.Current.Name))
+                // 20140312
+//                if (element.IsMatchWildcardPattern(resultCollection, wildcardName, element.Current.Name))
+//                    continue;
+//                if (element.IsMatchWildcardPattern(resultCollection, wildcardName, element.Current.AutomationId))
+//                    continue;
+//                if (element.IsMatchWildcardPattern(resultCollection, wildcardName, element.Current.ClassName))
+//                    continue;
+                if (element.IsMatchWildcardPattern(resultCollection, wildcardName, element.GetCurrent().Name))
                     continue;
-                if (element.IsMatchWildcardPattern(resultCollection, wildcardName, element.Current.AutomationId))
+                if (element.IsMatchWildcardPattern(resultCollection, wildcardName, element.GetCurrent().AutomationId))
                     continue;
-                if (element.IsMatchWildcardPattern(resultCollection, wildcardName, element.Current.ClassName))
+                if (element.IsMatchWildcardPattern(resultCollection, wildcardName, element.GetCurrent().ClassName))
                     continue;
                 try {
                     string elementValue = element.GetCurrentPattern<IValuePattern>(classic.ValuePattern.Pattern).Current.Value;

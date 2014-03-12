@@ -267,19 +267,34 @@ namespace UIAutomationSpy
             string ancClass = string.Empty;
             string ancControlType = string.Empty;
             
+            // 20140312
+//            try {
+//                ancName = element.Current.Name;
+//            } catch {}
+//            try {
+//                ancAuId = element.Current.AutomationId;
+//            } catch {}
+//            try {
+//                ancClass = element.Current.ClassName;
+//            } catch {}
+//            try {
+//                ancControlType =
+//                    element.Current.ControlType.ProgrammaticName.Substring(
+//                        element.Current.ControlType.ProgrammaticName.IndexOf('.') + 1);
+//            } catch {}
             try {
-                ancName = element.Current.Name;
+                ancName = element.GetCurrent().Name;
             } catch {}
             try {
-                ancAuId = element.Current.AutomationId;
+                ancAuId = element.GetCurrent().AutomationId;
             } catch {}
             try {
-                ancClass = element.Current.ClassName;
+                ancClass = element.GetCurrent().ClassName;
             } catch {}
             try {
                 ancControlType =
-                    element.Current.ControlType.ProgrammaticName.Substring(
-                        element.Current.ControlType.ProgrammaticName.IndexOf('.') + 1);
+                    element.GetCurrent().ControlType.ProgrammaticName.Substring(
+                        element.GetCurrent().ControlType.ProgrammaticName.IndexOf('.') + 1);
             } catch {}
             result =
                 "name = '" +
@@ -303,9 +318,13 @@ namespace UIAutomationSpy
         {
             string result = string.Empty;
             
+            // 20140312
+//            string elementControlType =
+//                element.Current.ControlType.ProgrammaticName.Substring(
+//                    element.Current.ControlType.ProgrammaticName.IndexOf('.') + 1);
             string elementControlType =
-                element.Current.ControlType.ProgrammaticName.Substring(
-                    element.Current.ControlType.ProgrammaticName.IndexOf('.') + 1);
+                element.GetCurrent().ControlType.ProgrammaticName.Substring(
+                    element.GetCurrent().ControlType.ProgrammaticName.IndexOf('.') + 1);
             
             // in case this element is an upper-level Pane
             // residing directrly under the RootElement
@@ -333,23 +352,45 @@ namespace UIAutomationSpy
             
             string elementVerbosity =
                 @"Get-Uia" + elementControlType;
+            // 20140312
+//            try {
+//                if (element.Current.AutomationId.Length > 0) {
+//                    elementVerbosity += (" -AutomationId '" + element.Current.AutomationId + "'");
+//                }
+//            }
+//            catch {
+//            }
+//            try {
+//                if (element.Current.ClassName.Length > 0) {
+//                    elementVerbosity += (" -Class '" + element.Current.ClassName + "'");
+//                }
+//            }
+//            catch {
+//            }
+//            try {
+//                if (element.Current.Name.Length > 0) {
+//                    elementVerbosity += (" -Name '" + element.Current.Name + "'");
+//                }
+//            }
+//            catch {
+//            }
             try {
-                if (element.Current.AutomationId.Length > 0) {
-                    elementVerbosity += (" -AutomationId '" + element.Current.AutomationId + "'");
+                if (element.GetCurrent().AutomationId.Length > 0) {
+                    elementVerbosity += (" -AutomationId '" + element.GetCurrent().AutomationId + "'");
                 }
             }
             catch {
             }
             try {
-                if (element.Current.ClassName.Length > 0) {
-                    elementVerbosity += (" -Class '" + element.Current.ClassName + "'");
+                if (element.GetCurrent().ClassName.Length > 0) {
+                    elementVerbosity += (" -Class '" + element.GetCurrent().ClassName + "'");
                 }
             }
             catch {
             }
             try {
-                if (element.Current.Name.Length > 0) {
-                    elementVerbosity += (" -Name '" + element.Current.Name + "'");
+                if (element.GetCurrent().Name.Length > 0) {
+                    elementVerbosity += (" -Name '" + element.GetCurrent().Name + "'");
                 }
             }
             catch {
@@ -375,7 +416,9 @@ namespace UIAutomationSpy
                 // 20131109
                 //AutomationElementIUiElement testparent = element;
                 IUiElement testparent = element;
-                if (testparent != null && (int)testparent.Current.ProcessId > 0) {
+                // 20140312
+                // if (testparent != null && (int)testparent.Current.ProcessId > 0) {
+                if (testparent != null && (int)testparent.GetCurrent().ProcessId > 0) {
                     listForNodes.Add(getNodeNameFromAutomationElement(testparent));
                     // 20131109
                     //if (testparent != AutomationElement.RootElement) {
@@ -389,7 +432,9 @@ namespace UIAutomationSpy
                      */
                 }
                 
-                while (testparent != null && (int)testparent.Current.ProcessId > 0) {
+                // 20140312
+                // while (testparent != null && (int)testparent.Current.ProcessId > 0) {
+                while (testparent != null && (int)testparent.GetCurrent().ProcessId > 0) {
                     testparent =
                         // 20131109
                         //walker.GetParent(testparent);
@@ -399,7 +444,9 @@ namespace UIAutomationSpy
                         // 20140102
                         // new UiElement(walker.GetParent(testparent.GetSourceElement()));
                         new UiElement(walker.GetParent(testparent.GetSourceElement() as AutomationElement));
-                    if (testparent.Current.ProcessId <= 0) continue;
+                    // 20140312
+                    // if (testparent.Current.ProcessId <= 0) continue;
+                    if (testparent.GetCurrent().ProcessId <= 0) continue;
                     /*
                     if (testparent == null || (int) testparent.Current.ProcessId <= 0) continue;
                      */
@@ -584,12 +631,16 @@ namespace UIAutomationSpy
         {
             try {
                 this.pGridElement.SelectedObject =
-                    element.Current;
+                    // 20140312
+                    // element.Current;
+                    element.GetCurrent();
             }
             catch {
                 try {
                     this.pGridElement.SelectedObject =
-                        element.Cached;
+                        // 20140312
+                        // element.Cached;
+                        (element as ISupportsCached).Cached;
                 }
                 catch {
                     
@@ -1119,10 +1170,14 @@ namespace UIAutomationSpy
                         
                         int elementPID = 0;
                         try {
-                            elementPID = element.Current.ProcessId;
+                            // 20140312
+                            // elementPID = element.Current.ProcessId;
+                            elementPID = element.GetCurrent().ProcessId;
                         } catch {
                             try {
-                                elementPID = element.Cached.ProcessId;
+                                // 20140312
+                                // elementPID = element.Cached.ProcessId;
+                                elementPID = (element as ISupportsCached).Cached.ProcessId;
                             } catch (Exception eUhh) {
                             }
                         }

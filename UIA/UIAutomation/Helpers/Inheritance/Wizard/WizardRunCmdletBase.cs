@@ -92,18 +92,18 @@ namespace UIAutomation
                 /*
                 if (null != (CurrentData.CurrentWindow as IUiElement)) {
                 */
-
-                    cmdlet.WriteVerbose(
-                        cmdlet,
-                        "the window: name = '" +
-                        CurrentData.CurrentWindow.Current.Name +
-                        "', automationId = '" +
-                        CurrentData.CurrentWindow.Current.AutomationId +
-                        "', class = '" +
-                        CurrentData.CurrentWindow.Current.ClassName +
-                        "', processId = " +
-                        CurrentData.CurrentWindow.Current.ProcessId.ToString() +
-                        ".");
+                    // 20140312
+//                    cmdlet.WriteVerbose(
+//                        cmdlet,
+//                        "the window: name = '" +
+//                        CurrentData.CurrentWindow.Current.Name +
+//                        "', automationId = '" +
+//                        CurrentData.CurrentWindow.Current.AutomationId +
+//                        "', class = '" +
+//                        CurrentData.CurrentWindow.Current.ClassName +
+//                        "', processId = " +
+//                        CurrentData.CurrentWindow.Current.ProcessId.ToString() +
+//                        ".");
                     
                     cmdlet.WriteInfo(cmdlet, "Getting the active step");
                     

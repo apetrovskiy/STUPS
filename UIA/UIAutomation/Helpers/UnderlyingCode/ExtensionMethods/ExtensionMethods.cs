@@ -119,25 +119,199 @@ namespace UIAutomation
                 
                 const WildcardOptions options = WildcardOptions.IgnoreCase |
                                                 WildcardOptions.Compiled;
+                // 20140312
+//                switch (key) {
+//                    case "ACCELERATORKEY":
+//                        if ( !(new WildcardPattern(
+//                            keyValue,
+//                            options).IsMatch(element.Current.AcceleratorKey))) {
+//                                return result;
+//                        }
+//                        break;
+//                    case "ACCESSKEY":
+//                        if ( !(new WildcardPattern(
+//                            keyValue,
+//                            options).IsMatch(element.Current.AccessKey))) {
+//                                return result;
+//                        }
+//                        break;
+//                    case "AUTOMATIONID":
+//                        if ( !(new WildcardPattern(
+//                            keyValue,
+//                            options).IsMatch(element.Current.AutomationId))) {
+//                                return result;
+//                        }
+//                        break;
+//                    case "CLASS":
+//                    case "CLASSNAME":
+//                        if ( !(new WildcardPattern(
+//                            keyValue,
+//                            options).IsMatch(element.Current.ClassName))) {
+//                                return result;
+//                        }
+//                        break;
+//                    case "CONTROLTYPE":
+//                        if ( !(new WildcardPattern(
+//                            keyValue,
+//                            options).IsMatch(element.Current.ControlType.ProgrammaticName.Substring(12)))) {
+//                                return result;
+//                        }
+//                        break;
+//                    case "FRAMEWORKID":
+//                        if ( !(new WildcardPattern(
+//                            keyValue,
+//                            options).IsMatch(element.Current.FrameworkId))) {
+//                                return result;
+//                        }
+//                        break;
+//                    case "HASKEYBOARDFOCUS":
+//                        if ( !(new WildcardPattern(
+//                            keyValue,
+//                            options).IsMatch(element.Current.HasKeyboardFocus.ToString()))) {
+//                                return result;
+//                        }
+//                        break;
+//                    case "HELPTEXT":
+//                        if ( !(new WildcardPattern(
+//                            keyValue,
+//                            options).IsMatch(element.Current.HelpText))) {
+//                                return result;
+//                        }
+//                        break;
+//                    case "ISCONTENTELEMENT":
+//                        if ( !(new WildcardPattern(
+//                            keyValue,
+//                            options).IsMatch(element.Current.IsContentElement.ToString()))) {
+//                                return result;
+//                        }
+//                        break;
+//                    case "ISCONTROLELEMENT":
+//                        if ( !(new WildcardPattern(
+//                            keyValue,
+//                            options).IsMatch(element.Current.IsControlElement.ToString()))) {
+//                                return result;
+//                        }
+//                        break;
+//                    case "ISENABLED":
+//                        if ( !(new WildcardPattern(
+//                            keyValue,
+//                            options).IsMatch(element.Current.IsEnabled.ToString()))) {
+//                                return result;
+//                        }
+//                        break;
+//                    case "ISKEYBOARDFOCUSABLE":
+//                        if ( !(new WildcardPattern(
+//                            keyValue,
+//                            options).IsMatch(element.Current.IsKeyboardFocusable.ToString()))) {
+//                                return result;
+//                        }
+//                        break;
+//                    case "ISOFFSCREEN":
+//                        if ( !(new WildcardPattern(
+//                            keyValue,
+//                            options).IsMatch(element.Current.IsOffscreen.ToString()))) {
+//                                return result;
+//                        }
+//                        break;
+//                    case "ISPASSWORD":
+//                        if ( !(new WildcardPattern(
+//                            keyValue,
+//                            options).IsMatch(element.Current.IsPassword.ToString()))) {
+//                                return result;
+//                        }
+//                        break;
+//                    case "ISREQUIREDFORFORM":
+//                        if ( !(new WildcardPattern(
+//                            keyValue,
+//                            options).IsMatch(element.Current.IsRequiredForForm.ToString()))) {
+//                                return result;
+//                        }
+//                        break;
+//                    case "ITEMSTATUS":
+//                        if ( !(new WildcardPattern(
+//                            keyValue,
+//                            options).IsMatch(element.Current.ItemStatus))) {
+//                                return result;
+//                        }
+//                        break;
+//                    case "ITEMTYPE":
+//                        if ( !(new WildcardPattern(
+//                            keyValue,
+//                            options).IsMatch(element.Current.ItemType))) {
+//                                return result;
+//                        }
+//                        break;
+//                    case "LABELEDBY":
+//                        if ( !(new WildcardPattern(
+//                            keyValue,
+//                            options).IsMatch(element.Current.LabeledBy.Current.Name))) {
+//                                return result;
+//                        }
+//                        break;
+//                    case "LOCALIZEDCONTROLTYPE":
+//                        if ( !(new WildcardPattern(
+//                            keyValue,
+//                            options).IsMatch(element.Current.LocalizedControlType))) {
+//                                return result;
+//                        }
+//                        break;
+//                    case "NAME":
+//                        if ( !(new WildcardPattern(
+//                            keyValue,
+//                            options).IsMatch(element.Current.Name))) {
+//                                return result;
+//                        }
+//                        break;
+//                    case "NATIVEWINDOWHANDLE":
+//                        if ( !(new WildcardPattern(
+//                            keyValue,
+//                            options).IsMatch(element.Current.NativeWindowHandle.ToString()))) {
+//                                return result;
+//                        }
+//                        break;
+//                    case "ORIENTATION":
+//                        if ( !(new WildcardPattern(
+//                            keyValue,
+//                            options).IsMatch(element.Current.Orientation.ToString()))) {
+//                                return result;
+//                        }
+//                        break;
+//                    case "PROCESSID":
+//                        if ( !(new WildcardPattern(
+//                            keyValue,
+//                            options).IsMatch(element.Current.ProcessId.ToString()))) {
+//                                return result;
+//                        }
+//                        break;
+//                    default:
+//                        (new CommonCmdletBase()).WriteError(
+//                            // this,
+//                            new CommonCmdletBase(),
+//                            "Wrong AutomationElement parameter is provided: " + key,
+//                            "WrongParameter",
+//                            ErrorCategory.InvalidArgument,
+//                            true);
+//                        break;
+//                }
                 switch (key) {
                     case "ACCELERATORKEY":
                         if ( !(new WildcardPattern(
                             keyValue,
-                            options).IsMatch(element.Current.AcceleratorKey))) {
+                            options).IsMatch(element.GetCurrent().AcceleratorKey))) {
                                 return result;
                         }
                         break;
                     case "ACCESSKEY":
                         if ( !(new WildcardPattern(
                             keyValue,
-                            options).IsMatch(element.Current.AccessKey))) {
+                            options).IsMatch(element.GetCurrent().AccessKey))) {
                                 return result;
                         }
                         break;
                     case "AUTOMATIONID":
                         if ( !(new WildcardPattern(
                             keyValue,
-                            options).IsMatch(element.Current.AutomationId))) {
+                            options).IsMatch(element.GetCurrent().AutomationId))) {
                                 return result;
                         }
                         break;
@@ -145,140 +319,140 @@ namespace UIAutomation
                     case "CLASSNAME":
                         if ( !(new WildcardPattern(
                             keyValue,
-                            options).IsMatch(element.Current.ClassName))) {
+                            options).IsMatch(element.GetCurrent().ClassName))) {
                                 return result;
                         }
                         break;
                     case "CONTROLTYPE":
                         if ( !(new WildcardPattern(
                             keyValue,
-                            options).IsMatch(element.Current.ControlType.ProgrammaticName.Substring(12)))) {
+                            options).IsMatch(element.GetCurrent().ControlType.ProgrammaticName.Substring(12)))) {
                                 return result;
                         }
                         break;
                     case "FRAMEWORKID":
                         if ( !(new WildcardPattern(
                             keyValue,
-                            options).IsMatch(element.Current.FrameworkId))) {
+                            options).IsMatch(element.GetCurrent().FrameworkId))) {
                                 return result;
                         }
                         break;
                     case "HASKEYBOARDFOCUS":
                         if ( !(new WildcardPattern(
                             keyValue,
-                            options).IsMatch(element.Current.HasKeyboardFocus.ToString()))) {
+                            options).IsMatch(element.GetCurrent().HasKeyboardFocus.ToString()))) {
                                 return result;
                         }
                         break;
                     case "HELPTEXT":
                         if ( !(new WildcardPattern(
                             keyValue,
-                            options).IsMatch(element.Current.HelpText))) {
+                            options).IsMatch(element.GetCurrent().HelpText))) {
                                 return result;
                         }
                         break;
                     case "ISCONTENTELEMENT":
                         if ( !(new WildcardPattern(
                             keyValue,
-                            options).IsMatch(element.Current.IsContentElement.ToString()))) {
+                            options).IsMatch(element.GetCurrent().IsContentElement.ToString()))) {
                                 return result;
                         }
                         break;
                     case "ISCONTROLELEMENT":
                         if ( !(new WildcardPattern(
                             keyValue,
-                            options).IsMatch(element.Current.IsControlElement.ToString()))) {
+                            options).IsMatch(element.GetCurrent().IsControlElement.ToString()))) {
                                 return result;
                         }
                         break;
                     case "ISENABLED":
                         if ( !(new WildcardPattern(
                             keyValue,
-                            options).IsMatch(element.Current.IsEnabled.ToString()))) {
+                            options).IsMatch(element.GetCurrent().IsEnabled.ToString()))) {
                                 return result;
                         }
                         break;
                     case "ISKEYBOARDFOCUSABLE":
                         if ( !(new WildcardPattern(
                             keyValue,
-                            options).IsMatch(element.Current.IsKeyboardFocusable.ToString()))) {
+                            options).IsMatch(element.GetCurrent().IsKeyboardFocusable.ToString()))) {
                                 return result;
                         }
                         break;
                     case "ISOFFSCREEN":
                         if ( !(new WildcardPattern(
                             keyValue,
-                            options).IsMatch(element.Current.IsOffscreen.ToString()))) {
+                            options).IsMatch(element.GetCurrent().IsOffscreen.ToString()))) {
                                 return result;
                         }
                         break;
                     case "ISPASSWORD":
                         if ( !(new WildcardPattern(
                             keyValue,
-                            options).IsMatch(element.Current.IsPassword.ToString()))) {
+                            options).IsMatch(element.GetCurrent().IsPassword.ToString()))) {
                                 return result;
                         }
                         break;
                     case "ISREQUIREDFORFORM":
                         if ( !(new WildcardPattern(
                             keyValue,
-                            options).IsMatch(element.Current.IsRequiredForForm.ToString()))) {
+                            options).IsMatch(element.GetCurrent().IsRequiredForForm.ToString()))) {
                                 return result;
                         }
                         break;
                     case "ITEMSTATUS":
                         if ( !(new WildcardPattern(
                             keyValue,
-                            options).IsMatch(element.Current.ItemStatus))) {
+                            options).IsMatch(element.GetCurrent().ItemStatus))) {
                                 return result;
                         }
                         break;
                     case "ITEMTYPE":
                         if ( !(new WildcardPattern(
                             keyValue,
-                            options).IsMatch(element.Current.ItemType))) {
+                            options).IsMatch(element.GetCurrent().ItemType))) {
                                 return result;
                         }
                         break;
                     case "LABELEDBY":
                         if ( !(new WildcardPattern(
                             keyValue,
-                            options).IsMatch(element.Current.LabeledBy.Current.Name))) {
+                            options).IsMatch(element.GetCurrent().LabeledBy.Current.Name))) {
                                 return result;
                         }
                         break;
                     case "LOCALIZEDCONTROLTYPE":
                         if ( !(new WildcardPattern(
                             keyValue,
-                            options).IsMatch(element.Current.LocalizedControlType))) {
+                            options).IsMatch(element.GetCurrent().LocalizedControlType))) {
                                 return result;
                         }
                         break;
                     case "NAME":
                         if ( !(new WildcardPattern(
                             keyValue,
-                            options).IsMatch(element.Current.Name))) {
+                            options).IsMatch(element.GetCurrent().Name))) {
                                 return result;
                         }
                         break;
                     case "NATIVEWINDOWHANDLE":
                         if ( !(new WildcardPattern(
                             keyValue,
-                            options).IsMatch(element.Current.NativeWindowHandle.ToString()))) {
+                            options).IsMatch(element.GetCurrent().NativeWindowHandle.ToString()))) {
                                 return result;
                         }
                         break;
                     case "ORIENTATION":
                         if ( !(new WildcardPattern(
                             keyValue,
-                            options).IsMatch(element.Current.Orientation.ToString()))) {
+                            options).IsMatch(element.GetCurrent().Orientation.ToString()))) {
                                 return result;
                         }
                         break;
                     case "PROCESSID":
                         if ( !(new WildcardPattern(
                             keyValue,
-                            options).IsMatch(element.Current.ProcessId.ToString()))) {
+                            options).IsMatch(element.GetCurrent().ProcessId.ToString()))) {
                                 return result;
                         }
                         break;

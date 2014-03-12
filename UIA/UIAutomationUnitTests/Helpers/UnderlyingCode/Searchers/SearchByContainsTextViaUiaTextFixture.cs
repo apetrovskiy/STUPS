@@ -69,7 +69,9 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
             if (!string.IsNullOrEmpty(searchString)) {
                 MbUnit.Framework.Assert.ForAll(
                     resultList.Cast<IUiElement>().ToList<IUiElement>(),
-                    x => x.Current.Name == searchString || x.Current.AutomationId == searchString || x.Current.ClassName == searchString ||
+                    // 20140312
+//                    x => x.Current.Name == searchString || x.Current.AutomationId == searchString || x.Current.ClassName == searchString ||
+                    x => x.GetCurrent().Name == searchString || x.GetCurrent().AutomationId == searchString || x.GetCurrent().ClassName == searchString ||
                     (null != (x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern) && (x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern).Current.Value == searchString));
                 /*
                 (null != (x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern) ? 
@@ -85,7 +87,9 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
             Xunit.Assert.Equal(expectedNumberOfElements, resultList.Count);
             if (!string.IsNullOrEmpty(searchString)) {
                 resultList.All(
-                    x => x.Current.Name == searchString || x.Current.AutomationId == searchString || x.Current.ClassName == searchString ||
+                    // 20140312
+                    // x => x.Current.Name == searchString || x.Current.AutomationId == searchString || x.Current.ClassName == searchString ||
+                    x => x.GetCurrent().Name == searchString || x.GetCurrent().AutomationId == searchString || x.GetCurrent().ClassName == searchString ||
                     (null != (x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern) && (x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern).Current.Value == searchString));
                 /*
                 (null != (x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern) ?

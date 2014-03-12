@@ -87,9 +87,13 @@ namespace UIAutomation
                 
                 #region checking processId
                 if (inputObject != null &&
-                    (int)inputObject.Current.ProcessId > 0) {
+                    // 20140312
+                    // (int)inputObject.Current.ProcessId > 0) {
+                    (int)inputObject.GetCurrent().ProcessId > 0) {
                     
-                    processId = inputObject.Current.ProcessId;
+                    // 20140312
+                    // processId = inputObject.Current.ProcessId;
+                    processId = inputObject.GetCurrent().ProcessId;
                 }
                 #endregion checking processId
                 
@@ -232,7 +236,9 @@ namespace UIAutomation
                     
                     foreach (string controlTypeName in controlProvider.SearchData.ControlType) {
                         
-                        if (!String.Equals(elementToChoose.Current.ControlType.ProgrammaticName.Substring(12), controlTypeName, StringComparison.CurrentCultureIgnoreCase)) {
+                        // 20140312
+                        // if (!String.Equals(elementToChoose.Current.ControlType.ProgrammaticName.Substring(12), controlTypeName, StringComparison.CurrentCultureIgnoreCase)) {
+                        if (!String.Equals(elementToChoose.GetCurrent().ControlType.ProgrammaticName.Substring(12), controlTypeName, StringComparison.CurrentCultureIgnoreCase)) {
                             continue;
                         } else {
                             resultList.Add(elementToChoose);
@@ -262,7 +268,9 @@ namespace UIAutomation
             if (conditions == null) return new List<IUiElement>();
             
             // if (inputObject == null || (int) inputObject.Current.ProcessId <= 0) return listOfColllectedResults;
-            if (inputObject == null || (int) inputObject.Current.ProcessId <= 0) return new List<IUiElement>();
+            // 20140312
+            // if (inputObject == null || (int) inputObject.Current.ProcessId <= 0) return new List<IUiElement>();
+            if (inputObject == null || (int) inputObject.GetCurrent().ProcessId <= 0) return new List<IUiElement>();
             
             IUiEltCollection tempCollection = inputObject.FindAll(classic.TreeScope.Descendants, conditions);
             
@@ -416,7 +424,9 @@ namespace UIAutomation
                 
                 if (null != data.ControlType && 0 < data.ControlType.Length) {
                     
-					goFurther &= !data.ControlType.Any(controlTypeName => String.Equals(tempElement3.Current.ControlType.ProgrammaticName.Substring(12), controlTypeName, StringComparison.CurrentCultureIgnoreCase));
+                    // 20140312
+					// goFurther &= !data.ControlType.Any(controlTypeName => String.Equals(tempElement3.Current.ControlType.ProgrammaticName.Substring(12), controlTypeName, StringComparison.CurrentCultureIgnoreCase));
+                    goFurther &= !data.ControlType.Any(controlTypeName => String.Equals(tempElement3.GetCurrent().ControlType.ProgrammaticName.Substring(12), controlTypeName, StringComparison.CurrentCultureIgnoreCase));
                     
                 } else {
                     goFurther = false;

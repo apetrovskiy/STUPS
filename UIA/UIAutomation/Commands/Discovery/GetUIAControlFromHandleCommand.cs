@@ -51,7 +51,8 @@ namespace UIAutomation.Commands
                 handle)))
             {
                 if (result != null) {
-                    WriteVerbose(this, "got the control: " + result.Current.Name);
+                    // 20140312
+                    // WriteVerbose(this, "got the control: " + result.Current.Name);
                 }
                 WriteObject(this, result);
             }

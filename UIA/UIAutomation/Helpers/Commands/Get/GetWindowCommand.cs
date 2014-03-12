@@ -31,169 +31,170 @@ namespace UIAutomation.Helpers.Commands
                 (GetUiaWindowCommand)Cmdlet;
             
             try {
-            
-            List<IUiElement> returnedWindows = new List<IUiElement>();
-            
-            try {
-
-                if (null == cmdlet.ProcessName &&
-                    (null == cmdlet.Name && null == cmdlet.AutomationId && null == cmdlet.Class) &&
-                    null == cmdlet.ProcessId &&
-                    null == cmdlet.InputObject) {
+                // 20140312
+                // List<IUiElement> returnedWindows = new List<IUiElement>();
+                var returnedWindows = new List<IUiElement>();
+                
+                try {
+    
+                    if (null == cmdlet.ProcessName &&
+                        (null == cmdlet.Name && null == cmdlet.AutomationId && null == cmdlet.Class) &&
+                        null == cmdlet.ProcessId &&
+                        null == cmdlet.InputObject) {
+                        
+                        cmdlet.WriteVerbose(
+                            cmdlet, 
+                            "no processName, name, processid or process was supplied");
+                        
+                        cmdlet.WriteError(
+                            cmdlet,
+                            "Neither ProcessName nor window Name are provided. Or ProcessId == 0",
+                            "NoParametersInGetWindow",
+                            ErrorCategory.InvalidArgument,
+                            true);
+                        
+                    } // describe
+                } 
+                catch (Exception eCheckParameters) {
                     
-                    cmdlet.WriteVerbose(
-                        cmdlet, 
-                        "no processName, name, processid or process was supplied");
-                    
+                    cmdlet.WriteVerbose(cmdlet, eCheckParameters.Message);
+    
                     cmdlet.WriteError(
                         cmdlet,
-                        "Neither ProcessName nor window Name are provided. Or ProcessId == 0",
-                        "NoParametersInGetWindow",
-                        ErrorCategory.InvalidArgument,
+                        "Unknown error in '" + cmdlet.CmdletName(cmdlet) + "' ProcessRecord",
+                        "UnknownInGetWindow",
+                        ErrorCategory.InvalidResult,
                         true);
                     
                 } // describe
-            } 
-            catch (Exception eCheckParameters) {
                 
-                cmdlet.WriteVerbose(cmdlet, eCheckParameters.Message);
-
-                cmdlet.WriteError(
-                    cmdlet,
-                    "Unknown error in '" + cmdlet.CmdletName(cmdlet) + "' ProcessRecord",
-                    "UnknownInGetWindow",
-                    ErrorCategory.InvalidResult,
-                    true);
-                
-            } // describe
-            
-            try {
-                
-                var windowSearcher =
-                    AutomationFactory.GetSearcherImpl<WindowSearcher>();
-                
-//                var windowSearcherData =
-//                    new WindowSearcherData {
-//                    Win32 = cmdlet.Win32,
-//                    InputObject = cmdlet.InputObject,
-//                    ProcessNames = cmdlet.ProcessName,
-//                    ProcessIds = cmdlet.ProcessId,
-//                    Name = cmdlet.Name,
-//                    AutomationId = cmdlet.AutomationId,
-//                    Class = cmdlet.Class,
-//                    WithControl = cmdlet.WithControl,
-//                    TestMode = cmdlet.TestMode,
-//                    SearchCriteria = cmdlet.SearchCriteria,
-//                    First = cmdlet.First,
-//                    Recurse = cmdlet.Recurse,
-//                    WaitNoWindow = cmdlet.WaitNoWindow
-//                };
-                
-                var windowSearcherData = AutomationFactory.GetObject<WindowSearcherData>();
-                windowSearcherData.Win32 = cmdlet.Win32;
-                windowSearcherData.InputObject = cmdlet.InputObject;
-                windowSearcherData.ProcessNames = cmdlet.ProcessName;
-                windowSearcherData.ProcessIds = cmdlet.ProcessId;
-                windowSearcherData.Name = cmdlet.Name;
-                windowSearcherData.AutomationId = cmdlet.AutomationId;
-                windowSearcherData.Class = cmdlet.Class;
-                windowSearcherData.WithControl = cmdlet.WithControl;
-                windowSearcherData.TestMode = cmdlet.TestMode;
-                windowSearcherData.SearchCriteria = cmdlet.SearchCriteria;
-                windowSearcherData.First = cmdlet.First;
-                windowSearcherData.Recurse = cmdlet.Recurse;
-                windowSearcherData.WaitNoWindow = cmdlet.WaitNoWindow;
-                
-                returnedWindows =
-                    windowSearcher.GetElements(
-                        windowSearcherData,
-                        cmdlet.Timeout);
-                
-                windowSearcherData = null;
-            }
-            catch {}
-            
-            try {
-                if (null != returnedWindows && returnedWindows.Count > 0) {
+                try {
                     
-                    if (cmdlet.TestMode) {
+                    var windowSearcher =
+                        AutomationFactory.GetSearcherImpl<WindowSearcher>();
+                    
+    //                var windowSearcherData =
+    //                    new WindowSearcherData {
+    //                    Win32 = cmdlet.Win32,
+    //                    InputObject = cmdlet.InputObject,
+    //                    ProcessNames = cmdlet.ProcessName,
+    //                    ProcessIds = cmdlet.ProcessId,
+    //                    Name = cmdlet.Name,
+    //                    AutomationId = cmdlet.AutomationId,
+    //                    Class = cmdlet.Class,
+    //                    WithControl = cmdlet.WithControl,
+    //                    TestMode = cmdlet.TestMode,
+    //                    SearchCriteria = cmdlet.SearchCriteria,
+    //                    First = cmdlet.First,
+    //                    Recurse = cmdlet.Recurse,
+    //                    WaitNoWindow = cmdlet.WaitNoWindow
+    //                };
+                    
+                    var windowSearcherData = AutomationFactory.GetObject<WindowSearcherData>();
+                    windowSearcherData.Win32 = cmdlet.Win32;
+                    windowSearcherData.InputObject = cmdlet.InputObject;
+                    windowSearcherData.ProcessNames = cmdlet.ProcessName;
+                    windowSearcherData.ProcessIds = cmdlet.ProcessId;
+                    windowSearcherData.Name = cmdlet.Name;
+                    windowSearcherData.AutomationId = cmdlet.AutomationId;
+                    windowSearcherData.Class = cmdlet.Class;
+                    windowSearcherData.WithControl = cmdlet.WithControl;
+                    windowSearcherData.TestMode = cmdlet.TestMode;
+                    windowSearcherData.SearchCriteria = cmdlet.SearchCriteria;
+                    windowSearcherData.First = cmdlet.First;
+                    windowSearcherData.Recurse = cmdlet.Recurse;
+                    windowSearcherData.WaitNoWindow = cmdlet.WaitNoWindow;
+                    
+                    returnedWindows =
+                        windowSearcher.GetElements(
+                            windowSearcherData,
+                            cmdlet.Timeout);
+                    
+                    windowSearcherData = null;
+                }
+                catch {}
+                
+                try {
+                    if (null != returnedWindows && returnedWindows.Count > 0) {
                         
-                        cmdlet.WriteObject(cmdlet, !cmdlet.WaitNoWindow);
+                        if (cmdlet.TestMode) {
+                            
+                            cmdlet.WriteObject(cmdlet, !cmdlet.WaitNoWindow);
+                            
+                        } else {
+                            
+                            cmdlet.WriteObject(cmdlet, returnedWindows);
+                        }
+                        
+                        // 20140121
+                        returnedWindows.Clear();
+                        returnedWindows = null;
                         
                     } else {
                         
-                        cmdlet.WriteObject(cmdlet, returnedWindows);
-                    }
-                    
-                    // 20140121
-                    returnedWindows.Clear();
-                    returnedWindows = null;
-                    
-                } else {
-                    
-                    if (cmdlet.TestMode) {
+                        if (cmdlet.TestMode) {
+                            
+                            cmdlet.WriteObject(cmdlet, cmdlet.WaitNoWindow);
+                            
+                        } else {
                         
-                        cmdlet.WriteObject(cmdlet, cmdlet.WaitNoWindow);
-                        
-                    } else {
-                    
-                        string name = string.Empty;
-                        string procName = string.Empty;
-                        string procId = string.Empty;
-        
-                        try{ 
-                            foreach(string n in cmdlet.Name) { 
-                                name += n; name += ","; 
+                            string name = string.Empty;
+                            string procName = string.Empty;
+                            string procId = string.Empty;
+            
+                            try{ 
+                                foreach(string n in cmdlet.Name) { 
+                                    name += n; name += ","; 
+                                }
+                                name = name.Substring(0, name.Length - 1);
                             }
-                            name = name.Substring(0, name.Length - 1);
-                        }
-                        catch {}
-        
-                        try{ 
-                            foreach(string s in cmdlet.ProcessName) { 
-                                procName += s; procName += ","; 
+                            catch {}
+            
+                            try{ 
+                                foreach(string s in cmdlet.ProcessName) { 
+                                    procName += s; procName += ","; 
+                                }
+                                procName = procName.Substring(0, procName.Length - 1);
                             }
-                            procName = procName.Substring(0, procName.Length - 1);
-                        }
-                        catch {}
-        
-                        try {
-                            foreach (int i in cmdlet.ProcessId) {
-                                procId += i.ToString();
-                                procId += ",";
+                            catch {}
+            
+                            try {
+                                foreach (int i in cmdlet.ProcessId) {
+                                    procId += i.ToString();
+                                    procId += ",";
+                                }
+                                procId = procId.Substring(0, procId.Length - 1);
                             }
-                            procId = procId.Substring(0, procId.Length - 1);
+                            catch {}
+            
+                            cmdlet.WriteError(
+                                cmdlet,
+                                "Failed to get window in " + 
+                                cmdlet.Timeout.ToString() +
+                                " milliseconds by:" +
+                                " process name: '" +
+                                procName +
+                                "', process Id: " + 
+                                procId + 
+                                ", window title: '" + 
+                                name +
+                                "', automationId: '" +
+                                cmdlet.AutomationId +
+                                "', className: '" +
+                                cmdlet.Class +
+                                "'.",
+                                "FailedToGetWindow",
+                                ErrorCategory.InvalidResult,
+                                true);
                         }
-                        catch {}
-        
-                        cmdlet.WriteError(
-                            cmdlet,
-                            "Failed to get window in " + 
-                            cmdlet.Timeout.ToString() +
-                            " milliseconds by:" +
-                            " process name: '" +
-                            procName +
-                            "', process Id: " + 
-                            procId + 
-                            ", window title: '" + 
-                            name +
-                            "', automationId: '" +
-                            cmdlet.AutomationId +
-                            "', className: '" +
-                            cmdlet.Class +
-                            "'.",
-                            "FailedToGetWindow",
-                            ErrorCategory.InvalidResult,
-                            true);
                     }
                 }
-            }
-            catch (Exception eOuter) {
-                cmdlet.WriteVerbose(
-                    cmdlet,
-                    eOuter.Message);
-            }
-            
+                catch (Exception eOuter) {
+                    cmdlet.WriteVerbose(
+                        cmdlet,
+                        eOuter.Message);
+                }
+                
             }
             catch (Exception eTheOutest) {
                 cmdlet.WriteVerbose(

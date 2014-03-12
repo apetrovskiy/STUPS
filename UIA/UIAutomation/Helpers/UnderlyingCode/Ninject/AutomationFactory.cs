@@ -207,8 +207,8 @@ namespace UIAutomation
                         new LoggingAspect(), new ErrorHandlingAspect(), new FaultInjectionAspect(), new MethodSelectorAspect());
                 
             } catch (Exception eProxying) {
-                Console.WriteLine("ProxiedObject");
-                Console.WriteLine(eProxying.Message);
+                // Console.WriteLine("ProxiedObject");
+                // Console.WriteLine(eProxying.Message);
             }
             
             return proxiedObject;

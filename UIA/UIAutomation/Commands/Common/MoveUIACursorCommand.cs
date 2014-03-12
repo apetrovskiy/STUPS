@@ -47,15 +47,21 @@ namespace UIAutomation.Commands
                 // move to a position that is relative to the desktop
                 Cursor.Position = 
                     new Point(
-                        ((int)UiElement.RootElement.Current.BoundingRectangle.Left + X),
-                        ((int)UiElement.RootElement.Current.BoundingRectangle.Top + Y));
+                            // 20140312
+//                        ((int)UiElement.RootElement.Current.BoundingRectangle.Left + X),
+//                        ((int)UiElement.RootElement.Current.BoundingRectangle.Top + Y));
+                            ((int)UiElement.RootElement.GetCurrent().BoundingRectangle.Left + X),
+                            ((int)UiElement.RootElement.GetCurrent().BoundingRectangle.Top + Y));
                 WriteObject(this, true);
             }
             else {
                 Cursor.Position = 
                     new Point(
-                        ((int)inputObject.Current.BoundingRectangle.Left + X),
-                        ((int)inputObject.Current.BoundingRectangle.Top + Y));
+                            // 20140312
+//                        ((int)inputObject.Current.BoundingRectangle.Left + X),
+//                        ((int)inputObject.Current.BoundingRectangle.Top + Y));
+                            ((int)inputObject.GetCurrent().BoundingRectangle.Left + X),
+                            ((int)inputObject.GetCurrent().BoundingRectangle.Top + Y));
                 if (PassThru) {
                     WriteObject(this, inputObject);
                 } else {

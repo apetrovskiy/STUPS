@@ -131,11 +131,17 @@ namespace UIAutomation
 				
 		    // Highlighter highlighter = new Highlighter(
             var highlighter = new Highlighter(
-		        elementToHighlight.Current.BoundingRectangle.Height,
-		        elementToHighlight.Current.BoundingRectangle.Width,
-		        elementToHighlight.Current.BoundingRectangle.X,
-		        elementToHighlight.Current.BoundingRectangle.Y,
-		        elementToHighlight.Current.NativeWindowHandle,
+                // 20140312
+//		        elementToHighlight.Current.BoundingRectangle.Height,
+//		        elementToHighlight.Current.BoundingRectangle.Width,
+//		        elementToHighlight.Current.BoundingRectangle.X,
+//		        elementToHighlight.Current.BoundingRectangle.Y,
+//		        elementToHighlight.Current.NativeWindowHandle,
+                elementToHighlight.GetCurrent().BoundingRectangle.Height,
+		        elementToHighlight.GetCurrent().BoundingRectangle.Width,
+		        elementToHighlight.GetCurrent().BoundingRectangle.X,
+		        elementToHighlight.GetCurrent().BoundingRectangle.Y,
+		        elementToHighlight.GetCurrent().NativeWindowHandle,
 		        // 20131204
 		        // (Highlighters)(HighlighterNumber % 10),
 		        (Highlighters)(CommonCmdletBase.HighlighterGeneration % 10),

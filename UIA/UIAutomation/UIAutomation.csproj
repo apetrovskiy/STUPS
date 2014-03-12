@@ -465,8 +465,10 @@
     <Compile Include="Helpers\UserSettings\CurrentData.cs" />
     <Compile Include="Helpers\UserSettings\Preferences.cs" />
     <Compile Include="Helpers\UserSettings\Profile.cs" />
+    <Compile Include="Interface\Element\ISupportsCached.cs" />
     <Compile Include="Interface\Element\ISupportsControlPattern.cs" />
     <Compile Include="Interface\Element\ISupportsConversion.cs" />
+    <Compile Include="Interface\Element\ISupportsCurrent.cs" />
     <Compile Include="Interface\Element\ISupportsDockPattern.cs" />
     <Compile Include="Interface\Element\ISupportsExpandCollapsePattern.cs" />
     <Compile Include="Interface\Element\ISupportsExport.cs" />

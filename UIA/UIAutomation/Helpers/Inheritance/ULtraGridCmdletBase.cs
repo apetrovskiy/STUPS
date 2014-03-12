@@ -103,23 +103,29 @@ namespace UIAutomation
                                         "getting the valuePattern of the control");
                                 } catch {
                                     WriteVerbose(this,
-                                        "unable to get ValuePattern of " + 
-                                        grandchild.Current.Name);
+                                        "unable to get ValuePattern of " +
+                                        // 20140312
+                                        // grandchild.Current.Name);
+                                        grandchild.GetCurrent().Name);
                                 }
                                 // string strValue = String.Empty;
                                 try {
                                     strValue = 
                                         valPattern.Current.Value;
                                     WriteVerbose(this,
-                                        "valuePattern of " + 
-                                        grandchild.Current.Name + 
+                                        "valuePattern of " +
+                                        // 20140312 
+                                        // grandchild.Current.Name +
+                                        grandchild.GetCurrent().Name + 
                                         " = " + 
                                         strValue);
                                                      
                                 } catch {
                                     WriteVerbose(this,
-                                        "unable to get ValuePattern.Current.Value of " + 
-                                        grandchild.Current.Name);
+                                        "unable to get ValuePattern.Current.Value of " +
+                                        // 20140312 
+                                        // grandchild.Current.Name);
+                                        grandchild.GetCurrent().Name);
                                 }
                                     
                                     
@@ -161,8 +167,10 @@ namespace UIAutomation
                                                 Preferences.ClickOnControlByCoordY)) {
                                                 */
                                                     selectedItems.Add(child);
-                                                    WriteVerbose(this, 
-                                                        "the " + child.Current.Name + 
+                                                    WriteVerbose(this,
+                                                        // 20140312
+                                                        // "the " + child.Current.Name +
+                                                        "the " + child.GetCurrent().Name + 
                                                         " added to the output collection");
                                                 }
                                                 
@@ -189,16 +197,20 @@ namespace UIAutomation
                                             break;
                                         case ifUltraGridOperations.GetItems:
                                             selectedItems.Add(child);
-                                            WriteVerbose(this, 
-                                                "the " + child.Current.Name + 
+                                            WriteVerbose(this,
+                                                // 20140312
+                                                // "the " + child.Current.Name +
+                                                "the " + child.GetCurrent().Name + 
                                                 " added to the output collection");
                                             break;
                                         case ifUltraGridOperations.GetSelection:
                                             if (GetColorProbe(this,
                                                 child)) {
                                                     selectedItems.Add(child);
-                                                    WriteVerbose(this, 
-                                                        "the " + child.Current.Name + 
+                                                    WriteVerbose(this,
+                                                        // 20140312
+                                                        // "the " + child.Current.Name +
+                                                    "the " + child.GetCurrent().Name + 
                                                         " added to the output collection");
                                                 }
                                             break;
@@ -207,8 +219,10 @@ namespace UIAutomation
                                         break;
                                     }
                                 }
-                                WriteVerbose(this, "working with " + 
-                                                   grandchild.Current.Name + "\t" + strValue);
+                                WriteVerbose(this, "working with " +
+                                    // 20140312
+                                                   // grandchild.Current.Name + "\t" + strValue);
+                                    grandchild.GetCurrent().Name + "\t" + strValue);
                             }
                     
                         }

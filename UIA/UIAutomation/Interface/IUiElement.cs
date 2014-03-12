@@ -43,10 +43,12 @@ namespace UIAutomation
 		void SetFocus();
 		bool TryGetClickablePoint(out Point pt);
 		Point GetClickablePoint();
-		IUiElementInformation Cached { get; }
-		IUiElementInformation Current { get; }
-		IUiElement CachedParent { get; }
-		IUiEltCollection CachedChildren { get; }
+        // 20140312
+        // moved
+//		IUiElementInformation Cached { get; }
+//		IUiElementInformation Current { get; }
+//		IUiElement CachedParent { get; }
+//		IUiEltCollection CachedChildren { get; }
         
 		object GetSourceElement();
 		void SetSourceElement<T>(T element);

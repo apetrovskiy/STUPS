@@ -72,19 +72,26 @@ namespace UIAutomation
                 // IUiElement testparent = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement()));
                 IUiElement testparent = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement() as classic.AutomationElement));
                 while (testparent != null &&
-                       testparent.Current.NativeWindowHandle == 0) {
+                    // 20143012
+                       // testparent.Current.NativeWindowHandle == 0) {
+                        testparent.GetCurrent().NativeWindowHandle == 0) {
                     testparent =
                         // 20140102
                         // AutomationFactory.GetUiElement(walker.GetParent(testparent.GetSourceElement()));
                         AutomationFactory.GetUiElement(walker.GetParent(testparent.GetSourceElement() as classic.AutomationElement));
                     if (testparent != null &&
-                        (int)testparent.Current.ProcessId > 0 &&
-                        testparent.Current.NativeWindowHandle != 0) {
+                        // 20143012
+//                        (int)testparent.Current.ProcessId > 0 &&
+//                        testparent.Current.NativeWindowHandle != 0) {
+                        (int)testparent.GetCurrent().ProcessId > 0 &&
+                        testparent.GetCurrent().NativeWindowHandle != 0) {
                         
                         return testparent;
                     }
                 }
-                return testparent.Current.NativeWindowHandle != 0 ? testparent : null;
+                // 20143012
+                // return testparent.Current.NativeWindowHandle != 0 ? testparent : null;
+                return testparent.GetCurrent().NativeWindowHandle != 0 ? testparent : null;
                 
             } catch {
                 return null;
@@ -122,24 +129,34 @@ namespace UIAutomation
                     
                 if (scope == classic.TreeScope.Parent || scope == classic.TreeScope.Ancestors) {
                     
-                    if (testParent.Current != UiElement.RootElement.Current) {
+                    // 20140312
+                    // if (testParent.Current != UiElement.RootElement.Current) {
+                    if (testParent.GetCurrent() != UiElement.RootElement.GetCurrent()) {
                         ancestors.Add(testParent);
                     }
                     
-                    if ((testParent.Equals(UiElement.RootElement) && testParent.Current.Equals(UiElement.RootElement.Current)) ||
+                    // 20140312
+                    // if ((testParent.Equals(UiElement.RootElement) && testParent.Current.Equals(UiElement.RootElement.Current)) ||
+                    if ((testParent.Equals(UiElement.RootElement) && testParent.GetCurrent().Equals(UiElement.RootElement.GetCurrent())) ||
                         scope == classic.TreeScope.Parent) {
                         return ancestors.ToArray();
                     }
                 }
+                // 20140312
                 while (testParent != null &&
-                       (int)testParent.Current.ProcessId > 0 &&
-                       !testParent.Current.Equals(UiElement.RootElement.Current)) {
+                       // (int)testParent.Current.ProcessId > 0 &&
+                    (int)testParent.GetCurrent().ProcessId > 0 &&
+                       // !testParent.Current.Equals(UiElement.RootElement.Current)) {
+                    !testParent.GetCurrent().Equals(UiElement.RootElement.GetCurrent())) {
                     
                     testParent =
                         AutomationFactory.GetUiElement(walker.GetParent(testParent.GetSourceElement() as classic.AutomationElement));
+                    // 20140312
                     if (testParent != null &&
-                        (int)testParent.Current.ProcessId > 0 &&
-                        !testParent.Current.Equals(UiElement.RootElement.Current)) {
+//                        (int)testParent.Current.ProcessId > 0 &&
+//                        !testParent.Current.Equals(UiElement.RootElement.Current)) {
+                        (int)testParent.GetCurrent().ProcessId > 0 &&
+                        !testParent.GetCurrent().Equals(UiElement.RootElement.GetCurrent())) {
                         
                         ancestors.Add(testParent);
                     } else {
@@ -177,15 +194,19 @@ namespace UIAutomation
                 //testparent =
                 //    walker.GetParent(element);
                 IUiElement testParent = element;
-
-                while (testParent != null && (int)testParent.Current.ProcessId > 0) {
+                
+                // 20140312
+                // while (testParent != null && (int)testParent.Current.ProcessId > 0) {
+                while (testParent != null && (int)testParent.GetCurrent().ProcessId > 0) {
                     
                     testParent =
                         // 20140102
                         // AutomationFactory.GetUiElement(walker.GetParent(testParent.GetSourceElement()));
                         AutomationFactory.GetUiElement(walker.GetParent(testParent.GetSourceElement() as classic.AutomationElement));
                     
-                    if (testParent == null || (int) testParent.Current.ProcessId <= 0) continue;
+                    // 20140312
+                    // if (testParent == null || (int) testParent.Current.ProcessId <= 0) continue;
+                    if (testParent == null || (int) testParent.GetCurrent().ProcessId <= 0) continue;
                     if (testParent == cmdlet.OddRootElement)
                     { testParent = null; }
                     else{
@@ -194,8 +215,11 @@ namespace UIAutomation
                             // testparent.Current.ControlType.ProgrammaticName.Substring(
                             // element.Current.ControlType.ProgrammaticName.IndexOf('.') + 1);
                             //  // experimental
-                            testParent.Current.ControlType.ProgrammaticName.Substring(
-                                testParent.Current.ControlType.ProgrammaticName.IndexOf('.') + 1);
+                            // 20140312
+//                            testParent.Current.ControlType.ProgrammaticName.Substring(
+//                                testParent.Current.ControlType.ProgrammaticName.IndexOf('.') + 1);
+                            testParent.GetCurrent().ControlType.ProgrammaticName.Substring(
+                                testParent.GetCurrent().ControlType.ProgrammaticName.IndexOf('.') + 1);
                         //  // if (parentControlType.Length == 0) {
                         // break;
                         //}
@@ -225,24 +249,33 @@ namespace UIAutomation
                         string parentVerbosity =
                             @"Get-Uia" + parentControlType;
                         try {
-                            if (testParent.Current.AutomationId.Length > 0) {
-                                parentVerbosity += (" -AutomationId '" + testParent.Current.AutomationId + "'");
+                            // 20140312
+//                            if (testParent.Current.AutomationId.Length > 0) {
+//                                parentVerbosity += (" -AutomationId '" + testParent.Current.AutomationId + "'");
+                            if (testParent.GetCurrent().AutomationId.Length > 0) {
+                                parentVerbosity += (" -AutomationId '" + testParent.GetCurrent().AutomationId + "'");
                             }
                         }
                         catch {
                         }
                         if (!cmdlet.NoClassInformation) {
                             try {
-                                if (testParent.Current.ClassName.Length > 0) {
-                                    parentVerbosity += (" -Class '" + testParent.Current.ClassName + "'");
+                                // 20140312
+//                                if (testParent.Current.ClassName.Length > 0) {
+//                                    parentVerbosity += (" -Class '" + testParent.Current.ClassName + "'");
+                                if (testParent.GetCurrent().ClassName.Length > 0) {
+                                    parentVerbosity += (" -Class '" + testParent.GetCurrent().ClassName + "'");
                                 }
                             }
                             catch {
                             }
                         }
                         try {
-                            if (testParent.Current.Name.Length > 0) {
-                                parentVerbosity += (" -Name '" + testParent.Current.Name + "'");
+                            // 20140312
+//                            if (testParent.Current.Name.Length > 0) {
+//                                parentVerbosity += (" -Name '" + testParent.Current.Name + "'");
+                            if (testParent.GetCurrent().Name.Length > 0) {
+                                parentVerbosity += (" -Name '" + testParent.GetCurrent().Name + "'");
                             }
                         }
                         catch {
@@ -275,9 +308,13 @@ namespace UIAutomation
         {
             string elementControlType = String.Empty;
             try {
-                elementControlType = element.Current.ControlType.ProgrammaticName;
+                // 20140312
+                // elementControlType = element.Current.ControlType.ProgrammaticName;
+                elementControlType = element.GetCurrent().ControlType.ProgrammaticName;
             } catch {
-                elementControlType = element.Cached.ControlType.ProgrammaticName;
+                // 20140312
+                // elementControlType = element.Cached.ControlType.ProgrammaticName;
+                elementControlType = (element as ISupportsCached).Cached.ControlType.ProgrammaticName;
             }
             if (string.Empty != elementControlType && 0 < elementControlType.Length) {
                 elementControlType = elementControlType.Substring(elementControlType.IndexOf('.') + 1);
@@ -307,22 +344,57 @@ namespace UIAutomation
         {
             string tempString = string.Empty;
             try {
-                
+                // 20140312
+//                switch (propertyName) {
+//                    case "Name":
+//                        if (!string.IsNullOrEmpty(element.Current.Name)) {
+//                            tempString = element.Current.Name;
+//                            hasName = true;
+//                        }
+//                        break;
+//                    case "AutomationId":
+//                        if (!string.IsNullOrEmpty(element.Current.AutomationId)) {
+//                            tempString = element.Current.AutomationId;
+//                        }
+//                        break;
+//                    case "Class":
+//                        if (!string.IsNullOrEmpty(element.Current.ClassName)) {
+//                            tempString = element.Current.ClassName;
+//                        }
+//                        break;
+//                    case "Value":
+//                        try {
+//                            if (!string.IsNullOrEmpty(pattern.Current.Value)) {
+//                                tempString = pattern.Current.Value;
+//                                hasName = true;
+//                            }
+//                        }
+//                        catch {}
+//                        break;
+//                    case "Win32":
+//                        if (0 < element.Current.NativeWindowHandle) {
+//                            tempString = ".";
+//                        }
+//                        break;
+//                    default:
+//                        
+//                    	break;
+//                }
                 switch (propertyName) {
                     case "Name":
-                        if (!string.IsNullOrEmpty(element.Current.Name)) {
-                            tempString = element.Current.Name;
+                        if (!string.IsNullOrEmpty(element.GetCurrent().Name)) {
+                            tempString = element.GetCurrent().Name;
                             hasName = true;
                         }
                         break;
                     case "AutomationId":
-                        if (!string.IsNullOrEmpty(element.Current.AutomationId)) {
-                            tempString = element.Current.AutomationId;
+                        if (!string.IsNullOrEmpty(element.GetCurrent().AutomationId)) {
+                            tempString = element.GetCurrent().AutomationId;
                         }
                         break;
                     case "Class":
-                        if (!string.IsNullOrEmpty(element.Current.ClassName)) {
-                            tempString = element.Current.ClassName;
+                        if (!string.IsNullOrEmpty(element.GetCurrent().ClassName)) {
+                            tempString = element.GetCurrent().ClassName;
                         }
                         break;
                     case "Value":
@@ -335,7 +407,7 @@ namespace UIAutomation
                         catch {}
                         break;
                     case "Win32":
-                        if (0 < element.Current.NativeWindowHandle) {
+                        if (0 < element.GetCurrent().NativeWindowHandle) {
                             tempString = ".";
                         }
                         break;
@@ -346,22 +418,32 @@ namespace UIAutomation
             } catch {
                 switch (propertyName) {
                     case "Name":
-                        if (!string.IsNullOrEmpty(element.Cached.Name)) {
-                            tempString = element.Cached.Name;
+                        // 20140312
+                        // if (!string.IsNullOrEmpty(element.Cached.Name)) {
+                        if (!string.IsNullOrEmpty((element as ISupportsCached).Cached.Name)) {
+                            // tempString = element.Cached.Name;
+                            tempString = (element as ISupportsCached).Cached.Name;
                             hasName = true;
                         }
                         break;
                     case "AutomationId":
-                        if (!string.IsNullOrEmpty(element.Cached.AutomationId)) {
-                            tempString = element.Cached.AutomationId;
+                        // 20140312
+                        // if (!string.IsNullOrEmpty(element.Cached.AutomationId)) {
+                        if (!string.IsNullOrEmpty((element as ISupportsCached).Cached.AutomationId)) {
+                            // tempString = element.Cached.AutomationId;
+                            tempString = (element as ISupportsCached).Cached.AutomationId;
                         }
                         break;
                     case "Class":
-                        if (!string.IsNullOrEmpty(element.Cached.ClassName)) {
-                            tempString = element.Cached.ClassName;
+                        // 20140312
+                        // if (!string.IsNullOrEmpty(element.Cached.ClassName)) {
+                        if (!string.IsNullOrEmpty((element as ISupportsCached).Cached.ClassName)) {
+                            // tempString = element.Cached.ClassName;
+                            tempString = (element as ISupportsCached).Cached.ClassName;
                         }
                         break;
                     case "Value":
+                        // 20140312
                         try {
                             if (!string.IsNullOrEmpty(pattern.Cached.Value)) {
                                 tempString = pattern.Cached.Value;
@@ -371,7 +453,9 @@ namespace UIAutomation
                         catch {}
                         break;
                     case "Win32":
-                        if (0 < element.Cached.NativeWindowHandle) {
+                        // 20140312
+                        // if (0 < element.Cached.NativeWindowHandle) {
+                        if (0 < (element as ISupportsCached).Cached.NativeWindowHandle) {
                             tempString = ".";
                         }
                         break;
@@ -444,7 +528,9 @@ namespace UIAutomation
             var contextMenuSearcherData =
                 new ContextMenuSearcherData {
                 InputObject = inputObject,
-                ProcessId = inputObject.Current.ProcessId
+                // 20140312
+                // ProcessId = inputObject.Current.ProcessId
+                ProcessId = inputObject.GetCurrent().ProcessId
             };
             
             var elementsMenuRoot =
@@ -489,11 +575,17 @@ namespace UIAutomation
             if (null == element) return resultString;
             
             try {
-                if (null == element.Current) return resultString;
+                // 20140312
+//                if (null == element.Current) return resultString;
+//                
+//                if (!string.IsNullOrEmpty(element.Current.Name)) return element.Current.Name;
+//                if (!string.IsNullOrEmpty(element.Current.AutomationId)) return element.Current.AutomationId;
+//                if (!string.IsNullOrEmpty(element.Current.ClassName)) return element.Current.ClassName;
+                if (null == element.GetCurrent()) return resultString;
                 
-                if (!string.IsNullOrEmpty(element.Current.Name)) return element.Current.Name;
-                if (!string.IsNullOrEmpty(element.Current.AutomationId)) return element.Current.AutomationId;
-                if (!string.IsNullOrEmpty(element.Current.ClassName)) return element.Current.ClassName;
+                if (!string.IsNullOrEmpty(element.GetCurrent().Name)) return element.GetCurrent().Name;
+                if (!string.IsNullOrEmpty(element.GetCurrent().AutomationId)) return element.GetCurrent().AutomationId;
+                if (!string.IsNullOrEmpty(element.GetCurrent().ClassName)) return element.GetCurrent().ClassName;
                 
             } catch (Exception) {
                 return resultString;

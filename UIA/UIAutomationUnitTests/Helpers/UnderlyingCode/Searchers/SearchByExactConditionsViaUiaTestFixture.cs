@@ -81,21 +81,38 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
             // Assert
             MbUnit.Framework.Assert.Count(expectedNumberOfElements, resultList);
             Xunit.Assert.Equal(expectedNumberOfElements, resultList.Count);
+            // 20140312
+//            if (!string.IsNullOrEmpty(name)) {
+//                MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.Name == name);
+//                resultList.All(x => x.Current.Name == name);
+//            }
+//            if (!string.IsNullOrEmpty(automationId)) {
+//                MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.AutomationId == automationId);
+//                resultList.All(x => x.Current.AutomationId == automationId);
+//            }
+//            if (!string.IsNullOrEmpty(className)) {
+//                MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.ClassName == className);
+//                resultList.All(x => x.Current.ClassName == className);
+//            }
+//            if (null != controlType) {
+//                MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.ControlType == controlType);
+//                resultList.All(x => x.Current.ControlType == controlType);
+//            }
             if (!string.IsNullOrEmpty(name)) {
-                MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.Name == name);
-                resultList.All(x => x.Current.Name == name);
+                MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.GetCurrent().Name == name);
+                resultList.All(x => x.GetCurrent().Name == name);
             }
             if (!string.IsNullOrEmpty(automationId)) {
-                MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.AutomationId == automationId);
-                resultList.All(x => x.Current.AutomationId == automationId);
+                MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.GetCurrent().AutomationId == automationId);
+                resultList.All(x => x.GetCurrent().AutomationId == automationId);
             }
             if (!string.IsNullOrEmpty(className)) {
-                MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.ClassName == className);
-                resultList.All(x => x.Current.ClassName == className);
+                MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.GetCurrent().ClassName == className);
+                resultList.All(x => x.GetCurrent().ClassName == className);
             }
             if (null != controlType) {
-                MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.ControlType == controlType);
-                resultList.All(x => x.Current.ControlType == controlType);
+                MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.GetCurrent().ControlType == controlType);
+                resultList.All(x => x.GetCurrent().ControlType == controlType);
             }
             if (string.IsNullOrEmpty(txtValue)) return;
             MbUnit.Framework.Assert.ForAll(

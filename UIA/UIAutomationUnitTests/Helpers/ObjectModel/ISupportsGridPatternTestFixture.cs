@@ -175,15 +175,25 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             IUiElement gottenElement = element.GetItem(1, 1);
             
             // Assert
-            MbUnit.Framework.Assert.AreEqual(expectedControlType, gottenElement.Current.ControlType);
-            MbUnit.Framework.Assert.AreEqual(expectedName, gottenElement.Current.Name);
-            MbUnit.Framework.Assert.AreEqual(expectedAutomationId, gottenElement.Current.AutomationId);
-            MbUnit.Framework.Assert.AreEqual(expectedClassName, gottenElement.Current.ClassName);
+            // 20140312
+//            MbUnit.Framework.Assert.AreEqual(expectedControlType, gottenElement.Current.ControlType);
+//            MbUnit.Framework.Assert.AreEqual(expectedName, gottenElement.Current.Name);
+//            MbUnit.Framework.Assert.AreEqual(expectedAutomationId, gottenElement.Current.AutomationId);
+//            MbUnit.Framework.Assert.AreEqual(expectedClassName, gottenElement.Current.ClassName);
+//            
+//            Xunit.Assert.Equal(expectedControlType, gottenElement.Current.ControlType);
+//            Xunit.Assert.Equal(expectedName, gottenElement.Current.Name);
+//            Xunit.Assert.Equal(expectedAutomationId, gottenElement.Current.AutomationId);
+//            Xunit.Assert.Equal(expectedClassName, gottenElement.Current.ClassName);
+            MbUnit.Framework.Assert.AreEqual(expectedControlType, gottenElement.GetCurrent().ControlType);
+            MbUnit.Framework.Assert.AreEqual(expectedName, gottenElement.GetCurrent().Name);
+            MbUnit.Framework.Assert.AreEqual(expectedAutomationId, gottenElement.GetCurrent().AutomationId);
+            MbUnit.Framework.Assert.AreEqual(expectedClassName, gottenElement.GetCurrent().ClassName);
             
-            Xunit.Assert.Equal(expectedControlType, gottenElement.Current.ControlType);
-            Xunit.Assert.Equal(expectedName, gottenElement.Current.Name);
-            Xunit.Assert.Equal(expectedAutomationId, gottenElement.Current.AutomationId);
-            Xunit.Assert.Equal(expectedClassName, gottenElement.Current.ClassName);
+            Xunit.Assert.Equal(expectedControlType, gottenElement.GetCurrent().ControlType);
+            Xunit.Assert.Equal(expectedName, gottenElement.GetCurrent().Name);
+            Xunit.Assert.Equal(expectedAutomationId, gottenElement.GetCurrent().AutomationId);
+            Xunit.Assert.Equal(expectedClassName, gottenElement.GetCurrent().ClassName);
         }
         
         [Test]// [Fact]

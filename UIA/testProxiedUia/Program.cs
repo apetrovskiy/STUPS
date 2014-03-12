@@ -41,9 +41,13 @@ namespace testProxiedUia
             IUiElement proxiedtypedRootElement =
                 proxiedRootElement as IUiElement;
             
-            Console.WriteLine(proxiedtypedRootElement.Current.Name);
-            Console.WriteLine(proxiedtypedRootElement.Current.AutomationId);
-            Console.WriteLine(proxiedtypedRootElement.Current.ClassName);
+            // 20140312
+//            Console.WriteLine(proxiedtypedRootElement.Current.Name);
+//            Console.WriteLine(proxiedtypedRootElement.Current.AutomationId);
+//            Console.WriteLine(proxiedtypedRootElement.Current.ClassName);
+            Console.WriteLine(proxiedtypedRootElement.GetCurrent().Name);
+            Console.WriteLine(proxiedtypedRootElement.GetCurrent().AutomationId);
+            Console.WriteLine(proxiedtypedRootElement.GetCurrent().ClassName);
             
             var originalElement =
                 proxiedtypedRootElement.GetSourceElement();

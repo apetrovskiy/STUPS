@@ -57,7 +57,9 @@ namespace UIAutomation.Commands
                 
                 UiaHelper.GetSheridanTreeItemByName(
                     this, 
-                    (IntPtr)inputObject.Current.NativeWindowHandle,
+                    // 20140312
+                    // (IntPtr)inputObject.Current.NativeWindowHandle,
+                    (IntPtr)inputObject.GetCurrent().NativeWindowHandle,
                     Name);
                 
             }

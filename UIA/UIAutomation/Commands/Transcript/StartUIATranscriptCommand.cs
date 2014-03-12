@@ -388,10 +388,15 @@ namespace UIAutomation.Commands
             IUiElement element2)
         {
             string result = String.Empty;
-            if (element != null && (int)element.Current.ProcessId > 0 && 
-                element2 != null && (int)element2.Current.ProcessId > 0) {
-                element.Current.ControlType.ProgrammaticName.Substring(
-                    element2.Current.ControlType.ProgrammaticName.IndexOf('.') + 1);
+            // 20140312
+//            if (element != null && (int)element.Current.ProcessId > 0 && 
+//                element2 != null && (int)element2.Current.ProcessId > 0) {
+//                element.Current.ControlType.ProgrammaticName.Substring(
+//                    element2.Current.ControlType.ProgrammaticName.IndexOf('.') + 1);
+            if (element != null && (int)element.GetCurrent().ProcessId > 0 && 
+                element2 != null && (int)element2.GetCurrent().ProcessId > 0) {
+                element.GetCurrent().ControlType.ProgrammaticName.Substring(
+                    element2.GetCurrent().ControlType.ProgrammaticName.IndexOf('.') + 1);
             }
             return result;
         }

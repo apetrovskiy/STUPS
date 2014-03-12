@@ -44,7 +44,6 @@ namespace UIAutomation
         
         public override List<IUiElement> SearchForElements(SearcherTemplateData searchData)
         {
-            
             // 20140208
             if (Preferences.CacheRequestCalled && null != CurrentData.CacheRequest) {
                 try {
@@ -53,7 +52,6 @@ namespace UIAutomation
                     ClonedCacheRequest = null;
                 }
                 catch (Exception eeeee) {
-                    
 //Console.WriteLine("failed to stop the cache request");
 //Console.WriteLine(eeeee.Message);
                 }
@@ -311,10 +309,15 @@ namespace UIAutomation
                         true);
                     
                 try {
+                    
                     if (null != windowCollectionByProperties && 0 < windowCollectionByProperties.Count) {
                         
-                        foreach (IUiElement aeWndByTitle in windowCollectionByProperties.Cast<IUiElement>()
-                                 .Where(aeWndByTitle => aeWndByTitle != null && (int)aeWndByTitle.Current.ProcessId > 0))
+                        // 20140312
+                        // foreach (IUiElement aeWndByTitle in windowCollectionByProperties.Cast<IUiElement>()
+                        foreach (IUiElement aeWndByTitle in windowCollectionByProperties
+                            // 20140312
+                                 // .Where(aeWndByTitle => aeWndByTitle != null && (int)aeWndByTitle.Current.ProcessId > 0))
+                            .Where(aeWndByTitle => aeWndByTitle != null && (int)aeWndByTitle.GetCurrent().ProcessId > 0))
                         {
                             resultCollection.Add(aeWndByTitle);
                         }
@@ -333,7 +336,9 @@ namespace UIAutomation
                                 UiElement.FromHandle(wndHandle);
                         }
                         
-                        if (null == tempElement || (int) tempElement.Current.ProcessId <= 0) continue;
+                        // 20140312
+                        // if (null == tempElement || (int) tempElement.Current.ProcessId <= 0) continue;
+                        if (null == tempElement || (int) tempElement.GetCurrent().ProcessId <= 0) continue;
                         
                         resultCollection.Add(tempElement);
                     }
@@ -608,9 +613,13 @@ namespace UIAutomation
                         
                         query = inputList
                             .Where<IUiElement>(
-                                item => (wildcardName.IsMatch(item.Current.Name) &&
-                                         wildcardAutomationId.IsMatch(item.Current.AutomationId) &&
-                                         wildcardClass.IsMatch(item.Current.ClassName) &&
+                                // 20140312
+//                                item => (wildcardName.IsMatch(item.Current.Name) &&
+//                                         wildcardAutomationId.IsMatch(item.Current.AutomationId) &&
+//                                         wildcardClass.IsMatch(item.Current.ClassName) &&
+                                item => (wildcardName.IsMatch(item.GetCurrent().Name) &&
+                                         wildcardAutomationId.IsMatch(item.GetCurrent().AutomationId) &&
+                                         wildcardClass.IsMatch(item.GetCurrent().ClassName) &&
                                          // check whether a control has or hasn't ValuePattern
                                          (item.GetSupportedPatterns().AsQueryable<IBasePattern>().Any(pattern => null != pattern && null != (pattern as IValuePattern)) ?
                                           item.CompareElementValueAndValueParameter(data.Value, true, wildcardValue, regexOptions) :
@@ -624,9 +633,13 @@ namespace UIAutomation
                         
                         query = inputList
                             .Where<IUiElement>(
-                                item => (Regex.IsMatch(item.Current.Name, data.Name, regexOptions) &&
-                                         Regex.IsMatch(item.Current.AutomationId, data.AutomationId, regexOptions) &&
-                                         Regex.IsMatch(item.Current.ClassName, data.Class, regexOptions) &&
+                                // 20140312
+//                                item => (Regex.IsMatch(item.Current.Name, data.Name, regexOptions) &&
+//                                         Regex.IsMatch(item.Current.AutomationId, data.AutomationId, regexOptions) &&
+//                                         Regex.IsMatch(item.Current.ClassName, data.Class, regexOptions) &&
+                                item => (Regex.IsMatch(item.GetCurrent().Name, data.Name, regexOptions) &&
+                                         Regex.IsMatch(item.GetCurrent().AutomationId, data.AutomationId, regexOptions) &&
+                                         Regex.IsMatch(item.GetCurrent().ClassName, data.Class, regexOptions) &&
                                          // check whether a control has or hasn't ValuePattern
                                          (item.GetSupportedPatterns().AsQueryable<IBasePattern>().Any(p => null != p && null != (p as IValuePattern)) ?
                                           item.CompareElementValueAndValueParameter(data.Value, false, null, regexOptions) :
@@ -641,20 +654,29 @@ namespace UIAutomation
                 } else {
                     
                     if (viaWildcardOrRegex) {
+                            
                         query = inputList
                             .Where<IUiElement>(
-                                item => (wildcardName.IsMatch(item.Current.Name) &&
-                                         wildcardAutomationId.IsMatch(item.Current.AutomationId) &&
-                                         wildcardClass.IsMatch(item.Current.ClassName)
+                                // 20140312
+//                                item => (wildcardName.IsMatch(item.Current.Name) &&
+//                                         wildcardAutomationId.IsMatch(item.Current.AutomationId) &&
+//                                         wildcardClass.IsMatch(item.Current.ClassName)
+                                item => (wildcardName.IsMatch(item.GetCurrent().Name) &&
+                                         wildcardAutomationId.IsMatch(item.GetCurrent().AutomationId) &&
+                                         wildcardClass.IsMatch(item.GetCurrent().ClassName)
                                         )
                                )
                             .ToList<IUiElement>();
                     } else {
                         query = inputList
                             .Where<IUiElement>(
-                                item => (Regex.IsMatch(item.Current.Name, data.Name, regexOptions) &&
-                                         Regex.IsMatch(item.Current.AutomationId, data.AutomationId, regexOptions) &&
-                                         Regex.IsMatch(item.Current.ClassName, data.Class, regexOptions)
+                                // 20140312
+//                                item => (Regex.IsMatch(item.Current.Name, data.Name, regexOptions) &&
+//                                         Regex.IsMatch(item.Current.AutomationId, data.AutomationId, regexOptions) &&
+//                                         Regex.IsMatch(item.Current.ClassName, data.Class, regexOptions)
+                                item => (Regex.IsMatch(item.GetCurrent().Name, data.Name, regexOptions) &&
+                                         Regex.IsMatch(item.GetCurrent().AutomationId, data.AutomationId, regexOptions) &&
+                                         Regex.IsMatch(item.GetCurrent().ClassName, data.Class, regexOptions)
                                         )
                                )
                             .ToList<IUiElement>();

@@ -28,7 +28,9 @@ namespace UIAutomation.Commands
             try {
             WriteObject(
                     "[UIAutomation.CurrentData]::CurrentWindow.Current.Name = " +
-                    CurrentData.CurrentWindow.Current.Name);
+                    // 20140312
+                    // CurrentData.CurrentWindow.Current.Name);
+                    CurrentData.CurrentWindow.GetCurrent().Name);
             }
             catch {}
             WriteObject("[UIAutomation.CurrentData]::Error = " + 

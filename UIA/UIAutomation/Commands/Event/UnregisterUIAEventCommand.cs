@@ -74,7 +74,9 @@ namespace UIAutomation.Commands
                     try {
                         
                         if (inputObject != null &&
-                            inputObject.Current.ProcessId > 0 &&
+                            // 20140312
+                            // inputObject.Current.ProcessId > 0 &&
+                            inputObject.GetCurrent().ProcessId > 0 &&
                             EventHandler != null) {
                             
                             UiaAutomation.RemoveAutomationEventHandler(

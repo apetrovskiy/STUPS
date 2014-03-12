@@ -49,9 +49,13 @@ namespace UIAutomation
             
             var queryByBigFour = from collectionItem
                 in list
-                where wildcardName.IsMatch(collectionItem.Current.Name) &&
-                      wildcardAutomationId.IsMatch(collectionItem.Current.AutomationId) &&
-                      wildcardClassName.IsMatch(collectionItem.Current.ClassName) &&
+                // 20140312
+//                where wildcardName.IsMatch(collectionItem.Current.Name) &&
+//                      wildcardAutomationId.IsMatch(collectionItem.Current.AutomationId) &&
+//                      wildcardClassName.IsMatch(collectionItem.Current.ClassName) &&
+                    where wildcardName.IsMatch(collectionItem.GetCurrent().Name) &&
+                wildcardAutomationId.IsMatch(collectionItem.GetCurrent().AutomationId) &&
+                wildcardClassName.IsMatch(collectionItem.GetCurrent().ClassName) &&
                       // 20131209
                       // (collectionItem.GetSupportedPatterns().Contains(classic.ValuePattern.Pattern) ?
                       (collectionItem.GetSupportedPatterns().AsQueryable<IBasePattern>().Any<IBasePattern>(p => p is IValuePattern) ?

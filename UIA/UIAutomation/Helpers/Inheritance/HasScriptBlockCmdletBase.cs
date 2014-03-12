@@ -76,9 +76,12 @@ namespace UIAutomation
                 
                 result =
                     AutomationFactory.GetUiElement(classic.AutomationElement.FromHandle(hWnd));
-                WriteVerbose(this, 
-                             "the active window element is " + 
-                             result.Current.Name);
+                WriteVerbose(
+                    this,
+                    "the active window element is " +
+                    // 20140312
+                    // result.Current.Name);
+                    result.GetCurrent().Name);
             } catch (Exception e) {
                 WriteVerbose(this, e.Message);
             }

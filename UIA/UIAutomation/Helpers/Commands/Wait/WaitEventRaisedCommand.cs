@@ -44,21 +44,27 @@ cmdlet.WriteTrace(cmdlet, "if (CurrentData.LastEventInfoAdded)");
 
                     try {
 cmdlet.WriteTrace(cmdlet, "name 1");
-                        name = CurrentData.LastEventSource.Cached.Name;
+                        // 20140312
+                        // name = CurrentData.LastEventSource.Cached.Name;
+                        name = (CurrentData.LastEventSource as ISupportsCached).Cached.Name;
 cmdlet.WriteTrace(cmdlet, "name 2");
                     }
                     catch {}
 
                     try {
 cmdlet.WriteTrace(cmdlet, "auId 1");
-                        automationId = CurrentData.LastEventSource.Cached.AutomationId;
+                        // 20140312
+                        // automationId = CurrentData.LastEventSource.Cached.AutomationId;
+                        automationId = (CurrentData.LastEventSource as ISupportsCached).Cached.AutomationId;
 cmdlet.WriteTrace(cmdlet, "auId 2");
                     }
                     catch {}
                     
                     try {
 cmdlet.WriteTrace(cmdlet, "type 1");
-                        controlType = CurrentData.LastEventSource.Cached.ControlType.ProgrammaticName;
+                        // 20140312
+                        // controlType = CurrentData.LastEventSource.Cached.ControlType.ProgrammaticName;
+                        controlType = (CurrentData.LastEventSource as ISupportsCached).Cached.ControlType.ProgrammaticName;
 cmdlet.WriteTrace(cmdlet, "type 2");
                         controlType = controlType.Substring(12);
 cmdlet.WriteTrace(cmdlet, "type 3");

@@ -399,8 +399,10 @@ namespace UIAutomation
 					return _elementHolderNet.GetClickablePoint();
 			}
 		}
-
-		public virtual IUiElementInformation Cached {
+        
+		// 20140312
+		// public virtual IUiElementInformation Cached {
+		internal virtual IUiElementInformation Cached {
 			get {
 				switch (_innerElementType) {
 					case InnerElementTypes.AutomationElementNet:
@@ -408,14 +410,18 @@ namespace UIAutomation
 //			        case /InnerElementTypes.AutomationElementCom:
 //			            //
 					case InnerElementTypes.UiElement:
-						return _elementHolderAdapter.Cached;
+                        // 20140312
+						// return _elementHolderAdapter.Cached;
+                        return (_elementHolderAdapter as ISupportsCached).Cached;
 					default:
 						return AutomationFactory.GetUiElementInformation(_elementHolderNet.Cached);
 				}
 			}
 		}
-
-		public virtual IUiElementInformation Current {
+        
+        // 20140312
+		// public virtual IUiElementInformation Current {
+        internal virtual IUiElementInformation Current {
 			get {
 				switch (_innerElementType) {
 					case InnerElementTypes.AutomationElementNet:
@@ -423,14 +429,18 @@ namespace UIAutomation
 //		            case InnerElementTypes.AutomationElementCom:
 //		                //
 					case InnerElementTypes.UiElement:
-						return Preferences.FromCache ? _elementHolderAdapter.Cached : _elementHolderAdapter.Current;
+                        // 20140312
+						// return Preferences.FromCache ? _elementHolderAdapter.Cached : _elementHolderAdapter.Current;
+                        return Preferences.FromCache ? (_elementHolderAdapter as ISupportsCached).Cached : (_elementHolderAdapter as ISupportsCurrent).Current;
 					default:
 						return AutomationFactory.GetUiElementInformation(Preferences.FromCache ? _elementHolderNet.Cached : _elementHolderNet.Current);
 				}
 			}
 		}
-
-		public virtual IUiElement CachedParent {
+        
+		// 20140312
+		// public virtual IUiElement CachedParent {
+		internal virtual IUiElement CachedParent {
 			get {
 				switch (_innerElementType) {
 					case InnerElementTypes.AutomationElementNet:
@@ -438,14 +448,18 @@ namespace UIAutomation
 //			        case InnerElementTypes.AutomationElementCom:
 //			            //
 					case InnerElementTypes.UiElement:
-						return _elementHolderAdapter.CachedParent;
+                        // 20140312
+						// return _elementHolderAdapter.CachedParent;
+                        return (_elementHolderAdapter as ISupportsCached).CachedParent;
 					default:
 						return AutomationFactory.GetUiElement(_elementHolderNet.CachedParent);
 				}
 			}
 		}
-
-		public virtual IUiEltCollection CachedChildren {
+        
+		// 20140312
+		// public virtual IUiEltCollection CachedChildren {
+		internal virtual IUiEltCollection CachedChildren {
 			get {
 				switch (_innerElementType) {
 					case InnerElementTypes.AutomationElementNet:
@@ -453,7 +467,9 @@ namespace UIAutomation
 //			        case /InnerElementTypes.AutomationElementCom:
 //			            //
 					case InnerElementTypes.UiElement:
-						return _elementHolderAdapter.CachedChildren;
+                        // 20140312
+						// return _elementHolderAdapter.CachedChildren;
+                        return (_elementHolderAdapter as ISupportsCached).CachedChildren;
 					default:
 						return AutomationFactory.GetUiEltCollection(_elementHolderNet.CachedChildren);
 				}

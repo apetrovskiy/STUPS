@@ -1087,8 +1087,14 @@
     <Compile Include="..\UIAutomation\Helpers\UserSettings\Profile.cs">
       <Link>Helpers\UserSettings\Profile.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Interface\Element\ISupportsCached.cs">
+      <Link>Interface\Element\ISupportsCached.cs</Link>
+    </Compile>
     <Compile Include="..\UIAutomation\Interface\Element\ISupportsConversion.cs">
       <Link>Interface\Element\ISupportsConversion.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomation\Interface\Element\ISupportsCurrent.cs">
+      <Link>Interface\Element\ISupportsCurrent.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomation\Interface\Element\ISupportsDockPattern.cs">
       <Link>Interface\Element\ISupportsDockPattern.cs</Link>

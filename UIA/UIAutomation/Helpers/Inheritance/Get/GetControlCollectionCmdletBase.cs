@@ -293,7 +293,9 @@ namespace UIAutomation
                 controlType.Length > 0 && 
                 ElementOfPossibleControlType(
                     controlType,
-                    element.Current.ControlType.ProgrammaticName)) ||
+                    // 20140312
+                    // element.Current.ControlType.ProgrammaticName)) ||
+                    element.GetCurrent().ControlType.ProgrammaticName)) ||
                 (controlType == null) ||
                 (controlType.Length == 0)) {
 
@@ -325,21 +327,33 @@ namespace UIAutomation
                 bool matched = false;
                 
                 if (FromCache && CurrentData.CacheRequest != null) {
-                    if (name.Length > 0 && wildcardName.IsMatch(element.Cached.Name)) {
+                    // 20140312
+                    // if (name.Length > 0 && wildcardName.IsMatch(element.Cached.Name)) {
+                    if (name.Length > 0 && wildcardName.IsMatch((element as ISupportsCached).Cached.Name)) {
                         matched = true;
                     } else if (automationId.Length > 0 &&
-					                          wildcardAutomationId.IsMatch(element.Cached.AutomationId)) {
+                        // 20140312
+					                          // wildcardAutomationId.IsMatch(element.Cached.AutomationId)) {
+                        wildcardAutomationId.IsMatch((element as ISupportsCached).Cached.AutomationId)) {
 						matched = true;
 					} else
-						matched |= className.Length > 0 && wildcardClass.IsMatch(element.Cached.ClassName);
+                        // 20140312
+						// matched |= className.Length > 0 && wildcardClass.IsMatch(element.Cached.ClassName);
+                        matched |= className.Length > 0 && wildcardClass.IsMatch((element as ISupportsCached).Cached.ClassName);
                 } else {
-                    if (name.Length > 0 && wildcardName.IsMatch(element.Current.Name)) {
+                    // 20140312
+                    // if (name.Length > 0 && wildcardName.IsMatch(element.Current.Name)) {
+                    if (name.Length > 0 && wildcardName.IsMatch(element.GetCurrent().Name)) {
                         matched = true;
                     } else if (automationId.Length > 0 &&
-					                          wildcardAutomationId.IsMatch(element.Current.AutomationId)) {
+                        // 20140312
+					                          // wildcardAutomationId.IsMatch(element.Current.AutomationId)) {
+                        wildcardAutomationId.IsMatch(element.GetCurrent().AutomationId)) {
 						matched = true;
 					} else
-						matched |= className.Length > 0 && wildcardClass.IsMatch(element.Current.ClassName);
+                        // 20140312
+						// matched |= className.Length > 0 && wildcardClass.IsMatch(element.Current.ClassName);
+                        matched |= className.Length > 0 && wildcardClass.IsMatch(element.GetCurrent().ClassName);
                 }
                 
                 if (matched) {

@@ -260,51 +260,17 @@ namespace UIAutomation
             Hashtable[] searchCriteria,
             classic.Condition conditions)
         {
-            // 20140304
-//            var listOfColllectedResults =
-//                new List<IUiElement>();
-            
-            // if (conditions == null) return listOfColllectedResults;
             if (conditions == null) return new List<IUiElement>();
             
-            // if (inputObject == null || (int) inputObject.Current.ProcessId <= 0) return listOfColllectedResults;
-            // 20140312
-            // if (inputObject == null || (int) inputObject.Current.ProcessId <= 0) return new List<IUiElement>();
             if (inputObject == null || (int) inputObject.GetCurrent().ProcessId <= 0) return new List<IUiElement>();
             
             IUiEltCollection tempCollection = inputObject.FindAll(classic.TreeScope.Descendants, conditions);
             
-            // 20140304
             if (null == searchCriteria || 0 == searchCriteria.Length) {
                 return tempCollection.ToArray().ToList<IUiElement>();
             }
             
             return tempCollection.ToArray().Where(element => TestControlWithAllSearchCriteria(searchCriteria, element)).ToList<IUiElement>();
-            
-            /*
-            foreach (IUiElement tempElement in tempCollection) {
-                
-                if (null == searchCriteria || 0 == searchCriteria.Length) {
-                    
-                    listOfColllectedResults.Add(tempElement);
-                    
-                } else {
-                    
-                    if (!TestControlWithAllSearchCriteria(searchCriteria, tempElement)) continue;
-                    
-                    listOfColllectedResults.Add(tempElement);
-                }
-            }
-            */
-            
-            // 20140304
-//            if (null != tempCollection) {
-//                // 20140121
-//                // tempCollection.Dispose(); // taboo?
-//                tempCollection = null;
-//            }
-//            
-//            return listOfColllectedResults;
         }
         
         internal static List<IUiElement> SearchByWildcardOrRegexViaUia(
@@ -517,21 +483,8 @@ namespace UIAutomation
                 // 20140302
                 // controlTypeNames.Select(controlTypeName => new PropertyCondition(AutomationElement.ControlTypeProperty, UiaHelper.GetControlTypeByTypeName(controlTypeName))).ToList();
                 controlTypeNames.Select(controlTypeName => new classic.PropertyCondition(classic.AutomationElement.ControlTypeProperty, UiaHelper.GetControlTypeByTypeName(controlTypeName))).ToList<classic.PropertyCondition>();
-
-            // return 1 == controlTypeCollection.Count ? controlTypeCollection[0] : GetOrCondition(controlTypeCollection);
             
-            // 20140218
-			// return 1 == controlTypeCollection.Count ? controlTypeCollection[0] : GetOrCondition(controlTypeCollection);
-            
-			// 20140302
 			return 1 == controlTypeCollection.Count ? (classic.Condition)controlTypeCollection[0] : (classic.Condition)GetOrCondition(controlTypeCollection);
-            /*
-            if (1 == controlTypeCollection.Count) {
-                return controlTypeCollection[0];
-            } else {
-                return GetOrCondition(controlTypeCollection);
-            }
-            */
         }
         
         internal static classic.Condition GetTextSearchCondition(string searchString, string[] controlTypeNames, bool caseSensitive1)

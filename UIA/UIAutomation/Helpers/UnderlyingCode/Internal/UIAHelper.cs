@@ -2701,7 +2701,6 @@ namespace UIAutomation
         public static Type[] GetSupportedInterfaces<T>(T element)
         {
             // always offered patterns
-            // List<Type> supportedTypes = new List<Type>
             var supportedTypes = new List<Type>
             {
                 typeof (ISupportsHighlighter),
@@ -2714,7 +2713,6 @@ namespace UIAutomation
                 supportedTypes.Add(typeof(ISupportsExtendedModel));
             }
             
-            // 20140312
             if (Preferences.UseElementsCached) {
                 supportedTypes.Add(typeof(ISupportsCached));
             }
@@ -2723,7 +2721,7 @@ namespace UIAutomation
             }
             
             if (element is classic.AutomationElement) {
-                // AutomationElement aElement = element as AutomationElement;
+                
                 var aElement = element as classic.AutomationElement;
                 foreach (classic.AutomationPattern pattern in aElement.GetSupportedPatterns()) {
                     // calculated patterns
@@ -2783,7 +2781,7 @@ namespace UIAutomation
                 }
             }
             if (element is IUiElement) {
-                // IUiElement uiElement = element as IUiElement;
+                
                 var uiElement = element as IUiElement;
                 foreach (IBasePattern pattern in uiElement.GetSupportedPatterns()) {
                     

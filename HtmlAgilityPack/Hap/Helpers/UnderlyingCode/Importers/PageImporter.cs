@@ -41,6 +41,7 @@ namespace Hap
                 AutoDetectEncoding = false,
                 OverrideEncoding = Encoding.UTF8
             };
+            
             htmlDoc = web.Load(url);
             return htmlDoc.DocumentNode;
         }

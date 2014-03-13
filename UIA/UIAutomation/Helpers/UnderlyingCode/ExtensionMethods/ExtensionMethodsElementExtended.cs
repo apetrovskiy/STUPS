@@ -45,47 +45,17 @@ namespace UIAutomation
                 
                 var controlSearcher =
                     AutomationFactory.GetSearcherImpl<ControlSearcher>();
-                /*
-                var result = controlSearcher.GetElements(
-                    controlSearcherData,
-                    // Preferences.Timeout);
-                    holder.Seconds);
                 
-                var result2 = AutomationFactory.GetUiEltCollection(result);
-                
-                return result2;
-                */
                 return AutomationFactory.GetUiEltCollection(
                     controlSearcher.GetElements(
                         controlSearcherData,
                         holder.Seconds));
                 
-                /*
-                return controlSearcher.GetElements(
-                    controlSearcherData,
-                    0) as IUiEltCollection;
-                */
             } catch (Exception) {
                 return new UiEltCollection(true);
-                // throw;
             }
-            // 20140209
-            /*
-            try {
-                return (holder as UiExtendedModelHolder).GetParentElement()
-                    .FindAll(
-                        holder.GetScope(),
-                        new PropertyCondition(
-                            AutomationElement.ControlTypeProperty,
-                            controlType));
-            } catch (Exception) {
-                return new UiEltCollection(true);
-                // throw;
-            }
-            */
         }
         
-        // 20140127
         internal static IUiEltCollection PerformFindAll(this IExtendedModelHolder holder)
         {
             try {
@@ -124,10 +94,7 @@ namespace UIAutomation
         {
             var cmdlet =
                 new HasControlInputCmdletBase();
-            /*
-            HasControlInputCmdletBase cmdlet =
-                new HasControlInputCmdletBase();
-            */
+            
             cmdlet.ClickControl(
                 cmdlet,
                 holder.GetParentElement(),
@@ -330,11 +297,7 @@ namespace UIAutomation
         {
             element.SetFocus();
             
-            // inputSimulator.Mouse.MoveMouseTo(
             InputSimulator.Mouse.MoveMouseTo(
-                // 20140312
-//                (element.Current.BoundingRectangle.X + Preferences.ClickOnControlByCoordX) / Screen.PrimaryScreen.Bounds.Width * 65535,
-//                (element.Current.BoundingRectangle.Y + Preferences.ClickOnControlByCoordY) / Screen.PrimaryScreen.Bounds.Height * 65535);
                 (element.GetCurrent().BoundingRectangle.X + Preferences.ClickOnControlByCoordX) / Screen.PrimaryScreen.Bounds.Width * 65535,
                 (element.GetCurrent().BoundingRectangle.Y + Preferences.ClickOnControlByCoordY) / Screen.PrimaryScreen.Bounds.Height * 65535);
         }
@@ -445,7 +408,6 @@ namespace UIAutomation
         }
         #endregion IMouseInputHolder
         #region ITouchInputHolder
-        // internal static ITouchInputHolder GetT(this ITouchInputHolder holder)
         internal static string GetT(this ITouchInputHolder holder)
         {
             return "t"; // holder;

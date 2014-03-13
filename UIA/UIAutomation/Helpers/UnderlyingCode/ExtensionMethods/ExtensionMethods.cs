@@ -36,9 +36,6 @@ namespace UIAutomation
                 new List<IBasePattern>();
             foreach (classic.AutomationPattern pattern in patterns) {
                 
-                // resultList.Add(AutomationFactory.GetPatternAdapter<IBasePattern>(element, pattern));
-                // 20131210
-                // switch (pattern.ProgrammaticName.Substring(12)) {
                 try {
                     switch (pattern.ProgrammaticName.Replace("Identifiers.Pattern", string.Empty)) {
                         case "DockPattern":
@@ -119,180 +116,7 @@ namespace UIAutomation
                 
                 const WildcardOptions options = WildcardOptions.IgnoreCase |
                                                 WildcardOptions.Compiled;
-                // 20140312
-//                switch (key) {
-//                    case "ACCELERATORKEY":
-//                        if ( !(new WildcardPattern(
-//                            keyValue,
-//                            options).IsMatch(element.Current.AcceleratorKey))) {
-//                                return result;
-//                        }
-//                        break;
-//                    case "ACCESSKEY":
-//                        if ( !(new WildcardPattern(
-//                            keyValue,
-//                            options).IsMatch(element.Current.AccessKey))) {
-//                                return result;
-//                        }
-//                        break;
-//                    case "AUTOMATIONID":
-//                        if ( !(new WildcardPattern(
-//                            keyValue,
-//                            options).IsMatch(element.Current.AutomationId))) {
-//                                return result;
-//                        }
-//                        break;
-//                    case "CLASS":
-//                    case "CLASSNAME":
-//                        if ( !(new WildcardPattern(
-//                            keyValue,
-//                            options).IsMatch(element.Current.ClassName))) {
-//                                return result;
-//                        }
-//                        break;
-//                    case "CONTROLTYPE":
-//                        if ( !(new WildcardPattern(
-//                            keyValue,
-//                            options).IsMatch(element.Current.ControlType.ProgrammaticName.Substring(12)))) {
-//                                return result;
-//                        }
-//                        break;
-//                    case "FRAMEWORKID":
-//                        if ( !(new WildcardPattern(
-//                            keyValue,
-//                            options).IsMatch(element.Current.FrameworkId))) {
-//                                return result;
-//                        }
-//                        break;
-//                    case "HASKEYBOARDFOCUS":
-//                        if ( !(new WildcardPattern(
-//                            keyValue,
-//                            options).IsMatch(element.Current.HasKeyboardFocus.ToString()))) {
-//                                return result;
-//                        }
-//                        break;
-//                    case "HELPTEXT":
-//                        if ( !(new WildcardPattern(
-//                            keyValue,
-//                            options).IsMatch(element.Current.HelpText))) {
-//                                return result;
-//                        }
-//                        break;
-//                    case "ISCONTENTELEMENT":
-//                        if ( !(new WildcardPattern(
-//                            keyValue,
-//                            options).IsMatch(element.Current.IsContentElement.ToString()))) {
-//                                return result;
-//                        }
-//                        break;
-//                    case "ISCONTROLELEMENT":
-//                        if ( !(new WildcardPattern(
-//                            keyValue,
-//                            options).IsMatch(element.Current.IsControlElement.ToString()))) {
-//                                return result;
-//                        }
-//                        break;
-//                    case "ISENABLED":
-//                        if ( !(new WildcardPattern(
-//                            keyValue,
-//                            options).IsMatch(element.Current.IsEnabled.ToString()))) {
-//                                return result;
-//                        }
-//                        break;
-//                    case "ISKEYBOARDFOCUSABLE":
-//                        if ( !(new WildcardPattern(
-//                            keyValue,
-//                            options).IsMatch(element.Current.IsKeyboardFocusable.ToString()))) {
-//                                return result;
-//                        }
-//                        break;
-//                    case "ISOFFSCREEN":
-//                        if ( !(new WildcardPattern(
-//                            keyValue,
-//                            options).IsMatch(element.Current.IsOffscreen.ToString()))) {
-//                                return result;
-//                        }
-//                        break;
-//                    case "ISPASSWORD":
-//                        if ( !(new WildcardPattern(
-//                            keyValue,
-//                            options).IsMatch(element.Current.IsPassword.ToString()))) {
-//                                return result;
-//                        }
-//                        break;
-//                    case "ISREQUIREDFORFORM":
-//                        if ( !(new WildcardPattern(
-//                            keyValue,
-//                            options).IsMatch(element.Current.IsRequiredForForm.ToString()))) {
-//                                return result;
-//                        }
-//                        break;
-//                    case "ITEMSTATUS":
-//                        if ( !(new WildcardPattern(
-//                            keyValue,
-//                            options).IsMatch(element.Current.ItemStatus))) {
-//                                return result;
-//                        }
-//                        break;
-//                    case "ITEMTYPE":
-//                        if ( !(new WildcardPattern(
-//                            keyValue,
-//                            options).IsMatch(element.Current.ItemType))) {
-//                                return result;
-//                        }
-//                        break;
-//                    case "LABELEDBY":
-//                        if ( !(new WildcardPattern(
-//                            keyValue,
-//                            options).IsMatch(element.Current.LabeledBy.Current.Name))) {
-//                                return result;
-//                        }
-//                        break;
-//                    case "LOCALIZEDCONTROLTYPE":
-//                        if ( !(new WildcardPattern(
-//                            keyValue,
-//                            options).IsMatch(element.Current.LocalizedControlType))) {
-//                                return result;
-//                        }
-//                        break;
-//                    case "NAME":
-//                        if ( !(new WildcardPattern(
-//                            keyValue,
-//                            options).IsMatch(element.Current.Name))) {
-//                                return result;
-//                        }
-//                        break;
-//                    case "NATIVEWINDOWHANDLE":
-//                        if ( !(new WildcardPattern(
-//                            keyValue,
-//                            options).IsMatch(element.Current.NativeWindowHandle.ToString()))) {
-//                                return result;
-//                        }
-//                        break;
-//                    case "ORIENTATION":
-//                        if ( !(new WildcardPattern(
-//                            keyValue,
-//                            options).IsMatch(element.Current.Orientation.ToString()))) {
-//                                return result;
-//                        }
-//                        break;
-//                    case "PROCESSID":
-//                        if ( !(new WildcardPattern(
-//                            keyValue,
-//                            options).IsMatch(element.Current.ProcessId.ToString()))) {
-//                                return result;
-//                        }
-//                        break;
-//                    default:
-//                        (new CommonCmdletBase()).WriteError(
-//                            // this,
-//                            new CommonCmdletBase(),
-//                            "Wrong AutomationElement parameter is provided: " + key,
-//                            "WrongParameter",
-//                            ErrorCategory.InvalidArgument,
-//                            true);
-//                        break;
-//                }
+                
                 switch (key) {
                     case "ACCELERATORKEY":
                         if ( !(new WildcardPattern(
@@ -472,12 +296,6 @@ namespace UIAutomation
             return result;
         }
         
-//        internal static IUiEltCollection GetOnlyNewElements(this AutomationElementCollection nativeCollection, IEnumerable<IUiElement> excludeElements)
-//        {
-//            return nativeCollection.Cast<IEnumerable<AutomationElement>>()
-//                .Except(excludeElements.Select<IUiElement, AutomationElement>(elt => elt.GetSourceElement()));
-//        }
-        
         internal static string[] ConvertControlTypeToStringArray(this classic.ControlType[] controlTypes)
         {
             if (null == controlTypes || 0 == controlTypes.Length) return new string[] {};
@@ -546,10 +364,5 @@ namespace UIAutomation
                 SearchCriteria = data.SearchCriteria
             };
         }
-        
-//        public static void PerformLog(this NLog.Logger logger, string message)
-//        {
-//            logger.Info(message);
-//        }
     }
 }

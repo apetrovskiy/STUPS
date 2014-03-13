@@ -18,7 +18,7 @@ namespace Hap
     /// <summary>
     /// Description of FromHtnlNodeToCsvConverter.
     /// </summary>
-    public class FromHtnlNodeToCsvConverter : ConverterTemplate
+    public class FromHtmlNodeToCsvConverter : ConverterTemplate
     {
 //        public override IEnumerable<Hashtable> Convert<HtmlNode, Hashtable>(HtmlNode sourceElement)
 //        {

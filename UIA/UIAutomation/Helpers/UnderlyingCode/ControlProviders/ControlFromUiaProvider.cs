@@ -12,11 +12,8 @@ namespace UIAutomation
     extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
     using System;
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
-//    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
-//    using System.Management.Automation;
-//    using PSTestLib;
     
     /// <summary>
     /// Description of ControlFromUiaProvider.

@@ -34,9 +34,6 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         [TearDown]
         public void TearDown()
         {
-            // 20140312
-//            Preferences.UseElementsCached = false;
-//            Preferences.UseElementsCurrent = false;
         }
         
 //        [Test][Fact]

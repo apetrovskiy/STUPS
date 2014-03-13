@@ -28,20 +28,11 @@ namespace UIAutomation
 		
 		public classic.Condition ControlViewCondition
 		{
-		    // get { return new NotCondition(new PropertyCondition(AutomationElement.IsControlElementProperty, false)); }
 		    get { return classic.Automation.ControlViewCondition; }
 		}
 		
 		public classic.Condition ContentViewCondition
 		{
-//		    get { return new NotCondition(
-//		              new OrCondition(
-//		                  new Condition[] {
-//		                      new PropertyCondition(AutomationElement.IsControlElementProperty, false),
-//		                      new PropertyCondition(AutomationElement.IsContentElementProperty, false)
-//		                                  }
-//		                              )
-//		              ); }
 		    get { return classic.Automation.ContentViewCondition; }
 		}
 		

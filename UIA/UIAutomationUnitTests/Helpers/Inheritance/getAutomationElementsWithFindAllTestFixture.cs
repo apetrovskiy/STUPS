@@ -9,10 +9,7 @@
 
 namespace UIAutomationUnitTests.Helpers.Inheritance
 {
-    // using System;
-    // using System.Collections;
     using System.Collections.Generic;
-    // using System.Collections.ObjectModel;
     using System.Windows.Automation;
     using UIAutomation;
     using MbUnit.Framework;using Xunit;

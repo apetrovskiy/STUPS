@@ -25,7 +25,7 @@ namespace Hap.Helpers.Commands.Convert
         public override void Execute()
         {
             var cmdlet = (ConvertFromHapTableCommand)this.Cmdlet;
-            var converter = new FromHtnlNodeToCsvConverter();
+            var converter = new FromHtmlNodeToCsvConverter();
             cmdlet.WriteObject(converter.Convert<HtmlNode, SmartString>(cmdlet.InputObject));
         }
     }

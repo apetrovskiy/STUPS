@@ -35,7 +35,7 @@ namespace UIAutomation
                     AlreadySelected = true;
                     
                     if (Preferences.Log) {
-                        // LogMethodCall(invocation);
+                        
                         AutomationFactory.GetObject<LogHelper>().LogMethodCall(
                             invocation.Method.Name,
                             invocation.Arguments);
@@ -952,61 +952,5 @@ namespace UIAutomation
                 AlreadySelected = false;
             }
         }
-
-//        private void LogMethodCall(IInvocation invocation)
-//        {
-//            string methodName = invocation.Method.Name;
-//            
-//            if (string.IsNullOrEmpty(methodName)) return;
-//            
-//            var excludeList = new List<string> {
-//                "get_Current",
-//                "get_Cached",
-//                "GetSourceElement",
-//                "SetSourceElement",
-//                "FindAll",
-//                "FindFirst",
-//                "GetSupportedPatterns",
-//                "GetCurrentPattern",
-//                "Equals",
-//                "GetPatternPropertyValue",
-//                "get_CachedChildren",
-//                "get_CachedParent",
-//                "get_Control",
-//                "get_Descendants",
-//                "get_Children",
-//                "get_Mouse",
-//                "get_Keyboard",
-//                "OnStartHook",
-//                "BeforeSearchHook",
-//                // "SearchForElements(UIAutomation.WindowSearcherData)
-//                "SearchForElements",
-//                "AfterSearchHook",
-//                "OnFailureHook",
-//                "OnSuccessHook"
-//            };
-//            
-//            if (!excludeList.Contains(methodName)) {
-//            
-//                if (methodName.Contains("get_")) {
-//                    methodName = methodName.Replace("get_", string.Empty);
-//                } else if (methodName.Contains("set_")) {
-//                    methodName = methodName.Replace("set_", string.Empty);
-//                } else {
-//                    methodName += "(";
-//                    foreach (var argument in invocation.Arguments) {
-//                        methodName += argument.ToString();
-//                        methodName += ",";
-//                    }
-//                    if (!string.IsNullOrEmpty(methodName) && methodName.Substring(methodName.Length - 1) == ",") {
-//                        methodName = methodName.Substring(0, methodName.Length - 1);
-//                    }
-//                    methodName += ")";
-//                }
-//                if (!string.IsNullOrEmpty(methodName)) {
-//                    AutomationFactory.GetLogHelper(string.Empty).Info(methodName);
-//                }
-//            }
-//        }
     }
 }

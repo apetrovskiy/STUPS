@@ -43,7 +43,6 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
             // Arrange
             UIAutomation.Preferences.UseElementsPatternObjectModel = false;
-            // 20130313
             UIAutomation.Preferences.UseElementsCached = false;
             UIAutomation.Preferences.UseElementsCurrent = false;
             

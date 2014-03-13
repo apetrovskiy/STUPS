@@ -18,9 +18,6 @@ namespace UIAutomation
     using System.Linq;
     using System.Management.Automation;
     using System.Text.RegularExpressions;
-//    using PSTestLib;
-//    
-//    using System.Data; // ?
     
     /// <summary>
     /// Description of WindowSeatcher.
@@ -312,11 +309,7 @@ namespace UIAutomation
                     
                     if (null != windowCollectionByProperties && 0 < windowCollectionByProperties.Count) {
                         
-                        // 20140312
-                        // foreach (IUiElement aeWndByTitle in windowCollectionByProperties.Cast<IUiElement>()
                         foreach (IUiElement aeWndByTitle in windowCollectionByProperties
-                            // 20140312
-                                 // .Where(aeWndByTitle => aeWndByTitle != null && (int)aeWndByTitle.Current.ProcessId > 0))
                             .Where(aeWndByTitle => aeWndByTitle != null && (int)aeWndByTitle.GetCurrent().ProcessId > 0))
                         {
                             resultCollection.Add(aeWndByTitle);
@@ -336,8 +329,6 @@ namespace UIAutomation
                                 UiElement.FromHandle(wndHandle);
                         }
                         
-                        // 20140312
-                        // if (null == tempElement || (int) tempElement.Current.ProcessId <= 0) continue;
                         if (null == tempElement || (int) tempElement.GetCurrent().ProcessId <= 0) continue;
                         
                         resultCollection.Add(tempElement);
@@ -380,10 +371,6 @@ namespace UIAutomation
             
             var elementsByProcessId =
                 new List<IUiElement>();
-            /*
-            List<IUiElement> elementsByProcessId =
-                new List<IUiElement>();
-            */
             
             if ((null != data.Name && 0 < data.Name.Count()) ||
                 !string.IsNullOrEmpty(data.AutomationId) ||
@@ -393,7 +380,6 @@ namespace UIAutomation
             }
             
             var conditionWindowPaneMenu =
-            // OrCondition conditionWindowPaneMenu =
                 new classic.OrCondition(
                     new classic.PropertyCondition(
                         classic.AutomationElement.ControlTypeProperty,
@@ -407,7 +393,6 @@ namespace UIAutomation
             
             foreach (int processId in data.ProcessIds) {
                 
-                // AndCondition conditionsProcessId = null;
                 conditionsForRecurseSearch =
                     new classic.AndCondition(
                         new classic.PropertyCondition(
@@ -417,7 +402,6 @@ namespace UIAutomation
                             classic.AutomationElement.ControlTypeProperty,
                             classic.ControlType.Window));
                     
-                // conditionsProcessId =
                 var conditionsProcessId =
                     new classic.AndCondition(
                         new classic.PropertyCondition(
@@ -601,7 +585,6 @@ namespace UIAutomation
                 new WildcardPattern(data.Value, options);
             
             var inputList = inputCollection.Cast<IUiElement>().ToList();
-            // List<IUiElement> inputList = inputCollection.Cast<IUiElement>().ToList();
             
             try {
                 
@@ -613,10 +596,6 @@ namespace UIAutomation
                         
                         query = inputList
                             .Where<IUiElement>(
-                                // 20140312
-//                                item => (wildcardName.IsMatch(item.Current.Name) &&
-//                                         wildcardAutomationId.IsMatch(item.Current.AutomationId) &&
-//                                         wildcardClass.IsMatch(item.Current.ClassName) &&
                                 item => (wildcardName.IsMatch(item.GetCurrent().Name) &&
                                          wildcardAutomationId.IsMatch(item.GetCurrent().AutomationId) &&
                                          wildcardClass.IsMatch(item.GetCurrent().ClassName) &&
@@ -633,10 +612,6 @@ namespace UIAutomation
                         
                         query = inputList
                             .Where<IUiElement>(
-                                // 20140312
-//                                item => (Regex.IsMatch(item.Current.Name, data.Name, regexOptions) &&
-//                                         Regex.IsMatch(item.Current.AutomationId, data.AutomationId, regexOptions) &&
-//                                         Regex.IsMatch(item.Current.ClassName, data.Class, regexOptions) &&
                                 item => (Regex.IsMatch(item.GetCurrent().Name, data.Name, regexOptions) &&
                                          Regex.IsMatch(item.GetCurrent().AutomationId, data.AutomationId, regexOptions) &&
                                          Regex.IsMatch(item.GetCurrent().ClassName, data.Class, regexOptions) &&
@@ -657,10 +632,6 @@ namespace UIAutomation
                             
                         query = inputList
                             .Where<IUiElement>(
-                                // 20140312
-//                                item => (wildcardName.IsMatch(item.Current.Name) &&
-//                                         wildcardAutomationId.IsMatch(item.Current.AutomationId) &&
-//                                         wildcardClass.IsMatch(item.Current.ClassName)
                                 item => (wildcardName.IsMatch(item.GetCurrent().Name) &&
                                          wildcardAutomationId.IsMatch(item.GetCurrent().AutomationId) &&
                                          wildcardClass.IsMatch(item.GetCurrent().ClassName)
@@ -670,10 +641,6 @@ namespace UIAutomation
                     } else {
                         query = inputList
                             .Where<IUiElement>(
-                                // 20140312
-//                                item => (Regex.IsMatch(item.Current.Name, data.Name, regexOptions) &&
-//                                         Regex.IsMatch(item.Current.AutomationId, data.AutomationId, regexOptions) &&
-//                                         Regex.IsMatch(item.Current.ClassName, data.Class, regexOptions)
                                 item => (Regex.IsMatch(item.GetCurrent().Name, data.Name, regexOptions) &&
                                          Regex.IsMatch(item.GetCurrent().AutomationId, data.AutomationId, regexOptions) &&
                                          Regex.IsMatch(item.GetCurrent().ClassName, data.Class, regexOptions)

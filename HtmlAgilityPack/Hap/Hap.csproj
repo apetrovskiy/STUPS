@@ -68,14 +68,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\Convert\ConvertFromHapHtmlPageCommand.cs" />
     <Compile Include="Commands\Convert\ConvertFromHapTableCommand.cs" />
     <Compile Include="Commands\Import\ImportHapHtmlPageCommand.cs" />
+    <Compile Include="Helpers\Commands\Convert\ConvertFromHtmlPageCommand.cs" />
     <Compile Include="Helpers\Commands\Convert\ConvertFromTableCommand.cs" />
     <Compile Include="Helpers\Commands\HapCommand.cs" />
     <Compile Include="Helpers\Commands\Import\ImportHtmlPageCommand.cs" />
     <Compile Include="Helpers\Inheritance\CommonCmdletBase.cs" />
     <Compile Include="Helpers\UnderlyingCode\Converters\ConverterTemplate.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Converters\FromHtnlNodeToCsvConverter.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Converters\FromHtmlNodeToCsvConverter.cs" />
     <Compile Include="Helpers\UnderlyingCode\Converters\SmartString.cs" />
     <Compile Include="Helpers\UnderlyingCode\Importers\PageImporter.cs" />
     <Compile Include="Helpers\UnderlyingCode\Importers\PageImporterData.cs" />

@@ -32,8 +32,6 @@ namespace UIAutomation
 		    get { return _collectionHolder[index]; }
 		}
 		public virtual IUiEltCollection this[string infoString]
-		// public virtual IEnumerable<IUiElement> this[string infoString]
-		// public virtual IUiElement[] this[string infoString]
         {
             get
             {
@@ -48,26 +46,14 @@ namespace UIAutomation
                     
                     var wildcardInfoString = 
                         new WildcardPattern(infoString, options);
-                    /*
-                    WildcardPattern wildcardInfoString = 
-                        new WildcardPattern(infoString, options);
-                    */
                     
                     var queryByStringData = from collectionItem
                         in this._collectionHolder //.ToArray()
-                        // 20140312
-//                        where wildcardInfoString.IsMatch(collectionItem.Current.Name) ||
-//                              wildcardInfoString.IsMatch(collectionItem.Current.AutomationId) ||
-//                              wildcardInfoString.IsMatch(collectionItem.Current.ClassName)
                             where wildcardInfoString.IsMatch(collectionItem.GetCurrent().Name) ||
                         wildcardInfoString.IsMatch(collectionItem.GetCurrent().AutomationId) ||
                         wildcardInfoString.IsMatch(collectionItem.GetCurrent().ClassName)
-//                        where collectionItem.Current.Name == infoString ||
-//                              collectionItem.Current.AutomationId == infoString ||
-//                              collectionItem.Current.ClassName == info
                         select collectionItem;
                     
-                    // return AutomationFactory.GetUiEltCollection(queryByStringData).ToArray();
                     return AutomationFactory.GetUiEltCollection(queryByStringData);
                 }
                 catch {

@@ -97,8 +97,8 @@
     <Compile Include="..\Hap\Helpers\UnderlyingCode\Converters\ConverterTemplate.cs">
       <Link>Helpers\UnderlyingCode\Converters\ConverterTemplate.cs</Link>
     </Compile>
-    <Compile Include="..\Hap\Helpers\UnderlyingCode\Converters\FromHtnlNodeToCsvConverter.cs">
-      <Link>Helpers\UnderlyingCode\Converters\FromHtnlNodeToCsvConverter.cs</Link>
+    <Compile Include="..\Hap\Helpers\UnderlyingCode\Converters\FromHtmlNodeToCsvConverter.cs">
+      <Link>Helpers\UnderlyingCode\Converters\FromHtmlNodeToCsvConverter.cs</Link>
     </Compile>
     <Compile Include="..\Hap\Helpers\UnderlyingCode\Converters\SmartString.cs">
       <Link>Helpers\UnderlyingCode\Converters\SmartString.cs</Link>

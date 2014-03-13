@@ -18,9 +18,6 @@ namespace UIAutomation
 	using System.Windows;
 	using System.Linq;
 	
-//	using System.Collections;
-//	using System.Collections.Generic;
-	
 //	using Ninject.Extensions.ChildKernel;
     
 	/// <summary>
@@ -51,7 +48,7 @@ namespace UIAutomation
 		}
 
 		//[Inject]
-		//public UiElement(::AutomationElement element)
+		//public UiElement(viacom.AutomationElement element)
 		//{
 		//	this._elementHolderCom = element;
 		//}
@@ -400,8 +397,6 @@ namespace UIAutomation
 			}
 		}
         
-		// 20140312
-		// public virtual IUiElementInformation Cached {
 		internal virtual IUiElementInformation Cached {
 			get {
 				switch (_innerElementType) {
@@ -420,8 +415,6 @@ namespace UIAutomation
 			}
 		}
         
-        // 20140312
-		// public virtual IUiElementInformation Current {
         internal virtual IUiElementInformation Current {
 			get {
 				switch (_innerElementType) {
@@ -440,8 +433,6 @@ namespace UIAutomation
 			}
 		}
         
-		// 20140312
-		// public virtual IUiElement CachedParent {
 		internal virtual IUiElement CachedParent {
 			get {
 				switch (_innerElementType) {
@@ -460,8 +451,6 @@ namespace UIAutomation
 			}
 		}
         
-		// 20140312
-		// public virtual IUiEltCollection CachedChildren {
 		internal virtual IUiEltCollection CachedChildren {
 			get {
 				switch (_innerElementType) {
@@ -480,14 +469,10 @@ namespace UIAutomation
 			}
 		}
 		
-		
-		
-		
         #region Cached
         public virtual IUiElementInformation GetCached()
         {
             try {
-                // return AutomationFactory.GetUiElementInformation(((classic.AutomationElement)(this as UiElement).GetSourceElement()).Cached);
                 return Cached;
             } catch (Exception) {
                 return null;
@@ -498,8 +483,6 @@ namespace UIAutomation
         public virtual IUiElement GetCachedParent()
         {
             try {
-                // return (element as ISupportsCached).CachedParent;
-                // return AutomationFactory.GetUiElement(((classic.AutomationElement)(this as UiElement).GetSourceElement()).CachedParent);
                 return CachedParent;
             } catch (Exception) {
                 return null;
@@ -510,8 +493,6 @@ namespace UIAutomation
         public virtual IUiEltCollection GetCachedChildren()
         {
             try {
-                // return (element as ISupportsCached).CachedChildren;
-                // return AutomationFactory.GetUiEltCollection(((classic.AutomationElement)(this as UiElement).GetSourceElement()).CachedChildren);
                 return CachedChildren;
             } catch (Exception) {
                 return null;
@@ -523,7 +504,6 @@ namespace UIAutomation
         public virtual IUiElementInformation GetCurrent()
         {
             try {
-                // return AutomationFactory.GetUiElementInformation(((classic.AutomationElement)(this as UiElement).GetSourceElement()).Current);
                 return Current;
             } catch (Exception) {
                 return null;
@@ -532,8 +512,6 @@ namespace UIAutomation
         }
         #endregion Current
 		
-		
-
 		// static methods and properties
 		public static readonly object NotSupported = classic.AutomationElementIdentifiers.NotSupported;
 		public static readonly classic.AutomationProperty IsControlElementProperty = classic.AutomationElementIdentifiers.IsControlElementProperty;
@@ -648,22 +626,7 @@ namespace UIAutomation
 					return AutomationFactory.GetUiElement(classic.AutomationElement.FromHandle(controlHandle));
 			}
 		}
-
-//		public virtual AutomationElement GetSourceElement()
-//		{
-//			return _elementHolderNet;
-//		}
-		
-//		public virtual T GetSourceElement<T>()
-//		{
-//		    if (T is AutomationElement) {
-//		        return _elementHolderNet;
-//		    }
-//		    if (T is IUiElement) {
-//		        return _elementHolderAdapter;
-//		    }
-//		}
-		
+        
 		public virtual object GetSourceElement()
 		{
 		    if (null != _elementHolderNet) {
@@ -688,8 +651,6 @@ namespace UIAutomation
 			}
 		}
         
-		// 20130104
-		// public virtual string Tag { get; set; }
 		internal virtual string Tag { get; set; }
 		public virtual string GetTag()
 		{
@@ -706,45 +667,6 @@ namespace UIAutomation
 		{
 		    return this.GetIsValid();
 		}
-//		{
-//		    get { return this.GetIsValid(); }
-//		}
-		
-		// 20140110
-//		public string Info
-//		{
-//		    get { return this.GetInfo(); }
-//		}
-        
-//		public string this[int index]
-//        {
-//            get { return this.GetInfo(); }
-//        }
-//		public IUiElement this[string info]
-//        {
-//            get
-//            {
-//                // return (GetDay(day));
-//                if (string.IsNullOrEmpty(info)) return null;
-//                
-//                try {
-//                    if (null == this.Current) return null;
-//                    
-//                    // TODO: wildcard support
-//                    if (this.Current.Name == info ||
-//                        this.Current.AutomationId == info ||
-//                        this.Current.ClassName == info) {
-//                        
-//                        return this;
-//                    }
-//                }
-//                catch {
-//                    return null;
-//                }
-//                
-//                return null;
-//            }
-//        }
 		
 		public virtual void Dispose()
 		// public void Dispose()

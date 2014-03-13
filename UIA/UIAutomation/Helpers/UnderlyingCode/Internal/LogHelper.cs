@@ -225,7 +225,11 @@ namespace UIAutomation
                 "SearchForElements",
                 "AfterSearchHook",
                 "OnFailureHook",
-                "OnSuccessHook"
+                "OnSuccessHook",
+                "GetCurrent",
+                "GetCached",
+                "GetCachedChildren",
+                "GetCachedParent"
             };
             
             if (!excludeList.Contains(methodName)) {

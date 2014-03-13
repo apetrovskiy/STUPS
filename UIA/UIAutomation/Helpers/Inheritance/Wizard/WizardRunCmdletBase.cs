@@ -72,7 +72,6 @@ namespace UIAutomation
         #endregion Parameters
         
         internal List<Dictionary<string, object>> ParametersDictionaries { get; set; }
-        // 20130322
         internal List<Dictionary<string, object>> DirectionsDictionaries { get; set; }
         
         protected internal void RunWizardInAutomaticMode(WizardRunCmdletBase cmdlet, Wizard wizard)
@@ -82,35 +81,13 @@ namespace UIAutomation
             
             string previousStepName = string.Empty;
             
-            // 20140207
-            // while (cmdlet.RunWizardGetWindowScriptBlocks(cmdlet, wizard, null)) {
             while (cmdlet.RunWizardGetWindowScriptBlocks(wizard, null)) {
                 
-                // 20131109
-                //if (null != (CurrentData.CurrentWindow as AutomationElement)) {
                 if (null != CurrentData.CurrentWindow) {
-                /*
-                if (null != (CurrentData.CurrentWindow as IUiElement)) {
-                */
-                    // 20140312
-//                    cmdlet.WriteVerbose(
-//                        cmdlet,
-//                        "the window: name = '" +
-//                        CurrentData.CurrentWindow.Current.Name +
-//                        "', automationId = '" +
-//                        CurrentData.CurrentWindow.Current.AutomationId +
-//                        "', class = '" +
-//                        CurrentData.CurrentWindow.Current.ClassName +
-//                        "', processId = " +
-//                        CurrentData.CurrentWindow.Current.ProcessId.ToString() +
-//                        ".");
                     
                     cmdlet.WriteInfo(cmdlet, "Getting the active step");
                     
                     // selector of steps' unique controls
-                    // 20140207
-                    // WizardStep currentStep =
-                    //     wizard.GetActiveStep();
                     WizardStep currentStep = null;
                     try {
                         currentStep = wizard.GetActiveStep();
@@ -216,8 +193,6 @@ namespace UIAutomation
         // 20130329
         // running the StopAction script after timeout expired
         
-        // 20130712
-        //internal void InterruptOnTimeoutExpiration(WizardRunCmdletBase cmdlet, Wizard wizard)
         internal bool InterruptOnTimeoutExpiration(WizardRunCmdletBase cmdlet, Wizard wizard)
         {
             // 20130712
@@ -225,15 +200,11 @@ namespace UIAutomation
             
             DateTime nowDate = DateTime.Now;
             if (!((nowDate - cmdlet.StartDate).TotalSeconds > Preferences.Timeout/1000)) return interrupt;
-            /*
-            if (!((nowDate - cmdlet.StartDate).TotalSeconds > (Preferences.Timeout/1000))) return interrupt;
-            */
+            
             cmdlet.WriteVerbose(
                 cmdlet,
                 "Timout expired. Running the StopAction scriptblock");
-                
-            // 20130819
-            // cmdlet.RunWizardStopScriptBlocks(cmdlet, wizard, wizard.StopActionParameters);
+            
             cmdlet.RunWizardStopScriptBlocks(cmdlet, wizard, wizard.StopActionParameters, false);
                 
             cmdlet.WriteVerbose(
@@ -242,61 +213,16 @@ namespace UIAutomation
                 
             if (Quiet) {
                 cmdlet.WriteObject(cmdlet, false);
-                // 20130712
-                //return;
                 return interrupt;
             } else {
                 cmdlet.WriteError(cmdlet, "Timeout expired", "TimeoutExpired", ErrorCategory.OperationTimeout, true);
             }
-                
-            // 20130712
+            
             interrupt = true;
-
-            /*
-            if ((nowDate - cmdlet.StartDate).TotalSeconds > (Preferences.Timeout / 1000)) {
-                
-                cmdlet.WriteVerbose(
-                    cmdlet,
-                    "Timout expired. Running the StopAction scriptblock");
-                
-                // 20130819
-                // cmdlet.RunWizardStopScriptBlocks(cmdlet, wizard, wizard.StopActionParameters);
-                cmdlet.RunWizardStopScriptBlocks(cmdlet, wizard, wizard.StopActionParameters, false);
-                
-                cmdlet.WriteVerbose(
-                    cmdlet,
-                    "outputting the wizard");
-                
-                if (this.Quiet) {
-                    cmdlet.WriteObject(cmdlet, false);
-                    // 20130712
-                    //return;
-                    return interrupt;
-                } else {
-                    cmdlet.WriteError(cmdlet, "Timeout expired", "TimeoutExpired", ErrorCategory.OperationTimeout, true);
-                }
-                
-                // 20130712
-                interrupt = true;
-            }
-            */
-
-            // 20130712
+            
             return interrupt;
         }
-
-        // 20130325
-
-
-        // 20130329
-
-
-        // 20130318
-        //cmdlet.RunWizardStepScriptBlocks(cmdlet, currentStep, cmdlet.ForwardDirection);
-        // 20130321
-        //cmdlet.ForwardDirection,
-        // 20130321
-        //cmdlet.ForwardDirection ? currentStep.StepForwardActionParameters : currentStep.StepBackwardActionParameters);
+        
         internal void RunCurrentStepParameters(WizardRunCmdletBase cmdlet, Wizard wizard, WizardStep currentStep, object[] currentParameters)
         {
             // 20130606
@@ -321,41 +247,8 @@ namespace UIAutomation
                 cmdlet.RunWizardStepScriptBlocks(cmdlet, currentStep, currentStep.ToDo, currentParameters);
                 cmdlet.WriteInfo(cmdlet, "Forward, Backward or Cancel scriptblocks have finished");
             }
-            /*
-            if (WizardStepActions.Stop == currentStep.ToDo) {
-                
-                cmdlet.WriteInfo(cmdlet, "running scriptblocks from the StopAction scriptblock set");
-                // 20130819
-                // cmdlet.RunWizardStopScriptBlocks(cmdlet, wizard, currentParameters);
-                cmdlet.RunWizardStopScriptBlocks(cmdlet, wizard, currentParameters, true);
-                // 20130508
-                // temporary
-                // profiling
-                //cmdlet.WriteVerbose(cmdlet, "StopAction has finished, exiting...");
-                cmdlet.WriteInfo(cmdlet, "StopAction has finished, exiting...");
-                return;
-            } else {
-                // 20130508
-                cmdlet.WriteInfo(cmdlet, "running scriptblocks for step '" + currentStep.Name + "', " + currentStep.ToDo.ToString());
-                cmdlet.RunWizardStepScriptBlocks(cmdlet, currentStep, currentStep.ToDo, currentParameters);
-                cmdlet.WriteInfo(cmdlet, "Forward, Backward or Cancel scriptblocks have finished");
-            }
-            */
         }
-
-        // 20130322
-        // // 20130321
-        //if (wizard.ForwardDirection) {
-        //    currentParameters = currentStep.StepForwardActionParameters;
-        //} else {
-        //    currentParameters = currentStep.StepBackwardActionParameters;
-        //}
-
-        // if the step has its own direction
-        //    currentParameters = currentStep.Parent.StopActionp; // ??
-        // 20130325
-        //currentParameters = currentStep.StepForwardActionParameters;
-        //break;
+        
         internal object[] GetStepParameters(Wizard wizard, WizardStep currentStep)
         {
             object[] currentParameters = null;

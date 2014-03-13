@@ -7,11 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-// namespace UIAutomationTest.Commands.Select
 namespace UIAutomationUnitTests.Helpers.Inheritance
 {
-    // using System;
-    // using System.Diagnostics;
     using MbUnit.Framework;// using Xunit;//using MbUnit.Framework;// using Xunit; // using MbUnit.Framework;// using Xunit;
     using System.Windows.Automation;
     using UIAutomation;
@@ -66,7 +63,6 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [SetUp]
         public void PrepareRunspace()
         {
-// // MiddleLevelCode.PrepareRunspace();
         }
         
         [Test]// [Fact] //[Test(Description="TBD")]

@@ -26,21 +26,15 @@ namespace UIAutomationUnitTests
         {
             UnitTestingHelper.PrepareUnitTestDataStore();
             InitForPowerShell();
-            // AutomationFactory.InitUnitTests();
-            // UIAutomation.Preferences.UseElementsPatternObjectModel = true;
-            // UIAutomation.Preferences.UseElementsSearchObjectModel = true;
         }
         
         public static void InitForPowerShell()
         {
-            // UnitTestingHelper.PrepareUnitTestDataStore();
             AutomationFactory.InitUnitTests();
             UIAutomation.Preferences.UseElementsPatternObjectModel = true;
             UIAutomation.Preferences.UseElementsSearchObjectModel = true;
-            // 20140312
             Preferences.UseElementsCurrent = true;
             Preferences.UseElementsCached = false;
-            // Preferences.UseElementsCached = true;
         }
         
         public static void Reset()
@@ -291,8 +285,6 @@ namespace UIAutomationUnitTests
         
         public static IFakeUiElement GetAutomationElementExpected(ControlType controlType, string name, string automationId, string className, string txtValue, int handle)
         {
-            // temporary
-            
             return GetAutomationElementExpected(
                 new ElementData {
                     Current_ControlType = controlType,
@@ -303,47 +295,6 @@ namespace UIAutomationUnitTests
                     Current_ProcessId = 333,
                     Current_NativeWindowHandle = handle
                 });
-           
-//           
-//           var elt = GetAutomationElementExpected(
-//                new ElementData {
-//                    Current_ControlType = controlType,
-//                    Current_Name = name,
-//                    Current_AutomationId = automationId,
-//                    Current_ClassName = className,
-//                    Current_Value = txtValue,
-//                    Current_ProcessId = 333,
-//                    Current_NativeWindowHandle = handle
-//                });
-//           
-//if (null == elt) {
-//    Console.WriteLine("GetAutomationElementExpected: null == elt");
-//} else {
-//    Console.WriteLine("GetAutomationElementExpected: null != elt");
-//    Console.WriteLine(elt.GetType().Name);
-//    if (null == (elt as ISupportsCurrent).Current) {
-//        Console.WriteLine("null == (elt as ISupportsCurrent).Current");
-//    } else {
-//        Console.WriteLine("null != (elt as ISupportsCurrent).Current");
-//        if (!string.IsNullOrEmpty(name)) {
-//            if (null == (elt as ISupportsCurrent).Current.Name) {
-//                Console.WriteLine("null == (elt as ISupportsCurrent).Current.Name");
-//            }
-//        }
-//        if (!string.IsNullOrEmpty(automationId)) {
-//            if (null == (elt as ISupportsCurrent).Current.AutomationId) {
-//                Console.WriteLine("null == (elt as ISupportsCurrent).Current.AutomationId");
-//            }
-//        }
-//        if (!string.IsNullOrEmpty(className)) {
-//            if (null == (elt as ISupportsCurrent).Current.ClassName) {
-//                Console.WriteLine("null == (elt as ISupportsCurrent).Current.ClassName");
-//            }
-//        }
-//    }
-//}
-//           
-//           return elt;
         }
         
         public static IFakeUiElement GetAutomationElementExpected(ElementData data)
@@ -362,8 +313,6 @@ namespace UIAutomationUnitTests
         
         public static  IFakeUiElement GetAutomationElementNotExpected(ControlType controlType, string name, string automationId, string className, string txtValue, int handle)
         {
-            // temporary
-            
             return GetAutomationElementNotExpected(
                 new ElementData {
                     Current_ControlType = controlType,
@@ -374,46 +323,6 @@ namespace UIAutomationUnitTests
                     Current_ProcessId = 333,
                     Current_NativeWindowHandle = handle
                 });
-            
-//           var elt = GetAutomationElementNotExpected(
-//                new ElementData {
-//                    Current_ControlType = controlType,
-//                    Current_Name = name,
-//                    Current_AutomationId = automationId,
-//                    Current_ClassName = className,
-//                    Current_Value = txtValue,
-//                    Current_ProcessId = 333,
-//                    Current_NativeWindowHandle = handle
-//                });
-//           
-//if (null == elt) {
-//    Console.WriteLine("GetAutomationElementNotExpected: null == elt");
-//} else {
-//    Console.WriteLine("GetAutomationElementNotExpected: null != elt");
-//    Console.WriteLine(elt.GetType().Name);
-//    if (null == (elt as ISupportsCurrent).Current) {
-//        Console.WriteLine("null == (elt as ISupportsCurrent).Current");
-//    } else {
-//        Console.WriteLine("null != (elt as ISupportsCurrent).Current");
-//        if (!string.IsNullOrEmpty(name)) {
-//            if (null == (elt as ISupportsCurrent).Current.Name) {
-//                Console.WriteLine("null == (elt as ISupportsCurrent).Current.Name");
-//            }
-//        }
-//        if (!string.IsNullOrEmpty(automationId)) {
-//            if (null == (elt as ISupportsCurrent).Current.AutomationId) {
-//                Console.WriteLine("null == (elt as ISupportsCurrent).Current.AutomationId");
-//            }
-//        }
-//        if (!string.IsNullOrEmpty(className)) {
-//            if (null == (elt as ISupportsCurrent).Current.ClassName) {
-//                Console.WriteLine("null == (elt as ISupportsCurrent).Current.ClassName");
-//            }
-//        }
-//    }
-//}
-//           
-//           return elt;
         }
         
         public static  IFakeUiElement GetAutomationElementNotExpected(ElementData data)
@@ -478,26 +387,8 @@ namespace UIAutomationUnitTests
                 element = Substitute.For<FakeUiElement>();
             }
             
-            // 20140312
 			if (Preferences.UseElementsCurrent) {
 	            var current = Substitute.For<IUiElementInformation>();
-	            
-	            //
-	            // element.GetSourceElement().Returns(AutomationElement.RootElement);
-	            //
-	            // 20140312
-	//            element.Current.ProcessId.Returns(data.Current_ProcessId);
-	//            element.Current.ControlType.Returns(data.Current_ControlType);
-	//            element.Current.Name.Returns(!string.IsNullOrEmpty(data.Current_Name) ? data.Current_Name : string.Empty);
-	//            element.Current.AutomationId.Returns(!string.IsNullOrEmpty(data.Current_AutomationId) ? data.Current_AutomationId : string.Empty);
-	//            element.Current.ClassName.Returns(!string.IsNullOrEmpty(data.Current_ClassName) ? data.Current_ClassName : string.Empty);
-	//            element.Current.NativeWindowHandle.Returns(data.Current_NativeWindowHandle);
-	//            element.GetCurrent().ProcessId.Returns(data.Current_ProcessId);
-	//            element.GetCurrent().ControlType.Returns(data.Current_ControlType);
-	//            element.GetCurrent().Name.Returns(!string.IsNullOrEmpty(data.Current_Name) ? data.Current_Name : string.Empty);
-	//            element.GetCurrent().AutomationId.Returns(!string.IsNullOrEmpty(data.Current_AutomationId) ? data.Current_AutomationId : string.Empty);
-	//            element.GetCurrent().ClassName.Returns(!string.IsNullOrEmpty(data.Current_ClassName) ? data.Current_ClassName : string.Empty);
-	//            element.GetCurrent().NativeWindowHandle.Returns(data.Current_NativeWindowHandle);
 	            current.ProcessId.Returns(data.Current_ProcessId);
 	            current.ControlType.Returns(data.Current_ControlType);
 	            current.Name.Returns(!string.IsNullOrEmpty(data.Current_Name) ? data.Current_Name : string.Empty);
@@ -505,9 +396,6 @@ namespace UIAutomationUnitTests
 	            current.ClassName.Returns(!string.IsNullOrEmpty(data.Current_ClassName) ? data.Current_ClassName : string.Empty);
 	            current.NativeWindowHandle.Returns(data.Current_NativeWindowHandle);
 	            element.GetCurrent().Returns<IUiElementInformation>(current);
-	            
-	            // (element as ISupportsCurrent).Current = current;
-	            // (element as ISupportsCurrent).Current.Returns(current);
 			}
 			
 			if (Preferences.UseElementsCached) {
@@ -547,14 +435,7 @@ namespace UIAutomationUnitTests
             
             element.GetSourceElement().Returns(element);
             
-            // 20140313
             return element;
-            // if (Preferences.UseElementsPatternObjectModel || Preferences.UseElementsSearchObjectModel || Preferences.UseElementsCached || Preferences.UseElementsCurrent) {
-//            if (Preferences.UseElementsPatternObjectModel || Preferences.UseElementsCached || Preferences.UseElementsCurrent) {
-//                return (IFakeUiElement)AutomationFactory.ConvertToProxiedElement<IFakeUiElement>(element);
-//            } else {
-//                return element;
-//            }
         }
         
         private static IUiElement GetAutomationElementForObjectModelTesting(ControlType controlType, string name, string automationId, string className, IBasePattern[] patterns, bool expected)
@@ -568,63 +449,9 @@ namespace UIAutomationUnitTests
                     patterns,
                     expected);
             
-//if (null == fakeElement) {
-//    Console.WriteLine("GetAutomationElementForObjectModelTesting: null == fakeElement");
-//} else {
-//    Console.WriteLine("GetAutomationElementForObjectModelTesting: null != fakeElement");
-//    Console.WriteLine(fakeElement.GetType().Name);
-//    if (null == (fakeElement as ISupportsCurrent).Current) {
-//        Console.WriteLine("null == (fakeElement as ISupportsCurrent).Current");
-//    } else {
-//        Console.WriteLine("null != (fakeElement as ISupportsCurrent).Current");
-//        if (!string.IsNullOrEmpty(name)) {
-//            if (null == (fakeElement as ISupportsCurrent).Current.Name) {
-//                Console.WriteLine("null == (fakeElement as ISupportsCurrent).Current.Name");
-//            }
-//        }
-//        if (!string.IsNullOrEmpty(automationId)) {
-//            if (null == (fakeElement as ISupportsCurrent).Current.AutomationId) {
-//                Console.WriteLine("null == (fakeElement as ISupportsCurrent).Current.AutomationId");
-//            }
-//        }
-//        if (!string.IsNullOrEmpty(className)) {
-//            if (null == (fakeElement as ISupportsCurrent).Current.ClassName) {
-//                Console.WriteLine("null == (fakeElement as ISupportsCurrent).Current.ClassName");
-//            }
-//        }
-//    }
-//}
-            
             var proxiedElement =
                 AutomationFactory.GetUiElement(
                     fakeElement as IUiElement);
-            
-//if (null == proxiedElement) {
-//    Console.WriteLine("GetAutomationElementForObjectModelTesting: null == proxiedElement");
-//} else {
-//    Console.WriteLine("GetAutomationElementForObjectModelTesting: null != proxiedElement");
-//    Console.WriteLine(proxiedElement.GetType().Name);
-//    if (null == (proxiedElement as ISupportsCurrent).Current) {
-//        Console.WriteLine("null == (proxiedElement as ISupportsCurrent).Current");
-//    } else {
-//        Console.WriteLine("null != (proxiedElement as ISupportsCurrent).Current");
-//        if (!string.IsNullOrEmpty(name)) {
-//            if (null == (proxiedElement as ISupportsCurrent).Current.Name) {
-//                Console.WriteLine("null == (proxiedElement as ISupportsCurrent).Current.Name");
-//            }
-//        }
-//        if (!string.IsNullOrEmpty(automationId)) {
-//            if (null == (proxiedElement as ISupportsCurrent).Current.AutomationId) {
-//                Console.WriteLine("null == (proxiedElement as ISupportsCurrent).Current.AutomationId");
-//            }
-//        }
-//        if (!string.IsNullOrEmpty(className)) {
-//            if (null == (proxiedElement as ISupportsCurrent).Current.ClassName) {
-//                Console.WriteLine("null == (proxiedElement as ISupportsCurrent).Current.ClassName");
-//            }
-//        }
-//    }
-//}
             
             return proxiedElement;
         }

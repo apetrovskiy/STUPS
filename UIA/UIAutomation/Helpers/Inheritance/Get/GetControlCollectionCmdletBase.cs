@@ -329,17 +329,20 @@ namespace UIAutomation
                 if (FromCache && CurrentData.CacheRequest != null) {
                     // 20140312
                     // if (name.Length > 0 && wildcardName.IsMatch(element.Cached.Name)) {
-                    if (name.Length > 0 && wildcardName.IsMatch((element as ISupportsCached).Cached.Name)) {
+                    // if (name.Length > 0 && wildcardName.IsMatch((element as ISupportsCached).Cached.Name)) {
+                    if (name.Length > 0 && wildcardName.IsMatch(element.GetCached().Name)) {
                         matched = true;
                     } else if (automationId.Length > 0 &&
                         // 20140312
 					                          // wildcardAutomationId.IsMatch(element.Cached.AutomationId)) {
-                        wildcardAutomationId.IsMatch((element as ISupportsCached).Cached.AutomationId)) {
+                        // wildcardAutomationId.IsMatch((element as ISupportsCached).Cached.AutomationId)) {
+                        wildcardAutomationId.IsMatch(element.GetCached().AutomationId)) {
 						matched = true;
 					} else
                         // 20140312
 						// matched |= className.Length > 0 && wildcardClass.IsMatch(element.Cached.ClassName);
-                        matched |= className.Length > 0 && wildcardClass.IsMatch((element as ISupportsCached).Cached.ClassName);
+                        // matched |= className.Length > 0 && wildcardClass.IsMatch((element as ISupportsCached).Cached.ClassName);
+                        matched |= className.Length > 0 && wildcardClass.IsMatch(element.GetCached().ClassName);
                 } else {
                     // 20140312
                     // if (name.Length > 0 && wildcardName.IsMatch(element.Current.Name)) {

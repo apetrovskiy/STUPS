@@ -86,9 +86,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="..\Hap\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
@@ -105,17 +102,33 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands" />
+    <Folder Include="Commands" />
+    <Folder Include="Commands\Convert" />
+    <Folder Include="Commands\Get" />
     <Folder Include="Commands\Import" />
     <Folder Include="Commands\Get" />
     <Folder Include="Commands\Convert" />
+    <Folder Include="Commands\Import" />
+    <Folder Include="Helpers" />
+    <Folder Include="Helpers\Commands" />
+    <Folder Include="Helpers\Commands\Convert" />
     <Folder Include="Helpers\Commands\Get" />
     <Folder Include="Helpers\Commands\Convert" />
+    <Folder Include="Helpers\Commands\Get" />
+    <Folder Include="Helpers\Commands\Import" />
+    <Folder Include="Helpers\Converters" />
+    <Folder Include="Helpers\Importers" />
     <Folder Include="Helpers\Inheritance" />
     <Folder Include="Helpers\Commands" />
     <Folder Include="Helpers\Commands\Import" />
     <Folder Include="Helpers\Importers" />
     <Folder Include="Helpers" />
     <Folder Include="Helpers\Converters" />
+    <Folder Include="Helpers\Inheritance" />
+    <Folder Include="Properties" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

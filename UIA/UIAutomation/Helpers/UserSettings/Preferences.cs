@@ -398,6 +398,19 @@ namespace UIAutomation
         // 20140312
         public static bool UseElementsCurrent { get; set; }
         public static bool UseElementsCached { get; set; }
+        
+        // 20140313
+        internal static bool UseProxy
+        {
+            get {
+                // if (Preferences.UseElementsCached || Preferences.UseElementsCurrent || Preferences.UseElementsPatternObjectModel || Preferences.UseElementsSearchObjectModel) {
+                if (Preferences.UseElementsCached || Preferences.UseElementsCurrent || Preferences.UseElementsPatternObjectModel) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
     }
     
     public static class Mode

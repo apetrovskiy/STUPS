@@ -523,7 +523,11 @@ namespace UIAutomation
 //    			    adapterElement = Kernel.Get<IUiElement>("AutomationElement.NET", singleElement);
 //    			}
     			
-    			if (Preferences.UseElementsPatternObjectModel) {
+    			// 20140313
+    			// if (Preferences.UseElementsPatternObjectModel) {
+    			// if (Preferences.UseElementsPatternObjectModel || Preferences.UseElementsSearchObjectModel || Preferences.UseElementsCached || Preferences.UseElementsCurrent) {
+    			// if (Preferences.UseElementsPatternObjectModel || Preferences.UseElementsCached || Preferences.UseElementsCurrent) {
+    			if (Preferences.UseProxy) {
     			    
         			IUiElement proxiedTypedUiElement =
         			    ConvertToProxiedElement(
@@ -568,7 +572,11 @@ namespace UIAutomation
 			    // childKernel.Dispose();
 			    // (adapterElement as UiElement).ChildKernel = childKernel;
     			
-    			if (Preferences.UseElementsPatternObjectModel) {
+			    // 20140313
+    			// if (Preferences.UseElementsPatternObjectModel) {
+    			// if (Preferences.UseElementsPatternObjectModel || Preferences.UseElementsSearchObjectModel || Preferences.UseElementsCached || Preferences.UseElementsCurrent) {
+    			// if (Preferences.UseElementsPatternObjectModel || Preferences.UseElementsCached || Preferences.UseElementsCurrent) {
+    			if (Preferences.UseProxy) {
     			    
         			IUiElement proxiedTypedUiElement =
         			    ConvertToProxiedElement(
@@ -605,7 +613,11 @@ namespace UIAutomation
 			    // childKernel.Dispose();
 			    // (adapterElement as UiElement).ChildKernel = childKernel;
     			
-    			if (Preferences.UseElementsPatternObjectModel) {
+			    // 20140313
+    			// if (Preferences.UseElementsPatternObjectModel) {
+    			// if (Preferences.UseElementsPatternObjectModel || Preferences.UseElementsSearchObjectModel || Preferences.UseElementsCached || Preferences.UseElementsCurrent) {
+    			// if (Preferences.UseElementsPatternObjectModel || Preferences.UseElementsCached || Preferences.UseElementsCurrent) {
+    			if (Preferences.UseProxy) {
     			    
         			IUiElement proxiedTypedUiElement =
         			    ConvertToProxiedElement(

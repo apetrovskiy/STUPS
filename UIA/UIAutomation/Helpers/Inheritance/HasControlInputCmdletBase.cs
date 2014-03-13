@@ -776,12 +776,14 @@ try {
                     sourceElement = src as IUiElement;
                     // 20140312
                     // try { elementTitle = sourceElement.Cached.Name; } catch { }
-                    try { elementTitle = (sourceElement as ISupportsCached).Cached.Name; } catch { }
+                    // try { elementTitle = (sourceElement as ISupportsCached).Cached.Name; } catch { }
+                    try { elementTitle = sourceElement.GetCached().Name; } catch { }
                     try {
                         // 20140312
                         elementType =
                             // sourceElement.Cached.ControlType.ProgrammaticName;
-                            (sourceElement as ISupportsCached).Cached.ControlType.ProgrammaticName;
+                            // (sourceElement as ISupportsCached).Cached.ControlType.ProgrammaticName;
+                            sourceElement.GetCached().ControlType.ProgrammaticName;
                     } catch { }
     
                     try {

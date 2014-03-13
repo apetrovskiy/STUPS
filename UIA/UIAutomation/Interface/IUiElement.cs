@@ -50,6 +50,11 @@ namespace UIAutomation
 //		IUiElement CachedParent { get; }
 //		IUiEltCollection CachedChildren { get; }
         
+        IUiElementInformation GetCached();
+        IUiElement GetCachedParent();
+        IUiEltCollection GetCachedChildren();
+        IUiElementInformation GetCurrent();
+        
 		object GetSourceElement();
 		void SetSourceElement<T>(T element);
 		string GetTag();

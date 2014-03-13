@@ -640,7 +640,8 @@ namespace UIAutomationSpy
                     this.pGridElement.SelectedObject =
                         // 20140312
                         // element.Cached;
-                        (element as ISupportsCached).Cached;
+                        // (element as ISupportsCached).Cached;
+                        element.GetCached();
                 }
                 catch {
                     
@@ -1177,7 +1178,8 @@ namespace UIAutomationSpy
                             try {
                                 // 20140312
                                 // elementPID = element.Cached.ProcessId;
-                                elementPID = (element as ISupportsCached).Cached.ProcessId;
+                                // elementPID = (element as ISupportsCached).Cached.ProcessId;
+                                elementPID = element.GetCached().ProcessId;
                             } catch (Exception eUhh) {
                             }
                         }

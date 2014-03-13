@@ -889,9 +889,11 @@ namespace UIAutomation
                                             catch {
                                                 // 20140312
                                                 // if (element.Cached.Name.Length > 0) {
-                                                if ((element as ISupportsCached).Cached.Name.Length > 0) {
+                                                // if ((element as ISupportsCached).Cached.Name.Length > 0) {
+                                                if (element.GetCached().Name.Length > 0) {
                                                     // tempName = element.Cached.Name;
-                                                    tempName = (element as ISupportsCached).Cached.Name;
+                                                    // tempName = (element as ISupportsCached).Cached.Name;
+                                                    tempName = element.GetCached().Name;
                                                 }
                                             }
                                             strElementPatterns +=

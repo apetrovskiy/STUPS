@@ -19,6 +19,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
     /// Description of ControlSearchTestFixture.
     /// </summary>
     [MbUnit.Framework.TestFixture]
+    // [Ignore("20130313")]
     public class ControlSearchTestFixture
     {
         public ControlSearchTestFixture()

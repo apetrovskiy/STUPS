@@ -46,7 +46,8 @@ cmdlet.WriteTrace(cmdlet, "if (CurrentData.LastEventInfoAdded)");
 cmdlet.WriteTrace(cmdlet, "name 1");
                         // 20140312
                         // name = CurrentData.LastEventSource.Cached.Name;
-                        name = (CurrentData.LastEventSource as ISupportsCached).Cached.Name;
+                        // name = (CurrentData.LastEventSource as ISupportsCached).Cached.Name;
+                        name = CurrentData.LastEventSource.GetCached().Name;
 cmdlet.WriteTrace(cmdlet, "name 2");
                     }
                     catch {}
@@ -55,7 +56,8 @@ cmdlet.WriteTrace(cmdlet, "name 2");
 cmdlet.WriteTrace(cmdlet, "auId 1");
                         // 20140312
                         // automationId = CurrentData.LastEventSource.Cached.AutomationId;
-                        automationId = (CurrentData.LastEventSource as ISupportsCached).Cached.AutomationId;
+                        // automationId = (CurrentData.LastEventSource as ISupportsCached).Cached.AutomationId;
+                        automationId = CurrentData.LastEventSource.GetCached().AutomationId;
 cmdlet.WriteTrace(cmdlet, "auId 2");
                     }
                     catch {}
@@ -64,7 +66,8 @@ cmdlet.WriteTrace(cmdlet, "auId 2");
 cmdlet.WriteTrace(cmdlet, "type 1");
                         // 20140312
                         // controlType = CurrentData.LastEventSource.Cached.ControlType.ProgrammaticName;
-                        controlType = (CurrentData.LastEventSource as ISupportsCached).Cached.ControlType.ProgrammaticName;
+                        // controlType = (CurrentData.LastEventSource as ISupportsCached).Cached.ControlType.ProgrammaticName;
+                        controlType = CurrentData.LastEventSource.GetCached().ControlType.ProgrammaticName;
 cmdlet.WriteTrace(cmdlet, "type 2");
                         controlType = controlType.Substring(12);
 cmdlet.WriteTrace(cmdlet, "type 3");

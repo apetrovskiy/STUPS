@@ -412,7 +412,8 @@ namespace UIAutomation
 					case InnerElementTypes.UiElement:
                         // 20140312
 						// return _elementHolderAdapter.Cached;
-                        return (_elementHolderAdapter as ISupportsCached).Cached;
+                        // return (_elementHolderAdapter as ISupportsCached).Cached;
+                        return _elementHolderAdapter.GetCached();
 					default:
 						return AutomationFactory.GetUiElementInformation(_elementHolderNet.Cached);
 				}
@@ -431,7 +432,8 @@ namespace UIAutomation
 					case InnerElementTypes.UiElement:
                         // 20140312
 						// return Preferences.FromCache ? _elementHolderAdapter.Cached : _elementHolderAdapter.Current;
-                        return Preferences.FromCache ? (_elementHolderAdapter as ISupportsCached).Cached : (_elementHolderAdapter as ISupportsCurrent).Current;
+                        // return Preferences.FromCache ? (_elementHolderAdapter as ISupportsCached).Cached : (_elementHolderAdapter as ISupportsCurrent).Current;
+                        return Preferences.FromCache ? _elementHolderAdapter.GetCached() : _elementHolderAdapter.GetCurrent();
 					default:
 						return AutomationFactory.GetUiElementInformation(Preferences.FromCache ? _elementHolderNet.Cached : _elementHolderNet.Current);
 				}
@@ -450,7 +452,8 @@ namespace UIAutomation
 					case InnerElementTypes.UiElement:
                         // 20140312
 						// return _elementHolderAdapter.CachedParent;
-                        return (_elementHolderAdapter as ISupportsCached).CachedParent;
+                        // return (_elementHolderAdapter as ISupportsCached).CachedParent;
+                        return _elementHolderAdapter.GetCachedParent();
 					default:
 						return AutomationFactory.GetUiElement(_elementHolderNet.CachedParent);
 				}
@@ -469,12 +472,67 @@ namespace UIAutomation
 					case InnerElementTypes.UiElement:
                         // 20140312
 						// return _elementHolderAdapter.CachedChildren;
-                        return (_elementHolderAdapter as ISupportsCached).CachedChildren;
+                        // return (_elementHolderAdapter as ISupportsCached).CachedChildren;
+                        return _elementHolderAdapter.GetCachedChildren();
 					default:
 						return AutomationFactory.GetUiEltCollection(_elementHolderNet.CachedChildren);
 				}
 			}
 		}
+		
+		
+		
+		
+        #region Cached
+        public virtual IUiElementInformation GetCached()
+        {
+            try {
+                // return AutomationFactory.GetUiElementInformation(((classic.AutomationElement)(this as UiElement).GetSourceElement()).Cached);
+                return Cached;
+            } catch (Exception) {
+                return null;
+                // throw;
+            }
+        }
+        
+        public virtual IUiElement GetCachedParent()
+        {
+            try {
+                // return (element as ISupportsCached).CachedParent;
+                // return AutomationFactory.GetUiElement(((classic.AutomationElement)(this as UiElement).GetSourceElement()).CachedParent);
+                return CachedParent;
+            } catch (Exception) {
+                return null;
+                // throw;
+            }
+        }
+        
+        public virtual IUiEltCollection GetCachedChildren()
+        {
+            try {
+                // return (element as ISupportsCached).CachedChildren;
+                // return AutomationFactory.GetUiEltCollection(((classic.AutomationElement)(this as UiElement).GetSourceElement()).CachedChildren);
+                return CachedChildren;
+            } catch (Exception) {
+                return null;
+                // throw;
+            }
+        }
+        #endregion Cached
+        #region Current
+        public virtual IUiElementInformation GetCurrent()
+        {
+            try {
+                // return AutomationFactory.GetUiElementInformation(((classic.AutomationElement)(this as UiElement).GetSourceElement()).Current);
+                return Current;
+            } catch (Exception) {
+                return null;
+                // throw;
+            }
+        }
+        #endregion Current
+		
+		
 
 		// static methods and properties
 		public static readonly object NotSupported = classic.AutomationElementIdentifiers.NotSupported;

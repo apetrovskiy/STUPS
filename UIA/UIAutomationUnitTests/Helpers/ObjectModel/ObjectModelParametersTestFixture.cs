@@ -1,4 +1,5 @@
-﻿/*
+﻿using System;
+/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 1/4/2014
@@ -17,6 +18,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
     /// <summary>
     /// Description of ObjectModelParametersTestFixture.
     /// </summary>
+    // [Ignore("20130313")]
     public class ObjectModelParametersTestFixture
     {
         public ObjectModelParametersTestFixture()
@@ -41,6 +43,9 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
             // Arrange
             UIAutomation.Preferences.UseElementsPatternObjectModel = false;
+            // 20130313
+            UIAutomation.Preferences.UseElementsCached = false;
+            UIAutomation.Preferences.UseElementsCurrent = false;
             
             ISupportsInvokePattern invokableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(

@@ -314,7 +314,8 @@ namespace UIAutomation
             } catch {
                 // 20140312
                 // elementControlType = element.Cached.ControlType.ProgrammaticName;
-                elementControlType = (element as ISupportsCached).Cached.ControlType.ProgrammaticName;
+                // elementControlType = (element as ISupportsCached).Cached.ControlType.ProgrammaticName;
+                elementControlType = element.GetCached().ControlType.ProgrammaticName;
             }
             if (string.Empty != elementControlType && 0 < elementControlType.Length) {
                 elementControlType = elementControlType.Substring(elementControlType.IndexOf('.') + 1);
@@ -420,26 +421,32 @@ namespace UIAutomation
                     case "Name":
                         // 20140312
                         // if (!string.IsNullOrEmpty(element.Cached.Name)) {
-                        if (!string.IsNullOrEmpty((element as ISupportsCached).Cached.Name)) {
+                        // if (!string.IsNullOrEmpty((element as ISupportsCached).Cached.Name)) {
+                        if (!string.IsNullOrEmpty(element.GetCached().Name)) {
                             // tempString = element.Cached.Name;
-                            tempString = (element as ISupportsCached).Cached.Name;
+                            // tempString = (element as ISupportsCached).Cached.Name;
+                            tempString = element.GetCached().Name;
                             hasName = true;
                         }
                         break;
                     case "AutomationId":
                         // 20140312
                         // if (!string.IsNullOrEmpty(element.Cached.AutomationId)) {
-                        if (!string.IsNullOrEmpty((element as ISupportsCached).Cached.AutomationId)) {
+                        // if (!string.IsNullOrEmpty((element as ISupportsCached).Cached.AutomationId)) {
+                        if (!string.IsNullOrEmpty(element.GetCached().AutomationId)) {
                             // tempString = element.Cached.AutomationId;
-                            tempString = (element as ISupportsCached).Cached.AutomationId;
+                            // tempString = (element as ISupportsCached).Cached.AutomationId;
+                            tempString = element.GetCached().AutomationId;
                         }
                         break;
                     case "Class":
                         // 20140312
                         // if (!string.IsNullOrEmpty(element.Cached.ClassName)) {
-                        if (!string.IsNullOrEmpty((element as ISupportsCached).Cached.ClassName)) {
+                        // if (!string.IsNullOrEmpty((element as ISupportsCached).Cached.ClassName)) {
+                        if (!string.IsNullOrEmpty(element.GetCached().ClassName)) {
                             // tempString = element.Cached.ClassName;
-                            tempString = (element as ISupportsCached).Cached.ClassName;
+                            // tempString = (element as ISupportsCached).Cached.ClassName;
+                            tempString = element.GetCached().ClassName;
                         }
                         break;
                     case "Value":
@@ -455,7 +462,8 @@ namespace UIAutomation
                     case "Win32":
                         // 20140312
                         // if (0 < element.Cached.NativeWindowHandle) {
-                        if (0 < (element as ISupportsCached).Cached.NativeWindowHandle) {
+                        // if (0 < (element as ISupportsCached).Cached.NativeWindowHandle) {
+                        if (0 < element.GetCached().NativeWindowHandle) {
                             tempString = ".";
                         }
                         break;

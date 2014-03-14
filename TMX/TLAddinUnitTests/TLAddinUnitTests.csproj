@@ -62,7 +62,7 @@
       <HintPath>..\..\..\..\Program Files\Gallio\bin\MbUnit.dll</HintPath>
     </Reference>
     <Reference Include="Moq">
-      <HintPath>..\..\binaries\Moq\NET35\Moq.dll</HintPath>
+      <HintPath>..\..\packages\Moq.4.2.1402.2112\lib\net35\Moq.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -155,6 +155,9 @@
     <Folder Include="ParamChecks\TL" />
     <Folder Include="UnitTests" />
     <Folder Include="UnitTests\Fakes" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

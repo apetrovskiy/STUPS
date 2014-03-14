@@ -119,7 +119,7 @@
       <HintPath>..\..\packages\Ninject.Extensions.NamedScope.3.0.0.5\lib\net35\Ninject.Extensions.NamedScope.dll</HintPath>
     </Reference>
     <Reference Include="NLog">
-      <HintPath>..\..\binaries\NLog\35\NLog.dll</HintPath>
+      <HintPath>..\..\packages\NLog.2.1.0\lib\net35\NLog.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />

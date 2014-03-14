@@ -24,9 +24,19 @@ namespace UIAutomation
         public classic.Condition Condition { get; set; }
         public classic.TreeScope TreeScope { get; set; }
         
-        public override List<IUiElement> GetElements(ControlSearcherTemplateData data)
+//        public override List<IUiElement> GetElements(ControlSearcherTemplateData data)
+//        {
+//            return new List<IUiElement>();
+//        }
+        
+        internal override List<IUiElement> FilterElements(SingleControlSearcherData controlSearcherData, List<IUiElement> initialCollection)
         {
-            return new List<IUiElement>();
+            return ResultCollection;
+        }
+        
+        internal override List<IUiElement> LoadElements(SingleControlSearcherData controlSearcherData)
+        {
+            return ResultCollection;
         }
     }
 }

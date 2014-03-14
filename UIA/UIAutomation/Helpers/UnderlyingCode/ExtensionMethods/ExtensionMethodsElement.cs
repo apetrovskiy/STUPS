@@ -410,6 +410,10 @@ namespace UIAutomation
         {
             bool result = false;
             
+            // 20140314
+            // was an experiment
+			// resultCollection = resultCollection ?? new List<IUiElement>();
+            
             if (string.IsNullOrEmpty(dataToCheck)) {
                 return result;
             }

@@ -218,17 +218,33 @@ namespace UIAutomationTest.Commands.Get
         public void GetWindowAsGlobalVariableNotEmpty()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
+//            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+//                @"Get-UiaWindow -Name " +
+//                MiddleLevelCode.TestFormNameEmpty + 
+//                "; " +
+//                @"if (([uiautomation.currentdata]::currentwindow.current.name" +
+//                ")) { 0; } else { 1; }",
+//                //"System.Windows.Automation.AutomationElement");
+//                // 20131218
+//                // "UIAutomation.UiElement");
+//                // "Castle.Proxies.UiElementProxy");
+//                "Castle.Proxies.UiElementProxy_1");
+
+//            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
+//                @"Get-UiaWindow -Name " +
+//                MiddleLevelCode.TestFormNameEmpty + 
+//                "; " +
+//                @"if (([uiautomation.currentdata]::currentwindow.current.name" +
+//                ")) { 0; } else { 1; }".Substring(0, 30),
+//                "Castle.Proxies.UiElementProxy_1".Substring(0, 30));
+            // 20140314
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Get-UiaWindow -Name " +
                 MiddleLevelCode.TestFormNameEmpty + 
                 "; " +
                 @"if (([uiautomation.currentdata]::currentwindow.current.name" +
                 ")) { 0; } else { 1; }",
-                //"System.Windows.Automation.AutomationElement");
-                // 20131218
-                // "UIAutomation.UiElement");
-                // "Castle.Proxies.UiElementProxy");
-                "Castle.Proxies.UiElementProxy_1");
+                "Castle.Proxies.UiElementProxy_2");
         }
         
         [Test] //[Test(Description="TBD")]

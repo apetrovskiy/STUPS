@@ -76,7 +76,7 @@ namespace UIAutomationUnitTests
             IEnumerable<int> handles)
         {
         	var singleControlSearcherData = new SingleControlSearcherData { Name = containsText, ControlType = controlTypeNames };
-        	var controlProvider = FakeFactory.GetControlFromWin32Provider(collection, singleControlSearcherData);
+        	var controlProvider = FakeFactory.GetControlFromWin32Provider_old(collection, singleControlSearcherData);
         	
         	controlProvider.HandleCollector = FakeFactory.GetHandleCollector(inputObject, new int[] {}, collection.ToArray());
         	return ControlSearcher.SearchByContainsTextViaWin32(inputObject, controlProvider).ToList();

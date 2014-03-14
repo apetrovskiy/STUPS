@@ -576,10 +576,21 @@ namespace UIAutomationUnitTests
             return automation;
         }
         
-        internal static ControlFromWin32Provider GetControlFromWin32Provider(IEnumerable<IUiElement> collection, SingleControlSearcherData data)
+        internal static ControlFromWin32Provider GetControlFromWin32Provider_old(IEnumerable<IUiElement> collection, SingleControlSearcherData data)
         {
             var controlProvider = Substitute.For<ControlFromWin32Provider>();
             controlProvider.GetElements(Arg.Any<SingleControlSearcherData>()).Returns(collection.ToList<IUiElement>());
+            var data1 = data as SearcherTemplateData;
+            controlProvider.SearchData.Returns(data1);
+            return controlProvider;
+        }
+        
+        internal static ControlFromWin32Provider GetControlFromWin32Provider_in_progress(IEnumerable<IUiElement> collection, SingleControlSearcherData data)
+        {
+            var controlProvider = Substitute.For<ControlFromWin32Provider>();
+            // controlProvider.GetElements(Arg.Any<SingleControlSearcherData>()).Returns(collection.ToList<IUiElement>());
+            // TODO: need to separate the input collection (LoadElements) from the output collection (FilterElements -> collection) 
+            controlProvider.FilterElements(Arg.Any<SingleControlSearcherData>(), Arg.Any<List<IUiElement>>()).Returns(collection.ToList<IUiElement>());
             var data1 = data as SearcherTemplateData;
             controlProvider.SearchData.Returns(data1);
             return controlProvider;

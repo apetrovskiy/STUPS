@@ -24,58 +24,91 @@ namespace UIAutomation
     {
         public HandleCollector HandleCollector { get; set; }
         
-        public override List<IUiElement> GetElements(ControlSearcherTemplateData data)
+        internal override List<IUiElement> FilterElements(SingleControlSearcherData controlSearcherData, List<IUiElement> initialCollection)
         {
-            var resultCollection = new List<IUiElement>();
-            
-            SingleControlSearcherData controlSearcherData = null;
-            if (null != data) {
-                controlSearcherData = data.ConvertControlSearcherTemplateDataToSingleControlSearcherData();
-                SearchData = data;
-            }
-            if (null == controlSearcherData) {
-                controlSearcherData = SearchData.ConvertControlSearcherTemplateDataToSingleControlSearcherData();
-                
-            }
-            if (null == controlSearcherData) return resultCollection;
-            
-            if (!string.IsNullOrEmpty(controlSearcherData.ContainsText)) {
-                controlSearcherData.Name = controlSearcherData.Value = controlSearcherData.ContainsText;
-            }
-            
-            try {
-                return FilterElements(controlSearcherData);
-            } catch (Exception eWin32Control) {
-                return resultCollection;
-            }
-        }
-        
-        internal List<IUiElement> FilterElements(SingleControlSearcherData controlSearcherData)
-        {
-            var resultCollection = new List<IUiElement>();
-            
             const WildcardOptions options = WildcardOptions.IgnoreCase | WildcardOptions.Compiled;
             var wildcardName = new WildcardPattern(controlSearcherData.Name ?? "*", options);
             var wildcardValue = new WildcardPattern(controlSearcherData.Value ?? "*", options);
             
-            foreach (IUiElement element in HandleCollector.GetElementsFromHandles(HandleCollector.CollectRecursively(controlSearcherData.InputObject, controlSearcherData.Name, 1))) {
-                if (element.IsMatchWildcardPattern(resultCollection, wildcardName, element.GetCurrent().Name))
+            foreach (IUiElement element in initialCollection) {
+                if (element.IsMatchWildcardPattern(ResultCollection, wildcardName, element.GetCurrent().Name))
                     continue;
-                if (element.IsMatchWildcardPattern(resultCollection, wildcardName, element.GetCurrent().AutomationId))
+                if (element.IsMatchWildcardPattern(ResultCollection, wildcardName, element.GetCurrent().AutomationId))
                     continue;
-                if (element.IsMatchWildcardPattern(resultCollection, wildcardName, element.GetCurrent().ClassName))
+                if (element.IsMatchWildcardPattern(ResultCollection, wildcardName, element.GetCurrent().ClassName))
                     continue;
                 try {
                     string elementValue = element.GetCurrentPattern<IValuePattern>(classic.ValuePattern.Pattern).Current.Value;
-                    if (element.IsMatchWildcardPattern(resultCollection, wildcardName, elementValue))
+                    if (element.IsMatchWildcardPattern(ResultCollection, wildcardName, elementValue))
                         continue;
-                    if (element.IsMatchWildcardPattern(resultCollection, wildcardValue, elementValue))
+                    if (element.IsMatchWildcardPattern(ResultCollection, wildcardValue, elementValue))
                         continue;
                 } catch {
                 }
             }
             
-            return resultCollection;
+            return ResultCollection;
         }
+        
+        internal override List<IUiElement> LoadElements(SingleControlSearcherData controlSearcherData)
+        {
+            return HandleCollector.GetElementsFromHandles(HandleCollector.CollectRecursively(controlSearcherData.InputObject, controlSearcherData.Name, 1));
+        }
+        
+//        public HandleCollector HandleCollector { get; set; }
+//        
+//        public override List<IUiElement> GetElements(ControlSearcherTemplateData data)
+//        {
+//            var resultCollection = new List<IUiElement>();
+//            
+//            SingleControlSearcherData controlSearcherData = null;
+//            if (null != data) {
+//                controlSearcherData = data.ConvertControlSearcherTemplateDataToSingleControlSearcherData();
+//                SearchData = data;
+//            }
+//            if (null == controlSearcherData) {
+//                controlSearcherData = SearchData.ConvertControlSearcherTemplateDataToSingleControlSearcherData();
+//                
+//            }
+//            if (null == controlSearcherData) return resultCollection;
+//            
+//            if (!string.IsNullOrEmpty(controlSearcherData.ContainsText)) {
+//                controlSearcherData.Name = controlSearcherData.Value = controlSearcherData.ContainsText;
+//            }
+//            
+//            try {
+//                return FilterElements(controlSearcherData);
+//            } catch (Exception eWin32Control) {
+//                return resultCollection;
+//            }
+//        }
+//        
+//        internal List<IUiElement> FilterElements(SingleControlSearcherData controlSearcherData)
+//        {
+//            var resultCollection = new List<IUiElement>();
+//            
+//            const WildcardOptions options = WildcardOptions.IgnoreCase | WildcardOptions.Compiled;
+//            var wildcardName = new WildcardPattern(controlSearcherData.Name ?? "*", options);
+//            var wildcardValue = new WildcardPattern(controlSearcherData.Value ?? "*", options);
+//            
+//            foreach (IUiElement element in HandleCollector.GetElementsFromHandles(HandleCollector.CollectRecursively(controlSearcherData.InputObject, controlSearcherData.Name, 1))) {
+//                if (element.IsMatchWildcardPattern(resultCollection, wildcardName, element.GetCurrent().Name))
+//                    continue;
+//                if (element.IsMatchWildcardPattern(resultCollection, wildcardName, element.GetCurrent().AutomationId))
+//                    continue;
+//                if (element.IsMatchWildcardPattern(resultCollection, wildcardName, element.GetCurrent().ClassName))
+//                    continue;
+//                try {
+//                    string elementValue = element.GetCurrentPattern<IValuePattern>(classic.ValuePattern.Pattern).Current.Value;
+//                    if (element.IsMatchWildcardPattern(resultCollection, wildcardName, elementValue))
+//                        continue;
+//                    if (element.IsMatchWildcardPattern(resultCollection, wildcardValue, elementValue))
+//                        continue;
+//                } catch {
+//                }
+//            }
+//            
+//            return resultCollection;
+//        }
     }
 }

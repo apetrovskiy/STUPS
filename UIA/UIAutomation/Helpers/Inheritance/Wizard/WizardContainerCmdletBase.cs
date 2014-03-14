@@ -16,9 +16,9 @@ namespace UIAutomation
     /// </summary>
     public class WizardContainerCmdletBase : WizardConstructionCmdletBase
     {
-        public WizardContainerCmdletBase()
-        {
-        }
+//        public WizardContainerCmdletBase()
+//        {
+//        }
         
         #region Parameters
         [UiaParameter][Parameter(Mandatory = false)]

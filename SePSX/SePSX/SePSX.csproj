@@ -123,9 +123,6 @@
     <Reference Include="Castle.Core">
       <HintPath>..\..\binaries\selenium-dotnet\net35\Castle.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Selenium.WebDriverBackedSelenium">
-      <HintPath>..\..\binaries\selenium-dotnet\net35\Selenium.WebDriverBackedSelenium.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -137,9 +134,6 @@
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="ThoughtWorks.Selenium.Core">
-      <HintPath>..\..\binaries\selenium-dotnet\net35\ThoughtWorks.Selenium.Core.dll</HintPath>
-    </Reference>
     <Reference Include="UIAutomationClient">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
@@ -147,10 +141,10 @@
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="WebDriver">
-      <HintPath>..\..\binaries\selenium-dotnet\net35\WebDriver.dll</HintPath>
+      <HintPath>..\..\packages\Selenium.WebDriver.2.40.0\lib\net35\WebDriver.dll</HintPath>
     </Reference>
     <Reference Include="WebDriver.Support">
-      <HintPath>..\..\binaries\selenium-dotnet\net35\WebDriver.Support.dll</HintPath>
+      <HintPath>..\..\packages\Selenium.Support.2.40.0\lib\net35\WebDriver.Support.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
@@ -376,6 +370,9 @@
       <Project>{BF63F595-4A58-49E8-97F2-7701F51F0CD1}</Project>
       <Name>UIAutomation</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

@@ -472,6 +472,9 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
         // temporary
         public void WriteVerbose(PSCmdletBase cmdlet, string text)
         {
+            // 20140314
+            return;
+            
             // 20121117
             //if (!this.UnitTestMode) {
             if (!UnitTestMode) {

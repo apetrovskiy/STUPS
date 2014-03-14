@@ -382,6 +382,28 @@ namespace UIAutomation
             }
         }
         
+        // 20140314
+        /*
+        public static void GetWizard(GetUiaWizardCommand cmdlet)
+        {
+            Wizard wzd = cmdlet.GetWizard(cmdlet.Name);
+            if (wzd != null) {
+                
+                cmdlet.WriteObject(cmdlet, wzd);
+
+            } else {
+                
+                cmdlet.WriteError(
+                    cmdlet,
+                    "Can't get the wizard you asked for",
+                    "NoWizard",
+                    ErrorCategory.InvalidArgument,
+                    true);
+
+            }
+        }
+        */
+        
         public static void GetWizard(GetUiaWizardCommand cmdlet)
         {
             Wizard wzd = cmdlet.GetWizard(cmdlet.Name);

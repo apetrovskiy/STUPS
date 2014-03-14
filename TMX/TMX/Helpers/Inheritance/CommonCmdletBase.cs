@@ -120,6 +120,10 @@ namespace TMX
         protected override void WriteLog(LogLevels logLevel, string logRecord)
         {
             if (!Preferences.AutoLog) return;
+            
+            // 20140314
+            return;
+            
             //TMX.Logger.Info(logRecord);
                 
             switch (logLevel) {
@@ -209,7 +213,9 @@ namespace TMX
         {
             //WriteVerbose(this, " TMX");
             try {
-                base.WriteObject(outputObject);
+                // 20140314
+                // base.WriteObject(outputObject);
+                WriteObject(outputObject);
             }
             catch {}
         }

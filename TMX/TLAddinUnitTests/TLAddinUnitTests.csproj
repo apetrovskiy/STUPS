@@ -156,8 +156,5 @@
     <Folder Include="UnitTests" />
     <Folder Include="UnitTests\Fakes" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

@@ -18,9 +18,9 @@ namespace UIAutomation.Commands
     [Cmdlet(VerbsCommon.Get, "UiaWizard")]
     public class GetUiaWizardCommand : WizardContainerCmdletBase
     {
-        public GetUiaWizardCommand()
-        {
-        }
+//        public GetUiaWizardCommand()
+//        {
+//        }
         
         protected override void BeginProcessing()
         {

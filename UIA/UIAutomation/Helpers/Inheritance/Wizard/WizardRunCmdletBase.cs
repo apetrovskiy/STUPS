@@ -81,7 +81,9 @@ namespace UIAutomation
             
             string previousStepName = string.Empty;
             
-            while (cmdlet.RunWizardGetWindowScriptBlocks(wizard, null)) {
+            // 20140314
+            // while (cmdlet.RunWizardGetWindowScriptBlocks(wizard, null)) {
+            while (cmdlet.RunWizardGetWindowScriptBlocks(wizard, null) && !wizard.StopImmediately) {
                 
                 if (null != CurrentData.CurrentWindow) {
                     

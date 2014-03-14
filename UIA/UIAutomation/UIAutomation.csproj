@@ -289,6 +289,7 @@
     <Compile Include="Commands\Win32\GetUIATreeItemCheckedStateCommand.cs" />
     <Compile Include="Commands\Win32\SetUIADateTimePickerDateCommand.cs" />
     <Compile Include="Commands\Wizard\AddUIAWizardStepCommand.cs" />
+    <Compile Include="Commands\Wizard\ExitUiaWizardCommand.cs" />
     <Compile Include="Commands\Wizard\GetUIAWizardCommand.cs" />
     <Compile Include="Commands\Wizard\InvokeUIAWizardCommand.cs" />
     <Compile Include="Commands\Wizard\NewUIAWizardCommand.cs" />
@@ -327,6 +328,7 @@
     <Compile Include="Helpers\Commands\Wait\WaitControlStateCommand.cs" />
     <Compile Include="Helpers\Commands\Wait\WaitEventRaisedCommand.cs" />
     <Compile Include="Helpers\Commands\Wait\WaitWindowCommand.cs" />
+    <Compile Include="Helpers\Commands\Wizard\ExitWizardCommand.cs" />
     <Compile Include="Helpers\Inheritance\Get\GetFamilyCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\Wizard\WizardStepCmdletBase.cs" />
     <Compile Include="Helpers\UnderlyingCode\Adapters\UiaAutomation.cs" />

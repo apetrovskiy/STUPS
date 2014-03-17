@@ -10,7 +10,7 @@
 namespace UIAutomation
 {
     public enum InnerElementTypes {
-        Empty,
+        // Empty,
         AutomationElementNet,
         AutomationElementCom,
         UiElement

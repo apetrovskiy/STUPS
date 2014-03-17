@@ -2802,18 +2802,18 @@ if (null == aElement) {
             */
             var uiElement = element as IUiElement;
             if (null != uiElement) {
-Console.WriteLine("is IUiElement");
+//Console.WriteLine("is IUiElement");
                 // 20140316
                 // var uiElement = iUiElement;
-if (null == uiElement) {
-    Console.WriteLine("null == uiElement");
-} else {
-    Console.WriteLine("null != uiElement");
-    var ptrnss = uiElement.GetSupportedPatterns();
-    foreach (IBasePattern ptrn01 in ptrnss) {
-        Console.WriteLine(ptrn01.GetType().Name);
-    }
-}
+//if (null == uiElement) {
+//    Console.WriteLine("null == uiElement");
+//} else {
+//    Console.WriteLine("null != uiElement");
+//    var ptrnss = uiElement.GetSupportedPatterns();
+//    foreach (IBasePattern ptrn01 in ptrnss) {
+//        Console.WriteLine(ptrn01.GetType().Name);
+//    }
+//}
                 foreach (IBasePattern pattern in uiElement.GetSupportedPatterns()) {
                     
                     // calculated patterns

@@ -397,6 +397,7 @@ namespace UIAutomation
             
             foreach (int processId in data.ProcessIds) {
                 
+Console.WriteLine("PID = {0}", processId);
                 conditionsForRecurseSearch =
                     new classic.AndCondition(
                         new classic.PropertyCondition(
@@ -434,11 +435,12 @@ namespace UIAutomation
                                     classic.TreeScope.Children,
                                     conditionsProcessId);
                             
-if (null == rootCollection || 0 == rootCollection.Count) {
-    Console.WriteLine("getByPid 01: null == rootCollection || 0 == rootCollection.Count");
-} else {
-    Console.WriteLine("getByPid 01: null != rootCollection && 0 < rootCollection.Count");
-}
+//Console.WriteLine("rootElement.Pid = {0}", rootElement.GetCurrent().ProcessId);
+//if (null == rootCollection || 0 == rootCollection.Count) {
+//    Console.WriteLine("getByPid 01: null == rootCollection || 0 == rootCollection.Count");
+//} else {
+//    Console.WriteLine("getByPid 01: null != rootCollection && 0 < rootCollection.Count");
+//}
                             
                             if (null != rootCollection && 0 < rootCollection.Count)
                             {
@@ -466,6 +468,8 @@ if (null == rootCollection || 0 == rootCollection.Count) {
                                     classic.TreeScope.Children,
                                     conditionsProcessId);
                             
+Console.WriteLine("PID = {0}", processId);
+Console.WriteLine("rootElement.Pid = {0}", rootElement.GetCurrent().ProcessId);
 if (null == tempCollection || 0 == tempCollection.Count) {
     Console.WriteLine("getByPid 02: null == tempCollection || 0 == tempCollection.Count");
 } else {
@@ -473,6 +477,9 @@ if (null == tempCollection || 0 == tempCollection.Count) {
     Console.WriteLine("getByPid 02: tempColl.Count = {0}", tempCollection.Count);
     foreach (IUiElement element in tempCollection) {
         Console.WriteLine(element.GetCurrent().Name);
+        Console.WriteLine(element.GetCurrent().AutomationId);
+        Console.WriteLine(element.GetCurrent().ClassName);
+        Console.WriteLine(element.GetCurrent().ProcessId);
     }
 }
                             

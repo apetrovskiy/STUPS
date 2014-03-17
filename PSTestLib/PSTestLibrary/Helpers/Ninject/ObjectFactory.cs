@@ -35,11 +35,8 @@ namespace PSTestLib
         // public ObjectFactory()
         static ObjectFactory()
         {
-//Console.WriteLine("OF 01");
             if (_alreadyInitialized) return;
-Console.WriteLine("OF 02");
             Init(new CommonModule());
-//Console.WriteLine("OF 03");
             _alreadyInitialized = true;
         }
         
@@ -62,32 +59,23 @@ Console.WriteLine("OF 02");
 ////Console.WriteLine("OF.Init 06");
 //            _kernel = new StandardKernel(modules);
             
-            
-//Console.WriteLine("OF.Init 01");
             if (null != _kernel) {
-//Console.WriteLine("OF.Init 02");
                 var currentModules = _kernel.GetModules();
-//Console.WriteLine("Modules number == {0}", currentModules.Count().ToString());
-//Console.WriteLine("OF.Init 03");
+                
                 if (null != currentModules && currentModules.Any()) {
-//Console.WriteLine("OF.Init 04");
-                    // modules.Union(currentModules);
+                    
                     var allModules = modules.Union(currentModules).ToArray();
-//Console.WriteLine("Modules to load == {0}", modules.Count().ToString());
-//Console.WriteLine("OF.Init 05");
                     _kernel = new StandardKernel(allModules);
                 } else {
                     _kernel = new StandardKernel(modules);
                 }
             } else {
-//Console.WriteLine("OF.Init 06");
                 _kernel = new StandardKernel(modules);
             }
             
             // ??
             _kernel.Settings.ActivationCacheDisabled = false;
             
-//Console.WriteLine("OF.Init 08");
             InitCommonObjects();
 foreach (var module in _kernel.GetModules()) {
     Console.WriteLine(module.Name);
@@ -121,13 +109,6 @@ foreach (var module in _kernel.GetModules()) {
         
         public static T Resolve<T>(params IParameter[] parameters)
         {
-//Console.WriteLine("Resolve 001");
-//if (null == _kernel) {
-//    Console.WriteLine("null == _kernel");
-//} else {
-//    Console.WriteLine("null != _kernel");
-//}
-//Console.WriteLine("0000000000000001++");
             return _kernel.Get<T>(parameters);
         }
         
@@ -145,7 +126,6 @@ foreach (var module in _kernel.GetModules()) {
             
             try {
                 
-//Console.WriteLine("ConvertToProxiedObject: 000001");
                 if (null != additionalInterfaces && 0 < additionalInterfaces.Length) {
 Console.WriteLine("ConvertToProxiedObject: 000002");
 Console.WriteLine(typeof(T).Name);
@@ -154,22 +134,19 @@ Console.WriteLine(typeof(T).Name);
             		        typeof(T),
             		        additionalInterfaces,
                             interceptors);
-Console.WriteLine("ConvertToProxiedObject: 000003");
+//Console.WriteLine("ConvertToProxiedObject: 000003");
                 } else {
-//Console.WriteLine("ConvertToProxiedObject: 000004");
+                    
             		proxiedObject =
             		    (T)_generator.CreateClassProxy(
             		        typeof(T),
                             interceptors);
-//Console.WriteLine("ConvertToProxiedObject: 000005");
                 }
             }
             catch (Exception eConvertation) {
-//Console.WriteLine("ConvertToProxiedObject: 000006");
 Console.WriteLine("ConvertToProxiedObject<T>001: 005");
                 Console.WriteLine(eConvertation.Message);
             }
-//Console.WriteLine("ConvertToProxiedObject: 000007");
     		return proxiedObject;
         }
         
@@ -189,22 +166,14 @@ Console.WriteLine("ConvertToProxiedObject<T>001: 005");
             
             try {
                 
-//Console.WriteLine("ConvertToProxiedObject: 000001+");
-//Console.WriteLine("cmdlet is {0}", cmdlet.GetType().Name);
-//Console.WriteLine("type is {0}", typeof(T).Name);
-//foreach (var icept in interceptors) {
-//    Console.WriteLine(icept.GetType().Name);
-//}
         		proxiedObject =
         		    (T)_generator.CreateClassProxy(
         		        typeof(T),
         		        new PSCmdletBase[]{ cmdlet },
         		        // new[]{ cmdlet },
                         interceptors);
-//Console.WriteLine("ConvertToProxiedObject: 000002");
             }
             catch (Exception eConvertation) {
-//Console.WriteLine("ConvertToProxiedObject: 000003");
 Console.WriteLine("ConvertToProxiedObject<T>002: 005");
                 Console.WriteLine(eConvertation.Message);
             }
@@ -220,33 +189,27 @@ Console.WriteLine("ConvertToProxiedObject<T>002: 005");
             
             try {
                 
-// Console.WriteLine("ConvertToProxiedObject: 000001");
                 if (null != additionalInterfaces && 0 < additionalInterfaces.Length) {
-//Console.WriteLine("ConvertToProxiedObject: 000002");
-//Console.WriteLine(typeof(T).Name);
+                    
             		proxiedObject =
             		    (T)_generator.CreateClassProxy(
             		        // typeof(N),
                             classToProxy,
             		        additionalInterfaces,
                             interceptors);
-//Console.WriteLine("ConvertToProxiedObject: 000003");
                 } else {
-//Console.WriteLine("ConvertToProxiedObject: 000004");
+                    
             		proxiedObject =
             		    (T)_generator.CreateClassProxy(
             		        // typeof(N),
                             classToProxy,
                             interceptors);
-//Console.WriteLine("ConvertToProxiedObject: 000005");
                 }
             }
             catch (Exception eConvertation) {
-//Console.WriteLine("ConvertToProxiedObject: 000006");
 Console.WriteLine("ConvertToProxiedObject<T>003: 005");
                 Console.WriteLine(eConvertation.Message);
             }
-//Console.WriteLine("ConvertToProxiedObject: 000007");
     		return proxiedObject;
         }
         #endregion Castle DynamicProxy

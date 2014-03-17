@@ -11,9 +11,10 @@ namespace UIAutomation
 {
 	extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
 	using System;
+	using System.Security.AccessControl;
 	// using UIANET::System.Windows.Automation;
 	using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
-	using System.Windows.Automation;
+//	using System.Windows.Automation;
 	using Ninject;
 	using System.Windows;
 	using System.Linq;
@@ -36,7 +37,8 @@ namespace UIAutomation
 		//private static InnerElementTypes _innerElementType = InnerElementTypes.AutomationElementNet;
         
         // temporary!
-        public static InnerElementTypes _innerElementType = InnerElementTypes.AutomationElementNet;
+        // public static InnerElementTypes _innerElementType = InnerElementTypes.AutomationElementNet;
+        public InnerElementTypes _innerElementType = InnerElementTypes.AutomationElementNet;
         
 		// internal static InnerElementTypes InnerElementType
 //		internal static InnerElementTypes InnerElementType
@@ -165,20 +167,28 @@ namespace UIAutomation
 
 			switch (_innerElementType) {
 				case InnerElementTypes.AutomationElementNet:
+Console.WriteLine("pattern 01.1");
+Console.WriteLine(typeof(TPatternInterface).Name);
 					if (Preferences.FromCache) {
 						return (TPatternInterface)AutomationFactory.GetPatternAdapter<TPatternInterface>(this, _elementHolderNet.GetCachedPattern(pattern));
 					} else {
+Console.WriteLine("pattern 01.1.2");
+Console.WriteLine(this.Current.Name);
+Console.WriteLine(this.Current.AutomationId);
+Console.WriteLine(this.Current.ClassName);
+Console.WriteLine(this.Current.ProcessId);
 						return (TPatternInterface)AutomationFactory.GetPatternAdapter<TPatternInterface>(this, _elementHolderNet.GetCurrentPattern(pattern));
 					}
 				// default:
-			    case InnerElementTypes.AutomationElementCom:
-			        if (Preferences.FromCache) {
-						return (TPatternInterface)AutomationFactory.GetPatternAdapter<TPatternInterface>(this, _elementHolderCom.GetCachedPattern(pattern));
-					} else {
-						return (TPatternInterface)AutomationFactory.GetPatternAdapter<TPatternInterface>(this, _elementHolderCom.GetCurrentPattern(pattern));
-					}
+//			    case InnerElementTypes.AutomationElementCom:
+//			        if (Preferences.FromCache) {
+//						return (TPatternInterface)AutomationFactory.GetPatternAdapter<TPatternInterface>(this, _elementHolderCom.GetCachedPattern(pattern));
+//					} else {
+//						return (TPatternInterface)AutomationFactory.GetPatternAdapter<TPatternInterface>(this, _elementHolderCom.GetCurrentPattern(pattern));
+//					}
 					// 20131208
                 case InnerElementTypes.UiElement:
+Console.WriteLine("pattern 01.2");
                     // return Preferences.FromCache ? _elementHolderAdapter.GetCachedPattern(pattern) : _elementHolderAdapter.GetCurrentPattern(pattern);
                     return Preferences.FromCache ? default(TPatternInterface) : _elementHolderAdapter.GetCurrentPattern<TPatternInterface>(pattern);
 					// default:
@@ -190,6 +200,7 @@ namespace UIAutomation
 //					} else {
 //						return (TPatternInterface)AutomationFactory.GetPatternAdapter<TPatternInterface>(this, _elementHolderNet.GetCurrentPattern(pattern));
 //					}
+Console.WriteLine("pattern 01.3");
                     return default(TPatternInterface);
 			}
 
@@ -200,11 +211,12 @@ namespace UIAutomation
 		{
 			switch (_innerElementType) {
 				case InnerElementTypes.AutomationElementNet:
+Console.WriteLine("pattern 02.1");
 		            // 20140208
 					// return _elementHolderNet.GetCurrentPattern(pattern);
 					return Preferences.FromCache ? _elementHolderNet.GetCachedPattern(pattern) : _elementHolderNet.GetCurrentPattern(pattern);
-                case InnerElementTypes.AutomationElementCom:
-                    return Preferences.FromCache ? _elementHolderCom.GetCachedPattern(pattern) : _elementHolderCom.GetCurrentPattern(pattern);
+//                case InnerElementTypes.AutomationElementCom:
+//                    return Preferences.FromCache ? _elementHolderCom.GetCachedPattern(pattern) : _elementHolderCom.GetCurrentPattern(pattern);
                 // 20140316
 				default:
 ////			    case InnerElementTypes.AutomationElementCom:
@@ -212,6 +224,7 @@ namespace UIAutomation
 //					// case InnerElementTypes.UiElement:
 //					//     return _elementHolderAdapter.GetCurrentPattern(pattern);
 //					return _elementHolderNet.GetCurrentPattern(pattern);
+Console.WriteLine("pattern 02.3");
                     return null;
 			}
 		}
@@ -319,6 +332,7 @@ namespace UIAutomation
 			switch (_innerElementType) {
 				case InnerElementTypes.AutomationElementNet:
 					return AutomationFactory.GetUiElement(_elementHolderNet.FindFirst(scope, condition));
+                    // return AutomationFactory.GetUiElement(_elementHolderNet.FindFirst(scope, condition), "findfirst");
 			    case InnerElementTypes.AutomationElementCom:
 			        return AutomationFactory.GetUiElement(_elementHolderCom.FindFirst(scope, condition));
 				case InnerElementTypes.UiElement:
@@ -500,6 +514,7 @@ namespace UIAutomation
 				switch (_innerElementType) {
 					case InnerElementTypes.AutomationElementNet:
 						return AutomationFactory.GetUiElement(_elementHolderNet.CachedParent);
+                        // return AutomationFactory.GetUiElement(_elementHolderNet.CachedParent, "cachedparent");
 			        case InnerElementTypes.AutomationElementCom:
 			            return AutomationFactory.GetUiElement(_elementHolderCom.CachedParent);
 					case InnerElementTypes.UiElement:
@@ -637,60 +652,74 @@ namespace UIAutomation
 
 		public static IUiElement RootElement {
 			get {
-				switch (_innerElementType) {
-					case InnerElementTypes.AutomationElementNet:
-						return AutomationFactory.GetUiElement(classic.AutomationElement.RootElement);
-			        case InnerElementTypes.AutomationElementCom:
-			            return AutomationFactory.GetUiElement(viacom.AutomationElement.RootElement);
-					case InnerElementTypes.UiElement:
-						return RootElement;
-					default:
-						return AutomationFactory.GetUiElement(classic.AutomationElement.RootElement);
-				}
+//				switch (_innerElementType) {
+//					case InnerElementTypes.AutomationElementNet:
+//						return AutomationFactory.GetUiElement(classic.AutomationElement.RootElement);
+//			        case InnerElementTypes.AutomationElementCom:
+//			            return AutomationFactory.GetUiElement(viacom.AutomationElement.RootElement);
+//					case InnerElementTypes.UiElement:
+//						return RootElement;
+//					default:
+//						return AutomationFactory.GetUiElement(classic.AutomationElement.RootElement);
+//				}
+                return AutomationFactory.GetUiElement(classic.AutomationElement.RootElement);
+                //
+//                Console.WriteLine(AutomationFactory.GetUiElement(classic.AutomationElement.RootElement, "rootElement").GetCurrent().Name);
+//                Console.WriteLine(AutomationFactory.GetUiElement(classic.AutomationElement.RootElement, "rootElement").GetCurrent().AutomationId);
+//                Console.WriteLine(AutomationFactory.GetUiElement(classic.AutomationElement.RootElement, "rootElement").GetCurrent().ClassName);
+//                Console.WriteLine(AutomationFactory.GetUiElement(classic.AutomationElement.RootElement, "rootElement").GetCurrent().ProcessId);
+                //
+                // return AutomationFactory.GetUiElement(classic.AutomationElement.RootElement, "rootElement");
 			}
 		}
 
 		public static IUiElement FocusedElement {
 			get {
-				switch (_innerElementType) {
-					case InnerElementTypes.AutomationElementNet:
-						return AutomationFactory.GetUiElement(classic.AutomationElement.FocusedElement);
-		            case InnerElementTypes.AutomationElementCom:
-		                return AutomationFactory.GetUiElement(viacom.AutomationElement.FocusedElement);
-					case InnerElementTypes.UiElement:
-						return FocusedElement;
-					default:
-						return AutomationFactory.GetUiElement(classic.AutomationElement.FocusedElement);
-				}
+//				switch (_innerElementType) {
+//					case InnerElementTypes.AutomationElementNet:
+//						return AutomationFactory.GetUiElement(classic.AutomationElement.FocusedElement);
+//		            case InnerElementTypes.AutomationElementCom:
+//		                return AutomationFactory.GetUiElement(viacom.AutomationElement.FocusedElement);
+//					case InnerElementTypes.UiElement:
+//						return FocusedElement;
+//					default:
+//						return AutomationFactory.GetUiElement(classic.AutomationElement.FocusedElement);
+//				}
+                return AutomationFactory.GetUiElement(classic.AutomationElement.FocusedElement);
+                // return AutomationFactory.GetUiElement(classic.AutomationElement.FocusedElement, "focusedElement");
 			}
 		}
 
 		public static IUiElement FromPoint(Point pt)
 		{
-			switch (_innerElementType) {
-				case InnerElementTypes.AutomationElementNet:
-					return AutomationFactory.GetUiElement(classic.AutomationElement.FromPoint(pt));
-		        case InnerElementTypes.AutomationElementCom:
-		            return AutomationFactory.GetUiElement(viacom.AutomationElement.FromPoint(pt));    
-				case InnerElementTypes.UiElement:
-					return FromPoint(pt);
-				default:
-					return AutomationFactory.GetUiElement(classic.AutomationElement.FromPoint(pt));
-			}
+//			switch (_innerElementType) {
+//				case InnerElementTypes.AutomationElementNet:
+//					return AutomationFactory.GetUiElement(classic.AutomationElement.FromPoint(pt));
+//		        case InnerElementTypes.AutomationElementCom:
+//		            return AutomationFactory.GetUiElement(viacom.AutomationElement.FromPoint(pt));    
+//				case InnerElementTypes.UiElement:
+//					return FromPoint(pt);
+//				default:
+//					return AutomationFactory.GetUiElement(classic.AutomationElement.FromPoint(pt));
+//			}
+            return AutomationFactory.GetUiElement(classic.AutomationElement.FromPoint(pt));
+            // return AutomationFactory.GetUiElement(classic.AutomationElement.FromPoint(pt), "fromPoint");
 		}
 
 		public static IUiElement FromHandle(IntPtr controlHandle)
 		{
-			switch (_innerElementType) {
-				case InnerElementTypes.AutomationElementNet:
-					return AutomationFactory.GetUiElement(classic.AutomationElement.FromHandle(controlHandle));
-		        case InnerElementTypes.AutomationElementCom:
-		            return AutomationFactory.GetUiElement(viacom.AutomationElement.FromHandle(controlHandle));
-				case InnerElementTypes.UiElement:
-					return FromHandle(controlHandle);
-				default:
-					return AutomationFactory.GetUiElement(classic.AutomationElement.FromHandle(controlHandle));
-			}
+//			switch (_innerElementType) {
+//				case InnerElementTypes.AutomationElementNet:
+//					return AutomationFactory.GetUiElement(classic.AutomationElement.FromHandle(controlHandle));
+//		        case InnerElementTypes.AutomationElementCom:
+//		            return AutomationFactory.GetUiElement(viacom.AutomationElement.FromHandle(controlHandle));
+//				case InnerElementTypes.UiElement:
+//					return FromHandle(controlHandle);
+//				default:
+//					return AutomationFactory.GetUiElement(classic.AutomationElement.FromHandle(controlHandle));
+//			}
+            return AutomationFactory.GetUiElement(classic.AutomationElement.FromHandle(controlHandle));
+            // return AutomationFactory.GetUiElement(classic.AutomationElement.FromHandle(controlHandle), "fromHandle");
 		}
         
 		public virtual object GetSourceElement()

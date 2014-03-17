@@ -111,6 +111,7 @@ namespace UIAutomation
 		          {
 //Console.WriteLine("UiEltCollection 0004");
 		               _collectionHolder.Add(AutomationFactory.GetUiElement(element));
+                       // _collectionHolder.Add(AutomationFactory.GetUiElement(element, "collection ctor"));
 		          }
 //Console.WriteLine("UiEltCollection 0005");
                     return;

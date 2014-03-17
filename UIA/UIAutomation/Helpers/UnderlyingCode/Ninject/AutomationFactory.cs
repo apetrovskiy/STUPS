@@ -1,6 +1,6 @@
 ﻿/*
  * Created by SharpDevelop.
- * User: Alexander
+ * User: Alexander Petrovskiy
  * Date: 3/15/2014
  * Time: 12:39 PM
  * 
@@ -11,11 +11,11 @@ namespace UIAutomation
 {
     extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
     using System;
-	using System.Windows.Documents;
-    using Ninject;
-    using Ninject.Modules;
+//	using System.Windows.Documents;
+//    using Ninject;
+//    using Ninject.Modules;
     using Ninject.Parameters;
-    using Ninject.Extensions.ChildKernel;
+//    using Ninject.Extensions.ChildKernel;
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
 //    using System.Management.Automation;
     using System.Collections;
@@ -25,7 +25,7 @@ namespace UIAutomation
     using System.Linq;
     using WindowsInput;
     
-    using NLog;
+//    using NLog;
     
     /// <summary>
     /// Description of AutomationFactory.
@@ -43,23 +43,17 @@ namespace UIAutomation
         static AutomationFactory()
         {
             if (_alreadyInitialized) return;
-//Console.WriteLine("AF.AF 01");
             if (PSCmdletBase.UnitTestMode) return;
-//Console.WriteLine("AF.AF 02");
             // ObjectFactory.Init(new ObjectLifecycleModule());
             Init();
-//Console.WriteLine("AF.AF 03");
             _alreadyInitialized = true;
         }
         //
         
         public static void Init()
         {
-//Console.WriteLine("AF.Init 01");
             if (PSCmdletBase.UnitTestMode) return;
-Console.WriteLine("AF.Init 02");
             ObjectFactory.Init(new ObjectLifecycleModule());
-//Console.WriteLine("AF.Init 03");
         }
         
         internal static void InitUnitTests()
@@ -75,7 +69,11 @@ Console.WriteLine("AF.Init 02");
 //            var logger = GetLogHelper(string.Empty);
 //		}
         
-        
+//        public static IUiElement GetUiElement<T>(T element, string from)
+//        {
+//            Console.WriteLine(from);
+//            return GetUiElement<T>(element);
+//        }
         
         
         // public static IUiElement GetUiElement(classic.AutomationElement element)
@@ -83,89 +81,15 @@ Console.WriteLine("AF.Init 02");
 		{
 //Console.WriteLine("GetUIElement 00000");
 	        if (null == element) {
-	            return null;
+Console.WriteLine("GetUiElement: null == element");
+	            //return null;
 	        }
 		    
 			try {
-    			// var singleElement = new ConstructorArgument("element", element);
-    			
-    			// var adapterElement = ChildKernel.Get<IUiElement>("AutomationElement.NET", singleElement);
-Console.WriteLine("GetUiElement: 0000000000000001");
                 var adapterElement = ObjectFactory.Resolve<IUiElement>(); // singleElement); // ChildKernel.Get<IUiElement>("AutomationElement.NET", singleElement);
-Console.WriteLine("GetUiElement: 0000000000000002");
-                
-                #region commented
-//if (null == adapterElement) {
-//    Console.WriteLine("null == adapterElement");
-//} else {
-//    Console.WriteLine("null != adapterElement");
-//}
-                #endregion commented
-                
-if (null == adapterElement) {
-    Console.WriteLine("GetUiElement: null == adapterElement");
-} else {
-    Console.WriteLine("GetUiElement: null != adapterElement");
-    Console.WriteLine("GetUiElement: type of element is {0}", UiElement._innerElementType.ToString());
-}
-                
-                // 20140316
                 adapterElement.SetSourceElement<T>(element);
                 
-var sourceElement = adapterElement.GetSourceElement() as classic.AutomationElement;
-if (null == sourceElement) {
-    Console.WriteLine("GetUiElement: null == sourceElement");
-} else {
-    Console.WriteLine("GetUiElement: null != sourceElement");
-    Console.WriteLine(sourceElement.GetType().Name);
-    Console.WriteLine("GetUiElement 02: type of element is {0}", UiElement._innerElementType.ToString());
-}
-                
 				return Preferences.UseProxy ? (IUiElement)ConvertToProxiedElement(adapterElement) : (IUiElement)adapterElement;
-                
-                #region commented
-                /*
-    			if (Preferences.UseProxy) {
-    			    
-//Console.WriteLine("use proxy");
-                    // 20140316
-        			// IUiElement proxiedTypedUiElement =
-        			//     ConvertToProxiedElement(
-        			//         adapterElement);
-        			
-        			// proxiedTypedUiElement.SetSourceElement<classic.AutomationElement>(element);
-                    // 20140316
-                    // proxiedTypedUiElement.SetSourceElement<T>(element);
-        			
-//if (null == (IUiElement)proxiedTypedUiElement) {
-//    Console.WriteLine("null == (IUiElement)proxiedTypedUiElement");
-//} else {
-//    Console.WriteLine("null != (IUiElement)proxiedTypedUiElement");
-//}
-                    // 20140316
-        			// return (IUiElement)proxiedTypedUiElement; // as IUiElement;
-                    
-                    // 20140316
-                    return (IUiElement)ConvertToProxiedElement(adapterElement);
-                    
-    			} else {
-    			    
-//Console.WriteLine("don't use proxy");
-    			    // adapterElement.SetSourceElement<classic.AutomationElement>(element);
-                    // 20140316
-                    // adapterElement.SetSourceElement<T>(element);
-    			    
-//if (null == adapterElement) {
-//    Console.WriteLine("null == adapterElement");
-//} else {
-//    Console.WriteLine("null != adapterElement");
-//}
-                    // 20140316
-    			    // return adapterElement;
-                    return (IUiElement)adapterElement;
-    			}
-                */
-    			#endregion commented
 			}
 			catch (Exception eFailedToIssueElement) {
 			    // TODO
@@ -176,63 +100,16 @@ if (null == sourceElement) {
 			}
 		}
         
-        #region commented
-//        public static IUiElement GetUiElement()
-//		{
-//			try {
-//    			// var singleElement = new ConstructorArgument("element", element);
-//    			
-//    			// var adapterElement = ChildKernel.Get<IUiElement>("AutomationElement.NET", singleElement);
-//                var adapterElement = ObjectFactory.Resolve<IUiElement>(); // singleElement); // ChildKernel.Get<IUiElement>("AutomationElement.NET", singleElement);
-//    			
-//    			if (Preferences.UseProxy) {
-//    			    
-//        			IUiElement proxiedTypedUiElement =
-//        			    ConvertToProxiedElement(
-//        			        adapterElement);
-//        			
-//        			return (IUiElement)proxiedTypedUiElement; // as IUiElement;
-//    			} else {
-//    			    
-//    			    return adapterElement;
-//    			}
-//    			
-//			}
-//			catch (Exception eFailedToIssueElement) {
-//			    // TODO
-//			    // write error to error object!!!
-//			    Console.WriteLine("Element 02");
-//			    Console.WriteLine(eFailedToIssueElement.Message);
-//			    return null;
-//			}
-//		}
-        #endregion commented
-        
         internal static IUiElement ConvertToProxiedElement<T>(T element)
         {
-            #region commented
-//if (null == element) {
-//    Console.WriteLine("ConvertToProxiedElement: null == element");
-//} else {
-//    Console.WriteLine("ConvertToProxiedElement: null != element");
-//}
-            #endregion commented
-            
             Type[] supportedAdditionalInterfaces =
                 UiaHelper.GetSupportedInterfaces(element);
             
-            #region commented
-//Console.WriteLine("ConvertToProxiedElement: 000002");
 //if (null != supportedAdditionalInterfaces && 0 < supportedAdditionalInterfaces.Length) {
-//    Console.WriteLine("null != supportedAdditionalInterfaces && 0 < supportedAdditionalInterfaces.Length");
 //    foreach (Type iface in supportedAdditionalInterfaces) {
 //        Console.WriteLine(iface.Name);
 //    }
-//} else {
-//    Console.WriteLine("null == supportedAdditionalInterfaces || 0 == supportedAdditionalInterfaces.Length");
 //}
-            #endregion commented
-            
             // 20140317
             // UiElement proxiedElement = null;
             try {
@@ -245,7 +122,6 @@ if (null == sourceElement) {
 //            		        supportedAdditionalInterfaces,
 //                            new MethodSelectorAspect(), new ErrorHandlingAspect());
                     
-Console.WriteLine("ConvertToProxiedElement: 000004");
                     // 20140317
                     // proxiedElement =
                     return
@@ -283,34 +159,6 @@ Console.WriteLine("ConvertToProxiedElement<T>(T element): 0005");
                 // 20140317
                 return null;
             }
-            
-            #region commented
-//Console.WriteLine("ConvertToProxiedElement: 000009");
-//if (null == proxiedElement) {
-//    Console.WriteLine("ConvertToProxiedElement: null == proxiedElement");
-//} else {
-//    Console.WriteLine("ConvertToProxiedElement: null != proxiedElement");
-//}
-            #endregion commented
-            
-//if (null != proxiedElement) {
-//    Console.WriteLine("ConvertToProxiedElement: null != proxiedElement");
-//    Console.WriteLine(proxiedElement.GetType().Name);
-//    var sourceElement = proxiedElement.GetSourceElement();
-//    if (null != sourceElement) {
-//        Console.WriteLine("ConvertToProxiedElement: null != sourceElement");
-//        Console.WriteLine(sourceElement.GetType().Name);
-//        Console.WriteLine((sourceElement as classic.AutomationElement).Current.Name);
-//        Console.WriteLine((sourceElement as classic.AutomationElement).Current.AutomationId);
-//        Console.WriteLine((sourceElement as classic.AutomationElement).Current.ClassName);
-//    } else {
-//        Console.WriteLine("ConvertToProxiedElement: null == sourceElement");
-//    }
-//} else {
-//    Console.WriteLine("ConvertToProxiedElement: null == proxiedElement");
-//}
-//            
-//    		return proxiedElement;
         }
         
 		internal static IUiElementInformation GetUiElementInformation(classic.AutomationElement.AutomationElementInformation information)
@@ -374,13 +222,6 @@ Console.WriteLine("ConvertToProxiedElement<T>(T element): 0005");
             try {
                 
                 T holder = ObjectFactory.Resolve<T>();
-                
-//if (null == holder) {
-//    Console.WriteLine("null == holder");
-//} else {
-//    Console.WriteLine("null != holder");
-//    Console.WriteLine(holder.GetType().Name);
-//}
                 Type typeOfClass = null;
                 Type wearedInterface = null;
                 
@@ -397,7 +238,8 @@ Console.WriteLine("ConvertToProxiedElement<T>(T element): 0005");
                                 typeof(UiControlInputHolder),
                                 // typeOfClass,
                                 new IInterceptor[] { new MethodSelectorAspect() },
-                                new Type[] { wearedInterface });
+                                // new Type[] { wearedInterface });
+                                new[] { wearedInterface });
                         break;
                     case "IKeyboardInputHolder":
                         typeOfClass = typeof(UiKeyboardInputHolder);
@@ -407,7 +249,8 @@ Console.WriteLine("ConvertToProxiedElement<T>(T element): 0005");
                                 // holder,
                                 typeof(UiKeyboardInputHolder),
                                 new IInterceptor[] { new MethodSelectorAspect() },
-                                new Type[] { wearedInterface });
+                                // new Type[] { wearedInterface });
+                                new[] { wearedInterface });
                         break;
                     case "IMouseInputHolder":
                         typeOfClass = typeof(UiMouseInputHolder);
@@ -418,7 +261,8 @@ Console.WriteLine("ConvertToProxiedElement<T>(T element): 0005");
                                 typeof(UiMouseInputHolder),
                                 // typeof(typeOfClass),
                                 new IInterceptor[] { new MethodSelectorAspect() },
-                                new Type[] { wearedInterface });
+                                // new Type[] { wearedInterface });
+                                new[] { wearedInterface });
                         break;
                     case "ITouchInputHolder":
                         typeOfClass = typeof(UiTouchInputHolder);
@@ -428,7 +272,8 @@ Console.WriteLine("ConvertToProxiedElement<T>(T element): 0005");
                                 // holder,
                                 typeof(UiTouchInputHolder),
                                 new IInterceptor[] { new MethodSelectorAspect() },
-                                new Type[] { wearedInterface });
+                                // new Type[] { wearedInterface });
+                                new[] { wearedInterface });
                         break;
                 }
                 
@@ -486,58 +331,10 @@ Console.WriteLine("ConvertToProxiedElement<T>(T element): 0005");
 			try {
                 if (null != elements) {
                     
-                    #region commented
-//Console.WriteLine("GetUiEltCollection: 00001");
-//Console.WriteLine("elements.Length = {0}", elements.Length.ToString());
-//foreach (classic.AutomationElementCollection elements2 in elements) {
-//    Console.WriteLine(elements2.GetType().Name);
-////    try {
-////        Console.WriteLine((element as ISupportsCurrent).Current.GetType().Name);
-////    } catch (Exception) {
-////        
-////        throw;
-////    }
-//    Console.WriteLine(elements2.Count.ToString());
-//    foreach (classic.AutomationElement element in elements2) {
-//        Console.WriteLine(element.Current.Name);
-//    }
-//}
-//Console.WriteLine("GetUiEltCollection: 00002");
-                    #endregion commented
-                    
         			var manyElements = new ConstructorArgument("elements", elements);
-        			
-    	      		// IUiEltCollection adapterCollection; // = Kernel.Get<IUiEltCollection>("AutomationElementCollection.NET", manyElements);
-    	      		//     adapterCollection = ChildKernel.Get<IUiEltCollection>("AutomationElementCollection.NET", manyElements);
-                    
-//Console.WriteLine("GetUiEltCollection: 00003");
-                    var adapterCollection = ObjectFactory.Resolve<IUiEltCollection>(manyElements);
-                    
-                    #region commented
-//Console.WriteLine("GetUiEltCollection: 00004");
-//if (null == adapterCollection) {
-//    Console.WriteLine("null == adapterCollection");
-//} else {
-//    Console.WriteLine("null != adapterCollection");
-//    Console.WriteLine(adapterCollection.GetType().Name);
-//    foreach(IUiElement elt in adapterCollection.ToArray()) {
-//        Console.WriteLine(elt.GetType().Name);
-//        try { Console.WriteLine(elt.GetCurrent().Name); } catch {}
-//    }
-//                        try {
-//    foreach (IUiElement element in adapterCollection) {
-//        Console.WriteLine(element.GetType().Name);
-//        try { Console.WriteLine(element.GetCurrent().Name); } catch {}
-//    }
-//                        }
-//                        catch (Exception eeeeeeee) {
-//                            Console.WriteLine(eeeeeeee.Message);
-//                        }
-//}
-//Console.WriteLine("GetUiEltCollection: 00005");
-                    #endregion commented
-                    
-    	       		return adapterCollection;
+                    // var adapterCollection = ObjectFactory.Resolve<IUiEltCollection>(manyElements);
+    	       		// return adapterCollection;
+                    return ObjectFactory.Resolve<IUiEltCollection>(manyElements);
                 } else {
                     return ObjectFactory.Resolve<IUiEltCollection>();
                 }
@@ -558,28 +355,7 @@ Console.WriteLine("ConvertToProxiedElement<T>(T element): 0005");
             try {
                 T newCommand = default(T);
                 var cmdletParam = new ConstructorArgument("cmdlet", cmdlet);
-                
-                // newCommand = Kernel.Get<T>(cmdletParam);
-                // return ConvertToProxiedCommand<T>(newCommand, cmdlet);
-                
                 newCommand = ObjectFactory.Resolve<T>(cmdletParam);
-                
-                #region commented
-                // newCommand = ObjectFactory.Resolve<T>();
-                // newCommand
-                // (newCommand as AbstractCommand).Cmdlet = cmdlet;
-                
-//if (null == newCommand) {
-//    Console.WriteLine("GetCommand: null == newCommand");
-//} else {
-//    Console.WriteLine("GetCommand: null != newCommand");
-//    Console.WriteLine(newCommand.GetType().Name);
-//}
-                
-//                return ObjectFactory.ConvertToProxiedObject<T>(
-//                    newCommand,
-//                    new IInterceptor[] { new LoggingAspect(), new InputValidationAspect(), new ErrorHandlingAspect(), new HighlighterAspect(), new TestResultAspect(), new FaultInjectionAspect() });
-                #endregion commented
                 
                 var proxiedCommand = (T)ObjectFactory.ConvertToProxiedObject<T>(
                     newCommand,
@@ -588,22 +364,6 @@ Console.WriteLine("ConvertToProxiedElement<T>(T element): 0005");
                     // new IInterceptor[] { new LoggingAspect() }) as AbstractCommand;
                     // new IInterceptor[] { new HighlighterAspect() }); // as AbstractCommand;
                     new IInterceptor[] { new LoggingAspect(), new InputValidationAspect(), new ErrorHandlingAspect(), new TestResultAspect(), new FaultInjectionAspect() }); // as AbstractCommand;
-                
-                #region commented
-//Console.WriteLine("GetCommand: proxified!");
-                
-                // (proxiedCommand as AbstractCommand).Cmdlet = cmdlet;
-                // proxiedCommand.Cmdlet = cmdlet;
-                
-//if (null == proxiedCommand) {
-//    Console.WriteLine("GetCommand: null == proxiedCommand");
-//} else {
-//    Console.WriteLine("GetCommand: null != proxiedCommand");
-//}
-
-                
-//                var proxiedCommand = newCommand as AbstractCommand; // temp
-                #endregion commented
                 
                 return proxiedCommand;
                 
@@ -616,31 +376,6 @@ Console.WriteLine("ConvertToProxiedElement<T>(T element): 0005");
 			    // return null;
             }
         }
-        
-        #region commented
-//        internal static T ConvertToProxiedCommand<T>(T commandToConvert, CommonCmdletBase cmdlet)
-//        {
-//            T proxiedObject = default(T);
-//            
-//            try {
-//                
-//                proxiedObject =
-//                    (T)_generator.CreateClassProxy(
-//                        typeof(T),
-//                        new CommonCmdletBase[]{ cmdlet },
-//                        // 20140228
-//                        // new LoggingAspect(), new InputValidationAspect(), new ErrorHandlingAspect(), new HighlighterAspect(), new TestResultAspect());
-//                        new LoggingAspect(), new InputValidationAspect(), new ErrorHandlingAspect(), new HighlighterAspect(), new TestResultAspect(), new FaultInjectionAspect());
-//                
-//            } catch (Exception eProxying) {
-//                // Console.WriteLine("ProxiedObject");
-//                // Console.WriteLine(eProxying.Message);
-//            }
-//            
-//            return proxiedObject;
-//        }
-        
-        #endregion commented
         
         internal static T GetObject<T>()
         {

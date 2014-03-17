@@ -12,11 +12,12 @@ namespace UIAutomation
     using System;
     using System.Management.Automation;
     using Commands;
+    using PSTestLib;
     
     /// <summary>
     /// Description of UiaNewWizardCommand.
     /// </summary>
-    public class NewWizardCommand : UiaCommand
+    public class NewWizardCommand : AbstractCommand	// : UiaCommand
     {
         public NewWizardCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
@@ -24,7 +25,7 @@ namespace UIAutomation
         
         public override void Execute()
         {
-            NewUiaWizardCommand cmdlet =
+            var cmdlet =
                 (NewUiaWizardCommand)Cmdlet;
             
             WizardHelper.CreateWizard(cmdlet);

@@ -12,22 +12,24 @@ namespace TMX
     using System;
     using System.Management.Automation;
     using TMX.Commands;
+    using PSTestLib;
     
     /// <summary>
     /// Description of TmxGetTestSuiteStatusCommand.
     /// </summary>
-    internal class TmxGetTestSuiteStatusCommand : TmxCommand
+    internal class TmxGetTestSuiteStatusCommand : AbstractCommand // : TmxCommand
     {
         internal TmxGetTestSuiteStatusCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
-        internal override void Execute()
+        // internal override void Execute()
+        public override void Execute()
         {
             // 20130322
             //OpenSuiteCmdletBase cmdlet =
             //    (OpenSuiteCmdletBase)this.Cmdlet;
-            GetTmxTestSuiteStatusCommand cmdlet =
+            var cmdlet =
                 (GetTmxTestSuiteStatusCommand)this.Cmdlet;
             
             if (!string.IsNullOrEmpty(cmdlet.Name)) {

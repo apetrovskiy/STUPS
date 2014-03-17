@@ -37,6 +37,7 @@ namespace UIAutomation.Commands
         {
             RemoveWizardStepCommand command =
                 new RemoveWizardStepCommand(this);
+                // new RemoveWizardStepCommand() { Cmdlet = this };
             command.Execute();
             
 //            if (InputObject != null && InputObject is Wizard) {

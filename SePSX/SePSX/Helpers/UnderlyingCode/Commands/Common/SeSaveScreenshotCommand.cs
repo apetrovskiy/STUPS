@@ -11,18 +11,20 @@ namespace SePSX
 {
     using System;
     using System.Management.Automation;
+	using PSTestLib;
     using SePSX.Commands;
     
     /// <summary>
     /// Description of SeSaveScreenshotCommand.
     /// </summary>
-    internal class SeSaveScreenshotCommand : SeCommand
+    internal class SeSaveScreenshotCommand : AbstractCommand
     {
         internal SeSaveScreenshotCommand(CommonCmdletBase cmdlet) : base(cmdlet)
         {
         }
         
-        internal override void Execute()
+        // internal override void Execute()
+        public override void Execute()
         {
             //SeHelper.GetScreenshotOfWebElement(
 //            SeHelper.GetScreenshotOfCmdletInput(

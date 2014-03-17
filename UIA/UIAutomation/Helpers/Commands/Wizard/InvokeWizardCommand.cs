@@ -12,11 +12,12 @@ namespace UIAutomation.Helpers.Commands
     using System;
     using System.Management.Automation;
     using Commands;
+    using PSTestLib;
     
     /// <summary>
     /// Description of UiaInvokeWizardCommand.
     /// </summary>
-    public class InvokeWizardCommand : UiaCommand
+    public class InvokeWizardCommand : AbstractCommand	// : UiaCommand
     {
         public InvokeWizardCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
@@ -24,7 +25,7 @@ namespace UIAutomation.Helpers.Commands
         
         public override void Execute()
         {
-            WizardRunCmdletBase cmdlet =
+            var cmdlet =
                 (WizardRunCmdletBase)Cmdlet;
             
             WizardHelper.InvokeWizard(cmdlet);

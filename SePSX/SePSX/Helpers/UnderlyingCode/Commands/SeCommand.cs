@@ -15,14 +15,14 @@ namespace SePSX
     /// <summary>
     /// Description of SeCommand.
     /// </summary>
-    internal abstract class SeCommand
-    {
-        internal SeCommand(CommonCmdletBase cmdlet)
-        {
-            this.Cmdlet = cmdlet;
-        }
-        
-        internal CommonCmdletBase Cmdlet { get; set; }
-        internal abstract void Execute();
-    }
+//    internal abstract class SeCommand
+//    {
+//        internal SeCommand(CommonCmdletBase cmdlet)
+//        {
+//            this.Cmdlet = cmdlet;
+//        }
+//        
+//        internal CommonCmdletBase Cmdlet { get; set; }
+//        internal abstract void Execute();
+//    }
 }

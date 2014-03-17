@@ -95,6 +95,7 @@ namespace UIAutomation.Commands
         {
             NewRemoteDesktopProtocolFileCommand command =
                 new NewRemoteDesktopProtocolFileCommand(this);
+                // new NewRemoteDesktopProtocolFileCommand() { Cmdlet = this };
             command.Execute();
             
 //            this.rDPProtocolFile +=

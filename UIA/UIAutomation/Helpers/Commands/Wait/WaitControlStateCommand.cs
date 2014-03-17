@@ -11,14 +11,15 @@ namespace UIAutomation.Helpers.Commands
 {
     using System;
     using System.Management.Automation;
-    using System.Collections;
-    using System.Collections.Generic;
+//    using System.Collections;
+//    using System.Collections.Generic;
     using UIAutomation.Commands;
+    using PSTestLib;
     
     /// <summary>
     /// Description of WaitControlStateCommand.
     /// </summary>
-    public class WaitControlStateCommand : UiaCommand
+    public class WaitControlStateCommand : AbstractCommand	// : UiaCommand
     {
         public WaitControlStateCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {

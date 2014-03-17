@@ -11,17 +11,19 @@ namespace SePSX
 {
     using System;
     using System.Management.Automation;
+	using PSTestLib;
     
     /// <summary>
     /// Description of SeNewChromeOptionsCommand.
     /// </summary>
-    internal class SeNewChromeOptionsCommand : SeCommand
+    internal class SeNewChromeOptionsCommand : AbstractCommand
     {
         internal SeNewChromeOptionsCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
-        internal override void Execute()
+        // internal override void Execute()
+        public override void Execute()
         {
             SeHelper.GetNewChromeOptions(this.Cmdlet);
         }

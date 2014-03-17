@@ -11,19 +11,20 @@ namespace UIAutomation
 {
     using System;
     using Castle.DynamicProxy;
+	using PSTestLib;
     
     /// <summary>
     /// Description of ParameterValidationAspect.
     /// </summary>
-    public class ParameterValidationAspect : AbstractInterceptor
-    {
-        public override void Intercept(IInvocation invocation)
-        {
-            foreach (var argument in invocation.Arguments) {
-                //
-            }
-            
-            invocation.Proceed();
-        }
-    }
+//    public class ParameterValidationAspect : AbstractInterceptor
+//    {
+//        public override void Intercept(IInvocation invocation)
+//        {
+//            foreach (var argument in invocation.Arguments) {
+//                //
+//            }
+//            
+//            invocation.Proceed();
+//        }
+//    }
 }

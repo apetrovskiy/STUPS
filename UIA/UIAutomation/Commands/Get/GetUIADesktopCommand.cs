@@ -23,9 +23,34 @@ namespace UIAutomation.Commands
     {
         protected override void BeginProcessing()
         {
+//System.Console.WriteLine("desktop 0001");
             var command =
                 AutomationFactory.GetCommand<GetDesktopCommand>(this);
+            
+            // command.Cmdlet = this;
+            
+//System.Console.WriteLine("desktop 0002");
+//if (null != command) {
+//    System.Console.WriteLine("null != command");
+//    System.Console.WriteLine(command.GetType().Name);
+////    try {
+////        if (null != command.Cmdlet) {
+////            System.Console.WriteLine("null != command.Cmdlet");
+////            System.Console.WriteLine(command.Cmdlet.GetType().Name);
+////        } else {
+////            System.Console.WriteLine("null == command.Cmdlet");
+////        }
+////    }
+////    catch (System.Exception eee) {
+////        System.Console.WriteLine(eee.Message);
+////    }
+//} else {
+//    System.Console.WriteLine("null == command");
+//}
+////System.Threading.Thread.Sleep(5000);
+//System.Console.WriteLine("desktop 0002.1");
             command.Execute();
+//System.Console.WriteLine("desktop 0003");
         }
     }
 }

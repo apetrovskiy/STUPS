@@ -11,15 +11,16 @@ namespace UIAutomation
 {
     using System;
     using Castle.DynamicProxy;
+	using PSTestLib;
     
     /// <summary>
     /// Description of FaultInjectionAspect.
     /// </summary>
-    public class FaultInjectionAspect : AbstractInterceptor
-    {
-        public override void Intercept(IInvocation invocation)
-        {
-            invocation.Proceed();
-        }
-    }
+//    public class FaultInjectionAspect : AbstractInterceptor
+//    {
+//        public override void Intercept(IInvocation invocation)
+//        {
+//            invocation.Proceed();
+//        }
+//    }
 }

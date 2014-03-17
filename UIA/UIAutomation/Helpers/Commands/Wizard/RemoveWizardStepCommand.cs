@@ -12,11 +12,12 @@ namespace UIAutomation
     using System;
     using System.Management.Automation;
     using Commands;
+    using PSTestLib;
     
     /// <summary>
     /// Description of UiaRemoveWizardStepCommand.
     /// </summary>
-    public class RemoveWizardStepCommand : UiaCommand
+    public class RemoveWizardStepCommand : AbstractCommand	// : UiaCommand
     {
         public RemoveWizardStepCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
@@ -24,7 +25,7 @@ namespace UIAutomation
         
         public override void Execute()
         {
-            RemoveUiaWizardStepCommand cmdlet =
+            var cmdlet =
                 (RemoveUiaWizardStepCommand)Cmdlet;
             
             WizardHelper.RemoveWizardStep(cmdlet);

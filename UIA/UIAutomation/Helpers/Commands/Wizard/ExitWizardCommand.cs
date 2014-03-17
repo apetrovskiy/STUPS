@@ -12,11 +12,12 @@ namespace UIAutomation
     using System;
     using System.Management.Automation;
     using Commands;
+    using PSTestLib;
     
     /// <summary>
     /// Description of ExitWizardCommand.
     /// </summary>
-    public class ExitWizardCommand : UiaCommand
+    public class ExitWizardCommand : AbstractCommand	// : UiaCommand
     {
         public ExitWizardCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
@@ -24,7 +25,7 @@ namespace UIAutomation
         
         public override void Execute()
         {
-            ExitUiaWizardCommand cmdlet =
+            var cmdlet =
                 (ExitUiaWizardCommand)Cmdlet;
 
             cmdlet.GetWizard(cmdlet.Name).StopImmediately = true;

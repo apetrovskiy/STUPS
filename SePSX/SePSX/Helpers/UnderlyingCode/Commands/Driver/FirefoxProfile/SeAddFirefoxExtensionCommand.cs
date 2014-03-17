@@ -11,17 +11,19 @@ namespace SePSX
 {
     using System;
     using System.Management.Automation;
+	using PSTestLib;
     
     /// <summary>
     /// Description of SeAddFirefoxExtensionCommand.
     /// </summary>
-    internal class SeAddFirefoxExtensionCommand : SeCommand
+    internal class SeAddFirefoxExtensionCommand : AbstractCommand
     {
         internal SeAddFirefoxExtensionCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
-        internal override void Execute()
+        // internal override void Execute()
+        public override void Execute()
         {
             SeHelper.AddFirefoxExtension(this.Cmdlet);
         }

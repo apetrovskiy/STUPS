@@ -1,26 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-# SharpDevelop 4.4
+# SharpDevelop 5.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestLink", "TestLink", "{9C089AB4-FE8E-4B62-84B1-31544BBE75C8}"
-	ProjectSection(SolutionItems) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLinkAPI", "TestLink\TestLinkAPI\TestLinkAPI.csproj", "{743BC178-7039-4D01-B3AF-83099B8411BA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLinkFixture", "TestLink\TestLinkFixture\TestLinkFixture.csproj", "{B412DDEB-7308-4FCF-8C6A-1EAF38F90DED}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ESXiMgmt", "ESXiMgmt", "{B10399F6-B39C-48AF-A65A-4DB4E0DC730E}"
-	ProjectSection(SolutionItems) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESXiMgmt", "ESXiMgmt\ESXiMgmt\ESXiMgmt.csproj", "{691E0668-733C-4A7A-8C8B-5A5F29021417}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESXiMgmtTest", "ESXiMgmt\ESXiMgmtTest\ESXiMgmtTest.csproj", "{63B50CA4-A645-4195-AED5-72B93E5C21D4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TMX", "TMX", "{E4CADBD5-3FE7-4BD4-96B5-79727EFF89E6}"
-	ProjectSection(SolutionItems) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleCustomTestReport", "TMX\ExampleCustomTestReport\ExampleCustomTestReport.csproj", "{18E9817F-C7A7-4B3D-B08E-A0AD1B5EAA03}"
 EndProject
@@ -73,8 +67,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFAddin40", "TMX\TFAddin40\TFAddin40.csproj", "{F8035836-B3FE-4B26-B3A4-09F6C765EAA1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SePSX", "SePSX", "{57FA3E71-23AF-46C5-8CC6-A38883DC682A}"
-	ProjectSection(SolutionItems) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumSpy", "SePSX\SeleniumSpy\SeleniumSpy.csproj", "{D5FD62D2-BB82-444E-B83B-7E86BF46ABBC}"
 EndProject
@@ -91,8 +83,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SePSXUnitTests", "SePSX\SePSXUnitTests\SePSXUnitTests.csproj", "{EFA4EAD8-8135-48D4-8576-3C4D67E80695}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UIA", "UIA", "{9D676FE5-443D-483D-A522-0B963B5D02BE}"
-	ProjectSection(SolutionItems) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIARunner", "UIA\UIARunner\UIARunner.csproj", "{3C51DEE6-E834-4453-BF52-3860EC2C71F2}"
 EndProject
@@ -137,8 +127,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testProxiedUia", "UIA\testProxiedUia\testProxiedUia.csproj", "{881A55E6-26C4-428F-BC87-80F7B9C9D871}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TAMS", "TAMS", "{FA5BA36A-FBE0-4C27-88A4-CE102FB76921}"
-	ProjectSection(SolutionItems) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TAMS", "TAMS\TAMS\TAMS.csproj", "{B549FC0A-67A0-4A68-B90B-5F934D273E47}"
 EndProject
@@ -151,16 +139,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TAMSUnitTests", "TAMS\TAMSUnitTests\TAMSUnitTests.csproj", "{D3A1404A-BEA3-4348-8E42-5C688D15C4F8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PSTestLib", "PSTestLib", "{61868C5B-D00E-45C9-A5AE-78DB4CF8F4A0}"
-	ProjectSection(SolutionItems) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSTestLibrary", "PSTestLib\PSTestLibrary\PSTestLibrary.csproj", "{E4499004-DAE5-4700-B212-4CDEA3080BC5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSTestLibraryTest", "PSTestLib\PSTestLibraryTest\PSTestLibraryTest.csproj", "{D1A54EE8-6225-4697-9894-562FA479DC54}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PS", "PS", "{3C37D395-9F2F-46AD-B6D1-2D8DEF24F835}"
-	ProjectSection(SolutionItems) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CmdletUnit", "PS\CmdletUnit\CmdletUnit.csproj", "{36F73FA0-C636-48CF-BB7A-FE10FE52C391}"
 EndProject
@@ -169,8 +153,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSTestRunner", "PS\PSTestRunner\PSTestRunner.csproj", "{4D26B426-6495-4E1B-85C9-5A00F9D71758}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{CD67B265-7701-481C-99CF-E31A58DCACE2}"
-	ProjectSection(SolutionItems) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data\Data.csproj", "{826016A7-7474-40FE-8A6E-37B77DA085A8}"
 EndProject
@@ -181,8 +163,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataUnitTests", "Data\DataUnitTests\DataUnitTests.csproj", "{71F8DDFF-D338-47FA-A146-71F1EBA5BEDF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTesting", "UnitTesting", "{34333558-C0A4-4450-8E60-D7F4AFC347D2}"
-	ProjectSection(SolutionItems) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoqCmdlets", "UnitTesting\MoqCmdlets\MoqCmdlets.csproj", "{25459BD1-A644-4808-9C40-762D03D495E3}"
 EndProject
@@ -191,22 +171,16 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoqCmdletsUnitTests", "UnitTesting\MoqCmdletsUnitTests\MoqCmdletsUnitTests.csproj", "{73875744-356D-40A1-B72B-91E65D38E0B9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{0C65F486-4EBC-48C6-8185-8B38816FEF04}"
-	ProjectSection(SolutionItems) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestUtils", "TestUtils\TestUtils.csproj", "{FFD78ABA-4388-421F-85CA-69D68FBC982C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GUI", "GUI", "{48BA48EE-F5BF-4F50-8730-2C6C9295EE91}"
-	ProjectSection(SolutionItems) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WF", "GUI\WF\WF.csproj", "{04A507B2-408A-40A4-8092-83AD3093778D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFWPF", "GUI\WFWPF\WFWPF.csproj", "{BCD41098-1CB4-4CCC-87A7-F9481D976F1E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HtmlAgilityPack", "HtmlAgilityPack", "{B92E6BC6-D837-4C53-A713-9C08C60B7152}"
-	ProjectSection(SolutionItems) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hap", "HtmlAgilityPack\Hap\Hap.csproj", "{18BD8C1E-CEF4-429C-9EB9-5DCF124D0937}"
 EndProject
@@ -214,7 +188,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hap40", "HtmlAgilityPack\Ha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HapUnitTests", "HtmlAgilityPack\HapUnitTests\HapUnitTests.csproj", "{4C77B588-3CD6-4BE1-B39C-D08EAFBBF837}"
 EndProject
-Project("{CFEE4113-1246-4D54-95CB-156813CB8593}") = "OpenQualityCenter", "OpenQualityCenter\OpenQualityCenter.wixproj", "{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}"
+Project("{CFEE4113-1246-4D54-95CB-156813CB8593}") = "OpenQualityCenter", "OpenQualityCenter\OpenQualityCenter.wixproj", "{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -2700,38 +2674,6 @@ Global
 		{BCD41098-1CB4-4CCC-87A7-F9481D976F1E}.Release40|Release40.Build.0 = Debug|x86
 		{BCD41098-1CB4-4CCC-87A7-F9481D976F1E}.Release40|x86.ActiveCfg = Debug|x86
 		{BCD41098-1CB4-4CCC-87A7-F9481D976F1E}.Release40|x86.Build.0 = Debug|x86
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Debug|Release35.ActiveCfg = Debug|Any CPU
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Debug|Release35.Build.0 = Debug|Any CPU
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Debug|Release40.ActiveCfg = Debug|Any CPU
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Debug|Release40.Build.0 = Debug|Any CPU
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Debug|x86.Build.0 = Debug|Any CPU
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Release|Release35.ActiveCfg = Release|Any CPU
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Release|Release35.Build.0 = Release|Any CPU
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Release|Release40.ActiveCfg = Release|Any CPU
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Release|Release40.Build.0 = Release|Any CPU
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Release|x86.ActiveCfg = Release|Any CPU
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Release|x86.Build.0 = Release|Any CPU
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Release35|Any CPU.ActiveCfg = Debug|Any CPU
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Release35|Any CPU.Build.0 = Debug|Any CPU
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Release35|Release35.ActiveCfg = Debug|Any CPU
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Release35|Release35.Build.0 = Debug|Any CPU
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Release35|Release40.ActiveCfg = Debug|Any CPU
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Release35|Release40.Build.0 = Debug|Any CPU
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Release35|x86.ActiveCfg = Debug|Any CPU
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Release35|x86.Build.0 = Debug|Any CPU
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Release40|Any CPU.ActiveCfg = Debug|Any CPU
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Release40|Any CPU.Build.0 = Debug|Any CPU
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Release40|Release35.ActiveCfg = Debug|Any CPU
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Release40|Release35.Build.0 = Debug|Any CPU
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Release40|Release40.ActiveCfg = Debug|Any CPU
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Release40|Release40.Build.0 = Debug|Any CPU
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Release40|x86.ActiveCfg = Debug|Any CPU
-		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Release40|x86.Build.0 = Debug|Any CPU
 		{18BD8C1E-CEF4-429C-9EB9-5DCF124D0937}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{18BD8C1E-CEF4-429C-9EB9-5DCF124D0937}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18BD8C1E-CEF4-429C-9EB9-5DCF124D0937}.Debug|Release35.ActiveCfg = Debug|Release35
@@ -2828,6 +2770,38 @@ Global
 		{4C77B588-3CD6-4BE1-B39C-D08EAFBBF837}.Release40|Release40.Build.0 = Release40|Release40
 		{4C77B588-3CD6-4BE1-B39C-D08EAFBBF837}.Release40|x86.ActiveCfg = Release40|x86
 		{4C77B588-3CD6-4BE1-B39C-D08EAFBBF837}.Release40|x86.Build.0 = Release40|x86
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Debug|Release35.ActiveCfg = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Debug|Release35.Build.0 = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Debug|Release40.ActiveCfg = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Debug|Release40.Build.0 = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Debug|x86.Build.0 = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release|Release35.ActiveCfg = Release|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release|Release35.Build.0 = Release|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release|Release40.ActiveCfg = Release|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release|Release40.Build.0 = Release|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release|x86.ActiveCfg = Release|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release|x86.Build.0 = Release|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release35|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release35|Any CPU.Build.0 = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release35|Release35.ActiveCfg = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release35|Release35.Build.0 = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release35|Release40.ActiveCfg = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release35|Release40.Build.0 = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release35|x86.ActiveCfg = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release35|x86.Build.0 = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release40|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release40|Any CPU.Build.0 = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release40|Release35.ActiveCfg = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release40|Release35.Build.0 = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release40|Release40.ActiveCfg = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release40|Release40.Build.0 = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release40|x86.ActiveCfg = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release40|x86.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

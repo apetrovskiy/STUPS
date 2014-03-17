@@ -22,6 +22,7 @@ namespace UIAutomation
     {
         static Preferences()
         {
+//Console.WriteLine("Preferences 00");
             Highlight = true;
             HighlighterColor = Color.Red;
             HighlighterBorder = 3;

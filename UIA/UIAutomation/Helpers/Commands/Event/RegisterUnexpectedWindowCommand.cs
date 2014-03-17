@@ -14,11 +14,12 @@ namespace UIAutomation.Helpers.Commands
     using System.Collections;
     using System.Collections.Generic;
     using UIAutomation.Commands;
+    using PSTestLib;
     
     /// <summary>
     /// Description of RegisterUnexpectedWindowCommand.
     /// </summary>
-    public class RegisterUnexpectedWindowCommand : UiaCommand
+    public class RegisterUnexpectedWindowCommand : AbstractCommand	// : UiaCommand
     {
         public RegisterUnexpectedWindowCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {

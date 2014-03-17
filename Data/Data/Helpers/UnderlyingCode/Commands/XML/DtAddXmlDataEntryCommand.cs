@@ -11,20 +11,21 @@ namespace Data
 {
     using System;
     using System.Management.Automation;
+	using PSTestLib;
     using Data.Commands;
     
     /// <summary>
     /// Description of DtAddXmlDataEntryCommand.
     /// </summary>
-    internal class DtAddXmlDataEntryCommand : DataCommand
+    internal class DtAddXmlDataEntryCommand : AbstractCommand
     {
         internal DtAddXmlDataEntryCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
-        internal override void Execute()
+        public override void Execute()
         {
-            AddDtXmlDataEntryCommand cmdlet =
+            var cmdlet =
                 (AddDtXmlDataEntryCommand)this.Cmdlet;
             
             XMLHelper.AddDataToXMLComparer(cmdlet, cmdlet.InputObject, cmdlet.XPath, cmdlet.Value);

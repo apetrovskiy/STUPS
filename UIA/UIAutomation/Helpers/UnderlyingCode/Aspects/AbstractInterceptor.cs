@@ -14,8 +14,8 @@ namespace UIAutomation
     /// <summary>
     /// Description of AbstractInterceptor.
     /// </summary>
-    public abstract class AbstractInterceptor : IInterceptor
-    {
-        public abstract void Intercept(IInvocation invocation);
-    }
+//    public abstract class AbstractInterceptor : IInterceptor
+//    {
+//        public abstract void Intercept(IInvocation invocation);
+//    }
 }

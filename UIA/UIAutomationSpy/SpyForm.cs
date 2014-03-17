@@ -340,9 +340,16 @@ namespace UIAutomationSpy
                 //if ((new UiElement(walker.GetParent(element.SourceElement))) == UiElement.RootElement) {
                 // 20140102
                 // if (Equals(new UiElement(walker.GetParent(element.GetSourceElement())), UiElement.RootElement)) {
-                if (Equals(new UiElement(walker.GetParent(element.GetSourceElement() as AutomationElement)), UiElement.RootElement)) {
+                // 20140316
+//                if (Equals(new UiElement(walker.GetParent(element.GetSourceElement() as AutomationElement)), UiElement.RootElement)) {
+//                    elementControlType = "Window";
+//                }
+                var testParentElement = new UiElement();
+                testParentElement.SetSourceElement(walker.GetParent(element.GetSourceElement() as AutomationElement));
+                if (Equals(testParentElement, UiElement.RootElement)) {
                     elementControlType = "Window";
                 }
+                
                 /*
                 if ((new UiElement(walker.GetParent(element.GetSourceElement()))) == UiElement.RootElement) {
                     elementControlType = "Window";
@@ -443,7 +450,11 @@ namespace UIAutomationSpy
                         //new UiElement(walker.GetParent(testparent.SourceElement));
                         // 20140102
                         // new UiElement(walker.GetParent(testparent.GetSourceElement()));
-                        new UiElement(walker.GetParent(testparent.GetSourceElement() as AutomationElement));
+                        // 20140316
+                        // new UiElement(walker.GetParent(testparent.GetSourceElement() as AutomationElement));
+                        new UiElement();
+                    testparent.SetSourceElement(walker.GetParent(testparent.GetSourceElement() as AutomationElement));
+                    
                     // 20140312
                     // if (testparent.Current.ProcessId <= 0) continue;
                     if (testparent.GetCurrent().ProcessId <= 0) continue;

@@ -91,11 +91,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands" />
+    <Folder Include="Commands\Get" />
     <Folder Include="Commands\Import" />
     <Folder Include="Commands\Get" />
     <Folder Include="Commands\Convert" />
     <Folder Include="Helpers" />
     <Folder Include="Helpers\Commands" />
+    <Folder Include="Helpers\Commands\Get" />
     <Folder Include="Helpers\Commands\Import" />
     <Folder Include="Helpers\Commands\Get" />
     <Folder Include="Helpers\Commands\Convert" />

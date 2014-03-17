@@ -28,6 +28,7 @@ namespace UIAutomation.Commands
         {
             AddWizardStepCommand command =
                 new AddWizardStepCommand(this);
+                // new AddWizardStepCommand() { Cmdlet = this };
             command.Execute();
         }
         

@@ -32,6 +32,7 @@ namespace TMX.Commands
         {
             TmxAddTestCaseCommand command =
                 new TmxAddTestCaseCommand(this);
+                // new TmxAddTestCaseCommand() { Cmdlet = this };
             command.Execute();
         }
     }

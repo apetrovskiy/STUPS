@@ -10,22 +10,24 @@
 namespace TMX
 {
     using System;
-    using System.Management.Automation;
+//    using System.Management.Automation;
     using TMX.Commands;
+    using PSTestLib;
     
 	/// <summary>
 	/// Description of TmxAddSimpleTestResultCommand.
 	/// </summary>
-    internal class TmxAddSimpleTestResultCommand : TmxCommand
+    internal class TmxAddSimpleTestResultCommand : AbstractCommand // : TmxCommand
     {
         internal TmxAddSimpleTestResultCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
-        internal override void Execute()
+        // internal override void Execute()
+        public override void Execute()
         {
            
-            AddTmxSimpleTestResultCommand cmdlet =
+            var cmdlet =
                 (AddTmxSimpleTestResultCommand)this.Cmdlet;
             
             // 20130330

@@ -14,6 +14,7 @@ namespace UIAutomation
     using System.Collections;
     using System.Collections.Generic;
     using System.Diagnostics;
+	using PSTestLib;
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
     using System.Linq;
     using System.Management.Automation;
@@ -63,7 +64,8 @@ namespace UIAutomation
                 var data = searchData as WindowSearcherData;
                 // WindowSearcherData data = searchData as WindowSearcherData;
                 
-                AutomationFactory.InitializeChildKernel();
+                // 20140315
+                // AutomationFactory.InitializeChildKernel();
                 
                 if (data.Win32) {
                     
@@ -96,7 +98,9 @@ namespace UIAutomation
                 
                 if (null == ResultCollection || 0 == ResultCollection.Count) {
                     
-                    AutomationFactory.ChildKernel.Release(ResultCollection);
+                    // 20140315
+                    // AutomationFactory.ChildKernel.Release(ResultCollection);
+                    ObjectFactory.Release(ResultCollection);
                 }
                 
             } catch (Exception eSearchFailure) {
@@ -430,6 +434,12 @@ namespace UIAutomation
                                     classic.TreeScope.Children,
                                     conditionsProcessId);
                             
+if (null == rootCollection || 0 == rootCollection.Count) {
+    Console.WriteLine("getByPid 01: null == rootCollection || 0 == rootCollection.Count");
+} else {
+    Console.WriteLine("getByPid 01: null != rootCollection && 0 < rootCollection.Count");
+}
+                            
                             if (null != rootCollection && 0 < rootCollection.Count)
                             {
                                 elementsByProcessId.AddRange(rootCollection.Cast<IUiElement>());
@@ -455,6 +465,16 @@ namespace UIAutomation
                                 rootElement.FindAll(
                                     classic.TreeScope.Children,
                                     conditionsProcessId);
+                            
+if (null == tempCollection || 0 == tempCollection.Count) {
+    Console.WriteLine("getByPid 02: null == tempCollection || 0 == tempCollection.Count");
+} else {
+    Console.WriteLine("getByPid 02: null != tempCollection && 0 < tempCollection.Count");
+    Console.WriteLine("getByPid 02: tempColl.Count = {0}", tempCollection.Count);
+    foreach (IUiElement element in tempCollection) {
+        Console.WriteLine(element.GetCurrent().Name);
+    }
+}
                             
                             if (null != tempCollection && 0 < tempCollection.Count) {
                                 

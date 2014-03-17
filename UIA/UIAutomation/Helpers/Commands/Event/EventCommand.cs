@@ -11,11 +11,12 @@ namespace UIAutomation.Helpers.Commands
 {
     using System;
     using UIAutomation.Commands;
+    using PSTestLib;
     
     /// <summary>
     /// Description of EventCommand.
     /// </summary>
-    public class EventCommand : UiaCommand
+    public class EventCommand : AbstractCommand	// : UiaCommand
     {
         public EventCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {

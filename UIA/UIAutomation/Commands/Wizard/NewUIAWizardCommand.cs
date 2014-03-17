@@ -51,6 +51,7 @@ namespace UIAutomation.Commands
         {
             NewWizardCommand command =
                 new NewWizardCommand(this);
+                // new NewWizardCommand() { Cmdlet = this };
             command.Execute();
         }
         

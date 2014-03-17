@@ -11,17 +11,19 @@ namespace SePSX
 {
     using System;
     using System.Management.Automation;
+	using PSTestLib;
     
     /// <summary>
     /// Description of SeConvertFromTableCommand.
     /// </summary>
-    internal class SeConvertFromTableCommand : SeCommand
+    internal class SeConvertFromTableCommand : AbstractCommand
     {
         internal SeConvertFromTableCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
-        internal override void Execute()
+        // internal override void Execute()
+        public override void Execute()
         {
             SeHelper.ConvertFromTable(this.Cmdlet);
         }

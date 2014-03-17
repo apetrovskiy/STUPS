@@ -11,14 +11,15 @@ namespace UIAutomation
 {
     extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
     using System;
-    using System.Reflection;
-	using System.Runtime.Remoting.Lifetime;
+//    using System.Reflection;
+//	using System.Runtime.Remoting.Lifetime;
+	using PSTestLib;
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
-    using System.Collections;
-    using System.Collections.Generic;
+//    using System.Collections;
+//    using System.Collections.Generic;
     using Castle.DynamicProxy;
-    using NLog;
-    using WindowsInput;
+//    using NLog;
+//    using WindowsInput;
     using WindowsInput.Native;
     
     /// <summary>
@@ -35,12 +36,17 @@ namespace UIAutomation
                     AlreadySelected = true;
                     
                     if (Preferences.Log) {
-                        
+                        // 20140315
+                        // AutomationFactory.GetObject<LogHelper>().LogMethodCall(
+                        // 20140316
+                        // AutomationFactory.GetObject<PSTestLib.LogHelper>().LogMethodCall(
                         AutomationFactory.GetObject<LogHelper>().LogMethodCall(
                             invocation.Method.Name,
                             invocation.Arguments);
                     }
                     
+//Console.WriteLine("Icept 0005");
+//Console.WriteLine(invocation.Method.Name);
                     switch (invocation.Method.Name) {
                             #region DockPattern
                         case "SetDockPosition":
@@ -948,7 +954,12 @@ namespace UIAutomation
                     invocation.ReturnValue = invocation.Proxy;
                 }
             }
-            catch {
+            // 20140316
+//            catch {
+//                AlreadySelected = false;
+//            }
+            catch (Exception eTemporary) {
+Console.WriteLine("methodSelectorAspect -> {0}", eTemporary.Message);
                 AlreadySelected = false;
             }
         }

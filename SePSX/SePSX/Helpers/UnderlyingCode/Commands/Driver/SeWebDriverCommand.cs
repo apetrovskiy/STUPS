@@ -11,18 +11,20 @@ namespace SePSX
 {
     using System;
     using System.Management.Automation;
+	using PSTestLib;
     using SePSX.Commands;
     
     /// <summary>
     /// Description of SeWebDriverCommand.
     /// </summary>
-    internal class SeWebDriverCommand : SeCommand
+    internal class SeWebDriverCommand : AbstractCommand
     {
         internal SeWebDriverCommand(CommonCmdletBase cmdlet) : base(cmdlet)
         {
         }
         
-        internal override void Execute()
+        // internal override void Execute()
+        public override void Execute()
         {
         }
     }

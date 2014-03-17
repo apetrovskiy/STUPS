@@ -26,6 +26,7 @@ namespace UIAutomation.Commands
         {
             GetWizardCommand command =
                 new GetWizardCommand(this);
+                // new GetWizardCommand() { Cmdlet = this };
             command.Execute();
             
 //            Wizard wzd = GetWizard(Name);

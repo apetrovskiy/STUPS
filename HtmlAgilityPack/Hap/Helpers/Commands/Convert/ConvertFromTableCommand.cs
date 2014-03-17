@@ -11,12 +11,13 @@ namespace Hap.Helpers.Commands.Convert
 {
     using System;
 	using HtmlAgilityPack;
+	using PSTestLib;
 	using Hap.Commands;
     
     /// <summary>
     /// Description of ConvertFromTableCommand.
     /// </summary>
-    public class ConvertFromTableCommand : HapCommand
+    public class ConvertFromTableCommand : HapCommand //: AbstractCommand
     {
         public ConvertFromTableCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {

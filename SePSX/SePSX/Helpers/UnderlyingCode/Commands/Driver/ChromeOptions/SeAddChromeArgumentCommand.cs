@@ -11,17 +11,19 @@ namespace SePSX
 {
     using System;
     using System.Management.Automation;
+	using PSTestLib;
     
     /// <summary>
     /// Description of SeAddChromeArgumentCommand.
     /// </summary>
-    internal class SeAddChromeArgumentCommand : SeCommand
+    internal class SeAddChromeArgumentCommand : AbstractCommand
     {
         internal SeAddChromeArgumentCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
-        internal override void Execute()
+        // internal override void Execute()
+        public override void Execute()
         {
             SeHelper.AddChromeArgument(this.Cmdlet);
         }

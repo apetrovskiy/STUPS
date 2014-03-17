@@ -11,20 +11,21 @@ namespace Data
 {
     using System;
     using System.Management.Automation;
+	using PSTestLib;
     using Data.Commands;
     
     /// <summary>
     /// Description of DtCompareXmlDataCommand.
     /// </summary>
-    internal class DtCompareXmlDataCommand : DataCommand
+    internal class DtCompareXmlDataCommand : AbstractCommand
     {
         internal DtCompareXmlDataCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
-        internal override void Execute()
+        public override void Execute()
         {
-            CompareDtXmlDataCommand cmdlet =
+            var cmdlet =
                 (CompareDtXmlDataCommand)this.Cmdlet;
             
             //XMLHelper.CreateXMLComparer(cmdlet);

@@ -36,6 +36,7 @@ namespace TMX.Commands
         {
             TmxAddTestScenarioCommand command =
                 new TmxAddTestScenarioCommand(this);
+                // new TmxAddTestScenarioCommand() { Cmdlet = this };
             command.Execute();
         }
     }

@@ -11,15 +11,16 @@ namespace UIAutomation.Helpers.Commands
 {
     using System;
     using System.Management.Automation;
-    using System.Collections;
+//    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
     using UIAutomation.Commands;
+    using PSTestLib;
     
     /// <summary>
     /// Description of WaitEventRaisedCommand.
     /// </summary>
-    public class WaitEventRaisedCommand : UiaCommand
+    public class WaitEventRaisedCommand : AbstractCommand	// : UiaCommand
     {
         public WaitEventRaisedCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {

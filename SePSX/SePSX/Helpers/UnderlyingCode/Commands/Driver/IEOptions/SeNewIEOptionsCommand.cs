@@ -11,17 +11,19 @@ namespace SePSX
 {
     using System;
     using System.Management.Automation;
+	using PSTestLib;
     
     /// <summary>
     /// Description of SeNewIEOptionsCommand.
     /// </summary>
-    internal class SeNewIEOptionsCommand : SeCommand
+    internal class SeNewIEOptionsCommand : AbstractCommand
     {
         internal SeNewIEOptionsCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
-        internal override void Execute()
+        // internal override void Execute()
+        public override void Execute()
         {
             SeHelper.GetNewIEOptions(this.Cmdlet);
         }

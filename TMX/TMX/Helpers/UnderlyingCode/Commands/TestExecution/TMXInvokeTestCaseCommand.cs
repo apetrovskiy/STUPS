@@ -11,19 +11,21 @@ namespace TMX
 {
     using System;
     using System.Management.Automation;
+    using PSTestLib;
     
     /// <summary>
     /// Description of TmxInvokeTestCaseCommand.
     /// </summary>
-    internal class TmxInvokeTestCaseCommand : TmxCommand
+    internal class TmxInvokeTestCaseCommand : AbstractCommand // : TmxCommand
     {
         internal TmxInvokeTestCaseCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
-        internal override void Execute()
+        // internal override void Execute()
+        public override void Execute()
         {
-            TestCaseExecCmdletBase cmdlet =
+            var cmdlet =
                 (TestCaseExecCmdletBase)this.Cmdlet;
             
             ITestCase testCase =

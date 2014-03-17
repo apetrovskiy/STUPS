@@ -31,6 +31,7 @@ namespace TMX.Commands
             
             TmxOpenTestSuiteCommand command =
                 new TmxOpenTestSuiteCommand(this);
+                // new TmxOpenTestSuiteCommand() { Cmdlet = this };
             command.Execute();
         }
     }

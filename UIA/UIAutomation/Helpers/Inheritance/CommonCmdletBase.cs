@@ -51,8 +51,10 @@ namespace UIAutomation
                 ModuleAlreadyLoaded = true;
             }
             
-            //CurrentData.Init();
-            AutomationFactory.Init();
+//Console.WriteLine("CommonCmdletBase -> Init 01");
+//            //CurrentData.Init();
+//            AutomationFactory.Init();
+//Console.WriteLine("CommonCmdletBase -> Init 02");
             
             // 20140124
 //            runTwoScriptBlockCollections(

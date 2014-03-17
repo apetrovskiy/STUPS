@@ -23,9 +23,14 @@ namespace PSTestLib
     /// </summary>
     public abstract class PSCmdletBase : PSCmdlet //, ICommonCmdletBase
     {
-        //public PSCmdletBase()
-        //{
-        //}
+        private bool _alreadyInitialized;
+        
+//        public PSCmdletBase()
+//        {
+//            if (_alreadyInitialized) return;
+//            // var objectFactory = new ObjectFactory();
+//            _alreadyInitialized = true;
+//        }
         
         #region Parameters
             #region Actions
@@ -456,7 +461,7 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
 
             }
             
-            ErrorRecord err = 
+            var err = 
                 new ErrorRecord(
                     new Exception(message),
                     errorId,

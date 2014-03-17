@@ -10,12 +10,13 @@
 namespace Hap.Helpers.Commands.Import
 {
     using System;
+	using PSTestLib;
     using Hap.Commands;
     
 	/// <summary>
 	/// Description of ImportPageCommand.
 	/// </summary>
-    public class ImportHtmlPageCommand : HapCommand
+    public class ImportHtmlPageCommand : HapCommand //: AbstractCommand
 	{
         public ImportHtmlPageCommand(CommonCmdletBase cmdlet) : base (cmdlet)
 		{

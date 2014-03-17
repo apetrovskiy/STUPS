@@ -25,13 +25,13 @@ namespace UIAutomation
     /// Description of LogHelper.
     /// </summary>
     [UiaSpecialBinding]
-    public class LogHelper
+    public class LogHelperUia
     {
         internal List<LogEntry> Entries = new List<LogEntry>();
         
         private bool _alreadyInitialized;
         
-        public LogHelper(string logPath)
+        public LogHelperUia(string logPath)
         {
             if (_alreadyInitialized) return;
             LogPath = logPath;
@@ -39,7 +39,7 @@ namespace UIAutomation
             Init();
         }
         
-        public LogHelper()
+        public LogHelperUia()
         {
             if (_alreadyInitialized) return;
             Init();
@@ -65,12 +65,14 @@ namespace UIAutomation
             Entries.Add(entry);
         }
         
-        public virtual void LogCmdlet(CommonCmdletBase cmdlet)
+        // public virtual void LogCmdlet(CommonCmdletBase cmdlet)
+        public virtual void LogCmdlet(PSCmdletBase cmdlet)
         {
             Info(GetObjectPropertiesInfo(cmdlet));
         }
         
-        internal virtual string GetObjectPropertiesInfo(CommonCmdletBase cmdlet)
+        // internal virtual string GetObjectPropertiesInfo(CommonCmdletBase cmdlet)
+        internal virtual string GetObjectPropertiesInfo(PSCmdletBase cmdlet)
         {
             string result = string.Empty;
             
@@ -87,7 +89,8 @@ namespace UIAutomation
             return result;
         }
         
-        internal virtual string GetPropertyString(CommonCmdletBase cmdlet, PropertyInfo propertyInfo)
+        // internal virtual string GetPropertyString(CommonCmdletBase cmdlet, PropertyInfo propertyInfo)
+        internal virtual string GetPropertyString(PSCmdletBase cmdlet, PropertyInfo propertyInfo)
         {
             string result = string.Empty;
             
@@ -251,7 +254,9 @@ namespace UIAutomation
                     methodName += ")";
                 }
                 if (!string.IsNullOrEmpty(methodName)) {
-                    AutomationFactory.GetLogHelper(string.Empty).Info(methodName);
+                    // 20140315
+                    // AutomationFactory.GetLogHelper(string.Empty).Info(methodName);
+                    ObjectFactory.GetLogHelper(string.Empty).Info(methodName);
                 }
             }
         }

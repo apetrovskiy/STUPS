@@ -12,11 +12,12 @@ namespace UIAutomation
     using System;
     using System.Management.Automation;
     using Commands;
+    using PSTestLib;
     
     /// <summary>
     /// Description of UiaNewRemoteDesktopProtocolFileCommand.
     /// </summary>
-    public class NewRemoteDesktopProtocolFileCommand : UiaCommand
+    public class NewRemoteDesktopProtocolFileCommand : AbstractCommand	// : UiaCommand
     {
         public NewRemoteDesktopProtocolFileCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
@@ -24,7 +25,7 @@ namespace UIAutomation
         
         public override void Execute()
         {
-            NewUiaRemoteDesktopProtocolFileCommand cmdlet =
+            var cmdlet =
                 (NewUiaRemoteDesktopProtocolFileCommand)Cmdlet;
 
             RdpHelper.CreateRdpFile(cmdlet);

@@ -16,9 +16,9 @@ namespace UIAutomation
     /// <summary>
     /// Description of LogEntry.
     /// </summary>
-    public class LogEntry
+    public class LogEntryUia
     {
-        public LogEntry(LogLevels level, string message)
+        public LogEntryUia(LogLevels level, string message)
         {
             DateTime = System.DateTime.Now;
             LogLevel = level;

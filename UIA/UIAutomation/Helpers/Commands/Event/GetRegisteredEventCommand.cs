@@ -14,11 +14,12 @@ namespace UIAutomation.Helpers.Commands
     using System.Collections;
     using System.Collections.Generic;
     using UIAutomation.Commands;
+    using PSTestLib;
     
     /// <summary>
     /// Description of GetRegisteredEventCommand.
     /// </summary>
-    public class GetRegisteredEventCommand : UiaCommand
+    public class GetRegisteredEventCommand : AbstractCommand	// : UiaCommand
     {
         public GetRegisteredEventCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {

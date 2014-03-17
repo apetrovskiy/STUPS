@@ -11,17 +11,20 @@ namespace TMX
 {
     using System;
     using System.Management.Automation;
+	using PSTestLib;
     
     /// <summary>
     /// Description of TmxNewLoggerCommand.
     /// </summary>
-    internal class TmxNewLoggerCommand : TmxCommand
+    // internal class TmxNewLoggerCommand : AbstractCommand // : TmxCommand
+    public class TmxNewLoggerCommand : AbstractCommand
     {
         internal TmxNewLoggerCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
-        internal override void Execute()
+        // internal override void Execute()
+        public override void Execute()
         {
         }
     }

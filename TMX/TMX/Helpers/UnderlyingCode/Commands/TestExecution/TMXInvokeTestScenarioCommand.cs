@@ -11,19 +11,21 @@ namespace TMX
 {
     using System;
     using System.Management.Automation;
+    using PSTestLib;
     
 	/// <summary>
 	/// Description of TmxInvokeTestScenarioCommand.
 	/// </summary>
-    internal class TmxInvokeTestScenarioCommand : TmxCommand
+    internal class TmxInvokeTestScenarioCommand : AbstractCommand // : TmxCommand
     {
         internal TmxInvokeTestScenarioCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
-        internal override void Execute()
+        // internal override void Execute()
+        public override void Execute()
         {
-            TestScenarioExecCmdletBase cmdlet =
+            var cmdlet =
                 (TestScenarioExecCmdletBase)this.Cmdlet;
             
             ITestScenario testScenario =

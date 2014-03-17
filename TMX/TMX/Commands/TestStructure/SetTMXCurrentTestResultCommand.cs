@@ -40,6 +40,7 @@ namespace TMX.Commands
         {
             TmxSetCurrentTestResultCommand command =
                 new TmxSetCurrentTestResultCommand(this);
+                // new TmxSetCurrentTestResultCommand() { Cmdlet = this };
             command.Execute();
         }
     }

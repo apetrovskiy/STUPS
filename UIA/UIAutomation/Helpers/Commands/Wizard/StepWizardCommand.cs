@@ -12,11 +12,12 @@ namespace UIAutomation
     using System;
     using System.Management.Automation;
     using Commands;
+    using PSTestLib;
     
     /// <summary>
     /// Description of UiaStepWizardCommand.
     /// </summary>
-    public class StepWizardCommand : UiaCommand
+    public class StepWizardCommand : AbstractCommand	// : UiaCommand
     {
         public StepWizardCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
@@ -24,7 +25,7 @@ namespace UIAutomation
         
         public override void Execute()
         {
-            StepUiaWizardCommand cmdlet =
+            var cmdlet =
                 (StepUiaWizardCommand)Cmdlet;
             
             WizardHelper.StepWizardStep(cmdlet);

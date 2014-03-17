@@ -22,6 +22,7 @@ namespace UIAutomation.Commands
         {
             ExitWizardCommand command =
                 new ExitWizardCommand(this);
+                // new ExitWizardCommand() { Cmdlet = this };
             command.Execute();
         }
     }

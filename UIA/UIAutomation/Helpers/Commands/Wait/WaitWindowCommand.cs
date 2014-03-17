@@ -14,11 +14,12 @@ namespace UIAutomation.Helpers.Commands
     using System.Collections;
     using System.Collections.Generic;
     using UIAutomation.Commands;
+    using PSTestLib;
     
     /// <summary>
     /// Description of WaitWindowCommand.
     /// </summary>
-    public class WaitWindowCommand : UiaCommand
+    public class WaitWindowCommand : AbstractCommand	// : UiaCommand
     {
         public WaitWindowCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {

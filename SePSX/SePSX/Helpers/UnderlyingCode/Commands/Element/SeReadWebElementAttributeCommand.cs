@@ -23,7 +23,8 @@ namespace SePSX
         {
         }
         
-        internal override void Execute()
+        // internal override void Execute()
+        public override void Execute()
         {
 //            SeHelper.GetWebElementAttribute(
 //                ((ReadSeWebElementAttributeCommand)this.Cmdlet),

@@ -31,6 +31,7 @@ namespace TMX.Commands
             
             TmxInvokeTestSuiteCommand command =
                 new TmxInvokeTestSuiteCommand(this);
+                // new TmxInvokeTestSuiteCommand() { Cmdlet = this };
             command.Execute();
         }
     }

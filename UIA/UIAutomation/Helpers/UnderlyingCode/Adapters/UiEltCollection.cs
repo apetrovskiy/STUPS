@@ -72,36 +72,69 @@ namespace UIAutomation
 			get { return false; }
 		}
         
-		public UiEltCollection(classic.AutomationElementCollection elements)
-		{
-		    foreach (classic.AutomationElement element in elements.Cast<classic.AutomationElement>().Where(element => null != element))
-		    {
-		        _collectionHolder.Add(AutomationFactory.GetUiElement(element));
-		    }
-		}
-
-	    public UiEltCollection(IUiEltCollection elements)
+        // 20140316
+//		public UiEltCollection(classic.AutomationElementCollection elements)
+//		{
+//		    foreach (classic.AutomationElement element in elements.Cast<classic.AutomationElement>().Where(element => null != element))
+//		    {
+//		        _collectionHolder.Add(AutomationFactory.GetUiElement(element));
+//		    }
+//		}
+//
+//	    public UiEltCollection(IUiEltCollection elements)
+//	    {
+//	        foreach (IUiElement element in elements.Cast<IUiElement>().Where(element => null != element))
+//	        {
+//	            _collectionHolder.Add(element);
+//	        }
+//	    }
+        
+        // 20140316
+	    // public UiEltCollection(IEnumerable elements)
+        public UiEltCollection(params object[] elements)
 	    {
-	        foreach (IUiElement element in elements.Cast<IUiElement>().Where(element => null != element))
-	        {
-	            _collectionHolder.Add(element);
-	        }
+//Console.WriteLine("UiEltCollection 0001");
+//Console.WriteLine(elements.GetType().Name);
+//Console.WriteLine("UiEltCollection 0001.1");
+//foreach (var singleParam in elements) {
+//    Console.WriteLine(singleParam.GetType().Name);
+//}
+            // 20140316
+            if (null == elements || 0 == elements.Length) return;
+            foreach (IEnumerable subCollection in elements) {
+                
+//Console.WriteLine("UiEltCollection 0002");
+                // 20140316
+                if (subCollection is classic.AutomationElementCollection) {
+//Console.WriteLine("UiEltCollection 0003");
+		          foreach (classic.AutomationElement element in subCollection.Cast<classic.AutomationElement>().Where(element => null != element))
+		          {
+//Console.WriteLine("UiEltCollection 0004");
+		               _collectionHolder.Add(AutomationFactory.GetUiElement(element));
+		          }
+//Console.WriteLine("UiEltCollection 0005");
+                    return;
+                }
+                
+                if (subCollection is IUiEltCollection) {
+//Console.WriteLine("UiEltCollection 0006");
+                    foreach (IUiElement element in subCollection.Cast<IUiElement>().Where(element => null != element))
+                    {
+//Console.WriteLine("UiEltCollection 0007");
+                        _collectionHolder.Add(element);
+                    }
+//Console.WriteLine("UiEltCollection 0008");
+                    return;
+                }
+            }
+//Console.WriteLine("UiEltCollection 0014");
 	    }
-
-	    public UiEltCollection(IEnumerable elements)
-	    {
-	        foreach (var element in elements.Cast<object>().Where(element => null != element && element is classic.AutomationElement)) {
-	            _collectionHolder.Add(AutomationFactory.GetUiElement(element as classic.AutomationElement));
-	        }
-	        foreach (var element in elements.Cast<object>().Where(element => null != element && element is IUiElement)) {
-	            _collectionHolder.Add((IUiElement)element);
-	        }
-	    }
-
-	    [Inject]
-		public UiEltCollection(bool fake)
-		{
-		}
+        
+        // 20140316
+//	    [Inject]
+//		public UiEltCollection(bool fake)
+//		{
+//		}
 		
 		public virtual void CopyTo(Array array, int index)
 		{

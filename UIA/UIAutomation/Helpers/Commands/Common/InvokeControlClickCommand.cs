@@ -11,14 +11,15 @@ namespace UIAutomation.Helpers.Commands
 {
     using System;
     using System.Management.Automation;
-    using System.Collections;
-    using System.Collections.Generic;
+//    using System.Collections;
+//    using System.Collections.Generic;
     using UIAutomation.Commands;
+    using PSTestLib;
     
     /// <summary>
     /// Description of InvokeControlClickCommand.
     /// </summary>
-    public class InvokeControlClickCommand : UiaCommand
+    public class InvokeControlClickCommand : AbstractCommand	// : UiaCommand
     {
         public InvokeControlClickCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {

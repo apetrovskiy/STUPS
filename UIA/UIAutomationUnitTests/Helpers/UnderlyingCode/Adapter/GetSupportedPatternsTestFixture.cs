@@ -1,4 +1,5 @@
-﻿/*
+﻿using PSTestLib;
+/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 12/11/2013
@@ -68,7 +69,9 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Adapter
                     "name",
                     "auId",
                     "className",
+                    // 20140315
                     new[] { AutomationFactory.GetPatternAdapter<IValuePattern>(AutomationFactory.GetUiElement(), null) },
+                    // new[] { AutomationFactory.GetPatternAdapter<IValuePattern>(ObjectFactory.GetUiElement(), null) },
                     true);
             
             MbUnit.Framework.Assert.AreEqual(1, element.GetSupportedPatterns().Count());
@@ -87,9 +90,13 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Adapter
                     "auId",
                     "className",
                     new IBasePattern[] {
+                        // 20140315
                         AutomationFactory.GetPatternAdapter<IExpandCollapsePattern>(AutomationFactory.GetUiElement(), null),
                         AutomationFactory.GetPatternAdapter<ITableItemPattern>(AutomationFactory.GetUiElement(), null),
                         AutomationFactory.GetPatternAdapter<IWindowPattern>(AutomationFactory.GetUiElement(), null)
+//                        AutomationFactory.GetPatternAdapter<IExpandCollapsePattern>(ObjectFactory.GetUiElement(), null),
+//                        AutomationFactory.GetPatternAdapter<ITableItemPattern>(ObjectFactory.GetUiElement(), null),
+//                        AutomationFactory.GetPatternAdapter<IWindowPattern>(ObjectFactory.GetUiElement(), null)
                     },
                     true);
             

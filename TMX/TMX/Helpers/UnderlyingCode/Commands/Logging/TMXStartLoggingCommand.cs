@@ -11,17 +11,19 @@ namespace TMX
 {
     using System;
     using System.Management.Automation;
+    using PSTestLib;
     
     /// <summary>
     /// Description of TmxStartLoggingCommand.
     /// </summary>
-    internal class TmxStartLoggingCommand : TmxCommand
+    internal class TmxStartLoggingCommand : AbstractCommand // : TmxCommand
     {
         internal TmxStartLoggingCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
-        internal override void Execute()
+        // internal override void Execute()
+        public override void Execute()
         {
         }
     }

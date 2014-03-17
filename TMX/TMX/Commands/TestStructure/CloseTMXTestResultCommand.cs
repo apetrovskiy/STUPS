@@ -74,6 +74,7 @@ namespace TMX.Commands
                 
             TmxCloseTestResultCommand command =
                 new TmxCloseTestResultCommand(this);
+                // new TmxCloseTestResultCommand() { Cmdlet = this };
             command.Execute();
         }
     }

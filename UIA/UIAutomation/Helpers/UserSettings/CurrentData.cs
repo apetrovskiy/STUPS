@@ -25,6 +25,7 @@ namespace UIAutomation
     {
         static CurrentData()
         {
+//Console.WriteLine("CurrentData 00");
             // 20130109
 //            Error = new System.Collections.ArrayList(Preferences.MaximumErrorCount);
 //            //TestResults = 

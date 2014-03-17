@@ -28,6 +28,7 @@ namespace TMX.Commands
             
             TmxNewTestPlatformCommand command =
                 new TmxNewTestPlatformCommand(this);
+                // new TmxNewTestPlatformCommand() { Cmdlet = this };
             command.Execute();
         }
     }

@@ -11,14 +11,15 @@ namespace UIAutomation.Helpers.Commands
 {
     using System;
     using System.Management.Automation;
-    using System.Collections;
-    using System.Collections.Generic;
+//    using System.Collections;
+//    using System.Collections.Generic;
     using UIAutomation.Commands;
+    using PSTestLib;
     
     /// <summary>
     /// Description of UnregisterEventCommand.
     /// </summary>
-    public class UnregisterEventCommand : UiaCommand
+    public class UnregisterEventCommand : AbstractCommand	// : UiaCommand
     {
         public UnregisterEventCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {

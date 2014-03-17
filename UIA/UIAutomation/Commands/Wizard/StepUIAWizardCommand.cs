@@ -45,6 +45,7 @@ namespace UIAutomation.Commands
         {
             StepWizardCommand command =
                 new StepWizardCommand(this);
+                // new StepWizardCommand() { Cmdlet = this };
             command.Execute();
             
 //            // getting the step the user ordered to run

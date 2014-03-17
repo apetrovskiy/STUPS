@@ -410,9 +410,10 @@
     <Compile Include="Helpers\UnderlyingCode\NewModel\SingleControlSearcherData.cs" />
     <Compile Include="Helpers\UnderlyingCode\NewModel\TimeoutManager.cs" />
     <Compile Include="Helpers\UnderlyingCode\NewModel\WindowSearcherData.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Ninject\AutomationFactory.cs" />
     <Compile Include="Helpers\UnderlyingCode\Ninject\ChildKernelModule.cs" />
     <Compile Include="Helpers\UnderlyingCode\Ninject\ObjectLifecycleModule.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Ninject\AutomationFactory.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Ninject\AutomationFactoryUia.cs" />
     <Compile Include="Helpers\UnderlyingCode\RDP\DataProtectionForRDPWrapper.cs" />
     <Compile Include="Helpers\UnderlyingCode\RDP\DataProtector.cs" />
     <Compile Include="Helpers\UnderlyingCode\Searchers\ContextMenuSearcher.cs" />

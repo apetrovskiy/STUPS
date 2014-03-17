@@ -2720,9 +2720,23 @@ namespace UIAutomation
                 supportedTypes.Add(typeof(ISupportsCurrent));
             }
             
-            if (element is classic.AutomationElement) {
+            // 20140316
+            // if (element is classic.AutomationElement) {
+            var aElement = element as classic.AutomationElement;
+            if (null != aElement) {
                 
-                var aElement = element as classic.AutomationElement;
+Console.WriteLine("is classic.AutomationElement");
+                // 20140316
+                // var aElement = element as classic.AutomationElement;
+if (null == aElement) {
+    Console.WriteLine("null == aElement");
+} else {
+    Console.WriteLine("null != aElement");
+    var ptrnss = aElement.GetSupportedPatterns();
+    foreach (classic.AutomationPattern ptrn01 in ptrnss) {
+        Console.WriteLine(ptrn01.GetType().Name);
+    }
+}
                 foreach (classic.AutomationPattern pattern in aElement.GetSupportedPatterns()) {
                     // calculated patterns
                     if (pattern == classic.DockPattern.Pattern) {
@@ -2780,9 +2794,26 @@ namespace UIAutomation
                     }
                 }
             }
+            // 20140316
+			// var iUiElement = element as IUiElement;
+            // if (iUiElement != null) {
+            /*
             if (element is IUiElement) {
-                
-                var uiElement = element as IUiElement;
+            */
+            var uiElement = element as IUiElement;
+            if (null != uiElement) {
+Console.WriteLine("is IUiElement");
+                // 20140316
+                // var uiElement = iUiElement;
+if (null == uiElement) {
+    Console.WriteLine("null == uiElement");
+} else {
+    Console.WriteLine("null != uiElement");
+    var ptrnss = uiElement.GetSupportedPatterns();
+    foreach (IBasePattern ptrn01 in ptrnss) {
+        Console.WriteLine(ptrn01.GetType().Name);
+    }
+}
                 foreach (IBasePattern pattern in uiElement.GetSupportedPatterns()) {
                     
                     // calculated patterns

@@ -11,14 +11,15 @@ namespace UIAutomation.Helpers.Commands
 {
     using System;
     using System.Management.Automation;
-    using System.Collections;
-    using System.Collections.Generic;
+//    using System.Collections;
+//    using System.Collections.Generic;
     using UIAutomation.Commands;
+    using PSTestLib;
     
     /// <summary>
     /// Description of InvokeControlContextMenuCommand.
     /// </summary>
-    public class InvokeControlContextMenuCommand : UiaCommand
+    public class InvokeControlContextMenuCommand : AbstractCommand	// : UiaCommand
     {
         public InvokeControlContextMenuCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {

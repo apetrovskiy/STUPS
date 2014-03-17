@@ -11,15 +11,16 @@ namespace UIAutomation
 {
     using System;
     using Castle.DynamicProxy;
+	using PSTestLib;
     
     /// <summary>
     /// Description of TestResultAspect.
     /// </summary>
-    public class TestResultAspect : AbstractInterceptor
-    {
-        public override void Intercept(IInvocation invocation)
-        {
-            invocation.Proceed();
-        }
-    }
+//    public class TestResultAspect : AbstractInterceptor
+//    {
+//        public override void Intercept(IInvocation invocation)
+//        {
+//            invocation.Proceed();
+//        }
+//    }
 }

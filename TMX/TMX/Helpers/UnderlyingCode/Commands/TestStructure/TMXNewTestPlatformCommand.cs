@@ -11,19 +11,21 @@ namespace TMX
 {
     using System;
     using System.Management.Automation;
+    using PSTestLib;
     
     /// <summary>
     /// Description of TmxNewTestPlatformCommand.
     /// </summary>
-    internal class TmxNewTestPlatformCommand : TmxCommand
+    internal class TmxNewTestPlatformCommand : AbstractCommand // : TmxCommand
     {
         internal TmxNewTestPlatformCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
-        internal override void Execute()
+        // internal override void Execute()
+        public override void Execute()
         {
-            NewPlatformCmdletBase cmdlet =
+            var cmdlet =
                 (NewPlatformCmdletBase)this.Cmdlet;
             
             bool result = 

@@ -48,7 +48,10 @@ namespace TMX.Commands
         protected override void BeginProcessing()
         {
             TmxGetTestResultDetailsCommand command =
+                // 20140315
                 new TmxGetTestResultDetailsCommand(this);
+                // new TmxGetTestResultDetailsCommand();
+            command.Cmdlet = this;
             command.Execute();
         }
     }

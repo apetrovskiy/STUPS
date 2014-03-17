@@ -10,15 +10,16 @@
 namespace UIAutomation.Helpers.Commands
 {
     using System;
-    using System.Management.Automation;
-    using System.Collections;
-    using System.Collections.Generic;
+//    using System.Management.Automation;
+//    using System.Collections;
+//    using System.Collections.Generic;
+	using PSTestLib;
     using UIAutomation.Commands;
     
     /// <summary>
     /// Description of AddBannerTextCommand.
     /// </summary>
-    public class AddBannerTextCommand : UiaCommand
+    public class AddBannerTextCommand : AbstractCommand	// : UiaCommand
     {
         public AddBannerTextCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {

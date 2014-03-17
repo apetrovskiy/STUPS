@@ -32,6 +32,8 @@ namespace TMX.Commands
         {
             TmxGetTestScenarioStatusCommand command =
                 new TmxGetTestScenarioStatusCommand(this);
+                // new TmxGetTestScenarioStatusCommand();
+            command.Cmdlet = this;
             command.Execute();
         }
     }

@@ -12,23 +12,25 @@ namespace TMX
     using System;
     using System.Management.Automation;
     using TMX.Commands;
+    using PSTestLib;
     
     /// <summary>
     /// Description of TmxSetCurrentTestResultCommand.
     /// </summary>
-    internal class TmxSetCurrentTestResultCommand : TmxCommand
+    internal class TmxSetCurrentTestResultCommand : AbstractCommand // : TmxCommand
     {
         internal TmxSetCurrentTestResultCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
-        internal override void Execute()
+        // internal override void Execute()
+        public override void Execute()
         {
             // 20130327
             //TestResultCmdletBase cmdlet =
             //    (TestResultCmdletBase)this.Cmdlet;
             
-            SetTmxCurrentTestResultCommand cmdlet =
+            var cmdlet =
                 (SetTmxCurrentTestResultCommand)this.Cmdlet;
             
             // 20130330

@@ -22,6 +22,7 @@ namespace PSTestLib
     {
         static UnitTestOutput() //Class()
         {
+//Console.WriteLine("UnitTestOutput 00");
             InitCollection();
         }
         

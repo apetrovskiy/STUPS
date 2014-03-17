@@ -22,7 +22,8 @@ namespace SePSX
         {
         }
         
-        internal override void Execute()
+        // internal override void Execute()
+        public override void Execute()
         {
             //SeHelper.StartWebDriver((StartSeDriverServerCommand)this.Cmdlet);
             throw new NotImplementedException();

@@ -2787,7 +2787,8 @@ Console.WriteLine("NavigatoTo: 00003");
         #region Screenshot
         internal static void GetScreenshotOfCmdletInput(
             //HasWebElementInputCmdletBase cmdlet,
-            CommonCmdletBase cmdlet,
+            // CommonCmdletBase cmdlet,
+            PSCmdletBase cmdlet,
             string description,
             bool save,
             // 20140111
@@ -3393,7 +3394,8 @@ Console.WriteLine("NavigatoTo: 00003");
             }
         }
         
-        public static void AddFirefoxExtension(CommonCmdletBase cmdlet)
+        // public static void AddFirefoxExtension(CommonCmdletBase cmdlet)
+        public static void AddFirefoxExtension(PSCmdletBase cmdlet)
         {
             FirefoxProfile profile =
                 ((EditFirefoxProfileCmdletBase)cmdlet).InputObject;
@@ -3427,7 +3429,8 @@ Console.WriteLine("NavigatoTo: 00003");
             cmdlet.WriteObject(cmdlet, options);
         }
         
-        public static void SetChromeOptionsBinary(CommonCmdletBase cmdlet)
+        // public static void SetChromeOptionsBinary(CommonCmdletBase cmdlet)
+        public static void SetChromeOptionsBinary(PSCmdletBase cmdlet)
         {
             ChromeOptions options =
                 ((EditChromeOptionsCmdletBase)cmdlet).InputObject;
@@ -3451,7 +3454,8 @@ Console.WriteLine("NavigatoTo: 00003");
             cmdlet.WriteObject(cmdlet, options);
         }
         
-        public static void AddChromeArgument(CommonCmdletBase cmdlet)
+        // public static void AddChromeArgument(CommonCmdletBase cmdlet)
+        public static void AddChromeArgument(PSCmdletBase cmdlet)
         {
             ChromeOptions options =
                 ((EditChromeOptionsCmdletBase)cmdlet).InputObject;
@@ -3474,7 +3478,8 @@ Console.WriteLine("NavigatoTo: 00003");
             cmdlet.WriteObject(cmdlet, options);
         }
         
-        public static void AddChromeExtension(CommonCmdletBase cmdlet)
+        // public static void AddChromeExtension(CommonCmdletBase cmdlet)
+        public static void AddChromeExtension(PSCmdletBase cmdlet)
         {
             ChromeOptions options =
                 ((EditChromeOptionsCmdletBase)cmdlet).InputObject;
@@ -3497,7 +3502,8 @@ Console.WriteLine("NavigatoTo: 00003");
             cmdlet.WriteObject(cmdlet, options);
         }
         
-        public static void GetNewIEOptions(CommonCmdletBase cmdlet)
+        // public static void GetNewIEOptions(CommonCmdletBase cmdlet)
+        public static void GetNewIEOptions(PSCmdletBase cmdlet)
         {
             InternetExplorerOptions options =
                 WebDriverFactory.Container.Resolve<InternetExplorerOptions>();
@@ -3505,14 +3511,16 @@ Console.WriteLine("NavigatoTo: 00003");
             cmdlet.WriteObject(cmdlet, options);
         }
         
-        public static void SetIEOption(CommonCmdletBase cmdlet)
+        // public static void SetIEOption(CommonCmdletBase cmdlet)
+        public static void SetIEOption(PSCmdletBase cmdlet)
         {
             throw new NotImplementedException();
             
 
         }
         
-        public static void GetNewFirefoxProfile(CommonCmdletBase cmdlet)
+        // public static void GetNewFirefoxProfile(CommonCmdletBase cmdlet)
+        public static void GetNewFirefoxProfile(PSCmdletBase cmdlet)
         {
             FirefoxProfile profile =
                 WebDriverFactory.GetFirefoxProfile(((FirefoxProfileCmdletBase)cmdlet));
@@ -3526,7 +3534,8 @@ Console.WriteLine("NavigatoTo: 00003");
             cmdlet.WriteObject(cmdlet, profile);
         }
         
-        public static void ConvertFromTable(CommonCmdletBase cmdlet)
+        // public static void ConvertFromTable(CommonCmdletBase cmdlet)
+        public static void ConvertFromTable(PSCmdletBase cmdlet)
         {
             throw new NotImplementedException();
         }

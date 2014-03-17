@@ -14,11 +14,12 @@ namespace UIAutomation.Helpers.Commands
 //    using System.Collections;
     using System.Collections.Generic;
     using UIAutomation.Commands;
+    using PSTestLib;
     
     /// <summary>
     /// Description of GetControlCommand.
     /// </summary>
-    public class GetControlCommand : UiaCommand
+    public class GetControlCommand : AbstractCommand	// : UiaCommand
     {
         public GetControlCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {

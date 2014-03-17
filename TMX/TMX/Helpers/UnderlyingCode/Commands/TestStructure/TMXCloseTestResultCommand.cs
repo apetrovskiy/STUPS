@@ -10,21 +10,28 @@
 namespace TMX
 {
     using System;
-    using System.Management.Automation;
+//    using System.Management.Automation;
+    using TMX.Commands;
+    using PSTestLib;
     
     /// <summary>
     /// Description of TmxCloseTestResultCommand.
     /// </summary>
-    internal class TmxCloseTestResultCommand : TmxCommand
+    internal class TmxCloseTestResultCommand : AbstractCommand // : TmxCommand
     {
         internal TmxCloseTestResultCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
-        internal override void Execute()
+        // internal override void Execute()
+        public override void Execute()
         {
+            var cmdlet =
+                (CloseTmxTestResultCommand)this.Cmdlet;
+            /*
             TMX.Commands.CloseTmxTestResultCommand cmdlet =
                 (TMX.Commands.CloseTmxTestResultCommand)this.Cmdlet;
+            */
             
             cmdlet.ConvertTestResultStatusToTraditionalTestResult();
                 

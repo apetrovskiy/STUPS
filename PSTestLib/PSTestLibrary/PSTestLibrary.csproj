@@ -103,8 +103,25 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\packages\Castle.Core.3.2.2\lib\net35\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\..\packages\Ninject.3.0.1.10\lib\net35\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.ChildKernel">
+      <HintPath>..\..\packages\Ninject.Extensions.ChildKernel.3.0.0.5\lib\net35\Ninject.Extensions.ChildKernel.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Conventions">
+      <HintPath>..\..\packages\Ninject.Extensions.Conventions.3.0.0.11\lib\net35\Ninject.Extensions.Conventions.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.NamedScope">
+      <HintPath>..\..\packages\Ninject.Extensions.NamedScope.3.0.0.5\lib\net35\Ninject.Extensions.NamedScope.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\..\packages\NLog.2.1.0\lib\net35\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Collections" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -126,10 +143,26 @@
     </Compile>
     <Compile Include="Commands\C#\NewPSClassCommand.cs" />
     <Compile Include="Commands\C#\NewPSEnumCommand.cs" />
+    <Compile Include="Helpers\Aspects\AbstractInterceptor.cs" />
+    <Compile Include="Helpers\Aspects\EmptyAspect.cs" />
+    <Compile Include="Helpers\Aspects\ErrorHandlingAspect.cs" />
+    <Compile Include="Helpers\Aspects\FaultInjectionAspect.cs" />
+    <Compile Include="Helpers\Aspects\InputValidationAspect.cs" />
+    <Compile Include="Helpers\Aspects\LoggingAspect.cs" />
+    <Compile Include="Helpers\Aspects\ParameterValidationAspect.cs" />
+    <Compile Include="Helpers\Aspects\TestResultAspect.cs" />
+    <Compile Include="Helpers\Attributes\InSingletonScopeAttribute.cs" />
+    <Compile Include="Helpers\Attributes\PsTestLibParameterAttribute.cs" />
     <Compile Include="Helpers\Inheritance\PSCmdletBase.cs" />
+    <Compile Include="Helpers\Logging\LogEntry.cs" />
+    <Compile Include="Helpers\Logging\LogHelper.cs" />
+    <Compile Include="Helpers\Ninject\ObjectFactory.cs" />
+    <Compile Include="Helpers\Ninject\CommonModule.cs" />
     <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethods.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\UnitTestOutput.cs" />
     <Compile Include="Helpers\UnderlyingCode\Util.cs" />
+    <Compile Include="Helpers\UserSettings\Preferences.cs" />
+    <Compile Include="Interfaces\Commands\AbstractCommand.cs" />
     <Compile Include="Interfaces\Commands\PSTestLibCommand.cs" />
     <Compile Include="Interfaces\Enum.cs" />
     <Compile Include="Interfaces\ICommonCmdletBase.cs" />
@@ -163,6 +196,11 @@
   <ItemGroup>
     <Folder Include="Commands\C#" />
     <Folder Include="Helpers\Inheritance" />
+    <Folder Include="Helpers\Attributes" />
+    <Folder Include="Helpers\Logging" />
+    <Folder Include="Helpers\Aspects" />
+    <Folder Include="Helpers\UserSettings" />
+    <Folder Include="Helpers\Ninject" />
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Helpers\UnderlyingCode\Interface" />
     <Folder Include="Helpers\UnderlyingCode\Interface" />
@@ -174,6 +212,9 @@
     <Folder Include="Interfaces\Commands" />
     <Folder Include="Interfaces\Settings" />
     <Folder Include="Interfaces\Recording" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

@@ -11,14 +11,15 @@ namespace UIAutomation.Helpers.Commands
 {
     using System;
     using System.Management.Automation;
-    using System.Collections;
-    using System.Collections.Generic;
+//    using System.Collections;
+//    using System.Collections.Generic;
     using UIAutomation.Commands;
+    using PSTestLib;
     
     /// <summary>
     /// Description of MoveCursorCommand.
     /// </summary>
-    public class MoveCursorCommand : UiaCommand
+    public class MoveCursorCommand : AbstractCommand	// : UiaCommand
     {
         public MoveCursorCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {

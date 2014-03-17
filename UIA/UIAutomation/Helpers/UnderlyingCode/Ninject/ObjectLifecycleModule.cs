@@ -12,6 +12,7 @@ namespace UIAutomation
     extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
     using System;
     using System.Collections;
+	using PSTestLib;
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
 //    using Ninject;
     using Ninject.Modules;
@@ -25,6 +26,9 @@ namespace UIAutomation
     using Castle.DynamicProxy;
     using WindowsInput;
     
+    // 20140316
+    using Ninject.Extensions.NamedScope;
+    
     /// <summary>
     /// Description of ObjectLifecycleModule.
     /// </summary>
@@ -33,32 +37,43 @@ namespace UIAutomation
         public override void Load()
         {
             #region common objects
+            /*
             Bind<ProxyGenerator>()
                 .ToSelf()
                 .InSingletonScope();
             
             Bind<IChildKernel>().ToSelf().InSingletonScope();
-            
+            */
+            /*
             Bind<WindowSearcher>().ToSelf().InScope(ctx => AutomationFactory.ScopeChangeFlag);
             Bind<ControlSearcher>().ToSelf().InScope(ctx => AutomationFactory.ScopeChangeFlag);
             Bind<ContextMenuSearcher>().ToSelf().InScope(ctx => AutomationFactory.ScopeChangeFlag);
-            
+            */
             Bind<ControlFromWin32Provider>().ToSelf().InSingletonScope();
             
             Bind<IAutomation>().To<UiaAutomation>().InSingletonScope();
             
-            Bind<UiaCommand>().ToSelf().InSingletonScope();
-            
+            // 20140315
+            // Bind<UiaCommand>().ToSelf().InSingletonScope();
+            /*
+            Bind<AbstractCommand>().ToSelf().InSingletonScope();
+            */
+            /*
             Bind<LogHelper>()
                 .ToSelf()
                 .InSingletonScope();
-            
+            */
             Kernel.Bind(r =>
                         r.FromThisAssembly()
                         .SelectAllClasses()
                         .WithoutAttribute<UiaSpecialBindingAttribute>()
                         .BindToSelf());
             #endregion common objects
+            
+            // 20140315
+            // 20140316
+            // Bind<IUiElement>().To<UiElement>();
+            
             
 //            #region IUiElement
 //            Bind<IUiElement>()
@@ -496,6 +511,7 @@ namespace UIAutomation
 //            #endregion IWindowPattern
 
 // =============================================================================================================================
+            /*
             #region IUiElement
             Bind<IUiElement>()
                 .ToConstructor(
@@ -910,7 +926,432 @@ namespace UIAutomation
             
             Bind<IWindowPatternInformation>().To<UiaWindowPattern.WindowPatternInformation>().InScope(ctx => AutomationFactory.ScopeChangeFlag);
             #endregion IWindowPattern
-
+            */
+            
+            // 20140316
+            #region IUiElement
+//            Bind<IUiElement>()
+//                .ToConstructor(
+//                    x =>
+//                    new UiElement(x.Inject<classic.AutomationElement>()))
+//                
+//                .Named("AutomationElement.NET");
+//            
+//            Bind<IUiElement>()
+//                .ToConstructor(
+//                    x =>
+//                    new UiElement(x.Inject<IUiElement>()))
+//                
+//                .Named("UiElement");
+//            
+//            Bind<IUiElement>()
+//                .To<UiElement>()
+//                
+//                .Named("Empty");
+            
+            Bind<IUiElement>()
+                .To<UiElement>();
+            
+            Bind<IExtendedModelHolder>()
+                .To<UiExtendedModelHolder>()
+//                .InSingletonScope();
+                ;
+            
+            Bind<IControlInputHolder>()
+                .To<UiControlInputHolder>()
+//                .InSingletonScope();
+                ;
+            
+            Bind<IKeyboardInputHolder>()
+                .To<UiKeyboardInputHolder>()
+//                 ;
+                .InSingletonScope();
+            
+            Bind<IMouseInputHolder>()
+                .To<UiMouseInputHolder>()
+//                 ;
+                .InSingletonScope();
+            
+            Bind<ITouchInputHolder>()
+                .To<UiTouchInputHolder>()
+//                 ;
+                .InSingletonScope();
+            
+            Bind<IInputSimulator>()
+                .To<InputSimulator>()
+//                ;
+                .InSingletonScope();
+            #endregion IUiElement
+            
+            #region IUiEltCollection
+            // 20140316
+//            Bind<IUiEltCollection>()
+//                .ToConstructor(
+//                    x => 
+//                    new UiEltCollection(x.Inject<classic.AutomationElementCollection>()))
+//                
+//                .Named("AutomationElementCollection.NET");
+//            
+//            Bind<IUiEltCollection>()
+//                .ToConstructor(
+//                    x =>
+//                    new UiEltCollection(x.Inject<IUiEltCollection>()))
+//                
+//                .Named("UiEltCollection");
+//            
+//            Bind<IUiEltCollection>()
+//                .ToConstructor(
+//                    x =>
+//                    new UiEltCollection(x.Inject<IEnumerable>()))
+//                
+//                .Named("AnyCollection");
+//            
+//            Bind<IUiEltCollection>()
+//                .ToConstructor(
+//                    x =>
+//                    new UiEltCollection(x.Inject<bool>()))
+//                
+//                .Named("Empty");
+            
+            Bind<IUiEltCollection>()
+                .ToConstructor(
+                    x =>
+                    new UiEltCollection(x.Inject<IEnumerable>()));
+            #endregion IUiEltCollection
+            
+            #region IUiElementInformation
+            Bind<IUiElementInformation>().To<UiElementInformation>();
+            #endregion IUiElementInformation
+            
+            #region IDockPattern
+//            Bind<IDockPattern>()
+//                .ToConstructor(
+//                    x =>
+//                    new UiaDockPattern(x.Inject<IUiElement>(), x.Inject<classic.DockPattern>()))
+//                
+//                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IDockPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaDockPattern(x.Inject<IUiElement>()));
+                
+//                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+//            
+//            Bind<IDockPattern>()
+//                .ToConstructor(
+//                    x =>
+//                    new UiaDockPattern(x.Inject<classic.DockPattern>()))
+//                
+//                .Named(AutomationFactory.NamedParameter_WithoutElement);
+            
+            Bind<IDockPatternInformation>().To<UiaDockPattern.DockPatternInformation>();
+            #endregion IDockPattern
+            
+            #region IExpandCollapsePattern
+//            Bind<IExpandCollapsePattern>()
+//                .ToConstructor(
+//                    x =>
+//                    new UiaExpandCollapsePattern(x.Inject<IUiElement>(), x.Inject<classic.ExpandCollapsePattern>()))
+//                
+//                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IExpandCollapsePattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaExpandCollapsePattern(x.Inject<IUiElement>()));
+                
+//                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+//            
+//            Bind<IExpandCollapsePattern>()
+//                .ToConstructor(
+//                    x =>
+//                    new UiaExpandCollapsePattern(x.Inject<classic.ExpandCollapsePattern>()))
+//                
+//                .Named(AutomationFactory.NamedParameter_WithoutElement);
+            
+            Bind<IExpandCollapsePatternInformation>().To<UiaExpandCollapsePattern.ExpandCollapsePatternInformation>();
+            #endregion IExpandCollapsePattern
+            
+            #region IGridItemPattern
+//            Bind<IGridItemPattern>()
+//                .ToConstructor(
+//                    x =>
+//                    new UiaGridItemPattern(x.Inject<IUiElement>(), x.Inject<classic.GridItemPattern>()))
+//                
+//                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IGridItemPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaGridItemPattern(x.Inject<IUiElement>()));
+                
+//                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<IGridItemPatternInformation>().To<UiaGridItemPattern.GridItemPatternInformation>();
+            #endregion IGridItemPattern
+            
+            #region IGridPattern
+//            Bind<IGridPattern>()
+//                .ToConstructor(
+//                    x =>
+//                    new UiaGridPattern(x.Inject<IUiElement>(), x.Inject<classic.GridPattern>()))
+//                
+//                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IGridPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaGridPattern(x.Inject<IUiElement>()));
+                
+//                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<IGridPatternInformation>().To<UiaGridPattern.GridPatternInformation>();
+            #endregion IGridPattern
+            
+            #region IInvokePattern
+//            Bind<IInvokePattern>()
+//                .ToConstructor(
+//                    x =>
+//                    new UiaInvokePattern(x.Inject<IUiElement>(), x.Inject<classic.InvokePattern>()))
+//                
+//                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IInvokePattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaInvokePattern(x.Inject<IUiElement>()));
+                
+//                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+//            Bind<IInvokePattern>()
+//                .ToConstructor(
+//                    x =>
+//                    new UiaInvokePattern(x.Inject<classic.InvokePattern>()));
+                
+//                .Named(AutomationFactory.NamedParameter_WithoutElement);
+            #endregion IInvokePattern
+            
+            #region IRangeValuePattern
+//            Bind<IRangeValuePattern>()
+//                .ToConstructor(
+//                    x =>
+//                    new UiaRangeValuePattern(x.Inject<IUiElement>(), x.Inject<classic.RangeValuePattern>()))
+//                
+//                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IRangeValuePattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaRangeValuePattern(x.Inject<IUiElement>()));
+                
+//                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<IRangeValuePatternInformation>().To<UiaRangeValuePattern.RangeValuePatternInformation>();
+            #endregion IRangeValuePattern
+            
+            #region IScrollItemPattern
+//            Bind<IScrollItemPattern>()
+//                .ToConstructor(
+//                    x =>
+//                    new UiaScrollItemPattern(x.Inject<IUiElement>(), x.Inject<classic.ScrollItemPattern>()))
+//                
+//                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IScrollItemPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaScrollItemPattern(x.Inject<IUiElement>()));
+                
+//                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            // Bind<IScrollItemPatternInformation>().To<UiaScrollItemPattern.ScrollItemPatternInformation>();
+            #endregion IScrollItemPattern
+            
+            #region IScrollPattern
+//            Bind<IScrollPattern>()
+//                .ToConstructor(
+//                    x =>
+//                    new UiaScrollPattern(x.Inject<IUiElement>(), x.Inject<classic.ScrollPattern>()))
+//                
+//                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IScrollPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaScrollPattern(x.Inject<IUiElement>()));
+                
+//                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<IScrollPatternInformation>().To<UiaScrollPattern.ScrollPatternInformation>();
+            #endregion IScrollPattern
+            
+            #region ISelectionItemPattern
+//            Bind<ISelectionItemPattern>()
+//                .ToConstructor(
+//                    x =>
+//                    new UiaSelectionItemPattern(x.Inject<IUiElement>(), x.Inject<classic.SelectionItemPattern>()))
+//                
+//                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<ISelectionItemPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaSelectionItemPattern(x.Inject<IUiElement>()));
+                
+//                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            // Bind<ISelectionItemPatternInformation>().To<UiaSelectionItemPattern.SelectionItemPatternInformation>();
+            #endregion ISelectionItemPattern
+            
+            #region ISelectionPattern
+//            Bind<ISelectionPattern>()
+//                .ToConstructor(
+//                    x =>
+//                    new UiaSelectionPattern(x.Inject<IUiElement>(), x.Inject<classic.SelectionPattern>()))
+//                
+//                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<ISelectionPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaSelectionPattern(x.Inject<IUiElement>()));
+                
+//                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<ISelectionPatternInformation>().To<UiaSelectionPattern.SelectionPatternInformation>();
+            #endregion ISelectionPattern
+            
+            #region ITableItemPattern
+//            Bind<ITableItemPattern>()
+//                .ToConstructor(
+//                    x =>
+//                    new UiaTableItemPattern(x.Inject<IUiElement>(), x.Inject<classic.TableItemPattern>()))
+//                
+//                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<ITableItemPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaTableItemPattern(x.Inject<IUiElement>()));
+                
+//                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<ITableItemPatternInformation>().To<UiaTableItemPattern.TableItemPatternInformation>();
+            #endregion ITableItemPattern
+            
+            #region ITablePattern
+//            Bind<ITablePattern>()
+//                .ToConstructor(
+//                    x =>
+//                    new UiaTablePattern(x.Inject<IUiElement>(), x.Inject<classic.TablePattern>()))
+//                
+//                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<ITablePattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaTablePattern(x.Inject<IUiElement>()));
+                
+//                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<ITablePatternInformation>().To<UiaTablePattern.TablePatternInformation>();
+            #endregion ITablePattern
+            
+            #region ITextPattern
+//            Bind<ITextPattern>()
+//                .ToConstructor(
+//                    x =>
+//                    new UiaTextPattern(x.Inject<IUiElement>(), x.Inject<classic.TextPattern>()))
+//                
+//                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<ITextPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaTextPattern(x.Inject<IUiElement>()));
+                
+//                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            #endregion ITextPattern
+            
+            #region ITogglePattern
+//            Bind<ITogglePattern>()
+//                .ToConstructor(
+//                    x =>
+//                    new UiaTogglePattern(x.Inject<IUiElement>(), x.Inject<classic.TogglePattern>()))
+//                
+//                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<ITogglePattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaTogglePattern(x.Inject<IUiElement>()));
+                
+//                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<ITogglePatternInformation>().To<UiaTogglePattern.TogglePatternInformation>();
+            #endregion ITogglePattern
+            
+            #region ITransformPattern
+//            Bind<ITransformPattern>()
+//                .ToConstructor(
+//                    x =>
+//                    new UiaTransformPattern(x.Inject<IUiElement>(), x.Inject<classic.TransformPattern>()))
+//                
+//                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<ITransformPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaTransformPattern(x.Inject<IUiElement>()));
+                
+//                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<ITransformPatternInformation>().To<UiaTransformPattern.TransformPatternInformation>();
+            #endregion ITransformPattern
+            
+            #region IValuePattern
+//            Bind<IValuePattern>()
+//                .ToConstructor(
+//                    x =>
+//                    new UiaValuePattern(x.Inject<IUiElement>(), x.Inject<classic.ValuePattern>()))
+//                
+//                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IValuePattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaValuePattern(x.Inject<IUiElement>()));
+                
+//                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+//            Bind<IValuePattern>()
+//                .ToConstructor(
+//                    x =>
+//                    new UiaValuePattern(x.Inject<classic.ValuePattern>()));
+                
+//                .Named(AutomationFactory.NamedParameter_WithoutElement);
+            
+            Bind<IValuePatternInformation>().To<UiaValuePattern.ValuePatternInformation>();
+            #endregion IValuePattern
+            
+            #region IWindowPattern
+//            Bind<IWindowPattern>()
+//                .ToConstructor(
+//                    x =>
+//                    new UiaWindowPattern(x.Inject<IUiElement>(), x.Inject<classic.WindowPattern>()))
+//                
+//                .Named(AutomationFactory.NamedParameter_WithPattern);
+            
+            Bind<IWindowPattern>()
+                .ToConstructor(
+                    x =>
+                    new UiaWindowPattern(x.Inject<IUiElement>()));
+                
+//                .Named(AutomationFactory.NamedParameter_WithoutPattern);
+            
+            Bind<IWindowPatternInformation>().To<UiaWindowPattern.WindowPatternInformation>();
+            #endregion IWindowPattern
         }
     }
 }

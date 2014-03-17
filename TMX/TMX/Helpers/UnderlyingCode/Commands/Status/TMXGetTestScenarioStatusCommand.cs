@@ -12,22 +12,24 @@ namespace TMX
     using System;
     using System.Management.Automation;
     using TMX.Commands;
+    using PSTestLib;
     
     /// <summary>
     /// Description of TmxGetTestScenarioStatusCommand.
     /// </summary>
-    internal class TmxGetTestScenarioStatusCommand : TmxCommand
+    internal class TmxGetTestScenarioStatusCommand : AbstractCommand // : TmxCommand
     {
         internal TmxGetTestScenarioStatusCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
-        internal override void Execute()
+        // internal override void Execute()
+        public override void Execute()
         {
             // 20130322
             //OpenScenarioCmdletBase cmdlet =
             //    (OpenScenarioCmdletBase)this.Cmdlet;
-            GetTmxTestScenarioStatusCommand cmdlet =
+            var cmdlet =
                 (GetTmxTestScenarioStatusCommand)this.Cmdlet;
             
             if (!string.IsNullOrEmpty(cmdlet.Name)) {

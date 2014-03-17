@@ -11,15 +11,16 @@ namespace UIAutomation.Helpers.Commands
 {
     using System;
     using System.Management.Automation;
-    using System.Collections;
+//    using System.Collections;
     using System.Collections.Generic;
 	using System.Windows.Media.Imaging;
     using UIAutomation.Commands;
+    using PSTestLib;
     
     /// <summary>
     /// Description of GetWindowCommand.
     /// </summary>
-    public class GetWindowCommand : UiaCommand
+    public class GetWindowCommand : AbstractCommand	// : UiaCommand
     {
         public GetWindowCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {

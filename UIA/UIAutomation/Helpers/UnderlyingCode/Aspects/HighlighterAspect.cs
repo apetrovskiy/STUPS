@@ -10,6 +10,7 @@
 namespace UIAutomation
 {
     using System;
+	using PSTestLib;
 //    using System.Management.Automation;
     using Castle.DynamicProxy;
     
@@ -23,10 +24,14 @@ namespace UIAutomation
             invocation.Proceed();
             
             // if (invocation.TargetType.IsSubclassOf(typeof(UiaCommand)) && null != (invocation.ReturnValue as IUiElement)) { // taboo
-            if (invocation.TargetType.IsSubclassOf(typeof(UiaCommand))) {
+            // 20140315
+            // if (invocation.TargetType.IsSubclassOf(typeof(UiaCommand))) {
+            if (invocation.TargetType.IsSubclassOf(typeof(AbstractCommand))) {
                 
                 var cmdlet =
-                    (invocation.InvocationTarget as UiaCommand).Cmdlet;
+                    // 20140315
+                    // (invocation.InvocationTarget as UiaCommand).Cmdlet;
+                    (invocation.InvocationTarget as AbstractCommand).Cmdlet;
                 
                 // this works
 //                if (null != cmdlet.MyInvocation.MyCommand.OutputType && 0 < cmdlet.MyInvocation.MyCommand.OutputType.Count) {

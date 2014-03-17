@@ -15,14 +15,14 @@ namespace Data
     /// <summary>
     /// Description of DataCommand.
     /// </summary>
-    internal abstract class DataCommand
-    {
-        internal DataCommand(CommonCmdletBase cmdlet)
-        {
-            this.Cmdlet = cmdlet;
-        }
-        
-        internal CommonCmdletBase Cmdlet { get; set; }
-        internal abstract void Execute();
-    }
+//    internal abstract class DataCommand
+//    {
+//        internal DataCommand(CommonCmdletBase cmdlet)
+//        {
+//            this.Cmdlet = cmdlet;
+//        }
+//        
+//        internal CommonCmdletBase Cmdlet { get; set; }
+//        internal abstract void Execute();
+//    }
 }

@@ -11,14 +11,15 @@ namespace UIAutomation.Helpers.Commands
 {
     using System;
     using System.Management.Automation;
-    using System.Collections;
-    using System.Collections.Generic;
-    using UIAutomation.Commands;
+//    using System.Collections;
+//    using System.Collections.Generic;
+//    using UIAutomation.Commands;
+    using PSTestLib;
     
     /// <summary>
     /// Description of HideBannerCommand.
     /// </summary>
-    public class HideBannerCommand : UiaCommand
+    public class HideBannerCommand : AbstractCommand	// : UiaCommand
     {
         public HideBannerCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {

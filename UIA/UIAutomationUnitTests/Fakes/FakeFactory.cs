@@ -1,4 +1,5 @@
-﻿/*
+﻿using PSTestLib;
+/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 11/20/2013
@@ -39,7 +40,9 @@ namespace UIAutomationUnitTests
         
         public static void Reset()
         {
-            AutomationFactory.Reset();
+            // 20140315
+            // AutomationFactory.Reset();
+            ObjectFactory.Reset();
         }
         
         #region patterns
@@ -514,7 +517,9 @@ namespace UIAutomationUnitTests
             }
             
             IUiEltCollection descendants =
+                // 20140315
                 AutomationFactory.GetUiEltCollection();
+                // ObjectFactory.GetUiEltCollection();
             descendants.SourceCollection.AddRange(
                 AutomationFactory.GetUiEltCollection(elements)
                 .ToArray().Where(elt => "expected" == elt.GetTag()));
@@ -532,7 +537,9 @@ namespace UIAutomationUnitTests
             element.FindAll(TreeScope.Descendants, Arg.Any<Condition>()).Returns(descendants);
             
             IUiEltCollection children =
+                // 20140315
                 AutomationFactory.GetUiEltCollection();
+                // ObjectFactory.GetUiEltCollection();
             children.SourceCollection.AddRange(
                 AutomationFactory.GetUiEltCollection(elements)
                 .ToArray().Where(elt => "expected" == elt.GetTag()));

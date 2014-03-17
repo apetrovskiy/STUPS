@@ -8,7 +8,8 @@
     <RootNamespace>TFAddin40</RootNamespace>
     <AssemblyName>TFAddin40</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <OutputPath>bin\Release35\</OutputPath>
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>

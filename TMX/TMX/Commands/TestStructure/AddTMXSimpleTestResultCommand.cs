@@ -43,6 +43,7 @@ namespace TMX.Commands
 		{
 			TmxAddSimpleTestResultCommand command =
 			    new TmxAddSimpleTestResultCommand(this);
+			    // new TmxAddSimpleTestResultCommand() { Cmdlet = this };
 			command.Execute();
 		}
 	}

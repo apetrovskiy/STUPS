@@ -26,6 +26,8 @@ namespace TMX.Commands
         {
             TmxGetTestResultStatusCommand command =
                 new TmxGetTestResultStatusCommand(this);
+                // new TmxGetTestResultStatusCommand();
+            command.Cmdlet = this;
             command.Execute();
         }
     }

@@ -15,14 +15,14 @@ namespace TMX
     /// <summary>
     /// Description of TmxCommand.
     /// </summary>
-    internal abstract class TmxCommand
-    {
-        internal TmxCommand(CommonCmdletBase cmdlet)
-        {
-            this.Cmdlet = cmdlet;
-        }
-        
-        internal CommonCmdletBase Cmdlet { get; set; }
-        internal abstract void Execute();
-    }
+//    internal abstract class TmxCommand
+//    {
+//        internal TmxCommand(CommonCmdletBase cmdlet)
+//        {
+//            this.Cmdlet = cmdlet;
+//        }
+//        
+//        internal CommonCmdletBase Cmdlet { get; set; }
+//        internal abstract void Execute();
+//    }
 }

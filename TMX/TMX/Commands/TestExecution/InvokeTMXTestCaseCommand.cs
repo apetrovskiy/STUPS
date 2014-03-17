@@ -28,6 +28,7 @@ namespace TMX.Commands
             
             TmxInvokeTestCaseCommand command =
                 new TmxInvokeTestCaseCommand(this);
+                // new TmxInvokeTestCaseCommand() { Cmdlet = this };
             command.Execute();
         }
 	}

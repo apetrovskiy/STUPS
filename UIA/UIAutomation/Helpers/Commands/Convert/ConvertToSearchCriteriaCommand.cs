@@ -12,13 +12,14 @@ namespace UIAutomation.Helpers.Commands
     using System;
     using System.Management.Automation;
 //    using System.Collections;
-    using System.Collections.Generic;
+//    using System.Collections.Generic;
     using UIAutomation.Commands;
+    using PSTestLib;
     
     /// <summary>
     /// Description of ConvertToSearchCriteriaCommand.
     /// </summary>
-    public class ConvertToSearchCriteriaCommand : UiaCommand
+    public class ConvertToSearchCriteriaCommand : AbstractCommand	// : UiaCommand
     {
         public ConvertToSearchCriteriaCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {

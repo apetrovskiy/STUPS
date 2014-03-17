@@ -52,7 +52,9 @@ namespace UIAutomation
                         holder.Seconds));
                 
             } catch (Exception) {
-                return new UiEltCollection(true);
+                // 20140316
+                // return new UiEltCollection(true);
+                return new UiEltCollection();
             }
         }
         
@@ -64,7 +66,9 @@ namespace UIAutomation
                         holder.GetScope(),
                         classic.Condition.TrueCondition);
             } catch (Exception) {
-                return new UiEltCollection(true);
+                // 20140316
+                // return new UiEltCollection(true);
+                return new UiEltCollection();
                 // throw;
             }
         }

@@ -57,6 +57,7 @@ namespace UIAutomation.Commands
 
         	InvokeWizardCommand command =
         		new InvokeWizardCommand(this);
+        	    // new InvokeWizardCommand() { Cmdlet = this };
         	command.Execute();
         }
     }

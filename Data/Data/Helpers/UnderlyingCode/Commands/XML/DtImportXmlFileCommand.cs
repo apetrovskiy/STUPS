@@ -11,20 +11,21 @@ namespace Data
 {
     using System;
     using System.Management.Automation;
+	using PSTestLib;
     using Data.Commands;
     
     /// <summary>
     /// Description of DtImportXmlFileCommand.
     /// </summary>
-    internal class DtImportXmlFileCommand : DataCommand
+    internal class DtImportXmlFileCommand : AbstractCommand
     {
         internal DtImportXmlFileCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
-        internal override void Execute()
+        public override void Execute()
         {
-            ImportDtXmlFileCommand cmdlet =
+            var cmdlet =
                 (ImportDtXmlFileCommand)this.Cmdlet;
             
             XMLHelper.LoadXMLFile(cmdlet, cmdlet.InputObject, cmdlet.Path);

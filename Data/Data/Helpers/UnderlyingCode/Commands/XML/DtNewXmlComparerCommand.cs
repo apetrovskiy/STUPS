@@ -11,20 +11,21 @@ namespace Data
 {
     using System;
     using System.Management.Automation;
+	using PSTestLib;
     using Data.Commands;
     
     /// <summary>
     /// Description of DtNewXmlComparerCommand.
     /// </summary>
-    internal class DtNewXmlComparerCommand : DataCommand
+    internal class DtNewXmlComparerCommand : AbstractCommand
     {
         internal DtNewXmlComparerCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
-        internal override void Execute()
+        public override void Execute()
         {
-            NewDtXmlComparerCommand cmdlet =
+            var cmdlet =
                 (NewDtXmlComparerCommand)this.Cmdlet;
             
             XMLHelper.CreateXMLComparer(cmdlet);

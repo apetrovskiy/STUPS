@@ -11,14 +11,15 @@ namespace UIAutomation.Helpers.Commands
 {
     using System;
     using System.Management.Automation;
-    using System.Collections;
-    using System.Collections.Generic;
+//    using System.Collections;
+//    using System.Collections.Generic;
     using UIAutomation.Commands;
+    using PSTestLib;
     
     /// <summary>
     /// Description of SetFocusCommand.
     /// </summary>
-    public class SetFocusCommand : UiaCommand
+    public class SetFocusCommand : AbstractCommand	// : UiaCommand
     {
         public SetFocusCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {

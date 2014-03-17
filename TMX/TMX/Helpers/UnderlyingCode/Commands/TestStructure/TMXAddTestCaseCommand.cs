@@ -30,7 +30,9 @@ namespace TMX
                 TMX.TmxHelper.AddTestCase(cmdlet);
             
             // 20130616
-            TMX.Logger.TmxLogger.Info("Test case: '" + cmdlet.Name + "'");
+            // 20140317
+            // turning off the logger
+            // TMX.Logger.TmxLogger.Info("Test case: '" + cmdlet.Name + "'");
             
             if (result) {
                 

@@ -100,7 +100,9 @@ namespace TMX
                         //testScenarioToAddTestResult.Id));
                 
                 // 20130429
-                TMX.Logger.TmxLogger.Info("Test result: '" + cmdlet.TestResultName + "'\t" + cmdlet.TestResultStatus.ToString());
+                // 20140317
+                // turning off the logger
+                // TMX.Logger.TmxLogger.Info("Test result: '" + cmdlet.TestResultName + "'\t" + cmdlet.TestResultStatus.ToString());
                 
             //} else {
             

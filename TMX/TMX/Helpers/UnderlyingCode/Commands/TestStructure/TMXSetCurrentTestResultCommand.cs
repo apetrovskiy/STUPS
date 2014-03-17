@@ -125,7 +125,9 @@ namespace TMX
                 "Writing data to the current test result");
             
             // 20130429
-            TMX.Logger.TmxLogger.Info("Test result: '" + cmdlet.TestResultName + "'");
+            // 20140317
+            // turning off the logger
+            // TMX.Logger.TmxLogger.Info("Test result: '" + cmdlet.TestResultName + "'");
 
             TmxHelper.SetCurrentTestResult(cmdlet);
             

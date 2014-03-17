@@ -122,32 +122,33 @@ namespace TMX
             if (!Preferences.AutoLog) return;
             
             // 20140314
+            // turning off the logger
             return;
             
             //TMX.Logger.Info(logRecord);
                 
-            switch (logLevel) {
-                case LogLevels.Fatal:
-                    TMX.Logger.Fatal(logRecord);
-                    break;
-                case LogLevels.Error:
-                    TMX.Logger.Error(logRecord);
-                    break;
-                case LogLevels.Warn:
-                    TMX.Logger.Warn(logRecord);
-                    break;
-                case LogLevels.Info:
-                    TMX.Logger.Info(logRecord);
-                    break;
-                case LogLevels.Debug:
-                    TMX.Logger.Debug(logRecord);
-                    break;
-                case LogLevels.Trace:
-                    TMX.Logger.Trace(logRecord);
-                    break;
-                    //default:
-                    //    throw new Exception("Invalid value for LogLevels");
-            }
+//            switch (logLevel) {
+//                case LogLevels.Fatal:
+//                    TMX.Logger.Fatal(logRecord);
+//                    break;
+//                case LogLevels.Error:
+//                    TMX.Logger.Error(logRecord);
+//                    break;
+//                case LogLevels.Warn:
+//                    TMX.Logger.Warn(logRecord);
+//                    break;
+//                case LogLevels.Info:
+//                    TMX.Logger.Info(logRecord);
+//                    break;
+//                case LogLevels.Debug:
+//                    TMX.Logger.Debug(logRecord);
+//                    break;
+//                case LogLevels.Trace:
+//                    TMX.Logger.Trace(logRecord);
+//                    break;
+//                    //default:
+//                    //    throw new Exception("Invalid value for LogLevels");
+//            }
 
             /*
             if (Preferences.AutoLog) {
@@ -285,7 +286,9 @@ namespace TMX
                 //this.WriteVerbose(this, "terminating error !!!");
                 try {
                     // 20130430
-                    WriteLog(LogLevels.Fatal, errorRecord);
+                    // 20140317
+                    // turning off the logger
+                    // WriteLog(LogLevels.Fatal, errorRecord);
                     
                     ThrowTerminatingError(errorRecord);
                 }

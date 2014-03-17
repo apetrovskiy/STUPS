@@ -285,7 +285,9 @@ namespace TMX
             */
 
             // 20130429
-            TMX.Logger.TmxLogger.Info("Test result: '" + closingTestResultName + "'\tPassed:" + passed.ToString() + "\tKnown issue:" + isKnownIssue.ToString());
+            // 20140317
+            // turning off the logger
+            // TMX.Logger.TmxLogger.Info("Test result: '" + closingTestResultName + "'\tPassed:" + passed.ToString() + "\tKnown issue:" + isKnownIssue.ToString());
 
             ITestResult currentTestResult;
             if (null != TestData.CurrentTestResult) {
@@ -1180,7 +1182,9 @@ dumpTestStructure("AddTestResult #46");
             bool result = false;
             
             // 20130429
-            TMX.Logger.TmxLogger.Info("Test platform: '" + testPlatformName + "'");
+            // 20140317
+            // turning off the logger
+            // TMX.Logger.TmxLogger.Info("Test platform: '" + testPlatformName + "'");
             
             if (string.IsNullOrEmpty(testPlatformId)) {
                 testPlatformId = 
@@ -1252,7 +1256,9 @@ dumpTestStructure("AddTestResult #46");
 //Console.WriteLine("ats 00001");
             
             // 20130429
-            TMX.Logger.TmxLogger.Info("Test suite: '" + testSuiteName + "'");
+            // 20140317
+            // turning off the logger
+            // TMX.Logger.TmxLogger.Info("Test suite: '" + testSuiteName + "'");
             
 //Console.WriteLine("ats 00002");
             

@@ -30,7 +30,9 @@ namespace TMX
                 TMX.TmxHelper.AddTestScenario(cmdlet);
             
             // 20130429
-            TMX.Logger.TmxLogger.Info("Test scenario: '" + cmdlet.Name + "'");
+            // 20140317
+            // turning off the logger
+            // TMX.Logger.TmxLogger.Info("Test scenario: '" + cmdlet.Name + "'");
             
             if (result) {
                 

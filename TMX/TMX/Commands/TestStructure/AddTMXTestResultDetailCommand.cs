@@ -49,7 +49,9 @@ namespace TMX.Commands
             this.CheckCmdletParameters();
             
             this.WriteVerbose(this, this.TestResultDetail);
-            TMX.Logger.TmxLogger.Info(this.TestResultDetail);
+            // 20140317
+            // turning off the logger
+            // TMX.Logger.TmxLogger.Info(this.TestResultDetail);
             if (this.Echo) {
 
                 WriteObject(this.TestResultDetail);

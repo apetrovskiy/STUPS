@@ -81,26 +81,29 @@ namespace UIAutomation
         protected override void WriteLog(LogLevels logLevel, string logRecord)
         {
             if (!Preferences.AutoLog) return;
-            switch (logLevel) {
-                case LogLevels.Fatal:
-                    Logger.Fatal(logRecord);
-                    break;
-                case LogLevels.Error:
-                    Logger.Error(logRecord);
-                    break;
-                case LogLevels.Warn:
-                    Logger.Warn(logRecord);
-                    break;
-                case LogLevels.Info:
-                    Logger.Info(logRecord);
-                    break;
-                case LogLevels.Debug:
-                    Logger.Debug(logRecord);
-                    break;
-                case LogLevels.Trace:
-                    Logger.Trace(logRecord);
-                    break;
-            }
+            
+            // 20140317
+            // turning off the logger
+//            switch (logLevel) {
+//                case LogLevels.Fatal:
+//                    Logger.Fatal(logRecord);
+//                    break;
+//                case LogLevels.Error:
+//                    Logger.Error(logRecord);
+//                    break;
+//                case LogLevels.Warn:
+//                    Logger.Warn(logRecord);
+//                    break;
+//                case LogLevels.Info:
+//                    Logger.Info(logRecord);
+//                    break;
+//                case LogLevels.Debug:
+//                    Logger.Debug(logRecord);
+//                    break;
+//                case LogLevels.Trace:
+//                    Logger.Trace(logRecord);
+//                    break;
+//            }
         }
 
         protected void WriteLog(LogLevels logLevel, ErrorRecord errorRecord)
@@ -134,9 +137,14 @@ namespace UIAutomation
                 string reportString =
                     CmdletSignature(cmdlet) +
                     text;
-                Logger.Info(reportString);
+                
+                // 20140317
+                // turning off the logger
+                // Logger.Info(reportString);
             } else {
-                Logger.Info(text);
+                // 20140317
+                // turning off the logger
+                // Logger.Info(text);
             }
         }
         
@@ -146,7 +154,9 @@ namespace UIAutomation
                 CmdletSignature(cmdlet) +
                 text;
             
-            Logger.Warn(reportString);
+            // 20140317
+            // turning off the logger
+            // Logger.Warn(reportString);
         }
         
         protected override bool CheckSingleObject(PSCmdletBase cmdlet, object outputObject)

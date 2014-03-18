@@ -59,6 +59,7 @@ namespace PSTestLib
 ////Console.WriteLine("OF.Init 06");
 //            _kernel = new StandardKernel(modules);
             
+Console.WriteLine("OF.Init");
             if (null != _kernel) {
                 var currentModules = _kernel.GetModules();
                 

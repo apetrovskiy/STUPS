@@ -11,7 +11,6 @@ namespace UIAutomation
 {
 	extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
 	using System;
-	using System.Security.AccessControl;
 	// using UIANET::System.Windows.Automation;
 	using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
 //	using System.Windows.Automation;
@@ -69,18 +68,57 @@ namespace UIAutomation
 //			_elementHolderAdapter = element;
 //			_innerElementType = InnerElementTypes.UiElement;
 //		}
-
+        // 20140318
+        
 		[Inject()]
 		public UiElement()
 		{
 			// temporary
 			// later use here an empty proxy
             // 20140316
-			_elementHolderNet = classic.AutomationElement.RootElement;
+			// _elementHolderNet = classic.AutomationElement.RootElement;
 			//
 			// _innerElementType = InnerElementTypes.Empty;
 			_innerElementType = InnerElementTypes.AutomationElementNet;
 		}
+        
+        // 20140318
+        /*
+        [Inject]
+        public UiElement(object element)
+        {
+            // 20140316
+			// if (element is classic.AutomationElement) {
+            if (null != element as classic.AutomationElement) {
+// Console.WriteLine("SetSourceElement: 001.1");
+				_elementHolderNet = element as classic.AutomationElement;
+// Console.WriteLine("SetSourceElement: 001.2");
+				_innerElementType = InnerElementTypes.AutomationElementNet;
+                
+                // 20140316
+                return;
+			}
+			// if com
+            // 20140316
+            if (null != element as viacom.AutomationElement) {
+                
+                _elementHolderCom = element as viacom.AutomationElement;
+                _innerElementType = InnerElementTypes.AutomationElementCom;
+                return;
+            }
+            
+            // 20140316
+			// if (element is IUiElement) {
+            if (null != element as IUiElement) {
+//Console.WriteLine("SetSourceElement: 002.1");
+				_elementHolderAdapter = (IUiElement)element;
+//Console.WriteLine("SetSourceElement: 002.2");
+				_innerElementType = InnerElementTypes.UiElement;
+                // 20140316
+                return;
+			}
+        }
+        */
 
 		public override bool Equals(object obj)
 		{
@@ -735,12 +773,14 @@ Console.WriteLine("pattern 02.3");
 		        return null;
 		    }
 		}
-
+        
 		public virtual void SetSourceElement<T>(T element)
 		{
             // 20140316
 			// if (element is classic.AutomationElement) {
-            if (null != element as classic.AutomationElement) {
+            // 20140318
+            // if (null != element as classic.AutomationElement) {
+            if (typeof(T) == typeof(classic.AutomationElement)) {
 // Console.WriteLine("SetSourceElement: 001.1");
 				_elementHolderNet = element as classic.AutomationElement;
 // Console.WriteLine("SetSourceElement: 001.2");

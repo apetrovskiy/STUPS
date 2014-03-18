@@ -501,106 +501,108 @@ namespace UIAutomation
 //			}
 //		}
 		
-		public static IUiElement GetUiElement(classic.AutomationElement element)
-		{
-	        if (null == element) {
-	            return null;
-	        }
-		    
-			try {
-    			var singleElement = new ConstructorArgument("element", element);
-    			// 20140122
-    			IUiElement adapterElement; // = Kernel.Get<IUiElement>("AutomationElement.NET", singleElement);
-    			
-//    			if (null != ChildKernel) {
-//Console.WriteLine("child elt");
-    			    // adapterElement = ChildKernel.Get<IUiElement>("AutomationElement.NET", singleElement);
-    			    // var childKernel = GetChildKernel();
-    			    // adapterElement = childKernel.Get<IUiElement>("AutomationElement.NET", singleElement);
-    			    adapterElement = ChildKernel.Get<IUiElement>("AutomationElement.NET", singleElement);
-    			    // childKernel.Dispose();
-    			    // (adapterElement as UiElement).ChildKernel = childKernel;
+        // 20140318
+//		public static IUiElement GetUiElement(classic.AutomationElement element)
+//		{
+//	        if (null == element) {
+//	            return null;
+//	        }
+//		    
+//			try {
+//    			var singleElement = new ConstructorArgument("element", element);
+//    			// 20140122
+//    			IUiElement adapterElement; // = Kernel.Get<IUiElement>("AutomationElement.NET", singleElement);
+//    			
+////    			if (null != ChildKernel) {
+////Console.WriteLine("child elt");
+//    			    // adapterElement = ChildKernel.Get<IUiElement>("AutomationElement.NET", singleElement);
+//    			    // var childKernel = GetChildKernel();
+//    			    // adapterElement = childKernel.Get<IUiElement>("AutomationElement.NET", singleElement);
+//    			    adapterElement = ChildKernel.Get<IUiElement>("AutomationElement.NET", singleElement);
+//    			    // childKernel.Dispose();
+//    			    // (adapterElement as UiElement).ChildKernel = childKernel;
+////    			} else {
+////    			    adapterElement = Kernel.Get<IUiElement>("AutomationElement.NET", singleElement);
+////    			}
+//    			
+//    			// 20140313
+//    			// if (Preferences.UseElementsPatternObjectModel) {
+//    			// if (Preferences.UseElementsPatternObjectModel || Preferences.UseElementsSearchObjectModel || Preferences.UseElementsCached || Preferences.UseElementsCurrent) {
+//    			// if (Preferences.UseElementsPatternObjectModel || Preferences.UseElementsCached || Preferences.UseElementsCurrent) {
+//    			if (Preferences.UseProxy) {
+//    			    
+//        			IUiElement proxiedTypedUiElement =
+//        			    ConvertToProxiedElement(
+//        			        adapterElement);
+//        			
+//        			proxiedTypedUiElement.SetSourceElement<classic.AutomationElement>(element);
+//        			
+//        			return (IUiElement)proxiedTypedUiElement; // as IUiElement;
 //    			} else {
-//    			    adapterElement = Kernel.Get<IUiElement>("AutomationElement.NET", singleElement);
+//    			    
+//    			    adapterElement.SetSourceElement<classic.AutomationElement>(element);
+//    			    
+//    			    return adapterElement;
 //    			}
-    			
-    			// 20140313
-    			// if (Preferences.UseElementsPatternObjectModel) {
-    			// if (Preferences.UseElementsPatternObjectModel || Preferences.UseElementsSearchObjectModel || Preferences.UseElementsCached || Preferences.UseElementsCurrent) {
-    			// if (Preferences.UseElementsPatternObjectModel || Preferences.UseElementsCached || Preferences.UseElementsCurrent) {
-    			if (Preferences.UseProxy) {
-    			    
-        			IUiElement proxiedTypedUiElement =
-        			    ConvertToProxiedElement(
-        			        adapterElement);
-        			
-        			proxiedTypedUiElement.SetSourceElement<classic.AutomationElement>(element);
-        			
-        			return (IUiElement)proxiedTypedUiElement; // as IUiElement;
-    			} else {
-    			    
-    			    adapterElement.SetSourceElement<classic.AutomationElement>(element);
-    			    
-    			    return adapterElement;
-    			}
-    			
-			}
-			catch (Exception eFailedToIssueElement) {
-			    // TODO
-			    // write error to error object!!!
-			    // Console.WriteLine("Element 01");
-			    // Console.WriteLine(eFailedToIssueElement.Message);
-			    return null;
-			}
-		}
+//    			
+//			}
+//			catch (Exception eFailedToIssueElement) {
+//			    // TODO
+//			    // write error to error object!!!
+//			    // Console.WriteLine("Element 01");
+//			    // Console.WriteLine(eFailedToIssueElement.Message);
+//			    return null;
+//			}
+//		}
 		
 		// to prevent from threading lock
-		internal static IUiElement GetUiElement(IUiElement element)
-		{
-	        if (null == element) {
-	            return null;
-	        }
-	        
-			try {
-                
-    			var singleElement = new ConstructorArgument("element", element);
-    			
-    			// 20140122
-    			IUiElement adapterElement; // = Kernel.Get<IUiElement>("UiElement", singleElement);
-    			// var childKernel = GetChildKernel();
-			    // adapterElement = childKernel.Get<IUiElement>("UiElement", singleElement);
-			    adapterElement = ChildKernel.Get<IUiElement>("UiElement", singleElement);
-			    // childKernel.Dispose();
-			    // (adapterElement as UiElement).ChildKernel = childKernel;
-    			
-			    // 20140313
-    			// if (Preferences.UseElementsPatternObjectModel) {
-    			// if (Preferences.UseElementsPatternObjectModel || Preferences.UseElementsSearchObjectModel || Preferences.UseElementsCached || Preferences.UseElementsCurrent) {
-    			// if (Preferences.UseElementsPatternObjectModel || Preferences.UseElementsCached || Preferences.UseElementsCurrent) {
-    			if (Preferences.UseProxy) {
-    			    
-        			IUiElement proxiedTypedUiElement =
-        			    ConvertToProxiedElement(
-        			        adapterElement);
-        			
-        			proxiedTypedUiElement.SetSourceElement<IUiElement>(element);
-        			
-        			return (IUiElement)proxiedTypedUiElement;
-    			} else {
-    			    
-    			    adapterElement.SetSourceElement<IUiElement>(element);
-    			    
-    			    return adapterElement;
-    			}
-			}
-			catch (Exception eFailedToIssueElement) {
-			    // TODO
-			    // write error to error object!!!
-			    // Console.WriteLine("Element 02");
-			    // Console.WriteLine(eFailedToIssueElement.Message);
-			    return null;
-			}
-		}
+        // 20140318
+//		internal static IUiElement GetUiElement(IUiElement element)
+//		{
+//	        if (null == element) {
+//	            return null;
+//	        }
+//	        
+//			try {
+//                
+//    			var singleElement = new ConstructorArgument("element", element);
+//    			
+//    			// 20140122
+//    			IUiElement adapterElement; // = Kernel.Get<IUiElement>("UiElement", singleElement);
+//    			// var childKernel = GetChildKernel();
+//			    // adapterElement = childKernel.Get<IUiElement>("UiElement", singleElement);
+//			    adapterElement = ChildKernel.Get<IUiElement>("UiElement", singleElement);
+//			    // childKernel.Dispose();
+//			    // (adapterElement as UiElement).ChildKernel = childKernel;
+//    			
+//			    // 20140313
+//    			// if (Preferences.UseElementsPatternObjectModel) {
+//    			// if (Preferences.UseElementsPatternObjectModel || Preferences.UseElementsSearchObjectModel || Preferences.UseElementsCached || Preferences.UseElementsCurrent) {
+//    			// if (Preferences.UseElementsPatternObjectModel || Preferences.UseElementsCached || Preferences.UseElementsCurrent) {
+//    			if (Preferences.UseProxy) {
+//    			    
+//        			IUiElement proxiedTypedUiElement =
+//        			    ConvertToProxiedElement(
+//        			        adapterElement);
+//        			
+//        			proxiedTypedUiElement.SetSourceElement<IUiElement>(element);
+//        			
+//        			return (IUiElement)proxiedTypedUiElement;
+//    			} else {
+//    			    
+//    			    adapterElement.SetSourceElement<IUiElement>(element);
+//    			    
+//    			    return adapterElement;
+//    			}
+//			}
+//			catch (Exception eFailedToIssueElement) {
+//			    // TODO
+//			    // write error to error object!!!
+//			    // Console.WriteLine("Element 02");
+//			    // Console.WriteLine(eFailedToIssueElement.Message);
+//			    return null;
+//			}
+//		}
 		
 		// to prevent from threading lock
 		internal static IUiElement GetUiElement()

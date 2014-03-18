@@ -53,6 +53,7 @@ namespace UIAutomation
         public static void Init()
         {
             if (PSCmdletBase.UnitTestMode) return;
+Console.WriteLine("AF.Init");
             ObjectFactory.Init(new ObjectLifecycleModule());
         }
         
@@ -79,17 +80,39 @@ namespace UIAutomation
         // public static IUiElement GetUiElement(classic.AutomationElement element)
         public static IUiElement GetUiElement<T>(T element)
 		{
-//Console.WriteLine("GetUIElement 00000");
+Console.WriteLine("GetUIElement 00000");
 	        if (null == element) {
 Console.WriteLine("GetUiElement: null == element");
-	            //return null;
+	            return null;
 	        }
 		    
 			try {
-                var adapterElement = ObjectFactory.Resolve<IUiElement>(); // singleElement); // ChildKernel.Get<IUiElement>("AutomationElement.NET", singleElement);
-                adapterElement.SetSourceElement<T>(element);
+Console.WriteLine("GetUIElement 00002");
+                // 20140318
+                UiElement adapterElement = null;
+                // var adapterElement = ObjectFactory.Resolve<IUiElement>(); // singleElement); // ChildKernel.Get<IUiElement>("AutomationElement.NET", singleElement);
+                    var singleElement = new ConstructorArgument("element", element);
+                    adapterElement = (UiElement)ObjectFactory.Resolve<IUiElement>(singleElement);
+                // 20140318
+                // adapterElement.SetSourceElement<T>(element);
+                // var singleElement = new ConstructorArgument("element", element);
+                // var adapterElement = ObjectFactory.Resolve<IUiElement>(singleElement);
                 
-				return Preferences.UseProxy ? (IUiElement)ConvertToProxiedElement(adapterElement) : (IUiElement)adapterElement;
+                // 20140318
+				// return Preferences.UseProxy ? (IUiElement)ConvertToProxiedElement(adapterElement) : (IUiElement)adapterElement;
+Console.WriteLine("GetUIElement 00003");
+if (null == adapterElement) {
+    Console.WriteLine("null == adapterElement");
+} else {
+    Console.WriteLine("null != adapterElement");
+}
+                if (Preferences.UseProxy) {
+                    adapterElement = (UiElement)ConvertToProxiedElement(adapterElement);
+                }
+                
+                adapterElement.SetSourceElement<T>(element);
+                return adapterElement;
+                
 			}
 			catch (Exception eFailedToIssueElement) {
 			    // TODO

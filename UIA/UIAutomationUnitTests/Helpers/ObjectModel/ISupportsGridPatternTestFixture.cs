@@ -11,13 +11,13 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 {
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;
+    using MbUnit.Framework;using Xunit;using NUnit.Framework;
     using NSubstitute;
     
     /// <summary>
     /// Description of ISupportsGridPatternTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class ISupportsGridPatternTestFixture
     {
         public ISupportsGridPatternTestFixture()
@@ -25,18 +25,18 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             FakeFactory.Init();
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             FakeFactory.Init();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Grid_ImplementsCommonPattern()
         {
 //            ISupportsInvokePattern invokableElement =
@@ -74,7 +74,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.NotNull(refreshableElement as ISupportsRefresh);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Grid_ImplementsExportPattern()
         {
             ISupportsExport exportableElement =
@@ -85,7 +85,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.NotNull(exportableElement as ISupportsExport);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Grid_ImplementsPatternInQuestion()
         {
             ISupportsGridPattern element =
@@ -96,7 +96,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.NotNull(element as ISupportsGridPattern);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Grid_DoesNotImplementOtherPatterns()
         {
             ISupportsValuePattern element =
@@ -107,7 +107,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Null(element as ISupportsValuePattern);
         }
         
-//        [Test][Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Grid_GetItem()
 //        {
 //            // Arrange
@@ -121,7 +121,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            element.GetItem(1, 1);
 //        }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Grid_ColumnCount()
         {
             // Arrange
@@ -137,7 +137,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Equal(expectedValue, element.GridColumnCount);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Grid_RowCount()
         {
             // Arrange
@@ -153,7 +153,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Equal(expectedValue, element.GridRowCount);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Grid_GetItem()
         {
             // Arrange
@@ -196,8 +196,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Equal(expectedClassName, gottenElement.GetCurrent().ClassName);
         }
         
-        [Test]// [Fact]
-        [Ignore("not yet ready")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        // [Ignore("not yet ready")]
+        [MbUnit.Framework.Ignore("not yet ready")]
+        [NUnit.Framework.Ignore("not yet ready")]
         public void Grid_ExportToCsv()
         {
             // Arrange

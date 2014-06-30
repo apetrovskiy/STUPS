@@ -11,12 +11,12 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 {
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;
+    using MbUnit.Framework;using Xunit;using NUnit.Framework;
     
     /// <summary>
     /// Description of ISupportsInvokePatternTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class ISupportsInvokePatternTestFixture
     {
         public ISupportsInvokePatternTestFixture()
@@ -24,18 +24,18 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             FakeFactory.Init();
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             FakeFactory.Init();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Invoke_ImplementsCommonPattern()
         {
 //            ISupportsInvokePattern invokableElement =
@@ -73,7 +73,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.NotNull(refreshableElement as ISupportsRefresh);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Invoke_Invoke()
         {
             // Arrange
@@ -86,7 +86,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             element.Invoke();
         }
         
-//        [Test][Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Invoke_ImplementsPatternInQuestion()
 //        {
 //            ISupportsInvokePattern element =
@@ -96,7 +96,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            MbUnit.Framework.Assert.IsNotNull(element as ISupportsInvokePattern);
 //        }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Invoke_DoesNotImplementOtherPatterns()
         {
             ISupportsValuePattern element =
@@ -107,7 +107,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Null(element as ISupportsValuePattern);
         }
         
-//        [Test][Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Invoke_Click()
 //        {
 //            // Arrange
@@ -120,7 +120,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            element.Click();
 //        }
 //        
-//        [Test][Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Invoke_DoubleClick()
 //        {
 //            // Arrange

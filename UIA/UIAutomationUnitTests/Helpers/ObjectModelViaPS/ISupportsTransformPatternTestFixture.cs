@@ -20,22 +20,22 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
     /// <summary>
     /// Description of ISupportsTransformPatternTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class ISupportsTransformPatternTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             // MiddleLevelCode.PrepareRunspace();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
             // MiddleLevelCode.DisposeRunspace();
         }
         
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Transform_ImplementsCommonPattern()
 //        {
 //            ISupportsInvokePattern invokableElement =
@@ -69,7 +69,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            MbUnit.Framework.Assert.IsNotNull(refreshableElement as ISupportsRefresh);
 //        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Transform_ImplementsPatternInQuestion()
 //        {
 //            ISupportsTransformPattern element =
@@ -79,7 +79,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            MbUnit.Framework.Assert.IsNotNull(element as ISupportsTransformPattern);
 //        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Transform_DoesNotImplementOtherPatterns()
 //        {
 //            ISupportsValuePattern element =
@@ -89,7 +89,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            MbUnit.Framework.Assert.IsNull(element as ISupportsValuePattern);
 //        }
 //        
-////        [Test]// [Fact]
+////        [MbUnit.Framework.Test][NUnit.Framework.Test]
 ////        public void Transform_Move()
 ////        {
 ////            // Arrange
@@ -102,7 +102,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 ////            element.Move(1, 1);
 ////        }
 ////        
-////        [Test]// [Fact]
+////        [MbUnit.Framework.Test][NUnit.Framework.Test]
 ////        public void Transform_Resize()
 ////        {
 ////            // Arrange
@@ -115,7 +115,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 ////            element.Resize(1, 1);
 ////        }
 ////        
-////        [Test]// [Fact]
+////        [MbUnit.Framework.Test][NUnit.Framework.Test]
 ////        public void Transform_Rotate()
 ////        {
 ////            // Arrange
@@ -128,7 +128,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 ////            element.Rotate(1);
 ////        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Transform_CanMove()
 //        {
 //            // Arrange
@@ -143,7 +143,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            MbUnit.Framework.Assert.AreEqual(expectedValue, element.CanMove);
 //        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Transform_CanResize()
 //        {
 //            // Arrange
@@ -158,7 +158,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            MbUnit.Framework.Assert.AreEqual(expectedValue, element.CanResize);
 //        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Transform_CanRotate()
 //        {
 //            // Arrange
@@ -173,7 +173,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            MbUnit.Framework.Assert.AreEqual(expectedValue, element.CanRotate);
 //        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Transform_Move()
 //        {
 //            // Arrange
@@ -195,7 +195,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            MbUnit.Framework.Assert.AreEqual(expectedResult, result);
 //        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Transform_Resize()
 //        {
 //            // Arrange
@@ -217,7 +217,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            MbUnit.Framework.Assert.AreEqual(expectedResult, result);
 //        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Transform_Rotate()
 //        {
 //            // Arrange

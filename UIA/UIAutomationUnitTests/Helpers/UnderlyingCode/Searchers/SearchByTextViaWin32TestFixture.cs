@@ -13,12 +13,12 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
     using System.Collections.Generic;
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;
+    using MbUnit.Framework;using Xunit;using NUnit.Framework;
     
     /// <summary>
     /// Description of SearchByContainsTextViaWin32TestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class SearchByContainsTextViaWin32TestFixture_less_useful
     {
     	public SearchByContainsTextViaWin32TestFixture_less_useful()
@@ -26,13 +26,13 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
     		FakeFactory.Init();
     	}
     	
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             FakeFactory.Init();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
         }
@@ -55,7 +55,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
         #endregion helpers
         
         #region Name
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0_byName()
         {
             const string containsText = "*ame??atche*";
@@ -67,7 +67,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of3_byName()
         {
             const string containsText = "*ame??atche*";
@@ -83,7 +83,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 3);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of3_byName()
         {
             const string containsText = "*ame??atche*";
@@ -99,7 +99,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 3);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byName()
         {
             const string containsText = "*ame??atche*";
@@ -117,7 +117,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
         #endregion Name
         
         #region ControlType + Name
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0_byControlTypeName()
         {
             const string containsText = "*ame??atche*";
@@ -130,7 +130,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of4_byControlTypeName()
         {
             const string containsText = "*ame??atche*";
@@ -148,7 +148,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 3);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of4_byControlTypeName()
         {
             const string containsText = "*ame??atche*";
@@ -166,7 +166,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 3);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byControlTypeName()
         {
             const string containsText = "*ame??atche*";

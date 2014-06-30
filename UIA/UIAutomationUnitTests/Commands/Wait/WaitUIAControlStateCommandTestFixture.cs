@@ -15,7 +15,7 @@ namespace UIAutomationUnitTests.Commands.Wait
     using System.Collections.ObjectModel;
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;
+    using MbUnit.Framework;using Xunit;using NUnit.Framework;
     using System.Linq;
     using UIAutomation.Commands;
     using UIAutomation.Helpers.Commands;
@@ -23,7 +23,7 @@ namespace UIAutomationUnitTests.Commands.Wait
     /// <summary>
     /// Description of WaitUIAControlStateCommandTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class WaitUIAControlStateCommandTestFixture
     {
         public WaitUIAControlStateCommandTestFixture()
@@ -31,13 +31,13 @@ namespace UIAutomationUnitTests.Commands.Wait
             FakeFactory.Init();
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             FakeFactory.Init();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
         }
@@ -84,8 +84,10 @@ namespace UIAutomationUnitTests.Commands.Wait
         #endregion helpers
         
         #region no parameters
-        [Test]// [Fact]
-        [Ignore("this is unclear yet until the input validator is here")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        // [Ignore("this is unclear yet until the input validator is here")]
+        [MbUnit.Framework.Ignore("this is unclear yet until the input validator is here")]
+        [NUnit.Framework.Ignore("this is unclear yet until the input validator is here")]
         public void Get0_NoParam_AllInputNull()
         {
             string name = string.Empty;
@@ -99,7 +101,7 @@ namespace UIAutomationUnitTests.Commands.Wait
                 false);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0_NoParam_HashtablesNull()
         {
             string name = string.Empty;
@@ -113,8 +115,10 @@ namespace UIAutomationUnitTests.Commands.Wait
                 false);
         }
         
-        [Test]// [Fact]
-        [Ignore("this is unclear yet until the input validator is here")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        // [Ignore("this is unclear yet until the input validator is here")]
+        [MbUnit.Framework.Ignore("this is unclear yet until the input validator is here")]
+        [NUnit.Framework.Ignore("this is unclear yet until the input validator is here")]
         public void Get0_NoParam_ElementsNull()
         {
             string name = string.Empty;
@@ -128,7 +132,7 @@ namespace UIAutomationUnitTests.Commands.Wait
                 false);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0_NoParam()
         {
             string name = string.Empty;
@@ -142,7 +146,7 @@ namespace UIAutomationUnitTests.Commands.Wait
                 false);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_NoParam()
         {
             string name = string.Empty;
@@ -162,7 +166,7 @@ namespace UIAutomationUnitTests.Commands.Wait
         #endregion no parameters
         
         #region ControlType + Class
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0_byControlTypeClass()
         {
             string name = string.Empty;
@@ -183,7 +187,7 @@ namespace UIAutomationUnitTests.Commands.Wait
                 false);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of4_byControlTypeClass()
         {
             string name = string.Empty;
@@ -209,7 +213,7 @@ namespace UIAutomationUnitTests.Commands.Wait
                 false);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of4_byControlTypeClass()
         {
             string name = string.Empty;
@@ -235,7 +239,7 @@ namespace UIAutomationUnitTests.Commands.Wait
                 true);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get2of4_byControlTypeClass_X2()
         {
             string name = string.Empty;
@@ -264,7 +268,7 @@ namespace UIAutomationUnitTests.Commands.Wait
                 true);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of4_byControlTypeClass_X2()
         {
             string name = string.Empty;
@@ -293,7 +297,7 @@ namespace UIAutomationUnitTests.Commands.Wait
                 false);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of4_byControlTypeClass_X5()
         {
             string name = string.Empty;
@@ -333,7 +337,7 @@ namespace UIAutomationUnitTests.Commands.Wait
                 true);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of4_byControlTypeClass_X5()
         {
             string name = string.Empty;

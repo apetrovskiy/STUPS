@@ -15,13 +15,13 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
     using System.Collections.ObjectModel;
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;
+    using MbUnit.Framework;using Xunit;using NUnit.Framework;
     using System.Linq;
     
     /// <summary>
     /// Description of SearchByWildcardViaWin32TestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class SearchByWildcardViaWin32TestFixture
     {
     	public SearchByWildcardViaWin32TestFixture()
@@ -29,13 +29,13 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
     		FakeFactory.Init();
     	}
     	
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             FakeFactory.Init();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
         }

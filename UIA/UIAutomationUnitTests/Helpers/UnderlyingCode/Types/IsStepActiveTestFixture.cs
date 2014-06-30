@@ -14,12 +14,12 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
     using System.Collections;
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;
+    using MbUnit.Framework;using Xunit;using NUnit.Framework;
     
     /// <summary>
     /// Description of IsStepActiveTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class IsStepActiveTestFixture
     {
         public IsStepActiveTestFixture()
@@ -27,13 +27,13 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             FakeFactory.Init();
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             FakeFactory.Init();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
         }
@@ -41,7 +41,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
         #region helpers
         #endregion helpers
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void NoneCriteria_NoneElements()
         {
             // Arrange
@@ -59,7 +59,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Xunit.Assert.Equal(false, result);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void NoneCriteria_OneElement()
         {
             // Arrange
@@ -78,7 +78,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Xunit.Assert.Equal(false, result);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void NoneCriteria_ThreeElements()
         {
             // Arrange
@@ -103,7 +103,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Xunit.Assert.Equal(false, result);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void OneCriterion_NoneElements()
         {
             // Arrange
@@ -123,7 +123,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Xunit.Assert.Equal(false, result);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void OneCriterion_OneElement_Match_Name()
         {
             // Arrange
@@ -144,7 +144,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Xunit.Assert.Equal(true, result);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void OneCriterion_OneElement_NoMatch_Name()
         {
             // Arrange
@@ -165,8 +165,10 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Xunit.Assert.Equal(false, result);
         }
         
-        [Test]// [Fact]
-        [Ignore]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        // [Ignore]
+        [MbUnit.Framework.Ignore]
+        [NUnit.Framework.Ignore]
         public void OneCriterion_OneElement_Match_AutomationIdWrongTyped()
         {
             // Arrange
@@ -187,8 +189,10 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Xunit.Assert.Equal(false, result);
         }
         
-        [Test]// [Fact]
-        [Ignore]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        // [Ignore]
+        [MbUnit.Framework.Ignore]
+        [NUnit.Framework.Ignore]
         public void OneCriterion_OneElement_NoMatch_AutomationIdWrongTyped()
         {
             // Arrange
@@ -209,7 +213,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Xunit.Assert.Equal(false, result);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void OneCriterion_OneElement_Match_AutomationId()
         {
             // Arrange
@@ -230,7 +234,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Xunit.Assert.Equal(true, result);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void OneCriterion_OneElement_NoMatch_AutomationId()
         {
             // Arrange
@@ -251,7 +255,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Xunit.Assert.Equal(false, result);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void OneCriterion_OneElement_Match_ClassName()
         {
             // Arrange
@@ -272,7 +276,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Xunit.Assert.Equal(true, result);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void OneCriterion_OneElement_NoMatch_ClassName()
         {
             // Arrange
@@ -293,7 +297,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Xunit.Assert.Equal(false, result);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void OneCriterion_ThreeElements_Match_Name()
         {
             // Arrange
@@ -317,7 +321,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Xunit.Assert.Equal(true, result);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void OneCriterion_ThreeElements_NoMatch_Name()
         {
             // Arrange
@@ -341,7 +345,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Xunit.Assert.Equal(false, result);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ThreeCriteria_NoneElements()
         {
             // Arrange
@@ -363,7 +367,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Xunit.Assert.Equal(false, result);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ThreeCriteria_OneElement_Match_NameAutomationIdClassName()
         {
             // Arrange
@@ -386,7 +390,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Xunit.Assert.Equal(true, result);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ThreeCriteria_OneElement_NoMatch_NameAutomationIdClassName()
         {
             // Arrange
@@ -409,7 +413,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Xunit.Assert.Equal(false, result);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ThreeCriteria_ThreeElements_Match_NameAutomaitonIdClassName()
         {
             // Arrange
@@ -436,7 +440,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Xunit.Assert.Equal(true, result);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ThreeCriteria_ThreeElements_NoMatch_NameAutomaitonIdClassName()
         {
             // Arrange

@@ -15,7 +15,7 @@ namespace UIAutomationUnitTests.Commands.Event
     using System.Collections.ObjectModel;
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;
+    using MbUnit.Framework;using Xunit;using NUnit.Framework;
     using System.Linq;
     using UIAutomation.Commands;
     using UIAutomation.Helpers.Commands;
@@ -24,7 +24,7 @@ namespace UIAutomationUnitTests.Commands.Event
     /// <summary>
     /// Description of EventCmdletBaseTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class EventCmdletBaseTestFixture
     {
         public EventCmdletBaseTestFixture()
@@ -34,7 +34,7 @@ namespace UIAutomationUnitTests.Commands.Event
             UIAutomation.Preferences.UseElementsSearchObjectModel = false;
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             FakeFactory.Init();
@@ -43,7 +43,7 @@ namespace UIAutomationUnitTests.Commands.Event
             UIAutomation.Preferences.UseElementsSearchObjectModel = false;
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
             TestAutomation = null;
@@ -184,7 +184,7 @@ namespace UIAutomationUnitTests.Commands.Event
         }
         #endregion helpers
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void FocusChangedEvent()
         {
             // Arrange
@@ -198,7 +198,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 cmdlet);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void InvokedEvent()
         {
             // Arrange
@@ -212,7 +212,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 cmdlet);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void MenuClosedEvent()
         {
             // Arrange
@@ -226,7 +226,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 cmdlet);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void MenuOpenedEvent()
         {
             // Arrange
@@ -240,7 +240,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 cmdlet);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void PropertyChangedEvent_GridPattern_ColumnCountProperty()
         {
             // Arrange
@@ -255,7 +255,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 GridPattern.ColumnCountProperty);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void PropertyChangedEvent_GridPattern_RowCountProperty()
         {
             // Arrange
@@ -270,7 +270,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 GridPattern.RowCountProperty);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void PropertyChangedEvent_RangeValuePattern_ValueProperty()
         {
             // Arrange
@@ -285,7 +285,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 RangeValuePattern.ValueProperty);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void PropertyChangedEvent_TablePattern_ColumnCountProperty()
         {
             // Arrange
@@ -300,7 +300,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 TablePattern.ColumnCountProperty);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void PropertyChangedEvent_TablePattern_RowCountProperty()
         {
             // Arrange
@@ -315,7 +315,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 TablePattern.RowCountProperty);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void PropertyChangedEvent_ValuePattern_ValueProperty()
         {
             // Arrange
@@ -330,7 +330,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 ValuePattern.ValueProperty);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void StructureChangedEvent()
         {
             // Arrange
@@ -344,7 +344,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 cmdlet);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void TextChangedEvent()
         {
             // Arrange
@@ -358,7 +358,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 cmdlet);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void TextSelectionChangedEvent()
         {
             // Arrange
@@ -372,7 +372,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 cmdlet);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ToolTipClosedEvent()
         {
             // Arrange
@@ -386,7 +386,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 cmdlet);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ToolTipOpenedEvent()
         {
             // Arrange
@@ -402,7 +402,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 cmdlet);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void WindowClosedEvent()
         {
             // Arrange
@@ -416,7 +416,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 cmdlet);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void WindowOpenedEvent()
         {
             // Arrange

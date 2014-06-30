@@ -16,17 +16,17 @@ namespace UIAutomationUnitTests
     /// <summary>
     /// Description of GetControlConditionsTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     [Ignore("Incompatible with contemporary code")]
     public class GetControlConditionsTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             UnitTestingHelper.PrepareUnitTestDataStore();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
         }
@@ -79,7 +79,7 @@ namespace UIAutomationUnitTests
                 ControlSearcher.GetTextSearchCondition(searchString, new string[] { controlType }, cmdlet.CaseSensitive) as OrCondition;
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
         [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void ControlType()
@@ -104,7 +104,7 @@ namespace UIAutomationUnitTests
            //Assert.ForAll(ResultCondition.GetConditions(), x => x is PropertyCondition | ((x as PropertyCondition).Value as ControlType).Id == System.Windows.Automation.ControlType.Button.Id | (x as Condition) == Condition.TrueCondition);
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
         [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void ControlType_Name()
@@ -122,7 +122,7 @@ namespace UIAutomationUnitTests
                 (ResultAndCondition.GetConditions()[0] as PropertyCondition).Value);
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
         [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void ControlType_AutomationId()
@@ -140,7 +140,7 @@ namespace UIAutomationUnitTests
                 (ResultAndCondition.GetConditions()[0] as PropertyCondition).Value);
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
         [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void ControlType_ClassName()
@@ -158,7 +158,7 @@ namespace UIAutomationUnitTests
                 (ResultAndCondition.GetConditions()[1] as PropertyCondition).Value);
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
         [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void ControlType_Name_AutomationId()
@@ -181,7 +181,7 @@ namespace UIAutomationUnitTests
                 ((ResultAndCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
         [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void ControlType_Name_ClassName()
@@ -204,7 +204,7 @@ namespace UIAutomationUnitTests
                 ((ResultAndCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
         [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void ControlType_AutomationId_ClassName()
@@ -227,7 +227,7 @@ namespace UIAutomationUnitTests
                 ((ResultAndCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
         [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void ControlType_Name_AutomationId_ClassName()
@@ -257,7 +257,7 @@ namespace UIAutomationUnitTests
 
         // =========================
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
         [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void No_conditions()
@@ -269,7 +269,7 @@ namespace UIAutomationUnitTests
                 (ResultAndCondition.GetConditions()[0]));
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
         [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void Name()
@@ -283,7 +283,7 @@ namespace UIAutomationUnitTests
                 (ResultAndCondition.GetConditions()[0] as PropertyCondition).Value);
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
         [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void AutomationId()
@@ -297,7 +297,7 @@ namespace UIAutomationUnitTests
                 (ResultAndCondition.GetConditions()[0] as PropertyCondition).Value);
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
         [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void ClassName()
@@ -311,7 +311,7 @@ namespace UIAutomationUnitTests
                 (ResultAndCondition.GetConditions()[0] as PropertyCondition).Value);
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
         [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void Name_AutomationId()
@@ -330,7 +330,7 @@ namespace UIAutomationUnitTests
                 ((ResultAndCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
         [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void Name_ClassName()
@@ -349,7 +349,7 @@ namespace UIAutomationUnitTests
                 ((ResultAndCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
         [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void AutomationId_ClassName()
@@ -368,7 +368,7 @@ namespace UIAutomationUnitTests
                 ((ResultAndCondition.GetConditions()[1] as AndCondition).GetConditions()[1] as PropertyCondition).Value);
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
         [Description("CommonCmdletBase.GetControlConditionsForWildcardSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void Name_AutomationId_ClassName()
@@ -395,7 +395,7 @@ namespace UIAutomationUnitTests
         // ======================================================================================================
         // OrCondition (ContainsText)
         // ======================================================================================================
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
         //[Description("CommonCmdletBase.GetControlConditionsForExactSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void ContainsText_1()
@@ -418,7 +418,7 @@ namespace UIAutomationUnitTests
                 ((ResultOrCondition.GetConditions()[1] as OrCondition).GetConditions()[2] as PropertyCondition).Value);
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
         //[Description("CommonCmdletBase.GetControlConditionsForExactSearch(HasControlInputCmdletBase, string)")]
         [Category("Fast")]
         public void ContainsTextControlType_1()

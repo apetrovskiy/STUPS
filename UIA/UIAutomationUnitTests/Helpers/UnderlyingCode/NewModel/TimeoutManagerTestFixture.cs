@@ -10,12 +10,12 @@
 namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
 {
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;
+    using MbUnit.Framework;using Xunit;using NUnit.Framework;
     
     /// <summary>
     /// Description of TimeoutManagerTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class TimeoutManagerTestFixture
     {
         internal TimeoutManager TimeoutManager { get; set; }
@@ -24,18 +24,18 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
         }
         
         // test cases?
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Timeout_0()
         {
             // Arrange
@@ -49,7 +49,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(Preferences.OnSleepDelay, result);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Timeout_100()
         {
             // Arrange
@@ -63,7 +63,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(Preferences.OnSleepDelay, result);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Timeout_5000()
         {
             // Arrange
@@ -77,7 +77,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(250, result);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Timeout_20000()
         {
             // Arrange
@@ -91,7 +91,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(500, result);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Timeout_60000()
         {
             // Arrange
@@ -105,7 +105,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(1000, result);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Timeout_600000()
         {
             // Arrange
@@ -119,7 +119,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(6000, result);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Timeout_1200000()
         {
             // Arrange

@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # SharpDevelop 5.0
 VisualStudioVersion = 12.0.20827.3
 MinimumVisualStudioVersion = 10.0.40219.1
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+# SharpDevelop 5.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestLink", "TestLink", "{9C089AB4-FE8E-4B62-84B1-31544BBE75C8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLinkAPI", "TestLink\TestLinkAPI\TestLinkAPI.csproj", "{743BC178-7039-4D01-B3AF-83099B8411BA}"
@@ -190,7 +193,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hap40", "HtmlAgilityPack\Ha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HapUnitTests", "HtmlAgilityPack\HapUnitTests\HapUnitTests.csproj", "{4C77B588-3CD6-4BE1-B39C-D08EAFBBF837}"
 EndProject
-Project("{CFEE4113-1246-4D54-95CB-156813CB8593}") = "OpenQualityCenter", "OpenQualityCenter\OpenQualityCenter.wixproj", "{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}"
+Project("{CFEE4113-1246-4D54-95CB-156813CB8593}") = "OpenQualityCenter", "OpenQualityCenter\OpenQualityCenter.wixproj", "{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -2804,6 +2807,38 @@ Global
 		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Release40|Release40.Build.0 = Debug|Any CPU
 		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Release40|x86.ActiveCfg = Debug|Any CPU
 		{3B7B2F9F-211E-46F3-8D28-9471E8BD9EE2}.Release40|x86.Build.0 = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Debug|Release35.ActiveCfg = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Debug|Release35.Build.0 = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Debug|Release40.ActiveCfg = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Debug|Release40.Build.0 = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Debug|x86.Build.0 = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release|Release35.ActiveCfg = Release|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release|Release35.Build.0 = Release|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release|Release40.ActiveCfg = Release|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release|Release40.Build.0 = Release|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release|x86.ActiveCfg = Release|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release|x86.Build.0 = Release|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release35|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release35|Any CPU.Build.0 = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release35|Release35.ActiveCfg = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release35|Release35.Build.0 = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release35|Release40.ActiveCfg = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release35|Release40.Build.0 = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release35|x86.ActiveCfg = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release35|x86.Build.0 = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release40|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release40|Any CPU.Build.0 = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release40|Release35.ActiveCfg = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release40|Release35.Build.0 = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release40|Release40.ActiveCfg = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release40|Release40.Build.0 = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release40|x86.ActiveCfg = Debug|Any CPU
+		{2EB0C5C5-6A9E-4544-A6CF-CEFB2CC4BE51}.Release40|x86.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

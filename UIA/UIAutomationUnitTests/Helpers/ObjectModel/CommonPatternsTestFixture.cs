@@ -11,13 +11,13 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 {
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;
+    using MbUnit.Framework;using Xunit;using NUnit.Framework;
     using NSubstitute;
     
     /// <summary>
     /// Description of CommonPatternsTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class CommonPatternsTestFixture
     {
         public CommonPatternsTestFixture()
@@ -25,18 +25,18 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             FakeFactory.Init();
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             FakeFactory.Init();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
         }
         
-//        [Test][Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void InvokePattern()
 //        {
 //            // Arrange
@@ -61,7 +61,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            // Assert.AreEqual(expectedValue, element.DockPosition);
 //        }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Highlighter()
         {
             // Arrange
@@ -80,7 +80,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Assert.AreEqual(expectedValue, element.DockPosition);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Navigation()
         {
             // Arrange
@@ -103,7 +103,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Assert.AreEqual(expectedValue, element.DockPosition);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Conversion()
         {
             // Arrange
@@ -122,7 +122,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Assert.AreEqual(expectedValue, element.DockPosition);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Refresh()
         {
             // Arrange
@@ -141,7 +141,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Assert.AreEqual(expectedValue, element.DockPosition);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Cached_On()
         {
             Preferences.UseElementsCached = true;
@@ -153,7 +153,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var testCachedParent = element.CachedParent;
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Cached_Off()
         {
             Preferences.UseElementsCached = false;
@@ -164,7 +164,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Null(element);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Current_On()
         {
             Preferences.UseElementsCurrent = true;
@@ -174,7 +174,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var testCurrent = element.Current;
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Current_Off()
         {
             Preferences.UseElementsCurrent = false;

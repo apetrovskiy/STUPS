@@ -22,19 +22,19 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
     /// </summary>
     public class ObjectModelParametersTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             // MiddleLevelCode.PrepareRunspace();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
             // MiddleLevelCode.DisposeRunspace();
         }
         
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        [Description("Checks that there is no elements' object model available when the  parameter if $false")]
 //        public void DoenNotImplementCommonPatterns()
 //        {
@@ -72,7 +72,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            MbUnit.Framework.Assert.IsNull(refreshableElement as ISupportsRefresh);
 //        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        [Description("Checks that the extended elements' object model is off when the UseElementsSearchObjectModel parameter is $false")]
 //        public void NoExtension()
 //        {
@@ -92,7 +92,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            MbUnit.Framework.Assert.IsNull(element as ISupportsExtendedModel);
 //        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        [Description("Checks that the basic elements' object model works, while the extended elements' object model is off")]
 //        public void Toggle_Toggle_Off_ExtendedObjectModel_Off()
 //        {
@@ -119,7 +119,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            MbUnit.Framework.Assert.AreEqual(expectedValue, element.ToggleState);
 //        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        [Description("Checks that the basic elements' object model works, while the extended elements' object model is also on")]
 //        public void Toggle_Toggle_Off_ExtendedObjectModel_On()
 //        {

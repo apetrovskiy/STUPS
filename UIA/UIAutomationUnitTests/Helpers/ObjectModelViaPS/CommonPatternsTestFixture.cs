@@ -20,22 +20,22 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
     /// <summary>
     /// Description of CommonPatternsTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class CommonPatternsTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             // MiddleLevelCode.PrepareRunspace();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
             // MiddleLevelCode.DisposeRunspace();
         }
         
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void InvokePattern()
 //        {
 //            // Arrange
@@ -60,7 +60,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            // Assert.AreEqual(expectedValue, element.DockPosition);
 //        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Highlighter()
 //        {
 //            // Arrange
@@ -77,7 +77,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            // Assert.AreEqual(expectedValue, element.DockPosition);
 //        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Navigation()
 //        {
 //            // Arrange
@@ -98,7 +98,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            // Assert.AreEqual(expectedValue, element.DockPosition);
 //        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Conversion()
 //        {
 //            // Arrange
@@ -115,7 +115,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            // Assert.AreEqual(expectedValue, element.DockPosition);
 //        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Refresh()
 //        {
 //            // Arrange

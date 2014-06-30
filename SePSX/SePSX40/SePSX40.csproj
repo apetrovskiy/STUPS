@@ -684,8 +684,5 @@
     <Folder Include="Helpers\UnderlyingCode\Commands\Common" />
     <Folder Include="Helpers\UnderlyingCode\Decorators" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

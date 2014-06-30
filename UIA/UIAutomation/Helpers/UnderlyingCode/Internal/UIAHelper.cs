@@ -2538,13 +2538,55 @@ namespace UIAutomation
         // experimental
         #region experimental
 
+        // 20140318
+        // private static ArrayList GetAllWindows()
+//        internal static IEnumerable<IntPtr> GetChildWindows2222(IntPtr parent)
+//        {
+//            var windowHandles = new ArrayList();
+//            // var windowHandles = new List<IntPtr>();
+//            EnumedWindow callBackPtr = GetWindowHandle;
+//            EnumWindows(callBackPtr, windowHandles);
+//            
+////            foreach (IntPtr windowHandle in windowHandles.ToArray())
+////            {
+////                EnumChildWindows(windowHandle, callBackPtr, windowHandles);
+////            }
+//            
+//// Console.WriteLine("all == {0}", windowHandles.Count);
+//            // return windowHandles;
+//            // return (List<IntPtr>)(windowHandles.ToArray(typeof(IntPtr)));
+//            return windowHandles.Cast<IntPtr>().ToList();
+//        }
 
+        // private delegate bool EnumedWindow(IntPtr handleWindow, ArrayList handles);
+        // private delegate bool EnumedWindow(IntPtr handleWindow, List<IntPtr> handles);
+        
+//        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+//        [return: MarshalAs(UnmanagedType.Bool)]
+//        private static extern bool EnumWindows(EnumedWindow lpEnumFunc, ArrayList lParam);
+//        // private static extern bool EnumWindows(EnumedWindow lpEnumFunc, List<IntPtr> lParam);
+        
+//        [DllImport("user32")]
+//        [return: MarshalAs(UnmanagedType.Bool)]
+//        private static extern bool EnumChildWindows(IntPtr window, EnumedWindow callback, ArrayList lParam);
+//        // private static extern bool EnumChildWindows(IntPtr window, EnumedWindow callback, List<IntPtr> lParam);
+        
+//        private static bool GetWindowHandle(IntPtr windowHandle, ArrayList windowHandles)
+//        // private static bool GetWindowHandle(IntPtr windowHandle, List<IntPtr> windowHandles)
+//        {
+//            windowHandles.Add(windowHandle);
+//            return true;
+//        }
+        
+        
 //    [DllImport("user32")]
 //    [return: MarshalAs(UnmanagedType.Bool)]
 //    public static extern bool EnumChildWindows(IntPtr window, EnumWindowProc callback, IntPtr i);
 
         internal static IEnumerable<IntPtr> GetChildWindows(IntPtr parent)
+        // private static IEnumerable<IntPtr> GetChildWindows(IntPtr parent)
         {
+            /*
             var result = new List<IntPtr>();
             GCHandle listHandle = GCHandle.Alloc(result);
             try
@@ -2558,14 +2600,16 @@ namespace UIAutomation
                     listHandle.Free();
             }
             return result;
+            */
             
-            /*
             List<IntPtr> result = new List<IntPtr>();
             GCHandle listHandle = GCHandle.Alloc(result);
             try
             {
                 EnumWindowProc childProc = new EnumWindowProc(EnumWindow);
                 NativeMethods.EnumChildWindows(parent, childProc, GCHandle.ToIntPtr(listHandle));
+                // NativeMethods.Win32Callback childProc = new NativeMethods.Win32Callback(EnumWindow);
+                // NativeMethods.EnumChildWindows(parent, childProc, GCHandle.ToIntPtr(listHandle));
             }
             finally
             {
@@ -2573,7 +2617,7 @@ namespace UIAutomation
                     listHandle.Free();
             }
             return result;
-            */
+            
         }
 
         private static bool EnumWindow(IntPtr handle, IntPtr pointer)
@@ -2585,20 +2629,12 @@ namespace UIAutomation
     
             list.Add(handle);            
             return true;
-            
-            /*
-            GCHandle gch = GCHandle.FromIntPtr(pointer);
-            List<IntPtr> list = gch.Target as List<IntPtr>;
-            if (list == null)
-                throw new InvalidCastException("GCHandle Target could not be cast as List<IntPtr>");
-    
-            list.Add(handle);            
-            return true;
-            */
         }
         
         internal static List<IUiElement> EnumChildWindowsFromHandle(string[] names, string automationId, string className, IntPtr parentHandle)
         {
+            // 20140318
+            /*
             IEnumerable<IntPtr> list =
                 GetChildWindows(parentHandle);
             
@@ -2608,26 +2644,71 @@ namespace UIAutomation
             var automationElements =
                 new ArrayList();
             
-            
-            /*
-            List<IUiElement> resultElements =
-                new List<IUiElement>();
-            
-            ArrayList automationElements =
-                new ArrayList();
+            foreach (IntPtr handle in list) {
             */
             
-            foreach (IntPtr handle in list) {
+            var resultElements =
+                new List<IUiElement>();
+            
+            var automationElements =
+                new ArrayList();
+            
+//Console.WriteLine("before GetChildWindows");
+            // var handlesList = GetChildWindows(parentHandle).ToArray();
+            var handlesList = GetWindows().ToArray();
+//Console.WriteLine("the handles number is {0}", handlesList.Length);
+            for (int iHandleCounter = 0; iHandleCounter < handlesList.Length; iHandleCounter++) {
+                
+            // foreach (IntPtr handle in GetChildWindows(parentHandle)) {
                 
                 try {
                     
-                    IUiElement element =
-                        GetAutomationElementFromHandle(handle.ToInt32());
+// Console.WriteLine("=========================================================================");
+// Console.WriteLine(iHandleCounter++.ToString());
+//Console.WriteLine(iHandleCounter.ToString());
+//Console.WriteLine("window handle {0}", handle.ToInt32());
+                    // 20140318
+                    // IUiElement element =
+                    //     GetAutomationElementFromHandle(handle.ToInt32());
                     
-                    automationElements.Add(element);
+                    // if (IntPtr.Zero != handle) { // && 0 != handle.ToInt32()) {
+                    if (IntPtr.Zero != handlesList[iHandleCounter]) {
+//                        IUiElement element =
+//                            GetAutomationElementFromHandle(handle.ToInt32());
+                        IUiElement element =
+                            // AutomationFactory.GetUiElement(classic.AutomationElement.FromHandle(handle));
+                            AutomationFactory.GetUiElement(classic.AutomationElement.FromHandle(handlesList[iHandleCounter]));
+                        
+//if (null != element) {
+//    Console.WriteLine("null != element");
+//    Console.WriteLine("name = {0}", element.GetCurrent().Name);
+//    Console.WriteLine("auId = {0}", element.GetCurrent().AutomationId);
+//    Console.WriteLine("class = {0}", element.GetCurrent().ClassName);
+//    Console.WriteLine("type = {0}", element.GetCurrent().ControlType.ProgrammaticName);
+//    Console.WriteLine("pid = {0}", element.GetCurrent().ProcessId);
+//    Console.WriteLine("handle = {0}", element.GetCurrent().NativeWindowHandle);
+//} else {
+//    Console.WriteLine("null == element");
+//}
+                        
+                        
+                        // 20140318
+                        // automationElements.Add(element);
+                        if (null != element && classic.ControlType.Window == element.GetCurrent().ControlType) {
+                            automationElements.Add(element);
+                        } else {
+                            handlesList[iHandleCounter] = IntPtr.Zero;
+                            element.SetSourceElement<IUiElement>(null);
+                            AutomationFactory.Release(element);
+                            // element.Dispose();
+                            // element = null;
+                        }
                     
+                    }
                 }
-                catch {}
+                catch (Exception eFromHandle) {
+//Console.WriteLine(eFromHandle.Message);
+                }
             }
             
             if (null == names || 0 == names.Length) {
@@ -2695,6 +2776,34 @@ namespace UIAutomation
                 EnumChildWindowsFromHandle(cmdlet.Name, cmdlet.AutomationId, cmdlet.Class, IntPtr.Zero);
             
             return resultList;
+        }
+        
+//        public delegate bool CallBackPtr(int hwnd, int lParam);
+//        private CallBackPtr callBackPtr;
+//        
+//        internal static IEnumerable<IntPtr> GetWindows()
+//        {
+//            callBackPtr = new CallBackPtr(EnumReport.Report);  
+//            NativeMethods.EnumWindows(callBackPtr, 0);
+//        }
+        
+        // public delegate bool EnumedWindow(IntPtr handleWindow, ArrayList handles);
+        
+        // public static ArrayList GetWindows()
+        public static IEnumerable<IntPtr> GetWindows()
+        {    
+            ArrayList windowHandles = new ArrayList();
+            NativeMethods.EnumedWindow callBackPtr = GetWindowHandle;
+            NativeMethods.EnumWindows(callBackPtr, windowHandles);
+            
+            // return windowHandles;
+            return windowHandles.Cast<IntPtr>().ToList();            
+        }
+        
+        private static bool GetWindowHandle(IntPtr windowHandle, ArrayList windowHandles)
+        {
+            windowHandles.Add(windowHandle);
+            return true;
         }
         #endregion experimental
         

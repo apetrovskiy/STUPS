@@ -879,5 +879,10 @@ namespace UIAutomation
             return logHelper.UiaLogger;
             // return ConvertToProxiedObject<Logger>(logHelper.UiaLogger);
         }
+        
+        public static void Release(object objectToRelease)
+        {
+            Kernel.Release(objectToRelease);
+        }
     }
 }

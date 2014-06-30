@@ -141,6 +141,9 @@
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
       <Aliases>UIANET</Aliases>
     </Reference>
+    <Reference Include="WindowsAccessBridge">
+      <HintPath>..\..\binaries\accessbridge2_0_2\WindowsAccessBridge.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>

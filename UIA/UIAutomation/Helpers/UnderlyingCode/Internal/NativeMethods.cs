@@ -17,6 +17,7 @@ namespace UIAutomation
     // http://msdn.microsoft.com/ru-ru/library/windows/desktop/aa379560(v=vs.85).aspx
     using DWORD = UInt32; // Optional alias, used below.
     using System.ComponentModel;
+    using System.Collections;
     
     /// <summary>
     /// Description of NativeMethods.
@@ -107,6 +108,21 @@ namespace UIAutomation
         [return: MarshalAs(UnmanagedType.Bool)]
         //public static extern bool EnumChildWindows(IntPtr window, EnumWindowProc callback, IntPtr i);
         internal static extern bool EnumChildWindows(IntPtr window, EnumWindowProc callback, IntPtr i);
+        
+//        public delegate bool Win32Callback(IntPtr hwnd, IntPtr lParam);
+//        [DllImport("user32.Dll")]
+//        [return: MarshalAs(UnmanagedType.Bool)]
+//        internal static extern bool EnumChildWindows(IntPtr parentHandle, Win32Callback callback, IntPtr lParam);
+        
+//        [DllImport("user32.dll")]
+//        [return: MarshalAs(UnmanagedType.Bool)]
+//        internal static extern bool EnumWindows(EnumWindowsProc lpEnumFunc, IntPtr lParam);
+        
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        internal static extern bool EnumWindows(EnumedWindow lpEnumFunc, ArrayList lParam);
+        
+        public delegate bool EnumedWindow(IntPtr handleWindow, ArrayList handles);
         #endregion getting windows
         
         #region Highligher

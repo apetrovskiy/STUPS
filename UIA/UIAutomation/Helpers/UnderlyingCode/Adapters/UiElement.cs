@@ -649,6 +649,12 @@ namespace UIAutomation
 				_elementHolderAdapter = (IUiElement)element;
 				_innerElementType = InnerElementTypes.UiElement;
 			}
+			
+			if (null == element) {
+			    _elementHolderNet = null;
+			    // com
+			    _elementHolderAdapter = null;
+			}
 		}
         
 		internal virtual string Tag { get; set; }

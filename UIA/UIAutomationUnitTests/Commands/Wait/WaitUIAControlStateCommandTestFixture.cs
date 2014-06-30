@@ -175,12 +175,10 @@ namespace UIAutomationUnitTests.Commands.Wait
             string txtValue = string.Empty;
             ControlType controlType = ControlType.Button;
             
-            Hashtable ht =
-                new Hashtable();
+            var ht = new Hashtable();
             ht.Add("controlType", "button");
             ht.Add("class", className);
-            Hashtable[] inputData =
-                new[] { ht };
+            var inputData = new[] { ht };
             TestParametersAgainstCollection(
                 inputData,
                 new UiElement[] {},
@@ -196,12 +194,10 @@ namespace UIAutomationUnitTests.Commands.Wait
             string txtValue = string.Empty;
             ControlType controlType = ControlType.Button;
             
-            Hashtable ht =
-                new Hashtable();
+			var ht = new Hashtable();
             ht.Add("controlType", "button");
             ht.Add("class", className);
-            Hashtable[] inputData =
-                new[] { ht };
+            var inputData = new[] { ht };
             TestParametersAgainstCollection(
                 inputData,
                 new [] {
@@ -222,12 +218,10 @@ namespace UIAutomationUnitTests.Commands.Wait
             string txtValue = string.Empty;
             ControlType controlType = ControlType.Button;
             
-            Hashtable ht =
-                new Hashtable();
+            var ht = new Hashtable();
             ht.Add("controlType", "button");
             ht.Add("class", className);
-            Hashtable[] inputData =
-                new[] { ht };
+            var inputData = new[] { ht };
             TestParametersAgainstCollection(
                 inputData,
                 new [] {
@@ -248,15 +242,12 @@ namespace UIAutomationUnitTests.Commands.Wait
             string txtValue = string.Empty;
             ControlType controlType = ControlType.Button;
             
-            Hashtable ht1 =
-                new Hashtable();
+            var ht1 = new Hashtable();
             ht1.Add("controlType", "button");
             ht1.Add("class", className);
-            Hashtable ht2 =
-                new Hashtable();
+            var ht2 = new Hashtable();
             ht2.Add("controlType", "headeritem");
-            Hashtable[] inputData =
-                new[] { ht1, ht2 };
+            var inputData = new[] { ht1, ht2 };
             TestParametersAgainstCollection(
                 inputData,
                 new [] {
@@ -277,15 +268,12 @@ namespace UIAutomationUnitTests.Commands.Wait
             string txtValue = string.Empty;
             ControlType controlType = ControlType.Button;
             
-            Hashtable ht1 =
-                new Hashtable();
+            var ht1 = new Hashtable();
             ht1.Add("controlType", "button");
             ht1.Add("class", className);
-            Hashtable ht2 =
-                new Hashtable();
+            var ht2 = new Hashtable();
             ht2.Add("controlType", "menu");
-            Hashtable[] inputData =
-                new[] { ht1, ht2 };
+            var inputData = new[] { ht1, ht2 };
             TestParametersAgainstCollection(
                 inputData,
                 new [] {
@@ -306,26 +294,20 @@ namespace UIAutomationUnitTests.Commands.Wait
             string txtValue = string.Empty;
             ControlType controlType = ControlType.Button;
             
-            Hashtable ht1 =
-                new Hashtable();
+            var ht1 = new Hashtable();
             ht1.Add("controlType", "button");
             ht1.Add("class", className);
-            Hashtable ht2 =
-                new Hashtable();
+            var ht2 = new Hashtable();
             ht2.Add("controlType", "headeritem");
-            Hashtable ht3 =
-                new Hashtable();
+            var ht3 = new Hashtable();
             ht3.Add("controlType", "button");
             ht3.Add("class", "cl03");
-            Hashtable ht4 =
-                new Hashtable();
+            var ht4 = new Hashtable();
             ht4.Add("controlType", "button");
             ht4.Add("class", className);
-            Hashtable ht5 =
-                new Hashtable();
+            var ht5 = new Hashtable();
             ht5.Add("controlType", "headeritem");
-            Hashtable[] inputData =
-                new[] { ht1, ht2, ht3, ht4, ht5 };
+            var inputData = new[] { ht1, ht2, ht3, ht4, ht5 };
             TestParametersAgainstCollection(
                 inputData,
                 new [] {
@@ -346,26 +328,20 @@ namespace UIAutomationUnitTests.Commands.Wait
             string txtValue = string.Empty;
             ControlType controlType = ControlType.Button;
             
-            Hashtable ht1 =
-                new Hashtable();
+            var ht1 = new Hashtable();
             ht1.Add("controlType", "button");
             ht1.Add("class", className);
-            Hashtable ht2 =
-                new Hashtable();
+            var ht2 = new Hashtable();
             ht2.Add("controlType", "menu");
-            Hashtable ht3 =
-                new Hashtable();
+            var ht3 = new Hashtable();
             ht3.Add("controlType", "button");
             ht3.Add("class", "cl03");
-            Hashtable ht4 =
-                new Hashtable();
+            var ht4 = new Hashtable();
             ht4.Add("controlType", "button");
             ht4.Add("class", className);
-            Hashtable ht5 =
-                new Hashtable();
+            var ht5 = new Hashtable();
             ht5.Add("controlType", "headeritem");
-            Hashtable[] inputData =
-                new[] { ht1, ht2, ht3, ht4, ht5 };
+            var inputData = new[] { ht1, ht2, ht3, ht4, ht5 };
             TestParametersAgainstCollection(
                 inputData,
                 new [] {

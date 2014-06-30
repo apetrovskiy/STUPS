@@ -10,6 +10,7 @@
 namespace UIAutomationUnitTests.Helpers.Inheritance
 {
     using MbUnit.Framework;// using Xunit;//using MbUnit.Framework;// using Xunit; // using MbUnit.Framework;// using Xunit;
+    using NUnit.Framework;
     using System.Windows.Automation;
     using UIAutomation;
     
@@ -17,7 +18,9 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
     /// Description of CommonCmdletBase.
     /// </summary>
     [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="CommonCmdletBase test")]
-    [Ignore("Incompatible with the contemporary code")]
+    // [Ignore("Incompatible with the contemporary code")]
+    [MbUnit.Framework.Ignore("Incompatible with the contemporary code")]
+    [NUnit.Framework.Ignore("Incompatible with the contemporary code")]
     public class CommonCmdletBaseTestFixture
     {
         UIAutomation.GetControlCmdletBase cmdlet = null;
@@ -45,7 +48,16 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                         Value = cmdlet.Value,
                         ControlType = cmdlet.ControlType
                     });
-            conditions = ((AndCondition)condition).GetConditions();
+            // 20140630
+            // conditions = ((AndCondition)condition).GetConditions();
+            if (null != condition as AndCondition) {
+            	conditions = ((AndCondition)condition).GetConditions();
+            } else if (null != condition as OrCondition) {
+            	conditions = ((OrCondition)condition).GetConditions();
+            } else {
+            	conditions = new[] { condition };
+            }
+            
             foreach (Condition cond in conditions) {
                 if ((cond as PropertyCondition) != null) {
                     MbUnit.Framework.Assert.AreEqual(
@@ -66,7 +78,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("CSCode")]
+//        [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeButton()
         {
             checkConditionsArray(
@@ -76,7 +88,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("CSCode")]
+//        [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeCalendar()
         {
             checkConditionsArray(
@@ -86,7 +98,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("CSCode")]
+//        [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeCheckBox()
         {
             checkConditionsArray(
@@ -96,7 +108,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("CSCode")]
+//        [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeComboBox()
         {
             checkConditionsArray(
@@ -106,7 +118,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("CSCode")]
+//        [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeCustom()
         {
             checkConditionsArray(
@@ -116,7 +128,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("CSCode")]
+//        [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeDataGrid()
         {
             checkConditionsArray(
@@ -126,7 +138,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("CSCode")]
+//        [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeDataItem()
         {
             checkConditionsArray(
@@ -136,7 +148,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("CSCode")]
+//        [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeDocument()
         {
             checkConditionsArray(
@@ -146,7 +158,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("CSCode")]
+//        [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeEdit()
         {
             checkConditionsArray(
@@ -156,7 +168,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("CSCode")]
+//        [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeHyperlink()
         {
             checkConditionsArray(
@@ -166,7 +178,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("CSCode")]
+//        [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeList()
         {
             checkConditionsArray(
@@ -176,7 +188,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("CSCode")]
+//        [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeRadioButton()
         {
             checkConditionsArray(
@@ -186,7 +198,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("CSCode")]
+//        [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeTable()
         {
             checkConditionsArray(
@@ -196,7 +208,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("CSCode")]
+//        [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeText()
         {
             checkConditionsArray(
@@ -206,7 +218,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("CSCode")]
+//        [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeTree()
         {
             checkConditionsArray(
@@ -216,7 +228,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("CSCode")]
+//        [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeTreeItem()
         {
             checkConditionsArray(
@@ -226,7 +238,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("CSCode")]
+//        [Category("Slow")][Category("CSCode")]
         public void SelectParameterControlTypeWindow()
         {
             checkConditionsArray(

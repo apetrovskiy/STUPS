@@ -65,34 +65,35 @@ namespace UIAutomation
 //        public SwitchParameter CaseSensitive { get; set; }
         #endregion Parameters
         
-        protected void GetAutomationElementsViaWildcards_FindAll(
-            IUiElement inputObject,
-            classic.AndCondition conditions,
-            bool caseSensitive,
-            bool onlyOneResult,
-            bool onlyTopLevel,
-            bool viaWildcardOrRegex)
-        {
-            if (!CheckAndPrepareInput(this)) { return; }
-            
-            var controlSearcherData =
-                new ControlSearcherData {
-                Name = this.Name,
-                AutomationId = this.AutomationId,
-                Class = this.Class,
-                Value = this.Value,
-                ControlType = this.ControlType
-            };
-            
-            GetAutomationElementsWithFindAll(
-                inputObject,
-                controlSearcherData,
-                conditions,
-                caseSensitive,
-                onlyOneResult,
-                onlyTopLevel,
-                viaWildcardOrRegex);
-        }
+        // not used
+//        protected void GetAutomationElementsViaWildcards_FindAll(
+//            IUiElement inputObject,
+//            classic.AndCondition conditions,
+//            bool caseSensitive,
+//            bool onlyOneResult,
+//            bool onlyTopLevel,
+//            bool viaWildcardOrRegex)
+//        {
+//            if (!CheckAndPrepareInput(this)) { return; }
+//            
+//            var controlSearcherData =
+//                new ControlSearcherData {
+//                Name = this.Name,
+//                AutomationId = this.AutomationId,
+//                Class = this.Class,
+//                Value = this.Value,
+//                ControlType = this.ControlType
+//            };
+//            
+//            GetAutomationElementsWithFindAll(
+//                inputObject,
+//                controlSearcherData,
+//                conditions,
+//                caseSensitive,
+//                onlyOneResult,
+//                onlyTopLevel,
+//                viaWildcardOrRegex);
+//        }
         
         internal List<IUiElement> GetAutomationElementsViaWildcards_FindAll(
             ControlSearcherData data,

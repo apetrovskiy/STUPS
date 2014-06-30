@@ -23,12 +23,13 @@ namespace UIAutomation
     /// </summary>
     public static class ExtensionsMethods
     {
-        public static IUiEltCollection ConvertCmdletInputToCollectionAdapter(this ICollection inputArray)
-        {
-            IUiEltCollection resultCollection =
-                AutomationFactory.GetUiEltCollection(inputArray);
-            return resultCollection;
-        }
+    	// not used
+//        public static IUiEltCollection ConvertCmdletInputToCollectionAdapter(this ICollection inputArray)
+//        {
+//            IUiEltCollection resultCollection =
+//                AutomationFactory.GetUiEltCollection(inputArray);
+//            return resultCollection;
+//        }
         
         public static IBasePattern[] ConvertAutomationPatternToBasePattern(this classic.AutomationPattern[] patterns, IUiElement element)
         {
@@ -314,22 +315,23 @@ namespace UIAutomation
 			};
         }
         
-        internal static SingleControlSearcherData ConvertControlSearcherDataToSingleControlSearcherData(this ControlSearcherData data)
-        {
-            return new SingleControlSearcherData {
-                InputObject = (null == data.InputObject ? null : (data.InputObject[0] ?? null)),
-                Name = data.Name,
-                AutomationId = data.AutomationId,
-                Class = data.Class,
-                Value = data.Value,
-                ControlType = data.ControlType,
-                ContainsText = data.ContainsText,
-                Win32 = data.Win32,
-                CaseSensitive = data.CaseSensitive,
-                Regex = data.Regex,
-                SearchCriteria = data.SearchCriteria
-            };
-        }
+        // not used
+//        internal static SingleControlSearcherData ConvertControlSearcherDataToSingleControlSearcherData(this ControlSearcherData data)
+//        {
+//            return new SingleControlSearcherData {
+//                InputObject = (null == data.InputObject ? null : (data.InputObject[0] ?? null)),
+//                Name = data.Name,
+//                AutomationId = data.AutomationId,
+//                Class = data.Class,
+//                Value = data.Value,
+//                ControlType = data.ControlType,
+//                ContainsText = data.ContainsText,
+//                Win32 = data.Win32,
+//                CaseSensitive = data.CaseSensitive,
+//                Regex = data.Regex,
+//                SearchCriteria = data.SearchCriteria
+//            };
+//        }
         
         internal static SingleControlSearcherData ConvertControlSearcherTemplateDataToSingleControlSearcherData(this ControlSearcherTemplateData data)
         {

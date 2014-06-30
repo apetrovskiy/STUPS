@@ -12,7 +12,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 {
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;
+    using MbUnit.Framework;using Xunit;using NUnit.Framework;
     using NSubstitute;
     
     /// <summary>
@@ -26,19 +26,19 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             FakeFactory.Init();
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             FakeFactory.Init();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
         }
         
-        [Test][Fact]
-        [Description("Checks that there is no elements' object model available when the  parameter if $false")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [Description("Checks that there is no elements' object model available when the  parameter if $false")]
         public void DoenNotImplementCommonPatterns()
         {
             // Arrange
@@ -82,8 +82,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Null(refreshableElement as ISupportsRefresh);
         }
         
-        [Test][Fact]
-        [Description("Checks that the extended elements' object model is off when the UseElementsSearchObjectModel parameter is $false")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [Description("Checks that the extended elements' object model is off when the UseElementsSearchObjectModel parameter is $false")]
         public void NoExtension()
         {
             // Arrange
@@ -103,8 +103,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Null(element as ISupportsExtendedModel);
         }
         
-        [Test][Fact]
-        [Description("Checks that the basic elements' object model works, while the extended elements' object model is off")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [Description("Checks that the basic elements' object model works, while the extended elements' object model is off")]
         public void Toggle_Toggle_Off_ExtendedObjectModel_Off()
         {
             // Arrange
@@ -131,8 +131,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Equal(expectedValue, element.ToggleState);
         }
         
-        [Test][Fact]
-        [Description("Checks that the basic elements' object model works, while the extended elements' object model is also on")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [Description("Checks that the basic elements' object model works, while the extended elements' object model is also on")]
         public void Toggle_Toggle_Off_ExtendedObjectModel_On()
         {
             // Arrange

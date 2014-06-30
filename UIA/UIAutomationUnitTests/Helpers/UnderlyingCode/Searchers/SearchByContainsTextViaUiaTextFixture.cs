@@ -13,13 +13,13 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
     using System.Collections.Generic;
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;
+    using MbUnit.Framework;using Xunit;using NUnit.Framework;
     using System.Linq;
     
     /// <summary>
     /// Description of SearchByExactConditionsViaUiaTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class SearchByContainsTextViaUiaTextFixture
     {
         public SearchByContainsTextViaUiaTextFixture()
@@ -27,13 +27,13 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
             FakeFactory.Init();
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             FakeFactory.Init();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
         }
@@ -102,7 +102,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
         #endregion helpers
         
         #region no parameters (impossible)
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0_NoParam()
         {
             string searchString = string.Empty;
@@ -114,7 +114,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of3_NoParam()
         {
             string searchString = string.Empty;
@@ -130,7 +130,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of3_NoParam_2()
         {
             string searchString = string.Empty;
@@ -148,7 +148,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
         #endregion no parameters (impossible)
         
         #region ContainsText + ControlType
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0_byContainsTextControlType()
         {
             const string searchString = "str";
@@ -160,7 +160,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of3_byContainsTextControlType_None()
         {
             const string searchString = "str";
@@ -176,7 +176,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of3_byContainsTextControlType_OneControlType()
         {
             const string searchString = "str";
@@ -192,7 +192,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [Test][Fact]//
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]//
         public void Get0of3_byContainsTextControlType_ThreeControlType()
         {
             const string searchString = "str";
@@ -208,7 +208,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of3_byContainsTextControlType_Name()
         {
             const string searchString = "str";
@@ -224,7 +224,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 1);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of3_byContainsTextControlType_AutomationId()
         {
             const string searchString = "str";
@@ -240,7 +240,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 1);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of3_byContainsTextControlType_Class()
         {
             const string searchString = "str";
@@ -256,7 +256,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 1);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of3_byContainsTextControlType_Value()
         {
             const string searchString = "str";
@@ -272,7 +272,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 1);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byContainsTextControlType_Name()
         {
             const string searchString = "str";
@@ -288,7 +288,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 3);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byContainsTextControlType_NameAutomationIdClass()
         {
             const string searchString = "str";
@@ -304,7 +304,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 3);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byContainsTextControlType_AutomationIdClassValue()
         {
             const string searchString = "str";
@@ -320,7 +320,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 3);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byContainsTextControlType_AutomationId()
         {
             const string searchString = "str";
@@ -336,7 +336,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 3);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byContainsTextControlType_Class()
         {
             const string searchString = "str";
@@ -352,7 +352,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 3);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byContainsTextControlType_ClassValue()
         {
             const string searchString = "str";
@@ -370,7 +370,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
         #endregion ContainsText + ControlType
         
         #region ContainsText
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0_byContainsText()
         {
             const string searchString = "str";
@@ -384,7 +384,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
         #endregion ContainsText
         
         #region ContainsText vs Name
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of3_byContainsText_Name()
         {
             const string searchString = "str";
@@ -400,7 +400,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of3_byContainsText_Name()
         {
             const string searchString = "str";
@@ -416,7 +416,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 1);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byContainsText_Name()
         {
             const string searchString = "str";
@@ -434,7 +434,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
         #endregion ContainsText vs Name
         
         #region ContainsText vs AutomationId
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of3_byContainsText_AutomationId()
         {
             const string searchString = "str";
@@ -450,7 +450,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of3_byContainsText_AutomationId()
         {
             const string searchString = "str";
@@ -466,7 +466,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 1);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byContainsText_AutomationId()
         {
             const string searchString = "str";
@@ -484,7 +484,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
         #endregion ContainsText vs AutomationId
         
         #region ContainsText vs Class
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of3_byContainsText_Class()
         {
             const string searchString = "str";
@@ -500,7 +500,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of3_byContainsText_Class()
         {
             const string searchString = "str";
@@ -516,7 +516,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 1);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byContainsText_Class()
         {
             const string searchString = "str";
@@ -534,7 +534,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
         #endregion ContainsText vs Class
         
         #region ContainsText vs Value
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of3_byContainsText_Value()
         {
             const string searchString = "str";
@@ -550,7 +550,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of3_byContainsText_Value()
         {
             const string searchString = "str";
@@ -566,7 +566,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 1);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byContainsText_Value()
         {
             const string searchString = "str";
@@ -584,7 +584,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
         #endregion ContainsText vs Value
         
         #region ContainsText vs Mix
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of3_byContainsText_NameAutomationIdClass()
         {
             const string searchString = "str";
@@ -600,7 +600,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of3_byContainsText_NameAutomationIdClass()
         {
             const string searchString = "str";
@@ -616,7 +616,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 1);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byContainsText_AutomationIdClassValue()
         {
             const string searchString = "str";

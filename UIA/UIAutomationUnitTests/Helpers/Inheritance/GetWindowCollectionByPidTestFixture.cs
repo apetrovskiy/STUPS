@@ -16,13 +16,13 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
     using System.Linq;
     using System.Management.Automation;
     using System.Text.RegularExpressions;
-    using MbUnit.Framework;using Xunit;
+    using MbUnit.Framework;using Xunit;using NUnit.Framework;
     using UIAutomation;
 
     /// <summary>
     /// Description of GetWindowCollectionByPidTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class GetWindowCollectionByPidTestFixture
     {
         public GetWindowCollectionByPidTestFixture()
@@ -30,13 +30,13 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             FakeFactory.Init();
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             FakeFactory.Init();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
         }
@@ -162,7 +162,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         #endregion helpers
         
         #region no recursion
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of1_NoRecurison()
         {
             // Arrange
@@ -182,7 +182,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                0);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of1_NoRecurison()
         {
             // Arrange
@@ -202,7 +202,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                1);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of3_NoRecurison()
         {
             // Arrange
@@ -232,7 +232,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                0);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of3_NoRecurison()
         {
             // Arrange
@@ -262,7 +262,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                1);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_NoRecurison_TheSamePid()
         {
             // Arrange
@@ -292,8 +292,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                3);
         }
         
-        [Test]// [Fact]
-        [Ignore]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        // [Ignore]
+        [MbUnit.Framework.Ignore]
+        [NUnit.Framework.Ignore]
         public void Get3of3_NoRecurison_DifferentPids()
         {
             // Arrange
@@ -327,7 +329,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         #endregion no recursion
         
         #region recursion
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of1_Name()
         {
             // Arrange
@@ -347,8 +349,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                0);
         }
         
-        [Test]// [Fact]
-        [Ignore]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        // [Ignore]
+        [MbUnit.Framework.Ignore]
+        [NUnit.Framework.Ignore]
         public void Get1of1_Name()
         {
             // Arrange
@@ -368,7 +372,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                1);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of1_AutomaitonId()
         {
             // Arrange
@@ -388,8 +392,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                0);
         }
         
-        [Test]// [Fact]
-        [Ignore]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        // [Ignore]
+        [MbUnit.Framework.Ignore]
+        [NUnit.Framework.Ignore]
         public void Get1of1_AutomaitonId()
         {
             // Arrange
@@ -409,7 +415,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                1);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of1_ClassName()
         {
             // Arrange
@@ -429,8 +435,10 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                0);
         }
         
-        [Test]// [Fact]
-        [Ignore]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        // [Ignore]
+        [MbUnit.Framework.Ignore]
+        [NUnit.Framework.Ignore]
         public void Get1of1_ClassName()
         {
             // Arrange

@@ -11,13 +11,13 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 {
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;
+    using MbUnit.Framework;using Xunit;using NUnit.Framework;
     using NSubstitute;
     
     /// <summary>
     /// Description of ISupportsWindowPatternTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class ISupportsWindowPatternTestFixture
     {
         public ISupportsWindowPatternTestFixture()
@@ -25,18 +25,18 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             FakeFactory.Init();
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             FakeFactory.Init();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Window_ImplementsCommonPattern()
         {
 //            ISupportsInvokePattern invokableElement =
@@ -74,7 +74,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.NotNull(refreshableElement as ISupportsRefresh);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Window_ImplementsPatternInQuestion()
         {
             ISupportsWindowPattern element =
@@ -85,7 +85,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.NotNull(element as ISupportsWindowPattern);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Window_DoesNotImplementOtherPatterns()
         {
             ISupportsValuePattern element =
@@ -96,7 +96,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Null(element as ISupportsValuePattern);
         }
         
-//        [Test][Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Window_Close()
 //        {
 //            // Arrange
@@ -109,7 +109,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            element.Close();
 //        }
         
-//        [Test][Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Window_SetWindowVisualState()
 //        {
 //            // Arrange
@@ -122,7 +122,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            element.SetWindowVisualState(WindowVisualState.Maximized);
 //        }
 //        
-//        [Test][Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Window_WaitForInputIdle()
 //        {
 //            // Arrange
@@ -135,7 +135,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            element.WaitForInputIdle(1);
 //        }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Window_CanMaximize()
         {
             // Arrange
@@ -151,7 +151,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Equal(expectedValue, element.CanMaximize);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Window_CanMinimize()
         {
             // Arrange
@@ -167,7 +167,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Equal(expectedValue, element.CanMinimize);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Window_IsModal()
         {
             // Arrange
@@ -183,7 +183,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Equal(expectedValue, element.IsModal);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Window_IsTopmost()
         {
             // Arrange
@@ -199,7 +199,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Equal(expectedValue, element.IsTopmost);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Window_WindowInteractionState()
         {
             // Arrange
@@ -215,7 +215,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Equal(expectedValue, element.WindowInteractionState);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Window_WindowVisualState()
         {
             // Arrange
@@ -231,7 +231,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Equal(expectedValue, element.WindowVisualState);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Window_Close()
         {
             // Arrange
@@ -254,7 +254,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Equal(expectedResult, result);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Window_SetWindowVisualState()
         {
             // Arrange
@@ -277,7 +277,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Equal(expectedValue, element.WindowVisualState);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Window_WaitForInputIdle()
         {
             // Arrange

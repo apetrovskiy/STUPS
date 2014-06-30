@@ -12,13 +12,13 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
     using System.Windows.Automation;
     using System.Windows.Automation.Text;
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;
+    using MbUnit.Framework;using Xunit;using NUnit.Framework;
     using NSubstitute;
     
     /// <summary>
     /// Description of ISupportsTextPatternTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class ISupportsTextPatternTestFixture
     {
         public ISupportsTextPatternTestFixture()
@@ -26,18 +26,18 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             FakeFactory.Init();
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             FakeFactory.Init();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Text_ImplementsCommonPattern()
         {
 //            ISupportsInvokePattern invokableElement =
@@ -75,7 +75,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.NotNull(refreshableElement as ISupportsRefresh);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Text_ImplementsPatternInQuestion()
         {
             ISupportsTextPattern element =
@@ -86,7 +86,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.NotNull(element as ISupportsTextPattern);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Text_DoesNotImplementOtherPatterns()
         {
             ISupportsValuePattern element =
@@ -97,7 +97,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Null(element as ISupportsValuePattern);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Text_GetTextSelection()
         {
             // Arrange
@@ -120,7 +120,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Equal(expectedResult, result);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Text_GetVisibleRanges()
         {
             // Arrange
@@ -143,8 +143,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Equal(expectedResult, result);
         }
         
-        [Test]// [Fact]
-        [Ignore]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        // [Ignore]
+        [MbUnit.Framework.Ignore]
+        [NUnit.Framework.Ignore]
         public void Text_RangeFromChild()
         {
             // Arrange
@@ -167,8 +169,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Equal(expectedResult, result);
         }
         
-        [Test]// [Fact]
-        [Ignore]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        // [Ignore]
+        [MbUnit.Framework.Ignore]
+        [NUnit.Framework.Ignore]
         public void Text_RangeFromPoint()
         {
             // Arrange
@@ -192,8 +196,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         }
         
         
-        [Test]// [Fact]
-        [Ignore]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        // [Ignore]
+        [MbUnit.Framework.Ignore]
+        [NUnit.Framework.Ignore]
         public void Text_DocumentRange()
         {
             // Arrange
@@ -208,7 +214,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             MbUnit.Framework.Assert.AreEqual(expectedValue, element.DocumentRange);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Text_SupportedTextSelection()
         {
             // Arrange

@@ -15,13 +15,13 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Adapter
     using System.Collections.ObjectModel;
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;
+    using MbUnit.Framework;using Xunit;using NUnit.Framework;
     using System.Linq;
     
     /// <summary>
     /// Description of GetSupportedPatternsTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class GetSupportedPatternsTestFixture
     {
         public GetSupportedPatternsTestFixture()
@@ -29,13 +29,13 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Adapter
             FakeFactory.Init();
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             FakeFactory.Init();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
         }
@@ -43,7 +43,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Adapter
         #region helpers
         #endregion helpers
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void NoPatterns()
         {
             IFakeUiElement element =
@@ -59,7 +59,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Adapter
             Xunit.Assert.Equal(0, element.GetSupportedPatterns().Count());
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void OnePattern()
         {
             IFakeUiElement element =
@@ -77,7 +77,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Adapter
             // Xunit.Assert.Contains<IBasePattern>(AutomationFactory.GetPatternAdapter<IValuePattern>(AutomationFactory.GetUiElement(), null) as IBasePattern, element.GetSupportedPatterns());
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ThreePatterns()
         {
             IFakeUiElement element =

@@ -15,14 +15,14 @@ namespace UIAutomationUnitTests.Commands.Common
     using System.Collections.ObjectModel;
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;
+    using MbUnit.Framework;using Xunit;using NUnit.Framework;
     using System.Linq;
     using System.Management.Automation;
     
     /// <summary>
     /// Description of InvokeUIAControlContextMenuCommandTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class InvokeUIAControlContextMenuCommandTestFixture
     {
         public InvokeUIAControlContextMenuCommandTestFixture()
@@ -30,13 +30,13 @@ namespace UIAutomationUnitTests.Commands.Common
             FakeFactory.Init();
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             FakeFactory.Init();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
         }

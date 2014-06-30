@@ -10,12 +10,12 @@
 namespace UIAutomationUnitTests
 {
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;
+    using MbUnit.Framework;using Xunit;using NUnit.Framework;
     
     /// <summary>
     /// Description of elementOfPossibleControlTypeTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class elementOfPossibleControlTypeTestFixture
     {
         public elementOfPossibleControlTypeTestFixture()
@@ -23,13 +23,13 @@ namespace UIAutomationUnitTests
             UnitTestingHelper.PrepareUnitTestDataStore();
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             UnitTestingHelper.PrepareUnitTestDataStore();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
         }
@@ -39,9 +39,9 @@ namespace UIAutomationUnitTests
             return new GetControlCollectionCmdletBase();
         }
         
-        [Test][Fact]
-        [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
-        [Category("Fast")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
+//        [Category("Fast")]
         public void Nothing_to_compare()
         {
             MbUnit.Framework.Assert.AreEqual(
@@ -57,9 +57,9 @@ namespace UIAutomationUnitTests
                     null));
         }
         
-        [Test][Fact]
-        [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
-        [Category("Fast")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
+//        [Category("Fast")]
         public void No_ControlTypeArray()
         {
             MbUnit.Framework.Assert.AreEqual(
@@ -75,9 +75,9 @@ namespace UIAutomationUnitTests
                     "Button"));
         }
         
-        [Test][Fact]
-        [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
-        [Category("Fast")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
+//        [Category("Fast")]
         public void No_ControlType()
         {
             MbUnit.Framework.Assert.AreEqual(
@@ -93,9 +93,9 @@ namespace UIAutomationUnitTests
                     null));
         }
         
-        [Test][Fact]
-        [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
-        [Category("Fast")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
+//        [Category("Fast")]
         public void One_ControlType_That_Matches()
         {
             MbUnit.Framework.Assert.AreEqual(
@@ -111,9 +111,9 @@ namespace UIAutomationUnitTests
                     "Button"));
         }
         
-        [Test][Fact]
-        [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
-        [Category("Fast")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
+//        [Category("Fast")]
         public void One_ControlType_That_DoesNot_Match()
         {
             MbUnit.Framework.Assert.AreEqual(
@@ -129,9 +129,9 @@ namespace UIAutomationUnitTests
                     "CheckBox"));
         }
         
-        [Test][Fact]
-        [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
-        [Category("Fast")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
+//        [Category("Fast")]
         public void Three_ControlType_That_Match()
         {
             MbUnit.Framework.Assert.AreEqual(
@@ -147,9 +147,9 @@ namespace UIAutomationUnitTests
                     "Button"));
         }
         
-        [Test][Fact]
-        [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
-        [Category("Fast")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
+//        [Category("Fast")]
         public void Three_ControlType_That_DonT_Match()
         {
             MbUnit.Framework.Assert.AreEqual(

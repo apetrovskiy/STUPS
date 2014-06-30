@@ -18,7 +18,7 @@ namespace UIAutomationUnitTests.Commands.Get
     /// <summary>
     /// Description of GetUiaButtonCommandTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class GetUiaButtonCommandTestFixture
     {
         public GetUiaButtonCommandTestFixture()
@@ -26,13 +26,13 @@ namespace UIAutomationUnitTests.Commands.Get
             FakeFactory.Init();
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             FakeFactory.Init();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
         }

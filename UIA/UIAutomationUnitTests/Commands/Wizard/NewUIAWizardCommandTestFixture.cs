@@ -9,13 +9,13 @@
 
 namespace UIAutomationUnitTests.Commands.Wizard
 {
-    using MbUnit.Framework;using Xunit;
+    using MbUnit.Framework;using Xunit;using NUnit.Framework;
     using UIAutomation;
     
     /// <summary>
     /// Description of NewUiaWizardCommandTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class NewUiaWizardCommandTestFixture
     {
         public NewUiaWizardCommandTestFixture()
@@ -25,7 +25,7 @@ namespace UIAutomationUnitTests.Commands.Wizard
             AutomationFactory.InitUnitTests();
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             UnitTestingHelper.PrepareUnitTestDataStore();
@@ -34,16 +34,16 @@ namespace UIAutomationUnitTests.Commands.Wizard
             AutomationFactory.InitUnitTests();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
             WizardCollection.ResetData();
         }
         
-        [Test][Fact]
-        [Description("New-UiaWizard")]
-        [Category("Fast")]
-        [Category("Wizard")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [Description("New-UiaWizard")]
+//        [Category("Fast")]
+//        [Category("Wizard")]
         public void NewWizard_StandardName()
         {
             const string expectedName = "name";
@@ -54,10 +54,10 @@ namespace UIAutomationUnitTests.Commands.Wizard
                 ((Wizard)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
         }
         
-        [Test][Fact]
-        [Description("New-UiaWizard")]
-        [Category("Fast")]
-        [Category("Wizard")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [Description("New-UiaWizard")]
+//        [Category("Fast")]
+//        [Category("Wizard")]
         public void NewWizard_ComplexName()
         {
             const string expectedName = @"\\aa//bb``cc";
@@ -68,11 +68,13 @@ namespace UIAutomationUnitTests.Commands.Wizard
                 ((Wizard)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
         }
         
-        [Test][Fact]
-        [Description("New-UiaWizard")]
-        [Category("Fast")]
-        [Category("Wizard")]
-        [Ignore]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [Description("New-UiaWizard")]
+//        [Category("Fast")]
+//        [Category("Wizard")]
+        // [Ignore]
+        [MbUnit.Framework.Ignore]
+        [NUnit.Framework.Ignore]
         public void NewWizard_DuplicatedName()
         {
             const string expectedName = "name";

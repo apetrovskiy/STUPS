@@ -20,22 +20,22 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
     /// <summary>
     /// Description of ISupportsSelectionPatternTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class ISupportsSelectionPatternTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             // MiddleLevelCode.PrepareRunspace();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
             // MiddleLevelCode.DisposeRunspace();
         }
         
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Selection_ImplementsCommonPattern()
 //        {
 //            ISupportsInvokePattern invokableElement =
@@ -69,7 +69,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            MbUnit.Framework.Assert.IsNotNull(refreshableElement as ISupportsRefresh);
 //        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Selection_ImplementsPatternInQuestion()
 //        {
 //            ISupportsSelectionPattern element =
@@ -79,7 +79,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            MbUnit.Framework.Assert.IsNotNull(element as ISupportsSelectionPattern);
 //        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Selection_DoesNotImplementOtherPatterns()
 //        {
 //            ISupportsValuePattern element =
@@ -89,7 +89,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            MbUnit.Framework.Assert.IsNull(element as ISupportsValuePattern);
 //        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Selection_GetSelection()
 //        {
 //            // Arrange
@@ -111,7 +111,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            MbUnit.Framework.Assert.AreEqual(expectedResult, result);
 //        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Selection_CanSelectMultiple()
 //        {
 //            // Arrange
@@ -126,7 +126,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            MbUnit.Framework.Assert.AreEqual(expectedValue, element.CanSelectMultiple);
 //        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Selection_IsSelectionRequired()
 //        {
 //            // Arrange

@@ -11,13 +11,13 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 {
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;
+    using MbUnit.Framework;using Xunit;using NUnit.Framework;
     using NSubstitute;
     
     /// <summary>
     /// Description of ISupportsTransformPatternTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class ISupportsTransformPatternTestFixture
     {
         public ISupportsTransformPatternTestFixture()
@@ -25,18 +25,18 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             FakeFactory.Init();
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             FakeFactory.Init();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Transform_ImplementsCommonPattern()
         {
 //            ISupportsInvokePattern invokableElement =
@@ -74,7 +74,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.NotNull(refreshableElement as ISupportsRefresh);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Transform_ImplementsPatternInQuestion()
         {
             ISupportsTransformPattern element =
@@ -85,7 +85,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.NotNull(element as ISupportsTransformPattern);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Transform_DoesNotImplementOtherPatterns()
         {
             ISupportsValuePattern element =
@@ -96,7 +96,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Null(element as ISupportsValuePattern);
         }
         
-//        [Test][Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Transform_Move()
 //        {
 //            // Arrange
@@ -109,7 +109,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            element.Move(1, 1);
 //        }
 //        
-//        [Test][Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Transform_Resize()
 //        {
 //            // Arrange
@@ -122,7 +122,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            element.Resize(1, 1);
 //        }
 //        
-//        [Test][Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Transform_Rotate()
 //        {
 //            // Arrange
@@ -135,7 +135,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            element.Rotate(1);
 //        }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Transform_CanMove()
         {
             // Arrange
@@ -151,7 +151,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Equal(expectedValue, element.CanMove);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Transform_CanResize()
         {
             // Arrange
@@ -167,7 +167,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Equal(expectedValue, element.CanResize);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Transform_CanRotate()
         {
             // Arrange
@@ -183,7 +183,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Equal(expectedValue, element.CanRotate);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Transform_Move()
         {
             // Arrange
@@ -206,7 +206,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Equal(expectedResult, result);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Transform_Resize()
         {
             // Arrange
@@ -229,7 +229,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Equal(expectedResult, result);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Transform_Rotate()
         {
             // Arrange

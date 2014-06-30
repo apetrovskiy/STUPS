@@ -20,10 +20,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
     /// <summary>
     /// Description of ISupportsExpandCollapseTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class ISupportsExpandCollapseTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             // MiddleLevelCode.PrepareRunspace();
@@ -31,7 +31,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //                @"[void]([UIAutomation.CurrentData]::ResetData());");
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
             // MiddleLevelCode.DisposeRunspace();
@@ -47,7 +47,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
         */
         
         // ComboBox
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        [Category("Slow")]
 //        [Category("WinForms")]
 //        [Category("Control")]
@@ -66,7 +66,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //        }
         
         // TreeItem
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        [Category("Slow")]
 //        [Category("WinForms")]
 //        [Category("Control")]
@@ -89,7 +89,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //                expectedResult);
 //        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        [Category("Slow")]
 //        [Category("ISupportsExpandCollapse")]
 //        public void TreeItem_ExpandCollapseState_Expanded()
@@ -108,7 +108,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //                expectedResult);
 //        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        [Category("Slow")]
 //        [Category("ISupportsExpandCollapse")]
 //        public void TreeItem_ExpandCollapseState_Collapsed()
@@ -130,7 +130,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
         
         
         
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void ExpandCollapseState_Expanded()
 //        {
 //            // Arrange
@@ -149,7 +149,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //                expectedValue.ToString());
 //        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void ExpandCollapseState_Collapsed()
 //        {
 //            // Arrange
@@ -168,7 +168,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //                expectedValue.ToString());
 //        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void ExpandCollapseState_LeafNode()
 //        {
 //            // Arrange
@@ -187,7 +187,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //                expectedValue.ToString());
 //        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void ExpandCollapseState_PartiallyExpanded()
 //        {
 //            // Arrange
@@ -206,7 +206,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //                expectedValue.ToString());
 //        }
         
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void ExpandCollapse_Collapse()
 //        {
 //            // Arrange
@@ -227,7 +227,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            MbUnit.Framework.Assert.AreEqual(expectedValue, element.ExpandCollapseState);
 //        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void ExpandCollapse_Expand()
 //        {
 //            // Arrange

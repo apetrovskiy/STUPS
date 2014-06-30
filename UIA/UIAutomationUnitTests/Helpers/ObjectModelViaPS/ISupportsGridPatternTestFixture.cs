@@ -20,22 +20,22 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
     /// <summary>
     /// Description of ISupportsGridPatternTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class ISupportsGridPatternTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             // MiddleLevelCode.PrepareRunspace();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
             // MiddleLevelCode.DisposeRunspace();
         }
         
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Grid_ImplementsCommonPattern()
 //        {
 //            ISupportsInvokePattern invokableElement =
@@ -69,7 +69,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            MbUnit.Framework.Assert.IsNotNull(refreshableElement as ISupportsRefresh);
 //        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Grid_ImplementsExportPattern()
 //        {
 //            ISupportsExport exportableElement =
@@ -79,7 +79,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            MbUnit.Framework.Assert.IsNotNull(exportableElement as ISupportsExport);
 //        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Grid_ImplementsPatternInQuestion()
 //        {
 //            ISupportsGridPattern element =
@@ -89,7 +89,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            MbUnit.Framework.Assert.IsNotNull(element as ISupportsGridPattern);
 //        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Grid_DoesNotImplementOtherPatterns()
 //        {
 //            ISupportsValuePattern element =
@@ -99,7 +99,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            MbUnit.Framework.Assert.IsNull(element as ISupportsValuePattern);
 //        }
 //        
-////        [Test]// [Fact]
+////        [MbUnit.Framework.Test][NUnit.Framework.Test]
 ////        public void Grid_GetItem()
 ////        {
 ////            // Arrange
@@ -113,7 +113,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 ////            element.GetItem(1, 1);
 ////        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Grid_ColumnCount()
 //        {
 //            // Arrange
@@ -128,7 +128,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            MbUnit.Framework.Assert.AreEqual(expectedValue, element.GridColumnCount);
 //        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Grid_RowCount()
 //        {
 //            // Arrange
@@ -143,7 +143,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            MbUnit.Framework.Assert.AreEqual(expectedValue, element.GridRowCount);
 //        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Grid_GetItem()
 //        {
 //            // Arrange
@@ -171,7 +171,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 //            MbUnit.Framework.Assert.AreEqual(expectedClassName, gottenElement.Current.ClassName);
 //        }
 //        
-//        [Test]// [Fact]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        [Ignore("not yet ready")]
 //        public void Grid_ExportToCsv()
 //        {

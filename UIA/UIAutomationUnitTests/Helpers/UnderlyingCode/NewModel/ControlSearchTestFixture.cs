@@ -13,12 +13,12 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
     
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;
+    using MbUnit.Framework;using Xunit;using NUnit.Framework;
     
     /// <summary>
     /// Description of ControlSearchTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     // [Ignore("20130313")]
     public class ControlSearchTestFixture
     {
@@ -30,7 +30,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Preferences.DisableWin32Search = false;
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             FakeFactory.Init();
@@ -39,7 +39,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Preferences.DisableWin32Search = false;
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
         }
@@ -98,7 +98,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
         
         // ============================================= empty result ===============================================
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void TextSearch_DefaultGlobalSettings_EmptyInput()
         {
             // Arrange
@@ -113,7 +113,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_TextSearch, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void TextSearchWin32_DefaultGlobalSettings_EmptyInput()
         {
             // Arrange
@@ -129,7 +129,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_TextSearchWin32, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ExactSearch_NotDisableExactSearch_Name_EmptyInput()
         {
             // Arrange
@@ -146,7 +146,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ExactSearch_NotDisableExactSearch_AutomationId_EmptyInput()
         {
             // Arrange
@@ -163,7 +163,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ExactSearch_NotDisableExactSearch_Class_EmptyInput()
         {
             // Arrange
@@ -180,7 +180,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ExactSearch_NotDisableExactSearch_Value_EmptyInput()
         {
             // Arrange
@@ -197,7 +197,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void WildcardSearch_DefaultGlobalSettings_Name_EmptyInput()
         {
             // Arrange
@@ -212,7 +212,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void WildcardSearch_DefaultGlobalSettings_AutomationId_EmptyInput()
         {
             // Arrange
@@ -227,7 +227,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void WildcardSearch_DefaultGlobalSettings_Class_EmptyInput()
         {
             // Arrange
@@ -242,7 +242,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void WildcardSearch_DefaultGlobalSettings_Value_EmptyInput()
         {
             // Arrange
@@ -257,7 +257,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void RegexSearch_DefaultGlobalSettings_Name_EmptyInput()
         {
             // Arrange
@@ -273,7 +273,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void RegexSearch_DefaultGlobalSettings_AutomationId_EmptyInput()
         {
             // Arrange
@@ -289,7 +289,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void RegexSearch_DefaultGlobalSettings_Class_EmptyInput()
         {
             // Arrange
@@ -305,7 +305,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void RegexSearch_DefaultGlobalSettings_Value_EmptyInput()
         {
             // Arrange
@@ -321,7 +321,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Win32Search_Name_EmptyInput()
         {
             // Arrange
@@ -337,7 +337,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Win32Search_AutomationId_EmptyInput()
         {
             // Arrange
@@ -353,7 +353,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Win32Search_Class_EmptyInput()
         {
             // Arrange
@@ -369,7 +369,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Win32Search_Value_EmptyInput()
         {
             // Arrange
@@ -387,7 +387,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
         
         // =========================================== non-empty result =============================================
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void TextSearch_DefaultGlobalSettings_NonEmptyInput()
         {
             // Arrange
@@ -402,7 +402,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_TextSearch, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void TextSearchWin32_DefaultGlobalSettings_NonEmptyInput()
         {
             // Arrange
@@ -418,7 +418,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_TextSearchWin32, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ExactSearch_NotDisableExactSearch_Name_NonEmptyInput()
         {
             // Arrange
@@ -434,7 +434,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ExactSearch_NotDisableExactSearch_AutomationId_NonEmptyInput()
         {
             // Arrange
@@ -450,7 +450,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ExactSearch_NotDisableExactSearch_Class_NonEmptyInput()
         {
             // Arrange
@@ -466,7 +466,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ExactSearch_NotDisableExactSearch_Value_NonEmptyInput()
         {
             // Arrange
@@ -482,7 +482,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void WildcardSearch_DefaultGlobalSettings_Name_NonEmptyInput()
         {
             // Arrange
@@ -497,7 +497,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void WildcardSearch_DefaultGlobalSettings_AutomationId_NonEmptyInput()
         {
             // Arrange
@@ -512,7 +512,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void WildcardSearch_DefaultGlobalSettings_Class_NonEmptyInput()
         {
             // Arrange
@@ -527,7 +527,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void WildcardSearch_DefaultGlobalSettings_Value_NonEmptyInput()
         {
             // Arrange
@@ -542,7 +542,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void RegexSearch_DefaultGlobalSettings_Name_NonEmptyInput()
         {
             // Arrange
@@ -558,7 +558,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void RegexSearch_DefaultGlobalSettings_AutomationId_NonEmptyInput()
         {
             // Arrange
@@ -574,7 +574,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void RegexSearch_DefaultGlobalSettings_Class_NonEmptyInput()
         {
             // Arrange
@@ -590,7 +590,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void RegexSearch_DefaultGlobalSettings_Value_NonEmptyInput()
         {
             // Arrange
@@ -606,7 +606,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Win32Search_Name_NonEmptyInput()
         {
             // Arrange
@@ -622,7 +622,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Win32Search_AutomationId_NonEmptyInput()
         {
             // Arrange
@@ -638,7 +638,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Win32Search_Class_NonEmptyInput()
         {
             // Arrange
@@ -654,7 +654,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Xunit.Assert.Equal(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
         }
         
-        [Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Win32Search_Value_NonEmptyInput()
         {
             // Arrange

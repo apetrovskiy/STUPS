@@ -14,10 +14,10 @@ namespace TMX
     /// <summary>
     /// Description of ITestBucket.
     /// </summary>
-    public interface ITestBucket
-    {
-        int BucketId { get; set; }
-        string BucketName { get; set; }
-        string BucketTag { get; set; }
-    }
+//    public interface ITestBucket
+//    {
+//        int BucketId { get; set; }
+//        string BucketName { get; set; }
+//        string BucketTag { get; set; }
+//    }
 }

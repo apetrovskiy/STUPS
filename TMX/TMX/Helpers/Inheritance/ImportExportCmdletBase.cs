@@ -14,6 +14,7 @@ namespace TMX
     using System.Linq;
     using System.Xml.Linq;
     using System.Text;
+	using TMX.Interfaces;
     
     /// <summary>
     /// Description of ImportExportCmdletBase.

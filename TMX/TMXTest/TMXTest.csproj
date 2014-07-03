@@ -184,6 +184,10 @@
       <Project>{36F73FA0-C636-48CF-BB7A-FE10FE52C391}</Project>
       <Name>CmdletUnit</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TMX.Interfaces\TMX.Interfaces.csproj">
+      <Project>{9C5DA25F-6A59-4F97-B107-64DD549CB800}</Project>
+      <Name>TMX.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TMX\TMX.csproj">
       <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>
       <Name>TMX</Name>

@@ -13,6 +13,7 @@ namespace ExampleCustomTestReport
     using PSTestLib;
     using System.Management.Automation;
     using TMX;
+	using TMX.Interfaces;
     
     /// <summary>
     /// Description of Export_TestResultsCommand.

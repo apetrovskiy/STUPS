@@ -15,6 +15,7 @@ namespace TMX
     using FluentNHibernate;
     using FluentNHibernate.Mapping;
     using NHibernate;
+	using TMX.Interfaces;
     
     /// <summary>
     /// Description of ITestScenarioMap.

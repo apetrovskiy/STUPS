@@ -15,15 +15,15 @@ namespace TMX
     /// <summary>
     /// Description of ITestPlatform.
     /// </summary>
-    public interface ITestPlatform
-    {
-        string Name { get; set; }
-        string Id { get; set; }
-        string Description { get; set; }
-
-        string OperatingSystem { get; set; }
-        string Version { get; set; }
-        string Architecture { get; set; }
-        string Language { get; set; }
-    }
+//    public interface ITestPlatform
+//    {
+//        string Name { get; set; }
+//        string Id { get; set; }
+//        string Description { get; set; }
+//
+//        string OperatingSystem { get; set; }
+//        string Version { get; set; }
+//        string Architecture { get; set; }
+//        string Language { get; set; }
+//    }
 }

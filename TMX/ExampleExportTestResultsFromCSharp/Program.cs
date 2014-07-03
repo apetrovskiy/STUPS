@@ -11,6 +11,7 @@ namespace ExampleExportTestResultsFromCSharp
 {
     using System;
     using TMX;
+    using TMX.Interfaces;
     using PSTestLib;
     
     class Program
@@ -82,7 +83,7 @@ namespace ExampleExportTestResultsFromCSharp
                             //false);
                             // 20130626
                             //false,
-                            TMX.TestResultOrigins.Logical,
+                            TestResultOrigins.Logical,
                             true);
                         
                     }

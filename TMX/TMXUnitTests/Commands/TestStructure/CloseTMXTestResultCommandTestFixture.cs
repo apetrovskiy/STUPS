@@ -13,6 +13,7 @@ namespace TmxUnitTests.Commands.TestStructure
     using MbUnit.Framework;
     using PSTestLib;
     using TMX;
+    using TMX.Interfaces;
     
     /// <summary>
     /// Description of CloseTmxTestResultCommandTestFixture.

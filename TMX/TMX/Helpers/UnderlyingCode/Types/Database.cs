@@ -15,6 +15,7 @@ namespace TMX
     using System.Data;
     using System.Data.Common;
     using System.Data.SQLite;
+	using TMX.Interfaces;
     
     /// <summary>
     /// Description of Database.

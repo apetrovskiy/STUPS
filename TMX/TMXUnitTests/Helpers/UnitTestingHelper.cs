@@ -13,6 +13,7 @@ namespace TmxUnitTests
     using System;
     using TMX;
     using TMX.Commands;
+    using TMX.Interfaces;
     using PSTestLib;
     
     /// <summary>

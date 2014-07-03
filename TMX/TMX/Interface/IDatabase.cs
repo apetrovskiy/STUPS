@@ -14,14 +14,14 @@ namespace TMX
     /// <summary>
     /// Description of IDatabase.
     /// </summary>
-    public interface IDatabase
-    {
-        string Name { get; set; }
-        string Path { get; set; }
-        System.Data.SQLite.SQLiteConnection Connection { get; set; }
-        string ConnectionString { get; set; }
-        bool IsStructureDB { get; set; }
-        bool IsRepositoryDB { get; set; }
-        bool IsResultsDB { get; set; }
-    }
+//    public interface IDatabase
+//    {
+//        string Name { get; set; }
+//        string Path { get; set; }
+//        System.Data.SQLite.SQLiteConnection Connection { get; set; }
+//        string ConnectionString { get; set; }
+//        bool IsStructureDB { get; set; }
+//        bool IsRepositoryDB { get; set; }
+//        bool IsResultsDB { get; set; }
+//    }
 }

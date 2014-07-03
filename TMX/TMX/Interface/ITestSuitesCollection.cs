@@ -15,10 +15,10 @@ namespace TMX
     /// <summary>
     /// Description of ITestSuitesCollection.
     /// </summary>
-    public interface ITestSuitesCollection
-    {
-        string Source {get; }
-        string SourceId {get; }
-        List<ITestSuite> TestSuites {get; }
-    }
+//    public interface ITestSuitesCollection
+//    {
+//        string Source {get; }
+//        string SourceId {get; }
+//        List<ITestSuite> TestSuites {get; }
+//    }
 }

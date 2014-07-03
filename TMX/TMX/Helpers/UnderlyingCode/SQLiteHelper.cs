@@ -20,6 +20,7 @@ namespace TMX
     using PSTestLib;
     
     using System.IO;
+	using TMX.Interfaces;
     
     /// <summary>
     /// Description of SQLiteHelper.

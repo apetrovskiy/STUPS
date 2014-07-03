@@ -15,18 +15,18 @@ namespace TMX
     /// <summary>
     /// Description of ITestCase.
     /// </summary>
-    public interface ITestCase
-    {
-        int DbId { get; set; }
-        //int TestCaseId { get; set; }
-        string TestCaseId { get; set; }
-        string TestCaseName { get; set; }
-        // 20130617
-        //string TestCaseNumber { get; set; }
-        //ScriptBlock[] AlternateBeforeTest { get; set; }
-        ScriptBlock[] TestCode { get; set; }
-        //ScriptBlock[] AlternateAfterTest { get; set; }
-        string TestCaseTag { get; set; }
-        object[] TestCodeParameters { get; set; }
-    }
+//    public interface ITestCase
+//    {
+//        int DbId { get; set; }
+//        //int TestCaseId { get; set; }
+//        string TestCaseId { get; set; }
+//        string TestCaseName { get; set; }
+//        // 20130617
+//        //string TestCaseNumber { get; set; }
+//        //ScriptBlock[] AlternateBeforeTest { get; set; }
+//        ScriptBlock[] TestCode { get; set; }
+//        //ScriptBlock[] AlternateAfterTest { get; set; }
+//        string TestCaseTag { get; set; }
+//        object[] TestCodeParameters { get; set; }
+//    }
 }

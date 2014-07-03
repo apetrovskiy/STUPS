@@ -14,13 +14,13 @@ namespace TMX
     /// <summary>
     /// Description of ITestConstant.
     /// </summary>
-    public interface ITestConstant
-    {
-        int ConstantId { get; set; }
-        string ConstantName { get; set; }
-        object ConstantValue { get; set; }
-        System.Type ConstantType { get; set; }
-        string ConstantTag { get; set; }
-        int BucketId { get; set; }
-    }
+//    public interface ITestConstant
+//    {
+//        int ConstantId { get; set; }
+//        string ConstantName { get; set; }
+//        object ConstantValue { get; set; }
+//        System.Type ConstantType { get; set; }
+//        string ConstantTag { get; set; }
+//        int BucketId { get; set; }
+//    }
 }

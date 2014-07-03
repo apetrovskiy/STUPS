@@ -12,6 +12,7 @@ namespace TMX
     
     using System;
     using System.Management.Automation;
+	using TMX.Interfaces;
     
     /// <summary>
     /// Description of TestBucketCmdletBase.

@@ -14,6 +14,7 @@ namespace UiaRunner
     using System.Drawing;
     using System.Windows.Forms;
     using TMX;
+    using TMX.Interfaces;
     //using UiaRunner;
     using System.Threading;
     using PSTestRunner;

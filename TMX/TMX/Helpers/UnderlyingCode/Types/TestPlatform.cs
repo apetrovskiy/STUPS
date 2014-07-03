@@ -10,6 +10,7 @@
 namespace TMX
 {
     using System;
+	using TMX.Interfaces;
     //using System.Collections.Generic;
     //using System.Management.Automation;
     //using System.Collections;

@@ -12,6 +12,7 @@ namespace TmxTest.Commands.TestStructure
     using System;
     using MbUnit.Framework;
     using TMX;
+    using TMX.Interfaces;
     
     /// <summary>
     /// Description of SetTmxCurrentTestResultCommandTestFixture.

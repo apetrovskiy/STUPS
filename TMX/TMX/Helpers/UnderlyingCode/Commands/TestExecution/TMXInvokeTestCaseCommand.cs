@@ -11,6 +11,7 @@ namespace TMX
 {
     using System;
     using System.Management.Automation;
+	using TMX.Interfaces;
     
     /// <summary>
     /// Description of TmxInvokeTestCaseCommand.
@@ -23,7 +24,7 @@ namespace TMX
         
         internal override void Execute()
         {
-            TestCaseExecCmdletBase cmdlet =
+            var cmdlet =
                 (TestCaseExecCmdletBase)this.Cmdlet;
             
             ITestCase testCase =

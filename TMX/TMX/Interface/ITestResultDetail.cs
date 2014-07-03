@@ -15,15 +15,15 @@ namespace TMX
     /// <summary>
     /// Description of ITestResultDetail.
     /// </summary>
-    public interface ITestResultDetail
-    {
-        System.DateTime Timestamp { get; }
-        string Name { get; }
-        void AddTestResultDetail(TestResultDetailTypes detailType, string detail);
-        void AddTestResultDetail(TestResultDetailTypes detailType, ErrorRecord detail);
-        object GetDetail();
-        
-        // 20130402
-        TestResultStatuses DetailStatus { get; set; }
-    }
+//    public interface ITestResultDetail
+//    {
+//        System.DateTime Timestamp { get; }
+//        string Name { get; }
+//        void AddTestResultDetail(TestResultDetailTypes detailType, string detail);
+//        void AddTestResultDetail(TestResultDetailTypes detailType, ErrorRecord detail);
+//        object GetDetail();
+//        
+//        // 20130402
+//        TestResultStatuses DetailStatus { get; set; }
+//    }
 }

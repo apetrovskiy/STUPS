@@ -17,6 +17,7 @@ namespace TMX
     using System.Collections.Generic;
     using System.Xml.Linq;
     using System.Reflection;
+	using TMX.Interfaces;
     
     //using System.Data.SqlTypes;
     
@@ -1550,7 +1551,10 @@ namespace TMX
                     cmdlet.WriteVerbose(cmdlet, "Trying the test result '" + ((ITestResult)testResultWithId).Name + "'");
                     try {
                         // if the result is null, there's the try-catch construction
-                        foreach (ITestResultDetail singleDetail in ((ITestResult)testResultWithId).ListDetailNames(cmdlet)) {
+        				// 20140703
+        				// refactoring
+                        // foreach (ITestResultDetail singleDetail in ((ITestResult)testResultWithId).ListDetailNames(cmdlet)) {
+                        foreach (ITestResultDetail singleDetail in ((ITestResult)testResultWithId).ListDetailNames(cmdlet.TestResultStatus)) {
                             cmdlet.WriteObject(cmdlet, singleDetail.Name);
                         }
                     }
@@ -1585,7 +1589,10 @@ namespace TMX
 
                 if (null == TestData.CurrentTestResult) return;
                 cmdlet.WriteVerbose(cmdlet, "The current test result");
-                cmdlet.WriteObject(cmdlet, TestData.CurrentTestResult.ListDetailNames(cmdlet));
+        		// 20140703
+        		// refactoring
+                // cmdlet.WriteObject(cmdlet, TestData.CurrentTestResult.ListDetailNames(cmdlet));
+                cmdlet.WriteObject(cmdlet, TestData.CurrentTestResult.ListDetailNames(cmdlet.TestResultStatus));
 
                 /*
                 if (null != TestData.CurrentTestResult) {

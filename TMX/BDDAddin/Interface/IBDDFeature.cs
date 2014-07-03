@@ -11,6 +11,7 @@ namespace TMX
 {
     using System;
     using System.Collections.Generic;
+	using TMX.Interfaces;
 
     /// <summary>
     /// Description of IBDDFeature.

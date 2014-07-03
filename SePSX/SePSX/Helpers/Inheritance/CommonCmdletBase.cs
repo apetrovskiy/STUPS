@@ -25,6 +25,7 @@ namespace SePSX
     using System.Collections.ObjectModel;
     using System.Windows.Automation;
     using UIAutomation;
+    using TMX.Interfaces;
     
     /// <summary>
     /// Description of CommonCmdletBase.
@@ -574,7 +575,7 @@ Console.WriteLine("WriteSingleObject 00008");
                                                       //false);
                                                       // 20130626
                                                       //false,
-                                                      TMX.TestResultOrigins.Logical,
+                                                      TestResultOrigins.Logical,
                                                       true);
                     } else {
                         if (Preferences.EveryCmdletAsTestResult) {
@@ -602,7 +603,7 @@ Console.WriteLine("WriteSingleObject 00008");
                                                           //true);
                                                           // 20130626
                                                           //true,
-                                                          TMX.TestResultOrigins.Automatic,
+                                                          TestResultOrigins.Automatic,
                                                           false);
                         }
                     }
@@ -760,7 +761,7 @@ Console.WriteLine("WriteSingleObject 00008");
                                                       //true);
                                                       // 20130626
                                                       //true,
-                                                      TMX.TestResultOrigins.Automatic,
+                                                      TestResultOrigins.Automatic,
                                                       false);
                                                       //((HasScriptBlockCmdletBase)cmdlet).TestLog);
                                                       
@@ -797,7 +798,7 @@ Console.WriteLine("WriteSingleObject 00008");
                                                               //true);
                                                               // 20130626
                                                               //true,
-                                                              TMX.TestResultOrigins.Automatic,
+                                                              TestResultOrigins.Automatic,
                                                               false);
                         }
                     }

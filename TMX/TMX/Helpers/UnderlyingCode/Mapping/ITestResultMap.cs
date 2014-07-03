@@ -16,6 +16,7 @@ namespace TMX
     using FluentNHibernate.Mapping;
     using NHibernate;
     using NHibernate.Mapping;
+	using TMX.Interfaces;
     
     /// <summary>
     /// Description of ITestResultMap.

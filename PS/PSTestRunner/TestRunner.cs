@@ -13,6 +13,7 @@ namespace PSTestRunner
     using PSRunner;
     using System.Management.Automation;
     using TMX;
+	using TMX.Interfaces;
     //using System.Threading;
     
     /// <summary>

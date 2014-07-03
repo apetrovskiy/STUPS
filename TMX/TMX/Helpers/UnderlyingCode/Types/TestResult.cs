@@ -15,6 +15,7 @@ namespace TMX
     using System.Collections;
     using System.Linq;
     using System.Linq.Expressions;
+	using TMX.Interfaces;
     
     /// <summary>
     /// Description of TestResult.
@@ -140,15 +141,65 @@ namespace TMX
             }
         }
         
-        public virtual object[] ListDetailNames(TestResultStatusCmdletBase cmdlet)
+        // 20140703
+        // refactoring
+//        public virtual object[] ListDetailNames(TestResultStatusCmdletBase cmdlet)
+//        {
+//            //ArrayList detailsList =
+//            //    new ArrayList();
+//            
+//            // 20130402
+//            ITestResultDetail[] detailsList = null;
+//            
+//            cmdlet.WriteVerbose(cmdlet, "trying to enumerate details");
+//            
+//            // 20140208
+//            // if (null == this.Details || 0 >= this.Details.Count) return detailsList;
+//            if (null == this.Details || 0 == this.Details.Count) return detailsList;
+//            // if (null != this.Details && 0 < this.Details.Count) {
+//
+//            // 20130402
+//            //if (null == cmdlet.TestResultStatus) {
+//            if (TestResultStatuses.NotTested == cmdlet.TestResultStatus) {
+//                    
+//                var testResultDetailsNonFiltered = 
+//                    from detail in this.Details
+//                    select detail;
+//                    
+//                try {
+//                    detailsList = testResultDetailsNonFiltered.ToArray();
+//                }
+//                catch {}
+//                    
+//            } else {
+//                    
+//                var testResultDetailFiltered =
+//                    from detail in this.Details
+//                    where detail.DetailStatus == TestResultStatuses.Failed || detail.DetailStatus == TestResultStatuses.KnownIssue
+//                    select detail;
+//                    
+//                try {
+//                    detailsList = testResultDetailFiltered.ToArray();
+//                }
+//                catch {}
+//                    
+//            }
+//                
+////                foreach (TestResultDetail detail in this.Details) {
+////                    
+////                    detailsList.Add(detail.Name);
+////                }
+//            
+//            return detailsList;
+//        }
+        
+        public virtual object[] ListDetailNames(TestResultStatuses status)
         {
             //ArrayList detailsList =
             //    new ArrayList();
             
             // 20130402
             ITestResultDetail[] detailsList = null;
-            
-            cmdlet.WriteVerbose(cmdlet, "trying to enumerate details");
             
             // 20140208
             // if (null == this.Details || 0 >= this.Details.Count) return detailsList;
@@ -157,7 +208,7 @@ namespace TMX
 
             // 20130402
             //if (null == cmdlet.TestResultStatus) {
-            if (TestResultStatuses.NotTested == cmdlet.TestResultStatus) {
+            if (TestResultStatuses.NotTested == status) {
                     
                 var testResultDetailsNonFiltered = 
                     from detail in this.Details

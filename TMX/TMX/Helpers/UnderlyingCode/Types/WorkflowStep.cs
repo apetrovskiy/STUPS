@@ -13,6 +13,7 @@ namespace TMX
     using System.Collections;
     using System.Collections.Generic;
     using System.Management.Automation;
+	using TMX.Interfaces;
     
     /// <summary>
     /// Description of WorkflowStep.

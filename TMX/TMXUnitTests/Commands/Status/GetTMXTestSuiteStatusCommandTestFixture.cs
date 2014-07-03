@@ -13,6 +13,7 @@ namespace TmxUnitTests.Commands.Status
     using MbUnit.Framework;
     using PSTestLib;
     using TMX;
+    using TMX.Interfaces;
     
     /// <summary>
     /// Description of GetTmxTestSuiteStatusCommandTestFixture.

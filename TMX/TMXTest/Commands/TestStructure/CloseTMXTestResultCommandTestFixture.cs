@@ -10,28 +10,28 @@
 namespace TmxTest.Commands.TestStructure
 {
     using System;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     
     /// <summary>
     /// Description of CloseTmxTestResultCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Close-TmxTestResult test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="Close-TmxTestResult test")]
     public class CloseTmxTestResultCommandTestFixture
     {
         public CloseTmxTestResultCommandTestFixture()
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="The -Name parameter test: simple string")]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Close_TmxTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Name parameter test: simple string")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_Simple()
         {
             string testResultName = "result1";
@@ -43,10 +43,10 @@ namespace TmxTest.Commands.TestStructure
                 testResultName);
         }
         
-        [Test] //[Test(Description="The -Name parameter test: complex string")]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Close_TmxTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Name parameter test: complex string")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_Complex()
         {
             string testResultName = @"\\#result1  ;;;";
@@ -58,10 +58,10 @@ namespace TmxTest.Commands.TestStructure
                 testResultName);
         }
         
-        [Test] //[Test(Description="The -TestPassed parameter test: the Passed state 1 (-TestPassed)")]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Close_TmxTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -TestPassed parameter test: the Passed state 1 (-TestPassed)")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_TestPassed1()
         {
             string testResultName = "result1";
@@ -73,10 +73,10 @@ namespace TmxTest.Commands.TestStructure
                 "PASSED");
         }
         
-        [Test] //[Test(Description="The -TestPassed parameter test: the Passed state 2 (-TestPassed:$true)")]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Close_TmxTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -TestPassed parameter test: the Passed state 2 (-TestPassed:$true)")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_TestPassed2()
         {
             string testResultName = "result1";
@@ -88,10 +88,10 @@ namespace TmxTest.Commands.TestStructure
                 "PASSED");
         }
         
-        [Test] //[Test(Description="The -TestPassed parameter test: the Failed state 1 (-TestPassed:$false)")]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Close_TmxTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -TestPassed parameter test: the Failed state 1 (-TestPassed:$false)")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_TestFailed1()
         {
             string testResultName = "result1";
@@ -103,10 +103,10 @@ namespace TmxTest.Commands.TestStructure
                 "FAILED");
         }
         
-        [Test] //[Test(Description="The -TestPassed parameter test: the Failed state 2 (no -TestPassed)")]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Close_TmxTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -TestPassed parameter test: the Failed state 2 (no -TestPassed)")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_TestFailed2()
         {
             string testResultName = "result1";
@@ -118,10 +118,10 @@ namespace TmxTest.Commands.TestStructure
                 "FAILED");
         }
         
-        [Test] //[Test(Description="The -TestPassed parameter test: the NotTested state")]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Close_TmxTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -TestPassed parameter test: the NotTested state")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_TestNotTested()
         {
             string testResultName = "result1";
@@ -133,10 +133,10 @@ namespace TmxTest.Commands.TestStructure
                 "NOT TESTED");
         }
         
-        [Test] //[Test(Description="The -TestPassed & -KnownIssue parameters test: the KnownIssue state 1 (the bare case)")]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Close_TmxTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -TestPassed & -KnownIssue parameters test: the KnownIssue state 1 (the bare case)")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_TestKnownIssue1()
         {
             string testResultName = "result1";
@@ -148,10 +148,10 @@ namespace TmxTest.Commands.TestStructure
                 "KNOWN ISSUE");
         }
         
-        [Test] //[Test(Description="The -TestPassed & -KnownIssue parameters test: the KnownIssue state 1t (the bare case)")]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Close_TmxTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -TestPassed & -KnownIssue parameters test: the KnownIssue state 1t (the bare case)")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_TestKnownIssue1t()
         {
             string testResultName = "result1";
@@ -163,10 +163,10 @@ namespace TmxTest.Commands.TestStructure
                 "KNOWN ISSUE");
         }
         
-        [Test] //[Test(Description="The -TestPassed & -KnownIssue parameters test: the KnownIssue state 1f (the bare case)")]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Close_TmxTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -TestPassed & -KnownIssue parameters test: the KnownIssue state 1f (the bare case)")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_TestKnownIssue1f()
         {
             string testResultName = "result1";
@@ -178,10 +178,10 @@ namespace TmxTest.Commands.TestStructure
                 "FAILED");
         }
         
-        [Test] //[Test(Description="The -TestPassed & -KnownIssue parameters test: the KnownIssue state 2 (known issue instead of failed)")]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Close_TmxTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -TestPassed & -KnownIssue parameters test: the KnownIssue state 2 (known issue instead of failed)")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_TestKnownIssue2()
         {
             string testResultName = "result1";
@@ -194,10 +194,10 @@ namespace TmxTest.Commands.TestStructure
                 "KNOWN ISSUE");
         }
         
-        [Test] //[Test(Description="The -TestPassed & -KnownIssue parameters test: the KnownIssue state 2t (known issue instead of failed)")]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Close_TmxTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -TestPassed & -KnownIssue parameters test: the KnownIssue state 2t (known issue instead of failed)")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_TestKnownIssue2t()
         {
             string testResultName = "result1";
@@ -210,10 +210,10 @@ namespace TmxTest.Commands.TestStructure
                 "KNOWN ISSUE");
         }
         
-        [Test] //[Test(Description="The -TestPassed & -KnownIssue parameters test: the KnownIssue state 2f (known issue instead of failed)")]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Close_TmxTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -TestPassed & -KnownIssue parameters test: the KnownIssue state 2f (known issue instead of failed)")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_TestKnownIssue2f()
         {
             string testResultName = "result1";
@@ -226,10 +226,10 @@ namespace TmxTest.Commands.TestStructure
                 "FAILED");
         }
         
-        [Test] //[Test(Description="The -TestPassed & -KnownIssue parameters test: the KnownIssue state 3 (known issue hidden by passed)")]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Close_TmxTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -TestPassed & -KnownIssue parameters test: the KnownIssue state 3 (known issue hidden by passed)")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_TestKnownIssue3()
         {
             string testResultName = "result1";
@@ -244,10 +244,10 @@ namespace TmxTest.Commands.TestStructure
                 "KNOWN ISSUE");
         }
         
-        [Test] //[Test(Description="The -TestPassed & -KnownIssue parameters test: the KnownIssue state 3t (known issue hidden by passed)")]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Close_TmxTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -TestPassed & -KnownIssue parameters test: the KnownIssue state 3t (known issue hidden by passed)")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_TestKnownIssue3t()
         {
             string testResultName = "result1";
@@ -262,10 +262,10 @@ namespace TmxTest.Commands.TestStructure
                 "KNOWN ISSUE");
         }
         
-        [Test] //[Test(Description="The -TestPassed & -KnownIssue parameters test: the KnownIssue state 3f (known issue hidden by passed)")]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Close_TmxTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -TestPassed & -KnownIssue parameters test: the KnownIssue state 3f (known issue hidden by passed)")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_TestKnownIssue3f()
         {
             string testResultName = "result1";
@@ -278,11 +278,12 @@ namespace TmxTest.Commands.TestStructure
                 "PASSED");
         }
         
-        [Test] //[Test(Description="The -Description parameter test: from the suite")]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Close_TmxTestResult")]
-        [Ignore("This code never worked before. 20130207")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Description parameter test: from the suite")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Close_TmxTestResult")]
+        [MbUnit.Framework.Ignore("This code never worked before. 20130207")]
+        [NUnit.Framework.Ignore("This code never worked before. 20130207")]
         public void TestPrm_Name_DescriptionSuite()
         {
             string testResultDescription = "";
@@ -299,11 +300,12 @@ namespace TmxTest.Commands.TestStructure
                 "Object reference not set to an instance of an object.");
         }
         
-        [Test] //[Test(Description="The -Description parameter test: from the scenario 1")]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Close_TmxTestResult")]
-        [Ignore("This code never worked before. 20130207")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Description parameter test: from the scenario 1")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Close_TmxTestResult")]
+        [MbUnit.Framework.Ignore("This code never worked before. 20130207")]
+        [NUnit.Framework.Ignore("This code never worked before. 20130207")]
         public void TestPrm_Name_DescriptionScenario1()
         {
             string testResultDescription = "";
@@ -320,11 +322,12 @@ namespace TmxTest.Commands.TestStructure
                 "Object reference not set to an instance of an object.");
         }
         
-        [Test] //[Test(Description="The -Description parameter test: from the scenario 2")]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Close_TmxTestResult")]
-        [Ignore("This code never worked before. 20130207")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Description parameter test: from the scenario 2")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Close_TmxTestResult")]
+        [MbUnit.Framework.Ignore("This code never worked before. 20130207")]
+        [NUnit.Framework.Ignore("This code never worked before. 20130207")]
         public void TestPrm_Name_DescriptionScenario2()
         {
             string testResultDescription = "";
@@ -341,11 +344,12 @@ namespace TmxTest.Commands.TestStructure
                 "Object reference not set to an instance of an object.");
         }
         
-        [Test] //[Test(Description="The -Description parameter test: from the test result 1")]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Close_TmxTestResult")]
-        [Ignore("This code never worked before. 20130207")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Description parameter test: from the test result 1")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Close_TmxTestResult")]
+        [MbUnit.Framework.Ignore("This code never worked before. 20130207")]
+        [NUnit.Framework.Ignore("This code never worked before. 20130207")]
         public void TestPrm_Name_DescriptionTestResult1()
         {
             string testResultDescription = "";
@@ -364,10 +368,10 @@ namespace TmxTest.Commands.TestStructure
                 "Object reference not set to an instance of an object.");
         }
         
-        [Test] //[Test(Description="The -Description parameter test: from the test result 2")]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Close_TmxTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Description parameter test: from the test result 2")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_DescriptionTestResult2()
         {
             string testResultDescription = "test result description";
@@ -383,10 +387,10 @@ namespace TmxTest.Commands.TestStructure
                 testResultDescription);
         }
         
-        [Test] //[Test(Description="The cenarioId property")]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Close_TmxTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The cenarioId property")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestProperty_ScenarioId()
         {
             string scenarioId = "1111";
@@ -402,10 +406,10 @@ namespace TmxTest.Commands.TestStructure
                 scenarioId);
         }
         
-        [Test] //[Test(Description="The cenarioId property")]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Close_TmxTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The cenarioId property")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestProperty_SuiteId()
         {
             string suiteId = "111";
@@ -421,7 +425,7 @@ namespace TmxTest.Commands.TestStructure
                 suiteId);
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

@@ -10,28 +10,28 @@
 namespace TmxTest.Provider
 {
     using System;
-    using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework; // using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
     /// Description of TmxProviderTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="TmxProvider test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="TmxProvider test")]
     public class TmxProviderTestFixture
     {
         public TmxProviderTestFixture()
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("Provider")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("Provider")]
         public void CheckProvider()
         {
             string name = "TmxProvider";
@@ -42,9 +42,9 @@ namespace TmxTest.Provider
                 name);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("Provider")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("Provider")]
         public void CheckDefaultDrive()
         {
             string name = "TMX";
@@ -55,9 +55,9 @@ namespace TmxTest.Provider
                 name);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("Provider")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("Provider")]
         public void CheckNewDriveByWindowName()
         {
             string driveName = "TMX1";
@@ -85,9 +85,9 @@ namespace TmxTest.Provider
                 driveName);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("Provider")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("Provider")]
         public void CheckNewDrivebyProcessName()
         {
             string driveName = "TMX2";
@@ -115,9 +115,9 @@ namespace TmxTest.Provider
                 driveName);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("Provider")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("Provider")]
         public void CheckNewDriveByProcessId()
         {
             string driveName = "TMX3";
@@ -145,10 +145,11 @@ namespace TmxTest.Provider
                 driveName);
         }
 
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("Provider")]
-        [Ignore("This code never worked before. 20130207")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("Provider")]
+        [MbUnit.Framework.Ignore("This code never worked before. 20130207")]
+        [NUnit.Framework.Ignore("This code never worked before. 20130207")]
         public void RemoveDefaultDrive()
         {
             string driveName = "TMX";
@@ -166,7 +167,7 @@ namespace TmxTest.Provider
                 " does not exist.");
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

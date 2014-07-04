@@ -10,7 +10,7 @@
 namespace TmxTest.Commands.TestExecution
 {
     using System;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     
     /// <summary>
     /// Description of InvokeTmxTestScenarioCommandTestFixture.
@@ -21,13 +21,13 @@ namespace TmxTest.Commands.TestExecution
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();
@@ -37,10 +37,10 @@ namespace TmxTest.Commands.TestExecution
         // ==================================== one scenario, no test cases ===================================
         // ====================================================================================================
         
-        [Test]
-        [Category("Slow")]
-        [Category("ScenarioLevel")]
-        [Category("Invoke-TmxTestScenario")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ScenarioLevel")]
+        [MbUnit.Framework.Category("Invoke-TmxTestScenario")]
         public void AddTestScenario_NoTestCases_NoScriptblocks_1()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
@@ -52,10 +52,10 @@ namespace TmxTest.Commands.TestExecution
                 "");
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("ScenarioLevel")]
-        [Category("Invoke-TmxTestScenario")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ScenarioLevel")]
+        [MbUnit.Framework.Category("Invoke-TmxTestScenario")]
         public void AddTestScenario_NoTestCases_NoScriptblocks_2()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
@@ -66,10 +66,10 @@ namespace TmxTest.Commands.TestExecution
                 "");
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("ScenarioLevel")]
-        [Category("Invoke-TmxTestScenario")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ScenarioLevel")]
+        [MbUnit.Framework.Category("Invoke-TmxTestScenario")]
         public void AddTestScenario_NoTestCases_BeforeScenario()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
@@ -81,10 +81,10 @@ namespace TmxTest.Commands.TestExecution
                 ""); // as there are no test cases "01");
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("ScenarioLevel")]
-        [Category("Invoke-TmxTestScenario")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ScenarioLevel")]
+        [MbUnit.Framework.Category("Invoke-TmxTestScenario")]
         public void AddTestScenario_NoTestCases_BeforeScenarioX2()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
@@ -96,10 +96,10 @@ namespace TmxTest.Commands.TestExecution
                 ""); // as there are no test cases "01");
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("ScenarioLevel")]
-        [Category("Invoke-TmxTestScenario")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ScenarioLevel")]
+        [MbUnit.Framework.Category("Invoke-TmxTestScenario")]
         public void AddTestScenario_NoTestCases_AfterScenario()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
@@ -111,10 +111,10 @@ namespace TmxTest.Commands.TestExecution
                 ""); // as there are no test cases "01");
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("ScenarioLevel")]
-        [Category("Invoke-TmxTestScenario")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ScenarioLevel")]
+        [MbUnit.Framework.Category("Invoke-TmxTestScenario")]
         public void AddTestScenario_NoTestCases_AfterScenarioX2()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
@@ -126,10 +126,10 @@ namespace TmxTest.Commands.TestExecution
                 ""); // as there are no test cases "01");
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("ScenarioLevel")]
-        [Category("Invoke-TmxTestScenario")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ScenarioLevel")]
+        [MbUnit.Framework.Category("Invoke-TmxTestScenario")]
         public void AddTestScenario_NoTestCases_BeforeScenarioX2_AfterScenarioX2()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
@@ -146,10 +146,10 @@ namespace TmxTest.Commands.TestExecution
         // =================================== one scenario, one test case ====================================
         // ====================================================================================================
         
-        [Test]
-        [Category("Slow")]
-        [Category("ScenarioLevel")]
-        [Category("Invoke-TmxTestScenario")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ScenarioLevel")]
+        [MbUnit.Framework.Category("Invoke-TmxTestScenario")]
         public void AddTestScenario_OneTestCase_NoScriptblocks_1()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
@@ -162,10 +162,10 @@ namespace TmxTest.Commands.TestExecution
                 "");
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("ScenarioLevel")]
-        [Category("Invoke-TmxTestScenario")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ScenarioLevel")]
+        [MbUnit.Framework.Category("Invoke-TmxTestScenario")]
         public void AddTestScenario_OneTestCase_NoScriptblocks_2()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
@@ -177,10 +177,10 @@ namespace TmxTest.Commands.TestExecution
                 "21");
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("ScenarioLevel")]
-        [Category("Invoke-TmxTestScenario")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ScenarioLevel")]
+        [MbUnit.Framework.Category("Invoke-TmxTestScenario")]
         public void AddTestScenario_OneTestCase_BeforeScenario()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
@@ -193,10 +193,10 @@ namespace TmxTest.Commands.TestExecution
                 "0121");
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("ScenarioLevel")]
-        [Category("Invoke-TmxTestScenario")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ScenarioLevel")]
+        [MbUnit.Framework.Category("Invoke-TmxTestScenario")]
         public void AddTestScenario_OneTestCase_BeforeScenarioX2()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
@@ -209,10 +209,10 @@ namespace TmxTest.Commands.TestExecution
                 "010221");
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("ScenarioLevel")]
-        [Category("Invoke-TmxTestScenario")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ScenarioLevel")]
+        [MbUnit.Framework.Category("Invoke-TmxTestScenario")]
         public void AddTestScenario_OneTestCase_AfterScenario()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
@@ -225,10 +225,10 @@ namespace TmxTest.Commands.TestExecution
                 "2103");
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("ScenarioLevel")]
-        [Category("Invoke-TmxTestScenario")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ScenarioLevel")]
+        [MbUnit.Framework.Category("Invoke-TmxTestScenario")]
         public void AddTestScenario_OneTestCase_AfterScenarioX2()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
@@ -241,10 +241,10 @@ namespace TmxTest.Commands.TestExecution
                 "210304");
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("ScenarioLevel")]
-        [Category("Invoke-TmxTestScenario")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ScenarioLevel")]
+        [MbUnit.Framework.Category("Invoke-TmxTestScenario")]
         public void AddTestScenario_OneTestCase_BeforeScenarioX2_AfterScenarioX2()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
@@ -258,10 +258,10 @@ namespace TmxTest.Commands.TestExecution
                 "0102210304");
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("ScenarioLevel")]
-        [Category("Invoke-TmxTestScenario")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ScenarioLevel")]
+        [MbUnit.Framework.Category("Invoke-TmxTestScenario")]
         public void AddTestScenario_OneTestCase_BeforeScenarioX2_AfterScenarioX2_Param()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(

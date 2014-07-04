@@ -10,19 +10,19 @@
 namespace TmxTest.TestData
 {
     using System;
-    using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework; // using MbUnit.Framework;using NUnit.Framework;
     
     /// <summary>
     /// Description of TmxEventsTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="123")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="123")]
     public class TmxEventsTestFixture
     {
         public TmxEventsTestFixture()
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
@@ -33,9 +33,9 @@ namespace TmxTest.TestData
 //        public static event EventHandler TmxTestSuiteOpened;
 
 
-        [Test] //[Test(Description="The TmxNewTestSuiteCreated event")]
-        [Category("Slow")]
-        [Category("TMX_Events")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The TmxNewTestSuiteCreated event")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TMX_Events")]
         public void TmxEvents_TmxNewTestSuiteCreated()
         {
             string name = "suite1";
@@ -54,9 +54,9 @@ namespace TmxTest.TestData
                 name);
         }
         
-        [Test] //[Test(Description="The TmxTestSuiteOpened event")]
-        [Category("Slow")]
-        [Category("TMX_Events")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The TmxTestSuiteOpened event")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TMX_Events")]
         public void TmxEvents_TmxTestSuiteOpened()
         {
             string name = "suite1";
@@ -82,9 +82,9 @@ namespace TmxTest.TestData
 //        public static event EventHandler TmxNewTestScenarioAdded;
 //        public static event EventHandler TmxTestScenarioOpened;
 
-        [Test] //[Test(Description="The TmxNewTestScenarioAdded event")]
-        [Category("Slow")]
-        [Category("TMX_Events")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The TmxNewTestScenarioAdded event")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TMX_Events")]
         public void TmxEvents_TmxNewTestScenarioAdded()
         {
             string name = "scenario1";
@@ -104,9 +104,9 @@ namespace TmxTest.TestData
                 name);
         }
         
-        [Test] //[Test(Description="The TmxTestScenarioOpened event")]
-        [Category("Slow")]
-        [Category("TMX_Events")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The TmxTestScenarioOpened event")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TMX_Events")]
         public void TmxEvents_TmxTestScenarioOpened()
         {
             string name = "scenario1";
@@ -134,9 +134,9 @@ namespace TmxTest.TestData
 //        public static event EventHandler TmxNewTestResultDetailAdded;
 
 
-        [Test] //[Test(Description="The TmxNewTestResultDetailAdded event")]
-        [Category("Slow")]
-        [Category("TMX_Events")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The TmxNewTestResultDetailAdded event")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TMX_Events")]
         public void TmxEvents_TmxNewTestResultDetailAdded()
         {
             string name = "res1";
@@ -157,9 +157,9 @@ namespace TmxTest.TestData
                 name);
         }
         
-        [Test] //[Test(Description="The TmxNewTestResultClosed event")]
-        [Category("Slow")]
-        [Category("TMX_Events")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The TmxNewTestResultClosed event")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TMX_Events")]
         public void TmxEvents_TmxNewTestResultClosed()
         {
             string name = "res1";
@@ -181,7 +181,7 @@ namespace TmxTest.TestData
                 name);
         }
 
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

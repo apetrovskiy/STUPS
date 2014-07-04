@@ -10,27 +10,27 @@
 namespace TmxTest.Commands.Database
 {
     using System;
-    using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework; // using MbUnit.Framework;using NUnit.Framework;
     
     /// <summary>
     /// Description of CloseTmxTestDBCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description=" test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description=" test")]
     public class CloseTmxTestDBCommandTestFixture
     {
         public CloseTmxTestDBCommandTestFixture()
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="The New-TmxTestDB test")]
-        [Category("Slow")]
-        [Category("Close_TmxTestDB")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The New-TmxTestDB test")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("Close_TmxTestDB")]
         public void CloseTestDB_Simple()
         {
             CmdletUnitTest.TestRunspace.RunPSCode(
@@ -63,7 +63,7 @@ namespace TmxTest.Commands.Database
                 @"';");
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

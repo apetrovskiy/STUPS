@@ -10,28 +10,28 @@
 namespace TmxTest.Commands.TestResults
 {
     using System;
-    using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework; // using MbUnit.Framework;using NUnit.Framework;
     
     /// <summary>
     /// Description of SearchTmxTestSuiteCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Search-TmxTestSuite test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="Search-TmxTestSuite test")]
     public class SearchTmxTestSuiteCommandTestFixture
     {
         public SearchTmxTestSuiteCommandTestFixture()
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="The work with the -OrderById parameter test, general testing")]
-        [Category("Slow")]
-        [Category("SuiteLevel")]
-        [Category("Search_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The work with the -OrderById parameter test, general testing")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_Name_Simple_In_Series()
         {
             System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
@@ -51,9 +51,9 @@ namespace TmxTest.Commands.TestResults
                 coll);
         }
         
-        [Test] //[Test(Description="The work with the -OrderById parameter test, general testing")]
-        [Category("Slow")][Category("SuiteLevel")]
-        [Category("Slow")][Category("Search_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The work with the -OrderById parameter test, general testing")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_Name_Complex_In_Series()
         {
             System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
@@ -75,9 +75,9 @@ namespace TmxTest.Commands.TestResults
         
         
         
-        [Test] //[Test(Description="The work with the -OrderById parameter test, general testing")]
-        [Category("Slow")][Category("SuiteLevel")]
-        [Category("Slow")][Category("Search_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The work with the -OrderById parameter test, general testing")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_Id_Numeric()
         {
             System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
@@ -97,9 +97,9 @@ namespace TmxTest.Commands.TestResults
                 coll);
         }
         
-        [Test] //[Test(Description="The work with the -OrderById parameter test, general testing")]
-        [Category("Slow")][Category("SuiteLevel")]
-        [Category("Slow")][Category("Search_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The work with the -OrderById parameter test, general testing")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_Id_Alphanumeric()
         {
             System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
@@ -119,9 +119,9 @@ namespace TmxTest.Commands.TestResults
                 coll);
         }
         
-        [Test] //[Test(Description="The work with the -OrderById parameter test")]
-        [Category("Slow")][Category("SuiteLevel")]
-        [Category("Slow")][Category("Search_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The work with the -OrderById parameter test")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderById_Numeric()
         {
             System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
@@ -141,9 +141,9 @@ namespace TmxTest.Commands.TestResults
                 coll);
         }
         
-        [Test] //[Test(Description="The work with the -OrderById and -Descending parameters test")]
-        [Category("Slow")][Category("SuiteLevel")]
-        [Category("Slow")][Category("Search_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The work with the -OrderById and -Descending parameters test")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderById_Descending_Numeric()
         {
             System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
@@ -163,9 +163,9 @@ namespace TmxTest.Commands.TestResults
                 coll);
         }
         
-        [Test] //[Test(Description="The work with the -OrderById parameter test")]
-        [Category("Slow")][Category("SuiteLevel")]
-        [Category("Slow")][Category("Search_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The work with the -OrderById parameter test")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderById_Alphanumeric()
         {
             System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
@@ -185,9 +185,9 @@ namespace TmxTest.Commands.TestResults
                 coll);
         }
         
-        [Test] //[Test(Description="The work with the -OrderByName parameter test")]
-        [Category("Slow")][Category("SuiteLevel")]
-        [Category("Slow")][Category("Search_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The work with the -OrderByName parameter test")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderByName_Numeric()
         {
             System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
@@ -207,9 +207,9 @@ namespace TmxTest.Commands.TestResults
                 coll);
         }
         
-        [Test] //[Test(Description="The work with the -OrderByName parameter test")]
-        [Category("Slow")][Category("SuiteLevel")]
-        [Category("Slow")][Category("Search_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The work with the -OrderByName parameter test")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderByName_Alphanumeric()
         {
             System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
@@ -229,9 +229,9 @@ namespace TmxTest.Commands.TestResults
                 coll);
         }
         
-        [Test] //[Test(Description="The work with the -OrderByName and -Descending parameters test")]
-        [Category("Slow")][Category("SuiteLevel")]
-        [Category("Slow")][Category("Search_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The work with the -OrderByName and -Descending parameters test")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderByName_Descending_Alphanumeric()
         {
             System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
@@ -251,9 +251,9 @@ namespace TmxTest.Commands.TestResults
                 coll);
         }
         
-        [Test] //[Test(Description="The work with the -OrderByTimeSpent parameter test")]
-        [Category("Slow")][Category("SuiteLevel")]
-        [Category("Slow")][Category("Search_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The work with the -OrderByTimeSpent parameter test")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderByTimeSpent()
         {
             System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
@@ -298,9 +298,9 @@ namespace TmxTest.Commands.TestResults
                 coll);
         }
         
-        [Test] //[Test(Description="The work with the -OrderByTimeSpent and -Descending parameters test")]
-        [Category("Slow")][Category("SuiteLevel")]
-        [Category("Slow")][Category("Search_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The work with the -OrderByTimeSpent and -Descending parameters test")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderByTimeSpent_Descending()
         {
             System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
@@ -347,9 +347,9 @@ namespace TmxTest.Commands.TestResults
         
         
         
-        [Test] //[Test(Description="The work with the -OrderByPassRate parameter test")]
-        [Category("Slow")][Category("SuiteLevel")]
-        [Category("Slow")][Category("Search_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The work with the -OrderByPassRate parameter test")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderByPassRate()
         {
             System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
@@ -386,9 +386,9 @@ namespace TmxTest.Commands.TestResults
                 coll);
         }
         
-        [Test] //[Test(Description="The work with the -OrderByPassRate and -Descending parameters test")]
-        [Category("Slow")][Category("SuiteLevel")]
-        [Category("Slow")][Category("Search_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The work with the -OrderByPassRate and -Descending parameters test")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderByPassRate_Descending()
         {
             System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
@@ -427,9 +427,9 @@ namespace TmxTest.Commands.TestResults
         
         
         
-        [Test] //[Test(Description="The work with the -OrderByFailRate parameter test")]
-        [Category("Slow")][Category("SuiteLevel")]
-        [Category("Slow")][Category("Search_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The work with the -OrderByFailRate parameter test")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderByFailRate()
         {
             System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
@@ -466,9 +466,9 @@ namespace TmxTest.Commands.TestResults
                 coll);
         }
         
-        [Test] //[Test(Description="The work with the -OrderByFailRate and -Descending parameters test")]
-        [Category("Slow")][Category("SuiteLevel")]
-        [Category("Slow")][Category("Search_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The work with the -OrderByFailRate and -Descending parameters test")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderByFailRate_Descending()
         {
             System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
@@ -506,9 +506,9 @@ namespace TmxTest.Commands.TestResults
         }
         
         
-        [Test] //[Test(Description="The work with the -FilterNameContains parameter test")]
-        [Category("Slow")][Category("SuiteLevel")]
-        [Category("Slow")][Category("Search_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The work with the -FilterNameContains parameter test")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_FilterNameContains()
         {
             System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
@@ -525,9 +525,9 @@ namespace TmxTest.Commands.TestResults
                 coll);
         }
         
-        [Test] //[Test(Description="The work with the -FilterNameContains and -Descending parameters test")]
-        [Category("Slow")][Category("SuiteLevel")]
-        [Category("Slow")][Category("Search_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The work with the -FilterNameContains and -Descending parameters test")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_FilterNameContains_Descending()
         {
             System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
@@ -546,9 +546,9 @@ namespace TmxTest.Commands.TestResults
         
         
         
-        [Test] //[Test(Description="The work with the -FilterIdContains parameter test")]
-        [Category("Slow")][Category("SuiteLevel")]
-        [Category("Slow")][Category("Search_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The work with the -FilterIdContains parameter test")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_FilterIdContains()
         {
             System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
@@ -565,9 +565,9 @@ namespace TmxTest.Commands.TestResults
                 coll);
         }
         
-        [Test] //[Test(Description="The work with the -FilterIdContains and - parameter test")]
-        [Category("Slow")][Category("SuiteLevel")]
-        [Category("Slow")][Category("Search_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The work with the -FilterIdContains and - parameter test")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_FilterIdContains_Descending()
         {
             System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
@@ -585,9 +585,9 @@ namespace TmxTest.Commands.TestResults
         }
         
         
-        [Test] //[Test(Description="The work with the -FilterDescriptionContains parameter test")]
-        [Category("Slow")][Category("SuiteLevel")]
-        [Category("Slow")][Category("Search_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The work with the -FilterDescriptionContains parameter test")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_FilterDescriptionContains()
         {
             System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
@@ -604,9 +604,9 @@ namespace TmxTest.Commands.TestResults
                 coll);
         }
         
-        [Test] //[Test(Description="The work with the -FilterDescriptionContains and -Descending parameters test")]
-        [Category("Slow")][Category("SuiteLevel")]
-        [Category("Slow")][Category("Search_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The work with the -FilterDescriptionContains and -Descending parameters test")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_FilterDescriptionContains_Descending()
         {
             System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
@@ -623,7 +623,7 @@ namespace TmxTest.Commands.TestResults
                 coll);
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

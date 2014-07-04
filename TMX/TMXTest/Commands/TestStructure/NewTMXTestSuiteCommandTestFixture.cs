@@ -10,28 +10,28 @@
 namespace TmxTest.Commands.TestStructure
 {
     using System;
-    using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework; // using MbUnit.Framework;using NUnit.Framework;
     
     /// <summary>
     /// Description of NewTmxTestSuiteCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="New-TmxTestSuite test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="New-TmxTestSuite test")]
     public class NewTmxTestSuiteCommandTestFixture
     {
         public NewTmxTestSuiteCommandTestFixture()
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="The -Name parameter test: simple name")]
-        [Category("Slow")]
-        [Category("SuiteLevel")]
-        [Category("New_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Name parameter test: simple name")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("New_TmxTestSuite")]
         public void TestPrm_Name_Simple()
         {
             string name = "suite1";
@@ -42,10 +42,10 @@ namespace TmxTest.Commands.TestStructure
                 name);
         }
         
-        [Test] //[Test(Description="The -Name parameter test: complex name")]
-        [Category("Slow")]
-        [Category("SuiteLevel")]
-        [Category("New_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Name parameter test: complex name")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("New_TmxTestSuite")]
         public void TestPrm_Name_Complex()
         {
             string name = @"suite%%`1  1";
@@ -56,10 +56,10 @@ namespace TmxTest.Commands.TestStructure
                 name);
         }
         
-        [Test] //[Test(Description="The -Name parameter test: simple name, a series of suites")]
-        [Category("Slow")]
-        [Category("SuiteLevel")]
-        [Category("New_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Name parameter test: simple name, a series of suites")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("New_TmxTestSuite")]
         public void TestPrm_Name_Simple_In_Series()
         {
             string name = "suite3";
@@ -77,10 +77,10 @@ namespace TmxTest.Commands.TestStructure
                 name);
         }
         
-        [Test] //[Test(Description="The -Name parameter test: complex name, a series of suites")]
-        [Category("Slow")]
-        [Category("SuiteLevel")]
-        [Category("New_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Name parameter test: complex name, a series of suites")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("New_TmxTestSuite")]
         public void TestPrm_Name_Complex_In_Series()
         {
             string name = @"suite%%`3  3";
@@ -98,10 +98,10 @@ namespace TmxTest.Commands.TestStructure
                 name);
         }
         
-        [Test] //[Test(Description="The -Id parameter test: simple name and Id")]
-        [Category("Slow")]
-        [Category("SuiteLevel")]
-        [Category("New_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Id parameter test: simple name and Id")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("New_TmxTestSuite")]
         public void TestPrm_Name_Id_Numeric()
         {
             string name = "suite1";
@@ -122,10 +122,10 @@ namespace TmxTest.Commands.TestStructure
                 id);
         }
         
-        [Test] //[Test(Description="The -Id parameter test: simple name and complex Id")]
-        [Category("Slow")]
-        [Category("SuiteLevel")]
-        [Category("New_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Id parameter test: simple name and complex Id")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("New_TmxTestSuite")]
         public void TestPrm_Name_Id_Alphanumeric()
         {
             string name = "suite1";
@@ -146,10 +146,10 @@ namespace TmxTest.Commands.TestStructure
                 id);
         }
         
-        [Test] //[Test(Description="The -Id parameter test: simple Id")]
-        [Category("Slow")]
-        [Category("SuiteLevel")]
-        [Category("New_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Id parameter test: simple Id")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("New_TmxTestSuite")]
         public void TestPrm_Id_Numeric()
         {
             string name = "suite3";
@@ -170,10 +170,10 @@ namespace TmxTest.Commands.TestStructure
                 id);
         }
         
-        [Test] //[Test(Description="The -Id parameter test: complex Id")]
-        [Category("Slow")]
-        [Category("SuiteLevel")]
-        [Category("New_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Id parameter test: complex Id")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("New_TmxTestSuite")]
         public void TestPrm_Id_Alphanumeric()
         {
             string name = "suite3";
@@ -194,10 +194,10 @@ namespace TmxTest.Commands.TestStructure
                 id);
         }
         
-        [Test] //[Test(Description="The -Description parameter test: simple name and Id, and description")]
-        [Category("Slow")]
-        [Category("SuiteLevel")]
-        [Category("New_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Description parameter test: simple name and Id, and description")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("New_TmxTestSuite")]
         public void TestPrm_Name_Id_AndDescription()
         {
             string name = "suite1";
@@ -229,10 +229,10 @@ namespace TmxTest.Commands.TestStructure
                 description);
         }
         
-        [Test] //[Test(Description="The -Description parameter test: name, Id, and description are all perverse")]
-        [Category("Slow")]
-        [Category("SuiteLevel")]
-        [Category("New_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Description parameter test: name, Id, and description are all perverse")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("New_TmxTestSuite")]
         public void TestPrm_Name_Id_Description_Perverse1()
         {
             string name = @"  567   ";
@@ -263,10 +263,10 @@ namespace TmxTest.Commands.TestStructure
                 description);
         }
         
-        [Test] //[Test(Description="The all of parameters test: name, Id, and description are all perverse 2")]
-        [Category("Slow")]
-        [Category("SuiteLevel")]
-        [Category("New_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The all of parameters test: name, Id, and description are all perverse 2")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("New_TmxTestSuite")]
         public void TestPrm_Name_Id_Description_Perverse2()
         {
             string name = @"``//\\`""`''#$(1)567";
@@ -297,7 +297,7 @@ namespace TmxTest.Commands.TestStructure
                 description);
         }
 
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

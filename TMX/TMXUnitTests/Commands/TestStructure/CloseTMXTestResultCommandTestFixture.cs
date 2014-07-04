@@ -10,7 +10,7 @@
 namespace TmxUnitTests.Commands.TestStructure
 {
     using System;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using PSTestLib;
     using TMX;
     using TMX.Interfaces;
@@ -18,79 +18,79 @@ namespace TmxUnitTests.Commands.TestStructure
     /// <summary>
     /// Description of CloseTmxTestResultCommandTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class CloseTmxTestResultCommandTestFixture
     {
         public CloseTmxTestResultCommandTestFixture()
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             UnitTestingHelper.PrepareUnitTestDataStore();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
         }
         
-        [Test]
-        [Description("New-TmxTestSuite -Name suite1; Close-TmxTestResult -TestResultName result -TestPassed; Get-TmxTestSuiteStatus")]
-        [Category("Fast")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Description("New-TmxTestSuite -Name suite1; Close-TmxTestResult -TestResultName result -TestPassed; Get-TmxTestSuiteStatus")]
+        [MbUnit.Framework.Category("Fast")]
         public void CloseTestResult_Current_WithPassed()
         {
             string expectedResult = TMX.TestData.TestStatePassed;
 
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, false);
 
-            Assert.AreEqual(
+            MbUnit.Framework.Assert.AreEqual(
                 expectedResult,
                 TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 2].Status);
         }
         
-        [Test]
-        [Description("New-TmxTestSuite -Name suite1; Close-TmxTestResult -TestResultName result -TestPassed:$false; Get-TmxTestSuiteStatus")]
-        [Category("Fast")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Description("New-TmxTestSuite -Name suite1; Close-TmxTestResult -TestResultName result -TestPassed:$false; Get-TmxTestSuiteStatus")]
+        [MbUnit.Framework.Category("Fast")]
         public void CloseTestResult_Current_WithFailed()
         {
             string expectedResult = TMX.TestData.TestStateFailed;
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, false);
 
-            Assert.AreEqual(
+            MbUnit.Framework.Assert.AreEqual(
                 expectedResult,
                 TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 2].Status);
         }
         
-        [Test]
-        [Description("New-TmxTestSuite -Name suite1; Close-TmxTestResult -TestResultName result -TestPassed -KnownIssue; Get-TmxTestSuiteStatus")]
-        [Category("Fast")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Description("New-TmxTestSuite -Name suite1; Close-TmxTestResult -TestResultName result -TestPassed -KnownIssue; Get-TmxTestSuiteStatus")]
+        [MbUnit.Framework.Category("Fast")]
         public void CloseTestResult_Current_WithPassedKnownIssue()
         {
             string expectedResult = TMX.TestData.TestStateKnownIssue;
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, true);
 
-            Assert.AreEqual(
+            MbUnit.Framework.Assert.AreEqual(
                 expectedResult,
                 TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 2].Status);
         }
         
-        [Test]
-        [Description("New-TmxTestSuite -Name suite1; Close-TmxTestResult -TestResultName result -TestPassed:$false -KnownIssue; Get-TmxTestSuiteStatus")]
-        [Category("Fast")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Description("New-TmxTestSuite -Name suite1; Close-TmxTestResult -TestResultName result -TestPassed:$false -KnownIssue; Get-TmxTestSuiteStatus")]
+        [MbUnit.Framework.Category("Fast")]
         public void CloseTestResult_Current_WithFailedKnownIssue()
         {
             string expectedResult = TMX.TestData.TestStateKnownIssue;
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, true);
-            Assert.AreEqual(
+            MbUnit.Framework.Assert.AreEqual(
                 expectedResult,
                 TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 2].Status);
         }
         
-        [Test]
-        [Category("Fast")]
-        [Ignore]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Fast")]
+        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
         public void Need_Code()
         {
             

@@ -10,7 +10,8 @@
 namespace ExampleCustomTestReport
 {
     using System;
-    using PSTestLib;
+    // 20140704
+//    using PSTestLib;
     using System.Management.Automation;
     using TMX;
 	using TMX.Interfaces;

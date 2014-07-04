@@ -10,28 +10,28 @@
 namespace TmxTest.Commands.TestStructure
 {
     using System;
-    using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework; // using MbUnit.Framework;using NUnit.Framework;
     
     /// <summary>
     /// Description of AddTmxTestScenarioCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Add-TmxTestScenario test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="Add-TmxTestScenario test")]
     public class AddTmxTestScenarioCommandTestFixture
     {
         public AddTmxTestScenarioCommandTestFixture()
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="The -Name parameter test: simple name (New-TmxTestSuite)")]
-        [Category("Slow")]
-        [Category("ScenarioLevel")]
-        [Category("Add_TmxTestScenario")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Name parameter test: simple name (New-TmxTestSuite)")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ScenarioLevel")]
+        [MbUnit.Framework.Category("Add_TmxTestScenario")]
         public void TestPrm_Name_Simple_after_NewSuite()
         {
             string suiteName = "suite1";
@@ -45,10 +45,10 @@ namespace TmxTest.Commands.TestStructure
                 scenarioName);
         }
         
-        [Test] //[Test(Description="The -Name parameter test: complex name (New-TmxTestSuite)")]
-        [Category("Slow")]
-        [Category("ScenarioLevel")]
-        [Category("Add_TmxTestScenario")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Name parameter test: complex name (New-TmxTestSuite)")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ScenarioLevel")]
+        [MbUnit.Framework.Category("Add_TmxTestScenario")]
         public void TestPrm_Name_Complex_after_NewSuite()
         {
             string suiteName = @"suite%%`1  1";
@@ -62,10 +62,10 @@ namespace TmxTest.Commands.TestStructure
                 scenarioName);
         }
         
-        [Test] //[Test(Description="The -Name parameter test: simple name (Open-TmxTestSuite)")]
-        [Category("Slow")]
-        [Category("ScenarioLevel")]
-        [Category("Add_TmxTestScenario")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Name parameter test: simple name (Open-TmxTestSuite)")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ScenarioLevel")]
+        [MbUnit.Framework.Category("Add_TmxTestScenario")]
         public void TestPrm_Name_Simple_after_OpenSuite()
         {
             string suiteName = "suite2";
@@ -84,10 +84,10 @@ namespace TmxTest.Commands.TestStructure
                 scenarioName);
         }
         
-        [Test] //[Test(Description="The -Name parameter test: complex name (Open-TmxTestSuite)")]
-        [Category("Slow")]
-        [Category("ScenarioLevel")]
-        [Category("Add_TmxTestScenario")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Name parameter test: complex name (Open-TmxTestSuite)")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ScenarioLevel")]
+        [MbUnit.Framework.Category("Add_TmxTestScenario")]
         public void TestPrm_Name_Complex_after_OpenSuite()
         {
             string suiteName = @"suite%%`2  2";
@@ -106,10 +106,10 @@ namespace TmxTest.Commands.TestStructure
                 scenarioName);
         }
         
-        [Test] //[Test(Description="The -Name parameter test: simple name and simple suite name")]
-        [Category("Slow")]
-        [Category("ScenarioLevel")]
-        [Category("Add_TmxTestScenario")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Name parameter test: simple name and simple suite name")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ScenarioLevel")]
+        [MbUnit.Framework.Category("Add_TmxTestScenario")]
         public void TestPrm_Name_TestSuiteName_Simple()
         {
             string suiteName = "suite2";
@@ -128,10 +128,10 @@ namespace TmxTest.Commands.TestStructure
                 scenarioName);
         }
         
-        [Test] //[Test(Description="The -Name parameter test: complex name and complex suite name")]
-        [Category("Slow")]
-        [Category("ScenarioLevel")]
-        [Category("Add_TmxTestScenario")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Name parameter test: complex name and complex suite name")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ScenarioLevel")]
+        [MbUnit.Framework.Category("Add_TmxTestScenario")]
         public void TestPrm_Name_TestSuiteName_Complex()
         {
             string suiteName = @"suite%%`2  2";
@@ -150,10 +150,10 @@ namespace TmxTest.Commands.TestStructure
                 scenarioName);
         }
         
-        [Test] //[Test(Description="The -Name parameter test: simple name and simple suite id")]
-        [Category("Slow")]
-        [Category("ScenarioLevel")]
-        [Category("Add_TmxTestScenario")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Name parameter test: simple name and simple suite id")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ScenarioLevel")]
+        [MbUnit.Framework.Category("Add_TmxTestScenario")]
         public void TestPrm_Name_TestSuiteId_Simple()
         {
             string suiteName = "suite2";
@@ -175,10 +175,10 @@ namespace TmxTest.Commands.TestStructure
                 scenarioName);
         }
         
-        [Test] //[Test(Description="The -Name parameter test: complex name and complex suite id")]
-        [Category("Slow")]
-        [Category("ScenarioLevel")]
-        [Category("Add_TmxTestScenario")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Name parameter test: complex name and complex suite id")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ScenarioLevel")]
+        [MbUnit.Framework.Category("Add_TmxTestScenario")]
         public void TestPrm_Name_TestSuiteId_Complex()
         {
             string suiteName = @"suite%%`2  2";
@@ -200,10 +200,10 @@ namespace TmxTest.Commands.TestStructure
                 scenarioName);
         }
         
-        [Test] //[Test(Description="The -Name parameter test: simple name, simple suite name, and simple suite id")]
-        [Category("Slow")]
-        [Category("ScenarioLevel")]
-        [Category("Add_TmxTestScenario")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Name parameter test: simple name, simple suite name, and simple suite id")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ScenarioLevel")]
+        [MbUnit.Framework.Category("Add_TmxTestScenario")]
         public void TestPrm_Name_TestSuiteName_TestSuiteId_Simple()
         {
             string suiteName = "suite2";
@@ -227,10 +227,10 @@ namespace TmxTest.Commands.TestStructure
                 scenarioName);
         }
         
-        [Test] //[Test(Description="The -Name parameter test: complex name, complex suite name, and complex suite id")]
-        [Category("Slow")]
-        [Category("ScenarioLevel")]
-        [Category("Add_TmxTestScenario")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Name parameter test: complex name, complex suite name, and complex suite id")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ScenarioLevel")]
+        [MbUnit.Framework.Category("Add_TmxTestScenario")]
         public void TestPrm_Name_TestSuiteName_TestSuiteId_Complex()
         {
             string suiteName = @"suite%%`2  2";
@@ -254,11 +254,12 @@ namespace TmxTest.Commands.TestStructure
                 scenarioName);
         }
 
-        [Test] //[Test(Description="The -Description parameter test 1")]
-        [Category("Slow")]
-        [Category("ScenarioLevel")]
-        [Category("Add_TmxTestScenario")]
-        [Ignore("This code never worked before. 20130207")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Description parameter test 1")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ScenarioLevel")]
+        [MbUnit.Framework.Category("Add_TmxTestScenario")]
+        [MbUnit.Framework.Ignore("This code never worked before. 20130207")]
+        [NUnit.Framework.Ignore("This code never worked before. 20130207")]
         public void TestPrm_Name_Description1()
         {
             string testScenarioDescription = "";
@@ -274,10 +275,10 @@ namespace TmxTest.Commands.TestStructure
                 "Object reference not set to an instance of an object.");
         }
         
-        [Test] //[Test(Description="The -Description parameter test 2")]
-        [Category("Slow")]
-        [Category("ScenarioLevel")]
-        [Category("Add_TmxTestScenario")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Description parameter test 2")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ScenarioLevel")]
+        [MbUnit.Framework.Category("Add_TmxTestScenario")]
         public void TestPrm_Name_Description2()
         {
             string testScenarioDescription = "test scenario description";
@@ -290,10 +291,10 @@ namespace TmxTest.Commands.TestStructure
                 testScenarioDescription);
         }
         
-        [Test] //[Test(Description="The -Description parameter test 3")]
-        [Category("Slow")]
-        [Category("ScenarioLevel")]
-        [Category("Add_TmxTestScenario")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Description parameter test 3")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ScenarioLevel")]
+        [MbUnit.Framework.Category("Add_TmxTestScenario")]
         public void TestPrm_Name_Description3()
         {
             string testScenarioDescription = @"test \\scenario `r`ndescription ...";
@@ -306,10 +307,10 @@ namespace TmxTest.Commands.TestStructure
                 testScenarioDescription);
         }
         
-        [Test] //[Test(Description="The SuiteId assignment test")]
-        [Category("Slow")]
-        [Category("ScenarioLevel")]
-        [Category("Add_TmxTestScenario")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The SuiteId assignment test")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ScenarioLevel")]
+        [MbUnit.Framework.Category("Add_TmxTestScenario")]
         public void TestProperty_SuiteId()
         {
             string suiteName = "suite1";
@@ -326,7 +327,7 @@ namespace TmxTest.Commands.TestStructure
                 suiteId);
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

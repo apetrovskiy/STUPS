@@ -10,35 +10,35 @@
 namespace TmxUnitTests.Commands.TestStructure
 {
     using System;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using PSTestLib;
     using TMX;
     
     /// <summary>
     /// Description of AddTmxTestResultDetailCommandTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class AddTmxTestResultDetailCommandTestFixture
     {
         public AddTmxTestResultDetailCommandTestFixture()
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             UnitTestingHelper.PrepareUnitTestDataStore();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
         }
         
-        [Test]
-        [Description("Add-TmxTestResultDetail")]
-        [Category("Fast")]
-        [Ignore]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Description("Add-TmxTestResultDetail")]
+        [MbUnit.Framework.Category("Fast")]
+        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
         public void Need_Code()
         {
             

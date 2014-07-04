@@ -10,28 +10,29 @@
 namespace TmxTest.Commands.Repository
 {
     using System;
-    using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework; // using MbUnit.Framework;using NUnit.Framework;
     
     /// <summary>
     /// Description of AddTmxTestBucketCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description=" test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description=" test")]
     public class AddTmxTestBucketCommandTestFixture
     {
         public AddTmxTestBucketCommandTestFixture()
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="The Add-TmxTestBucket test")]
-        [Category("Slow")]
-        [Category("Add_TmxTestBucket")]
-        [Ignore("Not implemented yet")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The Add-TmxTestBucket test")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("Add_TmxTestBucket")]
+        [MbUnit.Framework.Ignore("Not implemented yet")]
+        [NUnit.Framework.Ignore("Not implemented yet")]
         public void AddTestBucket_Simple()
         {
             string fileName = @".\test.db3";
@@ -50,7 +51,7 @@ namespace TmxTest.Commands.Repository
                 @"';");
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

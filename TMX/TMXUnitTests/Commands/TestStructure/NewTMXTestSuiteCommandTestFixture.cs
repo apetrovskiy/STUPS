@@ -10,7 +10,7 @@
 namespace TmxUnitTests.Commands.TestStructure
 {
     using System;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using PSTestLib;
     using TMX;
 	using TMX.Interfaces;
@@ -18,95 +18,95 @@ namespace TmxUnitTests.Commands.TestStructure
     /// <summary>
     /// Description of NewTmxTestSuiteCommandTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class NewTmxTestSuiteCommandTestFixture
     {
         public NewTmxTestSuiteCommandTestFixture()
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             UnitTestingHelper.PrepareUnitTestDataStore();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
         }
         
-        [Test]
-        [Description("New-TmxTestSuite -Name name")]
-        [Category("Fast")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Description("New-TmxTestSuite -Name name")]
+        [MbUnit.Framework.Category("Fast")]
         public void NewTestSuite_Name()
         {
             string expectedResultName = "suite name";
             UnitTestingHelper.GetNewTestSuite(expectedResultName, string.Empty, string.Empty);
-            Assert.AreEqual(
+            MbUnit.Framework.Assert.AreEqual(
                 expectedResultName,
                 ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
         }
         
-        [Test]
-        [Description("New-TmxTestSuite -Name name -Description description")]
-        [Category("Fast")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Description("New-TmxTestSuite -Name name -Description description")]
+        [MbUnit.Framework.Category("Fast")]
         public void NewTestSuite_Name_Description()
         {
             string expectedResultName = "suite name";
             string expectedResultDescr = "descr";
             UnitTestingHelper.GetNewTestSuite(expectedResultName, string.Empty, expectedResultDescr);
-            Assert.AreEqual(
+            MbUnit.Framework.Assert.AreEqual(
                 expectedResultName,
                 ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
             
-            Assert.AreEqual(
+            MbUnit.Framework.Assert.AreEqual(
                 expectedResultDescr,
                 ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Description);
         }
         
-        [Test]
-        [Description("New-TmxTestSuite -Name name -Id id")]
-        [Category("Fast")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Description("New-TmxTestSuite -Name name -Id id")]
+        [MbUnit.Framework.Category("Fast")]
         public void NewTestSuite_Name_Id()
         {
             string expectedResultName = "suite name";
             string expectedResultId = "suite id";
             UnitTestingHelper.GetNewTestSuite(expectedResultName, expectedResultId, string.Empty);
-            Assert.AreEqual(
+            MbUnit.Framework.Assert.AreEqual(
                 expectedResultName,
                 ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
             
-            Assert.AreEqual(
+            MbUnit.Framework.Assert.AreEqual(
                 expectedResultId,
                 ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Id);
         }
         
-        [Test]
-        [Description("New-TmxTestSuite -Name name -Id id -Description description")]
-        [Category("Fast")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Description("New-TmxTestSuite -Name name -Id id -Description description")]
+        [MbUnit.Framework.Category("Fast")]
         public void NewTestSuite_Name_Id_Description()
         {
             string expectedResultName = "suite name";
             string expectedResultId = "suite id";
             string expectedResultDescr = "descr";
             UnitTestingHelper.GetNewTestSuite(expectedResultName, expectedResultId, expectedResultDescr);
-            Assert.AreEqual(
+            MbUnit.Framework.Assert.AreEqual(
                 expectedResultName,
                 ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
             
-            Assert.AreEqual(
+            MbUnit.Framework.Assert.AreEqual(
                 expectedResultId,
                 ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Id);
             
-            Assert.AreEqual(
+            MbUnit.Framework.Assert.AreEqual(
                 expectedResultDescr,
                 ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Description);
         }
         
-        [Test]
-        [Description("New-TmxTestSuite -Name name; New-TmxTestSuite -Name name")]
-        [Category("Fast")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Description("New-TmxTestSuite -Name name; New-TmxTestSuite -Name name")]
+        [MbUnit.Framework.Category("Fast")]
         /// <summary>
         /// Allows duplicated names if ids are generated.
         /// </summary>
@@ -117,19 +117,19 @@ namespace TmxUnitTests.Commands.TestStructure
             UnitTestingHelper.GetNewTestSuite(expectedResultName, string.Empty, string.Empty);
             
             // checks the first test suite
-            Assert.AreEqual(
+            MbUnit.Framework.Assert.AreEqual(
                 expectedResultName,
                 ((ITestSuite)(object)PSTestLib.UnitTestOutput.PreviousOutput[0]).Name);
             
             // checks the second test suite
-            Assert.AreEqual(
+            MbUnit.Framework.Assert.AreEqual(
                 expectedResultName,
                 ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
         }
         
-        [Test]
-        [Description("New-TmxTestSuite -Name name -Id id; New-TmxTestSuite -Name name -Id id")]
-        [Category("Fast")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Description("New-TmxTestSuite -Name name -Id id; New-TmxTestSuite -Name name -Id id")]
+        [MbUnit.Framework.Category("Fast")]
         /// <summary>
         /// Disallows duplicated names if ids are the same.
         /// </summary>
@@ -143,7 +143,7 @@ namespace TmxUnitTests.Commands.TestStructure
 Console.WriteLine("00000000000000003");
             
             // checks the first test suite
-            Assert.AreEqual(
+            MbUnit.Framework.Assert.AreEqual(
                 expectedResultName,
                 //((ITestSuite)CommonCmdletBase.UnitTestOutput[CommonCmdletBase.UnitTestOutput.Count - 1]).Name);
                 ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
@@ -152,14 +152,14 @@ Console.WriteLine("00000000000000004");
             
             // checks how many test suites
             Console.WriteLine("Output in the UnitTestOutput object");
-            Assert.AreEqual( // this is a technical solution
+            MbUnit.Framework.Assert.AreEqual( // this is a technical solution
                 1,
                 PSTestLib.UnitTestOutput.Count);
             
 Console.WriteLine("00000000000000005");
             
             Console.WriteLine("Test Suites counter");
-            Assert.AreEqual( // this is a logical solution
+            MbUnit.Framework.Assert.AreEqual( // this is a logical solution
                 1,
                 TMX.TestData.TestSuites.Count);
         }

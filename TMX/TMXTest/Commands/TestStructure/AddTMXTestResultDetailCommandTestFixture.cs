@@ -10,28 +10,28 @@
 namespace TmxTest.Commands.TestStructure
 {
     using System;
-    using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework; // using MbUnit.Framework;using NUnit.Framework;
     
     /// <summary>
     /// Description of AddTmxTestResultDetailCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Add-TmxTestResultDetail test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="Add-TmxTestResultDetail test")]
     public class AddTmxTestResultDetailCommandTestFixture
     {
         public AddTmxTestResultDetailCommandTestFixture()
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="The -TestResultDetail parameter test: simple string")]
-        [Category("Slow")]
-        [Category("TestResultDetailLevel")]
-        [Category("Add_TmxTestResultDetail")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -TestResultDetail parameter test: simple string")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultDetailLevel")]
+        [MbUnit.Framework.Category("Add_TmxTestResultDetail")]
         public void TestPrm_TestResultDetail_Simple()
         {
             string testResultDetail = "detail";
@@ -43,10 +43,10 @@ namespace TmxTest.Commands.TestStructure
                 testResultDetail);
         }
         
-        [Test] //[Test(Description="The -TestResultDetail parameter test: complex string")]
-        [Category("Slow")]
-        [Category("TestResultDetailLevel")]
-        [Category("Add_TmxTestResultDetail")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -TestResultDetail parameter test: complex string")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultDetailLevel")]
+        [MbUnit.Framework.Category("Add_TmxTestResultDetail")]
         public void TestPrm_TestResultDetail_Complex()
         {
             string testResultDetail = @"""\\d//e::t`'`'a`""i`""l`<`<`>`>""";
@@ -58,10 +58,10 @@ namespace TmxTest.Commands.TestStructure
                 @"\\d//e::t''a""i""l<<>>");
         }
         
-        [Test] //[Test(Description="The -Echo parameter test: simple string")]
-        [Category("Slow")]
-        [Category("TestResultDetailLevel")]
-        [Category("Add_TmxTestResultDetail")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Echo parameter test: simple string")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultDetailLevel")]
+        [MbUnit.Framework.Category("Add_TmxTestResultDetail")]
         public void TestPrm_Echo_Simple()
         {
             string testResultDetail = "detail";
@@ -73,10 +73,10 @@ namespace TmxTest.Commands.TestStructure
                 testResultDetail);
         }
         
-        [Test] //[Test(Description="The -Echo parameter test: complex string")]
-        [Category("Slow")]
-        [Category("TestResultDetailLevel")]
-        [Category("Add_TmxTestResultDetail")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Echo parameter test: complex string")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultDetailLevel")]
+        [MbUnit.Framework.Category("Add_TmxTestResultDetail")]
         public void TestPrm_Echo_Complex()
         {
             string testResultDetail = @"""\\d//e::t`'`'a`""i`""l`<`<`>`>""";
@@ -88,7 +88,7 @@ namespace TmxTest.Commands.TestStructure
                 @"\\d//e::t''a""i""l<<>>");
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

@@ -10,35 +10,35 @@
 namespace TmxTest.Commands.TestStructure
 {
     using System;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using TMX;
     
     /// <summary>
     /// Description of AddTmxSimpleTestResultCommandTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class AddTmxSimpleTestResultCommandTestFixture
     {
         public AddTmxSimpleTestResultCommandTestFixture()
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Add-TmxSimpleTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Add-TmxSimpleTestResult")]
         public void SetCurrentTestResult_Passed_AddSimpleTestResult_Passed()
         {
             string suiteName = @"suite1";
@@ -60,10 +60,10 @@ namespace TmxTest.Commands.TestStructure
                 TMX.TestData.TestStatePassed);
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Add-TmxSimpleTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Add-TmxSimpleTestResult")]
         public void SetCurrentTestResult_Passed_AddSimpleTestResult_Failed()
         {
             string suiteName = @"suite1";
@@ -85,10 +85,10 @@ namespace TmxTest.Commands.TestStructure
                 TMX.TestData.TestStateFailed);
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Add-TmxSimpleTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Add-TmxSimpleTestResult")]
         public void SetCurrentTestResult_Failed_AddSimpleTestResult_Passed()
         {
             string suiteName = @"suite1";
@@ -110,10 +110,10 @@ namespace TmxTest.Commands.TestStructure
                 TMX.TestData.TestStatePassed);
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Add-TmxSimpleTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Add-TmxSimpleTestResult")]
         public void SetCurrentTestResult_Failed_AddSimpleTestResult_Failed()
         {
             string suiteName = @"suite1";
@@ -135,10 +135,10 @@ namespace TmxTest.Commands.TestStructure
                 TMX.TestData.TestStateFailed);
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Add-TmxSimpleTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Add-TmxSimpleTestResult")]
         public void SetCurrentTestResult_Passed_AddSimpleTestResult_KnownIssue()
         {
             string suiteName = @"suite1";
@@ -160,10 +160,10 @@ namespace TmxTest.Commands.TestStructure
                 TMX.TestData.TestStateKnownIssue);
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Add-TmxSimpleTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Add-TmxSimpleTestResult")]
         public void SetCurrentTestResult_KnownIssue_AddSimpleTestResult_Passed()
         {
             string suiteName = @"suite1";
@@ -185,10 +185,10 @@ namespace TmxTest.Commands.TestStructure
                 TMX.TestData.TestStatePassed);
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Add-TmxSimpleTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Add-TmxSimpleTestResult")]
         public void SetCurrentTestResult_Failed_AddSimpleTestResult_KnownIssue()
         {
             string suiteName = @"suite1";
@@ -210,10 +210,10 @@ namespace TmxTest.Commands.TestStructure
                 TMX.TestData.TestStateKnownIssue);
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Add-TmxSimpleTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Add-TmxSimpleTestResult")]
         public void SetCurrentTestResult_KnownIssue_AddSimpleTestResult_Failed()
         {
             string suiteName = @"suite1";

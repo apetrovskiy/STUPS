@@ -10,36 +10,36 @@
 namespace TmxTest.Commands.TestStructure
 {
     using System;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using TMX;
     using TMX.Interfaces;
     
     /// <summary>
     /// Description of SetTmxCurrentTestResultCommandTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class SetTmxCurrentTestResultCommandTestFixture
     {
         public SetTmxCurrentTestResultCommandTestFixture()
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Set-TmxCurrentTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_Name()
         {
             string testResultName = "result1";
@@ -51,10 +51,10 @@ namespace TmxTest.Commands.TestStructure
                 testResultName);
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Set-TmxCurrentTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_Id()
         {
             string testResultId = "1";
@@ -66,10 +66,10 @@ namespace TmxTest.Commands.TestStructure
                 testResultId);
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Set-TmxCurrentTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_NameId_1()
         {
             string testResultName = "result1";
@@ -81,10 +81,10 @@ namespace TmxTest.Commands.TestStructure
                 testResultName);
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Set-TmxCurrentTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_NameId_2()
         {
             string testResultName = "result1";
@@ -99,10 +99,10 @@ namespace TmxTest.Commands.TestStructure
                 testResultId);
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Set-TmxCurrentTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_TestResultStatus()
         {
             string testResultName = "result1";
@@ -117,10 +117,10 @@ namespace TmxTest.Commands.TestStructure
         
         // ========== Statuses via TestResultDetail =====================
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Set-TmxCurrentTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_TestResultStatus_NotTested()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.NotTested;
@@ -131,10 +131,10 @@ namespace TmxTest.Commands.TestStructure
                 expectedTestResultStatus.ToString());
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Set-TmxCurrentTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_TestResultStatus_Passed()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.Passed;
@@ -145,10 +145,10 @@ namespace TmxTest.Commands.TestStructure
                 expectedTestResultStatus.ToString());
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Set-TmxCurrentTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_TestResultStatus_Failed()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
@@ -159,10 +159,10 @@ namespace TmxTest.Commands.TestStructure
                 expectedTestResultStatus.ToString());
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Set-TmxCurrentTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_TestResultStatus_KnownIssue()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.KnownIssue;
@@ -175,10 +175,10 @@ namespace TmxTest.Commands.TestStructure
         
         // ========== Statuses via closing test result =====================
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Set-TmxCurrentTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_CloseTmxTestResult_TestResultStatus_ImplicitlyFailed()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
@@ -191,10 +191,10 @@ namespace TmxTest.Commands.TestStructure
                 expectedTestResultStatus.ToString());
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Set-TmxCurrentTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_CloseTmxTestResult_TestResultStatus_Passed()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.Passed;
@@ -207,10 +207,10 @@ namespace TmxTest.Commands.TestStructure
                 expectedTestResultStatus.ToString());
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Set-TmxCurrentTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_CloseTmxTestResult_TestResultStatus_Failed()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
@@ -223,10 +223,10 @@ namespace TmxTest.Commands.TestStructure
                 expectedTestResultStatus.ToString());
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Set-TmxCurrentTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_CloseTmxTestResult_TestResultStatus_KnownIssue()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.KnownIssue;
@@ -241,10 +241,10 @@ namespace TmxTest.Commands.TestStructure
         
         // ========== Statuses via TestResultdetail and closing test result =====================
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Set-TmxCurrentTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_NotTested_Passed()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.Passed;
@@ -256,10 +256,10 @@ namespace TmxTest.Commands.TestStructure
                 expectedTestResultStatus.ToString());
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Set-TmxCurrentTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_NotTested_Failed()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
@@ -271,10 +271,10 @@ namespace TmxTest.Commands.TestStructure
                 expectedTestResultStatus.ToString());
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Set-TmxCurrentTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_NotTested_KnownIssue()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.KnownIssue;
@@ -286,10 +286,10 @@ namespace TmxTest.Commands.TestStructure
                 expectedTestResultStatus.ToString());
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Set-TmxCurrentTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_Passed_Passed()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.Passed;
@@ -301,10 +301,10 @@ namespace TmxTest.Commands.TestStructure
                 expectedTestResultStatus.ToString());
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Set-TmxCurrentTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_Passed_Failed()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
@@ -316,10 +316,10 @@ namespace TmxTest.Commands.TestStructure
                 expectedTestResultStatus.ToString());
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Set-TmxCurrentTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_Passed_KnownIssue()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.KnownIssue;
@@ -331,10 +331,10 @@ namespace TmxTest.Commands.TestStructure
                 expectedTestResultStatus.ToString());
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Set-TmxCurrentTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_Failed_Passed()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.Passed;
@@ -346,10 +346,10 @@ namespace TmxTest.Commands.TestStructure
                 expectedTestResultStatus.ToString());
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Set-TmxCurrentTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_Failed_Failed()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
@@ -361,10 +361,10 @@ namespace TmxTest.Commands.TestStructure
                 expectedTestResultStatus.ToString());
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Set-TmxCurrentTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_Failed_KnownIssue()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.KnownIssue;
@@ -376,10 +376,10 @@ namespace TmxTest.Commands.TestStructure
                 expectedTestResultStatus.ToString());
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Set-TmxCurrentTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_KnownIssue_Passed()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.Passed;
@@ -391,10 +391,10 @@ namespace TmxTest.Commands.TestStructure
                 expectedTestResultStatus.ToString());
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Set-TmxCurrentTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_KnownIssue_Failed()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
@@ -406,10 +406,10 @@ namespace TmxTest.Commands.TestStructure
                 expectedTestResultStatus.ToString());
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Set-TmxCurrentTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_KnownIssue_KnownIssue()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.KnownIssue;
@@ -423,10 +423,10 @@ namespace TmxTest.Commands.TestStructure
         
         // ========== Statuses via TestResultdetail and setting a new test result =====================
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Set-TmxCurrentTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         // 20130408
         //public void SetTmxCurrentTestResult_AddTmxTestResultDetail_SetTmxCurrentTestResult_TestResultStatus_ImplicitlyFailed()
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_SetTmxCurrentTestResult_TestResultStatus_NotTested()
@@ -442,10 +442,10 @@ namespace TmxTest.Commands.TestStructure
                 expectedTestResultStatus.ToString());
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Set-TmxCurrentTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_SetTmxCurrentTestResult_TestResultStatus_Passed()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.Passed;
@@ -457,10 +457,10 @@ namespace TmxTest.Commands.TestStructure
                 expectedTestResultStatus.ToString());
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Set-TmxCurrentTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_SetTmxCurrentTestResult_TestResultStatus_Failed()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
@@ -472,10 +472,10 @@ namespace TmxTest.Commands.TestStructure
                 expectedTestResultStatus.ToString());
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("TestResultLevel")]
-        [Category("Set-TmxCurrentTestResult")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("TestResultLevel")]
+        [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_SetTmxCurrentTestResult_TestResultStatus_KnownIssue()
         {
             TestResultStatuses expectedTestResultStatus = TestResultStatuses.KnownIssue;

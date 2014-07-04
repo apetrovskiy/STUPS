@@ -10,28 +10,28 @@
 namespace TmxTest.Commands.TestStructure
 {
     using System;
-    using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework; // using MbUnit.Framework;using NUnit.Framework;
     
     /// <summary>
     /// Description of OpenTmxTestSuiteCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Open-TmxTestSuite test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="Open-TmxTestSuite test")]
     public class OpenTmxTestSuiteCommandTestFixture
     {
         public OpenTmxTestSuiteCommandTestFixture()
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="The -Name parameter test: simple name")]
-        [Category("Slow")]
-        [Category("SuiteLevel")]
-        [Category("Open_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Name parameter test: simple name")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Open_TmxTestSuite")]
         public void TestPrm_Name_Simple()
         {
             string name = "suite1";
@@ -45,10 +45,10 @@ namespace TmxTest.Commands.TestStructure
                 name);
         }
         
-        [Test] //[Test(Description="The -Name parameter test: complex name")]
-        [Category("Slow")]
-        [Category("SuiteLevel")]
-        [Category("Open_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Name parameter test: complex name")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Open_TmxTestSuite")]
         public void TestPrm_Name_Complex()
         {
             string name = "suite%%`1  1";
@@ -62,10 +62,10 @@ namespace TmxTest.Commands.TestStructure
                 name);
         }
         
-        [Test] //[Test(Description="The -Id parameter test: simple name and Id")]
-        [Category("Slow")]
-        [Category("SuiteLevel")]
-        [Category("Open_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Id parameter test: simple name and Id")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Open_TmxTestSuite")]
         public void TestPrm_Name_Id_Numeric()
         {
             string name = "suite1";
@@ -94,10 +94,10 @@ namespace TmxTest.Commands.TestStructure
                 "suite1");
         }
         
-        [Test] //[Test(Description="The -Id parameter test: simple name and complex Id")]
-        [Category("Slow")]
-        [Category("SuiteLevel")]
-        [Category("Open_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Id parameter test: simple name and complex Id")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Open_TmxTestSuite")]
         public void TestPrm_Name_Id_Alphanumeric()
         {
             string name = "suite1";
@@ -123,10 +123,10 @@ namespace TmxTest.Commands.TestStructure
                 id);
         }
         
-        [Test] //[Test(Description="The -Name parameter test: take by name from a bunch")]
-        [Category("Slow")]
-        [Category("SuiteLevel")]
-        [Category("Open_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Name parameter test: take by name from a bunch")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Open_TmxTestSuite")]
         public void TestPrm_Name_againts_bunch()
         {
             string name = "abc3";
@@ -144,10 +144,10 @@ namespace TmxTest.Commands.TestStructure
                 name);
         }
         
-        [Test] //[Test(Description="The -Id parameter test: take by name from a bunch")]
-        [Category("Slow")]
-        [Category("SuiteLevel")]
-        [Category("Open_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The -Id parameter test: take by name from a bunch")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Open_TmxTestSuite")]
         public void TestPrm_Id_againts_bunch()
         {
             string name = "abc3";
@@ -170,10 +170,10 @@ namespace TmxTest.Commands.TestStructure
         
         // ============================================================================================================
         
-        [Test]
-        [Category("Slow")]
-        [Category("SuiteLevel")]
-        [Category("Open_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Open_TmxTestSuite")]
         public void SetCurrentTestResult_Passed_OpenTestSuite()
         {
             string suiteName1 = @"suite1";
@@ -200,10 +200,10 @@ namespace TmxTest.Commands.TestStructure
                 TMX.TestData.TestStatePassed);
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("SuiteLevel")]
-        [Category("Open_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Open_TmxTestSuite")]
         public void SetCurrentTestResult_Failed_OpenTestSuite()
         {
             string suiteName1 = @"suite1";
@@ -230,10 +230,10 @@ namespace TmxTest.Commands.TestStructure
                 TMX.TestData.TestStateFailed);
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("SuiteLevel")]
-        [Category("Open_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Open_TmxTestSuite")]
         public void SetCurrentTestResult_KnownIssue_OpenTestSuite()
         {
             string suiteName1 = @"suite1";
@@ -260,10 +260,10 @@ namespace TmxTest.Commands.TestStructure
                 TMX.TestData.TestStateKnownIssue);
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("SuiteLevel")]
-        [Category("Open_TmxTestSuite")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("SuiteLevel")]
+        [MbUnit.Framework.Category("Open_TmxTestSuite")]
         public void SetCurrentTestResult_NotTested_OpenTestSuite()
         {
             string suiteName1 = @"suite1";
@@ -290,7 +290,7 @@ namespace TmxTest.Commands.TestStructure
                 TMX.TestData.TestStateNotTested);
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

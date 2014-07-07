@@ -89,7 +89,7 @@
       <HintPath>..\..\..\..\Program Files\Gallio\bin\MbUnit.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>..\..\..\..\Program Files %28x86%29\NUnit 2.6.2\bin\nunit.framework.dll</HintPath>
+      <HintPath>..\..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -624,6 +624,9 @@
     <Folder Include="ParamChecks\Wait" />
     <Folder Include="ParamChecks\Wizard" />
     <Folder Include="ParamChecks\Wizard" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

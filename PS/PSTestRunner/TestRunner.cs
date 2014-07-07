@@ -24,7 +24,7 @@ namespace PSTestRunner
     {
         public static string ScriptPath { get; set; }
         public static string ScriptParameters { get; set; }
-        public static IO.StreamWriter testLogWriter = null;
+        public static System.IO.StreamWriter testLogWriter = null;
         
         public static bool InitScript()
         {

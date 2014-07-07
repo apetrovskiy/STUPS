@@ -10,31 +10,31 @@
 namespace UIAutomationTest.Helpers.ObjectModel
 {
     using System;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     using System.Windows.Automation;
     
     /// <summary>
     /// Description of ISupportsTogglePatternTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class ISupportsTogglePatternTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
             MiddleLevelCode.DisposeRunspace();
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("ISupportsToggle")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ISupportsToggle")]
         public void CheckBox_ToggleState_On()
         {
             const string expectedName = "chkboxName";
@@ -60,9 +60,9 @@ namespace UIAutomationTest.Helpers.ObjectModel
                 expectedResult.ToString());
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("ISupportsToggle")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ISupportsToggle")]
         public void CheckBox_ToggleState_Off()
         {
             const string expectedName = "chkboxName";

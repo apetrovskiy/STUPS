@@ -10,28 +10,28 @@
 namespace UIAutomationTest.Helpers.ObjectModel
 {
     using System;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
     /// Description of NoPatternsTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class NoPatternsTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
             MiddleLevelCode.DisposeRunspace();
         }
         
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void NoPatterns_ImplementsCommonPattern()
 //        {
 //            ISupportsInvokePattern invokableElement =

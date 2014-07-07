@@ -10,28 +10,28 @@
 namespace UIAutomationTest.Commands.Get
 {
     using System;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
     /// Description of GetUiaLabelCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Get-UiaLabelCommand test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="Get-UiaLabelCommand test")]
     public class GetUiaLabelCommandTestFixture
     {
         public GetUiaLabelCommandTestFixture()
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetLabelByAutomationIDTimeoutDefault()
         {
             string auId = "Label111";
@@ -52,9 +52,9 @@ namespace UIAutomationTest.Commands.Get
                 auId);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetLabelByAutomationIDTimeout2000()
         {
             string auId = "Label111";
@@ -75,9 +75,9 @@ namespace UIAutomationTest.Commands.Get
                 auId);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetLabelByAutomationIDTimeout3000Delay500()
         {
             string auId = "Label111";
@@ -98,9 +98,9 @@ namespace UIAutomationTest.Commands.Get
                 auId);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetLabelByAutomationIDTimeout2000Delay4000()
         {
             string auId = "Label111";
@@ -121,9 +121,9 @@ namespace UIAutomationTest.Commands.Get
                 auId);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetLabelByTitleTimeoutDefault()
         {
             string name = "Label222";
@@ -143,9 +143,9 @@ namespace UIAutomationTest.Commands.Get
                 name);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetLabelByTitleTimeout2000()
         {
             string name = "Label222";
@@ -165,9 +165,9 @@ namespace UIAutomationTest.Commands.Get
                 name);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetLabelByTitleTimeout3000Delay500()
         {
             string name = "Label222";
@@ -187,9 +187,9 @@ namespace UIAutomationTest.Commands.Get
                 name);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetLabelByTitleTimeout2000Delay4000()
         {
             string name = "Label222";
@@ -209,9 +209,9 @@ namespace UIAutomationTest.Commands.Get
                 name);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetLabelByControlTypeTimeoutDefault()
         {
             MiddleLevelCode.StartProcessWithFormAndControl(
@@ -228,9 +228,9 @@ namespace UIAutomationTest.Commands.Get
                 "ControlType.Text");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetLabelByControlTypeTimeout2000()
         {
             MiddleLevelCode.StartProcessWithFormAndControl(
@@ -247,9 +247,9 @@ namespace UIAutomationTest.Commands.Get
                 "ControlType.Text");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetLabelByControlTypeTimeout3000Delay500()
         {
             MiddleLevelCode.StartProcessWithFormAndControl(
@@ -266,9 +266,9 @@ namespace UIAutomationTest.Commands.Get
                 "ControlType.Text");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetLabelByControlTypeTimeout2000Delay4000()
         {
             MiddleLevelCode.StartProcessWithFormAndControl(
@@ -285,7 +285,7 @@ namespace UIAutomationTest.Commands.Get
                 "ControlType.Text");
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

@@ -11,24 +11,24 @@ namespace UIAutomationTest.Commands.Common
 {
     using System;
     using System.Windows.Automation;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
 
     /// <summary>
     /// Description of ReadUiaControlAutomationIdCommandTextFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Read-UiaControlAutomationIdCommand test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="Read-UiaControlAutomationIdCommand test")]
     public class ReadUiaControlAutomationIdCommandTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="InputObject ProcessRecord test Null via pipeline")]
-        [Category("Slow")]
-        [Category("NoForms")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="InputObject ProcessRecord test Null via pipeline")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("NoForms")]
         public void ReadUiaControlAutomationId_TestPipelineInput()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateIsTrue(
@@ -36,9 +36,9 @@ namespace UIAutomationTest.Commands.Common
                 "0");
         }
         
-        [Test] //[Test(Description="ProcessRecord test Null via parameter")]
-        [Category("Slow")]
-        [Category("NoForms")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="ProcessRecord test Null via parameter")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("NoForms")]
         public void ReadUiaControlAutomationId_TestParameterInputNull()
         {
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateIsNull(
@@ -54,9 +54,9 @@ namespace UIAutomationTest.Commands.Common
 //  ----> System.Management.Automation.ValidationMetadataException : The argument is null or empty. Supply an argument that is not null or empty and then try the command again.
         }
         
-        [Test] //[Test(Description="ProcessRecord test Is Not AutomationElement")]
-        [Category("Slow")]
-        [Category("NoForms")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="ProcessRecord test Is Not AutomationElement")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("NoForms")]
         public void ReadUiaControlAutomationId_TestParameterInputOtherType()
         {
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateIsNull(
@@ -73,11 +73,11 @@ namespace UIAutomationTest.Commands.Common
 //  ----> System.Management.Automation.PSInvalidCastException : Cannot convert the "System.Windows.Forms.Label, Text: " value of type "System.Windows.Forms.Label" to type "System.Windows.Automation.AutomationElement".
         }
         
-        [Test] //[Test(Description="ProcessRecord test Is AutomationElement")]
-        //[Category("Slow")][Category("NUnit")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="ProcessRecord test Is AutomationElement")]
+        //[MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("NUnit")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
         public void ReadUiaControlAutomationId_TestParameterInputControlWithAutomationId()
         {
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
@@ -104,7 +104,7 @@ namespace UIAutomationTest.Commands.Common
                 automationId);
         }
 
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

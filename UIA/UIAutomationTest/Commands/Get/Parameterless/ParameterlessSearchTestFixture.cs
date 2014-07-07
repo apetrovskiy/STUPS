@@ -10,7 +10,7 @@
 namespace UIAutomationTest.Commands.Get
 {
     using System;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
@@ -22,23 +22,23 @@ namespace UIAutomationTest.Commands.Get
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
-        [Category("Get_UiaControl")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
+        [MbUnit.Framework.Category("Get_UiaControl")]
         public void GetControl_X2_SearchInName_Timeout2000()
         {
             string expectedName = "my_name";
@@ -79,11 +79,11 @@ namespace UIAutomationTest.Commands.Get
                 "2");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
-        [Category("Get_UiaControl")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
+        [MbUnit.Framework.Category("Get_UiaControl")]
         public void GetControl_Win32_X2_SearchInName_Timeout2000()
         {
             string expectedName = "my_name";
@@ -124,11 +124,11 @@ namespace UIAutomationTest.Commands.Get
                 "2");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
-        [Category("Get_UiaControl")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
+        [MbUnit.Framework.Category("Get_UiaControl")]
         public void GetControl_X2_SearchInAutomationId_Timeout2000()
         {
             string expectedAuId = "myAuId";
@@ -169,11 +169,11 @@ namespace UIAutomationTest.Commands.Get
                 "2");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
-        [Category("Get_UiaControl")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
+        [MbUnit.Framework.Category("Get_UiaControl")]
         public void GetControl_Win32_X2_SearchInAutomationId_Timeout2000()
         {
             string expectedAuId = "myAuId";
@@ -214,11 +214,11 @@ namespace UIAutomationTest.Commands.Get
                 "2");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
-        [Category("Get_UiaControl")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
+        [MbUnit.Framework.Category("Get_UiaControl")]
         public void GetControl_X2_SearchInValue_Timeout2000()
         {
             string expectedValue = "my text";
@@ -265,11 +265,11 @@ namespace UIAutomationTest.Commands.Get
                 "2");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
-        [Category("Get_UiaControl")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
+        [MbUnit.Framework.Category("Get_UiaControl")]
         public void GetControl_Win32_X2_SearchInValue_Timeout2000()
         {
             string expectedValue = "my text";
@@ -316,11 +316,11 @@ namespace UIAutomationTest.Commands.Get
                 "2");
         }
         
-//        [Test] //[Test(Description="TBD")]
-//        [Category("Slow")]
-//        [Category("WinForms")]
-//        [Category("Control")]
-//        [Category("Get_UiaControl")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+//        [MbUnit.Framework.Category("Slow")]
+//        [MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Control")]
+//        [MbUnit.Framework.Category("Get_UiaControl")]
 //        public void GetControl_X2_SearchInClassName_Timeout2000()
 //        {
 //            string expectedClass = "button";
@@ -361,11 +361,11 @@ namespace UIAutomationTest.Commands.Get
 //                "2");
 //        }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
-        [Category("Get_UiaControl")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
+        [MbUnit.Framework.Category("Get_UiaControl")]
         public void GetControl_Win32_X2_SearchInClassName_Timeout2000()
         {
             string expectedClass = "button";
@@ -406,11 +406,11 @@ namespace UIAutomationTest.Commands.Get
                 "2");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
-        [Category("Get_UiaControl")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
+        [MbUnit.Framework.Category("Get_UiaControl")]
         public void GetControl_X2_SearchInNameAutomationId_Timeout2000()
         {
             string expectedName = "myName";
@@ -451,11 +451,11 @@ namespace UIAutomationTest.Commands.Get
                 "2");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
-        [Category("Get_UiaControl")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
+        [MbUnit.Framework.Category("Get_UiaControl")]
         public void GetControl_Win32_X2_SearchInNameAutomationId_Timeout2000()
         {
             string expectedName = "myName";
@@ -496,11 +496,11 @@ namespace UIAutomationTest.Commands.Get
                 "2");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
-        [Category("Get_UiaControl")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
+        [MbUnit.Framework.Category("Get_UiaControl")]
         public void GetControl_X2_SearchInNameClassName_Timeout2000()
         {
             string expectedClass = "button";
@@ -541,11 +541,11 @@ namespace UIAutomationTest.Commands.Get
                 "2");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
-        [Category("Get_UiaControl")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
+        [MbUnit.Framework.Category("Get_UiaControl")]
         public void GetControl_Win32_X2_SearchInNameClassName_Timeout2000()
         {
             string expectedClass = "button";
@@ -586,11 +586,11 @@ namespace UIAutomationTest.Commands.Get
                 "2");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
-        [Category("Get_UiaControl")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
+        [MbUnit.Framework.Category("Get_UiaControl")]
         public void GetControl_X2_SearchInAutomationIdClassName_Timeout2000()
         {
             string expectedClass = "button";
@@ -631,11 +631,11 @@ namespace UIAutomationTest.Commands.Get
                 "2");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
-        [Category("Get_UiaControl")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
+        [MbUnit.Framework.Category("Get_UiaControl")]
         public void GetControl_Win32_X2_SearchInAutomationIdClassName_Timeout2000()
         {
             string expectedClass = "button";

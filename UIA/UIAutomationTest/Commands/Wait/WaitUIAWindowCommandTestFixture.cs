@@ -11,30 +11,30 @@ namespace UIAutomationTest.Commands.Get
 {
     using System;
     using System.Diagnostics;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
 
     /// <summary>
     /// Description of WaitUiaWindowCommandTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class WaitUiaWindowCommandTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Wait-UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Wait-UiaWindow")]
         public void WaitWindow_ByProcessName_Timeout2000()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
@@ -46,10 +46,10 @@ namespace UIAutomationTest.Commands.Get
                 "True");
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Wait-UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Wait-UiaWindow")]
         public void WaitWindow_ByProcessName_Wrong_Timeout2000()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
@@ -59,10 +59,10 @@ namespace UIAutomationTest.Commands.Get
                 "False");
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Wait-UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Wait-UiaWindow")]
         public void WaitWindow_ByProcessId_Timeout2000()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
@@ -74,10 +74,10 @@ namespace UIAutomationTest.Commands.Get
                 "True");
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Wait-UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Wait-UiaWindow")]
         public void WaitWindow_ByProcessId_Wrong_Timeout2000()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);

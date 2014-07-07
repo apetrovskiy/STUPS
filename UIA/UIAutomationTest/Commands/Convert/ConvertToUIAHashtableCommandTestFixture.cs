@@ -10,13 +10,13 @@
 namespace UIAutomationTest.Commands.Convert
 {
     using System;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
 
     /// <summary>
     /// Description of ConvertToUiaHashtableCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="ConvertTo-UiaHashtable test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="ConvertTo-UiaHashtable test")]
     public class ConvertToUiaHashtableCommandTestFixture
     {
         /// <summary>
@@ -25,17 +25,17 @@ namespace UIAutomationTest.Commands.Convert
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
-        [Category("ConvertTo_UiaHashtable")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
+        [MbUnit.Framework.Category("ConvertTo_UiaHashtable")]
         public void ConvertToHashtable_AutomationId()
         {
             string auId = "Button111";
@@ -58,11 +58,11 @@ namespace UIAutomationTest.Commands.Convert
                 auId);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
-        [Category("ConvertTo_UiaHashtable")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
+        [MbUnit.Framework.Category("ConvertTo_UiaHashtable")]
         public void ConvertToHashtable_Name()
         {
             string auId = "Button111";
@@ -110,11 +110,11 @@ namespace UIAutomationTest.Commands.Convert
 //IsControlElement               True
 //Orientation                    None
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
-        [Category("ConvertTo_UiaHashtable")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
+        [MbUnit.Framework.Category("ConvertTo_UiaHashtable")]
         public void ConvertToHashtable_IsEnabled()
         {
             string auId = "Button111";
@@ -139,11 +139,11 @@ namespace UIAutomationTest.Commands.Convert
                 isEnabled);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
-        [Category("ConvertTo_UiaHashtable")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
+        [MbUnit.Framework.Category("ConvertTo_UiaHashtable")]
         public void ConvertToHashtable_ControlType()
         {
             string auId = "Button111";
@@ -168,11 +168,11 @@ namespace UIAutomationTest.Commands.Convert
                 controlType);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
-        [Category("ConvertTo_UiaHashtable")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
+        [MbUnit.Framework.Category("ConvertTo_UiaHashtable")]
         public void ConvertToHashtable_ProcessId()
         {
             string auId = "Button111";
@@ -199,7 +199,7 @@ namespace UIAutomationTest.Commands.Convert
                 processId);
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();
@@ -209,7 +209,7 @@ namespace UIAutomationTest.Commands.Convert
     /// <summary>
     /// Description of ConvertToUiaSearchCriteriaCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="ConvertTo-UiaSearchCriteria test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="ConvertTo-UiaSearchCriteria test")]
     public class ConvertToUiaSearchCriteriaCommandTestFixture
     {
         /// <summary>
@@ -218,17 +218,17 @@ namespace UIAutomationTest.Commands.Convert
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
-        [Category("ConvertTo_UiaSearchCriteria")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
+        [MbUnit.Framework.Category("ConvertTo_UiaSearchCriteria")]
         public void ConvertToSearchCriteria_Default_AutomationId()
         {
             string auId = "Button111";
@@ -252,11 +252,11 @@ namespace UIAutomationTest.Commands.Convert
                 result);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
-        [Category("ConvertTo_UiaSearchCriteria")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
+        [MbUnit.Framework.Category("ConvertTo_UiaSearchCriteria")]
         public void ConvertToSearchCriteria_Default_Name()
         {
             string auId = "Button111";
@@ -281,11 +281,11 @@ namespace UIAutomationTest.Commands.Convert
                 result);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
-        [Category("ConvertTo_UiaSearchCriteria")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
+        [MbUnit.Framework.Category("ConvertTo_UiaSearchCriteria")]
         public void ConvertToSearchCriteria_Default_ControlType()
         {
             string auId = "Button111";
@@ -311,11 +311,11 @@ namespace UIAutomationTest.Commands.Convert
                 result);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
-        [Category("ConvertTo_UiaSearchCriteria")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
+        [MbUnit.Framework.Category("ConvertTo_UiaSearchCriteria")]
         public void ConvertToSearchCriteria_Include_IsEnabled()
         {
             string auId = "Button111";
@@ -341,11 +341,11 @@ namespace UIAutomationTest.Commands.Convert
                 result);
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
-        [Category("ConvertTo_UiaSearchCriteria")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
+        [MbUnit.Framework.Category("ConvertTo_UiaSearchCriteria")]
         public void ConvertToSearchCriteria_Exclude_ControlType()
         {
             string auId = "Button111";
@@ -371,11 +371,11 @@ namespace UIAutomationTest.Commands.Convert
                 result);
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
-        [Category("ConvertTo_UiaSearchCriteria")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
+        [MbUnit.Framework.Category("ConvertTo_UiaSearchCriteria")]
         public void ConvertToSearchCriteria_ProcessId()
         {
             string auId = "Button111";
@@ -403,7 +403,7 @@ namespace UIAutomationTest.Commands.Convert
                 result);
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

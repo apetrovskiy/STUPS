@@ -10,20 +10,20 @@
 namespace UIAutomationTest.Commands.Event
 {
     using System;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
     /// Description of RegisterUiaMenuClosedEventCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="1")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="1")]
     public class RegisterUiaMenuClosedEventCommandTestFixture
     {
         public RegisterUiaMenuClosedEventCommandTestFixture()
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
@@ -33,12 +33,12 @@ namespace UIAutomationTest.Commands.Event
                 @"[void]([UIAutomation.Preferences]::Timeout = 15000);");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
-        [Category("Event")]
-        [Category("Register_UiaMenuClosedEvent")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
+        [MbUnit.Framework.Category("Event")]
+        [MbUnit.Framework.Category("Register_UiaMenuClosedEvent")]
         public void RegisterMenuClosedEvent()
         {
             //string name = "FileDropDown";
@@ -67,7 +67,7 @@ namespace UIAutomationTest.Commands.Event
                 eventType);
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

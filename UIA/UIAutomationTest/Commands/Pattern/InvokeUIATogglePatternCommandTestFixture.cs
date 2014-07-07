@@ -10,20 +10,20 @@
 namespace UIAutomationTest.Commands.Pattern
 {
     using System;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
 
     /// <summary>
     /// Description of InvokeUiaTogglePatternCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Invoke-UiaTogglePatternCommand test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="Invoke-UiaTogglePatternCommand test")]
     public class InvokeUiaTogglePatternCommandTestFixture
     {
         public InvokeUiaTogglePatternCommandTestFixture()
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
@@ -35,9 +35,9 @@ namespace UIAutomationTest.Commands.Pattern
     // Button
     
     // CheckBox
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void Invoke_CheckBox_Toggle1()
         {
             string expectedResult = "Checked";
@@ -56,9 +56,9 @@ namespace UIAutomationTest.Commands.Pattern
                 " | Read-UiaControlName;",
                 expectedResult);
         }
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void Invoke_CheckBox_Toggle2()
         {
             string expectedResult = "Unchecked";
@@ -83,9 +83,9 @@ namespace UIAutomationTest.Commands.Pattern
     
     
     // ListItem
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void Invoke_ListItem_Toggle1()
         {
             string expectedResult = "SelectedIndexChanged";
@@ -105,9 +105,9 @@ namespace UIAutomationTest.Commands.Pattern
                 " | Read-UiaControlName;",
                 expectedResult);
         }
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void Invoke_ListItem_Toggle2()
         {
             string expectedResult = "SelectedIndexChanged";
@@ -133,7 +133,7 @@ namespace UIAutomationTest.Commands.Pattern
         
         
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

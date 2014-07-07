@@ -18,24 +18,19 @@ namespace PSTestRunner
     //using System.Threading;
     
     /// <summary>
-    /// Description of CPSRunner.
+    /// Description of TestRunner.
     /// </summary>
     public static class TestRunner
     {
-//        public CPSRunner()
-//        {
-//        }
-        
         public static string ScriptPath { get; set; }
         public static string ScriptParameters { get; set; }
-        public static System.IO.StreamWriter testLogWriter = null;
+        public static IO.StreamWriter testLogWriter = null;
         
         public static bool InitScript()
-        //public static void InitScript()
         {
             bool result = false;
             
-            string currDir = System.Environment.CurrentDirectory;
+            string currDir = Environment.CurrentDirectory;
 
             // load the binaries and initialization script
             string strUIAutomationPath = 

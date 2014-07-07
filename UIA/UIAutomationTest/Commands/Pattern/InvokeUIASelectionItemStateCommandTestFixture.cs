@@ -10,28 +10,28 @@
 namespace UIAutomationTest.Commands.Pattern
 {
     using System;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
     /// Description of InvokeUiaSelectionItemStateCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Invoke-UiaSelectionItemStateCommand test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="Invoke-UiaSelectionItemStateCommand test")]
     public class InvokeUiaSelectionItemStateCommandTestFixture
     {
         public InvokeUiaSelectionItemStateCommandTestFixture()
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         // the same as InvokeSelectItem_RadioButton()
         public void InvokeSelectionItemState_RadioButton()
         {
@@ -74,7 +74,7 @@ namespace UIAutomationTest.Commands.Pattern
                 expectedResult);
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

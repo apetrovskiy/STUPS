@@ -10,28 +10,28 @@
 namespace UIAutomationTest.Commands.Get
 {
     using System;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
     /// Description of GetUiaDocumentCommandTextFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Get-UiaDocumentCommand test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="Get-UiaDocumentCommand test")]
     public class GetUiaDocumentCommandTextFixture
     {
         public GetUiaDocumentCommandTextFixture()
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetDocumentByAutomationIDTimeoutDefault()
         {
             string auId = "Document111";
@@ -52,9 +52,9 @@ namespace UIAutomationTest.Commands.Get
                 auId);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetDocumentByAutomationIDTimeout2000()
         {
             string auId = "Document111";
@@ -75,9 +75,9 @@ namespace UIAutomationTest.Commands.Get
                 auId);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetDocumentByAutomationIDTimeout3000Delay500()
         {
             string auId = "Document111";
@@ -98,9 +98,9 @@ namespace UIAutomationTest.Commands.Get
                 auId);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetDocumentByAutomationIDTimeout2000Delay4000()
         {
             string auId = "Document111";
@@ -121,9 +121,9 @@ namespace UIAutomationTest.Commands.Get
                 auId);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetDocumentByTitleTimeoutDefault()
         {
             string name = "Document222";
@@ -143,9 +143,9 @@ namespace UIAutomationTest.Commands.Get
                 name);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetDocumentByTitleTimeout2000()
         {
             string name = "Document222";
@@ -165,9 +165,9 @@ namespace UIAutomationTest.Commands.Get
                 name);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetDocumentByTitleTimeout3000Delay500()
         {
             string name = "Document222";
@@ -187,9 +187,9 @@ namespace UIAutomationTest.Commands.Get
                 name);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetDocumentByTitleTimeout2000Delay4000()
         {
             string name = "Document222";
@@ -209,9 +209,9 @@ namespace UIAutomationTest.Commands.Get
                 name);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetDocumentByControlTypeTimeoutDefault()
         {
             MiddleLevelCode.StartProcessWithFormAndControl(
@@ -228,9 +228,9 @@ namespace UIAutomationTest.Commands.Get
                 "ControlType.Document");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetDocumentByControlTypeTimeout2000()
         {
             MiddleLevelCode.StartProcessWithFormAndControl(
@@ -247,9 +247,9 @@ namespace UIAutomationTest.Commands.Get
                 "ControlType.Document");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetDocumentByControlTypeTimeout3000Delay500()
         {
             MiddleLevelCode.StartProcessWithFormAndControl(
@@ -266,9 +266,9 @@ namespace UIAutomationTest.Commands.Get
                 "ControlType.Document");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetDocumentByControlTypeTimeout2000Delay4000()
         {
             MiddleLevelCode.StartProcessWithFormAndControl(
@@ -285,7 +285,7 @@ namespace UIAutomationTest.Commands.Get
                 "ControlType.Document");
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

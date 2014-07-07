@@ -10,20 +10,20 @@
 namespace UIAutomationTest.Commands.Cache
 {
     using System;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
     /// Description of StopUiaCachedModeCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="1")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="1")]
     public class StopUiaCachedModeCommandTestFixture
     {
         public StopUiaCachedModeCommandTestFixture()
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
@@ -31,7 +31,7 @@ namespace UIAutomationTest.Commands.Cache
                 @"[void]([UIAutomation.CurrentData]::ResetData());");
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

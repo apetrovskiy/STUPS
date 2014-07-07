@@ -9,41 +9,43 @@
 
 namespace UIAutomationTest.CheckCmdletParameters
 {
-    using MbUnit.Framework;// using Xunit;
+    using MbUnit.Framework;using NUnit.Framework;// using Xunit;
     
     /// <summary>
     /// Description of SetUiaEditTextCommandTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     // [Ignore("20140128")]
     public class SetUiaEditTextCommandTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode2.PrepareRunspaceForParamChecks();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             // MiddleLevelCode.DisposeRunspace();
         }
         
-        [Test]// [Fact]
-        [Category("Fast")]
-        [Ignore("It's difficult to learn now what is the problem with it")]
-        [Description("Set-UiaEditText -Text 'text' -InputObject $obj")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
+        [MbUnit.Framework.Category("Fast")]
+        [MbUnit.Framework.Ignore("It's difficult to learn now what is the problem with it")]
+        [NUnit.Framework.Ignore("It's difficult to learn now what is the problem with it")]
+        [MbUnit.Framework.Description("Set-UiaEditText -Text 'text' -InputObject $obj")]
         public void Set_UiaEditText_Text()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
         		"Set-UiaEditText -Text 'text' -InputObject $obj;");
         }
         
-        [Test]// [Fact]
-        [Category("Fast")]
-        [Ignore("It's difficult to learn now what is the problem with it")]
-        [Description("Set-UiaEditText 'text' -InputObject $obj")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
+        [MbUnit.Framework.Category("Fast")]
+        [MbUnit.Framework.Ignore("It's difficult to learn now what is the problem with it")]
+        [NUnit.Framework.Ignore("It's difficult to learn now what is the problem with it")]
+        [MbUnit.Framework.Description("Set-UiaEditText 'text' -InputObject $obj")]
         public void Set_UiaEditText_Text_Position0()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(

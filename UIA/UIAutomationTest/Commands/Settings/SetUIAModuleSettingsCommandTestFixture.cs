@@ -10,17 +10,17 @@
 namespace UIAutomationTest.Commands.Settings
 {
     using System;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
 
     /// <summary>
     /// Description of SetUiaModuleSettingsCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Set-UiaModuleSettingsCommand test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="Set-UiaModuleSettingsCommand test")]
     //public class SetUiaModuleSettingsCommand
     internal class SetUiaModuleSettingsCommandTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
@@ -28,7 +28,7 @@ namespace UIAutomationTest.Commands.Settings
         
         
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

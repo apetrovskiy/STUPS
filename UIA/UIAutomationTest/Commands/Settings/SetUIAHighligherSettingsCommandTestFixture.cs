@@ -10,25 +10,25 @@
 namespace UIAutomationTest.Commands.Settings
 {
     using System;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
 
     /// <summary>
     /// Description of SetUiaHighligherSettingsCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Set-UiaHighligherSettingsCommand test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="Set-UiaHighligherSettingsCommand test")]
     //[Cmdlet(VerbsCommon.Set, "UiaHighligherSettings")]
     public class SetUiaHighligherSettingsCommandTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Settings")]
-        [Category("Slow")][Category("Set_UiaHighligherSettings")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Settings")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Set_UiaHighligherSettings")]
         public void SetHighlight_On1()
         {
             string highlightResponse = "True";
@@ -39,9 +39,9 @@ namespace UIAutomationTest.Commands.Settings
                 highlightResponse);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Settings")]
-        [Category("Slow")][Category("Set_UiaHighligherSettings")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Settings")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Set_UiaHighligherSettings")]
         public void SetHighlight_On2()
         {
             string highlight = "true";
@@ -54,9 +54,9 @@ namespace UIAutomationTest.Commands.Settings
                 highlightResponse);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Settings")]
-        [Category("Slow")][Category("Set_UiaHighligherSettings")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Settings")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Set_UiaHighligherSettings")]
         public void SetHighlightParent_On1()
         {
             string highlightResponse = "True";
@@ -67,9 +67,9 @@ namespace UIAutomationTest.Commands.Settings
                 highlightResponse);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Settings")]
-        [Category("Slow")][Category("Set_UiaHighligherSettings")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Settings")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Set_UiaHighligherSettings")]
         public void SetHighlightParent_On2()
         {
             string highlight = "true";
@@ -82,9 +82,9 @@ namespace UIAutomationTest.Commands.Settings
                 highlightResponse);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Settings")]
-        [Category("Slow")][Category("Set_UiaHighligherSettings")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Settings")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Set_UiaHighligherSettings")]
         public void SetHighlight_Off()
         {
             string highlight = "false";
@@ -97,9 +97,9 @@ namespace UIAutomationTest.Commands.Settings
                 highlightResponse);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Settings")]
-        [Category("Slow")][Category("Set_UiaHighligherSettings")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Settings")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Set_UiaHighligherSettings")]
         public void SetHighlightParent_Off()
         {
             string highlight = "false";
@@ -114,9 +114,9 @@ namespace UIAutomationTest.Commands.Settings
                 highlightResponse);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Settings")]
-        [Category("Slow")][Category("Set_UiaHighligherSettings")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Settings")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Set_UiaHighligherSettings")]
         public void SetHighlighterColor_Default()
         {
             string colorCode = @"([System.Drawing.Color]::";
@@ -132,9 +132,9 @@ namespace UIAutomationTest.Commands.Settings
                 highlighterColorResponse);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Settings")]
-        [Category("Slow")][Category("Set_UiaHighligherSettings")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Settings")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Set_UiaHighligherSettings")]
         public void SetHighlighterColor_Simple()
         {
             string colorCode = @"([System.Drawing.Color]::";
@@ -150,9 +150,9 @@ namespace UIAutomationTest.Commands.Settings
                 highlighterColorResponse);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Settings")]
-        [Category("Slow")][Category("Set_UiaHighligherSettings")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Settings")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Set_UiaHighligherSettings")]
         public void SetHighlighterColorParent_Simple()
         {
             string colorCode = @"([System.Drawing.Color]::";
@@ -172,9 +172,9 @@ namespace UIAutomationTest.Commands.Settings
                 highlighterColorResponse);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Settings")]
-        [Category("Slow")][Category("Set_UiaHighligherSettings")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Settings")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Set_UiaHighligherSettings")]
         public void SetHighlighterColor_Complex1()
         {
             string highlighterColor = @"0xff808040";
@@ -188,9 +188,9 @@ namespace UIAutomationTest.Commands.Settings
                 highlighterColorResponse);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Settings")]
-        [Category("Slow")][Category("Set_UiaHighligherSettings")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Settings")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Set_UiaHighligherSettings")]
         public void SetHighlighterColor_Complex2()
         {
             string highlighterColor = @"0xff800040";
@@ -204,9 +204,9 @@ namespace UIAutomationTest.Commands.Settings
                 highlighterColorResponse);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Settings")]
-        [Category("Slow")][Category("Set_UiaHighligherSettings")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Settings")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Set_UiaHighligherSettings")]
         public void SetHighlighterBorder_Default()
         {
             string highlighterBorder = "3";
@@ -219,9 +219,9 @@ namespace UIAutomationTest.Commands.Settings
                 highlighterBorder);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Settings")]
-        [Category("Slow")][Category("Set_UiaHighligherSettings")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Settings")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Set_UiaHighligherSettings")]
         public void SetHighlighterBorder_0()
         {
             string highlighterBorder = "0";
@@ -234,9 +234,9 @@ namespace UIAutomationTest.Commands.Settings
                 highlighterBorder);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Settings")]
-        [Category("Slow")][Category("Set_UiaHighligherSettings")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Settings")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Set_UiaHighligherSettings")]
         public void SetHighlighterBorder_5()
         {
             string highlighterBorder = "5";
@@ -249,7 +249,7 @@ namespace UIAutomationTest.Commands.Settings
                 highlighterBorder);
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

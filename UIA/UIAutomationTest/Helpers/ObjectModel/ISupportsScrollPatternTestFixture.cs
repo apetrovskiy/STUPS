@@ -10,28 +10,28 @@
 namespace UIAutomationTest.Helpers.ObjectModel
 {
     using System;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
     /// Description of ISupportsScrollPatternTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class ISupportsScrollPatternTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
             MiddleLevelCode.DisposeRunspace();
         }
         
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Scroll_ImplementsCommonPattern()
 //        {
 //            ISupportsInvokePattern invokableElement =
@@ -66,7 +66,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.IsNotNull(refreshableElement as ISupportsRefresh);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Scroll_ImplementsPatternInQuestion()
 //        {
 //            ISupportsScrollPattern element =
@@ -76,7 +76,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.IsNotNull(element as ISupportsScrollPattern);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Scroll_DoesNotImplementOtherPatterns()
 //        {
 //            ISupportsValuePattern element =
@@ -86,7 +86,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.IsNull(element as ISupportsValuePattern);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Scroll_Scroll()
 //        {
 //            // Arrange
@@ -108,7 +108,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.AreEqual(expectedResult, result);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Scroll_ScrollHorizontal()
 //        {
 //            // Arrange
@@ -130,7 +130,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.AreEqual(expectedResult, result);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Scroll_ScrollVertical()
 //        {
 //            // Arrange
@@ -152,7 +152,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.AreEqual(expectedResult, result);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Scroll_SetScrollPercent()
 //        {
 //            // Arrange
@@ -175,7 +175,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //        }
 //        
 //                
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Scroll_HorizontallyScrollable()
 //        {
 //            // Arrange
@@ -190,7 +190,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.AreEqual(expectedValue, element.HorizontallyScrollable);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Scroll_HorizontalScrollPercent()
 //        {
 //            // Arrange
@@ -205,7 +205,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.AreEqual(expectedValue, element.HorizontalScrollPercent);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Scroll_HorizontalViewSize()
 //        {
 //            // Arrange
@@ -220,7 +220,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.AreEqual(expectedValue, element.HorizontalViewSize);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Scroll_VerticallyScrollable()
 //        {
 //            // Arrange
@@ -235,7 +235,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.AreEqual(expectedValue, element.VerticallyScrollable);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Scroll_VerticalScrollPercent()
 //        {
 //            // Arrange
@@ -250,7 +250,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.AreEqual(expectedValue, element.VerticalScrollPercent);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Scroll_VerticalViewSize()
 //        {
 //            // Arrange

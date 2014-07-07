@@ -10,7 +10,7 @@
 namespace UIAutomationTest.Commands.Profile
 {
     using System;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
@@ -23,7 +23,7 @@ namespace UIAutomationTest.Commands.Profile
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
@@ -33,9 +33,9 @@ namespace UIAutomationTest.Commands.Profile
                 @"[void]([UIAutomation.CurrentData]::Profiles.Clear());");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Profile")]
-        [Category("Slow")][Category("Get_UiaTestProfile")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Profile")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Get_UiaTestProfile")]
         public void GetTestProfile_ByName_Simple()
         {
             string name = @"prof";
@@ -49,9 +49,9 @@ namespace UIAutomationTest.Commands.Profile
                 name);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Profile")]
-        [Category("Slow")][Category("Get_UiaTestProfile")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Profile")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Get_UiaTestProfile")]
         public void GetTestProfile_ByName_Complex()
         {
             string name = @"<<p`r*o''f>>";
@@ -66,9 +66,9 @@ namespace UIAutomationTest.Commands.Profile
                 answer);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Profile")]
-        [Category("Slow")][Category("Get_UiaTestProfile")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Profile")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Get_UiaTestProfile")]
         public void GetTestProfile_FromPipeline_Simple()
         {
             string name = @"prof";
@@ -80,9 +80,9 @@ namespace UIAutomationTest.Commands.Profile
                 name);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Profile")]
-        [Category("Slow")][Category("Get_UiaTestProfile")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Profile")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Get_UiaTestProfile")]
         public void GetTestProfile_FromPipeline_Complex()
         {
             string name = @"<<p`r*o''f>>";
@@ -95,7 +95,7 @@ namespace UIAutomationTest.Commands.Profile
                 answer);
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

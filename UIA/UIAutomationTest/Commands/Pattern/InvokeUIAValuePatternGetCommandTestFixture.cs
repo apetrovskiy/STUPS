@@ -10,20 +10,20 @@
 namespace UIAutomationTest.Commands.Pattern
 {
     using System;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
     /// Description of InvokeUiaValuePatternInvokeCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Invoke-UiaValuePatternInvokeCommand test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="Invoke-UiaValuePatternInvokeCommand test")]
     public class InvokeUiaValuePatternInvokeCommandTestFixture
     {
         public InvokeUiaValuePatternInvokeCommandTestFixture()
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
@@ -41,7 +41,7 @@ namespace UIAutomationTest.Commands.Pattern
         // Spinner
         // Text
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

@@ -10,28 +10,28 @@
 namespace UIAutomationTest.Helpers.ObjectModel
 {
     using System;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
     /// Description of ISupportsDockPatternTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class ISupportsDockPatternTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
             MiddleLevelCode.DisposeRunspace();
         }
         
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Dock_ImplementsCommonPattern()
 //        {
 //            ISupportsInvokePattern invokableElement =
@@ -65,7 +65,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.IsNotNull(refreshableElement as ISupportsRefresh);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Dock_ImplementsPatternInQuestion()
 //        {
 //            ISupportsDockPattern element =
@@ -75,7 +75,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.IsNotNull(element as ISupportsDockPattern);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Dock_DoesNotImplementOtherPatterns()
 //        {
 //            ISupportsValuePattern element =
@@ -85,7 +85,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.IsNull(element as ISupportsValuePattern);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Dock_DockPosition()
 //        {
 //            // Arrange
@@ -101,7 +101,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.AreEqual(expectedValue, element.DockPosition);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Dock_SetDockPosition()
 //        {
 //            // Arrange

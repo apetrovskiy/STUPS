@@ -11,7 +11,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 {
     using System;
     using System.Windows.Automation;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     using UIAutomation;
     using UIAutomationUnitTests;
@@ -19,10 +19,10 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
     /// <summary>
     /// Description of ISupportsDockPatternTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class ISupportsDockPatternTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
 //            FakeFactory.InitForPowerShell();
@@ -36,13 +36,13 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
             FakeFactory.InitForPowerShell();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
             MiddleLevelCode.DisposeRunspace();
         }
         
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Dock_ImplementsCommonPattern()
 //        {
 //            ISupportsInvokePattern invokableElement =
@@ -76,7 +76,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.IsNotNull(refreshableElement as ISupportsRefresh);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Dock_ImplementsPatternInQuestion()
 //        {
 //            ISupportsDockPattern element =
@@ -86,7 +86,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.IsNotNull(element as ISupportsDockPattern);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Dock_DoesNotImplementOtherPatterns()
 //        {
 //            ISupportsValuePattern element =
@@ -96,8 +96,8 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.IsNull(element as ISupportsValuePattern);
 //        }
 //        
-        [Test]
-        [Ignore]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
         public void Dock_DockPosition()
         {
             // Arrange
@@ -127,7 +127,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
                 expectedValue.ToString());
         }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Dock_SetDockPosition()
 //        {
 //            // Arrange

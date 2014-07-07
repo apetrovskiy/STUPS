@@ -10,29 +10,29 @@
 namespace UIAutomationTest.Helpers.ObjectModel
 {
     using System;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
     /// Description of ISupportsValuePatternTestFixture.
     /// </summary>
-    // [Ignore]
-    [TestFixture]
+    // [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class ISupportsValuePatternTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
             MiddleLevelCode.DisposeRunspace();
         }
         
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Value_ImplementsCommonPattern()
 //        {
 //            ISupportsInvokePattern invokableElement =
@@ -66,7 +66,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.IsNotNull(refreshableElement as ISupportsRefresh);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Value_ImplementsPatternInQuestion()
 //        {
 //            ISupportsValuePattern element =
@@ -76,7 +76,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.IsNotNull(element as ISupportsValuePattern);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Value_DoesNotImplementOtherPatterns()
 //        {
 //            ISupportsDockPattern element =
@@ -86,7 +86,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.IsNull(element as ISupportsValuePattern);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Value_Value_Get()
 //        {
 //            // Arrange
@@ -100,8 +100,8 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.AreEqual(expectedValue, element.Value);
 //        }
 //        
-//        [Test]
-//        [Ignore]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
+//        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
 //        public void Value_Value_Set()
 //        {
 //            // Arrange

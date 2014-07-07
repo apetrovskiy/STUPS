@@ -10,20 +10,20 @@
 namespace UIAutomationTest.Commands.Pattern
 {
     using System;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
     /// Description of InvokeUiaCollapsePatternCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Invoke-UiaCollapsePatternCommand test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="Invoke-UiaCollapsePatternCommand test")]
     public class InvokeUiaCollapsePatternCommandTestFixture
     {
         public InvokeUiaCollapsePatternCommandTestFixture()
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
@@ -34,9 +34,9 @@ namespace UIAutomationTest.Commands.Pattern
         // Button
         
         // ComboBox
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void Invoke_ComboBox_Collapse()
         {
             string expectedResult = "b02";
@@ -76,10 +76,10 @@ namespace UIAutomationTest.Commands.Pattern
         // ToolBar
         
         // TreeItem
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
         public void Invoke_TreeItem_Collapse()
         {
             string expectedResult = "Invoked";
@@ -137,7 +137,7 @@ namespace UIAutomationTest.Commands.Pattern
 //  -----------^
 
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

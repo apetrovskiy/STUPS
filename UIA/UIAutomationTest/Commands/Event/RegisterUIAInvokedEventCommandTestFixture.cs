@@ -10,20 +10,20 @@
 namespace UIAutomationTest.Commands.Event
 {
     using System;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
     /// Description of RegisterUiaInvokedEventCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="1")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="1")]
     public class RegisterUiaInvokedEventCommandTestFixture
     {
         public RegisterUiaInvokedEventCommandTestFixture()
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
@@ -31,11 +31,11 @@ namespace UIAutomationTest.Commands.Event
             //    @"[void]([UIAutomation.CurrentData]::ResetData());");
         }
         
-//        [Test] //[Test(Description="TBD")]
-//        [Category("Slow")][Category("WinForms")]
-//        [Category("Slow")][Category("Control")]
-//        [Category("Slow")][Category("Event")]
-//        [Category("Slow")][Category("Register_UiaInvokedEvent")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Event")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Register_UiaInvokedEvent")]
 //        public void RegisterInvokedEvent_Button()
 //        {
 //            string name = "Button1";
@@ -69,7 +69,7 @@ namespace UIAutomationTest.Commands.Event
 //                name);
 //        }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

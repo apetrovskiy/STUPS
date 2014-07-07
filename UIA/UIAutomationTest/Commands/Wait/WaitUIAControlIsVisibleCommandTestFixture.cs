@@ -10,16 +10,16 @@
 namespace UIAutomationTest.Commands.Wait
 {
     using System;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
     /// Description of WaitUiaControlIsVisibleCommandTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class WaitUiaControlIsVisibleCommandTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
@@ -59,10 +59,10 @@ namespace UIAutomationTest.Commands.Wait
                 expectedResult);
         }
         
-        [Test]
-        [Category("WinForms")]
-        [Category("Slow")]
-        [Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("Control")]
         public void WaitControlIsVisible_Text()
         {
             string name = "label2";
@@ -72,10 +72,10 @@ namespace UIAutomationTest.Commands.Wait
             checkIsVisible(name, controlType, propertyName, expectedResult);
         }
         
-        [Test]
-        [Category("WinForms")]
-        [Category("Slow")]
-        [Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("Control")]
         public void WaitControlIsVisible_RadioButton()
         {
             string name = "radioButton2";
@@ -85,10 +85,10 @@ namespace UIAutomationTest.Commands.Wait
             checkIsVisible(name, controlType, propertyName, expectedResult);
         }
         
-        [Test]
-        [Category("WinForms")]
-        [Category("Slow")]
-        [Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("Control")]
         public void WaitControlIsVisible_Spinner()
         {
             string name = "domainUpDown2";
@@ -98,7 +98,7 @@ namespace UIAutomationTest.Commands.Wait
             checkIsVisible(name, controlType, propertyName, expectedResult);
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

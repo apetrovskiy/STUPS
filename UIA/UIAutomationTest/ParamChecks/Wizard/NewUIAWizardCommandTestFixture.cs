@@ -10,40 +10,41 @@
 namespace UIAutomationTest.CheckCmdletParameters
 {
     using UIAutomation;
-    using MbUnit.Framework;// using Xunit;
+    using MbUnit.Framework;using NUnit.Framework;// using Xunit;
     
     /// <summary>
     /// Description of NewUiaWizardCommandTestFixture.
     /// </summary>
-    [Ignore("temporarily")]
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.Ignore("temporarily")]
+    [NUnit.Framework.Ignore("temporarily")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class NewUiaWizardCommandTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode2.PrepareRunspaceForParamChecks();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             // MiddleLevelCode.DisposeRunspace();
             WizardCollection.ResetData();
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void NewWizard_Name_StartAction()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
         		@"New-UiaWizard -Name 'wizardName' -StartAction { 'var' };");
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void NewWizard_Name_StartActionX3()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(

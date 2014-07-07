@@ -10,20 +10,20 @@
 namespace UIAutomationTest.Commands.Pattern
 {
     using System;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
     /// Description of InvokeUiaExpandPatternCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Invoke-UiaExpandPatternCommand test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="Invoke-UiaExpandPatternCommand test")]
     public class InvokeUiaExpandPatternCommandTestFixture
     {
         public InvokeUiaExpandPatternCommandTestFixture()
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
@@ -33,9 +33,9 @@ namespace UIAutomationTest.Commands.Pattern
         
         // Button
         // Unsupported pattern
-//        [Test] //[Test(Description="TBD")]
-//        [Category("Slow")][Category("WinForms")]
-//        [Category("Slow")][Category("Control")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
 //        public void Invoke_Button_Expand()
 //        {
 //            string expectedResult = "Invoked";
@@ -56,10 +56,10 @@ namespace UIAutomationTest.Commands.Pattern
 //        }
         
         // ComboBox
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
         public void Invoke_ComboBox_Expand()
         {
             string expectedResult = "b2";
@@ -84,10 +84,10 @@ namespace UIAutomationTest.Commands.Pattern
         // ToolBar
         
         // TreeItem
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
         public void Invoke_TreeItem_Expand()
         {
             string expectedResult = "Invoked";
@@ -107,7 +107,7 @@ namespace UIAutomationTest.Commands.Pattern
                 expectedResult);
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

@@ -10,7 +10,7 @@
 namespace UIAutomationTest.Commands.Profile
 {
     using System;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
@@ -19,7 +19,7 @@ namespace UIAutomationTest.Commands.Profile
     [Cmdlet(VerbsCommon.Set, "UiaCurrentTestProfile")]
     public class SetUiaCurrentTestProfileCommandTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
@@ -31,7 +31,7 @@ namespace UIAutomationTest.Commands.Profile
         
         
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

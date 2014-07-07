@@ -10,16 +10,16 @@
 namespace UIAutomationTest.Commands.Wait
 {
     using System;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
     /// Description of WaitUiaControlIsEnabledCommandTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class WaitUiaControlIsEnabledCommandTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
@@ -56,10 +56,10 @@ namespace UIAutomationTest.Commands.Wait
                 expectedResult);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("WinForms")]
-        [Category("Slow")]
-        [Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("Control")]
         public void WaitControlIsEnabled_Text()
         {
             string name = "label2";
@@ -69,10 +69,10 @@ namespace UIAutomationTest.Commands.Wait
             checkIsEnabled(name, controlType, propertyName, expectedResult);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("WinForms")]
-        [Category("Slow")]
-        [Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("Control")]
         public void WaitControlIsEnabled_RadioButton()
         {
             string name = "radioButton2";
@@ -82,10 +82,10 @@ namespace UIAutomationTest.Commands.Wait
             checkIsEnabled(name, controlType, propertyName, expectedResult);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("WinForms")]
-        [Category("Slow")]
-        [Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("Control")]
         public void WaitControlIsEnabled_Spinner()
         {
             string name = "domainUpDown2";
@@ -95,7 +95,7 @@ namespace UIAutomationTest.Commands.Wait
             checkIsEnabled(name, controlType, propertyName, expectedResult);
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

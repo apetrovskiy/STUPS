@@ -9,22 +9,22 @@
 
 namespace UIAutomationTest.CheckCmdletParameters
 {
-    using MbUnit.Framework;// using Xunit;
+    using MbUnit.Framework;using NUnit.Framework;// using Xunit;
     
     /// <summary>
     /// Description of WaitUiaWindowCommandTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     // [Ignore("20140128")]
     public class WaitUiaWindowCommandTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode2.PrepareRunspaceForParamChecks();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             // MiddleLevelCode.DisposeRunspace();
@@ -32,8 +32,8 @@ namespace UIAutomationTest.CheckCmdletParameters
         
         
         
-//        [Test]// [Fact]
-//        [Category("Fast")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
+//        [MbUnit.Framework.Category("Fast")]
 //        public void Get_UiaWindow_NoParameters()
 //        {
 //            //CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParameterMissing(
@@ -41,8 +41,8 @@ namespace UIAutomationTest.CheckCmdletParameters
 //        		"Get-UiaWindow;");
 //        }
 //        
-//        [Test]// [Fact]
-//        [Category("Fast")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
+//        [MbUnit.Framework.Category("Fast")]
 //        public void Get_UiaWindow_ProcessName()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(

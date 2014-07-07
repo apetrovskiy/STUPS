@@ -10,28 +10,28 @@
 namespace UIAutomationTest.Commands.Get
 {
     using System;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
     /// Description of GetUiaTextBoxCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Get-UiaTextBoxCommand test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="Get-UiaTextBoxCommand test")]
     public class GetUiaTextBoxCommandTestFixture
     {
         public GetUiaTextBoxCommandTestFixture()
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetTextBoxByAutomationIDTimeoutDefault()
         {
             string auId = "TextBox111";
@@ -52,9 +52,9 @@ namespace UIAutomationTest.Commands.Get
                 auId);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetTextBoxByAutomationIDTimeout2000()
         {
             string auId = "TextBox111";
@@ -75,9 +75,9 @@ namespace UIAutomationTest.Commands.Get
                 auId);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetTextBoxByAutomationIDTimeout3000Delay500()
         {
             string auId = "TextBox111";
@@ -98,9 +98,9 @@ namespace UIAutomationTest.Commands.Get
                 auId);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetTextBoxByAutomationIDTimeout2000Delay4000()
         {
             string auId = "TextBox111";
@@ -121,9 +121,9 @@ namespace UIAutomationTest.Commands.Get
                 auId);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetTextBoxByTitleTimeoutDefault()
         {
             string name = "TextBox222";
@@ -143,9 +143,9 @@ namespace UIAutomationTest.Commands.Get
                 name);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetTextBoxByTitleTimeout2000()
         {
             string name = "TextBox222";
@@ -165,9 +165,9 @@ namespace UIAutomationTest.Commands.Get
                 name);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetTextBoxByTitleTimeout3000Delay500()
         {
             string name = "TextBox222";
@@ -187,9 +187,9 @@ namespace UIAutomationTest.Commands.Get
                 name);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetTextBoxByTitleTimeout2000Delay4000()
         {
             string name = "TextBox222";
@@ -209,9 +209,9 @@ namespace UIAutomationTest.Commands.Get
                 name);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetTextBoxByControlTypeTimeoutDefault()
         {
             MiddleLevelCode.StartProcessWithFormAndControl(
@@ -228,9 +228,9 @@ namespace UIAutomationTest.Commands.Get
                 "ControlType.Edit");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetTextBoxByControlTypeTimeout2000()
         {
             MiddleLevelCode.StartProcessWithFormAndControl(
@@ -247,9 +247,9 @@ namespace UIAutomationTest.Commands.Get
                 "ControlType.Edit");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetTextBoxByControlTypeTimeout3000Delay500()
         {
             MiddleLevelCode.StartProcessWithFormAndControl(
@@ -266,9 +266,9 @@ namespace UIAutomationTest.Commands.Get
                 "ControlType.Edit");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void GetTextBoxByControlTypeTimeout2000Delay4000()
         {
             MiddleLevelCode.StartProcessWithFormAndControl(
@@ -285,7 +285,7 @@ namespace UIAutomationTest.Commands.Get
                 "ControlType.Edit");
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

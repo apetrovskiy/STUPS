@@ -11,7 +11,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 {
     using System;
     using System.Windows.Automation;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     using UIAutomation;
     using UIAutomationUnitTests;
@@ -21,10 +21,10 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
     /// <summary>
     /// Description of ISupportsExpandCollapseTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class ISupportsExpandCollapseTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             #region commented
@@ -61,7 +61,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
             FakeFactory.InitForPowerShell();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
             // MiddleLevelCode.DisposeRunspace();
@@ -89,10 +89,10 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
         */
         
         // ComboBox
-//        [Test]
-//        [Category("Slow")]
-//        [Category("WinForms")]
-//        [Category("Control")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
+//        [MbUnit.Framework.Category("Slow")]
+//        [MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Control")]
 //        public void Invoke_ComboBox_Expand()
 //        {
 //            string expectedResult = "b2";
@@ -108,10 +108,10 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //        }
         
         // TreeItem
-//        [Test]
-//        [Category("Slow")]
-//        [Category("WinForms")]
-//        [Category("Control")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
+//        [MbUnit.Framework.Category("Slow")]
+//        [MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Control")]
 //        public void Invoke_TreeItem_Expand()
 //        {
 //            string expectedResult = "Invoked";
@@ -131,9 +131,9 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //                expectedResult);
 //        }
 //        
-//        [Test]
-//        [Category("Slow")]
-//        [Category("ISupportsExpandCollapse")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
+//        [MbUnit.Framework.Category("Slow")]
+//        [MbUnit.Framework.Category("ISupportsExpandCollapse")]
 //        public void TreeItem_ExpandCollapseState_Expanded()
 //        {
 //            string expectedResult = "Expanded";
@@ -150,9 +150,9 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //                expectedResult);
 //        }
 //        
-//        [Test]
-//        [Category("Slow")]
-//        [Category("ISupportsExpandCollapse")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
+//        [MbUnit.Framework.Category("Slow")]
+//        [MbUnit.Framework.Category("ISupportsExpandCollapse")]
 //        public void TreeItem_ExpandCollapseState_Collapsed()
 //        {
 //            string expectedResult = "Collapsed";
@@ -172,13 +172,13 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
         #endregion commented
         
         
-        [Test]
-        [Ignore]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
         public void ExpandCollapseState_Expanded()
         {
             // Arrange
-            ExpandCollapseState expectedValue = ExpandCollapseState.Expanded;
-            ISupportsExpandCollapsePattern element =
+			const ExpandCollapseState expectedValue = ExpandCollapseState.Expanded;
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetExpandCollapsePattern(new PatternsData() { ExpandCollapsePattern_ExpandCollapseState = expectedValue }) }) as ISupportsExpandCollapsePattern;
             
@@ -234,8 +234,8 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
                 dataArray[2].ToString());
         }
         
-        [Test]
-        [Ignore]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
         public void ExpandCollapseState_Collapsed()
         {
             // Arrange
@@ -284,8 +284,8 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //                expectedValue.ToString());
         }
         
-        [Test]
-        [Ignore]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
         public void ExpandCollapseState_LeafNode()
         {
             // Arrange
@@ -329,8 +329,8 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
                 expectedValue.ToString());
         }
         
-        [Test]
-        [Ignore]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
         public void ExpandCollapseState_PartiallyExpanded()
         {
             // Arrange
@@ -375,7 +375,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
                 expectedValue.ToString());
         }
         
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void ExpandCollapse_Collapse()
 //        {
 //            // Arrange
@@ -396,7 +396,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(expectedValue, element.ExpandCollapseState);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void ExpandCollapse_Expand()
 //        {
 //            // Arrange

@@ -11,27 +11,27 @@ namespace UIAutomationTest.Commands.Get
 {
     using System;
     using System.Diagnostics;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     
     /// <summary>
     /// Description of GetUiaDesktopCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Get-UiaDesktopCommand test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="Get-UiaDesktopCommand test")]
     public class GetUiaDesktopCommandTestFixture
     {
         public GetUiaDesktopCommandTestFixture()
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("Get_UiaDesktop")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("Get_UiaDesktop")]
         public void GetDesktop_ClassName()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
@@ -39,9 +39,9 @@ namespace UIAutomationTest.Commands.Get
                 @"#32769");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("Get_UiaDesktop")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("Get_UiaDesktop")]
         public void GetDesktop_ControlType()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
@@ -49,9 +49,9 @@ namespace UIAutomationTest.Commands.Get
                 @"ControlType.Pane");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("Get_UiaDesktop")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("Get_UiaDesktop")]
         public void GetDesktop_Stored_ClassName()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
@@ -60,9 +60,9 @@ namespace UIAutomationTest.Commands.Get
                 @"#32769");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("Get_UiaDesktop")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("Get_UiaDesktop")]
         public void GetDesktop_Stored_ControlType()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
@@ -71,7 +71,7 @@ namespace UIAutomationTest.Commands.Get
                 @"ControlType.Pane");
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

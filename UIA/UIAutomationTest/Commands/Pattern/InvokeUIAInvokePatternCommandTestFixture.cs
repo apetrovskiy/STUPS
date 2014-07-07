@@ -10,7 +10,7 @@
 namespace UIAutomationTest.Commands.Pattern
 {
     using System;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     using System.Collections.ObjectModel;
@@ -18,14 +18,14 @@ namespace UIAutomationTest.Commands.Pattern
     /// <summary>
     /// Description of InvokeUiaInvokePatternCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Invoke-UiaInvokePatternCommand test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="Invoke-UiaInvokePatternCommand test")]
     public class InvokeUiaInvokePatternCommandTestFixture
     {
         public InvokeUiaInvokePatternCommandTestFixture()
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
@@ -34,10 +34,10 @@ namespace UIAutomationTest.Commands.Pattern
         }
         
         // Button
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
         public void Invoke_Button_Click()
         {
             string expectedResult = "Invoked";
@@ -57,10 +57,10 @@ namespace UIAutomationTest.Commands.Pattern
                 expectedResult);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
         public void Invoke_ButtonX2_Click()
         {
             string expectedResult = "Invoked*";
@@ -85,9 +85,9 @@ namespace UIAutomationTest.Commands.Pattern
         
         
         // Hyperlink
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void Invoke_Hyperlink_Click()
         {
             string expectedResult = "Invoked";
@@ -107,9 +107,9 @@ namespace UIAutomationTest.Commands.Pattern
                 " | Read-UiaControlName;",
                 expectedResult);
         }
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void Invoke_LinkLabel_Click()
         {
             string expectedResult = "Invoked";
@@ -134,9 +134,9 @@ namespace UIAutomationTest.Commands.Pattern
         
         
         // MenuItem
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
         public void Invoke_MenuItem_Click()
         {
             string expectedResult = "DropDownButton1";
@@ -155,9 +155,9 @@ namespace UIAutomationTest.Commands.Pattern
         
         // SplitButton
         // not a SplitButton
-//        [Test] //[Test(Description="TBD")]
-//        [Category("Slow")][Category("WinForms")]
-//        [Category("Slow")][Category("Control")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
 //        public void Invoke_SplitButton_Click()
 //        {
 //            string expectedResult = "Invoked";
@@ -179,9 +179,9 @@ namespace UIAutomationTest.Commands.Pattern
         
         // TabItem
         // Unsupported pattern
-//        [Test] //[Test(Description="TBD")]
-//        [Category("Slow")][Category("WinForms")]
-//        [Category("Slow")][Category("Control")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
 //        public void Invoke_TabItem_Click()
 //        {
 //            string expectedResult = "Invoked";
@@ -203,9 +203,9 @@ namespace UIAutomationTest.Commands.Pattern
         
         // TreeItem
         // Unsupported pattern
-//        [Test] //[Test(Description="TBD")]
-//        [Category("Slow")][Category("WinForms")]
-//        [Category("Slow")][Category("Control")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
 //        public void Invoke_TreeItem_Click()
 //        {
 //            string expectedResult = "Invoked";
@@ -225,7 +225,7 @@ namespace UIAutomationTest.Commands.Pattern
 //                expectedResult);
 //        }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

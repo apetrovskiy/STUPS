@@ -9,12 +9,12 @@
 
 namespace UIAutomationTest.ParamChecks.Container
 {
-    using MbUnit.Framework;// using Xunit;
+    using MbUnit.Framework;using NUnit.Framework;// using Xunit;
     
     /// <summary>
     /// Description of NewUiaContainerCommandTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     // [Ignore("20140128")]
     public class NewUiaContainerCommandTestFixture
     {

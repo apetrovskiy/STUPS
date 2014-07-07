@@ -10,29 +10,29 @@
 //namespace UIAutomationTest.Commands.Search
 //{
 //    using System;
-//    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+//    using MbUnit.Framework;using NUnit.Framework;
 //    using System.Management.Automation;
 //    
 //    /// <summary>
 //    /// Description of SearchUiaWindowCommandTestFixture.
 //    /// </summary>
-//    [TestFixture] // [TestFixture(Description="Search-UiaWindow test")]
+//    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="Search-UiaWindow test")]
 //    public class SearchUiaWindowCommandTestFixture
 //    {
 //        public SearchUiaWindowCommandTestFixture()
 //        {
 //        }
 //        
-//        [SetUp]
+//        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
 //        public void PrepareRunspace()
 //        {
 //            MiddleLevelCode.PrepareRunspace();
 //        }
 //        
-//        [Test] //[Test(Description="TBD")]
-//        [Category("Slow")][Category("WinForms")]
-//        [Category("Slow")][Category("Window")]
-//        [Category("Slow")][Category("Search_UiaWindow")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Window")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_UiaWindow")]
 //        public void SearchWindow_Name_1()
 //        {
 //            string name = "*Emp*";
@@ -53,10 +53,10 @@
 //                MiddleLevelCode.TestFormNameEmpty);
 //        }
 //        
-//        [Test] //[Test(Description="TBD")]
-//        [Category("Slow")][Category("WinForms")]
-//        [Category("Slow")][Category("Window")]
-//        [Category("Slow")][Category("Search_UiaWindow")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Window")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_UiaWindow")]
 //        public void SearchWindow_Name_2()
 //        {
 //            string name = "*Em?t*";
@@ -77,10 +77,10 @@
 //                MiddleLevelCode.TestFormNameEmpty);
 //        }
 //        
-//        [Test] //[Test(Description="TBD")]
-//        [Category("Slow")][Category("WinForms")]
-//        [Category("Slow")][Category("Window")]
-//        [Category("Slow")][Category("Search_UiaWindow")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Window")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_UiaWindow")]
 //        public void SearchWindow_Name_3()
 //        {
 //            string name = "*T???Bar*";
@@ -101,10 +101,10 @@
 //                MiddleLevelCode.TestFormNameNoTaskBar);
 //        }
 //        
-//        [Test] //[Test(Description="TBD")]
-//        [Category("Slow")][Category("WinForms")]
-//        [Category("Slow")][Category("Window")]
-//        [Category("Slow")][Category("Search_UiaWindow")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Window")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_UiaWindow")]
 //        public void SearchWindow_Name_4()
 //        {
 //            string name = "*T???Bar";
@@ -125,10 +125,10 @@
 //                MiddleLevelCode.TestFormNameNoTaskBar);
 //        }
 //        
-//        [Test] //[Test(Description="TBD")]
-//        [Category("Slow")][Category("WinForms")]
-//        [Category("Slow")][Category("Window")]
-//        [Category("Slow")][Category("Search_UiaWindow")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Window")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_UiaWindow")]
 //        public void SearchWindow_Name_5()
 //        {
 //            string name = "*Tas?Bar";
@@ -149,10 +149,10 @@
 //                MiddleLevelCode.TestFormNameNoTaskBar);
 //        }
 //        
-//        [Test] //[Test(Description="TBD")]
-//        [Category("Slow")][Category("WinForms")]
-//        [Category("Slow")][Category("Window")]
-//        [Category("Slow")][Category("Search_UiaWindow")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Window")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_UiaWindow")]
 //        public void SearchWindow_Name_6()
 //        {
 //            string name = "*TaskBar";
@@ -173,10 +173,10 @@
 //                MiddleLevelCode.TestFormNameNoTaskBar);
 //        }
 //        
-//        [Test] //[Test(Description="TBD")]
-//        [Category("Slow")][Category("WinForms")]
-//        [Category("Slow")][Category("Window")]
-//        [Category("Slow")][Category("Search_UiaWindow")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Window")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_UiaWindow")]
 //        public void SearchWindow_Name_CaseSensitive1()
 //        {
 //            string name = "*TaskBar";
@@ -197,10 +197,10 @@
 //                MiddleLevelCode.TestFormNameNoTaskBar);
 //        }
 //        
-//        [Test] //[Test(Description="TBD")]
-//        [Category("Slow")][Category("WinForms")]
-//        [Category("Slow")][Category("Window")]
-//        [Category("Slow")][Category("Search_UiaWindow")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Window")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_UiaWindow")]
 //        public void SearchWindow_Name_CaseSensitive2()
 //        {
 //            string name = "*TaskBar";
@@ -221,10 +221,10 @@
 //                MiddleLevelCode.TestFormNameNoTaskBar);
 //        }
 //        
-//        [Test] //[Test(Description="TBD")]
-//        [Category("Slow")][Category("WinForms")]
-//        [Category("Slow")][Category("Window")]
-//        [Category("Slow")][Category("Search_UiaWindow")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Window")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_UiaWindow")]
 //        public void SearchWindow_Name_CaseInsensitive1()
 //        {
 //            string name = "*TaskBar";
@@ -245,10 +245,10 @@
 //                MiddleLevelCode.TestFormNameNoTaskBar);
 //        }
 //        
-//        [Test] //[Test(Description="TBD")]
-//        [Category("Slow")][Category("WinForms")]
-//        [Category("Slow")][Category("Window")]
-//        [Category("Slow")][Category("Search_UiaWindow")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Window")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_UiaWindow")]
 //        public void SearchWindow_Name_CaseInsensitive2()
 //        {
 //            string name = "*TaskBar";
@@ -269,10 +269,10 @@
 //                MiddleLevelCode.TestFormNameNoTaskBar);
 //        }
 //        
-//        [Test] //[Test(Description="TBD")]
-//        [Category("Slow")][Category("WinForms")]
-//        [Category("Slow")][Category("Window")]
-//        [Category("Slow")][Category("Search_UiaWindow")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Window")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_UiaWindow")]
 //        public void SearchWindow_Name_CaseSensitive_Failed()
 //        {
 //            string name = "*TASKBAR";
@@ -289,10 +289,10 @@
 //                @"' -CaseSensitive | Read-UiaControlName;");
 //        }
 //        
-//        [Test] //[Test(Description="TBD")]
-//        [Category("Slow")][Category("WinForms")]
-//        [Category("Slow")][Category("Window")]
-//        [Category("Slow")][Category("Search_UiaWindow")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Window")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_UiaWindow")]
 //        public void SearchWindow_Name_CaseInsensitive_Success()
 //        {
 //            string name = "*TASKBAR";
@@ -310,7 +310,7 @@
 //                MiddleLevelCode.TestFormNameNoTaskBar);
 //        }
 //        
-//        [TearDown]
+//        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
 //        public void DisposeRunspace()
 //        {
 //            MiddleLevelCode.DisposeRunspace();

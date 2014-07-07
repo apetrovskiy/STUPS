@@ -10,7 +10,7 @@
 namespace UIAutomationTest.Commands.Pattern
 {
     using System;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
@@ -22,21 +22,21 @@ namespace UIAutomationTest.Commands.Pattern
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("Set-UiaCheckBoxToggleState")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("Set-UiaCheckBoxToggleState")]
         public void InvokeToggleStateSet_CheckBox_On_True()
         {
             string name = "check_box";
@@ -68,9 +68,9 @@ namespace UIAutomationTest.Commands.Pattern
                 expectedResult);
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("Set-UiaCheckBoxToggleState")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("Set-UiaCheckBoxToggleState")]
         public void InvokeToggleStateSet_CheckBox_On_False()
         {
             string name = "check_box";
@@ -102,9 +102,9 @@ namespace UIAutomationTest.Commands.Pattern
                 expectedResult);
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("Set-UiaCheckBoxToggleState")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("Set-UiaCheckBoxToggleState")]
         public void InvokeToggleStateSet_CheckBox_Off_True()
         {
             string name = "check_box";
@@ -131,9 +131,9 @@ namespace UIAutomationTest.Commands.Pattern
                 expectedResult);
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("Set-UiaCheckBoxToggleState")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("Set-UiaCheckBoxToggleState")]
         public void InvokeToggleStateSet_CheckBox_Off_False()
         {
             string name = "check_box";

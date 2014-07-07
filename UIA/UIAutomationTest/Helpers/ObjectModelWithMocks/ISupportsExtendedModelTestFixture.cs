@@ -11,7 +11,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 {
     using System;
     using System.Windows.Automation;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     using UIAutomation;
     using UIAutomationUnitTests;
@@ -19,10 +19,10 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
     /// <summary>
     /// Description of ISupportsExtendedModelTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class ISupportsExtendedModelTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             FakeFactory.InitForPowerShell();
@@ -31,7 +31,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
                 @"[void]([UIAutomation.CurrentData]::ResetData());");
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
             MiddleLevelCode.DisposeRunspace();
@@ -59,7 +59,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //        }
 //        #endregion helpers
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Buttons_Descendants_None()
 //        {
 //            // Arrange
@@ -78,7 +78,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Buttons_Descendants_One()
 //        {
 //            // Arrange
@@ -99,7 +99,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Buttons_Descendants_Three()
 //        {
 //            // Arrange
@@ -113,7 +113,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Calendars_Descendants_Three()
 //        {
 //            // Arrange
@@ -127,7 +127,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void CheckBoxes_Descendants_Three()
 //        {
 //            // Arrange
@@ -141,7 +141,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void ComboBoxes_Descendants_Three()
 //        {
 //            // Arrange
@@ -155,7 +155,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Customs_Descendants_Three()
 //        {
 //            // Arrange
@@ -169,7 +169,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void DataGrids_Descendants_Three()
 //        {
 //            // Arrange
@@ -183,7 +183,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void DataItems_Descendants_Three()
 //        {
 //            // Arrange
@@ -197,7 +197,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Documents_Descendants_Three()
 //        {
 //            // Arrange
@@ -211,7 +211,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Edits_Descendants_Three()
 //        {
 //            // Arrange
@@ -225,7 +225,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Groups_Descendants_Three()
 //        {
 //            // Arrange
@@ -239,7 +239,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Headers_Descendants_Three()
 //        {
 //            // Arrange
@@ -253,7 +253,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void HeaderItems_Descendants_Three()
 //        {
 //            // Arrange
@@ -267,7 +267,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Hyperlinks_Descendants_Three()
 //        {
 //            // Arrange
@@ -282,7 +282,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //        }
 //        
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Images_Descendants_Three()
 //        {
 //            // Arrange
@@ -296,7 +296,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Lists_Descendants_Three()
 //        {
 //            // Arrange
@@ -310,7 +310,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void ListItems_Descendants_Three()
 //        {
 //            // Arrange
@@ -324,7 +324,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Menus_Descendants_Three()
 //        {
 //            // Arrange
@@ -339,7 +339,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //        }
 //        
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void MenuBars_Descendants_Three()
 //        {
 //            // Arrange
@@ -353,7 +353,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void MenuItems_Descendants_Three()
 //        {
 //            // Arrange
@@ -367,7 +367,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Panes_Descendants_Three()
 //        {
 //            // Arrange
@@ -381,7 +381,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void ProgressBars_Descendants_Three()
 //        {
 //            // Arrange
@@ -396,7 +396,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //        }
 //        
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void RadioButtons_Descendants_Three()
 //        {
 //            // Arrange
@@ -410,7 +410,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void ScrollBars_Descendants_Three()
 //        {
 //            // Arrange
@@ -424,7 +424,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Separators_Descendants_Three()
 //        {
 //            // Arrange
@@ -438,7 +438,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Sliders_Descendants_Three()
 //        {
 //            // Arrange
@@ -453,7 +453,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //        }
 //        
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Spinners_Descendants_Three()
 //        {
 //            // Arrange
@@ -467,7 +467,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void SplitButtons_Descendants_Three()
 //        {
 //            // Arrange
@@ -481,7 +481,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void StatusBars_Descendants_Three()
 //        {
 //            // Arrange
@@ -495,7 +495,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Tabs_Descendants_Three()
 //        {
 //            // Arrange
@@ -510,7 +510,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //        }
 //        
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void TabItems_Descendants_Three()
 //        {
 //            // Arrange
@@ -524,7 +524,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Tables_Descendants_Three()
 //        {
 //            // Arrange
@@ -538,7 +538,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Texts_Descendants_Three()
 //        {
 //            // Arrange
@@ -552,7 +552,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Thumbs_Descendants_Three()
 //        {
 //            // Arrange
@@ -567,7 +567,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //        }
 //        
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void TitleBars_Descendants_Three()
 //        {
 //            // Arrange
@@ -581,7 +581,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void ToolBars_Descendants_Three()
 //        {
 //            // Arrange
@@ -595,7 +595,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void ToolTips_Descendants_Three()
 //        {
 //            // Arrange
@@ -609,7 +609,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Trees_Descendants_Three()
 //        {
 //            // Arrange
@@ -624,7 +624,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //        }
 //        
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void TreeItems_Descendants_Three()
 //        {
 //            // Arrange
@@ -638,7 +638,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Windows_Descendants_Three()
 //        {
 //            // Arrange
@@ -654,7 +654,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //        
 //        // =============================================================================================================
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Buttons_Children_None()
 //        {
 //            // Arrange
@@ -673,7 +673,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Buttons_Children_One()
 //        {
 //            // Arrange
@@ -694,7 +694,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Buttons_Children_Three()
 //        {
 //            // Arrange
@@ -708,7 +708,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Calendars_Children_Three()
 //        {
 //            // Arrange
@@ -722,7 +722,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void CheckBoxes_Children_Three()
 //        {
 //            // Arrange
@@ -736,7 +736,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void ComboBoxes_Children_Three()
 //        {
 //            // Arrange
@@ -750,7 +750,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Customs_Children_Three()
 //        {
 //            // Arrange
@@ -764,7 +764,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void DataGrids_Children_Three()
 //        {
 //            // Arrange
@@ -778,7 +778,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void DataItems_Children_Three()
 //        {
 //            // Arrange
@@ -792,7 +792,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Documents_Children_Three()
 //        {
 //            // Arrange
@@ -806,7 +806,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Edits_Children_Three()
 //        {
 //            // Arrange
@@ -820,7 +820,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Groups_Children_Three()
 //        {
 //            // Arrange
@@ -834,7 +834,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Headers_Children_Three()
 //        {
 //            // Arrange
@@ -848,7 +848,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void HeaderItems_Children_Three()
 //        {
 //            // Arrange
@@ -862,7 +862,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Hyperlinks_Children_Three()
 //        {
 //            // Arrange
@@ -877,7 +877,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //        }
 //        
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Images_Children_Three()
 //        {
 //            // Arrange
@@ -891,7 +891,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Lists_Children_Three()
 //        {
 //            // Arrange
@@ -905,7 +905,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void ListItems_Children_Three()
 //        {
 //            // Arrange
@@ -919,7 +919,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Menus_Children_Three()
 //        {
 //            // Arrange
@@ -934,7 +934,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //        }
 //        
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void MenuBars_Children_Three()
 //        {
 //            // Arrange
@@ -948,7 +948,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void MenuItems_Children_Three()
 //        {
 //            // Arrange
@@ -962,7 +962,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Panes_Children_Three()
 //        {
 //            // Arrange
@@ -976,7 +976,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void ProgressBars_Children_Three()
 //        {
 //            // Arrange
@@ -991,7 +991,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //        }
 //        
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void RadioButtons_Children_Three()
 //        {
 //            // Arrange
@@ -1005,7 +1005,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void ScrollBars_Children_Three()
 //        {
 //            // Arrange
@@ -1019,7 +1019,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Separators_Children_Three()
 //        {
 //            // Arrange
@@ -1033,7 +1033,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Sliders_Children_Three()
 //        {
 //            // Arrange
@@ -1048,7 +1048,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //        }
 //        
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Spinners_Children_Three()
 //        {
 //            // Arrange
@@ -1062,7 +1062,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void SplitButtons_Children_Three()
 //        {
 //            // Arrange
@@ -1076,7 +1076,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void StatusBars_Children_Three()
 //        {
 //            // Arrange
@@ -1090,7 +1090,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Tabs_Children_Three()
 //        {
 //            // Arrange
@@ -1105,7 +1105,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //        }
 //        
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void TabItems_Children_Three()
 //        {
 //            // Arrange
@@ -1119,7 +1119,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Tables_Children_Three()
 //        {
 //            // Arrange
@@ -1133,7 +1133,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Texts_Children_Three()
 //        {
 //            // Arrange
@@ -1147,7 +1147,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Thumbs_Children_Three()
 //        {
 //            // Arrange
@@ -1162,7 +1162,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //        }
 //        
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void TitleBars_Children_Three()
 //        {
 //            // Arrange
@@ -1176,7 +1176,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void ToolBars_Children_Three()
 //        {
 //            // Arrange
@@ -1190,7 +1190,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void ToolTips_Children_Three()
 //        {
 //            // Arrange
@@ -1204,7 +1204,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Trees_Children_Three()
 //        {
 //            // Arrange
@@ -1219,7 +1219,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //        }
 //        
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void TreeItems_Children_Three()
 //        {
 //            // Arrange
@@ -1233,7 +1233,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            Assert.AreEqual(AutomationFactory.GetUiEltCollection(elements), resultCollection);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Windows_Children_Three()
 //        {
 //            // Arrange

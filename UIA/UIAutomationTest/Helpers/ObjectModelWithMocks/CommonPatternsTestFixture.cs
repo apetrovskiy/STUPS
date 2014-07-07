@@ -11,7 +11,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 {
     using System;
     using System.Windows.Automation;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     using UIAutomation;
     using UIAutomationUnitTests;
@@ -19,10 +19,10 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
     /// <summary>
     /// Description of CommonPatternsTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class CommonPatternsTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             FakeFactory.InitForPowerShell();
@@ -31,13 +31,13 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
                 @"[void]([UIAutomation.CurrentData]::ResetData());");
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
             MiddleLevelCode.DisposeRunspace();
         }
         
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void InvokePattern()
 //        {
 //            // Arrange
@@ -62,7 +62,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            // Assert.AreEqual(expectedValue, element.DockPosition);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Highlighter()
 //        {
 //            // Arrange
@@ -79,7 +79,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            // Assert.AreEqual(expectedValue, element.DockPosition);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Navigation()
 //        {
 //            // Arrange
@@ -100,7 +100,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            // Assert.AreEqual(expectedValue, element.DockPosition);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Conversion()
 //        {
 //            // Arrange
@@ -117,7 +117,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //            // Assert.AreEqual(expectedValue, element.DockPosition);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Refresh()
 //        {
 //            // Arrange

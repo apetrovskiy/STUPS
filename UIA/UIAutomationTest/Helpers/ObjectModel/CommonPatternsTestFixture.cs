@@ -10,28 +10,28 @@
 namespace UIAutomationTest.Helpers.ObjectModel
 {
     using System;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
     /// Description of CommonPatternsTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class CommonPatternsTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
             MiddleLevelCode.DisposeRunspace();
         }
         
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void InvokePattern()
 //        {
 //            // Arrange
@@ -56,7 +56,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            // Assert.AreEqual(expectedValue, element.DockPosition);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Highlighter()
 //        {
 //            // Arrange
@@ -73,7 +73,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            // Assert.AreEqual(expectedValue, element.DockPosition);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Navigation()
 //        {
 //            // Arrange
@@ -94,7 +94,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            // Assert.AreEqual(expectedValue, element.DockPosition);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Conversion()
 //        {
 //            // Arrange
@@ -111,7 +111,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            // Assert.AreEqual(expectedValue, element.DockPosition);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Refresh()
 //        {
 //            // Arrange

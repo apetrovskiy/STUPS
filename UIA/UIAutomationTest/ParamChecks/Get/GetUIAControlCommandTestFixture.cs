@@ -9,30 +9,30 @@
 
 namespace UIAutomationTest.CheckCmdletParameters
 {
-    using MbUnit.Framework;// using Xunit;
+    using MbUnit.Framework;using NUnit.Framework;// using Xunit;
     
     /// <summary>
     /// Description of GetUiaControlCommandTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     // [Ignore("20140128")]
     public class GetUiaControlCommandTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode2.PrepareRunspaceForParamChecks();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             // MiddleLevelCode.DisposeRunspace();
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void Get_UiaControl_NoParameters()
         {
             // 20130918
@@ -41,9 +41,9 @@ namespace UIAutomationTest.CheckCmdletParameters
         		"Get-UiaControl;");
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void Get_UiaControl_ControlType()
         {
             // 20130918
@@ -52,9 +52,9 @@ namespace UIAutomationTest.CheckCmdletParameters
         		"Get-UiaControl -ControlType Button;");
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void Get_UiaControl_Name()
         {
             // 20130918
@@ -63,9 +63,9 @@ namespace UIAutomationTest.CheckCmdletParameters
         		"Get-UiaControl -Name 'aaa';");
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void Get_UiaControl_ControlType_Name()
         {
             // 20130918
@@ -74,9 +74,9 @@ namespace UIAutomationTest.CheckCmdletParameters
         		"Get-UiaControl -ControlType Button -Name 'aaa';");
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void Get_UiaControl_AutomationId()
         {
             // 20130918
@@ -85,9 +85,9 @@ namespace UIAutomationTest.CheckCmdletParameters
         		"Get-UiaControl -AutomationId '111';");
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void Get_UiaControl_ControlType_AutomationId()
         {
             // 20130918
@@ -96,9 +96,9 @@ namespace UIAutomationTest.CheckCmdletParameters
         		"Get-UiaControl -ControlType Button -AutomationId '111';");
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void Get_UiaControl_ClassName()
         {
             // 20130918
@@ -107,9 +107,9 @@ namespace UIAutomationTest.CheckCmdletParameters
         		"Get-UiaControl -Class 'class';");
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void Get_UiaControl_ControlType_ClassName()
         {
             // 20130918

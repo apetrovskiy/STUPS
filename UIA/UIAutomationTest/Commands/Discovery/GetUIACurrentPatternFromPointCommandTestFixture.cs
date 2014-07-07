@@ -10,26 +10,26 @@
 namespace UIAutomationTest.Commands.Discovery
 {
     using System;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
 
     /// <summary>
     /// Description of GetUiaCurrentPatternFromPointCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Get-UiaCurrentPatternFromPointCommand test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="Get-UiaCurrentPatternFromPointCommand test")]
     public class GetUiaCurrentPatternFromPointCommandTestFixture
     {
         public GetUiaCurrentPatternFromPointCommandTestFixture()
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

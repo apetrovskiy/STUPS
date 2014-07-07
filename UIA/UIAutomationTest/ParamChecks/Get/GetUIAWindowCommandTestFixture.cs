@@ -9,30 +9,30 @@
 
 namespace UIAutomationTest.CheckCmdletParameters
 {
-    using MbUnit.Framework;// using Xunit;
+    using MbUnit.Framework;using NUnit.Framework;// using Xunit;
     
     /// <summary>
     /// Description of GetUiaWindowCommandTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     // [Ignore("20140128")]
     public class GetUiaWindowCommandTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode2.PrepareRunspaceForParamChecks();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             // MiddleLevelCode.DisposeRunspace();
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void Get_UiaWindow_NoParameters()
         {
             //CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParameterMissing(
@@ -42,27 +42,27 @@ namespace UIAutomationTest.CheckCmdletParameters
         		"Get-UiaWindow;");
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void Get_UiaWindow_ProcessName()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-UiaWindow -ProcessName processName;");
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void Get_UiaWindow_ProcessId()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-UiaWindow -ProcessId 123;");
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void Get_UiaWindow_Process()
         {
             // 20130918
@@ -71,27 +71,27 @@ namespace UIAutomationTest.CheckCmdletParameters
         		"Get-UiaWindow -InputObject $null;");
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void Get_UiaWindow_ProcessName_Name_AuId_Class()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-UiaWindow -ProcessName processName -Name aaa -AutomationId bbb -Class ccc;");
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void Get_UiaWindow_ProcessId_Name_AuId_Class()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-UiaWindow -ProcessId 123 -Name aaa -AutomationId bbb -Class ccc;");
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void Get_UiaWindow_Process_Name_AuId_Class()
         {
             // 20130918
@@ -100,27 +100,27 @@ namespace UIAutomationTest.CheckCmdletParameters
         		"Get-UiaWindow -InputObject $null -Name aaa -AutomationId bbb -Class ccc;");
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void Get_UiaWindow_ProcessName_First()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-UiaWindow -ProcessName processName -First;");
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void Get_UiaWindow_ProcessId_First()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-UiaWindow -ProcessId 123 -First;");
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void Get_UiaWindow_Process_First()
         {
             // 20130918
@@ -129,27 +129,27 @@ namespace UIAutomationTest.CheckCmdletParameters
         		"Get-UiaWindow -InputObject $null -First;");
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void Get_UiaWindow_ProcessName_Recurse()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-UiaWindow -ProcessName processName -Recurse;");
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void Get_UiaWindow_ProcessId_Recurse()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Get-UiaWindow -ProcessId 123 -Recurse;");
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void Get_UiaWindow_Process_Recurse()
         {
             // 20130918
@@ -158,9 +158,9 @@ namespace UIAutomationTest.CheckCmdletParameters
         		"Get-UiaWindow -InputObject $null -Recurse;");
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void Get_UiaWindow_Name()
         {
             // 20130918
@@ -169,9 +169,9 @@ namespace UIAutomationTest.CheckCmdletParameters
         		"Get-UiaWindow -Name name;");
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void Get_UiaWindow_Name_Array()
         {
             // 20130918
@@ -180,9 +180,9 @@ namespace UIAutomationTest.CheckCmdletParameters
         		"Get-UiaWindow -Name name1,name2,name3;");
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void Get_UiaWindow_Name_AuId()
         {
             // 20130918
@@ -191,9 +191,9 @@ namespace UIAutomationTest.CheckCmdletParameters
         		"Get-UiaWindow -Name name -AutomationId aaa;");
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void Get_UiaWindow_Name_Class()
         {
             // 20130918
@@ -202,9 +202,9 @@ namespace UIAutomationTest.CheckCmdletParameters
         		"Get-UiaWindow -Name name -Class ccc;");
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void Get_UiaWindow_Name_AuId_Class()
         {
             // 20130918
@@ -213,9 +213,9 @@ namespace UIAutomationTest.CheckCmdletParameters
         		"Get-UiaWindow -Name name -AutomationId aaa -Class ccc;");
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void Get_UiaWindow_Name_First()
         {
             // 20130918

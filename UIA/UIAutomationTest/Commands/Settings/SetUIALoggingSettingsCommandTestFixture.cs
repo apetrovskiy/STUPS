@@ -10,24 +10,24 @@
 namespace UIAutomationTest.Commands.Settings
 {
     using System;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
 
     /// <summary>
     /// Description of SetUiaLoggingSettingsCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Set-UiaLoggingSettingsCommand test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="Set-UiaLoggingSettingsCommand test")]
     public class SetUiaLoggingSettingsCommandTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Settings")]
-        [Category("Slow")][Category("Set_UiaLoggingSettings")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Settings")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Set_UiaLoggingSettings")]
         public void SetLog_On1()
         {
             string logResponse = "True";
@@ -38,9 +38,9 @@ namespace UIAutomationTest.Commands.Settings
                 logResponse);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Settings")]
-        [Category("Slow")][Category("Set_UiaLoggingSettings")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Settings")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Set_UiaLoggingSettings")]
         public void SetLog_On2()
         {
             string log = "true";
@@ -53,9 +53,9 @@ namespace UIAutomationTest.Commands.Settings
                 logResponse);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Settings")]
-        [Category("Slow")][Category("Set_UiaLoggingSettings")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Settings")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Set_UiaLoggingSettings")]
         public void SetLog_Off()
         {
             string log = "false";
@@ -68,9 +68,9 @@ namespace UIAutomationTest.Commands.Settings
                 logResponse);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Settings")]
-        [Category("Slow")][Category("Set_UiaLoggingSettings")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Settings")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Set_UiaLoggingSettings")]
         public void SetLogPath_Simple()
         {
             string logPath = @"C:\1\Log.txt";
@@ -83,7 +83,7 @@ namespace UIAutomationTest.Commands.Settings
                 logPath);
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

@@ -10,58 +10,59 @@
 namespace UIAutomationTest.CheckCmdletParameters
 {
     using UIAutomation;
-    using MbUnit.Framework;// using Xunit;
+    using MbUnit.Framework;using NUnit.Framework;// using Xunit;
     
     /// <summary>
     /// Description of AddUiaWizardStepCommandTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
-    [Ignore("temporarily")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
+    [MbUnit.Framework.Ignore("temporarily")]
+    [NUnit.Framework.Ignore("temporarily")]
     public class AddUiaWizardStepCommandTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode2.PrepareRunspaceForParamChecks();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             // MiddleLevelCode.DisposeRunspace();
             WizardCollection.ResetData();
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void AddWizardStep_Name()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		@"Add-UiaWizardStep -Name 'stepName' -InputObject (New-UiaWizard -Name wizardName -StartAction {});");
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void AddWizardStep_Name_StepForwardAction()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		@"Add-UiaWizardStep -Name 'stepName' -InputObject (New-UiaWizard -Name wizardName -StartAction {}) -StepForwardAction {};");
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void AddWizardStep_Name_StepBackwardAction()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		@"Add-UiaWizardStep -Name 'stepName' -InputObject (New-UiaWizard -Name wizardName -StartAction {}) -StepBackwardAction {};");
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
+        [MbUnit.Framework.Category("Fast")]
         public void AddWizardStep_Name_StepForwardAction_StepBackwardAction()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(

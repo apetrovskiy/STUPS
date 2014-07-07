@@ -10,20 +10,20 @@
 namespace UIAutomationTest.Commands.Pattern
 {
     using System;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
     /// Description of InvokeUiaToggleStateCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Get-UiaToggleStateCommand test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="Get-UiaToggleStateCommand test")]
     public class InvokeUiaToggleStateCommandTestFixture
     {
         public InvokeUiaToggleStateCommandTestFixture()
         {
         }
        
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
@@ -42,9 +42,9 @@ namespace UIAutomationTest.Commands.Pattern
     // RadioButton
         
         
-//        [Test] //[Test(Description="TBD")]
-//        [Category("Slow")][Category("WinForms")]
-//        [Category("Slow")][Category("Control")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
 //        public void GetToggleState()
 //        {
 //            string name1 = "RadioButton1";
@@ -86,15 +86,15 @@ namespace UIAutomationTest.Commands.Pattern
 //                expectedResult);
 //        }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("Get-UiaCheckBoxToggleState")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("Get-UiaCheckBoxToggleState")]
         public void InvokeToggleStateGet_CheckBox_On()
         {
             string name = "check_box";
@@ -121,9 +121,9 @@ namespace UIAutomationTest.Commands.Pattern
                 expectedResult);
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("Get-UiaCheckBoxToggleState")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("Get-UiaCheckBoxToggleState")]
         public void InvokeToggleStateGet_CheckBox_Off()
         {
             string name = "check_box";

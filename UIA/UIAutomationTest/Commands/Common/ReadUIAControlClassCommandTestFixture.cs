@@ -10,25 +10,25 @@
 namespace UIAutomationTest.Commands.Common
 {
     using System;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     using System.Windows.Automation;
 
     /// <summary>
     /// Description of ReadUiaControlClassCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Read-UiaControlClassCommand test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="Read-UiaControlClassCommand test")]
     public class ReadUiaControlClassCommandTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="InputObject ProcessRecord test Null via pipeline")]
-        [Category("Slow")]
-        [Category("NoForms")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="InputObject ProcessRecord test Null via pipeline")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("NoForms")]
         public void ReadUiaControlClass_TestPipelineInput()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateIsTrue(
@@ -36,9 +36,9 @@ namespace UIAutomationTest.Commands.Common
                 "0");
         }
         
-        [Test] //[Test(Description="ProcessRecord test Null via parameter")]
-        [Category("Slow")]
-        [Category("NoForms")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="ProcessRecord test Null via parameter")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("NoForms")]
         public void ReadUiaControlClass_TestParameterInputNull()
         {
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateIsNull(
@@ -54,9 +54,9 @@ namespace UIAutomationTest.Commands.Common
 //  ----> System.Management.Automation.ValidationMetadataException : The argument is null or empty. Supply an argument that is not null or empty and then try the command again.
         }
         
-        [Test] //[Test(Description="ProcessRecord test Is Not AutomationElement")]
-        [Category("Slow")]
-        [Category("NoForms")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="ProcessRecord test Is Not AutomationElement")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("NoForms")]
         public void ReadUiaControlClass_TestParameterInputOtherType()
         {
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateIsNull(
@@ -73,8 +73,8 @@ namespace UIAutomationTest.Commands.Common
 //  ----> System.Management.Automation.PSInvalidCastException : Cannot convert the "System.Windows.Forms.Label, Text: " value of type "System.Windows.Forms.Label" to type "System.Windows.Automation.AutomationElement".
         }
         
-// [Test] //[Test(Description="ProcessRecord test Is AutomationElement")]
-// [Category("Slow")][Category("NUnit")]
+// [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="ProcessRecord test Is AutomationElement")]
+// [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("NUnit")]
 // [Ignore("Unstable being run on various operationg systems")]
 // public void TestParameterInputFormWithClass()
 // {
@@ -87,11 +87,11 @@ namespace UIAutomationTest.Commands.Common
 // Assert.AreEqual(CmdletUnitTest.TestRunspace.NUnitClass, coll[0].ToString());
 // }
 
-        [Test] //[Test(Description="ProcessRecord test Is Class")]
-        //[Category("Slow")][Category("NUnit")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="ProcessRecord test Is Class")]
+        //[MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("NUnit")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
         public void ReadUiaControlClass_TestParameterInputControlWithAutomationId()
         {
             string className = "Button";
@@ -111,7 +111,7 @@ namespace UIAutomationTest.Commands.Common
                 className);
         }
 
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

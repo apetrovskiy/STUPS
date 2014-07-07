@@ -10,29 +10,29 @@
 namespace UIAutomationTest.Helpers.ObjectModel
 {
     using System;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
     /// Description of ISupportsTableItemPatternTestFixture.
     /// </summary>
-    // [Ignore]
-    [TestFixture]
+    // [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class ISupportsTableItemPatternTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
             MiddleLevelCode.DisposeRunspace();
         }
         
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void TableItem_ImplementsCommonPattern()
 //        {
 //            ISupportsInvokePattern invokableElement =
@@ -66,7 +66,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.IsNotNull(refreshableElement as ISupportsRefresh);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void TableItem_ImplementsPatternInQuestion()
 //        {
 //            ISupportsTableItemPattern element =
@@ -76,7 +76,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.IsNotNull(element as ISupportsTableItemPattern);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void TableItem_DoesNotImplementOtherPatterns()
 //        {
 //            ISupportsValuePattern element =
@@ -86,7 +86,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.IsNull(element as ISupportsValuePattern);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void TableItem_GetColumnHeaderItems()
 //        {
 //            // Arrange
@@ -108,7 +108,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.AreEqual(expectedResult, result);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void TableItem_GetRowHeaderItems()
 //        {
 //            // Arrange
@@ -130,7 +130,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.AreEqual(expectedResult, result);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void TableItem_TableColumn()
 //        {
 //            // Arrange
@@ -145,7 +145,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.AreEqual(expectedValue, element.TableColumn);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void TableItem_TableColumnSpan()
 //        {
 //            // Arrange
@@ -160,8 +160,8 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.AreEqual(expectedValue, element.TableColumnSpan);
 //        }
 //        
-//        [Test]
-//        [Ignore]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
+//        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
 //        public void TableItem_TableContainingGrid()
 //        {
 //            // Arrange
@@ -186,7 +186,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.AreEqual(expectedValue.Current.AcceleratorKey, element.TableContainingGrid.Current.AcceleratorKey);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void TableItem_TableRow()
 //        {
 //            // Arrange
@@ -201,7 +201,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.AreEqual(expectedValue, element.TableRow);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void TableItem_TableRowSpan()
 //        {
 //            // Arrange

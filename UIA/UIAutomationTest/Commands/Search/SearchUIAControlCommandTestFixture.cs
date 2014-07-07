@@ -10,29 +10,29 @@
 //namespace UIAutomationTest.Commands.Search
 //{
 //    using System;
-//    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+//    using MbUnit.Framework;using NUnit.Framework;
 //    using System.Management.Automation;
 //    
 //    /// <summary>
 //    /// Description of SearchUiaControlCommandTestFixture.
 //    /// </summary>
-//    [TestFixture] // [TestFixture(Description="Search-UiaControl test")]
+//    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="Search-UiaControl test")]
 //    public class SearchUiaControlCommandTestFixture
 //    {
 //        public SearchUiaControlCommandTestFixture()
 //        {
 //        }
 //        
-//        [SetUp]
+//        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
 //        public void PrepareRunspace()
 //        {
 //            MiddleLevelCode.PrepareRunspace();
 //        }
 //        
-//        [Test] //[Test(Description="TBD")]
-//        [Category("Slow")][Category("WinForms")]
-//        [Category("Slow")][Category("Control")]
-//        [Category("Slow")][Category("Search_UiaControl")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_UiaControl")]
 //        public void SearchControl_Name_NoControlType()
 //        {
 //            string name = "Button111";
@@ -53,10 +53,10 @@
 //                name);
 //        }
 //        
-//        [Test] //[Test(Description="TBD")]
-//        [Category("Slow")][Category("WinForms")]
-//        [Category("Slow")][Category("Control")]
-//        [Category("Slow")][Category("Search_UiaControl")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_UiaControl")]
 //        public void SearchControl_Name_ControlTypeButton()
 //        {
 //            string name = "Button111";
@@ -77,10 +77,10 @@
 //                name);
 //        }
 //        
-//        [Test] //[Test(Description="TBD")]
-//        [Category("Slow")][Category("WinForms")]
-//        [Category("Slow")][Category("Control")]
-//        [Category("Slow")][Category("Search_UiaControl")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_UiaControl")]
 //        public void SearchControl_Name_ControlTypeButtonButLabel()
 //        {
 //            string name = "Label111";
@@ -100,10 +100,10 @@
 //                "' | Read-UiaControlName;");
 //        }
 //        
-//        [Test] //[Test(Description="TBD")]
-//        [Category("Slow")][Category("WinForms")]
-//        [Category("Slow")][Category("Control")]
-//        [Category("Slow")][Category("Search_UiaControl")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_UiaControl")]
 //        public void SearchControl_Name_ControlTypeButtonX2_1()
 //        {
 //            string name = "Button???";
@@ -141,10 +141,10 @@
 //                "2");
 //        }
 //        
-//        [Test] //[Test(Description="TBD")]
-//        [Category("Slow")][Category("WinForms")]
-//        [Category("Slow")][Category("Control")]
-//        [Category("Slow")][Category("Search_UiaControl")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_UiaControl")]
 //        public void SearchControl_Name_ControlTypeButtonX2_2()
 //        {
 //            string name = "*ton???";
@@ -175,10 +175,10 @@
 //                "2");
 //        }
 //        
-//        [Test] //[Test(Description="TBD")]
-//        [Category("Slow")][Category("WinForms")]
-//        [Category("Slow")][Category("Control")]
-//        [Category("Slow")][Category("Search_UiaControl")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_UiaControl")]
 //        public void SearchControl_Name_ControlTypeButton_CaseSensitive1()
 //        {
 //            string name = "Button111";
@@ -199,10 +199,10 @@
 //                name);
 //        }
 //        
-//        [Test] //[Test(Description="TBD")]
-//        [Category("Slow")][Category("WinForms")]
-//        [Category("Slow")][Category("Control")]
-//        [Category("Slow")][Category("Search_UiaControl")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_UiaControl")]
 //        public void SearchControl_Name_ControlTypeButton_CaseSensitive2()
 //        {
 //            string name = "Button111";
@@ -223,10 +223,10 @@
 //                name);
 //        }
 //        
-//        [Test] //[Test(Description="TBD")]
-//        [Category("Slow")][Category("WinForms")]
-//        [Category("Slow")][Category("Control")]
-//        [Category("Slow")][Category("Search_UiaControl")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_UiaControl")]
 //        public void SearchControl_Name_ControlTypeButton_CaseInsensitive1()
 //        {
 //            string name = "Button111";
@@ -247,10 +247,10 @@
 //                name);
 //        }
 //        
-//        [Test] //[Test(Description="TBD")]
-//        [Category("Slow")][Category("WinForms")]
-//        [Category("Slow")][Category("Control")]
-//        [Category("Slow")][Category("Search_UiaControl")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_UiaControl")]
 //        public void SearchControl_Name_ControlTypeButton_CaseInsensitive2()
 //        {
 //            string name = "Button111";
@@ -271,10 +271,10 @@
 //                name);
 //        }
 //        
-//        [Test] //[Test(Description="TBD")]
-//        [Category("Slow")][Category("WinForms")]
-//        [Category("Slow")][Category("Control")]
-//        [Category("Slow")][Category("Search_UiaControl")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_UiaControl")]
 //        public void SearchControl_Name_ControlTypeButton_CaseSensitive_Failed()
 //        {
 //            string name = "Button111";
@@ -295,10 +295,10 @@
 //                "' -CaseSensitive:$true | Read-UiaControlName;");
 //        }
 //        
-//        [Test] //[Test(Description="TBD")]
-//        [Category("Slow")][Category("WinForms")]
-//        [Category("Slow")][Category("Control")]
-//        [Category("Slow")][Category("Search_UiaControl")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Control")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_UiaControl")]
 //        public void SearchControl_Name_ControlTypeButton_CaseInsensitive_Success()
 //        {
 //            string name = "Button111";
@@ -320,7 +320,7 @@
 //                name);
 //        }
 //        
-//        [TearDown]
+//        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
 //        public void DisposeRunspace()
 //        {
 //            MiddleLevelCode.DisposeRunspace();

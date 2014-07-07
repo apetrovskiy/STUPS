@@ -11,26 +11,26 @@ namespace UIAutomationTest.Commands.Get
 {
     using System;
     using System.Diagnostics;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
 
     /// <summary>
     /// Description of GetUiaWindowCommandTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class GetUiaWindowCommandTestFixture
     {
         public System.Diagnostics.Process process;
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByProcessNameWrong()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
@@ -49,10 +49,10 @@ namespace UIAutomationTest.Commands.Get
                 "Failed to get window in 2000 milliseconds by: process name: 'wrong process name', process Id: , window title: '', automationId: '', className: ''.");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByProcessNameTimeoutDefault()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
@@ -61,10 +61,10 @@ namespace UIAutomationTest.Commands.Get
                            ")) { 1; } else { 0; }");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByProcessNameDelay1000()
         {
             MiddleLevelCode.StartProcessWithForm(
@@ -75,11 +75,11 @@ namespace UIAutomationTest.Commands.Get
                 ")) { 1; } else { 0; }");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("May Fail")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("May Fail")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByProcessNameTimeout5000()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
@@ -88,10 +88,10 @@ namespace UIAutomationTest.Commands.Get
                 " -timeout 5000)) { 1; } else { 0; }");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByProcessNameDelay3000()
         {
             MiddleLevelCode.StartProcessWithForm(
@@ -112,10 +112,10 @@ namespace UIAutomationTest.Commands.Get
                 "Failed to get window in 3000 milliseconds by: process name: 'UIAutomationTestForms', process Id: , window title: '', automationId: '', className: ''.");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByProcessNameTimeout6000Delay3000()
         {
             MiddleLevelCode.StartProcessWithForm(
@@ -126,10 +126,10 @@ namespace UIAutomationTest.Commands.Get
                 " -timeout 6000)) { 1; } else { 0; }");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByProcessNameTimeout20000()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
@@ -138,10 +138,10 @@ namespace UIAutomationTest.Commands.Get
                 " -timeout 20000)) { 1; } else { 0; }");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByProcessNameDelay4000()
         {
             MiddleLevelCode.StartProcessWithForm(
@@ -162,10 +162,10 @@ namespace UIAutomationTest.Commands.Get
                 "Failed to get window in 3000 milliseconds by: process name: 'UIAutomationTestForms', process Id: , window title: '', automationId: '', className: ''.");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByProcessNameTimeout8000Delay5000()
         {
             MiddleLevelCode.StartProcessWithForm(
@@ -176,10 +176,10 @@ namespace UIAutomationTest.Commands.Get
                 " -timeout 8000)) { 1; } else { 0; }");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByNameWrong()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
@@ -200,10 +200,10 @@ namespace UIAutomationTest.Commands.Get
         }
         
 
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowAsGlobalVariableEmpty()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
@@ -211,10 +211,10 @@ namespace UIAutomationTest.Commands.Get
                 ")) { 0; } else { 1; }");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowAsGlobalVariableNotEmpty()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
@@ -247,10 +247,10 @@ namespace UIAutomationTest.Commands.Get
                 "Castle.Proxies.UiElementProxy_2");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowAsGlobalVariableSetNull()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
@@ -261,10 +261,10 @@ namespace UIAutomationTest.Commands.Get
                 ")) { 0; } else { 1; }");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByName_TimeoutDefault()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
@@ -273,10 +273,10 @@ namespace UIAutomationTest.Commands.Get
                 ")) { 1; } else { 0; }");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByName_Wildcard1_TimeoutDefault()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
@@ -286,10 +286,10 @@ namespace UIAutomationTest.Commands.Get
                 ")) { 1; } else { 0; }");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByName_Wildcard2_TimeoutDefault()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
@@ -299,10 +299,10 @@ namespace UIAutomationTest.Commands.Get
                 ")) { 1; } else { 0; }");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByName_Wildcard3_TimeoutDefault()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
@@ -312,10 +312,10 @@ namespace UIAutomationTest.Commands.Get
                 ")) { 1; } else { 0; }");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByName_Wildcard4_TimeoutDefault()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
@@ -327,10 +327,10 @@ namespace UIAutomationTest.Commands.Get
                 ")) { 1; } else { 0; }");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByNameDelay1000()
         {
             MiddleLevelCode.StartProcessWithForm(
@@ -341,10 +341,10 @@ namespace UIAutomationTest.Commands.Get
                 ")) { 1; } else { 0; }");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByNameTimeout5000()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
@@ -353,10 +353,10 @@ namespace UIAutomationTest.Commands.Get
                 " -timeout 5000)) { 1; } else { 0; }");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByNameTimeout3000Delay5000()
         {
             MiddleLevelCode.StartProcessWithForm(
@@ -380,10 +380,10 @@ namespace UIAutomationTest.Commands.Get
 
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByAutomationId_TimeoutDefault()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
@@ -392,10 +392,10 @@ namespace UIAutomationTest.Commands.Get
                 ")) { 1; } else { 0; }");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByAutomationId_WildCard_TimeoutDefault()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
@@ -404,10 +404,10 @@ namespace UIAutomationTest.Commands.Get
                 ")) { 1; } else { 0; }");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByClassName_WildCard_TimeoutDefault()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
@@ -416,10 +416,10 @@ namespace UIAutomationTest.Commands.Get
                 ")) { 1; } else { 0; }");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByPIDWrong()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
@@ -438,10 +438,10 @@ namespace UIAutomationTest.Commands.Get
                 "Failed to get window in 2000 milliseconds by: process name: '', process Id: 12345678, window title: '', automationId: '', className: ''.");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByPIDTimeoutDefault()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
@@ -452,10 +452,10 @@ namespace UIAutomationTest.Commands.Get
                 ")) { 1; } else { 0; }");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByProcessFoundTimeoutDefault()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
@@ -465,10 +465,10 @@ namespace UIAutomationTest.Commands.Get
                 ")) { 1; } else { 0; }");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByProcessStartedTimeoutDefault()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual1(
@@ -481,10 +481,10 @@ namespace UIAutomationTest.Commands.Get
                 ")) { 1; } else { 0; }");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaActiveWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaActiveWindow")]
         public void GetActiveWindow()
         {
             MiddleLevelCode.StartProcessWithFormAndControl(
@@ -500,10 +500,10 @@ namespace UIAutomationTest.Commands.Get
                 MiddleLevelCode.TestFormNameEmpty);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindowFromHandle")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindowFromHandle")]
         public void GetWindowByHandle1TimeoutDefault()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsEmpty, 0);
@@ -517,10 +517,10 @@ namespace UIAutomationTest.Commands.Get
                 MiddleLevelCode.TestFormNameEmpty);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByNameDelay2000_NoTaskBar()
         {
             MiddleLevelCode.StartProcessWithForm(
@@ -542,10 +542,10 @@ namespace UIAutomationTest.Commands.Get
                 @"[void](Get-UiaWindow -n '*medium*' | Get-UiaButton -n '*form*' | Invoke-UiaButtonClick);");
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByProcessName_Recurse_TimeoutDefault()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsThreeSet, 0);
@@ -557,10 +557,10 @@ namespace UIAutomationTest.Commands.Get
                 "3");
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByProcessId_Recurse_TimeoutDefault()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsThreeSet, 0);
@@ -572,10 +572,10 @@ namespace UIAutomationTest.Commands.Get
                 "3");
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByProcess_Recurse_TimeoutDefault()
         {
             MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsThreeSet, 0);
@@ -588,10 +588,10 @@ namespace UIAutomationTest.Commands.Get
         }
         
         // this is not supported
-//        [Test]
-//        [Category("Slow")]
-//        [Category("WinForms")]
-//        [Category("Get_UiaWindow")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
+//        [MbUnit.Framework.Category("Slow")]
+//        [MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Get_UiaWindow")]
 //        public void GetWindowByName_Recurse_TimeoutDefault()
 //        {
 //            MiddleLevelCode.StartProcessWithForm(UIAutomationTestForms.Forms.WinFormsThreeSet, 0);
@@ -603,10 +603,10 @@ namespace UIAutomationTest.Commands.Get
         
         // =============== WithControl ====================
         
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByName_WithControl_Timeout5000()
         {
             MiddleLevelCode.StartProcessWithFormAndControl(
@@ -623,10 +623,10 @@ namespace UIAutomationTest.Commands.Get
                 MiddleLevelCode.TestFormNameEmpty);
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByName_WithControl_Wrong_Timeout5000()
         {
             MiddleLevelCode.StartProcessWithFormAndControl(
@@ -648,10 +648,10 @@ namespace UIAutomationTest.Commands.Get
         
         
         // =============the -Win32 parameter===============
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByName_Win32_Delay2000_NoTaskBar()
         {
             MiddleLevelCode.StartProcessWithForm(
@@ -662,10 +662,10 @@ namespace UIAutomationTest.Commands.Get
                            ")) { 1; } else { 0; }");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByAutomationId_Win32_Delay2000_NoTaskBar()
         {
             MiddleLevelCode.StartProcessWithForm(
@@ -676,10 +676,10 @@ namespace UIAutomationTest.Commands.Get
                            ")) { 1; } else { 0; }");
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Get_UiaWindow")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Get_UiaWindow")]
         public void GetWindowByClass_Win32_Delay2000_NoTaskBar()
         {
             MiddleLevelCode.StartProcessWithForm(
@@ -691,7 +691,7 @@ namespace UIAutomationTest.Commands.Get
         }
         // ================================================
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

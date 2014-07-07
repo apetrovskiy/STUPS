@@ -10,22 +10,22 @@
 namespace UIAutomationTest.Helpers.ObjectModel
 {
     using System;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
     /// Description of ISupportsExpandCollapseTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class ISupportsExpandCollapseTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
             MiddleLevelCode.DisposeRunspace();
@@ -41,10 +41,10 @@ namespace UIAutomationTest.Helpers.ObjectModel
         */
         
         // ComboBox
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
         public void Invoke_ComboBox_Expand()
         {
             string expectedResult = "b2";
@@ -60,10 +60,10 @@ namespace UIAutomationTest.Helpers.ObjectModel
         }
         
         // TreeItem
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
         public void Invoke_TreeItem_Expand()
         {
             string expectedResult = "Invoked";
@@ -83,9 +83,9 @@ namespace UIAutomationTest.Helpers.ObjectModel
                 expectedResult);
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("ISupportsExpandCollapse")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ISupportsExpandCollapse")]
         public void TreeItem_ExpandCollapseState_Expanded()
         {
             string expectedResult = "Expanded";
@@ -102,9 +102,9 @@ namespace UIAutomationTest.Helpers.ObjectModel
                 expectedResult);
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("ISupportsExpandCollapse")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("ISupportsExpandCollapse")]
         public void TreeItem_ExpandCollapseState_Collapsed()
         {
             string expectedResult = "Collapsed";

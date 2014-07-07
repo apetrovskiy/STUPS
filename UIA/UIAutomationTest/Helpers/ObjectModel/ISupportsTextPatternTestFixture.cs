@@ -10,29 +10,29 @@
 namespace UIAutomationTest.Helpers.ObjectModel
 {
     using System;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
     /// Description of ISupportsTextPatternTestFixture.
     /// </summary>
-    // [Ignore]
-    [TestFixture]
+    // [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class ISupportsTextPatternTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
             MiddleLevelCode.DisposeRunspace();
         }
         
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Text_ImplementsCommonPattern()
 //        {
 //            ISupportsInvokePattern invokableElement =
@@ -66,7 +66,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.IsNotNull(refreshableElement as ISupportsRefresh);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Text_ImplementsPatternInQuestion()
 //        {
 //            ISupportsTextPattern element =
@@ -76,7 +76,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.IsNotNull(element as ISupportsTextPattern);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Text_DoesNotImplementOtherPatterns()
 //        {
 //            ISupportsValuePattern element =
@@ -86,7 +86,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.IsNull(element as ISupportsValuePattern);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Text_GetTextSelection()
 //        {
 //            // Arrange
@@ -108,7 +108,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.AreEqual(expectedResult, result);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Text_GetVisibleRanges()
 //        {
 //            // Arrange
@@ -130,8 +130,8 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.AreEqual(expectedResult, result);
 //        }
 //        
-//        [Test]
-//        [Ignore]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
+//        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
 //        public void Text_RangeFromChild()
 //        {
 //            // Arrange
@@ -153,8 +153,8 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.AreEqual(expectedResult, result);
 //        }
 //        
-//        [Test]
-//        [Ignore]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
+//        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
 //        public void Text_RangeFromPoint()
 //        {
 //            // Arrange
@@ -177,8 +177,8 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //        }
 //        
 //        
-//        [Test]
-//        [Ignore]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
+//        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
 //        public void Text_DocumentRange()
 //        {
 //            // Arrange
@@ -193,7 +193,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.AreEqual(expectedValue, element.DocumentRange);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void Text_SupportedTextSelection()
 //        {
 //            // Arrange

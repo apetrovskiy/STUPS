@@ -10,32 +10,32 @@
 namespace UIAutomationTest.Helpers.ObjectModel
 {
     using System;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
     /// Description of ISupportsSelectionItemPatternTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class ISupportsSelectionItemPatternTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void TearDown()
         {
             MiddleLevelCode.DisposeRunspace();
         }
         
         // ListItem
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
         public void ListItem_Select()
         {
             string expectedResult = "True";
@@ -52,10 +52,10 @@ namespace UIAutomationTest.Helpers.ObjectModel
                 expectedResult);
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
         public void ListItem_AddToSelection()
         {
             string expectedResult = "True";
@@ -75,10 +75,10 @@ namespace UIAutomationTest.Helpers.ObjectModel
                 expectedResult);
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
         public void ListItem_RemoveFromSelection()
         {
             string expectedResult = "False";
@@ -102,10 +102,10 @@ namespace UIAutomationTest.Helpers.ObjectModel
         }
         
         // TreeItem
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
         public void TreeItem_IsSelected_False()
         {
             string expectedResult = "False";
@@ -119,10 +119,10 @@ namespace UIAutomationTest.Helpers.ObjectModel
                 expectedResult);
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
         public void TreeItem_IsSelected_True()
         {
             string expectedResult = "True";
@@ -139,10 +139,10 @@ namespace UIAutomationTest.Helpers.ObjectModel
                 expectedResult);
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
         public void TreeItem_AddToSelection()
         {
             string expectedResult = "True";
@@ -160,7 +160,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
         }
         
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void SelectionItem_AddToSelection()
 //        {
 //            // Arrange
@@ -182,7 +182,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.AreEqual(expectedResult, result);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void SelectionItem_RemoveFromSelection()
 //        {
 //            // Arrange
@@ -204,7 +204,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.AreEqual(expectedResult, result);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void SelectionItem_Select()
 //        {
 //            // Arrange
@@ -226,7 +226,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.AreEqual(expectedResult, result);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void SelectionItem_IsSelected()
 //        {
 //            // Arrange
@@ -241,7 +241,7 @@ namespace UIAutomationTest.Helpers.ObjectModel
 //            Assert.AreEqual(expectedValue, element.IsSelected);
 //        }
 //        
-//        [Test]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
 //        public void SelectionItem_SelectionContainer()
 //        {
 //            // Arrange

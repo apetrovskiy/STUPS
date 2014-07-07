@@ -10,36 +10,36 @@
 namespace UIAutomationTest.Commands.Convert
 {
     using System;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
 
     /// <summary>
     /// Description of ConvertFromUiaTableCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="ConvertFrom-UiaTableCommand test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="ConvertFrom-UiaTableCommand test")]
     public class ConvertFromUiaTableCommandTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="InputObject ProcessRecord test Null via pipeline")]
-        [Category("Slow")]
-        [Category("NoForms")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="InputObject ProcessRecord test Null via pipeline")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("NoForms")]
         public void ConvertFromUiaTable_TestPipelineInput()
         {
             string codeSnippet = 
                 @"if ( ($null | ConvertFrom-UiaTable) ) { 1; }else{ 0; }";
             System.Collections.ObjectModel.Collection<PSObject> coll = 
                 CmdletUnitTest.TestRunspace.RunPSCode(codeSnippet);
-            Assert.IsTrue(coll[0].ToString() == "0");
+            MbUnit.Framework.Assert.IsTrue(coll[0].ToString() == "0");
         }
         
-        [Test] //[Test(Description="ProcessRecord test Null via parameter")]
-        [Category("Slow")]
-        [Category("NoForms")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="ProcessRecord test Null via parameter")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("NoForms")]
         public void ConvertFromUiaTable_TestParameterInputNull()
         {
 //            string codeSnippet = 
@@ -58,9 +58,9 @@ namespace UIAutomationTest.Commands.Convert
 //  ----> System.Management.Automation.ValidationMetadataException : The argument is null or empty. Supply an argument that is not null or empty and then try the command again.
         }
         
-        [Test] //[Test(Description="ProcessRecord test Is Not AutomationElement")]
-        [Category("Slow")]
-        [Category("NoForms")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="ProcessRecord test Is Not AutomationElement")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("NoForms")]
         public void ConvertFromUiaTable_TestParameterInputOtherType()
         {
 //            string codeSnippet = 
@@ -80,7 +80,7 @@ namespace UIAutomationTest.Commands.Convert
 //  ----> System.Management.Automation.PSInvalidCastException : Cannot convert the "System.Windows.Forms.Label, Text: " value of type "System.Windows.Forms.Label" to type "System.Windows.Automation.AutomationElement".
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

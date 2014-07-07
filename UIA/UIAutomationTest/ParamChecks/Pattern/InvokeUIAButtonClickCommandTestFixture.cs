@@ -9,122 +9,122 @@
 
 namespace UIAutomationTest.CheckCmdletParameters
 {
-    using MbUnit.Framework;// using Xunit;
+    using MbUnit.Framework;using NUnit.Framework;// using Xunit;
     
     /// <summary>
     /// Description of InvokeUiaButtonClickCommandTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     // [Ignore("20140128")]
     public class InvokeUiaButtonClickCommandTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode2.PrepareRunspaceForParamChecks();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             // MiddleLevelCode.DisposeRunspace();
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
-        [Description("Invoke-UiaButtonClick")]
+        [MbUnit.Framework.Category("Fast")]
+        [MbUnit.Framework.Description("Invoke-UiaButtonClick")]
         public void Invoke_UiaButtonClick_NoParameters()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Invoke-UiaButtonClick;");
         }
         
-        [Test]// [Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         // [Ignore("20140128")]
-        [Category("Fast")]
-        [Description("Invoke-UiaButtonClick -PassThru")]
+        [MbUnit.Framework.Category("Fast")]
+        [MbUnit.Framework.Description("Invoke-UiaButtonClick -PassThru")]
         public void Invoke_UiaButtonClick_PassThru()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
         		"Invoke-UiaButtonClick -PassThru;");
         }
         
-//        [Test]// [Fact]
-//        [Category("Fast")]
-//        [Description("Invoke-UiaButtonClick 'text'")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
+//        [MbUnit.Framework.Category("Fast")]
+//        [MbUnit.Framework.Description("Invoke-UiaButtonClick 'text'")]
 //        public void Invoke_UiaButtonClick_ContainsText_Position0()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
 //        		"Invoke-UiaButtonClick 'text';");
 //        }
 //        
-//        [Test]// [Fact]
-//        [Category("Fast")]
-//        [Description("Invoke-UiaButtonClick -ContainsText 'text'")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
+//        [MbUnit.Framework.Category("Fast")]
+//        [MbUnit.Framework.Description("Invoke-UiaButtonClick -ContainsText 'text'")]
 //        public void Invoke_UiaButtonClick_ContainsText()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
 //        		"Invoke-UiaButtonClick -ContainsText 'text';");
 //        }
 //        
-//        [Test]// [Fact]
-//        [Category("Fast")]
-//        [Description("Invoke-UiaButtonClick -ContainsText 'text' -PassThru")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
+//        [MbUnit.Framework.Category("Fast")]
+//        [MbUnit.Framework.Description("Invoke-UiaButtonClick -ContainsText 'text' -PassThru")]
 //        public void Invoke_UiaButtonClick_ContainsText_PassThru()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
 //        		"Invoke-UiaButtonClick -ContainsText 'text' -PassThru;");
 //        }
 //        
-//        [Test]// [Fact]
-//        [Category("Fast")]
-//        [Description("Invoke-UiaButtonClick -Name 'text'")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
+//        [MbUnit.Framework.Category("Fast")]
+//        [MbUnit.Framework.Description("Invoke-UiaButtonClick -Name 'text'")]
 //        public void Invoke_UiaButtonClick_Name()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
 //        		"Invoke-UiaButtonClick -Name 'text';");
 //        }
 //        
-//        [Test]// [Fact]
-//        [Category("Fast")]
-//        [Description("Invoke-UiaButtonClick -Name 'text' -Win32")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
+//        [MbUnit.Framework.Category("Fast")]
+//        [MbUnit.Framework.Description("Invoke-UiaButtonClick -Name 'text' -Win32")]
 //        public void Invoke_UiaButtonClick_Name_Win32()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
 //        		"Invoke-UiaButtonClick -Name 'text' -Win32;");
 //        }
 //        
-//        [Test]// [Fact]
-//        [Category("Fast")]
-//        [Description("Invoke-UiaButtonClick -AutomationId 'text'")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
+//        [MbUnit.Framework.Category("Fast")]
+//        [MbUnit.Framework.Description("Invoke-UiaButtonClick -AutomationId 'text'")]
 //        public void Invoke_UiaButtonClick_AutomationId()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
 //        		"Invoke-UiaButtonClick -AutomationId 'text';");
 //        }
 //        
-//        [Test]// [Fact]
-//        [Category("Fast")]
-//        [Description("Invoke-UiaButtonClick -Class 'text'")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
+//        [MbUnit.Framework.Category("Fast")]
+//        [MbUnit.Framework.Description("Invoke-UiaButtonClick -Class 'text'")]
 //        public void Invoke_UiaButtonClick_Class()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
 //        		"Invoke-UiaButtonClick -Class 'text';");
 //        }
 //        
-//        [Test]// [Fact]
-//        [Category("Fast")]
-//        [Description("Invoke-UiaButtonClick -Value 'text'")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
+//        [MbUnit.Framework.Category("Fast")]
+//        [MbUnit.Framework.Description("Invoke-UiaButtonClick -Value 'text'")]
 //        public void Invoke_UiaButtonClick_Value()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
 //        		"Invoke-UiaButtonClick -Value 'text';");
 //        }
 //        
-//        [Test]// [Fact]
-//        [Category("Fast")]
-//        [Description("Invoke-UiaButtonClick -Name 'text' -AutomationId 'text2' -Class 'text3' -Value 'text4' -PassThru")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
+//        [MbUnit.Framework.Category("Fast")]
+//        [MbUnit.Framework.Description("Invoke-UiaButtonClick -Name 'text' -AutomationId 'text2' -Class 'text3' -Value 'text4' -PassThru")]
 //        public void Invoke_UiaButtonClick_Name_AutomationId_Class_Value_PassThru()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(

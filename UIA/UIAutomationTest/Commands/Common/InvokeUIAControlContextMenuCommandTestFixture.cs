@@ -10,7 +10,7 @@
 namespace UIAutomationTest.Commands.Common
 {
     using System;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
@@ -18,16 +18,16 @@ namespace UIAutomationTest.Commands.Common
     /// </summary>
     public class InvokeUIAControlContextMenuCommandTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
         public void Invoke_ControlContextMenu_from_window()
         {
             string expectedResult = "WindowMenuLevel1-2";
@@ -48,10 +48,10 @@ namespace UIAutomationTest.Commands.Common
                 expectedResult);
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
         public void Invoke_ControlContextMenu_from_window_coordinated()
         {
             string expectedResult = "WindowMenuLevel1-2";
@@ -72,10 +72,10 @@ namespace UIAutomationTest.Commands.Common
                 expectedResult);
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
         public void Invoke_ControlContextMenu_from_control()
         {
             string expectedResult = "ControlMenuLevel1-2";
@@ -97,10 +97,10 @@ namespace UIAutomationTest.Commands.Common
                 expectedResult);
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Control")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Control")]
         public void Invoke_ControlContextMenu_from_control_coordinated()
         {
             string expectedResult = "ControlMenuLevel1-2";
@@ -122,7 +122,7 @@ namespace UIAutomationTest.Commands.Common
                 expectedResult);
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

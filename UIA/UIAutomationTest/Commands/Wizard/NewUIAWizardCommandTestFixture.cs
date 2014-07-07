@@ -10,16 +10,16 @@
 namespace UIAutomationTest.Commands.Wizard
 {
     using System;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
     /// Description of NewUiaWizardCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="1")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="1")]
     public class NewUiaWizardCommandTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
@@ -28,10 +28,10 @@ namespace UIAutomationTest.Commands.Wizard
                 @"[UIAutomation.WizardCollection]::ResetData();");
         }
         
-        [Test] //[Test(Description="Creating a simple wizard object")]
-        [Category("NoForms")]
-        [Category("Slow")]
-        [Category("Wizard")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="Creating a simple wizard object")]
+        [MbUnit.Framework.Category("NoForms")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("Wizard")]
         public void NewWizard_Simple()
         {
             string name = "wizard";
@@ -42,10 +42,10 @@ namespace UIAutomationTest.Commands.Wizard
                 name);
         }
         
-        [Test] //[Test(Description="Creating a simple wizard object with the complex name")]
-        [Category("NoForms")]
-        [Category("Slow")]
-        [Category("Wizard")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="Creating a simple wizard object with the complex name")]
+        [MbUnit.Framework.Category("NoForms")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("Wizard")]
         public void NewWizard_Complex1()
         {
             string name = "wi*za*rd";
@@ -56,10 +56,10 @@ namespace UIAutomationTest.Commands.Wizard
                 name);
         }
         
-        [Test] //[Test(Description="Creating a simple wizard object with the complex name")]
-        [Category("NoForms")]
-        [Category("Slow")]
-        [Category("Wizard")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="Creating a simple wizard object with the complex name")]
+        [MbUnit.Framework.Category("NoForms")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("Wizard")]
         public void NewWizard_Complex2()
         {
             string name = @"``//\\`""`''#$(1)567";
@@ -71,10 +71,10 @@ namespace UIAutomationTest.Commands.Wizard
                 answer);
         }
         
-        [Test] //[Test(Description="Creating a simple wizard object with an action")]
-        [Category("NoForms")]
-        [Category("Slow")]
-        [Category("Wizard")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="Creating a simple wizard object with an action")]
+        [MbUnit.Framework.Category("NoForms")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("Wizard")]
         public void NewWizard_Simple_WithStartAction()
         {
             string name = "wizard";
@@ -90,7 +90,7 @@ namespace UIAutomationTest.Commands.Wizard
                 result);
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

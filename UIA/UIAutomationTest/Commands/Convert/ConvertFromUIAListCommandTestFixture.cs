@@ -10,26 +10,26 @@
 //namespace UIAutomationTest.Commands.Convert
 //{
 //    using System;
-//    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+//    using MbUnit.Framework;using NUnit.Framework;
 //    using System.Management.Automation;
 //    /// <summary>
 //    /// Description of ConvertFromUiaListCommandTestFixture.
 //    /// </summary>
-//    [TestFixture] // [TestFixture(Description="ConvertFrom-UiaListCommand test")]
+//    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="ConvertFrom-UiaListCommand test")]
 //    public class ConvertFromUiaListCommandTestFixture
 //    {
 //        public ConvertFromUiaListCommandTestFixture()
 //        {
 //        }
 //        
-//        [SetUp]
+//        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
 //        public void PrepareRunspace()
 //        {
 //            MiddleLevelCode.PrepareRunspace();
 //        }
 //        
-//        [Test] //[Test(Description="InputObject ProcessRecord test Null via pipeline")]
-//        [Category("Slow")][Category("NoForms")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="InputObject ProcessRecord test Null via pipeline")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("NoForms")]
 //        public void TestPipelineInput()
 //        {
 //            string codeSnippet = 
@@ -39,8 +39,8 @@
 //            Assert.IsTrue(coll[0].ToString() == "0");
 //        }
 //        
-//        [Test] //[Test(Description="ProcessRecord test Null via parameter")]
-//        [Category("Slow")][Category("NoForms")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="ProcessRecord test Null via parameter")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("NoForms")]
 //        public void TestParameterInputNull()
 //        {
 //            string codeSnippet = 
@@ -50,8 +50,8 @@
 //            Assert.IsNull(coll);
 //        }
 //        
-//        [Test] //[Test(Description="ProcessRecord test Is Not AutomationElement")]
-//        [Category("Slow")][Category("NoForms")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="ProcessRecord test Is Not AutomationElement")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("NoForms")]
 //        public void TestParameterInputOtherType()
 //        {
 //            string codeSnippet = 
@@ -61,7 +61,7 @@
 //            Assert.IsNull(coll);
 //        }
 //        
-//        [TearDown]
+//        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
 //        public void DisposeRunspace()
 //        {
 //            MiddleLevelCode.DisposeRunspace();

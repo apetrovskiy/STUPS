@@ -10,28 +10,28 @@
 namespace UIAutomationTest.Commands.Common
 {
     using System;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
 
     /// <summary>
     /// Description of SaveUiaScreenshotCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Save-UiaScreenshotCommand test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="Save-UiaScreenshotCommand test")]
     public class SaveUiaScreenshotCommandTestFixture
     {
         public SaveUiaScreenshotCommandTestFixture()
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="Saving a screenshot with description")]
-        [Category("Slow")][Category("NoForms")]
-        [Category("Slow")][Category("Screenshot")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="Saving a screenshot with description")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("NoForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Screenshot")]
         public void ScreenshotFile_Description()
         {
             CmdletUnitTest.TestRunspace.RunAndEvaluateIsTrue(
@@ -39,7 +39,7 @@ namespace UIAutomationTest.Commands.Common
                 "0");
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

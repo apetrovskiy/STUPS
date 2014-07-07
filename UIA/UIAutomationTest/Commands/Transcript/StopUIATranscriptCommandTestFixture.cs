@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
-using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+using MbUnit.Framework;using NUnit.Framework;
 using System.Management.Automation;
 
 namespace UIAutomationTest.Commands.Transcript
@@ -15,16 +15,16 @@ namespace UIAutomationTest.Commands.Transcript
     /// <summary>
     /// Description of StopUiaTranscriptCommandTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="Stop-UiaTranscriptCommand test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="Stop-UiaTranscriptCommand test")]
     public class StopUiaTranscriptCommandTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

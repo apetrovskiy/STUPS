@@ -10,23 +10,23 @@
 namespace UIAutomationTest.Provider
 {
     using System;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     /// <summary>
     /// Description of UiaProviderTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="UiaProvider test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="UiaProvider test")]
     public class UiaProviderTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Provider")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Provider")]
         public void CheckProvider()
         {
             string name = "UiaProvider";
@@ -37,8 +37,8 @@ namespace UIAutomationTest.Provider
                 name);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Provider")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Provider")]
         public void CheckDefaultDrive()
         {
             string name = "UIA";
@@ -49,8 +49,8 @@ namespace UIAutomationTest.Provider
                 name);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Provider")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Provider")]
         public void CheckNewDriveByWindowName()
         {
             string driveName = "UIA1";
@@ -78,8 +78,8 @@ namespace UIAutomationTest.Provider
                 driveName);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Provider")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Provider")]
         public void CheckNewDrivebyProcessName()
         {
             string driveName = "UIA2";
@@ -107,8 +107,8 @@ namespace UIAutomationTest.Provider
                 driveName);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Provider")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Provider")]
         public void CheckNewDriveByProcessId()
         {
             string driveName = "UIA3";
@@ -136,8 +136,8 @@ namespace UIAutomationTest.Provider
                 driveName);
         }
 
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("Provider")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Provider")]
         public void RemoveDefaultDrive()
         {
             string driveName = "UIA";
@@ -156,7 +156,7 @@ namespace UIAutomationTest.Provider
                 //" does not exist.");
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

@@ -11,25 +11,25 @@ namespace UIAutomationTest.Helpers
 {
     using System;
     //using System.Diagnostics;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;using NUnit.Framework;
     
     /// <summary>
     /// Description of PreferencesTestFixture.
     /// </summary>
-    [TestFixture]
-    [Description("A Preferences test")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
+    [MbUnit.Framework.Description("A Preferences test")]
     public class PreferencesTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [Test]
-        [Description("checks the default value of AfterFailTurboTimeout")]
-        [Category("WinForms")]
-        [Category("Slow")][Category("Preferences")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Description("checks the default value of AfterFailTurboTimeout")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Preferences")]
         public void Preferences_AfterFailTurboTimeout_DefaultValue()
         {
             string timeoutInterval = "2000";
@@ -40,10 +40,10 @@ namespace UIAutomationTest.Helpers
                 timeoutInterval);
         }
 
-        [Test]
-        [Description("checks that the custom timeout does not change after getting a windw by process name")]
-        [Category("WinForms")]
-        [Category("Slow")][Category("Preferences")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Description("checks that the custom timeout does not change after getting a windw by process name")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Preferences")]
         public void Preferences_TimeoutAfterSuccess_Window_1()
         {
             string timeoutInterval = "10000"; // default in unit tests
@@ -57,10 +57,10 @@ namespace UIAutomationTest.Helpers
                 timeoutInterval);
         }
         
-        [Test]
-        [Description("checks that the custom timeout does not change after getting a windw by name")]
-        [Category("WinForms")]
-        [Category("Slow")][Category("Preferences")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Description("checks that the custom timeout does not change after getting a windw by name")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Preferences")]
         public void Preferences_TimeoutAfterSuccess_Window_2()
         {
             string timeoutInterval = "10000";
@@ -74,10 +74,10 @@ namespace UIAutomationTest.Helpers
                 timeoutInterval);
         }
         
-        [Test]
-        [Description("checks that the custom timeout does not change after getting a windw by process id")]
-        [Category("WinForms")]
-        [Category("Slow")][Category("Preferences")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Description("checks that the custom timeout does not change after getting a windw by process id")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Preferences")]
         public void Preferences_TimeoutAfterSuccess_Window_3()
         {
             string timeoutInterval = "10000";
@@ -92,10 +92,10 @@ namespace UIAutomationTest.Helpers
                 timeoutInterval);
         }
         
-        [Test]
-        [Description("checks that the timeout becomes short after a fail on getting a window by process name")]
-        [Category("WinForms")]
-        [Category("Slow")][Category("Preferences")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Description("checks that the timeout becomes short after a fail on getting a window by process name")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Preferences")]
         public void Preferences_TimeoutAfterFail_Window_ProcessName()
         {
             string processName = "no such process";
@@ -109,10 +109,10 @@ namespace UIAutomationTest.Helpers
                 timeoutInterval);
         }
         
-        [Test]
-        [Description("checks that the timeout becomes short after a fail on getting a window by name")]
-        [Category("WinForms")]
-        [Category("Slow")][Category("Preferences")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Description("checks that the timeout becomes short after a fail on getting a window by name")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Preferences")]
         public void Preferences_TimeoutAfterFail_Window_WindowTitle()
         {
             string windowTitle = "no such window";
@@ -126,10 +126,10 @@ namespace UIAutomationTest.Helpers
                 timeoutInterval);
         }
         
-        [Test]
-        [Description("checks that the timeout becomes short after a fail on getting a window by process id")]
-        [Category("WinForms")]
-        [Category("Slow")][Category("Preferences")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Description("checks that the timeout becomes short after a fail on getting a window by process id")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Preferences")]
         public void Preferences_TimeoutAfterFail_Window_ProcessId()
         {
             string processId = "-1";
@@ -143,10 +143,10 @@ namespace UIAutomationTest.Helpers
                 timeoutInterval);
         }
         
-//        [Test]
-//        [Description("TBD")]
-//        [Category("WinForms")]
-//        [Category("Slow")][Category("Preferences")]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]
+//        [MbUnit.Framework.Description("TBD")]
+//        [MbUnit.Framework.Category("WinForms")]
+//        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Preferences")]
 //        public void PreferencesTimeoutAfterFailWindow4_Process()
 //        {
 //            string timeoutInterval = "2000";
@@ -161,10 +161,10 @@ namespace UIAutomationTest.Helpers
 //                timeoutInterval);
 //        }
 
-        [Test]
-        [Description("checks that the timeout returns its custom value after getting a window successfully by process name")]
-        [Category("WinForms")]
-        [Category("Slow")][Category("Preferences")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Description("checks that the timeout returns its custom value after getting a window successfully by process name")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Preferences")]
         public void Preferences_TimeoutAfterFailAndFurtherSuccess_Window_ProcessName()
         {
             string processName = "no such process";
@@ -182,10 +182,10 @@ namespace UIAutomationTest.Helpers
                 timeoutInterval);
         }
         
-        [Test]
-        [Description("checks that the timeout returns its custom value after getting a window successfully by name")]
-        [Category("WinForms")]
-        [Category("Slow")][Category("Preferences")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Description("checks that the timeout returns its custom value after getting a window successfully by name")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Preferences")]
         public void Preferences_TimeoutAfterFailAndFurtherSuccess_Window_WindowTitle()
         {
             string windowTitle = "no such window";
@@ -203,10 +203,10 @@ namespace UIAutomationTest.Helpers
                 timeoutInterval);
         }
         
-        [Test]
-        [Description("checks that the timeout returns its custom value after getting a window successfully by process id")]
-        [Category("WinForms")]
-        [Category("Slow")][Category("Preferences")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Description("checks that the timeout returns its custom value after getting a window successfully by process id")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Preferences")]
         public void Preferences_TimeoutAfterFailAndFurtherSuccess_Window_ProcessId()
         {
             string processId = "-1";
@@ -225,10 +225,10 @@ namespace UIAutomationTest.Helpers
                 timeoutInterval);
         }
         
-        [Test]
-        [Description("checks that the timeout gets the AfterFailTurboTimeout value after a fail")]
-        [Category("WinForms")]
-        [Category("Slow")][Category("Preferences")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Description("checks that the timeout gets the AfterFailTurboTimeout value after a fail")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Preferences")]
         public void Preferences_TimeoutAfterFail_Control()
         {
             string name = "Button333";
@@ -251,10 +251,10 @@ namespace UIAutomationTest.Helpers
                 UIAutomation.Preferences.AfterFailTurboTimeout.ToString());
         }
         
-        [Test]
-        [Description("checks that the timeout gets back its value after a fail and further success")]
-        [Category("WinForms")]
-        [Category("Slow")][Category("Preferences")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Description("checks that the timeout gets back its value after a fail and further success")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Preferences")]
         public void Preferences_TimeoutAfterFailAndFurtherSuccess_Control()
         {
             string name = "Button333";
@@ -282,7 +282,7 @@ namespace UIAutomationTest.Helpers
                 timeoutInterval);
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

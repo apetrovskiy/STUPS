@@ -12,30 +12,30 @@ namespace UIAutomationTest.Commands.Get
     using System;
     using System.Diagnostics;
     using System.Windows.Automation;
-    using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
 
     /// <summary>
     /// Description of TestUIAControlStateCommandTestFixture.
     /// </summary>
-    [TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class TestUIAControlStateCommandTestFixture
     {
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Test-UIAControlState")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Test-UIAControlState")]
         public void ControlTypeName_Existing()
         {
             const string expectedName = "btnName";
@@ -58,10 +58,10 @@ namespace UIAutomationTest.Commands.Get
                 "\"})) { 1; } else { 0; }");
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Test-UIAControlState")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Test-UIAControlState")]
         public void ControlTypeAutomationId_Existing()
         {
             const string expectedName = "btnName";
@@ -84,10 +84,10 @@ namespace UIAutomationTest.Commands.Get
                 "\"})) { 1; } else { 0; }");
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Test-UIAControlState")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Test-UIAControlState")]
         public void ControlType_Existing()
         {
             const string expectedName = "btnName";
@@ -108,10 +108,10 @@ namespace UIAutomationTest.Commands.Get
                 " | Test-UiaControlState -SearchCriteria @{controlType=\"button\"})) { 1; } else { 0; }");
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Test-UIAControlState")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Test-UIAControlState")]
         public void Name_Existing()
         {
             const string expectedName = "btnName";
@@ -134,10 +134,10 @@ namespace UIAutomationTest.Commands.Get
                 "\"})) { 1; } else { 0; }");
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Test-UIAControlState")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Test-UIAControlState")]
         public void AutomationId_Existing()
         {
             const string expectedName = "btnName";
@@ -160,10 +160,10 @@ namespace UIAutomationTest.Commands.Get
                 "\"})) { 1; } else { 0; }");
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Test-UIAControlState")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Test-UIAControlState")]
         public void ControlTypeNameAutomationId_Existing()
         {
             const string expectedName = "btnName";
@@ -190,10 +190,10 @@ namespace UIAutomationTest.Commands.Get
         
         // ==========================================================================================================
         
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Test-UIAControlState")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Test-UIAControlState")]
         public void Name_NonExisting()
         {
             const string expectedName = "btnName";
@@ -216,10 +216,10 @@ namespace UIAutomationTest.Commands.Get
                 "\"})) { 0; } else { 1; }");
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Test-UIAControlState")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Test-UIAControlState")]
         public void AutomationId_NonExisting()
         {
             const string expectedName = "btnName";
@@ -242,10 +242,10 @@ namespace UIAutomationTest.Commands.Get
                 "\"})) { 0; } else { 1; }");
         }
         
-        [Test]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Test-UIAControlState")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Test-UIAControlState")]
         public void ControlTypeNameAutomationId_NonExisting()
         {
             const string expectedName = "btnName";
@@ -272,11 +272,12 @@ namespace UIAutomationTest.Commands.Get
         
         // ==========================================================================================================
         
-        [Test]
-        [Ignore("should return 0 but...")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Test-UIAControlState")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Ignore("should return 0 but...")]
+        [NUnit.Framework.Ignore("should return 0 but...")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Test-UIAControlState")]
         public void NameAutomationId_NonExisting_Delay()
         {
             const string expectedName = "btnName";
@@ -301,11 +302,12 @@ namespace UIAutomationTest.Commands.Get
                 "\"})) { 0; } else { 1; }");
         }
         
-        [Test]
-        [Ignore("should return 0 but...")]
-        [Category("Slow")]
-        [Category("WinForms")]
-        [Category("Test-UIAControlState")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]
+        [MbUnit.Framework.Ignore("should return 0 but...")]
+        [NUnit.Framework.Ignore("should return 0 but...")]
+        [MbUnit.Framework.Category("Slow")]
+        [MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Test-UIAControlState")]
         public void ControlTypeNameAutomationId_NonExisting_Delay()
         {
             const string expectedName = "btnName";

@@ -10,21 +10,21 @@
 namespace UIAutomationTest.Helpers
 {
     using System;
-    using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
     
     using UIAutomationTestForms;
     
     /// <summary>
     /// Description of TestResultsTestFixture.
     /// </summary>
-    [TestFixture] // [TestFixture(Description="-TestResultName and -TestPassed tests")]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="-TestResultName and -TestPassed tests")]
     public class TestResultsTestFixture
     {
         public TestResultsTestFixture()
         {
         }
         
-        [SetUp]
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             
@@ -41,9 +41,9 @@ namespace UIAutomationTest.Helpers
             
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("TestResults")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("TestResults")]
         public void TestResults_TestPassed_NoParam()
         {
             string name = "Button111";
@@ -73,9 +73,9 @@ namespace UIAutomationTest.Helpers
                 resultStatus);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("TestResults")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("TestResults")]
         public void TestResults_TestPassed_Empty()
         {
             string name = "Button111";
@@ -105,9 +105,9 @@ namespace UIAutomationTest.Helpers
                 resultStatus);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("TestResults")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("TestResults")]
         public void TestResults_TestPassed_True()
         {
             string name = "Button111";
@@ -137,9 +137,9 @@ namespace UIAutomationTest.Helpers
                 resultStatus);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("TestResults")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("TestResults")]
         public void TestResults_TestPassed_False()
         {
             string name = "Button111";
@@ -169,9 +169,9 @@ namespace UIAutomationTest.Helpers
                 resultStatus);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("TestResults")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("TestResults")]
         public void TestResults_TestPassed_True_Failure()
         {
             string name = "Button111";
@@ -202,9 +202,9 @@ namespace UIAutomationTest.Helpers
                 resultStatus);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("TestResults")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("TestResults")]
         public void TestResults_TestPassed_False_Failure()
         {
             string name = "Button111";
@@ -235,9 +235,9 @@ namespace UIAutomationTest.Helpers
                 resultStatus);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("TestResults")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("TestResults")]
         public void TestResults_KnownIssue()
         {
             string name = "Button111";
@@ -267,9 +267,9 @@ namespace UIAutomationTest.Helpers
                 resultStatus);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("TestResults")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("TestResults")]
         public void TestResults_KnownIssue_True()
         {
             string name = "Button111";
@@ -299,9 +299,9 @@ namespace UIAutomationTest.Helpers
                 resultStatus);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("TestResults")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("TestResults")]
         public void TestResults_KnownIssue_False()
         {
             string name = "Button111";
@@ -331,9 +331,9 @@ namespace UIAutomationTest.Helpers
                 resultStatus);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("TestResults")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("TestResults")]
         public void TestResults_KnownIssue_TestPassed_True()
         {
             string name = "Button111";
@@ -363,9 +363,9 @@ namespace UIAutomationTest.Helpers
                 resultStatus);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("TestResults")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("TestResults")]
         public void TestResults_KnownIssue_TestPassed_False()
         {
             string name = "Button111";
@@ -396,9 +396,9 @@ namespace UIAutomationTest.Helpers
         }
         
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("TestResults")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("TestResults")]
         public void TestResults_NoKnownIssue_TestPassed_True()
         {
             string name = "Button111";
@@ -428,9 +428,9 @@ namespace UIAutomationTest.Helpers
                 resultStatus);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("TestResults")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("TestResults")]
         public void TestResults_NoKnownIssue_TestPassed_False()
         {
             string name = "Button111";
@@ -462,9 +462,9 @@ namespace UIAutomationTest.Helpers
         
         
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("TestResults")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("TestResults")]
         public void TestResults_KnownIssue_TestPassed_True_Failure()
         {
             string name = "Button111";
@@ -495,9 +495,9 @@ namespace UIAutomationTest.Helpers
                 resultStatus);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("TestResults")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("TestResults")]
         public void TestResults_KnownIssue_TestPassed_False_Failure()
         {
             string name = "Button111";
@@ -529,9 +529,9 @@ namespace UIAutomationTest.Helpers
         }
         
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("TestResults")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("TestResults")]
         public void TestResults_NoKnownIssue_TestPassed_True_Failure()
         {
             string name = "Button111";
@@ -562,9 +562,9 @@ namespace UIAutomationTest.Helpers
                 resultStatus);
         }
         
-        [Test] //[Test(Description="TBD")]
-        [Category("Slow")][Category("WinForms")]
-        [Category("Slow")][Category("TestResults")]
+        [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="TBD")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("WinForms")]
+        [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("TestResults")]
         public void TestResults_NoKnownIssue_TestPassed_False_Failure()
         {
             string name = "Button111";
@@ -595,7 +595,7 @@ namespace UIAutomationTest.Helpers
                 resultStatus);
         }
         
-        [TearDown]
+        [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
         public void DisposeRunspace()
         {
             MiddleLevelCode.DisposeRunspace();

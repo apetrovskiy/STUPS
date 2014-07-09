@@ -26,10 +26,6 @@ namespace TLAddinUnitTests
     //[Parallelizable]
     public class TLSrvConnectCommandTestFixture
     {
-        public TLSrvConnectCommandTestFixture()
-        {
-        }
-        
 //        private void connectToTestLink()
 //        {
 ////            var builder = new ContainerBuilder();

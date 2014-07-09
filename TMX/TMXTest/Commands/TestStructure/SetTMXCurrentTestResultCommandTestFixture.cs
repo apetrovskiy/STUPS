@@ -20,10 +20,6 @@ namespace TmxTest.Commands.TestStructure
     [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class SetTmxCurrentTestResultCommandTestFixture
     {
-        public SetTmxCurrentTestResultCommandTestFixture()
-        {
-        }
-        
         [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {

@@ -19,10 +19,6 @@ namespace TMX
     /// </summary>
     public class TestBucketCmdletBase : TestStructureCmdletBase //DatabaseCmdletBase
     {
-        public TestBucketCmdletBase()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = false)]
         public string[] BucketName { get; set; }

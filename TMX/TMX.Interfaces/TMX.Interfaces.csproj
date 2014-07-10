@@ -90,6 +90,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="x64" />
+    <Folder Include="x64" />
+    <Folder Include="x86" />
     <Folder Include="x86" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

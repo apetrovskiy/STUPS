@@ -21,10 +21,6 @@ namespace TmxUnitTests.Commands.Status
     [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class GetTmxTestScenarioStatusCommandTestFixture
     {
-        public GetTmxTestScenarioStatusCommandTestFixture()
-        {
-        }
-        
         [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {

@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
   <PropertyGroup>
-    <ProjectGuid>{9C5DA25F-6A59-4F97-B107-64DD549CB800}</ProjectGuid>
+    <ProjectGuid>{F290CD10-8829-4A67-AAC8-1099AED40DE5}</ProjectGuid>
     <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <Configuration Condition=" '$(Configuration)' == '' ">Release35</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">Release35</Platform>
     <OutputType>Library</OutputType>
-    <RootNamespace>TMX.Interfaces</RootNamespace>
-    <AssemblyName>Tmx.Interfaces</AssemblyName>
+    <RootNamespace>Tmx.Persistence</RootNamespace>
+    <AssemblyName>Tmx.Persistence</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <NoWin32Manifest>False</NoWin32Manifest>
@@ -44,63 +44,19 @@
     <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ninject">
-      <HintPath>..\..\packages\Ninject.3.2.0.0\lib\net35\Ninject.dll</HintPath>
-    </Reference>
-    <Reference Include="Ninject.Extensions.NamedScope">
-      <HintPath>..\..\packages\Ninject.Extensions.NamedScope.3.2.0.0\lib\net35\Ninject.Extensions.NamedScope.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Data" />
-    <Reference Include="System.Data.SQLite">
-      <HintPath>..\..\packages\System.Data.SQLite.Core.1.0.93.0\lib\net20\System.Data.SQLite.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.SQLite.Linq">
-      <HintPath>..\..\packages\System.Data.SQLite.Linq.1.0.93.0\lib\net20\System.Data.SQLite.Linq.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Management.Automation" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IDatabase.cs" />
-    <Compile Include="ITestBucket.cs" />
-    <Compile Include="ITestConstant.cs" />
-    <Compile Include="ITestSuitesCollection.cs" />
-    <Compile Include="IWorkflowStep.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Remoting\Enums.cs" />
-    <Compile Include="Remoting\IClient.cs" />
-    <Compile Include="Remoting\ITestActivity.cs" />
-    <Compile Include="Remoting\ITestActivityAction.cs" />
-    <Compile Include="Remoting\ITestHost.cs" />
-    <Compile Include="Remoting\ITestHostGroup.cs" />
-    <Compile Include="TestStructure\Enumerations.cs" />
-    <Compile Include="TestStructure\ITestCase.cs" />
-    <Compile Include="TestStructure\ITestPlatform.cs" />
-    <Compile Include="TestStructure\ITestResult.cs" />
-    <Compile Include="TestStructure\ITestResultDetail.cs" />
-    <Compile Include="TestStructure\ITestScenario.cs" />
-    <Compile Include="TestStructure\ITestSuite.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-    <None Include="x64\SQLite.Interop.dll" />
-    <None Include="x86\SQLite.Interop.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Remoting" />
-    <Folder Include="TestStructure" />
-    <Folder Include="x64" />
-    <Folder Include="x64" />
-    <Folder Include="x86" />
-    <Folder Include="x86" />
+    <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

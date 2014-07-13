@@ -13,7 +13,7 @@ namespace TmxUnitTests.Commands.TestStructure
     using MbUnit.Framework;using NUnit.Framework;
     using PSTestLib;
     using TMX;
-    using TMX.Interfaces;
+    using TMX.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of SetTmxCurrentTestResultCommandTestFixture.
@@ -21,10 +21,6 @@ namespace TmxUnitTests.Commands.TestStructure
     [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class SetTmxCurrentTestResultCommandTestFixture
     {
-        public SetTmxCurrentTestResultCommandTestFixture()
-        {
-        }
-        
         [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
@@ -43,8 +39,8 @@ namespace TmxUnitTests.Commands.TestStructure
         {
             // 20130331
             //string expectedStatus = TMX.TestData.TestStateFailed;
-            string expectedStatus = TMX.TestData.TestStateNotTested;
-            string expectedName = "test result name";
+            const string expectedStatus = TestData.TestStateNotTested;
+            const string expectedName = "test result name";
 
             UnitTestingHelper.SetTestResult(expectedName, null);
 
@@ -58,7 +54,7 @@ namespace TmxUnitTests.Commands.TestStructure
         [MbUnit.Framework.Category("Fast")]
         public void SetCurrentTestResult_Name()
         {
-            string expectedName = "test result name";
+            const string expectedName = "test result name";
 
             UnitTestingHelper.SetTestResult(expectedName, null);
 
@@ -86,7 +82,7 @@ namespace TmxUnitTests.Commands.TestStructure
         [MbUnit.Framework.Category("Fast")]
         public void SetCurrentTestResult_Id()
         {
-            string expectedId = "test result id";
+            const string expectedId = "test result id";
 
             UnitTestingHelper.SetTestResult(null, expectedId);
 
@@ -118,8 +114,8 @@ namespace TmxUnitTests.Commands.TestStructure
         {
             // 20130331
             //string expectedStatus = TMX.TestData.TestStateFailed;
-            string expectedStatus = TMX.TestData.TestStateNotTested;
-            string expectedName = "test result name";
+            const string expectedStatus = TMX.TestData.TestStateNotTested;
+            const string expectedName = "test result name";
 
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, false);
             UnitTestingHelper.SetTestResult(expectedName, null);
@@ -136,8 +132,8 @@ namespace TmxUnitTests.Commands.TestStructure
         {
             // 20130331
             //string expectedStatus = TMX.TestData.TestStateFailed;
-            string expectedStatus = TMX.TestData.TestStateNotTested;
-            string expectedName = "test result name";
+            const string expectedStatus = TMX.TestData.TestStateNotTested;
+            const string expectedName = "test result name";
 
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, false);
             UnitTestingHelper.SetTestResult(expectedName, null);
@@ -152,7 +148,7 @@ namespace TmxUnitTests.Commands.TestStructure
         [MbUnit.Framework.Category("Fast")]
         public void SetCurrentTestResult_Name_after_a_closed_result()
         {
-            string expectedName = "test result name";
+            const string expectedName = "test result name";
 
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, false);
             UnitTestingHelper.SetTestResult(expectedName, null);
@@ -169,7 +165,7 @@ namespace TmxUnitTests.Commands.TestStructure
         public void SetCurrentTestResult_Name_Checking_before_closing()
         {
             //string expectedStatus = TMX.TestData.TestStateFailed;
-            string expectedName = "test result name";
+            const string expectedName = "test result name";
 
             UnitTestingHelper.SetTestResult(expectedName, null);
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, false);
@@ -184,8 +180,8 @@ namespace TmxUnitTests.Commands.TestStructure
         [MbUnit.Framework.Category("Fast")]
         public void SetCurrentTestResult_Name_CheckingStatus_before_closing_1()
         {
-            string expectedStatus = TMX.TestData.TestStatePassed;
-            string expectedName = "test result name";
+            const string expectedStatus = TMX.TestData.TestStatePassed;
+            const string expectedName = "test result name";
 
             UnitTestingHelper.SetTestResult(expectedName, null);
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, false);
@@ -200,8 +196,8 @@ namespace TmxUnitTests.Commands.TestStructure
         [MbUnit.Framework.Category("Fast")]
         public void SetCurrentTestResult_Name_CheckingStatus_before_closing_2()
         {
-            string expectedStatus = TMX.TestData.TestStateFailed;
-            string expectedName = "test result name";
+            const string expectedStatus = TMX.TestData.TestStateFailed;
+            const string expectedName = "test result name";
 
             UnitTestingHelper.SetTestResult(expectedName, null);
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, false);
@@ -217,7 +213,7 @@ namespace TmxUnitTests.Commands.TestStructure
         public void SetCurrentTestResult_Name_Checking_before_setting_next_result()
         {
             //string expectedStatus = TMX.TestData.TestStateFailed;
-            string expectedName = "test result name";
+            const string expectedName = "test result name";
 
             UnitTestingHelper.SetTestResult(expectedName, null);
             UnitTestingHelper.SetTestResult("test result name 2", null);

@@ -13,7 +13,7 @@ namespace TmxUnitTests.Commands.Status
     using MbUnit.Framework;using NUnit.Framework;
     using PSTestLib;
     using TMX;
-    using TMX.Interfaces;
+    using TMX.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of GetTmxTestSuiteStatusCommandTestFixture.
@@ -37,7 +37,7 @@ namespace TmxUnitTests.Commands.Status
         [MbUnit.Framework.Category("Fast")]
         public void GetTestSuite_Current_New()
         {
-            string expectedResult = TMX.TestData.TestStateNotTested;
+            const string expectedResult = TMX.TestData.TestStateNotTested;
             MbUnit.Framework.Assert.AreEqual(
                 expectedResult,
                 UnitTestingHelper.GetTestSuiteStatus(true));
@@ -48,7 +48,7 @@ namespace TmxUnitTests.Commands.Status
         [MbUnit.Framework.Category("Fast")]
         public void GetTestSuite_Current_WithNotTested()
         {
-            string expectedResult = TMX.TestData.TestStateNotTested;
+            const string expectedResult = TMX.TestData.TestStateNotTested;
 
             UnitTestingHelper.GetNewTestSuite("name", "id", "description");
             MbUnit.Framework.Assert.AreEqual(
@@ -61,7 +61,7 @@ namespace TmxUnitTests.Commands.Status
         [MbUnit.Framework.Category("Fast")]
         public void GetTestSuite_Current_WithPassed()
         {
-            string expectedResult = TMX.TestData.TestStatePassed;
+            const string expectedResult = TMX.TestData.TestStatePassed;
 
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, false);
 
@@ -75,7 +75,7 @@ namespace TmxUnitTests.Commands.Status
         [MbUnit.Framework.Category("Fast")]
         public void GetTestSuite_Current_WithFailed()
         {
-            string expectedResult = TMX.TestData.TestStateFailed;
+            const string expectedResult = TMX.TestData.TestStateFailed;
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, false);
             MbUnit.Framework.Assert.AreEqual(
                 expectedResult,
@@ -88,7 +88,7 @@ namespace TmxUnitTests.Commands.Status
         public void GetTestSuite_Current_WithPassedKnownIssue()
         {
             // Passed -> KnownIssue
-            string expectedResult = TMX.TestData.TestStateKnownIssue;
+            const string expectedResult = TMX.TestData.TestStateKnownIssue;
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, true);
             MbUnit.Framework.Assert.AreEqual(
                 expectedResult,
@@ -102,7 +102,7 @@ namespace TmxUnitTests.Commands.Status
         {
             // KnownIssue supersedes the Failed status.
             
-            string expectedResult = TMX.TestData.TestStateKnownIssue;
+            const string expectedResult = TMX.TestData.TestStateKnownIssue;
             
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, true);
             MbUnit.Framework.Assert.AreEqual(

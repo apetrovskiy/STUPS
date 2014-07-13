@@ -18,10 +18,6 @@ namespace TmxTest.Commands.TestResults
     [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="Search-TmxTestSuite test")]
     public class SearchTmxTestSuiteCommandTestFixture
     {
-        public SearchTmxTestSuiteCommandTestFixture()
-        {
-        }
-        
         [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {

@@ -6,17 +6,15 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-using System;
 
 namespace TmxTest.Commands.Configuration
 {
+    using System;
+    
     /// <summary>
     /// Description of ImportTmxTestSettingsCommandTestFixture.
     /// </summary>
     public class ImportTmxTestSettingsCommandTestFixture
     {
-        public ImportTmxTestSettingsCommandTestFixture()
-        {
-        }
     }
 }

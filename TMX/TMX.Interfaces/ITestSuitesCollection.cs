@@ -11,6 +11,7 @@ namespace TMX.Interfaces
 {
     using System;
     using System.Collections.Generic;
+	using TMX.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of ITestSuitesCollection.

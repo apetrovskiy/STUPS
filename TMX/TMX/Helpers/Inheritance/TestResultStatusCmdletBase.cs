@@ -11,17 +11,13 @@ namespace TMX
 {
     using System;
     using System.Management.Automation;
-	using TMX.Interfaces;
+	using TMX.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of TestResultStatusCmdletBase.
     /// </summary>
     public class TestResultStatusCmdletBase : TestResultCmdletBase
     {
-        public TestResultStatusCmdletBase()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = false)]
         internal new string TestResultName { get; set; }

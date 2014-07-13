@@ -6,17 +6,15 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-using System;
 
 namespace TmxTest.Commands.Status
 {
+    using System;
+    
     /// <summary>
     /// Description of GetTmxTestStatisticsCommandTestFixture.
     /// </summary>
     public class GetTmxTestStatisticsCommandTestFixture
     {
-        public GetTmxTestStatisticsCommandTestFixture()
-        {
-        }
     }
 }

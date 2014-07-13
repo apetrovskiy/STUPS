@@ -17,10 +17,6 @@ namespace TMX
     /// </summary>
     public class OpenSuiteCmdletBase : CommonCmdletBase
     {
-        public OpenSuiteCmdletBase()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = false)]
         public new string Name { get; set; }

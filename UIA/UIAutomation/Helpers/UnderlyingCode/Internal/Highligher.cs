@@ -545,8 +545,10 @@ namespace UIAutomation
             double left, 
             double top, 
             double width, 
-            double height, 
-            int highlighterNumber,
+            double height,
+            // 20140713            
+            // int highlighterNumber,
+            int? highlighterNumber,
             Color foreColor,
             string tooltipText)
         {

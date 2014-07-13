@@ -18,13 +18,6 @@ namespace TMX.Commands
     [Cmdlet(VerbsCommon.New, "TmxTestSuite")]
     public class NewTmxTestSuiteCommand : NewSuiteCmdletBase
     {
-        public NewTmxTestSuiteCommand()
-        {
-        }
-        
-        #region Parameters
-        #endregion Parameters
-        
         protected override void BeginProcessing()
         {
             this.CheckCmdletParameters();

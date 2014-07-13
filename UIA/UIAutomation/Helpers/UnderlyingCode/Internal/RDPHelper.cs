@@ -145,16 +145,16 @@ drivestoredirect:s:
                         cmdlet.ShellWorkingDir);
             }
             
-            if (null != cmdlet.AuthenticationLevel) {
+//            if (null != cmdlet.AuthenticationLevel) {
                 
                 RdpFileTemplate =
                     RdpFileTemplate.Replace(
                         "authentication level:i:0",
                         "authentication level:i:" +
                         cmdlet.AuthenticationLevel);
-            }
+//            }
 
-            if (null != cmdlet.Autoreconnection) {
+//            if (null != cmdlet.Autoreconnection) {
                 
                 int autoreconnection = cmdlet.Autoreconnection ? 1 : 0;
                 
@@ -163,25 +163,25 @@ drivestoredirect:s:
                         "autoreconnection enabled:i:1",
                         "autoreconnection enabled:i:" +
                         autoreconnection);
-            }
+//            }
             
-            if (null != cmdlet.DesktopHeight) {
+//            if (null != cmdlet.DesktopHeight) {
                 
                 RdpFileTemplate =
                     RdpFileTemplate.Replace(
                         "desktopheight:i:768",
                         "desktopheight:i:" +
                         cmdlet.DesktopHeight);
-            }
+//            }
             
-            if (null != cmdlet.DesktopWidth) {
+//            if (null != cmdlet.DesktopWidth) {
                 
                 RdpFileTemplate =
                     RdpFileTemplate.Replace(
                         "desktopwidth:i:1024",
                         "desktopwidth:i:" +
                         cmdlet.DesktopWidth);
-            }
+//            }
             
             if (null != cmdlet.SmartSizing) {
                 
@@ -191,7 +191,7 @@ drivestoredirect:s:
                         "smart sizing:i:1");
             }
             
-            if (null != cmdlet.DisableThemes) {
+//            if (null != cmdlet.DisableThemes) {
                 
                 int disableThemes = cmdlet.DisableThemes ? 1 : 0;
                 
@@ -200,9 +200,9 @@ drivestoredirect:s:
                         "disable themes:i:0",
                         "disable themes:i:" +
                         disableThemes);
-            }
+//            }
 
-            if (null != cmdlet.DisableWallpaper) {
+//            if (null != cmdlet.DisableWallpaper) {
                 
                 int disableWallpaper = cmdlet.DisableWallpaper ? 1 : 0;
                 
@@ -211,9 +211,9 @@ drivestoredirect:s:
                         "disable wallpaper:i:0",
                         "disable wallpaper:i:" +
                         disableWallpaper);
-            }
+//            }
             
-            if (null != cmdlet.RedirectClipboard) {
+//            if (null != cmdlet.RedirectClipboard) {
                 
                 int redirectClipboard = cmdlet.RedirectClipboard ? 1 : 0;
                 
@@ -222,7 +222,7 @@ drivestoredirect:s:
                         "redirectclipboard:i:0",
                         "redirectclipboard:i:" +
                         redirectClipboard);
-            }
+//            }
             
             if (!string.IsNullOrEmpty(cmdlet.DriveStoreRedirect)) {
                 

@@ -24,15 +24,11 @@ namespace TMX
         
         internal override void Execute()
         {
-            // 20130322
-            //OpenScenarioCmdletBase cmdlet =
-            //    (OpenScenarioCmdletBase)this.Cmdlet;
             GetTmxTestScenarioStatusCommand cmdlet =
                 (GetTmxTestScenarioStatusCommand)this.Cmdlet;
             
             if (!string.IsNullOrEmpty(cmdlet.Name)) {
                 
-                // 20130322
                 TmxHelper.GetTestScenarioStatus(
                     //cmdlet);
                     cmdlet,
@@ -40,7 +36,6 @@ namespace TMX
                 
             } else if (!string.IsNullOrEmpty(cmdlet.Id)) {
                 
-                // 20130322
                 TmxHelper.GetTestScenarioStatus(
                     //cmdlet);
                     cmdlet,
@@ -48,12 +43,6 @@ namespace TMX
                 
             } else {
                 
-                // 20130322
-                // 20130918
-                //TmxHelper.GetCurrentTestScenarioStatus(
-                //    //cmdlet);
-                //    cmdlet,
-                //    cmdlet.FilterOutAutomaticResults);
                 cmdlet.WriteError(
                     cmdlet,
                     "Failed to find test scenario with name = '" +

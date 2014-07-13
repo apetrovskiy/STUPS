@@ -13,8 +13,7 @@ namespace TMX
     using System.Collections.Generic;
     using System.Management.Automation;
     using System.ComponentModel;
-	using TMX.Interfaces;
-    //using System.Linq;
+	using TMX.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of TestResultDetail.

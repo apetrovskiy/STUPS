@@ -20,10 +20,6 @@ namespace TMX
     /// </summary>
     public class GatherTestResultsCollections
     {
-        public GatherTestResultsCollections()
-        {
-        }
-        
         public IOrderedEnumerable<TestSuite> TestSuites { get; set; }
         public IOrderedEnumerable<TestScenario> TestScenarios { get; set; }
         public IOrderedEnumerable<TestResult> TestResults { get; set; }
@@ -33,17 +29,17 @@ namespace TMX
             cmdlet.WriteVerbose(cmdlet, "getting test suites");
             IOrderedEnumerable<TestSuite> suites =
                 TmxHelper.SearchForSuites(cmdlet);
-            this.TestSuites = suites;
+            TestSuites = suites;
 
             cmdlet.WriteVerbose(cmdlet, "getting test scenarios");
             IOrderedEnumerable<TestScenario> scenarios = 
                 TmxHelper.SearchForScenarios(cmdlet);
-            this.TestScenarios = scenarios;
+            TestScenarios = scenarios;
 
             cmdlet.WriteVerbose(cmdlet, "getting test results");
             IOrderedEnumerable<TestResult> testResults = 
                 TmxHelper.SearchForTestResults(cmdlet);
-            this.TestResults = testResults;
+            TestResults = testResults;
         }
     }
 }

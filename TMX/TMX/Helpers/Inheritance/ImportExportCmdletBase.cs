@@ -14,7 +14,7 @@ namespace TMX
     using System.Linq;
     using System.Xml.Linq;
     using System.Text;
-	using TMX.Interfaces;
+	using TMX.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of ImportExportCmdletBase.
@@ -26,32 +26,23 @@ namespace TMX
             this.As = string.Empty;
             this.Name = string.Empty;
             this.Path = string.Empty;
-            // 20130322
             this.ExcludeAutomatic = false;
         }
         
         #region Parameters
-        // 20130219
-        //[Parameter(Mandatory = true,
-        //           Position = 0)]
         [Parameter(Mandatory = true,
                    Position = 0,
                    ParameterSetName = "Common")]
         public string As { get; set; }
         
-        // 20130219
-        //[Parameter(Mandatory = false)]
         [Parameter(Mandatory = false,
                    ParameterSetName = "Common")]
         public string Path { get; set; }
         
-        // 20130219
-        //[Parameter(Mandatory = false)]
         [Parameter(Mandatory = false,
                    ParameterSetName = "Common")]
         internal new string Name { get; set; }
         
-        // 20130322
         [Parameter(Mandatory = false)]
         public SwitchParameter ExcludeAutomatic { get; set; }
         #endregion Parameters
@@ -297,8 +288,6 @@ namespace TMX
         
         protected internal void ExportToHTML(
             string path,
-            // 20130322
-            //bool fullReport)
             bool fullReport,
             bool skipAutomatic)
         {
@@ -814,7 +803,6 @@ namespace TMX
         }
 
         private string getStatisticsStringTestResult(ITestResult testResult)
-        // private string getStatisticsStringTestResult(TestResult testResult)
         {
             string result = string.Empty;
             result += @"<div id=""testresultstat"">Time spent:";

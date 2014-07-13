@@ -13,6 +13,7 @@ namespace TMX
     using System.Collections.Generic;
     using System.Management.Automation;
 	using TMX.Interfaces;
+	using TMX.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of TestSuite.

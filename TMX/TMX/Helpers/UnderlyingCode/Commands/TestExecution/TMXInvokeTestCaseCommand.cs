@@ -11,7 +11,7 @@ namespace TMX
 {
     using System;
     using System.Management.Automation;
-	using TMX.Interfaces;
+	using TMX.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of TmxInvokeTestCaseCommand.
@@ -32,18 +32,12 @@ namespace TMX
             		TMX.TestData.CurrentTestSuite,
             		cmdlet.Name,
             		cmdlet.Id,
-            		// 20130912
-            		//TMX.TestData.CurrentTestSuite.Name,
-            		//TMX.TestData.CurrentTestSuite.Id,
-            		//TMX.TestData.CurrentTestScenario.Name,
-            		//TMX.TestData.CurrentTestScenario.Id,
             		TMX.TestData.CurrentTestScenario.Name,
             		TMX.TestData.CurrentTestScenario.Id,
             		TMX.TestData.CurrentTestSuite.Name,
             		TMX.TestData.CurrentTestSuite.Id,
             		cmdlet.TestPlatformId);
             
-            // 20130912
             if (null == testCase) {
                 
                 cmdlet.WriteError(

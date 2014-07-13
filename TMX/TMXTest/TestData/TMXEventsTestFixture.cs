@@ -18,28 +18,22 @@ namespace TmxTest.TestData
     [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="123")]
     public class TmxEventsTestFixture
     {
-        public TmxEventsTestFixture()
-        {
-        }
-        
         [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
             MiddleLevelCode.PrepareRunspace();
         }
         
-        
 //        public static event EventHandler TmxNewTestSuiteCreated;
 //        public static event EventHandler TmxTestSuiteOpened;
-
-
+        
         [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The TmxNewTestSuiteCreated event")]
         [MbUnit.Framework.Category("Slow")]
         [MbUnit.Framework.Category("TMX_Events")]
         public void TmxEvents_TmxNewTestSuiteCreated()
         {
-            string name = "suite1";
-            string eventName = @"""TmxNewTestSuiteCreated""";
+            const string name = "suite1";
+            const string eventName = @"""TmxNewTestSuiteCreated""";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[string]$global:name = ''; " +
                 @"$null = Register-ObjectEvent -InputObject $([TMX.TestData]) " + 
@@ -59,8 +53,8 @@ namespace TmxTest.TestData
         [MbUnit.Framework.Category("TMX_Events")]
         public void TmxEvents_TmxTestSuiteOpened()
         {
-            string name = "suite1";
-            string eventName = @"""TmxTestSuiteOpened""";
+            const string name = "suite1";
+            const string eventName = @"""TmxTestSuiteOpened""";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[string]$global:name = ''; " +
                 @"$null = Register-ObjectEvent -InputObject $([TMX.TestData]) " + 
@@ -87,8 +81,8 @@ namespace TmxTest.TestData
         [MbUnit.Framework.Category("TMX_Events")]
         public void TmxEvents_TmxNewTestScenarioAdded()
         {
-            string name = "scenario1";
-            string eventName = @"""TmxNewTestScenarioAdded""";
+            const string name = "scenario1";
+            const string eventName = @"""TmxNewTestScenarioAdded""";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[string]$global:name = ''; " +
                 @"$null = Register-ObjectEvent -InputObject $([TMX.TestData]) " + 
@@ -109,8 +103,8 @@ namespace TmxTest.TestData
         [MbUnit.Framework.Category("TMX_Events")]
         public void TmxEvents_TmxTestScenarioOpened()
         {
-            string name = "scenario1";
-            string eventName = @"""TmxTestScenarioOpened""";
+            const string name = "scenario1";
+            const string eventName = @"""TmxTestScenarioOpened""";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[string]$global:name = ''; " +
                 @"$null = Register-ObjectEvent -InputObject $([TMX.TestData]) " + 
@@ -139,8 +133,8 @@ namespace TmxTest.TestData
         [MbUnit.Framework.Category("TMX_Events")]
         public void TmxEvents_TmxNewTestResultDetailAdded()
         {
-            string name = "res1";
-            string eventName = @"""TmxNewTestResultDetailAdded""";
+            const string name = "res1";
+            const string eventName = @"""TmxNewTestResultDetailAdded""";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[string]$global:name = ''; " +
                 @"$null = Register-ObjectEvent -InputObject $([TMX.TestData]) " + 
@@ -162,8 +156,8 @@ namespace TmxTest.TestData
         [MbUnit.Framework.Category("TMX_Events")]
         public void TmxEvents_TmxNewTestResultClosed()
         {
-            string name = "res1";
-            string eventName = @"""TmxNewTestResultClosed""";
+            const string name = "res1";
+            const string eventName = @"""TmxNewTestResultClosed""";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[string]$global:name = ''; " +
                 @"$null = Register-ObjectEvent -InputObject $([TMX.TestData]) " + 

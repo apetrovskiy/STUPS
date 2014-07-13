@@ -18,13 +18,6 @@ namespace TMX.Commands
     [Cmdlet(VerbsCommon.Open, "TmxTestSuite")]
     public class OpenTmxTestSuiteCommand : OpenSuiteCmdletBase
     {
-        public OpenTmxTestSuiteCommand()
-        {
-        }
-        
-        #region Parameters
-        #endregion Parameters
-        
         protected override void BeginProcessing()
         {
             this.CheckCmdletParameters();

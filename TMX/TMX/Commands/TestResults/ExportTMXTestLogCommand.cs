@@ -18,11 +18,6 @@ namespace TMX.Commands
     [Cmdlet(VerbsData.Export, "TmxTestLog")]
     public class ExportTmxTestLogCommand : ImportExportCmdletBase
     {
-        public ExportTmxTestLogCommand()
-        {
-        }
-        
-        
         protected override void BeginProcessing()
         {
             this.CheckCmdletParameters();

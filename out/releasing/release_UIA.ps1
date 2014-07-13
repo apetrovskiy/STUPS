@@ -41,6 +41,7 @@ function Run-FrameworkSet
     
     Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIAutomationSpy$($FolderSuffix)\bin\Release35\UIAutomation.dll") -NoNewWindow -Wait;
     Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIAutomationSpy$($FolderSuffix)\bin\Release35\TMX.dll") -NoNewWindow -Wait;
+    Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIAutomationSpy$($FolderSuffix)\bin\Release35\Tmx.Interfaces.dll") -NoNewWindow -Wait;
     Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIAutomationSpy$($FolderSuffix)\bin\Release35\UIAutomationSpy.exe") -NoNewWindow -Wait;
     if ([string]::IsNullOrEmpty($FolderSuffix)) {
         Start-Process -FilePath $pathToSignTool -ArgumentList @("sign", "/f", "$($pathToCertificate)", "/t", "$($pathToTimeStamp)", "/p", "$($Password)", "$($pathToProjectRoot)\UIA\UIAutomationAliases$($FolderSuffix)\bin\Release35\UIAutomationAliases.dll") -NoNewWindow -Wait;
@@ -55,6 +56,9 @@ function Run-FrameworkSet
 
     Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy$($FolderSuffix)\bin\Release35\UIAutomation.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\$($OutputFolderName)"
     Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy$($FolderSuffix)\bin\Release35\TMX.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\$($OutputFolderName)"
+    Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy$($FolderSuffix)\bin\Release35\Tmx.Interfaces.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\$($OutputFolderName)"
+    Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy$($FolderSuffix)\bin\Release35\System.Data.SQLite.dll" -Destination "$($pathToProjectRoot)\out\$($DirName)\$($OutputFolderName)"
+    Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomationSpy$($FolderSuffix)\bin\Release35\System.Data.SQLite.xml" -Destination "$($pathToProjectRoot)\out\$($DirName)\$($OutputFolderName)"
     Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomation$($FolderSuffix)\bin\Release35\*hibe*" -Destination "$($pathToProjectRoot)\out\$($DirName)\$($OutputFolderName)"
     Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomation$($FolderSuffix)\bin\Release35\*log*" -Destination "$($pathToProjectRoot)\out\$($DirName)\$($OutputFolderName)"
     Copy-Item -Path "$($pathToProjectRoot)\UIA\UIAutomation$($FolderSuffix)\bin\Release35\*iesi*" -Destination "$($pathToProjectRoot)\out\$($DirName)\$($OutputFolderName)"

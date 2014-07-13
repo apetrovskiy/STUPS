@@ -11,7 +11,7 @@ namespace TMX.Commands
 {
 	using System;
 	using System.Management.Automation;
-	using TMX.Interfaces;
+	using TMX.Interfaces.TestStructure;
 
 	/// <summary>
 	/// Description of AddTmxSimpleTestResultCommand.
@@ -21,12 +21,10 @@ namespace TMX.Commands
 	{
 		public AddTmxSimpleTestResultCommand()
 		{
-		    // 20130626
             this.TestOrigin = TestResultOrigins.Logical;
 		}
 		
 		#region Parameters
-		// 20130605
 		[Parameter(Mandatory = false)]
 		public string TestSuiteName { get; set; }
 		

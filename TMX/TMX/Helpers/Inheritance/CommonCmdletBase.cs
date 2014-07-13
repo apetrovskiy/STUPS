@@ -35,28 +35,11 @@ namespace TMX
         }
         
         #region Parameters
-        
-        // 20130330
         [Parameter(Mandatory = false)]
-        // 20130331
-        //[Parameter(Mandatory = false,
-        //           ParameterSetName = "DualLogic")]
-        //[Parameter(Mandatory = false,
-        //           ParameterSetName = "EnumLogic")]
-        //[Parameter(Mandatory = false,
-        //           ParameterSetName = "DefaultLogicName")]
         [ValidateNotNullOrEmpty()]
         public string Name { get; set; }
         
-        // 20130330
         [Parameter(Mandatory = false)]
-        //[Parameter(Mandatory = false,
-        //           ParameterSetName = "DualLogic")]
-        //[Parameter(Mandatory = false,
-        //           ParameterSetName = "EnumLogic")]
-        //[Parameter(Mandatory = true,
-        //           ParameterSetName = "DefaultLogicId")]
-        //[ValidateNotNullOrEmpty()]
         public string Id { get; set; }
         
         [Parameter(Mandatory = false)]
@@ -64,7 +47,6 @@ namespace TMX
         [AllowEmptyString]
         public string TestPlatformId { get; set; }
         
-        // 20130325
         [Parameter(Mandatory = false)]
         internal new SwitchParameter TestPassed { get; set; }
         
@@ -73,14 +55,6 @@ namespace TMX
         
         [Parameter(Mandatory = false)]
         internal new SwitchParameter TestLog { get; set; }
-        
-//        [Parameter(Mandatory = false)]
-//        [AllowNull]
-//        [AllowEmptyString]
-//        public string Description { get; set; }
-        
-//        [Parameter(Mandatory = false)]
-//        internal new string Name { get; set; }
         
         [Parameter(Mandatory = false)]
         internal new string TestResultName { get; set; }
@@ -91,16 +65,6 @@ namespace TMX
         
         protected void notImplementedCase()
         {
-//            ErrorRecord err = 
-//                new ErrorRecord(
-//                    new Exception(),
-//                    "",
-//                    ErrorCategory.NotImplemented,
-//                    null);
-//            err.ErrorDetails = 
-//                new ErrorDetails("Not implemented");
-//            ThrowTerminatingError(err);
-            
             this.WriteError(
                 this,
                 "Not implemented",
@@ -109,14 +73,6 @@ namespace TMX
                 true);
         }
         
-        // 20130430
-//        protected override void WriteLog(string logRecord)
-//        {
-//            Console.WriteLine("Here should be logging TMX");
-//        }
-        
-        // 20130430
-        //protected override void WriteLog(string logRecord)
         protected override void WriteLog(LogLevels logLevel, string logRecord)
         {
             if (!Preferences.AutoLog) return;

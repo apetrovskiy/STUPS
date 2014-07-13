@@ -18,12 +18,8 @@ namespace TMX.Commands
     /// </summary>
     [Cmdlet(VerbsData.Backup, "TmxTestResults")]
     [OutputType(typeof(bool))]
-    public class BackupTmxTestResultsCommand : TestResultCmdletBase //DatabaseCmdletBase
+    public class BackupTmxTestResultsCommand : TestResultCmdletBase
     {
-        public BackupTmxTestResultsCommand()
-        {
-        }
-        
         protected override void BeginProcessing()
         {
             this.CheckCmdletParameters();

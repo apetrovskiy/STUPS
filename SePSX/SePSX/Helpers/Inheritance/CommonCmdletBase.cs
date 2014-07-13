@@ -25,7 +25,7 @@ namespace SePSX
     using System.Collections.ObjectModel;
     using System.Windows.Automation;
     using UIAutomation;
-    using TMX.Interfaces;
+    using TMX.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of CommonCmdletBase.

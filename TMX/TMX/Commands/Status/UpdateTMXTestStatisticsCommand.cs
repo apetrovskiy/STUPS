@@ -18,10 +18,6 @@ namespace TMX.Commands
     [Cmdlet(VerbsData.Update, "TmxTestStatistics")]
     public class UpdateTmxTestStatisticsCommand : CommonCmdletBase
     {
-        public UpdateTmxTestStatisticsCommand()
-        {
-        }
-        
         protected override void BeginProcessing()
         {
             

@@ -18,10 +18,6 @@ namespace TMX.Commands
     [Cmdlet(VerbsCommon.Get, "TmxTestStatistics")]
     public class GetTmxTestStatisticsCommand : CommonCmdletBase
     {
-        public GetTmxTestStatisticsCommand()
-        {
-        }
-        
         protected override void BeginProcessing()
         {
             TestStat stat = new TestStat();

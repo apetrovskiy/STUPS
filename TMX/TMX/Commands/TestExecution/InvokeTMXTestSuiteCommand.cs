@@ -18,10 +18,6 @@ namespace TMX.Commands
     [Cmdlet(VerbsLifecycle.Invoke, "TmxTestSuite")]
     public class InvokeTmxTestSuiteCommand : TestSuiteExecCmdletBase
     {
-        public InvokeTmxTestSuiteCommand()
-        {
-        }
-        
         #region Parameters
         #endregion Parameters
         

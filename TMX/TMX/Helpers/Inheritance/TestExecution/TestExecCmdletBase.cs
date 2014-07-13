@@ -13,17 +13,13 @@ namespace TMX
 {
     using System;
     using System.Management.Automation;
-	using TMX.Interfaces;
+	using TMX.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of TestExecCmdletBase.
     /// </summary>
     public class TestExecCmdletBase : CommonCmdletBase
     {
-        public TestExecCmdletBase()
-        {
-        }
-        
         public void RunTestSuite(
         	TestSuiteExecCmdletBase cmdlet,
         	ITestSuite testSuite)

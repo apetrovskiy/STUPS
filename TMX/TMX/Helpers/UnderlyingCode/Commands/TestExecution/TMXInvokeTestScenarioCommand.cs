@@ -11,7 +11,7 @@ namespace TMX
 {
     using System;
     using System.Management.Automation;
-	using TMX.Interfaces;
+	using TMX.Interfaces.TestStructure;
     
 	/// <summary>
 	/// Description of TmxInvokeTestScenarioCommand.
@@ -27,7 +27,7 @@ namespace TMX
             var cmdlet =
                 (TestScenarioExecCmdletBase)this.Cmdlet;
             
-            ITestScenario testScenario =
+            var testScenario =
             	TestData.GetTestScenario(
             		TMX.TestData.CurrentTestSuite,
             		cmdlet.Name,

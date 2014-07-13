@@ -23,11 +23,10 @@ namespace TMX
         
         internal override void Execute()
         {
-            NewSuiteCmdletBase cmdlet =
-                (NewSuiteCmdletBase)this.Cmdlet;
+            var cmdlet = (NewSuiteCmdletBase)this.Cmdlet;
             
             bool result = 
-                TMX.TmxHelper.NewTestSuite(
+                TmxHelper.NewTestSuite(
                     cmdlet.Name,
                     cmdlet.Id,
                     cmdlet.TestPlatformId,
@@ -35,8 +34,6 @@ namespace TMX
                     cmdlet.BeforeScenario,
                     cmdlet.AfterScenario);
             if (result) {
-                
-                //TestData.CurrentTestSuite.
                 
                 cmdlet.WriteObject(cmdlet, TestData.CurrentTestSuite);
             } else {

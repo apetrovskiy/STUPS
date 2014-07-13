@@ -9,7 +9,6 @@
 
 namespace TMX
 {
-    
     using System;
     using System.Management.Automation;
     
@@ -18,10 +17,6 @@ namespace TMX
     /// </summary>
     public class TestConstantCmdletBase : DatabaseCmdletBase
     {
-        public TestConstantCmdletBase()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = false)]
         public string ConstantName { get; set; }

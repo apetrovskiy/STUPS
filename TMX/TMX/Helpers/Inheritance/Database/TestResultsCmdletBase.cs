@@ -17,10 +17,6 @@ namespace TMX
     /// </summary>
     public class TestResultsCmdletBase : CommonCmdletBase
     {
-        public TestResultsCmdletBase()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = false)]
         internal new string Name { get; set; }

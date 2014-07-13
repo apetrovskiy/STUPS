@@ -18,10 +18,6 @@ namespace TmxTest.Commands.TestStructure
     [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="New-TmxTestSuite test")]
     public class NewTmxTestSuiteCommandTestFixture
     {
-        public NewTmxTestSuiteCommandTestFixture()
-        {
-        }
-        
         [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
@@ -34,7 +30,7 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("New_TmxTestSuite")]
         public void TestPrm_Name_Simple()
         {
-            string name = "suite1";
+            const string name = "suite1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"(New-TmxTestSuite -Name " + 
                 name + 
@@ -48,7 +44,7 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("New_TmxTestSuite")]
         public void TestPrm_Name_Complex()
         {
-            string name = @"suite%%`1  1";
+            const string name = @"suite%%`1  1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"(New-TmxTestSuite -Name '" + 
                 name + 
@@ -62,7 +58,7 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("New_TmxTestSuite")]
         public void TestPrm_Name_Simple_In_Series()
         {
-            string name = "suite3";
+            const string name = "suite3";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name suite1; " + 
                 @"$null = New-TmxTestSuite -Name suite2; " + 
@@ -83,7 +79,7 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("New_TmxTestSuite")]
         public void TestPrm_Name_Complex_In_Series()
         {
-            string name = @"suite%%`3  3";
+            const string name = @"suite%%`3  3";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name 'suite%%`1  1'; " + 
                 @"$null = New-TmxTestSuite -Name 'suite%%`2  2'; " + 
@@ -104,8 +100,8 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("New_TmxTestSuite")]
         public void TestPrm_Name_Id_Numeric()
         {
-            string name = "suite1";
-            string id = "3";
+            const string name = "suite1";
+            const string id = "3";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"(New-TmxTestSuite -Name " + 
                 name + 
@@ -128,8 +124,8 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("New_TmxTestSuite")]
         public void TestPrm_Name_Id_Alphanumeric()
         {
-            string name = "suite1";
-            string id = @"a\ 3";
+            const string name = "suite1";
+            const string id = @"a\ 3";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"(New-TmxTestSuite -Name " + 
                 name + 
@@ -152,8 +148,8 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("New_TmxTestSuite")]
         public void TestPrm_Id_Numeric()
         {
-            string name = "suite3";
-            string id = "3";
+            const string name = "suite3";
+            const string id = "3";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name abc1 -Id 1; " + 
                 @"$null = New-TmxTestSuite -Name abc2 -Id 2; " + 
@@ -176,8 +172,8 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("New_TmxTestSuite")]
         public void TestPrm_Id_Alphanumeric()
         {
-            string name = "suite3";
-            string id = @"a\ 3";
+            const string name = "suite3";
+            const string id = @"a\ 3";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name abc1 -Id 'a\ 1'; " + 
                 @"$null = New-TmxTestSuite -Name abc2 -Id 'a\ 2'; " + 
@@ -200,9 +196,9 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("New_TmxTestSuite")]
         public void TestPrm_Name_Id_AndDescription()
         {
-            string name = "suite1";
-            string id = "3";
-            string description = "descr";
+            const string name = "suite1";
+            const string id = "3";
+            const string description = "descr";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"(New-TmxTestSuite -Name " + 
                 name + 
@@ -235,9 +231,9 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("New_TmxTestSuite")]
         public void TestPrm_Name_Id_Description_Perverse1()
         {
-            string name = @"  567   ";
-            string id = @"   777   ";
-            string description = @"   888   ";
+            const string name = @"  567   ";
+            const string id = @"   777   ";
+            const string description = @"   888   ";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"(New-TmxTestSuite -Name '" + 
                 name + 
@@ -269,9 +265,9 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("New_TmxTestSuite")]
         public void TestPrm_Name_Id_Description_Perverse2()
         {
-            string name = @"``//\\`""`''#$(1)567";
-            string id = @"-5.5";
-            string description = @"$($null)";
+            const string name = @"``//\\`""`''#$(1)567";
+            const string id = @"-5.5";
+            const string description = @"$($null)";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"(New-TmxTestSuite -Name '" + 
                 name + 

@@ -17,8 +17,5 @@ namespace TMX
     /// </summary>
     public class AssertionsCmdletBase : CommonCmdletBase
     {
-        public AssertionsCmdletBase()
-        {
-        }
     }
 }

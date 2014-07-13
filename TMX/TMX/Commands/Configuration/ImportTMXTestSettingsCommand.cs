@@ -18,10 +18,6 @@ namespace TMX.Commands
     [Cmdlet(VerbsData.Import, "TmxTestSettings")]
     public class ImportTmxTestSettingsCommand : SettingsCmdletBase
     {
-        public ImportTmxTestSettingsCommand()
-        {
-        }
-        
 //        #region Parameters
 //        [Parameter(Mandatory = false)]
 //        public string[] AssignTo { get; set; }

@@ -12,10 +12,7 @@ namespace PSTestRunner
     using System;
     using PSRunner;
     using System.Management.Automation;
-    // 20140704
-//    using TMX;
-	using TMX.Interfaces;
-    //using System.Threading;
+	using TMX.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of TestRunner.

@@ -11,7 +11,7 @@ namespace TMX.Commands
 {
     using System;
     using System.Management.Automation;
-	using TMX.Interfaces;
+	using TMX.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of SetTmxCurrentTestResultCommand.
@@ -23,12 +23,10 @@ namespace TMX.Commands
     {
         public SetTmxCurrentTestResultCommand()
         {
-            // 20130626
             this.TestOrigin = TestResultOrigins.Logical;
         }
         
         #region Parameters
-        // 20130605
         [Parameter(Mandatory = false)]
         internal new TestResultStatuses TestResultStatus { get; set; }
         [Parameter(Mandatory = false)]

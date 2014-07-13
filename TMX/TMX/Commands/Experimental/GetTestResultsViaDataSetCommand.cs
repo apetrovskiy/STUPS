@@ -21,10 +21,6 @@ namespace TMX.Commands
     [Cmdlet(VerbsCommon.Get, "TestResultsViaDataSet")]
     internal class GetTestResultsViaDataSetCommand : CommonCmdletBase
     {
-        public GetTestResultsViaDataSetCommand()
-        {
-        }
-        
         protected override void BeginProcessing()
         {
             this.CheckCmdletParameters();

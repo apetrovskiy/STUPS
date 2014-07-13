@@ -18,10 +18,6 @@ namespace TmxTest.Commands.TestStructure
     [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description=" test")]
     public class SetTmxTestCaseCommandTestFixture
     {
-        public SetTmxTestCaseCommandTestFixture()
-        {
-        }
-        
         [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
@@ -35,8 +31,8 @@ namespace TmxTest.Commands.TestStructure
         [NUnit.Framework.Ignore("Not implemented yet")]
         public void CreateTestDB_Simple()
         {
-            string fileName = @".\test.db3";
-            string answer = @"True";
+            const string fileName = @".\test.db3";
+            const string answer = @"True";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestDB -FileName '" + 
                 fileName + 

@@ -34,41 +34,36 @@ namespace TMX
         
         public static void InitializeStorage(CommonCmdletBase cmdlet)
         {
-//Console.WriteLine("-0005");
-            if (!string.IsNullOrEmpty(TMX.Preferences.StorageUsername)) {
-            // if (null != TMX.Preferences.StorageUsername && string.Empty != TMX.Preferences.StorageUsername) {
-//Console.WriteLine("-0004");
-                TMX.Preferences.StorageConnectionString =
+            if (!string.IsNullOrEmpty(Preferences.StorageUsername)) {
+            // if (null != Preferences.StorageUsername && string.Empty != Preferences.StorageUsername) {
+                Preferences.StorageConnectionString =
                     //@"Data Source=" + 
                     @"Server=" + 
-                    TMX.Preferences.StorageServer +
+                    Preferences.StorageServer +
                     //";Initial Catalog=" +
                     ";Database=" +
-                    TMX.Preferences.StorageDatabase +
+                    Preferences.StorageDatabase +
                     ";Username=" + 
-                    TMX.Preferences.StorageUsername +
+                    Preferences.StorageUsername +
                     ";Password=" +
-                    TMX.Preferences.StoragePassword +
+                    Preferences.StoragePassword +
                     ";";
             } else {
-//Console.WriteLine("-0003");
-                TMX.Preferences.StorageConnectionString =
+                
+                Preferences.StorageConnectionString =
                     //@"Data Source=" + 
                     @"Server=" + 
-                    TMX.Preferences.StorageServer +
+                    Preferences.StorageServer +
                     //";Initial Catalog=" +
                     ";Database=" +
-                    TMX.Preferences.StorageDatabase +
+                    Preferences.StorageDatabase +
                     ";Integrated Security=SSPI;";
             }
             
             try {
                 
-//Console.WriteLine("-0002");
-                
                 cmdlet.WriteVerbose("building configuration...");
-//Console.WriteLine("-0001");
-//Console.WriteLine(TMX.Preferences.StorageConnectionString);
+                
 if (null == Fluently.Configure()) {
     
     Console.WriteLine("Fluently == null");
@@ -77,9 +72,9 @@ Console.WriteLine("Fluently != null");
     			Fluently.Configure();
 //    			    .Database(MsSqlConfiguration
 //    			              .MsSql2008
-//    			              //.ConnectionString(TMX.Preferences.StorageConnectionString))
+//    			              //.ConnectionString(Preferences.StorageConnectionString))
 //    			              //.ConnectionString(x => x.Is(connString)))
-//    			              .ConnectionString(x => x.Is(TMX.Preferences.StorageConnectionString)))
+//    			              .ConnectionString(x => x.Is(Preferences.StorageConnectionString)))
 //    			    //.Mappings(m => m.FluentMappings.AddFromAssemblyOf<ProductMap>())
 //    			    .Mappings(m => m.FluentMappings
 //    			              .AddFromAssemblyOf<TestSuiteMap>())
@@ -87,21 +82,17 @@ Console.WriteLine("Fluently != null");
 //    			    .ExposeConfiguration(CreateSchema)
 //    			    .BuildConfiguration();
     			
-Console.WriteLine("storage 00001");
-    			
     			cmdlet.WriteVerbose("creating session factory...");
     			
     			SessionFactory = Fluently.Configure()
     			    .Database(MsSqlConfiguration
     			              .MsSql2008
-    			              .ConnectionString(TMX.Preferences.StorageConnectionString))
+    			              .ConnectionString(Preferences.StorageConnectionString))
     			    .Mappings(m =>m.FluentMappings
     			              //.AddFromAssembly(Assembly.GetExecutingAssembly()))
     			              .AddFromAssemblyOf<TestSuiteMap>())
     			              //.AddFromAssemblyOf<System.Object>())
     			    .BuildSessionFactory();
-    			
-Console.WriteLine("00002");
     			
     			cmdlet.WriteVerbose("session factory has been created...");
     			

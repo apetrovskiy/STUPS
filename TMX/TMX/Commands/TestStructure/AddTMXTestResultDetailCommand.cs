@@ -16,34 +16,8 @@ namespace TMX.Commands
     /// Description of AddTmxTestResultDetailCommand.
     /// </summary>
     [Cmdlet(VerbsCommon.Add, "TmxTestResultDetail")]
-    public class AddTmxTestResultDetailCommand : TestResultDetailCmdletBase //CommonCmdletBase
+    public class AddTmxTestResultDetailCommand : TestResultDetailCmdletBase
     {
-        public AddTmxTestResultDetailCommand()
-        {
-            // 20130605
-//            if (null == TestData.TestSuites || 0 == TestData.TestSuites.Count) {
-//                TestData.InitTestData();
-//            }
-        }
-        
-        #region Parameters
-//        [Parameter(Mandatory = false)]
-//        internal new string Name { get; set; }
-//        
-//        [Parameter(Mandatory = false)]
-//        internal new string Id { get; set; }
-//        
-//        // 20130325
-//        //[Parameter(Mandatory = true)]
-//        [Parameter(Mandatory = true,
-//                   Position = 0)]
-//        [ValidateNotNullOrEmpty()]
-//        public string TestResultDetail { get; set; }
-//        
-//        [Parameter(Mandatory = false)]
-//        public SwitchParameter Echo { get; set; }
-        #endregion Parameters
-        
         protected override void BeginProcessing()
         {
             this.CheckCmdletParameters();

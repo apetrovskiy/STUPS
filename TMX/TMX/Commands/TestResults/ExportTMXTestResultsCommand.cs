@@ -16,28 +16,8 @@ namespace TMX.Commands
     /// Description of ExportTmxTestResultsCommand.
     /// </summary>
     [Cmdlet(VerbsData.Export, "TmxTestResults")]
-    public class ExportTmxTestResultsCommand : ImportExportCmdletBase //ExportCmdletBase //CmdletBase
+    public class ExportTmxTestResultsCommand : ImportExportCmdletBase
     {
-        public ExportTmxTestResultsCommand()
-        {
-            //this.Name = string.Empty;
-        }
-        
-        #region Parameters
-//        [Parameter(Mandatory = true)]
-//        public string As { get; set; }
-//        
-//        [Parameter(Mandatory = false)]
-//        public string Path { get; set; }
-//        
-//        [Parameter(Mandatory = false)]
-//        internal new string Name { get; set; }
-        
-//        [Parameter(Mandatory = false,
-//                   ValueFromPipeline = true)]
-//        public 
-        #endregion Parameters
-        
         protected override void BeginProcessing()
         {
             this.CheckCmdletParameters();

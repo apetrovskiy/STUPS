@@ -17,10 +17,6 @@ namespace TMX
     /// </summary>
     public class TestScenarioExecCmdletBase : TestExecCmdletBase
     {
-        public TestScenarioExecCmdletBase()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = false)]
         public object[] BeforeTestParameters { get; set; }
@@ -28,7 +24,6 @@ namespace TMX
         [Parameter(Mandatory = false)]
         public object[] AfterTestParameters { get; set; }
         
-        // 20130912
         [Parameter(Mandatory = false)]
         public new string Name { get; set; }
         #endregion Parameters

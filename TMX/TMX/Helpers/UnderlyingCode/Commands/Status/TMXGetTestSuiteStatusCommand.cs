@@ -24,15 +24,11 @@ namespace TMX
         
         internal override void Execute()
         {
-            // 20130322
-            //OpenSuiteCmdletBase cmdlet =
-            //    (OpenSuiteCmdletBase)this.Cmdlet;
             GetTmxTestSuiteStatusCommand cmdlet =
                 (GetTmxTestSuiteStatusCommand)this.Cmdlet;
             
             if (!string.IsNullOrEmpty(cmdlet.Name)) {
                 
-                // 20130322
                 TmxHelper.GetTestSuiteStatusByName(
                     cmdlet,
                     // 20130322
@@ -43,7 +39,6 @@ namespace TMX
                 
             } else if (!string.IsNullOrEmpty(cmdlet.Id)) {
                 
-                // 20130322
                 TmxHelper.GetTestSuiteStatusById(
                     cmdlet,
                     // 20130322
@@ -54,13 +49,6 @@ namespace TMX
                 
             } else {
                 
-                // 20130322
-                // 20130918
-                //TmxHelper.GetCurrentTestSuiteStatus(
-                //    // 20130322
-                //    //cmdlet);
-                //    cmdlet,
-                //    cmdlet.FilterOutAutomaticResults);
                 cmdlet.WriteError(
                     cmdlet,
                     "Failed to find test suite with name = '" +

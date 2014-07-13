@@ -11,9 +11,7 @@ namespace ExampleExportTestResultsFromCSharp
 {
     using System;
     using TMX;
-    using TMX.Interfaces;
-    // 20140704
-//    using PSTestLib;
+    using TMX.Interfaces.TestStructure;
     
     class Program
     {
@@ -25,8 +23,8 @@ namespace ExampleExportTestResultsFromCSharp
         public static void Main(string[] args)
         {
             // these are our collections: test suites plus test results
-            System.Collections.ArrayList stories = new System.Collections.ArrayList();
-            System.Collections.ArrayList results = new System.Collections.ArrayList();
+            var stories = new System.Collections.ArrayList();
+            var results = new System.Collections.ArrayList();
 
             Console.WriteLine("generating test data");
             // generating test data
@@ -50,7 +48,7 @@ namespace ExampleExportTestResultsFromCSharp
             foreach (TestStory story in stories) {
                 
                 // creating a new test suite == user story
-                TMX.TmxHelper.NewTestSuite(
+                TmxHelper.NewTestSuite(
                     story.Name,
                     story.Id,
                     "platform",
@@ -61,18 +59,18 @@ namespace ExampleExportTestResultsFromCSharp
                 foreach (TestResult result in results) {
                     if (result.StoryId == story.Id) {
                         
-                        AddScenarioCmdletBase cmdlet = 
-                            new AddScenarioCmdletBase();
-                            cmdlet.Id = result.Id;
-                            cmdlet.Name = result.Name;
-                            cmdlet.Description = "description";
+                        var cmdlet = new AddScenarioCmdletBase {
+                            Id = result.Id,
+                            Name = result.Name,
+                            Description = "description"
+                        };
                         
                         // adding a new test scenario to the test suite
                         // test scenario == name and id of th corresponding test result
-                        TMX.TmxHelper.AddTestScenario(cmdlet);
+                        TmxHelper.AddTestScenario(cmdlet);
                         
                         // create a test result with the same name and id as the test scenario has
-                        TMX.TmxHelper.CloseTestResult(
+                        TmxHelper.CloseTestResult(
                             result.Name,
                             result.Id,
                             true, // Passed
@@ -94,7 +92,7 @@ namespace ExampleExportTestResultsFromCSharp
             
             // creating a database
             Console.WriteLine("creating DB");
-            TMX.SQLiteHelper.CreateDatabase(
+            SQLiteHelper.CreateDatabase(
                 new TMX.DatabaseFileCmdletBase(),
                 @"c:\1\1.db3",
                 false,
@@ -104,22 +102,19 @@ namespace ExampleExportTestResultsFromCSharp
             
             // export test results to the DB
             Console.WriteLine("exporting test data to the DB");
-            TMX.SQLiteHelper.BackupTestResults(
-                //new PSCmdletBase(),
-                new TMX.CommonCmdletBase(),
-                TMX.TestData.CurrentResultsDB.Name);
-                //TMX.TestData.CurrentResultsDB.Connection);
+            SQLiteHelper.BackupTestResults(
+                new CommonCmdletBase(),
+                TestData.CurrentResultsDB.Name);
             
             // closing the database
             Console.WriteLine("closing the DB");
-            TMX.SQLiteHelper.CloseDatabase(
-                //new PSCmdletBase(),
-                new TMX.CommonCmdletBase(),
-                TMX.TestData.CurrentTestResult.Name);
+            SQLiteHelper.CloseDatabase(
+                new CommonCmdletBase(),
+                TestData.CurrentTestResult.Name);
             
             // export data to an XML sheet
             Console.WriteLine("export to XML");
-            TMX.TmxHelper.ExportResultsToXML(
+            TmxHelper.ExportResultsToXML(
                 (new ImportExportCmdletBase()),
                 @"C:\1\export_file.xml");
             

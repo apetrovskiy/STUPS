@@ -18,10 +18,5 @@ namespace TMX
     /// </summary>
     public class DatabaseCmdletBase : CommonCmdletBase
     {
-        public DatabaseCmdletBase()
-        {
-        }
-        
-
     }
 }

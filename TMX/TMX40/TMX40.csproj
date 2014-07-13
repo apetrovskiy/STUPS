@@ -180,51 +180,6 @@
     <Compile Include="..\TMX\Commands\Logging\StartTMXLoggingCommand.cs">
       <Link>Commands\Logging\StartTMXLoggingCommand.cs</Link>
     </Compile>
-    <Compile Include="..\TMX\Commands\NUnit\AssertNUnitAreEqualCommand.cs">
-      <Link>Commands\NUnit\AssertNUnitAreEqualCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Commands\NUnit\AssertNUnitAreNotEqualCommand.cs">
-      <Link>Commands\NUnit\AssertNUnitAreNotEqualCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Commands\NUnit\AssertNUnitAreNotSameCommand.cs">
-      <Link>Commands\NUnit\AssertNUnitAreNotSameCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Commands\NUnit\AssertNUnitAreSameCommand.cs">
-      <Link>Commands\NUnit\AssertNUnitAreSameCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Commands\NUnit\AssertNUnitContainsCommand.cs">
-      <Link>Commands\NUnit\AssertNUnitContainsCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Commands\NUnit\AssertNUnitGreaterCommand.cs">
-      <Link>Commands\NUnit\AssertNUnitGreaterCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Commands\NUnit\AssertNUnitGreaterOrEqualCommand.cs">
-      <Link>Commands\NUnit\AssertNUnitGreaterOrEqualCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Commands\NUnit\AssertNUnitIsEmptyCommand.cs">
-      <Link>Commands\NUnit\AssertNUnitIsEmptyCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Commands\NUnit\AssertNUnitIsFalseCommand.cs">
-      <Link>Commands\NUnit\AssertNUnitIsFalseCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Commands\NUnit\AssertNUnitIsNotEmptyCommand.cs">
-      <Link>Commands\NUnit\AssertNUnitIsNotEmptyCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Commands\NUnit\AssertNUnitIsNotNullCommand.cs">
-      <Link>Commands\NUnit\AssertNUnitIsNotNullCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Commands\NUnit\AssertNUnitIsNullCommand.cs">
-      <Link>Commands\NUnit\AssertNUnitIsNullCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Commands\NUnit\AssertNUnitIsTrueCommand.cs">
-      <Link>Commands\NUnit\AssertNUnitIsTrueCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Commands\NUnit\AssertNUnitLessCommand.cs">
-      <Link>Commands\NUnit\AssertNUnitLessCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Commands\NUnit\AssertNUnitLessrOrEqualCommand.cs">
-      <Link>Commands\NUnit\AssertNUnitLessrOrEqualCommand.cs</Link>
-    </Compile>
     <Compile Include="..\TMX\Commands\Repository\AddTMXTestBucketCommand.cs">
       <Link>Commands\Repository\AddTMXTestBucketCommand.cs</Link>
     </Compile>
@@ -513,9 +468,6 @@
     <Compile Include="..\TMX\Helpers\UnderlyingCode\IXMLElementsStruct.cs">
       <Link>Helpers\UnderlyingCode\IXMLElementsStruct.cs</Link>
     </Compile>
-    <Compile Include="..\TMX\Helpers\UnderlyingCode\Logger.cs">
-      <Link>Helpers\UnderlyingCode\Logger.cs</Link>
-    </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Mapping\ITestResultMap.cs">
       <Link>Helpers\UnderlyingCode\Mapping\ITestResultMap.cs</Link>
     </Compile>
@@ -594,39 +546,6 @@
     <Compile Include="..\TMX\Helpers\UserSettings\Preferences.cs">
       <Link>Helpers\UserSettings\Preferences.cs</Link>
     </Compile>
-    <Compile Include="..\TMX\Interface\Enumerations.cs">
-      <Link>Interface\Enumerations.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Interface\IDatabase.cs">
-      <Link>Interface\IDatabase.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Interface\ITestBucket.cs">
-      <Link>Interface\ITestBucket.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Interface\ITestCase.cs">
-      <Link>Interface\ITestCase.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Interface\ITestConstant.cs">
-      <Link>Interface\ITestConstant.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Interface\ITestPlatform.cs">
-      <Link>Interface\ITestPlatform.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Interface\ITestResult.cs">
-      <Link>Interface\ITestResult.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Interface\ITestResultDetail.cs">
-      <Link>Interface\ITestResultDetail.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Interface\ITestScenario.cs">
-      <Link>Interface\ITestScenario.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Interface\ITestSuite.cs">
-      <Link>Interface\ITestSuite.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Interface\ITestSuitesCollection.cs">
-      <Link>Interface\ITestSuitesCollection.cs</Link>
-    </Compile>
     <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
@@ -645,9 +564,9 @@
       <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
       <Name>PSTestLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TMX40.Interfaces\TMX40.Interfaces.csproj">
-      <Project>{6D6988FD-C8D9-4B6C-8508-1F47D30D775B}</Project>
-      <Name>TMX40.Interfaces</Name>
+    <ProjectReference Include="..\TMX.Interfaces\TMX.Interfaces.csproj">
+      <Project>{9C5DA25F-6A59-4F97-B107-64DD549CB800}</Project>
+      <Name>TMX.Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

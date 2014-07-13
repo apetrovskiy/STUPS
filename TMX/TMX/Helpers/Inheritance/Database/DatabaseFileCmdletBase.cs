@@ -17,10 +17,6 @@ namespace TMX
     /// </summary>
     public class DatabaseFileCmdletBase : DatabaseCmdletBase
     {
-        public DatabaseFileCmdletBase()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = true,
                    ParameterSetName = "File")]

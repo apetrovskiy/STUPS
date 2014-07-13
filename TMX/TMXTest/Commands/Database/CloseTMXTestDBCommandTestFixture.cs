@@ -18,10 +18,6 @@ namespace TmxTest.Commands.Database
     [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description=" test")]
     public class CloseTmxTestDBCommandTestFixture
     {
-        public CloseTmxTestDBCommandTestFixture()
-        {
-        }
-        
         [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {

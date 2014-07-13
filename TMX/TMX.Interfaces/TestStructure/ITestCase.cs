@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX.Interfaces
+namespace TMX.Interfaces.TestStructure
 {
     using System;
     using System.Management.Automation;

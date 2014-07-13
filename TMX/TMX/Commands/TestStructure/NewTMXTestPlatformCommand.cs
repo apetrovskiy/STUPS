@@ -18,10 +18,6 @@ namespace TMX.Commands
     [Cmdlet(VerbsCommon.New, "TmxTestPlatform")]
     public class NewTmxTestPlatformCommand : NewPlatformCmdletBase
     {
-        public NewTmxTestPlatformCommand()
-        {
-        }
-        
         protected override void BeginProcessing()
         {
             this.CheckCmdletParameters();

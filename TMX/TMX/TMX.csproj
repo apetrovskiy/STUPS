@@ -175,21 +175,6 @@
     <Compile Include="Commands\Experimental\GetTestResultsViaDataSetCommand.cs" />
     <Compile Include="Commands\Logging\NewTMXLoggerCommand.cs" />
     <Compile Include="Commands\Logging\StartTMXLoggingCommand.cs" />
-    <Compile Include="Commands\NUnit\AssertNUnitAreEqualCommand.cs" />
-    <Compile Include="Commands\NUnit\AssertNUnitAreNotEqualCommand.cs" />
-    <Compile Include="Commands\NUnit\AssertNUnitAreNotSameCommand.cs" />
-    <Compile Include="Commands\NUnit\AssertNUnitAreSameCommand.cs" />
-    <Compile Include="Commands\NUnit\AssertNUnitContainsCommand.cs" />
-    <Compile Include="Commands\NUnit\AssertNUnitGreaterCommand.cs" />
-    <Compile Include="Commands\NUnit\AssertNUnitGreaterOrEqualCommand.cs" />
-    <Compile Include="Commands\NUnit\AssertNUnitIsEmptyCommand.cs" />
-    <Compile Include="Commands\NUnit\AssertNUnitIsFalseCommand.cs" />
-    <Compile Include="Commands\NUnit\AssertNUnitIsNotEmptyCommand.cs" />
-    <Compile Include="Commands\NUnit\AssertNUnitIsNotNullCommand.cs" />
-    <Compile Include="Commands\NUnit\AssertNUnitIsNullCommand.cs" />
-    <Compile Include="Commands\NUnit\AssertNUnitIsTrueCommand.cs" />
-    <Compile Include="Commands\NUnit\AssertNUnitLessCommand.cs" />
-    <Compile Include="Commands\NUnit\AssertNUnitLessrOrEqualCommand.cs" />
     <Compile Include="Commands\Repository\AddTMXTestBucketCommand.cs" />
     <Compile Include="Commands\Repository\AddTMXTestConstantCommand.cs" />
     <Compile Include="Commands\Repository\GetTMXTestBucketCommand.cs" />
@@ -293,7 +278,6 @@
     <Compile Include="Helpers\UnderlyingCode\Commands\TMXCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\GatherTestResultsCollections.cs" />
     <Compile Include="Helpers\UnderlyingCode\IXMLElementsStruct.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Logger.cs" />
     <Compile Include="Helpers\UnderlyingCode\Mapping\ITestResultMap.cs" />
     <Compile Include="Helpers\UnderlyingCode\Mapping\ITestScenarioMap.cs" />
     <Compile Include="Helpers\UnderlyingCode\Mapping\TestCaseMap.cs" />
@@ -322,18 +306,6 @@
     <Compile Include="Helpers\UnderlyingCode\XMLElementsJUnitStruct.cs" />
     <Compile Include="Helpers\UnderlyingCode\XMLElementsNativeStruct.cs" />
     <Compile Include="Helpers\UserSettings\Preferences.cs" />
-    <Compile Include="Interface\Enumerations.cs" />
-    <Compile Include="Interface\IDatabase.cs" />
-    <Compile Include="Interface\ITestBucket.cs" />
-    <Compile Include="Interface\ITestCase.cs" />
-    <Compile Include="Interface\ITestConstant.cs" />
-    <Compile Include="Interface\ITestPlatform.cs" />
-    <Compile Include="Interface\ITestResult.cs" />
-    <Compile Include="Interface\ITestResultDetail.cs" />
-    <Compile Include="Interface\ITestScenario.cs" />
-    <Compile Include="Interface\ITestSuite.cs" />
-    <Compile Include="Interface\ITestSuitesCollection.cs" />
-    <Compile Include="Interface\IWorkflowStep.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provider\TMXProvider.cs" />
     <Compile Include="SQLiteData\SQLiteData.cs" />
@@ -395,7 +367,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Helpers\UnderlyingCode\NLog.config" />
     <None Include="packages.config" />
     <None Include="x64\SQLite.Interop.dll" />
     <None Include="x86\SQLite.Interop.dll" />

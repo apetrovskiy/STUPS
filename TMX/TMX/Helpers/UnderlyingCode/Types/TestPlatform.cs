@@ -10,12 +10,7 @@
 namespace TMX
 {
     using System;
-	using TMX.Interfaces;
-    //using System.Collections.Generic;
-    //using System.Management.Automation;
-    //using System.Collections;
-    //using System.Linq;
-    //using System.Linq.Expressions;
+	using TMX.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of TestPlatform.

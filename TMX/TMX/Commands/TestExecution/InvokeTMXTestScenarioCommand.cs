@@ -18,10 +18,6 @@ namespace TMX.Commands
     [Cmdlet(VerbsLifecycle.Invoke, "TmxTestScenario")]
     public class InvokeTmxTestScenarioCommand : TestScenarioExecCmdletBase
     {
-        public InvokeTmxTestScenarioCommand()
-        {
-        }
-        
         protected override void BeginProcessing()
         {
             this.CheckCmdletParameters();

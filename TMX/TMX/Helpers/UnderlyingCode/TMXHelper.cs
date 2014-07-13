@@ -18,6 +18,7 @@ namespace TMX
     using System.Xml.Linq;
     using System.Reflection;
 	using TMX.Interfaces;
+	using TMX.Interfaces.TestStructure;
     
     //using System.Data.SqlTypes;
     

@@ -16,12 +16,8 @@ namespace TMX.Commands
     /// Description of GetTmxTestResultStatusCommand.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "TmxTestResultStatus")]
-    public class GetTmxTestResultStatusCommand : TestResultStatusCmdletBase //TestResultCmdletBase
+    public class GetTmxTestResultStatusCommand : TestResultStatusCmdletBase
     {
-        public GetTmxTestResultStatusCommand()
-        {
-        }
-        
         protected override void BeginProcessing()
         {
             TmxGetTestResultStatusCommand command =

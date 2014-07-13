@@ -19,10 +19,6 @@ namespace TMX.Commands
     [OutputType(typeof(bool))]
     public class CloseTmxTestDBCommand : DatabaseFileCmdletBase
     {
-        public CloseTmxTestDBCommand()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = false)]
         internal new string FileName { get; set; }

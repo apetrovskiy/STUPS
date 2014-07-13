@@ -13,7 +13,7 @@ namespace TmxUnitTests.Commands.TestStructure
     using MbUnit.Framework;using NUnit.Framework;
     using PSTestLib;
     using TMX;
-    using TMX.Interfaces;
+    using TMX.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of CloseTmxTestResultCommandTestFixture.
@@ -41,7 +41,7 @@ namespace TmxUnitTests.Commands.TestStructure
         [MbUnit.Framework.Category("Fast")]
         public void CloseTestResult_Current_WithPassed()
         {
-            string expectedResult = TMX.TestData.TestStatePassed;
+            const string expectedResult = TMX.TestData.TestStatePassed;
 
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, false);
 
@@ -55,7 +55,7 @@ namespace TmxUnitTests.Commands.TestStructure
         [MbUnit.Framework.Category("Fast")]
         public void CloseTestResult_Current_WithFailed()
         {
-            string expectedResult = TMX.TestData.TestStateFailed;
+            const string expectedResult = TMX.TestData.TestStateFailed;
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, false);
 
             MbUnit.Framework.Assert.AreEqual(
@@ -68,7 +68,7 @@ namespace TmxUnitTests.Commands.TestStructure
         [MbUnit.Framework.Category("Fast")]
         public void CloseTestResult_Current_WithPassedKnownIssue()
         {
-            string expectedResult = TMX.TestData.TestStateKnownIssue;
+            const string expectedResult = TMX.TestData.TestStateKnownIssue;
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, true);
 
             MbUnit.Framework.Assert.AreEqual(
@@ -81,7 +81,7 @@ namespace TmxUnitTests.Commands.TestStructure
         [MbUnit.Framework.Category("Fast")]
         public void CloseTestResult_Current_WithFailedKnownIssue()
         {
-            string expectedResult = TMX.TestData.TestStateKnownIssue;
+            const string expectedResult = TMX.TestData.TestStateKnownIssue;
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, true);
             MbUnit.Framework.Assert.AreEqual(
                 expectedResult,

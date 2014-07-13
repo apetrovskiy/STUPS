@@ -13,7 +13,7 @@ namespace TmxUnitTests.Commands.TestStructure
     using MbUnit.Framework;using NUnit.Framework;
     using PSTestLib;
     using TMX;
-	using TMX.Interfaces;
+	using TMX.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of OpenTmxTestSuiteCommandTestFixture.
@@ -21,10 +21,6 @@ namespace TmxUnitTests.Commands.TestStructure
     [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class OpenTmxTestSuiteCommandTestFixture
     {
-        public OpenTmxTestSuiteCommandTestFixture()
-        {
-        }
-        
         [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
@@ -41,8 +37,8 @@ namespace TmxUnitTests.Commands.TestStructure
         [MbUnit.Framework.Category("Fast")]
         public void OpenTestSuite_Name()
         {
-            string expectedResultName = "suite name";
-            string expectedResultId = string.Empty;
+            const string expectedResultName = "suite name";
+            var expectedResultId = string.Empty;
             UnitTestingHelper.GetNewTestSuite(expectedResultName, expectedResultId, string.Empty);
             UnitTestingHelper.GetNewTestSuite("any suite", string.Empty, string.Empty);
             UnitTestingHelper.GetExistingTestSuite(expectedResultName, expectedResultId);
@@ -56,8 +52,8 @@ namespace TmxUnitTests.Commands.TestStructure
         [MbUnit.Framework.Category("Fast")]
         public void OpenTestSuite_WrongName()
         {
-            string expectedResultName = "suite name";
-            string expectedResultId = string.Empty;
+            const string expectedResultName = "suite name";
+            var expectedResultId = string.Empty;
             UnitTestingHelper.GetNewTestSuite("wrong name", expectedResultId, string.Empty);
             UnitTestingHelper.GetNewTestSuite("any suite", string.Empty, string.Empty);
             UnitTestingHelper.GetExistingTestSuite(expectedResultName, expectedResultId);
@@ -71,8 +67,8 @@ namespace TmxUnitTests.Commands.TestStructure
         [MbUnit.Framework.Category("Fast")]
         public void OpenTestSuite_Id()
         {
-            string expectedResultName = string.Empty;
-            string expectedResultId = "suite id";
+            var expectedResultName = string.Empty;
+            const string expectedResultId = "suite id";
             UnitTestingHelper.GetNewTestSuite(string.Empty, expectedResultId, string.Empty);
             UnitTestingHelper.GetNewTestSuite(string.Empty, "any id", string.Empty);
             UnitTestingHelper.GetExistingTestSuite(expectedResultName, expectedResultId);
@@ -86,8 +82,8 @@ namespace TmxUnitTests.Commands.TestStructure
         [MbUnit.Framework.Category("Fast")]
         public void OpenTestSuite_WrongId()
         {
-            string expectedResultName = string.Empty;
-            string expectedResultId = "suite id";
+            var expectedResultName = string.Empty;
+            const string expectedResultId = "suite id";
             UnitTestingHelper.GetNewTestSuite(string.Empty, "wrong id", string.Empty);
             UnitTestingHelper.GetNewTestSuite(string.Empty, "any id", string.Empty);
             UnitTestingHelper.GetExistingTestSuite(expectedResultName, expectedResultId);

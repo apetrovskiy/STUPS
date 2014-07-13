@@ -18,19 +18,7 @@ namespace TMX
     /// </summary>
     public class TestCaseCmdletBase : DatabaseCmdletBase
     {
-        public TestCaseCmdletBase()
-        {
-        }
-        
         #region Parameters
-//        [Parameter(Mandatory = false)]
-//        public string TestCaseName { get; set; }
-        
-//        [Parameter(Mandatory = true,
-//                   Position = 0)]
-//        [ValidateNotNullOrEmpty()]
-//        public string TestCaseName { get; set; }
-        
         [Parameter(Mandatory = false)]
         public ScriptBlock[] TestCode { get; set; }
         #endregion Parameters

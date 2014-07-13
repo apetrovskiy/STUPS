@@ -20,8 +20,5 @@ namespace TMX.Commands
     [OutputType(typeof(ITestBucket))]
     public class RemoveTmxTestBucketCommand: TestBucketCmdletBase
     {
-        public RemoveTmxTestBucketCommand()
-        {
-        }
     }
 }

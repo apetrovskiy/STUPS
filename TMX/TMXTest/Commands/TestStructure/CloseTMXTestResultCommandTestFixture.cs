@@ -18,10 +18,6 @@ namespace TmxTest.Commands.TestStructure
     [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="Close-TmxTestResult test")]
     public class CloseTmxTestResultCommandTestFixture
     {
-        public CloseTmxTestResultCommandTestFixture()
-        {
-        }
-        
         [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
@@ -34,7 +30,7 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_Simple()
         {
-            string testResultName = "result1";
+            const string testResultName = "result1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Close-TmxTestResult -Name " + 
                 testResultName + 
@@ -49,7 +45,7 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_Complex()
         {
-            string testResultName = @"\\#result1  ;;;";
+            const string testResultName = @"\\#result1  ;;;";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Close-TmxTestResult -Name '" + 
                 testResultName + 
@@ -64,7 +60,7 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_TestPassed1()
         {
-            string testResultName = "result1";
+            const string testResultName = "result1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Close-TmxTestResult -Name " + 
                 testResultName + 
@@ -79,7 +75,7 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_TestPassed2()
         {
-            string testResultName = "result1";
+            const string testResultName = "result1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Close-TmxTestResult -Name " + 
                 testResultName + 
@@ -94,7 +90,7 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_TestFailed1()
         {
-            string testResultName = "result1";
+            const string testResultName = "result1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Close-TmxTestResult -Name " + 
                 testResultName + 
@@ -109,7 +105,7 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_TestFailed2()
         {
-            string testResultName = "result1";
+            const string testResultName = "result1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Close-TmxTestResult -Name " + 
                 testResultName + 
@@ -124,7 +120,7 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_TestNotTested()
         {
-            string testResultName = "result1";
+            const string testResultName = "result1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Add-TmxTestResultDetail -TestResultDetail " + 
                 testResultName + 
@@ -139,7 +135,7 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_TestKnownIssue1()
         {
-            string testResultName = "result1";
+            const string testResultName = "result1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Close-TmxTestResult -Name " + 
                 testResultName + 
@@ -154,7 +150,7 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_TestKnownIssue1t()
         {
-            string testResultName = "result1";
+            const string testResultName = "result1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Close-TmxTestResult -Name " + 
                 testResultName + 
@@ -169,7 +165,7 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_TestKnownIssue1f()
         {
-            string testResultName = "result1";
+            const string testResultName = "result1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Close-TmxTestResult -Name " + 
                 testResultName + 
@@ -184,7 +180,7 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_TestKnownIssue2()
         {
-            string testResultName = "result1";
+            const string testResultName = "result1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Close-TmxTestResult -Name " + 
                 testResultName + 
@@ -200,7 +196,7 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_TestKnownIssue2t()
         {
-            string testResultName = "result1";
+            const string testResultName = "result1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Close-TmxTestResult -Name " + 
                 testResultName + 
@@ -216,7 +212,7 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_TestKnownIssue2f()
         {
-            string testResultName = "result1";
+            const string testResultName = "result1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Close-TmxTestResult -Name " + 
                 testResultName + 
@@ -232,7 +228,7 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_TestKnownIssue3()
         {
-            string testResultName = "result1";
+            const string testResultName = "result1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Close-TmxTestResult -Name " + 
                 testResultName + 
@@ -250,7 +246,7 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_TestKnownIssue3t()
         {
-            string testResultName = "result1";
+            const string testResultName = "result1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Close-TmxTestResult -Name " + 
                 testResultName + 
@@ -268,7 +264,7 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_TestKnownIssue3f()
         {
-            string testResultName = "result1";
+            const string testResultName = "result1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Close-TmxTestResult -Name " + 
                 testResultName + 
@@ -286,7 +282,7 @@ namespace TmxTest.Commands.TestStructure
         [NUnit.Framework.Ignore("This code never worked before. 20130207")]
         public void TestPrm_Name_DescriptionSuite()
         {
-            string testResultDescription = "";
+            var testResultDescription = string.Empty;
             CmdletUnitTest.TestRunspace.RunAndGetTheException( //.RunAndEvaluateAreEqual(
                 @"[void](New-TmxTestSuite -Description ""suite description"" -Name suite1 -Id 111); " + 
                 @"[void](Add-TmxTestScenario -Name sc1 -Id 1111 -TestSuiteName suite1); " + 
@@ -308,7 +304,7 @@ namespace TmxTest.Commands.TestStructure
         [NUnit.Framework.Ignore("This code never worked before. 20130207")]
         public void TestPrm_Name_DescriptionScenario1()
         {
-            string testResultDescription = "";
+            var testResultDescription = string.Empty;
             CmdletUnitTest.TestRunspace.RunAndGetTheException( //.RunAndEvaluateAreEqual(
                 @"[void](New-TmxTestSuite -Description ""suite description"" -Name suite1 -Id 111); " + 
                 @"[void](Add-TmxTestScenario -Name sc1 -Id 1111 -TestSuiteName suite1 -Description ''); " + 
@@ -330,7 +326,7 @@ namespace TmxTest.Commands.TestStructure
         [NUnit.Framework.Ignore("This code never worked before. 20130207")]
         public void TestPrm_Name_DescriptionScenario2()
         {
-            string testResultDescription = "";
+            var testResultDescription = string.Empty;
             CmdletUnitTest.TestRunspace.RunAndGetTheException( //.RunAndEvaluateAreEqual(
                 @"[void](New-TmxTestSuite -Description ""suite description"" -Name suite1 -Id 111); " + 
                 @"[void](Add-TmxTestScenario -Name sc1 -Id 1111 -TestSuiteName suite1 -Description 'scenario description'); " + 
@@ -352,7 +348,7 @@ namespace TmxTest.Commands.TestStructure
         [NUnit.Framework.Ignore("This code never worked before. 20130207")]
         public void TestPrm_Name_DescriptionTestResult1()
         {
-            string testResultDescription = "";
+            var testResultDescription = string.Empty;
             CmdletUnitTest.TestRunspace.RunAndGetTheException( //.RunAndEvaluateAreEqual(
                 @"[void](New-TmxTestSuite -Description ""suite description"" -Name suite1 -Id 111); " + 
                 @"[void](Add-TmxTestScenario -Name sc1 -Id 1111 -TestSuiteName suite1 -Description 'scenario description'); " + 
@@ -374,7 +370,7 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestPrm_Name_DescriptionTestResult2()
         {
-            string testResultDescription = "test result description";
+            const string testResultDescription = "test result description";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[void](New-TmxTestSuite -Description ""suite description"" -Name suite1 -Id 111); " + 
                 @"[void](Add-TmxTestScenario -Name sc1 -Id 1111 -TestSuiteName suite1 -Description 'scenario description'); " + 
@@ -393,7 +389,7 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestProperty_ScenarioId()
         {
-            string scenarioId = "1111";
+            const string scenarioId = "1111";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[void](New-TmxTestSuite -Description ""suite description"" -Name suite1 -Id 111); " + 
                 @"[void](Add-TmxTestScenario -Name sc1 -Id " + 
@@ -412,7 +408,7 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Close_TmxTestResult")]
         public void TestProperty_SuiteId()
         {
-            string suiteId = "111";
+            const string suiteId = "111";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[void](New-TmxTestSuite -Description ""suite description"" -Name suite1 -Id " + 
                 suiteId +

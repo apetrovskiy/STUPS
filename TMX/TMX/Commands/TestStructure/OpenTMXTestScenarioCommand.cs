@@ -18,16 +18,6 @@ namespace TMX.Commands
     [Cmdlet(VerbsCommon.Open, "TmxTestScenario")]
     public class OpenTmxTestScenarioCommand : OpenScenarioCmdletBase
     {
-        public OpenTmxTestScenarioCommand()
-        {
-        }
-        
-        #region Parameters
-        #endregion Parameters
-        
-        /// <summary>
-        /// Processes the pipeline.
-        /// </summary>
         protected override void ProcessRecord()
         {
             bool result = 

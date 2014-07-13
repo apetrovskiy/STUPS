@@ -18,10 +18,6 @@ namespace TmxTest.Commands.TestStructure
     [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="Add-TmxTestResultDetail test")]
     public class AddTmxTestResultDetailCommandTestFixture
     {
-        public AddTmxTestResultDetailCommandTestFixture()
-        {
-        }
-        
         [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
@@ -34,7 +30,7 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Add_TmxTestResultDetail")]
         public void TestPrm_TestResultDetail_Simple()
         {
-            string testResultDetail = "detail";
+            const string testResultDetail = "detail";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Add-TmxTestResultDetail -TestResultDetail " + 
                 testResultDetail + 
@@ -49,7 +45,7 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Add_TmxTestResultDetail")]
         public void TestPrm_TestResultDetail_Complex()
         {
-            string testResultDetail = @"""\\d//e::t`'`'a`""i`""l`<`<`>`>""";
+            const string testResultDetail = @"""\\d//e::t`'`'a`""i`""l`<`<`>`>""";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Add-TmxTestResultDetail -TestResultDetail (" + 
                 testResultDetail + 
@@ -64,7 +60,7 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Add_TmxTestResultDetail")]
         public void TestPrm_Echo_Simple()
         {
-            string testResultDetail = "detail";
+            const string testResultDetail = "detail";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Add-TmxTestResultDetail -TestResultDetail " + 
                 testResultDetail + 
@@ -79,7 +75,7 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Add_TmxTestResultDetail")]
         public void TestPrm_Echo_Complex()
         {
-            string testResultDetail = @"""\\d//e::t`'`'a`""i`""l`<`<`>`>""";
+            const string testResultDetail = @"""\\d//e::t`'`'a`""i`""l`<`<`>`>""";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Add-TmxTestResultDetail -TestResultDetail (" + 
                 testResultDetail + 

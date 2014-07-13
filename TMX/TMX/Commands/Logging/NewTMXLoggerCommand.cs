@@ -18,8 +18,5 @@ namespace TMX.Commands
     [Cmdlet(VerbsCommon.New, "TmxLogger")]
     public class NewTmxLoggerCommand
     {
-        public NewTmxLoggerCommand()
-        {
-        }
     }
 }

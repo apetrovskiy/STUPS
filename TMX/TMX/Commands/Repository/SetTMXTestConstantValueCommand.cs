@@ -20,8 +20,5 @@ namespace TMX.Commands
     [OutputType(typeof(ITestConstant))]
     public class SetTmxTestConstantValueCommand : TestConstantCmdletBase
     {
-        public SetTmxTestConstantValueCommand()
-        {
-        }
     }
 }

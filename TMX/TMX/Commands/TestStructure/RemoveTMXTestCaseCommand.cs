@@ -11,7 +11,7 @@ namespace TMX.Commands
 {
     using System;
     using System.Management.Automation;
-	using TMX.Interfaces;
+	using TMX.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of RemoveTmxTestCaseCommand.
@@ -20,8 +20,5 @@ namespace TMX.Commands
     [OutputType(typeof(ITestCase))]
     public class RemoveTmxTestCaseCommand : TestCaseCmdletBase
     {
-        public RemoveTmxTestCaseCommand()
-        {
-        }
     }
 }

@@ -19,10 +19,6 @@ namespace TMX.Commands
     [Cmdlet(VerbsCommon.Search, "TmxTestSuite", DefaultParameterSetName = "Common")]
     public class SearchTmxTestSuiteCommand : SearchCmdletBase
     {
-        public SearchTmxTestSuiteCommand()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = false)]
         internal new SwitchParameter OrderByDateTime { get; set; }

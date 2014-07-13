@@ -21,6 +21,7 @@ namespace TMX
     
     using System.IO;
 	using TMX.Interfaces;
+	using TMX.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of SQLiteHelper.
@@ -709,13 +710,13 @@ namespace TMX
                             cmdlet.WriteVerbose(cmdlet, "21");
                             bld2.DataAdapter = adp2;
                             cmdlet.WriteVerbose(cmdlet, "22");
-                            using (DataTable tbl2 = new DataTable()) {
+                            using (var tbl2 = new DataTable()) {
                                 
                                 cmdlet.WriteVerbose(cmdlet, "23");
                                 adp2.Fill(tbl2);
                                 //for (int n = 0; n < 10000; n++) {
-                                foreach (TestSuite testSuite in TestData.TestSuites) {
-                                    foreach (ITestScenario tScenario in testSuite.TestScenarios)
+                                foreach (var testSuite in TestData.TestSuites) {
+                                    foreach (var tScenario in testSuite.TestScenarios)
                                     {
                                         DataRow row2 = tbl2.NewRow();
                                         //row[1] = n;

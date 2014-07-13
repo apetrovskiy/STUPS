@@ -18,12 +18,7 @@ namespace TMX.Commands
     [Cmdlet(VerbsCommon.Get, "TmxTestScenarioStatus")]
     public class GetTmxTestScenarioStatusCommand : OpenScenarioCmdletBase
     {
-        public GetTmxTestScenarioStatusCommand()
-        {
-        }
-        
         #region Parameters
-        // 20130322
         [Parameter(Mandatory = false)]
         public SwitchParameter FilterOutAutomaticResults { get; set; }
         #endregion Parameters

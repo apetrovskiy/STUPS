@@ -20,10 +20,6 @@ namespace TMX.Commands
     [OutputType(typeof(ITestBucket))]
     public class AddTmxTestBucketCommand : TestBucketCmdletBase
     {
-        public AddTmxTestBucketCommand()
-        {
-        }
-        
         protected override void ProcessRecord()
         {
             this.checkDatabaseInput(this.InputObject);

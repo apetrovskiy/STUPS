@@ -32,16 +32,16 @@ namespace TMX
 	        this.timeStampAttribute = "timestamp";
         }
         
-		private string suitesNode;
-		private string suiteNode;
-		private string scenariosNode;
-		private string scenarioNode;
-		private string testResultsNode;
-		private string testResultNode;
-		private string failedAttribute;
+		string suitesNode;
+		string suiteNode;
+		string scenariosNode;
+		string scenarioNode;
+		string testResultsNode;
+		string testResultNode;
+		string failedAttribute;
 
-		private string timeSpentAttribute;
-		private string timeStampAttribute;
+		string timeSpentAttribute;
+		string timeStampAttribute;
         
 //        int member; // this is just an example member, replace it with your own struct members!
 //        

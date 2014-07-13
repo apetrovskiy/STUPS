@@ -19,8 +19,5 @@ namespace TMX.Commands
     [OutputType(typeof(bool))]
     public class RestoreTmxTestResultsCommand : TestResultCmdletBase
     {
-        public RestoreTmxTestResultsCommand()
-        {
-        }
     }
 }

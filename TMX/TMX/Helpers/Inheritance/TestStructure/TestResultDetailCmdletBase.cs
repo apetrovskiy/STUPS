@@ -11,7 +11,7 @@ namespace TMX
 {
     using System;
     using System.Management.Automation;
-	using TMX.Interfaces;
+	using TMX.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of TestResultDetailCmdletBase.
@@ -20,7 +20,6 @@ namespace TMX
     {
         public TestResultDetailCmdletBase()
         {
-            // 20130429
             if (TMX.Preferences.AutoEcho) {
                 this.Echo = true;
             }
@@ -33,21 +32,17 @@ namespace TMX
         [Parameter(Mandatory = false)]
         internal new string Id { get; set; }
         
-        // 20130325
-        //[Parameter(Mandatory = true)]
         [Parameter(Mandatory = true,
                    Position = 0)]
         [ValidateNotNullOrEmpty()]
         public string TestResultDetail { get; set; }
         
-        // 20130331
         [Parameter(Mandatory = false)]
         public TestResultStatuses TestResultStatus { get; set; }
         
         [Parameter(Mandatory = false)]
         public SwitchParameter Echo { get; set; }
         
-        // 20130402
         [Parameter(Mandatory = false)]
         public SwitchParameter Finished { get; set; }
         #endregion Parameters

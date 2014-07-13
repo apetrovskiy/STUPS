@@ -10,11 +10,9 @@
 namespace ExampleCustomTestReport
 {
     using System;
-    // 20140704
-//    using PSTestLib;
     using System.Management.Automation;
     using TMX;
-	using TMX.Interfaces;
+    using TMX.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of Export_TestResultsCommand.
@@ -22,10 +20,6 @@ namespace ExampleCustomTestReport
     [Cmdlet(VerbsData.Export, "TestResults")]
     public class ExportTestResultsCommand : CommonCmdletBase
     {
-        public ExportTestResultsCommand()
-        {
-        }
-        
         protected override void BeginProcessing()
         {
             

@@ -17,8 +17,5 @@ namespace TMX
     /// </summary>
     public class PlatformCmdletBase : CommonCmdletBase
     {
-        public PlatformCmdletBase()
-        {
-        }
     }
 }

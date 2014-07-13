@@ -19,8 +19,5 @@ namespace TMX.Commands
     [OutputType(typeof(bool))]
     public class SaveTmxTestScreenshotCommand : CommonCmdletBase
     {
-        public SaveTmxTestScreenshotCommand()
-        {
-        }
     }
 }

@@ -17,27 +17,17 @@ namespace TMX
     /// </summary>
     public class AddScenarioCmdletBase : ScenarioCmdletBase
     {
-        public AddScenarioCmdletBase()
-        {
-        }
-        
         #region Parameters
-        // 20130528
         [Parameter(Mandatory = true,
                    Position = 0)]
         [ValidateNotNullOrEmpty()]
         public new string Name { get; set; }
         
-        // 20130419
-        // 20130528
         [Parameter(Mandatory = false)]
-        //[Parameter(Mandatory = false,
-        //           Position = 0)]
         [AllowNull]
         [AllowEmptyString]
         public string Description { get; set; }
         
-        // 20130615
         [Parameter(Mandatory = false)]
         public ScriptBlock[] BeforeTest { get; set; }
         

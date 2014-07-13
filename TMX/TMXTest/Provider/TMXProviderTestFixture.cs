@@ -19,10 +19,6 @@ namespace TmxTest.Provider
     [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="TmxProvider test")]
     public class TmxProviderTestFixture
     {
-        public TmxProviderTestFixture()
-        {
-        }
-        
         [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
@@ -34,7 +30,7 @@ namespace TmxTest.Provider
         [MbUnit.Framework.Category("Provider")]
         public void CheckProvider()
         {
-            string name = "TmxProvider";
+            const string name = "TmxProvider";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"(Get-PSProvider -PSProvider " + 
                 name + 
@@ -47,7 +43,7 @@ namespace TmxTest.Provider
         [MbUnit.Framework.Category("Provider")]
         public void CheckDefaultDrive()
         {
-            string name = "TMX";
+            const string name = "TMX";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"(Get-PSDrive -Name " + 
                 name +
@@ -60,12 +56,12 @@ namespace TmxTest.Provider
         [MbUnit.Framework.Category("Provider")]
         public void CheckNewDriveByWindowName()
         {
-            string driveName = "TMX1";
-            string providerName = "TmxProvider";
-            string rootpath = @"TMX\TmxProvider::suite1";
-            string windowName = "suite1";
-            string processName = @"""""";
-            int processId = 0;
+            const string driveName = "TMX1";
+            const string providerName = "TmxProvider";
+            const string rootpath = @"TMX\TmxProvider::suite1";
+            const string windowName = "suite1";
+            const string processName = @"""""";
+			const int processId = 0;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-PSDrive -Name  " + 
                 driveName +
@@ -90,12 +86,12 @@ namespace TmxTest.Provider
         [MbUnit.Framework.Category("Provider")]
         public void CheckNewDrivebyProcessName()
         {
-            string driveName = "TMX2";
-            string providerName = "TmxProvider";
-            string rootpath = @"TMX\TmxProvider::suite2";
-            string windowName = @"""""";
-            string processName = "mmc";
-            int processId = 0;
+            const string driveName = "TMX2";
+            const string providerName = "TmxProvider";
+            const string rootpath = @"TMX\TmxProvider::suite2";
+            const string windowName = @"""""";
+            const string processName = "mmc";
+			const int processId = 0;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-PSDrive -Name  " + 
                 driveName +
@@ -120,12 +116,12 @@ namespace TmxTest.Provider
         [MbUnit.Framework.Category("Provider")]
         public void CheckNewDriveByProcessId()
         {
-            string driveName = "TMX3";
-            string providerName = "TmxProvider";
-            string rootpath = @"TMX\TmxProvider::suite3";
-            string windowName = @"""""";
-            string processName = @"""""";
-            int processId = 1024;
+            const string driveName = "TMX3";
+            const string providerName = "TmxProvider";
+            const string rootpath = @"TMX\TmxProvider::suite3";
+            const string windowName = @"""""";
+            const string processName = @"""""";
+			const int processId = 1024;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-PSDrive -Name  " + 
                 driveName +
@@ -138,7 +134,7 @@ namespace TmxTest.Provider
                 " -ProcessName " +
                 processName +
                 " -ProcessId " +
-                processId.ToString() + 
+                processId + 
                 "; (Get-PSDrive -Name " +
                 driveName +
                 ").Name;",
@@ -152,7 +148,7 @@ namespace TmxTest.Provider
         [NUnit.Framework.Ignore("This code never worked before. 20130207")]
         public void RemoveDefaultDrive()
         {
-            string driveName = "TMX";
+            const string driveName = "TMX";
             CmdletUnitTest.TestRunspace.RunAndGetTheException(
                 @"$null = Remove-PSDrive -Name " + 
                 driveName +

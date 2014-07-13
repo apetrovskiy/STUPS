@@ -13,7 +13,7 @@ namespace TmxUnitTests.Commands.TestStructure
     using MbUnit.Framework;using NUnit.Framework;
     using PSTestLib;
     using TMX;
-	using TMX.Interfaces;
+	using TMX.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of NewTmxTestSuiteCommandTestFixture.
@@ -21,10 +21,6 @@ namespace TmxUnitTests.Commands.TestStructure
     [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class NewTmxTestSuiteCommandTestFixture
     {
-        public NewTmxTestSuiteCommandTestFixture()
-        {
-        }
-        
         [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
@@ -41,7 +37,7 @@ namespace TmxUnitTests.Commands.TestStructure
         [MbUnit.Framework.Category("Fast")]
         public void NewTestSuite_Name()
         {
-            string expectedResultName = "suite name";
+            const string expectedResultName = "suite name";
             UnitTestingHelper.GetNewTestSuite(expectedResultName, string.Empty, string.Empty);
             MbUnit.Framework.Assert.AreEqual(
                 expectedResultName,
@@ -53,8 +49,8 @@ namespace TmxUnitTests.Commands.TestStructure
         [MbUnit.Framework.Category("Fast")]
         public void NewTestSuite_Name_Description()
         {
-            string expectedResultName = "suite name";
-            string expectedResultDescr = "descr";
+            const string expectedResultName = "suite name";
+            const string expectedResultDescr = "descr";
             UnitTestingHelper.GetNewTestSuite(expectedResultName, string.Empty, expectedResultDescr);
             MbUnit.Framework.Assert.AreEqual(
                 expectedResultName,
@@ -70,8 +66,8 @@ namespace TmxUnitTests.Commands.TestStructure
         [MbUnit.Framework.Category("Fast")]
         public void NewTestSuite_Name_Id()
         {
-            string expectedResultName = "suite name";
-            string expectedResultId = "suite id";
+            const string expectedResultName = "suite name";
+            const string expectedResultId = "suite id";
             UnitTestingHelper.GetNewTestSuite(expectedResultName, expectedResultId, string.Empty);
             MbUnit.Framework.Assert.AreEqual(
                 expectedResultName,
@@ -87,9 +83,9 @@ namespace TmxUnitTests.Commands.TestStructure
         [MbUnit.Framework.Category("Fast")]
         public void NewTestSuite_Name_Id_Description()
         {
-            string expectedResultName = "suite name";
-            string expectedResultId = "suite id";
-            string expectedResultDescr = "descr";
+            const string expectedResultName = "suite name";
+            const string expectedResultId = "suite id";
+            const string expectedResultDescr = "descr";
             UnitTestingHelper.GetNewTestSuite(expectedResultName, expectedResultId, expectedResultDescr);
             MbUnit.Framework.Assert.AreEqual(
                 expectedResultName,
@@ -107,12 +103,9 @@ namespace TmxUnitTests.Commands.TestStructure
         [MbUnit.Framework.Test][NUnit.Framework.Test]
         [MbUnit.Framework.Description("New-TmxTestSuite -Name name; New-TmxTestSuite -Name name")]
         [MbUnit.Framework.Category("Fast")]
-        /// <summary>
-        /// Allows duplicated names if ids are generated.
-        /// </summary>
         public void NewTestSuite_Name_Duplicated()
         {
-            string expectedResultName = "suite name";
+            const string expectedResultName = "suite name";
             UnitTestingHelper.GetNewTestSuite(expectedResultName, string.Empty, string.Empty);
             UnitTestingHelper.GetNewTestSuite(expectedResultName, string.Empty, string.Empty);
             
@@ -130,13 +123,10 @@ namespace TmxUnitTests.Commands.TestStructure
         [MbUnit.Framework.Test][NUnit.Framework.Test]
         [MbUnit.Framework.Description("New-TmxTestSuite -Name name -Id id; New-TmxTestSuite -Name name -Id id")]
         [MbUnit.Framework.Category("Fast")]
-        /// <summary>
-        /// Disallows duplicated names if ids are the same.
-        /// </summary>
         public void NewTestSuite_Name_Duplicated_Id_Duplicated()
         {
-            string expectedResultName = "suite name";
-            string expectedResultId = "suite id";
+            const string expectedResultName = "suite name";
+            const string expectedResultId = "suite id";
             UnitTestingHelper.GetNewTestSuite(expectedResultName, expectedResultId, string.Empty);
             UnitTestingHelper.GetNewTestSuite(expectedResultName, expectedResultId, string.Empty);
             

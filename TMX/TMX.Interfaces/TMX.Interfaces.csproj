@@ -68,19 +68,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enumerations.cs" />
     <Compile Include="IDatabase.cs" />
     <Compile Include="ITestBucket.cs" />
-    <Compile Include="ITestCase.cs" />
     <Compile Include="ITestConstant.cs" />
-    <Compile Include="ITestPlatform.cs" />
-    <Compile Include="ITestResult.cs" />
-    <Compile Include="ITestResultDetail.cs" />
-    <Compile Include="ITestScenario.cs" />
-    <Compile Include="ITestSuite.cs" />
     <Compile Include="ITestSuitesCollection.cs" />
     <Compile Include="IWorkflowStep.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Remoting\Enums.cs" />
+    <Compile Include="Remoting\IClient.cs" />
+    <Compile Include="Remoting\ITestActivity.cs" />
+    <Compile Include="Remoting\ITestActivityAction.cs" />
+    <Compile Include="Remoting\ITestHost.cs" />
+    <Compile Include="Remoting\ITestHostGroup.cs" />
+    <Compile Include="TestStructure\Enumerations.cs" />
+    <Compile Include="TestStructure\ITestCase.cs" />
+    <Compile Include="TestStructure\ITestPlatform.cs" />
+    <Compile Include="TestStructure\ITestResult.cs" />
+    <Compile Include="TestStructure\ITestResultDetail.cs" />
+    <Compile Include="TestStructure\ITestScenario.cs" />
+    <Compile Include="TestStructure\ITestSuite.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -89,6 +95,8 @@
     <None Include="x86\SQLite.Interop.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Remoting" />
+    <Folder Include="TestStructure" />
     <Folder Include="x64" />
     <Folder Include="x64" />
     <Folder Include="x86" />

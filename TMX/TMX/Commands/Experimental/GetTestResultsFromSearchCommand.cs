@@ -20,10 +20,6 @@ namespace TMX.Commands
     [Cmdlet(VerbsCommon.Get, "TestResultsFromSearch")]
     internal class GetTestResultsFromSearchCommand : CommonCmdletBase
     {
-        public GetTestResultsFromSearchCommand()
-        {
-        }
-        
         protected override void BeginProcessing()
         {
             this.CheckCmdletParameters();

@@ -44,9 +44,7 @@ namespace TMX
         public static bool LogLineNumber_Passed { get; set; }
         public static bool LogCode_Passed { get; set; }
         
-        // 20130429
         public static bool AutoEcho { get; set; }
-        // 20130429
         public static bool AutoLog { get; set; }
         
         public static bool Storage { get; set; }

@@ -17,10 +17,6 @@ namespace TMX
     /// </summary>
     public class DatabaseFileOpenCmdletBase : DatabaseFileCmdletBase
     {
-        public DatabaseFileOpenCmdletBase()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = false)]
         public SwitchParameter StructureDB { get; set; }

@@ -11,24 +11,15 @@ namespace TMX.Commands
 {
     using System;
     using System.Management.Automation;
-	using TMX.Interfaces;
+	using TMX.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of AddTmxTestCaseCommand.
     /// </summary>
     [Cmdlet(VerbsCommon.Add, "TmxTestCase")]
     [OutputType(typeof(ITestCase))]
-    public class AddTmxTestCaseCommand : AddTestCaseCmdletBase //TestCaseCmdletBase
+    public class AddTmxTestCaseCommand : AddTestCaseCmdletBase
     {
-        public AddTmxTestCaseCommand()
-        {
-        }
-        
-        #region Parameters
-//        [Parameter(Mandatory = false)]
-//        public ScriptBlock[] TestCode { get; set; }
-        #endregion Parameters
-        
         protected override void ProcessRecord()
         {
             TmxAddTestCaseCommand command =

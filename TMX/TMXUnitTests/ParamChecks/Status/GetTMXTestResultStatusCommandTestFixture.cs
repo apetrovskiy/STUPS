@@ -6,17 +6,15 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-using System;
 
 namespace TmxUnitTests.ParamChecks.Status
 {
+    using System;
+    
     /// <summary>
     /// Description of GetTmxTestResultStatusCommandTestFixture.
     /// </summary>
     public class GetTmxTestResultStatusCommandTestFixture
     {
-        public GetTmxTestResultStatusCommandTestFixture()
-        {
-        }
     }
 }

@@ -11,7 +11,7 @@ namespace TMX
 {
     using System;
     using System.Management.Automation;
-	using TMX.Interfaces;
+	using TMX.Interfaces.TestStructure;
     
 	/// <summary>
 	/// Description of TmxInvokeTestSuiteCommand.
@@ -24,16 +24,15 @@ namespace TMX
         
         internal override void Execute()
         {
-            TestSuiteExecCmdletBase cmdlet =
+            var cmdlet =
                 (TestSuiteExecCmdletBase)this.Cmdlet;
             
-            ITestSuite testSuite =
+            var testSuite =
             	TestData.GetTestSuite(
             		cmdlet.Name,
             		cmdlet.Id,
             		cmdlet.TestPlatformId);
             
-            // 20130912
             if (null == testSuite) {
                 
                 cmdlet.WriteError(

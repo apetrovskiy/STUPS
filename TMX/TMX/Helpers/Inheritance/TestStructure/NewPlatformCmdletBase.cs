@@ -17,10 +17,6 @@ namespace TMX
     /// </summary>
     public class NewPlatformCmdletBase : PlatformCmdletBase
     {
-        public NewPlatformCmdletBase()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = true,
                    Position = 0)]

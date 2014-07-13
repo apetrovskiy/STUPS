@@ -16,8 +16,5 @@ namespace TMX
     /// </summary>
     public class ConditionsCmdletBase : CommonCmdletBase
     {
-        public ConditionsCmdletBase()
-        {
-        }
     }
 }

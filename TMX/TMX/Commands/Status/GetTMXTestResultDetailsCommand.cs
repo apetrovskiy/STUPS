@@ -16,35 +16,8 @@ namespace TMX.Commands
     /// Description of GetTmxTestResultDetailsCommand.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "TmxTestResultDetails")]
-    public class GetTmxTestResultDetailsCommand : TestResultStatusCmdletBase //TestResultCmdletBase
+    public class GetTmxTestResultDetailsCommand : TestResultStatusCmdletBase
     {
-        public GetTmxTestResultDetailsCommand()
-        {
-        }
-        
-        #region Parameters
-//        [Parameter(Mandatory = false)]
-//        internal new string TestResultName { get; set; }
-//        
-//        [Parameter(Mandatory = false)]
-//        internal new TestResultStatuses TestResultStatus { get; set; }
-//
-//        [Parameter(Mandatory = false)]
-//        internal new SwitchParameter TestPassed { get; set; }
-//        
-//        [Parameter(Mandatory = false)]
-//        internal new SwitchParameter KnownIssue { get; set; }
-//        
-//        [Parameter(Mandatory = false)]
-//        internal new string Description { get; set; }
-        
-        //[Parameter(Mandatory = false)]
-        //public TestResultStatuses[] TestResultStatus { get; set; }
-        
-        //[Parameter(Mandatory = false)]
-        //public string Id { get; set; }
-        #endregion Parameters
-        
         protected override void BeginProcessing()
         {
             TmxGetTestResultDetailsCommand command =

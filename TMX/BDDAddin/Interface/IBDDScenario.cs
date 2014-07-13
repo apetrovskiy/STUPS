@@ -11,7 +11,7 @@ namespace TMX
 {
     using System;
     using System.Collections.Generic;
-	using TMX.Interfaces;
+	using TMX.Interfaces.TestStructure;
 
     /// <summary>
     /// Description of IBDDScenario.

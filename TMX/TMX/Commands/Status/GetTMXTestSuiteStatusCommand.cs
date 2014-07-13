@@ -18,12 +18,7 @@ namespace TMX.Commands
     [Cmdlet(VerbsCommon.Get, "TmxTestSuiteStatus")]
     public class GetTmxTestSuiteStatusCommand : OpenSuiteCmdletBase
     {
-        public GetTmxTestSuiteStatusCommand()
-        {
-        }
-        
         #region Parameters
-        // 20130322
         [Parameter(Mandatory = false)]
         public SwitchParameter FilterOutAutomaticResults { get; set; }
         #endregion Parameters

@@ -28,7 +28,6 @@ namespace TMX
             AddTmxSimpleTestResultCommand cmdlet =
                 (AddTmxSimpleTestResultCommand)this.Cmdlet;
             
-            // 20130330
             cmdlet.ConvertTestResultStatusToTraditionalTestResult();
                 
             cmdlet.WriteVerbose(
@@ -40,7 +39,6 @@ namespace TMX
                 cmdlet,
                 "Checking whether the current test result is fulfilled and must be added to the current test scenario's results");
             
-            // 20130605
             // inserting the new simple test result to the suite/scenario the user provided
             TestSuite testSuiteToAddTestResult = null;
             TestScenario testScenarioToAddTestResult = null;

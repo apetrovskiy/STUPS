@@ -18,10 +18,6 @@ namespace TmxTest.Commands.Logging
     [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class NewTmxLoggerCommandTestFixture
     {
-        public NewTmxLoggerCommandTestFixture()
-        {
-        }
-        
         [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {

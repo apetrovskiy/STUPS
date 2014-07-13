@@ -18,10 +18,6 @@ namespace TmxTest.Commands.TestStructure
     [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture] // [TestFixture(Description="Add-TmxTestScenario test")]
     public class AddTmxTestScenarioCommandTestFixture
     {
-        public AddTmxTestScenarioCommandTestFixture()
-        {
-        }
-        
         [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {
@@ -34,8 +30,8 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Add_TmxTestScenario")]
         public void TestPrm_Name_Simple_after_NewSuite()
         {
-            string suiteName = "suite1";
-            string scenarioName = "sc1";
+            const string suiteName = "suite1";
+            const string scenarioName = "sc1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"(New-TmxTestSuite -Name " + 
                 suiteName + 
@@ -51,8 +47,8 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Add_TmxTestScenario")]
         public void TestPrm_Name_Complex_after_NewSuite()
         {
-            string suiteName = @"suite%%`1  1";
-            string scenarioName = @"\ s c 1 \";
+            const string suiteName = @"suite%%`1  1";
+            const string scenarioName = @"\ s c 1 \";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"(New-TmxTestSuite -Name '" + 
                 suiteName + 
@@ -68,8 +64,8 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Add_TmxTestScenario")]
         public void TestPrm_Name_Simple_after_OpenSuite()
         {
-            string suiteName = "suite2";
-            string scenarioName = "sc1";
+            const string suiteName = "suite2";
+            const string scenarioName = "sc1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name suite1; " +
                 @"$null = New-TmxTestSuite -Name " + 
@@ -90,8 +86,8 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Add_TmxTestScenario")]
         public void TestPrm_Name_Complex_after_OpenSuite()
         {
-            string suiteName = @"suite%%`2  2";
-            string scenarioName = @"\ s c 1 \";
+            const string suiteName = @"suite%%`2  2";
+            const string scenarioName = @"\ s c 1 \";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name suite1; " +
                 @"$null = New-TmxTestSuite -Name '" + 
@@ -112,8 +108,8 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Add_TmxTestScenario")]
         public void TestPrm_Name_TestSuiteName_Simple()
         {
-            string suiteName = "suite2";
-            string scenarioName = "sc1";
+            const string suiteName = "suite2";
+            const string scenarioName = "sc1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name suite1; " +
                 @"$null = New-TmxTestSuite -Name " + 
@@ -134,8 +130,8 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Add_TmxTestScenario")]
         public void TestPrm_Name_TestSuiteName_Complex()
         {
-            string suiteName = @"suite%%`2  2";
-            string scenarioName = @"\ s c 1 \";
+            const string suiteName = @"suite%%`2  2";
+            const string scenarioName = @"\ s c 1 \";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name suite1; " +
                 @"$null = New-TmxTestSuite -Name '" + 
@@ -156,9 +152,9 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Add_TmxTestScenario")]
         public void TestPrm_Name_TestSuiteId_Simple()
         {
-            string suiteName = "suite2";
-            string suiteId = "222";
-            string scenarioName = "sc1";
+            const string suiteName = "suite2";
+            const string suiteId = "222";
+            const string scenarioName = "sc1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name suite1; " +
                 @"$null = New-TmxTestSuite -Name " + 
@@ -181,9 +177,9 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Add_TmxTestScenario")]
         public void TestPrm_Name_TestSuiteId_Complex()
         {
-            string suiteName = @"suite%%`2  2";
-            string suiteId = @"/2\";
-            string scenarioName = @"\ s c 1 \";
+            const string suiteName = @"suite%%`2  2";
+            const string suiteId = @"/2\";
+            const string scenarioName = @"\ s c 1 \";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name suite1; " +
                 @"$null = New-TmxTestSuite -Name '" + 
@@ -206,9 +202,9 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Add_TmxTestScenario")]
         public void TestPrm_Name_TestSuiteName_TestSuiteId_Simple()
         {
-            string suiteName = "suite2";
-            string suiteId = "222";
-            string scenarioName = "sc1";
+            const string suiteName = "suite2";
+            const string suiteId = "222";
+            const string scenarioName = "sc1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name suite1; " +
                 @"$null = New-TmxTestSuite -Name " + 
@@ -233,9 +229,9 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Add_TmxTestScenario")]
         public void TestPrm_Name_TestSuiteName_TestSuiteId_Complex()
         {
-            string suiteName = @"suite%%`2  2";
-            string suiteId = @"/2\";
-            string scenarioName = @"\ s c 1 \";
+            const string suiteName = @"suite%%`2  2";
+            const string suiteId = @"/2\";
+            const string scenarioName = @"\ s c 1 \";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name suite1; " +
                 @"$null = New-TmxTestSuite -Name '" + 
@@ -262,7 +258,7 @@ namespace TmxTest.Commands.TestStructure
         [NUnit.Framework.Ignore("This code never worked before. 20130207")]
         public void TestPrm_Name_Description1()
         {
-            string testScenarioDescription = "";
+            var testScenarioDescription = string.Empty;
             CmdletUnitTest.TestRunspace.RunAndGetTheException( //.RunAndEvaluateAreEqual(
                 @"[void](New-TmxTestSuite -Description ""suite description"" -Name suite1 -Id 111); " + 
                 @"[void](Add-TmxTestScenario -Name sc1 -Id 1111 -TestSuiteName suite1 -Description '" + 
@@ -281,7 +277,7 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Add_TmxTestScenario")]
         public void TestPrm_Name_Description2()
         {
-            string testScenarioDescription = "test scenario description";
+            const string testScenarioDescription = "test scenario description";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[void](New-TmxTestSuite -Description ""suite description"" -Name suite1 -Id 111); " + 
                 @"[void](Add-TmxTestScenario -Name sc1 -Id 1111 -TestSuiteName suite1 -Description '" + 
@@ -297,7 +293,7 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Add_TmxTestScenario")]
         public void TestPrm_Name_Description3()
         {
-            string testScenarioDescription = @"test \\scenario `r`ndescription ...";
+            const string testScenarioDescription = @"test \\scenario `r`ndescription ...";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[void](New-TmxTestSuite -Description ""suite description"" -Name suite1 -Id 111); " + 
                 @"[void](Add-TmxTestScenario -Name sc1 -Id 1111 -TestSuiteName suite1 -Description '" + 
@@ -313,9 +309,9 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Add_TmxTestScenario")]
         public void TestProperty_SuiteId()
         {
-            string suiteName = "suite1";
-            string suiteId = "111";
-            string scenarioName = "sc1";
+            const string suiteName = "suite1";
+            const string suiteId = "111";
+            const string scenarioName = "sc1";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"(New-TmxTestSuite -Name '" + 
                 suiteName + 

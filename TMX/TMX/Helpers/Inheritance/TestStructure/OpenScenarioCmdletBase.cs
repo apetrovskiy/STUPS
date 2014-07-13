@@ -17,10 +17,6 @@ namespace TMX
     /// </summary>
     public class OpenScenarioCmdletBase : ScenarioCmdletBase
     {
-        public OpenScenarioCmdletBase()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = false)]
         public new string Name { get; set; }

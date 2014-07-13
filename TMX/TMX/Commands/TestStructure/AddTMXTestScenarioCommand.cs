@@ -18,20 +18,6 @@ namespace TMX.Commands
     [Cmdlet(VerbsCommon.Add, "TmxTestScenario")]
     public class AddTmxTestScenarioCommand : AddScenarioCmdletBase
     {
-        public AddTmxTestScenarioCommand()
-        {
-            // 20130605
-//            if (null == TestData.TestSuites || 0 == TestData.TestSuites.Count) {
-//                TestData.InitTestData();
-//            }
-        }
-        
-        #region Parameters
-        #endregion Parameters
-        
-        /// <summary>
-        /// Processes the pipeline.
-        /// </summary>
         protected override void ProcessRecord()
         {
             TmxAddTestScenarioCommand command =

@@ -28,10 +28,8 @@ namespace TMX
             //TestResultCmdletBase cmdlet =
             //    (TestResultCmdletBase)this.Cmdlet;
             
-            SetTmxCurrentTestResultCommand cmdlet =
-                (SetTmxCurrentTestResultCommand)this.Cmdlet;
+            var cmdlet = (SetTmxCurrentTestResultCommand)this.Cmdlet;
             
-            // 20130330
             cmdlet.ConvertTestResultStatusToTraditionalTestResult();
                 
             cmdlet.WriteVerbose(
@@ -56,7 +54,6 @@ namespace TMX
                         cmdlet,
                         "Adding the current test result to the current test scenario's results");
                     
-                    // 20130401
                     TestData.CurrentTestResult.SetTimeSpent(
                         //(TestData.CurrentTestResult.Timestamp - TmxHelper.TestCaseStarted).TotalSeconds);
                         //(System.DateTime.Now - TmxHelper.TestCaseStarted).TotalSeconds);
@@ -73,9 +70,7 @@ namespace TMX
                         "' TimeSpent = " +
                         TestData.CurrentTestResult.TimeSpent.ToString() +
                         " seconds");
-
-                    // 20130326
-
+                    
                     TmxHelper.TestCaseStarted =
                         System.DateTime.Now;
                     TestData.CurrentTestScenario.TestResults.Add(new TestResult(TestData.CurrentTestScenario.Id, TestData.CurrentTestSuite.Id));
@@ -101,10 +96,8 @@ namespace TMX
                     TestData.CurrentTestScenario.Id,
                     TestData.CurrentTestSuite.Id);
             
-            // 20130605
             if (string.IsNullOrEmpty(TestData.CurrentTestResult.Id)) {
                 
-                // 20130610
                 if (!string.IsNullOrEmpty(cmdlet.Id)) {
                     TestData.CurrentTestResult.Id = cmdlet.Id;
                 } else {
@@ -113,7 +106,6 @@ namespace TMX
                 }
             }
             
-            // 20130605
             try {
                 TestData.CurrentTestResult.PlatformId =
                     TestData.CurrentTestPlatform.Id;

@@ -11,23 +11,19 @@ namespace TMX.Commands
 {
     using System;
     using System.Management.Automation;
-	using TMX.Interfaces;
+	using TMX.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of OpenTmxTestPlatformCommand.
     /// </summary>
     public class OpenTmxTestPlatformCommand : PlatformCmdletBase
     {
-        public OpenTmxTestPlatformCommand()
-        {
-        }
-        
         protected override void BeginProcessing()
         {
             this.CheckCmdletParameters();
             
             // temporary
-            ITestPlatform platform =
+            var platform =
                 TmxHelper.GetTestPlatformById(this.Id);
             this.WriteObject(this, platform);
         }

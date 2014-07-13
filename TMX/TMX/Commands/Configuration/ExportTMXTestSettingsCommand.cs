@@ -18,10 +18,6 @@ namespace TMX.Commands
     [Cmdlet(VerbsData.Export, "TmxTestSettings")]
     public class ExportTmxTestSettingsCommand : SettingsCmdletBase
     {
-        public ExportTmxTestSettingsCommand()
-        {
-        }
-        
         protected override void ProcessRecord()
         {
             TmxHelper.ExportTestSettings(this, this.Path, this.VariableName);

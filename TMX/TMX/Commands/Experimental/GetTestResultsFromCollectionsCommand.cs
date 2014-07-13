@@ -11,7 +11,7 @@ namespace TMX.Commands
 {
     using System;
     using System.Management.Automation;
-	using TMX.Interfaces;
+	using TMX.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of GetTestResultsFromCollectionsCommand.
@@ -19,10 +19,6 @@ namespace TMX.Commands
     [Cmdlet(VerbsCommon.Get, "TestResultsFromCollections")]
     internal class GetTestResultsFromCollectionsCommand : CommonCmdletBase
     {
-        public GetTestResultsFromCollectionsCommand()
-        {
-        }
-        
         protected override void BeginProcessing()
         {
             this.CheckCmdletParameters();

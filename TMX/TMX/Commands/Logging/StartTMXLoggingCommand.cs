@@ -17,8 +17,5 @@ namespace TMX.Commands
     /// </summary>
     public class StartTmxLoggingCommand
     {
-        public StartTmxLoggingCommand()
-        {
-        }
     }
 }

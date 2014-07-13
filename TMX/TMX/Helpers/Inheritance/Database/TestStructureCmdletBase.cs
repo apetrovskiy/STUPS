@@ -17,10 +17,6 @@ namespace TMX
     /// </summary>
     public class TestStructureCmdletBase : DatabaseCmdletBase
     {
-        public TestStructureCmdletBase()
-        {
-        }
-                
         #region Parameters
         [Parameter(Mandatory = false)]
         public string[] Tag { get; set; }

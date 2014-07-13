@@ -15,6 +15,7 @@ namespace TMX
     using System.ComponentModel;
     using System.Linq;
 	using TMX.Interfaces;
+	using TMX.Interfaces.TestStructure;
 	
     public delegate void TmxStructureChangedEventHandler(object sender, EventArgs e);
     public delegate void TmxDatabaseOperationCompletedEventHandler(object sender, EventArgs e);

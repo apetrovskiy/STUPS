@@ -17,10 +17,6 @@ namespace TmxTest.Commands.TestExecution
     /// </summary>
     public class InvokeTmxTestSuiteCommandTestFixture
     {
-        public InvokeTmxTestSuiteCommandTestFixture()
-        {
-        }
-        
         [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void PrepareRunspace()
         {

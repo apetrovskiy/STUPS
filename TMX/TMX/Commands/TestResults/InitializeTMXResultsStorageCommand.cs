@@ -18,10 +18,6 @@ namespace TMX.Commands
     [Cmdlet(VerbsData.Initialize, "TmxResultsStorage", DefaultParameterSetName = "WithCredentials")]
     public class InitializeTmxResultsStorageCommand : DatabaseCmdletBase
     {
-        public InitializeTmxResultsStorageCommand()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = true,
                    ParameterSetName = "WithCredentials")]

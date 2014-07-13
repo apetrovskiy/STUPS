@@ -18,10 +18,6 @@ namespace TMX.Commands
     [Cmdlet(VerbsLifecycle.Invoke, "TmxIfCondition")]
     public class InvokeTmxIfConditionCommand : ConditionsCmdletBase
     {
-        public InvokeTmxIfConditionCommand()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = true)]
         public ScriptBlock Condition { get; set; }

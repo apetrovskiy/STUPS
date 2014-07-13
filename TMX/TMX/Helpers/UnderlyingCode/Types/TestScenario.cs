@@ -13,6 +13,7 @@ namespace TMX
     using System.Collections.Generic;
     using System.Management.Automation;
 	using TMX.Interfaces;
+	using TMX.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of TestScenario.
@@ -144,7 +145,7 @@ TestData.dumpTestStructure("TestScenario #6");
         public virtual int DbId { get; set; }
         public virtual string Name { get; protected internal set; }
         public virtual string Id { get; protected internal set; }
-        public virtual System.Collections.Generic.List<ITestResult> TestResults {get; protected internal set; }
+        public virtual List<ITestResult> TestResults {get; protected internal set; }
         public virtual string Description { get; set; }
 
         private string status;

@@ -16,12 +16,8 @@ namespace TMX.Commands
     /// Description of ExportTmxTestSummaryCommand.
     /// </summary>
     [Cmdlet(VerbsData.Export, "TmxTestSummary")]
-    public class ExportTmxTestSummaryCommand : ImportExportCmdletBase //ExportCmdletBase //CmdletBase
+    public class ExportTmxTestSummaryCommand : ImportExportCmdletBase
     {
-        public ExportTmxTestSummaryCommand()
-        {
-        }
-        
         protected override void BeginProcessing()
         {
             this.CheckCmdletParameters();

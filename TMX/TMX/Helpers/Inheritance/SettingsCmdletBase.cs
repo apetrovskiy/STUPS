@@ -17,10 +17,6 @@ namespace TMX
     /// </summary>
     public class SettingsCmdletBase : CommonCmdletBase
     {
-        public SettingsCmdletBase()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = true,
                    Position = 0)]

@@ -20,10 +20,6 @@ namespace TmxUnitTests.Commands.TestStructure
     [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class AddTmxTestResultDetailCommandTestFixture
     {
-        public AddTmxTestResultDetailCommandTestFixture()
-        {
-        }
-        
         [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {

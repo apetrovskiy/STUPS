@@ -20,10 +20,6 @@ namespace TMX.Commands
     [OutputType(typeof(IDatabase))]
     public class NewTmxTestDBCommand : DatabaseFileOpenCmdletBase //DatabaseFileCmdletBase
     {
-        public NewTmxTestDBCommand()
-        {
-        }
-        
         protected override void BeginProcessing()
         {
             this.CheckCmdletParameters();

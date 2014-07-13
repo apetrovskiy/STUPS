@@ -82,6 +82,10 @@
       <Project>{9C5DA25F-6A59-4F97-B107-64DD549CB800}</Project>
       <Name>TMX.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Tmx\Tmx.csproj">
+      <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>
+      <Name>Tmx</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Modules" />

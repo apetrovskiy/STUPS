@@ -12,6 +12,8 @@ namespace Tmx.Server.Modules
     using System;
     using Nancy;
     using Nancy.ModelBinding;
+	using TMX;
+	using TMX.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of TestResultsModule.
@@ -21,8 +23,10 @@ namespace Tmx.Server.Modules
         public TestResultsModule() : base("/Results")
         {
             Post["/suites/"] = parameters => {
-                
-                
+                //
+                // var testSuite = this.Bind<TestSuite>();
+                // return Response.AsJson<ITestSuite>(testSuite, HttpStatusCode.OK);
+                //
                 return HttpStatusCode.OK;
             };
         }

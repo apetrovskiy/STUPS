@@ -12,7 +12,6 @@ namespace TMX
     using System;
     using System.Collections.Generic;
     using System.Management.Automation;
-	using TMX.Interfaces;
 	using TMX.Interfaces.TestStructure;
     
     /// <summary>
@@ -25,8 +24,8 @@ namespace TMX
             TestScenarios = new List<ITestScenario>();
             this.Statistics = new TestStat();
             this.enStatus = TestSuiteStatuses.NotTested;
-            
-            // 20130301
+            // 20140713
+            this.Id = TestData.GetTestSuiteId();
             this.SetNow();
         }
         
@@ -37,17 +36,6 @@ namespace TMX
             this.enStatus = TestSuiteStatuses.NotTested;
             this.Name = testSuiteName;
             this.Id = testSuiteId != string.Empty ? testSuiteId : TestData.GetTestSuiteId();
-
-            /*
-            if (testSuiteId != string.Empty) {
-                this.Id = testSuiteId;
-            } else {
-                this.Id = 
-                    TestData.GetTestSuiteId();
-            }
-            */
-
-            // 20130301
             this.SetNow();
         }
         
@@ -55,7 +43,7 @@ namespace TMX
         public virtual int DbId { get; set; }
         public virtual string Name { get; protected internal set; }
         public virtual string Id { get; protected internal set; }
-        public virtual System.Collections.Generic.List<ITestScenario> TestScenarios { get; protected internal set; }
+        public virtual List<ITestScenario> TestScenarios { get; protected internal set; }
         public virtual string Description { get; set; }
 
         private string status;
@@ -69,16 +57,16 @@ namespace TMX
 
                 switch (value) {
                     case TestSuiteStatuses.Passed:
-                        this.status = TMX.TestData.TestStatePassed;
+                        this.status = TestData.TestStatePassed;
                         break;
                     case TestSuiteStatuses.Failed:
-                        this.status = TMX.TestData.TestStateFailed;
+                        this.status = TestData.TestStateFailed;
                         break;
                     case TestSuiteStatuses.NotTested:
-                        this.status = TMX.TestData.TestStateNotTested;
+                        this.status = TestData.TestStateNotTested;
                         break;
                     case TestSuiteStatuses.KnownIssue:
-                        this.status = TMX.TestData.TestStateKnownIssue;
+                        this.status = TestData.TestStateKnownIssue;
                         break;
                     default:
                         throw new Exception("Invalid value for TestSuiteStatuses");
@@ -88,9 +76,9 @@ namespace TMX
         
         public virtual TestStat Statistics { get; set; }
         
-        // 20130301
         public virtual System.DateTime Timestamp { get; protected internal set; }
-        public virtual void SetNow()
+        // public virtual void SetNow()
+        public void SetNow()
         {
             this.Timestamp = System.DateTime.Now;
         }

@@ -61,10 +61,16 @@
       <HintPath>..\..\binaries\selenium-dotnet\net35\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Gallio">
-      <HintPath>..\..\..\..\Program Files\Gallio\bin\Gallio.dll</HintPath>
+      <HintPath>..\..\packages\mbunit.3.3.454.0\lib\net35\Gallio.dll</HintPath>
+    </Reference>
+    <Reference Include="Gallio35">
+      <HintPath>..\..\packages\mbunit.3.3.454.0\lib\net35\Gallio35.dll</HintPath>
     </Reference>
     <Reference Include="MbUnit">
-      <HintPath>..\..\..\..\Program Files\Gallio\bin\MbUnit.dll</HintPath>
+      <HintPath>..\..\packages\mbunit.3.3.454.0\lib\net35\MbUnit.dll</HintPath>
+    </Reference>
+    <Reference Include="MbUnit35">
+      <HintPath>..\..\packages\mbunit.3.3.454.0\lib\net35\MbUnit35.dll</HintPath>
     </Reference>
     <Reference Include="Moq">
       <HintPath>..\..\packages\Moq.4.2.1402.2112\lib\net35\Moq.dll</HintPath>
@@ -94,10 +100,10 @@
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="WebDriver">
-      <HintPath>..\..\packages\Selenium.WebDriver.2.40.0\lib\net35\WebDriver.dll</HintPath>
+      <HintPath>..\..\packages\Selenium.WebDriver.2.42.0\lib\net35\WebDriver.dll</HintPath>
     </Reference>
     <Reference Include="WebDriver.Support">
-      <HintPath>..\..\packages\Selenium.Support.2.40.0\lib\net35\WebDriver.Support.dll</HintPath>
+      <HintPath>..\..\packages\Selenium.Support.2.42.0\lib\net35\WebDriver.Support.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
@@ -315,6 +321,9 @@
       <Project>{BF63F595-4A58-49E8-97F2-7701F51F0CD1}</Project>
       <Name>UIAutomation</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

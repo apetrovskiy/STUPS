@@ -20,7 +20,7 @@ namespace SePSX
     
     using OpenQA.Selenium.Safari;
     //using OpenQA.Selenium.Opera;
-    using OpenQA.Selenium.Android;
+    // using OpenQA.Selenium.Android;
     
     using OpenQA.Selenium.Support;
     using UIAutomation;

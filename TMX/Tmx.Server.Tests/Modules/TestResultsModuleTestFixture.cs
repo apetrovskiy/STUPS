@@ -52,18 +52,18 @@ namespace Tmx.Server.Tests.Modules
             TMX.TestData.ResetData();
     	}
     	
-//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-//        public void Should_react_on_posting_a_test_suite()
-//        {
-//        	// Given
-//            var browser = new Browser(new DefaultNancyBootstrapper());
-//            
-//            // When
-//            var response = browser.Post("/Results/suites/");
-//            
-//            // Then
-//            Xunit.Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-//        }
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        public void Should_react_on_posting_a_test_suite()
+        {
+        	// Given
+            var browser = new Browser(new DefaultNancyBootstrapper());
+            
+            // When
+            var response = browser.Post("/Results/suites/");
+            
+            // Then
+            Xunit.Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_create_a_test_suite()
@@ -76,9 +76,8 @@ namespace Tmx.Server.Tests.Modules
             
             // When
             var response = browser.Post("/Results/suites/", (with) => {
-                                        	// with.JsonBody<TMX.TestSuite>(testSuite);
-                                        	// with.
-                                        });
+                with.JsonBody<TMX.TestSuite>(testSuite);
+            });
             
             // Then
             Xunit.Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -100,11 +99,12 @@ namespace Tmx.Server.Tests.Modules
             
             // When
             var response = browser.Post("/Results/suites/", (with) => {
-                                        	with.JsonBody<TMX.TestSuite>(testSuite);
-                                        });
-            response = browser.Post("/Results/scenarios/", (with) => {
-                                        	with.JsonBody<TMX.TestScenario>(testScenario);
-                                        });
+                with.JsonBody<TMX.TestSuite>(testSuite);
+            })
+                .Then
+                .Post("/Results/scenarios/", (with) => {
+                with.JsonBody<TMX.TestScenario>(testScenario);
+            });
             
             // Then
             Xunit.Assert.Equal(HttpStatusCode.OK, response.StatusCode);

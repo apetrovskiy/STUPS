@@ -138,7 +138,10 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="WebDriver">
-      <HintPath>..\..\binaries\selenium-dotnet\net35\WebDriver.dll</HintPath>
+      <HintPath>..\..\packages\Selenium.WebDriver.2.42.0\lib\net35\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support">
+      <HintPath>..\..\packages\Selenium.Support.2.42.0\lib\net35\WebDriver.Support.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -245,6 +248,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

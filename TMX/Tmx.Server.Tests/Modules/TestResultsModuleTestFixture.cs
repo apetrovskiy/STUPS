@@ -31,10 +31,8 @@ namespace Tmx.Server.Tests.Modules
     	{
             PSCmdletBase.UnitTestMode = true;
             
-            if (0 < PSTestLib.UnitTestOutput.Count) {
-
-                PSTestLib.UnitTestOutput.Clear();
-            }
+            if (0 < UnitTestOutput.Count)
+				UnitTestOutput.Clear();
             
             TMX.TestData.ResetData();
     	}
@@ -44,10 +42,8 @@ namespace Tmx.Server.Tests.Modules
     	{
             PSCmdletBase.UnitTestMode = true;
             
-            if (0 < PSTestLib.UnitTestOutput.Count) {
-
-                PSTestLib.UnitTestOutput.Clear();
-            }
+            if (0 < UnitTestOutput.Count)
+				UnitTestOutput.Clear();
             
             TMX.TestData.ResetData();
     	}

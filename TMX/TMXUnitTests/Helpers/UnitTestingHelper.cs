@@ -21,19 +21,12 @@ namespace TmxUnitTests
     /// </summary>
     public static class UnitTestingHelper
     {
-        static UnitTestingHelper()
-        {
-        }
-        
         public static void PrepareUnitTestDataStore()
         {
             PSCmdletBase.UnitTestMode = true;
-            
             if (0 < UnitTestOutput.Count)
 				UnitTestOutput.Clear();
-            
 			TestData.ResetData();
-            
         }
         
         #region TestSuite

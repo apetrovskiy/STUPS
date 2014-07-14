@@ -34,10 +34,10 @@ namespace TestUtils
                     true);
             }
             
-            if (null == cmdlet.ArchiveName || string.Empty == cmdlet.ArchiveName) {
+			if (string.IsNullOrEmpty(cmdlet.ArchiveName)) {
                 
-                cmdlet.ArchiveName = "NewArchive";
-            }
+				cmdlet.ArchiveName = "NewArchive";
+			}
             
             try {
                 using (ZipFile zipFile = new ZipFile()) {
@@ -94,50 +94,48 @@ namespace TestUtils
         {
             string[] pathToArchive = cmdlet.ArchiveName;
             string pathToTargetDirectory = cmdlet.TargetFolder;
-            ExtractExistingFileAction fileAction = ExtractExistingFileAction.DoNotOverwrite;
-            if (cmdlet.Overwrite) {
+            var fileAction = ExtractExistingFileAction.DoNotOverwrite;
+            if (cmdlet.Overwrite)
                 fileAction = ExtractExistingFileAction.OverwriteSilently;
-            }
             
             foreach (string path in pathToArchive) {
                 
-                if (null != path && string.Empty != path) {
+				if (!string.IsNullOrEmpty(path)) {
                     
-                    cmdlet.WriteVerbose(
-                        cmdlet,
-                        "extracting '" +
-                        path +
-                        "'");
+					cmdlet.WriteVerbose(
+						cmdlet,
+						"extracting '" +
+						path +
+						"'");
                     
-                    try {
+					try {
                         
-                        using (ZipFile zipARchive = ZipFile.Read(path)) {
+						using (ZipFile zipARchive = ZipFile.Read(path)) {
                             
-                            cmdlet.WriteVerbose(cmdlet, "opening the archive");
+							cmdlet.WriteVerbose(cmdlet, "opening the archive");
                             
-                            foreach (ZipEntry entry in zipARchive) {
+							foreach (ZipEntry entry in zipARchive) {
                                 
-                                entry.Extract(pathToTargetDirectory, fileAction);
-                                cmdlet.WriteObject(
-                                    cmdlet,
-                                    pathToTargetDirectory +
-                                    @"\" +
-                                    entry.FileName);
-                            }
-                        }
-                    }
-                    catch (Exception eExtract) {
-                        cmdlet.WriteError(
-                            cmdlet,
-                            "Failed to extract archive '" +
-                            path +
-                            "'. " +
-                            eExtract.Message,
-                            "FailedToExtract",
-                            ErrorCategory.InvalidOperation,
-                            false);
-                    }
-                }
+								entry.Extract(pathToTargetDirectory, fileAction);
+								cmdlet.WriteObject(
+									cmdlet,
+									pathToTargetDirectory +
+									@"\" +
+									entry.FileName);
+							}
+						}
+					} catch (Exception eExtract) {
+						cmdlet.WriteError(
+							cmdlet,
+							"Failed to extract archive '" +
+							path +
+							"'. " +
+							eExtract.Message,
+							"FailedToExtract",
+							ErrorCategory.InvalidOperation,
+							false);
+					}
+				}
             }
         }
         
@@ -149,19 +147,19 @@ namespace TestUtils
 //            if (cmdlet.Overwrite) {
 //                fileAction = ExtractExistingFileAction.OverwriteSilently;
 //            }
-            ExtractOptions options = ExtractOptions.Overwrite;
+            var options = ExtractOptions.Overwrite;
             
             foreach (string path in pathToArchive) {
                 
-                if (null != path && string.Empty != path) {
+				if (!string.IsNullOrEmpty(path)) {
                     
-                    cmdlet.WriteVerbose(
-                        cmdlet,
-                        "extracting '" +
-                        path +
-                        "'");
+					cmdlet.WriteVerbose(
+						cmdlet,
+						"extracting '" +
+						path +
+						"'");
                     
-                    try {
+					try {
                         
 //                        using (Ionic.zipARchive = ZipFile.Read(path)) {
 //                            
@@ -178,25 +176,24 @@ namespace TestUtils
 //                            }
 //                        }
                         
-                        RarArchive.WriteToDirectory(
-                            path,
-                            pathToTargetDirectory,
-                            options);
+						RarArchive.WriteToDirectory(
+							path,
+							pathToTargetDirectory,
+							options);
                             
-                        // RarArchive.IsRarFile
-                    }
-                    catch (Exception eExtract) {
-                        cmdlet.WriteError(
-                            cmdlet,
-                            "Failed to extract archive '" +
-                            path +
-                            "'. " +
-                            eExtract.Message,
-                            "FailedToExtract",
-                            ErrorCategory.InvalidOperation,
-                            false);
-                    }
-                }
+						// RarArchive.IsRarFile
+					} catch (Exception eExtract) {
+						cmdlet.WriteError(
+							cmdlet,
+							"Failed to extract archive '" +
+							path +
+							"'. " +
+							eExtract.Message,
+							"FailedToExtract",
+							ErrorCategory.InvalidOperation,
+							false);
+					}
+				}
             }
         }
     }

@@ -78,52 +78,30 @@ namespace TMX
         #region Actions
         public static bool OpenTestSuite(string testSuiteName, string testSuiteId, string testPlatformId)
         {
-            bool result = false;
-            
-            // 20130429
-            // 20140317
-            // turning off the logger
-            // TMX.Logger.TmxLogger.Info("Test suite: '" + testSuiteName + "'");
-            
-            // 20130301
             // set time spent on the previous suite
-            if (null != TMX.TestData.CurrentTestSuite) {
+            if (null != TestData.CurrentTestSuite) {
 
-                if (System.DateTime.MinValue != TMX.TestData.CurrentTestSuite.Timestamp) {
+                if (DateTime.MinValue != TestData.CurrentTestSuite.Timestamp) {
 
-                    TMX.TestData.CurrentTestSuite.SetTimeSpent(
-                        TMX.TestData.CurrentTestSuite.TimeSpent +=
-                        (System.DateTime.Now - TMX.TestData.CurrentTestSuite.Timestamp).TotalSeconds);
-                    TMX.TestData.CurrentTestSuite.Timestamp = System.DateTime.MinValue;
+					TestData.CurrentTestSuite.SetTimeSpent(
+						TestData.CurrentTestSuite.TimeSpent +=
+                        (DateTime.Now - TestData.CurrentTestSuite.Timestamp).TotalSeconds);
+					TestData.CurrentTestSuite.Timestamp = DateTime.MinValue;
                 }
             }
             
-            TMX.TestData.CurrentTestSuite = 
-                TMX.TestData.GetTestSuite(testSuiteName, testSuiteId, testPlatformId);
-            if (TMX.TestData.CurrentTestSuite == null) return result;
-            //TMX.TestData.FireTmxTestSuiteOpened(TMX.TestData.CurrentTestSuite, null);
-                
-            // 20130301
+			TestData.CurrentTestSuite = TestData.GetTestSuite(testSuiteName, testSuiteId, testPlatformId);
+			// 20140714
+			if (null != TestData.CurrentTestSuite.TestScenarios && 0 < TestData.CurrentTestSuite.TestScenarios.Count)
+				TestData.CurrentTestScenario = (TestScenario)TestData.CurrentTestSuite.TestScenarios[TestData.CurrentTestSuite.TestScenarios.Count - 1];
+            
+			if (null == TestData.CurrentTestSuite) return false;
+            
             // set the initial time for this suite's session
-            TMX.TestData.CurrentTestSuite.SetNow();
+			TestData.CurrentTestSuite.SetNow();
 
-            TMX.TestData.OnTmxTestSuiteOpened(TMX.TestData.CurrentTestSuite, null);
-            result = true;
-
-            /*
-            if (TMX.TestData.CurrentTestSuite != null) {
-                //TMX.TestData.FireTmxTestSuiteOpened(TMX.TestData.CurrentTestSuite, null);
-                
-                // 20130301
-                // set the initial time for this suite's session
-                TMX.TestData.CurrentTestSuite.SetNow();
-
-                TMX.TestData.OnTmxTestSuiteOpened(TMX.TestData.CurrentTestSuite, null);
-                result = true;
-            }
-            */
-
-            return result;
+			TestData.OnTmxTestSuiteOpened(TestData.CurrentTestSuite, null);
+			return true;
         }
         
         public static bool NewTestPlatform(
@@ -137,7 +115,7 @@ namespace TMX
         {
             bool result = false;
             result = 
-                TMX.TestData.AddTestPlatform(
+                TestData.AddTestPlatform(
                     testPlatformName,
                     testPlatformId,
                     testPlatformDesctiption,

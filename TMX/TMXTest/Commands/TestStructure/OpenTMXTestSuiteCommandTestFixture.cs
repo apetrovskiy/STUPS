@@ -184,6 +184,8 @@ namespace TmxTest.Commands.TestStructure
                 "'; " +
                 "Set-TmxCurrentTestResult 'tr1' -Id 001;" +
                 "Add-TmxTestResultDetail 'detail 01' -TestResultStatus Passed;" +
+                // 20140714
+                "Add-TmxTestResultDetail 'detail 02' -TestResultStatus Passed -Finished;" +
                 @"$null = New-TmxTestSuite -Name '" + 
                 suiteName2 + 
                 "' | Add-TmxTestScenario -Name '" +

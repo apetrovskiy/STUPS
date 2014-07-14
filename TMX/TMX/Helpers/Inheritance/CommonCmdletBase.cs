@@ -22,15 +22,12 @@ namespace TMX
     {
         public CommonCmdletBase()
         {
-            // 20130329
             this.Id = string.Empty;
             
-            // 20130605
             if (null == TestData.TestSuites || 0 == TestData.TestSuites.Count) {
                 TestData.InitTestData();
             }
             
-            //
             this.TestPlatformId = TestData.CurrentTestPlatform.Id;
         }
         

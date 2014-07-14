@@ -11,6 +11,7 @@ namespace TMX.Commands
 {
     using System;
     using System.Management.Automation;
+    using TMX.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of CloseTmxTestResultCommand.
@@ -26,15 +27,10 @@ namespace TMX.Commands
 //            if (null == TestData.TestSuites || 0 == TestData.TestSuites.Count) {
 //                TestData.InitTestData();
 //            }
-            this.Id =
-                TestData.GetTestResultId();
-            this.TestLog = TMX.Preferences.TestLog;
+            this.Id = TestData.GetTestResultId();
+            this.TestLog = Preferences.TestLog;
             this.KnownIssue = false;
-            
-            // 20130429
-            if (Preferences.AutoEcho) {
-                this.Echo = true;
-            }
+			this.Echo |= Preferences.AutoEcho;
             
             // 20130626
             //this.TestOrigin = TestResultOrigins.Logical;

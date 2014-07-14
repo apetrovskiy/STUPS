@@ -156,15 +156,12 @@ namespace TMX
                                         ScriptBlock[] testSuiteBeforeScenario,
                                         ScriptBlock[] testSuiteAfterScenario)
         {
-            bool result = false;
-            result = 
-                TestData.AddTestSuite(testSuiteName,
-                                      testSuiteId,
-                                      testPlatformId,
-                                      testSuiteDesctiption,
-                                      testSuiteBeforeScenario,
-                                      testSuiteAfterScenario);
-            return result;
+            return TestData.AddTestSuite(testSuiteName,
+        	                             testSuiteId,
+        	                             testPlatformId,
+        	                             testSuiteDesctiption,
+        	                             testSuiteBeforeScenario,
+        	                             testSuiteAfterScenario);
         }
         
         public static bool OpenTestScenario(OpenScenarioCmdletBase cmdlet)
@@ -173,7 +170,7 @@ namespace TMX
 
             if (TestData.CurrentTestResult.Details.Count > 0) {
 
-            TMX.TestData.AddTestResult(
+				TestData.AddTestResult(
                 "autoclosed", 
                 TestData.GetTestResultId(), 
                 null, 

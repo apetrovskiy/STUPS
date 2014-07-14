@@ -112,14 +112,8 @@ namespace TMX
                 cmdlet,
                 "Writing data to the current test result");
             
-            // 20130429
-            // 20140317
-            // turning off the logger
-            // TMX.Logger.TmxLogger.Info("Test result: '" + cmdlet.TestResultName + "'");
-
             TmxHelper.SetCurrentTestResult(cmdlet);
             
-            // 20130403
             TestData.SetScenarioStatus(true); // skipAutomatic
             TestData.SetSuiteStatus(true); // skipAutomatic
             try {
@@ -128,12 +122,6 @@ namespace TMX
                     null);
             }
             catch {}
-            
-            // 20130327
-            //if (null != cmdlet.Banner && string.Empty != cmdlet.Banner && 0 < cmdlet.Banner.Length) {
-                //UIAutomation.UiaHelper.ShowBanner(cmdlet.TestResultName);
-                //TmxHelper.BannerForm
-            //}
         }
     }
 }

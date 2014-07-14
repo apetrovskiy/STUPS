@@ -29,6 +29,7 @@ namespace Tmx.Server.Modules
             Post["/suites/"] = parameters => {
                 var testSuite = this.Bind<TestSuite>();
                 TmxHelper.NewTestSuite(testSuite.Name, testSuite.Id, testSuite.PlatformId, testSuite.Description, testSuite.BeforeScenario, testSuite.AfterScenario);
+                TestData.SetSuiteStatus(true);
                 return HttpStatusCode.OK;
             };
         	
@@ -43,6 +44,7 @@ namespace Tmx.Server.Modules
         				TestSuiteId = testScenario.SuiteId,
         				Description = testScenario.Description
         			});
+        		TestData.SetScenarioStatus(true);
         		
         		return HttpStatusCode.OK;
         	};

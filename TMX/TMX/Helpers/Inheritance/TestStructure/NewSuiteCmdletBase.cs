@@ -18,9 +18,6 @@ namespace TMX
     public class NewSuiteCmdletBase : CommonCmdletBase
     {
         #region Parameters
-        /// <summary>
-        /// Overrides the Name parameters at the CommonCmdletBase class level.
-        /// </summary>
         [Parameter(Mandatory = true,
                    Position = 0)]
         [ValidateNotNullOrEmpty()]

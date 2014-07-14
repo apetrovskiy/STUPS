@@ -81,7 +81,6 @@ namespace TMX
             this.SuiteId = testSuiteId;
             
             try{
-// TestData.dumpTestStructure("TestScenario #1");
                 if (TestData.CurrentTestResult.Details.Count > 0) {
 					TestData.AddTestResult(
                         "autoclosed", 

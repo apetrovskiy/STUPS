@@ -23,7 +23,7 @@ namespace TMX
         
         internal override void Execute()
         {
-            AddTLTestCaseCommand cmdlet = (AddTLTestCaseCommand)this.Cmdlet;
+            var cmdlet = (AddTLTestCaseCommand)Cmdlet;
             
             foreach (Meyn.TestLink.TestSuite testSuite in cmdlet.InputObject) {
                 TLHelper.AddTestCase(

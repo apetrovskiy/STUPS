@@ -23,8 +23,7 @@ namespace TMX
         
         internal override void Execute()
         {
-            AddTestCaseCmdletBase cmdlet =
-                (AddTestCaseCmdletBase)this.Cmdlet;
+            var cmdlet = (AddTestCaseCmdletBase)Cmdlet;
             
             bool result = 
                 TMX.TmxHelper.AddTestCase(cmdlet);

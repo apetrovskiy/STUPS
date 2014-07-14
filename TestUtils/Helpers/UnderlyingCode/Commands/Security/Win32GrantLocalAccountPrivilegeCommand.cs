@@ -24,8 +24,7 @@ namespace TestUtils
         
         internal override void Execute()
         {
-            GrantWin32LocalAccountPrivilegeCommand cmdlet =
-                (GrantWin32LocalAccountPrivilegeCommand)this.Cmdlet;
+            var cmdlet = (GrantWin32LocalAccountPrivilegeCommand)Cmdlet;
             
             Win32Helper.GrantAccountPrivilege(cmdlet);
         }

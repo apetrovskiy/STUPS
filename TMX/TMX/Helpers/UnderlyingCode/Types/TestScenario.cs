@@ -28,7 +28,7 @@ namespace TMX
             this.enStatus = TestScenarioStatuses.NotTested;
             try{
                 if (TestData.CurrentTestResult.Details.Count > 0) {
-                    TMX.TestData.AddTestResult(
+					TestData.AddTestResult(
                         "autoclosed", 
                         TestData.GetTestResultId(), 
                         null, 
@@ -49,13 +49,20 @@ namespace TMX
             }
             catch {}
             
-            // 20130301
             this.SetNow();
             
-            this.TestResults.Add(
-                new TestResult(
-                    TestData.TestSuites[TestData.TestSuites.Count - 1].TestScenarios[TestData.TestSuites[TestData.TestSuites.Count - 1].TestScenarios.Count - 1].Id, // "???",
-                    TestData.TestSuites[TestData.TestSuites.Count - 1].Id)); // "???"));
+            // in detail 20140713
+            var testSuite1 = TestData.TestSuites[TestData.TestSuites.Count - 1];
+            var testScenario1 = testSuite1.TestScenarios[testSuite1.TestScenarios.Count - 1]; // HERE!!
+            string testScenarioId1 = testScenario1.Id;
+            // string testScenarioId1 = TestData.TestSuites[TestData.TestSuites.Count - 1].TestScenarios[TestData.TestSuites[TestData.TestSuites.Count - 1].TestScenarios.Count - 1].Id;
+            string testSuiteId1 = TestData.TestSuites[TestData.TestSuites.Count - 1].Id;
+            var testResult1 = new TestResult(testScenarioId1, testSuiteId1);
+            this.TestResults.Add(testResult1);
+//            this.TestResults.Add(
+//                new TestResult(
+//                    TestData.TestSuites[TestData.TestSuites.Count - 1].TestScenarios[TestData.TestSuites[TestData.TestSuites.Count - 1].TestScenarios.Count - 1].Id, // "???",
+//                    TestData.TestSuites[TestData.TestSuites.Count - 1].Id)); // "???"));
             TestData.CurrentTestResult = 
                 this.TestResults[TestResults.Count - 1];
         }
@@ -71,24 +78,12 @@ namespace TMX
             this.enStatus = TestScenarioStatuses.NotTested;
             this.Name = testScenarioName;
             this.Id = !string.IsNullOrEmpty(testScenarioId) ? testScenarioId : TestData.GetTestScenarioId();
-
-            /*
-            if (!string.IsNullOrEmpty(testScenarioId)) {
-            // if (testScenarioId != string.Empty && testScenarioId != null) {
-                this.Id = testScenarioId;
-            } else {
-                this.Id = 
-                    TestData.GetTestScenarioId();
-            }
-            */
-
-            // suiteId
             this.SuiteId = testSuiteId;
             
             try{
-TestData.dumpTestStructure("TestScenario #1");
+// TestData.dumpTestStructure("TestScenario #1");
                 if (TestData.CurrentTestResult.Details.Count > 0) {
-                    TMX.TestData.AddTestResult(
+					TestData.AddTestResult(
                         "autoclosed", 
                         TestData.GetTestResultId(), 
                         null, 
@@ -103,108 +98,96 @@ TestData.dumpTestStructure("TestScenario #1");
                         //true,
                         TestResultOrigins.Automatic,
                         false);
-TestData.dumpTestStructure("TestScenario #2");
                 } else {
-TestData.dumpTestStructure("TestScenario #3");
                     TestData.CurrentTestResult = null;
                 }
             }
             catch {}
             
-            // 20130301
             this.SetNow();
-TestData.dumpTestStructure("TestScenario #4");
             this.TestResults.Add(
                 new TestResult(
                    this.Id,
                    this.SuiteId));
-TestData.dumpTestStructure("TestScenario #5");
             
-            // 20130407
             try {
-TestData.dumpTestStructure("TestScenario #5.1");
                 if ((null != TestData.CurrentTestResult.Name ||
                     null != TestData.CurrentTestResult.Id) &&
                     null != TestData.CurrentTestResult.Details &&
                     0 < TestData.CurrentTestResult.Details.Count) {
-TestData.dumpTestStructure("TestScenario #5.3");
+                    
                     TestData.CurrentTestScenario.TestResults.Add(TestData.CurrentTestResult);
-TestData.dumpTestStructure("TestScenario #5.5");
                 }
             }
             catch (Exception eeeee) {
                 //Console.WriteLine(eeeee.Message);
             }
-TestData.dumpTestStructure("TestScenario #5.9");
             TestData.CurrentTestResult = 
                 TestResults[TestResults.Count - 1];
-TestData.dumpTestStructure("TestScenario #6");
         }
         
         //public virtual int DbId { get; protected set; }
         public virtual int DbId { get; set; }
-        public virtual string Name { get; protected internal set; }
-        public virtual string Id { get; protected internal set; }
-        public virtual List<ITestResult> TestResults {get; protected internal set; }
+        public string Name { get; protected internal set; }
+        public string Id { get; protected internal set; }
+        public List<ITestResult> TestResults {get; protected internal set; }
         public virtual string Description { get; set; }
 
-        private string status;
-        public virtual string Status { get { return this.status; } }
-        private TestScenarioStatuses _enStatus;
-        protected internal virtual TestScenarioStatuses enStatus
+        string _status;
+        public virtual string Status { get { return this._status; } }
+        TestScenarioStatuses _enStatus;
+        protected internal TestScenarioStatuses enStatus
         { 
-            get { return this._enStatus; }
+            get { return _enStatus; }
             set{
-                this._enStatus = value;
+				_enStatus = value;
 
                 switch (value) {
                     case TestScenarioStatuses.Passed:
-                        this.status = TMX.TestData.TestStatePassed;
+						_status = TestData.TestStatePassed;
                         break;
                     case TestScenarioStatuses.Failed:
-                        this.status = TMX.TestData.TestStateFailed;
+						_status = TestData.TestStateFailed;
                         break;
                     case TestScenarioStatuses.NotTested:
-                        this.status = TMX.TestData.TestStateNotTested;
+						_status = TestData.TestStateNotTested;
                         break;
                     case TestScenarioStatuses.KnownIssue:
-                        this.status = TMX.TestData.TestStateKnownIssue;
+						_status = TestData.TestStateKnownIssue;
                         break;
                     default:
                         // 20130428
                         //throw new Exception("Invalid value for TestScenarioStatuses");
-                        this.status = TMX.TestData.TestStateNotTested;
+						_status = TestData.TestStateNotTested;
                         break;
                 }
             }
         }
         
-        public virtual TestStat Statistics { get; set; }
+        public TestStat Statistics { get; set; }
         
-        public virtual string SuiteId { get; protected internal set; }
+        public string SuiteId { get; protected internal set; }
         
-        // 20130301
-        public virtual System.DateTime Timestamp { get; protected internal set; }
-        public virtual void SetNow()
+        public virtual DateTime Timestamp { get; protected internal set; }
+        public void SetNow()
         {
-            this.Timestamp = System.DateTime.Now;
+			Timestamp = DateTime.Now;
         }
         public virtual double TimeSpent { get; protected internal set; }
         public virtual void SetTimeSpent(double timeSpent)
         {
-            this.TimeSpent = timeSpent;
+			TimeSpent = timeSpent;
         }
         
         public virtual string Tags { get; set; }
         public virtual string PlatformId { get; set; }
         
-        // 20130615
         public virtual ScriptBlock[] BeforeTest { get; set; }
         public virtual ScriptBlock[] AfterTest { get; set; }
         //public virtual ScriptBlock[] AlternateBeforeScenario { get; set; }
         //public virtual ScriptBlock[] AlternateAfterScenario { get; set; }
         public virtual object[] BeforeTestParameters { get; set; }
         public virtual object[] AfterTestParameters { get; set; }
-        public virtual List<ITestCase> TestCases { get; set; }
+        public List<ITestCase> TestCases { get; set; }
     }
 }

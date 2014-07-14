@@ -24,11 +24,7 @@ namespace TMX
         
         internal override void Execute()
         {
-            // 20130327
-            //TestResultCmdletBase cmdlet =
-            //    (TestResultCmdletBase)this.Cmdlet;
-            
-            var cmdlet = (SetTmxCurrentTestResultCommand)this.Cmdlet;
+            var cmdlet = (SetTmxCurrentTestResultCommand)Cmdlet;
             
             cmdlet.ConvertTestResultStatusToTraditionalTestResult();
                 

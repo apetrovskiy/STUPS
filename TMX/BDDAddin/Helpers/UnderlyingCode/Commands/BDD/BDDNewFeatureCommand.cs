@@ -23,8 +23,7 @@ namespace TMX
         
         internal override void Execute()
         {
-            BDDFeatureCmdletBase cmdlet =
-                (BDDFeatureCmdletBase)this.Cmdlet;
+            var cmdlet = (BDDFeatureCmdletBase)Cmdlet;
             BDDHelper.CreateNewFeature(cmdlet);
         }
     }

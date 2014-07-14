@@ -25,8 +25,7 @@ namespace TMX
         
         internal override void Execute()
         {
-            TFCollectionCmdletBase cmdlet =
-                (TFCollectionCmdletBase)this.Cmdlet;
+            var cmdlet = (TFCollectionCmdletBase)Cmdlet;
 
             TFHelper.OpenProjectCollection(
                 cmdlet,

@@ -23,7 +23,7 @@ namespace TMX
         
         internal override void Execute()
         {
-            var cmdlet = (NewSuiteCmdletBase)this.Cmdlet;
+            var cmdlet = (NewSuiteCmdletBase)Cmdlet;
             
             bool result = 
                 TmxHelper.NewTestSuite(

@@ -37,8 +37,7 @@ namespace TMX.Commands
         
         protected override void BeginProcessing()
         {
-            TmxSetCurrentTestResultCommand command =
-                new TmxSetCurrentTestResultCommand(this);
+            var command = new TmxSetCurrentTestResultCommand(this);
             command.Execute();
         }
     }

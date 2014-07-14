@@ -11,6 +11,7 @@ namespace TMX
 {
     using System;
     using System.Management.Automation;
+	using TMX.Commands;
     
     /// <summary>
     /// Description of TmxCloseTestResultCommand.
@@ -23,15 +24,14 @@ namespace TMX
         
         internal override void Execute()
         {
-            TMX.Commands.CloseTmxTestResultCommand cmdlet =
-                (TMX.Commands.CloseTmxTestResultCommand)this.Cmdlet;
+            var cmdlet = (CloseTmxTestResultCommand)Cmdlet;
             
             cmdlet.ConvertTestResultStatusToTraditionalTestResult();
                 
             cmdlet.WriteVerbose(cmdlet, 
                               cmdlet.Name + ", Id = " +
                               cmdlet.Id + ", Status = " +
-                              cmdlet.TestPassed.ToString());
+                              cmdlet.TestPassed);
             if (cmdlet.Echo) {
 
                 cmdlet.WriteObject(

@@ -40,8 +40,7 @@ namespace TMX.Commands
 		
 		protected override void BeginProcessing()
 		{
-			TmxAddSimpleTestResultCommand command =
-			    new TmxAddSimpleTestResultCommand(this);
+			var command = new TmxAddSimpleTestResultCommand(this);
 			command.Execute();
 		}
 	}

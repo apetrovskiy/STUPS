@@ -27,8 +27,7 @@ namespace UIAutomation.Helpers.Commands
         
         public override void Execute()
         {
-            var cmdlet =
-                (WaitUiaEventRaisedCommand)this.Cmdlet;
+            var cmdlet = (WaitUiaEventRaisedCommand)Cmdlet;
             
             bool notFoundYet = true;
             

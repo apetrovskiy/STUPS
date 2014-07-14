@@ -23,8 +23,7 @@ namespace TMX
         
         internal override void Execute()
         {
-            TLProjectCmdletBase cmdlet =
-                (TLProjectCmdletBase)this.Cmdlet;
+            var cmdlet = (TLProjectCmdletBase)Cmdlet;
             
             if (null == cmdlet.Name) {
 

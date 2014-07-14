@@ -80,15 +80,14 @@ namespace PSTestLib
         protected void CheckCmdletParameters()
         {
             if (CmdletParametersCheckingOn) {
-                Exception eExit =
-                    new Exception("Parameters checked");
+                var eExit = new Exception("Parameters checked");
                 throw eExit;
             }
         }
         
         protected override void BeginProcessing()
         {
-            this.CheckCmdletParameters();
+            CheckCmdletParameters();
         }
         
         // 20130430

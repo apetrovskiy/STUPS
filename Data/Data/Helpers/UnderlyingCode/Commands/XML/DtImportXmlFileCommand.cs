@@ -24,8 +24,7 @@ namespace Data
         
         internal override void Execute()
         {
-            ImportDtXmlFileCommand cmdlet =
-                (ImportDtXmlFileCommand)this.Cmdlet;
+            var cmdlet = (ImportDtXmlFileCommand)Cmdlet;
             
             XMLHelper.LoadXMLFile(cmdlet, cmdlet.InputObject, cmdlet.Path);
         }

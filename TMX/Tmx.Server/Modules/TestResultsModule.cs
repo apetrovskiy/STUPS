@@ -14,6 +14,7 @@ namespace Tmx.Server.Modules
     using Nancy;
     using Nancy.ModelBinding;
 	using TMX;
+	using TMX.Commands;
 	using TMX.Interfaces.TestStructure;
     
     /// <summary>
@@ -23,23 +24,24 @@ namespace Tmx.Server.Modules
     {
         public TestResultsModule() : base("/Results")
         {
+            StaticConfiguration.DisableErrorTraces = false;
+            
             Post["/suites/"] = parameters => {
-                //
-                // var testSuite = this.Bind<TestSuite>();
-                // return Response.AsJson<ITestSuite>(testSuite, HttpStatusCode.OK);
-                //
-                var testSuite = this.Bind<TMX.TestSuite>();
+                var testSuite = this.Bind<TestSuite>();
                 TmxHelper.NewTestSuite(testSuite.Name, testSuite.Id, testSuite.PlatformId, testSuite.Description, testSuite.BeforeScenario, testSuite.AfterScenario);
-                
                 return HttpStatusCode.OK;
             };
         	
         	Post["/scenarios/"] = parameters => {
-        		var testScenario = this.Bind<TMX.TestScenario>();
+        		var testScenario = this.Bind<TestScenario>();
         		TmxHelper.AddTestScenario(
         			new AddScenarioCmdletBase {
+        			// new AddTmxTestScenarioCommand {
         				Name = testScenario.Name,
-        				Id = testScenario.Id
+        				Id = testScenario.Id,
+        				TestPlatformId = testScenario.PlatformId,
+        				TestSuiteId = testScenario.SuiteId,
+        				Description = testScenario.Description
         			});
         		
         		return HttpStatusCode.OK;

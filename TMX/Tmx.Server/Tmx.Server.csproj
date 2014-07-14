@@ -73,6 +73,9 @@
     <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Commands\StartTmxServerCommand.cs" />
+    <Compile Include="Commands\StopTmxServerCommand.cs" />
+    <Compile Include="Control.cs" />
     <Compile Include="Modules\TestResultsModule.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -95,6 +98,7 @@
   <ItemGroup>
     <Folder Include="Modules" />
     <Folder Include="Modules" />
+    <Folder Include="Commands" />
     <Folder Include="Properties" />
     <Folder Include="Properties" />
   </ItemGroup>

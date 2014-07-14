@@ -24,8 +24,7 @@ namespace TestUtils
         
         internal override void Execute()
         {
-            NewTuZipArchiveCommand cmdlet =
-                (NewTuZipArchiveCommand)this.Cmdlet;
+            var cmdlet = (NewTuZipArchiveCommand)Cmdlet;
             
             ArchivingHelper.AddFilesToArchive(cmdlet);
         }

@@ -24,8 +24,7 @@ namespace TMX
         
         internal override void Execute()
         {
-            GetTmxTestResultDetailsCommand cmdlet =
-                (GetTmxTestResultDetailsCommand)this.Cmdlet;
+            var cmdlet = (GetTmxTestResultDetailsCommand)Cmdlet;
             
             TmxHelper.GetTestResultDetails(cmdlet);
         }

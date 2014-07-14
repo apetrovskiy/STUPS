@@ -23,16 +23,9 @@ namespace TMX
         
         internal override void Execute()
         {
-            AddScenarioCmdletBase cmdlet =
-                (AddScenarioCmdletBase)this.Cmdlet;
+            var cmdlet = (AddScenarioCmdletBase)Cmdlet;
             
-            bool result = 
-                TMX.TmxHelper.AddTestScenario(cmdlet);
-            
-            // 20130429
-            // 20140317
-            // turning off the logger
-            // TMX.Logger.TmxLogger.Info("Test scenario: '" + cmdlet.Name + "'");
+            bool result = TmxHelper.AddTestScenario(cmdlet);
             
             if (result) {
                 

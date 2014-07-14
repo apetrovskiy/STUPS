@@ -24,16 +24,15 @@ namespace TMX
         
         internal override void Execute()
         {
-            var cmdlet =
-                (TestScenarioExecCmdletBase)this.Cmdlet;
+            var cmdlet = (TestScenarioExecCmdletBase)Cmdlet;
             
             var testScenario =
             	TestData.GetTestScenario(
-            		TMX.TestData.CurrentTestSuite,
+            		TestData.CurrentTestSuite,
             		cmdlet.Name,
             		cmdlet.Id,
-            		TMX.TestData.CurrentTestSuite.Name,
-            		TMX.TestData.CurrentTestSuite.Id,
+            		TestData.CurrentTestSuite.Name,
+            		TestData.CurrentTestSuite.Id,
             		cmdlet.TestPlatformId);
             
             if (null == testScenario) {

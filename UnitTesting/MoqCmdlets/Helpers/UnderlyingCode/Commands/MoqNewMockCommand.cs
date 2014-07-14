@@ -33,10 +33,7 @@ namespace MoqCmdlets
             //Type t = typeof((((NewMqMockCommand)this.Cmdlet).MockedType));
             
             // 20130226
-            NewMqMockCommand cmdlet =
-            //CommonCmdletBase cmdlet =
-                (NewMqMockCommand)this.Cmdlet;
-                //(CommonCmdletBase)this.Cmdlet;
+            var cmdlet = (NewMqMockCommand)Cmdlet;
             // 20130226
             //var t = System.Type.GetType(((NewMqMockCommand)this.Cmdlet).MockedType.GetType().Name);
             var t = System.Type.GetType(cmdlet.MockedType.GetType().Name);

@@ -24,8 +24,7 @@ namespace TestUtils
         
         internal override void Execute()
         {
-            ExpandTuZipArchiveCommand cmdlet =
-                (ExpandTuZipArchiveCommand)this.Cmdlet;
+            var cmdlet = (ExpandTuZipArchiveCommand)Cmdlet;
             
             ArchivingHelper.ExtractFromZipArchive(cmdlet);
         }

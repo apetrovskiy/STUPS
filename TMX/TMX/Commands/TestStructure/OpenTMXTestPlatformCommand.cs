@@ -20,12 +20,11 @@ namespace TMX.Commands
     {
         protected override void BeginProcessing()
         {
-            this.CheckCmdletParameters();
+            CheckCmdletParameters();
             
             // temporary
-            var platform =
-                TmxHelper.GetTestPlatformById(this.Id);
-            this.WriteObject(this, platform);
+            var platform = TmxHelper.GetTestPlatformById(this.Id);
+            WriteObject(this, platform);
         }
     }
 }

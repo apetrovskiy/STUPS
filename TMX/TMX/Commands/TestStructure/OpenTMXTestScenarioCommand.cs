@@ -20,8 +20,7 @@ namespace TMX.Commands
     {
         protected override void ProcessRecord()
         {
-            bool result = 
-                TMX.TmxHelper.OpenTestScenario(this);
+            bool result = TmxHelper.OpenTestScenario(this);
 
             if (result) {
 
@@ -29,7 +28,7 @@ namespace TMX.Commands
 
             } else {
 
-                this.WriteError(
+                WriteError(
                     this,
                     "Couldn't open a test scenario",
                     "GettingTestScenario",

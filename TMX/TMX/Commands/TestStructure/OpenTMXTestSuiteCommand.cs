@@ -20,10 +20,9 @@ namespace TMX.Commands
     {
         protected override void BeginProcessing()
         {
-            this.CheckCmdletParameters();
+            CheckCmdletParameters();
             
-            TmxOpenTestSuiteCommand command =
-                new TmxOpenTestSuiteCommand(this);
+            var command = new TmxOpenTestSuiteCommand(this);
             command.Execute();
         }
     }

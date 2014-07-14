@@ -22,8 +22,7 @@ namespace TMX.Commands
     {
         protected override void ProcessRecord()
         {
-            TmxAddTestCaseCommand command =
-                new TmxAddTestCaseCommand(this);
+            var command = new TmxAddTestCaseCommand(this);
             command.Execute();
         }
     }

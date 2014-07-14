@@ -26,8 +26,7 @@ namespace TAMS
         
         internal override void Execute()
         {
-            CompareTamsObjectCommand cmdlet =
-                (CompareTamsObjectCommand)this.Cmdlet;
+            var cmdlet = (CompareTamsObjectCommand)Cmdlet;
             
             TAMSHelper.CompareObjects(
                 cmdlet,

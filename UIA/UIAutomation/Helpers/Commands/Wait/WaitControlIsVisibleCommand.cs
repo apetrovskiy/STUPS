@@ -27,8 +27,7 @@ namespace UIAutomation.Helpers.Commands
         
         public override void Execute()
         {
-            var cmdlet =
-                (WaitUiaControlIsVisibleCommand)this.Cmdlet;
+            var cmdlet = (WaitUiaControlIsVisibleCommand)Cmdlet;
             
             foreach (IUiElement inputObject in cmdlet.InputObject) {
                 

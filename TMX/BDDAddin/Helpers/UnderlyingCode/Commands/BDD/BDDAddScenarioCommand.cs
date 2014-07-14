@@ -23,8 +23,7 @@ namespace TMX
         
         internal override void Execute()
         {
-            BDDScenarioCmdletBase cmdlet =
-                (BDDScenarioCmdletBase)this.Cmdlet;
+            var cmdlet = (BDDScenarioCmdletBase)Cmdlet;
             
             BDDHelper.AddScenario(cmdlet);
         }

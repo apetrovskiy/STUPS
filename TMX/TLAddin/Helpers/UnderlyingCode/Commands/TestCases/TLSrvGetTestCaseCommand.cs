@@ -23,7 +23,7 @@ namespace TMX
         
         internal override void Execute()
         {
-            GetTLTestCaseCommand cmdlet = (GetTLTestCaseCommand)this.Cmdlet;
+            var cmdlet = (GetTLTestCaseCommand)Cmdlet;
 //<<<<<<< HEAD
             
 //            TLHelper.GetTestCase(

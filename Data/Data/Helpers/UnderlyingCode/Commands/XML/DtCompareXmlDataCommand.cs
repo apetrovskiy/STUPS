@@ -24,8 +24,7 @@ namespace Data
         
         internal override void Execute()
         {
-            CompareDtXmlDataCommand cmdlet =
-                (CompareDtXmlDataCommand)this.Cmdlet;
+            var cmdlet = (CompareDtXmlDataCommand)Cmdlet;
             
             //XMLHelper.CreateXMLComparer(cmdlet);
         }

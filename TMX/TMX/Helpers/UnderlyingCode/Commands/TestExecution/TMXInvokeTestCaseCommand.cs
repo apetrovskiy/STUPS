@@ -24,18 +24,17 @@ namespace TMX
         
         internal override void Execute()
         {
-            var cmdlet =
-                (TestCaseExecCmdletBase)this.Cmdlet;
+            var cmdlet = (TestCaseExecCmdletBase)Cmdlet;
             
             ITestCase testCase =
             	TestData.GetTestCase(
-            		TMX.TestData.CurrentTestSuite,
+            		TestData.CurrentTestSuite,
             		cmdlet.Name,
             		cmdlet.Id,
-            		TMX.TestData.CurrentTestScenario.Name,
-            		TMX.TestData.CurrentTestScenario.Id,
-            		TMX.TestData.CurrentTestSuite.Name,
-            		TMX.TestData.CurrentTestSuite.Id,
+            		TestData.CurrentTestScenario.Name,
+            		TestData.CurrentTestScenario.Id,
+            		TestData.CurrentTestSuite.Name,
+            		TestData.CurrentTestSuite.Id,
             		cmdlet.TestPlatformId);
             
             if (null == testCase) {
@@ -58,8 +57,8 @@ namespace TMX
             if (!cmdlet.OnlySetParameters) {
                 cmdlet.RunTestCase(
                 	cmdlet,
-                	TMX.TestData.CurrentTestSuite, // temporary, add selection from cmdlet's parameters
-                	TMX.TestData.CurrentTestScenario);
+                	TestData.CurrentTestSuite, // temporary, add selection from cmdlet's parameters
+                	TestData.CurrentTestScenario);
             }
         }
     }

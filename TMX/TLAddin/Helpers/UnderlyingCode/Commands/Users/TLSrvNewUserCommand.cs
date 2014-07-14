@@ -23,7 +23,7 @@ namespace TMX
         
         internal override void Execute()
         {
-            NewTLUserCommand cmdlet = (NewTLUserCommand)this.Cmdlet;
+            var cmdlet = (NewTLUserCommand)Cmdlet;
             
             TLHelper.NewUser(
                 cmdlet,

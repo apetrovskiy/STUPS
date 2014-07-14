@@ -24,8 +24,7 @@ namespace Data
         
         internal override void Execute()
         {
-            AddDtXmlDataEntryCommand cmdlet =
-                (AddDtXmlDataEntryCommand)this.Cmdlet;
+            var cmdlet = (AddDtXmlDataEntryCommand)Cmdlet;
             
             XMLHelper.AddDataToXMLComparer(cmdlet, cmdlet.InputObject, cmdlet.XPath, cmdlet.Value);
         }

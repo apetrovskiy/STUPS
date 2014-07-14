@@ -25,8 +25,7 @@ namespace TMX
         internal override void Execute()
         {
            
-            AddTmxSimpleTestResultCommand cmdlet =
-                (AddTmxSimpleTestResultCommand)this.Cmdlet;
+            var cmdlet = (AddTmxSimpleTestResultCommand)Cmdlet;
             
             cmdlet.ConvertTestResultStatusToTraditionalTestResult();
                 
@@ -42,7 +41,9 @@ namespace TMX
             // inserting the new simple test result to the suite/scenario the user provided
             TestSuite testSuiteToAddTestResult = null;
             TestScenario testScenarioToAddTestResult = null;
-            if (null != cmdlet.TestSuiteName || null != cmdlet.TestSuiteId) {
+            // 20140713
+            // if (null != cmdlet.TestSuiteName || null != cmdlet.TestSuiteId) {
+            if (!string.IsNullOrEmpty(cmdlet.TestSuiteName) || !string.IsNullOrEmpty(cmdlet.TestSuiteId)) {
                 
                 cmdlet.WriteVerbose(cmdlet, "getting test suite '" + cmdlet.TestSuiteName + "' with Id '" + cmdlet.TestSuiteId + "'");
                 testSuiteToAddTestResult =

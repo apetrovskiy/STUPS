@@ -24,20 +24,17 @@ namespace TMX
         
         internal override void Execute()
         {
-            GetTmxTestScenarioStatusCommand cmdlet =
-                (GetTmxTestScenarioStatusCommand)this.Cmdlet;
+            var cmdlet = (GetTmxTestScenarioStatusCommand)Cmdlet;
             
             if (!string.IsNullOrEmpty(cmdlet.Name)) {
                 
                 TmxHelper.GetTestScenarioStatus(
-                    //cmdlet);
                     cmdlet,
                     cmdlet.FilterOutAutomaticResults);
                 
             } else if (!string.IsNullOrEmpty(cmdlet.Id)) {
                 
                 TmxHelper.GetTestScenarioStatus(
-                    //cmdlet);
                     cmdlet,
                     cmdlet.FilterOutAutomaticResults);
                 

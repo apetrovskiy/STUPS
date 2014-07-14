@@ -20,8 +20,7 @@ namespace TMX.Commands
     {
         protected override void ProcessRecord()
         {
-            TmxAddTestScenarioCommand command =
-                new TmxAddTestScenarioCommand(this);
+            var command = new TmxAddTestScenarioCommand(this);
             command.Execute();
         }
     }

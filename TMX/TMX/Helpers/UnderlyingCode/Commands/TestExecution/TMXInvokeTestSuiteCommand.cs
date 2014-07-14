@@ -24,8 +24,7 @@ namespace TMX
         
         internal override void Execute()
         {
-            var cmdlet =
-                (TestSuiteExecCmdletBase)this.Cmdlet;
+            var cmdlet = (TestSuiteExecCmdletBase)Cmdlet;
             
             var testSuite =
             	TestData.GetTestSuite(

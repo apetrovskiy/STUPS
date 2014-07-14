@@ -27,12 +27,12 @@ namespace TMX.Commands
 //                TestData.InitTestData();
 //            }
             this.Id =
-                TMX.TestData.GetTestResultId();
+                TestData.GetTestResultId();
             this.TestLog = TMX.Preferences.TestLog;
             this.KnownIssue = false;
             
             // 20130429
-            if (TMX.Preferences.AutoEcho) {
+            if (Preferences.AutoEcho) {
                 this.Echo = true;
             }
             
@@ -41,39 +41,18 @@ namespace TMX.Commands
         }
         
         #region Parameters
-//        [Parameter(Mandatory = false)]
-//        public new SwitchParameter TestPassed { get; set; }
-//        
-//        [Parameter(Mandatory = false)]
-//        public new SwitchParameter KnownIssue { get; set; }
-        
         [Parameter(Mandatory = false)]
         public SwitchParameter Echo { get; set; }
         
         [Parameter(Mandatory = false)]
         public new SwitchParameter TestLog { get; set; }
-        
-//        [Parameter(Mandatory = false)]
-//        [AllowNull]
-//        [AllowEmptyString]
-//        public string Description { get; set; }
-//        
-//        [Parameter(Mandatory = false)]
-//        internal new string Name { get; set; }
-//        
-//        [Parameter(Mandatory = true,
-//                   Position = 0)]
-//        [ValidateNotNullOrEmpty]
-//        [Alias("Name")]
-//        public override string TestResultName { get; set; }
         #endregion Parameters
         
         protected override void BeginProcessing()
         {
             this.CheckCmdletParameters();
                 
-            TmxCloseTestResultCommand command =
-                new TmxCloseTestResultCommand(this);
+            var command = new TmxCloseTestResultCommand(this);
             command.Execute();
         }
     }

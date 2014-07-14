@@ -23,11 +23,10 @@ namespace TMX
         
         internal override void Execute()
         {
-            NewPlatformCmdletBase cmdlet =
-                (NewPlatformCmdletBase)this.Cmdlet;
+            var cmdlet = (NewPlatformCmdletBase)Cmdlet;
             
             bool result = 
-                TMX.TmxHelper.NewTestPlatform(
+                TmxHelper.NewTestPlatform(
                     cmdlet.Name,
                     cmdlet.Id,
                     cmdlet.Description,

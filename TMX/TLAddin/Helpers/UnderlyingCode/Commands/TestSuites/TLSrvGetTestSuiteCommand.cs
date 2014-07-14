@@ -24,7 +24,7 @@ namespace TMX
         
         internal override void Execute()
         {
-            TLTestSuiteCmdletBase cmdlet = (TLTestSuiteCmdletBase)this.Cmdlet;
+            var cmdlet = (TLTestSuiteCmdletBase)Cmdlet;
             
             if (null != cmdlet.InputObjectTestProject) {
                 cmdlet.WriteVerbose(cmdlet, "getting test projects from the pipeline");

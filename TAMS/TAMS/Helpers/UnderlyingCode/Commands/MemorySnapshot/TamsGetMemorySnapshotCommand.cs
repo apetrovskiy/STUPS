@@ -26,12 +26,10 @@ namespace TAMS
         
         internal override void Execute()
         {
-            GetTamsMemorySnapshotCommand cmdlet =
-                (GetTamsMemorySnapshotCommand)this.Cmdlet;
+            var cmdlet = (GetTamsMemorySnapshotCommand)Cmdlet;
             
             int[] processIds = null;
-            ArrayList processIdObjects =
-                new ArrayList();
+            var processIdObjects = new ArrayList();
             
             if (null != cmdlet.InputObject && 0 < cmdlet.InputObject.Length) {
                 

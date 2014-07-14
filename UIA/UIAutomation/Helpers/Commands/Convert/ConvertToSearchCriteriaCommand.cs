@@ -26,7 +26,7 @@ namespace UIAutomation.Helpers.Commands
         
         public override void Execute()
         {
-            var cmdlet = (ConvertToUiaSearchCriteriaCommand)this.Cmdlet;
+            var cmdlet = (ConvertToUiaSearchCriteriaCommand)Cmdlet;
             
             var converter = AutomationFactory.GetObject<ElementToSearchCriteriaConverter>();
             

@@ -24,8 +24,7 @@ namespace TestUtils
         
         internal override void Execute()
         {
-            ExpandTuRarArchiveCommand cmdlet =
-                (ExpandTuRarArchiveCommand)this.Cmdlet;
+            var cmdlet = (ExpandTuRarArchiveCommand)Cmdlet;
             
             ArchivingHelper.ExtractFromRarArchive(cmdlet);
         }

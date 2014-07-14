@@ -24,7 +24,7 @@ namespace SePSX
         
         internal override void Execute()
         {
-            SetSeWebDriverTimeoutCommand cmdlet = (SetSeWebDriverTimeoutCommand)this.Cmdlet;
+            var cmdlet = (SetSeWebDriverTimeoutCommand)Cmdlet;
             if (0 != cmdlet.ImplicitlyWaitTimeout) {
                 SeHelper.SetDriverTimeout(cmdlet, cmdlet.InputObject, DriverTimeoutTypes.ImplicitlyWait, cmdlet.ImplicitlyWaitTimeout);
             }

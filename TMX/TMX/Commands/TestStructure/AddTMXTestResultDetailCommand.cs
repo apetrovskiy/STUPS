@@ -20,19 +20,19 @@ namespace TMX.Commands
     {
         protected override void BeginProcessing()
         {
-            this.CheckCmdletParameters();
+            CheckCmdletParameters();
             
-            this.WriteVerbose(this, this.TestResultDetail);
+            WriteVerbose(this, TestResultDetail);
             // 20140317
             // turning off the logger
             // TMX.Logger.TmxLogger.Info(this.TestResultDetail);
-            if (this.Echo) {
+            if (Echo) {
 
-                WriteObject(this.TestResultDetail);
+                WriteObject(TestResultDetail);
             }
             // 20130331
             //TMX.TestData.AddTestResultTextDetail(this.TestResultDetail);
-            TMX.TestData.AddTestResultTextDetail(this, this.TestResultDetail);
+            TestData.AddTestResultTextDetail(this, TestResultDetail);
         }
     }
 }

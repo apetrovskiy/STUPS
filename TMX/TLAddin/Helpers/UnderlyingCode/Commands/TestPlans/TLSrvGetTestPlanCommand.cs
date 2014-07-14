@@ -23,7 +23,7 @@ namespace TMX
         
         internal override void Execute()
         {
-            TLGetTestPlanCmdletBase cmdlet = (TLGetTestPlanCmdletBase)this.Cmdlet;
+            var cmdlet = (TLGetTestPlanCmdletBase)Cmdlet;
             
             Meyn.TestLink.TestProject[] testProjects = null;
             

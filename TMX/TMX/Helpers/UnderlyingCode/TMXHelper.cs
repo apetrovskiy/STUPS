@@ -158,12 +158,12 @@ namespace TMX
         {
             bool result = false;
             result = 
-                TMX.TestData.AddTestSuite(testSuiteName, 
-                                          testSuiteId,
-                                          testPlatformId,
-                                          testSuiteDesctiption,
-                                          testSuiteBeforeScenario,
-                                          testSuiteAfterScenario);
+                TestData.AddTestSuite(testSuiteName,
+                                      testSuiteId,
+                                      testPlatformId,
+                                      testSuiteDesctiption,
+                                      testSuiteBeforeScenario,
+                                      testSuiteAfterScenario);
             return result;
         }
         
@@ -260,30 +260,18 @@ namespace TMX
         {
             bool result = false;
             result = 
-                TMX.TestData.AddTestScenario(cmdlet.InputObject,
-                                             cmdlet.Name,
-                                             cmdlet.Id,
-                                             cmdlet.Description,
-                                             cmdlet.TestSuiteName,
-                                             cmdlet.TestSuiteId,
-                                             cmdlet.TestPlatformId,
-                                             cmdlet.BeforeTest,
-                                             cmdlet.AfterTest);
+                TestData.AddTestScenario(cmdlet.InputObject,
+                                         cmdlet.Name,
+                                         cmdlet.Id,
+                                         cmdlet.Description,
+                                         cmdlet.TestSuiteName,
+                                         cmdlet.TestSuiteId,
+                                         cmdlet.TestPlatformId,
+                                         cmdlet.BeforeTest,
+                                         cmdlet.AfterTest);
             
             return result;
         }
-        
-        // 20130331
-//        public static bool AddTestResultTextDetail(string testResultTextDetail)
-//        {
-//            bool result = false;
-//            
-//            // 20130331
-//            //TMX.TestData.AddTestResultTextDetail(testResultTextDetail);
-//            TMX.TestData.AddTestResultTextDetail(testResultTextDetail);
-//            
-//            return result;
-//        }
         
         public static bool AddTestResultScreenshotDetail(string testResultScreenshotDetail)
         {
@@ -300,7 +288,7 @@ namespace TMX
             
             // 20130702
             try {
-                TMX.TestData.AddTestResultErrorDetail(testResultErrorDetail);
+				TestData.AddTestResultErrorDetail(testResultErrorDetail);
             }
             catch {}
             

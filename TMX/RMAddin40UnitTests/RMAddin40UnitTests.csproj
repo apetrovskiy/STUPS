@@ -56,7 +56,7 @@
       <HintPath>..\..\..\..\..\Program Files\Gallio\bin\MbUnit.dll</HintPath>
     </Reference>
     <Reference Include="Moq">
-      <HintPath>..\..\binaries\Moq\NET40\Moq.dll</HintPath>
+      <HintPath>..\..\packages\Moq.4.2.1402.2112\lib\net40\Moq.dll</HintPath>
     </Reference>
     <Reference Include="Redmine.Net.Api">
       <HintPath>..\..\binaries\RedMine\Redmine.Net.Api.dll</HintPath>
@@ -96,6 +96,9 @@
     <Folder Include="Helpers\UnderlyingCode\Commands" />
     <Folder Include="ParamChecks" />
     <Folder Include="ParamChecks\RM" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

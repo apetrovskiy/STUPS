@@ -92,14 +92,21 @@ namespace TMX
             
 			TestData.CurrentTestSuite = TestData.GetTestSuite(testSuiteName, testSuiteId, testPlatformId);
 			// 20140714
-			if (null != TestData.CurrentTestSuite.TestScenarios && 0 < TestData.CurrentTestSuite.TestScenarios.Count)
+			Console.WriteLine("11111111111122222");
+			// if (null != TestData.CurrentTestSuite.TestScenarios && 0 < TestData.CurrentTestSuite.TestScenarios.Count) {
+			if (null != TestData.CurrentTestSuite && null != TestData.CurrentTestSuite.TestScenarios && 0 < TestData.CurrentTestSuite.TestScenarios.Count) {
+				Console.WriteLine("11111111111122222-2");
 				TestData.CurrentTestScenario = (TestScenario)TestData.CurrentTestSuite.TestScenarios[TestData.CurrentTestSuite.TestScenarios.Count - 1];
+				Console.WriteLine("11111111111122222-3");
+			}
             
 			if (null == TestData.CurrentTestSuite) return false;
             
+			Console.WriteLine("1111111111111133333");
             // set the initial time for this suite's session
 			TestData.CurrentTestSuite.SetNow();
-
+			
+			Console.WriteLine("11111111111114");
 			TestData.OnTmxTestSuiteOpened(TestData.CurrentTestSuite, null);
 			return true;
         }
@@ -306,7 +313,7 @@ namespace TMX
 //                TestData.InitTestData();
 //            }
 
-            TMX.TestData.AddTestResult(
+			TestData.AddTestResult(
                 testResultName, 
                 testResultId, 
                 testResult, 

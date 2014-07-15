@@ -50,10 +50,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Gallio">
-      <HintPath>..\..\..\..\Program Files\Gallio\bin\Gallio.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\Gallio\bin\Gallio.dll</HintPath>
     </Reference>
     <Reference Include="MbUnit">
-      <HintPath>..\..\..\..\Program Files\Gallio\bin\MbUnit.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\Gallio\bin\MbUnit.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">

@@ -10,6 +10,7 @@
 namespace TmxUnitTests.Commands.TestStructure
 {
     using System;
+	using System.Management.Automation;
     using MbUnit.Framework;using NUnit.Framework;
     using PSTestLib;
     using TMX;
@@ -44,7 +45,7 @@ namespace TmxUnitTests.Commands.TestStructure
             UnitTestingHelper.GetExistingTestSuite(expectedResultName, expectedResultId);
             MbUnit.Framework.Assert.AreEqual(
                 expectedResultName,
-                ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
+                ((ITestSuite)(object)UnitTestOutput.LastOutput[0]).Name);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]
@@ -59,7 +60,9 @@ namespace TmxUnitTests.Commands.TestStructure
             UnitTestingHelper.GetExistingTestSuite(expectedResultName, expectedResultId);
             MbUnit.Framework.Assert.AreNotEqual(
                 expectedResultName,
-                ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
+                // 20140715
+                // ((ITestSuite)(object)UnitTestOutput.LastOutput[0]).Name);
+                ((ErrorRecord)(object)UnitTestOutput.LastOutput[0]).Exception.Message);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]
@@ -74,7 +77,7 @@ namespace TmxUnitTests.Commands.TestStructure
             UnitTestingHelper.GetExistingTestSuite(expectedResultName, expectedResultId);
             MbUnit.Framework.Assert.AreEqual(
                 expectedResultId,
-                ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Id);
+                ((ITestSuite)(object)UnitTestOutput.LastOutput[0]).Id);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]
@@ -89,7 +92,9 @@ namespace TmxUnitTests.Commands.TestStructure
             UnitTestingHelper.GetExistingTestSuite(expectedResultName, expectedResultId);
             MbUnit.Framework.Assert.AreNotEqual(
                 expectedResultId,
-                ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Id);
+                // 20140715
+                // ((ITestSuite)(object)UnitTestOutput.LastOutput[0]).Id);
+                ((ErrorRecord)(object)UnitTestOutput.LastOutput[0]).Exception.Message);
         }
     }
 }

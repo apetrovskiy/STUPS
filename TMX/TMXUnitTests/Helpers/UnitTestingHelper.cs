@@ -30,7 +30,8 @@ namespace TmxUnitTests
         }
         
         #region TestSuite
-        internal static ITestSuite GetNewTestSuite(
+        // internal static ITestSuite GetNewTestSuite(
+        internal static object GetNewTestSuite(
             string name,
             string id,
             string description)
@@ -48,10 +49,18 @@ namespace TmxUnitTests
             var command = new TmxNewTestSuiteCommand(cmdlet);
             command.Execute();
             
-            return (ITestSuite)(object)UnitTestOutput.LastOutput[0];
+            // 20140715
+            // return (ITestSuite)(object)UnitTestOutput.LastOutput[0];
+            var returnValue = (object)UnitTestOutput.LastOutput[0];
+            if (returnValue is ITestSuite)
+            	return returnValue as ITestSuite;
+            if (returnValue is ErrorRecord)
+            	return returnValue as ErrorRecord;
+            return returnValue;
         }
         
-        internal static ITestSuite GetExistingTestSuite(
+        // internal static ITestSuite GetExistingTestSuite(
+        internal static object GetExistingTestSuite(
             string name,
             string id)
         {
@@ -66,7 +75,14 @@ namespace TmxUnitTests
             var command = new TmxOpenTestSuiteCommand(cmdlet);
             command.Execute();
             
-            return (ITestSuite)(object)UnitTestOutput.LastOutput[0];
+            // 20140715
+            // return (ITestSuite)(object)UnitTestOutput.LastOutput[0];
+            var returnValue = (object)UnitTestOutput.LastOutput[0];
+            if (returnValue is ITestSuite)
+            	return returnValue as ITestSuite;
+            if (returnValue is ErrorRecord)
+            	return returnValue as ErrorRecord;
+            return returnValue;
         }
         
         internal static string GetTestScenarioStatus(bool skipAutomatic)
@@ -149,9 +165,13 @@ namespace TmxUnitTests
             switch (codeStatus) {
                 case TestResultStatuses.Passed:
                     cmdlet.TestPassed = true;
+                    // 20140715
+                    // cmdlet.TestResultStatus = TestResultStatuses.Passed;
                     break;
                 case TestResultStatuses.Failed:
                     cmdlet.TestPassed = false;
+                    // 20140715
+                    // cmdlet.TestResultStatus = TestResultStatuses.Failed;
                     break;
                 case TestResultStatuses.NotTested:
                     // nothing to do
@@ -165,6 +185,9 @@ namespace TmxUnitTests
             }
 
             cmdlet.KnownIssue = logicStatus;
+            // 20140715
+            // if (logicStatus)
+            // 	cmdlet.TestResultStatus = TestResultStatuses.KnownIssue;
             
             var command = new TmxCloseTestResultCommand(cmdlet);
             command.Execute();

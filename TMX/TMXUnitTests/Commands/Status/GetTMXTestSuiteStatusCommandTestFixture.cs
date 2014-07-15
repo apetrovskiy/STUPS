@@ -64,7 +64,9 @@ namespace TmxUnitTests.Commands.Status
             const string expectedResult = TestData.TestStatePassed;
 
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, false);
-
+Console.WriteLine("suite -> " + TestData.CurrentTestSuite.Status);
+Console.WriteLine("scenario -> " + TestData.CurrentTestScenario.Status);
+Console.WriteLine("test result -> " + TestData.CurrentTestResult.Status);
             MbUnit.Framework.Assert.AreEqual(
                 expectedResult,
                 UnitTestingHelper.GetTestSuiteStatus(true));
@@ -77,6 +79,9 @@ namespace TmxUnitTests.Commands.Status
         {
             const string expectedResult = TestData.TestStateFailed;
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, false);
+Console.WriteLine("suite -> " + TestData.CurrentTestSuite.Status);
+Console.WriteLine("scenario -> " + TestData.CurrentTestScenario.Status);
+Console.WriteLine("test result -> " + TestData.CurrentTestResult.Status);
             MbUnit.Framework.Assert.AreEqual(
                 expectedResult,
                 UnitTestingHelper.GetTestSuiteStatus(true));
@@ -90,6 +95,9 @@ namespace TmxUnitTests.Commands.Status
             // Passed -> KnownIssue
             const string expectedResult = TestData.TestStateKnownIssue;
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, true);
+Console.WriteLine("suite -> " + TestData.CurrentTestSuite.Status);
+Console.WriteLine("scenario -> " + TestData.CurrentTestScenario.Status);
+Console.WriteLine("test result -> " + TestData.CurrentTestResult.Status);
             MbUnit.Framework.Assert.AreEqual(
                 expectedResult,
                 UnitTestingHelper.GetTestSuiteStatus(true));
@@ -105,6 +113,9 @@ namespace TmxUnitTests.Commands.Status
             const string expectedResult = TestData.TestStateKnownIssue;
             
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, true);
+Console.WriteLine("suite -> " + TestData.CurrentTestSuite.Status);
+Console.WriteLine("scenario -> " + TestData.CurrentTestScenario.Status);
+Console.WriteLine("test result -> " + TestData.CurrentTestResult.Status);
             MbUnit.Framework.Assert.AreEqual(
                 expectedResult,
                 UnitTestingHelper.GetTestSuiteStatus(true));

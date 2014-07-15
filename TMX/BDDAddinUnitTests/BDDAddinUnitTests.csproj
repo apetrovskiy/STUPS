@@ -54,22 +54,28 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Gallio">
-      <HintPath>..\..\..\..\..\Program Files\Gallio\bin\Gallio.dll</HintPath>
+      <HintPath>..\..\packages\mbunit.3.3.454.0\lib\net35\Gallio.dll</HintPath>
+    </Reference>
+    <Reference Include="Gallio35">
+      <HintPath>..\..\packages\mbunit.3.3.454.0\lib\net35\Gallio35.dll</HintPath>
     </Reference>
     <Reference Include="GurkBurk">
-      <HintPath>..\..\packages\nbehave.0.6.0\lib\net35\GurkBurk.dll</HintPath>
+      <HintPath>..\..\packages\nbehave.0.6.2\lib\net35\GurkBurk.dll</HintPath>
     </Reference>
     <Reference Include="MbUnit">
-      <HintPath>..\..\..\..\..\Program Files\Gallio\bin\MbUnit.dll</HintPath>
+      <HintPath>..\..\packages\mbunit.3.3.454.0\lib\net35\MbUnit.dll</HintPath>
+    </Reference>
+    <Reference Include="MbUnit35">
+      <HintPath>..\..\packages\mbunit.3.3.454.0\lib\net35\MbUnit35.dll</HintPath>
     </Reference>
     <Reference Include="NBehave.Fluent.Framework">
-      <HintPath>..\..\packages\nbehave.fluent.mbunit.0.6.0\lib\net35\NBehave.Fluent.Framework.dll</HintPath>
+      <HintPath>..\..\packages\nbehave.fluent.mbunit.0.6.2\lib\net35\NBehave.Fluent.Framework.dll</HintPath>
     </Reference>
     <Reference Include="NBehave.Gherkin">
-      <HintPath>..\..\packages\nbehave.0.6.0\lib\net35\NBehave.Gherkin.dll</HintPath>
+      <HintPath>..\..\packages\nbehave.0.6.2\lib\net35\NBehave.Gherkin.dll</HintPath>
     </Reference>
     <Reference Include="NBehave.Narrator.Framework">
-      <HintPath>..\..\packages\nbehave.0.6.0\lib\net35\NBehave.Narrator.Framework.dll</HintPath>
+      <HintPath>..\..\packages\nbehave.0.6.2\lib\net35\NBehave.Narrator.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">

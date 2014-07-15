@@ -10,6 +10,7 @@
 namespace TmxUnitTests.Commands.TestStructure
 {
     using System;
+	using System.Management.Automation;
     using MbUnit.Framework;using NUnit.Framework;
     using PSTestLib;
     using TMX;
@@ -130,28 +131,27 @@ namespace TmxUnitTests.Commands.TestStructure
             UnitTestingHelper.GetNewTestSuite(expectedResultName, expectedResultId, string.Empty);
             UnitTestingHelper.GetNewTestSuite(expectedResultName, expectedResultId, string.Empty);
             
-Console.WriteLine("00000000000000003");
-            
             // checks the first test suite
             MbUnit.Framework.Assert.AreEqual(
-                expectedResultName,
+            	// 20140715
+                // expectedResultName,
+                @"Couldn't create a test suite",
                 //((ITestSuite)CommonCmdletBase.UnitTestOutput[CommonCmdletBase.UnitTestOutput.Count - 1]).Name);
-                ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
-            
-Console.WriteLine("00000000000000004");
+                // 20140715
+                // ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
+                ((ErrorRecord)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Exception.Message);
             
             // checks how many test suites
             Console.WriteLine("Output in the UnitTestOutput object");
             MbUnit.Framework.Assert.AreEqual( // this is a technical solution
-                1,
-                PSTestLib.UnitTestOutput.Count);
-            
-Console.WriteLine("00000000000000005");
+				// 20140715
+                2,
+				UnitTestOutput.Count);
             
             Console.WriteLine("Test Suites counter");
             MbUnit.Framework.Assert.AreEqual( // this is a logical solution
                 1,
-                TMX.TestData.TestSuites.Count);
+				TestData.TestSuites.Count);
         }
     }
 }

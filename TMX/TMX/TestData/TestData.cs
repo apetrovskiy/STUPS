@@ -273,14 +273,7 @@ namespace TMX
             }
 
             if (string.IsNullOrEmpty(currentTestResult.Name)) {
-
-            /*
-            if (null == currentTestResult.Name ||
-                string.Empty == currentTestResult.Name ||
-                0 == currentTestResult.Name.Length) {
-            */
-
-                // 20130610
+            	
 //                if (closingTestResultName != null &&
 //                    closingTestResultName != string.Empty &&
 //                    closingTestResultName.Length > 0 &&
@@ -318,13 +311,7 @@ namespace TMX
             }
 
             if (string.IsNullOrEmpty(currentTestResult.Id)) {
-
-            /*
-            if (null == currentTestResult.Id ||
-                string.Empty == currentTestResult.Id ||
-                0 == currentTestResult.Id.Length) {
-            */
-
+            	
 //                if (closingTestResultId != null &&
 //                    closingTestResultId != string.Empty &&
 //                    closingTestResultId.Length > 0 &&

@@ -77,6 +77,7 @@
     <Compile Include="Commands\StopTmxServerCommand.cs" />
     <Compile Include="Control.cs" />
     <Compile Include="Modules\TestResultsModule.cs" />
+    <Compile Include="TestBootstrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -10,12 +10,14 @@
 namespace Tmx.Server
 {
     using System;
+	using Nancy;
     using Nancy.Hosting.Self;
+    using Nancy.Diagnostics;
     
     /// <summary>
     /// Description of Control.
     /// </summary>
-    public static class Control
+    public class Control : DefaultNancyBootstrapper
     {
         static NancyHost _nancyHost;
         
@@ -28,6 +30,12 @@ namespace Tmx.Server
         public static void Stop()
         {
             _nancyHost.Stop();
+        }
+        
+        protected override DiagnosticsConfiguration DiagnosticsConfiguration {
+            get {
+                return new DiagnosticsConfiguration { Password = @"=1qwerty" };
+            }
         }
     }
 }

@@ -90,9 +90,6 @@
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="ThoughtWorks.Selenium.Core">
-      <HintPath>..\..\binaries\selenium-dotnet\net35\ThoughtWorks.Selenium.Core.dll</HintPath>
-    </Reference>
     <Reference Include="UIAutomationClient">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>

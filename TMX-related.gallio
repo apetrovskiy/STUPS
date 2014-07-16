@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<testProject xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.gallio.org/">
+  <testPackage shadowCopy="false" debug="false">
+    <files>
+      <file>TMX\BDDAddinUnitTests\bin\Release35\BDDAddinUnitTests.dll</file>
+      <file>TMX\TLAddinUnitTests\bin\Release35\TLAddinUnitTests.dll</file>
+      <file>TMX\Tmx.Server.Tests\bin\Release35\Tmx.Server.Tests.dll</file>
+      <file>TMX\TMXTest\bin\Release35\TMXTest.dll</file>
+      <file>TMX\TMXTest40\bin\Release35\TMXTest40.dll</file>
+      <file>TMX\TMXUnitTests\bin\Release35\TMXUnitTests.dll</file>
+    </files>
+    <hintDirectories />
+    <excludedFrameworkIds />
+    <properties />
+  </testPackage>
+  <testFilters>
+    <testFilter filterName="AutoSave" filterExpr="" />
+  </testFilters>
+  <extensionSpecifications />
+  <reportDirectory>..\..\..\Users\alexa_000\AppData\Roaming\Gallio\Icarus\Reports</reportDirectory>
+  <reportNameFormat>test-report-{0}-{1}</reportNameFormat>
+</testProject>

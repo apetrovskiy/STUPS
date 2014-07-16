@@ -34,7 +34,7 @@ namespace Tmx.Server.Tests.Modules
             if (0 < UnitTestOutput.Count)
 				UnitTestOutput.Clear();
             
-            TMX.TestData.ResetData();
+			TestData.ResetData();
     	}
     	
     	[MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
@@ -45,7 +45,7 @@ namespace Tmx.Server.Tests.Modules
             if (0 < UnitTestOutput.Count)
 				UnitTestOutput.Clear();
             
-            TMX.TestData.ResetData();
+			TestData.ResetData();
     	}
     	
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -58,7 +58,7 @@ namespace Tmx.Server.Tests.Modules
             var response = browser.Post("/Results/suites/");
             
             // Then
-            Xunit.Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -76,7 +76,7 @@ namespace Tmx.Server.Tests.Modules
             });
             
             // Then
-            Xunit.Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
             Xunit.Assert.Equal(testSuiteNameExpected, TestData.CurrentTestSuite.Name);
             Xunit.Assert.Equal(testSuiteIdExpected, TestData.CurrentTestSuite.Id);
         }

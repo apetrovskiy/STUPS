@@ -54,16 +54,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GurkBurk">
-      <HintPath>..\..\binaries\nbehave\35\GurkBurk.dll</HintPath>
+      <HintPath>..\..\packages\nbehave.0.6.2\lib\net35\GurkBurk.dll</HintPath>
     </Reference>
     <Reference Include="NBehave.Fluent.Framework">
-      <HintPath>..\..\binaries\nbehave\35\NBehave.Fluent.Framework.dll</HintPath>
+      <HintPath>..\..\packages\nbehave.fluent.mbunit.0.6.2\lib\net35\NBehave.Fluent.Framework.dll</HintPath>
     </Reference>
     <Reference Include="NBehave.Gherkin">
-      <HintPath>..\..\binaries\nbehave\35\NBehave.Gherkin.dll</HintPath>
+      <HintPath>..\..\packages\nbehave.0.6.2\lib\net35\NBehave.Gherkin.dll</HintPath>
     </Reference>
     <Reference Include="NBehave.Narrator.Framework">
-      <HintPath>..\..\binaries\nbehave\35\NBehave.Narrator.Framework.dll</HintPath>
+      <HintPath>..\..\packages\nbehave.0.6.2\lib\net35\NBehave.Narrator.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">

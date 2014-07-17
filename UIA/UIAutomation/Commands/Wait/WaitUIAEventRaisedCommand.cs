@@ -21,10 +21,6 @@ namespace UIAutomation.Commands
     [Cmdlet(VerbsLifecycle.Wait, "UiaEventRaised")]
     public class WaitUiaEventRaisedCommand : WaitCmdletBase
     {
-        public WaitUiaEventRaisedCommand()
-        {
-        }
-        
         [UiaParameter][Parameter(Mandatory = false)]
         //public new string[] ControlType { get; set; }
         public string[] ControlType { get; set; }

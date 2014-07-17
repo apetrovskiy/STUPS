@@ -10,6 +10,7 @@
 namespace TMX.Interfaces
 {
     using System;
+    using System.Data;
     
     /// <summary>
     /// Description of IDatabase.
@@ -18,7 +19,8 @@ namespace TMX.Interfaces
     {
         string Name { get; set; }
         string Path { get; set; }
-        System.Data.SQLite.SQLiteConnection Connection { get; set; }
+        // System.Data.SQLite.SQLiteConnection Connection { get; set; }
+        IDbConnection Connection { get; set; }
         string ConnectionString { get; set; }
         bool IsStructureDB { get; set; }
         bool IsRepositoryDB { get; set; }

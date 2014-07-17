@@ -25,7 +25,7 @@ namespace TMX
         public Database(
             string name, 
             string path, 
-            System.Data.SQLite.SQLiteConnection connection)
+            SQLiteConnection connection)
         {
             this.Name = name;
             this.Path = path;
@@ -35,7 +35,8 @@ namespace TMX
         
         public string Name { get; set; }
         public string Path { get; set; }
-        public System.Data.SQLite.SQLiteConnection Connection { get; set; }
+        // public System.Data.SQLite.SQLiteConnection Connection { get; set; }
+        public IDbConnection Connection { get; set; }
         public string ConnectionString { get; set; }
         public bool IsStructureDB { get; set; }
         public bool IsRepositoryDB { get; set; }

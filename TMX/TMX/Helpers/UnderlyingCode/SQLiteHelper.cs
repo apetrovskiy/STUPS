@@ -476,10 +476,12 @@ namespace TMX
                 database.Connection.Open();
             }
 
-            using (SQLiteCommand cmd = 
+            using (var cmd = 
                    new SQLiteCommand(SQLCode)) {
-
-                cmd.Connection = database.Connection;
+                
+                // 20140717
+                // cmd.Connection = database.Connection;
+                cmd.Connection = database.Connection as SQLiteConnection;
                 //cmdlet.WriteVerbose(cmdlet, cmd.ExecuteNonQuery().ToString());
 
                 int result = cmd.ExecuteNonQuery();
@@ -525,11 +527,15 @@ namespace TMX
             #endregion doubts
             
             #region connection
-        internal static SQLiteConnection ConnectionMakeAlive(PSCmdletBase cmdlet, string databaseName)
+        // 20140717
+        // internal static SQLiteConnection ConnectionMakeAlive(PSCmdletBase cmdlet, string databaseName)
+        internal static IDbConnection ConnectionMakeAlive(PSCmdletBase cmdlet, string databaseName)
         {
-            SQLiteConnection connection = null;
+            // 20140717
+            // SQLiteConnection connection = null;
+            IDbConnection connection = null;
             
-            IDatabase database = GetDatabase(cmdlet, databaseName);
+            var database = GetDatabase(cmdlet, databaseName);
             if (null == database) {
                 cmdlet.WriteError(
                     cmdlet,
@@ -622,18 +628,24 @@ namespace TMX
         public static void BackupTestResults(PSCmdletBase cmdlet, string databaseName)
         {
             // 20120920
-            SQLiteConnection connection = ConnectionMakeAlive(cmdlet, databaseName);
+            // 20140717
+            // SQLiteConnection connection = ConnectionMakeAlive(cmdlet, databaseName);
+            var connection = ConnectionMakeAlive(cmdlet, databaseName);
 
             DbProviderFactory factory = new SQLiteFactory();
 
             cmdlet.WriteVerbose(cmdlet, "begin transaction");
-            using (DbTransaction dbTrans = connection.BeginTransaction()) {
+            // 20140717
+            // using (DbTransaction dbTrans = connection.BeginTransaction()) {
+            using (var dbTrans = connection.BeginTransaction()) {
 
                 cmdlet.WriteVerbose(cmdlet, "creating a data adapter");
                 using (DbDataAdapter adp1 = factory.CreateDataAdapter()) {
 
                     cmdlet.WriteVerbose(cmdlet, "creating a command");
-                    using (DbCommand cmd1 = connection.CreateCommand()) {
+                    // 20140717
+                    // using (DbCommand cmd1 = connection.CreateCommand()) {
+                    using (var cmd1 = connection.CreateCommand()) {
 
                         cmdlet.WriteVerbose(cmdlet, "1");
                         cmd1.Transaction = dbTrans;
@@ -641,16 +653,18 @@ namespace TMX
                         cmdlet.WriteVerbose(cmdlet, "2");
                         cmd1.CommandText = "SELECT * FROM TestSuites WHERE 1 = 2";
                         cmdlet.WriteVerbose(cmdlet, "3");
-                        adp1.SelectCommand = cmd1;
+                        // 20140717
+                        // adp1.SelectCommand = cmd1;
+                        adp1.SelectCommand = cmd1 as DbCommand;
                         
                         cmdlet.WriteVerbose(cmdlet, "4");
-                        using (DbCommandBuilder bld1 = factory.CreateCommandBuilder()) {
+                        using (var bld1 = factory.CreateCommandBuilder()) {
                             
                             cmdlet.WriteVerbose(cmdlet, "5");
                             bld1.DataAdapter = adp1;
                             
                             cmdlet.WriteVerbose(cmdlet, "6");
-                            using (DataTable tbl1 = new DataTable()) {
+                            using (var tbl1 = new DataTable()) {
                                 
                                 cmdlet.WriteVerbose(cmdlet, "7");
                                 adp1.Fill(tbl1);
@@ -659,7 +673,7 @@ namespace TMX
                                 foreach (TestSuite tSuite in TestData.TestSuites)
                                 {
                                     cmdlet.WriteVerbose(cmdlet, "9");
-                                    DataRow row1 = tbl1.NewRow();
+                                    var row1 = tbl1.NewRow();
                                     //row[1] = n;
                                     //(Id INTEGER PRIMARY KEY, SuiteId TEXT, SuiteName TEXT, StatusId NUMERIC, Description TEXT);");
                                     row1["SuiteId"] = SQLiteHelper.PrepareEscapedString(tSuite.Id);
@@ -697,13 +711,15 @@ namespace TMX
                 using (DbDataAdapter adp2 = factory.CreateDataAdapter()) {
                     
                     cmdlet.WriteVerbose(cmdlet, "16");
-                    using (DbCommand cmd2 = connection.CreateCommand()) {
+                    using (var cmd2 = connection.CreateCommand()) {
                         
                         cmdlet.WriteVerbose(cmdlet, "17");
                         cmd2.Transaction = dbTrans;
                         cmd2.CommandText = "SELECT * FROM TestScenarios WHERE 1 = 2";
                         cmdlet.WriteVerbose(cmdlet, "19");
-                        adp2.SelectCommand = cmd2;
+                        // 20140717
+                        // adp2.SelectCommand = cmd2;
+                        adp2.SelectCommand = cmd2 as DbCommand;
                         cmdlet.WriteVerbose(cmdlet, "20");
                         using (DbCommandBuilder bld2 = factory.CreateCommandBuilder()) {
                             
@@ -756,12 +772,14 @@ namespace TMX
                 using (DbDataAdapter adp3 = factory.CreateDataAdapter()) {
                     
                     cmdlet.WriteVerbose(cmdlet, "30");
-                    using (DbCommand cmd3 = connection.CreateCommand()) {
+                    using (var cmd3 = connection.CreateCommand()) {
                         
                         cmdlet.WriteVerbose(cmdlet, "31");
                         cmd3.Transaction = dbTrans;
                         cmd3.CommandText = "SELECT * FROM TestResults WHERE 1 = 2";
-                        adp3.SelectCommand = cmd3;
+                        // 20140717
+                        // adp3.SelectCommand = cmd3;
+                        adp3.SelectCommand = cmd3 as DbCommand;
                         
                         cmdlet.WriteVerbose(cmdlet, "34");
                         using (DbCommandBuilder bld3 = factory.CreateCommandBuilder()) {
@@ -770,7 +788,7 @@ namespace TMX
                             bld3.DataAdapter = adp3;
                             
                             cmdlet.WriteVerbose(cmdlet, "36");
-                            using (DataTable tbl3 = new DataTable()) {
+                            using (var tbl3 = new DataTable()) {
                                 
                                 cmdlet.WriteVerbose(cmdlet, "37");
                                 adp3.Fill(tbl3);
@@ -875,13 +893,15 @@ namespace TMX
                 using (DbDataAdapter adp4 = factory.CreateDataAdapter()) {
                     
                     cmdlet.WriteVerbose(cmdlet, "42");
-                    using (DbCommand cmd4 = connection.CreateCommand()) {
+                    using (var cmd4 = connection.CreateCommand()) {
                         
                         cmdlet.WriteVerbose(cmdlet, "43");
                         cmd4.Transaction = dbTrans;
                         cmd4.CommandText = "SELECT * FROM TestResultDetails WHERE 1 = 2";
                         cmdlet.WriteVerbose(cmdlet, "45");
-                        adp4.SelectCommand = cmd4;
+                        // 20140717
+                        // adp4.SelectCommand = cmd4;
+                        adp4.SelectCommand = cmd4 as DbCommand;
                         
                         cmdlet.WriteVerbose(cmdlet, "46");
                         using (DbCommandBuilder bld4 = factory.CreateCommandBuilder()) {
@@ -889,7 +909,7 @@ namespace TMX
                             bld4.DataAdapter = adp4;
                             
                             cmdlet.WriteVerbose(cmdlet, "48");
-                            using (DataTable tbl4 = new DataTable()) {
+                            using (var tbl4 = new DataTable()) {
                                 
                                 cmdlet.WriteVerbose(cmdlet, "49");
                                 adp4.Fill(tbl4);
@@ -898,7 +918,7 @@ namespace TMX
                                 {
                                     foreach (ITestResultDetail tResultDetail in testResult.Details)
                                     {
-                                        DataRow row4 = tbl4.NewRow();
+                                        var row4 = tbl4.NewRow();
                                         //Id INTEGER PRIMARY KEY, TestResultId TEXT, TestResultDetailName TEXT, " +
                                         //"TestResultDetail BLOB);"
                                         row4["TestResultId"] = SQLiteHelper.PrepareEscapedString(testResult.Id);
@@ -1083,35 +1103,39 @@ namespace TMX
                 DbProviderFactory factory = new SQLiteFactory();
             
                 cmdlet.WriteVerbose(cmdlet, "begin transaction");
-                using (DbTransaction dbTrans = 
-                       TestData.CurrentStructureDB.Connection.BeginTransaction()) {
+                // 20140717
+//                using (DbTransaction dbTrans = 
+//                       TestData.CurrentStructureDB.Connection.BeginTransaction()) {
+                using (var dbTrans = TestData.CurrentStructureDB.Connection.BeginTransaction()) {
                     
                     cmdlet.WriteVerbose(cmdlet, "creating a data adapter");
                     using (DbDataAdapter adpBucket = factory.CreateDataAdapter()) {
                         
                         cmdlet.WriteVerbose(cmdlet, "creating a command");
-                        using (DbCommand cmd1 = TestData.CurrentStructureDB.Connection.CreateCommand()) {
+                        using (var cmd1 = TestData.CurrentStructureDB.Connection.CreateCommand()) {
                             
                             cmd1.Transaction = dbTrans;
                             cmd1.CommandText = "SELECT * FROM TestBuckets WHERE 1 = 2";
-                            adpBucket.SelectCommand = cmd1;
+                            // 20140717
+                            // adpBucket.SelectCommand = cmd1;
+                            adpBucket.SelectCommand = cmd1 as DbCommand;
                             
                             using (DbCommandBuilder bldBucket = factory.CreateCommandBuilder()) {
                                 
                                 bldBucket.DataAdapter = adpBucket;
                                 
-                                using (DataTable tblBucket = new DataTable()) {
+                                using (var tblBucket = new DataTable()) {
                                     
                                     adpBucket.Fill(tblBucket);
 
                                     for (int i = 0; i < bucketNames.Length; i++) {
-                                        DataRow rowBucket = tblBucket.NewRow();
+                                        var rowBucket = tblBucket.NewRow();
                                         rowBucket["BucketName"] = bucketNames[i];
                                         rowBucket["BucketTag"] = bucketTags[i];
                                         rowBucket["Description"] = bucketDescriptions[i];
                                         tblBucket.Rows.Add(rowBucket);
                                         
-                                        ITestBucket bucket =
+                                        var bucket =
                                             new TestBucket(
                                                 bucketNames[i],
                                                 bucketTags[i],
@@ -1177,24 +1201,29 @@ namespace TMX
                 DbProviderFactory factory = new SQLiteFactory();
             
                 cmdlet.WriteVerbose(cmdlet, "begin transaction");
-                using (DbTransaction dbTrans = 
-                       TestData.CurrentStructureDB.Connection.BeginTransaction()) {
+                // 20140717
+//                using (DbTransaction dbTrans =
+//                       TestData.CurrentStructureDB.Connection.BeginTransaction()) {
+                using (var dbTrans = TestData.CurrentStructureDB.Connection.BeginTransaction()) {
                     
                     cmdlet.WriteVerbose(cmdlet, "creating a data adapter");
-                    using (DbDataAdapter adpConstant = factory.CreateDataAdapter()) {
+                    using (var adpConstant = factory.CreateDataAdapter()) {
                         
                         cmdlet.WriteVerbose(cmdlet, "creating a command");
-                        using (DbCommand cmd1 = TestData.CurrentStructureDB.Connection.CreateCommand()) {
+                        // 20140717
+                        using (var cmd1 = TestData.CurrentStructureDB.Connection.CreateCommand()) {
                             
                             cmd1.Transaction = dbTrans;
                             cmd1.CommandText = "SELECT * FROM TestConstants WHERE 1 = 2";
-                            adpConstant.SelectCommand = cmd1;
+                            // 20140717
+                            // adpConstant.SelectCommand = cmd1;
+                            adpConstant.SelectCommand = cmd1 as DbCommand;
                             
                             using (DbCommandBuilder bldConstant = factory.CreateCommandBuilder()) {
                                 
                                 bldConstant.DataAdapter = adpConstant;
                                 
-                                using (DataTable tblConstant = new DataTable()) {
+                                using (var tblConstant = new DataTable()) {
                                     
                                     adpConstant.Fill(tblConstant);
 

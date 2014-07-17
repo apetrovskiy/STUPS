@@ -19,7 +19,7 @@ namespace TMX.Interfaces
         int ConstantId { get; set; }
         string ConstantName { get; set; }
         object ConstantValue { get; set; }
-        System.Type ConstantType { get; set; }
+        Type ConstantType { get; set; }
         string ConstantTag { get; set; }
         int BucketId { get; set; }
     }

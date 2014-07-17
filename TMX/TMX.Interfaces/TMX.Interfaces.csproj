@@ -44,23 +44,11 @@
     <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ninject">
-      <HintPath>..\..\packages\Ninject.3.2.2.0\lib\net35\Ninject.dll</HintPath>
-    </Reference>
-    <Reference Include="Ninject.Extensions.NamedScope">
-      <HintPath>..\..\packages\Ninject.Extensions.NamedScope.3.2.0.0\lib\net35\Ninject.Extensions.NamedScope.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.SQLite">
-      <HintPath>..\..\packages\System.Data.SQLite.Core.1.0.93.0\lib\net20\System.Data.SQLite.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.SQLite.Linq">
-      <HintPath>..\..\packages\System.Data.SQLite.Linq.1.0.93.0\lib\net20\System.Data.SQLite.Linq.dll</HintPath>
-    </Reference>
     <Reference Include="System.Management.Automation" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq">
@@ -90,9 +78,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
-    <None Include="x64\SQLite.Interop.dll" />
-    <None Include="x86\SQLite.Interop.dll" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Remoting" />

@@ -19,13 +19,14 @@ namespace TMX.Interfaces.Remoting
 		int PreviousTaskId { get; set; }
 		bool On { get; set; }
 		int Timeout { get; set; }
-		int Retry { get; set; }
+		int RetryCount { get; set; }
 		bool IsCritical { get; set; }
 		
-		TestTaskExecutionTypes ActivityType { get; set; }
+		TestTaskExecutionTypes TaskType { get; set; }
 		string Rule { get; set; }
 		
 		string Name { get; set; }
+		string StoryId { get; set; }
 		ITestTaskAction[] Action { get; set; }
 		string[] ExpectedResult { get; set; } // ?
 		

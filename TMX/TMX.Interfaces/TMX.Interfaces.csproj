@@ -76,6 +76,7 @@
     <Compile Include="TestStructure\ITestScenario.cs" />
     <Compile Include="TestStructure\ITestSuite.cs" />
     <Compile Include="Types\Remoting\TestClientInformation.cs" />
+    <Compile Include="Types\Remoting\TestTask.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

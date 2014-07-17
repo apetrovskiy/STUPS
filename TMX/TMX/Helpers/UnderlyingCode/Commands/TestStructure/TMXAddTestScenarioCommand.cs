@@ -15,7 +15,7 @@ namespace TMX
     /// <summary>
     /// Description of TmxAddTestScenarioCommand.
     /// </summary>
-    internal class TmxAddTestScenarioCommand : TmxCommand
+    class TmxAddTestScenarioCommand : TmxCommand
     {
         internal TmxAddTestScenarioCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
@@ -27,19 +27,17 @@ namespace TMX
             
             bool result = TmxHelper.AddTestScenario(cmdlet);
             
-            if (result) {
-                
+            if (result)
                 cmdlet.WriteObject(
                     cmdlet,
                     TestData.CurrentTestScenario);
-            } else {
+            else
                 cmdlet.WriteError(
                     cmdlet,
                     "Couldn't add a test scenario",
                     "AddingTestScenario",
                     ErrorCategory.InvalidArgument,
                     true);
-            }
         }
     }
 }

@@ -15,7 +15,7 @@ namespace TMX
     /// <summary>
     /// Description of TmxNewLoggerCommand.
     /// </summary>
-    internal class TmxNewLoggerCommand : TmxCommand
+    class TmxNewLoggerCommand : TmxCommand
     {
         internal TmxNewLoggerCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {

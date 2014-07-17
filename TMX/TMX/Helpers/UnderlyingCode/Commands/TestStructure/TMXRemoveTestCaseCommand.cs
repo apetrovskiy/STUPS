@@ -15,7 +15,7 @@ namespace TMX
     /// <summary>
     /// Description of TmxRemoveTestCaseCommand.
     /// </summary>
-    internal class TmxRemoveTestCaseCommand : TmxCommand
+    class TmxRemoveTestCaseCommand : TmxCommand
     {
         internal TmxRemoveTestCaseCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {

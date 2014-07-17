@@ -10,23 +10,26 @@
 namespace TMX.Interfaces.Remoting
 {
 	/// <summary>
-	/// Description of ITestActivity.
+	/// Description of ITestTask.
 	/// </summary>
-	public interface ITestActivity
+	public interface ITestTask
 	{
 		int Id { get; set; }
-		string Name { get; set; }
-		ITestActivityAction[] Action { get; set; }
-		string[] ExpectedResult { get; set; }
-		int ExecutionType { get; set; }
+		// int Order { get; set; }
+		int PreviousTaskId { get; set; }
 		bool On { get; set; }
-		string HostId { get; set; }
-		TestActivityStatuses Status { get; set; }
 		int Timeout { get; set; }
 		int Retry { get; set; }
 		bool IsCritical { get; set; }
-		int Order { get; set; }
-		TestActivityTypes ActivityType { get; set; }
+		
+		TestTaskExecutionTypes ActivityType { get; set; }
+		string Rule { get; set; }
+		
+		string Name { get; set; }
+		ITestTaskAction[] Action { get; set; }
+		string[] ExpectedResult { get; set; } // ?
+		
+		TestTaskStatuses Status { get; set; }
 	}
 	
 	/*

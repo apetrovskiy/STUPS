@@ -15,7 +15,7 @@ namespace TMX
     /// <summary>
     /// Description of TmxAddTestResultDetailCommand.
     /// </summary>
-    internal class TmxAddTestResultDetailCommand : TmxCommand
+    class TmxAddTestResultDetailCommand : TmxCommand
     {
         internal TmxAddTestResultDetailCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {

@@ -16,7 +16,7 @@ namespace TMX
     /// <summary>
     /// Description of TmxCloseTestResultCommand.
     /// </summary>
-    internal class TmxCloseTestResultCommand : TmxCommand
+    class TmxCloseTestResultCommand : TmxCommand
     {
         internal TmxCloseTestResultCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
@@ -28,40 +28,27 @@ namespace TMX
             
             cmdlet.ConvertTestResultStatusToTraditionalTestResult();
                 
-            cmdlet.WriteVerbose(cmdlet, 
-                              cmdlet.Name + ", Id = " +
-                              cmdlet.Id + ", Status = " +
-                              cmdlet.TestPassed);
-            if (cmdlet.Echo) {
-
+            cmdlet.WriteVerbose(cmdlet,
+                                cmdlet.Name + ", Id = " +
+                                cmdlet.Id + ", Status = " +
+                                cmdlet.TestPassed);
+            
+            if (cmdlet.Echo)
                 cmdlet.WriteObject(
                     cmdlet,
                     cmdlet.Name +
                     "\t" +
-                    cmdlet.TestPassed.ToString());
-            }
+                    cmdlet.TestPassed);
+            
             string code = string.Empty;
-
             string testResultName = string.Empty;
-            if (string.IsNullOrEmpty(cmdlet.Name) &&
-                !string.IsNullOrEmpty(cmdlet.TestResultName)) {
-
+            if (string.IsNullOrEmpty(cmdlet.Name) && !string.IsNullOrEmpty(cmdlet.TestResultName))
                 testResultName = cmdlet.TestResultName;
-
-            }
-            if (!string.IsNullOrEmpty(cmdlet.Name) &&
-                string.IsNullOrEmpty(cmdlet.TestResultName)) {
-
+            if (!string.IsNullOrEmpty(cmdlet.Name) && string.IsNullOrEmpty(cmdlet.TestResultName))
                 testResultName = cmdlet.Name;
-
-            }
-            if (!string.IsNullOrEmpty(cmdlet.TestResultName) &&
-                !string.IsNullOrEmpty(cmdlet.Name)) {
-
+            if (!string.IsNullOrEmpty(cmdlet.TestResultName) && !string.IsNullOrEmpty(cmdlet.Name))
                 testResultName = cmdlet.TestResultName;
-
-            }
-
+            
             TmxHelper.CloseTestResult(
                 testResultName,
                 cmdlet.Id, 

@@ -15,7 +15,7 @@ namespace TMX
     /// <summary>
     /// Description of TmxStartLoggingCommand.
     /// </summary>
-    internal class TmxStartLoggingCommand : TmxCommand
+    class TmxStartLoggingCommand : TmxCommand
     {
         internal TmxStartLoggingCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {

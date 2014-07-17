@@ -26,6 +26,8 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("TmxUnitTests")]
 [assembly: InternalsVisibleTo("Tmx.Server")]
 [assembly: InternalsVisibleTo("Tmx.Server.Tests")]
+[assembly: InternalsVisibleTo("Tmx.Client")]
+[assembly: InternalsVisibleTo("Tmx.Client.Tests")]
 [assembly: InternalsVisibleTo("TLAddinUnitTests")]
 [assembly: InternalsVisibleTo("TFAddinUnitTests")]
 [assembly: InternalsVisibleTo("BDDAddinUnitTests")]

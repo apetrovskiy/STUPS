@@ -15,7 +15,7 @@ namespace TMX
     /// <summary>
     /// Description of TmxGetTestCaseCommand.
     /// </summary>
-    internal class TmxGetTestCaseCommand : TmxCommand
+    class TmxGetTestCaseCommand : TmxCommand
     {
         internal TmxGetTestCaseCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {

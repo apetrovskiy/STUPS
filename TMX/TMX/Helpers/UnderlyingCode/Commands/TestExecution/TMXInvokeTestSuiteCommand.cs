@@ -16,7 +16,7 @@ namespace TMX
 	/// <summary>
 	/// Description of TmxInvokeTestSuiteCommand.
 	/// </summary>
-    internal class TmxInvokeTestSuiteCommand : TmxCommand
+    class TmxInvokeTestSuiteCommand : TmxCommand
     {
         internal TmxInvokeTestSuiteCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
@@ -32,8 +32,7 @@ namespace TMX
             		cmdlet.Id,
             		cmdlet.TestPlatformId);
             
-            if (null == testSuite) {
-                
+            if (null == testSuite)
                 cmdlet.WriteError(
                     cmdlet,
                     "failed to find test suite with Name = '" +
@@ -44,18 +43,14 @@ namespace TMX
                     "FailedToFindTestSuite",
                     ErrorCategory.InvalidArgument,
                     true);
-            }
             
-            testSuite.BeforeScenarioParameters =
-                cmdlet.BeforeScenarioParameters;
-            testSuite.AfterScenarioParameters =
-                cmdlet.AfterScenarioParameters;
+            testSuite.BeforeScenarioParameters = cmdlet.BeforeScenarioParameters;
+            testSuite.AfterScenarioParameters = cmdlet.AfterScenarioParameters;
             
-            if (!cmdlet.OnlySetParameters) {
+            if (!cmdlet.OnlySetParameters)
                 cmdlet.RunTestSuite(
                 	cmdlet,
                 	testSuite);
-            }
         }
     }
 }

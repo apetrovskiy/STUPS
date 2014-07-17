@@ -15,7 +15,7 @@ namespace TMX
     /// <summary>
     /// Description of TmxNewTestPlatformCommand.
     /// </summary>
-    internal class TmxNewTestPlatformCommand : TmxCommand
+    class TmxNewTestPlatformCommand : TmxCommand
     {
         internal TmxNewTestPlatformCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
@@ -34,18 +34,16 @@ namespace TMX
                     cmdlet.Version,
                     cmdlet.Architecture,
                     cmdlet.Language);
-            if (result) {
-
+            
+            if (result)
                 cmdlet.WriteObject(cmdlet, TestData.CurrentTestPlatform);
-            } else {
-                
+            else
                 cmdlet.WriteError(
                     cmdlet,
                     "Couldn't create a test platform",
                     "CreatingTestPlatform",
                     ErrorCategory.InvalidArgument,
                     true);
-            }
         }
     }
 }

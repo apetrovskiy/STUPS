@@ -11,17 +11,28 @@ namespace Tmx.Server.Commands
 {
     using System;
     using System.Management.Automation;
+	using TMX;
+	using Tmx.Server.Helpers.Commands;
     
     /// <summary>
     /// Description of StartTmxServerCommand.
     /// </summary>
     [Cmdlet(VerbsLifecycle.Start, "TmxServer")]
-    public class StartTmxServerCommand : PSCmdlet
+    public class StartTmxServerCommand : CommonCmdletBase
     {
+    	public StartTmxServerCommand()
+    	{
+    		this.Port = 12340;
+    	}
+    	
+    	[Parameter(Mandatory = false,
+    	           Position = 0)]
+    	public int Port { get; set; }
+    	
         protected override void BeginProcessing()
         {
-            // Control.Start(@"http://localhost:13001");
-            Control.Start(@"http://localhost:12340");
+        	var command = new StartServerCommand(this);
+        	command.Execute();
         }
     }
 }

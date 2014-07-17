@@ -16,7 +16,7 @@ namespace TMX
     /// <summary>
     /// Description of TmxInvokeTestCaseCommand.
     /// </summary>
-    internal class TmxInvokeTestCaseCommand : TmxCommand
+    class TmxInvokeTestCaseCommand : TmxCommand
     {
         internal TmxInvokeTestCaseCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
@@ -37,8 +37,7 @@ namespace TMX
             		TestData.CurrentTestSuite.Id,
             		cmdlet.TestPlatformId);
             
-            if (null == testCase) {
-                
+            if (null == testCase)
                 cmdlet.WriteError(
                     cmdlet,
                     "failed to find test case with Name = '" +
@@ -49,17 +48,14 @@ namespace TMX
                     "FailedToFindTestCase",
                     ErrorCategory.InvalidArgument,
                     true);
-            }
             
-            testCase.TestCodeParameters =
-                cmdlet.TestCodeParameters;
+            testCase.TestCodeParameters = cmdlet.TestCodeParameters;
             
-            if (!cmdlet.OnlySetParameters) {
+            if (!cmdlet.OnlySetParameters)
                 cmdlet.RunTestCase(
                 	cmdlet,
                 	TestData.CurrentTestSuite, // temporary, add selection from cmdlet's parameters
                 	TestData.CurrentTestScenario);
-            }
         }
     }
 }

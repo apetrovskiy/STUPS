@@ -9,7 +9,7 @@
 
 namespace TMX.Interfaces.Remoting
 {
-	public enum TestActivityStatuses
+	public enum TestTaskStatuses
 	{
 		New = 0,
 		Accepted = 1,
@@ -17,7 +17,7 @@ namespace TMX.Interfaces.Remoting
 		Failed = 3
 	}
 	
-	public enum TestActivityTypes
+	public enum TestTaskExecutionTypes
 	{
 	    Inline = 0,
 	    RemoteApp = 1,

@@ -12,9 +12,9 @@ namespace TMX.Interfaces.Remoting
 	using System.Collections.Generic;
 	
 	/// <summary>
-	/// Description of ITestActivityAction.
+	/// Description of ITestTaskAction.
 	/// </summary>
-	public interface ITestActivityAction
+	public interface ITestTaskAction
 	{
 		string Code { get; set; }
 		Dictionary<string, object> Parameters { get; set; }

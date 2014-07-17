@@ -16,7 +16,7 @@ namespace TMX
     /// <summary>
     /// Description of TmxGetTestSuiteStatusCommand.
     /// </summary>
-    internal class TmxGetTestSuiteStatusCommand : TmxCommand
+    class TmxGetTestSuiteStatusCommand : TmxCommand
     {
         internal TmxGetTestSuiteStatusCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
@@ -26,39 +26,29 @@ namespace TMX
         {
             var cmdlet = (GetTmxTestSuiteStatusCommand)Cmdlet;
             
-            if (!string.IsNullOrEmpty(cmdlet.Name)) {
-                
-                TmxHelper.GetTestSuiteStatusByName(
-                    cmdlet,
-                    // 20130322
-                    //cmdlet.Name);
-                    cmdlet.Name,
-                    cmdlet.TestPlatformId,
-                    cmdlet.FilterOutAutomaticResults);
-                
-            } else if (!string.IsNullOrEmpty(cmdlet.Id)) {
-                
-                TmxHelper.GetTestSuiteStatusById(
-                    cmdlet,
-                    // 20130322
-                    //cmdlet.Id);
-                    cmdlet.Id,
-                    cmdlet.TestPlatformId,
-                    cmdlet.FilterOutAutomaticResults);
-                
-            } else {
-                
-                cmdlet.WriteError(
-                    cmdlet,
-                    "Failed to find test suite with name = '" +
-                    cmdlet.Name + 
-                    "' and id = '" +
-                    cmdlet.Id +
-                    "'",
-                    "FailedToFindTestSuite",
-                    ErrorCategory.InvalidArgument,
-                    true);
-            }
+			if (!string.IsNullOrEmpty(cmdlet.Name))
+				TmxHelper.GetTestSuiteStatusByName(
+					cmdlet,
+					cmdlet.Name,
+					cmdlet.TestPlatformId,
+					cmdlet.FilterOutAutomaticResults);
+			else if (!string.IsNullOrEmpty(cmdlet.Id))
+				TmxHelper.GetTestSuiteStatusById(
+					cmdlet,
+					cmdlet.Id,
+					cmdlet.TestPlatformId,
+					cmdlet.FilterOutAutomaticResults);
+			else
+				cmdlet.WriteError(
+					cmdlet,
+					"Failed to find test suite with name = '" +
+					cmdlet.Name +
+					"' and id = '" +
+					cmdlet.Id +
+					"'",
+					"FailedToFindTestSuite",
+					ErrorCategory.InvalidArgument,
+					true);
         }
     }
 }

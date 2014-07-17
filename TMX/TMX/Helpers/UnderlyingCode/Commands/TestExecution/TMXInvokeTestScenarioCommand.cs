@@ -16,7 +16,7 @@ namespace TMX
 	/// <summary>
 	/// Description of TmxInvokeTestScenarioCommand.
 	/// </summary>
-    internal class TmxInvokeTestScenarioCommand : TmxCommand
+    class TmxInvokeTestScenarioCommand : TmxCommand
     {
         internal TmxInvokeTestScenarioCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
@@ -35,8 +35,7 @@ namespace TMX
             		TestData.CurrentTestSuite.Id,
             		cmdlet.TestPlatformId);
             
-            if (null == testScenario) {
-                
+            if (null == testScenario)
                 cmdlet.WriteError(
                     cmdlet,
                     "failed to find test scenario with Name = '" +
@@ -47,19 +46,15 @@ namespace TMX
                     "FailedToFindTestScenario",
                     ErrorCategory.InvalidArgument,
                     true);
-            }
             
-            testScenario.BeforeTestParameters =
-                cmdlet.BeforeTestParameters;
-            testScenario.AfterTestParameters =
-                cmdlet.AfterTestParameters;
+            testScenario.BeforeTestParameters = cmdlet.BeforeTestParameters;
+            testScenario.AfterTestParameters = cmdlet.AfterTestParameters;
             
-            if (!cmdlet.OnlySetParameters) {
+            if (!cmdlet.OnlySetParameters)
                 cmdlet.RunTestScenario(
                 	cmdlet,
-                	TMX.TestData.CurrentTestSuite, // temporary, add selection from cmdlet's parameters
+					TestData.CurrentTestSuite, // temporary, add selection from cmdlet's parameters
                 	testScenario);
-            }
         }
     }
 }

@@ -15,7 +15,7 @@ namespace TMX
     /// <summary>
     /// Description of TmxNewTestSuiteCommand.
     /// </summary>
-    internal class TmxNewTestSuiteCommand : TmxCommand
+    class TmxNewTestSuiteCommand : TmxCommand
     {
         internal TmxNewTestSuiteCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
@@ -33,18 +33,16 @@ namespace TMX
                     cmdlet.Description,
                     cmdlet.BeforeScenario,
                     cmdlet.AfterScenario);
-            if (result) {
-                
+            
+            if (result)
                 cmdlet.WriteObject(cmdlet, TestData.CurrentTestSuite);
-            } else {
-                
+            else
                 cmdlet.WriteError(
                     cmdlet,
                     "Couldn't create a test suite",
                     "CreatingTestSuite",
                     ErrorCategory.InvalidArgument,
                     true);
-            }
         }
     }
 }

@@ -15,7 +15,7 @@ namespace TMX
     /// <summary>
     /// Description of TmxSetTestCaseCommand.
     /// </summary>
-    internal class TmxSetTestCaseCommand : TmxCommand
+    class TmxSetTestCaseCommand : TmxCommand
     {
         internal TmxSetTestCaseCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {

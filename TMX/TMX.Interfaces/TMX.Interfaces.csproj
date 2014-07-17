@@ -63,9 +63,9 @@
     <Compile Include="IWorkflowStep.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Remoting\Enums.cs" />
-    <Compile Include="Remoting\IClient.cs" />
-    <Compile Include="Remoting\ITestActivity.cs" />
-    <Compile Include="Remoting\ITestActivityAction.cs" />
+    <Compile Include="Remoting\IClientInformation.cs" />
+    <Compile Include="Remoting\ITestTask.cs" />
+    <Compile Include="Remoting\ITestTaskAction.cs" />
     <Compile Include="Remoting\ITestHost.cs" />
     <Compile Include="Remoting\ITestHostGroup.cs" />
     <Compile Include="TestStructure\Enumerations.cs" />
@@ -75,13 +75,16 @@
     <Compile Include="TestStructure\ITestResultDetail.cs" />
     <Compile Include="TestStructure\ITestScenario.cs" />
     <Compile Include="TestStructure\ITestSuite.cs" />
+    <Compile Include="Types\Remoting\TestClientInformation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Types" />
     <Folder Include="Remoting" />
     <Folder Include="TestStructure" />
+    <Folder Include="Types\Remoting" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

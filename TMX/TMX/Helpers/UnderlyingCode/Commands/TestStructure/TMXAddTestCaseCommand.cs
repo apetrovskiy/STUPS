@@ -15,7 +15,7 @@ namespace TMX
     /// <summary>
     /// Description of TmxAddTestCaseCommand.
     /// </summary>
-    internal class TmxAddTestCaseCommand : TmxCommand
+    class TmxAddTestCaseCommand : TmxCommand
     {
         internal TmxAddTestCaseCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
@@ -25,27 +25,19 @@ namespace TMX
         {
             var cmdlet = (AddTestCaseCmdletBase)Cmdlet;
             
-            bool result = 
-                TMX.TmxHelper.AddTestCase(cmdlet);
+            bool result = TmxHelper.AddTestCase(cmdlet);
             
-            // 20130616
-            // 20140317
-            // turning off the logger
-            // TMX.Logger.TmxLogger.Info("Test case: '" + cmdlet.Name + "'");
-            
-            if (result) {
-                
+            if (result)
                 cmdlet.WriteObject(
                     cmdlet,
                     TestData.CurrentTestCase);
-            } else {
+            else
                 cmdlet.WriteError(
                     cmdlet,
                     "Couldn't add a test case",
                     "AddingTestCase",
                     ErrorCategory.InvalidArgument,
                     true);
-            }
         }
     }
 }

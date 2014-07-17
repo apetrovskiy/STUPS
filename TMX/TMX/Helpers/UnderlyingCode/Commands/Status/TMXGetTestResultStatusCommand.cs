@@ -16,7 +16,7 @@ namespace TMX
     /// <summary>
     /// Description of TmxGetTestResultStatusCommand.
     /// </summary>
-    internal class TmxGetTestResultStatusCommand : TmxCommand
+    class TmxGetTestResultStatusCommand : TmxCommand
     {
         internal TmxGetTestResultStatusCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {

@@ -16,7 +16,7 @@ namespace TMX
     /// <summary>
     /// Description of TmxSetCurrentTestResultCommand.
     /// </summary>
-    internal class TmxSetCurrentTestResultCommand : TmxCommand
+    class TmxSetCurrentTestResultCommand : TmxCommand
     {
         internal TmxSetCurrentTestResultCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
@@ -68,7 +68,7 @@ namespace TMX
                         " seconds");
                     
                     TmxHelper.TestCaseStarted =
-                        System.DateTime.Now;
+                        DateTime.Now;
                     TestData.CurrentTestScenario.TestResults.Add(new TestResult(TestData.CurrentTestScenario.Id, TestData.CurrentTestSuite.Id));
                     TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1] = 
                         TestData.CurrentTestResult;

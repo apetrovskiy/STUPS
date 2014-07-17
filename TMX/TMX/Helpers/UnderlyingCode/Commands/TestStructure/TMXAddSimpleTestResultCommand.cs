@@ -16,7 +16,7 @@ namespace TMX
 	/// <summary>
 	/// Description of TmxAddSimpleTestResultCommand.
 	/// </summary>
-    internal class TmxAddSimpleTestResultCommand : TmxCommand
+    class TmxAddSimpleTestResultCommand : TmxCommand
     {
         internal TmxAddSimpleTestResultCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
@@ -41,8 +41,6 @@ namespace TMX
             // inserting the new simple test result to the suite/scenario the user provided
             TestSuite testSuiteToAddTestResult = null;
             TestScenario testScenarioToAddTestResult = null;
-            // 20140713
-            // if (null != cmdlet.TestSuiteName || null != cmdlet.TestSuiteId) {
             if (!string.IsNullOrEmpty(cmdlet.TestSuiteName) || !string.IsNullOrEmpty(cmdlet.TestSuiteId)) {
                 
                 cmdlet.WriteVerbose(cmdlet, "getting test suite '" + cmdlet.TestSuiteName + "' with Id '" + cmdlet.TestSuiteId + "'");
@@ -59,79 +57,42 @@ namespace TMX
                 testSuiteToAddTestResult = TestData.CurrentTestSuite;
             }
             
-            if (null != cmdlet.TestScenarioName || null != cmdlet.TestScenarioId) {
-                
+            if (null != cmdlet.TestScenarioName || null != cmdlet.TestScenarioId)
                 testScenarioToAddTestResult =
                     TestData.GetTestScenario(testSuiteToAddTestResult, cmdlet.TestScenarioName, cmdlet.TestScenarioId, cmdlet.TestSuiteName, cmdlet.TestSuiteId, cmdlet.TestPlatformId) ??
                     TestData.CurrentTestScenario;
-
-                /*
-                testScenarioToAddTestResult =
-                    TestData.GetTestScenario(testSuiteToAddTestResult, cmdlet.TestScenarioName, cmdlet.TestScenarioId, cmdlet.TestSuiteName, cmdlet.TestSuiteId, cmdlet.TestPlatformId);
-                if (null == testScenarioToAddTestResult) {
-                    testScenarioToAddTestResult = TestData.CurrentTestScenario;
-                }
-                */
-            } else {
+            else
                 testScenarioToAddTestResult = TestData.CurrentTestScenario;
-            }
-
-            //int newTestResultIndex = TestData.CurrentTestScenario.TestResults.Count - 1;
+            
             int newTestResultIndex = testScenarioToAddTestResult.TestResults.Count - 1;
             
             //if (null != TestData.CurrentTestScenario.TestResults &&
             //    0 < TestData.CurrentTestScenario.TestResults.Count) {
-            if (null != testScenarioToAddTestResult.TestResults &&
-                0 < testScenarioToAddTestResult.TestResults.Count) {
-                
-                //TestData.CurrentTestScenario.TestResults.Insert(
-                //    newTestResultIndex,
-                //    new TestResult(
-                //        TestData.CurrentTestScenario.Id,
-                //        TestData.CurrentTestSuite.Id));
-                
+            if (null != testScenarioToAddTestResult.TestResults && 0 < testScenarioToAddTestResult.TestResults.Count)
                 testScenarioToAddTestResult.TestResults.Insert(
                     newTestResultIndex,
                     new TestResult(
-                        // 20130627
                         testScenarioToAddTestResult.Id,
                         testSuiteToAddTestResult.Id));
-                        //testScenarioToAddTestResult.Id));
-                
-                // 20130429
-                // 20140317
-                // turning off the logger
-                // TMX.Logger.TmxLogger.Info("Test result: '" + cmdlet.TestResultName + "'\t" + cmdlet.TestResultStatus.ToString());
-                
-            //} else {
             
-            }
-            
-            if (null != cmdlet.TestResultName) {
+            if (null != cmdlet.TestResultName)
                 TestData.CurrentTestScenario.TestResults[newTestResultIndex].Name = cmdlet.TestResultName;
-            }
             
-            if (null != cmdlet.Id) {
+            if (null != cmdlet.Id)
                 TestData.CurrentTestScenario.TestResults[newTestResultIndex].Id = cmdlet.Id;
-            }
             
-            if (null != cmdlet.Description) {
+            if (null != cmdlet.Description)
                 TestData.CurrentTestScenario.TestResults[newTestResultIndex].Description = cmdlet.Description;
-            }
             
-            if (null != cmdlet.TestResultStatus) {
+            if (null != cmdlet.TestResultStatus)
                 TestData.CurrentTestScenario.TestResults[newTestResultIndex].enStatus = cmdlet.TestResultStatus;
-            }
             
-            // 20130605
             try {
                 TestData.CurrentTestScenario.TestResults[newTestResultIndex].PlatformId =
                     TestData.CurrentTestPlatform.Id;
             }
             catch {}
             
-            // 20130627
-            //TestData.CurrentTestScenario.TestResults[newTestResultIndex].SetOrigin(TestResultOrigins.Logical);
             TestData.CurrentTestScenario.TestResults[newTestResultIndex].SetOrigin(cmdlet.TestOrigin);
             
 //            if (null != TestData.CurrentTestResult) {

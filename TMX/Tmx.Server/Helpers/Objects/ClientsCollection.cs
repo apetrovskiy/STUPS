@@ -1,0 +1,27 @@
+﻿/*
+ * Created by SharpDevelop.
+ * User: alexa_000
+ * Date: 7/17/2014
+ * Time: 8:03 PM
+ * 
+ * To change this template use Tools | Options | Coding | Edit Standard Headers.
+ */
+
+namespace Tmx.Server.Helpers.Objects
+{
+	using System;
+	using System.Collections.Generic;
+	using TMX.Interfaces.Remoting;
+	
+	/// <summary>
+	/// Description of ClientsCollection.
+	/// </summary>
+	public class ClientsCollection
+	{
+		public static List<IClientInformation> Clients = new List<IClientInformation>();
+		
+//		static ClientsCollection()
+//		{
+//		}
+	}
+}

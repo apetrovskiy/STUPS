@@ -16,7 +16,7 @@ namespace TMX
     /// <summary>
     /// Description of TmxGetTestScenarioStatusCommand.
     /// </summary>
-    internal class TmxGetTestScenarioStatusCommand : TmxCommand
+    class TmxGetTestScenarioStatusCommand : TmxCommand
     {
         internal TmxGetTestScenarioStatusCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
@@ -26,31 +26,21 @@ namespace TMX
         {
             var cmdlet = (GetTmxTestScenarioStatusCommand)Cmdlet;
             
-            if (!string.IsNullOrEmpty(cmdlet.Name)) {
-                
-                TmxHelper.GetTestScenarioStatus(
-                    cmdlet,
-                    cmdlet.FilterOutAutomaticResults);
-                
-            } else if (!string.IsNullOrEmpty(cmdlet.Id)) {
-                
-                TmxHelper.GetTestScenarioStatus(
-                    cmdlet,
-                    cmdlet.FilterOutAutomaticResults);
-                
-            } else {
-                
-                cmdlet.WriteError(
-                    cmdlet,
-                    "Failed to find test scenario with name = '" +
-                    cmdlet.Name + 
-                    "' and id = '" +
-                    cmdlet.Id +
-                    "'",
-                    "FailedToFindTestScenario",
-                    ErrorCategory.InvalidArgument,
-                    true);
-            }
+			if (!string.IsNullOrEmpty(cmdlet.Name))
+				TmxHelper.GetTestScenarioStatus(cmdlet, cmdlet.FilterOutAutomaticResults);
+			else if (!string.IsNullOrEmpty(cmdlet.Id))
+				TmxHelper.GetTestScenarioStatus(cmdlet, cmdlet.FilterOutAutomaticResults);
+			else
+				cmdlet.WriteError(
+					cmdlet,
+					"Failed to find test scenario with name = '" +
+					cmdlet.Name +
+					"' and id = '" +
+					cmdlet.Id +
+					"'",
+					"FailedToFindTestScenario",
+					ErrorCategory.InvalidArgument,
+					true);
         }
     }
 }

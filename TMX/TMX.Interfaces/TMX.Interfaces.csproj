@@ -77,6 +77,7 @@
     <Compile Include="TestStructure\ITestSuite.cs" />
     <Compile Include="Types\Remoting\TestClientInformation.cs" />
     <Compile Include="Types\Remoting\TestTask.cs" />
+    <Compile Include="UrnList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

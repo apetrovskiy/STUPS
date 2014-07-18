@@ -1,6 +1,6 @@
 ﻿/*
  * Created by SharpDevelop.
- * User: alexa_000
+ * User: Alexander Petrovskiy
  * Date: 7/17/2014
  * Time: 8:06 PM
  * 
@@ -21,12 +21,12 @@ namespace Tmx.Server.Modules
 	/// </summary>
 	public class TestClientsModule : NancyModule
 	{
-		public TestClientsModule() : base("/Clients")
+		public TestClientsModule() : base(UrnList.TestClients_Root)
 		{
-			Post["/"] = parameters => {
+			Post[UrnList.TestClients_Clients] = parameters => {
                 var testClient = this.Bind<TestClientInformation>();
                 
-                int maxId = 1;
+                int maxId = 0;
                 if (0 < ClientsCollection.Clients.Count)
                 	maxId = ClientsCollection.Clients.Max(client => client.Id);
                 
@@ -50,7 +50,7 @@ namespace Tmx.Server.Modules
                 return HttpStatusCode.Created;
 			};
 			
-			Delete["/{id}"] = parameters => {
+			Delete[UrnList.TestClients_Client] = parameters => {
 				try {
 					var clientsToDelete = ClientsCollection.Clients.RemoveAll(client => client.Id == parameters.id);
 						return HttpStatusCode.OK;

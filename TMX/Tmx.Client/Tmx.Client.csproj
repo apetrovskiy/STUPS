@@ -67,12 +67,8 @@
     <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Commands\ReceiveTmxTestTaskCommand.cs" />
-    <Compile Include="Commands\RegisterTmxSystemUnderTestCommand.cs" />
-    <Compile Include="Commands\SendTmxTestTaskResultCommand.cs" />
-    <Compile Include="Helpers\Commands\ReceiveTestTaskCommand.cs" />
-    <Compile Include="Helpers\Commands\RegisterSystemUnderTestCommand.cs" />
-    <Compile Include="Helpers\Commands\SendTestTaskResultCommand.cs" />
+    <Compile Include="Helpers\ClientSettings.cs" />
+    <Compile Include="Helpers\Registration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -86,15 +82,9 @@
       <Project>{9C5DA25F-6A59-4F97-B107-64DD549CB800}</Project>
       <Name>TMX.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tmx\Tmx.csproj">
-      <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>
-      <Name>Tmx</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Commands" />
     <Folder Include="Helpers" />
-    <Folder Include="Helpers\Commands" />
     <Folder Include="Properties" />
     <Folder Include="Properties" />
   </ItemGroup>

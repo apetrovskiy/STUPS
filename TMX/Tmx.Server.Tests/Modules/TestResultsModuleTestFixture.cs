@@ -1,6 +1,6 @@
 ﻿/*
  * Created by SharpDevelop.
- * User: Alexander
+ * User: Alexander Petrovskiy
  * Date: 7/13/2014
  * Time: 2:26 PM
  * 
@@ -29,23 +29,13 @@ namespace Tmx.Server.Tests.Modules
     {
     	public TestResultsModuleTestFixture()
     	{
-            PSCmdletBase.UnitTestMode = true;
-            
-            if (0 < UnitTestOutput.Count)
-				UnitTestOutput.Clear();
-            
-			TestData.ResetData();
+    	    TestSettings.PrepareModuleTests();
     	}
-    	
+		
     	[MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
     	public void SetUp()
     	{
-            PSCmdletBase.UnitTestMode = true;
-            
-            if (0 < UnitTestOutput.Count)
-				UnitTestOutput.Clear();
-            
-			TestData.ResetData();
+    	    TestSettings.PrepareModuleTests();
     	}
     	
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -91,7 +81,7 @@ namespace Tmx.Server.Tests.Modules
             var testSuite = new TMX.TestSuite { Name = testSuiteNameExpected, Id = testSuiteIdExpected };
             var testScenarioNameExpected = "test scenario name";
             var testScenarioIdExpected = "222";
-            var testScenario = new TMX.TestScenario { Name = testScenarioNameExpected, Id = testScenarioIdExpected };
+            var testScenario = new TestScenario { Name = testScenarioNameExpected, Id = testScenarioIdExpected };
             
             // When
             // var response = browser.Post("/Results/suites/", (with) => {
@@ -100,7 +90,7 @@ namespace Tmx.Server.Tests.Modules
             })
                 .Then
                 .Post("/Results/scenarios/", (with) => {
-                with.JsonBody<TMX.TestScenario>(testScenario);
+                with.JsonBody<TestScenario>(testScenario);
             });
             
             // Then

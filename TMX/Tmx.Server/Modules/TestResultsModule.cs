@@ -1,6 +1,6 @@
 ﻿/*
  * Created by SharpDevelop.
- * User: Alexander
+ * User: Alexander Petrovskiy
  * Date: 7/13/2014
  * Time: 2:25 PM
  * 
@@ -22,18 +22,18 @@ namespace Tmx.Server.Modules
     /// </summary>
     public class TestResultsModule : NancyModule
     {
-        public TestResultsModule() : base("/Results")
+        public TestResultsModule() : base(UrnList.TestStructure_Root)
         {
             StaticConfiguration.DisableErrorTraces = false;
             
-            Post["/suites/"] = parameters => {
+            Post[UrnList.TestStructure_Suites] = parameters => {
                 var testSuite = this.Bind<TestSuite>();
                 TmxHelper.NewTestSuite(testSuite.Name, testSuite.Id, testSuite.PlatformId, testSuite.Description, testSuite.BeforeScenario, testSuite.AfterScenario);
                 TestData.SetSuiteStatus(true);
 				return TmxHelper.OpenTestSuite(testSuite.Name, testSuite.Id, testSuite.PlatformId) ? HttpStatusCode.Created : HttpStatusCode.InternalServerError;
             };
         	
-        	Post["/scenarios/"] = parameters => {
+        	Post[UrnList.TestStructure_Scenarios] = parameters => {
         		var testScenario = this.Bind<TestScenario>();
         		var cmdletAdd = new AddScenarioCmdletBase {
         			Name = testScenario.Name,

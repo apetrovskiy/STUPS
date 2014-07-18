@@ -78,73 +78,29 @@ namespace TMX
         #region Actions
         public static bool OpenTestSuite(string testSuiteName, string testSuiteId, string testPlatformId)
         {
-Console.WriteLine("openTestSuite 000001");
-Console.WriteLine("openTestSuite: name = " + TestData.CurrentTestSuite.Name);
-Console.WriteLine("openTestSuite: id = " + TestData.CurrentTestSuite.Id);
             // set time spent on the previous suite
             if (null != TestData.CurrentTestSuite) {
-
-Console.WriteLine("openTestSuite 000002");
-Console.WriteLine("openTestSuite: name = " + TestData.CurrentTestSuite.Name);
-Console.WriteLine("openTestSuite: id = " + TestData.CurrentTestSuite.Id);
+                
                 if (DateTime.MinValue != TestData.CurrentTestSuite.Timestamp) {
-
-Console.WriteLine("openTestSuite 000003");
-Console.WriteLine("openTestSuite: name = " + TestData.CurrentTestSuite.Name);
-Console.WriteLine("openTestSuite: id = " + TestData.CurrentTestSuite.Id);
+                    
 					TestData.CurrentTestSuite.SetTimeSpent(
 						TestData.CurrentTestSuite.TimeSpent +=
                         (DateTime.Now - TestData.CurrentTestSuite.Timestamp).TotalSeconds);
-Console.WriteLine("openTestSuite 000004");
-Console.WriteLine("openTestSuite: name = " + TestData.CurrentTestSuite.Name);
-Console.WriteLine("openTestSuite: id = " + TestData.CurrentTestSuite.Id);
 					TestData.CurrentTestSuite.Timestamp = DateTime.MinValue;
-Console.WriteLine("openTestSuite 000005");
-Console.WriteLine("openTestSuite: name = " + TestData.CurrentTestSuite.Name);
-Console.WriteLine("openTestSuite: id = " + TestData.CurrentTestSuite.Id);
                 }
             }
             
-Console.WriteLine("openTestSuite 000006");
-Console.WriteLine("openTestSuite: name = " + TestData.CurrentTestSuite.Name);
-Console.WriteLine("openTestSuite: id = " + TestData.CurrentTestSuite.Id);
-Console.WriteLine("wanted name = " + testSuiteName);
-Console.WriteLine("wanted id = " + testSuiteId);
-Console.WriteLine("wanted platorm id = " + testPlatformId);
 			TestData.CurrentTestSuite = TestData.GetTestSuite(testSuiteName, testSuiteId, testPlatformId);
 			// 20140714
-Console.WriteLine("11111111111122222");
-if (null != TestData.CurrentTestSuite) {
-	Console.WriteLine("null != TestData.CurrentTestSuite");
-	if (null != TestData.CurrentTestSuite.TestScenarios) {
-		Console.WriteLine("null != TestData.CurrentTestSuite.TestScenarios");
-		if (0 < TestData.CurrentTestSuite.TestScenarios.Count) {
-			Console.WriteLine("0 < TestData.CurrentTestSuite.TestScenarios.Count");
-		} else {
-			Console.WriteLine("0 => TestData.CurrentTestSuite.TestScenarios.Count");
-		}
-	} else {
-		Console.WriteLine("null == TestData.CurrentTestSuite.TestScenarios");
-	}
-} else {
-	Console.WriteLine("null == TestData.CurrentTestSuite");
-}
 			// if (null != TestData.CurrentTestSuite.TestScenarios && 0 < TestData.CurrentTestSuite.TestScenarios.Count) {
-			if (null != TestData.CurrentTestSuite && null != TestData.CurrentTestSuite.TestScenarios && 0 < TestData.CurrentTestSuite.TestScenarios.Count) {
-Console.WriteLine("11111111111122222-2");
+			if (null != TestData.CurrentTestSuite && null != TestData.CurrentTestSuite.TestScenarios && 0 < TestData.CurrentTestSuite.TestScenarios.Count)
 				TestData.CurrentTestScenario = (TestScenario)TestData.CurrentTestSuite.TestScenarios[TestData.CurrentTestSuite.TestScenarios.Count - 1];
-Console.WriteLine("11111111111122222-3");
-			}
             
 			if (null == TestData.CurrentTestSuite) return false;
             
-Console.WriteLine("1111111111111133333");
             // set the initial time for this suite's session
 			TestData.CurrentTestSuite.SetNow();
 			
-Console.WriteLine("11111111111114");
-Console.WriteLine("openTestSuite: name = " + TestData.CurrentTestSuite.Name);
-Console.WriteLine("openTestSuite: id = " + TestData.CurrentTestSuite.Id);
 			TestData.OnTmxTestSuiteOpened(TestData.CurrentTestSuite, null);
 			return true;
         }

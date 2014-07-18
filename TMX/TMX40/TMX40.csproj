@@ -216,6 +216,15 @@
     <Compile Include="..\TMX\Commands\Status\GetTMXTestSuiteStatusCommand.cs">
       <Link>Commands\Status\GetTMXTestSuiteStatusCommand.cs</Link>
     </Compile>
+    <Compile Include="..\Tmx\Commands\TestClient\ReceiveTmxTestTaskCommand.cs">
+      <Link>Commands\TestClient\ReceiveTmxTestTaskCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\Tmx\Commands\TestClient\RegisterTmxSystemUnderTestCommand.cs">
+      <Link>Commands\TestClient\RegisterTmxSystemUnderTestCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\Tmx\Commands\TestClient\SendTmxTestTaskResultCommand.cs">
+      <Link>Commands\TestClient\SendTmxTestTaskResultCommand.cs</Link>
+    </Compile>
     <Compile Include="..\TMX\Commands\TestExecution\InvokeTMXTestCaseCommand.cs">
       <Link>Commands\TestExecution\InvokeTMXTestCaseCommand.cs</Link>
     </Compile>
@@ -408,6 +417,15 @@
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\Status\TMXGetTestSuiteStatusCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\Status\TMXGetTestSuiteStatusCommand.cs</Link>
     </Compile>
+    <Compile Include="..\Tmx\Helpers\UnderlyingCode\Commands\TestClient\ReceiveTestTaskCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TestClient\ReceiveTestTaskCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\Tmx\Helpers\UnderlyingCode\Commands\TestClient\RegisterSystemUnderTestCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TestClient\RegisterSystemUnderTestCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\Tmx\Helpers\UnderlyingCode\Commands\TestClient\SendTestTaskResultCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TestClient\SendTestTaskResultCommand.cs</Link>
+    </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestExecution\TMXInvokeTestCaseCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\TestExecution\TMXInvokeTestCaseCommand.cs</Link>
     </Compile>
@@ -579,6 +597,7 @@
     <Folder Include="Commands\Configuration" />
     <Folder Include="Commands\Logging" />
     <Folder Include="Commands\Logging" />
+    <Folder Include="Commands\TestClient" />
     <Folder Include="Commands\TestExecution" />
     <Folder Include="Commands\Status" />
     <Folder Include="Commands\TestExecution" />
@@ -593,6 +612,7 @@
     <Folder Include="Helpers\UnderlyingCode\Commands" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Logging" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Logging" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\TestClient" />
     <Folder Include="Helpers\UnderlyingCode\Commands\TestExecution" />
     <Folder Include="Helpers\UnderlyingCode\Commands\TestExecution" />
     <Folder Include="Helpers\UnderlyingCode\Commands\TestStructure" />

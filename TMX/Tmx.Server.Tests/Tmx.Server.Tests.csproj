@@ -82,6 +82,8 @@
     <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Helpers\TestSettings.cs" />
+    <Compile Include="Modules\TestClientsModuleTestFixture.cs" />
     <Compile Include="Modules\TestResultsModuleTestFixture.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -104,6 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Modules" />
+    <Folder Include="Helpers" />
     <Folder Include="Properties" />
     <Folder Include="Properties" />
   </ItemGroup>

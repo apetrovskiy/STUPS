@@ -45,7 +45,8 @@ namespace Tmx.Server.Tests.Modules
             var browser = new Browser(new DefaultNancyBootstrapper());
             
             // When
-            var response = browser.Post("/Results/suites/");
+            // /Results/suites/
+            var response = browser.Post(UrnList.TestStructure_Root + UrnList.TestStructure_Suites);
             
             // Then
             Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
@@ -61,7 +62,8 @@ namespace Tmx.Server.Tests.Modules
             var testSuite = new TMX.TestSuite { Name = testSuiteNameExpected, Id = testSuiteIdExpected };
             
             // When
-            var response = browser.Post("/Results/suites/", (with) => {
+            // /Results/suites/
+            var response = browser.Post(UrnList.TestStructure_Root + UrnList.TestStructure_Suites, (with) => {
                 with.JsonBody<TMX.TestSuite>(testSuite);
             });
             
@@ -84,17 +86,18 @@ namespace Tmx.Server.Tests.Modules
             var testScenario = new TestScenario { Name = testScenarioNameExpected, Id = testScenarioIdExpected };
             
             // When
-            // var response = browser.Post("/Results/suites/", (with) => {
-            browser.Post("/Results/suites/", (with) => {
+            // /Results/suites/
+            var response = browser.Post(UrnList.TestStructure_Root + UrnList.TestStructure_Suites, (with) => {
                 with.JsonBody<TMX.TestSuite>(testSuite);
             })
                 .Then
-                .Post("/Results/scenarios/", (with) => {
+                // /Results/scenarios/
+                .Post(UrnList.TestStructure_Root + UrnList.TestStructure_Scenarios, (with) => {
                 with.JsonBody<TestScenario>(testScenario);
             });
             
             // Then
-            // Xunit.Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
             Xunit.Assert.Equal(testScenarioNameExpected, TestData.CurrentTestScenario.Name);
             Xunit.Assert.Equal(testScenarioIdExpected, TestData.CurrentTestScenario.Id);
         }

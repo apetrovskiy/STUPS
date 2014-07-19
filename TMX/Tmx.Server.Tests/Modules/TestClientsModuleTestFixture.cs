@@ -16,7 +16,10 @@ namespace Tmx.Server.Tests.Modules
     using MbUnit.Framework;
     using NUnit.Framework;
 	using TMX;
+	using TMX.Interfaces;
+	using TMX.Interfaces.Remoting;
 	using TMX.Interfaces.TestStructure;
+	using Tmx.Server.Helpers.Objects;
     using Xunit;
     using Tmx;
     using PSTestLib;
@@ -38,37 +41,44 @@ namespace Tmx.Server.Tests.Modules
     	    TestSettings.PrepareModuleTests();
     	}
     	
-//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-//        public void Should_react_on_registering_a_neww_test_client()
-//        {
-//        	// Given
-//            var browser = new Browser(new DefaultNancyBootstrapper());
-//            
-//            // When
-//            var response = browser.Post("/Results/suites/");
-//            
-//            // Then
-//            Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
-//        }
-//        
-//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-//        public void Should_create_a_test_suite()
-//        {
-//        	// Given
-//            var browser = new Browser(new DefaultNancyBootstrapper());
-//            var testSuiteNameExpected = "test suite name";
-//            var testSuiteIdExpected = "111";
-//            var testSuite = new TMX.TestSuite { Name = testSuiteNameExpected, Id = testSuiteIdExpected };
-//            
-//            // When
-//            var response = browser.Post("/Results/suites/", (with) => {
-//                with.JsonBody<TMX.TestSuite>(testSuite);
-//            });
-//            
-//            // Then
-//            Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
-//            Xunit.Assert.Equal(testSuiteNameExpected, TestData.CurrentTestSuite.Name);
-//            Xunit.Assert.Equal(testSuiteIdExpected, TestData.CurrentTestSuite.Id);
-//        }
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        public void Should_react_on_registering_a_new_test_client()
+        {
+        	// Given
+            var browser = new Browser(new DefaultNancyBootstrapper());
+            var clientInformation = new TestClientInformation {
+                Hostname = "h",
+                OsVersion = "w",
+                Username = "u"
+            };
+            
+            // When
+            var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, (with) => {
+                with.JsonBody<IClientInformation>(clientInformation);
+            });
+            
+            // Then
+            Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+        }
+        
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        public void Should_register_the_first_test_client()
+        {
+        	// Given
+            var browser = new Browser(new DefaultNancyBootstrapper());
+            var testClientHostnameExpected = "testhost";
+            var testClientUsernameExpected = "aaa";
+            var clientInformation = new TestClientInformation { Hostname = testClientHostnameExpected, Username = testClientUsernameExpected };
+            
+            // When
+            var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, (with) => {
+                with.JsonBody<IClientInformation>(clientInformation);
+            });
+            
+            // Then
+            Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+            Xunit.Assert.Equal(testClientHostnameExpected, ClientsCollection.Clients[0].Hostname);
+            Xunit.Assert.Equal(testClientUsernameExpected, ClientsCollection.Clients[0].Username);
+        }
     }
 }

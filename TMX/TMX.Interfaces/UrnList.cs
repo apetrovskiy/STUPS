@@ -21,6 +21,6 @@ namespace Tmx.Server
         public static string TestStructure_Scenarios = "/scenarios/";
         public static string TestClients_Root = "/Clients";
         public static string TestClients_Clients = "/";
-        public static string TestClients_Client = "/{id}";
+        public static string TestClients_Client = "/{id:int}";
     }
 }

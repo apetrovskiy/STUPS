@@ -12,6 +12,7 @@ namespace Tmx.Server.Tests
     using System;
 	using TMX;
 	using PSTestLib;
+	using Tmx.Server.Helpers.Objects;
     
     /// <summary>
     /// Description of TestSettings.
@@ -24,6 +25,7 @@ namespace Tmx.Server.Tests
 			if (0 < UnitTestOutput.Count)
 				UnitTestOutput.Clear();
 			TestData.ResetData();
+			ClientsCollection.Clients.Clear();
 		}
     }
 }

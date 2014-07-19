@@ -19,14 +19,10 @@ namespace Tmx.Client.Helpers
     /// </summary>
     public class Registration
     {
-        public int RegisterNewClientAndReturnClientId()
+        public int SendRegistrationInfoAndGetClientId()
         {
 			var client = new RestClient(ClientSettings.ServerUrl);
 			var request = new RestRequest(UrnList.TestClients_Root + UrnList.TestClients_Clients, Method.POST);
-			// request.AddParameter("name", "value");
-			// request.AddUrlSegment("id", 123.ToString());
-			request.AddHeader("header", "value");
-			// request.AddBody(new TestResult { Name = "test result ...", Id = "111", TestScenarioId = "222", TestSuiteId = "333" });
 			request.AddBody(
 			    new TestClientInformation {
 			        Hostname = Environment.MachineName,
@@ -34,18 +30,22 @@ namespace Tmx.Client.Helpers
 			        UserDomainName = Environment.UserDomainName,
 			        IsInteractive = Environment.UserInteractive
 			    });
-			// request.AddFile(path);
-			var response = client.Execute(request);
-			if (null == response)
-				Console.WriteLine("null == response");
-			if (null == response.Content)
-				Console.WriteLine("null == response.Content");
-			Console.WriteLine(response.StatusCode);
-			var content = response.Content;
-			Console.WriteLine("======= 01 =======");
-			Console.WriteLine(content);
-			Console.WriteLine("======= 02 =======");
+//			var response = client.Execute(request);
+//			if (null == response)
+//				Console.WriteLine("null == response");
+//			if (null == response.Content)
+//				Console.WriteLine("null == response.Content");
+//			Console.WriteLine(response.StatusCode);
+//			var content = response.Content;
+//			Console.WriteLine("======= 01 =======");
+//			Console.WriteLine(content);
+//			Console.WriteLine("======= 02 =======");
 			
+			var registrationResponce = client.Execute(request);
+			// registrationResponce.
+			Console.WriteLine(registrationResponce);
+			Console.WriteLine(registrationResponce.Content);
+			Console.WriteLine(registrationResponce.ContentType);
 			return 111;
         }
     }

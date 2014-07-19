@@ -11,7 +11,8 @@ namespace TMX.Client.Helpers.Commands
 {
 	using System;
 	using TMX;
-	using Tmx.Client.Helpers;
+	// using Tmx.Client.Helpers;
+	using TMX.Client.Helpers;
 	using TMX.Commands;
 	
 	/// <summary>

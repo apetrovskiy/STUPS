@@ -85,6 +85,7 @@
     <Compile Include="Commands\Status\GetTMXTestScenarioStatusCommandTestFixture.cs" />
     <Compile Include="Commands\Status\GetTMXTestStatisticsCommandTestFixture.cs" />
     <Compile Include="Commands\Status\GetTMXTestSuiteStatusCommandTestFixture.cs" />
+    <Compile Include="Commands\TestClient\RegisterTmxSystemUnderTestCommandTestFixture.cs" />
     <Compile Include="Commands\TestExecution\InvokeTMXTestCaseCommandTestFixture.cs" />
     <Compile Include="Commands\TestExecution\InvokeTMXTestScenarioCommandTestFixture.cs" />
     <Compile Include="Commands\TestExecution\InvokeTMXTestSuiteCommandTestFixture.cs" />
@@ -136,6 +137,7 @@
   <ItemGroup>
     <Folder Include="Commands" />
     <Folder Include="Commands\Logging" />
+    <Folder Include="Commands\TestClient" />
     <Folder Include="Commands\TestExecution" />
     <Folder Include="Commands\TestExecution" />
     <Folder Include="Commands\TestResults" />
@@ -144,6 +146,7 @@
     <Folder Include="Helpers" />
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Helpers\UnderlyingCode\Commands" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\TestClient" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Status" />
     <Folder Include="ParamChecks" />
     <Folder Include="ParamChecks\Configuration" />

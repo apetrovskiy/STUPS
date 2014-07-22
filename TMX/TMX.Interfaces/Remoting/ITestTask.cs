@@ -27,7 +27,9 @@ namespace Tmx.Interfaces.Remoting
 		
 		string Name { get; set; }
 		string StoryId { get; set; }
+		ITestTaskAction[] BeforeAction { get; set; }
 		ITestTaskAction[] Action { get; set; }
+		ITestTaskAction[] AfterAction { get; set; }
 		string[] ExpectedResult { get; set; } // ?
 		
 		TestTaskStatuses Status { get; set; }

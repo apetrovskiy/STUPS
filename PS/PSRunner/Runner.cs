@@ -65,23 +65,20 @@ namespace PSRunner
         
         internal static void OnPSCodeRunning(string msg) //object sender, EventArgs e)
         {
-            if (PSCodeRunning != null) {
-                PSCodeRunning(msg);
-            }
+			if (PSCodeRunning != null)
+				PSCodeRunning(msg);
         }
         
         internal static void OnPSCodeCompleted(string msg)
         {
-            if (PSCodeCompleted != null) {
-                PSCodeCompleted(msg);
-            }
+			if (PSCodeCompleted != null)
+				PSCodeCompleted(msg);
         }
         
         internal static void OnPSErrorThrown(string msg)
         {
-            if (PSErrorThrown != null) {
-                PSErrorThrown(msg);
-            }
+			if (PSErrorThrown != null)
+				PSErrorThrown(msg);
         }
         
 //        internal static void OnPSDisconnected(string msg)
@@ -93,37 +90,32 @@ namespace PSRunner
         
         internal static void OnPSCodeStopping(string msg)
         {
-            if (PSCodeStopping != null) {
-                PSCodeStopping(msg);
-            }
+			if (PSCodeStopping != null)
+				PSCodeStopping(msg);
         }
         
         internal static void OnPSCodeStopped(string msg)
         {
-            if (PSCodeStopped != null) {
-                PSCodeStopped(msg);
-            }
+			if (PSCodeStopped != null)
+				PSCodeStopped(msg);
         }
         
         internal static void OnPSCodeNotStarted(string msg)
         {
-            if (PSCodeNotStarted != null) {
-                PSCodeNotStarted(msg);
-            }
+			if (PSCodeNotStarted != null)
+				PSCodeNotStarted(msg);
         }
         
         internal static void OnPSOutputArrived(object data)
         {
-            if (PSOutputArrived != null) {
-                PSOutputArrived(data);
-            }
+			if (PSOutputArrived != null)
+				PSOutputArrived(data);
         }
         
         internal static void OnPSErrorArrived(object data)
         {
-            if (PSErrorArrived != null) {
-                PSErrorArrived(data);
-            }
+			if (PSErrorArrived != null)
+				PSErrorArrived(data);
         }
         
         // ------------------ Methods ----------------------------
@@ -137,11 +129,10 @@ namespace PSRunner
                 testRunSpace.AvailabilityChanged += new EventHandler<RunspaceAvailabilityEventArgs>(runspace_AvailabilityChanged);
                 testRunSpace.StateChanged += new EventHandler<RunspaceStateEventArgs>(runspace_StateChanged);
                 testRunSpace.Open();
+                // 20140722
+                // pipeline = null;
                 
-                pipeline = null;
-                
-                pipeline =
-                    testRunSpace.CreatePipeline(command);
+                pipeline = testRunSpace.CreatePipeline(command);
                 pipeline.StateChanged += new EventHandler<PipelineStateEventArgs>(pipeline_StateChanged);
                 
 //if (PipelineState.Running == pipeline.PipelineStateInfo.State) {
@@ -234,12 +225,11 @@ namespace PSRunner
         {
             bool result = false;
             try {
-                pipeline =
-                    testRunSpace.CreatePipeline(codeSnippet);
+                pipeline = testRunSpace.CreatePipeline(codeSnippet);
                 pipeline.StateChanged += new EventHandler<PipelineStateEventArgs>(pipeline_StateChanged);
                 pipeline.InvokeAsync();
                 
-                WaitHandle[] handles = new WaitHandle[2];
+                var handles = new WaitHandle[2];
                 handles[0] = pipeline.Output.WaitHandle;
                 handles[1] = pipeline.Error.WaitHandle;
                 pipeline.Input.Close();
@@ -280,8 +270,7 @@ namespace PSRunner
         {
             System.Collections.ObjectModel.Collection<PSObject> result = null;
             try {
-                pipeline =
-                    testRunSpace.CreatePipeline();
+                pipeline = testRunSpace.CreatePipeline();
                 pipeline.Commands.AddScript(scriptCode);
                 pipeline.StateChanged += new EventHandler<PipelineStateEventArgs>(pipeline_StateChanged);
                 System.Collections.ObjectModel.Collection<PSObject> resultObject =
@@ -304,8 +293,7 @@ namespace PSRunner
         {
             bool result = false;
             try {
-                pipeline =
-                    testRunSpace.CreatePipeline();
+                pipeline = testRunSpace.CreatePipeline();
                 // 20120716
                 pipeline.Commands.AddScript(scriptCode);
                 //pipeline.Commands.Add(sc
@@ -325,7 +313,7 @@ namespace PSRunner
                 pipeline.StateChanged += new EventHandler<PipelineStateEventArgs>(pipeline_StateChanged);
                 pipeline.InvokeAsync();
                 
-                WaitHandle[] handles = new WaitHandle[2];
+                var handles = new WaitHandle[2];
                 handles[0] = pipeline.Output.WaitHandle;
                 handles[1] = pipeline.Error.WaitHandle;
                 pipeline.Input.Close();
@@ -380,26 +368,24 @@ namespace PSRunner
         
         static void pipeline_StateChanged(object sender, PipelineStateEventArgs e)
         {
-            if (e.PipelineStateInfo.State == PipelineState.Failed) {
+            if (e.PipelineStateInfo.State == PipelineState.Failed)
 //                Console.WriteLine(e.PipelineStateInfo.Reason);
 //                //Console.WriteLine("The pipeline has {0} error!", PsPipeline.Error.Count);
 //                Console.WriteLine("The pipeline has {0} error!", pipeline.Error.Count);
                 
                 PSErrorThrown(e.PipelineStateInfo.Reason.Message);
-                
-            } else if (e.PipelineStateInfo.State == PipelineState.Completed) {
+            else if (e.PipelineStateInfo.State == PipelineState.Completed)
                 OnPSCodeCompleted("");
 //            } else if (e.PipelineStateInfo.State == PipelineState.Disconnected) {
 //                OnPSDisconnected(e.PipelineStateInfo.Reason.Message);
-            } else if (e.PipelineStateInfo.State == PipelineState.NotStarted) {
+            else if (e.PipelineStateInfo.State == PipelineState.NotStarted)
                 OnPSCodeNotStarted(e.PipelineStateInfo.Reason.Message);
-            } else if (e.PipelineStateInfo.State == PipelineState.Running) {
+            else if (e.PipelineStateInfo.State == PipelineState.Running)
                 OnPSCodeRunning("");
-            } else if (e.PipelineStateInfo.State == PipelineState.Stopped) {
+            else if (e.PipelineStateInfo.State == PipelineState.Stopped)
                 OnPSCodeStopped(e.PipelineStateInfo.Reason.Message);
-            } else if (e.PipelineStateInfo.State == PipelineState.Stopping) {
+            else if (e.PipelineStateInfo.State == PipelineState.Stopping)
                 OnPSCodeStopping("");
-            }
 //            else {
 //                Console.WriteLine("All OK");
 //                Console.WriteLine("e.PipelineStateInfo.State = " + e.PipelineStateInfo.State.ToString());
@@ -492,7 +478,7 @@ namespace PSRunner
 //            return result;
 //        }
         
-        private static void reportRunningCode(string codeSnippet)
+        static void reportRunningCode(string codeSnippet)
         {
             FinishRunningCode();
             Console.WriteLine(codeSnippet);

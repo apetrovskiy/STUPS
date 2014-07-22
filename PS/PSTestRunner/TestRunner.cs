@@ -12,7 +12,7 @@ namespace PSTestRunner
     using System;
     using PSRunner;
     using System.Management.Automation;
-	using TMX.Interfaces.TestStructure;
+	using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of TestRunner.
@@ -39,7 +39,7 @@ namespace PSTestRunner
             string strTmxPath = 
                 @"ipmo '" +
                 currDir +
-                @"\TMX.dll" +
+                @"\Tmx.dll" +
                 @"';" +
                 "\r\n";
             string strInitScriptPath = 

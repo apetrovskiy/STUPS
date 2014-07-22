@@ -10,9 +10,10 @@
 namespace BDDAddinUnitTests
 {
     using System;
-    using TMX;
-    using TMX.Commands;
+    using Tmx;
+    using Tmx.Commands;
     using PSTestLib;
+	using Tmx.Core;
     
     //using NBehave.Fluent.Framework.MbUnit;
     using NBehave.Narrator.Framework;
@@ -40,8 +41,8 @@ namespace BDDAddinUnitTests
         {
             PSCmdletBase.UnitTestMode = true;
             
-//            if (null != TMX.CommonCmdletBase.UnitTestOutput && 0 < TMX.CommonCmdletBase.UnitTestOutput.Count) {
-//                TMX.CommonCmdletBase.UnitTestOutput.Clear();
+//            if (null != Tmx.CommonCmdletBase.UnitTestOutput && 0 < Tmx.CommonCmdletBase.UnitTestOutput.Count) {
+//                Tmx.CommonCmdletBase.UnitTestOutput.Clear();
 //            }
             if (0 < PSTestLib.UnitTestOutput.Count) {
                 PSTestLib.UnitTestOutput.Clear();
@@ -49,7 +50,7 @@ namespace BDDAddinUnitTests
             
             //TLAddinData.CurrentTestLinkConnection = null;
             
-            TMX.TestData.ResetData();
+            TestData.ResetData();
             
         }
         

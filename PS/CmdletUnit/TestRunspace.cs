@@ -10,6 +10,7 @@
 namespace CmdletUnitTest
 {
     using System;
+    using System.Collections.ObjectModel;
     using System.Diagnostics;
     using System.Management.Automation;
 //    using System.Management.Automation.Runspaces;
@@ -27,7 +28,7 @@ namespace CmdletUnitTest
     public class TestRunspace
     {
         
-        private static bool showCode = true;
+        static bool showCode = true;
 
         // 20130130
         public static bool InitializeRunspace(string command)
@@ -36,7 +37,7 @@ namespace CmdletUnitTest
         }
         
         // 20140108
-        public static System.Collections.ObjectModel.Collection<PSObject> RunPSCode(string codeSnippet)
+        public static Collection<PSObject> RunPSCode(string codeSnippet)
         {
             return PSRunner.Runner.RunPSCode(codeSnippet, showCode);
         }
@@ -56,8 +57,7 @@ namespace CmdletUnitTest
 
             try{
 
-                System.Collections.ObjectModel.Collection<PSObject> coll =
-                    PSRunner.Runner.RunPSCode(codeSnippet, showCode);
+                var coll = PSRunner.Runner.RunPSCode(codeSnippet, showCode);
                 
                 Assert.Fail();
             }
@@ -125,8 +125,7 @@ namespace CmdletUnitTest
         public static void RunAndEvaluateIsNull(string codeSnippet)
         {
             //reportRunningCode(codeSnippet);
-            System.Collections.ObjectModel.Collection<PSObject> coll =
-                PSRunner.Runner.RunPSCode(codeSnippet, showCode);
+            var coll = PSRunner.Runner.RunPSCode(codeSnippet, showCode);
             Assert.IsNull(coll);
             PSRunner.Runner.FinishRunningCode();
         }
@@ -134,8 +133,7 @@ namespace CmdletUnitTest
         public static void RunAndEvaluateIsEmpty(string codeSnippet)
         {
             //reportRunningCode(codeSnippet);
-            System.Collections.ObjectModel.Collection<PSObject> coll =
-                PSRunner.Runner.RunPSCode(codeSnippet, showCode);
+            var coll = PSRunner.Runner.RunPSCode(codeSnippet, showCode);
             Assert.IsEmpty(coll);
             PSRunner.Runner.FinishRunningCode();
         }
@@ -145,8 +143,7 @@ namespace CmdletUnitTest
             string strValue)
         {
             //reportRunningCode(codeSnippet);
-            System.Collections.ObjectModel.Collection<PSObject> coll =
-                PSRunner.Runner.RunPSCode(codeSnippet, showCode);
+            var coll = PSRunner.Runner.RunPSCode(codeSnippet, showCode);
             Assert.IsTrue(coll[0].ToString() == strValue);
             PSRunner.Runner.FinishRunningCode();
         }
@@ -176,29 +173,30 @@ namespace CmdletUnitTest
             string strValue)
         {
             //reportRunningCode(codeSnippet);
-            System.Collections.ObjectModel.Collection<PSObject> coll;
+            Collection<PSObject> coll;
+			coll = null == inputData ? PSRunner.Runner.RunPSCode(codeSnippet, showCode) : PSRunner.Runner.RunPSCode(codeSnippet, showCode, inputData);
+            /*
             if (null == inputData) {
                 coll = PSRunner.Runner.RunPSCode(codeSnippet, showCode);
             } else {
                 coll = PSRunner.Runner.RunPSCode(codeSnippet, showCode, inputData);
             }
+            */
             
-            if (null != coll && 0 < coll.Count) {
-                Assert.AreEqual(strValue, coll[0].ToString());
-            } else {
-                Assert.Fail();
-            }
+			if (null != coll && 0 < coll.Count)
+				Assert.AreEqual(strValue, coll[0].ToString());
+			else
+				Assert.Fail();
             
             PSRunner.Runner.FinishRunningCode();
         }
         
         public static void RunAndEvaluateAreEqual(
             string codeSnippet,
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> strValues)
+            Collection<PSObject> strValues)
         {
             //reportRunningCode(codeSnippet);
-            System.Collections.ObjectModel.Collection<PSObject> coll =
-                PSRunner.Runner.RunPSCode(codeSnippet, showCode);
+            var coll = PSRunner.Runner.RunPSCode(codeSnippet, showCode);
             Assert.AreEqual(strValues, coll);
             PSRunner.Runner.FinishRunningCode();
         }
@@ -209,16 +207,13 @@ namespace CmdletUnitTest
             List<int> targetIndices)
         {
             //reportRunningCode(codeSnippet);
-            System.Collections.ObjectModel.Collection<PSObject> coll =
-                PSRunner.Runner.RunPSCode(codeSnippet, showCode);
-            List<object> sourceList = new List<object>();
-            foreach (int i in sourceIndices) {
-                sourceList.Add(coll[i]);
-            }
-            List<object> targetList = new List<object>();
-            foreach (int i in targetIndices) {
-                targetList.Add(coll[i]);
-            }
+            var coll = PSRunner.Runner.RunPSCode(codeSnippet, showCode);
+            var sourceList = new List<object>();
+			foreach (int i in sourceIndices)
+				sourceList.Add(coll[i]);
+            var targetList = new List<object>();
+			foreach (int i in targetIndices)
+				targetList.Add(coll[i]);
             Assert.AreEqual(sourceList, targetList);
             PSRunner.Runner.FinishRunningCode();
         }

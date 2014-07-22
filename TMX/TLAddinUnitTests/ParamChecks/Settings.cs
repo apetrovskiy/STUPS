@@ -21,7 +21,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         }
         
         public static string RunspaceCommand = 
-            @"Import-Module '.\TMX.dll' -Force;" +
+            @"Import-Module '.\Tmx.dll' -Force;" +
             @"Import-Module '.\TLAddin.dll' -Force;";
     }
 }

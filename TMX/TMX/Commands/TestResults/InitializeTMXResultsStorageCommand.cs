@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX.Commands
+namespace Tmx.Commands
 {
     using System;
     using System.Management.Automation;
@@ -49,17 +49,19 @@ namespace TMX.Commands
         
         protected override void BeginProcessing()
         {
-            TMX.Preferences.Storage = true;
-            TMX.Preferences.StorageServer = this.Server;
-            TMX.Preferences.StorageDatabase = this.Database;
-            if (!string.IsNullOrEmpty(this.Username)) {
-                TMX.Preferences.StorageUsername = this.Username;
-                TMX.Preferences.StoragePassword = this.Password;
+			Preferences.Storage = true;
+			Preferences.StorageServer = Server;
+			Preferences.StorageDatabase = Database;
+            if (!string.IsNullOrEmpty(Username)) {
+				Preferences.StorageUsername = Username;
+				Preferences.StoragePassword = Password;
             } else {
-                TMX.Preferences.StorageIntegratedSecurity = true;
+				Preferences.StorageIntegratedSecurity = true;
             }
             
-            StorageHelper.InitializeStorage(this);
+			// 20140721
+            // StorageHelper.InitializeStorage(this);
+            StorageHelper.InitializeStorage();
         }
     }
 }

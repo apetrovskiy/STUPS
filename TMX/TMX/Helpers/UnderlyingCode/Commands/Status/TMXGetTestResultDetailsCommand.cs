@@ -7,11 +7,13 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX
+namespace Tmx
 {
     using System;
     using System.Management.Automation;
-    using TMX.Commands;
+	using TMX.Interfaces;
+	using Tmx.Interfaces.TestStructure;
+    using Tmx.Commands;
     
     /// <summary>
     /// Description of TmxGetTestResultDetailsCommand.
@@ -26,7 +28,15 @@ namespace TMX
         {
             var cmdlet = (GetTmxTestResultDetailsCommand)Cmdlet;
             
-            TmxHelper.GetTestResultDetails(cmdlet);
+            // 20140721
+            var dataObject = new TestResultStatusCmdletBaseDataObject {
+                TestOrigin = cmdlet.TestOrigin,
+                TestResultStatus = cmdlet.TestResultStatus,
+                Id = cmdlet.Id
+            };
+            
+            // TmxHelper.GetTestResultDetails(cmdlet);
+            TmxHelper.GetTestResultDetails(dataObject);
         }
     }
 }

@@ -39,22 +39,22 @@ namespace MoqCmdlets
                 // turning off the logger
 //                switch (logLevel) {
 //                    case LogLevels.Fatal:
-//                        TMX.Logger.Fatal(logRecord);
+//                        Tmx.Logger.Fatal(logRecord);
 //                        break;
 //                    case LogLevels.Error:
-//                        TMX.Logger.Error(logRecord);
+//                        Tmx.Logger.Error(logRecord);
 //                        break;
 //                    case LogLevels.Warn:
-//                        TMX.Logger.Warn(logRecord);
+//                        Tmx.Logger.Warn(logRecord);
 //                        break;
 //                    case LogLevels.Info:
-//                        TMX.Logger.Info(logRecord);
+//                        Tmx.Logger.Info(logRecord);
 //                        break;
 //                    case LogLevels.Debug:
-//                        TMX.Logger.Debug(logRecord);
+//                        Tmx.Logger.Debug(logRecord);
 //                        break;
 //                    case LogLevels.Trace:
-//                        TMX.Logger.Trace(logRecord);
+//                        Tmx.Logger.Trace(logRecord);
 //                        break;
 //                }
             }

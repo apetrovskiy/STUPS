@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX
+namespace Tmx
 {
     using System;
     using System.Management.Automation;
@@ -18,17 +18,9 @@ namespace TMX
     [Cmdlet(VerbsCommon.Get, "TLTestPlan", DefaultParameterSetName = "PipelineInput")]
     public class GetTLTestPlanCommand : TLGetTestPlanCmdletBase //TLTestPlanCmdletBase
     {
-        public GetTLTestPlanCommand()
-        {
-        }
-        
-        #region Parameters
-        #endregion Parameters
-        
         protected override void ProcessRecord()
         {
-            TLSrvGetTestPlanCommand command =
-                new TLSrvGetTestPlanCommand(this);
+            var command = new TLSrvGetTestPlanCommand(this);
             command.Execute();
         }
     }

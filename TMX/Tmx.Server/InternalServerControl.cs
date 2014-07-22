@@ -17,7 +17,7 @@ namespace Tmx.Server
     /// <summary>
     /// Description of Control.
     /// </summary>
-    public class Control : DefaultNancyBootstrapper
+    public class InternalServerControl : DefaultNancyBootstrapper
     {
         static NancyHost _nancyHost;
         

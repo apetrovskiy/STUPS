@@ -7,11 +7,12 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX
+namespace Tmx
 {
     using System;
     using System.Management.Automation;
-    using TMX.Commands;
+	using TMX.Interfaces;
+    using Tmx.Commands;
     
     /// <summary>
     /// Description of TmxGetTestSuiteStatusCommand.
@@ -26,19 +27,37 @@ namespace TMX
         {
             var cmdlet = (GetTmxTestSuiteStatusCommand)Cmdlet;
             
-			if (!string.IsNullOrEmpty(cmdlet.Name))
-				TmxHelper.GetTestSuiteStatusByName(
-					cmdlet,
-					cmdlet.Name,
-					cmdlet.TestPlatformId,
-					cmdlet.FilterOutAutomaticResults);
-			else if (!string.IsNullOrEmpty(cmdlet.Id))
-				TmxHelper.GetTestSuiteStatusById(
-					cmdlet,
-					cmdlet.Id,
-					cmdlet.TestPlatformId,
-					cmdlet.FilterOutAutomaticResults);
-			else
+            // 20140721
+            var dataObject = new GetTmxTestSuiteStatusDataObject {
+                FilterOutAutomaticResults = cmdlet.FilterOutAutomaticResults,
+                Name = cmdlet.Name,
+                Id = cmdlet.Id,
+                TestPlatformId = cmdlet.TestPlatformId
+            };
+            
+            if (!string.IsNullOrEmpty(cmdlet.Name)) {
+			    // 20140721
+			    // 20140722
+			    var result = 
+    				TmxHelper.GetTestSuiteStatusByName(
+    					// cmdlet,
+    					// dataObject,
+    					cmdlet.Name,
+    					cmdlet.TestPlatformId,
+    					cmdlet.FilterOutAutomaticResults);
+                cmdlet.WriteObject(result);
+            } else if (!string.IsNullOrEmpty(cmdlet.Id)) {
+			    // 20140721
+			    // 20140722
+			    var result2 =
+    				TmxHelper.GetTestSuiteStatusById(
+    					// cmdlet,
+    					// dataObject,
+    					cmdlet.Id,
+    					cmdlet.TestPlatformId,
+    					cmdlet.FilterOutAutomaticResults);
+                cmdlet.WriteObject(result2);
+            } else {
 				cmdlet.WriteError(
 					cmdlet,
 					"Failed to find test suite with name = '" +
@@ -49,6 +68,7 @@ namespace TMX
 					"FailedToFindTestSuite",
 					ErrorCategory.InvalidArgument,
 					true);
+            }
         }
     }
 }

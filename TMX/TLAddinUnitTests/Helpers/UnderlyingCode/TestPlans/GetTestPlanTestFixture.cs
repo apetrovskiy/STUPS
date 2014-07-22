@@ -13,7 +13,7 @@ namespace TLAddinUnitTests.TestPlans
     using MbUnit.Framework;
     using PSTestLib;
     using Moq;
-    using TMX;
+    using Tmx;
     using Meyn.TestLink;
     using CookComputing.XmlRpc;
     
@@ -400,7 +400,7 @@ namespace TLAddinUnitTests.TestPlans
 //            System.Collections.Generic.List<TestPlan> resultList =
 //                new System.Collections.Generic.List<TestPlan>();
 //
-//            foreach (object tpl in TMX.CommonCmdletBase.UnitTestOutput) {
+//            foreach (object tpl in Tmx.CommonCmdletBase.UnitTestOutput) {
 //
 //                resultList.Add((TestPlan)tpl);
 //            }

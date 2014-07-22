@@ -15,7 +15,7 @@ namespace TLAddinUnitTests.TestPlans
     using Moq;
     //using Autofac;
     //using Autofac.Builder;
-    using TMX;
+    using Tmx;
     using Meyn.TestLink;
     using CookComputing.XmlRpc;
     

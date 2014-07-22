@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX
+namespace Tmx
 {
     using System;
     using System.Management.Automation;
@@ -26,19 +26,19 @@ namespace TMX
             var cmdlet = (AddTLTestCaseCommand)Cmdlet;
             
             foreach (Meyn.TestLink.TestSuite testSuite in cmdlet.InputObject) {
-                TLHelper.AddTestCase(
-                    this.Cmdlet, 
-                    cmdlet.Name,
-                    cmdlet.AuthorLogin,
-                    testSuite.id,
-                    TLAddinData.CurrentTestProject.id,
-                    cmdlet.Summary,
-                    cmdlet.Keyword,
-                    cmdlet.Order,
-                    cmdlet.CheckDuplicatedName,
-                    cmdlet.ActionDuplicatedName,
-                    cmdlet.ExecutionType,
-                    cmdlet.Importance);
+				TLHelper.AddTestCase(
+					Cmdlet, 
+					cmdlet.Name,
+					cmdlet.AuthorLogin,
+					testSuite.id,
+					TLAddinData.CurrentTestProject.id,
+					cmdlet.Summary,
+					cmdlet.Keyword,
+					cmdlet.Order,
+					cmdlet.CheckDuplicatedName,
+					cmdlet.ActionDuplicatedName,
+					cmdlet.ExecutionType,
+					cmdlet.Importance);
             }
         }
     }

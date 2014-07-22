@@ -15,7 +15,7 @@ namespace TLAddinUnitTests
     using Moq;
     using Autofac;
     using Autofac.Builder;
-    using TMX;
+    using Tmx;
     using Meyn.TestLink;
     using CookComputing.XmlRpc;
     
@@ -29,10 +29,9 @@ namespace TLAddinUnitTests
         internal static string TestLinkUrlRight = "http://1.2.3.4/testlink/lib/api/xmlrpc.php";
         internal static string TestLinkUrlWrong = "wrong url";
         
-        [ThreadStatic]
-        private static System.Random generator = new System.Random();
+        static System.Random generator = new Random();
         
-        private static Mock<ITestLinkExtra> _getTestLinkMock(string apiKey, string url)
+        static Mock<ITestLinkExtra> _getTestLinkMock(string apiKey, string url)
         {
             var testLinkMock = new Mock<TestLink>(apiKey, url).As<ITestLinkExtra>();
             
@@ -67,7 +66,7 @@ namespace TLAddinUnitTests
             
         }
         
-        private static Mock<ITestLinkExtra> _getTestLinkMock()
+        static Mock<ITestLinkExtra> _getTestLinkMock()
         {
             var testLinkMock =
                 _getTestLinkMock(
@@ -384,7 +383,26 @@ namespace TLAddinUnitTests
         {
             int id = generator.Next(1000000);
             
-            XmlRpcStruct data = new XmlRpcStruct();
+            var data = new XmlRpcStruct {
+                { "id", id.ToString() },
+                { "name", name },
+                { "prefix", prefix },
+                { "notes", notes },
+                { "color", color },
+                { "active", 1 },
+                { "tc_counter", tc_counter }
+            };
+            var optStruct = new XmlRpcStruct {
+                { "requirementsEnabled", 1 },
+                { "testPriorityEnabled", 1 },
+                { "automationEnabled", 1 },
+                { "inventoryEnabled", 1 }
+                // { "opt", optStruct }
+            };
+            data.Add("opt", optStruct);
+            
+            /*
+            var data = new XmlRpcStruct();
             data.Add("id", id.ToString());
             data.Add("name", name);
             data.Add("prefix", prefix);
@@ -393,12 +411,13 @@ namespace TLAddinUnitTests
             data.Add("active", 1);
             data.Add("tc_counter", tc_counter);
             
-            XmlRpcStruct optStruct = new XmlRpcStruct();
+            var optStruct = new XmlRpcStruct();
             optStruct.Add("requirementsEnabled", 1);
             optStruct.Add("testPriorityEnabled", 1);
             optStruct.Add("automationEnabled", 1);
             optStruct.Add("inventoryEnabled", 1);
             data.Add("opt", optStruct);
+            */
             
             var testProject = new Mock<Meyn.TestLink.TestProject>(data);
             return testProject.Object;
@@ -436,7 +455,17 @@ namespace TLAddinUnitTests
         {
             int id = generator.Next(1000000);
             
-            XmlRpcStruct data = new XmlRpcStruct();
+            var data = new XmlRpcStruct() {
+                { "active", active },
+                { "id", id },
+                { "name", name },
+                { "notes", notes },
+                { "testproject_id", testproject_id },
+                { "is_open", open },
+                { "is_public", is_public }
+            };
+            /*
+            var data = new XmlRpcStruct();
             data.Add("active", active);
             data.Add("id", id);
             data.Add("name", name);
@@ -444,6 +473,7 @@ namespace TLAddinUnitTests
             data.Add("testproject_id", testproject_id);
             data.Add("is_open", open);
             data.Add("is_public", is_public);
+            */
             
             var testPlan = new Mock<TestPlan>(data);
             return testPlan.Object;
@@ -457,12 +487,21 @@ namespace TLAddinUnitTests
         {
             int id = generator.Next(1000000);
             
-            XmlRpcStruct data = new XmlRpcStruct();
+            var data = new XmlRpcStruct {
+                { "name", name },
+                { "id", id },
+                { "parent_id", parentId },
+                { "node_type_id", nodeTypeId },
+                { "node_order", nodeOrder }
+            };
+            /*
+            var data = new XmlRpcStruct();
             data.Add("name", name);
             data.Add("id", id);
             data.Add("parent_id", parentId);
             data.Add("node_type_id", nodeTypeId);
             data.Add("node_order", nodeOrder);
+            */
             
             var testSuite = new Mock<Meyn.TestLink.TestSuite>(data);
             return testSuite.Object;

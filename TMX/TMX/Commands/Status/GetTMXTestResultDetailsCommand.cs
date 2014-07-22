@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX.Commands
+namespace Tmx.Commands
 {
     using System;
     using System.Management.Automation;
@@ -20,8 +20,7 @@ namespace TMX.Commands
     {
         protected override void BeginProcessing()
         {
-            TmxGetTestResultDetailsCommand command =
-                new TmxGetTestResultDetailsCommand(this);
+            var command = new TmxGetTestResultDetailsCommand(this);
             command.Execute();
         }
     }

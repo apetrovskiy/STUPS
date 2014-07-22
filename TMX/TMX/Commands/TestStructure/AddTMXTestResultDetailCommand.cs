@@ -7,10 +7,12 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX.Commands
+namespace Tmx.Commands
 {
     using System;
     using System.Management.Automation;
+	using TMX.Interfaces;
+	using Tmx.Core;
     
     /// <summary>
     /// Description of AddTmxTestResultDetailCommand.
@@ -25,14 +27,22 @@ namespace TMX.Commands
             WriteVerbose(this, TestResultDetail);
             // 20140317
             // turning off the logger
-            // TMX.Logger.TmxLogger.Info(this.TestResultDetail);
+            // Tmx.Logger.TmxLogger.Info(this.TestResultDetail);
             if (Echo) {
 
                 WriteObject(TestResultDetail);
             }
             // 20130331
-            //TMX.TestData.AddTestResultTextDetail(this.TestResultDetail);
-            TestData.AddTestResultTextDetail(this, TestResultDetail);
+            //TestData.AddTestResultTextDetail(this.TestResultDetail);
+            
+            // 20140721
+            var dataObject = new TestResultDetailCmdletBaseDataObject {
+                Finished = this.Finished,
+                TestResultStatus = this.TestResultStatus
+            };
+            
+            // TestData.AddTestResultTextDetail(this, TestResultDetail);
+            TestData.AddTestResultTextDetail(dataObject, TestResultDetail);
         }
     }
 }

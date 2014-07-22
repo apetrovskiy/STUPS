@@ -7,11 +7,12 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX.Commands
+namespace Tmx.Commands
 {
     using System;
     using System.Management.Automation;
-	using TMX.Interfaces.TestStructure;
+	using Tmx.Core;
+	using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of GetTestResultsFromCollectionsCommand.
@@ -21,31 +22,31 @@ namespace TMX.Commands
     {
         protected override void BeginProcessing()
         {
-            this.CheckCmdletParameters();
+			CheckCmdletParameters();
             
             // enumerate test suites
-            foreach (ITestSuite testSuite in TestData.TestSuites) {
+            foreach (var testSuite in TestData.TestSuites) {
                 
                 // add a test suite to your report
-                this.WriteObject(this, testSuite);
+				WriteObject(this, testSuite);
                 
                 // enumerate test scenarios
-                foreach (ITestScenario testScenario in testSuite.TestScenarios) {
+                foreach (var testScenario in testSuite.TestScenarios) {
                     
                     // add a test scenario to your report
-                    this.WriteObject(this, testScenario);
+					WriteObject(this, testScenario);
                     
                     // enumerate test results
-                    foreach (ITestResult testResult in testScenario.TestResults) {
+                    foreach (var testResult in testScenario.TestResults) {
                         
                         // add a test result to your report
-                        this.WriteObject(this, testResult);
+						WriteObject(this, testResult);
                         
                         // enumerate test result details
-                        foreach (ITestResultDetail testResultDetail in testResult.Details) {
+                        foreach (var testResultDetail in testResult.Details) {
                             
                             // add each test result detail to your report
-                            this.WriteObject(this, testResultDetail);
+							WriteObject(this, testResultDetail);
                             
                         }
                     }

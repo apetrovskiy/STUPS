@@ -19,10 +19,6 @@ namespace TLAddinUnitTests.CheckCmdletParameters
     [TestFixture]
     public class ConnectTLServerCommandTestFixture
     {
-        public ConnectTLServerCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

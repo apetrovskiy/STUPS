@@ -7,11 +7,14 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX
+namespace Tmx
 {
     using System;
     using System.Management.Automation;
-    using TMX.Commands;
+	using Tmx.Core;
+	using Tmx.Interfaces;
+	using Tmx.Interfaces.TestStructure;
+    using Tmx.Commands;
     
 	/// <summary>
 	/// Description of TmxAddSimpleTestResultCommand.
@@ -39,8 +42,11 @@ namespace TMX
                 "Checking whether the current test result is fulfilled and must be added to the current test scenario's results");
             
             // inserting the new simple test result to the suite/scenario the user provided
-            TestSuite testSuiteToAddTestResult = null;
-            TestScenario testScenarioToAddTestResult = null;
+            // 20140721
+//            TestSuite testSuiteToAddTestResult = null;
+//            TestScenario testScenarioToAddTestResult = null;
+            ITestSuite testSuiteToAddTestResult = null;
+            ITestScenario testScenarioToAddTestResult = null;
             if (!string.IsNullOrEmpty(cmdlet.TestSuiteName) || !string.IsNullOrEmpty(cmdlet.TestSuiteId)) {
                 
                 cmdlet.WriteVerbose(cmdlet, "getting test suite '" + cmdlet.TestSuiteName + "' with Id '" + cmdlet.TestSuiteId + "'");

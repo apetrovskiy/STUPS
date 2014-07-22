@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX
+namespace Tmx
 {
     using System;
     using System.Management.Automation;
@@ -18,10 +18,6 @@ namespace TMX
     [Cmdlet(VerbsCommon.Add, "TLTestCase")]
     public class AddTLTestCaseCommand : TLTestCaseCmdletBase
     {
-        public AddTLTestCaseCommand()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = true,
                    ParameterSetName = "ByName")]
@@ -75,8 +71,7 @@ namespace TMX
         
         protected override void ProcessRecord()
         {
-            TLSrvAddTestCaseCommand command =
-                new TLSrvAddTestCaseCommand(this);
+            var command = new TLSrvAddTestCaseCommand(this);
             command.Execute();
         }
     }

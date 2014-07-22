@@ -7,10 +7,10 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX.Interfaces.Types.Remoting
+namespace Tmx.Interfaces.Types.Remoting
 {
 	using System;
-	using TMX.Interfaces.Remoting;
+	using Tmx.Interfaces.Remoting;
 	
 	/// <summary>
 	/// Description of TestTask.

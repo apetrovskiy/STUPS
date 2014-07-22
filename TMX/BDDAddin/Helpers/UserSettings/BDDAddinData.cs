@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX
+namespace Tmx
 {
     using System;
     using System.Collections.Generic;
@@ -31,7 +31,7 @@ namespace TMX
         {
             //ScenarioProcessingClass feature = null;
             
-            System.Collections.Generic.IEnumerable<TMX.ScenarioProcessingClass> features =
+            System.Collections.Generic.IEnumerable<Tmx.ScenarioProcessingClass> features =
                 from f in Features
                 where f.FeatureCreated.Title == featureName && f.FeatureCreated.Narrative == narrative
                 select f;

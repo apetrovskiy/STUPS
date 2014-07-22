@@ -22,22 +22,22 @@ namespace PSTestLibraryTest
 
 
         public const string RunspaceCommand = 
-            @"Import-Module '.\UIAutomation.dll' -Force;" + @"Import-Module '.\TMX.dll' -Force;";
+            @"Import-Module '.\UIAutomation.dll' -Force;" + @"Import-Module '.\Tmx.dll' -Force;";
 
         /*
         public static string RunspaceCommand = 
 //#if DEBUG
-//                        @"Import-Module '..\..\..\TMX\bin\Debug\TMX.dll' -Force;" + //);
+//                        @"Import-Module '..\..\..\TMX\bin\Debug\Tmx.dll' -Force;" + //);
 //#else
-//                        @"Import-Module '..\..\..\TMX\bin\Release35\TMX.dll' -Force;" + //);
+//                        @"Import-Module '..\..\..\TMX\bin\Release35\Tmx.dll' -Force;" + //);
 //#endif
 //                        @"";
         
                         // 20120706
                         @"Import-Module '.\UIAutomation.dll' -Force;" + 
-                        @"Import-Module '.\TMX.dll' -Force;";
+                        @"Import-Module '.\Tmx.dll' -Force;";
         
-                        //@"[TMX.TestData]::TestSuites.Clear();";
+                        //@"[Tmx.Core.TestData]::TestSuites.Clear();";
 //                        @"[UIAutomation.Preferences]::OnSuccessDelay = 0;" +
 //                        @"[UIAutomation.Preferences]::OnErrorDelay = 0;" +
 //                        @"[UIAutomation.Preferences]::OnClickDelay = 0;" +

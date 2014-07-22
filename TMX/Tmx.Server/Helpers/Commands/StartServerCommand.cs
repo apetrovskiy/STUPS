@@ -7,25 +7,25 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Server.Helpers.Commands
-{
-	using System;
-	using TMX;
-	using Tmx.Server.Commands;
-	
-	/// <summary>
-	/// Description of StartServerCommand.
-	/// </summary>
-    class StartServerCommand : TmxCommand
-    {
-        internal StartServerCommand(CommonCmdletBase cmdlet) : base (cmdlet)
-        {
-        }
-        
-        internal override void Execute()
-        {
-            var cmdlet = (StartTmxServerCommand)Cmdlet;
-            Control.Start(@"http://localhost:" + cmdlet.Port);
-        }
-    }
-}
+//namespace Tmx.Server.Helpers.Commands
+//{
+//	using System;
+//	using Tmx;
+//	using Tmx.Server.Commands;
+//	
+//	/// <summary>
+//	/// Description of StartServerCommand.
+//	/// </summary>
+//    class StartServerCommand : TmxCommand
+//    {
+//        internal StartServerCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+//        {
+//        }
+//        
+//        internal override void Execute()
+//        {
+//            var cmdlet = (StartTmxServerCommand)Cmdlet;
+//            Control.Start(@"http://localhost:" + cmdlet.Port);
+//        }
+//    }
+//}

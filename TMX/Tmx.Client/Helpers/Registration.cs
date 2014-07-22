@@ -11,7 +11,7 @@ namespace Tmx.Client.Helpers
 {
     using System;
     using RestSharp;
-	using TMX.Interfaces;
+	using Tmx.Interfaces;
 	using Tmx.Server;
     
     /// <summary>

@@ -10,7 +10,7 @@
 namespace BDDAddinUnitTests.CheckCmdletParameters.ScenarioContext
 {
     using System;
-    using TMX;
+    using Tmx;
     using MbUnit.Framework;
     
     /// <summary>

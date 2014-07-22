@@ -7,11 +7,11 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX.Client.Helpers.Commands
+namespace Tmx.Client.Helpers.Commands
 {
 	using System;
-	using TMX;
-	using TMX.Commands;
+	using Tmx;
+	using Tmx.Commands;
 	
 	/// <summary>
 	/// Description of ReceiveTestTaskCommand.

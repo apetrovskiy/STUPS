@@ -24,6 +24,8 @@ using System.Runtime.CompilerServices;
 [assembly: ComVisible(false)]
 
 [assembly: InternalsVisibleTo("TmxUnitTests")]
+[assembly: InternalsVisibleTo("Tmx")]
+[assembly: InternalsVisibleTo("Tmx.Core")]
 [assembly: InternalsVisibleTo("Tmx.Server")]
 [assembly: InternalsVisibleTo("Tmx.Server.Tests")]
 [assembly: InternalsVisibleTo("Tmx.Client")]

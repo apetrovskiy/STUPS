@@ -11,7 +11,8 @@ namespace TmxTest.Commands.TestStructure
 {
     using System;
     using MbUnit.Framework;using NUnit.Framework;
-    using TMX;
+    using Tmx;
+    using Tmx.Core;
     
     /// <summary>
     /// Description of AddTmxSimpleTestResultCommandTestFixture.
@@ -53,7 +54,7 @@ namespace TmxTest.Commands.TestStructure
                 "' -Id 002 -TestResultStatus Passed; " +
                 "$null = Set-TmxCurrentTestResult 'tr03' -Id 003;" +
                 "Get-TmxTestResultStatus -Id 002;",
-                TMX.TestData.TestStatePassed);
+                TestData.TestStatePassed);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]
@@ -78,7 +79,7 @@ namespace TmxTest.Commands.TestStructure
                 "' -Id 002 -TestResultStatus Failed; " +
                 "$null = Set-TmxCurrentTestResult 'tr03' -Id 003;" +
                 "Get-TmxTestResultStatus -Id 002;",
-                TMX.TestData.TestStateFailed);
+                TestData.TestStateFailed);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]
@@ -103,7 +104,7 @@ namespace TmxTest.Commands.TestStructure
                 "' -Id 002 -TestResultStatus Passed; " +
                 "$null = Set-TmxCurrentTestResult 'tr03' -Id 003;" +
                 "Get-TmxTestResultStatus -Id 002;",
-                TMX.TestData.TestStatePassed);
+                TestData.TestStatePassed);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]
@@ -128,7 +129,7 @@ namespace TmxTest.Commands.TestStructure
                 "' -Id 002 -TestResultStatus Failed; " +
                 "$null = Set-TmxCurrentTestResult 'tr03' -Id 003;" +
                 "Get-TmxTestResultStatus -Id 002;",
-                TMX.TestData.TestStateFailed);
+                TestData.TestStateFailed);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]
@@ -153,7 +154,7 @@ namespace TmxTest.Commands.TestStructure
                 "' -Id 002 -TestResultStatus KnownIssue; " +
                 "$null = Set-TmxCurrentTestResult 'tr03' -Id 003;" +
                 "Get-TmxTestResultStatus -Id 002;",
-                TMX.TestData.TestStateKnownIssue);
+                TestData.TestStateKnownIssue);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]
@@ -178,7 +179,7 @@ namespace TmxTest.Commands.TestStructure
                 "' -Id 002 -TestResultStatus Passed; " +
                 "$null = Set-TmxCurrentTestResult 'tr03' -Id 003;" +
                 "Get-TmxTestResultStatus -Id 002;",
-                TMX.TestData.TestStatePassed);
+                TestData.TestStatePassed);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]
@@ -203,7 +204,7 @@ namespace TmxTest.Commands.TestStructure
                 "' -Id 002 -TestResultStatus KnownIssue; " +
                 "$null = Set-TmxCurrentTestResult 'tr03' -Id 003;" +
                 "Get-TmxTestResultStatus -Id 002;",
-                TMX.TestData.TestStateKnownIssue);
+                TestData.TestStateKnownIssue);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]
@@ -228,7 +229,7 @@ namespace TmxTest.Commands.TestStructure
                 "' -Id 002 -TestResultStatus Failed; " +
                 "$null = Set-TmxCurrentTestResult 'tr03' -Id 003;" +
                 "Get-TmxTestResultStatus -Id 002;",
-                TMX.TestData.TestStateFailed);
+                TestData.TestStateFailed);
         }
     }
 }

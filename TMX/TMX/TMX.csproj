@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>Library</OutputType>
-    <RootNamespace>TMX</RootNamespace>
+    <RootNamespace>Tmx</RootNamespace>
     <AssemblyName>TMX</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -45,6 +45,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NoWin32Manifest>False</NoWin32Manifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -209,6 +210,8 @@
     <Compile Include="Commands\TestResults\SearchTMXTestResultCommand.cs" />
     <Compile Include="Commands\TestResults\SearchTMXTestScenarioCommand.cs" />
     <Compile Include="Commands\TestResults\SearchTMXTestSuiteCommand.cs" />
+    <Compile Include="Commands\TestServer\StartTmxServerCommand.cs" />
+    <Compile Include="Commands\TestServer\StopTmxServerCommand.cs" />
     <Compile Include="Commands\TestStructure\AddTMXSimpleTestResultCommand.cs" />
     <Compile Include="Commands\TestStructure\AddTMXTestCaseCommand.cs" />
     <Compile Include="Commands\TestStructure\GetTMXTestCaseCommand.cs" />
@@ -224,6 +227,7 @@
     <Compile Include="Commands\TestStructure\OpenTMXTestScenarioCommand.cs" />
     <Compile Include="Commands\TestStructure\OpenTMXTestSuiteCommand.cs" />
     <Compile Include="ExternalUse\Import.cs" />
+    <Compile Include="Helpers\ImportExportHelper.cs" />
     <Compile Include="Helpers\Inheritance\AssertionsCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\CommonCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\ConditionsCmdletBase.cs" />
@@ -268,6 +272,8 @@
     <Compile Include="Helpers\UnderlyingCode\Commands\TestExecution\TMXInvokeTestCaseCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestExecution\TMXInvokeTestScenarioCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestExecution\TMXInvokeTestSuiteCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestServer\StartServerCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestServer\StopTmxServerCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TMXAddSimpleTestResultCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TMXAddTestCaseCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TMXAddTestResultDetailCommand.cs" />
@@ -339,6 +345,7 @@
     <Folder Include="Commands\Experimental" />
     <Folder Include="Commands\Configuration" />
     <Folder Include="Commands\Logging" />
+    <Folder Include="Commands\TestServer" />
     <Folder Include="Commands\TestClient" />
     <Folder Include="Commands\TestExecution" />
     <Folder Include="Commands\Status" />
@@ -351,6 +358,7 @@
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Helpers\UnderlyingCode\Commands" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Logging" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\TestServer" />
     <Folder Include="Helpers\UnderlyingCode\Commands\TestClient" />
     <Folder Include="Helpers\UnderlyingCode\Commands\TestExecution" />
     <Folder Include="Helpers\UnderlyingCode\Commands\TestExecution" />
@@ -374,13 +382,13 @@
       <Project>{069651A0-FE15-42E2-89D5-9A761A47B143}</Project>
       <Name>Tmx.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TMX.Interfaces\TMX.Interfaces.csproj">
+    <ProjectReference Include="..\Tmx.Interfaces\Tmx.Interfaces.csproj">
       <Project>{9C5DA25F-6A59-4F97-B107-64DD549CB800}</Project>
-      <Name>TMX.Interfaces</Name>
+      <Name>Tmx.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tmx.Persistence\Tmx.Persistence.csproj">
-      <Project>{F290CD10-8829-4A67-AAC8-1099AED40DE5}</Project>
-      <Name>Tmx.Persistence</Name>
+    <ProjectReference Include="..\Tmx.Server\Tmx.Server.csproj">
+      <Project>{A80B14D0-C8DB-4F70-B18E-4FD1C16E0AEC}</Project>
+      <Name>Tmx.Server</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

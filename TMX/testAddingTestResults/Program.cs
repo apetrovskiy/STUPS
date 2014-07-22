@@ -10,7 +10,7 @@
 namespace testAddingTestResults
 {
     using System;
-    using TMX;
+    using Tmx;
     
     class Program
     {
@@ -33,7 +33,7 @@ namespace testAddingTestResults
 //    				Description = null
 //    			});
         		
-            Tmx.Server.Control.Start(@"http://localhost:12340");
+            Tmx.Server.ServerControl.Start(@"http://localhost:12340");
             
             Console.Write("Press any key to continue . . . ");
             Console.ReadKey(true);

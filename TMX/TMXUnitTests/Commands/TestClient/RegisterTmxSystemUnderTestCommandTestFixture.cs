@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMXUnitTests.Commands.TestClient
+namespace TmxUnitTests.Commands.TestClient
 {
     using System;
 	using TmxUnitTests;

@@ -15,10 +15,10 @@ namespace Tmx.Server.Tests.Modules
     using Nancy.Testing;
     using MbUnit.Framework;
     using NUnit.Framework;
-	using TMX;
-	using TMX.Interfaces;
-	using TMX.Interfaces.Remoting;
-	using TMX.Interfaces.TestStructure;
+	using Tmx;
+	using Tmx.Interfaces;
+	using Tmx.Interfaces.Remoting;
+	using Tmx.Interfaces.TestStructure;
 	using Tmx.Server.Helpers.Objects;
     using Xunit;
     using Tmx;

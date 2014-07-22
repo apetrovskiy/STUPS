@@ -7,10 +7,10 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-//namespace TMX.Helpers
+//namespace Tmx.Helpers
 //{
 //    using System;
-//    using TMX.Commands;
+//    using Tmx.Commands;
 //    using FluentNHibernate;
 //    using FluentNHibernate.Mapping;
 //    using NHibernate;

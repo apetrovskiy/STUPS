@@ -8,7 +8,7 @@
  */
 using System;
 
-namespace TMX.Commands.BDD
+namespace Tmx.Commands.BDD
 {
     /// <summary>
     /// Description of GetBDDCurrentFeatureDataCommand.

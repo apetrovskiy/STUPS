@@ -7,11 +7,11 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX.Interfaces
+namespace Tmx.Interfaces
 {
     using System;
     using System.Collections.Generic;
-	using TMX.Interfaces.TestStructure;
+	using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of ITestSuitesCollection.

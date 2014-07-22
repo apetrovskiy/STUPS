@@ -19,8 +19,12 @@ namespace Tmx.Server
         public static string TestStructure_Root = "/Results";
         public static string TestStructure_Suites = "/suites/";
         public static string TestStructure_Scenarios = "/scenarios/";
+        
         public static string TestClients_Root = "/Clients";
         public static string TestClients_Clients = "/";
         public static string TestClients_Client = "/{id:int}";
+        
+        public static string TestTasks_Root = "/Tasks";
+        public static string TestTasks_Current = "/current";
     }
 }

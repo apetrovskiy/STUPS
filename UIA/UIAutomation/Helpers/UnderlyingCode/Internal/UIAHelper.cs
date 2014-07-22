@@ -28,7 +28,7 @@ namespace UIAutomation
     
     using Commands;
     using System.Threading;
-    using TMX;
+    using Tmx;
 
     /// <summary>
     /// Description of UiaHelper.

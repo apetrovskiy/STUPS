@@ -9,7 +9,7 @@
 using System;
 using System.Management.Automation;
 
-namespace TMX
+namespace Tmx
 {
 	/// <summary>
 	/// Description of SuiteCmdletBase.

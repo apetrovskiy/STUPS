@@ -13,12 +13,13 @@ namespace Tmx.Server.Tests.Modules
     using System.Management.Automation;
     using Nancy;
     using Nancy.Testing;
-    using MbUnit.Framework;
+    // using MbUnit.Framework;
     using NUnit.Framework;
-	using TMX;
-	using TMX.Interfaces.TestStructure;
+	using Tmx;
+	using Tmx.Core;
+	using Tmx.Interfaces.TestStructure;
     using Xunit;
-    using Tmx;
+    using Tmx.Interfaces;
     using PSTestLib;
     
     /// <summary>
@@ -59,12 +60,12 @@ namespace Tmx.Server.Tests.Modules
             var browser = new Browser(new DefaultNancyBootstrapper());
             var testSuiteNameExpected = "test suite name";
             var testSuiteIdExpected = "111";
-            var testSuite = new TMX.TestSuite { Name = testSuiteNameExpected, Id = testSuiteIdExpected };
+            var testSuite = new TestSuite { Name = testSuiteNameExpected, Id = testSuiteIdExpected };
             
             // When
             // /Results/suites/
             var response = browser.Post(UrnList.TestStructure_Root + UrnList.TestStructure_Suites, (with) => {
-                with.JsonBody<TMX.TestSuite>(testSuite);
+                with.JsonBody<TestSuite>(testSuite);
             });
             
             // Then
@@ -80,7 +81,7 @@ namespace Tmx.Server.Tests.Modules
             var browser = new Browser(new DefaultNancyBootstrapper());
             var testSuiteNameExpected = "test suite name";
             var testSuiteIdExpected = "111";
-            var testSuite = new TMX.TestSuite { Name = testSuiteNameExpected, Id = testSuiteIdExpected };
+            var testSuite = new TestSuite { Name = testSuiteNameExpected, Id = testSuiteIdExpected };
             var testScenarioNameExpected = "test scenario name";
             var testScenarioIdExpected = "222";
             var testScenario = new TestScenario { Name = testScenarioNameExpected, Id = testScenarioIdExpected };
@@ -88,7 +89,7 @@ namespace Tmx.Server.Tests.Modules
             // When
             // /Results/suites/
             var response = browser.Post(UrnList.TestStructure_Root + UrnList.TestStructure_Suites, (with) => {
-                with.JsonBody<TMX.TestSuite>(testSuite);
+                with.JsonBody<TestSuite>(testSuite);
             })
                 .Then
                 // /Results/scenarios/

@@ -116,7 +116,7 @@ namespace UIAutomation
 //                    "\r\n" +
 //                    @"ipmo '" + 
 //                    executablePath.Substring(0, executablePath.LastIndexOf('\\')) +
-//                    @"\TMX.dll';";
+//                    @"\Tmx.dll';";
 //                if (SpyModes.seleniumSpy == spyMode) {
 //                    initScript +=
 //                        "\r\n" +

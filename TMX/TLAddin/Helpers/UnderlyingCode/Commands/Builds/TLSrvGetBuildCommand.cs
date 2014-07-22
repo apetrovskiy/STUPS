@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX
+namespace Tmx
 {
     using System;
     using System.Management.Automation;
@@ -36,10 +36,10 @@ namespace TMX
                 
             } else {
 
-                TLHelper.GetBuild(
-                    this.Cmdlet, 
-                    ((GetTLBuildCommand)this.Cmdlet).InputObject,
-                    ((GetTLBuildCommand)this.Cmdlet).Name);
+				TLHelper.GetBuild(
+					Cmdlet, 
+					((GetTLBuildCommand)Cmdlet).InputObject,
+					((GetTLBuildCommand)Cmdlet).Name);
                 
             }
         }

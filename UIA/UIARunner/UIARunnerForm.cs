@@ -13,7 +13,8 @@ namespace UiaRunner
     using System.Collections.Generic;
     using System.Drawing;
     using System.Windows.Forms;
-	using TMX.Interfaces.TestStructure;
+	using Tmx.Core;
+	using Tmx.Interfaces.TestStructure;
     using System.Threading;
     using PSTestRunner;
     
@@ -109,7 +110,7 @@ namespace UiaRunner
 
             this.dgvTestResults.Rows.Clear();
 
-            TMX.TestData.ResetData();
+            TestData.ResetData();
 
             try {
                 unregisterEvents();
@@ -133,14 +134,14 @@ namespace UiaRunner
                 index = 
                     this.dgvTestResults.Rows.Add(
                         System.DateTime.Now.ToString(),
-                        TMX.TestData.TestStateFailed,
+                        TestData.TestStateFailed,
                         "UiaRunner.ps1",
                         string.Empty,
                         string.Empty,
                         "UiaRunner.ps1");
 
-                setRowStatus(index, TMX.TestData.TestStateFailed);
-                setTestResultsCounters(TMX.TestData.TestStateFailed, 1);
+                setRowStatus(index, TestData.TestStateFailed);
+                setTestResultsCounters(TestData.TestStateFailed, 1);
                 setToReadyToRunState();
                 Application.DoEvents();
                 return;
@@ -151,14 +152,14 @@ namespace UiaRunner
                     index =
                         this.dgvTestResults.Rows.Add(
                             System.DateTime.Now.ToString(),
-                            TMX.TestData.TestStateFailed,
+                            TestData.TestStateFailed,
                             "UiaRunner.ps1",
                             string.Empty,
                             string.Empty,
                             "UiaRunner.ps1");
 
-                    setRowStatus(index, TMX.TestData.TestStateFailed);
-                    setTestResultsCounters(TMX.TestData.TestStateFailed, 1);
+                    setRowStatus(index, TestData.TestStateFailed);
+                    setTestResultsCounters(TestData.TestStateFailed, 1);
                     setToReadyToRunState();
                     Application.DoEvents();
                     return;
@@ -167,18 +168,18 @@ namespace UiaRunner
             }
             catch (Exception eInitException) {
                 index = 
-                    this.dgvTestResults.Rows.Add(
-                        System.DateTime.Now.ToString(),
-                        TMX.TestData.TestStateFailed,
-                        "UiaRunner.ps1",
-                        string.Empty,
-                        string.Empty,
-                        "UiaRunner.ps1",
-                        eInitException.Message,
-                        string.Empty);
+                    dgvTestResults.Rows.Add(
+                    DateTime.Now.ToString(),
+                    TestData.TestStateFailed,
+                    "UiaRunner.ps1",
+                    string.Empty,
+                    string.Empty,
+                    "UiaRunner.ps1",
+                    eInitException.Message,
+                    string.Empty);
 
-                setRowStatus(index, TMX.TestData.TestStateFailed);
-                setTestResultsCounters(TMX.TestData.TestStateFailed, 1);
+                setRowStatus(index, TestData.TestStateFailed);
+                setTestResultsCounters(TestData.TestStateFailed, 1);
                 setToReadyToRunState();
                 Application.DoEvents();
                 return;
@@ -187,37 +188,37 @@ namespace UiaRunner
             registerEvents();
 
             try {
-                res = PSTestRunner.TestRunner.RunScriptCode();
+                res = TestRunner.RunScriptCode();
                 if (!res) {
                     index = 
-                        this.dgvTestResults.Rows.Add(
-                            System.DateTime.Now.ToString(),
-                            TMX.TestData.TestStateFailed,
-                            PSTestRunner.TestRunner.ScriptPath,
-                            string.Empty,
-                            string.Empty,
-                            PSTestRunner.TestRunner.ScriptPath);
+                        dgvTestResults.Rows.Add(
+                        DateTime.Now.ToString(),
+                        TestData.TestStateFailed,
+                        TestRunner.ScriptPath,
+                        string.Empty,
+                        string.Empty,
+                        TestRunner.ScriptPath);
 
-                    setRowStatus(index, TMX.TestData.TestStateFailed);
-                    setTestResultsCounters(TMX.TestData.TestStateFailed, 1);
+                    setRowStatus(index, TestData.TestStateFailed);
+                    setTestResultsCounters(TestData.TestStateFailed, 1);
                     setToReadyToRunState();
                     Application.DoEvents();
                 }
             }
             catch (Exception eRunScript) {
                 index = 
-                    this.dgvTestResults.Rows.Add(
-                        System.DateTime.Now.ToString(),
-                        TMX.TestData.TestStateFailed,
-                        PSTestRunner.TestRunner.ScriptPath,
-                         string.Empty,
-                         string.Empty,
-                         PSTestRunner.TestRunner.ScriptPath,
-                         eRunScript.Message,
-                         string.Empty);
+                    dgvTestResults.Rows.Add(
+                    DateTime.Now.ToString(),
+                    TestData.TestStateFailed,
+                    TestRunner.ScriptPath,
+                    string.Empty,
+                    string.Empty,
+                    TestRunner.ScriptPath,
+                    eRunScript.Message,
+                    string.Empty);
 
-                setRowStatus(index, TMX.TestData.TestStateFailed);
-                setTestResultsCounters(TMX.TestData.TestStateFailed, 1);
+                setRowStatus(index, TestData.TestStateFailed);
+                setTestResultsCounters(TestData.TestStateFailed, 1);
                 setToReadyToRunState();
                 Application.DoEvents();
                 return;
@@ -232,8 +233,7 @@ namespace UiaRunner
         void NewTestResultClosed(object sender, EventArgs e)
         {
             
-            DataGridViewCellStyle cellStyle = 
-                new DataGridViewCellStyle {BackColor = System.Drawing.Color.Red};
+            var cellStyle = new DataGridViewCellStyle {BackColor = Color.Red};
             /*
             DataGridViewCellStyle cellStyle =
                 new DataGridViewCellStyle();
@@ -258,7 +258,7 @@ namespace UiaRunner
             catch {}
             
             int index = 
-                this.dgvTestResults.Rows.Add(
+				dgvTestResults.Rows.Add(
                     ((ITestResult)sender).Timestamp,
                     ((ITestResult)sender).Status,
                     ((ITestResult)sender).Name,
@@ -269,117 +269,125 @@ namespace UiaRunner
                     screenShotPath);
             setRowStatus(index, ((ITestResult)sender).Status);
             
-            PSTestRunner.TestRunner.WriteTestResultToLog(((ITestResult)sender));
+			TestRunner.WriteTestResultToLog(((ITestResult)sender));
             
             Application.DoEvents();
         }
         
         void PSStateRunning(string msg)
         {
-            this.toolStripStatusLabelState.Text = "Running...";
+			toolStripStatusLabelState.Text = "Running...";
         }
         
         void PSStateCodeCompleted(string msg)
         {
-            this.toolStripStatusLabelState.Text = "Completed";
+			toolStripStatusLabelState.Text = "Completed";
         }
         
         void PSStateNotStarted(string msg)
         {
-            this.toolStripStatusLabelState.Text = "Not started";
+			toolStripStatusLabelState.Text = "Not started";
         }
         
         void PSStateCodeStopped(string msg)
         {
-            this.toolStripStatusLabelState.Text = "Stopped";
+			toolStripStatusLabelState.Text = "Stopped";
         }
         
         void PSStateCodeStopping(string msg)
         {
-            this.toolStripStatusLabelState.Text = "Stopping...";
+			toolStripStatusLabelState.Text = "Stopping...";
         }
         
         public void PSStateErrorThrown(string msg)
         {
-            this.toolStripStatusLabelState.Text = "Error thrown";
+			toolStripStatusLabelState.Text = "Error thrown";
             
-            string timestamp = 
-                System.DateTime.Now.ToString();
+            string timestamp = DateTime.Now.ToString();
             
             int index = 
-                this.dgvTestResults.Rows.Add(
+				dgvTestResults.Rows.Add(
                     timestamp,
-                    TMX.TestData.TestStateFailed,
+                    TestData.TestStateFailed,
                     msg,
                     string.Empty,
                     string.Empty,
-                    PSTestRunner.TestRunner.ScriptPath,
+					TestRunner.ScriptPath,
                     msg,
                     string.Empty);
             
-            setRowStatus(index, TMX.TestData.TestStateFailed);
-            setTestResultsCounters(TMX.TestData.TestStateFailed, 1);
+            setRowStatus(index, TestData.TestStateFailed);
+            setTestResultsCounters(TestData.TestStateFailed, 1);
             setToReadyToRunState();
             
-            PSTestRunner.TestRunner.WriteTestResultToLog(
-               timestamp,
-               TMX.TestData.TestStateFailed,
-               msg,
-               string.Empty,
-               string.Empty,
-               PSTestRunner.TestRunner.ScriptPath,
-               msg,
-               string.Empty);
+            TestRunner.WriteTestResultToLog(
+                timestamp,
+                TestData.TestStateFailed,
+                msg,
+                string.Empty,
+                string.Empty,
+                TestRunner.ScriptPath,
+                msg,
+                string.Empty);
             
             Application.DoEvents();
         }
         
         public void PSOutputArrived(object data)
         {
-            string timestamp = 
-                System.DateTime.Now.ToString();
+            string timestamp = DateTime.Now.ToString();
             
             int index = 
-                this.dgvTestResults.Rows.Add(
+                dgvTestResults.Rows.Add(
                     timestamp,
                     rowStateOutput,
                     data,
                     string.Empty,
                     string.Empty,
-                    PSTestRunner.TestRunner.ScriptPath,
+                    TestRunner.ScriptPath,
                     string.Empty,
                     string.Empty);
             
             setRowStatus(index, rowStateOutput);
             
-            this.dgvTestResults.AutoResizeColumns();
+			dgvTestResults.AutoResizeColumns();
             
-            PSTestRunner.TestRunner.WriteTestResultToLog(
-               timestamp,
-               rowStateOutput,
-               data,
-               string.Empty,
-               string.Empty,
-               PSTestRunner.TestRunner.ScriptPath,
-               string.Empty,
-               string.Empty);
+            TestRunner.WriteTestResultToLog(
+                timestamp,
+                rowStateOutput,
+                data,
+                string.Empty,
+                string.Empty,
+                TestRunner.ScriptPath,
+                string.Empty,
+                string.Empty);
             
             Application.DoEvents();
         }
         
         void PSErrorArrived(object data)
         {
-            this.dgvTestResults.AutoResizeColumns();
+			dgvTestResults.AutoResizeColumns();
             Application.DoEvents();
         }
         
-        private void registerEvents()
+        void registerEvents()
         {
-            TMX.TestData.TmxNewTestResultClosed += 
-                new TMX.TmxStructureChangedEventHandler(
+            TestData.TmxNewTestResultClosed += 
+                new TmxStructureChangedEventHandler(
                     NewTestResultClosed);
             
             // Runspace and Pipeline events
+			PSRunner.Runner.PSCodeRunning += PSStateRunning;
+			PSRunner.Runner.PSCodeCompleted += PSStateCodeCompleted;
+			PSRunner.Runner.PSCodeNotStarted += PSStateNotStarted;
+			PSRunner.Runner.PSCodeStopped += PSStateCodeStopped;
+			PSRunner.Runner.PSCodeStopping += PSStateCodeStopping;
+			PSRunner.Runner.PSErrorThrown += PSStateErrorThrown;
+			PSRunner.Runner.PSOutputArrived += PSOutputArrived;
+			PSRunner.Runner.PSErrorArrived += PSErrorArrived;
+            
+            /*
             PSRunner.Runner.PSCodeRunning +=
                 new PSRunner.PSStateChangedEventHandler(
                     PSStateRunning);
@@ -404,16 +412,27 @@ namespace UiaRunner
             PSRunner.Runner.PSErrorArrived +=
                 new PSRunner.PSDataArrivedEventHandler(
                     PSErrorArrived);
+            */
         }
         
-        private void unregisterEvents()
+        void unregisterEvents()
         {
-            TMX.TestData.TmxNewTestResultClosed -= 
-                new TMX.TmxStructureChangedEventHandler(
+            TestData.TmxNewTestResultClosed -= 
+                new TmxStructureChangedEventHandler(
                 NewTestResultClosed);
             
             
             // Runspace and Pipeline events
+			PSRunner.Runner.PSCodeRunning -= PSStateRunning;
+			PSRunner.Runner.PSCodeCompleted -= PSStateCodeCompleted;
+			PSRunner.Runner.PSCodeNotStarted -= PSStateNotStarted;
+			PSRunner.Runner.PSCodeStopped -= PSStateCodeStopped;
+			PSRunner.Runner.PSCodeStopping -= PSStateCodeStopping;
+			PSRunner.Runner.PSErrorThrown -= PSStateErrorThrown;
+			PSRunner.Runner.PSOutputArrived -= PSOutputArrived;
+			PSRunner.Runner.PSErrorArrived -= PSErrorArrived;
+            
+            /*
             PSRunner.Runner.PSCodeRunning -=
                 new PSRunner.PSStateChangedEventHandler(
                     PSStateRunning);
@@ -436,28 +455,28 @@ namespace UiaRunner
                 new PSRunner.PSDataArrivedEventHandler(
                     PSOutputArrived);
             PSRunner.Runner.PSErrorArrived -=
-                new PSRunner.PSDataArrivedEventHandler(
-                    PSErrorArrived);
+                new PSRunner.PSDataArri
+            */
         }
         
-        private void autoresizeColumns()
+        void autoresizeColumns()
         {
-            this.dgvTestResults.AutoResizeColumn(0);
-            this.dgvTestResults.AutoResizeColumn(1);
-            this.dgvTestResults.AutoResizeColumn(2);
+			dgvTestResults.AutoResizeColumn(0);
+			dgvTestResults.AutoResizeColumn(1);
+			dgvTestResults.AutoResizeColumn(2);
         }
         
-        private void setRowStatus(int index, string status)
+        void setRowStatus(int index, string status)
         {
-            if (status != TMX.TestData.TestStateNotTested) {
+            if (status != TestData.TestStateNotTested) {
                 foreach (DataGridViewCell cell in this.dgvTestResults.Rows[index].Cells) {
-                    if (status == TMX.TestData.TestStatePassed) {
+                    if (status == TestData.TestStatePassed) {
                         cell.Style = this.cellStylePassed;
                     }
-                    if (status == TMX.TestData.TestStateFailed) {
+                    if (status == TestData.TestStateFailed) {
                         cell.Style = this.cellStyleFailed;
                     }
-                    if (status == TMX.TestData.TestStateKnownIssue) {
+                    if (status == TestData.TestStateKnownIssue) {
                         cell.Style = this.cellStylePassedWithBadSmell;
                     }
                     if (status == rowStateOutput) {
@@ -468,83 +487,80 @@ namespace UiaRunner
             setTestResultsCounters(status, 1);
         }
 
-        private void setTestResultsCounters(string type, int count)
+        void setTestResultsCounters(string type, int count)
         {
             TestResultTypes tsType = TestResultTypes.NotTested;
             switch (type) {
-                case TMX.TestData.TestStatePassed:
+                case TestData.TestStatePassed:
                     tsType = TestResultTypes.Passed;
                     break;
-                case TMX.TestData.TestStateFailed:
+                case TestData.TestStateFailed:
                     tsType = TestResultTypes.Failed;
                     break;
-                case TMX.TestData.TestStateKnownIssue:
-                    tsType = PSTestRunner.TestResultTypes.PassedWithBadSmell;
+                case TestData.TestStateKnownIssue:
+                    tsType = TestResultTypes.PassedWithBadSmell;
                     break;
             }
             
-            PSTestRunner.TestRunner.SetTestResultsCounters(
-                tsType,
-                count,
-                ref this.testResultsPassed,
-                ref this.testResultsFailed,
-                ref this.testResultsAll,
-                this.toolStripStatusLabelPassedCount,
-                this.toolStripStatusLabelFailedCount,
-                this.toolStripStatusLabelAverageCount,
-                this.startTime);
+			TestRunner.SetTestResultsCounters(
+				tsType,
+				count,
+				ref testResultsPassed,
+				ref testResultsFailed,
+				ref testResultsAll,
+				toolStripStatusLabelPassedCount,
+				toolStripStatusLabelFailedCount,
+				toolStripStatusLabelAverageCount,
+				startTime);
         }
         
-        private void setToReadyToRunState()
+        void setToReadyToRunState()
         {
             // MainMenu
-            this.runToolStripMenuItem.Enabled = true;
-            this.inputToolStripTextBox.Enabled = true;
-            this.breakToolStripMenuItem.Enabled = false;
-            this.openToolStripMenuItem.Enabled = true;
+            runToolStripMenuItem.Enabled = true;
+            inputToolStripTextBox.Enabled = true;
+            breakToolStripMenuItem.Enabled = false;
+            openToolStripMenuItem.Enabled = true;
             
             // ToolBar
-            this.toolStripButtonRun.Enabled = true;
-            this.toolStripTextBoxInput.Enabled = true;
-            this.toolStripButtonBreak.Enabled = false;
-            this.toolStripButtonOpen.Enabled = true;
+            toolStripButtonRun.Enabled = true;
+            toolStripTextBoxInput.Enabled = true;
+            toolStripButtonBreak.Enabled = false;
+            toolStripButtonOpen.Enabled = true;
         }
         
-        private void setToRunningState()
+        void setToRunningState()
         {
             // MainMenu
-            this.runToolStripMenuItem.Enabled = false;
-            this.inputToolStripTextBox.Enabled = false;
-            this.breakToolStripMenuItem.Enabled = true;
-            this.openToolStripMenuItem.Enabled = false;
+            runToolStripMenuItem.Enabled = false;
+            inputToolStripTextBox.Enabled = false;
+            breakToolStripMenuItem.Enabled = true;
+            openToolStripMenuItem.Enabled = false;
             
             // ToolBar
-            this.toolStripButtonRun.Enabled = false;
-            this.toolStripTextBoxInput.Enabled = false;
-            this.toolStripButtonBreak.Enabled = true;
-            this.toolStripButtonOpen.Enabled = false;
+            toolStripButtonRun.Enabled = false;
+            toolStripTextBoxInput.Enabled = false;
+            toolStripButtonBreak.Enabled = true;
+            toolStripButtonOpen.Enabled = false;
             
             // variables
-            this.testResultsPassed = 0;
-            this.testResultsFailed = 0;
-            this.startTime = System.DateTime.Now;
-            this.testResultsAll = 0;
-            setTestResultsCounters(TMX.TestData.TestStatePassed, 0);
-            setTestResultsCounters(TMX.TestData.TestStateFailed, 0);
+            testResultsPassed = 0;
+            testResultsFailed = 0;
+            startTime = System.DateTime.Now;
+            testResultsAll = 0;
+            setTestResultsCounters(TestData.TestStatePassed, 0);
+            setTestResultsCounters(TestData.TestStateFailed, 0);
         }
         
-        private void setCaption(string scriptPath)
+        void setCaption(string scriptPath)
         {
-            string scriptFileName = 
-                scriptPath.Split('\\')[scriptPath.Split('\\').Length - 1];
-            this.Text = 
-                "UiaRunner - " +
-                scriptFileName;
+            string scriptFileName = scriptPath.Split('\\')[scriptPath.Split('\\').Length - 1];
+            Text = "UiaRunner - " + scriptFileName;
         }
         
-        private void resetCaption()
+        void resetCaption()
         {
-            this.Text = 
+			Text = 
                 "UiaRunner";
         }
         
@@ -555,22 +571,22 @@ namespace UiaRunner
         
         void ToolStripButtonOpenClick(object sender, EventArgs e)
         {
-            this.openToolStripMenuItem.PerformClick();
+			openToolStripMenuItem.PerformClick();
         }
         
         void ToolStripButtonRunClick(object sender, EventArgs e)
         {
-            this.runToolStripMenuItem.PerformClick();
+			runToolStripMenuItem.PerformClick();
         }
         
         void ToolStripButtonBreakClick(object sender, EventArgs e)
         {
-            this.breakToolStripMenuItem.PerformClick();
+			breakToolStripMenuItem.PerformClick();
         }
         
         void BreakToolStripMenuItemClick(object sender, EventArgs e)
         {
-            PSTestRunner.TestRunner.BreakScript();
+			TestRunner.BreakScript();
         }
         
         void ExitToolStripMenuItemClick(object sender, EventArgs e)
@@ -585,20 +601,18 @@ namespace UiaRunner
         
         void AboutToolStripMenuItemClick(object sender, EventArgs e)
         {
-            AboutForm aboutForm = new AboutForm();
+            var aboutForm = new AboutForm();
             aboutForm.ShowDialog();
         }
         
         void ToolStripTextBoxInputParametersModifiedChanged(object sender, EventArgs e)
         {
-            this.toolStripTextBoxInput.Text =
-                this.inputToolStripTextBox.Text;
+			toolStripTextBoxInput.Text = inputToolStripTextBox.Text;
         }
         
         void ToolStripTextBoxInputModifiedChanged(object sender, EventArgs e)
         {
-            this.inputToolStripTextBox.Text =
-                this.toolStripTextBoxInput.Text;
+			inputToolStripTextBox.Text = toolStripTextBoxInput.Text;
         }
     }
     

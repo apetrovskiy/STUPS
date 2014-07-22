@@ -7,12 +7,14 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX.Commands
+namespace Tmx.Commands
 {
     using System;
     using System.Management.Automation;
     using System.Linq;
     using System.Xml.Linq;
+	using TMX.Interfaces;
+	using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of GetTestResultsFromSearchCommand.
@@ -22,27 +24,54 @@ namespace TMX.Commands
     {
         protected override void BeginProcessing()
         {
-            this.CheckCmdletParameters();
+			CheckCmdletParameters();
             
-            SearchCmdletBase cmdlet = 
-                new SearchCmdletBase();
+            var cmdlet = new SearchCmdletBase();
             cmdlet.FilterAll = true;
-
-            IOrderedEnumerable<TestSuite> suites =
-                TmxHelper.SearchForSuites(cmdlet);
+            
+            // 20140720
+//            var dataObject = new SearchCmdletBaseDataObject {
+//                FilterAll = true
+//            };
+            // 20140721
+			var dataObject = new SearchCmdletBaseDataObject {
+                Descending = cmdlet.Descending,
+                FilterAll = cmdlet.FilterAll,
+                FilterDescriptionContains = cmdlet.FilterDescriptionContains,
+                FilterFailed = cmdlet.FilterFailed,
+                FilterIdContains = cmdlet.FilterIdContains,
+                FilterNameContains = cmdlet.FilterNameContains,
+                FilterNone = cmdlet.FilterNone,
+                FilterNotTested = cmdlet.FilterNotTested,
+                FilterOutAutomaticAndTechnicalResults = cmdlet.FilterOutAutomaticAndTechnicalResults,
+                FilterOutAutomaticResults = cmdlet.FilterOutAutomaticResults,
+                FilterPassed = cmdlet.FilterPassed,
+                FilterPassedWithBadSmell = cmdlet.FilterPassedWithBadSmell,
+                Id = cmdlet.Id,
+                Name = cmdlet.Name,
+                OrderByDateTime = cmdlet.OrderByDateTime,
+                OrderByFailRate = cmdlet.OrderByFailRate,
+                OrderById = cmdlet.OrderById,
+                OrderByName = cmdlet.OrderByName,
+                OrderByPassRate = cmdlet.OrderByPassRate,
+                OrderByTimeSpent = cmdlet.OrderByTimeSpent
+			};
+            // IOrderedEnumerable<TestSuite> suites =
+            IOrderedEnumerable<ITestSuite> suites = TmxHelper.SearchForSuites(dataObject);
             
 cmdlet.FilterNone = true;
-
-            IOrderedEnumerable<TestScenario> scenarios = 
-                TmxHelper.SearchForScenarios(cmdlet);
+            
+            // 20140720
+            // IOrderedEnumerable<TestScenario> scenarios =
+            IOrderedEnumerable<ITestScenario> scenarios = TmxHelper.SearchForScenarios(dataObject);
 
             //cmdlet.FilterAll = false;
             //cmdlet.FilterPassedWithBadSmell = true;
 //            cmdlet.FilterNone = true;
             
-            
-            IOrderedEnumerable<TestResult> testResults = 
-                TmxHelper.SearchForTestResults(cmdlet);
+            // 20140720
+            // IOrderedEnumerable<TestResult> testResults =
+            IOrderedEnumerable<ITestResult> testResults = TmxHelper.SearchForTestResults(dataObject);
             
             XElement suitesElement = 
                 TmxHelper.CreateSuitesXElementWithParameters(
@@ -51,7 +80,7 @@ cmdlet.FilterNone = true;
                     testResults,
                     (new XMLElementsNativeStruct(null)));
             
-            this.WriteObject(this, suitesElement);
+			WriteObject(this, suitesElement);
 
         }
     }

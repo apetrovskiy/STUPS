@@ -75,13 +75,15 @@
     </Compile>
     <Compile Include="Commands\StartTmxServerCommand.cs" />
     <Compile Include="Commands\StopTmxServerCommand.cs" />
-    <Compile Include="Control.cs" />
+    <Compile Include="InternalServerControl.cs" />
     <Compile Include="Helpers\Commands\StartServerCommand.cs" />
     <Compile Include="Helpers\Commands\StopTmxServerCommand.cs" />
     <Compile Include="Helpers\Objects\ClientsCollection.cs" />
     <Compile Include="Helpers\UrnList.cs" />
     <Compile Include="Modules\TestClientsModule.cs" />
     <Compile Include="Modules\TestResultsModule.cs" />
+    <Compile Include="Modules\TestTasksModule.cs" />
+    <Compile Include="ServerControl.cs" />
     <Compile Include="TestBootstrapper.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -92,13 +94,13 @@
       <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
       <Name>PSTestLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Tmx.Core\Tmx.Core.csproj">
+      <Project>{069651A0-FE15-42E2-89D5-9A761A47B143}</Project>
+      <Name>Tmx.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TMX.Interfaces\TMX.Interfaces.csproj">
       <Project>{9C5DA25F-6A59-4F97-B107-64DD549CB800}</Project>
       <Name>TMX.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Tmx\Tmx.csproj">
-      <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>
-      <Name>Tmx</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

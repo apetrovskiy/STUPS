@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX
+namespace Tmx
 {
     using System;
     using System.Management.Automation;
@@ -18,10 +18,6 @@ namespace TMX
     [Cmdlet(VerbsCommon.Add, "TLBuild")]
     public class AddTLBuildCommand : TLBuildCmdletBase
     {
-        public AddTLBuildCommand()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = false,
                    Position = 0,
@@ -38,8 +34,7 @@ namespace TMX
         {
             TLHelper.checkTestPlan(this.InputObject);
             
-            TLSrvAddBuildCommand command =
-                new TLSrvAddBuildCommand(this);
+            var command = new TLSrvAddBuildCommand(this);
             command.Execute();
         }
     }

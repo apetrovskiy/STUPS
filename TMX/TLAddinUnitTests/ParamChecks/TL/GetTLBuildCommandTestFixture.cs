@@ -10,7 +10,7 @@
 namespace TLAddinUnitTests.CheckCmdletParameters
 {
     using System;
-    using TMX;
+    using Tmx;
     using MbUnit.Framework;
     
     /// <summary>
@@ -19,10 +19,6 @@ namespace TLAddinUnitTests.CheckCmdletParameters
     [TestFixture]
     public class GetTLBuildCommandTestFixture
     {
-        public GetTLBuildCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

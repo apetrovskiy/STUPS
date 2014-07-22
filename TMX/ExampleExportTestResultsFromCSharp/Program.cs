@@ -10,8 +10,10 @@
 namespace ExampleExportTestResultsFromCSharp
 {
     using System;
-    using TMX;
-    using TMX.Interfaces.TestStructure;
+	using TMX.Interfaces;
+    using Tmx;
+	using Tmx.Core;
+    using Tmx.Interfaces.TestStructure;
     
     class Program
     {
@@ -67,7 +69,21 @@ namespace ExampleExportTestResultsFromCSharp
                         
                         // adding a new test scenario to the test suite
                         // test scenario == name and id of th corresponding test result
-                        TmxHelper.AddTestScenario(cmdlet);
+                        // 20140721
+                        var dataObject = new AddScenarioCmdletBaseDataObject {
+                            AfterTest = cmdlet.AfterTest,
+                            BeforeTest = cmdlet.BeforeTest,
+                            Description = cmdlet.Description,
+                            Id = cmdlet.Id,
+                            InputObject = cmdlet.InputObject,
+                            Name = cmdlet.Name,
+                            TestPlatformId = cmdlet.TestPlatformId,
+                            TestSuiteId = cmdlet.TestSuiteId,
+                            TestSuiteName = cmdlet.TestSuiteName
+                        };
+                        
+                        // TmxHelper.AddTestScenario(cmdlet);
+                        TmxHelper.AddTestScenario(dataObject);
                         
                         // create a test result with the same name and id as the test scenario has
                         TmxHelper.CloseTestResult(
@@ -93,7 +109,7 @@ namespace ExampleExportTestResultsFromCSharp
             // creating a database
             Console.WriteLine("creating DB");
             SQLiteHelper.CreateDatabase(
-                new TMX.DatabaseFileCmdletBase(),
+                new Tmx.DatabaseFileCmdletBase(),
                 @"c:\1\1.db3",
                 false,
                 false,
@@ -114,8 +130,15 @@ namespace ExampleExportTestResultsFromCSharp
             
             // export data to an XML sheet
             Console.WriteLine("export to XML");
+            
+            // 20140721
+            var dataObject2 = new SearchCmdletBaseDataObject {
+                // FilterAll = AddScenarioCmdletBase.
+            };
+            
             TmxHelper.ExportResultsToXML(
-                (new ImportExportCmdletBase()),
+                // (new ImportExportCmdletBase()),
+                dataObject2,
                 @"C:\1\export_file.xml");
             
             Console.Write("Press any key to continue . . . ");

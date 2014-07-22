@@ -12,8 +12,9 @@ namespace TmxUnitTests.Commands.TestStructure
     using System;
     using MbUnit.Framework;using NUnit.Framework;
     using PSTestLib;
-    using TMX;
-    using TMX.Interfaces.TestStructure;
+    using Tmx;
+    using Tmx.Core;
+    using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of CloseTmxTestResultCommandTestFixture.
@@ -41,7 +42,7 @@ namespace TmxUnitTests.Commands.TestStructure
         [MbUnit.Framework.Category("Fast")]
         public void CloseTestResult_Current_WithPassed()
         {
-            const string expectedResult = TMX.TestData.TestStatePassed;
+            const string expectedResult = TestData.TestStatePassed;
 
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, false);
 
@@ -55,7 +56,7 @@ namespace TmxUnitTests.Commands.TestStructure
         [MbUnit.Framework.Category("Fast")]
         public void CloseTestResult_Current_WithFailed()
         {
-            const string expectedResult = TMX.TestData.TestStateFailed;
+            const string expectedResult = TestData.TestStateFailed;
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, false);
 
             MbUnit.Framework.Assert.AreEqual(
@@ -68,7 +69,7 @@ namespace TmxUnitTests.Commands.TestStructure
         [MbUnit.Framework.Category("Fast")]
         public void CloseTestResult_Current_WithPassedKnownIssue()
         {
-            const string expectedResult = TMX.TestData.TestStateKnownIssue;
+            const string expectedResult = TestData.TestStateKnownIssue;
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, true);
 
             MbUnit.Framework.Assert.AreEqual(
@@ -81,7 +82,7 @@ namespace TmxUnitTests.Commands.TestStructure
         [MbUnit.Framework.Category("Fast")]
         public void CloseTestResult_Current_WithFailedKnownIssue()
         {
-            const string expectedResult = TMX.TestData.TestStateKnownIssue;
+            const string expectedResult = TestData.TestStateKnownIssue;
             UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, true);
             MbUnit.Framework.Assert.AreEqual(
                 expectedResult,

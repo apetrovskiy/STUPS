@@ -10,7 +10,7 @@
 namespace Tmx.Server.Tests
 {
     using System;
-	using TMX;
+	using Tmx.Core;
 	using PSTestLib;
 	using Tmx.Server.Helpers.Objects;
     

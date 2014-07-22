@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX
+namespace Tmx
 {
     using System;
     using System.Management.Automation;
@@ -15,7 +15,7 @@ namespace TMX
     /// <summary>
     /// Description of TLSCmdletBase.
     /// </summary>
-    public class TLSCmdletBase : TMX.CommonCmdletBase
+    public class TLSCmdletBase : Tmx.CommonCmdletBase
     {
         public TLSCmdletBase()
         {

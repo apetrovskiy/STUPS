@@ -33,10 +33,6 @@ namespace Tmx
         
         internal static ISessionFactory SessionFactory = null;
         
-        // 20140720
-        // public static void InitializeStorage(CommonCmdletBase cmdlet)
-        // 20140721
-        // public static void InitializeStorage(ICommonCmdletBaseDataObject cmdlet)
         public static void InitializeStorage()
         {
             if (!string.IsNullOrEmpty(Preferences.StorageUsername)) {

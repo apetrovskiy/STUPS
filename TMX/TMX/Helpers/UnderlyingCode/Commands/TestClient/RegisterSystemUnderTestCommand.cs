@@ -27,9 +27,8 @@ namespace Tmx
         {
             var cmdlet = (RegisterTmxSystemUnderTestCommand)Cmdlet;
             ClientSettings.ServerUrl = cmdlet.ServerUrl;
-            // Tmx.Client.Helpers.ClientSettings.ServerUrl = cmdlet.ServerUrl;
             var registration = new Registration();
-            registration.SendRegistrationInfoAndGetClientId();
+            ClientSettings.ClientId = registration.SendRegistrationInfoAndGetClientId();
         }
     }
 }

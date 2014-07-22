@@ -35,15 +35,17 @@ namespace Tmx.Client
 			        UptimeSeconds = Environment.TickCount / 1000
 			    });
 			
-			var registrationResponce = client.Execute(request);
+			var registrationResponse = client.Execute<TestClientInformation>(request);
 			
-			Console.WriteLine(registrationResponce);
-			Console.WriteLine(registrationResponce.Content);
-			Console.WriteLine(registrationResponce.ContentType);
-			Console.WriteLine(registrationResponce.ResponseStatus);
-			Console.WriteLine(registrationResponce.ResponseUri);
-			Console.WriteLine(registrationResponce.StatusCode);
-			return 111;
+//			Console.WriteLine(registrationResponse);
+//			Console.WriteLine(registrationResponse.Content);
+//			Console.WriteLine(registrationResponse.ContentType);
+//			Console.WriteLine(registrationResponse.ResponseStatus);
+//			Console.WriteLine(registrationResponse.ResponseUri);
+//			Console.WriteLine(registrationResponse.StatusCode);
+//			Console.WriteLine(registrationResponse.Data.Id);
+//			return 111;
+			return registrationResponse.Data.Id;
         }
     }
 }

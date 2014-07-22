@@ -555,7 +555,9 @@ namespace Tmx
                         gathered.TestSuites,
                         gathered.TestScenarios,
                         gathered.TestResults,
-                        (new XMLElementsNativeStruct(cmdlet)));
+                        // 20140722
+                        // (new XMLElementsNativeStruct(cmdlet)));
+                        (new XMLElementsNativeStruct()));
                 
                 // cmdlet.WriteVerbose(cmdlet, "creating an XML document");
                 var document = new XDocument();
@@ -721,23 +723,10 @@ namespace Tmx
             return suites;
         }
         
-        // 20140720
-        // public static void SearchForSuitesPS(SearchCmdletBase cmdlet)
-        // public static void SearchForSuitesPS(ISearchCmdletBaseDataObject cmdlet)
         public static IOrderedEnumerable<ITestSuite> SearchForSuitesPS(ISearchCmdletBaseDataObject cmdlet)
         {
-            // 20140720
-            // IOrderedEnumerable<TestSuite> suites =
             IOrderedEnumerable<ITestSuite> suites = SearchForSuites(cmdlet);
-            
-			if (suites.Any())
-                // 20140720
-                // cmdlet.WriteObject(suites, true);
-                return suites;
-			else
-				// 20140720
-				// cmdlet.WriteObject(null);
-				return null;
+			return suites.Any() ? suites : null;
         }
         
 //        public static Func<TInput, bool> Combine<TInput, Tout>
@@ -853,23 +842,10 @@ namespace Tmx
             return scenarios;
         }
         
-        // 20140720
-        // public static void SearchForScenariosPS(SearchCmdletBase cmdlet)
-        // public static void SearchForScenariosPS(ISearchCmdletBaseDataObject cmdlet)
         public static IOrderedEnumerable<ITestScenario> SearchForScenariosPS(ISearchCmdletBaseDataObject cmdlet)
         {
-            // IOrderedEnumerable<TestScenario> scenarios = SearchForScenarios(cmdlet);
             var scenarios = SearchForScenarios(cmdlet);
-            
-            if (scenarios.Any()) {
-                // 20140720
-                // cmdlet.WriteObject(scenarios, true);
-                return scenarios;
-            } else {
-                // 20140720
-                // cmdlet.WriteObject(null);
-                return null;
-            }
+			return scenarios.Any() ? scenarios : null;
         }
         
         /// <summary>
@@ -1206,8 +1182,6 @@ namespace Tmx
 //        }
 //        #endregion Test settings
         
-        // 20140720
-        // public static void ExportResultsToJUnitXML(SearchCmdletBase cmdlet, string path)
         public static void ExportResultsToJUnitXML(ISearchCmdletBaseDataObject cmdlet, string path)
         {
             try {
@@ -1215,25 +1189,16 @@ namespace Tmx
                 var gathered = new GatherTestResultsCollections();
                 gathered.GatherCollections(cmdlet);
                 
-//                cmdlet.WriteVerbose(cmdlet, "converting data to XML");
                 var suitesElement = 
                     TmxHelper.CreateSuitesXElementWithParameters(
                         gathered.TestSuites,
                         gathered.TestScenarios,
                         gathered.TestResults,
-                        (new XMLElementsJUnitStruct(cmdlet)));
+                        (new XMLElementsJUnitStruct()));
                 
-//                cmdlet.WriteVerbose(cmdlet, "creating an XML document");
                 var document = new XDocument();
-//                cmdlet.WriteVerbose(cmdlet, "adding XML data to the document");
                 document.Add(suitesElement);
-//                cmdlet.WriteVerbose(
-//                    cmdlet, 
-//                    "saving XML to the file '" + 
-//                    path +
-//                    "'.");
                 document.Save(path);
-//                cmdlet.WriteVerbose(cmdlet, "the document is saved");
             }
             catch (Exception eCreateDocument) {
                 // 20140720
@@ -1254,25 +1219,13 @@ namespace Tmx
             }
         }
         
-        // 20140720
-        // public static void GetCurrentTestSuiteStatus(OpenSuiteCmdletBase cmdlet, bool skipAutomatic)
-        // public static void GetCurrentTestSuiteStatus(IOpenSuiteCmdletBaseDataObject cmdlet, bool skipAutomatic)
         public static string GetCurrentTestSuiteStatus(IOpenSuiteCmdletBaseDataObject cmdlet, bool skipAutomatic)
         {
-            // 20140720
-            // if (null == TestData.CurrentTestSuite) return;
             if (null == TestData.CurrentTestSuite) return string.Empty;
             TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
-            // 20140720
-            // cmdlet.WriteObject(cmdlet, TestData.CurrentTestSuite.Status);
             return TestData.CurrentTestSuite.Status;
         }
         
-        // 20140720
-        // public static void GetTestSuiteStatusByName(OpenSuiteCmdletBase cmdlet, string name, string testPlatformId, bool skipAutomatic)
-        // public static void GetTestSuiteStatusByName(IOpenSuiteCmdletBaseDataObject cmdlet, string name, string testPlatformId, bool skipAutomatic)
-        // 20140722
-        // public static string GetTestSuiteStatusByName(IOpenSuiteCmdletBaseDataObject dataObject, string name, string testPlatformId, bool skipAutomatic)
         public static string GetTestSuiteStatusByName(string name, string testPlatformId, bool skipAutomatic)
         {
             TmxHelper.OpenTestSuite(
@@ -1288,57 +1241,32 @@ namespace Tmx
             return TestData.CurrentTestSuite.Status;
         }
         
-        // 20140720
-        // public static void GetTestSuiteStatusById(OpenSuiteCmdletBase cmdlet, string id, string testPlatformId, bool skipAutomatic)
-        // public static void GetTestSuiteStatusById(IOpenSuiteCmdletBaseDataObject cmdlet, string id, string testPlatformId, bool skipAutomatic)
-        // 20140722
-        // public static string GetTestSuiteStatusById(IOpenSuiteCmdletBaseDataObject dataObject, string id, string testPlatformId, bool skipAutomatic)
         public static string GetTestSuiteStatusById(string id, string testPlatformId, bool skipAutomatic)
         {
             TmxHelper.OpenTestSuite(
                 string.Empty,
                 id,
                 testPlatformId);
-            // 20140720
-            // if (null == TestData.CurrentTestSuite) return;
             if (null == TestData.CurrentTestSuite) return string.Empty;
             TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
-            // 20140720
-            // cmdlet.WriteObject(cmdlet, TestData.CurrentTestSuite.Status);
             return TestData.CurrentTestSuite.Status;
         }
         
-        // 20140720
-        // public static void GetCurrentTestScenarioStatus(OpenScenarioCmdletBase cmdlet, bool skipAutomatic)
-        // public static void GetCurrentTestScenarioStatus(IOpenScenarioCmdletBaseDataObject cmdlet, bool skipAutomatic)
         public static string GetCurrentTestScenarioStatus(IOpenScenarioCmdletBaseDataObject cmdlet, bool skipAutomatic)
         {
-            // 20140720
-            // if (null == TestData.CurrentTestScenario) return;
             if (null == TestData.CurrentTestScenario) return string.Empty;
             TestData.RefreshScenarioStatistics(TestData.CurrentTestScenario, skipAutomatic);
-            // 20140720
-            // cmdlet.WriteObject(cmdlet, TestData.CurrentTestScenario.Status);
             return TestData.CurrentTestScenario.Status;
         }
         
-        // 20140720
-        // public static void GetTestScenarioStatus(OpenScenarioCmdletBase cmdlet, bool skipAutomatic)
-        // public static void GetTestScenarioStatus(IOpenScenarioCmdletBaseDataObject cmdlet, bool skipAutomatic)
         public static string GetTestScenarioStatus(IOpenScenarioCmdletBaseDataObject dataObject, bool skipAutomatic)
         {
             TmxHelper.OpenTestScenario(dataObject);
-            // 20140720
-            // if (null == TestData.CurrentTestScenario) return;
             if (null == TestData.CurrentTestScenario) return string.Empty;
             TestData.RefreshScenarioStatistics(TestData.CurrentTestScenario, skipAutomatic);
-            // 20140720
-            // cmdlet.WriteObject(cmdlet, TestData.CurrentTestScenario.Status);
             return TestData.CurrentTestScenario.Status;
         }
         
-        // 20140720
-        // public static void SetCurrentTestResult(TestResultCmdletBase cmdlet)
         public static void SetCurrentTestResult(ITestResultCmdletBaseDataObject cmdlet)
         {
             if (null != TestData.CurrentTestResult) {
@@ -1382,14 +1310,9 @@ namespace Tmx
             }
         }
         
-        // 20140720
-        // public static void GetCurrentTestResultStatus(TestResultCmdletBase cmdlet)
-        // public static void GetCurrentTestResultStatus(ITestResultCmdletBaseDataObject cmdlet)
         public static string GetCurrentTestResultStatus(ITestResultCmdletBaseDataObject cmdlet)
         {
             string testResultId = cmdlet.Id;
-            
-//            cmdlet.WriteVerbose(cmdlet, "Getting test result with Id = " + testResultId);
             
             if (!string.IsNullOrEmpty(testResultId)) {
             // if (null != testResultId && string.Empty != testResultId && 0 < testResultId.Length) {
@@ -1465,11 +1388,10 @@ namespace Tmx
                 
                 // 20140720
                 // if (null == TestData.CurrentTestResult) return;
-                if (null == TestData.CurrentTestResult) return string.Empty;
+				return null == TestData.CurrentTestResult ? string.Empty : TestData.CurrentTestResult.Status;
 //                cmdlet.WriteVerbose(cmdlet, "The current test result");
                 // 20140720
                 // cmdlet.WriteObject(cmdlet, TestData.CurrentTestResult.Status);
-                return TestData.CurrentTestResult.Status;
             }
         }
         
@@ -1544,11 +1466,12 @@ namespace Tmx
                 
                 // 20140720
                 // if (null == TestData.CurrentTestResult) return;
-                if (null == TestData.CurrentTestResult) return new[] { string.Empty };
+				return null == TestData.CurrentTestResult ? new[] {
+					string.Empty
+				} : TestData.CurrentTestResult.ListDetailNames(cmdlet.TestResultStatus);
 //                cmdlet.WriteVerbose(cmdlet, "The current test result");
                 // 20140720
                 // cmdlet.WriteObject(cmdlet, TestData.CurrentTestResult.ListDetailNames(cmdlet.TestResultStatus));
-                return TestData.CurrentTestResult.ListDetailNames(cmdlet.TestResultStatus);
             }
         }
         

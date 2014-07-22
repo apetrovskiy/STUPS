@@ -76,16 +76,16 @@
     <Compile Include="Helpers\Mapping\TestResultMap.cs" />
     <Compile Include="Helpers\Mapping\TestScenarioMap.cs" />
     <Compile Include="Helpers\Mapping\TestSuiteMap.cs" />
+    <Compile Include="Helpers\StorageHelper.cs" />
     <Compile Include="Helpers\TMXHelper.cs" />
     <Compile Include="Helpers\UserSettings\Preferences.cs" />
-    <Compile Include="StorageHelper.cs" />
-    <Compile Include="TestCase.cs" />
     <Compile Include="TestData\TestData.cs" />
-    <Compile Include="TestPlatform.cs" />
-    <Compile Include="TestResult.cs" />
-    <Compile Include="TestResultDetail.cs" />
-    <Compile Include="TestScenario.cs" />
-    <Compile Include="TestSuite.cs" />
+    <Compile Include="Types\TestCase.cs" />
+    <Compile Include="Types\TestPlatform.cs" />
+    <Compile Include="Types\TestResult.cs" />
+    <Compile Include="Types\TestResultDetail.cs" />
+    <Compile Include="Types\TestScenario.cs" />
+    <Compile Include="Types\TestSuite.cs" />
     <Compile Include="XMLElementsJUnitStruct.cs" />
     <Compile Include="XMLElementsNativeStruct.cs" />
   </ItemGroup>
@@ -93,6 +93,7 @@
     <Folder Include="Helpers" />
     <Folder Include="Helpers\Mapping" />
     <Folder Include="Helpers\UserSettings" />
+    <Folder Include="Types" />
     <Folder Include="TestData" />
     <Folder Include="Properties" />
   </ItemGroup>

@@ -61,16 +61,12 @@ namespace Tmx.Commands
             
 cmdlet.FilterNone = true;
             
-            // 20140720
-            // IOrderedEnumerable<TestScenario> scenarios =
             IOrderedEnumerable<ITestScenario> scenarios = TmxHelper.SearchForScenarios(dataObject);
 
             //cmdlet.FilterAll = false;
             //cmdlet.FilterPassedWithBadSmell = true;
 //            cmdlet.FilterNone = true;
             
-            // 20140720
-            // IOrderedEnumerable<TestResult> testResults =
             IOrderedEnumerable<ITestResult> testResults = TmxHelper.SearchForTestResults(dataObject);
             
             XElement suitesElement = 
@@ -78,7 +74,7 @@ cmdlet.FilterNone = true;
                     suites,
                     scenarios,
                     testResults,
-                    (new XMLElementsNativeStruct(null)));
+                    (new XMLElementsNativeStruct()));
             
 			WriteObject(this, suitesElement);
 

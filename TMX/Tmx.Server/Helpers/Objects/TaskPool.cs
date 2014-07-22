@@ -1,8 +1,8 @@
 ﻿/*
  * Created by SharpDevelop.
- * User: Alexander Petrovskiy
- * Date: 7/17/2014
- * Time: 8:03 PM
+ * User: alexa_000
+ * Date: 7/22/2014
+ * Time: 9:10 PM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
@@ -14,10 +14,10 @@ namespace Tmx.Server
 	using Tmx.Interfaces.Remoting;
 	
 	/// <summary>
-	/// Description of ClientsCollection.
+	/// Description of TaskPool.
 	/// </summary>
-	public class ClientsCollection
+	public class TaskPool
 	{
-		public static List<IClientInformation> Clients = new List<IClientInformation>();
+		public static List<ITestTask> Tasks = new List<ITestTask>();
 	}
 }

@@ -75,6 +75,8 @@
     </Compile>
     <Compile Include="Commands\StartTmxServerCommand.cs" />
     <Compile Include="Commands\StopTmxServerCommand.cs" />
+    <Compile Include="Helpers\Objects\TaskPool.cs" />
+    <Compile Include="Helpers\TaskSorter.cs" />
     <Compile Include="InternalServerControl.cs" />
     <Compile Include="Helpers\Commands\StartServerCommand.cs" />
     <Compile Include="Helpers\Commands\StopTmxServerCommand.cs" />

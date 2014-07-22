@@ -233,8 +233,8 @@ namespace Tmx.Core
         
         public static void CleanData()
         {
-            foreach (TestSuite suite in TestSuites) {
-                foreach (TestScenario scenario in suite.TestScenarios) {
+            foreach (var suite in TestSuites) {
+                foreach (var scenario in suite.TestScenarios) {
                     scenario.TestResults.Clear();
                     scenario.enStatus = TestScenarioStatuses.NotTested;
                 }

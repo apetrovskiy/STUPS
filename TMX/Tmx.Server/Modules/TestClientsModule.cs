@@ -14,6 +14,7 @@ namespace Tmx.Server.Modules
 	using Nancy;
 	using Nancy.ModelBinding;
 	using Tmx.Interfaces;
+	using Tmx.Server.Helpers;
 	using Tmx.Server.Helpers.Objects;
 	
 	/// <summary>
@@ -30,30 +31,34 @@ namespace Tmx.Server.Modules
                 if (0 < ClientsCollection.Clients.Count)
                 	maxId = ClientsCollection.Clients.Max(client => client.Id);
                 
-				ClientsCollection.Clients.Add(
-					new TestClientInformation {
-                		Id = ++maxId,
-						Hostname = testClient.Hostname,
-						Fqdn = testClient.Fqdn,
-						IpAddresses = testClient.IpAddresses,
-						MacAddresses = testClient.MacAddresses,
-						UserDomainName = testClient.UserDomainName,
-						Username = testClient.Username,
-						IsInteractive = testClient.IsInteractive,
-						IsAdmin = testClient.IsAdmin,
-						OsVersion = testClient.OsVersion,
-						EnvironmentVersion = testClient.EnvironmentVersion,
-						UptimeSeconds = testClient.UptimeSeconds,
-						CustomString = testClient.CustomString
-					});
+                var clientInformation = new TestClientInformation {
+            		Id = ++maxId,
+					Hostname = testClient.Hostname,
+					Fqdn = testClient.Fqdn,
+					IpAddresses = testClient.IpAddresses,
+					MacAddresses = testClient.MacAddresses,
+					UserDomainName = testClient.UserDomainName,
+					Username = testClient.Username,
+					IsInteractive = testClient.IsInteractive,
+					IsAdmin = testClient.IsAdmin,
+					OsVersion = testClient.OsVersion,
+					EnvironmentVersion = testClient.EnvironmentVersion,
+					UptimeSeconds = testClient.UptimeSeconds,
+					CustomString = testClient.CustomString
+                };
                 
-                return HttpStatusCode.Created;
+				ClientsCollection.Clients.Add(clientInformation);
+				
+				var taskSorter = new TaskSorter();
+				
+				
+                return Response.AsJson(clientInformation).WithStatusCode(HttpStatusCode.Created);
 			};
 			
 			Delete[UrnList.TestClients_Client] = parameters => {
 				try {
 					var clientsToDelete = ClientsCollection.Clients.RemoveAll(client => client.Id == parameters.id);
-						return HttpStatusCode.OK;
+					return HttpStatusCode.OK;
 				}
 				catch {
 					return HttpStatusCode.InternalServerError;

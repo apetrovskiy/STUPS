@@ -31,12 +31,13 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_Name_Simple_In_Series()
         {
-            var coll = new Collection<System.Management.Automation.PSObject>();
-            coll.Add(new System.Management.Automation.PSObject("suite1"));
-            coll.Add(new System.Management.Automation.PSObject("suite2"));
-            coll.Add(new System.Management.Automation.PSObject("suite3"));
-            coll.Add(new System.Management.Automation.PSObject("suite4"));
-            coll.Add(new System.Management.Automation.PSObject("suite5"));
+			var coll = new Collection<System.Management.Automation.PSObject>() {
+				new System.Management.Automation.PSObject("suite1"),
+				new System.Management.Automation.PSObject("suite2"),
+				new System.Management.Automation.PSObject("suite3"),
+				new System.Management.Automation.PSObject("suite4"),
+				new System.Management.Automation.PSObject("suite5")
+			};
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name suite1; " + 
                 @"$null = New-TmxTestSuite -Name suite2; " + 
@@ -52,12 +53,13 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_Name_Complex_In_Series()
         {
-            var coll = new Collection<System.Management.Automation.PSObject>();
-            coll.Add(new System.Management.Automation.PSObject("suite%%`1  1"));
-            coll.Add(new System.Management.Automation.PSObject("suite%%`2  2"));
-            coll.Add(new System.Management.Automation.PSObject("suite%%`3  3"));
-            coll.Add(new System.Management.Automation.PSObject("suite%%`4  4"));
-            coll.Add(new System.Management.Automation.PSObject("suite%%`5  5"));
+			var coll = new Collection<System.Management.Automation.PSObject>() {
+				new System.Management.Automation.PSObject("suite%%`1  1"),
+				new System.Management.Automation.PSObject("suite%%`2  2"),
+				new System.Management.Automation.PSObject("suite%%`3  3"),
+				new System.Management.Automation.PSObject("suite%%`4  4"),
+				new System.Management.Automation.PSObject("suite%%`5  5")
+			};
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name 'suite%%`1  1'; " + 
                 @"$null = New-TmxTestSuite -Name 'suite%%`2  2'; " + 
@@ -68,19 +70,18 @@ namespace TmxTest.Commands.TestResults
                 coll);
         }
         
-        
-        
         [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The work with the -OrderById parameter test, general testing")]
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("SuiteLevel")]
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_Id_Numeric()
         {
-            var coll = new Collection<System.Management.Automation.PSObject>();
-            coll.Add(new System.Management.Automation.PSObject("1"));
-            coll.Add(new System.Management.Automation.PSObject("2"));
-            coll.Add(new System.Management.Automation.PSObject("3"));
-            coll.Add(new System.Management.Automation.PSObject("4"));
-            coll.Add(new System.Management.Automation.PSObject("5"));
+			var coll = new Collection<System.Management.Automation.PSObject>() {
+				new System.Management.Automation.PSObject("1"),
+				new System.Management.Automation.PSObject("2"),
+				new System.Management.Automation.PSObject("3"),
+				new System.Management.Automation.PSObject("4"),
+				new System.Management.Automation.PSObject("5")
+			};
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name abc1 -Id 1; " + 
                 @"$null = New-TmxTestSuite -Name abc2 -Id 2; " + 
@@ -96,12 +97,13 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_Id_Alphanumeric()
         {
-            var coll = new Collection<System.Management.Automation.PSObject>();
-            coll.Add(new System.Management.Automation.PSObject(@"a\ 1"));
-            coll.Add(new System.Management.Automation.PSObject(@"a\ 2"));
-            coll.Add(new System.Management.Automation.PSObject(@"a\ 3"));
-            coll.Add(new System.Management.Automation.PSObject(@"a\ 4"));
-            coll.Add(new System.Management.Automation.PSObject(@"a\ 5"));
+			var coll = new Collection<System.Management.Automation.PSObject>() {
+				new System.Management.Automation.PSObject(@"a\ 1"),
+				new System.Management.Automation.PSObject(@"a\ 2"),
+				new System.Management.Automation.PSObject(@"a\ 3"),
+				new System.Management.Automation.PSObject(@"a\ 4"),
+				new System.Management.Automation.PSObject(@"a\ 5")
+			};
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name abc1 -Id 'a\ 1'; " + 
                 @"$null = New-TmxTestSuite -Name abc2 -Id 'a\ 2'; " + 
@@ -117,12 +119,13 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderById_Numeric()
         {
-            var coll = new Collection<System.Management.Automation.PSObject>();
-            coll.Add(new System.Management.Automation.PSObject("1"));
-            coll.Add(new System.Management.Automation.PSObject("2"));
-            coll.Add(new System.Management.Automation.PSObject("3"));
-            coll.Add(new System.Management.Automation.PSObject("4"));
-            coll.Add(new System.Management.Automation.PSObject("5"));
+			var coll = new Collection<System.Management.Automation.PSObject>() {
+				new System.Management.Automation.PSObject("1"),
+				new System.Management.Automation.PSObject("2"),
+				new System.Management.Automation.PSObject("3"),
+				new System.Management.Automation.PSObject("4"),
+				new System.Management.Automation.PSObject("5")
+			};
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name abc4 -Id 4; " + 
                 @"$null = New-TmxTestSuite -Name abc1 -Id 1; " +
@@ -138,12 +141,13 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderById_Descending_Numeric()
         {
-            var coll = new Collection<System.Management.Automation.PSObject>();
-            coll.Add(new System.Management.Automation.PSObject("5"));
-            coll.Add(new System.Management.Automation.PSObject("4"));
-            coll.Add(new System.Management.Automation.PSObject("3"));
-            coll.Add(new System.Management.Automation.PSObject("2"));
-            coll.Add(new System.Management.Automation.PSObject("1"));
+			var coll = new Collection<System.Management.Automation.PSObject>() {
+				new System.Management.Automation.PSObject("5"),
+				new System.Management.Automation.PSObject("4"),
+				new System.Management.Automation.PSObject("3"),
+				new System.Management.Automation.PSObject("2"),
+				new System.Management.Automation.PSObject("1")
+			};
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name abc4 -Id 4; " + 
                 @"$null = New-TmxTestSuite -Name abc1 -Id 1; " +
@@ -159,12 +163,13 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderById_Alphanumeric()
         {
-            var coll = new Collection<System.Management.Automation.PSObject>();
-            coll.Add(new System.Management.Automation.PSObject("i1"));
-            coll.Add(new System.Management.Automation.PSObject("i2"));
-            coll.Add(new System.Management.Automation.PSObject("i3"));
-            coll.Add(new System.Management.Automation.PSObject("i4"));
-            coll.Add(new System.Management.Automation.PSObject("i5"));
+			var coll = new Collection<System.Management.Automation.PSObject>() {
+				new System.Management.Automation.PSObject("i1"),
+				new System.Management.Automation.PSObject("i2"),
+				new System.Management.Automation.PSObject("i3"),
+				new System.Management.Automation.PSObject("i4"),
+				new System.Management.Automation.PSObject("i5")
+			};
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name abc4 -Id i4; " + 
                 @"$null = New-TmxTestSuite -Name abc1 -Id i1; " +
@@ -180,12 +185,13 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderByName_Numeric()
         {
-            var coll = new Collection<System.Management.Automation.PSObject>();
-            coll.Add(new System.Management.Automation.PSObject("1"));
-            coll.Add(new System.Management.Automation.PSObject("2"));
-            coll.Add(new System.Management.Automation.PSObject("3"));
-            coll.Add(new System.Management.Automation.PSObject("4"));
-            coll.Add(new System.Management.Automation.PSObject("5"));
+			var coll = new Collection<System.Management.Automation.PSObject>() {
+				new System.Management.Automation.PSObject("1"),
+				new System.Management.Automation.PSObject("2"),
+				new System.Management.Automation.PSObject("3"),
+				new System.Management.Automation.PSObject("4"),
+				new System.Management.Automation.PSObject("5")
+			};
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name 4; " + 
                 @"$null = New-TmxTestSuite -Name 1; " +
@@ -201,12 +207,13 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderByName_Alphanumeric()
         {
-            var coll = new Collection<System.Management.Automation.PSObject>();
-            coll.Add(new System.Management.Automation.PSObject("abc1"));
-            coll.Add(new System.Management.Automation.PSObject("abc2"));
-            coll.Add(new System.Management.Automation.PSObject("abc3"));
-            coll.Add(new System.Management.Automation.PSObject("abc4"));
-            coll.Add(new System.Management.Automation.PSObject("abc5"));
+			var coll = new Collection<System.Management.Automation.PSObject>() {
+				new System.Management.Automation.PSObject("abc1"),
+				new System.Management.Automation.PSObject("abc2"),
+				new System.Management.Automation.PSObject("abc3"),
+				new System.Management.Automation.PSObject("abc4"),
+				new System.Management.Automation.PSObject("abc5")
+			};
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name abc4; " + 
                 @"$null = New-TmxTestSuite -Name abc1; " +
@@ -222,12 +229,13 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderByName_Descending_Alphanumeric()
         {
-            var coll = new Collection<System.Management.Automation.PSObject>();
-            coll.Add(new System.Management.Automation.PSObject("abc5"));
-            coll.Add(new System.Management.Automation.PSObject("abc4"));
-            coll.Add(new System.Management.Automation.PSObject("abc3"));
-            coll.Add(new System.Management.Automation.PSObject("abc2"));
-            coll.Add(new System.Management.Automation.PSObject("abc1"));
+			var coll = new Collection<System.Management.Automation.PSObject>() {
+				new System.Management.Automation.PSObject("abc5"),
+				new System.Management.Automation.PSObject("abc4"),
+				new System.Management.Automation.PSObject("abc3"),
+				new System.Management.Automation.PSObject("abc2"),
+				new System.Management.Automation.PSObject("abc1")
+			};
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name abc4; " + 
                 @"$null = New-TmxTestSuite -Name abc1; " +
@@ -243,7 +251,13 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderByTimeSpent()
         {
-            var coll = new Collection<System.Management.Automation.PSObject>();
+			var coll = new Collection<System.Management.Automation.PSObject>() {
+				new System.Management.Automation.PSObject("4"),
+				new System.Management.Automation.PSObject("1"),
+				new System.Management.Automation.PSObject("3"),
+				new System.Management.Automation.PSObject("5"),
+				new System.Management.Automation.PSObject("2")
+			};
             // 20130918
             // changes after spring-summer 2013
             // Expected Value : [{2}, {1}, {5}, {3}, {4}]
@@ -253,11 +267,6 @@ namespace TmxTest.Commands.TestResults
             // coll.Add(new System.Management.Automation.PSObject("5"));
             // coll.Add(new System.Management.Automation.PSObject("3"));
             // coll.Add(new System.Management.Automation.PSObject("4"));
-            coll.Add(new System.Management.Automation.PSObject("4"));
-            coll.Add(new System.Management.Automation.PSObject("1"));
-            coll.Add(new System.Management.Automation.PSObject("3"));
-            coll.Add(new System.Management.Automation.PSObject("5"));
-            coll.Add(new System.Management.Automation.PSObject("2"));
             // 
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name 4; " + 
@@ -289,7 +298,13 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderByTimeSpent_Descending()
         {
-            var coll = new Collection<System.Management.Automation.PSObject>();
+			var coll = new Collection<System.Management.Automation.PSObject>() {
+				new System.Management.Automation.PSObject("4"),
+				new System.Management.Automation.PSObject("1"),
+				new System.Management.Automation.PSObject("3"),
+				new System.Management.Automation.PSObject("5"),
+				new System.Management.Automation.PSObject("2")
+			};
             // 20130918
             // changes after spring-summer 2013
             // Expected Value : [{4}, {3}, {5}, {1}, {2}]
@@ -299,11 +314,6 @@ namespace TmxTest.Commands.TestResults
             // coll.Add(new System.Management.Automation.PSObject("5"));
             // coll.Add(new System.Management.Automation.PSObject("1"));
             // coll.Add(new System.Management.Automation.PSObject("2"));
-            coll.Add(new System.Management.Automation.PSObject("4"));
-            coll.Add(new System.Management.Automation.PSObject("1"));
-            coll.Add(new System.Management.Automation.PSObject("3"));
-            coll.Add(new System.Management.Automation.PSObject("5"));
-            coll.Add(new System.Management.Automation.PSObject("2"));
             // 
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name 4; " + 
@@ -335,12 +345,13 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderByPassRate()
         {
-            var coll = new Collection<System.Management.Automation.PSObject>();
-            coll.Add(new System.Management.Automation.PSObject("4"));
-            coll.Add(new System.Management.Automation.PSObject("1"));
-            coll.Add(new System.Management.Automation.PSObject("5"));
-            coll.Add(new System.Management.Automation.PSObject("2"));
-            coll.Add(new System.Management.Automation.PSObject("3"));
+			var coll = new Collection<System.Management.Automation.PSObject>() {
+				new System.Management.Automation.PSObject("4"),
+				new System.Management.Automation.PSObject("1"),
+				new System.Management.Automation.PSObject("5"),
+				new System.Management.Automation.PSObject("2"),
+				new System.Management.Automation.PSObject("3")
+			};
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name 4; " + 
                 @"$null = Add-TmxTestScenario -TestSuiteName 4 -Name sc1; " + 
@@ -373,12 +384,13 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderByPassRate_Descending()
         {
-            var coll = new Collection<System.Management.Automation.PSObject>();
-            coll.Add(new System.Management.Automation.PSObject("3"));
-            coll.Add(new System.Management.Automation.PSObject("4"));
-            coll.Add(new System.Management.Automation.PSObject("1"));
-            coll.Add(new System.Management.Automation.PSObject("5"));
-            coll.Add(new System.Management.Automation.PSObject("2"));
+			var coll = new Collection<System.Management.Automation.PSObject>() {
+				new System.Management.Automation.PSObject("3"),
+				new System.Management.Automation.PSObject("4"),
+				new System.Management.Automation.PSObject("1"),
+				new System.Management.Automation.PSObject("5"),
+				new System.Management.Automation.PSObject("2")
+			};
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name 4; " + 
                 @"$null = Add-TmxTestScenario -TestSuiteName 4 -Name sc1; " + 
@@ -411,12 +423,13 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderByFailRate()
         {
-            var coll = new Collection<System.Management.Automation.PSObject>();
-            coll.Add(new System.Management.Automation.PSObject("4"));
-            coll.Add(new System.Management.Automation.PSObject("1"));
-            coll.Add(new System.Management.Automation.PSObject("3"));
-            coll.Add(new System.Management.Automation.PSObject("2"));
-            coll.Add(new System.Management.Automation.PSObject("5"));
+			var coll = new Collection<System.Management.Automation.PSObject>() {
+				new System.Management.Automation.PSObject("4"),
+				new System.Management.Automation.PSObject("1"),
+				new System.Management.Automation.PSObject("3"),
+				new System.Management.Automation.PSObject("2"),
+				new System.Management.Automation.PSObject("5")
+			};
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name 4; " + 
                 @"$null = Add-TmxTestScenario -TestSuiteName 4 -Name sc1; " + 
@@ -449,12 +462,13 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderByFailRate_Descending()
         {
-            var coll = new Collection<System.Management.Automation.PSObject>();
-            coll.Add(new System.Management.Automation.PSObject("5"));
-            coll.Add(new System.Management.Automation.PSObject("4"));
-            coll.Add(new System.Management.Automation.PSObject("1"));
-            coll.Add(new System.Management.Automation.PSObject("3"));
-            coll.Add(new System.Management.Automation.PSObject("2"));
+			var coll = new Collection<System.Management.Automation.PSObject>() {
+				new System.Management.Automation.PSObject("5"),
+				new System.Management.Automation.PSObject("4"),
+				new System.Management.Automation.PSObject("1"),
+				new System.Management.Automation.PSObject("3"),
+				new System.Management.Automation.PSObject("2")
+			};
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name 4; " + 
                 @"$null = Add-TmxTestScenario -TestSuiteName 4 -Name sc1; " + 
@@ -482,15 +496,15 @@ namespace TmxTest.Commands.TestResults
                 coll);
         }
         
-        
         [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The work with the -FilterNameContains parameter test")]
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("SuiteLevel")]
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_FilterNameContains()
         {
-            var coll = new Collection<System.Management.Automation.PSObject>();
-            coll.Add(new System.Management.Automation.PSObject("suite02"));
-            coll.Add(new System.Management.Automation.PSObject("suite04"));
+			var coll = new Collection<System.Management.Automation.PSObject>() {
+				new System.Management.Automation.PSObject("suite02"),
+				new System.Management.Automation.PSObject("suite04")
+			};
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name suite1; " + 
                 @"$null = New-TmxTestSuite -Name suite02; " + 
@@ -506,9 +520,10 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_FilterNameContains_Descending()
         {
-            var coll = new Collection<System.Management.Automation.PSObject>();
-            coll.Add(new System.Management.Automation.PSObject("suite04"));
-            coll.Add(new System.Management.Automation.PSObject("suite02"));
+			var coll = new Collection<System.Management.Automation.PSObject>() {
+				new System.Management.Automation.PSObject("suite04"),
+				new System.Management.Automation.PSObject("suite02")
+			};
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name suite1; " + 
                 @"$null = New-TmxTestSuite -Name suite02; " + 
@@ -519,16 +534,15 @@ namespace TmxTest.Commands.TestResults
                 coll);
         }
         
-        
-        
         [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The work with the -FilterIdContains parameter test")]
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("SuiteLevel")]
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_FilterIdContains()
         {
-            var coll = new Collection<System.Management.Automation.PSObject>();
-            coll.Add(new System.Management.Automation.PSObject("122"));
-            coll.Add(new System.Management.Automation.PSObject("125"));
+			var coll = new Collection<System.Management.Automation.PSObject>() {
+				new System.Management.Automation.PSObject("122"),
+				new System.Management.Automation.PSObject("125")
+			};
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name abc1 -Id 111; " + 
                 @"$null = New-TmxTestSuite -Name abc2 -Id 122; " + 

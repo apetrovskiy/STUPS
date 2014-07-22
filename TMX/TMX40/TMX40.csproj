@@ -609,6 +609,7 @@
     <Folder Include="Commands\Configuration" />
     <Folder Include="Commands\Logging" />
     <Folder Include="Commands\Logging" />
+    <Folder Include="Commands\TestClient" />
     <Folder Include="Commands\TestServer" />
     <Folder Include="Commands\TestClient" />
     <Folder Include="Commands\TestExecution" />
@@ -625,6 +626,7 @@
     <Folder Include="Helpers\UnderlyingCode\Commands" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Logging" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Logging" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\TestClient" />
     <Folder Include="Helpers\UnderlyingCode\Commands\TestServer" />
     <Folder Include="Helpers\UnderlyingCode\Commands\TestClient" />
     <Folder Include="Helpers\UnderlyingCode\Commands\TestExecution" />
@@ -633,6 +635,7 @@
     <Folder Include="Helpers\UnderlyingCode\Commands\Status" />
     <Folder Include="Helpers\UnderlyingCode\Mapping" />
     <Folder Include="Helpers\UnderlyingCode\Mapping" />
+    <Folder Include="Helpers\UnderlyingCode\Ninject" />
     <Folder Include="Helpers\UnderlyingCode\Ninject" />
     <Folder Include="Helpers\UnderlyingCode\Types" />
     <Folder Include="SQLiteData" />

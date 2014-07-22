@@ -28,55 +28,49 @@ namespace Tmx.Interfaces
            string testScenarioId,
            string testSuiteId)
         {
-            this.Details = 
-                new List<ITestResultDetail>();
+            this.Details = new List<ITestResultDetail>();
             this.enStatus = TestResultStatuses.NotTested;
             
             // scenarioId and suiteId
             this.ScenarioId = testScenarioId;
             this.SuiteId = testSuiteId;
             
-            // 20130401
             this.SetNow();
-            
         }
         
-        //public virtual int DbId { get; protected set; }
         public virtual int DbId { get; set; }
         public virtual string Name { get; set; }
         public virtual string Id { get; set; }
         public virtual string Description { get; set; }
-        // 20130527
         public virtual List<ITestResultDetail> Details { get; protected internal set; }
-        //public List<TestResultDetail> Details { get; internal set; }
         
         public virtual string ScriptName { get; protected internal set; }
         public virtual void SetScriptName(string scriptName)
         {
-            this.ScriptName = scriptName;
+			ScriptName = scriptName;
         }
         public virtual int LineNumber { get; protected internal set; }
         public virtual void SetLineNumber(int lineNumber)
         {
-            this.LineNumber = lineNumber;
+			LineNumber = lineNumber;
         }
         public virtual int Position { get; protected internal set; }
         public virtual void SetPosition(int position)
         {
-            this.Position = position;
+			Position = position;
         }
         public virtual ErrorRecord Error { get; protected internal set; }
         public virtual void SetError(ErrorRecord error)
         {
-            this.Error = error;
+			Error = error;
         }
         public virtual string Code { get; set; }
         
         public virtual List<object> Parameters { get; protected internal set; }
 
-        private string status;
+        string status;
         public virtual string Status { get { return this.status; } }
-        private TestResultStatuses _enStatus;
+        TestResultStatuses _enStatus;
         public virtual TestResultStatuses enStatus
         { 
             get { return _enStatus; }
@@ -108,10 +102,10 @@ namespace Tmx.Interfaces
 			TimeSpent = timeSpent;
         }
         
-        public virtual System.DateTime Timestamp { get; protected internal set; }
+        public virtual DateTime Timestamp { get; protected internal set; }
         public virtual void SetNow()
         {
-            this.Timestamp = System.DateTime.Now;
+			Timestamp = DateTime.Now;
         }
         
         public virtual string SuiteId { get; protected internal set; }
@@ -120,13 +114,13 @@ namespace Tmx.Interfaces
         public virtual bool Generated { get; protected internal set; }
         public virtual void SetGenerated()
         {
-            this.Generated = true;
+			Generated = true;
         }
         
         public virtual string Screenshot { get; protected internal set; }
         public virtual void SetScreenshot(string path)
         {
-            this.Screenshot = path;
+			Screenshot = path;
         }
         
         public virtual TestResultOrigins Origin { get; protected internal set; }
@@ -137,7 +131,7 @@ namespace Tmx.Interfaces
                 // don't change the origin - it already was logical
             } else {
                 
-                this.Origin = origin;
+				Origin = origin;
             }
         }
         

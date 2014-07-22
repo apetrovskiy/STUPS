@@ -85,6 +85,7 @@
     <Compile Include="Helpers\TestSettings.cs" />
     <Compile Include="Modules\TestClientsModuleTestFixture.cs" />
     <Compile Include="Modules\TestResultsModuleTestFixture.cs" />
+    <Compile Include="Modules\TestTasksModuleTestFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">

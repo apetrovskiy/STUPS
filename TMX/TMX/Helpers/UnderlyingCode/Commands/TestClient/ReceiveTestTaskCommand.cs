@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Client.Helpers.Commands
+namespace Tmx
 {
 	using System;
 	using Tmx;

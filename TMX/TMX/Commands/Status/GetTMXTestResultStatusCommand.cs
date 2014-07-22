@@ -20,8 +20,7 @@ namespace Tmx.Commands
     {
         protected override void BeginProcessing()
         {
-            TmxGetTestResultStatusCommand command =
-                new TmxGetTestResultStatusCommand(this);
+            var command = new TmxGetTestResultStatusCommand(this);
             command.Execute();
         }
     }

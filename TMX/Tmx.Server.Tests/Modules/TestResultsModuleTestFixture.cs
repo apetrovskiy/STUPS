@@ -88,6 +88,7 @@ namespace Tmx.Server.Tests.Modules
             
             // When
             // /Results/suites/
+            /*
             var response = browser.Post(UrnList.TestStructure_Root + UrnList.TestStructure_Suites, (with) => {
                 with.JsonBody<TestSuite>(testSuite);
             })
@@ -96,7 +97,15 @@ namespace Tmx.Server.Tests.Modules
                 .Post(UrnList.TestStructure_Root + UrnList.TestStructure_Scenarios, (with) => {
                 with.JsonBody<TestScenario>(testScenario);
             });
-            
+            */
+			
+			var response = browser.Post(UrnList.TestStructure_Root + UrnList.TestStructure_Suites, (with) => {
+				with.JsonBody<ITestSuite>(testSuite);
+			});
+			response = browser.Post(UrnList.TestStructure_Root + UrnList.TestStructure_Scenarios, (with) => {
+				with.JsonBody<ITestScenario>(testScenario);
+			});
+			
             // Then
             Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
             Xunit.Assert.Equal(testScenarioNameExpected, TestData.CurrentTestScenario.Name);

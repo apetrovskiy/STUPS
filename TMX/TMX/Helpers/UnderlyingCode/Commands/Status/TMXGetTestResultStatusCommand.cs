@@ -37,7 +37,9 @@ namespace Tmx
             };
             
             // TmxHelper.GetCurrentTestResultStatus(cmdlet);
-            TmxHelper.GetCurrentTestResultStatus(dataObject);
+            // 20140722
+            // TmxHelper.GetCurrentTestResultStatus(dataObject);
+            cmdlet.WriteObject(TmxHelper.GetCurrentTestResultStatus(dataObject));
         }
     }
 }

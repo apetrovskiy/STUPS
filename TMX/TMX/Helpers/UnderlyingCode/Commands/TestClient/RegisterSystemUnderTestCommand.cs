@@ -7,11 +7,11 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Client.Helpers.Commands
+namespace Tmx
 {
 	using System;
 	using Tmx;
-	using Tmx.Client.Helpers;
+	using Tmx.Client;
 	using Tmx.Commands;
 	
 	/// <summary>
@@ -28,6 +28,8 @@ namespace Tmx.Client.Helpers.Commands
             var cmdlet = (RegisterTmxSystemUnderTestCommand)Cmdlet;
             ClientSettings.ServerUrl = cmdlet.ServerUrl;
             // Tmx.Client.Helpers.ClientSettings.ServerUrl = cmdlet.ServerUrl;
+            var registration = new Registration();
+            registration.SendRegistrationInfoAndGetClientId();
         }
     }
 }

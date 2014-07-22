@@ -12,7 +12,6 @@ namespace Tmx.Commands
 	using System;
 	using System.Management.Automation;
 	using Tmx;
-	using Tmx.Client.Helpers.Commands;
 	
 	/// <summary>
 	/// Description of SendTmxTestTaskResultCommand.

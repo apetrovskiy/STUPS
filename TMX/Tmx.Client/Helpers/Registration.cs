@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Client.Helpers
+namespace Tmx.Client
 {
     using System;
     using RestSharp;
@@ -28,24 +28,21 @@ namespace Tmx.Client.Helpers
 			        Hostname = Environment.MachineName,
 			        Username = Environment.UserName,
 			        UserDomainName = Environment.UserDomainName,
-			        IsInteractive = Environment.UserInteractive
+			        IsInteractive = Environment.UserInteractive,
+			        // EnvironmentVersion = Environment.Version.Major + "." + Environment.Version.MajorRevision + "." + Environment.Version.Minor + "." + Environment.Version.MinorRevision + "." + Environment.Version.Build,
+			        Fqdn = string.Empty,
+			        OsVersion = Environment.OSVersion.VersionString,
+			        UptimeSeconds = Environment.TickCount / 1000
 			    });
-//			var response = client.Execute(request);
-//			if (null == response)
-//				Console.WriteLine("null == response");
-//			if (null == response.Content)
-//				Console.WriteLine("null == response.Content");
-//			Console.WriteLine(response.StatusCode);
-//			var content = response.Content;
-//			Console.WriteLine("======= 01 =======");
-//			Console.WriteLine(content);
-//			Console.WriteLine("======= 02 =======");
 			
 			var registrationResponce = client.Execute(request);
-			// registrationResponce.
+			
 			Console.WriteLine(registrationResponce);
 			Console.WriteLine(registrationResponce.Content);
 			Console.WriteLine(registrationResponce.ContentType);
+			Console.WriteLine(registrationResponce.ResponseStatus);
+			Console.WriteLine(registrationResponce.ResponseUri);
+			Console.WriteLine(registrationResponce.StatusCode);
 			return 111;
         }
     }

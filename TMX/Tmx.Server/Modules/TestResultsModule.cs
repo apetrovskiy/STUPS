@@ -16,6 +16,7 @@ namespace Tmx.Server.Modules
 	using TMX.Interfaces;
 	using Tmx;
 	using Tmx.Core;
+	using Tmx.Interfaces;
 	using Tmx.Interfaces.TestStructure;
     
     /// <summary>
@@ -28,40 +29,27 @@ namespace Tmx.Server.Modules
             StaticConfiguration.DisableErrorTraces = false;
             
             Post[UrnList.TestStructure_Suites] = parameters => {
-                // var testSuite = this.Bind<TestSuite>();
-                var testSuite = this.Bind<ITestSuite>();
+                var testSuite = this.Bind<TestSuite>();
                 TmxHelper.NewTestSuite(testSuite.Name, testSuite.Id, testSuite.PlatformId, testSuite.Description, testSuite.BeforeScenario, testSuite.AfterScenario);
                 TestData.SetSuiteStatus(true);
 				return TmxHelper.OpenTestSuite(testSuite.Name, testSuite.Id, testSuite.PlatformId) ? HttpStatusCode.Created : HttpStatusCode.InternalServerError;
             };
         	
         	Post[UrnList.TestStructure_Scenarios] = parameters => {
-        		// var testScenario = this.Bind<TestScenario>();
-        		var testScenario = this.Bind<ITestScenario>();
-//        		var cmdletAdd = new AddScenarioCmdletBase {
-//        			Name = testScenario.Name,
-//        			Id = testScenario.Id,
-//        			TestPlatformId = testScenario.PlatformId,
-//        			TestSuiteId = testScenario.SuiteId,
-//        			Description = testScenario.Description
-//        		};
-//        		TmxHelper.AddTestScenario(cmdletAdd);
+        		var testScenario = this.Bind<TestScenario>();
+
         		var dataObjectAdd = new AddScenarioCmdletBaseDataObject {
+					AfterTest = testScenario.AfterTest,
+					BeforeTest = testScenario.BeforeTest,
+					Description = testScenario.Description,
+					Id = testScenario.Id,
         			Name = testScenario.Name,
-        			Id = testScenario.Id,
         			TestPlatformId = testScenario.PlatformId,
-        			TestSuiteId = testScenario.SuiteId,
-        			Description = testScenario.Description
+        			TestSuiteId = testScenario.SuiteId
         		};
         		TmxHelper.AddTestScenario(dataObjectAdd);
         		TestData.SetScenarioStatus(true);
         		
-//        		var cmdletOpen = new OpenScenarioCmdletBase {
-//        			Name = testScenario.Name,
-//        			Id = testScenario.Id,
-//        			TestPlatformId = testScenario.PlatformId
-//        		};
-//        		return TmxHelper.OpenTestScenario(cmdletOpen) ? HttpStatusCode.Created : HttpStatusCode.InternalServerError;
         		var dataObjectOpen = new OpenScenarioCmdletBaseDataObject {
         			Name = testScenario.Name,
         			Id = testScenario.Id,

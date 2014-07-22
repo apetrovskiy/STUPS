@@ -38,10 +38,6 @@ namespace Tmx.Interfaces
                         null, // MyInvocation
                         null, // Error
                         string.Empty,
-                        // 20130322
-                        //true);
-                        // 20130626
-                        //true,
                         TestResultOrigins.Automatic,
                         false);
                 } else {
@@ -92,10 +88,6 @@ namespace Tmx.Interfaces
                         null, // MyInvocation
                         null, // Error
                         string.Empty,
-                        // 20130322
-                        //true);
-                        // 20130626
-                        //true,
                         TestResultOrigins.Automatic,
                         false);
                 } else {

@@ -892,7 +892,10 @@ namespace Tmx
             // Func<TestResult, bool> query = testResult => true;
             Func<ITestResult, bool> query = testResult => true;
             
-            if (!string.IsNullOrEmpty(dataObject.FilterNameContains)) {
+            // 20140722
+            dataObject.FilterAll = false;
+            
+			if (!string.IsNullOrEmpty(dataObject.FilterNameContains))
             // if (cmdlet.FilterNameContains != null && cmdlet.FilterNameContains.Length > 0) {
                 query = testResult => testResult.Name != null && testResult.Name.Contains(dataObject.FilterNameContains);
 
@@ -908,8 +911,8 @@ namespace Tmx
                 //        */
                 //};
 
-                dataObject.FilterAll = false;
-            } else if (!string.IsNullOrEmpty(dataObject.FilterIdContains)) {
+                // dataObject.FilterAll = false;
+            else if (!string.IsNullOrEmpty(dataObject.FilterIdContains))
             // } else if (cmdlet.FilterIdContains != null && cmdlet.FilterIdContains.Length > 0) {
                 query = testResult => testResult.Id != null && testResult.Id.Contains(dataObject.FilterIdContains);
 
@@ -925,8 +928,8 @@ namespace Tmx
                 //        */
                 //};
 
-                dataObject.FilterAll = false;
-            } else if (!string.IsNullOrEmpty(dataObject.FilterDescriptionContains)) {
+                // dataObject.FilterAll = false;
+            else if (!string.IsNullOrEmpty(dataObject.FilterDescriptionContains))
             // } else if (cmdlet.FilterDescriptionContains != null && cmdlet.FilterDescriptionContains.Length > 0) {
                 query = testResult => testResult.Description != null && testResult.Description.Contains(dataObject.FilterDescriptionContains);
 
@@ -942,30 +945,29 @@ namespace Tmx
                 //        */
                 //};
 
-                dataObject.FilterAll = false;
-            } else if (dataObject.FilterPassed) {
-                query = testResult => testResult.enStatus == TestResultStatuses.Passed;
-                dataObject.FilterAll = false;
-            } else if (dataObject.FilterFailed) {
-                query = testResult => testResult.enStatus == TestResultStatuses.Failed;
-                dataObject.FilterAll = false;
-            } else if (dataObject.FilterNotTested) {
-                query = testResult => testResult.enStatus == TestResultStatuses.NotTested;
-                dataObject.FilterAll = false;
-            } else if (dataObject.FilterPassedWithBadSmell) {
-                query = testResult => testResult.enStatus == TestResultStatuses.KnownIssue;
-                dataObject.FilterAll = false;
-            }
-            else if (dataObject.FilterOutAutomaticResults) {
-                query = testResult => testResult.Origin != TestResultOrigins.Automatic;
-                dataObject.FilterAll = false;
-            }
-            else if (dataObject.FilterOutAutomaticAndTechnicalResults) {
-                query = testResult => testResult.Origin != TestResultOrigins.Automatic && testResult.Origin != TestResultOrigins.Technical;
-                dataObject.FilterAll = false;
-            }
+                // dataObject.FilterAll = false;
+            else if (dataObject.FilterPassed)
+				query = testResult => testResult.enStatus == TestResultStatuses.Passed;
+                // dataObject.FilterAll = false;
+            else if (dataObject.FilterFailed)
+				query = testResult => testResult.enStatus == TestResultStatuses.Failed;
+                // dataObject.FilterAll = false;
+            else if (dataObject.FilterNotTested)
+				query = testResult => testResult.enStatus == TestResultStatuses.NotTested;
+                // dataObject.FilterAll = false;
+            else if (dataObject.FilterPassedWithBadSmell)
+				query = testResult => testResult.enStatus == TestResultStatuses.KnownIssue;
+                // dataObject.FilterAll = false;
+            else if (dataObject.FilterOutAutomaticResults)
+				query = testResult => testResult.Origin != TestResultOrigins.Automatic;
+                // dataObject.FilterAll = false;
+            else if (dataObject.FilterOutAutomaticAndTechnicalResults)
+				query = testResult => testResult.Origin != TestResultOrigins.Automatic && testResult.Origin != TestResultOrigins.Technical;
+			// dataObject.FilterAll = false;
             if (dataObject.FilterAll) {
                 query = testResult => true;
+                // 20140722
+                dataObject.FilterAll = true;
             }
             if (dataObject.FilterNone) {
                 query = testResult => false;
@@ -978,19 +980,15 @@ namespace Tmx
             // Func<TestResult, object> ordering = testResult => testResult.Id;
             Func<ITestResult, object> ordering = testResult => testResult.Id;
             
-            if (dataObject.OrderByTimeSpent) {
-                ordering = testResult => testResult.TimeSpent;
-            } else if (dataObject.OrderByDateTime) {
-                ordering = testResult => testResult.Timestamp;
-            } else if (dataObject.OrderByName) {
-                ordering = testResult => testResult.Name;
-            } else if (dataObject.OrderById) {
-                ordering = testResult => testResult.Id;
-            }
+			if (dataObject.OrderByTimeSpent)
+				ordering = testResult => testResult.TimeSpent;
+			else if (dataObject.OrderByDateTime)
+				ordering = testResult => testResult.Timestamp;
+			else if (dataObject.OrderByName)
+				ordering = testResult => testResult.Name;
+			else if (dataObject.OrderById)
+				ordering = testResult => testResult.Id;
             
-//            cmdlet.WriteVerbose(cmdlet, "query = " + query.ToString());
-//            cmdlet.WriteVerbose(cmdlet, "ordering = " + ordering.ToString());
-
             testResults = 
                 TestData.SearchTestResult(
                     query,

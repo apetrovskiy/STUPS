@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX.Interfaces.TestStructure
+namespace Tmx.Interfaces.TestStructure
 {
     using System;
     using System.Collections.Generic;
@@ -27,7 +27,9 @@ namespace TMX.Interfaces.TestStructure
         
         string SuiteId { get; }
         // 20130301
-        System.DateTime Timestamp { get; }
+        // 20140720
+        // DateTime Timestamp { get; }
+        DateTime Timestamp { get; set; }
         void SetNow();
         
         //List<string> Tags { get; set; }
@@ -43,5 +45,11 @@ namespace TMX.Interfaces.TestStructure
         object[] BeforeTestParameters { get; set; }
         object[] AfterTestParameters { get; set; }
         List<ITestCase> TestCases { get; set; }
+        
+        // 20140720
+        double TimeSpent { get; set; }
+        void SetTimeSpent(double timeSpent);
+        TestStat Statistics { get; set; }
+        TestScenarioStatuses enStatus { get; set; }
     }
 }

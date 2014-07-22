@@ -30,11 +30,11 @@ namespace UIAutomationTest.Helpers
             
             MiddleLevelCode.PrepareRunspace();
             CmdletUnitTest.TestRunspace.RunPSCode(
-                @"Import-Module '.\TMX.dll' -Force; ");
+                @"Import-Module '.\Tmx.dll' -Force; ");
             
             MiddleLevelCode.PrepareRunspace();
             CmdletUnitTest.TestRunspace.RunPSCode(
-                @"[void]([TMX.TestData]::ResetData()); ");
+                @"[void]([Tmx.Core.TestData]::ResetData()); ");
             
             CmdletUnitTest.TestRunspace.RunPSCode(
                 @"[UIAutomation.Preferences]::EveryCmdletAsTestResult = $false;");
@@ -66,10 +66,10 @@ namespace UIAutomationTest.Helpers
                 "' | Invoke-UiaButtonClick -TestResultName '" + 
                 resultName + 
                 "'; " +
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
                 resultName);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
                 resultStatus);
         }
         
@@ -98,10 +98,10 @@ namespace UIAutomationTest.Helpers
                 "' | Invoke-UiaButtonClick -TestResultName '" + 
                 resultName + 
                 "' -TestPassed; " +
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
                 resultName);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
                 resultStatus);
         }
         
@@ -130,10 +130,10 @@ namespace UIAutomationTest.Helpers
                 "' | Invoke-UiaButtonClick -TestResultName '" + 
                 resultName + 
                 "' -TestPassed:$true; " +
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
                 resultName);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
                 resultStatus);
         }
         
@@ -162,10 +162,10 @@ namespace UIAutomationTest.Helpers
                 "' | Invoke-UiaButtonClick -TestResultName '" + 
                 resultName + 
                 "' -TestPassed:$false; " +
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
                 resultName);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
                 resultStatus);
         }
         
@@ -195,10 +195,10 @@ namespace UIAutomationTest.Helpers
                 "' -Timeout 500 -TestResultName '" + 
                 resultName + 
                 "' -TestPassed:$true; } catch {}" +
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
                 resultName);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
                 resultStatus);
         }
         
@@ -228,10 +228,10 @@ namespace UIAutomationTest.Helpers
                 "' -Timeout 500 -TestResultName '" + 
                 resultName + 
                 "' -TestPassed:$false; } catch {}" +
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
                 resultName);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
                 resultStatus);
         }
         
@@ -260,10 +260,10 @@ namespace UIAutomationTest.Helpers
                 "' | Invoke-UiaButtonClick -TestResultName '" + 
                 resultName + 
                 "' -KnownIssue; " +
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
                 resultName);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
                 resultStatus);
         }
         
@@ -292,10 +292,10 @@ namespace UIAutomationTest.Helpers
                 "' | Invoke-UiaButtonClick -TestResultName '" + 
                 resultName + 
                 "' -KnownIssue:$true; " +
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
                 resultName);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
                 resultStatus);
         }
         
@@ -324,10 +324,10 @@ namespace UIAutomationTest.Helpers
                 "' | Invoke-UiaButtonClick -TestResultName '" + 
                 resultName + 
                 "' -KnownIssue:$false; " +
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
                 resultName);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
                 resultStatus);
         }
         
@@ -356,10 +356,10 @@ namespace UIAutomationTest.Helpers
                 "' | Invoke-UiaButtonClick -TestResultName '" + 
                 resultName + 
                 "' -TestPassed:$true -KnownIssue; " +
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
                 resultName);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
                 resultStatus);
         }
         
@@ -388,10 +388,10 @@ namespace UIAutomationTest.Helpers
                 "' | Invoke-UiaButtonClick -TestResultName '" + 
                 resultName + 
                 "' -TestPassed:$false -KnownIssue; " +
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
                 resultName);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
                 resultStatus);
         }
         
@@ -421,10 +421,10 @@ namespace UIAutomationTest.Helpers
                 "' | Invoke-UiaButtonClick -TestResultName '" + 
                 resultName + 
                 "' -TestPassed:$true -KnownIssue:$false; " +
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
                 resultName);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
                 resultStatus);
         }
         
@@ -453,10 +453,10 @@ namespace UIAutomationTest.Helpers
                 "' | Invoke-UiaButtonClick -TestResultName '" + 
                 resultName + 
                 "' -TestPassed:$false -KnownIssue:$false; " +
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
                 resultName);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
                 resultStatus);
         }
         
@@ -488,10 +488,10 @@ namespace UIAutomationTest.Helpers
                 "' -Timeout 500 -TestResultName '" + 
                 resultName + 
                 "' -TestPassed:$true -KnownIssue; } catch {}" +
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
                 resultName);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
                 resultStatus);
         }
         
@@ -521,10 +521,10 @@ namespace UIAutomationTest.Helpers
                 "' -Timeout 500 -TestResultName '" + 
                 resultName + 
                 "' -TestPassed:$false -KnownIssue; } catch {}" +
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
                 resultName);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
                 resultStatus);
         }
         
@@ -555,10 +555,10 @@ namespace UIAutomationTest.Helpers
                 "' -Timeout 500 -TestResultName '" + 
                 resultName + 
                 "' -TestPassed:$true -KnownIssue:$false; } catch {}" +
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
                 resultName);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
                 resultStatus);
         }
         
@@ -588,10 +588,10 @@ namespace UIAutomationTest.Helpers
                 "' -Timeout 500 -TestResultName '" + 
                 resultName + 
                 "' -TestPassed:$false -KnownIssue:$false; } catch {}" +
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
                 resultName);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
+                @"[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
                 resultStatus);
         }
         

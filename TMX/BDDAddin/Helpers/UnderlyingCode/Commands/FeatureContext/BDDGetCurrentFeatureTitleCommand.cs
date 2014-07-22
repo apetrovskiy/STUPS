@@ -8,7 +8,7 @@
  */
 using System;
 
-namespace TMX.Helpers.UnderlyingCode.Commands
+namespace Tmx.Helpers.UnderlyingCode.Commands
 {
     /// <summary>
     /// Description of BDDGetCurrentFeatureTitleCommand.

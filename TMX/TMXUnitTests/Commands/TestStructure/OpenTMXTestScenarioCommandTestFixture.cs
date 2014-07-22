@@ -12,7 +12,7 @@ namespace TmxUnitTests.Commands.TestStructure
     using System;
     using MbUnit.Framework;using NUnit.Framework;
     using PSTestLib;
-    using TMX;
+    using Tmx;
     
     /// <summary>
     /// Description of OpenTmxTestScenarioCommandTestFixture.

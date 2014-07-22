@@ -11,10 +11,12 @@
 namespace TmxUnitTests
 {
     using System;
-    using TMX;
-    using TMX.Commands;
+    using Tmx;
+    using Tmx.Commands;
     using PSTestLib;
-	using TMX.Interfaces.TestStructure;
+	using Tmx.Core;
+	using Tmx.Interfaces;
+	using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of UnitTestingHelper.
@@ -131,7 +133,7 @@ namespace TmxUnitTests
             var command = new TmxAddTestScenarioCommand(cmdlet);
             command.Execute();
             
-            return (ITestScenario)TMX.TestData.CurrentTestScenario;
+            return (ITestScenario)TestData.CurrentTestScenario;
         }
         
         internal static ITestScenario GetNewTestScenario(

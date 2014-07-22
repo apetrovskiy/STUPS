@@ -7,11 +7,14 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX
+namespace Tmx
 {
     using System;
     using System.Management.Automation;
-    using TMX.Commands;
+	using TMX.Interfaces;
+	using Tmx.Core;
+	using Tmx.Interfaces;
+    using Tmx.Commands;
     
     /// <summary>
     /// Description of TmxSetCurrentTestResultCommand.
@@ -98,7 +101,7 @@ namespace TMX
                     TestData.CurrentTestResult.Id = cmdlet.Id;
                 } else {
                     cmdlet.WriteVerbose(cmdlet, "generating new test result Id for test result '" + TestData.CurrentTestResult.Name + "'");
-                    TestData.CurrentTestResult.Id = TMX.TestData.GetTestResultId();
+                    TestData.CurrentTestResult.Id = TestData.GetTestResultId();
                 }
             }
             
@@ -112,7 +115,16 @@ namespace TMX
                 cmdlet,
                 "Writing data to the current test result");
             
-            TmxHelper.SetCurrentTestResult(cmdlet);
+            // 20140720
+            // TmxHelper.SetCurrentTestResult(cmdlet);
+            TmxHelper.SetCurrentTestResult(
+                new TestResultCmdletBaseDataObject {
+                    TestResultName = cmdlet.TestResultName,
+                    Id = cmdlet.Id,
+                    Description = cmdlet.Description,
+                    KnownIssue = cmdlet.KnownIssue,
+                    TestOrigin = cmdlet.TestOrigin
+                });
             
             TestData.SetScenarioStatus(true); // skipAutomatic
             TestData.SetSuiteStatus(true); // skipAutomatic

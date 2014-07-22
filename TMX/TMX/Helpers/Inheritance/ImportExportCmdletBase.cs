@@ -7,14 +7,16 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX
+namespace Tmx
 {
     using System;
     using System.Management.Automation;
     using System.Linq;
     using System.Xml.Linq;
     using System.Text;
-	using TMX.Interfaces.TestStructure;
+	using Tmx.Core;
+	using Tmx.Interfaces;
+	using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of ImportExportCmdletBase.
@@ -300,7 +302,7 @@ namespace TMX
             // generate HTML in memory
             
             // report test data
-            foreach (TestSuite ts in TestData.TestSuites) {
+            foreach (var ts in TestData.TestSuites) {
                 WriteVerbose(this, "Test Suite: " + ts.Name);
                 string pgfSuite = pgfSuiteOpenNotTested;
                 string styleSuite = styleSuiteOpenNotTested;
@@ -352,7 +354,7 @@ namespace TMX
                     descriptionSuite;
                 resultHTML += ulOpenAfterDescription;
                 
-                foreach (TestScenario tsc in ts.TestScenarios) {
+                foreach (var tsc in ts.TestScenarios) {
                     WriteVerbose(this, "Test Scenario: " + tsc.Name);
                     string pgfScenario = pgfScenarioOpenNotTested;
                     string styleScenario = styleScenarioOpenNotTested;
@@ -401,7 +403,7 @@ namespace TMX
                     resultHTML += ulOpenAfterDescription;
                     
                 if (fullReport) {
-                    foreach (TestResult tr in tsc.TestResults) {
+                    foreach (var tr in tsc.TestResults) {
                         WriteVerbose(this, "Test Result: " + tr.Name);
                         string pgfTestResult = pgfTestResultOpenNotTested;
                         string styleTestResult = styleTestResultOpenNotTested;
@@ -458,7 +460,7 @@ namespace TMX
                         resultHTML += ulOpenAfterDescription;
                         
                         // test result detail collection
-                        foreach (TestResultDetail td in tr.Details) {
+                        foreach (var td in tr.Details) {
                             WriteVerbose(
                                 this,
                                 "Test Result Detail: " + 
@@ -670,17 +672,17 @@ namespace TMX
         
         protected internal void ExportResultsToCSV(string path)
         {
-            this.notImplementedCase();
+			notImplementedCase();
         }
         
         protected internal void ExportResultsToTEXT(string path)
         {
-            this.notImplementedCase();
+			notImplementedCase();
         }
         
         protected internal void ExportResultsToZIP(string path)
         {
-            this.notImplementedCase();
+			notImplementedCase();
         }
         
         protected internal void ExportSummaryToHTML(ImportExportCmdletBase cmdlet, string path)
@@ -692,40 +694,40 @@ namespace TMX
         
         protected internal void ExportSummaryToCSV(string path)
         {
-            this.notImplementedCase();
+			notImplementedCase();
         }
         
         protected internal void ExportSummaryToTEXT(string path)
         {
-            this.notImplementedCase();
+			notImplementedCase();
         }
         
         protected internal void ExportSummaryToZIP(string path)
         {
-            this.notImplementedCase();
+			notImplementedCase();
         }
         
         protected internal void ExportLogToHTML(string path)
         {
-            this.notImplementedCase();
+			notImplementedCase();
         }
         
         protected internal void ExportLogToCSV(string path)
         {
-            this.notImplementedCase();
+			notImplementedCase();
         }
         
         protected internal void ExportLogToTEXT(string path)
         {
-            this.notImplementedCase();
+			notImplementedCase();
         }
         
         protected internal void ExportLogToZIP(string path)
         {
-            this.notImplementedCase();
+			notImplementedCase();
         }
         
-        private string generateDocumentStructureTop()
+        string generateDocumentStructureTop()
         {
             string resultHTML = string.Empty;
             // document structure
@@ -802,7 +804,7 @@ namespace TMX
             return resultHTML;
         }
 
-        private string getStatisticsStringTestResult(ITestResult testResult)
+        string getStatisticsStringTestResult(ITestResult testResult)
         {
             string result = string.Empty;
             result += @"<div id=""testresultstat"">Time spent:";
@@ -811,7 +813,9 @@ namespace TMX
             return result;
         }
         
-        private string getStatisticsStringScenario(TestScenario scenario, bool skipAutomatic)
+        // 20140720
+        // string getStatisticsStringScenario(TestScenario scenario, bool skipAutomatic)
+        string getStatisticsStringScenario(ITestScenario scenario, bool skipAutomatic)
         {
             string result = string.Empty;
             // 20130322
@@ -834,7 +838,9 @@ namespace TMX
             return result;
         }
         
-        private string getStatisticsStringSuite(TestSuite suite, bool skipAutomatic)
+        // 20140720
+        // string getStatisticsStringSuite(TestSuite suite, bool skipAutomatic)
+        string getStatisticsStringSuite(ITestSuite suite, bool skipAutomatic)
         {
             string result = string.Empty;
             TestData.RefreshSuiteStatistics(suite, skipAutomatic);
@@ -843,7 +849,7 @@ namespace TMX
             int scPassed = 0;
             int scFailed = 0;
             int scNotTested = 0;
-            foreach (TestScenario tsc in suite.TestScenarios) {
+            foreach (var tsc in suite.TestScenarios) {
                 switch (tsc.enStatus) {
                     case TestScenarioStatuses.Passed:
                         scPassed++;
@@ -888,10 +894,10 @@ namespace TMX
             return result;
         }
         
-        private string getStatisticsStringOverall()
+        string getStatisticsStringOverall()
         {
             string result = string.Empty;
-            TestStat ts = new TestStat();
+            var ts = new TestStat();
             
             int suPassed = 0;
             int suFailed = 0;
@@ -900,7 +906,7 @@ namespace TMX
             int scFailed = 0;
             int scNotTested = 0;
             
-            foreach (TestSuite tsuite in TestData.TestSuites) {
+            foreach (var tsuite in TestData.TestSuites) {
                 ts.All += tsuite.Statistics.All;
                 ts.Passed += tsuite.Statistics.Passed;
                 ts.Failed += tsuite.Statistics.Failed;
@@ -922,7 +928,7 @@ namespace TMX
                         throw new Exception("Invalid value for TestSuiteStatuses");
                 }
                 
-                foreach (TestScenario tsc in tsuite.TestScenarios) {
+                foreach (var tsc in tsuite.TestScenarios) {
                     switch (tsc.enStatus) {
                         case TestScenarioStatuses.Passed:
                             scPassed++;

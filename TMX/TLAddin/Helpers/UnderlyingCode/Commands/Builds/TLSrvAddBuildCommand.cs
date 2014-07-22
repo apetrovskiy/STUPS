@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX
+namespace Tmx
 {
     using System;
     using System.Management.Automation;
@@ -23,11 +23,11 @@ namespace TMX
         
         internal override void Execute()
         {
-            TLHelper.AddBuild(
-                this.Cmdlet, 
-                ((AddTLBuildCommand)this.Cmdlet).InputObject,
-                ((AddTLBuildCommand)this.Cmdlet).Name,
-                ((AddTLBuildCommand)this.Cmdlet).Description);
+			TLHelper.AddBuild(
+				Cmdlet, 
+				((AddTLBuildCommand)Cmdlet).InputObject,
+				((AddTLBuildCommand)Cmdlet).Name,
+				((AddTLBuildCommand)Cmdlet).Description);
         }
     }
 }

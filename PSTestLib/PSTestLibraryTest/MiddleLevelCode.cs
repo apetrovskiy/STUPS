@@ -27,7 +27,7 @@ namespace PSTestLibraryTest
         public static void DisposeRunspace()
         {
             //CmdletUnitTest.TestRunspace.RunPSCode(
-            //    @"[TMX.TestData]::ResetData();");
+            //    @"[Tmx.Core.TestData]::ResetData();");
             CmdletUnitTest.TestRunspace.CloseRunspace();
         }
     }

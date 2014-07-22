@@ -11,10 +11,11 @@ namespace UiaRunner
 {
     using System;
     using System.Windows.Forms;
+	using Tmx.Core;
     // 20131105
     // refactoring
     using PSTestRunner;
-    using TMX;
+    using Tmx;
     using PSRunner;
 
     /// <summary>
@@ -45,19 +46,28 @@ namespace UiaRunner
             Application.SetCompatibleTextRenderingDefault(false);
             
             if (mode == RunModes.Unattended) {
-                UiaRunnerForm runnerForm =
-                    new UiaRunnerForm();
-                PSTestRunner.TestRunner.InitScript();
-                TMX.TestData.TmxNewTestResultClosed += 
-                    new TMX.TmxStructureChangedEventHandler(
+                var runnerForm = new UiaRunnerForm();
+				TestRunner.InitScript();
+                TestData.TmxNewTestResultClosed += 
+                    new TmxStructureChangedEventHandler(
+					TestRunner.NewTestResultClosed);
+				Runner.PSErrorThrown += runnerForm.PSStateErrorThrown;
+				Runner.PSOutputArrived += runnerForm.PSOutputArrived;
+				TestRunner.RunScript(args[0], true);
+				
+				/*
+				TestRunner.InitScript();
+                TestData.TmxNewTestResultClosed += 
+                    new Tmx.TmxStructureChangedEventHandler(
                         PSTestRunner.TestRunner.NewTestResultClosed);
-                PSRunner.Runner.PSErrorThrown +=
+				Runner.PSErrorThrown +=
                     new PSRunner.PSStateChangedEventHandler(
                         runnerForm.PSStateErrorThrown);
-                PSRunner.Runner.PSOutputArrived +=
+				Runner.PSOutputArrived +=
                     new PSRunner.PSDataArrivedEventHandler(
                         runnerForm.PSOutputArrived);
-                PSTestRunner.TestRunner.RunScript(args[0], true);
+				TestRunner.RunScript(args[0], true);
+				*/
             } else {
                 Application.Run(new UiaRunnerForm());
             }

@@ -7,11 +7,11 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX
+namespace Tmx
 {
     using System;
     using System.Management.Automation;
-	using TMX.Interfaces.TestStructure;
+	using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of TestResultDetailCmdletBase.
@@ -20,7 +20,7 @@ namespace TMX
     {
         public TestResultDetailCmdletBase()
         {
-            if (TMX.Preferences.AutoEcho) {
+            if (Tmx.Preferences.AutoEcho) {
                 this.Echo = true;
             }
         }

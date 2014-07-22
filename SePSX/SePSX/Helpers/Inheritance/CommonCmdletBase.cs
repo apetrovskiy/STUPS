@@ -25,7 +25,7 @@ namespace SePSX
     using System.Collections.ObjectModel;
     using System.Windows.Automation;
     using UIAutomation;
-    using TMX.Interfaces.TestStructure;
+    using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of CommonCmdletBase.
@@ -70,22 +70,22 @@ namespace SePSX
                 // turning off the logger
 //                switch (logLevel) {
 //                    case LogLevels.Fatal:
-//                        TMX.Logger.Fatal(logRecord);
+//                        Tmx.Logger.Fatal(logRecord);
 //                        break;
 //                    case LogLevels.Error:
-//                        TMX.Logger.Error(logRecord);
+//                        Tmx.Logger.Error(logRecord);
 //                        break;
 //                    case LogLevels.Warn:
-//                        TMX.Logger.Warn(logRecord);
+//                        Tmx.Logger.Warn(logRecord);
 //                        break;
 //                    case LogLevels.Info:
-//                        TMX.Logger.Info(logRecord);
+//                        Tmx.Logger.Info(logRecord);
 //                        break;
 //                    case LogLevels.Debug:
-//                        TMX.Logger.Debug(logRecord);
+//                        Tmx.Logger.Debug(logRecord);
 //                        break;
 //                    case LogLevels.Trace:
-//                        TMX.Logger.Trace(logRecord);
+//                        Tmx.Logger.Trace(logRecord);
 //                        break;
 //                }
             }
@@ -561,8 +561,8 @@ Console.WriteLine("WriteSingleObject 00008");
                         //((HasScriptBlockCmdletBase)cmdlet).TestResultName.Length > 0) {
                         cmdlet.TestResultName.Length > 0) {
 
-                        //TMX.TmxHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
-                        TMX.TmxHelper.CloseTestResult(cmdlet.TestResultName,
+                        //Tmx.TmxHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
+                        Tmx.TmxHelper.CloseTestResult(cmdlet.TestResultName,
                                                       //((HasScriptBlockCmdletBase)cmdlet).TestResultId,
                                                       cmdlet.TestResultId,
                                                       //((HasScriptBlockCmdletBase)cmdlet).TestPassed,
@@ -590,8 +590,8 @@ Console.WriteLine("WriteSingleObject 00008");
                             //((HasScriptBlockCmdletBase)cmdlet).TestPassed = true;
                             cmdlet.TestPassed = true;
 
-                            //TMX.TmxHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
-                            TMX.TmxHelper.CloseTestResult(cmdlet.TestResultName,
+                            //Tmx.TmxHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
+                            Tmx.TmxHelper.CloseTestResult(cmdlet.TestResultName,
                                                           string.Empty, //((HasScriptBlockCmdletBase)cmdlet).TestResultId, // empty, to be generated
                                                           //((HasScriptBlockCmdletBase)cmdlet).TestPassed,
                                                           cmdlet.TestPassed,
@@ -727,8 +727,8 @@ Console.WriteLine("WriteSingleObject 00008");
             if (cmdlet != null) {
                 // write error to the test results collection
                 // CurrentData.TestResults[CurrentData.TestResults.Count - 1].Details.Add(err);
-                //TMX.TestData.AddTestResultDetail(err);
-                TMX.TmxHelper.AddTestResultErrorDetail(errorRecord);
+                //TestData.AddTestResultDetail(err);
+                Tmx.TmxHelper.AddTestResultErrorDetail(errorRecord);
                 
                 // write test result label
                 try {
@@ -740,14 +740,14 @@ Console.WriteLine("WriteSingleObject 00008");
                     if (cmdlet.TestResultName != null &&
                         //((HasScriptBlockCmdletBase)cmdlet).TestResultName.Length > 0) {
                         cmdlet.TestResultName.Length > 0) {
-                        //TMX.TestData.AddTestResult
+                        //TestData.AddTestResult
                         //string iInfo = string.Empty;
 //                        if (((HasScriptBlockCmdletBase)cmdlet).TestLog){
-//                            iInfo = TMX.TmxHelper.GetInvocationInfo(this.MyInvocation);
+//                            iInfo = Tmx.TmxHelper.GetInvocationInfo(this.MyInvocation);
 //                        }
 
-                        //TMX.TmxHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
-                        TMX.TmxHelper.CloseTestResult(cmdlet.TestResultName,
+                        //Tmx.TmxHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
+                        Tmx.TmxHelper.CloseTestResult(cmdlet.TestResultName,
                                                       //((HasScriptBlockCmdletBase)cmdlet).TestResultId,
                                                       cmdlet.TestResultId,
                                                       //((HasScriptBlockCmdletBase)cmdlet).TestPassed,
@@ -780,18 +780,18 @@ Console.WriteLine("WriteSingleObject 00008");
                                 cmdlet.TestResultId = string.Empty;
                                 //((HasScriptBlockCmdletBase)cmdlet).TestPassed = false;
                                 cmdlet.TestPassed = false;
-//                                iInfo = TMX.TmxHelper.GetInvocationInfo(this.MyInvocation);
+//                                iInfo = Tmx.TmxHelper.GetInvocationInfo(this.MyInvocation);
 
-                                //TMX.TmxHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
-                                TMX.TmxHelper.CloseTestResult(cmdlet.TestResultName,
+                                //Tmx.TmxHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
+                                Tmx.TmxHelper.CloseTestResult(cmdlet.TestResultName,
                                                               string.Empty, //((HasScriptBlockCmdletBase)cmdlet).TestResultId, // empty, to be generated
                                                               //((HasScriptBlockCmdletBase)cmdlet).TestPassed,
                                                               cmdlet.TestPassed,
                                                               false, // isKnownIssue
                                                               this.MyInvocation,
                                                               errorRecord,
-//                                                              TMX.TmxHelper.GetScriptLineNumber(this.MyInvocation),
-//                                                              TMX.TmxHelper.GetPipelinePosition(this.MyInvocation),
+//                                                              Tmx.TmxHelper.GetScriptLineNumber(this.MyInvocation),
+//                                                              Tmx.TmxHelper.GetPipelinePosition(this.MyInvocation),
 //                                                              iInfo,
                                                               string.Empty,
                                                               // 20130322

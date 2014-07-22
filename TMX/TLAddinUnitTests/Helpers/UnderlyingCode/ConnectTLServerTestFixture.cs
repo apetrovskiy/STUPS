@@ -13,7 +13,7 @@ namespace TLAddinUnitTests
     using MbUnit.Framework;
     using PSTestLib;
     using Moq;
-    using TMX;
+    using Tmx;
     using Meyn.TestLink;
     using CookComputing.XmlRpc;
     

@@ -7,10 +7,11 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX
+namespace Tmx
 {
     using System;
     using System.Management.Automation;
+	using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of ScenarioCmdletBase.
@@ -26,7 +27,9 @@ namespace TMX
         #region Parameters
         [Parameter(Mandatory = false,
                    ValueFromPipeline = true)]
-        public TestSuite InputObject { get; set; }
+        // 20140720
+        // public TestSuite InputObject { get; set; }
+        public ITestSuite InputObject { get; set; }
         [Parameter(Mandatory = false)]
         public string TestSuiteName { get; set; }
         [Parameter(Mandatory = false)]

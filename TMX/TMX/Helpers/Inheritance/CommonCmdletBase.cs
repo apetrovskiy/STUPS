@@ -7,13 +7,14 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX
+namespace Tmx
 {
     using System;
     using System.Management.Automation;
     using PSTestLib;
     using System.Collections.ObjectModel;
     using System.Collections;
+	using Tmx.Core;
     
     /// <summary>
     /// Description of CmdletBase.
@@ -78,26 +79,26 @@ namespace TMX
             // turning off the logger
             return;
             
-            //TMX.Logger.Info(logRecord);
+            //Tmx.Logger.Info(logRecord);
                 
 //            switch (logLevel) {
 //                case LogLevels.Fatal:
-//                    TMX.Logger.Fatal(logRecord);
+//                    Tmx.Logger.Fatal(logRecord);
 //                    break;
 //                case LogLevels.Error:
-//                    TMX.Logger.Error(logRecord);
+//                    Tmx.Logger.Error(logRecord);
 //                    break;
 //                case LogLevels.Warn:
-//                    TMX.Logger.Warn(logRecord);
+//                    Tmx.Logger.Warn(logRecord);
 //                    break;
 //                case LogLevels.Info:
-//                    TMX.Logger.Info(logRecord);
+//                    Tmx.Logger.Info(logRecord);
 //                    break;
 //                case LogLevels.Debug:
-//                    TMX.Logger.Debug(logRecord);
+//                    Tmx.Logger.Debug(logRecord);
 //                    break;
 //                case LogLevels.Trace:
-//                    TMX.Logger.Trace(logRecord);
+//                    Tmx.Logger.Trace(logRecord);
 //                    break;
 //                    //default:
 //                    //    throw new Exception("Invalid value for LogLevels");
@@ -105,26 +106,26 @@ namespace TMX
 
             /*
             if (Preferences.AutoLog) {
-                //TMX.Logger.Info(logRecord);
+                //Tmx.Logger.Info(logRecord);
                 
                 switch (logLevel) {
                     case LogLevels.Fatal:
-                        TMX.Logger.Fatal(logRecord);
+                        Tmx.Logger.Fatal(logRecord);
                         break;
                     case LogLevels.Error:
-                        TMX.Logger.Error(logRecord);
+                        Tmx.Logger.Error(logRecord);
                         break;
                     case LogLevels.Warn:
-                        TMX.Logger.Warn(logRecord);
+                        Tmx.Logger.Warn(logRecord);
                         break;
                     case LogLevels.Info:
-                        TMX.Logger.Info(logRecord);
+                        Tmx.Logger.Info(logRecord);
                         break;
                     case LogLevels.Debug:
-                        TMX.Logger.Debug(logRecord);
+                        Tmx.Logger.Debug(logRecord);
                         break;
                     case LogLevels.Trace:
-                        TMX.Logger.Trace(logRecord);
+                        Tmx.Logger.Trace(logRecord);
                         break;
                     //default:
                     //    throw new Exception("Invalid value for LogLevels");

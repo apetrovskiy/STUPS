@@ -56,7 +56,7 @@ namespace SePSX
                 ((SaveSeScreenshotCommand)this.Cmdlet).Path + @"\" + ((SaveSeScreenshotCommand)this.Cmdlet).Name,
                 ((SaveSeScreenshotCommand)this.Cmdlet).As);
             
-            //TMX.
+            //Tmx.
             //} else {
             // UiaHelper.GetControlScreenshot(this.InputObject, this.Description);
             //}

@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX
+namespace Tmx
 {
     using System;
     using System.Management.Automation;
@@ -22,8 +22,7 @@ namespace TMX
         {
             this.CheckCmdletParameters();
             
-            TFSrvAddTestCaseCommand command =
-                new TFSrvAddTestCaseCommand(this);
+            var command = new TFSrvAddTestCaseCommand(this);
             command.Execute();
         }
     }

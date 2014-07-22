@@ -7,39 +7,47 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX
-{
-    using System;
-    using System.Linq;
-    using System.Collections.Generic;
-    using System.Xml.Linq;
-    using System.Reflection;
-    
-    /// <summary>
-    /// Description of GatherTestResultsCollections.
-    /// </summary>
-    public class GatherTestResultsCollections
-    {
-        public IOrderedEnumerable<TestSuite> TestSuites { get; set; }
-        public IOrderedEnumerable<TestScenario> TestScenarios { get; set; }
-        public IOrderedEnumerable<TestResult> TestResults { get; set; }
-        
-        public void GatherCollections(SearchCmdletBase cmdlet)
-        {
-            cmdlet.WriteVerbose(cmdlet, "getting test suites");
-            IOrderedEnumerable<TestSuite> suites =
-                TmxHelper.SearchForSuites(cmdlet);
-            TestSuites = suites;
-
-            cmdlet.WriteVerbose(cmdlet, "getting test scenarios");
-            IOrderedEnumerable<TestScenario> scenarios = 
-                TmxHelper.SearchForScenarios(cmdlet);
-            TestScenarios = scenarios;
-
-            cmdlet.WriteVerbose(cmdlet, "getting test results");
-            IOrderedEnumerable<TestResult> testResults = 
-                TmxHelper.SearchForTestResults(cmdlet);
-            TestResults = testResults;
-        }
-    }
-}
+//namespace Tmx
+//{
+//    using System;
+//    using System.Linq;
+//    using System.Collections.Generic;
+//    using System.Xml.Linq;
+//    using System.Reflection;
+//	using Tmx.Interfaces.TestStructure;
+//    
+//    /// <summary>
+//    /// Description of GatherTestResultsCollections.
+//    /// </summary>
+//    public class GatherTestResultsCollections
+//    {
+//        // 20140720
+//        // public IOrderedEnumerable<TestSuite> TestSuites { get; set; }
+//        // public IOrderedEnumerable<TestScenario> TestScenarios { get; set; }
+//        // public IOrderedEnumerable<TestResult> TestResults { get; set; }
+//        public IOrderedEnumerable<ITestSuite> TestSuites { get; set; }
+//        public IOrderedEnumerable<ITestScenario> TestScenarios { get; set; }
+//        public IOrderedEnumerable<ITestResult> TestResults { get; set; }
+//        
+//        public void GatherCollections(SearchCmdletBase cmdlet)
+//        {
+////            cmdlet.WriteVerbose(cmdlet, "getting test suites");
+//            // 20140720
+//            // IOrderedEnumerable<TestSuite> suites =
+//            IOrderedEnumerable<ITestSuite> suites = TmxHelper.SearchForSuites(cmdlet);
+//            TestSuites = suites;
+//
+////            cmdlet.WriteVerbose(cmdlet, "getting test scenarios");
+//            // 20140720
+//            // IOrderedEnumerable<TestScenario> scenarios =
+//            IOrderedEnumerable<ITestScenario> scenarios = TmxHelper.SearchForScenarios(cmdlet);
+//            TestScenarios = scenarios;
+//
+////            cmdlet.WriteVerbose(cmdlet, "getting test results");
+//            // 20140720
+//            // IOrderedEnumerable<TestResult> testResults =
+//            IOrderedEnumerable<ITestResult> testResults = TmxHelper.SearchForTestResults(cmdlet);
+//            TestResults = testResults;
+//        }
+//    }
+//}

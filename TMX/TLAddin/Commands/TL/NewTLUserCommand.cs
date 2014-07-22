@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX
+namespace Tmx
 {
     using System;
     using System.Management.Automation;
@@ -18,14 +18,9 @@ namespace TMX
     [Cmdlet(VerbsCommon.New, "TLUser")]
     internal class NewTLUserCommand : TLUserCmdletBase
     {
-        internal NewTLUserCommand()
-        {
-        }
-        
         protected override void BeginProcessing()
         {
-            TLSrvNewUserCommand command =
-                new TLSrvNewUserCommand(this);
+            var command = new TLSrvNewUserCommand(this);
             command.Execute();
         }
     }

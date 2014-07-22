@@ -12,8 +12,8 @@ namespace TmxUnitTests.Commands.TestStructure
     using System;
     using MbUnit.Framework;using NUnit.Framework;
     using PSTestLib;
-    using TMX;
-	using TMX.Interfaces.TestStructure;
+    using Tmx;
+	using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of AddTmxTestScenarioCommandTestFixture.

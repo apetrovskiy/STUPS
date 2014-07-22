@@ -7,13 +7,14 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX.Commands
+namespace Tmx.Commands
 {
     using System;
     using System.Management.Automation;
     using System.Data;
     using System.Data.OleDb;
     using System.Linq;
+	using TMX.Interfaces;
     
     /// <summary>
     /// Description of GetTestResultsViaDataSetCommand.
@@ -25,8 +26,7 @@ namespace TMX.Commands
         {
             this.CheckCmdletParameters();
             
-            SearchCmdletBase cmdlet = 
-                new SearchCmdletBase();
+            var cmdlet = new SearchCmdletBase();
             cmdlet.FilterAll = true;
             
 //            System.Data.DataSet dataSet = 
@@ -59,9 +59,35 @@ namespace TMX.Commands
 //                //row.
 //            }
             
-            
-            TmxHelper.SearchForScenarios(cmdlet);
-            TmxHelper.SearchForTestResults(cmdlet);
+            // 20140720
+            // var dataObject = new SearchCmdletBaseDataObject { FilterAll = true };
+            // 20140721
+			var dataObject = new SearchCmdletBaseDataObject {
+                Descending = cmdlet.Descending,
+                FilterAll = cmdlet.FilterAll,
+                FilterDescriptionContains = cmdlet.FilterDescriptionContains,
+                FilterFailed = cmdlet.FilterFailed,
+                FilterIdContains = cmdlet.FilterIdContains,
+                FilterNameContains = cmdlet.FilterNameContains,
+                FilterNone = cmdlet.FilterNone,
+                FilterNotTested = cmdlet.FilterNotTested,
+                FilterOutAutomaticAndTechnicalResults = cmdlet.FilterOutAutomaticAndTechnicalResults,
+                FilterOutAutomaticResults = cmdlet.FilterOutAutomaticResults,
+                FilterPassed = cmdlet.FilterPassed,
+                FilterPassedWithBadSmell = cmdlet.FilterPassedWithBadSmell,
+                Id = cmdlet.Id,
+                Name = cmdlet.Name,
+                OrderByDateTime = cmdlet.OrderByDateTime,
+                OrderByFailRate = cmdlet.OrderByFailRate,
+                OrderById = cmdlet.OrderById,
+                OrderByName = cmdlet.OrderByName,
+                OrderByPassRate = cmdlet.OrderByPassRate,
+                OrderByTimeSpent = cmdlet.OrderByTimeSpent
+			};
+//            TmxHelper.SearchForScenarios(cmdlet);
+//            TmxHelper.SearchForTestResults(cmdlet);
+            TmxHelper.SearchForScenarios(dataObject);
+            TmxHelper.SearchForTestResults(dataObject);
 
         }
     }

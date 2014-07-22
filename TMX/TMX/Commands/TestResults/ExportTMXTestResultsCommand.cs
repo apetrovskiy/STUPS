@@ -7,10 +7,11 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX.Commands
+namespace Tmx.Commands
 {
     using System;
     using System.Management.Automation;
+	using TMX.Interfaces;
     
     /// <summary>
     /// Description of ExportTmxTestResultsCommand.
@@ -20,19 +21,50 @@ namespace TMX.Commands
     {
         protected override void BeginProcessing()
         {
-            this.CheckCmdletParameters();
+			CheckCmdletParameters();
             
-            this.WriteVerbose(this, "As = " + this.As);
-            this.WriteVerbose(this, "Path = " + this.Path);
+//            this.WriteVerbose(this, "As = " + this.As);
+//            this.WriteVerbose(this, "Path = " + this.Path);
             
-            string reportFormat = this.As.ToUpper();
+            // 20140721
+            var dataObject = new ImportExportCmdletBaseDataObject {
+                As = this.As,
+                Descending = this.Descending,
+                ExcludeAutomatic = this.ExcludeAutomatic,
+                FilterAll = this.FilterAll,
+                FilterDescriptionContains = this.FilterDescriptionContains,
+                FilterFailed = this.FilterFailed,
+                FilterIdContains = this.FilterIdContains,
+                FilterNameContains = this.FilterNameContains,
+                FilterNone = this.FilterNone,
+                FilterNotTested = this.FilterNotTested,
+                FilterOutAutomaticAndTechnicalResults = this.FilterOutAutomaticAndTechnicalResults,
+                FilterOutAutomaticResults = this.FilterOutAutomaticResults,
+                FilterPassed = this.FilterPassed,
+                FilterPassedWithBadSmell = this.FilterPassedWithBadSmell,
+                Id = this.Id,
+                Name = this.Name,
+                OrderByDateTime = this.OrderByDateTime,
+                OrderByFailRate = this.OrderByFailRate,
+                OrderById = this.OrderById,
+                OrderByName = this.OrderByName,
+                OrderByPassRate = this.OrderByPassRate,
+                OrderByTimeSpent = this.OrderByTimeSpent,
+                Path = this.Path
+            };
+            
+            string reportFormat = As.ToUpper();
             switch (reportFormat){
                 case "XML":
-                    TmxHelper.ExportResultsToXML(this, this.Path);
+                    // 20140721
+					// TmxHelper.ExportResultsToXML(this, Path);
+					TmxHelper.ExportResultsToXML(dataObject, Path);
                     break;
                 case "JUNIT":
                 case "JUNITXML":
-                    TmxHelper.ExportResultsToJUnitXML(this, this.Path);
+                    // 20140721
+					// TmxHelper.ExportResultsToJUnitXML(this, Path);
+					TmxHelper.ExportResultsToJUnitXML(dataObject, Path);
                     break;
                 case "HTML":
                     // 20130322
@@ -40,13 +72,13 @@ namespace TMX.Commands
                     this.ExportResultsToHTML(this, this.Path);
                     break;
                 case "CSV":
-                    this.ExportResultsToCSV(this.Path);
+					ExportResultsToCSV(Path);
                     break;
                 case "TEXT":
-                    this.ExportResultsToTEXT(this.Path);
+					ExportResultsToTEXT(Path);
                     break;
                 case "ZIP":
-                    this.ExportResultsToZIP(this.Path);
+					ExportResultsToZIP(Path);
                     break;
                 default:
                     

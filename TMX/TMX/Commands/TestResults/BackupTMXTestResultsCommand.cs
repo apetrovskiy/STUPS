@@ -7,11 +7,12 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX.Commands
+namespace Tmx.Commands
 {
     using System;
     using System.Management.Automation;
     using System.Data.SQLite;
+	using Tmx.Core;
     
     /// <summary>
     /// Description of BackupTmxTestResultsCommand.
@@ -22,17 +23,17 @@ namespace TMX.Commands
     {
         protected override void BeginProcessing()
         {
-            this.CheckCmdletParameters();
+			CheckCmdletParameters();
             
-            this.WriteVerbose(this, "creating a new connection object");
-            SQLiteConnection connection = new SQLiteConnection();
-            this.WriteVerbose(this, "setting the connection string");
-            this.WriteVerbose(this, TestData.CurrentResultsDB.ConnectionString);
+//            this.WriteVerbose(this, "creating a new connection object");
+            var connection = new SQLiteConnection();
+//            this.WriteVerbose(this, "setting the connection string");
+//            this.WriteVerbose(this, TestData.CurrentResultsDB.ConnectionString);
             connection.ConnectionString = TestData.CurrentResultsDB.ConnectionString;
-            this.WriteVerbose(this, "opening the connection");
+//            this.WriteVerbose(this, "opening the connection");
             connection.Open();
-            this.WriteVerbose(this, "the connection has been opened");
-            SQLiteHelper.BackupTestResults(this, TMX.TestData.CurrentResultsDB.Name); //connection);
+//            this.WriteVerbose(this, "the connection has been opened");
+            SQLiteHelper.BackupTestResults(this, TestData.CurrentResultsDB.Name); //connection);
         }
     }
 }

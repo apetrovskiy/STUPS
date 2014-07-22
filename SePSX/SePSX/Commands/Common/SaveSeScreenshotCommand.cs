@@ -87,7 +87,7 @@ namespace SePSX.Commands
 //                this.Path + @"\" + this.Name,
 //                this.As);
 //            
-//            //TMX.
+//            //Tmx.
 //            //} else {
 //            // UiaHelper.GetControlScreenshot(this.InputObject, this.Description);
 //            //}

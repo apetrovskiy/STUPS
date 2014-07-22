@@ -13,7 +13,7 @@ namespace TLAddinUnitTests.Commands.TL
     using MbUnit.Framework;
     using PSTestLib;
     using Moq;
-    using TMX;
+    using Tmx;
     using Meyn.TestLink;
     using CookComputing.XmlRpc;
 
@@ -23,10 +23,6 @@ namespace TLAddinUnitTests.Commands.TL
     [TestFixture]
     public class NewTLUserCommandTestFixture
     {
-        public NewTLUserCommandTestFixture()
-        {
-        }
-        
         [SetUp]
         public void SetUp()
         {

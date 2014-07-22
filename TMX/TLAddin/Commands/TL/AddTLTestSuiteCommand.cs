@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX
+namespace Tmx
 {
     using System;
     using System.Management.Automation;
@@ -18,14 +18,9 @@ namespace TMX
     [Cmdlet(VerbsCommon.Add, "TLTestSuite")]
     public class AddTLTestSuiteCommand : TLTestSuiteCmdletBase
     {
-        public AddTLTestSuiteCommand()
-        {
-        }
-        
         protected override void ProcessRecord()
         {
-            TLSrvAddTestSuiteCommand command =
-                new TLSrvAddTestSuiteCommand(this);
+            var command = new TLSrvAddTestSuiteCommand(this);
             command.Execute();
         }
     }

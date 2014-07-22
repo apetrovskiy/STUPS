@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX
+namespace Tmx
 {
     using System;
     using System.Management.Automation;
@@ -18,14 +18,9 @@ namespace TMX
     [Cmdlet(VerbsCommon.Get, "TLTestSuite", DefaultParameterSetName = "TestProjectInput")]
     public class GetTLTestSuiteCommand : TLTestSuiteCmdletBase
     {
-        public GetTLTestSuiteCommand()
-        {
-        }
-        
         protected override void ProcessRecord()
         {
-            TLSrvGetTestSuiteCommand command =
-                new TLSrvGetTestSuiteCommand(this);
+            var command = new TLSrvGetTestSuiteCommand(this);
             command.Execute();
         }
     }

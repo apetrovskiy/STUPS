@@ -97,6 +97,10 @@
       <Project>{7B0501F7-6030-4EC7-94E9-7496C85EC3F2}</Project>
       <Name>BDDAddin</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Tmx.Core\Tmx.Core.csproj">
+      <Project>{069651A0-FE15-42E2-89D5-9A761A47B143}</Project>
+      <Name>Tmx.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TMX\TMX.csproj">
       <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>
       <Name>TMX</Name>

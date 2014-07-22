@@ -10,7 +10,8 @@
 namespace TmxTest.Commands.TestStructure
 {
     using System;
-    using MbUnit.Framework;using NUnit.Framework; // using MbUnit.Framework;using NUnit.Framework;
+    using MbUnit.Framework;using NUnit.Framework;
+	using Tmx.Core; // using MbUnit.Framework;using NUnit.Framework;
     
     /// <summary>
     /// Description of OpenTmxTestSuiteCommandTestFixture.
@@ -86,7 +87,7 @@ namespace TmxTest.Commands.TestStructure
                 ").Id;",
                 id);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"[TMX.TestData]::TestSuites[0].Name",
+                @"[Tmx.Core.TestData]::TestSuites[0].Name",
                 "suite1");
         }
         
@@ -195,7 +196,7 @@ namespace TmxTest.Commands.TestStructure
                 suiteName1 +
                 ";" +
                 "Get-TmxTestResultStatus -Id 001;",
-                TMX.TestData.TestStatePassed);
+                TestData.TestStatePassed);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]
@@ -225,7 +226,7 @@ namespace TmxTest.Commands.TestStructure
                 suiteName1 +
                 ";" +
                 "Get-TmxTestResultStatus -Id 001;",
-                TMX.TestData.TestStateFailed);
+                TestData.TestStateFailed);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]
@@ -255,7 +256,7 @@ namespace TmxTest.Commands.TestStructure
                 suiteName1 +
                 ";" +
                 "Get-TmxTestResultStatus -Id 001;",
-                TMX.TestData.TestStateKnownIssue);
+                TestData.TestStateKnownIssue);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]
@@ -285,7 +286,7 @@ namespace TmxTest.Commands.TestStructure
                 suiteName1 +
                 ";" +
                 "Get-TmxTestResultStatus -Id 001;",
-                TMX.TestData.TestStateNotTested);
+                TestData.TestStateNotTested);
         }
         
         [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]

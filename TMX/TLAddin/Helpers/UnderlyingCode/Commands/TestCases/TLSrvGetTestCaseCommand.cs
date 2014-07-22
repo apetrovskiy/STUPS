@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX
+namespace Tmx
 {
     using System;
     using System.Management.Automation;
@@ -24,8 +24,7 @@ namespace TMX
         internal override void Execute()
         {
             var cmdlet = (GetTLTestCaseCommand)Cmdlet;
-//<<<<<<< HEAD
-            
+//------------------------------------ ??            
 //            TLHelper.GetTestCase(
 //                this.Cmdlet,
 //                cmdlet.Name);
@@ -69,7 +68,6 @@ namespace TMX
                 TLHelper.GetTestCaseFromTestSuite(cmdlet, testSuites, cmdlet.TestCaseName, cmdlet.Recurse);
                 return;
             }
-//>>>>>>> bd9ff13f94abec7fde380458c810caa8cf2cfeda
         }
     }
 }

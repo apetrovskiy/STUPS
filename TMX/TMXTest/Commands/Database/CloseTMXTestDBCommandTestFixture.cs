@@ -45,16 +45,16 @@ namespace TmxTest.Commands.Database
                 @"';");
             // 20130130
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateIsNull(
-//                @"[TMX.TestData]::CurrentResultsDB;");
+//                @"[Tmx.Core.TestData]::CurrentResultsDB;");
 //            CmdletUnitTest.TestRunspace.RunAndEvaluateIsNull(
-//                @"[TMX.TestData]::CurrentStructureDB;");
+//                @"[Tmx.Core.TestData]::CurrentStructureDB;");
             // 20130130
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual1(
-                @"if ($null -eq [TMX.TestData]::CurrentRepositoryDB) { ""1""; }");
+                @"if ($null -eq [Tmx.Core.TestData]::CurrentRepositoryDB) { ""1""; }");
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual1(
-                @"if ($null -eq [TMX.TestData]::CurrentResultsDB) { ""1""; }");
+                @"if ($null -eq [Tmx.Core.TestData]::CurrentResultsDB) { ""1""; }");
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual1(
-                @"if ($null -eq [TMX.TestData]::CurrentStructureDB) { ""1""; }");
+                @"if ($null -eq [Tmx.Core.TestData]::CurrentStructureDB) { ""1""; }");
             CmdletUnitTest.TestRunspace.RunPSCode(
                 @"Remove-Item '" + 
                 Settings.FileName +

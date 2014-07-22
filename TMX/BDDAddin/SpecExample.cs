@@ -21,7 +21,7 @@
 
 //using NBehave.Narrator.Framework.Extensions;
 //
-//namespace TMX
+//namespace Tmx
 //{
 //    public class aaa
 //    {

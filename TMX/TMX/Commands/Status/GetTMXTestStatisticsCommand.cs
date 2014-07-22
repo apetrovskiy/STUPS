@@ -7,10 +7,12 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX.Commands
+namespace Tmx.Commands
 {
     using System;
     using System.Management.Automation;
+	using Tmx.Core;
+	using Tmx.Interfaces;
     
     /// <summary>
     /// Description of GetTmxTestStatisticsCommand.
@@ -20,13 +22,13 @@ namespace TMX.Commands
     {
         protected override void BeginProcessing()
         {
-            TestStat stat = new TestStat();
+            var stat = new TestStat();
             
-            if (null != TMX.TestData.TestSuites && 0 < TMX.TestData.TestSuites.Count) {
+            if (null != TestData.TestSuites && 0 < TestData.TestSuites.Count) {
                 
-                foreach (TestSuite testSuite in TMX.TestData.TestSuites) {
+                foreach (var testSuite in TestData.TestSuites) {
                     
-                    TMX.TestData.RefreshSuiteStatistics(testSuite, false);
+                    TestData.RefreshSuiteStatistics(testSuite, false);
                     stat.Passed += testSuite.Statistics.Passed;
                     stat.Failed += testSuite.Statistics.Failed;
                     stat.PassedButWithBadSmell += testSuite.Statistics.PassedButWithBadSmell;

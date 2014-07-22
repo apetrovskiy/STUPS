@@ -56,11 +56,38 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataTypes\IAddScenarioCmdletBaseDataObject.cs" />
+    <Compile Include="DataTypes\IAddTestCaseCmdletBaseDataObject.cs" />
+    <Compile Include="DataTypes\ICommonCmdletBaseDataObject.cs" />
+    <Compile Include="DataTypes\ICommonDataObject.cs" />
+    <Compile Include="DataTypes\IGetTmxTestSuiteStatusDataObject.cs" />
+    <Compile Include="DataTypes\IImportExportCmdletBaseDataObject.cs" />
+    <Compile Include="DataTypes\IOpenScenarioCmdletBaseDataObject.cs" />
+    <Compile Include="DataTypes\IOpenSuiteCmdletBaseDataObject.cs" />
+    <Compile Include="DataTypes\ISearchCmdletBaseDataObject.cs" />
+    <Compile Include="DataTypes\ISearchTmxTestResultDataObject.cs" />
+    <Compile Include="DataTypes\ISettingsCmdletBaseDataObject.cs" />
+    <Compile Include="DataTypes\ITestResultCmdletBaseDataObject.cs" />
+    <Compile Include="DataTypes\ITestResultDetailCmdletBaseDataObject.cs" />
+    <Compile Include="DataTypes\ITestResultStatusCmdletBaseDataObject.cs" />
+    <Compile Include="DataTypes\Types\AddScenarioCmdletBaseDataObject.cs" />
+    <Compile Include="DataTypes\Types\AddTestCaseCmdletBaseDataObject.cs" />
+    <Compile Include="DataTypes\Types\CommonCmdletBaseDataObject.cs" />
+    <Compile Include="DataTypes\Types\GetTmxTestSuiteStatusDataObject.cs" />
+    <Compile Include="DataTypes\Types\ImportExportCmdletBaseDataObject.cs" />
+    <Compile Include="DataTypes\Types\OpenScenarioCmdletBaseDataObject.cs" />
+    <Compile Include="DataTypes\Types\SearchCmdletBaseDataObject.cs" />
+    <Compile Include="DataTypes\Types\SearchTmxTestResultDataObject.cs" />
+    <Compile Include="DataTypes\Types\SettingsCmdletBaseDataObject.cs" />
+    <Compile Include="DataTypes\Types\TestResultCmdletBaseDataObject.cs" />
+    <Compile Include="DataTypes\Types\TestResultDetailCmdletBaseDataObject.cs" />
+    <Compile Include="DataTypes\Types\TestResultStatusCmdletBaseDataObject.cs" />
     <Compile Include="IDatabase.cs" />
     <Compile Include="ITestBucket.cs" />
     <Compile Include="ITestConstant.cs" />
     <Compile Include="ITestSuitesCollection.cs" />
     <Compile Include="IWorkflowStep.cs" />
+    <Compile Include="IXMLElementsStruct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Remoting\Enums.cs" />
     <Compile Include="Remoting\IClientInformation.cs" />
@@ -68,6 +95,10 @@
     <Compile Include="Remoting\ITestTaskAction.cs" />
     <Compile Include="Remoting\ITestHost.cs" />
     <Compile Include="Remoting\ITestHostGroup.cs" />
+    <Compile Include="TestResult.cs" />
+    <Compile Include="TestResultDetail.cs" />
+    <Compile Include="TestScenario.cs" />
+    <Compile Include="TestStat.cs" />
     <Compile Include="TestStructure\Enumerations.cs" />
     <Compile Include="TestStructure\ITestCase.cs" />
     <Compile Include="TestStructure\ITestPlatform.cs" />
@@ -75,6 +106,7 @@
     <Compile Include="TestStructure\ITestResultDetail.cs" />
     <Compile Include="TestStructure\ITestScenario.cs" />
     <Compile Include="TestStructure\ITestSuite.cs" />
+    <Compile Include="TestSuite.cs" />
     <Compile Include="Types\Remoting\TestClientInformation.cs" />
     <Compile Include="Types\Remoting\TestTask.cs" />
     <Compile Include="UrnList.cs" />
@@ -83,6 +115,8 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="DataTypes" />
+    <Folder Include="DataTypes\Types" />
     <Folder Include="Types" />
     <Folder Include="Remoting" />
     <Folder Include="TestStructure" />

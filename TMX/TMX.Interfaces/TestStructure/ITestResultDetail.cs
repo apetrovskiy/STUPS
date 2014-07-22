@@ -7,9 +7,10 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX.Interfaces.TestStructure
+namespace Tmx.Interfaces.TestStructure
 {
     using System;
+	using System.Collections.Generic;
     using System.Management.Automation;
 
     /// <summary>
@@ -25,5 +26,13 @@ namespace TMX.Interfaces.TestStructure
         
         // 20130402
         TestResultStatuses DetailStatus { get; set; }
+        
+        // 20140720
+        TestResultDetailTypes DetailType { get; set; }
+        string TextDetail { get; set; }
+        ErrorRecord ErrorDetail { get; set; }
+        string ScreenshotDetail { get; set; }
+        string LogDetail { get; set; }
+        List<string> ExternalData { get; set; }
     }
 }

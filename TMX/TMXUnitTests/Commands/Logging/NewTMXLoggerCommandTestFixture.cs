@@ -12,7 +12,7 @@ namespace TmxUnitTests.Commands.Logging
     using System;
     using MbUnit.Framework;using NUnit.Framework;
     using PSTestLib;
-    using TMX;
+    using Tmx;
     
     /// <summary>
     /// Description of NewTmxLoggerCommandTestFixture.

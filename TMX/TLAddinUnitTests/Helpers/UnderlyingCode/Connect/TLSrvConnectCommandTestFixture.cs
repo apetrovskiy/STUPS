@@ -16,7 +16,7 @@ namespace TLAddinUnitTests
     using Autofac;
 //    using System.Drawing;
 //    using System.Collections.ObjectModel;
-    using TMX;
+    using Tmx;
     using Meyn.TestLink;
 
     /// <summary>
@@ -36,7 +36,7 @@ namespace TLAddinUnitTests
 //            Mock testLink = new Mock<TestLink>();
 //            //testLink.Object(() => 
 //            
-//            TMX.TLSrvConnectCommand command = new TLSrvConnectCommand();
+//            Tmx.TLSrvConnectCommand command = new TLSrvConnectCommand();
 //            
 //            
 //        }
@@ -45,7 +45,7 @@ namespace TLAddinUnitTests
 //        [Category("Fast")]
 //        public void Connect_Empty_Server()
 //        {
-//            TMX.ConnectTLServerCommand cmdlet = new ConnectTLServerCommand();
+//            Tmx.ConnectTLServerCommand cmdlet = new ConnectTLServerCommand();
 //            cmdlet.Server = "";
 //            cmdlet.ApiKey = "right apikey";
 //            
@@ -56,7 +56,7 @@ namespace TLAddinUnitTests
 //        [Category("Fast")]
 //        public void Connect_Empty_Apikey()
 //        {
-//            TMX.ConnectTLServerCommand cmdlet = new ConnectTLServerCommand();
+//            Tmx.ConnectTLServerCommand cmdlet = new ConnectTLServerCommand();
 //            cmdlet.Server = "right server";
 //            cmdlet.ApiKey = "";
 //            
@@ -67,7 +67,7 @@ namespace TLAddinUnitTests
 //        [Category("Fast")]
 //        public void Connect_Wrong_Server()
 //        {
-//            TMX.ConnectTLServerCommand cmdlet = new ConnectTLServerCommand();
+//            Tmx.ConnectTLServerCommand cmdlet = new ConnectTLServerCommand();
 //            cmdlet.Server = "wrong server";
 //            cmdlet.ApiKey = "right apikey";
 //            
@@ -78,7 +78,7 @@ namespace TLAddinUnitTests
 //        [Category("Fast")]
 //        public void Connect_Wrong_Apikey()
 //        {
-//            TMX.ConnectTLServerCommand cmdlet = new ConnectTLServerCommand();
+//            Tmx.ConnectTLServerCommand cmdlet = new ConnectTLServerCommand();
 //            cmdlet.Server = "right server";
 //            cmdlet.ApiKey = "wrong apikey";
 //            
@@ -89,7 +89,7 @@ namespace TLAddinUnitTests
 //        [Category("Fast")]
 //        public void Connect_TestLink()
 //        {
-//            TMX.ConnectTLServerCommand cmdlet = new ConnectTLServerCommand();
+//            Tmx.ConnectTLServerCommand cmdlet = new ConnectTLServerCommand();
 //            cmdlet.Server = "right server";
 //            cmdlet.ApiKey = "right apikey";
 //            

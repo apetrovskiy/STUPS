@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX
+namespace Tmx
 {
     using System;
     using System.Management.Automation;
@@ -15,7 +15,7 @@ namespace TMX
     using System.Data;
     using System.Data.Common;
     using System.Data.SQLite;
-	using TMX.Interfaces;
+	using Tmx.Interfaces;
     
     /// <summary>
     /// Description of Database.

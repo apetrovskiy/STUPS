@@ -30,7 +30,7 @@ namespace UIAutomationTest
             
                         // 20120702
                         @"Import-Module '.\UIAutomation.dll' -Force;" + 
-                        @"Import-Module '.\TMX.dll' -Force;" + 
+                        @"Import-Module '.\Tmx.dll' -Force;" + 
             
                         @"[UIAutomation.Preferences]::OnSuccessDelay = 0; " +
                         @"[UIAutomation.Preferences]::OnErrorDelay = 0; " +

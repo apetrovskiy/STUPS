@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX
+namespace Tmx
 {
     using System;
     using System.Management.Automation;
@@ -23,13 +23,9 @@ namespace TMX
             this.Active = true;
         }
         
-        #region Parameters
-        #endregion Parameters
-        
         protected override void ProcessRecord()
         {
-            TLSrvNewTestPlanCommand command =
-                new TLSrvNewTestPlanCommand(this);
+            var command = new TLSrvNewTestPlanCommand(this);
             command.Execute();
         }
     }

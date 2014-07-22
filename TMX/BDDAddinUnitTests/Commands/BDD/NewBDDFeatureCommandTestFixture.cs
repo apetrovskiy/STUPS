@@ -16,7 +16,7 @@ namespace BDDAddinUnitTests.Commands.BDD
     //using Moq;
     //using Autofac;
     //using Autofac.Builder;
-    using TMX;
+    using Tmx;
     
     /// <summary>
     /// Description of NewBDDFeatureCommandTestFixture.

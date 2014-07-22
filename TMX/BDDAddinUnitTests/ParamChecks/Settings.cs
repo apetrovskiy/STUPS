@@ -21,13 +21,13 @@ namespace BDDAddinUnitTests
         
         public static string RunspaceCommand = 
 //#if DEBUG
-//                        @"Import-Module '..\..\..\TMX\bin\Debug\TMX.dll' -Force;" + //);
+//                        @"Import-Module '..\..\..\TMX\bin\Debug\Tmx.dll' -Force;" + //);
 //#else
-//                        @"Import-Module '..\..\..\TMX\bin\Release35\TMX.dll' -Force;" + //);
+//                        @"Import-Module '..\..\..\TMX\bin\Release35\Tmx.dll' -Force;" + //);
 //#endif
 //                        @"";
         
-                        @"Import-Module '.\TMX.dll' -Force;" +
+                        @"Import-Module '.\Tmx.dll' -Force;" +
                         @"Import-Module '.\BDDAddin.dll' -Force;";
     }
 }

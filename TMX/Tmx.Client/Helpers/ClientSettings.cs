@@ -14,7 +14,8 @@ namespace Tmx.Client.Helpers
     /// <summary>
     /// Description of ClientSettings.
     /// </summary>
-    public static class ClientSettings
+    // public static class ClientSettings
+    public class ClientSettings
     {
         public static string ServerUrl { get; set; }
         public static int ClientId { get; set; }

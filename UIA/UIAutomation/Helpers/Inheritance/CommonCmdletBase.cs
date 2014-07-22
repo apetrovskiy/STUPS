@@ -22,8 +22,8 @@ namespace UIAutomation
     using System.Linq;
     using PSTestLib;
     // using System.Diagnostics.CodeAnalysis;
-    using TMX;
-    using TMX.Interfaces.TestStructure;
+    using Tmx;
+    using Tmx.Interfaces.TestStructure;
     using UIAutomation.Commands;
     
     /// <summary>

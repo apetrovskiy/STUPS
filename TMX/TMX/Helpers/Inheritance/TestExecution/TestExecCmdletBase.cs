@@ -9,11 +9,12 @@
 
 using System.Linq;
 
-namespace TMX
+namespace Tmx
 {
     using System;
     using System.Management.Automation;
-	using TMX.Interfaces.TestStructure;
+	using Tmx.Core;
+	using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of TestExecCmdletBase.
@@ -117,14 +118,18 @@ namespace TMX
                 testSuite.AfterScenarioParameters);
         }
         
+        // 20140720
         public void RunTestCase(
 			TestCaseExecCmdletBase cmdlet,
-			TestSuite testSuite,
-			TestScenario testScenario)
+			// 20140720
+//			TestSuite testSuite,
+//			TestScenario testScenario)
+            ITestSuite testSuite,
+			ITestScenario testScenario)
 		{
             
-			ITestCase testCase =
-			    TMX.TestData.GetTestCase(
+			var testCase =
+			    TestData.GetTestCase(
 			        testSuite,
 			        string.Empty, //cmdlet.Name
 			        cmdlet.Id,

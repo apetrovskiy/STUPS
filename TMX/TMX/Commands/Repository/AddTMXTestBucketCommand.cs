@@ -7,11 +7,11 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX.Commands
+namespace Tmx.Commands
 {
     using System;
     using System.Management.Automation;
-	using TMX.Interfaces;
+	using Tmx.Interfaces;
     
     /// <summary>
     /// Description of AddTmxTestBucketCommand.
@@ -22,9 +22,9 @@ namespace TMX.Commands
     {
         protected override void ProcessRecord()
         {
-            this.checkDatabaseInput(this.InputObject);
+			checkDatabaseInput(InputObject);
             
-            SQLiteHelper.CreateBucket(this, this.BucketName, this.Tag, this.Description);
+			SQLiteHelper.CreateBucket(this, BucketName, Tag, Description);
         }
     }
 }

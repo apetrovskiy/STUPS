@@ -22,7 +22,7 @@ namespace TmxTest
         
         public static string RunspaceCommand = 
                         @"Import-Module '.\UIAutomation.dll' -Force;" + 
-                        @"Import-Module '.\TMX.dll' -Force;";
+                        @"Import-Module '.\Tmx.dll' -Force;";
         
         public static string FileName { get { return @".\1.db3"; } }
         public static string DatabaseName { get { return @"001"; } }

@@ -10,6 +10,7 @@
 namespace TmxTest.Commands.TestResults
 {
     using System;
+    using System.Collections.ObjectModel;
     using MbUnit.Framework;using NUnit.Framework; // using MbUnit.Framework;using NUnit.Framework;
     
     /// <summary>
@@ -30,8 +31,7 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_Name_Simple_In_Series()
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            var coll = new Collection<System.Management.Automation.PSObject>();
             coll.Add(new System.Management.Automation.PSObject("suite1"));
             coll.Add(new System.Management.Automation.PSObject("suite2"));
             coll.Add(new System.Management.Automation.PSObject("suite3"));
@@ -52,8 +52,7 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_Name_Complex_In_Series()
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            var coll = new Collection<System.Management.Automation.PSObject>();
             coll.Add(new System.Management.Automation.PSObject("suite%%`1  1"));
             coll.Add(new System.Management.Automation.PSObject("suite%%`2  2"));
             coll.Add(new System.Management.Automation.PSObject("suite%%`3  3"));
@@ -76,8 +75,7 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_Id_Numeric()
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            var coll = new Collection<System.Management.Automation.PSObject>();
             coll.Add(new System.Management.Automation.PSObject("1"));
             coll.Add(new System.Management.Automation.PSObject("2"));
             coll.Add(new System.Management.Automation.PSObject("3"));
@@ -98,8 +96,7 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_Id_Alphanumeric()
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            var coll = new Collection<System.Management.Automation.PSObject>();
             coll.Add(new System.Management.Automation.PSObject(@"a\ 1"));
             coll.Add(new System.Management.Automation.PSObject(@"a\ 2"));
             coll.Add(new System.Management.Automation.PSObject(@"a\ 3"));
@@ -120,8 +117,7 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderById_Numeric()
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            var coll = new Collection<System.Management.Automation.PSObject>();
             coll.Add(new System.Management.Automation.PSObject("1"));
             coll.Add(new System.Management.Automation.PSObject("2"));
             coll.Add(new System.Management.Automation.PSObject("3"));
@@ -142,8 +138,7 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderById_Descending_Numeric()
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            var coll = new Collection<System.Management.Automation.PSObject>();
             coll.Add(new System.Management.Automation.PSObject("5"));
             coll.Add(new System.Management.Automation.PSObject("4"));
             coll.Add(new System.Management.Automation.PSObject("3"));
@@ -164,8 +159,7 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderById_Alphanumeric()
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            var coll = new Collection<System.Management.Automation.PSObject>();
             coll.Add(new System.Management.Automation.PSObject("i1"));
             coll.Add(new System.Management.Automation.PSObject("i2"));
             coll.Add(new System.Management.Automation.PSObject("i3"));
@@ -186,8 +180,7 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderByName_Numeric()
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            var coll = new Collection<System.Management.Automation.PSObject>();
             coll.Add(new System.Management.Automation.PSObject("1"));
             coll.Add(new System.Management.Automation.PSObject("2"));
             coll.Add(new System.Management.Automation.PSObject("3"));
@@ -208,8 +201,7 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderByName_Alphanumeric()
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            var coll = new Collection<System.Management.Automation.PSObject>();
             coll.Add(new System.Management.Automation.PSObject("abc1"));
             coll.Add(new System.Management.Automation.PSObject("abc2"));
             coll.Add(new System.Management.Automation.PSObject("abc3"));
@@ -230,8 +222,7 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderByName_Descending_Alphanumeric()
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            var coll = new Collection<System.Management.Automation.PSObject>();
             coll.Add(new System.Management.Automation.PSObject("abc5"));
             coll.Add(new System.Management.Automation.PSObject("abc4"));
             coll.Add(new System.Management.Automation.PSObject("abc3"));
@@ -252,8 +243,7 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderByTimeSpent()
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            var coll = new Collection<System.Management.Automation.PSObject>();
             // 20130918
             // changes after spring-summer 2013
             // Expected Value : [{2}, {1}, {5}, {3}, {4}]
@@ -299,8 +289,7 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderByTimeSpent_Descending()
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            var coll = new Collection<System.Management.Automation.PSObject>();
             // 20130918
             // changes after spring-summer 2013
             // Expected Value : [{4}, {3}, {5}, {1}, {2}]
@@ -341,15 +330,12 @@ namespace TmxTest.Commands.TestResults
                 coll);
         }
         
-        
-        
         [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The work with the -OrderByPassRate parameter test")]
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("SuiteLevel")]
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderByPassRate()
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            var coll = new Collection<System.Management.Automation.PSObject>();
             coll.Add(new System.Management.Automation.PSObject("4"));
             coll.Add(new System.Management.Automation.PSObject("1"));
             coll.Add(new System.Management.Automation.PSObject("5"));
@@ -387,8 +373,7 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderByPassRate_Descending()
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            var coll = new Collection<System.Management.Automation.PSObject>();
             coll.Add(new System.Management.Automation.PSObject("3"));
             coll.Add(new System.Management.Automation.PSObject("4"));
             coll.Add(new System.Management.Automation.PSObject("1"));
@@ -421,15 +406,12 @@ namespace TmxTest.Commands.TestResults
                 coll);
         }
         
-        
-        
         [MbUnit.Framework.Test][NUnit.Framework.Test] //[Test(Description="The work with the -OrderByFailRate parameter test")]
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("SuiteLevel")]
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderByFailRate()
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            var coll = new Collection<System.Management.Automation.PSObject>();
             coll.Add(new System.Management.Automation.PSObject("4"));
             coll.Add(new System.Management.Automation.PSObject("1"));
             coll.Add(new System.Management.Automation.PSObject("3"));
@@ -467,8 +449,7 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_OrderByFailRate_Descending()
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            var coll = new Collection<System.Management.Automation.PSObject>();
             coll.Add(new System.Management.Automation.PSObject("5"));
             coll.Add(new System.Management.Automation.PSObject("4"));
             coll.Add(new System.Management.Automation.PSObject("1"));
@@ -507,8 +488,7 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_FilterNameContains()
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            var coll = new Collection<System.Management.Automation.PSObject>();
             coll.Add(new System.Management.Automation.PSObject("suite02"));
             coll.Add(new System.Management.Automation.PSObject("suite04"));
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
@@ -526,8 +506,7 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_FilterNameContains_Descending()
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            var coll = new Collection<System.Management.Automation.PSObject>();
             coll.Add(new System.Management.Automation.PSObject("suite04"));
             coll.Add(new System.Management.Automation.PSObject("suite02"));
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
@@ -547,8 +526,7 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_FilterIdContains()
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            var coll = new Collection<System.Management.Automation.PSObject>();
             coll.Add(new System.Management.Automation.PSObject("122"));
             coll.Add(new System.Management.Automation.PSObject("125"));
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
@@ -566,10 +544,15 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_FilterIdContains_Descending()
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+			var coll = new Collection<System.Management.Automation.PSObject>() {
+				new System.Management.Automation.PSObject("125"),
+				new System.Management.Automation.PSObject("122")
+			};
+            /*
+            var coll = new Collection<System.Management.Automation.PSObject>();
             coll.Add(new System.Management.Automation.PSObject("125"));
             coll.Add(new System.Management.Automation.PSObject("122"));
+            */
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name abc1 -Id 111; " + 
                 @"$null = New-TmxTestSuite -Name abc2 -Id 122; " + 
@@ -586,10 +569,15 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_FilterDescriptionContains()
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+			var coll = new Collection<System.Management.Automation.PSObject>() {
+				new System.Management.Automation.PSObject("suite1"),
+				new System.Management.Automation.PSObject("suite4")
+			};
+            /*
+            var coll = new Collection<System.Management.Automation.PSObject>();
             coll.Add(new System.Management.Automation.PSObject("suite1"));
             coll.Add(new System.Management.Automation.PSObject("suite4"));
+            */
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name suite1 -Description 'abc'; " + 
                 @"$null = New-TmxTestSuite -Name suite2 -Description 'bac'; " + 
@@ -605,10 +593,15 @@ namespace TmxTest.Commands.TestResults
         [MbUnit.Framework.Category("Slow")][MbUnit.Framework.Category("Search_TmxTestSuite")]
         public void TestPrm_FilterDescriptionContains_Descending()
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+			var coll = new Collection<System.Management.Automation.PSObject>() {
+				new System.Management.Automation.PSObject("suite4"),
+				new System.Management.Automation.PSObject("suite1")
+			};
+            /*
+            var coll = new Collection<System.Management.Automation.PSObject>();
             coll.Add(new System.Management.Automation.PSObject("suite4"));
             coll.Add(new System.Management.Automation.PSObject("suite1"));
+            */
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-TmxTestSuite -Name suite1 -Description 'abc'; " + 
                 @"$null = New-TmxTestSuite -Name suite2 -Description 'bac'; " + 

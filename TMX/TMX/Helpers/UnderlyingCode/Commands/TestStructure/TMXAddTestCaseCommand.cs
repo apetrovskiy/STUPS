@@ -7,10 +7,12 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX
+namespace Tmx
 {
     using System;
     using System.Management.Automation;
+	using TMX.Interfaces;
+	using Tmx.Core;
     
     /// <summary>
     /// Description of TmxAddTestCaseCommand.
@@ -25,7 +27,16 @@ namespace TMX
         {
             var cmdlet = (AddTestCaseCmdletBase)Cmdlet;
             
-            bool result = TmxHelper.AddTestCase(cmdlet);
+            // 20140721
+            var dataObject = new AddTestCaseCmdletBaseDataObject {
+                Id = cmdlet.Id,
+                Name = cmdlet.Name,
+                TestCode = cmdlet.TestCode,
+                TestPlatformId = cmdlet.TestPlatformId
+            };
+            
+            // bool result = TmxHelper.AddTestCase(cmdlet);
+            bool result = TmxHelper.AddTestCase(dataObject);
             
             if (result)
                 cmdlet.WriteObject(

@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX
+namespace Tmx
 {
     using System;
     using System.Management.Automation;
@@ -18,15 +18,10 @@ namespace TMX
     [Cmdlet(VerbsCommunications.Connect, "TLServer", DefaultParameterSetName = "ConnectTestLink")]
     public class ConnectTLServerCommand : TLSConnectCmdletBase
     {
-        public ConnectTLServerCommand()
-        {
-        }
-        
         protected override void BeginProcessing()
         {
-            this.CheckCmdletParameters();
-            TLSrvConnectCommand command =
-                new TLSrvConnectCommand(this);
+			CheckCmdletParameters();
+            var command = new TLSrvConnectCommand(this);
             command.Execute();
         }
     }

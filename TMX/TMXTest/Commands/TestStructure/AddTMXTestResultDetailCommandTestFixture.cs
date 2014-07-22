@@ -35,7 +35,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Add-TmxTestResultDetail -TestResultDetail " + 
                 testResultDetail + 
                 ";" + 
-                "[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Details[0].Name;",
+                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Details[0].Name;",
                 testResultDetail);
         }
         
@@ -50,7 +50,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Add-TmxTestResultDetail -TestResultDetail (" + 
                 testResultDetail + 
                 @");" + 
-                "[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Details[0].Name;",
+                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Details[0].Name;",
                 @"\\d//e::t''a""i""l<<>>");
         }
         
@@ -65,7 +65,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Add-TmxTestResultDetail -TestResultDetail " + 
                 testResultDetail + 
                 " -Echo;" + 
-                "[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Details[0].Name;",
+                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Details[0].Name;",
                 testResultDetail);
         }
         
@@ -80,7 +80,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Add-TmxTestResultDetail -TestResultDetail (" + 
                 testResultDetail + 
                 @") -Echo;" + 
-                "[TMX.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Details[0].Name;",
+                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Details[0].Name;",
                 @"\\d//e::t''a""i""l<<>>");
         }
         

@@ -44,10 +44,23 @@
     <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\..\packages\FluentNHibernate.1.4.0.0\lib\net35\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\packages\NHibernate.3.3.3.4001\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Linq" />
+    <Reference Include="System.Management.Automation" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -57,9 +70,40 @@
     <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="GatherTestResultsCollections.cs" />
+    <Compile Include="Helpers\Mapping\TestPlatformMap.cs" />
+    <Compile Include="Helpers\Mapping\TestResultDetailMap.cs" />
+    <Compile Include="Helpers\Mapping\TestResultMap.cs" />
+    <Compile Include="Helpers\Mapping\TestScenarioMap.cs" />
+    <Compile Include="Helpers\Mapping\TestSuiteMap.cs" />
+    <Compile Include="Helpers\TMXHelper.cs" />
+    <Compile Include="Helpers\UserSettings\Preferences.cs" />
+    <Compile Include="StorageHelper.cs" />
+    <Compile Include="TestCase.cs" />
+    <Compile Include="TestData\TestData.cs" />
+    <Compile Include="TestPlatform.cs" />
+    <Compile Include="TestResult.cs" />
+    <Compile Include="TestResultDetail.cs" />
+    <Compile Include="TestScenario.cs" />
+    <Compile Include="TestSuite.cs" />
+    <Compile Include="XMLElementsJUnitStruct.cs" />
+    <Compile Include="XMLElementsNativeStruct.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Helpers" />
+    <Folder Include="Helpers\Mapping" />
+    <Folder Include="Helpers\UserSettings" />
+    <Folder Include="TestData" />
     <Folder Include="Properties" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tmx.Interfaces\Tmx.Interfaces.csproj">
+      <Project>{9C5DA25F-6A59-4F97-B107-64DD549CB800}</Project>
+      <Name>Tmx.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

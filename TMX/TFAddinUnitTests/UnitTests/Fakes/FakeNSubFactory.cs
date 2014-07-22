@@ -18,7 +18,7 @@
 //////    using Moq;
 //////    using Autofac;
 //////    using Autofac.Builder;
-////    using TMX;
+////    using Tmx;
 ////    using Microsoft.TeamFoundation.Client;
 ////    //using Microsoft.TeamFoundation.Client.Internal;
 ////    //using Microsoft.TeamFoundation.Client.ProjectSettings;
@@ -45,7 +45,7 @@
 ////    using Moq;
 ////    using Autofac;
 ////    using Autofac.Builder;
-//    using TMX;
+//    using Tmx;
 //    
 //    /// <summary>
 //    /// Description of FakeNSubFactory.

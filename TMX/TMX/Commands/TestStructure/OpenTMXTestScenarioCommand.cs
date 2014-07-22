@@ -7,10 +7,12 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX.Commands
+namespace Tmx.Commands
 {
     using System;
     using System.Management.Automation;
+	using TMX.Interfaces;
+	using Tmx.Core;
     
     /// <summary>
     /// Description of OpenTmxTestScenarioCommand.
@@ -20,7 +22,19 @@ namespace TMX.Commands
     {
         protected override void ProcessRecord()
         {
-            bool result = TmxHelper.OpenTestScenario(this);
+            // 20140721
+            var dataObject = new OpenScenarioCmdletBaseDataObject {
+                InputObject = this.InputObject,
+                Name = this.Name,
+                Id = this.Id,
+                // Descriprion = this.Description,
+                TestSuiteName = this.TestSuiteName,
+                TestSuiteId = this.TestSuiteId,
+                TestPlatformId = this.TestPlatformId
+            };
+            
+            // bool result = TmxHelper.OpenTestScenario(this);
+            bool result = TmxHelper.OpenTestScenario(dataObject);
 
             if (result) {
 

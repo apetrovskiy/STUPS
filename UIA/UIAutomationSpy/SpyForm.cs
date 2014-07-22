@@ -42,7 +42,7 @@ namespace UIAutomationSpy
                     "\r\n" +
                     @"ipmo '" +
                     Application.ExecutablePath.Substring(0, Application.ExecutablePath.LastIndexOf('\\')) +
-                    @"\TMX.dll';";
+                    @"\Tmx.dll';";
                 if (SpyModes.seleniumSpy == spyMode) {
                     initScript +=
                         "\r\n" +

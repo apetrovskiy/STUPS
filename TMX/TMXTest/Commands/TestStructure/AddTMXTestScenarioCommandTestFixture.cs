@@ -264,7 +264,7 @@ namespace TmxTest.Commands.TestStructure
                 @"[void](Add-TmxTestScenario -Name sc1 -Id 1111 -TestSuiteName suite1 -Description '" + 
                 testScenarioDescription + 
                 "'); " +
-                "[TMX.TestData]::TestSuites[0].TestScenarios[0].Description;",
+                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].Description;",
                 // 20130207
                 //"System.NullReferenceException",
                 "AssertionFailureException",
@@ -283,7 +283,7 @@ namespace TmxTest.Commands.TestStructure
                 @"[void](Add-TmxTestScenario -Name sc1 -Id 1111 -TestSuiteName suite1 -Description '" + 
                 testScenarioDescription + 
                 "'); " +
-                "[TMX.TestData]::TestSuites[0].TestScenarios[0].Description;",
+                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].Description;",
                 testScenarioDescription);
         }
         
@@ -299,7 +299,7 @@ namespace TmxTest.Commands.TestStructure
                 @"[void](Add-TmxTestScenario -Name sc1 -Id 1111 -TestSuiteName suite1 -Description '" + 
                 testScenarioDescription + 
                 "'); " +
-                "[TMX.TestData]::TestSuites[0].TestScenarios[0].Description;",
+                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].Description;",
                 testScenarioDescription);
         }
         

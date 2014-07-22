@@ -50,11 +50,11 @@ namespace TmxTest.Commands.Database
                 Settings.FileName);
 
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual1(
-                @"if ($null -ne [TMX.TestData]::CurrentRepositoryDB) { ""1""; }");
+                @"if ($null -ne [Tmx.Core.TestData]::CurrentRepositoryDB) { ""1""; }");
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual1(
-                @"if ($null -ne [TMX.TestData]::CurrentResultsDB) { ""1""; }");
+                @"if ($null -ne [Tmx.Core.TestData]::CurrentResultsDB) { ""1""; }");
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual1(
-                @"if ($null -ne [TMX.TestData]::CurrentStructureDB) { ""1""; }");
+                @"if ($null -ne [Tmx.Core.TestData]::CurrentStructureDB) { ""1""; }");
             CmdletUnitTest.TestRunspace.RunPSCode(
                 @"Close-TmxTestDB -Name " +
                 Settings.DatabaseName +

@@ -9,7 +9,7 @@
 
 using System.Linq;
 
-namespace TMX
+namespace Tmx
 {
     using System;
     using System.Data;
@@ -20,8 +20,9 @@ namespace TMX
     using PSTestLib;
     
     using System.IO;
-	using TMX.Interfaces;
-	using TMX.Interfaces.TestStructure;
+	using Tmx.Core;
+	using Tmx.Interfaces;
+	using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of SQLiteHelper.
@@ -36,8 +37,6 @@ namespace TMX
         
         #region Database
         public static void CreateDatabase(
-            //PSCmdletBase cmdlet, 
-            //CommonCmdletBase cmdlet,
             DatabaseFileCmdletBase cmdlet,
             string fileName,
             bool structureDB,
@@ -48,37 +47,27 @@ namespace TMX
             
             try {
                 
-                string absolutePath = 
-                    System.IO.Path.GetFullPath(fileName);
+                string absolutePath = Path.GetFullPath(fileName);
 
                 cmdlet.WriteVerbose(cmdlet, absolutePath);
 
                 SQLiteConnection.CreateFile(absolutePath);
 
-                if (System.IO.File.Exists(absolutePath)) {
+                if (File.Exists(absolutePath)) {
                     string connectionString =
                         "Data Source='" + 
                         absolutePath + 
                         "';Version=3;Max Pool Size=100;UseUTF16Encoding=True;";
                     cmdlet.WriteVerbose(cmdlet, connectionString);
 
-                    using (SQLiteConnection conn = new SQLiteConnection(connectionString)) {
+                    using (var conn = new SQLiteConnection(connectionString)) {
 
                         conn.Open();
-
-                        // 20120918
-                        if (string.IsNullOrEmpty(cmdlet.Name)) {
+                        
+                        if (string.IsNullOrEmpty(cmdlet.Name))
                             cmdlet.Name = fileName;
-                        }
-
-                        /*
-                        if (null == cmdlet.Name ||
-                            0 == cmdlet.Name.Length) {
-                            cmdlet.Name = fileName;
-                        }
-                        */
-
-                        IDatabase database = 
+                        
+                        var database = 
                             new Database(
                                 ((DatabaseFileCmdletBase)cmdlet).Name,
                                 absolutePath,
@@ -230,14 +219,14 @@ namespace TMX
         {
             //IDatabase database = null;
             // 20140208
-            // if (null == TMX.SQLiteData.Databases || 0 >= TMX.SQLiteData.Databases.Count) return null; //database;
-            if (null == TMX.SQLiteData.Databases || 0 == TMX.SQLiteData.Databases.Count) return null; //database;
+            // if (null == Tmx.SQLiteData.Databases || 0 >= Tmx.SQLiteData.Databases.Count) return null; //database;
+            if (null == Tmx.SQLiteData.Databases || 0 == Tmx.SQLiteData.Databases.Count) return null; //database;
 
-            return TMX.SQLiteData.Databases.FirstOrDefault(db => db.Name == databaseName);
+            return Tmx.SQLiteData.Databases.FirstOrDefault(db => db.Name == databaseName);
 
-            //if (null != TMX.SQLiteData.Databases &&
-            //    0 < TMX.SQLiteData.Databases.Count) {
-            //    foreach (IDatabase db in TMX.SQLiteData.Databases) {
+            //if (null != Tmx.SQLiteData.Databases &&
+            //    0 < Tmx.SQLiteData.Databases.Count) {
+            //    foreach (IDatabase db in Tmx.SQLiteData.Databases) {
             //        if (db.Name != databaseName) continue;
             //        //return db;
             //        database = db;
@@ -498,7 +487,7 @@ namespace TMX
         private static void runSQLCommand(PSCmdletBase cmdlet, string databaseName, string SQLCode)
         {
             IDatabase db = 
-                TMX.SQLiteHelper.GetDatabase(
+                Tmx.SQLiteHelper.GetDatabase(
                     cmdlet,
                     databaseName);
             runSQLCommand(cmdlet, db, SQLCode);

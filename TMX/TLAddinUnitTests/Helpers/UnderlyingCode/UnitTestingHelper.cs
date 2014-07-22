@@ -10,7 +10,7 @@
 namespace TLAddinUnitTests
 {
     using System;
-    using TMX;
+    using Tmx;
     using PSTestLib;
     
     /// <summary>

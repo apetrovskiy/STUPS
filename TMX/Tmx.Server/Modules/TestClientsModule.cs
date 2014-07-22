@@ -14,8 +14,6 @@ namespace Tmx.Server.Modules
 	using Nancy;
 	using Nancy.ModelBinding;
 	using Tmx.Interfaces;
-	using Tmx.Server.Helpers;
-	using Tmx.Server.Helpers.Objects;
 	
 	/// <summary>
 	/// Description of TestClientsModule.

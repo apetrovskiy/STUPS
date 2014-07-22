@@ -12,7 +12,6 @@ namespace Tmx.Server.Tests
     using System;
 	using Tmx.Core;
 	using PSTestLib;
-	using Tmx.Server.Helpers.Objects;
     
     /// <summary>
     /// Description of TestSettings.

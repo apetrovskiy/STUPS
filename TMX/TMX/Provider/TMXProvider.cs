@@ -48,13 +48,13 @@ namespace Tmx
                 WriteVerbose("TmxProvider::NewDriveDynamicParameters()");
                 dynamicParameters =
                     new RuntimeDefinedParameterDictionary();
-                Collection<Attribute> atts1 = new Collection<Attribute>();
-                ParameterAttribute parameterAttribute1 = new ParameterAttribute {Mandatory = true};
+                var atts1 = new Collection<Attribute>();
+                var parameterAttribute1 = new ParameterAttribute {Mandatory = true};
                 //ParameterAttribute parameterAttribute1 = new ParameterAttribute();
                 //parameterAttribute1.Mandatory = true;
                 //parameterAttribute2.ParameterSetName = "WindowNameParameterSet";
                 atts1.Add(parameterAttribute1);
-                AllowEmptyStringAttribute attr1 = new AllowEmptyStringAttribute();
+                var attr1 = new AllowEmptyStringAttribute();
                 atts1.Add(attr1);
                 dynamicParameters.Add(
                     "windowName", 
@@ -63,13 +63,13 @@ namespace Tmx
                         typeof(string), 
                         atts1));
                 
-                Collection<Attribute> atts2 = new Collection<Attribute>();
-                ParameterAttribute parameterAttribute2 = new ParameterAttribute {Mandatory = true};
+                var atts2 = new Collection<Attribute>();
+                var parameterAttribute2 = new ParameterAttribute {Mandatory = true};
                 //ParameterAttribute parameterAttribute2 = new ParameterAttribute();
                 //parameterAttribute2.Mandatory = true;
                 //parameterAttribute2.ParameterSetName = "ProcessNameParameterSet";
                 atts2.Add(parameterAttribute2);
-                AllowEmptyStringAttribute attr2 = new AllowEmptyStringAttribute();
+                var attr2 = new AllowEmptyStringAttribute();
                 atts2.Add(attr2);
                 dynamicParameters.Add(
                     "processName", 
@@ -78,13 +78,13 @@ namespace Tmx
                         typeof(string), 
                         atts2));
                 
-                Collection<Attribute> atts3 = new Collection<Attribute>();
-                ParameterAttribute parameterAttribute3 = new ParameterAttribute {Mandatory = true};
+                var atts3 = new Collection<Attribute>();
+                var parameterAttribute3 = new ParameterAttribute {Mandatory = true};
                 //ParameterAttribute parameterAttribute3 = new ParameterAttribute();
                 //parameterAttribute3.Mandatory = true;
                 //parameterAttribute3.ParameterSetName = "ProcessIdParameterSet";
                 atts3.Add(parameterAttribute3);
-                AllowEmptyStringAttribute attr3 = new AllowEmptyStringAttribute();
+                var attr3 = new AllowEmptyStringAttribute();
                 atts3.Add(attr3);
                 dynamicParameters.Add(
                     "processId", 
@@ -108,14 +108,14 @@ namespace Tmx
             NewDriveDynamicParameters();
             
             try{
-                Collection<PSDriveInfo> result = new Collection<PSDriveInfo>();
-                PSDriveInfo drive =
-                    new PSDriveInfo(
-                        "TMX",
-                        this.ProviderInfo,
-                        @"TMX\TmxProvider::\",
-                        "This is the TMX root drive",
-                        null);
+                var result = new Collection<PSDriveInfo>();
+                var drive =
+					new PSDriveInfo(
+						"TMX",
+						ProviderInfo,
+						@"TMX\TmxProvider::\",
+						"This is the TMX root drive",
+						null);
                 rootDrive = new TmxDriveInfo(drive);
                 result.Add(rootDrive);
                 return result;
@@ -135,7 +135,7 @@ namespace Tmx
                 string name = string.Empty;
             
                 WriteVerbose("TmxProvider::NewDrive()");
-                RuntimeDefinedParameterDictionary dynamicParameters = 
+                var dynamicParameters = 
                     base.DynamicParameters as RuntimeDefinedParameterDictionary;
                 try{id = dynamicParameters["Id"].Value.ToString();} 
                 catch (Exception e1) {
@@ -177,7 +177,7 @@ namespace Tmx
                 // Check if drive object is null.
                 if (drive == null)
                 {
-                    ErrorRecord err =
+                    var err =
                         new ErrorRecord(
                             new ArgumentNullException("drive"),
                             "NullDrive",
@@ -189,7 +189,7 @@ namespace Tmx
                     ThrowTerminatingError(err);
                 }
         
-                TmxDriveInfo driveInfo = drive as TmxDriveInfo;
+                var driveInfo = drive as TmxDriveInfo;
                 
                 return driveInfo ?? null;
 
@@ -221,8 +221,8 @@ namespace Tmx
             bool result = false;
             WriteVerbose(string.Format("TmxProvider::ItemExists(Path = '{0}')",path));
             
-            string relativePath = this.GetTheRestOfPathWihoutProvider(path);
-            relativePath = this.GetTheRestOfPathWihoutDrive(relativePath);
+            string relativePath = GetTheRestOfPathWihoutProvider(path);
+            relativePath = GetTheRestOfPathWihoutDrive(relativePath);
             
 
 //            string npath = XmlProviderUtils.NormalizePath(path);
@@ -343,7 +343,7 @@ namespace Tmx
         
         #endregion ItemCmdletProvider Overrides
         
-        private string GetTheRestOfPathWihoutProvider(string path)
+        string GetTheRestOfPathWihoutProvider(string path)
         {
             string result = string.Empty;
             
@@ -367,7 +367,7 @@ namespace Tmx
             return result;
         }
         
-        private string GetTheRestOfPathWihoutDrive(string path)
+        string GetTheRestOfPathWihoutDrive(string path)
         {
             string result = string.Empty;
             
@@ -393,10 +393,10 @@ namespace Tmx
         
     }
     
-    internal class TmxDriveInfo : PSDriveInfo
+    class TmxDriveInfo : PSDriveInfo
     {
 //        private string _name = string.Empty;
-        private string _id = string.Empty;
+        string _id = string.Empty;
         
 //        public string Name
 //        {

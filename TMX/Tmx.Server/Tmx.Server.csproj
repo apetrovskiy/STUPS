@@ -76,17 +76,16 @@
     </Compile>
     <Compile Include="Commands\StartTmxServerCommand.cs" />
     <Compile Include="Commands\StopTmxServerCommand.cs" />
+    <Compile Include="Helpers\Control\InternalServerControl.cs" />
+    <Compile Include="Helpers\Control\ServerControl.cs" />
     <Compile Include="Helpers\Objects\TaskPool.cs" />
     <Compile Include="Helpers\TaskSorter.cs" />
-    <Compile Include="InternalServerControl.cs" />
     <Compile Include="Helpers\Commands\StartServerCommand.cs" />
     <Compile Include="Helpers\Commands\StopTmxServerCommand.cs" />
     <Compile Include="Helpers\Objects\ClientsCollection.cs" />
-    <Compile Include="Helpers\UrnList.cs" />
     <Compile Include="Modules\TestClientsModule.cs" />
     <Compile Include="Modules\TestResultsModule.cs" />
     <Compile Include="Modules\TestTasksModule.cs" />
-    <Compile Include="ServerControl.cs" />
     <Compile Include="TestBootstrapper.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -108,6 +107,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helpers\Commands" />
+    <Folder Include="Helpers\Control" />
     <Folder Include="Helpers\Objects" />
     <Folder Include="Modules" />
     <Folder Include="Modules" />

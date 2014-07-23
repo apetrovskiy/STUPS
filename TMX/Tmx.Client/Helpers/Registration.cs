@@ -21,26 +21,25 @@ namespace Tmx.Client
     public class Registration
     {
         public int SendRegistrationInfoAndGetClientId()
-        {
+		{
 			var client = new RestClient(ClientSettings.ServerUrl);
 			var request = new RestRequest(UrnList.TestClients_Root + UrnList.TestClients_Clients, Method.POST);
 			request.AddBody(
-			    new TestClientInformation {
-			        Hostname = Environment.MachineName,
-			        Username = Environment.UserName,
-			        UserDomainName = Environment.UserDomainName,
-			        IsInteractive = Environment.UserInteractive,
-			        // EnvironmentVersion = Environment.Version.Major + "." + Environment.Version.MajorRevision + "." + Environment.Version.Minor + "." + Environment.Version.MinorRevision + "." + Environment.Version.Build,
-			        Fqdn = string.Empty,
-			        OsVersion = Environment.OSVersion.VersionString,
-			        UptimeSeconds = Environment.TickCount / 1000
-			    });
+				new TestClientInformation {
+					Hostname = Environment.MachineName,
+					Username = Environment.UserName,
+					UserDomainName = Environment.UserDomainName,
+					IsInteractive = Environment.UserInteractive,
+					// EnvironmentVersion = Environment.Version.Major + "." + Environment.Version.MajorRevision + "." + Environment.Version.Minor + "." + Environment.Version.MinorRevision + "." + Environment.Version.Build,
+					Fqdn = string.Empty,
+					OsVersion = Environment.OSVersion.VersionString,
+					UptimeSeconds = Environment.TickCount / 1000
+				});
 			var registrationResponse = client.Execute<TestClientInformation>(request);
 			
 			if (HttpStatusCode.Created == registrationResponse.StatusCode)
 				return registrationResponse.Data.Id;
-			else
-				throw new Exception("Failed to register a client"); // TODO: new type!
-        }
+			throw new Exception("Failed to register a client"); // TODO: new type!
+		}
     }
 }

@@ -266,7 +266,7 @@ namespace Tmx
                     "';Version=3;Max Pool Size=100;UseUTF16Encoding=True;";
                 cmdlet.WriteVerbose(cmdlet, connectionString);
                     
-                using (SQLiteConnection conn = new SQLiteConnection(connectionString)) {
+                using (var conn = new SQLiteConnection(connectionString)) {
                         
                     conn.Open();
                         
@@ -659,7 +659,7 @@ namespace Tmx
                                 adp1.Fill(tbl1);
                                 //for (int n = 0; n < 10000; n++) {
                                 cmdlet.WriteVerbose(cmdlet, "8");
-                                foreach (TestSuite tSuite in TestData.TestSuites)
+                                foreach (var tSuite in TestData.TestSuites)
                                 {
                                     cmdlet.WriteVerbose(cmdlet, "9");
                                     var row1 = tbl1.NewRow();
@@ -972,8 +972,8 @@ namespace Tmx
         {
             byte[] screenshot = null;
             try {
-                FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
-                BinaryReader br = new BinaryReader(fs);
+                var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+                var br = new BinaryReader(fs);
                 
                 byte[] arr = br.ReadBytes((int)fs.Length);
                 

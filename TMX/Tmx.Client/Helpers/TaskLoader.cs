@@ -1,6 +1,6 @@
 ﻿/*
  * Created by SharpDevelop.
- * User: alexa_000
+ * User: Alexander Petrovskiy
  * Date: 7/23/2014
  * Time: 5:10 PM
  * 
@@ -39,8 +39,7 @@ namespace Tmx.Client
 			
 			if (HttpStatusCode.OK == acceptingTaskResponse.StatusCode)
 				return task;
-			else
-				throw new AcceptTaskException("Failed to accept task");
+			throw new AcceptTaskException("Failed to accept task");
 		}
 	}
 }

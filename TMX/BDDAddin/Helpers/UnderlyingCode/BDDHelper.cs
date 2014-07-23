@@ -80,8 +80,7 @@ namespace Tmx
         
         public static void CreateNewFeature(BDDFeatureCmdletBase cmdlet)
         {
-            ScenarioProcessingClass scenarioClass =
-                new ScenarioProcessingClass();
+            var scenarioClass = new ScenarioProcessingClass();
 
             scenarioClass.SetupFeature(
                 cmdlet.FeatureName,

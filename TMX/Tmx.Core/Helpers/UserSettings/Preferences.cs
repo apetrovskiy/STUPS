@@ -28,9 +28,7 @@ namespace Tmx
             LogLineNumber_Passed = false;
             LogCode_Passed = false;
             
-            // 20130429
             AutoEcho = false;
-            // 20130430
             AutoLog = false;
         }
         

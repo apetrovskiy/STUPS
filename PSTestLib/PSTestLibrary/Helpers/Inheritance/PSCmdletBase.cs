@@ -455,7 +455,7 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
 
             }
             
-            ErrorRecord err = 
+            var err = 
                 new ErrorRecord(
                     new Exception(message),
                     errorId,
@@ -750,8 +750,7 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
             
             cmdlet.WriteVerbose(cmdlet, "preparing scriptblocks");
             
-            System.Collections.Generic.List<ScriptBlock> scriptblocks =
-                new System.Collections.Generic.List<ScriptBlock>();
+            var scriptblocks = new List<ScriptBlock>();
 
             try {
                 if (scriptblocksSet1 != null &&
@@ -857,7 +856,7 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
 
                                     cmdlet.WriteVerbose(cmdlet, "run event handler");
                                     
-                                    runScriptBlock runner = new runScriptBlock(runSBEvent);
+                                    var runner = new runScriptBlock(runSBEvent);
 
                                     runner(sb, cmdlet.EventSource, cmdlet.EventArgs);
 
@@ -868,7 +867,7 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                                     // 20130318
                                     //runScriptBlock runner = new runScriptBlock(runSBAction);
                                     //runner(sb, cmdlet.EventSource, cmdlet.EventArgs);
-                                    runScriptBlockWithParameters runnerWithParams = new runScriptBlockWithParameters(runSBActionWithParams);
+                                    var runnerWithParams = new runScriptBlockWithParameters(runSBActionWithParams);
                                     
                                     cmdlet.WriteVerbose(cmdlet, "the scriptblock runner has been created");
                                     
@@ -1010,8 +1009,7 @@ this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                         true);
                 }
                 try {
-                    System.Collections.Generic.List<object> inputParams = 
-                        new System.Collections.Generic.List<object>();
+                    var inputParams = new List<object>();
                     inputParams.Add(src);
                     inputParams.Add(e);
                     object[] inputParamsArray = inputParams.ToArray();

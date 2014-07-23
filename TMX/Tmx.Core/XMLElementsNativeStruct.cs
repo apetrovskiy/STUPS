@@ -10,7 +10,6 @@
 namespace Tmx
 {
 	using System;
-	using TMX.Interfaces;
 	using Tmx.Interfaces;
 
 	/// <summary>

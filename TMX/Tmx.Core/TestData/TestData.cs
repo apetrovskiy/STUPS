@@ -500,7 +500,6 @@ namespace Tmx.Core
             }
             
             if (Preferences.Storage) {
-                // 20130527
     			using (var session = StorageHelper.SessionFactory.OpenSession())
                 {
                     session.Save(TestData.CurrentTestResult);
@@ -642,8 +641,6 @@ namespace Tmx.Core
             }
         }
         
-        // 20140720
-        // internal static TestStat RefreshScenarioStatistics(TestScenario scenario, bool skipAutomatic)
         internal static TestStat RefreshScenarioStatistics(ITestScenario scenario, bool skipAutomatic)
         {
             var ts = new TestStat();
@@ -680,8 +677,6 @@ namespace Tmx.Core
             return ts;
         }
         
-        // 20140720
-        // internal static TestStat RefreshSuiteStatistics(TestSuite suite, bool skipAutomatic)
         internal static TestStat RefreshSuiteStatistics(ITestSuite suite, bool skipAutomatic)
         {
             var ts = new TestStat();
@@ -761,7 +756,7 @@ namespace Tmx.Core
             if (TestData.CurrentTestSuite != null && 
                 0 < TestData.CurrentTestSuite.TestScenarios.Count) {
                 
-                foreach (TestScenario scenario in TestData.CurrentTestSuite.TestScenarios) {
+                foreach (var scenario in TestData.CurrentTestSuite.TestScenarios) {
                     
                     switch (scenario.enStatus) {
                         case TestScenarioStatuses.Passed:
@@ -946,8 +941,6 @@ namespace Tmx.Core
 //            return result;
 //        }
         
-        // 20140720
-        // internal static void AddTestResultTextDetail(TestResultDetailCmdletBase cmdlet, object detail)
         internal static void AddTestResultTextDetail(ITestResultDetailCmdletBaseDataObject cmdlet, object detail)
         {
             ITestResultDetail testResultDetail = 
@@ -1161,8 +1154,6 @@ namespace Tmx.Core
             return result;
         }
         
-        // 20140720
-        // internal static TestPlatform GetTestPlatform(string testPlatformName, string testPlatformId)
         internal static ITestPlatform GetTestPlatform(string testPlatformName, string testPlatformId)
         {
             // 20140720
@@ -1208,8 +1199,6 @@ namespace Tmx.Core
             return result;
         }
         
-        // 20140720
-        // internal static TestSuite GetTestSuite(string testSuiteName, string testSuiteId, string testPlatformId)
         internal static ITestSuite GetTestSuite(string testSuiteName, string testSuiteId, string testPlatformId)
         {
             // 20140720
@@ -1305,8 +1294,6 @@ internal static void dumpTestStructure(string strNumber)
         {
             bool result = false;
             
-            // 20140720
-            // TestSuite testSuite =
             var testSuite =
                 TestData.GetTestSuite(
                     testSuiteName,
@@ -1320,8 +1307,6 @@ internal static void dumpTestStructure(string strNumber)
             }
             */
             
-            // 20140720
-            // TestScenario testScenario =
             var testScenario =
                 TestData.GetTestScenario(
                     testSuite,
@@ -1358,8 +1343,6 @@ internal static void dumpTestStructure(string strNumber)
             return result;
         }
         
-        // 20140720
-        // internal static bool AddTestScenario(TestSuite testSuite,
         internal static bool AddTestScenario(ITestSuite testSuite,
                                              string testScenarioName,
                                              string testScenarioId,
@@ -1499,8 +1482,6 @@ internal static void dumpTestStructure(string strNumber)
             return result;
         }
         
-        // 20140720
-        // internal static TestCase GetTestCase(
         internal static ITestCase GetTestCase(
             ITestSuite testSuite,
             string testCaseName,
@@ -1511,8 +1492,6 @@ internal static void dumpTestStructure(string strNumber)
             string testSuiteId,
             string testPlatformId)
         {
-            // 20140720
-            // TestCase result = null;
             ITestCase result = null;
             
             if (null == testSuite) {
@@ -1529,8 +1508,6 @@ internal static void dumpTestStructure(string strNumber)
                 // better error description?
                 return result;
             
-            // 20140720
-            // TestScenario testScenario = null;
             ITestScenario testScenario = null;
             
             if (null != testSuite) {
@@ -1551,8 +1528,6 @@ internal static void dumpTestStructure(string strNumber)
             
             if (null != testScenario && 0 < testScenario.TestCases.Count) {
                 
-                // 20140720
-                // foreach (TestCase testCase in testScenario.TestCases) {
                 foreach (var testCase in testScenario.TestCases) {
                     
                     if ((testCaseName == testCase.TestCaseName &&
@@ -1569,8 +1544,6 @@ internal static void dumpTestStructure(string strNumber)
             return result;
         }
         
-        // 20140720
-        // internal static TestScenario GetTestScenario(
         internal static ITestScenario GetTestScenario(
             ITestSuite testSuite,
             string testScenarioName,
@@ -1610,8 +1583,6 @@ internal static void dumpTestStructure(string strNumber)
             
             if (!string.IsNullOrEmpty(testScenarioName)) {
                 
-                // 20140720
-                // foreach (TestScenario testScenario in TestData.CurrentTestSuite.TestScenarios) {
                 foreach (ITestScenario testScenario in TestData.CurrentTestSuite.TestScenarios) {
                     
                     if (testScenario.Name == testScenarioName) {
@@ -1649,15 +1620,11 @@ internal static void dumpTestStructure(string strNumber)
             return result;
         }
         
-        // 20140720
-        // internal static System.Linq.IOrderedEnumerable<Tmx.TestSuite> SearchTestSuite(
-        internal static System.Linq.IOrderedEnumerable<ITestSuite> SearchTestSuite(
+        internal static IOrderedEnumerable<ITestSuite> SearchTestSuite(
             Func<ITestSuite, bool> query,
             Func<ITestSuite, object> ordering,
             bool desc)
         {
-            // 20140720
-            // IOrderedEnumerable<TestSuite> result = null;
             IOrderedEnumerable<ITestSuite> result = null;
             
             if (desc) {
@@ -1676,24 +1643,18 @@ internal static void dumpTestStructure(string strNumber)
             return result;
         }
         
-        // 20140720
-        // static IEnumerable<TestScenario> getAllScenarios()
         static IEnumerable<ITestScenario> getAllScenarios()
         {
             // 20140720
             // return TestData.TestSuites.SelectMany(suite => suite.TestScenarios.Cast<TestScenario>()).ToList();
-            return TestData.TestSuites.SelectMany(suite => suite.TestScenarios.Cast<ITestScenario>()).ToList();
+            return TestData.TestSuites.SelectMany(suite => suite.TestScenarios).ToList();
         }
         
-        // 20140720
-        // internal static System.Linq.IOrderedEnumerable<Tmx.TestScenario> SearchTestScenario(
         internal static IOrderedEnumerable<ITestScenario> SearchTestScenario(
             Func<ITestScenario, bool> query,
             Func<ITestScenario, object> ordering,
             bool desc)
         {
-            // 20140720
-            // IOrderedEnumerable<TestScenario> result = null;
             IOrderedEnumerable<ITestScenario> result = null;
             
             if (desc) {
@@ -1713,8 +1674,6 @@ internal static void dumpTestStructure(string strNumber)
             return result;
         }
         
-        // 20140720
-        // static IEnumerable<TestResult> getAllTestResults()
         static IEnumerable<ITestResult> getAllTestResults()
         {
             // 20140720
@@ -1736,15 +1695,11 @@ internal static void dumpTestStructure(string strNumber)
             */
         }
         
-        // 20140720
-        // internal static IOrderedEnumerable<TestResult> SearchTestResult(
         internal static IOrderedEnumerable<ITestResult> SearchTestResult(
             Func<ITestResult, bool> query,
             Func<ITestResult, object> ordering,
             bool desc)
         {
-            // 20140720
-            // IOrderedEnumerable<TestResult> result = null;
             IOrderedEnumerable<ITestResult> result = null;
             
             if (desc) {

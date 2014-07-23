@@ -75,7 +75,7 @@ namespace Tmx.Interfaces
         { 
             get { return _enStatus; }
             set{
-                this._enStatus = value;
+				_enStatus = value;
 
                 switch (value) {
                     case TestResultStatuses.Passed:

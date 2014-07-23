@@ -7,6 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Collections.Generic;
 namespace Tmx.Interfaces.Remoting
 {
 	/// <summary>
@@ -31,9 +32,11 @@ namespace Tmx.Interfaces.Remoting
 		ITestTaskAction[] BeforeAction { get; set; }
 		ITestTaskAction[] Action { get; set; }
 		ITestTaskAction[] AfterAction { get; set; }
-		string[] ExpectedResult { get; set; } // ?
+		// string[] ExpectedResult { get; set; } // ?
+		List<object> ExpectedResult { get; set; }
 		
 		TestTaskStatuses Status { get; set; }
+		List<object> TaskResult { get; set; }
 	}
 	
 	/*

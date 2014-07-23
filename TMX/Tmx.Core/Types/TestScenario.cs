@@ -54,14 +54,15 @@ namespace Tmx.Interfaces
             string testScenarioId1 = testScenario1.Id;
             // string testScenarioId1 = TestData.TestSuites[TestData.TestSuites.Count - 1].TestScenarios[TestData.TestSuites[TestData.TestSuites.Count - 1].TestScenarios.Count - 1].Id;
             string testSuiteId1 = TestData.TestSuites[TestData.TestSuites.Count - 1].Id;
-            var testResult1 = new TestResult(testScenarioId1, testSuiteId1);
-            this.TestResults.Add(testResult1);
+            // 20140723
+            // var testResult1 = new TestResult(testScenarioId1, testSuiteId1);
+            // this.TestResults.Add(testResult1);
+            this.TestResults.Add(new TestResult(testScenarioId1, testSuiteId1)); // ??
 //            this.TestResults.Add(
 //                new TestResult(
 //                    TestData.TestSuites[TestData.TestSuites.Count - 1].TestScenarios[TestData.TestSuites[TestData.TestSuites.Count - 1].TestScenarios.Count - 1].Id, // "???",
 //                    TestData.TestSuites[TestData.TestSuites.Count - 1].Id)); // "???"));
-            TestData.CurrentTestResult = 
-                this.TestResults[TestResults.Count - 1];
+            TestData.CurrentTestResult = this.TestResults[TestResults.Count - 1];
         }
         
         public TestScenario(

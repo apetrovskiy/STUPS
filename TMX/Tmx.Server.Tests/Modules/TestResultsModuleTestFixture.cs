@@ -84,32 +84,93 @@ namespace Tmx.Server.Tests.Modules
             var testSuite = new TestSuite { Name = testSuiteNameExpected, Id = testSuiteIdExpected };
             var testScenarioNameExpected = "test scenario name";
             var testScenarioIdExpected = "222";
-            var testScenario = new TestScenario { Name = testScenarioNameExpected, Id = testScenarioIdExpected };
+            // var testScenario = new TestScenario { Name = testScenarioNameExpected, Id = testScenarioIdExpected };
+            var testScenario = new TestScenario(testScenarioNameExpected, testScenarioIdExpected, testSuiteIdExpected);
+//            var testScenario = new TestScenario {
+//            	Description = "Asdfasdf",
+//            	Id = testScenarioIdExpected,
+//            	Name = testScenarioNameExpected,
+//            	SuiteId = testSuiteIdExpected
+//            };
             
             // When
             // /Results/suites/
-            /*
-            var response = browser.Post(UrnList.TestStructure_Root + UrnList.TestStructure_Suites, (with) => {
-                with.JsonBody<TestSuite>(testSuite);
-            })
-                .Then
-                // /Results/scenarios/
-                .Post(UrnList.TestStructure_Root + UrnList.TestStructure_Scenarios, (with) => {
-                with.JsonBody<TestScenario>(testScenario);
-            });
-            */
+//			var response = browser.Post(UrnList.TestStructure_Root + UrnList.TestStructure_Suites, (with) => {
+//				with.JsonBody<TestSuite>(testSuite);
+//			})
+//                .Then
+//			                        // /Results/scenarios/
+//                .Post(UrnList.TestStructure_Root + UrnList.TestStructure_Scenarios, (with) => {
+//				with.JsonBody<TestScenario>(testScenario);
+//			});
 			
 			var response = browser.Post(UrnList.TestStructure_Root + UrnList.TestStructure_Suites, (with) => {
-				with.JsonBody<ITestSuite>(testSuite);
+				with.JsonBody<TestSuite>(testSuite);
 			});
+			// Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+			// browser = new Browser(new DefaultNancyBootstrapper());
 			response = browser.Post(UrnList.TestStructure_Root + UrnList.TestStructure_Scenarios, (with) => {
-				with.JsonBody<ITestScenario>(testScenario);
+				with.JsonBody<TestScenario>(testScenario);
+				// with.JsonBody<TestSuite>(testSuite);
 			});
 			
             // Then
             Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
             Xunit.Assert.Equal(testScenarioNameExpected, TestData.CurrentTestScenario.Name);
             Xunit.Assert.Equal(testScenarioIdExpected, TestData.CurrentTestScenario.Id);
+        }
+        
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        public void Should_add_a_test_result()
+        {
+        	// Given
+            var browser = new Browser(new DefaultNancyBootstrapper());
+            var testSuiteNameExpected = "test suite name";
+            var testSuiteIdExpected = "111";
+            var testSuite = new TestSuite { Name = testSuiteNameExpected, Id = testSuiteIdExpected };
+            var testScenarioNameExpected = "test scenario name";
+            var testScenarioIdExpected = "222";
+            // var testScenario = new TestScenario { Name = testScenarioNameExpected, Id = testScenarioIdExpected };
+            var testScenario = new TestScenario(testScenarioNameExpected, testScenarioIdExpected, testSuiteIdExpected);
+            var testResult = new TestResult();
+            testResult.Name = "tr";
+            testResult.enStatus = TestResultStatuses.Passed;
+//            var testScenario = new TestScenario {
+//            	Description = "Asdfasdf",
+//            	Id = testScenarioIdExpected,
+//            	Name = testScenarioNameExpected,
+//            	SuiteId = testSuiteIdExpected
+//            };
+            
+            // When
+            // /Results/suites/
+//			var response = browser.Post(UrnList.TestStructure_Root + UrnList.TestStructure_Suites, (with) => {
+//				with.JsonBody<TestSuite>(testSuite);
+//			})
+//                .Then
+//			                        // /Results/scenarios/
+//                .Post(UrnList.TestStructure_Root + UrnList.TestStructure_Scenarios, (with) => {
+//				with.JsonBody<TestScenario>(testScenario);
+//			});
+			
+//			var response = browser.Post(UrnList.TestStructure_Root + UrnList.TestStructure_Suites, (with) => {
+//				with.JsonBody<TestSuite>(testSuite);
+//			});
+//			// Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+//			// browser = new Browser(new DefaultNancyBootstrapper());
+//			response = browser.Post(UrnList.TestStructure_Root + UrnList.TestStructure_Scenarios, (with) => {
+//				with.JsonBody<TestScenario>(testScenario);
+//				// with.JsonBody<TestSuite>(testSuite);
+//			});
+			
+			var response = browser.Post(UrnList.TestStructure_Root + UrnList.TestStructure_Results, (with) => {
+				with.JsonBody<TestResult>(testResult);
+			});
+			
+            // Then
+            Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+//            Xunit.Assert.Equal(testScenarioNameExpected, TestData.CurrentTestScenario.Name);
+//            Xunit.Assert.Equal(testScenarioIdExpected, TestData.CurrentTestScenario.Id);
         }
     }
 }

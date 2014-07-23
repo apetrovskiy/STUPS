@@ -10,6 +10,7 @@
 namespace Tmx.Client
 {
     using System;
+	using System.Net;
     using RestSharp;
 	using Tmx.Interfaces;
 	using Tmx.Server;
@@ -34,18 +35,12 @@ namespace Tmx.Client
 			        OsVersion = Environment.OSVersion.VersionString,
 			        UptimeSeconds = Environment.TickCount / 1000
 			    });
-			
 			var registrationResponse = client.Execute<TestClientInformation>(request);
 			
-//			Console.WriteLine(registrationResponse);
-//			Console.WriteLine(registrationResponse.Content);
-//			Console.WriteLine(registrationResponse.ContentType);
-//			Console.WriteLine(registrationResponse.ResponseStatus);
-//			Console.WriteLine(registrationResponse.ResponseUri);
-//			Console.WriteLine(registrationResponse.StatusCode);
-//			Console.WriteLine(registrationResponse.Data.Id);
-//			return 111;
-			return registrationResponse.Data.Id;
+			if (HttpStatusCode.Created == registrationResponse.StatusCode)
+				return registrationResponse.Data.Id;
+			else
+				throw new Exception("Failed to register a client"); // TODO: new type!
         }
     }
 }

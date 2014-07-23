@@ -93,6 +93,7 @@
     <Folder Include="Helpers" />
     <Folder Include="Helpers\Mapping" />
     <Folder Include="Helpers\UserSettings" />
+    <Folder Include="Properties" />
     <Folder Include="Types" />
     <Folder Include="TestData" />
     <Folder Include="Properties" />

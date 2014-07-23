@@ -25,26 +25,18 @@ namespace Tmx.Server.Modules
     {
         public TestTasksModule() : base(UrnList.TestTasks_Root)
         {
-            // Get[UrnList.TestTasks_Current] = parameters => {
             Get[UrnList.TestTasks_CurrentClient] = parameters => {
-                
                 var taskSorter = new TaskSorter();
                 List<ITestTask> taskList = taskSorter.GetTasksForClient(parameters.id);
                 ITestTask actualTask = taskList.First(task => task.On && !task.Completed && task.Id == taskList.Min(t => t.Id));
-                
-                // return HttpStatusCode.OK;
                 return Response.AsJson(actualTask).WithStatusCode(HttpStatusCode.OK);
             };
             
-            Put[UrnList.TestTasks_Root + UrnList.TestTasks_Task] = parameters => {
-                
+            Put[UrnList.TestTasks_Task] = parameters => {
                 var loadedTask = this.Bind<TestTask>();
-                
                 var storedTask = TaskPool.Tasks.First(task => task.Id == loadedTask.Id);
-                // TaskPool.Tasks.
                 storedTask.Completed = loadedTask.Completed;
                 storedTask.Status = loadedTask.Status;
-                
                 return HttpStatusCode.OK;
             };
         }

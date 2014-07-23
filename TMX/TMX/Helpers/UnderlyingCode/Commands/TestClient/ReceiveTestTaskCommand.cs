@@ -11,6 +11,7 @@ namespace Tmx
 {
 	using System;
 	using Tmx;
+	using Tmx.Client;
 	using Tmx.Commands;
 	
 	/// <summary>
@@ -25,7 +26,8 @@ namespace Tmx
         internal override void Execute()
         {
             var cmdlet = (ReceiveTmxTestTaskCommand)Cmdlet;
-            // cmdlet.Execute();
+            var taskLoader = new TaskLoader();
+            taskLoader.GetCurrentTask();
         }
     }
 }

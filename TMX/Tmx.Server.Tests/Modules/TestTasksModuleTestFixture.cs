@@ -42,7 +42,7 @@ namespace Tmx.Server.Tests.Modules
     	}
     	
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_react_on_registering_a_new_test_client()
+        public void Should_provide_a_task_to_a_test_client()
         {
         	// Given
             var browser = new Browser(new DefaultNancyBootstrapper());
@@ -63,15 +63,16 @@ namespace Tmx.Server.Tests.Modules
             var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, (with) => {
                 with.JsonBody<IClientInformation>(clientInformation);
             });
-            var clientId = response.Body.DeserializeJson<IClientInformation>().Id;
-            response = browser.Get(UrnList.TestTasks_Root + "/" + clientId);
+            var registeredClient = response.Body.DeserializeJson<TestClientInformation>();
+            response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
+            var task = response.Body.DeserializeJson<TestTask>();
             
             // Then
-            Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
-            Xunit.Assert.Equal(testTask.Id, response.Body.DeserializeJson<ITestTask>().Id);
-            Xunit.Assert.Equal(testTask.On, response.Body.DeserializeJson<ITestTask>().On);
-            Xunit.Assert.Equal(testTask.Completed, response.Body.DeserializeJson<ITestTask>().Completed);
-            Xunit.Assert.Equal(testTask.Name, response.Body.DeserializeJson<ITestTask>().Name);
+            Xunit.Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Xunit.Assert.Equal(testTask.Id, task.Id);
+            Xunit.Assert.Equal(testTask.On, task.On);
+            Xunit.Assert.Equal(testTask.Completed, task.Completed);
+            Xunit.Assert.Equal(testTask.Name, task.Name);
         }
 	}
 }

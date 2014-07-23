@@ -10,6 +10,7 @@
 namespace Tmx.Client
 {
     using System;
+	using Tmx.Interfaces.Remoting;
     
     /// <summary>
     /// Description of ClientSettings.
@@ -19,5 +20,6 @@ namespace Tmx.Client
     {
         public static string ServerUrl { get; set; }
         public static int ClientId { get; set; }
+        public static ITestTask CurrentTask { get; set; }
     }
 }

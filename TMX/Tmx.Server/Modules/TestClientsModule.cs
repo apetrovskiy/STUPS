@@ -48,7 +48,7 @@ namespace Tmx.Server.Modules
 				ClientsCollection.Clients.Add(clientInformation);
 				
 				var taskSorter = new TaskSorter();
-				
+				// TODO: provide the client with task queue
 				
                 return Response.AsJson(clientInformation).WithStatusCode(HttpStatusCode.Created);
 			};

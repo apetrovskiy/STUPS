@@ -11,6 +11,7 @@ namespace Tmx.Server
 {
 	using System;
 	using System.Collections.Generic;
+	using System.Linq;
 	using Tmx.Interfaces.Remoting;
 	
 	/// <summary>
@@ -22,7 +23,9 @@ namespace Tmx.Server
 	    {
 	        var result = new List<ITestTask>();
 	        
-	        
+	        // temporarily!!!!
+	        // TODO: add sorting code by rules
+	        result = TaskPool.Tasks; //.Where(task => task.
 	        
 	        return result;
 	    }

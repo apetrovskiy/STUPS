@@ -1,7 +1,6 @@
 ﻿/*
  * Created by SharpDevelop.
-<<<<<<< HEAD
- * User: alexa_000
+ * User: Alexander Petrovskiy
  * Date: 7/21/2014
  * Time: 10:16 PM
  * 
@@ -11,7 +10,13 @@
 namespace Tmx.Server.Modules
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
 	using Nancy;
+	using Nancy.ModelBinding;
+	using Tmx.Interfaces;
+	using Tmx.Interfaces.Remoting;
+	using Tmx.Interfaces.Types.Remoting;
     
     /// <summary>
     /// Description of TestTasksModule.
@@ -20,8 +25,25 @@ namespace Tmx.Server.Modules
     {
         public TestTasksModule() : base(UrnList.TestTasks_Root)
         {
-            Get[UrnList.TestTasks_Current] = parameters => {
-                // something to identify the client
+            // Get[UrnList.TestTasks_Current] = parameters => {
+            Get[UrnList.TestTasks_CurrentClient] = parameters => {
+                
+                var taskSorter = new TaskSorter();
+                List<ITestTask> taskList = taskSorter.GetTasksForClient(parameters.id);
+                ITestTask actualTask = taskList.First(task => task.On && !task.Completed && task.Id == taskList.Min(t => t.Id));
+                
+                // return HttpStatusCode.OK;
+                return Response.AsJson(actualTask).WithStatusCode(HttpStatusCode.OK);
+            };
+            
+            Put[UrnList.TestTasks_Root + UrnList.TestTasks_Task] = parameters => {
+                
+                var loadedTask = this.Bind<TestTask>();
+                
+                var storedTask = TaskPool.Tasks.First(task => task.Id == loadedTask.Id);
+                // TaskPool.Tasks.
+                storedTask.Completed = loadedTask.Completed;
+                storedTask.Status = loadedTask.Status;
                 
                 return HttpStatusCode.OK;
             };

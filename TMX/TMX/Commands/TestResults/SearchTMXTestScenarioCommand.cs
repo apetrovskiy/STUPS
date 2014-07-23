@@ -29,7 +29,6 @@ namespace Tmx.Commands
         {
 			CheckCmdletParameters();
             
-			// 20140721
 			var dataObject = new SearchCmdletBaseDataObject {
                 Descending = this.Descending,
                 FilterAll = this.FilterAll,
@@ -53,9 +52,6 @@ namespace Tmx.Commands
                 OrderByTimeSpent = this.OrderByTimeSpent
 			};
 			
-            // TmxHelper.SearchForScenariosPS(this);
-            // 20140722
-            // TmxHelper.SearchForScenariosPS(dataObject);
             WriteObject(TmxHelper.SearchForScenariosPS(dataObject), true);
         }
     }

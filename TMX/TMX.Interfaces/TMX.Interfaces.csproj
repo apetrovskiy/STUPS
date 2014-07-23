@@ -83,8 +83,6 @@
     <Compile Include="DataTypes\Types\TestResultDetailCmdletBaseDataObject.cs" />
     <Compile Include="DataTypes\Types\TestResultStatusCmdletBaseDataObject.cs" />
     <Compile Include="IDatabase.cs" />
-    <Compile Include="ITestBucket.cs" />
-    <Compile Include="ITestConstant.cs" />
     <Compile Include="ITestSuitesCollection.cs" />
     <Compile Include="IWorkflowStep.cs" />
     <Compile Include="IXMLElementsStruct.cs" />
@@ -95,20 +93,22 @@
     <Compile Include="Remoting\ITestTaskAction.cs" />
     <Compile Include="Remoting\ITestHost.cs" />
     <Compile Include="Remoting\ITestHostGroup.cs" />
-    <Compile Include="TestResult.cs" />
-    <Compile Include="TestResultDetail.cs" />
-    <Compile Include="TestScenario.cs" />
-    <Compile Include="TestStat.cs" />
     <Compile Include="TestStructure\Enumerations.cs" />
     <Compile Include="TestStructure\ITestCase.cs" />
+    <Compile Include="TestStructure\ITestConstant.cs" />
     <Compile Include="TestStructure\ITestPlatform.cs" />
     <Compile Include="TestStructure\ITestResult.cs" />
     <Compile Include="TestStructure\ITestResultDetail.cs" />
     <Compile Include="TestStructure\ITestScenario.cs" />
     <Compile Include="TestStructure\ITestSuite.cs" />
-    <Compile Include="TestSuite.cs" />
     <Compile Include="Types\Remoting\TestClientInformation.cs" />
     <Compile Include="Types\Remoting\TestTask.cs" />
+    <Compile Include="Types\TestStructure\ITestBucket.cs" />
+    <Compile Include="Types\TestStructure\TestResult.cs" />
+    <Compile Include="Types\TestStructure\TestResultDetail.cs" />
+    <Compile Include="Types\TestStructure\TestScenario.cs" />
+    <Compile Include="Types\TestStructure\TestStat.cs" />
+    <Compile Include="Types\TestStructure\TestSuite.cs" />
     <Compile Include="UrnList.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -120,6 +120,7 @@
     <Folder Include="Types" />
     <Folder Include="Remoting" />
     <Folder Include="TestStructure" />
+    <Folder Include="Types\TestStructure" />
     <Folder Include="Types\Remoting" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -25,6 +25,8 @@ namespace Tmx.Server
         public static string TestClients_Client = "/{id:int}";
         
         public static string TestTasks_Root = "/Tasks";
-        public static string TestTasks_Current = "/current";
+        // public static string TestTasks_Current = "/current";
+        public static string TestTasks_CurrentClient = "/{id:int}";
+        public static string TestTasks_Task = "/{id:int}";
     }
 }

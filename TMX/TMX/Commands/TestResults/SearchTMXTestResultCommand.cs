@@ -32,8 +32,6 @@ namespace Tmx.Commands
         {
 			CheckCmdletParameters();
             
-			// 20140720
-            // TmxHelper.SearchForTestResultsPS(this);
             var dataObject = new SearchTmxTestResultDataObject {
                 OrderByFailRate = this.OrderByFailRate,
                 OrderByPassRate = this.OrderByPassRate,
@@ -57,8 +55,6 @@ namespace Tmx.Commands
                 OrderByTimeSpent = this.OrderByTimeSpent
             };
             
-            // 20140722
-            // TmxHelper.SearchForTestResultsPS(dataObject);
             WriteObject(TmxHelper.SearchForTestResultsPS(dataObject), true);
         }
     }

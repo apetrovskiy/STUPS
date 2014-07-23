@@ -1395,18 +1395,11 @@ namespace Tmx
             }
         }
         
-        // 20140720
-        // public static void GetTestResultDetails(TestResultStatusCmdletBase cmdlet)
-        // public static void GetTestResultDetails(ITestResultStatusCmdletBaseDataObject cmdlet)
         public static object[] GetTestResultDetails(ITestResultStatusCmdletBaseDataObject cmdlet)
         {
             string testResultId = cmdlet.Id;
             
-//            cmdlet.WriteVerbose(cmdlet, "Getting test result with Id = " + testResultId);
-            
             if (!string.IsNullOrEmpty(testResultId)) {
-                
-//                cmdlet.WriteVerbose(cmdlet, "Trying to get a test result with Id = " + testResultId);
                 
                 var testResultWithIdCollection =
                     from testResult in TestData.CurrentTestScenario.TestResults
@@ -1419,7 +1412,6 @@ namespace Tmx
                     
                 foreach (ITestResult testResultWithId in testResultWithIdCollection) {
                         
-//                    cmdlet.WriteVerbose(cmdlet, "Trying the test result '" + ((ITestResult)testResultWithId).Name + "'");
                     try {
                         // if the result is null, there's the try-catch construction
         				// 20140703
@@ -1462,8 +1454,6 @@ namespace Tmx
                 return new[] { string.Empty };
             } else {
                 
-//                cmdlet.WriteVerbose(cmdlet, "Trying the current test result");
-                
                 // 20140720
                 // if (null == TestData.CurrentTestResult) return;
 				return null == TestData.CurrentTestResult ? new[] {
@@ -1475,8 +1465,6 @@ namespace Tmx
             }
         }
         
-        // 20140720
-        // public static void ImportResultsFromXML(ImportExportCmdletBase cmdlet, string path)
         public static void ImportResultsFromXML(IImportExportCmdletBaseDataObject cmdlet, string path)
         {
             
@@ -1525,7 +1513,6 @@ namespace Tmx
                 
                 foreach (var singleSuite in suites) {
                     
-//                    cmdlet.WriteVerbose(cmdlet, "importing suite '" + singleSuite.Attribute("name").Value + "'");
                     lastTestSuiteName = singleSuite.Attribute("name").Value;
                     
                     string suiteDescription = string.Empty;
@@ -1534,8 +1521,6 @@ namespace Tmx
                     }
                     catch {}
                     
-                    // 20140720
-                    // TestSuite testSuite =
                     var testSuite =
 						TestData.GetTestSuite(
                             singleSuite.Attribute("name").Value,
@@ -1561,7 +1546,6 @@ namespace Tmx
                     
                     foreach (var singleScenario in scenarios) {
                         
-//                        cmdlet.WriteVerbose(cmdlet, "importing scenario '" + singleScenario.Attribute("name").Value + "'");
                         lastTestScenarioName = singleScenario.Attribute("name").Value;
                         
                         string scenarioDescription = string.Empty;
@@ -1599,7 +1583,6 @@ namespace Tmx
                         
                         foreach (var singleTestResult in testResults) {
                             
-//                            cmdlet.WriteVerbose(cmdlet, "importing test result '" + singleTestResult.Attribute("name").Value + "', id = '" + singleTestResult.Attribute("id").Value + "'");
                             lastTestResultName = singleTestResult.Attribute("name").Value;
                             
                             bool passedValue = false;
@@ -1697,9 +1680,7 @@ namespace Tmx
                                             detail.DetailStatus = TestResultStatuses.NotTested;
                                             break;
                                     }
-                                        
-//                                    cmdlet.WriteVerbose(cmdlet, "the current test result is name = '" + currentlyAddedTestResult.Name + "', id ='" + currentlyAddedTestResult.Id + "'");
-                                        
+                                    
                                     currentlyAddedTestResult.Details.Add(detail);
                                         
                                 }
@@ -1793,15 +1774,11 @@ namespace Tmx
             }
         }
         
-        // 20140720
-        // public static void ImportResultsFromJUnitXML(SearchCmdletBase cmdlet, string path)
         public static void ImportResultsFromJUnitXML(ISearchCmdletBaseDataObject cmdlet, string path)
         {
             throw new NotImplementedException();
         }
         
-        // 20140720
-        // public static bool AddTestCase(AddTestCaseCmdletBase cmdlet)
         public static bool AddTestCase(IAddTestCaseCmdletBaseDataObject cmdlet)
         {
             bool result = false;

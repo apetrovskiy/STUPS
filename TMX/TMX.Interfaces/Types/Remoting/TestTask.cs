@@ -15,12 +15,13 @@ namespace Tmx.Interfaces.Types.Remoting
 	/// <summary>
 	/// Description of TestTask.
 	/// </summary>
-	public class TestTask
+	public class TestTask : ITestTask
 	{
 		public int Id { get; set; }
 		// public int Order { get; set; }
 		public int PreviousTaskId { get; set; }
 		public bool On { get; set; }
+		public bool Completed { get; set; }
 		public int Timeout { get; set; }
 		public int RetryCount { get; set; }
 		public bool IsCritical { get; set; }
@@ -30,7 +31,9 @@ namespace Tmx.Interfaces.Types.Remoting
 		
 		public string Name { get; set; }
 		public string StoryId { get; set; }
+		public ITestTaskAction[] BeforeAction { get; set; }
 		public ITestTaskAction[] Action { get; set; }
+		public ITestTaskAction[] AfterAction { get; set; }
 		public string[] ExpectedResult { get; set; } // ?
 		
 		public TestTaskStatuses Status { get; set; }

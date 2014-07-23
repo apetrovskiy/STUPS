@@ -23,9 +23,6 @@ namespace Tmx.Commands
         {
 			CheckCmdletParameters();
             
-//            this.WriteVerbose(this, "As = " + this.As);
-//            this.WriteVerbose(this, "Path = " + this.Path);
-            
             // 20140720
             var dataObject = new ImportExportCmdletBaseDataObject {
 //                Path = this.Path,

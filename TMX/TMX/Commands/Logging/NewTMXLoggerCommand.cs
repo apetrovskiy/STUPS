@@ -15,8 +15,9 @@ namespace Tmx.Commands
     /// <summary>
     /// Description of NewTmxLoggerCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.New, "TmxLogger")]
-    public class NewTmxLoggerCommand
-    {
-    }
+    // 20140723
+//    [Cmdlet(VerbsCommon.New, "TmxLogger")]
+//    public class NewTmxLoggerCommand
+//    {
+//    }
 }

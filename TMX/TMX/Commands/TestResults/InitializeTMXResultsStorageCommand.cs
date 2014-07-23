@@ -59,8 +59,6 @@ namespace Tmx.Commands
 				Preferences.StorageIntegratedSecurity = true;
             }
             
-			// 20140721
-            // StorageHelper.InitializeStorage(this);
             StorageHelper.InitializeStorage();
         }
     }

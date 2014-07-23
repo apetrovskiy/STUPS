@@ -18,6 +18,7 @@ namespace Tmx.Interfaces.Remoting
 		// int Order { get; set; }
 		int PreviousTaskId { get; set; }
 		bool On { get; set; }
+		bool Completed { get; set; }
 		int Timeout { get; set; }
 		int RetryCount { get; set; }
 		bool IsCritical { get; set; }

@@ -25,6 +25,7 @@ namespace Tmx.Server.Tests
 				UnitTestOutput.Clear();
 			TestData.ResetData();
 			ClientsCollection.Clients.Clear();
+			TaskPool.Tasks.Clear();
 		}
     }
 }

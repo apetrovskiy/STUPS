@@ -242,6 +242,7 @@
     <Compile Include="Helpers\Inheritance\Database\TestStructureCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\ImportExportCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\SearchCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\ServerCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\SettingsCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\TestExecution\TestCaseExecCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\TestExecution\TestExecCmdletBase.cs" />

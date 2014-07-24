@@ -18,7 +18,7 @@ namespace Tmx.Interfaces.Remoting
 		int Id { get; set; }
 		// int Order { get; set; }
 		int PreviousTaskId { get; set; }
-		bool On { get; set; }
+		bool IsActive { get; set; }
 		bool Completed { get; set; }
 		int Timeout { get; set; }
 		int RetryCount { get; set; }
@@ -41,6 +41,7 @@ namespace Tmx.Interfaces.Remoting
 		// List<object> TaskResult { get; set; }
 		// object[] TaskResult { get; set; }
 		string[] TaskResult { get; set; }
+		int ClientId { get; set; }
 	}
 	
 	/*

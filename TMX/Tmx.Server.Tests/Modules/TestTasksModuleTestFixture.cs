@@ -53,7 +53,7 @@ namespace Tmx.Server.Tests.Modules
             };
             var testTask = new TestTask {
                 Id = 1,
-                On = true,
+                IsActive = true,
                 Completed = false,
                 Name = "task name" 
             };
@@ -70,7 +70,7 @@ namespace Tmx.Server.Tests.Modules
             // Then
             Xunit.Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             Xunit.Assert.Equal(testTask.Id, task.Id);
-            Xunit.Assert.Equal(testTask.On, task.On);
+            Xunit.Assert.Equal(testTask.IsActive, task.IsActive);
             Xunit.Assert.Equal(testTask.Completed, task.Completed);
             Xunit.Assert.Equal(testTask.Name, task.Name);
             // Xunit.Assert.Equal(testTask.Name, clientsetting

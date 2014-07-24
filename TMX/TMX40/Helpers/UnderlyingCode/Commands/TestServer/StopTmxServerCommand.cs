@@ -22,9 +22,6 @@ namespace Tmx
         
         internal override void Execute()
         {
-            // var cmdlet = (StopTmxServerCommand)Cmdlet;
-            // 20140721
-            // Control.Stop();
             Tmx.Server.ServerControl.Stop();
         }
     }

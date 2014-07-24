@@ -28,7 +28,7 @@ namespace Tmx.Server.Modules
             Get[UrnList.TestTasks_CurrentClient] = parameters => {
                 var taskSorter = new TaskSorter();
                 List<ITestTask> taskList = taskSorter.GetTasksForClient(parameters.id);
-                ITestTask actualTask = taskList.First(task => task.On && !task.Completed && task.Id == taskList.Min(t => t.Id));
+                ITestTask actualTask = taskList.First(task => task.IsActive && !task.Completed && task.Id == taskList.Min(t => t.Id));
                 return Response.AsJson(actualTask).WithStatusCode(HttpStatusCode.OK);
             };
             

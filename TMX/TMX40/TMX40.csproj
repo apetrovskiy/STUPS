@@ -313,6 +313,9 @@
     <Compile Include="..\TMX\Helpers\Inheritance\AssertionsCmdletBase.cs">
       <Link>Helpers\Inheritance\AssertionsCmdletBase.cs</Link>
     </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\ClientCmdletBase.cs">
+      <Link>Helpers\Inheritance\ClientCmdletBase.cs</Link>
+    </Compile>
     <Compile Include="..\TMX\Helpers\Inheritance\CommonCmdletBase.cs">
       <Link>Helpers\Inheritance\CommonCmdletBase.cs</Link>
     </Compile>

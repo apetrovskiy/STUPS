@@ -37,6 +37,7 @@ namespace Tmx.Server.Modules
                 var storedTask = TaskPool.Tasks.First(task => task.Id == loadedTask.Id);
                 storedTask.Completed = loadedTask.Completed;
                 storedTask.Status = loadedTask.Status;
+                storedTask.TaskResult = loadedTask.TaskResult;
                 return HttpStatusCode.OK;
             };
         }

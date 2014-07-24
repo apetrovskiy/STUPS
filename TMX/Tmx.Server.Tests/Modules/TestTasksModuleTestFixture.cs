@@ -73,6 +73,7 @@ namespace Tmx.Server.Tests.Modules
             Xunit.Assert.Equal(testTask.On, task.On);
             Xunit.Assert.Equal(testTask.Completed, task.Completed);
             Xunit.Assert.Equal(testTask.Name, task.Name);
+            // Xunit.Assert.Equal(testTask.Name, clientsetting
         }
 	}
 }

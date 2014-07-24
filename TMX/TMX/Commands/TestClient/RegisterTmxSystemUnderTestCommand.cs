@@ -17,7 +17,7 @@ namespace Tmx.Commands
 	/// Description of RegisterTmxSystemUnderTestCommand.
 	/// </summary>
 	[Cmdlet(VerbsLifecycle.Register, "TmxSystemUnderTest")]
-	public class RegisterTmxSystemUnderTestCommand : CommonCmdletBase
+	public class RegisterTmxSystemUnderTestCommand : ClientCmdletBase // CommonCmdletBase
 	{
 	    [Parameter(Mandatory = true)]
 	    public string ServerUrl { get; set; }

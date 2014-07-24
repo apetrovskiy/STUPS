@@ -33,10 +33,14 @@ namespace Tmx.Interfaces.Remoting
 		ITestTaskAction[] Action { get; set; }
 		ITestTaskAction[] AfterAction { get; set; }
 		// string[] ExpectedResult { get; set; } // ?
-		List<object> ExpectedResult { get; set; }
+		// List<object> ExpectedResult { get; set; }
+		// object[] ExpectedResult { get; set; }
+		string[] ExpectedResult { get; set; }
 		
 		TestTaskStatuses Status { get; set; }
-		List<object> TaskResult { get; set; }
+		// List<object> TaskResult { get; set; }
+		// object[] TaskResult { get; set; }
+		string[] TaskResult { get; set; }
 	}
 	
 	/*

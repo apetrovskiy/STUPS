@@ -84,8 +84,8 @@ namespace Tmx.Server.Tests.Modules
             var testSuite = new TestSuite { Name = testSuiteNameExpected, Id = testSuiteIdExpected };
             var testScenarioNameExpected = "test scenario name";
             var testScenarioIdExpected = "222";
-            // var testScenario = new TestScenario { Name = testScenarioNameExpected, Id = testScenarioIdExpected };
-            var testScenario = new TestScenario(testScenarioNameExpected, testScenarioIdExpected, testSuiteIdExpected);
+            var testScenario = new TestScenario { Name = testScenarioNameExpected, Id = testScenarioIdExpected };
+            // var testScenario = new TestScenario(testScenarioNameExpected, testScenarioIdExpected, testSuiteIdExpected);
 //            var testScenario = new TestScenario {
 //            	Description = "Asdfasdf",
 //            	Id = testScenarioIdExpected,

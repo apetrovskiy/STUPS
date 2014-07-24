@@ -36,9 +36,13 @@ namespace Tmx.Interfaces.Types.Remoting
 		public ITestTaskAction[] Action { get; set; }
 		public ITestTaskAction[] AfterAction { get; set; }
 		// public string[] ExpectedResult { get; set; } // ?
-		public List<object> ExpectedResult { get; set; } // ?
+		// public List<object> ExpectedResult { get; set; } // ?
+		// public object[] ExpectedResult { get; set; }
+		public string[] ExpectedResult { get; set; }
 		
 		public TestTaskStatuses Status { get; set; }
-		public List<object> TaskResult { get; set; }
+		// public List<object> TaskResult { get; set; }
+		// public object[] TaskResult { get; set; }
+		public string[] TaskResult { get; set; }
 	}
 }

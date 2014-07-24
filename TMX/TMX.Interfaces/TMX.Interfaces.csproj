@@ -85,6 +85,7 @@
     <Compile Include="Exceptions\ClientRegistrationException.cs" />
     <Compile Include="Exceptions\AcceptTaskException.cs" />
     <Compile Include="Exceptions\LoadTaskException.cs" />
+    <Compile Include="Exceptions\UpdateTaskException.cs" />
     <Compile Include="IDatabase.cs" />
     <Compile Include="ITestSuitesCollection.cs" />
     <Compile Include="IWorkflowStep.cs" />

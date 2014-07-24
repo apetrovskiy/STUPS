@@ -229,6 +229,7 @@
     <Compile Include="ExternalUse\Import.cs" />
     <Compile Include="Helpers\ImportExportHelper.cs" />
     <Compile Include="Helpers\Inheritance\AssertionsCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\ClientCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\CommonCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\ConditionsCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\Database\DatabaseCmdletBase.cs" />

@@ -17,7 +17,7 @@ namespace Tmx.Commands
 	/// Description of ReceiveTmxTestTaskCommand.
 	/// </summary>
 	[Cmdlet(VerbsCommunications.Receive, "TmxTestTask")]
-	public class ReceiveTmxTestTaskCommand : CommonCmdletBase
+	public class ReceiveTmxTestTaskCommand : ClientCmdletBase //CommonCmdletBase
 	{
 		protected override void BeginProcessing()
 		{

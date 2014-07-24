@@ -10,7 +10,10 @@
 namespace Tmx
 {
 	using System;
+	using System.Collections.Generic;
+	using System.Linq;
 	using Tmx;
+	using Tmx.Client;
 	using Tmx.Commands;
 	
 	/// <summary>
@@ -25,7 +28,9 @@ namespace Tmx
         internal override void Execute()
         {
             var cmdlet = (SendTmxTestTaskResultCommand)Cmdlet;
-            // cmdlet.Execute();
+            ClientSettings.CurrentTask.TaskResult = cmdlet.Result;
+            var taskUpdater = new TaskUpdater();
+            cmdlet.WriteObject(taskUpdater.UpdateTask());
         }
     }
 }

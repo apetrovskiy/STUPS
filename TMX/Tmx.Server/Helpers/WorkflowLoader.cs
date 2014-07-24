@@ -29,6 +29,7 @@ namespace Tmx.Server
 		const string taskElement_storyId = "storyId";
 		const string taskElement_taskType = "taskType";
 		const string taskElement_timeout = "timeout";
+		const string taskElement_retryCount = "retryCount";
 		
 		public bool LoadWorkflow(string pathToWorkflowFile)
 		{
@@ -66,32 +67,35 @@ namespace Tmx.Server
 				// BeforeAction
 				Completed = false,
 				// ExpectedResult
-				Id = getTestTaskElementValueInt(taskNode, taskElement_id),
-				IsActive = "1" == getTestTaskElementValueString(taskNode, taskElement_isActive),
-				IsCritical = "1" == getTestTaskElementValueString(taskNode, taskElement_isCritical),
-				Name = getTestTaskElementValueString(taskNode, taskElement_name),
+				Id = convertTestTaskElementValue(taskNode, taskElement_id),
+				IsActive = "1" == getTestTaskElementValue(taskNode, taskElement_isActive),
+				IsCritical = "1" == getTestTaskElementValue(taskNode, taskElement_isCritical),
+				Name = getTestTaskElementValue(taskNode, taskElement_name),
 				// PreviousTaskId
-				// RetryCount
-				Rule = getTestTaskElementValueString(taskNode, taskElement_rule),
+				RetryCount = convertTestTaskElementValue(taskNode, taskElement_retryCount),
+				Rule = getTestTaskElementValue(taskNode, taskElement_rule),
 				Status = TestTaskStatuses.New,
-				StoryId = getTestTaskElementValueString(taskNode, taskElement_storyId),
+				StoryId = getTestTaskElementValue(taskNode, taskElement_storyId),
 				// TaskResult
 				TaskType = getTestTaskType(taskNode.Element(taskElement_taskType).Value),
-				Timeout = getTestTaskElementValueInt(taskNode, taskElement_timeout)
+				Timeout = convertTestTaskElementValue(taskNode, taskElement_timeout)
 			};
 		}
 
-		int getTestTaskElementValueInt(XContainer taskNode, string elementValue)
+		int convertTestTaskElementValue(XContainer taskNode, string elementName)
 		{
-			int result = 0;
-			result = Convert.ToInt32(taskNode.Element(elementValue).Value);
-			return result;
+			return Convert.ToInt32(string.Empty == getTestTaskElementValue(taskNode, elementName) ? "0" : getTestTaskElementValue(taskNode, elementName));
 		}
 		
-		string getTestTaskElementValueString(XContainer taskNode, string elementValue)
+		string getTestTaskElementValue(XContainer taskNode, string elementName)
 		{
-			string result = taskNode.Element(elementValue).Value;
-			return result;
+			try {
+				return taskNode.Element(elementName).Value ?? string.Empty;
+			}
+			catch {
+				// throw new WrongTaskDataException("failed to read the value of element '" + elementName + "'");
+				return string.Empty;
+			}
 		}
 		
 		TestTaskExecutionTypes getTestTaskType(string taskTypeStringValue)

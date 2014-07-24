@@ -25,7 +25,7 @@ namespace Tmx
         	TestSuiteExecCmdletBase cmdlet,
         	ITestSuite testSuite)
         {
-            foreach (ITestScenario testScenario in testSuite.TestScenarios.Where(testScenario => null != testScenario.TestCases && 0 < testScenario.TestCases.Count))
+            foreach (var testScenario in testSuite.TestScenarios.Where(testScenario => null != testScenario.TestCases && 0 < testScenario.TestCases.Count))
             {
                 cmdlet.runTwoScriptBlockCollections(
                     testSuite.BeforeScenario,

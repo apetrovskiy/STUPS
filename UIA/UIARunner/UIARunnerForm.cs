@@ -13,7 +13,8 @@ namespace UiaRunner
     using System.Collections.Generic;
     using System.Drawing;
     using System.Windows.Forms;
-	using Tmx.Core;
+	// using Tmx.Core;
+	using Tmx;
 	using Tmx.Interfaces.TestStructure;
     using System.Threading;
     using PSTestRunner;

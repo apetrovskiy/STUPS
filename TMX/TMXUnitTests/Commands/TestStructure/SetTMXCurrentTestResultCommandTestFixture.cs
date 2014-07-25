@@ -13,7 +13,7 @@ namespace TmxUnitTests.Commands.TestStructure
     using MbUnit.Framework;using NUnit.Framework;
     using PSTestLib;
     using Tmx;
-	using Tmx.Core;
+	// using Tmx.Core;
     using Tmx.Interfaces.TestStructure;
     
     /// <summary>

@@ -15,7 +15,7 @@ namespace Tmx.Interfaces
     using System.Collections;
     using System.Linq;
 	using Tmx.Interfaces.TestStructure;
-	using Tmx.Core;
+	// using Tmx.Core;
     
     /// <summary>
     /// Description of TestResult.

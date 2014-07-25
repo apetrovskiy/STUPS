@@ -1,6 +1,6 @@
 ﻿/*
  * Created by SharpDevelop.
- * User: alexa_000
+ * User: Alexander Petrovskiy
  * Date: 7/24/2014
  * Time: 3:21 PM
  * 
@@ -22,20 +22,13 @@ namespace Tmx.Client
 	/// </summary>
 	public class TaskUpdater
 	{
-//		public bool UpdateTask(ITestTask testTask)
-//		{
-//			ClientSettings.CurrentTask.Completed = testTask.Completed;
-//			ClientSettings.CurrentTask.Status = testTask.Status;
-//			ClientSettings.CurrentTask.TaskResult = testTask.TaskResult;
-//			return UpdateTask();
-//		}
-//		
+	    readonly RestRequestCreator _restRequestCreator = new RestRequestCreator();
+	    
 		public bool UpdateTask()
 		{
-			var client = new RestClient(ClientSettings.ServerUrl);
-			var request = new RestRequest(UrnList.TestTasks_Root + "/" + ClientSettings.CurrentTask.Id, Method.PUT);
+			var request = _restRequestCreator.GetRestRequest(UrnList.TestTasks_Root + "/" + ClientSettings.CurrentTask.Id, Method.PUT);
 			request.AddObject(ClientSettings.CurrentTask);
-			var updatingTaskResponse = client.Execute<TestTask>(request);
+			var updatingTaskResponse = _restRequestCreator.RestClient.Execute<TestTask>(request);
 			if (HttpStatusCode.OK != updatingTaskResponse.StatusCode)
 				throw new UpdateTaskException("Failed to update task");
 			return true;

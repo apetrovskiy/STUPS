@@ -14,7 +14,7 @@ namespace Tmx.Interfaces
     using System.Management.Automation;
 	using Tmx.Interfaces;
 	using Tmx.Interfaces.TestStructure;
-	using Tmx.Core;
+	// using Tmx.Core;
     
     /// <summary>
     /// Description of TestScenario.
@@ -24,11 +24,14 @@ namespace Tmx.Interfaces
         public TestScenario()
         {
             this.TestResults = new List<ITestResult>();
+Console.WriteLine("000001");
             this.TestCases = new List<ITestCase>();
             this.Statistics = new TestStat();
             this.enStatus = TestScenarioStatuses.NotTested;
+Console.WriteLine("000005");
             try{
                 if (TestData.CurrentTestResult.Details.Count > 0) {
+Console.WriteLine("000006");
 					TestData.AddTestResult(
                         "autoclosed", 
                         TestData.GetTestResultId(), 
@@ -40,29 +43,37 @@ namespace Tmx.Interfaces
                         string.Empty,
                         TestResultOrigins.Automatic,
                         false);
+Console.WriteLine("000007");
                 } else {
+Console.WriteLine("000008");
                     TestData.CurrentTestResult = null;
                 }
             }
             catch {}
             
+Console.WriteLine("000009");
             this.SetNow();
             
+Console.WriteLine("000010");
             // in detail 20140713
             var testSuite1 = TestData.TestSuites[TestData.TestSuites.Count - 1];
             var testScenario1 = testSuite1.TestScenarios[testSuite1.TestScenarios.Count - 1]; // HERE!!
+Console.WriteLine("000012");
             string testScenarioId1 = testScenario1.Id;
             // string testScenarioId1 = TestData.TestSuites[TestData.TestSuites.Count - 1].TestScenarios[TestData.TestSuites[TestData.TestSuites.Count - 1].TestScenarios.Count - 1].Id;
             string testSuiteId1 = TestData.TestSuites[TestData.TestSuites.Count - 1].Id;
+Console.WriteLine("000014");
             // 20140723
             // var testResult1 = new TestResult(testScenarioId1, testSuiteId1);
             // this.TestResults.Add(testResult1);
             this.TestResults.Add(new TestResult(testScenarioId1, testSuiteId1)); // ??
+Console.WriteLine("000015");
 //            this.TestResults.Add(
 //                new TestResult(
 //                    TestData.TestSuites[TestData.TestSuites.Count - 1].TestScenarios[TestData.TestSuites[TestData.TestSuites.Count - 1].TestScenarios.Count - 1].Id, // "???",
 //                    TestData.TestSuites[TestData.TestSuites.Count - 1].Id)); // "???"));
             TestData.CurrentTestResult = this.TestResults[TestResults.Count - 1];
+Console.WriteLine("000016");
         }
         
         public TestScenario(
@@ -121,8 +132,11 @@ namespace Tmx.Interfaces
         
         //public virtual int DbId { get; protected set; }
         public virtual int DbId { get; set; }
-        public string Name { get; protected internal set; }
-        public string Id { get; protected internal set; }
+        // 20140725
+        // public string Name { get; protected internal set; }
+        // public string Id { get; protected internal set; }
+        public string Name { get; set; }
+        public string Id { get; set; }
         public List<ITestResult> TestResults {get; protected internal set; }
         public virtual string Description { get; set; }
 

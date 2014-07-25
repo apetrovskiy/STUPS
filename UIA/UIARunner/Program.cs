@@ -11,7 +11,7 @@ namespace UiaRunner
 {
     using System;
     using System.Windows.Forms;
-	using Tmx.Core;
+	// using Tmx.Core;
     // 20131105
     // refactoring
     using PSTestRunner;

@@ -82,6 +82,7 @@
     <Compile Include="DataTypes\Types\TestResultCmdletBaseDataObject.cs" />
     <Compile Include="DataTypes\Types\TestResultDetailCmdletBaseDataObject.cs" />
     <Compile Include="DataTypes\Types\TestResultStatusCmdletBaseDataObject.cs" />
+    <Compile Include="Exceptions\ClientDeregistrationException.cs" />
     <Compile Include="Exceptions\ClientRegistrationException.cs" />
     <Compile Include="Exceptions\AcceptTaskException.cs" />
     <Compile Include="Exceptions\LoadTaskException.cs" />

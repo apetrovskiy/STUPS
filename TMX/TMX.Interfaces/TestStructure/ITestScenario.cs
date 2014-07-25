@@ -19,8 +19,11 @@ namespace Tmx.Interfaces.TestStructure
     public interface ITestScenario
     {
         int DbId { get; set; }
-        string Name { get; }
-        string Id { get; }
+        // 20140725
+        // string Name { get; }
+        // string Id { get; }
+        string Name { get; set; }
+        string Id { get; set; }
         List<ITestResult> TestResults { get; }
         string Description { get; set; }
         string Status { get; }

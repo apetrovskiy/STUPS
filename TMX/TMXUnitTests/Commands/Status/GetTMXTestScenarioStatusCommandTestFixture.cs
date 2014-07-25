@@ -12,8 +12,9 @@ namespace TmxUnitTests.Commands.Status
     using System;
     using MbUnit.Framework;using NUnit.Framework;
     using PSTestLib;
-	using Tmx.Core;
+	// using Tmx.Core;
     using Tmx.Interfaces.TestStructure;
+    using Tmx;
     
     /// <summary>
     /// Description of GetTmxTestScenarioStatusCommandTestFixture.

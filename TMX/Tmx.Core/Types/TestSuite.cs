@@ -14,7 +14,7 @@ namespace Tmx.Interfaces
     using System.Linq;
     using System.Management.Automation;
 	using Tmx.Interfaces.TestStructure;
-	using Tmx.Core;
+	// using Tmx.Core;
     
     /// <summary>
     /// Description of TestSuite.
@@ -58,16 +58,20 @@ namespace Tmx.Interfaces
 		
 		void addDefaultPlatform()
 		{
-			if (TestData.TestPlatforms.All(tp => tp.Name != TestData.DefaultPlatformName))
-			    // 20140720
-				TestData.TestPlatforms.Add(new TestPlatform(TestData.DefaultPlatformName, TestData.GetTestPlatformId()));
-			PlatformId = TestData.GetTestPlatform(TestData.DefaultPlatformName, TestData.TestPlatforms.First(tp => tp.Name == TestData.DefaultPlatformName).Id).Id;
+            if (!TestData.TestPlatforms.Any(tp => tp.Name == TestData.DefaultPlatformName)) {
+				TestData.AddDefaultPlatform();
+            }
+			// PlatformId = TestData.GetTestPlatform(TestData.DefaultPlatformName, TestData.TestPlatforms.First(tp => tp.Name == TestData.DefaultPlatformName).Id).Id;
+			PlatformId = TestData.GetDefaultPlatformId();
 		}
 		
         //public virtual int DbId { get; protected set; }
         public virtual int DbId { get; set; }
-        public string Name { get; protected internal set; }
-        public string Id { get; protected internal set; }
+        // 20140725
+        // public string Name { get; protected internal set; }
+        // public string Id { get; protected internal set; }
+        public string Name { get; set; }
+        public string Id { get; set; }
         // 20140720
         // public virtual List<ITestScenario> TestScenarios { get; protected internal set; }
         public virtual List<ITestScenario> TestScenarios { get; set; }

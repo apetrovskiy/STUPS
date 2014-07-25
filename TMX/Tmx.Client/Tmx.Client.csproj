@@ -69,6 +69,7 @@
     </Compile>
     <Compile Include="Helpers\ClientSettings.cs" />
     <Compile Include="Helpers\Registration.cs" />
+    <Compile Include="Helpers\RestRequestCreator.cs" />
     <Compile Include="Helpers\TaskLoader.cs" />
     <Compile Include="Helpers\TaskUpdater.cs" />
   </ItemGroup>

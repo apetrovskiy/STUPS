@@ -43,7 +43,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Set-TmxCurrentTestResult -Name " + 
                 testResultName + 
                 ";" + 
-                "[Tmx.Core.TestData]::CurrentTestResult.Name;",
+                "[Tmx.TestData]::CurrentTestResult.Name;",
                 testResultName);
         }
         
@@ -58,7 +58,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Set-TmxCurrentTestResult -Id " + 
                 testResultId + 
                 ";" + 
-                "[Tmx.Core.TestData]::CurrentTestResult.Id;",
+                "[Tmx.TestData]::CurrentTestResult.Id;",
                 testResultId);
         }
         
@@ -73,7 +73,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Set-TmxCurrentTestResult -Name " + 
                 testResultName + 
                 " -Id 1;" + 
-                "[Tmx.Core.TestData]::CurrentTestResult.Name;",
+                "[Tmx.TestData]::CurrentTestResult.Name;",
                 testResultName);
         }
         
@@ -91,7 +91,7 @@ namespace TmxTest.Commands.TestStructure
                 " -Id '" +
                 testResultId +
                 "';" +
-                "[Tmx.Core.TestData]::CurrentTestResult.Id;",
+                "[Tmx.TestData]::CurrentTestResult.Id;",
                 testResultId);
         }
         
@@ -107,7 +107,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Set-TmxCurrentTestResult -Name " + 
                 testResultName + 
                 ";" + 
-                "[Tmx.Core.TestData]::CurrentTestResult.enStatus;",
+                "[Tmx.TestData]::CurrentTestResult.enStatus;",
                 expectedTestResultStatus.ToString());
         }
         
@@ -123,7 +123,7 @@ namespace TmxTest.Commands.TestStructure
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus NotTested; " +
-                "[Tmx.Core.TestData]::CurrentTestResult.enStatus;",
+                "[Tmx.TestData]::CurrentTestResult.enStatus;",
                 expectedTestResultStatus.ToString());
         }
         
@@ -137,7 +137,7 @@ namespace TmxTest.Commands.TestStructure
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Passed; " +
-                "[Tmx.Core.TestData]::CurrentTestResult.enStatus;",
+                "[Tmx.TestData]::CurrentTestResult.enStatus;",
                 expectedTestResultStatus.ToString());
         }
         
@@ -151,7 +151,7 @@ namespace TmxTest.Commands.TestStructure
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Failed; " +
-                "[Tmx.Core.TestData]::CurrentTestResult.enStatus;",
+                "[Tmx.TestData]::CurrentTestResult.enStatus;",
                 expectedTestResultStatus.ToString());
         }
         
@@ -165,7 +165,7 @@ namespace TmxTest.Commands.TestStructure
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus KnownIssue; " +
-                "[Tmx.Core.TestData]::CurrentTestResult.enStatus;",
+                "[Tmx.TestData]::CurrentTestResult.enStatus;",
                 expectedTestResultStatus.ToString());
         }
         
@@ -182,8 +182,8 @@ namespace TmxTest.Commands.TestStructure
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 //@"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus NotTested; " +
                 @"Close-TmxTestResult -Name 'tr1'; " + 
-                //"[Tmx.Core.TestData]::CurrentTestResult.enStatus;",
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
+                //"[Tmx.TestData]::CurrentTestResult.enStatus;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
         }
         
@@ -198,8 +198,8 @@ namespace TmxTest.Commands.TestStructure
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 //@"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Passed; " +
                 @"Close-TmxTestResult -Name 'tr1' -TestPassed; " + 
-                //"[Tmx.Core.TestData]::CurrentTestResult.enStatus;",
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
+                //"[Tmx.TestData]::CurrentTestResult.enStatus;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
         }
         
@@ -214,8 +214,8 @@ namespace TmxTest.Commands.TestStructure
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 //@"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Failed; " +
                 @"Close-TmxTestResult -Name 'tr1' -TestPassed:$false; " + 
-                //"[Tmx.Core.TestData]::CurrentTestResult.enStatus;",
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
+                //"[Tmx.TestData]::CurrentTestResult.enStatus;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
         }
         
@@ -230,8 +230,8 @@ namespace TmxTest.Commands.TestStructure
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 //@"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus KnownIssue; " +
                 @"Close-TmxTestResult -Name 'tr1' -KnownIssue; " + 
-                //"[Tmx.Core.TestData]::CurrentTestResult.enStatus;",
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
+                //"[Tmx.TestData]::CurrentTestResult.enStatus;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
         }
         
@@ -248,7 +248,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus NotTested; " +
                 @"Close-TmxTestResult -Name 'tr1' -TestPassed; " + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
         }
         
@@ -263,7 +263,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus NotTested; " +
                 @"Close-TmxTestResult -Name 'tr1' -TestPassed:$false; " + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
         }
         
@@ -278,7 +278,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus NotTested; " +
                 @"Close-TmxTestResult -Name 'tr1' -KnownIssue; " + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
         }
         
@@ -293,7 +293,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Passed; " +
                 @"Close-TmxTestResult -Name 'tr1' -TestPassed; " + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
         }
         
@@ -308,7 +308,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Passed; " +
                 @"Close-TmxTestResult -Name 'tr1' -TestPassed:$false; " + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
         }
         
@@ -323,7 +323,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Passed; " +
                 @"Close-TmxTestResult -Name 'tr1' -KnownIssue; " + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
         }
         
@@ -338,7 +338,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Failed; " +
                 @"Close-TmxTestResult -Name 'tr1' -TestPassed; " + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
         }
         
@@ -353,7 +353,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Failed; " +
                 @"Close-TmxTestResult -Name 'tr1' -TestPassed:$false; " + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
         }
         
@@ -368,7 +368,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Failed; " +
                 @"Close-TmxTestResult -Name 'tr1' -KnownIssue; " + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
         }
         
@@ -383,7 +383,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus KnownIssue; " +
                 @"Close-TmxTestResult -Name 'tr1' -TestPassed; " + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
         }
         
@@ -398,7 +398,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus KnownIssue; " +
                 @"Close-TmxTestResult -Name 'tr1' -TestPassed:$false; " + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
         }
         
@@ -413,7 +413,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus KnownIssue; " +
                 @"Close-TmxTestResult -Name 'tr1' -KnownIssue; " + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].enStatus;",
                 expectedTestResultStatus.ToString());
         }
         
@@ -434,7 +434,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus NotTested; " +
                 @"Set-TmxCurrentTestResult -Name 'tr2'; " + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults.Count - 1].enStatus;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults.Count - 1].enStatus;",
                 expectedTestResultStatus.ToString());
         }
         
@@ -449,7 +449,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Passed; " +
                 @"Set-TmxCurrentTestResult -Name 'tr2'; " + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults.Count - 1].enStatus;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults.Count - 1].enStatus;",
                 expectedTestResultStatus.ToString());
         }
         
@@ -464,7 +464,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Failed; " +
                 @"Set-TmxCurrentTestResult -Name 'tr2'; " + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults.Count - 1].enStatus;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults.Count - 1].enStatus;",
                 expectedTestResultStatus.ToString());
         }
         
@@ -479,7 +479,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus KnownIssue; " +
                 @"Set-TmxCurrentTestResult -Name 'tr2'; " + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults.Count - 1].enStatus;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults.Count - 1].enStatus;",
                 expectedTestResultStatus.ToString());
         }
     }

@@ -56,6 +56,7 @@ namespace Tmx.Server.Modules
 			Delete[UrnList.TestClients_Client] = parameters => {
 				try {
 					var clientsToDelete = ClientsCollection.Clients.RemoveAll(client => client.Id == parameters.id);
+					// TODO: clean up the list of tasks for the client if ever existed
 					return HttpStatusCode.OK;
 				}
 				catch {

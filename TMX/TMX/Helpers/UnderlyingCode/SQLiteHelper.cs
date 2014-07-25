@@ -20,7 +20,7 @@ namespace Tmx
     using PSTestLib;
     
     using System.IO;
-	using Tmx.Core;
+	// using Tmx.Core;
 	using Tmx.Interfaces;
 	using Tmx.Interfaces.TestStructure;
     

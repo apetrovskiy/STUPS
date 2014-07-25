@@ -46,7 +46,7 @@ namespace SePSXUnitTests
                         //@"Import-Module '.\UIAutomation.dll' -Force;" + 
                         //@"Import-Module '.\Tmx.dll' -Force;";
         
-                        //@"[Tmx.Core.TestData]::TestSuites.Clear();";
+                        //@"[Tmx.TestData]::TestSuites.Clear();";
 //                        @"[UIAutomation.Preferences]::OnSuccessDelay = 0;" +
 //                        @"[UIAutomation.Preferences]::OnErrorDelay = 0;" +
 //                        @"[UIAutomation.Preferences]::OnClickDelay = 0;" +

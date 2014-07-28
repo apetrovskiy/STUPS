@@ -30,6 +30,9 @@ namespace Tmx.Server
 		const string taskElement_taskType = "taskType";
 		const string taskElement_timeout = "timeout";
 		const string taskElement_retryCount = "retryCount";
+		const string taskElement_action = "action";
+		const string taskElement_beforeAction = "beforeAction";
+		const string taskElement_afterAction = "afterAction";
 		
 		public bool LoadWorkflow(string pathToWorkflowFile)
 		{
@@ -62,7 +65,9 @@ namespace Tmx.Server
 		ITestTask getNewTestTask(XContainer taskNode)
 		{
 			return new TestTask {
-				// Action
+		        // Action = getCollection(taskNode, taskElement_action),
+		        Action = getTestTaskElementValue(taskNode, taskElement_action),
+		        // ActionParameters = new object
 				// AfterAction
 				// BeforeAction
 				Completed = false,
@@ -81,7 +86,13 @@ namespace Tmx.Server
 				Timeout = convertTestTaskElementValue(taskNode, taskElement_timeout)
 			};
 		}
-
+		
+		ITestTaskAction[] getCollection(XContainer taskNode, string taskElement_action)
+		{
+			// TODO: read real test action(s)
+			return new[] { new TestTaskAction { Code = "dir" } };
+		}
+		
 		int convertTestTaskElementValue(XContainer taskNode, string elementName)
 		{
 			return Convert.ToInt32(string.Empty == getTestTaskElementValue(taskNode, elementName) ? "0" : getTestTaskElementValue(taskNode, elementName));

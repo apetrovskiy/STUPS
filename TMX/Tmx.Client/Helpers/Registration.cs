@@ -11,11 +11,12 @@ namespace Tmx.Client
 {
     using System;
 	using System.Net;
+	using System.Net.NetworkInformation;
     using RestSharp;
 	using TMX.Interfaces.Exceptions;
+	using TMX.Interfaces.Server;
 	using Tmx.Interfaces;
 	using Tmx.Interfaces.Remoting;
-	using Tmx.Server;
     
     /// <summary>
     /// Description of Registration.
@@ -29,7 +30,6 @@ namespace Tmx.Client
 			var request = _restRequestCreator.GetRestRequest(UrnList.TestClients_Root + UrnList.TestClients_Clients, Method.POST);
 			request.AddBody(getNewTestClient());
 			var registrationResponse = _restRequestCreator.RestClient.Execute<TestClientInformation>(request);
-			
 			if (HttpStatusCode.Created == registrationResponse.StatusCode)
 				return registrationResponse.Data.Id;
 			throw new Exception("Failed to register a client"); // TODO: new type!
@@ -51,8 +51,9 @@ namespace Tmx.Client
                 Username = Environment.UserName,
                 UserDomainName = Environment.UserDomainName,
                 IsInteractive = Environment.UserInteractive,
+                // IsAdmin = 
                 // EnvironmentVersion = Environment.Version.Major + "." + Environment.Version.MajorRevision + "." + Environment.Version.Minor + "." + Environment.Version.MinorRevision + "." + Environment.Version.Build,
-                Fqdn = string.Empty,
+                Fqdn = Dns.GetHostName() + "." + IPGlobalProperties.GetIPGlobalProperties().DomainName,
                 OsVersion = Environment.OSVersion.VersionString,
                 UptimeSeconds = Environment.TickCount / 1000
             };

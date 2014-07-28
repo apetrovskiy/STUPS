@@ -615,7 +615,7 @@ namespace UIAutomation
             base.WriteObject(cmdlet, outputObjectCollection);
         }
         
-        private void writeErrorToTheList(ErrorRecord err)
+        void writeErrorToTheList(ErrorRecord err)
         {
             CurrentData.Error.Add(err);
             if (CurrentData.Error.Count <= Preferences.MaximumErrorCount) return;
@@ -812,23 +812,18 @@ namespace UIAutomation
         #region Invoke-UiaScript
         protected internal void RunEventScriptBlocks(HasControlInputCmdletBase cmdlet)
         {
-            var blocks =
-                new List<ScriptBlock>();
-            /*
-            List<ScriptBlock> blocks =
-                new List<ScriptBlock>();
-            */
-            WriteVerbose(cmdlet,
-                              blocks.Count.ToString() +
-                              " events to fire");
-            if (cmdlet.EventAction != null &&
-                cmdlet.EventAction.Length > 0) {
+            var blocks = new List<ScriptBlock>();
+            
+//            WriteVerbose(cmdlet,
+//                              blocks.Count +
+//                              " events to fire");
+            if (cmdlet.EventAction != null && cmdlet.EventAction.Length > 0) {
                 foreach (ScriptBlock sb in cmdlet.EventAction) {
                     blocks.Add(sb);
-                    WriteVerbose(cmdlet,
-                                      "the scriptblock: " +
-                                      sb.ToString() +
-                                      " is ready to be fired");
+//                    WriteVerbose(cmdlet,
+//                                      "the scriptblock: " +
+//                                      sb +
+//                                      " is ready to be fired");
                 }
             }
             
@@ -878,30 +873,25 @@ namespace UIAutomation
         
         protected internal void RunWizardStartScriptBlocks(WizardCmdletBase cmdlet, Wizard wizard, object[] parameters)
         {
-
             runTwoScriptBlockCollections(
                 null,
                 wizard.StartAction,
                 cmdlet,
                 parameters);
-
         }
         
         protected internal void RunWizardStopScriptBlocks(WizardCmdletBase cmdlet, Wizard wizard, object[] parameters, bool hereMustBeStopAction)
         {
             
-            if (hereMustBeStopAction && (null == wizard.StopAction || 0 == wizard.StopAction.Length)) {
-                
-                cmdlet.WriteVerbose(cmdlet, "there is no any StopAction scriptblock");
-                
+			if (hereMustBeStopAction && (null == wizard.StopAction || 0 == wizard.StopAction.Length))
+//                cmdlet.WriteVerbose(cmdlet, "there is no any StopAction scriptblock");
                 //throw new Exception("There are no StopAction scriptblocks, define at least one");
                 cmdlet.WriteError(
-                    cmdlet,
-                    "There are no StopAction scriptblocks, define at least one",
-                    "NoStopActionScriptblocks",
-                    ErrorCategory.InvalidArgument,
-                    true);
-            }
+					cmdlet,
+					"There are no StopAction scriptblocks, define at least one",
+					"NoStopActionScriptblocks",
+					ErrorCategory.InvalidArgument,
+					true);
             
             runTwoScriptBlockCollections(
                 null,
@@ -942,7 +932,7 @@ namespace UIAutomation
             // temporary
             // profiling
             // 20140207
-            this.WriteInfo(this, "the result of the GetWindowAction scriptblock run is " + result.ToString());
+			WriteInfo(this, "the result of the GetWindowAction scriptblock run is " + result.ToString());
             
             return result;
         }
@@ -956,9 +946,9 @@ namespace UIAutomation
 
             switch (whatToRun) {
                 case WizardStepActions.Forward:
-                    cmdlet.WriteVerbose(
-                        cmdlet,
-                        "ForwardAction scriptblocks");
+//                    cmdlet.WriteVerbose(
+//                        cmdlet,
+//                        "ForwardAction scriptblocks");
     
                     runTwoScriptBlockCollections(
                         wizardStep.Parent.DefaultStepForwardAction,
@@ -967,9 +957,9 @@ namespace UIAutomation
                         parameters);
                     break;
                 case WizardStepActions.Backward:
-                    cmdlet.WriteVerbose(
-                        cmdlet,
-                        "BackwardAction scriptblocks");
+//                    cmdlet.WriteVerbose(
+//                        cmdlet,
+//                        "BackwardAction scriptblocks");
                     
                     runTwoScriptBlockCollections(
                         wizardStep.Parent.DefaultStepBackwardAction,
@@ -978,9 +968,9 @@ namespace UIAutomation
                         parameters);
                     break;
                 case WizardStepActions.Cancel:
-                    cmdlet.WriteVerbose(
-                        cmdlet,
-                        "CancelAction scriptblocks");
+//                    cmdlet.WriteVerbose(
+//                        cmdlet,
+//                        "CancelAction scriptblocks");
                     
                     runTwoScriptBlockCollections(
                         wizardStep.Parent.DefaultStepCancelAction,
@@ -1008,7 +998,6 @@ namespace UIAutomation
                 "Scriptblocks finished");
         }
         
-        //protected override void SaveEventInput(
         protected override void SaveEventInput(
             // 20131109
             classic.AutomationElement src,

@@ -10,12 +10,7 @@
 namespace Tmx.Client
 {
     using System;
-	using System.Net;
     using RestSharp;
-	using TMX.Interfaces.Exceptions;
-	using Tmx.Interfaces;
-	using Tmx.Interfaces.Remoting;
-	using Tmx.Server;
     
     /// <summary>
     /// Description of RestRequestCreator.

@@ -14,10 +14,10 @@ namespace Tmx.Server.Tests.Modules
 	using NSubstitute;
     using Nancy;
     using Nancy.Testing;
+	using TMX.Interfaces.Server;
     // using MbUnit.Framework;
     using NUnit.Framework;
 	using Tmx;
-	// using Tmx.Core;
 	using Tmx.Interfaces.TestStructure;
     using Xunit;
     using Tmx.Interfaces;

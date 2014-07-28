@@ -13,9 +13,8 @@ namespace Tmx.Client
 	using System.Net;
 	using RestSharp;
 	using TMX.Interfaces.Exceptions;
-	using Tmx.Interfaces.Remoting;
+	using TMX.Interfaces.Server;
 	using Tmx.Interfaces.Types.Remoting;
-	using Tmx.Server;
 	
 	/// <summary>
 	/// Description of TaskUpdater.

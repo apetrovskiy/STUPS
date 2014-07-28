@@ -80,6 +80,7 @@
     <Compile Include="Helpers\TMXHelper.cs" />
     <Compile Include="Helpers\UserSettings\Preferences.cs" />
     <Compile Include="TestData\TestData.cs" />
+    <Compile Include="Types\TestTaskAction.cs" />
     <Compile Include="Types\TestCase.cs" />
     <Compile Include="Types\TestPlatform.cs" />
     <Compile Include="Types\TestResult.cs" />

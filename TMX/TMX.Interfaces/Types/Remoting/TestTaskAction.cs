@@ -1,0 +1,24 @@
+﻿/*
+ * Created by SharpDevelop.
+ * User: alexa_000
+ * Date: 7/28/2014
+ * Time: 9:50 PM
+ * 
+ * To change this template use Tools | Options | Coding | Edit Standard Headers.
+ */
+
+namespace Tmx.Interfaces.Types.Remoting
+{
+    using System;
+	using System.Collections.Generic;
+    using Tmx.Interfaces.Remoting;
+    
+    /// <summary>
+    /// Description of TestTaskAction.
+    /// </summary>
+    public class TestTaskAction : ITestTaskAction
+    {
+        public string Code { get; set; }
+		public Dictionary<string, object> Parameters { get; set; }
+    }
+}

@@ -191,6 +191,7 @@
     <Compile Include="Commands\Status\GetTMXTestSuiteStatusCommand.cs" />
     <Compile Include="Commands\Status\UpdateTMXTestStatisticsCommand.cs" />
     <Compile Include="Commands\TestClient\ExitTmxTestTaskCommand.cs" />
+    <Compile Include="Commands\TestClient\InvokeTmxTestTaskCommand.cs" />
     <Compile Include="Commands\TestClient\ReceiveTmxTestTaskCommand.cs" />
     <Compile Include="Commands\TestClient\RegisterTmxSystemUnderTestCommand.cs" />
     <Compile Include="Commands\TestClient\SendTmxTestTaskResultCommand.cs" />
@@ -271,6 +272,7 @@
     <Compile Include="Helpers\UnderlyingCode\Commands\Status\TMXGetTestScenarioStatusCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Status\TMXGetTestSuiteStatusCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestClient\ExitTestTaskCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestClient\InvokeTestTaskCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestClient\ReceiveTestTaskCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestClient\RegisterSystemUnderTestCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestClient\SendTestTaskResultCommand.cs" />

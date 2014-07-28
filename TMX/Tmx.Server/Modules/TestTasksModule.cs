@@ -14,7 +14,7 @@ namespace Tmx.Server.Modules
     using System.Linq;
 	using Nancy;
 	using Nancy.ModelBinding;
-	using Tmx.Interfaces;
+	using TMX.Interfaces.Server;
 	using Tmx.Interfaces.Remoting;
 	using Tmx.Interfaces.Types.Remoting;
     

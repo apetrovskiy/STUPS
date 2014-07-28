@@ -18,6 +18,13 @@ namespace Tmx.Interfaces.Types.Remoting
 	/// </summary>
 	public class TestTask : ITestTask
 	{
+//	    public TestTask()
+//	    {
+//	        this.Action = (ITestTaskAction[])new TestTaskAction[] {};
+////	        this.BeforeAction = (ITestTaskAction[])new TestTaskAction[] {};
+////	        this.AfterAction = (ITestTaskAction[])new TestTaskAction[] {};
+//	    }
+	    
 		public int Id { get; set; }
 		// public int Order { get; set; }
 		public int PreviousTaskId { get; set; }
@@ -32,9 +39,11 @@ namespace Tmx.Interfaces.Types.Remoting
 		
 		public string Name { get; set; }
 		public string StoryId { get; set; }
-		public ITestTaskAction[] BeforeAction { get; set; }
-		public ITestTaskAction[] Action { get; set; }
-		public ITestTaskAction[] AfterAction { get; set; }
+//		public ITestTaskAction[] BeforeAction { get; set; }
+//		public ITestTaskAction[] Action { get; set; }
+//		public ITestTaskAction[] AfterAction { get; set; }
+		public string Action { get; set; }
+		// public Dictionary<string, object> ActionParameters { get; set; }
 		// public string[] ExpectedResult { get; set; } // ?
 		// public List<object> ExpectedResult { get; set; } // ?
 		// public object[] ExpectedResult { get; set; }
@@ -45,5 +54,10 @@ namespace Tmx.Interfaces.Types.Remoting
 		// public object[] TaskResult { get; set; }
 		public string[] TaskResult { get; set; }
 		public int ClientId { get; set; }
+		
+		public void StartTimer()
+		{
+		    // TODO: implement a timer
+		}
 	}
 }

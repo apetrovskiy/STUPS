@@ -12,10 +12,11 @@ namespace Tmx.Client
 	using System;
 	using System.Net;
 	using RestSharp;
+	using Tmx;
 	using TMX.Interfaces.Exceptions;
+	using TMX.Interfaces.Server;
 	using Tmx.Interfaces.Remoting;
 	using Tmx.Interfaces.Types.Remoting;
-	using Tmx.Server;
 	
 	/// <summary>
 	/// Description of TaskLoader.
@@ -28,22 +29,38 @@ namespace Tmx.Client
 		{
 			var request = _restRequestCreator.GetRestRequest(UrnList.TestTasks_Root + "/" + ClientSettings.ClientId, Method.GET);
 			var gettingTaskResponse = _restRequestCreator.RestClient.Execute<TestTask>(request);
-			
 			if (HttpStatusCode.OK != gettingTaskResponse.StatusCode)
 				throw new LoadTaskException("Failed to load task");
-			
+//if (null == gettingTaskResponse) {
+//    Console.WriteLine("null == gettingTaskResponse");
+//} else {
+//    Console.WriteLine("null != gettingTaskResponse");
+//    Console.WriteLine(gettingTaskResponse.Content);
+//    Console.WriteLine(gettingTaskResponse.ContentType);
+//    if (null == gettingTaskResponse.Data) {
+//        Console.WriteLine("null == gettingTaskResponse.Data");
+//    } else {
+//        Console.WriteLine("null != gettingTaskResponse.Data");
+//        if (null == gettingTaskResponse.Data.Action) {
+//            Console.WriteLine("null == gettingTaskResponse.Data.Action");
+//        } else {
+//            Console.WriteLine("null != gettingTaskResponse.Data.Action");
+//        }
+//    }
+//}
 			return acceptCurrentTask(gettingTaskResponse.Data);
 		}
 
 		ITestTask acceptCurrentTask(ITestTask task)
 		{
 			task.Status = TestTaskStatuses.Accepted;
+			task.StartTimer();
 			var request = new RestRequest(UrnList.TestTasks_Root + "/" + task.Id, Method.PUT);
 			request.AddObject(task);
 			var acceptingTaskResponse = _restRequestCreator.RestClient.Execute(request);
 			if (HttpStatusCode.OK == acceptingTaskResponse.StatusCode)
 				return task;
-			throw new AcceptTaskException("Failed to accept task");
+			throw new AcceptTaskException("Failed to accept task " + task.Name);
 		}
 	}
 }

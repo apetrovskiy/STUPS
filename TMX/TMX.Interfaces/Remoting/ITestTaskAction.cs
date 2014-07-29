@@ -14,9 +14,9 @@ namespace Tmx.Interfaces.Remoting
 	/// <summary>
 	/// Description of ITestTaskAction.
 	/// </summary>
-	public interface ITestTaskAction
-	{
-		string Code { get; set; }
-		Dictionary<string, object> Parameters { get; set; }
-	}
+//	public interface ITestTaskAction
+//	{
+//		string Code { get; set; }
+//		// Dictionary<string, object> Parameters { get; set; }
+//	}
 }

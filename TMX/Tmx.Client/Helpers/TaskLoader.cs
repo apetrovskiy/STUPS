@@ -31,23 +31,6 @@ namespace Tmx.Client
 			var gettingTaskResponse = _restRequestCreator.RestClient.Execute<TestTask>(request);
 			if (HttpStatusCode.OK != gettingTaskResponse.StatusCode)
 				throw new LoadTaskException("Failed to load task");
-//if (null == gettingTaskResponse) {
-//    Console.WriteLine("null == gettingTaskResponse");
-//} else {
-//    Console.WriteLine("null != gettingTaskResponse");
-//    Console.WriteLine(gettingTaskResponse.Content);
-//    Console.WriteLine(gettingTaskResponse.ContentType);
-//    if (null == gettingTaskResponse.Data) {
-//        Console.WriteLine("null == gettingTaskResponse.Data");
-//    } else {
-//        Console.WriteLine("null != gettingTaskResponse.Data");
-//        if (null == gettingTaskResponse.Data.Action) {
-//            Console.WriteLine("null == gettingTaskResponse.Data.Action");
-//        } else {
-//            Console.WriteLine("null != gettingTaskResponse.Data.Action");
-//        }
-//    }
-//}
 			return acceptCurrentTask(gettingTaskResponse.Data);
 		}
 

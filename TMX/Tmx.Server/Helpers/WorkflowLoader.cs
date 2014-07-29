@@ -10,6 +10,7 @@
 namespace Tmx.Server
 {
 	using System;
+	using System.Collections.Generic;
 	using System.Linq;
 	using System.Xml.Linq;
 	using TMX.Interfaces.Exceptions;
@@ -30,9 +31,12 @@ namespace Tmx.Server
 		const string taskElement_taskType = "taskType";
 		const string taskElement_timeout = "timeout";
 		const string taskElement_retryCount = "retryCount";
+		
 		const string taskElement_action = "action";
 		const string taskElement_beforeAction = "beforeAction";
 		const string taskElement_afterAction = "afterAction";
+		const string taskElement_code = "code";
+		const string taskElement_parameters = "parameters";
 		
 		public bool LoadWorkflow(string pathToWorkflowFile)
 		{
@@ -66,10 +70,14 @@ namespace Tmx.Server
 		{
 			return new TestTask {
 		        // Action = getCollection(taskNode, taskElement_action),
-		        Action = getTestTaskElementValue(taskNode, taskElement_action),
-		        // ActionParameters = new object
-				// AfterAction
-				// BeforeAction
+		        // Action = getAction(taskNode, taskElement_action),
+		        Action = getActionCode(taskNode, taskElement_action),
+		        // ActionParameters = getActionParameters(taskNode, taskElement_action),
+		        ActionParameters = getActionParameters(taskNode, taskElement_action),
+				AfterAction = getActionCode(taskNode, taskElement_afterAction),
+				AfterActionParameters = getActionParameters(taskNode, taskElement_afterAction),
+				BeforeAction = getActionCode(taskNode, taskElement_beforeAction),
+				BeforeActionParameters = getActionParameters(taskNode, taskElement_beforeAction),
 				Completed = false,
 				// ExpectedResult
 				Id = convertTestTaskElementValue(taskNode, taskElement_id),
@@ -87,10 +95,41 @@ namespace Tmx.Server
 			};
 		}
 		
-		ITestTaskAction[] getCollection(XContainer taskNode, string taskElement_action)
+		string getActionCode(XContainer taskNode, string elementName)
 		{
-			// TODO: read real test action(s)
-			return new[] { new TestTaskAction { Code = "dir" } };
+		    var actionNode = taskNode.Element(elementName);
+		    return getTestTaskElementValue(actionNode, taskElement_code);
+		}
+		
+//		// Dictionary<string, object> getActionParameters(XContainer taskNode, string elementName)
+//		Dictionary<string, string> getActionParameters(XContainer taskNode, string elementName)
+//		{
+//		    // var resultDictionary = new Dictionary<string, object>();
+//		    var resultDictionary = new Dictionary<string, string>();
+//		    var nodeParameters = taskNode.Element(elementName);
+//		    try {
+//                nodeParameters = nodeParameters.Element(taskElement_parameters);
+//                if (null == nodeParameters) return resultDictionary;
+//                foreach (var parameterNode in nodeParameters.Elements())
+//                    resultDictionary.Add(parameterNode.Name.ToString(), parameterNode.Value);
+//		    }
+//		    catch {}
+//		    return resultDictionary;
+//		}
+		
+		List<object> getActionParameters(XContainer taskNode, string elementName)
+		{
+		    // var resultDictionary = new Dictionary<string, object>();
+		    var resultList = new List<object>();
+		    var nodeParameters = taskNode.Element(elementName);
+		    try {
+                nodeParameters = nodeParameters.Element(taskElement_parameters);
+                if (null == nodeParameters) return resultList;
+                foreach (var parameterNode in nodeParameters.Elements())
+                    resultList.Add(parameterNode.Value);
+		    }
+		    catch {}
+		    return resultList;
 		}
 		
 		int convertTestTaskElementValue(XContainer taskNode, string elementName)

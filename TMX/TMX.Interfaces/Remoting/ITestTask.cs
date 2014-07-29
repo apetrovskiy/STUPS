@@ -30,14 +30,12 @@ namespace Tmx.Interfaces.Remoting
 		
 		string Name { get; set; }
 		string StoryId { get; set; }
-//		ITestTaskAction[] BeforeAction { get; set; }
-//		ITestTaskAction[] Action { get; set; }
-//		ITestTaskAction[] AfterAction { get; set; }
 		string Action { get; set; }
-		// Dictionary<string, object> ActionParameters { get; set; }
-		// string[] ExpectedResult { get; set; } // ?
-		// List<object> ExpectedResult { get; set; }
-		// object[] ExpectedResult { get; set; }
+		List<object> ActionParameters { get; set; }
+		string BeforeAction { get; set; }
+		List<object> BeforeActionParameters { get; set; }
+		string AfterAction { get; set; }
+		List<object> AfterActionParameters { get; set; }
 		string[] ExpectedResult { get; set; }
 		
 		TestTaskStatuses Status { get; set; }

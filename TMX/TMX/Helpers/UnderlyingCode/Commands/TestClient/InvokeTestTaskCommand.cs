@@ -1,6 +1,6 @@
 ﻿/*
  * Created by SharpDevelop.
- * User: alexa_000
+ * User: Alexander Petrovskiy
  * Date: 7/28/2014
  * Time: 8:52 PM
  * 
@@ -10,8 +10,10 @@
 namespace Tmx
 {
 	using System;
+	using TMX.Interfaces.Exceptions;
 	using Tmx;
 	using Tmx.Client;
+	using Tmx.Interfaces.Remoting;
 	using Tmx.Commands;
 	
     /// <summary>
@@ -27,8 +29,14 @@ namespace Tmx
         {
             var cmdlet = (InvokeTmxTestTaskCommand)Cmdlet;
             var taskRunner = new TaskRunner();
-			foreach (var task in cmdlet.InputObject)
+            var taskUpdater = new TaskUpdater();
+            foreach (var task in cmdlet.InputObject) {
 				taskRunner.Run(task);
+				task.Completed = true;
+				task.Status = TestTaskStatuses.CompletedSuccessfully; // TODO: use honest status!
+				ClientSettings.CurrentTask = task;
+				taskUpdater.UpdateTask();
+            }
         }
     }
 }

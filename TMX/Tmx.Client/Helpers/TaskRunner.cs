@@ -1,6 +1,6 @@
 ﻿/*
  * Created by SharpDevelop.
- * User: alexa_000
+ * User: Alexander Petrovskiy
  * Date: 7/28/2014
  * Time: 8:55 PM
  * 
@@ -21,13 +21,13 @@ namespace Tmx.Client
     {
         public void Run(ITestTask task)
         {
-            // run scriptblock
             var runnerWithParams = new runScriptBlockWithParameters(runSBActionWithParams);
-            var scriptblock = ScriptBlock.Create(task.Action);
-            // runnerWithParams(sb, parameters);
-            runnerWithParams(scriptblock, null);
-//            var cmdletBase = new invoketmxtesttaskco
-//					runScriptBlocks(scriptblocks, cmdlet, false, parameters);
+            if (string.Empty != task.BeforeAction)
+                runnerWithParams(ScriptBlock.Create(task.BeforeAction), task.BeforeActionParameters.ToArray());
+            if (string.Empty != task.Action)
+                runnerWithParams(ScriptBlock.Create(task.Action), task.ActionParameters.ToArray());
+            if (string.Empty != task.AfterAction)
+                runnerWithParams(ScriptBlock.Create(task.AfterAction), task.AfterActionParameters.ToArray());
         }
         
         #region Action delegate
@@ -38,61 +38,11 @@ namespace Tmx.Client
             Collection<PSObject> psObjects = null;
             try {
                 
-//				WriteVerbose(
-//					this,
-//					"select whether a scriptblock has parameters or doesn't");
-                
 				if (null == parameters || 0 == parameters.Length)
-//					WriteVerbose(
-//						this,
-//						"without parameters");
-                    psObjects =
-                        sb.Invoke();
+                    psObjects = sb.Invoke();
 				else
-//					WriteVerbose(
-//						this,
-//						"with parameters");
-					psObjects =
-                        sb.Invoke(parameters);
-                
-//				WriteVerbose(
-//					this,
-//					"scriptblock has been fired successfully");
-
+					psObjects = sb.Invoke(parameters);
             } catch (Exception eOuter) {
-
-                // 20130318
-//                ErrorRecord err = 
-//                    new ErrorRecord(eOuter,
-//                                    "ErrorInInvokingScriptBlock",
-//                                    ErrorCategory.InvalidOperation,
-//                                    System.Management.Automation.Runspaces.Runspace.DefaultRunspace);
-//                err.ErrorDetails = 
-//                    new ErrorDetails(
-//                        "Unable to issue the following command:\r\n" +
-//                        sb.ToString() + 
-//                        "\r\nThe exception raised is\r\n" + 
-//                        eOuter.Message);
-//                                     //"System.Management.Automation.Runspaces.Runspace.DefaultRunspace = RunspaceFactory.CreateRunspace();");
-//                WriteError(err);
-                
-                // 20130606
-//                this.WriteVerbose(
-//                    this,
-//                    eOuter.InnerException.Message);
-                
-//				WriteError(
-//					this,
-//					"Unable to issue the following command:\r\n" +
-//					sb +
-//					"\r\nThe exception raised is\r\n" +
-//					eOuter.Message,
-//					"ErrorInInvokingScriptBlock",
-//					ErrorCategory.InvalidOperation,
-//                    // 20130318
-//                    //false);
-//					true);
-                
                 throw new Exception(
                     "Unable to issue the following command:\r\n" +
                     sb +

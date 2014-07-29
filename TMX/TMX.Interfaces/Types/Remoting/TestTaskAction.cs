@@ -1,6 +1,6 @@
 ﻿/*
  * Created by SharpDevelop.
- * User: alexa_000
+ * User: Alexander Petrovskiy
  * Date: 7/28/2014
  * Time: 9:50 PM
  * 
@@ -16,9 +16,9 @@ namespace Tmx.Interfaces.Types.Remoting
     /// <summary>
     /// Description of TestTaskAction.
     /// </summary>
-    public class TestTaskAction : ITestTaskAction
-    {
-        public string Code { get; set; }
-		public Dictionary<string, object> Parameters { get; set; }
-    }
+//    public class TestTaskAction : ITestTaskAction
+//    {
+//        public string Code { get; set; }
+//		public Dictionary<string, object> Parameters { get; set; }
+//    }
 }

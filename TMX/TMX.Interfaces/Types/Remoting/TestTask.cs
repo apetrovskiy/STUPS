@@ -18,13 +18,6 @@ namespace Tmx.Interfaces.Types.Remoting
 	/// </summary>
 	public class TestTask : ITestTask
 	{
-//	    public TestTask()
-//	    {
-//	        this.Action = (ITestTaskAction[])new TestTaskAction[] {};
-////	        this.BeforeAction = (ITestTaskAction[])new TestTaskAction[] {};
-////	        this.AfterAction = (ITestTaskAction[])new TestTaskAction[] {};
-//	    }
-	    
 		public int Id { get; set; }
 		// public int Order { get; set; }
 		public int PreviousTaskId { get; set; }
@@ -39,14 +32,12 @@ namespace Tmx.Interfaces.Types.Remoting
 		
 		public string Name { get; set; }
 		public string StoryId { get; set; }
-//		public ITestTaskAction[] BeforeAction { get; set; }
-//		public ITestTaskAction[] Action { get; set; }
-//		public ITestTaskAction[] AfterAction { get; set; }
 		public string Action { get; set; }
-		// public Dictionary<string, object> ActionParameters { get; set; }
-		// public string[] ExpectedResult { get; set; } // ?
-		// public List<object> ExpectedResult { get; set; } // ?
-		// public object[] ExpectedResult { get; set; }
+		public List<object> ActionParameters { get; set; }
+		public string BeforeAction { get; set; }
+		public List<object> BeforeActionParameters { get; set; }
+		public string AfterAction { get; set; }
+		public List<object> AfterActionParameters { get; set; }
 		public string[] ExpectedResult { get; set; }
 		
 		public TestTaskStatuses Status { get; set; }

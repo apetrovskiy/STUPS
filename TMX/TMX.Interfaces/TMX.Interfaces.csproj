@@ -97,7 +97,6 @@
     <Compile Include="Remoting\Enums.cs" />
     <Compile Include="Remoting\IClientInformation.cs" />
     <Compile Include="Remoting\ITestTask.cs" />
-    <Compile Include="Remoting\ITestTaskAction.cs" />
     <Compile Include="Remoting\ITestHost.cs" />
     <Compile Include="Remoting\ITestHostGroup.cs" />
     <Compile Include="TestStructure\Enumerations.cs" />
@@ -110,7 +109,6 @@
     <Compile Include="TestStructure\ITestSuite.cs" />
     <Compile Include="Types\Remoting\TestClientInformation.cs" />
     <Compile Include="Types\Remoting\TestTask.cs" />
-    <Compile Include="Types\Remoting\TestTaskAction.cs" />
     <Compile Include="Types\TestStructure\ITestBucket.cs" />
     <Compile Include="Types\TestStructure\TestResult.cs" />
     <Compile Include="Types\TestStructure\TestResultDetail.cs" />

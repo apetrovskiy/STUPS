@@ -41,8 +41,7 @@ namespace Tmx.Interfaces.Types.Remoting
 		public string[] ExpectedResult { get; set; }
 		
 		public TestTaskStatuses Status { get; set; }
-		// public List<object> TaskResult { get; set; }
-		// public object[] TaskResult { get; set; }
+		public string[] PreviousTaskResult { get; set; }
 		public string[] TaskResult { get; set; }
 		public int ClientId { get; set; }
 		

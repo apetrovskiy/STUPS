@@ -10,6 +10,7 @@
 namespace Tmx.Client
 {
 	using System;
+	using System.Collections.Generic;
 	using System.Collections.ObjectModel;
 	using System.Management.Automation;
 	using Tmx.Interfaces.Remoting;
@@ -19,16 +20,20 @@ namespace Tmx.Client
     /// </summary>
     public class TaskRunner
     {
-        public void Run(ITestTask task)
+        public bool Run(ITestTask task)
         {
             var runnerWithParams = new runScriptBlockWithParameters(runSBActionWithParams);
-            if (string.Empty != task.BeforeAction)
-                runnerWithParams(ScriptBlock.Create(task.BeforeAction), task.BeforeActionParameters.ToArray());
-            if (string.Empty != task.Action)
-                runnerWithParams(ScriptBlock.Create(task.Action), task.ActionParameters.ToArray());
-            if (string.Empty != task.AfterAction)
-                runnerWithParams(ScriptBlock.Create(task.AfterAction), task.AfterActionParameters.ToArray());
+            runScriptblockWithParameters(runnerWithParams, task.BeforeAction, task.BeforeActionParameters);
+            runScriptblockWithParameters(runnerWithParams, task.Action, task.ActionParameters);
+            runScriptblockWithParameters(runnerWithParams, task.AfterAction, task.AfterActionParameters);
+            return true;
         }
+        
+        void runScriptblockWithParameters(runScriptBlockWithParameters runnerWithParams, string code, List<object> parameters)
+		{
+			if (string.Empty != code)
+				runnerWithParams(ScriptBlock.Create(code), parameters.ToArray());
+		}
         
         #region Action delegate
         void runSBActionWithParams(

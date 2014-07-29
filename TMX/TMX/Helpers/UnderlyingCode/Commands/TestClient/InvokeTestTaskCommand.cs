@@ -31,9 +31,9 @@ namespace Tmx
             var taskRunner = new TaskRunner();
             var taskUpdater = new TaskUpdater();
             foreach (var task in cmdlet.InputObject) {
-				taskRunner.Run(task);
-				task.Completed = true;
-				task.Status = TestTaskStatuses.CompletedSuccessfully; // TODO: use honest status!
+				var runResult = taskRunner.Run(task);
+				task.Completed = runResult;
+				task.Status = runResult ? TestTaskStatuses.CompletedSuccessfully : TestTaskStatuses.Failed;
 				ClientSettings.CurrentTask = task;
 				taskUpdater.UpdateTask();
             }

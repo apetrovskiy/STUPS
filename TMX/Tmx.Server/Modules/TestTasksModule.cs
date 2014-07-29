@@ -29,6 +29,7 @@ namespace Tmx.Server.Modules
                 var taskSorter = new TaskSorter();
                 List<ITestTask> taskList = taskSorter.GetTasksForClient(parameters.id);
                 ITestTask actualTask = taskList.First(task => task.IsActive && !task.Completed && task.Id == taskList.Where(tsk => !tsk.Completed && tsk.IsActive).Min(t => t.Id));
+                actualTask.ClientId = parameters.id;
                 return Response.AsJson(actualTask).WithStatusCode(HttpStatusCode.OK);
             };
             
@@ -38,6 +39,11 @@ namespace Tmx.Server.Modules
                 storedTask.Completed = loadedTask.Completed;
                 storedTask.Status = loadedTask.Status;
                 storedTask.TaskResult = loadedTask.TaskResult;
+                var taskSorter = new TaskSorter();
+                List<ITestTask> taskList = taskSorter.GetTasksForClient(loadedTask.ClientId);
+                var nextTask = taskList.First(task => task.IsActive && !task.Completed && task.Id == taskList.Where(tsk => !tsk.Completed && tsk.IsActive && tsk.Id > loadedTask.Id).Min(t => t.Id));
+                nextTask.PreviousTaskResult = storedTask.TaskResult ?? new string[] {};
+                nextTask.PreviousTaskId = loadedTask.Id;
                 return HttpStatusCode.OK;
             };
         }

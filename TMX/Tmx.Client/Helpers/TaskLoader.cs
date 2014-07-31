@@ -27,14 +27,15 @@ namespace Tmx.Client
 	    
 		public ITestTask GetCurrentTask()
 		{
+Console.WriteLine("getCurrentTask: 00001 " + UrnList.TestTasks_Root + "/" + ClientSettings.ClientId);
 			var request = _restRequestCreator.GetRestRequest(UrnList.TestTasks_Root + "/" + ClientSettings.ClientId, Method.GET);
 			var gettingTaskResponse = _restRequestCreator.RestClient.Execute<TestTask>(request);
-			// 20140731
-			// if (HttpStatusCode.OK != gettingTaskResponse.StatusCode)
-			// 	throw new LoadTaskException("Failed to load task");
-			// return acceptCurrentTask(gettingTaskResponse.Data);
+Console.WriteLine("getCurrentTask: 00003 " + (null == gettingTaskResponse ? "null == gettingTaskResponse" : "null != gettingTaskResponse"));
+Console.WriteLine("getCurrentTask: 00004 " + (null == gettingTaskResponse.Data ? "null == gettingTaskResponse.Data" : "null != gettingTaskResponse.Data"));
+            if (HttpStatusCode.NotFound == gettingTaskResponse.StatusCode) return null; // a waiting task?
+Console.WriteLine("getCurrentTask: 00005");
 			if (HttpStatusCode.OK == gettingTaskResponse.StatusCode) return acceptCurrentTask(gettingTaskResponse.Data);
-			if (HttpStatusCode.NotFound == gettingTaskResponse.StatusCode) return null; // a waiting task?
+Console.WriteLine("getCurrentTask: 00006");
 			throw new LoadTaskException("Failed to load task");
 		}
 
@@ -47,7 +48,7 @@ namespace Tmx.Client
 			var acceptingTaskResponse = _restRequestCreator.RestClient.Execute(request);
 			if (HttpStatusCode.OK == acceptingTaskResponse.StatusCode)
 				return task;
-			throw new AcceptTaskException("Failed to accept task " + task.Name);
+			throw new AcceptTaskException("Failed to accept task '" + task.Name + "'");
 		}
 	}
 }

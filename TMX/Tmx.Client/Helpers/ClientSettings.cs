@@ -21,5 +21,6 @@ namespace Tmx.Client
         public static string ServerUrl { get; set; }
         public static int ClientId { get; set; }
         public static ITestTask CurrentTask { get; set; }
+        public static bool StopImmediately { get; set; }
     }
 }

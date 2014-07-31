@@ -89,6 +89,7 @@
     <Compile Include="Exceptions\LoadTaskException.cs" />
     <Compile Include="Exceptions\UpdateTaskException.cs" />
     <Compile Include="Exceptions\WrongTaskDataException.cs" />
+    <Compile Include="ExtensionMethods\ExtensionMethods.cs" />
     <Compile Include="IDatabase.cs" />
     <Compile Include="ITestSuitesCollection.cs" />
     <Compile Include="IWorkflowStep.cs" />
@@ -124,6 +125,7 @@
     <Folder Include="DataTypes" />
     <Folder Include="DataTypes\Types" />
     <Folder Include="Exceptions" />
+    <Folder Include="ExtensionMethods" />
     <Folder Include="Types" />
     <Folder Include="Remoting" />
     <Folder Include="TestStructure" />

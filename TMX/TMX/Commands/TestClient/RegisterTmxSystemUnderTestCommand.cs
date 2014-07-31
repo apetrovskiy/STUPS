@@ -12,6 +12,7 @@ namespace Tmx.Commands
 	using System;
 	using System.Management.Automation;
 	using Tmx;
+	using Tmx.Client;
 	
 	/// <summary>
 	/// Description of RegisterTmxSystemUnderTestCommand.
@@ -21,11 +22,14 @@ namespace Tmx.Commands
 	{
 	    public RegisterTmxSystemUnderTestCommand()
 	    {
-	        Seconds = Preferences.DefaultRegistrationTimeoutSeconds;
+	        Seconds = Preferences.ClientRegistrationTimeoutSeconds;
 	    }
 	    
 	    [Parameter(Mandatory = true)]
 	    public string ServerUrl { get; set; }
+	    
+	    [Parameter(Mandatory = false)]
+	    public string CustomClientString { get; set; }
 	    
 	    [Parameter(Mandatory = false)]
 	    public int Seconds { get; set; }
@@ -35,5 +39,10 @@ namespace Tmx.Commands
 			var command = new RegisterSystemUnderTestCommand(this);
 			command.Execute();
 		}
+		
+        protected override void StopProcessing()
+        {
+            ClientSettings.StopImmediately = true;
+        }
 	}
 }

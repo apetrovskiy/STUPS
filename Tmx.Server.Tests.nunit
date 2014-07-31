@@ -1,0 +1,9 @@
+﻿<NUnitProject>
+  <Settings activeconfig="Release" />
+  <Config name="Debug" binpathtype="Auto">
+    <assembly path="TMX\Tmx.Server.Tests\bin\Release35\Tmx.Server.Tests.dll" />
+  </Config>
+  <Config name="Release" binpathtype="Auto">
+    <assembly path="TMX\Tmx.Server.Tests\bin\Release35\Tmx.Server.Tests.dll" />
+  </Config>
+</NUnitProject>

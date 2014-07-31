@@ -30,34 +30,36 @@ namespace Tmx.Server.Modules
                 if (0 < ClientsCollection.Clients.Count)
                 	maxId = ClientsCollection.Clients.Max(client => client.Id);
                 
-                var clientInformation = new TestClientInformation {
-            		Id = ++maxId,
-					Hostname = testClient.Hostname,
-					Fqdn = testClient.Fqdn,
-					IpAddresses = testClient.IpAddresses,
-					MacAddresses = testClient.MacAddresses,
-					UserDomainName = testClient.UserDomainName,
-					Username = testClient.Username,
-					IsInteractive = testClient.IsInteractive,
-					IsAdmin = testClient.IsAdmin,
-					OsVersion = testClient.OsVersion,
-					EnvironmentVersion = testClient.EnvironmentVersion,
-					UptimeSeconds = testClient.UptimeSeconds,
-					CustomString = testClient.CustomString
-                };
-                
-				ClientsCollection.Clients.Add(clientInformation);
+//                var clientInformation = new TestClientInformation {
+//            		Id = ++maxId,
+//					Hostname = testClient.Hostname,
+//					Fqdn = testClient.Fqdn,
+//					IpAddresses = testClient.IpAddresses,
+//					MacAddresses = testClient.MacAddresses,
+//					UserDomainName = testClient.UserDomainName,
+//					Username = testClient.Username,
+//					IsInteractive = testClient.IsInteractive,
+//					IsAdmin = testClient.IsAdmin,
+//					OsVersion = testClient.OsVersion,
+//					EnvironmentVersion = testClient.EnvironmentVersion,
+//					UptimeSeconds = testClient.UptimeSeconds,
+//					CustomString = testClient.CustomString
+//                };
+//                
+//				ClientsCollection.Clients.Add(clientInformation);
 				
-//				testClient.Id = ++maxId;
-//				ClientsCollection.Clients.Add(testClient);
+				testClient.Id = ++maxId;
+				ClientsCollection.Clients.Add(testClient);
 				
 				// TODO: DI
 				var taskSorter = new TaskSorter();
-				TaskPool.Tasks.AddRange(taskSorter.SelectTasksForClient(clientInformation.Id));
-				// TaskPool.Tasks.AddRange(taskSorter.GetTasksForClient(testClient.Id));
+//				TaskPool.Tasks.AddRange(taskSorter.SelectTasksForClient(clientInformation.Id));
+				// move to another pool
+				// TaskPool.Tasks.AddRange(taskSorter.SelectTasksForClient(testClient.Id));
+				TaskPool.TasksForClients.AddRange(taskSorter.SelectTasksForClient(testClient.Id));
 				
-                return Response.AsJson(clientInformation).WithStatusCode(HttpStatusCode.Created);
-//				return Response.AsJson(testClient).WithStatusCode(HttpStatusCode.Created);
+//                return Response.AsJson(clientInformation).WithStatusCode(HttpStatusCode.Created);
+				return Response.AsJson(testClient).WithStatusCode(HttpStatusCode.Created);
 			};
 			
 			Delete[UrnList.TestClients_Client] = parameters => {

@@ -25,10 +25,10 @@ namespace Tmx.Client
     {
         readonly RestRequestCreator _restRequestCreator = new RestRequestCreator();
         
-        public int SendRegistrationInfoAndGetClientId()
+        public int SendRegistrationInfoAndGetClientId(string customClientString)
 		{
 			var request = _restRequestCreator.GetRestRequest(UrnList.TestClients_Root + UrnList.TestClients_Clients, Method.POST);
-			request.AddBody(getNewTestClient());
+			request.AddBody(getNewTestClient(customClientString));
 			var registrationResponse = _restRequestCreator.RestClient.Execute<TestClientInformation>(request);
 			if (HttpStatusCode.Created == registrationResponse.StatusCode)
 				return registrationResponse.Data.Id;
@@ -44,9 +44,10 @@ namespace Tmx.Client
 			cleanUpClientData();
         }
         
-        IClientInformation getNewTestClient()
+        IClientInformation getNewTestClient(string customClientString)
         {
             return new TestClientInformation {
+                CustomString = customClientString,
                 Hostname = Environment.MachineName,
                 Username = Environment.UserName,
                 UserDomainName = Environment.UserDomainName,

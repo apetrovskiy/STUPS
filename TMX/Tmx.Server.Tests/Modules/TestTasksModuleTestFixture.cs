@@ -185,6 +185,7 @@ namespace Tmx.Server.Tests.Modules
             
             // Then
             Xunit.Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+            // Xunit.Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             // Xunit.Assert.Equal(testTask.Name, clientsetting
         }
 	}

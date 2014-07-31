@@ -42,7 +42,6 @@ namespace Tmx.Client
         {
             Collection<PSObject> psObjects = null;
             try {
-                
 				if (null == parameters || 0 == parameters.Length)
                     psObjects = sb.Invoke();
 				else

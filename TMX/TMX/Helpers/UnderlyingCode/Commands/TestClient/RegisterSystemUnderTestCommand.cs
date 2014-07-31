@@ -27,6 +27,7 @@ namespace Tmx
         {
             var cmdlet = (RegisterTmxSystemUnderTestCommand)Cmdlet;
             ClientSettings.ServerUrl = cmdlet.ServerUrl;
+            ClientSettings.StopImmediately = false;
             var registration = new Registration();
             // temporarily
             // TODO: to a template method
@@ -34,11 +35,13 @@ namespace Tmx
             while (true) {
                 // TODO: move to aspect
                 try {
-                    ClientSettings.ClientId = registration.SendRegistrationInfoAndGetClientId();
+                    ClientSettings.ClientId = registration.SendRegistrationInfoAndGetClientId(cmdlet.CustomClientString);
                 }
-                catch {}
+                catch (Exception e2) {
+Console.WriteLine("registering " + e2.Message);
+                }
                 
-                System.Threading.Thread.Sleep(1000);
+                System.Threading.Thread.Sleep(Preferences.ClientRegistrationSleepIntervalMilliseconds);
                 
                 if (0 != ClientSettings.ClientId)
                     break;

@@ -32,10 +32,12 @@ namespace Tmx
             var taskUpdater = new TaskUpdater();
             foreach (var task in cmdlet.InputObject) {
 				var runResult = taskRunner.Run(task);
-				task.Completed = runResult;
+				task.Completed = true;
 				task.Status = runResult ? TestTaskStatuses.CompletedSuccessfully : TestTaskStatuses.Failed;
-				ClientSettings.CurrentTask = task;
-				taskUpdater.UpdateTask();
+				// ClientSettings.CurrentTask = task;
+ClientSettings.CurrentTask = task;
+				taskUpdater.UpdateTask(task);
+				ClientSettings.CurrentTask = null;
             }
         }
     }

@@ -13,7 +13,9 @@ namespace Tmx.Server
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;
+	using Tmx.Interfaces;
 	using Tmx.Interfaces.Remoting;
+	using Tmx.Interfaces.Types.Remoting;
 	
 	/// <summary>
 	/// Description of TaskSorter.
@@ -32,7 +34,7 @@ namespace Tmx.Server
 	        
 	        // TODO: add IsAdmin and IsInteractive to the checking
 	        resultTaskScope =
-	        	TaskPool.Tasks.Where(task => 0 == task.ClientId && 
+	        	TaskPool.Tasks.Where(task => // 0 == task.ClientId && 
 	        	                     (Regex.IsMatch(client.CustomString ?? string.Empty, task.Rule)  ||
 	        	                      Regex.IsMatch(client.EnvironmentVersion ?? string.Empty, task.Rule) ||
 	        	                      Regex.IsMatch(client.Fqdn ?? string.Empty, task.Rule) ||
@@ -42,19 +44,29 @@ namespace Tmx.Server
 	        	                      Regex.IsMatch(client.OsVersion ?? string.Empty, task.Rule) ||
 	        	                      Regex.IsMatch(client.UserDomainName ?? string.Empty, task.Rule) ||
 	        	                      Regex.IsMatch(client.Username ?? string.Empty, task.Rule))
-	        	                     ).ToList();
-	        // }
-//			foreach (var task in resultTaskScope)
-//				task.ClientId = clientId;
-			resultTaskScope.ForEach(task => task.ClientId = clientId);
-	        
-	        return resultTaskScope;
+	                                ).Select(t => { var newTask = t.CloneTask(); newTask.ClientId = clientId; return newTask; }).ToList<ITestTask>();
+            return resultTaskScope;
 	    }
 	    
 		public ITestTask GetFirstLegibleTask(int clientId)
 		{
-			var taskListForClient = TaskPool.Tasks.Where(task => task.ClientId == clientId && task.IsActive && !task.Completed);
-			return !taskListForClient.Any() ? null : taskListForClient.First(task => task.Id == taskListForClient.Min(tsk => tsk.Id));
+			var taskListForClient = getOnlyNewTestTasksForClient(clientId);
+			if (null == taskListForClient || !taskListForClient.Any()) return null;
+			return taskListForClient.First(task => task.Id == taskListForClient.Min(tsk => tsk.Id));
+		}
+		
+		public ITestTask GetNextLegibleTask(int clientId, int currentTaskId)
+		{
+			var taskListForClient = getOnlyNewTestTasksForClient(clientId);
+			if (null == taskListForClient || !taskListForClient.Any()) return null;
+			// return taskListForClient.First(task => task.Id > taskListForClient.Min(tsk => tsk.Id));
+			return taskListForClient.First(task => task.Id == taskListForClient.OrderBy(t => t.Id).Skip(1).First().Id);
+		}
+		
+		IEnumerable<ITestTask> getOnlyNewTestTasksForClient(int clientId)
+		{
+		    // return TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.IsActive && task.Status == TestTaskStatuses.New); // && !task.Completed);
+		    return TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.IsActive && !task.Completed);
 		}
 	}
 }

@@ -26,6 +26,7 @@ namespace Tmx.Server.Tests
 			TestData.ResetData();
 			ClientsCollection.Clients.Clear();
 			TaskPool.Tasks.Clear();
+			TaskPool.TasksForClients.Clear();
 			ClientSettings.ClientId = 0;
 			ClientSettings.CurrentTask = null;
 			ClientSettings.ServerUrl = string.Empty;

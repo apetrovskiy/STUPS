@@ -19,5 +19,6 @@ namespace Tmx.Server
 	public class TaskPool
 	{
 		public static List<ITestTask> Tasks = new List<ITestTask>();
+		public static List<ITestTask> TasksForClients = new List<ITestTask>();
 	}
 }

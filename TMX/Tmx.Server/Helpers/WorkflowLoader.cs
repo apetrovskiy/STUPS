@@ -50,6 +50,7 @@ namespace Tmx.Server
                 
                 var doc = XDocument.Load(pathToWorkflowFile);
                 var tasks = from task in doc.Descendants("task")
+                    where task.Element(taskElement_isActive).Value == "1"
                     select task;
                 
 				foreach (var singleTask in tasks)
@@ -100,22 +101,6 @@ namespace Tmx.Server
 		    var actionNode = taskNode.Element(elementName);
 		    return getTestTaskElementValue(actionNode, taskElement_code);
 		}
-		
-//		// Dictionary<string, object> getActionParameters(XContainer taskNode, string elementName)
-//		Dictionary<string, string> getActionParameters(XContainer taskNode, string elementName)
-//		{
-//		    // var resultDictionary = new Dictionary<string, object>();
-//		    var resultDictionary = new Dictionary<string, string>();
-//		    var nodeParameters = taskNode.Element(elementName);
-//		    try {
-//                nodeParameters = nodeParameters.Element(taskElement_parameters);
-//                if (null == nodeParameters) return resultDictionary;
-//                foreach (var parameterNode in nodeParameters.Elements())
-//                    resultDictionary.Add(parameterNode.Name.ToString(), parameterNode.Value);
-//		    }
-//		    catch {}
-//		    return resultDictionary;
-//		}
 		
 		List<object> getActionParameters(XContainer taskNode, string elementName)
 		{

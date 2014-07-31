@@ -32,8 +32,10 @@ namespace Tmx
             AutoEcho = false;
             AutoLog = false;
             
-            DefaultRegistrationTimeoutSeconds = 3600;
-            DefaultReceivingTaskTimeoutSeconds = 3600;
+            ClientRegistrationTimeoutSeconds = 3600;
+            ReceivingTaskTimeoutSeconds = 3600;
+            ClientRegistrationSleepIntervalMilliseconds = 5000;
+            ReceivingTaskSleepIntervalMilliseconds = 2000;
         }
         
         public static bool TestLog { get; set; }
@@ -57,7 +59,9 @@ namespace Tmx
         public static bool StorageIntegratedSecurity { get; set; }
         public static string StorageConnectionString { get; internal set; }
         
-        public static int DefaultRegistrationTimeoutSeconds { get; set; }
-        public static int DefaultReceivingTaskTimeoutSeconds { get; set; }
+        public static int ClientRegistrationTimeoutSeconds { get; set; }
+        public static int ReceivingTaskTimeoutSeconds { get; set; }
+        public static int ClientRegistrationSleepIntervalMilliseconds { get; set; }
+        public static int ReceivingTaskSleepIntervalMilliseconds { get; set; }
     }
 }

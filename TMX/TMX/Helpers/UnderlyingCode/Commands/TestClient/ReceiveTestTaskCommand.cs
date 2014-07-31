@@ -26,6 +26,7 @@ namespace Tmx
         internal override void Execute()
         {
             var cmdlet = (ReceiveTmxTestTaskCommand)Cmdlet;
+            ClientSettings.StopImmediately = false;
             var taskLoader = new TaskLoader();
             
             // temporarily
@@ -36,9 +37,11 @@ namespace Tmx
                 try {
                     ClientSettings.CurrentTask = taskLoader.GetCurrentTask();
                 }
-                catch {}
+                catch (Exception e) {
+Console.WriteLine("receiving a task " + e.Message);
+                }
                 
-                System.Threading.Thread.Sleep(1000);
+                System.Threading.Thread.Sleep(Preferences.ReceivingTaskSleepIntervalMilliseconds);
                 
                 if (null != ClientSettings.CurrentTask)
                     break;

@@ -27,10 +27,25 @@ namespace Tmx.Server.Modules
         {
             Get[UrnList.TestTasks_CurrentClient] = parameters => {
                 var taskSorter = new TaskSorter();
-                List<ITestTask> taskList = taskSorter.GetTasksForClient(parameters.id);
-                ITestTask actualTask = taskList.First(task => task.IsActive && !task.Completed && task.Id == taskList.Where(tsk => !tsk.Completed && tsk.IsActive).Min(t => t.Id));
-                actualTask.ClientId = parameters.id;
-                return Response.AsJson(actualTask).WithStatusCode(HttpStatusCode.OK);
+                // 20140731
+                // List<ITestTask> taskList = taskSorter.GetTasksForClient(parameters.id);
+                // ITestTask actualTask = taskList.First(task => task.IsActive && !task.Completed && task.Id == taskList.Where(tsk => !tsk.Completed && tsk.IsActive).Min(t => t.Id));
+                // actualTask.ClientId = parameters.id;
+//                var actualTask =
+//                	TaskPool.Tasks.First(task => 
+//                	                     task.ClientId == parameters.id && 
+//                	                     task.IsActive && 
+//                	                     !task.Completed && 
+//                	                     task.Id == TaskPool.Tasks.Where(tsk => 
+//                	                                                     tsk.ClientId == parameters.id && 
+//                	                                                     !tsk.Completed && 
+//                	                                                     tsk.IsActive).Min(t => t.Id));
+                
+                ITestTask actualTask = taskSorter.GetFirstLegibleTask(parameters.id);
+                
+                
+                // return Response.AsJson(actualTask).WithStatusCode(HttpStatusCode.OK);
+                return null != actualTask ? Response.AsJson(actualTask).WithStatusCode(HttpStatusCode.OK) : HttpStatusCode.NotFound;
             };
             
             Put[UrnList.TestTasks_Task] = parameters => {
@@ -40,7 +55,7 @@ namespace Tmx.Server.Modules
                 storedTask.Status = loadedTask.Status;
                 storedTask.TaskResult = loadedTask.TaskResult;
                 var taskSorter = new TaskSorter();
-                List<ITestTask> taskList = taskSorter.GetTasksForClient(loadedTask.ClientId);
+                List<ITestTask> taskList = taskSorter.SelectTasksForClient(loadedTask.ClientId);
                 var nextTask = taskList.First(task => task.IsActive && !task.Completed && task.Id == taskList.Where(tsk => !tsk.Completed && tsk.IsActive && tsk.Id > loadedTask.Id).Min(t => t.Id));
                 nextTask.PreviousTaskResult = storedTask.TaskResult ?? new string[] {};
                 nextTask.PreviousTaskId = loadedTask.Id;

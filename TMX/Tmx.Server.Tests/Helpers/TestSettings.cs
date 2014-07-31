@@ -10,7 +10,7 @@
 namespace Tmx.Server.Tests
 {
     using System;
-	// using Tmx.Core;
+	using Tmx.Client;
 	using PSTestLib;
     
     /// <summary>
@@ -26,6 +26,9 @@ namespace Tmx.Server.Tests
 			TestData.ResetData();
 			ClientsCollection.Clients.Clear();
 			TaskPool.Tasks.Clear();
+			ClientSettings.ClientId = 0;
+			ClientSettings.CurrentTask = null;
+			ClientSettings.ServerUrl = string.Empty;
 		}
     }
 }

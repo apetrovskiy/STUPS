@@ -27,7 +27,26 @@ namespace Tmx
         {
             var cmdlet = (ReceiveTmxTestTaskCommand)Cmdlet;
             var taskLoader = new TaskLoader();
-            ClientSettings.CurrentTask = taskLoader.GetCurrentTask();
+            
+            // temporarily
+            // TODO: to a template method
+            var startTime = DateTime.Now;
+            while (true) {
+                // TODO: move to aspect
+                try {
+                    ClientSettings.CurrentTask = taskLoader.GetCurrentTask();
+                }
+                catch {}
+                
+                System.Threading.Thread.Sleep(1000);
+                
+                if (null != ClientSettings.CurrentTask)
+                    break;
+                
+                if ((DateTime.Now - startTime).TotalSeconds >= cmdlet.Seconds)
+                    throw new Exception("Failed to receive a task in " + cmdlet.Seconds + " seconds");
+            }
+            
             cmdlet.WriteObject(ClientSettings.CurrentTask);
         }
     }

@@ -29,9 +29,13 @@ namespace Tmx.Client
 		{
 			var request = _restRequestCreator.GetRestRequest(UrnList.TestTasks_Root + "/" + ClientSettings.ClientId, Method.GET);
 			var gettingTaskResponse = _restRequestCreator.RestClient.Execute<TestTask>(request);
-			if (HttpStatusCode.OK != gettingTaskResponse.StatusCode)
-				throw new LoadTaskException("Failed to load task");
-			return acceptCurrentTask(gettingTaskResponse.Data);
+			// 20140731
+			// if (HttpStatusCode.OK != gettingTaskResponse.StatusCode)
+			// 	throw new LoadTaskException("Failed to load task");
+			// return acceptCurrentTask(gettingTaskResponse.Data);
+			if (HttpStatusCode.OK == gettingTaskResponse.StatusCode) return acceptCurrentTask(gettingTaskResponse.Data);
+			if (HttpStatusCode.NotFound == gettingTaskResponse.StatusCode) return null; // a waiting task?
+			throw new LoadTaskException("Failed to load task");
 		}
 
 		ITestTask acceptCurrentTask(ITestTask task)

@@ -48,10 +48,16 @@ namespace Tmx.Server.Modules
                 
 				ClientsCollection.Clients.Add(clientInformation);
 				
+//				testClient.Id = ++maxId;
+//				ClientsCollection.Clients.Add(testClient);
+				
+				// TODO: DI
 				var taskSorter = new TaskSorter();
-				// TODO: provide the client with task queue
+				TaskPool.Tasks.AddRange(taskSorter.SelectTasksForClient(clientInformation.Id));
+				// TaskPool.Tasks.AddRange(taskSorter.GetTasksForClient(testClient.Id));
 				
                 return Response.AsJson(clientInformation).WithStatusCode(HttpStatusCode.Created);
+//				return Response.AsJson(testClient).WithStatusCode(HttpStatusCode.Created);
 			};
 			
 			Delete[UrnList.TestClients_Client] = parameters => {

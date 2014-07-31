@@ -19,6 +19,14 @@ namespace Tmx.Commands
 	[Cmdlet(VerbsCommunications.Receive, "TmxTestTask")]
 	public class ReceiveTmxTestTaskCommand : ClientCmdletBase
 	{
+		public ReceiveTmxTestTaskCommand()
+		{
+			this.Seconds = Preferences.DefaultReceivingTaskTimeoutSeconds;
+		}
+		
+	    [Parameter(Mandatory = false)]
+	    public int Seconds { get; set; }
+		
 		protected override void BeginProcessing()
 		{
 			var command = new ReceiveTestTaskCommand(this);

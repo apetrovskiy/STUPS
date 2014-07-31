@@ -32,7 +32,8 @@ namespace Tmx
             AutoEcho = false;
             AutoLog = false;
             
-            DefaultRegistrationTimeoutSeconds = 300;
+            DefaultRegistrationTimeoutSeconds = 3600;
+            DefaultReceivingTaskTimeoutSeconds = 3600;
         }
         
         public static bool TestLog { get; set; }
@@ -57,5 +58,6 @@ namespace Tmx
         public static string StorageConnectionString { get; internal set; }
         
         public static int DefaultRegistrationTimeoutSeconds { get; set; }
+        public static int DefaultReceivingTaskTimeoutSeconds { get; set; }
     }
 }

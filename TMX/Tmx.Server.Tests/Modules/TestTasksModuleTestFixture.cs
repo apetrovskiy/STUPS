@@ -11,6 +11,7 @@ namespace Tmx.Server.Tests.Modules
 {
     using System;
     using System.Management.Automation;
+	using Gallio.Model.Filters;
     using Nancy;
     using Nancy.Testing;
     using MbUnit.Framework;
@@ -41,40 +42,67 @@ namespace Tmx.Server.Tests.Modules
     	}
     	
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_provide_a_task_to_a_test_client()
+        public void Should_provide_a_task_to_test_client_if_the_client_matches_the_rule()
         {
         	// Given
             var browser = new Browser(new DefaultNancyBootstrapper());
-            var clientInformation = new TestClientInformation {
-                Hostname = "h",
-                OsVersion = "w",
-                Username = "u"
+            var testClientHostnameExpected = "testhost";
+            var testClientUsernameExpected = "aaa";
+            var clientInformation = new TestClientInformation { Hostname = testClientHostnameExpected, Username = testClientUsernameExpected };
+            var task = new TestTask {
+            	Id = 5,
+            	Name = "task name",
+            	Completed = false,
+            	IsActive = true,
+            	Status = TestTaskStatuses.New,
+            	Rule = testClientHostnameExpected
             };
-            var testTask = new TestTask {
-                Id = 1,
-                IsActive = true,
-                Completed = false,
-                Name = "task name" 
-            };
-            TaskPool.Tasks.Add(testTask);
+			TaskPool.Tasks.Add(task);
             
             // When
             var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<IClientInformation>(clientInformation));
-            var registeredClient = response.Body.DeserializeJson<TestClientInformation>();
-            response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
-            var task = response.Body.DeserializeJson<TestTask>();
+            var testClient = response.Body.DeserializeJson<TestClientInformation>();
+            response = browser.Get(UrnList.TestTasks_Root + "/" + testClient.Id);
+            var loadedTask = response.Body.DeserializeJson<TestTask>();
             
             // Then
             Xunit.Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-            Xunit.Assert.Equal(testTask.Id, task.Id);
-            Xunit.Assert.Equal(testTask.IsActive, task.IsActive);
-            Xunit.Assert.Equal(testTask.Completed, task.Completed);
-            Xunit.Assert.Equal(testTask.Name, task.Name);
-            // Xunit.Assert.Equal(testTask.Name, clientsetting
+            Xunit.Assert.Equal(task.Id, loadedTask.Id);
+            Xunit.Assert.Equal(task.Name, loadedTask.Name);
+            Xunit.Assert.Equal(task.Status, loadedTask.Status);
+            Xunit.Assert.Equal(task.Completed, loadedTask.Completed);
+            Xunit.Assert.Equal(task.IsActive, loadedTask.IsActive);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_provide_the_second_task()
+        public void Should_provide_no_task_to_test_client_if_the_client_does_not_match_the_rule()
+        {
+        	// Given
+            var browser = new Browser(new DefaultNancyBootstrapper());
+            var testClientHostnameExpected = "testhost";
+            var testClientUsernameExpected = "aaa";
+            var clientInformation = new TestClientInformation { Hostname = testClientHostnameExpected, Username = testClientUsernameExpected };
+            var task = new TestTask {
+            	Id = 5,
+            	Name = "task name",
+            	Completed = false,
+            	IsActive = true,
+            	Status = TestTaskStatuses.New,
+            	Rule = "no matches"
+            };
+			TaskPool.Tasks.Add(task);
+            
+            // When
+            var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<IClientInformation>(clientInformation));
+            var testClient = response.Body.DeserializeJson<TestClientInformation>();
+            response = browser.Get(UrnList.TestTasks_Root + "/" + testClient.Id);
+            
+            // Then
+            Xunit.Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+        }
+        
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        public void Should_provide_the_second_task_if_the_client_matches_the_rule()
         {
         	// Given
             var browser = new Browser(new DefaultNancyBootstrapper());
@@ -87,14 +115,16 @@ namespace Tmx.Server.Tests.Modules
                 Id = 1,
                 IsActive = true,
                 Completed = false,
-                Name = "task name" 
+                Name = "task name",
+                Rule = ".*h.*"
             };
             TaskPool.Tasks.Add(testTask01);
             var testTask02 = new TestTask {
                 Id = 2,
                 IsActive = true,
                 Completed = false,
-                Name = "task name 02" 
+                Name = "task name 02",
+                Rule = "u"
             };
             TaskPool.Tasks.Add(testTask02);
             
@@ -114,6 +144,47 @@ namespace Tmx.Server.Tests.Modules
             Xunit.Assert.Equal(testTask02.IsActive, task.IsActive);
             Xunit.Assert.Equal(testTask02.Completed, task.Completed);
             Xunit.Assert.Equal(testTask02.Name, task.Name);
+            // Xunit.Assert.Equal(testTask.Name, clientsetting
+        }
+        
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        public void Should_provide_the_second_task_if_the_client_does_not_match_the_rule()
+        {
+        	// Given
+            var browser = new Browser(new DefaultNancyBootstrapper());
+            var clientInformation = new TestClientInformation {
+                Hostname = "h",
+                OsVersion = "w",
+                Username = "u"
+            };
+            var testTask01 = new TestTask {
+                Id = 1,
+                IsActive = true,
+                Completed = false,
+                Name = "task name",
+                Rule = ".*h.*"
+            };
+            TaskPool.Tasks.Add(testTask01);
+            var testTask02 = new TestTask {
+                Id = 2,
+                IsActive = true,
+                Completed = false,
+                Name = "task name 02",
+                Rule = "aaa"
+            };
+            TaskPool.Tasks.Add(testTask02);
+            
+            // When
+            var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<IClientInformation>(clientInformation));
+            var registeredClient = response.Body.DeserializeJson<TestClientInformation>();
+            response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
+            var task = response.Body.DeserializeJson<TestTask>();
+            task.Completed = true;
+            response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => with.JsonBody<ITestTask>(task));
+            response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
+            
+            // Then
+            Xunit.Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
             // Xunit.Assert.Equal(testTask.Name, clientsetting
         }
 	}

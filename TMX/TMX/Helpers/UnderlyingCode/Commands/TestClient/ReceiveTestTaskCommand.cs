@@ -27,7 +27,8 @@ namespace Tmx
         {
             var cmdlet = (ReceiveTmxTestTaskCommand)Cmdlet;
             var taskLoader = new TaskLoader();
-            taskLoader.GetCurrentTask();
+            ClientSettings.CurrentTask = taskLoader.GetCurrentTask();
+            cmdlet.WriteObject(ClientSettings.CurrentTask);
         }
     }
 }

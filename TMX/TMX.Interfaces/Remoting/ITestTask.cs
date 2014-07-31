@@ -7,9 +7,10 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using System.Collections.Generic;
 namespace Tmx.Interfaces.Remoting
 {
+    using System.Collections.Generic;
+    
 	/// <summary>
 	/// Description of ITestTask.
 	/// </summary>
@@ -18,7 +19,7 @@ namespace Tmx.Interfaces.Remoting
 		int Id { get; set; }
 		// int Order { get; set; }
 		int PreviousTaskId { get; set; }
-		bool On { get; set; }
+		bool IsActive { get; set; }
 		bool Completed { get; set; }
 		int Timeout { get; set; }
 		int RetryCount { get; set; }
@@ -29,14 +30,20 @@ namespace Tmx.Interfaces.Remoting
 		
 		string Name { get; set; }
 		string StoryId { get; set; }
-		ITestTaskAction[] BeforeAction { get; set; }
-		ITestTaskAction[] Action { get; set; }
-		ITestTaskAction[] AfterAction { get; set; }
-		// string[] ExpectedResult { get; set; } // ?
-		List<object> ExpectedResult { get; set; }
+		string Action { get; set; }
+		List<object> ActionParameters { get; set; }
+		string BeforeAction { get; set; }
+		List<object> BeforeActionParameters { get; set; }
+		string AfterAction { get; set; }
+		List<object> AfterActionParameters { get; set; }
+		string[] ExpectedResult { get; set; }
 		
 		TestTaskStatuses Status { get; set; }
-		List<object> TaskResult { get; set; }
+		string[] PreviousTaskResult { get; set; }
+		string[] TaskResult { get; set; }
+		int ClientId { get; set; }
+		
+		void StartTimer();
 	}
 	
 	/*

@@ -36,7 +36,7 @@ namespace TmxTest.TestData
             const string eventName = @"""TmxNewTestSuiteCreated""";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[string]$global:name = ''; " +
-                @"$null = Register-ObjectEvent -InputObject $([Tmx.Core.TestData]) " + 
+                @"$null = Register-ObjectEvent -InputObject $([Tmx.TestData]) " + 
                 @"-EventName " + 
                 eventName +
                 @" -Action {param($src, $e) $global:name = $src.Name;}; " +
@@ -57,7 +57,7 @@ namespace TmxTest.TestData
             const string eventName = @"""TmxTestSuiteOpened""";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[string]$global:name = ''; " +
-                @"$null = Register-ObjectEvent -InputObject $([Tmx.Core.TestData]) " + 
+                @"$null = Register-ObjectEvent -InputObject $([Tmx.TestData]) " + 
                 @"-EventName " + 
                 eventName +
                 @" -Action {param($src, $e) $global:name = $src.Name;}; " +
@@ -85,7 +85,7 @@ namespace TmxTest.TestData
             const string eventName = @"""TmxNewTestScenarioAdded""";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[string]$global:name = ''; " +
-                @"$null = Register-ObjectEvent -InputObject $([Tmx.Core.TestData]) " + 
+                @"$null = Register-ObjectEvent -InputObject $([Tmx.TestData]) " + 
                 @"-EventName " + 
                 eventName +
                 @" -Action {param($src, $e) $global:name = $src.Name;}; " +
@@ -107,7 +107,7 @@ namespace TmxTest.TestData
             const string eventName = @"""TmxTestScenarioOpened""";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[string]$global:name = ''; " +
-                @"$null = Register-ObjectEvent -InputObject $([Tmx.Core.TestData]) " + 
+                @"$null = Register-ObjectEvent -InputObject $([Tmx.TestData]) " + 
                 @"-EventName " + 
                 eventName +
                 @" -Action {param($src, $e) $global:name = $src.Name;}; " +
@@ -137,7 +137,7 @@ namespace TmxTest.TestData
             const string eventName = @"""TmxNewTestResultDetailAdded""";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[string]$global:name = ''; " +
-                @"$null = Register-ObjectEvent -InputObject $([Tmx.Core.TestData]) " + 
+                @"$null = Register-ObjectEvent -InputObject $([Tmx.TestData]) " + 
                 @"-EventName " + 
                 eventName +
                 @" -Action {param($src, $e) $global:name = $src.Name;}; " +
@@ -160,7 +160,7 @@ namespace TmxTest.TestData
             const string eventName = @"""TmxNewTestResultClosed""";
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"[string]$global:name = ''; " +
-                @"$null = Register-ObjectEvent -InputObject $([Tmx.Core.TestData]) " + 
+                @"$null = Register-ObjectEvent -InputObject $([Tmx.TestData]) " + 
                 @"-EventName " + 
                 eventName +
                 @" -Action {param($src, $e) $global:name = $src.Name;}; " +

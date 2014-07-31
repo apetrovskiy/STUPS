@@ -313,6 +313,9 @@
     <Compile Include="..\TMX\Helpers\Inheritance\AssertionsCmdletBase.cs">
       <Link>Helpers\Inheritance\AssertionsCmdletBase.cs</Link>
     </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\ClientCmdletBase.cs">
+      <Link>Helpers\Inheritance\ClientCmdletBase.cs</Link>
+    </Compile>
     <Compile Include="..\TMX\Helpers\Inheritance\CommonCmdletBase.cs">
       <Link>Helpers\Inheritance\CommonCmdletBase.cs</Link>
     </Compile>
@@ -348,6 +351,9 @@
     </Compile>
     <Compile Include="..\TMX\Helpers\Inheritance\SearchCmdletBase.cs">
       <Link>Helpers\Inheritance\SearchCmdletBase.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\Inheritance\ServerCmdletBase.cs">
+      <Link>Helpers\Inheritance\ServerCmdletBase.cs</Link>
     </Compile>
     <Compile Include="..\TMX\Helpers\Inheritance\SettingsCmdletBase.cs">
       <Link>Helpers\SettingsCmdletBase.cs</Link>
@@ -577,8 +583,10 @@
     <Compile Include="..\TMX\TestData\TestData.cs">
       <Link>TestData\TestData.cs</Link>
     </Compile>
+    <Compile Include="Commands\TestServer\ImportTmxTestWorkflowCommand.cs" />
     <Compile Include="Commands\TestServer\StartTmxServerCommand.cs" />
     <Compile Include="Commands\TestServer\StopTmxServerCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestServer\ImportTestWorkflowCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestServer\StartServerCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestServer\StopTmxServerCommand.cs" />
   </ItemGroup>

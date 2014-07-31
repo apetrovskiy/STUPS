@@ -14,7 +14,7 @@ namespace TmxUnitTests
     using Tmx;
     using Tmx.Commands;
     using PSTestLib;
-	using Tmx.Core;
+	// using Tmx.Core;
 	using Tmx.Interfaces;
 	using Tmx.Interfaces.TestStructure;
     

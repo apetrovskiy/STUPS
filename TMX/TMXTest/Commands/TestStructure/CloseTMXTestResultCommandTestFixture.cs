@@ -35,7 +35,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Close-TmxTestResult -Name " + 
                 testResultName + 
                 ";" + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
                 testResultName);
         }
         
@@ -50,7 +50,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Close-TmxTestResult -Name '" + 
                 testResultName + 
                 "';" + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Name;",
                 testResultName);
         }
         
@@ -65,7 +65,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Close-TmxTestResult -Name " + 
                 testResultName + 
                 " -TestPassed;" + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
                 "PASSED");
         }
         
@@ -80,7 +80,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Close-TmxTestResult -Name " + 
                 testResultName + 
                 " -TestPassed:$true;" + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
                 "PASSED");
         }
         
@@ -95,7 +95,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Close-TmxTestResult -Name " + 
                 testResultName + 
                 " -TestPassed:$false;" + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
                 "FAILED");
         }
         
@@ -110,7 +110,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Close-TmxTestResult -Name " + 
                 testResultName + 
                 ";" + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
                 "FAILED");
         }
         
@@ -125,7 +125,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Add-TmxTestResultDetail -TestResultDetail " + 
                 testResultName + 
                 ";" + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
                 "NOT TESTED");
         }
         
@@ -140,7 +140,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Close-TmxTestResult -Name " + 
                 testResultName + 
                 " -KnownIssue;" + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
                 "KNOWN ISSUE");
         }
         
@@ -155,7 +155,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Close-TmxTestResult -Name " + 
                 testResultName + 
                 " -KnownIssue:$true;" + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
                 "KNOWN ISSUE");
         }
         
@@ -170,7 +170,7 @@ namespace TmxTest.Commands.TestStructure
                 @"Close-TmxTestResult -Name " + 
                 testResultName + 
                 " -KnownIssue:$false;" + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
                 "FAILED");
         }
         
@@ -186,7 +186,7 @@ namespace TmxTest.Commands.TestStructure
                 testResultName + 
                 " -TestPassed:$false" + 
                 " -KnownIssue;" + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
                 "KNOWN ISSUE");
         }
         
@@ -202,7 +202,7 @@ namespace TmxTest.Commands.TestStructure
                 testResultName + 
                 " -TestPassed:$false" + 
                 " -KnownIssue:$true;" + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
                 "KNOWN ISSUE");
         }
         
@@ -218,7 +218,7 @@ namespace TmxTest.Commands.TestStructure
                 testResultName + 
                 " -TestPassed:$false" + 
                 " -KnownIssue:$false;" + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
                 "FAILED");
         }
         
@@ -234,7 +234,7 @@ namespace TmxTest.Commands.TestStructure
                 testResultName + 
                 " -TestPassed:$true" + 
                 " -KnownIssue;" + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
                 // 20120925 KnownIssue changes
                 //"PASSED");
                 "KNOWN ISSUE");
@@ -252,7 +252,7 @@ namespace TmxTest.Commands.TestStructure
                 testResultName + 
                 " -TestPassed:$true" + 
                 " -KnownIssue:$true;" + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
                 // 20120925 KnownIssue changes
                 //"PASSED");
                 "KNOWN ISSUE");
@@ -270,7 +270,7 @@ namespace TmxTest.Commands.TestStructure
                 testResultName + 
                 " -TestPassed:$true" + 
                 " -KnownIssue:$false;" + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Status;",
                 "PASSED");
         }
         
@@ -289,7 +289,7 @@ namespace TmxTest.Commands.TestStructure
                 @"[void](Add-TmxTestResultDetail -TestResultDetail ""1""); " + 
                 @"[void](Add-TmxTestResultDetail -TestResultDetail ""2""); " + 
                 @"[void](Close-TmxTestResult -TestPassed -Name test1); " + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Description;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Description;",
                 // 20130207
                 //"System.NullReferenceException",
                 "AssertionFailureExceptio",
@@ -311,7 +311,7 @@ namespace TmxTest.Commands.TestStructure
                 @"[void](Add-TmxTestResultDetail -TestResultDetail ""1""); " + 
                 @"[void](Add-TmxTestResultDetail -TestResultDetail ""2""); " + 
                 @"[void](Close-TmxTestResult -TestPassed -Name test1); " + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Description;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Description;",
                 // 20130207
                 //"System.NullReferenceException",
                 "AssertionFailureExceptio",
@@ -333,7 +333,7 @@ namespace TmxTest.Commands.TestStructure
                 @"[void](Add-TmxTestResultDetail -TestResultDetail ""1""); " + 
                 @"[void](Add-TmxTestResultDetail -TestResultDetail ""2""); " + 
                 @"[void](Close-TmxTestResult -TestPassed -Name test1); " + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Description;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Description;",
                 // 20130207
                 //"System.NullReferenceException",
                 "AssertionFailureExceptio",
@@ -357,7 +357,7 @@ namespace TmxTest.Commands.TestStructure
                 @"[void](Close-TmxTestResult -TestPassed -Name test1 -Description '" + 
                 testResultDescription +
                 "'); " +
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Description;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Description;",
                 // 20130207
                 //"System.NullReferenceException",
                 "AssertionFailureExceptio",
@@ -379,7 +379,7 @@ namespace TmxTest.Commands.TestStructure
                 @"[void](Close-TmxTestResult -TestPassed -Name test1 -Description '" + 
                 testResultDescription +
                 "'); " +
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Description;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].Description;",
                 testResultDescription);
         }
         
@@ -398,7 +398,7 @@ namespace TmxTest.Commands.TestStructure
                 @"[void](Add-TmxTestResultDetail -TestResultDetail ""1""); " + 
                 @"[void](Add-TmxTestResultDetail -TestResultDetail ""2""); " + 
                 @"[void](Close-TmxTestResult -TestPassed -Name test1); " + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].ScenarioId;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].ScenarioId;",
                 scenarioId);
         }
         
@@ -417,7 +417,7 @@ namespace TmxTest.Commands.TestStructure
                 @"[void](Add-TmxTestResultDetail -TestResultDetail ""1""); " + 
                 @"[void](Add-TmxTestResultDetail -TestResultDetail ""2""); " + 
                 @"[void](Close-TmxTestResult -TestPassed -Name test1); " + 
-                "[Tmx.Core.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].SuiteId;",
+                "[Tmx.TestData]::TestSuites[0].TestScenarios[0].TestResults[0].SuiteId;",
                 suiteId);
         }
         

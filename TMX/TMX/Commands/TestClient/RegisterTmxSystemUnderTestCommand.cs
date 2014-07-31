@@ -17,10 +17,18 @@ namespace Tmx.Commands
 	/// Description of RegisterTmxSystemUnderTestCommand.
 	/// </summary>
 	[Cmdlet(VerbsLifecycle.Register, "TmxSystemUnderTest")]
-	public class RegisterTmxSystemUnderTestCommand : CommonCmdletBase
+	public class RegisterTmxSystemUnderTestCommand : ClientCmdletBase
 	{
+	    public RegisterTmxSystemUnderTestCommand()
+	    {
+	        Seconds = Preferences.DefaultRegistrationTimeoutSeconds;
+	    }
+	    
 	    [Parameter(Mandatory = true)]
 	    public string ServerUrl { get; set; }
+	    
+	    [Parameter(Mandatory = false)]
+	    public int Seconds { get; set; }
 	    
 		protected override void BeginProcessing()
 		{

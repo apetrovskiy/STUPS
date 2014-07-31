@@ -28,7 +28,24 @@ namespace Tmx
             var cmdlet = (RegisterTmxSystemUnderTestCommand)Cmdlet;
             ClientSettings.ServerUrl = cmdlet.ServerUrl;
             var registration = new Registration();
-            ClientSettings.ClientId = registration.SendRegistrationInfoAndGetClientId();
+            // temporarily
+            // TODO: to a template method
+            var startTime = DateTime.Now;
+            while (true) {
+                // TODO: move to aspect
+                try {
+                    ClientSettings.ClientId = registration.SendRegistrationInfoAndGetClientId();
+                }
+                catch {}
+                
+                System.Threading.Thread.Sleep(1000);
+                
+                if (0 != ClientSettings.ClientId)
+                    break;
+                
+                if ((DateTime.Now - startTime).TotalSeconds >= cmdlet.Seconds)
+                    throw new Exception("Failed to register client in " + cmdlet.Seconds + " seconds");
+            }
         }
     }
 }

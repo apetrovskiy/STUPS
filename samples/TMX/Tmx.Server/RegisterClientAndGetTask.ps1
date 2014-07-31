@@ -9,5 +9,7 @@ $task.On = $true
 Register-TmxSystemUnderTest -ServerUrl http://localhost:12340
 Receive-TmxTestTask
 [Tmx.Server.TaskPool]::Tasks
+Send-TmxTestTaskResult @("aaaa","bbbb",(Get-Date),"cccc");
+[Tmx.Server.TaskPool]::Tasks
 
 

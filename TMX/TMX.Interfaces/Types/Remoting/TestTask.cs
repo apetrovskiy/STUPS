@@ -21,7 +21,7 @@ namespace Tmx.Interfaces.Types.Remoting
 		public int Id { get; set; }
 		// public int Order { get; set; }
 		public int PreviousTaskId { get; set; }
-		public bool On { get; set; }
+		public bool IsActive { get; set; }
 		public bool Completed { get; set; }
 		public int Timeout { get; set; }
 		public int RetryCount { get; set; }
@@ -32,13 +32,22 @@ namespace Tmx.Interfaces.Types.Remoting
 		
 		public string Name { get; set; }
 		public string StoryId { get; set; }
-		public ITestTaskAction[] BeforeAction { get; set; }
-		public ITestTaskAction[] Action { get; set; }
-		public ITestTaskAction[] AfterAction { get; set; }
-		// public string[] ExpectedResult { get; set; } // ?
-		public List<object> ExpectedResult { get; set; } // ?
+		public string Action { get; set; }
+		public List<object> ActionParameters { get; set; }
+		public string BeforeAction { get; set; }
+		public List<object> BeforeActionParameters { get; set; }
+		public string AfterAction { get; set; }
+		public List<object> AfterActionParameters { get; set; }
+		public string[] ExpectedResult { get; set; }
 		
 		public TestTaskStatuses Status { get; set; }
-		public List<object> TaskResult { get; set; }
+		public string[] PreviousTaskResult { get; set; }
+		public string[] TaskResult { get; set; }
+		public int ClientId { get; set; }
+		
+		public void StartTimer()
+		{
+		    // TODO: implement a timer
+		}
 	}
 }

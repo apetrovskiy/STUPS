@@ -10,6 +10,7 @@
 namespace Tmx.Commands
 {
 	using System;
+	using System.Collections.Generic;
 	using System.Management.Automation;
 	using Tmx;
 	
@@ -17,9 +18,15 @@ namespace Tmx.Commands
 	/// Description of SendTmxTestTaskResultCommand.
 	/// </summary>
 	[Cmdlet(VerbsCommunications.Send, "TmxTestTaskResult")]
-	public class SendTmxTestTaskResultCommand : CommonCmdletBase
+	public class SendTmxTestTaskResultCommand : ClientCmdletBase
 	{
-		protected override void BeginProcessing()
+		[Parameter(Mandatory = true,
+		           Position = 0,
+		           ValueFromPipeline = true)]
+		[ValidateNotNull]
+		public string[] Result { get; set; }
+		
+		protected override void ProcessRecord()
 		{
 			var command = new SendTestTaskResultCommand(this);
 			command.Execute();

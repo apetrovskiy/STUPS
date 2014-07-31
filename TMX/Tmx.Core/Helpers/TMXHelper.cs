@@ -20,7 +20,7 @@ namespace Tmx
 	using TMX.Interfaces;
 	using Tmx.Interfaces;
 	using Tmx.Interfaces.TestStructure;
-	using Tmx.Core;
+	// using Tmx.Core;
     
     //using System.Data.SqlTypes;
     

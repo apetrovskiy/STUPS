@@ -24,8 +24,6 @@ namespace Tmx
         internal override void Execute()
         {
             var cmdlet = (StartTmxServerCommand)Cmdlet;
-            // 20140721
-            // Control.Start(@"http://localhost:" + cmdlet.Port);
             Tmx.Server.ServerControl.Start(@"http://localhost:" + cmdlet.Port);
         }
     }

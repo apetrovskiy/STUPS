@@ -82,9 +82,13 @@
     <Compile Include="DataTypes\Types\TestResultCmdletBaseDataObject.cs" />
     <Compile Include="DataTypes\Types\TestResultDetailCmdletBaseDataObject.cs" />
     <Compile Include="DataTypes\Types\TestResultStatusCmdletBaseDataObject.cs" />
+    <Compile Include="Exceptions\ClientDeregistrationException.cs" />
     <Compile Include="Exceptions\ClientRegistrationException.cs" />
     <Compile Include="Exceptions\AcceptTaskException.cs" />
+    <Compile Include="Exceptions\CompleteTaskException.cs" />
     <Compile Include="Exceptions\LoadTaskException.cs" />
+    <Compile Include="Exceptions\UpdateTaskException.cs" />
+    <Compile Include="Exceptions\WrongTaskDataException.cs" />
     <Compile Include="IDatabase.cs" />
     <Compile Include="ITestSuitesCollection.cs" />
     <Compile Include="IWorkflowStep.cs" />
@@ -93,7 +97,6 @@
     <Compile Include="Remoting\Enums.cs" />
     <Compile Include="Remoting\IClientInformation.cs" />
     <Compile Include="Remoting\ITestTask.cs" />
-    <Compile Include="Remoting\ITestTaskAction.cs" />
     <Compile Include="Remoting\ITestHost.cs" />
     <Compile Include="Remoting\ITestHostGroup.cs" />
     <Compile Include="TestStructure\Enumerations.cs" />

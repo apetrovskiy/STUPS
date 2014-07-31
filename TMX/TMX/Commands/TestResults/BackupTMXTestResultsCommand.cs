@@ -12,7 +12,8 @@ namespace Tmx.Commands
     using System;
     using System.Management.Automation;
     using System.Data.SQLite;
-	using Tmx.Core;
+	// using Tmx.Core;
+	using Tmx;
     
     /// <summary>
     /// Description of BackupTmxTestResultsCommand.

@@ -83,6 +83,7 @@
     <Compile Include="Helpers\Commands\StartServerCommand.cs" />
     <Compile Include="Helpers\Commands\StopTmxServerCommand.cs" />
     <Compile Include="Helpers\Objects\ClientsCollection.cs" />
+    <Compile Include="Helpers\WorkflowLoader.cs" />
     <Compile Include="Modules\TestClientsModule.cs" />
     <Compile Include="Modules\TestResultsModule.cs" />
     <Compile Include="Modules\TestTasksModule.cs" />

@@ -11,7 +11,8 @@ namespace TmxTest.Commands.TestStructure
 {
     using System;
     using MbUnit.Framework;using NUnit.Framework;
-	using Tmx.Core; // using MbUnit.Framework;using NUnit.Framework;
+    using Tmx;
+	// using Tmx.Core; // using MbUnit.Framework;using NUnit.Framework;
     
     /// <summary>
     /// Description of OpenTmxTestSuiteCommandTestFixture.
@@ -87,7 +88,7 @@ namespace TmxTest.Commands.TestStructure
                 ").Id;",
                 id);
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
-                @"[Tmx.Core.TestData]::TestSuites[0].Name",
+                @"[Tmx.TestData]::TestSuites[0].Name",
                 "suite1");
         }
         

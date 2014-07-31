@@ -15,13 +15,12 @@ namespace Tmx.Server.Tests.Modules
     using Nancy.Testing;
     using MbUnit.Framework;
     using NUnit.Framework;
-	using Tmx;
+	using TMX.Interfaces.Server;
 	using Tmx.Interfaces;
 	using Tmx.Interfaces.Remoting;
 	using Tmx.Interfaces.TestStructure;
 	using Tmx.Interfaces.Types.Remoting;
     using Xunit;
-    using Tmx;
     using PSTestLib;
     
     /// <summary>
@@ -96,7 +95,7 @@ namespace Tmx.Server.Tests.Modules
             	Id = 5,
             	Name = "task name",
             	Completed = false,
-            	On = true,
+            	IsActive = true,
             	Status = TestTaskStatuses.New
             };
 			TaskPool.Tasks.Add(task);
@@ -115,7 +114,7 @@ namespace Tmx.Server.Tests.Modules
             Xunit.Assert.Equal(task.Name, loadedTask.Name);
             Xunit.Assert.Equal(task.Status, loadedTask.Status);
             Xunit.Assert.Equal(task.Completed, loadedTask.Completed);
-            Xunit.Assert.Equal(task.On, loadedTask.On);
+            Xunit.Assert.Equal(task.IsActive, loadedTask.IsActive);
         }
     }
 }

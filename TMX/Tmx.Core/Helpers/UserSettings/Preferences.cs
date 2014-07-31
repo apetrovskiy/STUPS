@@ -10,6 +10,7 @@
 namespace Tmx
 {
     using System;
+	using NHibernate.Event.Default;
     
     /// <summary>
     /// Description of Preferences.
@@ -30,6 +31,8 @@ namespace Tmx
             
             AutoEcho = false;
             AutoLog = false;
+            
+            DefaultRegistrationTimeoutSeconds = 300;
         }
         
         public static bool TestLog { get; set; }
@@ -53,5 +56,6 @@ namespace Tmx
         public static bool StorageIntegratedSecurity { get; set; }
         public static string StorageConnectionString { get; internal set; }
         
+        public static int DefaultRegistrationTimeoutSeconds { get; set; }
     }
 }

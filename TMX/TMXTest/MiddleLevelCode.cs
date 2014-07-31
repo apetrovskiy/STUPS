@@ -31,7 +31,7 @@ namespace TmxTest
         public static void DisposeRunspace()
         {
             CmdletUnitTest.TestRunspace.RunPSCode(
-                @"[Tmx.Core.TestData]::ResetData();");
+                @"[Tmx.TestData]::ResetData();");
             CmdletUnitTest.TestRunspace.CloseRunspace();
         }
         

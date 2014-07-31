@@ -11,12 +11,13 @@ namespace Tmx.Server.Tests.Modules
 {
     using System;
     using System.Management.Automation;
+	using NSubstitute;
     using Nancy;
     using Nancy.Testing;
+	using TMX.Interfaces.Server;
     // using MbUnit.Framework;
     using NUnit.Framework;
 	using Tmx;
-	using Tmx.Core;
 	using Tmx.Interfaces.TestStructure;
     using Xunit;
     using Tmx.Interfaces;
@@ -60,7 +61,10 @@ namespace Tmx.Server.Tests.Modules
             var browser = new Browser(new DefaultNancyBootstrapper());
             var testSuiteNameExpected = "test suite name";
             var testSuiteIdExpected = "111";
-            var testSuite = new TestSuite { Name = testSuiteNameExpected, Id = testSuiteIdExpected };
+            var testSuite = Substitute.For<TestSuite>();
+            testSuite.Name = testSuiteNameExpected;
+            testSuite.Id = testSuiteIdExpected;
+            testSuite.PlatformId = TestData.GetDefaultPlatformId();
             
             // When
             // /Results/suites/
@@ -72,6 +76,7 @@ namespace Tmx.Server.Tests.Modules
             Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
             Xunit.Assert.Equal(testSuiteNameExpected, TestData.CurrentTestSuite.Name);
             Xunit.Assert.Equal(testSuiteIdExpected, TestData.CurrentTestSuite.Id);
+            Xunit.Assert.Equal(TestData.GetDefaultPlatformId(), TestData.CurrentTestSuite.PlatformId);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -81,17 +86,28 @@ namespace Tmx.Server.Tests.Modules
             var browser = new Browser(new DefaultNancyBootstrapper());
             var testSuiteNameExpected = "test suite name";
             var testSuiteIdExpected = "111";
-            var testSuite = new TestSuite { Name = testSuiteNameExpected, Id = testSuiteIdExpected };
+//            var testSuitePlatformIdExpected = "555";
+//            var testPlatform = new TestPlatform("test platform", testSuitePlatformIdExpected);
+//            var testSuite = new TestSuite { Name = testSuiteNameExpected, Id = testSuiteIdExpected, PlatformId = testSuitePlatformIdExpected };
+            var testSuite = Substitute.For<TestSuite>();
+            testSuite.Name = testSuiteNameExpected;
+            testSuite.Id = testSuiteIdExpected;
+            testSuite.PlatformId = TestData.GetDefaultPlatformId();
             var testScenarioNameExpected = "test scenario name";
             var testScenarioIdExpected = "222";
-            // var testScenario = new TestScenario { Name = testScenarioNameExpected, Id = testScenarioIdExpected };
+            // var testScenario = new TestScenario { Name = testScenarioNameExpected, Id = testScenarioIdExpected, SuiteId = testSuiteIdExpected, PlatformId = testSuitePlatformIdExpected };
+            var testScenario = Substitute.For<TestScenario>();
+            testScenario.Name = testScenarioNameExpected;
+            testScenario.Id = testScenarioIdExpected;
+            testScenario.PlatformId = testSuite.PlatformId;
+            testScenario.SuiteId = testSuite.Id;
             // var testScenario = new TestScenario(testScenarioNameExpected, testScenarioIdExpected, testSuiteIdExpected);
-            var testScenario = new TestScenario {
-            	Description = "Asdfasdf",
-            	Id = testScenarioIdExpected,
-            	Name = testScenarioNameExpected,
-            	SuiteId = testSuiteIdExpected
-            };
+//            var testScenario = new TestScenario {
+//            	Description = "Asdfasdf",
+//            	Id = testScenarioIdExpected,
+//            	Name = testScenarioNameExpected,
+//            	SuiteId = testSuiteIdExpected
+//            };
             
             // When
             // /Results/suites/

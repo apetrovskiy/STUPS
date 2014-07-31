@@ -16,7 +16,7 @@ namespace Tmx.Commands
     /// Description of StopTmxServerCommand.
     /// </summary>
     [Cmdlet(VerbsLifecycle.Stop, "TmxServer")]
-    public class StopTmxServerCommand : CommonCmdletBase
+    public class StopTmxServerCommand : ServerCmdletBase // CommonCmdletBase
     {
         protected override void BeginProcessing()
         {

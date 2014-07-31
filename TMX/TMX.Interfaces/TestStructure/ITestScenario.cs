@@ -21,11 +21,14 @@ namespace Tmx.Interfaces.TestStructure
         int DbId { get; set; }
         string Name { get; }
         string Id { get; }
-        List<ITestResult> TestResults { get; }
+        // 20140723
+        // List<ITestResult> TestResults { get; }
+        List<ITestResult> TestResults { get; set; }
         string Description { get; set; }
         string Status { get; }
-        
-        string SuiteId { get; }
+        // 20140723
+        // string SuiteId { get; }
+        string SuiteId { get; set; }
         // 20130301
         // 20140720
         // DateTime Timestamp { get; }

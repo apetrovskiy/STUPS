@@ -30,11 +30,8 @@ namespace Tmx.Server.Modules
             
             Post[UrnList.TestStructure_Suites] = parameters => {
                 var testSuite = this.Bind<TestSuite>();
-//Console.WriteLine("Post[UrnList.TestStructure_Suites] 00001");
                 TmxHelper.NewTestSuite(testSuite.Name, testSuite.Id, testSuite.PlatformId, testSuite.Description, testSuite.BeforeScenario, testSuite.AfterScenario);
-//Console.WriteLine("Post[UrnList.TestStructure_Suites] 00002");
                 TestData.SetSuiteStatus(true);
-//Console.WriteLine("Post[UrnList.TestStructure_Suites] 00003");
 				return TmxHelper.OpenTestSuite(testSuite.Name, testSuite.Id, testSuite.PlatformId) ? HttpStatusCode.Created : HttpStatusCode.InternalServerError;
 				
 //var result = TmxHelper.OpenTestSuite(testSuite.Name, testSuite.Id, testSuite.PlatformId);
@@ -45,10 +42,13 @@ namespace Tmx.Server.Modules
         	
         	Post[UrnList.TestStructure_Scenarios] = parameters => {
 Console.WriteLine("Post[UrnList.TestStructure_Scenarios] 00001");
-ITestScenario testScenario = null;
-try {
-        		testScenario = this.Bind<TestScenario>("DbId", "TestResults", "Timestamp", "BeforeTest", "AfterTest", "BeforeTestParameters", "AfterTestParameters", "TestCases", "TimeSpent", "Statistics", "enStatus");
+//ITestScenario testScenario = null;
+//try {
+        		// testScenario = this.Bind<TestScenario>("DbId", "TestResults", "Timestamp", "BeforeTest", "AfterTest", "BeforeTestParameters", "AfterTestParameters", "TestCases", "TimeSpent", "Statistics", "enStatus");
+        		var testScenario = this.Bind<TestScenario>();
+        		// testScenario = this.BindAndValidate<TestScenario>();
         		
+        		Console.WriteLine("Post[UrnList.TestStructure_Scenarios] 00002");
 //        		        int DbId { get; set; }
 //        string Name { get; }
 //        string Id { get; }
@@ -82,10 +82,10 @@ try {
 //        void SetTimeSpent(double timeSpent);
 //        TestStat Statistics { get; set; }
 //        TestScenarioStatuses enStatus { get; set; }
-}
-catch (Exception eeee) {
-	Console.WriteLine(eeee.Message);
-}
+//}
+//catch (Exception eeee) {
+//	Console.WriteLine(eeee.Message);
+//}
 
         		var dataObjectAdd = new AddScenarioCmdletBaseDataObject {
 					AfterTest = testScenario.AfterTest,
@@ -116,7 +116,7 @@ Console.WriteLine("Post[UrnList.TestStructure_Results] 00001");
 ITestResult testResult = null;
 try {
 	testResult = this.Bind<TestResult>(); // "DbId", "TestResults", "Timestamp", "BeforeTest", "AfterTest", "BeforeTestParameters", "AfterTestParameters", "TestCases", "TimeSpent", "Statistics", "enStatus");
-        		
+        Console.WriteLine("Post[UrnList.TestStructure_Results] 00002");		
 }
 catch (Exception eeee) {
 	Console.WriteLine(eeee.Message);

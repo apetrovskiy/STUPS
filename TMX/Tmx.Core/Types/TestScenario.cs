@@ -11,6 +11,7 @@ namespace Tmx.Interfaces
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Management.Automation;
 	using Tmx.Interfaces;
 	using Tmx.Interfaces.TestStructure;
@@ -55,6 +56,8 @@ namespace Tmx.Interfaces
             // string testScenarioId1 = TestData.TestSuites[TestData.TestSuites.Count - 1].TestScenarios[TestData.TestSuites[TestData.TestSuites.Count - 1].TestScenarios.Count - 1].Id;
             string testSuiteId1 = TestData.TestSuites[TestData.TestSuites.Count - 1].Id;
             // 20140723
+            this.PlatformId = testSuite1.PlatformId;
+            // 20140723
             // var testResult1 = new TestResult(testScenarioId1, testSuiteId1);
             // this.TestResults.Add(testResult1);
             this.TestResults.Add(new TestResult(testScenarioId1, testSuiteId1)); // ??
@@ -77,6 +80,8 @@ namespace Tmx.Interfaces
             this.Name = testScenarioName;
             this.Id = !string.IsNullOrEmpty(testScenarioId) ? testScenarioId : TestData.GetTestScenarioId();
             this.SuiteId = testSuiteId;
+            // 20140723
+            try { this.PlatformId = TestData.TestSuites.First(ts => ts.Id == testSuiteId).PlatformId; } catch {}
             
             try{
                 if (TestData.CurrentTestResult.Details.Count > 0) {
@@ -123,11 +128,13 @@ namespace Tmx.Interfaces
         public virtual int DbId { get; set; }
         public string Name { get; protected internal set; }
         public string Id { get; protected internal set; }
-        public List<ITestResult> TestResults {get; protected internal set; }
+        // 20140723
+        // public List<ITestResult> TestResults {get; protected internal set; }
+        public List<ITestResult> TestResults {get; set; }
         public virtual string Description { get; set; }
 
         string _status;
-        public virtual string Status { get { return this._status; } }
+        public virtual string Status { get { return _status; } }
         TestScenarioStatuses _enStatus;
         // 20140720
         // protected internal TestScenarioStatuses enStatus
@@ -160,8 +167,9 @@ namespace Tmx.Interfaces
         }
         
         public TestStat Statistics { get; set; }
-        
-        public string SuiteId { get; protected internal set; }
+        // 20140723
+        // public string SuiteId { get; protected internal set; }
+        public string SuiteId { get; set; }
         
         // 20140720
         // public virtual DateTime Timestamp { get; protected internal set; }

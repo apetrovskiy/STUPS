@@ -85,13 +85,13 @@ namespace Tmx.Server.Tests.Modules
             var testScenarioNameExpected = "test scenario name";
             var testScenarioIdExpected = "222";
             // var testScenario = new TestScenario { Name = testScenarioNameExpected, Id = testScenarioIdExpected };
-            var testScenario = new TestScenario(testScenarioNameExpected, testScenarioIdExpected, testSuiteIdExpected);
-//            var testScenario = new TestScenario {
-//            	Description = "Asdfasdf",
-//            	Id = testScenarioIdExpected,
-//            	Name = testScenarioNameExpected,
-//            	SuiteId = testSuiteIdExpected
-//            };
+            // var testScenario = new TestScenario(testScenarioNameExpected, testScenarioIdExpected, testSuiteIdExpected);
+            var testScenario = new TestScenario {
+            	Description = "Asdfasdf",
+            	Id = testScenarioIdExpected,
+            	Name = testScenarioNameExpected,
+            	SuiteId = testSuiteIdExpected
+            };
             
             // When
             // /Results/suites/

@@ -22,7 +22,13 @@ namespace Tmx.Client
 	/// </summary>
 	public class TaskUpdater
 	{
-	    readonly RestRequestCreator _restRequestCreator = new RestRequestCreator();
+	    // readonly RestRequestCreator _restRequestCreator = new RestRequestCreator();
+	    readonly RestRequestCreator _restRequestCreator;
+	    
+	    public TaskUpdater(RestRequestCreator requestCreator)
+	    {
+	    	_restRequestCreator = requestCreator;
+	    }
 	    
 		public bool UpdateTask(ITestTask task)
 		{
@@ -30,7 +36,7 @@ namespace Tmx.Client
 			request.AddObject(task);
 			var updatingTaskResponse = _restRequestCreator.RestClient.Execute<TestTask>(request);
 			if (HttpStatusCode.OK != updatingTaskResponse.StatusCode)
-				throw new UpdateTaskException("Failed to update task '" + task.Name + "'");
+				throw new UpdateTaskException("Failed to update task '" + task.Name + "'. " + updatingTaskResponse.StatusCode);
 			return true;
 		}
 	}

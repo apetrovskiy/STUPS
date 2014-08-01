@@ -23,7 +23,13 @@ namespace Tmx.Client
 	/// </summary>
 	public class TaskLoader
 	{
-	    readonly RestRequestCreator _restRequestCreator = new RestRequestCreator();
+	    // readonly RestRequestCreator _restRequestCreator = new RestRequestCreator();
+	    readonly RestRequestCreator _restRequestCreator;
+	    
+	    public TaskLoader(RestRequestCreator requestCreator)
+	    {
+	    	_restRequestCreator = requestCreator;
+	    }
 	    
 		public ITestTask GetCurrentTask()
 		{
@@ -36,7 +42,7 @@ Console.WriteLine("getCurrentTask: 00004 " + (null == gettingTaskResponse.Data ?
 Console.WriteLine("getCurrentTask: 00005");
 			if (HttpStatusCode.OK == gettingTaskResponse.StatusCode) return acceptCurrentTask(gettingTaskResponse.Data);
 Console.WriteLine("getCurrentTask: 00006");
-			throw new LoadTaskException("Failed to load task");
+			throw new LoadTaskException("Failed to load task. " + gettingTaskResponse.StatusCode);
 		}
 
 		ITestTask acceptCurrentTask(ITestTask task)
@@ -48,7 +54,7 @@ Console.WriteLine("getCurrentTask: 00006");
 			var acceptingTaskResponse = _restRequestCreator.RestClient.Execute(request);
 			if (HttpStatusCode.OK == acceptingTaskResponse.StatusCode)
 				return task;
-			throw new AcceptTaskException("Failed to accept task '" + task.Name + "'");
+			throw new AcceptTaskException("Failed to accept task '" + task.Name + "'. " + acceptingTaskResponse.StatusCode);
 		}
 	}
 }

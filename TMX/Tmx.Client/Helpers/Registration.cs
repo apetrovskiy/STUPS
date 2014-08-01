@@ -23,7 +23,13 @@ namespace Tmx.Client
     /// </summary>
     public class Registration
     {
-        readonly RestRequestCreator _restRequestCreator = new RestRequestCreator();
+        // readonly RestRequestCreator _restRequestCreator = new RestRequestCreator();
+        readonly RestRequestCreator _restRequestCreator;
+	    
+	    public Registration(RestRequestCreator requestCreator)
+	    {
+	    	_restRequestCreator = requestCreator;
+	    }
         
         public int SendRegistrationInfoAndGetClientId(string customClientString)
 		{
@@ -32,7 +38,7 @@ namespace Tmx.Client
 			var registrationResponse = _restRequestCreator.RestClient.Execute<TestClientInformation>(request);
 			if (HttpStatusCode.Created == registrationResponse.StatusCode)
 				return registrationResponse.Data.Id;
-			throw new Exception("Failed to register a client"); // TODO: new type!
+			throw new Exception("Failed to register a client. "+ registrationResponse.StatusCode); // TODO: new type!
 		}
         
         public void UnregisterClient()
@@ -40,7 +46,7 @@ namespace Tmx.Client
 			var request = _restRequestCreator.GetRestRequest(UrnList.TestClients_Root + "/" + ClientSettings.ClientId, Method.DELETE);
 			var unregistrationResponse = _restRequestCreator.RestClient.Execute(request);
 			if (HttpStatusCode.OK != unregistrationResponse.StatusCode)
-                throw new ClientDeregistrationException("Failed to unregister the client");
+                throw new ClientDeregistrationException("Failed to unregister the client. " + unregistrationResponse.StatusCode);
 			cleanUpClientData();
         }
         

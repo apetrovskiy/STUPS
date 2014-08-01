@@ -18,6 +18,7 @@ namespace Tmx.Server.Tests.Modules
     using MbUnit.Framework;
     using NUnit.Framework;
 	using TMX.Interfaces.Server;
+	using Tmx.Client;
 	using Tmx.Interfaces;
 	using Tmx.Interfaces.Remoting;
 	using Tmx.Interfaces.TestStructure;
@@ -130,12 +131,31 @@ namespace Tmx.Server.Tests.Modules
             TaskPool.Tasks.Add(testTask02);
             
             // When
+            // imitation
+            ClientSettings.ServerUrl = @"http://localhost:12340";
+            ClientSettings.StopImmediately = false;
+            // var registration = new Registration();
+            var registration = new Registration(new RestRequestCreator());
+            
             var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<IClientInformation>(clientInformation));
             var registeredClient = response.Body.DeserializeJson<TestClientInformation>();
+            // imitation
+            ClientSettings.ClientId = registeredClient.Id;
+            ClientSettings.StopImmediately = false;
+            // var taskLoader = new TaskLoader();
+            var taskLoader = new TaskLoader(new RestRequestCreator());
+            
             response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
             var task = response.Body.DeserializeJson<TestTask>();
             task.Status = TestTaskStatuses.Accepted;
             response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => with.JsonBody<ITestTask>(task));
+            // imitation
+            ClientSettings.CurrentTask = task; // taskLoader.GetCurrentTask();
+            ClientSettings.CurrentTask.TaskResult = new[] { "aaaaa", "bbbbb", "ccccc" };
+            // var taskUpdater = new TaskUpdater();
+            var taskUpdater = new TaskUpdater(new RestRequestCreator());
+            response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => with.JsonBody<ITestTask>(ClientSettings.CurrentTask));
+            
             task.Status = TestTaskStatuses.CompletedSuccessfully;
             task.Completed = true;
             response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => with.JsonBody<ITestTask>(task));

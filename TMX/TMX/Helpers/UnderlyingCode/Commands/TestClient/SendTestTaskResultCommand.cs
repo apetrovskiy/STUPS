@@ -29,7 +29,8 @@ namespace Tmx
         {
             var cmdlet = (SendTmxTestTaskResultCommand)Cmdlet;
             ClientSettings.CurrentTask.TaskResult = cmdlet.Result;
-            var taskUpdater = new TaskUpdater();
+            // var taskUpdater = new TaskUpdater();
+            var taskUpdater = new TaskUpdater(new RestRequestCreator());
             // cmdlet.WriteObject(taskUpdater.UpdateTask());
             cmdlet.WriteObject(taskUpdater.UpdateTask(ClientSettings.CurrentTask));
         }

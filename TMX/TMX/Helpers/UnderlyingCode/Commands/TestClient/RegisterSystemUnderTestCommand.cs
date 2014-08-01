@@ -28,7 +28,8 @@ namespace Tmx
             var cmdlet = (RegisterTmxSystemUnderTestCommand)Cmdlet;
             ClientSettings.ServerUrl = cmdlet.ServerUrl;
             ClientSettings.StopImmediately = false;
-            var registration = new Registration();
+            // var registration = new Registration();
+            var registration = new Registration(new RestRequestCreator());
             // temporarily
             // TODO: to a template method
             var startTime = DateTime.Now;

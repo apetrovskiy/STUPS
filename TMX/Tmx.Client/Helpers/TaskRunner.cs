@@ -23,10 +23,16 @@ namespace Tmx.Client
         public bool Run(ITestTask task)
         {
             var runnerWithParams = new runScriptBlockWithParameters(runSBActionWithParams);
-            runScriptblockWithParameters(runnerWithParams, task.BeforeAction, task.BeforeActionParameters);
-            runScriptblockWithParameters(runnerWithParams, task.Action, task.ActionParameters);
-            runScriptblockWithParameters(runnerWithParams, task.AfterAction, task.AfterActionParameters);
-            return true;
+            // TODO: move to an aspect
+            try {
+                runScriptblockWithParameters(runnerWithParams, task.BeforeAction, task.BeforeActionParameters);
+                runScriptblockWithParameters(runnerWithParams, task.Action, task.ActionParameters);
+                runScriptblockWithParameters(runnerWithParams, task.AfterAction, task.AfterActionParameters);
+                return true;
+            }
+            catch {
+                return false;
+            }
         }
         
         void runScriptblockWithParameters(runScriptBlockWithParameters runnerWithParams, string code, List<object> parameters)

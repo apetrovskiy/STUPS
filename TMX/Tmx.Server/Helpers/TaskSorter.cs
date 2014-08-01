@@ -51,18 +51,15 @@ namespace Tmx.Server
 		public ITestTask GetFirstLegibleTask(int clientId)
 		{
 			var taskListForClient = getOnlyNewTestTasksForClient(clientId);
-Console.WriteLine("GetFirstLegibleTask 000001");
 			if (null == taskListForClient || !taskListForClient.Any()) return null;
 Console.WriteLine("GetFirstLegibleTask 000002");
 var smth = taskListForClient.First(task => task.Id == taskListForClient.Min(tsk => tsk.Id));
 if (null == smth) {
-    Console.WriteLine("null == smth");
-    Console.WriteLine("returning null");
+    Console.WriteLine("GetFirstLegibleTask null == smth, returning null");
     return null;
 }
 else {
-    Console.WriteLine(smth.Id);
-    Console.WriteLine("returning the first task");
+    Console.WriteLine("GetFirstLegibleTask returning the first task " + smth.Id);
     return smth;
 }
             
@@ -73,8 +70,8 @@ else {
 		{
 			var taskListForClient = getOnlyNewTestTasksForClient(clientId);
 			if (null == taskListForClient || !taskListForClient.Any()) return null;
-			// return taskListForClient.First(task => task.Id > taskListForClient.Min(tsk => tsk.Id));
-			return taskListForClient.First(task => task.Id == taskListForClient.OrderBy(t => t.Id).Skip(1).First().Id);
+Console.WriteLine("GetNextLegibleTask 000002");
+			return taskListForClient.First(task => task.Id == taskListForClient.Where(t => t.Id > currentTaskId).Min(tsk => tsk.Id));
 		}
 		
 		IEnumerable<ITestTask> getOnlyNewTestTasksForClient(int clientId)

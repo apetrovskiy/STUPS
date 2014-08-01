@@ -31,32 +31,18 @@ namespace Tmx.Server.Modules
 				var actualTask = taskSorter.GetFirstLegibleTask(parameters.id) as TestTask;
 				
 				
-				if (null == actualTask) {
-					Console.WriteLine("null == actualTask");
-					return HttpStatusCode.NotFound;
-				}
-				Console.WriteLine("null != actualTask");
-//    Console.WriteLine(actualTask.Action);
-//    Console.WriteLine(actualTask.ActionParameters);
-				Console.WriteLine(actualTask.ClientId);
-				Console.WriteLine(actualTask.Completed);
-//    Console.WriteLine(actualTask.ExpectedResult);
-				Console.WriteLine(actualTask.Id);
-//    Console.WriteLine(actualTask.IsActive);
-//    Console.WriteLine(actualTask.IsCritical);
-				Console.WriteLine(actualTask.Name);
-//    Console.WriteLine(actualTask.PreviousTaskId);
-				Console.WriteLine(actualTask.Rule);
-				Console.WriteLine(actualTask.Status);
-				Console.WriteLine(actualTask.GetType().Name);
-//    Console.WriteLine(actualTask.StoryId);
-//    Console.WriteLine(actualTask.TaskType);
-//    Console.WriteLine(actualTask.Timeout);
-                
-                
-// actualTask = TaskPool.Tasks[0];
-                
-				return Response.AsJson(actualTask).WithStatusCode(HttpStatusCode.OK);
+Console.WriteLine("requested client id = " + parameters.id);
+if (null == actualTask) {
+	Console.WriteLine("get -> null == actualTask");
+	return HttpStatusCode.NotFound;
+}
+Console.WriteLine("get -> null != actualTask");
+Console.WriteLine("client Id = " + actualTask.ClientId + ", task id = " + actualTask.Id + ", compl = " + actualTask.Completed + ", status = " + actualTask.Status);
+//var response = Response.AsJson(actualTask).WithStatusCode(HttpStatusCode.OK);
+//Console.WriteLine(response.
+
+// return Response.AsJson(actualTask).WithStatusCode(HttpStatusCode.OK);
+return Response.AsJson(actualTask, HttpStatusCode.OK);
 				
 				
 				// return null != actualTask ? Response.AsJson(actualTask).WithStatusCode(HttpStatusCode.OK) : HttpStatusCode.NotFound;
@@ -68,18 +54,24 @@ namespace Tmx.Server.Modules
                 storedTask.Completed = loadedTask.Completed;
                 storedTask.Status = loadedTask.Status;
                 storedTask.TaskResult = loadedTask.TaskResult;
-                var taskSorter = new TaskSorter();
-                ITestTask nextTask = null;
-                try {
-                    nextTask = taskSorter.GetNextLegibleTask(loadedTask.ClientId, loadedTask.Id);
-                }
-                catch (Exception eeeee) {
-Console.WriteLine("put -> getNextLegibleTask " + eeeee.Message);
-                }
+Console.WriteLine("put -> current task " + loadedTask.Id + ", client id = " + loadedTask.ClientId + ", status = " + loadedTask.Status + ", compl = " + loadedTask.Completed);
                 
-                if (null == nextTask) return HttpStatusCode.OK;
-                nextTask.PreviousTaskResult = storedTask.TaskResult ?? new string[] {};
-                nextTask.PreviousTaskId = loadedTask.Id;
+                if (storedTask.Completed) {
+                    var taskSorter = new TaskSorter();
+                    ITestTask nextTask = null;
+                    try {
+                        nextTask = taskSorter.GetNextLegibleTask(loadedTask.ClientId, loadedTask.Id);
+Console.WriteLine("put -> getNextLegibleTask " + nextTask.Id);
+                    }
+                    catch (Exception eeeee) {
+Console.WriteLine("put -> getNextLegibleTask " + eeeee.Message);
+                    }
+                    
+                    if (null == nextTask) return HttpStatusCode.OK;
+                    // nextTask.PreviousTaskResult = storedTask.TaskResult ?? new string[] {};
+                    nextTask.PreviousTaskResult = storedTask.TaskResult;
+                    nextTask.PreviousTaskId = loadedTask.Id;
+                }
                 return HttpStatusCode.OK;
             };
         }

@@ -10,6 +10,7 @@
 namespace Tmx
 {
 	using System;
+	using System.Management.Automation;
 	using TMX.Interfaces.Exceptions;
 	using Tmx;
 	using Tmx.Client;
@@ -31,15 +32,32 @@ namespace Tmx
             var taskRunner = new TaskRunner();
             // var taskUpdater = new TaskUpdater();
             var taskUpdater = new TaskUpdater(new RestRequestCreator());
-            foreach (var task in cmdlet.InputObject) {
-				var runResult = taskRunner.Run(task);
-				task.Completed = true;
-				task.Status = runResult ? TestTaskStatuses.CompletedSuccessfully : TestTaskStatuses.Failed;
-				// ClientSettings.CurrentTask = task;
-ClientSettings.CurrentTask = task;
-				taskUpdater.UpdateTask(task);
-				ClientSettings.CurrentTask = null;
-            }
+//            foreach (var task in cmdlet.InputObject) {
+//                if (TestTaskStatuses.Accepted != task.Status) {
+//                    cmdlet.WriteError(cmdlet, "Task '" + task.Name + "' has been already processed", "AlreadyProcessed", ErrorCategory.InvalidData, false);
+//                    continue;
+//                }
+//				var runResult = taskRunner.Run(task);
+//				task.Completed = true;
+//				task.Status = runResult ? TestTaskStatuses.CompletedSuccessfully : TestTaskStatuses.Failed;
+//				// ClientSettings.CurrentTask = task;
+//// ClientSettings.CurrentTask = task;
+//				taskUpdater.UpdateTask(task);
+//				// ClientSettings.CurrentTask = null;
+//            }
+            var task = cmdlet.InputObject;
+            if (TestTaskStatuses.Accepted != task.Status)
+                cmdlet.WriteError(cmdlet, "Task '" + task.Name + "' has been already processed", "AlreadyProcessed", ErrorCategory.InvalidData, true);
+            ClientSettings.CurrentTask = task;
+			var runResult = taskRunner.Run(task);
+			task = ClientSettings.CurrentTask;
+			ClientSettings.CurrentTask = null;
+			task.Completed = true;
+			task.Status = runResult ? TestTaskStatuses.CompletedSuccessfully : TestTaskStatuses.Failed;
+Console.WriteLine("invoking " + task.Id + " " + task.Status + " " + task.Completed);
+			// ClientSettings.CurrentTask = task;
+// ClientSettings.CurrentTask = task;
+			taskUpdater.UpdateTask(task);
         }
     }
 }

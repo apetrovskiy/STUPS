@@ -50,17 +50,22 @@ Console.WriteLine("getCurrentTask: 00001 " + UrnList.TestTasks_Root + "/" + Clie
 			    else
 			        Console.WriteLine("null != gettingTaskResponse.Data");
 			}
+			
+			var task = gettingTaskResponse.Data;
 //Console.WriteLine("getCurrentTask: 00003 " + (null == gettingTaskResponse ? "null == gettingTaskResponse" : "null != gettingTaskResponse"));
 //Console.WriteLine("getCurrentTask: 00004 " + (null == gettingTaskResponse.Data ? "null == gettingTaskResponse.Data" : "null != gettingTaskResponse.Data"));
             if (HttpStatusCode.NotFound == gettingTaskResponse.StatusCode) return null; // a waiting task?
 Console.WriteLine("getCurrentTask: 00005");
-			if (HttpStatusCode.OK == gettingTaskResponse.StatusCode) return acceptCurrentTask(gettingTaskResponse.Data);
+			// if (HttpStatusCode.OK == gettingTaskResponse.StatusCode) return acceptCurrentTask(gettingTaskResponse.Data);
+			if (HttpStatusCode.OK == gettingTaskResponse.StatusCode) return acceptCurrentTask(task);
 Console.WriteLine("getCurrentTask: 00006");
 			throw new LoadTaskException("Failed to load task. " + gettingTaskResponse.StatusCode);
 		}
 
 		ITestTask acceptCurrentTask(ITestTask task)
 		{
+		    if (null == task)
+		        throw new AcceptTaskException("Failed to accept task.");
 			task.Status = TestTaskStatuses.Accepted;
 			task.StartTimer();
 			var request = new RestRequest(UrnList.TestTasks_Root + "/" + task.Id, Method.PUT);

@@ -27,9 +27,9 @@ namespace Tmx.Server.Tests
 			ClientsCollection.Clients.Clear();
 			TaskPool.Tasks.Clear();
 			TaskPool.TasksForClients.Clear();
-			ClientSettings.ClientId = 0;
-			ClientSettings.CurrentTask = null;
-			ClientSettings.ServerUrl = string.Empty;
+			ClientSettings.ResetData();
+			Preferences.ClientRegistrationSleepIntervalMilliseconds = 0;
+			Preferences.ReceivingTaskSleepIntervalMilliseconds = 0;
 		}
     }
 }

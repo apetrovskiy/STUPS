@@ -28,6 +28,7 @@ namespace Tmx
         internal override void Execute()
         {
             var cmdlet = (SendTmxTestTaskResultCommand)Cmdlet;
+            if (null == ClientSettings.CurrentTask) throw new Exception("Failed to send data to the task.");
             ClientSettings.CurrentTask.TaskResult = cmdlet.Result;
             // var taskUpdater = new TaskUpdater();
             var taskUpdater = new TaskUpdater(new RestRequestCreator());

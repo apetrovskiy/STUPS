@@ -23,7 +23,8 @@ namespace Tmx.Commands
         [Parameter(Mandatory = true,
                    Position = 0,
                    ValueFromPipeline = true)]
-        public ITestTask[] InputObject { get; set; }
+        // public ITestTask[] InputObject { get; set; }
+        public ITestTask InputObject { get; set; }
         
         protected override void ProcessRecord()
         {

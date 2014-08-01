@@ -33,7 +33,7 @@ namespace Tmx
             // temporarily
             // TODO: to a template method
             var startTime = DateTime.Now;
-            while (true) {
+            while (!ClientSettings.StopImmediately) {
                 // TODO: move to aspect
                 try {
                     ClientSettings.ClientId = registration.SendRegistrationInfoAndGetClientId(cmdlet.CustomClientString);
@@ -44,12 +44,14 @@ Console.WriteLine("registering " + e2.Message);
                 
                 System.Threading.Thread.Sleep(Preferences.ClientRegistrationSleepIntervalMilliseconds);
                 
-                if (0 != ClientSettings.ClientId)
-                    break;
+				if (0 != ClientSettings.ClientId)
+					break;
                 
                 if ((DateTime.Now - startTime).TotalSeconds >= cmdlet.Seconds)
                     throw new Exception("Failed to register client in " + cmdlet.Seconds + " seconds");
             }
+            
+            ClientSettings.StopImmediately = false;
         }
     }
 }

@@ -29,7 +29,8 @@ namespace Tmx
         {
             var cmdlet = (InvokeTmxTestTaskCommand)Cmdlet;
             var taskRunner = new TaskRunner();
-            var taskUpdater = new TaskUpdater();
+            // var taskUpdater = new TaskUpdater();
+            var taskUpdater = new TaskUpdater(new RestRequestCreator());
             foreach (var task in cmdlet.InputObject) {
 				var runResult = taskRunner.Run(task);
 				task.Completed = true;

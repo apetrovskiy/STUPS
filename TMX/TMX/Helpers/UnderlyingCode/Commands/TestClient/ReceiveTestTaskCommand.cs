@@ -27,7 +27,8 @@ namespace Tmx
         {
             var cmdlet = (ReceiveTmxTestTaskCommand)Cmdlet;
             ClientSettings.StopImmediately = false;
-            var taskLoader = new TaskLoader();
+            // var taskLoader = new TaskLoader();
+            var taskLoader = new TaskLoader(new RestRequestCreator());
             
             // temporarily
             // TODO: to a template method

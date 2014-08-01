@@ -33,7 +33,8 @@ namespace Tmx
             // var taskUpdater = new TaskUpdater();
             var taskUpdater = new TaskUpdater(new RestRequestCreator());
             // cmdlet.WriteObject(taskUpdater.UpdateTask());
-            cmdlet.WriteObject(taskUpdater.UpdateTask(ClientSettings.CurrentTask));
+            // cmdlet.WriteObject(taskUpdater.UpdateTask(ClientSettings.CurrentTask));
+            // taskUpdater.UpdateTask(ClientSettings.CurrentTask);
         }
     }
 }

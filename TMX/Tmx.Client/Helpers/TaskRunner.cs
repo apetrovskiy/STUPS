@@ -22,9 +22,9 @@ namespace Tmx.Client
     {
         public bool Run(ITestTask task)
         {
-            var runnerWithParams = new runScriptBlockWithParameters(runSBActionWithParams);
             // TODO: move to an aspect
             try {
+                var runnerWithParams = new runScriptBlockWithParameters(runSBActionWithParams);
                 runScriptblockWithParameters(runnerWithParams, task.BeforeAction, task.BeforeActionParameters);
                 runScriptblockWithParameters(runnerWithParams, task.Action, task.ActionParameters);
                 runScriptblockWithParameters(runnerWithParams, task.AfterAction, task.AfterActionParameters);

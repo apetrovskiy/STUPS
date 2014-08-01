@@ -44,7 +44,7 @@ namespace Tmx.Server
 	        	                      Regex.IsMatch(client.OsVersion ?? string.Empty, task.Rule) ||
 	        	                      Regex.IsMatch(client.UserDomainName ?? string.Empty, task.Rule) ||
 	        	                      Regex.IsMatch(client.Username ?? string.Empty, task.Rule))
-	                                ).Select(t => { var newTask = t.CloneTask(); newTask.ClientId = clientId; return newTask; }).ToList<ITestTask>();
+	                                ).Select(t => { var newTask = t.CloneTaskForNewTestClient(); newTask.ClientId = clientId; return newTask; }).ToList<ITestTask>();
             return resultTaskScope;
 	    }
 	    
@@ -76,8 +76,7 @@ Console.WriteLine("GetNextLegibleTask 000002");
 		
 		IEnumerable<ITestTask> getOnlyNewTestTasksForClient(int clientId)
 		{
-		    // return TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.IsActive && task.Status == TestTaskStatuses.New); // && !task.Completed);
-		    return TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.IsActive && !task.Completed);
+		    return TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.IsActive && !task.TaskFinished);
 		}
 	}
 }

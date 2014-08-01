@@ -22,7 +22,7 @@ namespace Tmx.Interfaces.Types.Remoting
 		// public int Order { get; set; }
 		public int PreviousTaskId { get; set; }
 		public bool IsActive { get; set; }
-		public bool Completed { get; set; }
+		public bool TaskFinished { get; set; }
 		public int Timeout { get; set; }
 		public int RetryCount { get; set; }
 		public bool IsCritical { get; set; }
@@ -40,7 +40,7 @@ namespace Tmx.Interfaces.Types.Remoting
 		public List<object> AfterActionParameters { get; set; }
 		public string[] ExpectedResult { get; set; }
 		
-		public TestTaskStatuses Status { get; set; }
+		public TestTaskStatuses TaskStatus { get; set; }
 		public string[] PreviousTaskResult { get; set; }
 		public string[] TaskResult { get; set; }
 		public int ClientId { get; set; }

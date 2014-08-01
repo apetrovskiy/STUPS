@@ -79,7 +79,7 @@ namespace Tmx.Server
 				AfterActionParameters = getActionParameters(taskNode, taskElement_afterAction),
 				BeforeAction = getActionCode(taskNode, taskElement_beforeAction),
 				BeforeActionParameters = getActionParameters(taskNode, taskElement_beforeAction),
-				Completed = false,
+				TaskFinished = false,
 				// ExpectedResult
 				Id = convertTestTaskElementValue(taskNode, taskElement_id),
 				IsActive = "1" == getTestTaskElementValue(taskNode, taskElement_isActive),
@@ -88,7 +88,7 @@ namespace Tmx.Server
 				// PreviousTaskId
 				RetryCount = convertTestTaskElementValue(taskNode, taskElement_retryCount),
 				Rule = getTestTaskElementValue(taskNode, taskElement_rule),
-				Status = TestTaskStatuses.New,
+				TaskStatus = TestTaskStatuses.New,
 				StoryId = getTestTaskElementValue(taskNode, taskElement_storyId),
 				// TaskResult
 				TaskType = getTestTaskType(taskNode.Element(taskElement_taskType).Value),

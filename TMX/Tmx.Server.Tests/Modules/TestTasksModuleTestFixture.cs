@@ -54,9 +54,9 @@ namespace Tmx.Server.Tests.Modules
             var task = new TestTask {
             	Id = 5,
             	Name = "task name",
-            	Completed = false,
+            	TaskFinished = false,
             	IsActive = true,
-            	Status = TestTaskStatuses.New,
+            	TaskStatus = TestTaskStatuses.New,
             	Rule = testClientHostnameExpected
             };
 			TaskPool.Tasks.Add(task);
@@ -71,8 +71,8 @@ namespace Tmx.Server.Tests.Modules
             Xunit.Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             Xunit.Assert.Equal(task.Id, loadedTask.Id);
             Xunit.Assert.Equal(task.Name, loadedTask.Name);
-            Xunit.Assert.Equal(task.Status, loadedTask.Status);
-            Xunit.Assert.Equal(task.Completed, loadedTask.Completed);
+            Xunit.Assert.Equal(task.TaskStatus, loadedTask.TaskStatus);
+            Xunit.Assert.Equal(task.TaskFinished, loadedTask.TaskFinished);
             Xunit.Assert.Equal(task.IsActive, loadedTask.IsActive);
         }
         
@@ -87,9 +87,9 @@ namespace Tmx.Server.Tests.Modules
             var task = new TestTask {
             	Id = 5,
             	Name = "task name",
-            	Completed = false,
+            	TaskFinished = false,
             	IsActive = true,
-            	Status = TestTaskStatuses.New,
+            	TaskStatus = TestTaskStatuses.New,
             	Rule = "no matches"
             };
 			TaskPool.Tasks.Add(task);
@@ -116,7 +116,7 @@ namespace Tmx.Server.Tests.Modules
             var testTask01 = new TestTask {
                 Id = 1,
                 IsActive = true,
-                Completed = false,
+                TaskFinished = false,
                 Name = "task name",
                 Rule = ".*h.*"
             };
@@ -124,7 +124,7 @@ namespace Tmx.Server.Tests.Modules
             var testTask02 = new TestTask {
                 Id = 2,
                 IsActive = true,
-                Completed = false,
+                TaskFinished = false,
                 Name = "task name 02",
                 Rule = "u"
             };
@@ -147,7 +147,7 @@ namespace Tmx.Server.Tests.Modules
             
             response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
             var task = response.Body.DeserializeJson<TestTask>();
-            task.Status = TestTaskStatuses.Accepted;
+            task.TaskStatus = TestTaskStatuses.Accepted;
             response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => with.JsonBody<ITestTask>(task));
             // imitation
             ClientSettings.CurrentTask = task; // taskLoader.GetCurrentTask();
@@ -156,8 +156,8 @@ namespace Tmx.Server.Tests.Modules
             var taskUpdater = new TaskUpdater(new RestRequestCreator());
             response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => with.JsonBody<ITestTask>(ClientSettings.CurrentTask));
             
-            task.Status = TestTaskStatuses.CompletedSuccessfully;
-            task.Completed = true;
+            task.TaskStatus = TestTaskStatuses.CompletedSuccessfully;
+            task.TaskFinished = true;
             response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => with.JsonBody<ITestTask>(task));
             response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
             task = response.Body.DeserializeJson<TestTask>();
@@ -166,7 +166,7 @@ namespace Tmx.Server.Tests.Modules
             Xunit.Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             Xunit.Assert.Equal(testTask02.Id, task.Id);
             Xunit.Assert.Equal(testTask02.IsActive, task.IsActive);
-            Xunit.Assert.Equal(testTask02.Completed, task.Completed);
+            Xunit.Assert.Equal(testTask02.TaskFinished, task.TaskFinished);
             Xunit.Assert.Equal(testTask02.Name, task.Name);
             // Xunit.Assert.Equal(testTask.Name, clientsetting
         }
@@ -184,7 +184,7 @@ namespace Tmx.Server.Tests.Modules
             var testTask01 = new TestTask {
                 Id = 1,
                 IsActive = true,
-                Completed = false,
+                TaskFinished = false,
                 Name = "task name",
                 Rule = ".*h.*"
             };
@@ -192,7 +192,7 @@ namespace Tmx.Server.Tests.Modules
             var testTask02 = new TestTask {
                 Id = 2,
                 IsActive = true,
-                Completed = false,
+                TaskFinished = false,
                 Name = "task name 02",
                 Rule = "aaa"
             };
@@ -203,10 +203,10 @@ namespace Tmx.Server.Tests.Modules
             var registeredClient = response.Body.DeserializeJson<TestClient>();
             response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
             var task = response.Body.DeserializeJson<TestTask>();
-            task.Status = TestTaskStatuses.Accepted;
+            task.TaskStatus = TestTaskStatuses.Accepted;
             response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => with.JsonBody<ITestTask>(task));
-            task.Status = TestTaskStatuses.CompletedSuccessfully;
-            task.Completed = true;
+            task.TaskStatus = TestTaskStatuses.CompletedSuccessfully;
+            task.TaskFinished = true;
             response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => with.JsonBody<ITestTask>(task));
             response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
             
@@ -229,7 +229,7 @@ namespace Tmx.Server.Tests.Modules
             var testTask01 = new TestTask {
                 Id = 1,
                 IsActive = true,
-                Completed = false,
+                TaskFinished = false,
                 Name = "task name",
                 Rule = ".*h.*"
             };
@@ -237,7 +237,7 @@ namespace Tmx.Server.Tests.Modules
             var testTask02 = new TestTask {
                 Id = 2,
                 IsActive = true,
-                Completed = false,
+                TaskFinished = false,
                 Name = "task name",
                 Rule = ".*aaa.*"
             };
@@ -245,7 +245,7 @@ namespace Tmx.Server.Tests.Modules
             var testTask03 = new TestTask {
                 Id = 3,
                 IsActive = true,
-                Completed = false,
+                TaskFinished = false,
                 Name = "task name 02",
                 Rule = "u"
             };
@@ -253,7 +253,7 @@ namespace Tmx.Server.Tests.Modules
             var testTask04 = new TestTask {
                 Id = 4,
                 IsActive = true,
-                Completed = false,
+                TaskFinished = false,
                 Name = "task name",
                 Rule = ".*aaa.*"
             };
@@ -264,10 +264,10 @@ namespace Tmx.Server.Tests.Modules
             var registeredClient = response.Body.DeserializeJson<TestClient>();
             response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
             var task = response.Body.DeserializeJson<TestTask>();
-            task.Status = TestTaskStatuses.Accepted;
+            task.TaskStatus = TestTaskStatuses.Accepted;
             response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => with.JsonBody<ITestTask>(task));
-            task.Status = TestTaskStatuses.CompletedSuccessfully;
-            task.Completed = true;
+            task.TaskStatus = TestTaskStatuses.CompletedSuccessfully;
+            task.TaskFinished = true;
             response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => with.JsonBody<ITestTask>(task));
             response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
             task = response.Body.DeserializeJson<TestTask>();
@@ -276,7 +276,7 @@ namespace Tmx.Server.Tests.Modules
             Xunit.Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             Xunit.Assert.Equal(testTask03.Id, task.Id);
             Xunit.Assert.Equal(testTask03.IsActive, task.IsActive);
-            Xunit.Assert.Equal(testTask03.Completed, task.Completed);
+            Xunit.Assert.Equal(testTask03.TaskFinished, task.TaskFinished);
             Xunit.Assert.Equal(testTask03.Name, task.Name);
             Xunit.Assert.Equal(testTask03.Id, TaskPool.TasksForClients.OrderBy(t => t.Id).Skip(1).First().Id);
         }
@@ -294,7 +294,7 @@ namespace Tmx.Server.Tests.Modules
             var testTask01 = new TestTask {
                 Id = 1,
                 IsActive = true,
-                Completed = false,
+                TaskFinished = false,
                 Name = "task name",
                 Rule = ".*h.*"
             };
@@ -302,7 +302,7 @@ namespace Tmx.Server.Tests.Modules
             var testTask02 = new TestTask {
                 Id = 2,
                 IsActive = true,
-                Completed = false,
+                TaskFinished = false,
                 Name = "task name",
                 Rule = ".*aaa.*"
             };
@@ -310,7 +310,7 @@ namespace Tmx.Server.Tests.Modules
             var testTask03 = new TestTask {
                 Id = 3,
                 IsActive = true,
-                Completed = false,
+                TaskFinished = false,
                 Name = "task name 02",
                 Rule = "aaa"
             };
@@ -318,7 +318,7 @@ namespace Tmx.Server.Tests.Modules
             var testTask04 = new TestTask {
                 Id = 4,
                 IsActive = true,
-                Completed = false,
+                TaskFinished = false,
                 Name = "task name 02",
                 Rule = "aaa"
             };
@@ -329,10 +329,10 @@ namespace Tmx.Server.Tests.Modules
             var registeredClient = response.Body.DeserializeJson<TestClient>();
             response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
             var task = response.Body.DeserializeJson<TestTask>();
-            task.Status = TestTaskStatuses.Accepted;
+            task.TaskStatus = TestTaskStatuses.Accepted;
             response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => with.JsonBody<ITestTask>(task));
-            task.Status = TestTaskStatuses.CompletedSuccessfully;
-            task.Completed = true;
+            task.TaskStatus = TestTaskStatuses.CompletedSuccessfully;
+            task.TaskFinished = true;
             response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => with.JsonBody<ITestTask>(task));
             response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
             

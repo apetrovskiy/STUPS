@@ -18,7 +18,7 @@ namespace Tmx.Interfaces.Remoting
     /// </summary>
     public static class ExtensionMethods
     {
-        public static ITestTask CloneTask(this ITestTask task)
+        public static ITestTask CloneTaskForNewTestClient(this ITestTask task)
         {
             return new TestTask {
                 Action = task.Action,
@@ -28,7 +28,7 @@ namespace Tmx.Interfaces.Remoting
                 BeforeAction = task.BeforeAction,
                 BeforeActionParameters = task.BeforeActionParameters,
                 ClientId = 0,
-                Completed = false,
+                TaskFinished = false,
                 ExpectedResult = task.ExpectedResult,
                 Id = task.Id,
                 IsActive = task.IsActive,
@@ -38,7 +38,7 @@ namespace Tmx.Interfaces.Remoting
                 PreviousTaskResult = task.PreviousTaskResult, // ??
                 RetryCount = task.RetryCount,
                 Rule = task.Rule,
-                Status = task.Status,
+                TaskStatus = task.TaskStatus,
                 StoryId = task.StoryId,
                 TaskResult = task.TaskResult, // ??
                 Timeout = task.Timeout

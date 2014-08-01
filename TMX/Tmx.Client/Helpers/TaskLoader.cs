@@ -66,7 +66,7 @@ Console.WriteLine("getCurrentTask: 00006");
 		{
 		    if (null == task)
 		        throw new AcceptTaskException("Failed to accept task.");
-			task.Status = TestTaskStatuses.Accepted;
+			task.TaskStatus = TestTaskStatuses.Accepted;
 			task.StartTimer();
 			var request = new RestRequest(UrnList.TestTasks_Root + "/" + task.Id, Method.PUT);
 			request.AddObject(task);

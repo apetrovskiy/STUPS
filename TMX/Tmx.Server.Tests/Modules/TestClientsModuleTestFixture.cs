@@ -45,14 +45,14 @@ namespace Tmx.Server.Tests.Modules
         {
         	// Given
             var browser = new Browser(new DefaultNancyBootstrapper());
-            var clientInformation = new TestClientInformation {
+            var clientInformation = new TestClient {
                 Hostname = "h",
                 OsVersion = "w",
                 Username = "u"
             };
             
             // When
-            var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<IClientInformation>(clientInformation));
+            var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<ITestClient>(clientInformation));
             
             // Then
             Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
@@ -66,17 +66,17 @@ namespace Tmx.Server.Tests.Modules
             var testClientHostnameExpected = "testhost";
             var testClientUsernameExpected = "aaa";
 			const int testClientIdExpected = 1;
-            var clientInformation = new TestClientInformation { Hostname = testClientHostnameExpected, Username = testClientUsernameExpected };
+            var clientInformation = new TestClient { Hostname = testClientHostnameExpected, Username = testClientUsernameExpected };
             
             // When
-            var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<IClientInformation>(clientInformation));
+            var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<ITestClient>(clientInformation));
             
             // Then
             Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
             Xunit.Assert.Equal(testClientHostnameExpected, ClientsCollection.Clients[0].Hostname);
             Xunit.Assert.Equal(testClientUsernameExpected, ClientsCollection.Clients[0].Username);
             Xunit.Assert.Equal(testClientIdExpected, ClientsCollection.Clients[0].Id);
-            Xunit.Assert.Equal(testClientIdExpected, response.Body.DeserializeJson<TestClientInformation>().Id);
+            Xunit.Assert.Equal(testClientIdExpected, response.Body.DeserializeJson<TestClient>().Id);
         }
         
 //        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]

@@ -96,7 +96,7 @@
     <Compile Include="IXMLElementsStruct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Remoting\Enums.cs" />
-    <Compile Include="Remoting\IClientInformation.cs" />
+    <Compile Include="Remoting\ITestClient.cs" />
     <Compile Include="Remoting\ITestTask.cs" />
     <Compile Include="Remoting\ITestHost.cs" />
     <Compile Include="Remoting\ITestHostGroup.cs" />
@@ -108,7 +108,7 @@
     <Compile Include="TestStructure\ITestResultDetail.cs" />
     <Compile Include="TestStructure\ITestScenario.cs" />
     <Compile Include="TestStructure\ITestSuite.cs" />
-    <Compile Include="Types\Remoting\TestClientInformation.cs" />
+    <Compile Include="Types\Remoting\TestClient.cs" />
     <Compile Include="Types\Remoting\TestTask.cs" />
     <Compile Include="Types\TestStructure\ITestBucket.cs" />
     <Compile Include="Types\TestStructure\TestResult.cs" />

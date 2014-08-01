@@ -12,12 +12,12 @@ namespace Tmx.Interfaces.Remoting
 	using System.Collections.Generic;
 	
 	/// <summary>
-	/// Description of IClientInformation.
+	/// Description of ITestClient.
 	/// </summary>
-	public interface IClientInformation
+	public interface ITestClient
 	{
 		int Id { get; set; }
-		string Hostname { get; set; } // Environment.MachineNam
+		string Hostname { get; set; } // Environment.MachineName
 		string Fqdn { get; set; }
 		List<string> IpAddresses { get; set; }
 		List<string> MacAddresses { get; set; }

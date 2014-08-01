@@ -18,6 +18,6 @@ namespace Tmx.Server
 	/// </summary>
 	public class ClientsCollection
 	{
-		public static List<IClientInformation> Clients = new List<IClientInformation>();
+		public static List<ITestClient> Clients = new List<ITestClient>();
 	}
 }

@@ -16,7 +16,7 @@ namespace Tmx.Interfaces
 	/// <summary>
 	/// Description of TestClient.
 	/// </summary>
-	public class TestClientInformation : IClientInformation
+	public class TestClient : ITestClient
 	{
 		public int Id { get; set; }
 		public string Hostname { get; set; } // Environment.MachineNam

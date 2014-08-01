@@ -23,15 +23,31 @@ namespace Tmx.Client
 	/// </summary>
 	public class TaskLoader
 	{
-	    readonly RestRequestCreator _restRequestCreator = new RestRequestCreator();
+	    // readonly RestRequestCreator _restRequestCreator = new RestRequestCreator();
+	    readonly RestRequestCreator _restRequestCreator;
+	    
 	    
 		public ITestTask GetCurrentTask()
 		{
 Console.WriteLine("getCurrentTask: 00001 " + UrnList.TestTasks_Root + "/" + ClientSettings.ClientId);
 			var request = _restRequestCreator.GetRestRequest(UrnList.TestTasks_Root + "/" + ClientSettings.ClientId, Method.GET);
-			var gettingTaskResponse = _restRequestCreator.RestClient.Execute<TestTask>(request);
-Console.WriteLine("getCurrentTask: 00003 " + (null == gettingTaskResponse ? "null == gettingTaskResponse" : "null != gettingTaskResponse"));
-Console.WriteLine("getCurrentTask: 00004 " + (null == gettingTaskResponse.Data ? "null == gettingTaskResponse.Data" : "null != gettingTaskResponse.Data"));
+			// var gettingTaskResponse = _restRequestCreator.RestClient.Execute<TestTask>(request);
+			// var gettingTaskResponse = _restRequestCreator.RestClient.Execute(request); // compilation error
+			// var gettingTaskResponse = _restRequestCreator.RestClient.Get<TestTask>(request);
+			// var gettingTaskResponse = _restRequestCreator.RestClient.ExecuteAsGet(request, "GET"); // compilation error
+			// var gettingTaskResponse = _restRequestCreator.RestClient.ExecuteAsGet<TestTask>(request, "GET");
+			
+			if (null == gettingTaskResponse)
+			    Console.WriteLine("null == gettingTaskResponse");
+			else {
+			    Console.WriteLine("null != gettingTaskResponse");
+			    if (null == gettingTaskResponse.Data)
+			        Console.WriteLine("null == gettingTaskResponse.Data");
+			    else
+			        Console.WriteLine("null != gettingTaskResponse.Data");
+			}
+//Console.WriteLine("getCurrentTask: 00003 " + (null == gettingTaskResponse ? "null == gettingTaskResponse" : "null != gettingTaskResponse"));
+//Console.WriteLine("getCurrentTask: 00004 " + (null == gettingTaskResponse.Data ? "null == gettingTaskResponse.Data" : "null != gettingTaskResponse.Data"));
             if (HttpStatusCode.NotFound == gettingTaskResponse.StatusCode) return null; // a waiting task?
 Console.WriteLine("getCurrentTask: 00005");
 			if (HttpStatusCode.OK == gettingTaskResponse.StatusCode) return acceptCurrentTask(gettingTaskResponse.Data);

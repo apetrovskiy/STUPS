@@ -24,7 +24,7 @@ namespace Tmx.Server.Modules
 		public TestClientsModule() : base(UrnList.TestClients_Root)
 		{
 			Post[UrnList.TestClients_Clients] = parameters => {
-                var testClient = this.Bind<TestClientInformation>();
+                var testClient = this.Bind<TestClient>();
                 
                 int maxId = 0;
                 if (0 < ClientsCollection.Clients.Count)

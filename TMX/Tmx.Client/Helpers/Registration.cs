@@ -29,7 +29,7 @@ namespace Tmx.Client
 		{
 			var request = _restRequestCreator.GetRestRequest(UrnList.TestClients_Root + UrnList.TestClients_Clients, Method.POST);
 			request.AddBody(getNewTestClient(customClientString));
-			var registrationResponse = _restRequestCreator.RestClient.Execute<TestClientInformation>(request);
+			var registrationResponse = _restRequestCreator.RestClient.Execute<TestClient>(request);
 			if (HttpStatusCode.Created == registrationResponse.StatusCode)
 				return registrationResponse.Data.Id;
 			throw new Exception("Failed to register a client"); // TODO: new type!
@@ -44,9 +44,9 @@ namespace Tmx.Client
 			cleanUpClientData();
         }
         
-        IClientInformation getNewTestClient(string customClientString)
+        ITestClient getNewTestClient(string customClientString)
         {
-            return new TestClientInformation {
+            return new TestClient {
                 CustomString = customClientString,
                 Hostname = Environment.MachineName,
                 Username = Environment.UserName,

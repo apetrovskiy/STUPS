@@ -26,10 +26,41 @@ namespace Tmx.Server.Modules
         public TestTasksModule() : base(UrnList.TestTasks_Root)
         {
             Get[UrnList.TestTasks_CurrentClient] = parameters => {
-                var taskSorter = new TaskSorter();
-                ITestTask actualTask = taskSorter.GetFirstLegibleTask(parameters.id);
-                return null != actualTask ? Response.AsJson(actualTask).WithStatusCode(HttpStatusCode.OK) : HttpStatusCode.NotFound;
-            };
+				var taskSorter = new TaskSorter();
+				// ITestTask actualTask = taskSorter.GetFirstLegibleTask(parameters.id);
+				var actualTask = taskSorter.GetFirstLegibleTask(parameters.id) as TestTask;
+				
+				
+				if (null == actualTask) {
+					Console.WriteLine("null == actualTask");
+					return HttpStatusCode.NotFound;
+				}
+				Console.WriteLine("null != actualTask");
+//    Console.WriteLine(actualTask.Action);
+//    Console.WriteLine(actualTask.ActionParameters);
+				Console.WriteLine(actualTask.ClientId);
+				Console.WriteLine(actualTask.Completed);
+//    Console.WriteLine(actualTask.ExpectedResult);
+				Console.WriteLine(actualTask.Id);
+//    Console.WriteLine(actualTask.IsActive);
+//    Console.WriteLine(actualTask.IsCritical);
+				Console.WriteLine(actualTask.Name);
+//    Console.WriteLine(actualTask.PreviousTaskId);
+				Console.WriteLine(actualTask.Rule);
+				Console.WriteLine(actualTask.Status);
+				Console.WriteLine(actualTask.GetType().Name);
+//    Console.WriteLine(actualTask.StoryId);
+//    Console.WriteLine(actualTask.TaskType);
+//    Console.WriteLine(actualTask.Timeout);
+                
+                
+// actualTask = TaskPool.Tasks[0];
+                
+				return Response.AsJson(actualTask).WithStatusCode(HttpStatusCode.OK);
+				
+				
+				// return null != actualTask ? Response.AsJson(actualTask).WithStatusCode(HttpStatusCode.OK) : HttpStatusCode.NotFound;
+			};
             
             Put[UrnList.TestTasks_Task] = parameters => {
                 var loadedTask = this.Bind<TestTask>();

@@ -45,14 +45,14 @@ namespace Tmx.Server.Tests.Modules
         {
         	// Given
             var browser = new Browser(new DefaultNancyBootstrapper());
-            var clientInformation = new TestClient {
+            var testClient = new TestClient {
                 Hostname = "h",
                 OsVersion = "w",
                 Username = "u"
             };
             
             // When
-            var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<ITestClient>(clientInformation));
+            var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<ITestClient>(testClient));
             
             // Then
             Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
@@ -66,10 +66,10 @@ namespace Tmx.Server.Tests.Modules
             var testClientHostnameExpected = "testhost";
             var testClientUsernameExpected = "aaa";
 			const int testClientIdExpected = 1;
-            var clientInformation = new TestClient { Hostname = testClientHostnameExpected, Username = testClientUsernameExpected };
+            var testClient = new TestClient { Hostname = testClientHostnameExpected, Username = testClientUsernameExpected };
             
             // When
-            var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<ITestClient>(clientInformation));
+            var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<ITestClient>(testClient));
             
             // Then
             Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);

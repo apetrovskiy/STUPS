@@ -35,7 +35,7 @@ namespace Tmx.Client
 		{
 Console.WriteLine("getCurrentTask: 00001 " + UrnList.TestTasks_Root + "/" + ClientSettings.ClientId);
 			var request = _restRequestCreator.GetRestRequest(UrnList.TestTasks_Root + "/" + ClientSettings.ClientId, Method.GET);
-			// var gettingTaskResponse = _restRequestCreator.RestClient.Execute<TestTask>(request);
+			var gettingTaskResponse = _restRequestCreator.RestClient.Execute<TestTask>(request);
 			// var gettingTaskResponse = _restRequestCreator.RestClient.Execute(request); // compilation error
 			// var gettingTaskResponse = _restRequestCreator.RestClient.Get<TestTask>(request);
 			// var gettingTaskResponse = _restRequestCreator.RestClient.ExecuteAsGet(request, "GET"); // compilation error

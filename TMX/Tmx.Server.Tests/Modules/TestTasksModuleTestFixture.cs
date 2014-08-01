@@ -50,7 +50,7 @@ namespace Tmx.Server.Tests.Modules
             var browser = new Browser(new DefaultNancyBootstrapper());
             var testClientHostnameExpected = "testhost";
             var testClientUsernameExpected = "aaa";
-            var clientInformation = new TestClient { Hostname = testClientHostnameExpected, Username = testClientUsernameExpected };
+            var testClient = new TestClient { Hostname = testClientHostnameExpected, Username = testClientUsernameExpected };
             var task = new TestTask {
             	Id = 5,
             	Name = "task name",
@@ -62,8 +62,8 @@ namespace Tmx.Server.Tests.Modules
 			TaskPool.Tasks.Add(task);
             
             // When
-            var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<ITestClient>(clientInformation));
-            var testClient = response.Body.DeserializeJson<TestClient>();
+            var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<ITestClient>(testClient));
+            testClient = response.Body.DeserializeJson<TestClient>();
             response = browser.Get(UrnList.TestTasks_Root + "/" + testClient.Id);
             var loadedTask = response.Body.DeserializeJson<TestTask>();
             
@@ -83,7 +83,7 @@ namespace Tmx.Server.Tests.Modules
             var browser = new Browser(new DefaultNancyBootstrapper());
             var testClientHostnameExpected = "testhost";
             var testClientUsernameExpected = "aaa";
-            var clientInformation = new TestClient { Hostname = testClientHostnameExpected, Username = testClientUsernameExpected };
+            var testClient = new TestClient { Hostname = testClientHostnameExpected, Username = testClientUsernameExpected };
             var task = new TestTask {
             	Id = 5,
             	Name = "task name",
@@ -95,8 +95,8 @@ namespace Tmx.Server.Tests.Modules
 			TaskPool.Tasks.Add(task);
             
             // When
-            var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<ITestClient>(clientInformation));
-            var testClient = response.Body.DeserializeJson<TestClient>();
+            var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<ITestClient>(testClient));
+            testClient = response.Body.DeserializeJson<TestClient>();
             response = browser.Get(UrnList.TestTasks_Root + "/" + testClient.Id);
             
             // Then
@@ -108,7 +108,7 @@ namespace Tmx.Server.Tests.Modules
         {
         	// Given
             var browser = new Browser(new DefaultNancyBootstrapper());
-            var clientInformation = new TestClient {
+            var testClient = new TestClient {
                 Hostname = "h",
                 OsVersion = "w",
                 Username = "u"
@@ -137,8 +137,8 @@ namespace Tmx.Server.Tests.Modules
             // var registration = new Registration();
             var registration = new Registration(new RestRequestCreator());
             
-            var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<IClientInformation>(clientInformation));
-            var registeredClient = response.Body.DeserializeJson<TestClientInformation>();
+            var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<ITestClient>(testClient));
+            var registeredClient = response.Body.DeserializeJson<TestClient>();
             // imitation
             ClientSettings.ClientId = registeredClient.Id;
             ClientSettings.StopImmediately = false;
@@ -176,6 +176,7 @@ namespace Tmx.Server.Tests.Modules
         {
         	// Given
             var browser = new Browser(new DefaultNancyBootstrapper());
+            var testClient = new TestClient {
                 Hostname = "h",
                 OsVersion = "w",
                 Username = "u"
@@ -198,6 +199,8 @@ namespace Tmx.Server.Tests.Modules
             TaskPool.Tasks.Add(testTask02);
             
             // When
+            var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<ITestClient>(testClient));
+            var registeredClient = response.Body.DeserializeJson<TestClient>();
             response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
             var task = response.Body.DeserializeJson<TestTask>();
             task.Status = TestTaskStatuses.Accepted;
@@ -218,7 +221,7 @@ namespace Tmx.Server.Tests.Modules
         {
         	// Given
             var browser = new Browser(new DefaultNancyBootstrapper());
-            var clientInformation = new TestClient {
+            var testClient = new TestClient {
                 Hostname = "h",
                 OsVersion = "w",
                 Username = "u"
@@ -257,7 +260,7 @@ namespace Tmx.Server.Tests.Modules
             TaskPool.Tasks.Add(testTask04);
             
             // When
-            var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<ITestClient>(clientInformation));
+            var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<ITestClient>(testClient));
             var registeredClient = response.Body.DeserializeJson<TestClient>();
             response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
             var task = response.Body.DeserializeJson<TestTask>();
@@ -283,7 +286,7 @@ namespace Tmx.Server.Tests.Modules
         {
         	// Given
             var browser = new Browser(new DefaultNancyBootstrapper());
-            var clientInformation = new TestClient {
+            var testClient = new TestClient {
                 Hostname = "h",
                 OsVersion = "w",
                 Username = "u"
@@ -322,7 +325,7 @@ namespace Tmx.Server.Tests.Modules
             TaskPool.Tasks.Add(testTask04);
             
             // When
-            var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<ITestClient>(clientInformation));
+            var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<ITestClient>(testClient));
             var registeredClient = response.Body.DeserializeJson<TestClient>();
             response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
             var task = response.Body.DeserializeJson<TestTask>();

@@ -18,9 +18,9 @@ namespace Tmx.Server
 	using Tmx.Interfaces.Types.Remoting;
 	
 	/// <summary>
-	/// Description of TaskSorter.
+	/// Description of TaskSelector.
 	/// </summary>
-	public class TaskSorter
+	public class TaskSelector
 	{
 	    public List<ITestTask> SelectTasksForClient(int clientId)
 	    {

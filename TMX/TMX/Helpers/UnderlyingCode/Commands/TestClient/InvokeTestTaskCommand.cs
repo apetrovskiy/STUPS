@@ -48,10 +48,10 @@ namespace Tmx
             var task = cmdlet.InputObject;
             if (TestTaskStatuses.Accepted != task.TaskStatus)
                 cmdlet.WriteError(cmdlet, "Task '" + task.Name + "' has been already processed", "AlreadyProcessed", ErrorCategory.InvalidData, true);
-            ClientSettings.CurrentTask = task;
+            // ClientSettings.CurrentTask = task;
 			var runResult = taskRunner.Run(task);
-			task = ClientSettings.CurrentTask;
-			ClientSettings.CurrentTask = null;
+			// task = ClientSettings.CurrentTask;
+			// ClientSettings.CurrentTask = null;
 			task.TaskFinished = true;
 			task.TaskStatus = runResult ? TestTaskStatuses.CompletedSuccessfully : TestTaskStatuses.Failed;
 Console.WriteLine("invoking " + task.Id + " " + task.TaskStatus + " " + task.TaskFinished);

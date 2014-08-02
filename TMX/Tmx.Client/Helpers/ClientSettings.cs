@@ -20,13 +20,13 @@ namespace Tmx.Client
     {
         public static string ServerUrl { get; set; }
         public static int ClientId { get; set; }
-        public static ITestTask CurrentTask { get; set; }
+        // public static ITestTask CurrentTask { get; set; }
         public static bool StopImmediately { get; set; }
         
         public static void ResetData()
         {
 			ClientId = 0;
-			CurrentTask = null;
+			// CurrentTask = null;
 			ServerUrl = string.Empty;
 			StopImmediately = false;
         }

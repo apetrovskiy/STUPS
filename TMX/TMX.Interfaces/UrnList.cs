@@ -26,9 +26,9 @@ namespace TMX.Interfaces.Server
         public static string TestClients_Client = "/{id:int}";
         
         public static string TestTasks_Root = "/Tasks";
-        // public static string TestTasks_Current = "/current";
         public static string TestTasks_CurrentClient = "/{id:int}";
-        // public static string TestTasks_CurrentClient = "/current/{id:int}";
         public static string TestTasks_Task = "/{id:int}";
+        // public static string TestTasks_CurrentTask = "/currentTask/{id:int}";
+        public static string TestTasks_CurrentTask = "/currentTask";
     }
 }

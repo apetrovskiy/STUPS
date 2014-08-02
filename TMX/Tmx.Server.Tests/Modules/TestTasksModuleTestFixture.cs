@@ -150,11 +150,12 @@ namespace Tmx.Server.Tests.Modules
             task.TaskStatus = TestTaskStatuses.Accepted;
             response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => with.JsonBody<ITestTask>(task));
             // imitation
-            ClientSettings.CurrentTask = task; // taskLoader.GetCurrentTask();
-            ClientSettings.CurrentTask.TaskResult = new[] { "aaaaa", "bbbbb", "ccccc" };
+            // ClientSettings.CurrentTask = task; // taskLoader.GetCurrentTask();
+            // ClientSettings.CurrentTask.TaskResult = new[] { "aaaaa", "bbbbb", "ccccc" };
             // var taskUpdater = new TaskUpdater();
             var taskUpdater = new TaskUpdater(new RestRequestCreator());
-            response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => with.JsonBody<ITestTask>(ClientSettings.CurrentTask));
+            // response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => with.JsonBody<ITestTask>(ClientSettings.CurrentTask));
+            response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => with.JsonBody<ITestTask>(task));
             
             task.TaskStatus = TestTaskStatuses.CompletedSuccessfully;
             task.TaskFinished = true;

@@ -52,7 +52,7 @@ namespace Tmx.Server.Modules
 				ClientsCollection.Clients.Add(testClient);
 				
 				// TODO: DI
-				var taskSorter = new TaskSorter();
+				var taskSorter = new TaskSelector();
 //				TaskPool.Tasks.AddRange(taskSorter.SelectTasksForClient(clientInformation.Id));
 				// move to another pool
 				// TaskPool.Tasks.AddRange(taskSorter.SelectTasksForClient(testClient.Id));

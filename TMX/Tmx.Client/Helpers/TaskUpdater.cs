@@ -39,5 +39,15 @@ namespace Tmx.Client
 				throw new UpdateTaskException("Failed to update task '" + task.Name + "'. " + updatingTaskResponse.StatusCode);
 			return true;
 		}
+		
+		public bool SendTaskResult(ITestTask task)
+		{
+			var request = _restRequestCreator.GetRestRequest(UrnList.TestTasks_Root + UrnList.TestTasks_CurrentTask + "/" + ClientSettings.ClientId, Method.PUT);
+			request.AddObject(task);
+			var sendingResultResponse = _restRequestCreator.RestClient.Execute<TestTask>(request);
+			if (HttpStatusCode.OK != sendingResultResponse.StatusCode)
+				throw new UpdateTaskException("Failed to send results to task. " + sendingResultResponse.StatusCode);
+			return true;
+		}
 	}
 }

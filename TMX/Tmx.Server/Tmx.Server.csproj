@@ -79,7 +79,7 @@
     <Compile Include="Helpers\Control\InternalServerControl.cs" />
     <Compile Include="Helpers\Control\ServerControl.cs" />
     <Compile Include="Helpers\Objects\TaskPool.cs" />
-    <Compile Include="Helpers\TaskSorter.cs" />
+    <Compile Include="Helpers\TaskSelector.cs" />
     <Compile Include="Helpers\Commands\StartServerCommand.cs" />
     <Compile Include="Helpers\Commands\StopTmxServerCommand.cs" />
     <Compile Include="Helpers\Objects\ClientsCollection.cs" />

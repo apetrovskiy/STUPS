@@ -14,6 +14,7 @@ namespace Tmx
 	using System.Linq;
 	using Tmx;
 	using Tmx.Client;
+	using Tmx.Interfaces.Types.Remoting;
 	using Tmx.Commands;
 	
 	/// <summary>
@@ -28,13 +29,17 @@ namespace Tmx
         internal override void Execute()
         {
             var cmdlet = (SendTmxTestTaskResultCommand)Cmdlet;
-            if (null == ClientSettings.CurrentTask) throw new Exception("Failed to send data to the task.");
-            ClientSettings.CurrentTask.TaskResult = cmdlet.Result;
+            // if (null == ClientSettings.CurrentTask) throw new Exception("Failed to send data to the task.");
+            // ClientSettings.CurrentTask.TaskResult = cmdlet.Result;
             // var taskUpdater = new TaskUpdater();
             var taskUpdater = new TaskUpdater(new RestRequestCreator());
             // cmdlet.WriteObject(taskUpdater.UpdateTask());
             // cmdlet.WriteObject(taskUpdater.UpdateTask(ClientSettings.CurrentTask));
             // taskUpdater.UpdateTask(ClientSettings.CurrentTask);
+            var task = new TestTask {
+            	TaskResult = cmdlet.Result
+            };
+            taskUpdater.SendTaskResult(task);
         }
     }
 }

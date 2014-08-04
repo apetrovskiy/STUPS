@@ -24,14 +24,10 @@ namespace Tmx
         {
         }
         
-        // static TaskLoader taskLoader = new TaskLoader(new RestRequestCreator());
-        
         internal override void Execute()
         {
             var cmdlet = (ReceiveTmxTestTaskCommand)Cmdlet;
             ClientSettings.StopImmediately = false;
-            // ClientSettings.CurrentTask = null;
-            // var taskLoader = new TaskLoader();
             var taskLoader = new TaskLoader(new RestRequestCreator());
             ITestTask task = null;
             
@@ -39,8 +35,6 @@ namespace Tmx
             // TODO: to a template method
             var startTime = DateTime.Now;
             while (!ClientSettings.StopImmediately) {
-                
-                // var taskLoader = new TaskLoader(new RestRequestCreator());
                 
                 // TODO: move to aspect
                 try {
@@ -51,18 +45,16 @@ namespace Tmx
 Console.WriteLine("receiving a task " + e.Message);
                 }
                 
-                System.Threading.Thread.Sleep(Preferences.ReceivingTaskSleepIntervalMilliseconds);
-                
-                // if (null != ClientSettings.CurrentTask)
 				if (null != task)
                     break;
                 
                 if ((DateTime.Now - startTime).TotalSeconds >= cmdlet.Seconds)
                     throw new Exception("Failed to receive a task in " + cmdlet.Seconds + " seconds");
+                
+                System.Threading.Thread.Sleep(Preferences.ReceivingTaskSleepIntervalMilliseconds);
             }
             
             ClientSettings.StopImmediately = false;
-            // cmdlet.WriteObject(ClientSettings.CurrentTask);
             cmdlet.WriteObject(task);
         }
     }

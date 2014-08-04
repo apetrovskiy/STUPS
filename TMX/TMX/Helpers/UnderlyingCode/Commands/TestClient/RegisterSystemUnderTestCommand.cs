@@ -28,7 +28,6 @@ namespace Tmx
             var cmdlet = (RegisterTmxSystemUnderTestCommand)Cmdlet;
             ClientSettings.ServerUrl = cmdlet.ServerUrl;
             ClientSettings.StopImmediately = false;
-            // var registration = new Registration();
             var registration = new Registration(new RestRequestCreator());
             // temporarily
             // TODO: to a template method
@@ -42,13 +41,13 @@ namespace Tmx
 Console.WriteLine("registering " + e2.Message);
                 }
                 
-                System.Threading.Thread.Sleep(Preferences.ClientRegistrationSleepIntervalMilliseconds);
-                
 				if (0 != ClientSettings.ClientId)
 					break;
                 
                 if ((DateTime.Now - startTime).TotalSeconds >= cmdlet.Seconds)
                     throw new Exception("Failed to register client in " + cmdlet.Seconds + " seconds");
+                
+                System.Threading.Thread.Sleep(Preferences.ClientRegistrationSleepIntervalMilliseconds);
             }
             
             ClientSettings.StopImmediately = false;

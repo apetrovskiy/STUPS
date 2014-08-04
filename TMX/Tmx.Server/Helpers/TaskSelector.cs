@@ -52,25 +52,13 @@ namespace Tmx.Server
 		{
 			var taskListForClient = getOnlyNewTestTasksForClient(clientId);
 			if (null == taskListForClient || !taskListForClient.Any()) return null;
-Console.WriteLine("GetFirstLegibleTask 000002");
-var smth = taskListForClient.First(task => task.Id == taskListForClient.Min(tsk => tsk.Id));
-if (null == smth) {
-    Console.WriteLine("GetFirstLegibleTask null == smth, returning null");
-    return null;
-}
-else {
-    Console.WriteLine("GetFirstLegibleTask returning the first task " + smth.Id);
-    return smth;
-}
-            
-			// return taskListForClient.First(task => task.Id == taskListForClient.Min(tsk => tsk.Id));
+			return taskListForClient.First(task => task.Id == taskListForClient.Min(tsk => tsk.Id));
 		}
 		
 		public ITestTask GetNextLegibleTask(int clientId, int currentTaskId)
 		{
 			var taskListForClient = getOnlyNewTestTasksForClient(clientId);
 			if (null == taskListForClient || !taskListForClient.Any()) return null;
-Console.WriteLine("GetNextLegibleTask 000002");
 			return taskListForClient.First(task => task.Id == taskListForClient.Where(t => t.Id > currentTaskId).Min(tsk => tsk.Id));
 		}
 		

@@ -28,104 +28,54 @@ namespace Tmx.Server.Modules
         {
             Get[UrnList.TestTasks_CurrentClient] = parameters => {
 				var taskSorter = new TaskSelector();
-				// ITestTask actualTask = taskSorter.GetFirstLegibleTask(parameters.id);
-				var actualTask = taskSorter.GetFirstLegibleTask(parameters.id) as TestTask;
-				
-				
-Console.WriteLine("get -> requested client id = " + parameters.id);
-if (null == actualTask) {
-	Console.WriteLine("get -> null == actualTask");
-	return HttpStatusCode.NotFound;
-}
-Console.WriteLine("get -> null != actualTask");
-Console.WriteLine("get -> client Id = " + actualTask.ClientId + ", task id = " + actualTask.Id + ", compl = " + actualTask.TaskFinished + ", status = " + actualTask.TaskStatus);
-//var response = Response.AsJson(actualTask).WithStatusCode(HttpStatusCode.OK);
-//Console.WriteLine(response.
-
-// return Response.AsJson(actualTask).WithStatusCode(HttpStatusCode.OK);
-return Response.AsJson(actualTask, HttpStatusCode.OK);
-				
-				
-				// return null != actualTask ? Response.AsJson(actualTask).WithStatusCode(HttpStatusCode.OK) : HttpStatusCode.NotFound;
+				ITestTask actualTask = taskSorter.GetFirstLegibleTask(parameters.id);
+				return null != actualTask ? Response.AsJson(actualTask).WithStatusCode(HttpStatusCode.OK) : HttpStatusCode.NotFound;
 			};
             
             Put[UrnList.TestTasks_Task] = parameters => {
-                // var loadedTask = this.Bind<TestTask>();
                 ITestTask loadedTask = this.Bind<TestTask>();
                 if (null == loadedTask) throw new UpdateTaskException("Failed to update task with id = " + parameters.id);
-                // var storedTask = TaskPool.TasksForClients.First(task => task.Id == loadedTask.Id && task.ClientId == loadedTask.ClientId);
                 var storedTask = TaskPool.TasksForClients.First(task => task.Id == parameters.id && task.ClientId == loadedTask.ClientId);
                 storedTask.TaskFinished = loadedTask.TaskFinished;
                 storedTask.TaskStatus = loadedTask.TaskStatus;
-                // storedTask.TaskResult = loadedTask.TaskResult;
-Console.WriteLine("put -> current task " + loadedTask.Id + ", client id = " + loadedTask.ClientId + ", status = " + loadedTask.TaskStatus + ", compl = " + loadedTask.TaskFinished);
+                //
+if (null == loadedTask.TaskResult)
+    Console.WriteLine("null == loadedTask.TaskResult");
+else {
+    Console.WriteLine("null != loadedTask.TaskResult");
+    foreach (var element in loadedTask.TaskResult) {
+        Console.WriteLine(element);
+    }
+}
+                storedTask.TaskResult = loadedTask.TaskResult;
+                //
                 
                 if (storedTask.TaskFinished) {
                     var taskSorter = new TaskSelector();
                     ITestTask nextTask = null;
                     try {
-                        // nextTask = taskSorter.GetNextLegibleTask(loadedTask.ClientId, loadedTask.Id);
                         nextTask = taskSorter.GetNextLegibleTask(storedTask.ClientId, storedTask.Id);
-Console.WriteLine("put -> getNextLegibleTask " + nextTask.Id);
                     }
-                    catch (Exception eeeee) {
-Console.WriteLine("put -> getNextLegibleTask " + eeeee.Message);
+                    catch (Exception eFailedToGetNextTask) {
+                        throw new FailedToGetNextTaskException(eFailedToGetNextTask.Message);
                     }
                     
                     if (null == nextTask) return HttpStatusCode.OK;
-                    // nextTask.PreviousTaskResult = storedTask.TaskResult ?? new string[] {};
                     nextTask.PreviousTaskResult = storedTask.TaskResult;
-                    // nextTask.PreviousTaskId = loadedTask.Id;
                     nextTask.PreviousTaskId = storedTask.Id;
                 }
                 return HttpStatusCode.OK;
             };
         	
-        	Put[UrnList.TestTasks_CurrentTask + UrnList.TestTasks_CurrentClient] = parameters => {
-				// var loadedTask = this.Bind<TestTask>();
-Console.WriteLine("put2 -> !!!!!!!!!!!!!!! sending results");
-Console.WriteLine("put2 -> client id = " + parameters.id);
-                ITestTask loadedTask = this.Bind<TestTask>();
-if (null == loadedTask)
-	Console.WriteLine("put2 -> null == loadedTask");
-else
-	Console.WriteLine("put2 -> null != loadedTask");
-                if (null == loadedTask) throw new UpdateTaskException("Failed to send results to task, client id = " + parameters.id);
-                
-                var taskSorter = new TaskSelector();
-                var actualTask = taskSorter.GetFirstLegibleTask(parameters.id) as TestTask;
-Console.WriteLine("put2 -> sending results: actual task id = " + actualTask.Id);
-                actualTask.TaskResult = loadedTask.TaskResult;
-Console.WriteLine("put2 -> sending results: " + actualTask.TaskResult.Count());
-                /*
-                // var storedTask = TaskPool.TasksForClients.First(task => task.Id == loadedTask.Id && task.ClientId == loadedTask.ClientId);
-                var storedTask = TaskPool.TasksForClients.First(task => task.Id == parameters.id && task.ClientId == loadedTask.ClientId);
-                storedTask.TaskFinished = loadedTask.TaskFinished;
-                storedTask.TaskStatus = loadedTask.TaskStatus;
-                storedTask.TaskResult = loadedTask.TaskResult;
-Console.WriteLine("put -> current task " + loadedTask.Id + ", client id = " + loadedTask.ClientId + ", status = " + loadedTask.TaskStatus + ", compl = " + loadedTask.TaskFinished);
-                
-                if (storedTask.TaskFinished) {
-                    var taskSorter = new TaskSorter();
-                    ITestTask nextTask = null;
-                    try {
-                        // nextTask = taskSorter.GetNextLegibleTask(loadedTask.ClientId, loadedTask.Id);
-                        nextTask = taskSorter.GetNextLegibleTask(storedTask.ClientId, storedTask.Id);
-Console.WriteLine("put -> getNextLegibleTask " + nextTask.Id);
-                    }
-                    catch (Exception eeeee) {
-Console.WriteLine("put -> getNextLegibleTask " + eeeee.Message);
-                    }
-                    
-                    if (null == nextTask) return HttpStatusCode.OK;
-                    // nextTask.PreviousTaskResult = storedTask.TaskResult ?? new string[] {};
-                    nextTask.PreviousTaskResult = storedTask.TaskResult;
-                    // nextTask.PreviousTaskId = loadedTask.Id;
-                    nextTask.PreviousTaskId = storedTask.Id;
-                }
-                */
-                return HttpStatusCode.OK;        		
-        	};
+//        	Put[UrnList.TestTasks_CurrentTask + UrnList.TestTasks_CurrentClient] = parameters => {
+//                ITestTask loadedTask = this.Bind<TestTask>();
+//                if (null == loadedTask) throw new UpdateTaskException("Failed to send results to task, client id = " + parameters.id);
+//                
+//                var taskSorter = new TaskSelector();
+//                var actualTask = taskSorter.GetFirstLegibleTask(parameters.id) as TestTask;
+//                actualTask.TaskResult = loadedTask.TaskResult;
+//                return HttpStatusCode.OK;        		
+//        	};
         }
     }
 }

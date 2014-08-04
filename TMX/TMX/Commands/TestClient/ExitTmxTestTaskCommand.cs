@@ -17,7 +17,8 @@ namespace Tmx.Commands
     /// Description of ExitTmxTestTaskCommand.
     /// </summary>
     [Cmdlet(VerbsCommon.Exit, "TmxTestTask")]
-    public class ExitTmxTestTaskCommand : ClientCmdletBase
+    // public class ExitTmxTestTaskCommand : ClientCmdletBase
+    internal class ExitTmxTestTaskCommand : ClientCmdletBase
     {
 		protected override void BeginProcessing()
 		{

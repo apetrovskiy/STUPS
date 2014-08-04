@@ -29,17 +29,42 @@ namespace Tmx
         internal override void Execute()
         {
             var cmdlet = (SendTmxTestTaskResultCommand)Cmdlet;
-            // if (null == ClientSettings.CurrentTask) throw new Exception("Failed to send data to the task.");
-            // ClientSettings.CurrentTask.TaskResult = cmdlet.Result;
-            // var taskUpdater = new TaskUpdater();
-            var taskUpdater = new TaskUpdater(new RestRequestCreator());
-            // cmdlet.WriteObject(taskUpdater.UpdateTask());
-            // cmdlet.WriteObject(taskUpdater.UpdateTask(ClientSettings.CurrentTask));
-            // taskUpdater.UpdateTask(ClientSettings.CurrentTask);
-            var task = new TestTask {
-            	TaskResult = cmdlet.Result
-            };
-            taskUpdater.SendTaskResult(task);
+            // var taskUpdater = new TaskUpdater(new RestRequestCreator());
+            // taskUpdater.SendTaskResult(new TestTask { TaskResult = cmdlet.Result }, cmdlet.ClientId);
+            // ClientSettings.TaskResult = cmdlet.Result;
+            // ClientSettings.TaskResult. += cmdlet.Result;
+            
+if (null == cmdlet.Result)
+    Console.WriteLine("send 0: null == cmdlet.Result");
+else {
+    Console.WriteLine("send 0: null != cmdlet.Result");
+    foreach (var element in cmdlet.Result) {
+        Console.WriteLine(element);
+    }
+}
+            
+if (null == ClientSettings.TaskResult)
+    Console.WriteLine("send 1: null == ClientSettings.TaskResult");
+else {
+    Console.WriteLine("send 1: null != ClientSettings.TaskResult");
+    foreach (var element in ClientSettings.TaskResult) {
+        Console.WriteLine(element);
+    }
+}
+
+
+            // ClientSettings.TaskResult = ClientSettings.TaskResult.Concat(cmdlet.Result);
+            ClientSettings.TaskResult = null == ClientSettings.TaskResult ? new string[] {} : ClientSettings.TaskResult.Concat(cmdlet.Result);
+            
+            
+if (null == ClientSettings.TaskResult)
+    Console.WriteLine("send 2: null == ClientSettings.TaskResult");
+else {
+    Console.WriteLine("send 2: null != ClientSettings.TaskResult");
+    foreach (var element in ClientSettings.TaskResult) {
+        Console.WriteLine(element);
+    }
+}
         }
     }
 }

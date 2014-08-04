@@ -25,6 +25,9 @@ namespace Tmx.Commands
 		           ValueFromPipeline = true)]
 		[ValidateNotNull]
 		public string[] Result { get; set; }
+//		
+//		[Parameter(Mandatory = true)]
+//		public int ClientId { get; set; }
 		
 		protected override void ProcessRecord()
 		{

@@ -27,7 +27,6 @@ namespace Tmx
         internal override void Execute()
         {
             var cmdlet = (UnregisterTmxSystemUnderTestCommand)Cmdlet;
-            // var registration = new Registration();
             var registration = new Registration(new RestRequestCreator());
             registration.UnregisterClient();
         }

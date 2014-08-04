@@ -47,7 +47,6 @@ namespace Tmx.Client
 			var unregistrationResponse = _restRequestCreator.RestClient.Execute(request);
 			if (HttpStatusCode.OK != unregistrationResponse.StatusCode)
                 throw new ClientDeregistrationException("Failed to unregister the client. " + unregistrationResponse.StatusCode);
-			// cleanUpClientData();
 			ClientSettings.ResetData();
         }
         
@@ -66,12 +65,5 @@ namespace Tmx.Client
                 UptimeSeconds = Environment.TickCount / 1000
             };
         }
-//        
-//		void cleanUpClientData()
-//		{
-//			ClientSettings.ClientId = 0;
-//			ClientSettings.CurrentTask = null;
-//			ClientSettings.ServerUrl = string.Empty;
-//		}
     }
 }

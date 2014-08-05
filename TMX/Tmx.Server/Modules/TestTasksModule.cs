@@ -29,6 +29,10 @@ namespace Tmx.Server.Modules
             Get[UrnList.TestTasks_CurrentClient] = parameters => {
 				var taskSorter = new TaskSelector();
 				ITestTask actualTask = taskSorter.GetFirstLegibleTask(parameters.id);
+if (null == actualTask)
+    Console.WriteLine("null == actualTask");
+else
+    Console.WriteLine("null != actualTask");
 				return null != actualTask ? Response.AsJson(actualTask).WithStatusCode(HttpStatusCode.OK) : HttpStatusCode.NotFound;
 			};
             
@@ -37,6 +41,7 @@ namespace Tmx.Server.Modules
                 if (null == loadedTask) throw new UpdateTaskException("Failed to update task with id = " + parameters.id);
                 var storedTask = TaskPool.TasksForClients.First(task => task.Id == parameters.id && task.ClientId == loadedTask.ClientId);
                 storedTask.TaskFinished = loadedTask.TaskFinished;
+Console.WriteLine("task finished? {0}", loadedTask.TaskFinished);
                 storedTask.TaskStatus = loadedTask.TaskStatus;
                 //
 if (null == loadedTask.TaskResult)

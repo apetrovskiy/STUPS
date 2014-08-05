@@ -14,6 +14,7 @@ namespace Tmx
 	using System.Linq;
 	using Tmx;
 	using Tmx.Client;
+	using Tmx.Interfaces;
 	using Tmx.Interfaces.Types.Remoting;
 	using Tmx.Commands;
 	
@@ -43,28 +44,36 @@ else {
     }
 }
             
-if (null == ClientSettings.TaskResult)
-    Console.WriteLine("send 1: null == ClientSettings.TaskResult");
-else {
-    Console.WriteLine("send 1: null != ClientSettings.TaskResult");
-    foreach (var element in ClientSettings.TaskResult) {
-        Console.WriteLine(element);
-    }
-}
+//if (null == ClientSettings.TaskResult)
+//    Console.WriteLine("send 1: null == ClientSettings.TaskResult");
+//else {
+//    Console.WriteLine("send 1: null != ClientSettings.TaskResult");
+//    foreach (var element in ClientSettings.TaskResult) {
+//        Console.WriteLine(element);
+//    }
+//}
 
 
             // ClientSettings.TaskResult = ClientSettings.TaskResult.Concat(cmdlet.Result);
-            ClientSettings.TaskResult = null == ClientSettings.TaskResult ? new string[] {} : ClientSettings.TaskResult.Concat(cmdlet.Result);
+            // ClientSettings.TaskResult = null == ClientSettings.TaskResult ? new string[] {} : ClientSettings.TaskResult.Concat(cmdlet.Result);
+            // var setTaskResultsDelegate = new SetTaskResults(ClientSettings.SetTaskResult(cmdlet.Result));
+            // var addTaskResultsDelegate = new AddTaskResults(ClientSettings.AddTaskResult);
+            var taskResultLoader = new TaskResultLoader();
+            var addTaskResultsDelegate = new AddTaskResults(taskResultLoader.AddTaskResults);
+            // addTaskResultsDelegate.Invoke(cmdlet.Result);
+            addTaskResultsDelegate(cmdlet.Result);
             
-            
-if (null == ClientSettings.TaskResult)
-    Console.WriteLine("send 2: null == ClientSettings.TaskResult");
-else {
-    Console.WriteLine("send 2: null != ClientSettings.TaskResult");
-    foreach (var element in ClientSettings.TaskResult) {
-        Console.WriteLine(element);
-    }
-}
+//if (null == ClientSettings.TaskResult)
+//    Console.WriteLine("send 2: null == ClientSettings.TaskResult");
+//else {
+//    Console.WriteLine("send 2: null != ClientSettings.TaskResult");
+//    foreach (var element in ClientSettings.TaskResult) {
+//        Console.WriteLine(element);
+//    }
+//}
         }
     }
+    
+    // internal delegate void AddTaskResults(string[] results);
+    // public delegate void AddTaskResults(string[] results);
 }

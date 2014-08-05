@@ -11,6 +11,7 @@ namespace Tmx.Client
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 	using Tmx.Interfaces.Remoting;
     
     /// <summary>
@@ -31,6 +32,16 @@ namespace Tmx.Client
 			ServerUrl = string.Empty;
 			StopImmediately = false;
 			TaskResult = new string[] {};
+        }
+        
+        public static void SetTaskResult(string[] results)
+        {
+            TaskResult = results;
+        }
+        
+        public static void AddTaskResult(string[] results)
+        {
+            TaskResult = null == TaskResult ? new string[] {} : TaskResult.Concat(results);
         }
     }
 }

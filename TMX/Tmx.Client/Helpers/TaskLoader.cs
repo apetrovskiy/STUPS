@@ -32,10 +32,16 @@ namespace Tmx.Client
 	    
 		public ITestTask GetCurrentTask()
 		{
+Console.WriteLine("trying to load a new task: " + UrnList.TestTasks_Root + "/" + ClientSettings.ClientId);
 			var request = _restRequestCreator.GetRestRequest(UrnList.TestTasks_Root + "/" + ClientSettings.ClientId, Method.GET);
 			var gettingTaskResponse = _restRequestCreator.RestClient.Execute<TestTask>(request);
 			var task = gettingTaskResponse.Data;
             if (HttpStatusCode.NotFound == gettingTaskResponse.StatusCode) return null; // a waiting task?
+Console.WriteLine("trying to accept the task");
+if (null == task)
+    Console.WriteLine("null == task");
+else
+    Console.WriteLine("null != task");
 			if (HttpStatusCode.OK == gettingTaskResponse.StatusCode) return acceptCurrentTask(task);
 			throw new LoadTaskException("Failed to load task. " + gettingTaskResponse.StatusCode);
 		}

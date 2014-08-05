@@ -82,6 +82,7 @@
     <Compile Include="DataTypes\Types\TestResultCmdletBaseDataObject.cs" />
     <Compile Include="DataTypes\Types\TestResultDetailCmdletBaseDataObject.cs" />
     <Compile Include="DataTypes\Types\TestResultStatusCmdletBaseDataObject.cs" />
+    <Compile Include="Delegates\Delegates.cs" />
     <Compile Include="Exceptions\ClientDeregistrationException.cs" />
     <Compile Include="Exceptions\ClientRegistrationException.cs" />
     <Compile Include="Exceptions\AcceptTaskException.cs" />
@@ -127,6 +128,7 @@
     <Folder Include="DataTypes\Types" />
     <Folder Include="Exceptions" />
     <Folder Include="ExtensionMethods" />
+    <Folder Include="Delegates" />
     <Folder Include="Types" />
     <Folder Include="Remoting" />
     <Folder Include="TestStructure" />

@@ -35,14 +35,14 @@ namespace Tmx
             // ClientSettings.TaskResult = cmdlet.Result;
             // ClientSettings.TaskResult. += cmdlet.Result;
             
-if (null == cmdlet.Result)
-    Console.WriteLine("send 0: null == cmdlet.Result");
-else {
-    Console.WriteLine("send 0: null != cmdlet.Result");
-    foreach (var element in cmdlet.Result) {
-        Console.WriteLine(element);
-    }
-}
+//if (null == cmdlet.Result)
+//    Console.WriteLine("send 0: null == cmdlet.Result");
+//else {
+//    Console.WriteLine("send 0: null != cmdlet.Result");
+//    foreach (var element in cmdlet.Result) {
+//        Console.WriteLine(element);
+//    }
+//}
             
 //if (null == ClientSettings.TaskResult)
 //    Console.WriteLine("send 1: null == ClientSettings.TaskResult");

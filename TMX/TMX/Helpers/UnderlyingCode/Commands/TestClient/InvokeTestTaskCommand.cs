@@ -43,16 +43,34 @@ namespace Tmx
 			task.TaskFinished = true;
 			task.TaskStatus = runResult ? TestTaskStatuses.CompletedSuccessfully : TestTaskStatuses.Failed;
 			//
-if (null == ClientSettings.TaskResult)
-    Console.WriteLine("invoke: null == ClientSettings.TaskResult");
-else {
-    Console.WriteLine("invoke: null != ClientSettings.TaskResult");
-    foreach (var element in ClientSettings.TaskResult) {
-        Console.WriteLine(element);
-    }
-}
+//if (null == ClientSettings.TaskResult)
+//    Console.WriteLine("invoke: null == ClientSettings.TaskResult");
+//else {
+//    Console.WriteLine("invoke: null != ClientSettings.TaskResult");
+//    foreach (var element in ClientSettings.TaskResult) {
+//        Console.WriteLine(element);
+//    }
+//}
+//if (null != ClientSettings.TaskResult) {
+//	Console.WriteLine("null != ClientSettings.TaskResult");
+//	foreach (var element in ClientSettings.TaskResult) {
+//		Console.WriteLine(element);
+//	}
+//} else
+//	Console.WriteLine("null == ClientSettings.TaskResult");
+
 			if (null != ClientSettings.TaskResult)
                 task.TaskResult = ClientSettings.TaskResult.ToArray();
+			
+//if (null != task.TaskResult)
+//	Console.WriteLine("null != task.TaskResult");
+//else
+//	Console.WriteLine("null == task.TaskResult");
+//if (null != task.TaskResult) {
+//	foreach (var element in task.TaskResult) {
+//		Console.WriteLine(element);
+//	}
+//}
 			//
 			taskUpdater.UpdateTask(task);
         }

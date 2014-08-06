@@ -44,14 +44,14 @@ else
 Console.WriteLine("task finished? {0}", loadedTask.TaskFinished);
                 storedTask.TaskStatus = loadedTask.TaskStatus;
                 //
-if (null == loadedTask.TaskResult)
-    Console.WriteLine("null == loadedTask.TaskResult");
-else {
-    Console.WriteLine("null != loadedTask.TaskResult");
-    foreach (var element in loadedTask.TaskResult) {
-        Console.WriteLine(element);
-    }
-}
+//if (null == loadedTask.TaskResult)
+//    Console.WriteLine("null == loadedTask.TaskResult");
+//else {
+//    Console.WriteLine("null != loadedTask.TaskResult");
+//    foreach (var element in loadedTask.TaskResult) {
+//        Console.WriteLine(element);
+//    }
+//}
                 storedTask.TaskResult = loadedTask.TaskResult;
                 //
                 

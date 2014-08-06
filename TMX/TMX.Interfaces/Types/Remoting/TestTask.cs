@@ -18,6 +18,11 @@ namespace Tmx.Interfaces.Types.Remoting
 	/// </summary>
 	public class TestTask : ITestTask
 	{
+//		public TestTask()
+//		{
+//			this.TaskResult = new string[] {};
+//		}
+//		
 		public int Id { get; set; }
 		// public int Order { get; set; }
 		public int PreviousTaskId { get; set; }

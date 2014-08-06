@@ -34,14 +34,14 @@ namespace Tmx.Client
 			TaskResult = new string[] {};
         }
         
-        public static void SetTaskResult(string[] results)
-        {
-            TaskResult = results;
-        }
+//        public static void SetTaskResult(string[] results)
+//        {
+//            TaskResult = results;
+//        }
         
         public static void AddTaskResult(string[] results)
         {
-            TaskResult = null == TaskResult ? new string[] {} : TaskResult.Concat(results);
+            TaskResult = null == TaskResult ? results : TaskResult.Concat(results);
         }
     }
 }

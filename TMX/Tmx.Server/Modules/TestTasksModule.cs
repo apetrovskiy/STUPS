@@ -52,7 +52,7 @@ Console.WriteLine("task finished? {0}", loadedTask.TaskFinished);
 //        Console.WriteLine(element);
 //    }
 //}
-                storedTask.TaskResult = loadedTask.TaskResult;
+                // storedTask.TaskResult = loadedTask.TaskResult;
                 //
                 
                 if (storedTask.TaskFinished) {
@@ -72,15 +72,17 @@ Console.WriteLine("task finished? {0}", loadedTask.TaskFinished);
                 return HttpStatusCode.OK;
             };
         	
-//        	Put[UrnList.TestTasks_CurrentTask + UrnList.TestTasks_CurrentClient] = parameters => {
-//                ITestTask loadedTask = this.Bind<TestTask>();
-//                if (null == loadedTask) throw new UpdateTaskException("Failed to send results to task, client id = " + parameters.id);
-//                
-//                var taskSorter = new TaskSelector();
-//                var actualTask = taskSorter.GetFirstLegibleTask(parameters.id) as TestTask;
-//                actualTask.TaskResult = loadedTask.TaskResult;
-//                return HttpStatusCode.OK;        		
-//        	};
+        	Put[UrnList.TestTasks_CurrentTask + UrnList.TestTasks_CurrentClient] = parameters => {
+                ITestTask loadedTask = this.Bind<TestTask>();
+                if (null == loadedTask) throw new UpdateTaskException("Failed to send results to task, client id = " + parameters.id);
+                
+                var taskSorter = new TaskSelector();
+                var actualTask = taskSorter.GetFirstLegibleTask(parameters.id) as TestTask;
+                // var actualTask = taskSorter.GetFirstLegibleTask(parameters.id);
+                // actualTask.TaskResult = loadedTask.TaskResult;
+                actualTask.TaskResult = null == actualTask.TaskResult ? new string[] {} : actualTask.TaskResult.Concat(loadedTask.TaskResult).ToArray();
+                return HttpStatusCode.OK;        		
+        	};
         }
     }
 }

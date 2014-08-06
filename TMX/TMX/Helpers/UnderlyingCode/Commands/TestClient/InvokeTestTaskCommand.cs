@@ -37,7 +37,7 @@ namespace Tmx
                 cmdlet.WriteError(cmdlet, "Task '" + task.Name + "' has been already processed", "AlreadyProcessed", ErrorCategory.InvalidData, true);
             
             // task.TaskResult = new string[] {};
-            ClientSettings.TaskResult = new string[] {};
+//            ClientSettings.TaskResult = new string[] {};
             
 			var runResult = taskRunner.Run(task);
 			task.TaskFinished = true;
@@ -59,8 +59,8 @@ namespace Tmx
 //} else
 //	Console.WriteLine("null == ClientSettings.TaskResult");
 
-			if (null != ClientSettings.TaskResult)
-                task.TaskResult = ClientSettings.TaskResult.ToArray();
+//			if (null != ClientSettings.TaskResult)
+//                task.TaskResult = ClientSettings.TaskResult.ToArray();
 			
 //if (null != task.TaskResult)
 //	Console.WriteLine("null != task.TaskResult");

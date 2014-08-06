@@ -40,14 +40,14 @@ namespace Tmx.Client
 			return true;
 		}
 		
-//		public bool SendTaskResult(ITestTask task, int clientId)
-//		{
-//			var request = _restRequestCreator.GetRestRequest(UrnList.TestTasks_Root + UrnList.TestTasks_CurrentTask + "/" + clientId, Method.PUT);
-//			request.AddObject(task);
-//			var sendingResultResponse = _restRequestCreator.RestClient.Execute<TestTask>(request);
-//			if (HttpStatusCode.OK != sendingResultResponse.StatusCode)
-//				throw new UpdateTaskException("Failed to send results to task. " + sendingResultResponse.StatusCode);
-//			return true;
-//		}
+		public bool SendTaskResult(ITestTask task, int clientId)
+		{
+			var request = _restRequestCreator.GetRestRequest(UrnList.TestTasks_Root + UrnList.TestTasks_CurrentTask + "/" + clientId, Method.PUT);
+			request.AddObject(task);
+			var sendingResultResponse = _restRequestCreator.RestClient.Execute<TestTask>(request);
+			if (HttpStatusCode.OK != sendingResultResponse.StatusCode)
+				throw new UpdateTaskException("Failed to send results to task. " + sendingResultResponse.StatusCode);
+			return true;
+		}
 	}
 }

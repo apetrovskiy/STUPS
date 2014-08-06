@@ -30,8 +30,8 @@ namespace Tmx
         internal override void Execute()
         {
             var cmdlet = (SendTmxTestTaskResultCommand)Cmdlet;
-            // var taskUpdater = new TaskUpdater(new RestRequestCreator());
-            // taskUpdater.SendTaskResult(new TestTask { TaskResult = cmdlet.Result }, cmdlet.ClientId);
+            var taskUpdater = new TaskUpdater(new RestRequestCreator());
+            taskUpdater.SendTaskResult(new TestTask { TaskResult = cmdlet.Result }, cmdlet.ClientId);
             // ClientSettings.TaskResult = cmdlet.Result;
             // ClientSettings.TaskResult. += cmdlet.Result;
             
@@ -58,10 +58,10 @@ namespace Tmx
             // ClientSettings.TaskResult = null == ClientSettings.TaskResult ? new string[] {} : ClientSettings.TaskResult.Concat(cmdlet.Result);
             // var setTaskResultsDelegate = new SetTaskResults(ClientSettings.SetTaskResult(cmdlet.Result));
             // var addTaskResultsDelegate = new AddTaskResults(ClientSettings.AddTaskResult);
-            var taskResultLoader = new TaskResultLoader();
-            var addTaskResultsDelegate = new AddTaskResults(taskResultLoader.AddTaskResults);
-            // addTaskResultsDelegate.Invoke(cmdlet.Result);
-            addTaskResultsDelegate(cmdlet.Result);
+//            var taskResultLoader = new TaskResultLoader();
+//            var addTaskResultsDelegate = new AddTaskResults(taskResultLoader.AddTaskResults);
+//            // addTaskResultsDelegate.Invoke(cmdlet.Result);
+//            addTaskResultsDelegate(cmdlet.Result);
             
 //if (null == ClientSettings.TaskResult)
 //    Console.WriteLine("send 2: null == ClientSettings.TaskResult");

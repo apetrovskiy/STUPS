@@ -7,6 +7,7 @@ and run F:\SharpDevelop\bin\SharpDevelop.exe
 
 2. Download source code, this is a package called STUPS-master.zip
 Unpack it to a folder, for example, F:\STUPS-master
+Open F:\STUPS-master\STUPS.sln
 
 3. Now, we need to set up configuration. This is legacy and need to be changed, however, it takes time to change.
 Okay, just use what is needed:

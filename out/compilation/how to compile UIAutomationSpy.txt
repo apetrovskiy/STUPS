@@ -1,0 +1,28 @@
+1. Download the latest SharpDevelop from their build server
+http://build.sharpdevelop.net/BuildArtefacts/
+For simplicity sake, take an xcopyable version. For today, the latest is SharpDevelop_5.0.0.4611.Xcopyable.zip
+http://build.sharpdevelop.net/BuildArtefacts/SharpDevelop_5.0.0.4611.Xcopyable.zip
+Unpack it to a folder, in my case this is F:\SharpDevelop
+and run F:\SharpDevelop\bin\SharpDevelop.exe 
+
+2. Download source code, this is a package called STUPS-master.zip
+Unpack it to a folder, for example, F:\STUPS-master
+
+3. Now, we need to set up configuration. This is legacy and need to be changed, however, it takes time to change.
+Okay, just use what is needed:
+Main menu -> Build -> Set configuration -> Release35
+Main menu -> Build -> Set platform -> Release35
+The overwhelming majority of projects should be seen as Release35 in the Build -> Edit configurations/platforms dialog
+
+4. It's time to download dependencies
+right click on the project (UIAutomationSpy) and click on Restore Packages
+
+5. Some minor fixes, just do it
+right click on the project (UIAutomationSpy, Tmx, ) and click on Properties -> the Compiling tab -> the Output Path text box -> type in bin\Release35\
+
+6. Compile!
+right click on the project (UIAutomationSpy) and click on Rebuild
+
+7. Test it!
+go to the folder F:\STUPS-master\UIA\UIAutomationSpy\bin\Release35 and run UIAutomationSpy.exe
+

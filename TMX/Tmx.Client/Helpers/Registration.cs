@@ -60,6 +60,12 @@ namespace Tmx.Client
                 IsInteractive = Environment.UserInteractive,
                 // IsAdmin = 
                 // EnvironmentVersion = Environment.Version.Major + "." + Environment.Version.MajorRevision + "." + Environment.Version.Minor + "." + Environment.Version.MinorRevision + "." + Environment.Version.Build,
+                
+                /*
+                $principal = new-object System.Security.Principal.WindowsPrincipal([System.Security.Principal.WindowsIdentity]::GetCurrent())
+                $principal .IsInRole([System.Security.Principal.WindowsBuiltInRole]::Administrator)
+                */
+                
                 Fqdn = Dns.GetHostName() + "." + IPGlobalProperties.GetIPGlobalProperties().DomainName,
                 OsVersion = Environment.OSVersion.VersionString,
                 UptimeSeconds = Environment.TickCount / 1000

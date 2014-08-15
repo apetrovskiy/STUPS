@@ -12,6 +12,7 @@ namespace Tmx.Client
     using System;
 	using System.Net;
 	using System.Net.NetworkInformation;
+	using System.Security.Principal;
     using RestSharp;
 	using TMX.Interfaces.Exceptions;
 	using TMX.Interfaces.Server;
@@ -58,18 +59,18 @@ namespace Tmx.Client
                 Username = Environment.UserName,
                 UserDomainName = Environment.UserDomainName,
                 IsInteractive = Environment.UserInteractive,
-                // IsAdmin = 
+                IsAdmin = isAdministrator(),
                 // EnvironmentVersion = Environment.Version.Major + "." + Environment.Version.MajorRevision + "." + Environment.Version.Minor + "." + Environment.Version.MinorRevision + "." + Environment.Version.Build,
-                
-                /*
-                $principal = new-object System.Security.Principal.WindowsPrincipal([System.Security.Principal.WindowsIdentity]::GetCurrent())
-                $principal .IsInRole([System.Security.Principal.WindowsBuiltInRole]::Administrator)
-                */
-                
                 Fqdn = Dns.GetHostName() + "." + IPGlobalProperties.GetIPGlobalProperties().DomainName,
                 OsVersion = Environment.OSVersion.VersionString,
                 UptimeSeconds = Environment.TickCount / 1000
             };
+        }
+        
+        bool isAdministrator()
+        {
+            var principal = new WindowsPrincipal(WindowsIdentity.GetCurrent());
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
         }
     }
 }

@@ -18,12 +18,9 @@ The overwhelming majority of projects should be seen as Release35 in the Build -
 4. It's time to download dependencies
 right click on the project (UIAutomationSpy) and click on Restore Packages
 
-5. Some minor fixes, just do it
-right click on the project (UIAutomationSpy, Tmx, ) and click on Properties -> the Compiling tab -> the Output Path text box -> type in bin\Release35\
-
-6. Compile!
+5. Compile!
 right click on the project (UIAutomationSpy) and click on Rebuild
 
-7. Test it!
+6. Test it!
 go to the folder F:\STUPS-master\UIA\UIAutomationSpy\bin\Release35 and run UIAutomationSpy.exe
 

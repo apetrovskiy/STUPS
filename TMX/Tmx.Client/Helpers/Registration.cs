@@ -25,7 +25,7 @@ namespace Tmx.Client
     public class Registration
     {
         // readonly RestRequestCreator _restRequestCreator = new RestRequestCreator();
-        readonly RestRequestCreator _restRequestCreator;
+        volatile RestRequestCreator _restRequestCreator;
 	    
 	    public Registration(RestRequestCreator requestCreator)
 	    {

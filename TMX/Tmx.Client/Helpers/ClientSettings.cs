@@ -20,11 +20,35 @@ namespace Tmx.Client
     // public static class ClientSettings
     public class ClientSettings
     {
-        public static string ServerUrl { get; set; }
-        public static int ClientId { get; set; }
-        public static bool StopImmediately { get; set; }
+        // public static string ServerUrl { get; set; }
+        volatile static string _ServerUrl;
+        public static string ServerUrl
+        {
+            get { return _ServerUrl; }
+            set { _ServerUrl = value; }
+        }
+        // public static int ClientId { get; set; }
+        volatile static int _clientId;
+        public static int ClientId
+        {
+            get { return _clientId; }
+            set { _clientId = value; }
+        }
+        // public static bool StopImmediately { get; set; }
+        volatile static bool _stopImmediately;
+        public static bool StopImmediately
+        {
+            get { return _stopImmediately; }
+            set { _stopImmediately = value; }
+        }
         // public static string[] TaskResult { get; set; }
-        public static IEnumerable<string> TaskResult { get; set; }
+        // public static IEnumerable<string> TaskResult { get; set; }
+        volatile static IEnumerable<string> _taskResult;
+        public static IEnumerable<string> TaskResult
+        {
+            get{ return _taskResult; }
+            set { _taskResult = value; }
+        }
         
         public static void ResetData()
         {

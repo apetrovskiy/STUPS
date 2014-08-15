@@ -23,7 +23,7 @@ namespace Tmx.Client
 	/// </summary>
 	public class TaskLoader
 	{
-	    readonly RestRequestCreator _restRequestCreator;
+	    volatile RestRequestCreator _restRequestCreator;
 	    
 	    public TaskLoader(RestRequestCreator requestCreator)
 	    {

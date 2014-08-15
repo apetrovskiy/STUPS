@@ -23,7 +23,7 @@ namespace Tmx.Client
 	public class TaskUpdater
 	{
 	    // readonly RestRequestCreator _restRequestCreator = new RestRequestCreator();
-	    readonly RestRequestCreator _restRequestCreator;
+	    volatile RestRequestCreator _restRequestCreator;
 	    
 	    public TaskUpdater(RestRequestCreator requestCreator)
 	    {

@@ -21,7 +21,10 @@ namespace Tmx.Client
         
         public virtual RestRequest GetRestRequest(string url, Method method)
         {
-            RestClient = new RestClient(ClientSettings.ServerUrl);
+            // RestClient = new RestClient(ClientSettings.ServerUrl);
+            var clientSettings = ClientSettings.Instance;
+            RestClient = new RestClient(clientSettings.ServerUrl);
+            
             return new RestRequest(url, method);
         }
     }

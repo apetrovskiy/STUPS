@@ -30,7 +30,10 @@ namespace Tmx.Client
 //	Console.WriteLine("null == results");
 //}
             
-            var addTaskResultsDelegate = new AddTaskResults(ClientSettings.AddTaskResult);
+            // var addTaskResultsDelegate = new AddTaskResults(ClientSettings.AddTaskResult);
+            var clientSettings = ClientSettings.Instance;
+            var addTaskResultsDelegate = new AddTaskResults(clientSettings.AddTaskResult);
+            
             addTaskResultsDelegate(results);
         }
     }

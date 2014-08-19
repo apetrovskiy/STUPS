@@ -27,18 +27,25 @@ namespace Tmx
         internal override void Execute()
         {
             var cmdlet = (ReceiveTmxTestTaskCommand)Cmdlet;
-            ClientSettings.StopImmediately = false;
+            // ClientSettings.StopImmediately = false;
+            var clientSettings = ClientSettings.Instance;
+            clientSettings.StopImmediately = false;
+            
             var taskLoader = new TaskLoader(new RestRequestCreator());
             ITestTask task = null;
             
             // temporarily
             // TODO: to a template method
             var startTime = DateTime.Now;
-            while (!ClientSettings.StopImmediately) {
+            // while (!ClientSettings.StopImmediately) {
+            while (!clientSettings.StopImmediately) {
                 
                 // TODO: move to aspect
                 try {
                     // ClientSettings.CurrentTask = taskLoader.GetCurrentTask();
+                    
+Console.WriteLine(System.Threading.Thread.CurrentThread.ManagedThreadId);
+                    
                     task = taskLoader.GetCurrentTask();
                 }
                 catch (Exception e) {
@@ -54,7 +61,9 @@ Console.WriteLine("receiving a task " + e.Message);
                 System.Threading.Thread.Sleep(Preferences.ReceivingTaskSleepIntervalMilliseconds);
             }
             
-            ClientSettings.StopImmediately = false;
+            // ClientSettings.StopImmediately = false;
+            clientSettings.StopImmediately = false;
+            
             cmdlet.WriteObject(task);
         }
     }

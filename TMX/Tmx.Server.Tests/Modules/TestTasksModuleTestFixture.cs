@@ -132,16 +132,23 @@ namespace Tmx.Server.Tests.Modules
             
             // When
             // imitation
-            ClientSettings.ServerUrl = @"http://localhost:12340";
-            ClientSettings.StopImmediately = false;
+            // ClientSettings.ServerUrl = @"http://localhost:12340";
+            // ClientSettings.StopImmediately = false;
+            var clientSettings = ClientSettings.Instance;
+            clientSettings.ServerUrl = @"http://localhost:12340";
+            clientSettings.StopImmediately = false;
+            
             // var registration = new Registration();
             var registration = new Registration(new RestRequestCreator());
             
             var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<ITestClient>(testClient));
             var registeredClient = response.Body.DeserializeJson<TestClient>();
             // imitation
-            ClientSettings.ClientId = registeredClient.Id;
-            ClientSettings.StopImmediately = false;
+            // ClientSettings.ClientId = registeredClient.Id;
+            // ClientSettings.StopImmediately = false;
+            clientSettings.ClientId = registeredClient.Id;
+            clientSettings.StopImmediately = false;
+            
             // var taskLoader = new TaskLoader();
             var taskLoader = new TaskLoader(new RestRequestCreator());
             

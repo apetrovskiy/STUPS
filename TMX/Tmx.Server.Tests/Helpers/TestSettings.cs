@@ -27,7 +27,10 @@ namespace Tmx.Server.Tests
 			ClientsCollection.Clients.Clear();
 			TaskPool.Tasks.Clear();
 			TaskPool.TasksForClients.Clear();
-			ClientSettings.ResetData();
+			// ClientSettings.ResetData();
+			var clientSettings = ClientSettings.Instance;
+			clientSettings.ResetData();
+			
 			Preferences.ClientRegistrationSleepIntervalMilliseconds = 0;
 			Preferences.ReceivingTaskSleepIntervalMilliseconds = 0;
 		}

@@ -44,11 +44,14 @@ namespace Tmx.Client
         
         public void UnregisterClient()
         {
-			var request = _restRequestCreator.GetRestRequest(UrnList.TestClients_Root + "/" + ClientSettings.ClientId, Method.DELETE);
+			// var request = _restRequestCreator.GetRestRequest(UrnList.TestClients_Root + "/" + ClientSettings.ClientId, Method.DELETE);
+			var clientSettings = ClientSettings.Instance;
+			var request = _restRequestCreator.GetRestRequest(UrnList.TestClients_Root + "/" + clientSettings.ClientId, Method.DELETE);
 			var unregistrationResponse = _restRequestCreator.RestClient.Execute(request);
 			if (HttpStatusCode.OK != unregistrationResponse.StatusCode)
                 throw new ClientDeregistrationException("Failed to unregister the client. " + unregistrationResponse.StatusCode);
-			ClientSettings.ResetData();
+			// ClientSettings.ResetData();
+			clientSettings.ResetData();
         }
         
         ITestClient getNewTestClient(string customClientString)

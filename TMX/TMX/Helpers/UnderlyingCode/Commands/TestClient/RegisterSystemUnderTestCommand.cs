@@ -26,22 +26,30 @@ namespace Tmx
         internal override void Execute()
         {
             var cmdlet = (RegisterTmxSystemUnderTestCommand)Cmdlet;
-            ClientSettings.ServerUrl = cmdlet.ServerUrl;
-            ClientSettings.StopImmediately = false;
+            // ClientSettings.ServerUrl = cmdlet.ServerUrl;
+            // ClientSettings.StopImmediately = false;
+            var clientSettings = ClientSettings.Instance;
+            clientSettings.ServerUrl = cmdlet.ServerUrl;
+            clientSettings.StopImmediately = false;
+            
             var registration = new Registration(new RestRequestCreator());
             // temporarily
             // TODO: to a template method
             var startTime = DateTime.Now;
-            while (!ClientSettings.StopImmediately) {
+            // while (!ClientSettings.StopImmediately) {
+            while (!clientSettings.StopImmediately) {
                 // TODO: move to aspect
                 try {
-                    ClientSettings.ClientId = registration.SendRegistrationInfoAndGetClientId(cmdlet.CustomClientString);
+                    // ClientSettings.ClientId = registration.SendRegistrationInfoAndGetClientId(cmdlet.CustomClientString);
+                    clientSettings.ClientId = registration.SendRegistrationInfoAndGetClientId(cmdlet.CustomClientString);
+                    
                 }
                 catch (Exception e2) {
 Console.WriteLine("registering " + e2.Message);
                 }
                 
-				if (0 != ClientSettings.ClientId)
+				// if (0 != ClientSettings.ClientId)
+				if (0 != clientSettings.ClientId)
 					break;
                 
                 if ((DateTime.Now - startTime).TotalSeconds >= cmdlet.Seconds)
@@ -50,7 +58,8 @@ Console.WriteLine("registering " + e2.Message);
                 System.Threading.Thread.Sleep(Preferences.ClientRegistrationSleepIntervalMilliseconds);
             }
             
-            ClientSettings.StopImmediately = false;
+            // ClientSettings.StopImmediately = false;
+            clientSettings.StopImmediately = false;
         }
     }
 }

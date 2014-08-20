@@ -31,9 +31,10 @@ namespace Tmx
         {
             var cmdlet = (SendTmxTestTaskResultCommand)Cmdlet;
             var taskUpdater = new TaskUpdater(new RestRequestCreator());
-            taskUpdater.SendTaskResult(new TestTask { TaskResult = cmdlet.Result }, cmdlet.ClientId);
+            // taskUpdater.SendTaskResult(new TestTask { TaskResult = cmdlet.Result }, cmdlet.ClientId);
+            taskUpdater.SendTaskResult(new TestTask { TaskResult = cmdlet.Result }, ClientSettings.Instance.ClientId);
             
-Console.WriteLine(System.Threading.Thread.CurrentThread.ManagedThreadId);
+// Console.WriteLine(System.Threading.Thread.CurrentThread.ManagedThreadId);
             
             // ClientSettings.TaskResult = cmdlet.Result;
             // ClientSettings.TaskResult. += cmdlet.Result;

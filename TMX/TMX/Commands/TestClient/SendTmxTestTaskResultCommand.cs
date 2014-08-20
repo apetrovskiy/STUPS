@@ -25,10 +25,10 @@ namespace Tmx.Commands
 		           ValueFromPipeline = true)]
 		[ValidateNotNull]
 		public string[] Result { get; set; }
-		
-		[Parameter(Mandatory = true,
-		           Position = 1)]
-		public int ClientId { get; set; }
+//		
+//		[Parameter(Mandatory = true,
+//		           Position = 1)]
+//		public int ClientId { get; set; }
 		
 		protected override void ProcessRecord()
 		{

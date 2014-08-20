@@ -44,7 +44,7 @@ namespace Tmx
                 try {
                     // ClientSettings.CurrentTask = taskLoader.GetCurrentTask();
                     
-Console.WriteLine(System.Threading.Thread.CurrentThread.ManagedThreadId);
+// Console.WriteLine(System.Threading.Thread.CurrentThread.ManagedThreadId);
                     
                     task = taskLoader.GetCurrentTask();
                 }

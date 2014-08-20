@@ -11,7 +11,7 @@ namespace Tmx.Client
 {
 	using System;
 	using System.Net;
-	using RestSharp;
+	// using RestSharp;
 	using Spring.Rest.Client;
 	using Tmx;
 	using TMX.Interfaces.Exceptions;

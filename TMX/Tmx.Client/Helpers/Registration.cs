@@ -13,7 +13,7 @@ namespace Tmx.Client
 	using System.Net;
 	using System.Net.NetworkInformation;
 	using System.Security.Principal;
-    using RestSharp;
+    // using RestSharp;
 	using Spring.Http;
 	using Spring.Rest.Client;
 	using TMX.Interfaces.Exceptions;
@@ -51,9 +51,15 @@ namespace Tmx.Client
 //				return registrationResponse.Data.Id;
 //			throw new Exception("Failed to register a client. "+ registrationResponse.StatusCode); // TODO: new type!
 			
+//Console.WriteLine("sending registration... 001");
 			var registrationResponse = _restTemplate.PostForMessage<TestClient>(UrnList.TestClients_Root + UrnList.TestClients_Clients, getNewTestClient(customClientString));
+//			var newTestClient = getNewTestClient(customClientString);
+//Console.WriteLine("sending registration... 001.1");
+//			var registrationResponse = _restTemplate.PostForMessage<TestClient>(UrnList.TestClients_Root + UrnList.TestClients_Clients, newTestClient);
+//Console.WriteLine("sending registration... 002");
 			if (HttpStatusCode.Created == registrationResponse.StatusCode)
 				return registrationResponse.Body.Id;
+//Console.WriteLine("sending registration... 003");
 			throw new Exception("Failed to register a client. "+ registrationResponse.StatusCode); // TODO: new type!
 		}
         

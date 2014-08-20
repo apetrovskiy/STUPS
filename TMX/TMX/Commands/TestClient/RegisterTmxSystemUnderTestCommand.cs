@@ -43,8 +43,9 @@ namespace Tmx.Commands
         protected override void StopProcessing()
         {
             // ClientSettings.StopImmediately = true;
-            var clientSettings = ClientSettings.Instance;
-            clientSettings.StopImmediately = true;
+//            var clientSettings = ClientSettings.Instance;
+//            clientSettings.StopImmediately = true;
+            ClientSettings.Instance.StopImmediately = true;
         }
 	}
 }

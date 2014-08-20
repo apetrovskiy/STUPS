@@ -10,7 +10,8 @@
 namespace Tmx.Client
 {
     using System;
-    using RestSharp;
+	using Spring.Http.Converters.Json;
+    // using RestSharp;
 	using Spring.Rest.Client;
     
     /// <summary>
@@ -34,7 +35,10 @@ namespace Tmx.Client
 //            RestClient = new RestClient(clientSettings.ServerUrl);
 //            
 //            return new RestRequest(url, method);
-            return new RestTemplate(ClientSettings.Instance.ServerUrl);
+            // return new RestTemplate(ClientSettings.Instance.ServerUrl);
+            var restTemplate = new RestTemplate(ClientSettings.Instance.ServerUrl);
+            restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
+            return restTemplate;
         }
     }
 }

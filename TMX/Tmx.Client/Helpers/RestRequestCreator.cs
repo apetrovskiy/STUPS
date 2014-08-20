@@ -11,21 +11,30 @@ namespace Tmx.Client
 {
     using System;
     using RestSharp;
+	using Spring.Rest.Client;
     
     /// <summary>
     /// Description of RestRequestCreator.
     /// </summary>
     public class RestRequestCreator
     {
-        public virtual RestClient RestClient { get; set; }
+        // 20140820
+        // move from RestSharp to RestTemplate
+        // public virtual RestClient RestClient { get; set; }
         
-        public virtual RestRequest GetRestRequest(string url, Method method)
+        // 20140820
+        // move from RestSharp to RestTemplate
+        // public virtual RestRequest GetRestRequest(string url, Method method)
+        public virtual RestTemplate GetRestTemplate(string url)
         {
             // RestClient = new RestClient(ClientSettings.ServerUrl);
-            var clientSettings = ClientSettings.Instance;
-            RestClient = new RestClient(clientSettings.ServerUrl);
-            
-            return new RestRequest(url, method);
+//            var clientSettings = ClientSettings.Instance;
+            // 20140820
+            // move from RestSharp to RestTemplate
+//            RestClient = new RestClient(clientSettings.ServerUrl);
+//            
+//            return new RestRequest(url, method);
+            return new RestTemplate(ClientSettings.Instance.ServerUrl);
         }
     }
 }

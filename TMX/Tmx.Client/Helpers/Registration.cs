@@ -14,6 +14,8 @@ namespace Tmx.Client
 	using System.Net.NetworkInformation;
 	using System.Security.Principal;
     using RestSharp;
+	using Spring.Http;
+	using Spring.Rest.Client;
 	using TMX.Interfaces.Exceptions;
 	using TMX.Interfaces.Server;
 	using Tmx.Interfaces;
@@ -25,33 +27,56 @@ namespace Tmx.Client
     public class Registration
     {
         // readonly RestRequestCreator _restRequestCreator = new RestRequestCreator();
-        volatile RestRequestCreator _restRequestCreator;
+        // 20140820
+        // move from RestSharp to RestTemplate
+//        volatile RestRequestCreator _restRequestCreator;
+        volatile RestTemplate _restTemplate;
 	    
 	    public Registration(RestRequestCreator requestCreator)
 	    {
-	    	_restRequestCreator = requestCreator;
+	        // 20140820
+            // move from RestSharp to RestTemplate
+	    	// _restRequestCreator = requestCreator;
+	    	_restTemplate = requestCreator.GetRestTemplate(string.Empty);
 	    }
         
         public int SendRegistrationInfoAndGetClientId(string customClientString)
 		{
-			var request = _restRequestCreator.GetRestRequest(UrnList.TestClients_Root + UrnList.TestClients_Clients, Method.POST);
-			request.AddBody(getNewTestClient(customClientString));
-			var registrationResponse = _restRequestCreator.RestClient.Execute<TestClient>(request);
+            // 20140820
+            // move from RestSharp to RestTemplate
+//			var request = _restRequestCreator.GetRestRequest(UrnList.TestClients_Root + UrnList.TestClients_Clients, Method.POST);
+//			request.AddBody(getNewTestClient(customClientString));
+//			var registrationResponse = _restRequestCreator.RestClient.Execute<TestClient>(request);
+//			if (HttpStatusCode.Created == registrationResponse.StatusCode)
+//				return registrationResponse.Data.Id;
+//			throw new Exception("Failed to register a client. "+ registrationResponse.StatusCode); // TODO: new type!
+			
+			var registrationResponse = _restTemplate.PostForMessage<TestClient>(UrnList.TestClients_Root + UrnList.TestClients_Clients, getNewTestClient(customClientString));
 			if (HttpStatusCode.Created == registrationResponse.StatusCode)
-				return registrationResponse.Data.Id;
+				return registrationResponse.Body.Id;
 			throw new Exception("Failed to register a client. "+ registrationResponse.StatusCode); // TODO: new type!
 		}
         
         public void UnregisterClient()
         {
-			// var request = _restRequestCreator.GetRestRequest(UrnList.TestClients_Root + "/" + ClientSettings.ClientId, Method.DELETE);
-			var clientSettings = ClientSettings.Instance;
-			var request = _restRequestCreator.GetRestRequest(UrnList.TestClients_Root + "/" + clientSettings.ClientId, Method.DELETE);
-			var unregistrationResponse = _restRequestCreator.RestClient.Execute(request);
-			if (HttpStatusCode.OK != unregistrationResponse.StatusCode)
-                throw new ClientDeregistrationException("Failed to unregister the client. " + unregistrationResponse.StatusCode);
-			// ClientSettings.ResetData();
-			clientSettings.ResetData();
+            // 20140820
+            // move from RestSharp to RestTemplate
+//			// var request = _restRequestCreator.GetRestRequest(UrnList.TestClients_Root + "/" + ClientSettings.ClientId, Method.DELETE);
+//			var clientSettings = ClientSettings.Instance;
+//			var request = _restRequestCreator.GetRestRequest(UrnList.TestClients_Root + "/" + clientSettings.ClientId, Method.DELETE);
+//			var unregistrationResponse = _restRequestCreator.RestClient.Execute(request);
+//			if (HttpStatusCode.OK != unregistrationResponse.StatusCode)
+//                throw new ClientDeregistrationException("Failed to unregister the client. " + unregistrationResponse.StatusCode);
+//			// ClientSettings.ResetData();
+//			clientSettings.ResetData();
+			
+			try {
+			    _restTemplate.Delete(UrnList.TestClients_Root + "/" + ClientSettings.Instance.ClientId);
+                ClientSettings.Instance.ResetData();
+			}
+			catch {
+			    throw new ClientDeregistrationException("Failed to unregister the client");
+			}
         }
         
         ITestClient getNewTestClient(string customClientString)

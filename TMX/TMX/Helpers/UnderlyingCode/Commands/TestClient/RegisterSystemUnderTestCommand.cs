@@ -32,6 +32,8 @@ namespace Tmx
             clientSettings.ServerUrl = cmdlet.ServerUrl;
             clientSettings.StopImmediately = false;
             
+            // 20140820
+            // move from RestSharp to RestTemplate
             var registration = new Registration(new RestRequestCreator());
             // temporarily
             // TODO: to a template method

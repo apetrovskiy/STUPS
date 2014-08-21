@@ -10,7 +10,7 @@
 namespace Tmx.Server.Modules
 {
     using System;
-    using System.Collections.Generic;
+    // using System.Collections.Generic;
     using System.Linq;
 	using Nancy;
 	using Nancy.ModelBinding;
@@ -29,10 +29,6 @@ namespace Tmx.Server.Modules
             Get[UrnList.TestTasks_CurrentClient] = parameters => {
 				var taskSorter = new TaskSelector();
 				ITestTask actualTask = taskSorter.GetFirstLegibleTask(parameters.id);
-//if (null == actualTask)
-//    Console.WriteLine("null == actualTask");
-//else
-//    Console.WriteLine("null != actualTask");
 				return null != actualTask ? Response.AsJson(actualTask).WithStatusCode(HttpStatusCode.OK) : HttpStatusCode.NotFound;
 			};
             
@@ -41,19 +37,7 @@ namespace Tmx.Server.Modules
                 if (null == loadedTask) throw new UpdateTaskException("Failed to update task with id = " + parameters.id);
                 var storedTask = TaskPool.TasksForClients.First(task => task.Id == parameters.id && task.ClientId == loadedTask.ClientId);
                 storedTask.TaskFinished = loadedTask.TaskFinished;
-//Console.WriteLine("task finished? {0}", loadedTask.TaskFinished);
                 storedTask.TaskStatus = loadedTask.TaskStatus;
-                //
-//if (null == loadedTask.TaskResult)
-//    Console.WriteLine("null == loadedTask.TaskResult");
-//else {
-//    Console.WriteLine("null != loadedTask.TaskResult");
-//    foreach (var element in loadedTask.TaskResult) {
-//        Console.WriteLine(element);
-//    }
-//}
-                // storedTask.TaskResult = loadedTask.TaskResult;
-                //
                 
                 if (storedTask.TaskFinished) {
                     var taskSorter = new TaskSelector();
@@ -78,21 +62,6 @@ namespace Tmx.Server.Modules
                 
                 var taskSorter = new TaskSelector();
                 var actualTask = taskSorter.GetFirstLegibleTask(parameters.id) as TestTask;
-                // var actualTask = taskSorter.GetFirstLegibleTask(parameters.id);
-                // actualTask.TaskResult = loadedTask.TaskResult;
-//if (null == loadedTask.TaskResult)
-//    Console.WriteLine("null == loadedTask.TaskResult");
-//else {
-//    Console.WriteLine("null != loadedTask.TaskResult");
-//    foreach (var element in loadedTask.TaskResult) {
-//        Console.WriteLine(element);
-//    }
-//}
-                // actualTask.TaskResult = null == actualTask.TaskResult ? new string[] {} : actualTask.TaskResult.Concat(loadedTask.TaskResult).ToArray();
-                // actualTask.TaskResult = loadedTask.TaskResult;
-				// actualTask.TaskResult = actualTask.TaskResult ?? new string[] {};
-				// actualTask.TaskResult = actualTask.TaskResult.Concat(loadedTask.TaskResult).ToArray();
-				// actualTask.TaskResult = (null == actualTask.TaskResult) ? new string[] {} : actualTask.TaskResult.Concat(loadedTask.TaskResult).ToArray();
 				var currentTaskResult = actualTask.TaskResult ?? new string[] {};
 				actualTask.TaskResult = currentTaskResult.Concat(loadedTask.TaskResult).ToArray();
                 return HttpStatusCode.OK;        		

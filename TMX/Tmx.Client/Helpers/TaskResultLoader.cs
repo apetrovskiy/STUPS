@@ -19,21 +19,8 @@ namespace Tmx.Client
     {
         public void AddTaskResults(string[] results)
         {
-            // ClientSettings.AddTaskResult(results);
-            
-//if (null != results) {
-//	Console.WriteLine("null != results");
-//	foreach (var element in results) {
-//		Console.WriteLine(element);
-//	}
-//} else {
-//	Console.WriteLine("null == results");
-//}
-            
-            // var addTaskResultsDelegate = new AddTaskResults(ClientSettings.AddTaskResult);
             var clientSettings = ClientSettings.Instance;
             var addTaskResultsDelegate = new AddTaskResults(clientSettings.AddTaskResult);
-            
             addTaskResultsDelegate(results);
         }
     }

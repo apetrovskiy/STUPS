@@ -90,7 +90,6 @@
     <Compile Include="Helpers\TaskUpdater.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App_Readme\Spring.Rest.txt" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

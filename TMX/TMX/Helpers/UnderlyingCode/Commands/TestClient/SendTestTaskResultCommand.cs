@@ -10,11 +10,11 @@
 namespace Tmx
 {
 	using System;
-	using System.Collections.Generic;
+	// using System.Collections.Generic;
 	using System.Linq;
 	using Tmx;
 	using Tmx.Client;
-	using Tmx.Interfaces;
+	// using Tmx.Interfaces;
 	using Tmx.Interfaces.Types.Remoting;
 	using Tmx.Commands;
 	
@@ -31,53 +31,7 @@ namespace Tmx
         {
             var cmdlet = (SendTmxTestTaskResultCommand)Cmdlet;
             var taskUpdater = new TaskUpdater(new RestRequestCreator());
-            // taskUpdater.SendTaskResult(new TestTask { TaskResult = cmdlet.Result }, cmdlet.ClientId);
             taskUpdater.SendTaskResult(new TestTask { TaskResult = cmdlet.Result }, ClientSettings.Instance.ClientId);
-            
-// Console.WriteLine(System.Threading.Thread.CurrentThread.ManagedThreadId);
-            
-            // ClientSettings.TaskResult = cmdlet.Result;
-            // ClientSettings.TaskResult. += cmdlet.Result;
-            
-//if (null == cmdlet.Result)
-//    Console.WriteLine("send 0: null == cmdlet.Result");
-//else {
-//    Console.WriteLine("send 0: null != cmdlet.Result");
-//    foreach (var element in cmdlet.Result) {
-//        Console.WriteLine(element);
-//    }
-//}
-            
-//if (null == ClientSettings.TaskResult)
-//    Console.WriteLine("send 1: null == ClientSettings.TaskResult");
-//else {
-//    Console.WriteLine("send 1: null != ClientSettings.TaskResult");
-//    foreach (var element in ClientSettings.TaskResult) {
-//        Console.WriteLine(element);
-//    }
-//}
-
-
-            // ClientSettings.TaskResult = ClientSettings.TaskResult.Concat(cmdlet.Result);
-            // ClientSettings.TaskResult = null == ClientSettings.TaskResult ? new string[] {} : ClientSettings.TaskResult.Concat(cmdlet.Result);
-            // var setTaskResultsDelegate = new SetTaskResults(ClientSettings.SetTaskResult(cmdlet.Result));
-            // var addTaskResultsDelegate = new AddTaskResults(ClientSettings.AddTaskResult);
-//            var taskResultLoader = new TaskResultLoader();
-//            var addTaskResultsDelegate = new AddTaskResults(taskResultLoader.AddTaskResults);
-//            // addTaskResultsDelegate.Invoke(cmdlet.Result);
-//            addTaskResultsDelegate(cmdlet.Result);
-            
-//if (null == ClientSettings.TaskResult)
-//    Console.WriteLine("send 2: null == ClientSettings.TaskResult");
-//else {
-//    Console.WriteLine("send 2: null != ClientSettings.TaskResult");
-//    foreach (var element in ClientSettings.TaskResult) {
-//        Console.WriteLine(element);
-//    }
-//}
         }
     }
-    
-    // internal delegate void AddTaskResults(string[] results);
-    // public delegate void AddTaskResults(string[] results);
 }

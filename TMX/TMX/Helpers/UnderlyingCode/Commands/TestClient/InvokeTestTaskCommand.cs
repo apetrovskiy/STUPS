@@ -12,7 +12,7 @@ namespace Tmx
 	using System;
 	using System.Management.Automation;
 	using System.Linq;
-	using TMX.Interfaces.Exceptions;
+	// using TMX.Interfaces.Exceptions;
 	using Tmx;
 	using Tmx.Client;
 	using Tmx.Interfaces.Remoting;
@@ -36,42 +36,9 @@ namespace Tmx
             if (TestTaskStatuses.Accepted != task.TaskStatus)
                 cmdlet.WriteError(cmdlet, "Task '" + task.Name + "' has been already processed", "AlreadyProcessed", ErrorCategory.InvalidData, true);
             
-            // task.TaskResult = new string[] {};
-//            ClientSettings.TaskResult = new string[] {};
-            
 			var runResult = taskRunner.Run(task);
 			task.TaskFinished = true;
 			task.TaskStatus = runResult ? TestTaskStatuses.CompletedSuccessfully : TestTaskStatuses.Failed;
-			//
-//if (null == ClientSettings.TaskResult)
-//    Console.WriteLine("invoke: null == ClientSettings.TaskResult");
-//else {
-//    Console.WriteLine("invoke: null != ClientSettings.TaskResult");
-//    foreach (var element in ClientSettings.TaskResult) {
-//        Console.WriteLine(element);
-//    }
-//}
-//if (null != ClientSettings.TaskResult) {
-//	Console.WriteLine("null != ClientSettings.TaskResult");
-//	foreach (var element in ClientSettings.TaskResult) {
-//		Console.WriteLine(element);
-//	}
-//} else
-//	Console.WriteLine("null == ClientSettings.TaskResult");
-
-//			if (null != ClientSettings.TaskResult)
-//                task.TaskResult = ClientSettings.TaskResult.ToArray();
-			
-//if (null != task.TaskResult)
-//	Console.WriteLine("null != task.TaskResult");
-//else
-//	Console.WriteLine("null == task.TaskResult");
-//if (null != task.TaskResult) {
-//	foreach (var element in task.TaskResult) {
-//		Console.WriteLine(element);
-//	}
-//}
-			//
 			taskUpdater.UpdateTask(task);
         }
     }

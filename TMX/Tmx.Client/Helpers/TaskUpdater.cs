@@ -43,7 +43,8 @@ namespace Tmx.Client
 		public bool SendTaskResult(ITestTask task, int clientId)
 		{
 			try {
-			    _restTemplate.Put(UrnList.TestTasks_Root + UrnList.TestTasks_CurrentTask + "/" + clientId, task);
+			    // _restTemplate.Put(UrnList.TestTasks_Root + UrnList.TestTasks_CurrentTask + "/" + clientId, task);
+			    _restTemplate.Put(UrnList.CurrentTaskForClientById + "/" + clientId, task);
 			    return true;
 			}
 			catch {

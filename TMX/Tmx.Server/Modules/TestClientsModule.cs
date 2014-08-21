@@ -39,7 +39,7 @@ namespace Tmx.Server.Modules
 				return Response.AsJson(testClient).WithStatusCode(HttpStatusCode.Created);
 			};
 			
-			Delete[UrnList.TestClients_Client] = parameters => {
+			Delete[UrnList.TestClients_ClientById] = parameters => {
 				try {
 					var clientsToDelete = ClientsCollection.Clients.RemoveAll(client => client.Id == parameters.id);
 					// TODO: clean up the list of tasks for the client if ever existed

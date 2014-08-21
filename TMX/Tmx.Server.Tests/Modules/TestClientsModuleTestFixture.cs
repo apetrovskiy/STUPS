@@ -52,7 +52,8 @@ namespace Tmx.Server.Tests.Modules
             };
             
             // When
-            var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<ITestClient>(testClient));
+            // var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<ITestClient>(testClient));
+            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => with.JsonBody<ITestClient>(testClient));
             
             // Then
             Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
@@ -69,7 +70,8 @@ namespace Tmx.Server.Tests.Modules
             var testClient = new TestClient { Hostname = testClientHostnameExpected, Username = testClientUsernameExpected };
             
             // When
-            var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<ITestClient>(testClient));
+            // var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<ITestClient>(testClient));
+            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => with.JsonBody<ITestClient>(testClient));
             
             // Then
             Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);

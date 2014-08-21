@@ -16,19 +16,22 @@ namespace TMX.Interfaces.Server
     /// </summary>
     public static class UrnList
     {
-        public static string TestStructure_Root = "/Results";
-        public static string TestStructure_Suites = "/suites/";
-        public static string TestStructure_Scenarios = "/scenarios/";
-        public static string TestStructure_Results = "/testResults/";
+        public const string TestStructure_Root = "/Results";
+        public const string TestStructure_Suites = "/suites/";
+        public const string TestStructure_Scenarios = "/scenarios/";
+        public const string TestStructure_Results = "/testResults/";
         
-        public static string TestClients_Root = "/Clients";
-        public static string TestClients_Clients = "/";
-        public static string TestClients_Client = "/{id:int}";
+        public const string TestClients_Root = "/Clients";
+        public const string TestClients_Clients = "/";
+        public const string TestClients_ClientById = "/{id:int}";
+        public static string TestClientRegistrationPoint = TestClients_Root + TestClients_Clients;
         
-        public static string TestTasks_Root = "/Tasks";
-        public static string TestTasks_CurrentClient = "/{id:int}";
-        public static string TestTasks_Task = "/{id:int}";
+        public const string TestTasks_Root = "/Tasks";
+        public const string TestTasks_CurrentClient = "/{id:int}";
+        public const string TestTasks_Task = "/{id:int}";
         // public static string TestTasks_CurrentTask = "/currentTask/{id:int}";
-        public static string TestTasks_CurrentTask = "/currentTask";
+        private const string TestTasks_CurrentTask = "/currentTask";
+        public static string CurrentTaskForClientById = TestTasks_Root + TestTasks_CurrentTask;
+        public static string CurrentTaskOfCurrentClient = TestTasks_CurrentTask + TestTasks_CurrentClient;
     }
 }

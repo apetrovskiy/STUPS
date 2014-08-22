@@ -23,6 +23,7 @@ namespace Tmx.Server
 	public class WorkflowLoader
 	{
 		const string taskElement_id = "id";
+		const string taskElement_afterTask = "afterTask";
 		const string taskElement_isActive = "isActive";
 		const string taskElement_isCritical = "isCritical";
 		const string taskElement_name = "name";
@@ -82,6 +83,7 @@ namespace Tmx.Server
 				TaskFinished = false,
 				// ExpectedResult
 				Id = convertTestTaskElementValue(taskNode, taskElement_id),
+				AfterTask = convertTestTaskElementValue(taskNode, taskElement_afterTask),
 				IsActive = "1" == getTestTaskElementValue(taskNode, taskElement_isActive),
 				IsCritical = "1" == getTestTaskElementValue(taskNode, taskElement_isCritical),
 				Name = getTestTaskElementValue(taskNode, taskElement_name),

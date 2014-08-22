@@ -31,6 +31,7 @@ namespace Tmx.Interfaces.Remoting
                 TaskFinished = false,
                 ExpectedResult = task.ExpectedResult,
                 Id = task.Id,
+                AfterTask = task.AfterTask,
                 IsActive = task.IsActive,
                 IsCritical = task.IsCritical,
                 Name = task.Name,

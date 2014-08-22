@@ -43,7 +43,7 @@ namespace Tmx
                     task = taskLoader.GetCurrentTask();
                 }
                 catch (Exception e) {
-Console.WriteLine("receiving a task " + e.Message);
+// Console.WriteLine("receiving a task " + e.Message);
                 }
                 
 				if (null != task)

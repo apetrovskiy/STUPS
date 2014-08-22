@@ -19,6 +19,7 @@ namespace Tmx.Interfaces.Remoting
 		int Id { get; set; }
 		// int Order { get; set; }
 		int PreviousTaskId { get; set; }
+		int AfterTask { get; set; }
 		bool IsActive { get; set; }
 		bool TaskFinished { get; set; }
 		int Timeout { get; set; }

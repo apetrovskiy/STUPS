@@ -52,7 +52,8 @@ namespace Tmx.Server
 		{
 			var taskListForClient = getOnlyNewTestTasksForClient(clientId);
 			if (null == taskListForClient || !taskListForClient.Any()) return null;
-			return taskListForClient.First(task => task.Id == taskListForClient.Min(tsk => tsk.Id));
+			var taskCandidate = taskListForClient.First(task => task.Id == taskListForClient.Min(tsk => tsk.Id));
+			return isItTimeToPublishTask(taskCandidate) ? taskCandidate : null;
 		}
 		
 		public ITestTask GetNextLegibleTask(int clientId, int currentTaskId)
@@ -65,6 +66,13 @@ namespace Tmx.Server
 		IEnumerable<ITestTask> getOnlyNewTestTasksForClient(int clientId)
 		{
 		    return TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.IsActive && !task.TaskFinished);
+		}
+		
+		bool isItTimeToPublishTask(ITestTask task)
+		{
+		    var tasksThatShouldBeCompletedBefore = task.AfterTask;
+		    if (0 == tasksThatShouldBeCompletedBefore) return true;
+			return !TaskPool.TasksForClients.Any(t => t.Id == tasksThatShouldBeCompletedBefore && t.TaskStatus != TestTaskStatuses.CompletedSuccessfully);
 		}
 	}
 }

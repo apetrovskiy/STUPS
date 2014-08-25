@@ -12,7 +12,6 @@ namespace Tmx
 	using System;
 	using System.Management.Automation;
 	using System.Linq;
-	// using TMX.Interfaces.Exceptions;
 	using Tmx;
 	using Tmx.Client;
 	using Tmx.Interfaces.Remoting;

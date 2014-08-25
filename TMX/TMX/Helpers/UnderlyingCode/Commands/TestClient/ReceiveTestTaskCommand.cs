@@ -49,8 +49,9 @@ namespace Tmx
 				if (null != task)
                     break;
                 
-                if ((DateTime.Now - startTime).TotalSeconds >= cmdlet.Seconds)
-                    throw new Exception("Failed to receive a task in " + cmdlet.Seconds + " seconds");
+				if (!cmdlet.Continuous)
+                    if ((DateTime.Now - startTime).TotalSeconds >= cmdlet.Seconds)
+                        throw new Exception("Failed to receive a task in " + cmdlet.Seconds + " seconds");
                 
                 System.Threading.Thread.Sleep(Preferences.ReceivingTaskSleepIntervalMilliseconds);
             }

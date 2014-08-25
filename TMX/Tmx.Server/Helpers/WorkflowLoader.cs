@@ -54,8 +54,23 @@ namespace Tmx.Server
                     where task.Element(taskElement_isActive).Value == "1"
                     select task;
                 
-				foreach (var singleTask in tasks)
-					TaskPool.Tasks.Add(getNewTestTask(singleTask));
+//				foreach (var singleTask in tasks)
+//					TaskPool.Tasks.Add(getNewTestTask(singleTask));
+                
+//                foreach (var singleTask in tasks.Select(t => getNewTestTask(t)))
+//					// TaskPool.Tasks.Add(getNewTestTask(singleTask));
+//                    TaskPool.Tasks.Add(singleTask);
+                
+                var importedTasks = tasks.Select(t => getNewTestTask(t));
+                TaskPool.Tasks.AddRange(importedTasks);
+                
+                if (0 == ClientsCollection.Clients.Count) return true;
+                
+                var taskSorter = new TaskSelector();
+                foreach (var clientId in ClientsCollection.Clients.Select(client => client.Id)) {
+                    TaskPool.TasksForClients.AddRange(taskSorter.SelectTasksForClient(clientId));
+                }
+                
             }
             catch (Exception eImportDocument) {
                 throw new Exception(

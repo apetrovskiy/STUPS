@@ -15,12 +15,9 @@ namespace Tmx
     using System.Data;
     using System.Data.Common;
     using System.Data.SQLite;
-    using System.Management.Automation;
-    
-    using PSTestLib;
-    
     using System.IO;
-	// using Tmx.Core;
+    using System.Management.Automation;
+    using PSTestLib;
 	using Tmx.Interfaces;
 	using Tmx.Interfaces.TestStructure;
     

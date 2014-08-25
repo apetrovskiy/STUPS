@@ -56,7 +56,6 @@ namespace Tmx.Server.Modules
                 return HttpStatusCode.OK;
             };
         	
-        	// Put[UrnList.TestTasks_CurrentTask + UrnList.TestTasks_CurrentClient] = parameters => {
         	Put[UrnList.CurrentTaskOfCurrentClient] = parameters => {
                 ITestTask loadedTask = this.Bind<TestTask>();
                 if (null == loadedTask) throw new UpdateTaskException("Failed to send results to task, client id = " + parameters.id);

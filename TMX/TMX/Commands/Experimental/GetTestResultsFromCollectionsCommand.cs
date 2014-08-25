@@ -11,7 +11,6 @@ namespace Tmx.Commands
 {
     using System;
     using System.Management.Automation;
-	// using Tmx.Core;
 	using Tmx;
 	using Tmx.Interfaces.TestStructure;
     

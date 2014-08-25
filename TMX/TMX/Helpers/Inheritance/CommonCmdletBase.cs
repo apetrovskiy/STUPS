@@ -14,7 +14,6 @@ namespace Tmx
     using PSTestLib;
     using System.Collections.ObjectModel;
     using System.Collections;
-	// using Tmx.Core;
 	using Tmx;
     
     /// <summary>

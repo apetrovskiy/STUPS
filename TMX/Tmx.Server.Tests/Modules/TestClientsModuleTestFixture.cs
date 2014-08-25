@@ -64,8 +64,8 @@ namespace Tmx.Server.Tests.Modules
         {
         	// Given
             var browser = new Browser(new DefaultNancyBootstrapper());
-            var testClientHostnameExpected = "testhost";
-            var testClientUsernameExpected = "aaa";
+			const string testClientHostnameExpected = "testhost";
+			const string testClientUsernameExpected = "aaa";
 			const int testClientIdExpected = 1;
             var testClient = new TestClient { Hostname = testClientHostnameExpected, Username = testClientUsernameExpected };
             

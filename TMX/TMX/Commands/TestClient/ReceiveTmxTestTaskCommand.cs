@@ -17,7 +17,7 @@ namespace Tmx.Commands
 	/// <summary>
 	/// Description of ReceiveTmxTestTaskCommand.
 	/// </summary>
-	[Cmdlet(VerbsCommunications.Receive, "TmxTestTask")]
+	[Cmdlet(VerbsCommunications.Receive, "TmxTestTask", DefaultParameterSetName = "LimitedTime")]
 	public class ReceiveTmxTestTaskCommand : ClientCmdletBase
 	{
 		public ReceiveTmxTestTaskCommand()
@@ -25,8 +25,16 @@ namespace Tmx.Commands
 			this.Seconds = Preferences.ReceivingTaskTimeoutSeconds;
 		}
 		
-	    [Parameter(Mandatory = false)]
+//	    [Parameter(Mandatory = false)]
+//	    public int Seconds { get; set; }
+		
+	    [Parameter(Mandatory = false,
+	               ParameterSetName = "LimitedTime")]
 	    public int Seconds { get; set; }
+	    
+	    [Parameter(Mandatory = false,
+	               ParameterSetName = "UnlimitedTime")]
+	    public SwitchParameter Continuous { get; set; }
 		
 		protected override void BeginProcessing()
 		{

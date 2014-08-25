@@ -59,8 +59,8 @@ namespace Tmx.Server.Tests.Modules
         {
         	// Given
             var browser = new Browser(new DefaultNancyBootstrapper());
-            var testSuiteNameExpected = "test suite name";
-            var testSuiteIdExpected = "111";
+			const string testSuiteNameExpected = "test suite name";
+			const string testSuiteIdExpected = "111";
             var testSuite = Substitute.For<TestSuite>();
             testSuite.Name = testSuiteNameExpected;
             testSuite.Id = testSuiteIdExpected;
@@ -68,9 +68,7 @@ namespace Tmx.Server.Tests.Modules
             
             // When
             // /Results/suites/
-            var response = browser.Post(UrnList.TestStructure_Root + UrnList.TestStructure_Suites, (with) => {
-                with.JsonBody<TestSuite>(testSuite);
-            });
+            var response = browser.Post(UrnList.TestStructure_Root + UrnList.TestStructure_Suites, (with) => with.JsonBody<TestSuite>(testSuite));
             
             // Then
             Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
@@ -84,8 +82,8 @@ namespace Tmx.Server.Tests.Modules
         {
         	// Given
             var browser = new Browser(new DefaultNancyBootstrapper());
-            var testSuiteNameExpected = "test suite name";
-            var testSuiteIdExpected = "111";
+			const string testSuiteNameExpected = "test suite name";
+			const string testSuiteIdExpected = "111";
 //            var testSuitePlatformIdExpected = "555";
 //            var testPlatform = new TestPlatform("test platform", testSuitePlatformIdExpected);
 //            var testSuite = new TestSuite { Name = testSuiteNameExpected, Id = testSuiteIdExpected, PlatformId = testSuitePlatformIdExpected };
@@ -93,8 +91,8 @@ namespace Tmx.Server.Tests.Modules
             testSuite.Name = testSuiteNameExpected;
             testSuite.Id = testSuiteIdExpected;
             testSuite.PlatformId = TestData.GetDefaultPlatformId();
-            var testScenarioNameExpected = "test scenario name";
-            var testScenarioIdExpected = "222";
+			const string testScenarioNameExpected = "test scenario name";
+			const string testScenarioIdExpected = "222";
             // var testScenario = new TestScenario { Name = testScenarioNameExpected, Id = testScenarioIdExpected, SuiteId = testSuiteIdExpected, PlatformId = testSuitePlatformIdExpected };
             var testScenario = Substitute.For<TestScenario>();
             testScenario.Name = testScenarioNameExpected;
@@ -120,15 +118,10 @@ namespace Tmx.Server.Tests.Modules
 //				with.JsonBody<TestScenario>(testScenario);
 //			});
 			
-			var response = browser.Post(UrnList.TestStructure_Root + UrnList.TestStructure_Suites, (with) => {
-				with.JsonBody<TestSuite>(testSuite);
-			});
+			var response = browser.Post(UrnList.TestStructure_Root + UrnList.TestStructure_Suites, (with) => with.JsonBody<TestSuite>(testSuite));
 			// Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
 			// browser = new Browser(new DefaultNancyBootstrapper());
-			response = browser.Post(UrnList.TestStructure_Root + UrnList.TestStructure_Scenarios, (with) => {
-				with.JsonBody<TestScenario>(testScenario);
-				// with.JsonBody<TestSuite>(testSuite);
-			});
+			response = browser.Post(UrnList.TestStructure_Root + UrnList.TestStructure_Scenarios, (with) => with.JsonBody<TestScenario>(testScenario));
 			
             // Then
             Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
@@ -141,11 +134,11 @@ namespace Tmx.Server.Tests.Modules
         {
         	// Given
             var browser = new Browser(new DefaultNancyBootstrapper());
-            var testSuiteNameExpected = "test suite name";
-            var testSuiteIdExpected = "111";
+			const string testSuiteNameExpected = "test suite name";
+			const string testSuiteIdExpected = "111";
             var testSuite = new TestSuite { Name = testSuiteNameExpected, Id = testSuiteIdExpected };
-            var testScenarioNameExpected = "test scenario name";
-            var testScenarioIdExpected = "222";
+			const string testScenarioNameExpected = "test scenario name";
+			const string testScenarioIdExpected = "222";
             // var testScenario = new TestScenario { Name = testScenarioNameExpected, Id = testScenarioIdExpected };
             var testScenario = new TestScenario(testScenarioNameExpected, testScenarioIdExpected, testSuiteIdExpected);
             var testResult = new TestResult();
@@ -179,9 +172,7 @@ namespace Tmx.Server.Tests.Modules
 //				// with.JsonBody<TestSuite>(testSuite);
 //			});
 			
-			var response = browser.Post(UrnList.TestStructure_Root + UrnList.TestStructure_Results, (with) => {
-				with.JsonBody<TestResult>(testResult);
-			});
+			var response = browser.Post(UrnList.TestStructure_Root + UrnList.TestStructure_Results, (with) => with.JsonBody<TestResult>(testResult));
 			
             // Then
             Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);

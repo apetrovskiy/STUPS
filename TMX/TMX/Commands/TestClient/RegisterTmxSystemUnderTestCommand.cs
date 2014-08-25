@@ -17,7 +17,7 @@ namespace Tmx.Commands
 	/// <summary>
 	/// Description of RegisterTmxSystemUnderTestCommand.
 	/// </summary>
-	[Cmdlet(VerbsLifecycle.Register, "TmxSystemUnderTest")]
+	[Cmdlet(VerbsLifecycle.Register, "TmxSystemUnderTest", DefaultParameterSetName = "LimitedTime")]
 	public class RegisterTmxSystemUnderTestCommand : ClientCmdletBase
 	{
 	    public RegisterTmxSystemUnderTestCommand()
@@ -31,8 +31,13 @@ namespace Tmx.Commands
 	    [Parameter(Mandatory = false)]
 	    public string CustomClientString { get; set; }
 	    
-	    [Parameter(Mandatory = false)]
+	    [Parameter(Mandatory = false,
+	               ParameterSetName = "LimitedTime")]
 	    public int Seconds { get; set; }
+	    
+	    [Parameter(Mandatory = false,
+	               ParameterSetName = "UnlimitedTime")]
+	    public SwitchParameter Continuous { get; set; }
 	    
 		protected override void BeginProcessing()
 		{

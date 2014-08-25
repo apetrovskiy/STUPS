@@ -10,11 +10,9 @@
 namespace Tmx
 {
 	using System;
-	// using System.Collections.Generic;
 	using System.Linq;
 	using Tmx;
 	using Tmx.Client;
-	// using Tmx.Interfaces;
 	using Tmx.Interfaces.Types.Remoting;
 	using Tmx.Commands;
 	

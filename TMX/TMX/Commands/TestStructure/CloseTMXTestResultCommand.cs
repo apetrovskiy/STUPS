@@ -11,15 +11,12 @@ namespace Tmx.Commands
 {
     using System;
     using System.Management.Automation;
-	// using Tmx.Core;
 	using Tmx;
-    // using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of CloseTmxTestResultCommand.
     /// </summary>
     //V20130330
-    //[Cmdlet(VerbsCommon.Close, "TmxTestResult")]
     [Cmdlet(VerbsCommon.Close, "TmxTestResult", DefaultParameterSetName = "DefaultLogicId")]
     public class CloseTmxTestResultCommand : TestResultCmdletBase
     {

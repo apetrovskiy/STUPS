@@ -12,7 +12,6 @@ namespace Tmx
     using System;
     using System.Management.Automation;
 	using TMX.Interfaces;
-	// using Tmx.Core;
 	using Tmx;
 	using Tmx.Interfaces;
     using Tmx.Commands;

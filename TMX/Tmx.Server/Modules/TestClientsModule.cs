@@ -35,7 +35,8 @@ namespace Tmx.Server.Modules
 				
 				// TODO: DI
 				var taskSorter = new TaskSelector();
-				TaskPool.TasksForClients.AddRange(taskSorter.SelectTasksForClient(testClient.Id));
+				// TaskPool.TasksForClients.AddRange(taskSorter.SelectTasksForClient(testClient.Id));
+				TaskPool.TasksForClients.AddRange(taskSorter.SelectTasksForClient(testClient.Id, TaskPool.Tasks));
 				return Response.AsJson(testClient).WithStatusCode(HttpStatusCode.Created);
 			};
 			

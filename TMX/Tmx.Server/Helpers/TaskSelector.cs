@@ -22,7 +22,7 @@ namespace Tmx.Server
 	/// </summary>
 	public class TaskSelector
 	{
-	    public List<ITestTask> SelectTasksForClient(int clientId)
+	    public List<ITestTask> SelectTasksForClient(int clientId, List<ITestTask> tasks)
 	    {
 	        var resultTaskScope = new List<ITestTask>();
 	        
@@ -33,8 +33,21 @@ namespace Tmx.Server
 	        if (null == client) return resultTaskScope;
 	        
 	        // TODO: add IsAdmin and IsInteractive to the checking
+//	        resultTaskScope =
+//	        	TaskPool.Tasks.Where(task => // 0 == task.ClientId && 
+//	        	                     (Regex.IsMatch(client.CustomString ?? string.Empty, task.Rule)  ||
+//	        	                      Regex.IsMatch(client.EnvironmentVersion ?? string.Empty, task.Rule) ||
+//	        	                      Regex.IsMatch(client.Fqdn ?? string.Empty, task.Rule) ||
+//	        	                      Regex.IsMatch(client.Hostname ?? string.Empty, task.Rule) ||
+//	        	                      // task.Rule == client.IsAdmin.ToString() ||
+//	        	                      // task.Rule == client.IsInteractive.ToString() ||
+//	        	                      Regex.IsMatch(client.OsVersion ?? string.Empty, task.Rule) ||
+//	        	                      Regex.IsMatch(client.UserDomainName ?? string.Empty, task.Rule) ||
+//	        	                      Regex.IsMatch(client.Username ?? string.Empty, task.Rule))
+//	                                ).Select(t => { var newTask = t.CloneTaskForNewTestClient(); newTask.ClientId = clientId; return newTask; }).ToList<ITestTask>();
+//            return resultTaskScope;
 	        resultTaskScope =
-	        	TaskPool.Tasks.Where(task => // 0 == task.ClientId && 
+	        	tasks.Where(task => // 0 == task.ClientId && 
 	        	                     (Regex.IsMatch(client.CustomString ?? string.Empty, task.Rule)  ||
 	        	                      Regex.IsMatch(client.EnvironmentVersion ?? string.Empty, task.Rule) ||
 	        	                      Regex.IsMatch(client.Fqdn ?? string.Empty, task.Rule) ||

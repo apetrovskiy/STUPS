@@ -68,7 +68,7 @@ namespace Tmx.Server
                 
                 var taskSorter = new TaskSelector();
                 foreach (var clientId in ClientsCollection.Clients.Select(client => client.Id)) {
-                    TaskPool.TasksForClients.AddRange(taskSorter.SelectTasksForClient(clientId));
+                	TaskPool.TasksForClients.AddRange(taskSorter.SelectTasksForClient(clientId, importedTasks.ToList()));
                 }
                 
             }

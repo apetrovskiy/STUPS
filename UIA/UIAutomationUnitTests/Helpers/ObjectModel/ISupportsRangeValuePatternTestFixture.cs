@@ -45,28 +45,28 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            
 //            MbUnit.Framework.Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
             
-            ISupportsHighlighter highlightableElement =
+            var highlightableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetRangeValuePattern(new PatternsData()) }) as ISupportsHighlighter;
             
             MbUnit.Framework.Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
             Xunit.Assert.NotNull(highlightableElement as ISupportsHighlighter);
             
-            ISupportsNavigation navigatableElement =
+            var navigatableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetRangeValuePattern(new PatternsData()) }) as ISupportsNavigation;
             
             MbUnit.Framework.Assert.IsNotNull(navigatableElement as ISupportsNavigation);
             Xunit.Assert.NotNull(navigatableElement as ISupportsNavigation);
             
-            ISupportsConversion conversibleElement =
+            var conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetRangeValuePattern(new PatternsData()) }) as ISupportsConversion;
             
             MbUnit.Framework.Assert.IsNotNull(conversibleElement as ISupportsConversion);
             Xunit.Assert.NotNull(conversibleElement as ISupportsConversion);
             
-            ISupportsRefresh refreshableElement =
+            var refreshableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetRangeValuePattern(new PatternsData()) }) as ISupportsRefresh;
             
@@ -77,7 +77,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void RangeValue_ImplementsPatternInQuestion()
         {
-            ISupportsRangeValuePattern element =
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetRangeValuePattern(new PatternsData()) }) as ISupportsRangeValuePattern;
             
@@ -88,7 +88,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void RangeValue_DoesNotImplementOtherPatterns()
         {
-            ISupportsValuePattern element =
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetRangeValuePattern(new PatternsData()) }) as ISupportsValuePattern;
             
@@ -100,8 +100,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void RangeValue_IsRangeReadOnly()
         {
             // Arrange
-            bool expectedValue = true;
-            ISupportsRangeValuePattern element =
+			const bool expectedValue = true;
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetRangeValuePattern(new PatternsData() { RangeValuePattern_IsReadOnly = expectedValue }) }) as ISupportsRangeValuePattern;
             
@@ -116,8 +116,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void RangeValue_LargeChange()
         {
             // Arrange
-            double expectedValue = 101.1;
-            ISupportsRangeValuePattern element =
+			const double expectedValue = 101.1;
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetRangeValuePattern(new PatternsData() { RangeValuePattern_LargeChange = expectedValue }) }) as ISupportsRangeValuePattern;
             
@@ -132,8 +132,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void RangeValue_Maximum()
         {
             // Arrange
-            double expectedValue = 1001.2;
-            ISupportsRangeValuePattern element =
+			const double expectedValue = 1001.2;
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetRangeValuePattern(new PatternsData() { RangeValuePattern_Maximum = expectedValue }) }) as ISupportsRangeValuePattern;
             
@@ -148,8 +148,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void RangeValue_Minimum()
         {
             // Arrange
-            double expectedValue = 15.3;
-            ISupportsRangeValuePattern element =
+			const double expectedValue = 15.3;
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetRangeValuePattern(new PatternsData() { RangeValuePattern_Minimum = expectedValue }) }) as ISupportsRangeValuePattern;
             
@@ -164,8 +164,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void RangeValue_SmallChange()
         {
             // Arrange
-            double expectedValue = 5.4;
-            ISupportsRangeValuePattern element =
+			const double expectedValue = 5.4;
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetRangeValuePattern(new PatternsData() { RangeValuePattern_SmallChange = expectedValue }) }) as ISupportsRangeValuePattern;
             
@@ -180,8 +180,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void RangeValue_RangeValue_Get()
         {
             // Arrange
-            double expectedValue = 3.5;
-            ISupportsRangeValuePattern element =
+			const double expectedValue = 3.5;
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetRangeValuePattern(new PatternsData() { RangeValuePattern_Value = expectedValue }) }) as ISupportsRangeValuePattern;
             
@@ -196,8 +196,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void RangeValue_RangeValue_Set()
         {
             // Arrange
-            double expectedValue = 4.7;
-            ISupportsRangeValuePattern element =
+			const double expectedValue = 4.7;
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetRangeValuePattern(new PatternsData()) }) as ISupportsRangeValuePattern;
             

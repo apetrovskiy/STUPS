@@ -21,6 +21,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
     /// <summary>
     /// Description of ISupportsExtendedModelTestFixture.
     /// </summary>
+    [Parallelizable(TestScope.All)]
     [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class ISupportsExtendedModelTestFixture
     {
@@ -75,7 +76,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Buttons_Descendants_None()
         {
             // Arrange
-            IUiElement[] elements = new IUiElement[] {};
+            var elements = new IUiElement[] {};
             IUiElement element =
                 FakeFactory.GetElement_ForFindAll(
                     elements,
@@ -711,7 +712,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Buttons_Children_None()
         {
             // Arrange
-            IUiElement[] elements = new IUiElement[] {};
+            var elements = new IUiElement[] {};
             IUiElement element =
                 FakeFactory.GetElement_ForFindAll(
                     elements,
@@ -1698,9 +1699,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Control_Click()
         {
             // Arrange
-            IUiElement element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] {}) as IUiElement;
+            var element = FakeFactory.GetAutomationElementForMethodsOfObjectModel(new IBasePattern[] {}) as IUiElement;
             
             // Act
             // Assert
@@ -1711,9 +1710,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Control_DoubleClick()
         {
             // Arrange
-            IUiElement element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] {}) as IUiElement;
+            var element = FakeFactory.GetAutomationElementForMethodsOfObjectModel(new IBasePattern[] {}) as IUiElement;
             
             // Act
             // Assert
@@ -1726,9 +1723,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Keyboard_KeyDown()
         {
             // Arrange
-            IUiElement element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] {}) as IUiElement;
+            var element = FakeFactory.GetAutomationElementForMethodsOfObjectModel(new IBasePattern[] {}) as IUiElement;
             
             // Act
             ((element as ISupportsExtendedModel).Keyboard as IKeyboardInput).KeyDown(VirtualKeyCode.VK_F);
@@ -1741,9 +1736,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Keyboard_KeyPress_Single()
         {
             // Arrange
-            IUiElement element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] {}) as IUiElement;
+            var element = FakeFactory.GetAutomationElementForMethodsOfObjectModel(new IBasePattern[] {}) as IUiElement;
             
             // Act
             ((element as ISupportsExtendedModel).Keyboard as IKeyboardInput).KeyPress(VirtualKeyCode.VK_F);
@@ -1759,9 +1752,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Keyboard_KeyPress_Multiple()
         {
             // Arrange
-            IUiElement element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] {}) as IUiElement;
+            var element = FakeFactory.GetAutomationElementForMethodsOfObjectModel(new IBasePattern[] {}) as IUiElement;
             
             // Act
             ((element as ISupportsExtendedModel).Keyboard as IKeyboardInput).KeyPress(new [] { VirtualKeyCode.VK_A, VirtualKeyCode.VK_B, VirtualKeyCode.VK_C });
@@ -1774,9 +1765,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Keyboard_KeyUp()
         {
             // Arrange
-            IUiElement element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] {}) as IUiElement;
+            var element = FakeFactory.GetAutomationElementForMethodsOfObjectModel(new IBasePattern[] {}) as IUiElement;
             
             // Act
             ((element as ISupportsExtendedModel).Keyboard as IKeyboardInput).KeyUp(VirtualKeyCode.VK_F);
@@ -1789,9 +1778,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Keyboard_TypeText()
         {
             // Arrange
-            IUiElement element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] {}) as IUiElement;
+            var element = FakeFactory.GetAutomationElementForMethodsOfObjectModel(new IBasePattern[] {}) as IUiElement;
             
             // Act
             ((element as ISupportsExtendedModel).Keyboard as IKeyboardInput).TypeText("abc");
@@ -1804,9 +1791,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Keyboard_TypeChar()
         {
             // Arrange
-            IUiElement element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] {}) as IUiElement;
+            var element = FakeFactory.GetAutomationElementForMethodsOfObjectModel(new IBasePattern[] {}) as IUiElement;
             
             // Act
             ((element as ISupportsExtendedModel).Keyboard as IKeyboardInput).TypeChar('d');
@@ -1821,9 +1806,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Mouse_HorizontalScroll()
         {
             // Arrange
-            IUiElement element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] {}) as IUiElement;
+            var element = FakeFactory.GetAutomationElementForMethodsOfObjectModel(new IBasePattern[] {}) as IUiElement;
             
             // Act
             var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).HorizontalScroll(1);
@@ -1836,9 +1819,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Mouse_LeftButtonClick()
         {
             // Arrange
-            IUiElement element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] {}) as IUiElement;
+            var element = FakeFactory.GetAutomationElementForMethodsOfObjectModel(new IBasePattern[] {}) as IUiElement;
             
             // Act
             var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).LeftButtonClick();
@@ -1851,9 +1832,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Mouse_LeftButtonDoubleClick()
         {
             // Arrange
-            IUiElement element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] {}) as IUiElement;
+            var element = FakeFactory.GetAutomationElementForMethodsOfObjectModel(new IBasePattern[] {}) as IUiElement;
             
             // Act
             var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).LeftButtonDoubleClick();
@@ -1866,9 +1845,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Mouse_LeftButtonDown()
         {
             // Arrange
-            IUiElement element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] {}) as IUiElement;
+            var element = FakeFactory.GetAutomationElementForMethodsOfObjectModel(new IBasePattern[] {}) as IUiElement;
             
             // Act
             var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).LeftButtonDown();
@@ -1881,9 +1858,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Mouse_LeftButtonUp()
         {
             // Arrange
-            IUiElement element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] {}) as IUiElement;
+            var element = FakeFactory.GetAutomationElementForMethodsOfObjectModel(new IBasePattern[] {}) as IUiElement;
             
             // Act
             var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).LeftButtonUp();
@@ -1899,9 +1874,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Mouse_RightButtonClick()
         {
             // Arrange
-            IUiElement element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] {}) as IUiElement;
+            var element = FakeFactory.GetAutomationElementForMethodsOfObjectModel(new IBasePattern[] {}) as IUiElement;
             
             // Act
             var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).RightButtonClick();
@@ -1914,9 +1887,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Mouse_RightButtonDoubleClick()
         {
             // Arrange
-            IUiElement element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] {}) as IUiElement;
+            var element = FakeFactory.GetAutomationElementForMethodsOfObjectModel(new IBasePattern[] {}) as IUiElement;
             
             // Act
             var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).RightButtonDoubleClick();
@@ -1929,9 +1900,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Mouse_RightButtonDown()
         {
             // Arrange
-            IUiElement element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] {}) as IUiElement;
+            var element = FakeFactory.GetAutomationElementForMethodsOfObjectModel(new IBasePattern[] {}) as IUiElement;
             
             // Act
             var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).RightButtonDown();
@@ -1944,9 +1913,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Mouse_RightButtonUp()
         {
             // Arrange
-            IUiElement element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] {}) as IUiElement;
+            var element = FakeFactory.GetAutomationElementForMethodsOfObjectModel(new IBasePattern[] {}) as IUiElement;
             
             // Act
             var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).RightButtonUp();
@@ -1962,9 +1929,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Mouse_VerticalScroll()
         {
             // Arrange
-            IUiElement element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] {}) as IUiElement;
+            var element = FakeFactory.GetAutomationElementForMethodsOfObjectModel(new IBasePattern[] {}) as IUiElement;
             
             // Act
             var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).VerticalScroll(1);
@@ -1977,9 +1942,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Mouse_XButtonClick()
         {
             // Arrange
-            IUiElement element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] {}) as IUiElement;
+            var element = FakeFactory.GetAutomationElementForMethodsOfObjectModel(new IBasePattern[] {}) as IUiElement;
             
             // Act
             var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).XButtonClick(1);
@@ -1992,9 +1955,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Mouse_XButtonDoubleClick()
         {
             // Arrange
-            IUiElement element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] {}) as IUiElement;
+            var element = FakeFactory.GetAutomationElementForMethodsOfObjectModel(new IBasePattern[] {}) as IUiElement;
             
             // Act
             var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).XButtonDoubleClick(1);
@@ -2007,9 +1968,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Mouse_XButtonDown()
         {
             // Arrange
-            IUiElement element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] {}) as IUiElement;
+            var element = FakeFactory.GetAutomationElementForMethodsOfObjectModel(new IBasePattern[] {}) as IUiElement;
             
             // Act
             var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).XButtonDown(1);
@@ -2022,9 +1981,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Mouse_XButtonUp()
         {
             // Arrange
-            IUiElement element =
-                FakeFactory.GetAutomationElementForMethodsOfObjectModel(
-                    new IBasePattern[] {}) as IUiElement;
+            var element = FakeFactory.GetAutomationElementForMethodsOfObjectModel(new IBasePattern[] {}) as IUiElement;
             
             // Act
             var elementWithMouseInput = ((element as ISupportsExtendedModel).Mouse as IMouseInput).XButtonUp(1);

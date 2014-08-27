@@ -75,14 +75,10 @@
     <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Commands\StartTmxServerCommand.cs" />
-    <Compile Include="Commands\StopTmxServerCommand.cs" />
     <Compile Include="Helpers\Control\InternalServerControl.cs" />
     <Compile Include="Helpers\Control\ServerControl.cs" />
     <Compile Include="Helpers\Objects\TaskPool.cs" />
     <Compile Include="Helpers\TaskSelector.cs" />
-    <Compile Include="Helpers\Commands\StartServerCommand.cs" />
-    <Compile Include="Helpers\Commands\StopTmxServerCommand.cs" />
     <Compile Include="Helpers\Objects\ClientsCollection.cs" />
     <Compile Include="Helpers\WorkflowLoader.cs" />
     <Compile Include="Modules\TestClientsModule.cs" />
@@ -108,12 +104,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Helpers\Commands" />
     <Folder Include="Helpers\Control" />
     <Folder Include="Helpers\Objects" />
     <Folder Include="Modules" />
     <Folder Include="Modules" />
-    <Folder Include="Commands" />
     <Folder Include="Helpers" />
     <Folder Include="Properties" />
     <Folder Include="Properties" />

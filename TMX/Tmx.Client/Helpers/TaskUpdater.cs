@@ -10,12 +10,10 @@
 namespace Tmx.Client
 {
 	using System;
-	// using System.Net;
 	using Spring.Rest.Client;
 	using TMX.Interfaces.Exceptions;
 	using TMX.Interfaces.Server;
 	using Tmx.Interfaces.Remoting;
-	// using Tmx.Interfaces.Types.Remoting;
 	
 	/// <summary>
 	/// Description of TaskUpdater.
@@ -43,7 +41,6 @@ namespace Tmx.Client
 		public bool SendTaskResult(ITestTask task, int clientId)
 		{
 			try {
-			    // _restTemplate.Put(UrnList.TestTasks_Root + UrnList.TestTasks_CurrentTask + "/" + clientId, task);
 			    _restTemplate.Put(UrnList.CurrentTaskForClientById + "/" + clientId, task);
 			    return true;
 			}

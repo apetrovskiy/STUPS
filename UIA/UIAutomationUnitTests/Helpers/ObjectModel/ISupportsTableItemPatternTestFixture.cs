@@ -45,28 +45,28 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            
 //            MbUnit.Framework.Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
             
-            ISupportsHighlighter highlightableElement =
+            var highlightableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTableItemPattern(new PatternsData()) }) as ISupportsHighlighter;
             
             MbUnit.Framework.Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
             Xunit.Assert.NotNull(highlightableElement as ISupportsHighlighter);
             
-            ISupportsNavigation navigatableElement =
+            var navigatableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTableItemPattern(new PatternsData()) }) as ISupportsNavigation;
             
             MbUnit.Framework.Assert.IsNotNull(navigatableElement as ISupportsNavigation);
             Xunit.Assert.NotNull(navigatableElement as ISupportsNavigation);
             
-            ISupportsConversion conversibleElement =
+            var conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTableItemPattern(new PatternsData()) }) as ISupportsConversion;
             
             MbUnit.Framework.Assert.IsNotNull(conversibleElement as ISupportsConversion);
             Xunit.Assert.NotNull(conversibleElement as ISupportsConversion);
             
-            ISupportsRefresh refreshableElement =
+            var refreshableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTableItemPattern(new PatternsData()) }) as ISupportsRefresh;
             
@@ -77,7 +77,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void TableItem_ImplementsPatternInQuestion()
         {
-            ISupportsTableItemPattern element =
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTableItemPattern(new PatternsData()) }) as ISupportsTableItemPattern;
             
@@ -88,7 +88,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void TableItem_DoesNotImplementOtherPatterns()
         {
-            ISupportsValuePattern element =
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTableItemPattern(new PatternsData()) }) as ISupportsValuePattern;
             
@@ -100,9 +100,9 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void TableItem_GetColumnHeaderItems()
         {
             // Arrange
-            bool expectedResult = true;
+			const bool expectedResult = true;
             bool result = false;
-            ISupportsTableItemPattern element =
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTableItemPattern(new PatternsData()) }) as ISupportsTableItemPattern;
             
@@ -123,9 +123,9 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void TableItem_GetRowHeaderItems()
         {
             // Arrange
-            bool expectedResult = true;
+			const bool expectedResult = true;
             bool result = false;
-            ISupportsTableItemPattern element =
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTableItemPattern(new PatternsData()) }) as ISupportsTableItemPattern;
             
@@ -146,8 +146,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void TableItem_TableColumn()
         {
             // Arrange
-            int expectedValue = 3;
-            ISupportsTableItemPattern element =
+			const int expectedValue = 3;
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTableItemPattern(new PatternsData() { TableItemPattern_Column = expectedValue }) }) as ISupportsTableItemPattern;
             
@@ -162,8 +162,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void TableItem_TableColumnSpan()
         {
             // Arrange
-            int expectedValue = 4;
-            ISupportsTableItemPattern element =
+			const int expectedValue = 4;
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTableItemPattern(new PatternsData() { TableItemPattern_ColumnSpan = expectedValue }) }) as ISupportsTableItemPattern;
             
@@ -181,8 +181,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void TableItem_TableContainingGrid()
         {
             // Arrange
-            IUiElement expectedValue = new UiElement();
-            ISupportsTableItemPattern element =
+            var expectedValue = new UiElement();
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTableItemPattern(new PatternsData() { TableItemPattern_ContainingGrid = expectedValue }) }) as ISupportsTableItemPattern;
             
@@ -239,8 +239,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void TableItem_TableRow()
         {
             // Arrange
-            int expectedValue = 5;
-            ISupportsTableItemPattern element =
+			const int expectedValue = 5;
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTableItemPattern(new PatternsData() { TableItemPattern_Row = expectedValue }) }) as ISupportsTableItemPattern;
             
@@ -255,8 +255,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void TableItem_TableRowSpan()
         {
             // Arrange
-            int expectedValue = 6;
-            ISupportsTableItemPattern element =
+			const int expectedValue = 6;
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTableItemPattern(new PatternsData() { TableItemPattern_RowSpan = expectedValue }) }) as ISupportsTableItemPattern;
             

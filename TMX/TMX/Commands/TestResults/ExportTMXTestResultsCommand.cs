@@ -23,10 +23,6 @@ namespace Tmx.Commands
         {
 			CheckCmdletParameters();
             
-//            this.WriteVerbose(this, "As = " + this.As);
-//            this.WriteVerbose(this, "Path = " + this.Path);
-            
-            // 20140721
             var dataObject = new ImportExportCmdletBaseDataObject {
                 As = this.As,
                 Descending = this.Descending,
@@ -56,20 +52,14 @@ namespace Tmx.Commands
             string reportFormat = As.ToUpper();
             switch (reportFormat){
                 case "XML":
-                    // 20140721
-					// TmxHelper.ExportResultsToXML(this, Path);
 					TmxHelper.ExportResultsToXML(dataObject, Path);
                     break;
                 case "JUNIT":
                 case "JUNITXML":
-                    // 20140721
-					// TmxHelper.ExportResultsToJUnitXML(this, Path);
 					TmxHelper.ExportResultsToJUnitXML(dataObject, Path);
                     break;
                 case "HTML":
-                    // 20130322
-                    //this.ExportResultsToHTML(this.Path);
-                    this.ExportResultsToHTML(this, this.Path);
+					ExportResultsToHTML(this, Path);
                     break;
                 case "CSV":
 					ExportResultsToCSV(Path);

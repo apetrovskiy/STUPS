@@ -45,28 +45,28 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            
 //            MbUnit.Framework.Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
             
-            ISupportsHighlighter highlightableElement =
+            var highlightableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData()) }) as ISupportsHighlighter;
             
             MbUnit.Framework.Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
             Xunit.Assert.NotNull(highlightableElement as ISupportsHighlighter);
             
-            ISupportsNavigation navigatableElement =
+            var navigatableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData()) }) as ISupportsNavigation;
             
             MbUnit.Framework.Assert.IsNotNull(navigatableElement as ISupportsNavigation);
             Xunit.Assert.NotNull(navigatableElement as ISupportsNavigation);
             
-            ISupportsConversion conversibleElement =
+            var conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData()) }) as ISupportsConversion;
             
             MbUnit.Framework.Assert.IsNotNull(conversibleElement as ISupportsConversion);
             Xunit.Assert.NotNull(conversibleElement as ISupportsConversion);
             
-            ISupportsRefresh refreshableElement =
+            var refreshableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData()) }) as ISupportsRefresh;
             
@@ -77,7 +77,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Toggle_ImplementsPatternInQuestion()
         {
-            ISupportsTogglePattern element =
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData()) }) as ISupportsTogglePattern;
             
@@ -88,7 +88,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Toggle_DoesNotImplementOtherPatterns()
         {
-            ISupportsValuePattern element =
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData()) }) as ISupportsValuePattern;
             
@@ -113,8 +113,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Toggle_ToggleState_Indeterminate()
         {
             // Arrange
-            ToggleState expectedValue = ToggleState.Indeterminate;
-            ISupportsTogglePattern element =
+            var expectedValue = ToggleState.Indeterminate;
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData() { TogglePattern_ToggleState = expectedValue }) }) as ISupportsTogglePattern;
             
@@ -129,8 +129,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Toggle_ToggleState_Off()
         {
             // Arrange
-            ToggleState expectedValue = ToggleState.Off;
-            ISupportsTogglePattern element =
+            var expectedValue = ToggleState.Off;
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData() { TogglePattern_ToggleState = expectedValue }) }) as ISupportsTogglePattern;
             
@@ -145,8 +145,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Toggle_ToggleState_On()
         {
             // Arrange
-            ToggleState expectedValue = ToggleState.On;
-            ISupportsTogglePattern element =
+            var expectedValue = ToggleState.On;
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData() { TogglePattern_ToggleState = expectedValue }) }) as ISupportsTogglePattern;
             
@@ -161,8 +161,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Toggle_Toggle_On()
         {
             // Arrange
-            ToggleState expectedValue = ToggleState.On;
-            ISupportsTogglePattern element =
+            var expectedValue = ToggleState.On;
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData()) }) as ISupportsTogglePattern;
             
@@ -186,8 +186,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Toggle_Toggle_Off()
         {
             // Arrange
-            ToggleState expectedValue = ToggleState.Off;
-            ISupportsTogglePattern element =
+            var expectedValue = ToggleState.Off;
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData()) }) as ISupportsTogglePattern;
             

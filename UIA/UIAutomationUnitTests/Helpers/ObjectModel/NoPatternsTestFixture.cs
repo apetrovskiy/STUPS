@@ -44,28 +44,28 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            
 //            MbUnit.Framework.Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
             
-            ISupportsHighlighter highlightableElement =
+            var highlightableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] {}) as ISupportsHighlighter;
             
             MbUnit.Framework.Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
             Xunit.Assert.NotNull(highlightableElement as ISupportsHighlighter);
             
-            ISupportsNavigation navigatableElement =
+            var navigatableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] {}) as ISupportsNavigation;
             
             MbUnit.Framework.Assert.IsNotNull(navigatableElement as ISupportsNavigation);
             Xunit.Assert.NotNull(navigatableElement as ISupportsNavigation);
             
-            ISupportsConversion conversibleElement =
+            var conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] {}) as ISupportsConversion;
             
             MbUnit.Framework.Assert.IsNotNull(conversibleElement as ISupportsConversion);
             Xunit.Assert.NotNull(conversibleElement as ISupportsConversion);
             
-            ISupportsRefresh refreshableElement =
+            var refreshableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] {}) as ISupportsRefresh;
             

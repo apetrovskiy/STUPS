@@ -521,9 +521,6 @@
     <Compile Include="..\TMX\Helpers\UnderlyingCode\TestExecHelper.cs">
       <Link>Helpers\UnderlyingCode\TestExecHelper.cs</Link>
     </Compile>
-    <Compile Include="..\TMX\Helpers\UnderlyingCode\TMXHelper.cs">
-      <Link>Helpers\UnderlyingCode\TMXHelper.cs</Link>
-    </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Types\Database.cs">
       <Link>Helpers\UnderlyingCode\Types\Database.cs</Link>
     </Compile>

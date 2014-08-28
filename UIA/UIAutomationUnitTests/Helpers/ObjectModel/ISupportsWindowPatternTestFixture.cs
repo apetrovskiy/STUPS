@@ -45,28 +45,28 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            
 //            MbUnit.Framework.Assert.IsNotNull(invokableElement as ISupportsInvokePattern);
             
-            ISupportsHighlighter highlightableElement =
+            var highlightableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData()) }) as ISupportsHighlighter;
             
             MbUnit.Framework.Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
             Xunit.Assert.NotNull(highlightableElement as ISupportsHighlighter);
             
-            ISupportsNavigation navigatableElement =
+            var navigatableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData()) }) as ISupportsNavigation;
             
             MbUnit.Framework.Assert.IsNotNull(navigatableElement as ISupportsNavigation);
             Xunit.Assert.NotNull(navigatableElement as ISupportsNavigation);
             
-            ISupportsConversion conversibleElement =
+            var conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData()) }) as ISupportsConversion;
             
             MbUnit.Framework.Assert.IsNotNull(conversibleElement as ISupportsConversion);
             Xunit.Assert.NotNull(conversibleElement as ISupportsConversion);
             
-            ISupportsRefresh refreshableElement =
+            var refreshableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData()) }) as ISupportsRefresh;
             
@@ -77,7 +77,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Window_ImplementsPatternInQuestion()
         {
-            ISupportsWindowPattern element =
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData()) }) as ISupportsWindowPattern;
             
@@ -88,7 +88,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Window_DoesNotImplementOtherPatterns()
         {
-            ISupportsValuePattern element =
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData()) }) as ISupportsValuePattern;
             
@@ -139,8 +139,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Window_CanMaximize()
         {
             // Arrange
-            bool expectedValue = true;
-            ISupportsWindowPattern element =
+			const bool expectedValue = true;
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData() { WindowPattern_CanMaximize = expectedValue }) }) as ISupportsWindowPattern;
             
@@ -155,8 +155,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Window_CanMinimize()
         {
             // Arrange
-            bool expectedValue = false;
-            ISupportsWindowPattern element =
+			const bool expectedValue = false;
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData() { WindowPattern_CanMinimize = expectedValue }) }) as ISupportsWindowPattern;
             
@@ -171,8 +171,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Window_IsModal()
         {
             // Arrange
-            bool expectedValue = true;
-            ISupportsWindowPattern element =
+			const bool expectedValue = true;
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData() { WindowPattern_IsModal = expectedValue }) }) as ISupportsWindowPattern;
             
@@ -187,8 +187,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Window_IsTopmost()
         {
             // Arrange
-            bool expectedValue = false;
-            ISupportsWindowPattern element =
+			const bool expectedValue = false;
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData() { WindowPattern_IsTopmost = expectedValue }) }) as ISupportsWindowPattern;
             
@@ -203,8 +203,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Window_WindowInteractionState()
         {
             // Arrange
-            WindowInteractionState expectedValue = WindowInteractionState.ReadyForUserInteraction;
-            ISupportsWindowPattern element =
+            var expectedValue = WindowInteractionState.ReadyForUserInteraction;
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData() { WindowPattern_WindowInteractionState = expectedValue }) }) as ISupportsWindowPattern;
             
@@ -219,8 +219,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Window_WindowVisualState()
         {
             // Arrange
-            WindowVisualState expectedValue = WindowVisualState.Normal;
-            ISupportsWindowPattern element =
+            var expectedValue = WindowVisualState.Normal;
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData() { WindowPattern_WindowVisualState = expectedValue }) }) as ISupportsWindowPattern;
             
@@ -235,9 +235,9 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Window_Close()
         {
             // Arrange
-            bool expectedResult = true;
+			const bool expectedResult = true;
             bool result = false;
-            ISupportsWindowPattern element =
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData()) }) as ISupportsWindowPattern;
             
@@ -258,8 +258,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Window_SetWindowVisualState()
         {
             // Arrange
-            WindowVisualState expectedValue = WindowVisualState.Minimized;
-            ISupportsWindowPattern element =
+            var expectedValue = WindowVisualState.Minimized;
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData()) }) as ISupportsWindowPattern;
             
@@ -281,9 +281,9 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Window_WaitForInputIdle()
         {
             // Arrange
-            bool expectedResult = true;
+			const bool expectedResult = true;
             bool result = false;
-            ISupportsWindowPattern element =
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData()) }) as ISupportsWindowPattern;
             

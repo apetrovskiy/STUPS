@@ -312,7 +312,6 @@
     <Compile Include="Helpers\UnderlyingCode\Types\TestStat.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\TestSuite.cs" />
     <Compile Include="Helpers\UnderlyingCode\SQLiteHelper.cs" />
-    <Compile Include="Helpers\UnderlyingCode\TMXHelper.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\WorkflowStep.cs" />
     <Compile Include="Helpers\UnderlyingCode\XMLElementsJUnitStruct.cs" />
     <Compile Include="Helpers\UnderlyingCode\XMLElementsNativeStruct.cs" />

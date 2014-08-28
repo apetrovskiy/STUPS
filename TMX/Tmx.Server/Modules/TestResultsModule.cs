@@ -12,6 +12,8 @@ namespace Tmx.Server.Modules
     using System;
     using System.Linq;
     using System.Management.Automation;
+	using System.Xml;
+	using System.Xml.Linq;
     using Nancy;
     using Nancy.ModelBinding;
 	using TMX.Interfaces;
@@ -28,6 +30,52 @@ namespace Tmx.Server.Modules
         public TestResultsModule() : base(UrnList.TestStructure_Root)
         {
             StaticConfiguration.DisableErrorTraces = false;
+            
+            Post[UrnList.TestStructure_AllResults] = parameters => {
+                //
+Console.WriteLine("Post test results 00001");
+                // var testResultsXml = this.Bind<XDocument>("BaseUri", "Declaration", "Document", "DocumentType", "System.Xml.Linq.XDocument.Declaration", "System.Xml.Linq.XDeclaration");
+                // var testResultsXml = this.Bind<XElement>();
+                // var testResultsXml = this.Bind<XDocument>(); //"Declaration");
+                // var xDoc = new XDocument();
+                // var testResultsXml = this.BindTo(xDoc);
+//                var bindingConfig = new BindingConfig();
+//                bindingConfig.IgnoreErrors = true;
+//                bindingConfig.BodyOnly = true;
+//                // var testResultsXml = this.Bind<XDocument>(bindingConfig, o => o.Declaration);
+//                var testResultsXml = this.Bind<XElement>();
+try {
+                // var testResultsXml = this.Bind<XDocument>(o => o.Declaration, o => o.BaseUri, o => o.Document, o => o.DocumentType, o => o.Parent);
+                var testResultsXml = this.Bind<XmlDocument>();
+
+                // testResultsXml.BaseUri
+                // testResultsXml.Declaration
+                // testResultsXml.Document
+                // testResultsXml.DocumentType
+                // testResultsXml.Root
+                
+Console.WriteLine("Post test results 00002");
+if (null == testResultsXml) {
+    Console.WriteLine("null == testResultsXml");
+} else {
+    Console.WriteLine("null != testResultsXml");
+    Console.WriteLine(testResultsXml.GetType().Name);
+//    Console.WriteLine(testResultsXml.FirstNode);
+//    if (null == testResultsXml.FirstNode) {
+//        Console.WriteLine("null == testResultsXml.FirstNode");
+//    }
+//    if (null == testResultsXml.Root) {
+//        Console.WriteLine("null == testResultsXml.Root");
+//    }
+}
+                // TmxHelper.ImportTestResultsFromXdocument(testResultsXml);
+Console.WriteLine("Post test results 00003");
+}
+catch (Exception eeee) {
+    Console.WriteLine(eeee.Message);
+}
+                return HttpStatusCode.Created;
+            };
             
             Post[UrnList.TestStructure_Suites] = parameters => {
                 var testSuite = this.Bind<TestSuite>();

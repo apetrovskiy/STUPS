@@ -1,21 +1,22 @@
 ﻿/*
  * Created by SharpDevelop.
- * User: alexa_000
+ * User: Alexander Petrovskiy
  * Date: 8/27/2014
  * Time: 6:52 PM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-using System;
 
-namespace Tmx.Core.Helpers.Spring.IoC
+namespace Tmx.Core
 {
+    using System;
+    
     /// <summary>
     /// Description of ObjectFactory.
     /// </summary>
-    public class ObjectFactory
+    public static class ObjectFactory
     {
-        public ObjectFactory()
+        static ObjectFactory()
         {
         }
     }

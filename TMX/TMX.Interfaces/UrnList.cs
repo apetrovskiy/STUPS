@@ -17,6 +17,7 @@ namespace TMX.Interfaces.Server
     public static class UrnList
     {
         public const string TestStructure_Root = "/Results";
+        public const string TestStructure_AllResults = "/";
         public const string TestStructure_Suites = "/suites/";
         public const string TestStructure_Scenarios = "/scenarios/";
         public const string TestStructure_Results = "/testResults/";

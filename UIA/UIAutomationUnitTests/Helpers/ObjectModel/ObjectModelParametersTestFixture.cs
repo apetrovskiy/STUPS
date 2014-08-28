@@ -42,39 +42,39 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void DoenNotImplementCommonPatterns()
         {
             // Arrange
-            UIAutomation.Preferences.UseElementsPatternObjectModel = false;
-            UIAutomation.Preferences.UseElementsCached = false;
-            UIAutomation.Preferences.UseElementsCurrent = false;
+			Preferences.UseElementsPatternObjectModel = false;
+			Preferences.UseElementsCached = false;
+			Preferences.UseElementsCurrent = false;
             
-            ISupportsInvokePattern invokableElement =
+            var invokableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsInvokePattern;
             
             MbUnit.Framework.Assert.IsNull(invokableElement as ISupportsInvokePattern);
             Xunit.Assert.Null(invokableElement as ISupportsInvokePattern);
             
-            ISupportsHighlighter highlightableElement =
+            var highlightableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsHighlighter;
             
             MbUnit.Framework.Assert.IsNull(highlightableElement as ISupportsHighlighter);
             Xunit.Assert.Null(highlightableElement as ISupportsHighlighter);
             
-            ISupportsNavigation navigatableElement =
+            var navigatableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsNavigation;
             
             MbUnit.Framework.Assert.IsNull(navigatableElement as ISupportsNavigation);
             Xunit.Assert.Null(navigatableElement as ISupportsNavigation);
             
-            ISupportsConversion conversibleElement =
+            var conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsConversion;
             
             MbUnit.Framework.Assert.IsNull(conversibleElement as ISupportsConversion);
             Xunit.Assert.Null(conversibleElement as ISupportsConversion);
             
-            ISupportsRefresh refreshableElement =
+            var refreshableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsRefresh;
             
@@ -87,11 +87,11 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void NoExtension()
         {
             // Arrange
-            UIAutomation.Preferences.UseElementsSearchObjectModel = false;
+			Preferences.UseElementsSearchObjectModel = false;
             
             // Act
-            IUiElement[] elements = new IUiElement[] {};
-            IUiElement element =
+            var elements = new IUiElement[] {};
+            var element =
                 FakeFactory.GetElement_ForFindAll(
                     elements,
                     new PropertyCondition(
@@ -108,10 +108,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Toggle_Toggle_Off_ExtendedObjectModel_Off()
         {
             // Arrange
-            UIAutomation.Preferences.UseElementsSearchObjectModel = false;
+			Preferences.UseElementsSearchObjectModel = false;
             
-            ToggleState expectedValue = ToggleState.Off;
-            ISupportsTogglePattern element =
+            var expectedValue = ToggleState.Off;
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData()) }) as ISupportsTogglePattern;
             
@@ -136,10 +136,10 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Toggle_Toggle_Off_ExtendedObjectModel_On()
         {
             // Arrange
-            UIAutomation.Preferences.UseElementsSearchObjectModel = true;
+			Preferences.UseElementsSearchObjectModel = true;
             
-            ToggleState expectedValue = ToggleState.Off;
-            ISupportsTogglePattern element =
+            var expectedValue = ToggleState.Off;
+            var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTogglePattern(new PatternsData()) }) as ISupportsTogglePattern;
             

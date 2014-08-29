@@ -10,6 +10,7 @@
 namespace Tmx.Server.Modules
 {
     using System;
+	using System.Collections.Generic;
     using System.Linq;
     using System.Management.Automation;
 	using System.Xml;
@@ -46,7 +47,9 @@ Console.WriteLine("Post test results 00001");
 //                var testResultsXml = this.Bind<XElement>();
 try {
                 // var testResultsXml = this.Bind<XDocument>(o => o.Declaration, o => o.BaseUri, o => o.Document, o => o.DocumentType, o => o.Parent);
-                var testResultsXml = this.Bind<XmlDocument>();
+                // var testResultsXml = this.Bind<XmlDocument>();
+                // var testResultsXml = this.Bind<List<ITestSuite>>();
+                var testResultsXml = this.Bind<List<TestSuite>>();
 
                 // testResultsXml.BaseUri
                 // testResultsXml.Declaration
@@ -59,7 +62,7 @@ if (null == testResultsXml) {
     Console.WriteLine("null == testResultsXml");
 } else {
     Console.WriteLine("null != testResultsXml");
-    Console.WriteLine(testResultsXml.GetType().Name);
+//    Console.WriteLine(testResultsXml.GetType().Name);
 //    Console.WriteLine(testResultsXml.FirstNode);
 //    if (null == testResultsXml.FirstNode) {
 //        Console.WriteLine("null == testResultsXml.FirstNode");
@@ -68,7 +71,15 @@ if (null == testResultsXml) {
 //        Console.WriteLine("null == testResultsXml.Root");
 //    }
 }
+                
+                
+                
+                
                 // TmxHelper.ImportTestResultsFromXdocument(testResultsXml);
+                
+                
+                
+                
 Console.WriteLine("Post test results 00003");
 }
 catch (Exception eeee) {

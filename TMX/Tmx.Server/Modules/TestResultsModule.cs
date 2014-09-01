@@ -32,70 +32,27 @@ namespace Tmx.Server.Modules
         {
             StaticConfiguration.DisableErrorTraces = false;
             
-            Post[UrnList.TestStructure_AllResults] = parameters => {
-                //
-Console.WriteLine("Post test results 00001");
-                // var testResultsXml = this.Bind<XDocument>("BaseUri", "Declaration", "Document", "DocumentType", "System.Xml.Linq.XDocument.Declaration", "System.Xml.Linq.XDeclaration");
-                // var testResultsXml = this.Bind<XElement>();
-                // var testResultsXml = this.Bind<XDocument>(); //"Declaration");
-                // var xDoc = new XDocument();
-                // var testResultsXml = this.BindTo(xDoc);
-//                var bindingConfig = new BindingConfig();
-//                bindingConfig.IgnoreErrors = true;
-//                bindingConfig.BodyOnly = true;
-//                // var testResultsXml = this.Bind<XDocument>(bindingConfig, o => o.Declaration);
-//                var testResultsXml = this.Bind<XElement>();
-try {
-                // var testResultsXml = this.Bind<XDocument>(o => o.Declaration, o => o.BaseUri, o => o.Document, o => o.DocumentType, o => o.Parent);
-                // var testResultsXml = this.Bind<XmlDocument>();
-                // var testResultsXml = this.Bind<List<ITestSuite>>();
-                var testResultsXml = this.Bind<List<TestSuite>>();
-
-                // testResultsXml.BaseUri
-                // testResultsXml.Declaration
-                // testResultsXml.Document
-                // testResultsXml.DocumentType
-                // testResultsXml.Root
-                
-Console.WriteLine("Post test results 00002");
-if (null == testResultsXml) {
-    Console.WriteLine("null == testResultsXml");
-} else {
-    Console.WriteLine("null != testResultsXml");
-//    Console.WriteLine(testResultsXml.GetType().Name);
-//    Console.WriteLine(testResultsXml.FirstNode);
-//    if (null == testResultsXml.FirstNode) {
-//        Console.WriteLine("null == testResultsXml.FirstNode");
-//    }
-//    if (null == testResultsXml.Root) {
-//        Console.WriteLine("null == testResultsXml.Root");
-//    }
-}
-                
-                
-                
-                
-                // TmxHelper.ImportTestResultsFromXdocument(testResultsXml);
-                
-                
-                
-                
-Console.WriteLine("Post test results 00003");
-}
-catch (Exception eeee) {
-    Console.WriteLine(eeee.Message);
-}
+            Post[UrnList.TestStructure_AllResults] = _ => {
+Console.WriteLine("post all 00001");
+                var stringResults = this.Bind<string>();
+// Console.WriteLine(stringResults);
+Console.WriteLine("post all 00002");
+                var xDocResults = XDocument.Parse(stringResults);
+Console.WriteLine(xDocResults.Root);
+Console.WriteLine("post all 00003");
+                TmxHelper.ImportTestResultsFromXdocument(xDocResults);
+Console.WriteLine("post all 00004");
                 return HttpStatusCode.Created;
             };
             
-            Post[UrnList.TestStructure_Suites] = parameters => {
+            Post[UrnList.TestStructure_Suites] = _ => {
                 var testSuite = this.Bind<TestSuite>();
                 TmxHelper.NewTestSuite(testSuite.Name, testSuite.Id, testSuite.PlatformId, testSuite.Description, testSuite.BeforeScenario, testSuite.AfterScenario);
                 TestData.SetSuiteStatus(true);
 				return TmxHelper.OpenTestSuite(testSuite.Name, testSuite.Id, testSuite.PlatformId) ? HttpStatusCode.Created : HttpStatusCode.InternalServerError;
             };
         	
-        	Post[UrnList.TestStructure_Scenarios] = parameters => {
+        	Post[UrnList.TestStructure_Scenarios] = _ => {
 Console.WriteLine("Post[UrnList.TestStructure_Scenarios] 00001");
                 // var testScenario = this.Bind<TestScenario>();
                 var testScenario = this.Bind<TestScenario>("DbId", "TestResults", "Timestamp", "BeforeTest", "AfterTest", "BeforeTestParameters", "AfterTestParameters", "TestCases", "TimeSpent", "Statistics", "enStatus");
@@ -172,7 +129,7 @@ Console.WriteLine(result);
         		return HttpStatusCode.Created;
         	};
             
-        	Post[UrnList.TestStructure_Results] = parameters => {
+        	Post[UrnList.TestStructure_Results] = _ => {
 Console.WriteLine("Post[UrnList.TestStructure_Results] 00001");
 ITestResult testResult = null;
 try {

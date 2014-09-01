@@ -21,6 +21,8 @@ namespace Tmx.Client
         public virtual RestTemplate GetRestTemplate(string url)
         {
             var restTemplate = new RestTemplate(ClientSettings.Instance.ServerUrl);
+Console.WriteLine("server url:");
+Console.WriteLine(ClientSettings.Instance.ServerUrl);
             restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
             return restTemplate;
         }

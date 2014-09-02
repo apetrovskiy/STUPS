@@ -10,10 +10,8 @@
 namespace Tmx.Server.Modules
 {
     using System;
-	using System.Collections.Generic;
+	using System.Text;
     using System.Linq;
-    using System.Management.Automation;
-	using System.Xml;
 	using System.Xml.Linq;
     using Nancy;
     using Nancy.ModelBinding;
@@ -33,16 +31,19 @@ namespace Tmx.Server.Modules
             StaticConfiguration.DisableErrorTraces = false;
             
             Post[UrnList.TestStructure_AllResults] = _ => {
-Console.WriteLine("post all 00001");
-                var stringResults = this.Bind<string>();
-// Console.WriteLine(stringResults);
-Console.WriteLine("post all 00002");
-                var xDocResults = XDocument.Parse(stringResults);
-Console.WriteLine(xDocResults.Root);
-Console.WriteLine("post all 00003");
-                TmxHelper.ImportTestResultsFromXdocument(xDocResults);
-Console.WriteLine("post all 00004");
-                return HttpStatusCode.Created;
+                try {
+                    var actualBytes = new byte[Request.Body.Length];
+                    Request.Body.Read(actualBytes, 0, (int)Request.Body.Length);
+                    var actual = Encoding.UTF8.GetString(actualBytes);
+                    var xDoc = XDocument.Parse(actual);
+                    TmxHelper.ImportTestResultsFromXdocument(xDoc);
+                    // maybe, there's no such need? // TODO: set current test suite, test scenario, test result?
+                    return HttpStatusCode.Created;
+                }
+                catch (Exception eAllResultsPosting) {
+                    // Console.WriteLine(eAllResultsPosting.Message);
+                    return HttpStatusCode.ExpectationFailed;
+                }
             };
             
             Post[UrnList.TestStructure_Suites] = _ => {

@@ -10,19 +10,18 @@
 namespace Tmx.Client
 {
 	using System;
-	using System.Collections.Generic;
+//	using System.Collections.Generic;
 	using System.Net;
-	using System.Xml;
+//	using System.Xml;
 	using System.Xml.Linq;
 	using Spring.Http;
-	using Spring.Http.Converters;
+//	using Spring.Http.Converters;
 	using Spring.Http.Converters.Xml;
 	using Spring.Rest.Client;
 	using TMX.Interfaces;
 	using TMX.Interfaces.Exceptions;
 	using TMX.Interfaces.Server;
-	using Tmx.Interfaces.TestStructure;
-//	using Tmx.Interfaces.Remoting;
+//	using Tmx.Interfaces.TestStructure;
 	
     /// <summary>
     /// Description of TestResultsSender.
@@ -38,24 +37,16 @@ namespace Tmx.Client
 	    
 	    public bool SendTestResults()
 	    {
-	        var document =
-	            TmxHelper.GetTestResultsAsXdocument(
+	        var element =
+	            TmxHelper.GetTestResultsAsXelement(
 	                new SearchCmdletBaseDataObject {
 	                    FilterAll = true
 	                });
+	        
 			try {
-				var parts = new Dictionary<string, object>();
-Console.WriteLine("sending 000001");
-				var entity = new HttpEntity(document.Root.ToString());
-Console.WriteLine(document.Root.ToString());
-Console.WriteLine("sending 000002");
-				entity.Headers["Content-Type"] = "text/plain";
-Console.WriteLine("sending 000003");
-				parts.Add("data", entity);
-Console.WriteLine("sending 000004");
-				_restTemplate.PostForLocation(UrnList.TestStructure_Root + UrnList.TestStructure_AllResults, parts);
-Console.WriteLine("sending 000005");
-				return true;
+				_restTemplate.MessageConverters.Add(new XElementHttpMessageConverter());
+				var sendingResultsResponse = _restTemplate.PostForMessage(UrnList.TestStructure_Root + UrnList.TestStructure_AllResults, element);
+				return HttpStatusCode.Created == sendingResultsResponse.StatusCode;
 			}
             catch (Exception eSendingTestResults) {
 			    throw new SendingTestResultsException("Failed to send test results. " + eSendingTestResults.Message);

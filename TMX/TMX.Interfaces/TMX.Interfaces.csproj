@@ -114,11 +114,7 @@
     <Compile Include="Types\Remoting\TestClient.cs" />
     <Compile Include="Types\Remoting\TestTask.cs" />
     <Compile Include="Types\TestStructure\ITestBucket.cs" />
-    <Compile Include="Types\TestStructure\TestResult.cs" />
-    <Compile Include="Types\TestStructure\TestResultDetail.cs" />
-    <Compile Include="Types\TestStructure\TestScenario.cs" />
     <Compile Include="Types\TestStructure\TestStat.cs" />
-    <Compile Include="Types\TestStructure\TestSuite.cs" />
     <Compile Include="UrnList.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -332,15 +332,9 @@ namespace Tmx
         
             #region export to XML
         public static XElement CreateSuitesXElementWithParameters(
-                // 20140720
                 IOrderedEnumerable<ITestSuite> suites,
                 IOrderedEnumerable<ITestScenario> scenarios,
                 IOrderedEnumerable<ITestResult> testResults,
-                /*
-                IOrderedEnumerable<TestSuite> suites,
-                IOrderedEnumerable<TestScenario> scenarios,
-                IOrderedEnumerable<TestResult> testResults,
-                */
                 IXMLElementsStruct xmlStruct)
         {
 
@@ -369,7 +363,6 @@ namespace Tmx
             return suitesElement;
         }
         
-        // 20140720
         public static XElement CreateScenariosXElementCommon(
                 ITestSuite suite,
                 IOrderedEnumerable<ITestScenario> scenarios,
@@ -398,7 +391,6 @@ namespace Tmx
             return scenariosElement;
         }
         
-        // 20140720
         static XElement getScenariosXElement(
                 ITestSuite suite,
                 ITestScenario scenario,
@@ -430,14 +422,8 @@ namespace Tmx
         }
             
         public static XElement CreateTestResultsXElementCommon(
-                // 20140720
                 ITestSuite suite,
                 ITestScenario scenario,
-                /*
-                TestSuite suite,
-                TestScenario scenario,
-                IOrderedEnumerable<TestResult> testResults,
-                */
                 IOrderedEnumerable<ITestResult> testResults,
                 IXMLElementsStruct xmlStruct)
         {
@@ -463,7 +449,6 @@ namespace Tmx
             return testResultsElement;
         }
         
-        // 20140720
         static XElement getTestResultsXElement(
                 ITestResult testResult,
                 IXMLElementsStruct xmlStruct)
@@ -499,7 +484,6 @@ namespace Tmx
             return testResultsElement;
         }
         
-        // 20140720
         public static XElement CreateTestResultDetailsXElement(
                 ITestResult testResult,
                 IXMLElementsStruct xmlStruct)
@@ -531,19 +515,6 @@ namespace Tmx
         public static void ExportResultsToXML(ISearchCmdletBaseDataObject cmdlet, string path)
         {
             try {
-            
-//                var gathered = new GatherTestResultsCollections();
-//                gathered.GatherCollections(cmdlet);
-//                
-//                XElement suitesElement = 
-//                    TmxHelper.CreateSuitesXElementWithParameters(
-//                        gathered.TestSuites,
-//                        gathered.TestScenarios,
-//                        gathered.TestResults,
-//                        (new XMLElementsNativeStruct()));
-//                
-//                var document = new XDocument();
-//                document.Add(suitesElement);
                 var document = GetTestResultsAsXdocument(cmdlet);
                 document.Save(path);
             }
@@ -558,19 +529,21 @@ namespace Tmx
 
 		public static XDocument GetTestResultsAsXdocument(ISearchCmdletBaseDataObject cmdlet)
 		{
-			var gathered = new GatherTestResultsCollections();
-			gathered.GatherCollections(cmdlet);
-			var suitesElement = TmxHelper.CreateSuitesXElementWithParameters(gathered.TestSuites, gathered.TestScenarios, gathered.TestResults, (new XMLElementsNativeStruct()));
+//			var gathered = new GatherTestResultsCollections();
+//			gathered.GatherCollections(cmdlet);
+//			var suitesElement = TmxHelper.CreateSuitesXElementWithParameters(gathered.TestSuites, gathered.TestScenarios, gathered.TestResults, (new XMLElementsNativeStruct()));
+			var suitesElement = GetTestResultsAsXelement(cmdlet);
 			var document = new XDocument();
 			document.Add(suitesElement);
 			return document;
 		}
-		
+
 		public static XElement GetTestResultsAsXelement(ISearchCmdletBaseDataObject cmdlet)
 		{
 			var gathered = new GatherTestResultsCollections();
 			gathered.GatherCollections(cmdlet);
-			return TmxHelper.CreateSuitesXElementWithParameters(gathered.TestSuites, gathered.TestScenarios, gathered.TestResults, (new XMLElementsNativeStruct()));
+			var suitesElement = TmxHelper.CreateSuitesXElementWithParameters(gathered.TestSuites, gathered.TestScenarios, gathered.TestResults, (new XMLElementsNativeStruct()));
+			return suitesElement;
 		}
 
             #endregion export to XML
@@ -1587,6 +1560,7 @@ namespace Tmx
 					testResultDescription = singleTestResult.Attribute("description").Value;
 				} catch {
 				}
+				
 				TestData.AddTestResult(singleTestResult.Attribute("name").Value, singleTestResult.Attribute("id").Value, passedValue, knownIssueValue, false, null, null, testResultDescription, origin, true);
 				var currentlyAddedTestResult = TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1];
 				try {

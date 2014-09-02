@@ -29,19 +29,11 @@ namespace Tmx
         internal override void Execute()
         {
             var cmdlet = (InvokeTmxTestTaskCommand)Cmdlet;
-//            var taskRunner = new TaskRunner();
-//            var taskUpdater = new TaskUpdater(new RestRequestCreator());
             var task = cmdlet.InputObject;
             if (TestTaskStatuses.Accepted != task.TaskStatus)
                 cmdlet.WriteError(cmdlet, "Task '" + task.Name + "' has been already processed", "AlreadyProcessed", ErrorCategory.InvalidData, true);
             
-//            var taskRunner = new TaskRunner();
-//			var runResult = taskRunner.Run(task);
-//			task.TaskFinished = true;
-//			task.TaskStatus = runResult ? TestTaskStatuses.CompletedSuccessfully : TestTaskStatuses.Failed;
             runTask(task);
-//			var taskUpdater = new TaskUpdater(new RestRequestCreator());
-//			taskUpdater.UpdateTask(task);
 			updateTask(task);
 			sendTestResults();
         }

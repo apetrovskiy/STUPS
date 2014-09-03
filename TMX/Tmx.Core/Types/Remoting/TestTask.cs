@@ -1,28 +1,23 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
- * Date: 7/17/2014
- * Time: 9:33 PM
+ * Date: 9/3/2014
+ * Time: 4:51 PM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Interfaces.Types.Remoting
+namespace Tmx.Core.Types.Remoting
 {
-	using System;
+    using System;
 	using System.Collections.Generic;
 	using Tmx.Interfaces.Remoting;
-	
-	/// <summary>
-	/// Description of TestTask.
-	/// </summary>
+    
+    /// <summary>
+    /// Description of TestTask.
+    /// </summary>
 	public class TestTask : ITestTask
 	{
-//		public TestTask()
-//		{
-//			this.TaskResult = new string[] {};
-//		}
-//		
 		public int Id { get; set; }
 		// public int Order { get; set; }
 		public int PreviousTaskId { get; set; }
@@ -47,8 +42,11 @@ namespace Tmx.Interfaces.Types.Remoting
 		public string[] ExpectedResult { get; set; }
 		
 		public TestTaskStatuses TaskStatus { get; set; }
-		public string[] PreviousTaskResult { get; set; }
-		public string[] TaskResult { get; set; }
+		// 20140903
+		// public string[] PreviousTaskResult { get; set; }
+		// public string[] TaskResult { get; set; }
+		public List<object> PreviousTaskResult { get; set; }
+		public List<object> TaskResult { get; set; }
 		public int ClientId { get; set; }
 		
 		public void StartTimer()

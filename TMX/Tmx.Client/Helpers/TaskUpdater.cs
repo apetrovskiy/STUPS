@@ -20,7 +20,8 @@ namespace Tmx.Client
 	/// </summary>
 	public class TaskUpdater
 	{
-	    volatile RestTemplate _restTemplate;
+	    // volatile RestTemplate _restTemplate;
+	    readonly RestTemplate _restTemplate;
 	    
 	    public TaskUpdater(RestRequestCreator requestCreator)
 	    {

@@ -1,17 +1,17 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
- * Date: 7/31/2014
- * Time: 5:39 PM
+ * Date: 9/3/2014
+ * Time: 4:53 PM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Interfaces.Remoting
+namespace Tmx.Core
 {
     using System;
 	using Tmx.Interfaces.Remoting;
-	using Tmx.Interfaces.Types.Remoting;
+	using Tmx.Core.Types.Remoting;
     
     /// <summary>
     /// Description of ExtensionMethods.

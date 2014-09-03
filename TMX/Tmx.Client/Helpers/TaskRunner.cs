@@ -12,6 +12,7 @@ namespace Tmx.Client
 	using System;
 	using System.Collections.Generic;
 	using System.Collections.ObjectModel;
+	using System.Linq;
 	using System.Management.Automation;
 	using Tmx.Interfaces.Remoting;
 	
@@ -25,9 +26,13 @@ namespace Tmx.Client
             // TODO: move to an aspect
             try {
                 var runnerWithParams = new runScriptBlockWithParameters(runSBActionWithParams);
-                runScriptblockWithParameters(runnerWithParams, task.BeforeAction, task.BeforeActionParameters);
-                runScriptblockWithParameters(runnerWithParams, task.Action, task.ActionParameters);
-                runScriptblockWithParameters(runnerWithParams, task.AfterAction, task.AfterActionParameters);
+                // 20140903
+//                runScriptblockWithParameters(runnerWithParams, task.BeforeAction, task.BeforeActionParameters);
+//                runScriptblockWithParameters(runnerWithParams, task.Action, task.ActionParameters);
+//                runScriptblockWithParameters(runnerWithParams, task.AfterAction, task.AfterActionParameters);
+                runScriptblockWithParameters(runnerWithParams, task.BeforeAction, task.BeforeActionParameters, task.PreviousTaskResult);
+                runScriptblockWithParameters(runnerWithParams, task.Action, task.ActionParameters, task.PreviousTaskResult);
+                runScriptblockWithParameters(runnerWithParams, task.AfterAction, task.AfterActionParameters, task.PreviousTaskResult);
                 return true;
             }
             catch {
@@ -35,10 +40,18 @@ namespace Tmx.Client
             }
         }
         
-        void runScriptblockWithParameters(runScriptBlockWithParameters runnerWithParams, string code, List<object> parameters)
+        void runScriptblockWithParameters(runScriptBlockWithParameters runnerWithParams, string code, List<object> parameters, List<object> previousTaskResults)
 		{
-			if (string.Empty != code)
-				runnerWithParams(ScriptBlock.Create(code), parameters.ToArray());
+            // 20140903
+//			if (string.Empty != code)
+//				runnerWithParams(ScriptBlock.Create(code), parameters.ToArray());
+			
+			if (string.Empty == code) return;
+            var scriptblockParameters = 
+                (null == previousTaskResults || 0 == previousTaskResults.Count) ? 
+                new object[] { new object[]{}, parameters.ToArray() } :
+                    new object[] { previousTaskResults.ToArray(), parameters.ToArray() };
+            runnerWithParams(ScriptBlock.Create(code), scriptblockParameters);
 		}
         
         #region Action delegate

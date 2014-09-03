@@ -10,14 +10,14 @@
 namespace Tmx.Server.Modules
 {
     using System;
-    // using System.Collections.Generic;
+    using System.Collections.Generic;
     using System.Linq;
 	using Nancy;
 	using Nancy.ModelBinding;
 	using TMX.Interfaces.Exceptions;
 	using TMX.Interfaces.Server;
+	using Tmx.Core.Types.Remoting;
 	using Tmx.Interfaces.Remoting;
-	using Tmx.Interfaces.Types.Remoting;
     
     /// <summary>
     /// Description of TestTasksModule.
@@ -62,8 +62,11 @@ namespace Tmx.Server.Modules
                 
                 var taskSorter = new TaskSelector();
                 var actualTask = taskSorter.GetFirstLegibleTask(parameters.id) as TestTask;
-				var currentTaskResult = actualTask.TaskResult ?? new string[] {};
-				actualTask.TaskResult = currentTaskResult.Concat(loadedTask.TaskResult).ToArray();
+                // 20140903
+				// var currentTaskResult = actualTask.TaskResult ?? new string[] {};
+				// actualTask.TaskResult = currentTaskResult.Concat(loadedTask.TaskResult).ToArray();
+				var currentTaskResult = actualTask.TaskResult ?? new List<object>();
+				actualTask.TaskResult = currentTaskResult.Concat(loadedTask.TaskResult).ToList<object>();
                 return HttpStatusCode.OK;        		
         	};
         }

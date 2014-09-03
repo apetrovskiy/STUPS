@@ -10,25 +10,22 @@
 namespace Tmx.Client
 {
 	using System;
-//	using System.Collections.Generic;
 	using System.Net;
-//	using System.Xml;
 	using System.Xml.Linq;
 	using Spring.Http;
-//	using Spring.Http.Converters;
 	using Spring.Http.Converters.Xml;
 	using Spring.Rest.Client;
 	using TMX.Interfaces;
 	using TMX.Interfaces.Exceptions;
 	using TMX.Interfaces.Server;
-//	using Tmx.Interfaces.TestStructure;
 	
     /// <summary>
     /// Description of TestResultsSender.
     /// </summary>
     public class TestResultsSender
     {
-	    volatile RestTemplate _restTemplate;
+	    // volatile RestTemplate _restTemplate;
+	    readonly RestTemplate _restTemplate;
 	    
 	    public TestResultsSender(RestRequestCreator requestCreator)
 	    {

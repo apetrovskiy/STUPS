@@ -13,7 +13,7 @@ namespace Tmx
 	using System.Linq;
 	using Tmx;
 	using Tmx.Client;
-	using Tmx.Interfaces.Types.Remoting;
+	using Tmx.Core.Types.Remoting;
 	using Tmx.Commands;
 	
 	/// <summary>
@@ -29,7 +29,9 @@ namespace Tmx
         {
             var cmdlet = (SendTmxTestTaskResultCommand)Cmdlet;
             var taskUpdater = new TaskUpdater(new RestRequestCreator());
-            taskUpdater.SendTaskResult(new TestTask { TaskResult = cmdlet.Result }, ClientSettings.Instance.ClientId);
+            // 20140903
+            // taskUpdater.SendTaskResult(new TestTask { TaskResult = cmdlet.Result }, ClientSettings.Instance.ClientId);
+            taskUpdater.SendTaskResult(new TestTask { TaskResult = cmdlet.Result.ToList<object>() }, ClientSettings.Instance.ClientId);
         }
     }
 }

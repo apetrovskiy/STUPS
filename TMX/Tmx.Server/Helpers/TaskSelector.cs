@@ -13,9 +13,8 @@ namespace Tmx.Server
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;
-	using Tmx.Interfaces;
+	using Tmx.Core;
 	using Tmx.Interfaces.Remoting;
-	using Tmx.Interfaces.Types.Remoting;
 	
 	/// <summary>
 	/// Description of TaskSelector.
@@ -33,19 +32,6 @@ namespace Tmx.Server
 	        if (null == client) return resultTaskScope;
 	        
 	        // TODO: add IsAdmin and IsInteractive to the checking
-//	        resultTaskScope =
-//	        	TaskPool.Tasks.Where(task => // 0 == task.ClientId && 
-//	        	                     (Regex.IsMatch(client.CustomString ?? string.Empty, task.Rule)  ||
-//	        	                      Regex.IsMatch(client.EnvironmentVersion ?? string.Empty, task.Rule) ||
-//	        	                      Regex.IsMatch(client.Fqdn ?? string.Empty, task.Rule) ||
-//	        	                      Regex.IsMatch(client.Hostname ?? string.Empty, task.Rule) ||
-//	        	                      // task.Rule == client.IsAdmin.ToString() ||
-//	        	                      // task.Rule == client.IsInteractive.ToString() ||
-//	        	                      Regex.IsMatch(client.OsVersion ?? string.Empty, task.Rule) ||
-//	        	                      Regex.IsMatch(client.UserDomainName ?? string.Empty, task.Rule) ||
-//	        	                      Regex.IsMatch(client.Username ?? string.Empty, task.Rule))
-//	                                ).Select(t => { var newTask = t.CloneTaskForNewTestClient(); newTask.ClientId = clientId; return newTask; }).ToList<ITestTask>();
-//            return resultTaskScope;
 	        resultTaskScope =
 	        	tasks.Where(task => // 0 == task.ClientId && 
 	        	                     (Regex.IsMatch(client.CustomString ?? string.Empty, task.Rule)  ||
@@ -84,8 +70,9 @@ namespace Tmx.Server
 		bool isItTimeToPublishTask(ITestTask task)
 		{
 		    var tasksThatShouldBeCompletedBefore = task.AfterTask;
-		    if (0 == tasksThatShouldBeCompletedBefore) return true;
-			return !TaskPool.TasksForClients.Any(t => t.Id == tasksThatShouldBeCompletedBefore && t.TaskStatus != TestTaskStatuses.CompletedSuccessfully);
+//		    if (0 == tasksThatShouldBeCompletedBefore) return true;
+//			return !TaskPool.TasksForClients.Any(t => t.Id == tasksThatShouldBeCompletedBefore && t.TaskStatus != TestTaskStatuses.CompletedSuccessfully);
+			return 0 == tasksThatShouldBeCompletedBefore || !TaskPool.TasksForClients.Any(t => t.Id == tasksThatShouldBeCompletedBefore && t.TaskStatus != TestTaskStatuses.CompletedSuccessfully);
 		}
 	}
 }

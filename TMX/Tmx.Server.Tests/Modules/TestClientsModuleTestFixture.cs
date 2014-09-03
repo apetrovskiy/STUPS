@@ -16,10 +16,10 @@ namespace Tmx.Server.Tests.Modules
     using MbUnit.Framework;
     using NUnit.Framework;
 	using TMX.Interfaces.Server;
+	using Tmx.Core;
 	using Tmx.Interfaces;
 	using Tmx.Interfaces.Remoting;
 	using Tmx.Interfaces.TestStructure;
-	using Tmx.Interfaces.Types.Remoting;
     using Xunit;
     using PSTestLib;
     

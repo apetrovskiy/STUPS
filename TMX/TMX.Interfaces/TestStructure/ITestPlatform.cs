@@ -10,12 +10,12 @@
 namespace Tmx.Interfaces.TestStructure
 {
     using System;
-    using System.Management.Automation;
+	using TMX.Interfaces.Internal;
     
     /// <summary>
     /// Description of ITestPlatform.
     /// </summary>
-    public interface ITestPlatform
+    public interface ITestPlatform : ISystemInfo
     {
         string Name { get; set; }
         string Id { get; set; }
@@ -24,6 +24,5 @@ namespace Tmx.Interfaces.TestStructure
         string OperatingSystem { get; set; }
         string Version { get; set; }
         string Architecture { get; set; }
-        string Language { get; set; }
     }
 }

@@ -92,8 +92,8 @@
     <Compile Include="Exceptions\SendingTestResultsException.cs" />
     <Compile Include="Exceptions\UpdateTaskException.cs" />
     <Compile Include="Exceptions\WrongTaskDataException.cs" />
-    <Compile Include="ExtensionMethods\ExtensionMethods.cs" />
     <Compile Include="IDatabase.cs" />
+    <Compile Include="Internal\ISystemInfo.cs" />
     <Compile Include="ITestSuitesCollection.cs" />
     <Compile Include="IWorkflowStep.cs" />
     <Compile Include="IXMLElementsStruct.cs" />
@@ -104,6 +104,7 @@
     <Compile Include="Remoting\ITestHost.cs" />
     <Compile Include="Remoting\ITestHostGroup.cs" />
     <Compile Include="TestStructure\Enumerations.cs" />
+    <Compile Include="TestStructure\ITestBucket.cs" />
     <Compile Include="TestStructure\ITestCase.cs" />
     <Compile Include="TestStructure\ITestConstant.cs" />
     <Compile Include="TestStructure\ITestPlatform.cs" />
@@ -111,9 +112,6 @@
     <Compile Include="TestStructure\ITestResultDetail.cs" />
     <Compile Include="TestStructure\ITestScenario.cs" />
     <Compile Include="TestStructure\ITestSuite.cs" />
-    <Compile Include="Types\Remoting\TestClient.cs" />
-    <Compile Include="Types\Remoting\TestTask.cs" />
-    <Compile Include="Types\TestStructure\ITestBucket.cs" />
     <Compile Include="Types\TestStructure\TestStat.cs" />
     <Compile Include="UrnList.cs" />
   </ItemGroup>
@@ -124,13 +122,12 @@
     <Folder Include="DataTypes" />
     <Folder Include="DataTypes\Types" />
     <Folder Include="Exceptions" />
-    <Folder Include="ExtensionMethods" />
     <Folder Include="Delegates" />
+    <Folder Include="Internal" />
     <Folder Include="Types" />
     <Folder Include="Remoting" />
     <Folder Include="TestStructure" />
     <Folder Include="Types\TestStructure" />
-    <Folder Include="Types\Remoting" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

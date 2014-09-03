@@ -14,8 +14,8 @@ namespace Tmx.Server
 	using System.Linq;
 	using System.Xml.Linq;
 	using TMX.Interfaces.Exceptions;
+	using Tmx.Core.Types.Remoting;
 	using Tmx.Interfaces.Remoting;
-	using Tmx.Interfaces.Types.Remoting;
 	
 	/// <summary>
 	/// Description of WorkflowLoader.
@@ -54,13 +54,6 @@ namespace Tmx.Server
                     where task.Element(taskElement_isActive).Value == "1"
                     select task;
                 
-//				foreach (var singleTask in tasks)
-//					TaskPool.Tasks.Add(getNewTestTask(singleTask));
-                
-//                foreach (var singleTask in tasks.Select(t => getNewTestTask(t)))
-//					// TaskPool.Tasks.Add(getNewTestTask(singleTask));
-//                    TaskPool.Tasks.Add(singleTask);
-                
                 var importedTasks = tasks.Select(t => getNewTestTask(t));
                 TaskPool.Tasks.AddRange(importedTasks);
                 
@@ -86,10 +79,7 @@ namespace Tmx.Server
 		ITestTask getNewTestTask(XContainer taskNode)
 		{
 			return new TestTask {
-		        // Action = getCollection(taskNode, taskElement_action),
-		        // Action = getAction(taskNode, taskElement_action),
 		        Action = getActionCode(taskNode, taskElement_action),
-		        // ActionParameters = getActionParameters(taskNode, taskElement_action),
 		        ActionParameters = getActionParameters(taskNode, taskElement_action),
 				AfterAction = getActionCode(taskNode, taskElement_afterAction),
 				AfterActionParameters = getActionParameters(taskNode, taskElement_afterAction),
@@ -121,7 +111,6 @@ namespace Tmx.Server
 		
 		List<object> getActionParameters(XContainer taskNode, string elementName)
 		{
-		    // var resultDictionary = new Dictionary<string, object>();
 		    var resultList = new List<object>();
 		    var nodeParameters = taskNode.Element(elementName);
 		    try {

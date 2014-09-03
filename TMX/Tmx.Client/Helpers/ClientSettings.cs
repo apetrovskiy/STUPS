@@ -12,7 +12,6 @@ namespace Tmx.Client
     using System;
     using System.Collections.Generic;
     using System.Linq;
-	// using Tmx.Interfaces.Remoting;
     
     /// <summary>
     /// Description of ClientSettings.
@@ -114,51 +113,51 @@ namespace Tmx.Client
             get { return instance; }
         }
         
-//        public string ServerUrl { get; set; }
-//        public int ClientId { get; set; }
-//        public bool StopImmediately { get; set; }
-//        public IEnumerable<string> TaskResult { get; set; }
-        volatile string _ServerUrl;
-        public string ServerUrl
-        {
-            get { return _ServerUrl; }
-            set { _ServerUrl = value; }
-        }
-        volatile int _clientId;
-        public int ClientId
-        {
-            get { return _clientId; }
-            set { _clientId = value; }
-        }
-        volatile bool _stopImmediately;
-        public bool StopImmediately
-        {
-            get { return _stopImmediately; }
-            set { _stopImmediately = value; }
-        }
-        volatile IEnumerable<string> _taskResult;
-        public IEnumerable<string> TaskResult
-        {
-            get{ return _taskResult; }
-            set { _taskResult = value; }
-        }
+        public string ServerUrl { get; set; }
+        public int ClientId { get; set; }
+        public bool StopImmediately { get; set; }
+        public IEnumerable<string> TaskResult { get; set; }
+//        volatile string _ServerUrl;
+//        public string ServerUrl
+//        {
+//            get { return _ServerUrl; }
+//            set { _ServerUrl = value; }
+//        }
+//        volatile int _clientId;
+//        public int ClientId
+//        {
+//            get { return _clientId; }
+//            set { _clientId = value; }
+//        }
+//        volatile bool _stopImmediately;
+//        public bool StopImmediately
+//        {
+//            get { return _stopImmediately; }
+//            set { _stopImmediately = value; }
+//        }
+//        volatile IEnumerable<string> _taskResult;
+//        public IEnumerable<string> TaskResult
+//        {
+//            get{ return _taskResult; }
+//            set { _taskResult = value; }
+//        }
         
         public void ResetData()
         {
-//			ClientId = 0;
-//			ServerUrl = string.Empty;
-//			StopImmediately = false;
-//			TaskResult = new string[] {};
-            _clientId = 0;
-            _ServerUrl = string.Empty;
-            _stopImmediately = false;
-            _taskResult = new string[] {};
+			ClientId = 0;
+			ServerUrl = string.Empty;
+			StopImmediately = false;
+			TaskResult = new string[] {};
+//            _clientId = 0;
+//            _ServerUrl = string.Empty;
+//            _stopImmediately = false;
+//            _taskResult = new string[] {};
         }
         
         public void AddTaskResult(string[] results)
         {
-            // TaskResult = null == TaskResult ? results : TaskResult.Concat(results);
-            _taskResult = null == _taskResult ? results : _taskResult.Concat(results);
+            TaskResult = null == TaskResult ? results : TaskResult.Concat(results);
+            // _taskResult = null == _taskResult ? results : _taskResult.Concat(results);
         }
     }
 

@@ -12,18 +12,18 @@ namespace Tmx.Client
 	using System;
 	using System.Net;
 	using Spring.Rest.Client;
-	using Tmx;
 	using TMX.Interfaces.Exceptions;
 	using TMX.Interfaces.Server;
+	using Tmx.Core.Types.Remoting;
 	using Tmx.Interfaces.Remoting;
-	using Tmx.Interfaces.Types.Remoting;
 	
 	/// <summary>
 	/// Description of TaskLoader.
 	/// </summary>
 	public class TaskLoader
 	{
-	    volatile RestTemplate _restTemplate;
+	    // volatile RestTemplate _restTemplate;
+	    readonly RestTemplate _restTemplate;
 	    
 	    public TaskLoader(RestRequestCreator requestCreator)
 	    {

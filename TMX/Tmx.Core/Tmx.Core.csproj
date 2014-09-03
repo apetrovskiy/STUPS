@@ -77,6 +77,7 @@
     <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="ExtensionMethods\ExtensionMethods.cs" />
     <Compile Include="GatherTestResultsCollections.cs" />
     <Compile Include="Helpers\Mapping\TestPlatformMap.cs" />
     <Compile Include="Helpers\Mapping\TestResultDetailMap.cs" />
@@ -88,13 +89,15 @@
     <Compile Include="Helpers\TMXHelper.cs" />
     <Compile Include="Helpers\UserSettings\Preferences.cs" />
     <Compile Include="TestData\TestData.cs" />
-    <Compile Include="Types\TestTaskAction.cs" />
-    <Compile Include="Types\TestCase.cs" />
-    <Compile Include="Types\TestPlatform.cs" />
-    <Compile Include="Types\TestResult.cs" />
-    <Compile Include="Types\TestResultDetail.cs" />
-    <Compile Include="Types\TestScenario.cs" />
-    <Compile Include="Types\TestSuite.cs" />
+    <Compile Include="Types\Remoting\TestClient.cs" />
+    <Compile Include="Types\Remoting\TestTask.cs" />
+    <Compile Include="Types\TestStructure\TestCase.cs" />
+    <Compile Include="Types\TestStructure\TestPlatform.cs" />
+    <Compile Include="Types\TestStructure\TestResult.cs" />
+    <Compile Include="Types\TestStructure\TestResultDetail.cs" />
+    <Compile Include="Types\TestStructure\TestScenario.cs" />
+    <Compile Include="Types\TestStructure\TestSuite.cs" />
+    <Compile Include="Types\TestStructure\TestTaskAction.cs" />
     <Compile Include="XMLElementsJUnitStruct.cs" />
     <Compile Include="XMLElementsNativeStruct.cs" />
   </ItemGroup>
@@ -103,10 +106,13 @@
     <Folder Include="Helpers\Mapping" />
     <Folder Include="Helpers\Spring.IoC" />
     <Folder Include="Helpers\UserSettings" />
+    <Folder Include="ExtensionMethods" />
     <Folder Include="Properties" />
     <Folder Include="Types" />
     <Folder Include="TestData" />
     <Folder Include="Properties" />
+    <Folder Include="Types\TestStructure" />
+    <Folder Include="Types\Remoting" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tmx.Interfaces\Tmx.Interfaces.csproj">

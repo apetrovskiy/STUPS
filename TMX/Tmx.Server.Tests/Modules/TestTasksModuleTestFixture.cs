@@ -19,10 +19,11 @@ namespace Tmx.Server.Tests.Modules
     using NUnit.Framework;
 	using TMX.Interfaces.Server;
 	using Tmx.Client;
+	using Tmx.Core;
+	using Tmx.Core.Types.Remoting;
 	using Tmx.Interfaces;
 	using Tmx.Interfaces.Remoting;
 	using Tmx.Interfaces.TestStructure;
-	using Tmx.Interfaces.Types.Remoting;
     using Xunit;
     using PSTestLib;
     
@@ -48,8 +49,8 @@ namespace Tmx.Server.Tests.Modules
         {
         	// Given
             var browser = new Browser(new DefaultNancyBootstrapper());
-            var testClientHostnameExpected = "testhost";
-            var testClientUsernameExpected = "aaa";
+			const string testClientHostnameExpected = "testhost";
+			const string testClientUsernameExpected = "aaa";
             var testClient = new TestClient { Hostname = testClientHostnameExpected, Username = testClientUsernameExpected };
             var task = new TestTask {
             	Id = 5,
@@ -82,8 +83,8 @@ namespace Tmx.Server.Tests.Modules
         {
         	// Given
             var browser = new Browser(new DefaultNancyBootstrapper());
-            var testClientHostnameExpected = "testhost";
-            var testClientUsernameExpected = "aaa";
+			const string testClientHostnameExpected = "testhost";
+			const string testClientUsernameExpected = "aaa";
             var testClient = new TestClient { Hostname = testClientHostnameExpected, Username = testClientUsernameExpected };
             var task = new TestTask {
             	Id = 5,

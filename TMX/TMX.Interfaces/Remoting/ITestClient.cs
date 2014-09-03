@@ -9,25 +9,13 @@
 
 namespace Tmx.Interfaces.Remoting
 {
-	using System.Collections.Generic;
+	using TMX.Interfaces.Internal;
 	
 	/// <summary>
 	/// Description of ITestClient.
 	/// </summary>
-	public interface ITestClient
+	public interface ITestClient : ISystemInfo
 	{
 		int Id { get; set; }
-		string Hostname { get; set; } // Environment.MachineName
-		string Fqdn { get; set; }
-		List<string> IpAddresses { get; set; }
-		List<string> MacAddresses { get; set; }
-		string UserDomainName { get; set; } // Environment.UserDomainName
-		string Username { get; set; } // Environment.UserName aka sAMAccountName
-		bool IsInteractive { get; set; } // Environment.UserInteractive
-		bool IsAdmin { get; set; }
-		string OsVersion { get; set; } // Environment.OSVersion like Microsoft Windows NT 6.2.9200.0
-		string EnvironmentVersion { get; set; } // Environment.Version like 2.0.50727.8000
-		int UptimeSeconds { get; set; } // Environment.TickCount / 1000
-		string CustomString { get; set; }
 	}
 }

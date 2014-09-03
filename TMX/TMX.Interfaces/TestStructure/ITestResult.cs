@@ -57,10 +57,6 @@ namespace Tmx.Interfaces.TestStructure
         TestResultOrigins Origin { get; }
         void SetOrigin(TestResultOrigins origin);
         
-        // 20130401
-        // 20140703
-        // refactoring
-        // object[] ListDetailNames(TestResultStatusCmdletBase cmdlet);
         object[] ListDetailNames(TestResultStatuses status);
         
         //List<string> PlatformIds { get; set; }

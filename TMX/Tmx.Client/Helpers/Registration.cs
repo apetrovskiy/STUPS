@@ -11,13 +11,11 @@ namespace Tmx.Client
 {
     using System;
 	using System.Net;
-	using System.Net.NetworkInformation;
-	using System.Security.Principal;
 	using Spring.Http;
 	using Spring.Rest.Client;
 	using TMX.Interfaces.Exceptions;
 	using TMX.Interfaces.Server;
-	using Tmx.Interfaces;
+	using Tmx.Core;
 	using Tmx.Interfaces.Remoting;
     
     /// <summary>
@@ -25,7 +23,8 @@ namespace Tmx.Client
     /// </summary>
     public class Registration
     {
-        volatile RestTemplate _restTemplate;
+        // volatile RestTemplate _restTemplate;
+        RestTemplate _restTemplate;
 	    
 	    public Registration(RestRequestCreator requestCreator)
 	    {
@@ -53,24 +52,7 @@ namespace Tmx.Client
         
         ITestClient getNewTestClient(string customClientString)
         {
-            return new TestClient {
-                CustomString = customClientString,
-                Hostname = Environment.MachineName,
-                Username = Environment.UserName,
-                UserDomainName = Environment.UserDomainName,
-                IsInteractive = Environment.UserInteractive,
-                IsAdmin = isAdministrator(),
-                // EnvironmentVersion = Environment.Version.Major + "." + Environment.Version.MajorRevision + "." + Environment.Version.Minor + "." + Environment.Version.MinorRevision + "." + Environment.Version.Build,
-                Fqdn = Dns.GetHostName() + "." + IPGlobalProperties.GetIPGlobalProperties().DomainName,
-                OsVersion = Environment.OSVersion.VersionString,
-                UptimeSeconds = Environment.TickCount / 1000
-            };
-        }
-        
-        bool isAdministrator()
-        {
-            var principal = new WindowsPrincipal(WindowsIdentity.GetCurrent());
-            return principal.IsInRole(WindowsBuiltInRole.Administrator);
+            return new TestClient { CustomString = customClientString };
         }
     }
 }

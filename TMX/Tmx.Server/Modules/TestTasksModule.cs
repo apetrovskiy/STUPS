@@ -62,9 +62,6 @@ namespace Tmx.Server.Modules
                 
                 var taskSorter = new TaskSelector();
                 var actualTask = taskSorter.GetFirstLegibleTask(parameters.id) as TestTask;
-                // 20140903
-				// var currentTaskResult = actualTask.TaskResult ?? new string[] {};
-				// actualTask.TaskResult = currentTaskResult.Concat(loadedTask.TaskResult).ToArray();
 				var currentTaskResult = actualTask.TaskResult ?? new List<object>();
 				actualTask.TaskResult = currentTaskResult.Concat(loadedTask.TaskResult).ToList<object>();
                 return HttpStatusCode.OK;        		

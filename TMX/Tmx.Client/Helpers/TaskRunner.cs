@@ -26,10 +26,6 @@ namespace Tmx.Client
             // TODO: move to an aspect
             try {
                 var runnerWithParams = new runScriptBlockWithParameters(runSBActionWithParams);
-                // 20140903
-//                runScriptblockWithParameters(runnerWithParams, task.BeforeAction, task.BeforeActionParameters);
-//                runScriptblockWithParameters(runnerWithParams, task.Action, task.ActionParameters);
-//                runScriptblockWithParameters(runnerWithParams, task.AfterAction, task.AfterActionParameters);
                 runScriptblockWithParameters(runnerWithParams, task.BeforeAction, task.BeforeActionParameters, task.PreviousTaskResult);
                 runScriptblockWithParameters(runnerWithParams, task.Action, task.ActionParameters, task.PreviousTaskResult);
                 runScriptblockWithParameters(runnerWithParams, task.AfterAction, task.AfterActionParameters, task.PreviousTaskResult);
@@ -42,10 +38,6 @@ namespace Tmx.Client
         
         void runScriptblockWithParameters(runScriptBlockWithParameters runnerWithParams, string code, List<object> parameters, List<object> previousTaskResults)
 		{
-            // 20140903
-//			if (string.Empty != code)
-//				runnerWithParams(ScriptBlock.Create(code), parameters.ToArray());
-			
 			if (string.Empty == code) return;
             var scriptblockParameters = 
                 (null == previousTaskResults || 0 == previousTaskResults.Count) ? 

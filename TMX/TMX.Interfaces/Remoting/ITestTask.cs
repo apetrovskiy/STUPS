@@ -39,10 +39,8 @@ namespace Tmx.Interfaces.Remoting
 		List<object> AfterActionParameters { get; set; }
 		string[] ExpectedResult { get; set; }
 		
+		string TaskBanner { get; set; }
 		TestTaskStatuses TaskStatus { get; set; }
-		// 20140903
-		// string[] PreviousTaskResult { get; set; }
-		// string[] TaskResult { get; set; }
 		List<object> PreviousTaskResult { get; set; }
 		List<object> TaskResult { get; set; }
 		int ClientId { get; set; }

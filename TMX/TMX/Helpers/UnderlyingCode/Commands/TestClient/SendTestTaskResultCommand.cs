@@ -29,8 +29,6 @@ namespace Tmx
         {
             var cmdlet = (SendTmxTestTaskResultCommand)Cmdlet;
             var taskUpdater = new TaskUpdater(new RestRequestCreator());
-            // 20140903
-            // taskUpdater.SendTaskResult(new TestTask { TaskResult = cmdlet.Result }, ClientSettings.Instance.ClientId);
             taskUpdater.SendTaskResult(new TestTask { TaskResult = cmdlet.Result.ToList<object>() }, ClientSettings.Instance.ClientId);
         }
     }

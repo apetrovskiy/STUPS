@@ -41,10 +41,8 @@ namespace Tmx.Core.Types.Remoting
 		public List<object> AfterActionParameters { get; set; }
 		public string[] ExpectedResult { get; set; }
 		
+		public string TaskBanner { get; set; }
 		public TestTaskStatuses TaskStatus { get; set; }
-		// 20140903
-		// public string[] PreviousTaskResult { get; set; }
-		// public string[] TaskResult { get; set; }
 		public List<object> PreviousTaskResult { get; set; }
 		public List<object> TaskResult { get; set; }
 		public int ClientId { get; set; }

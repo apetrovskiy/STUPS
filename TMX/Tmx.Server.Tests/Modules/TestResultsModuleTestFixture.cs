@@ -10,7 +10,10 @@
 namespace Tmx.Server.Tests.Modules
 {
     using System;
+	using System.Collections.Generic;
+	using System.Linq;
     using System.Management.Automation;
+	using System.Xml.Linq;
 	using NSubstitute;
     using Nancy;
     using Nancy.Testing;
@@ -40,11 +43,36 @@ namespace Tmx.Server.Tests.Modules
     	    TestSettings.PrepareModuleTests();
     	}
     	
+    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+    	public void Should_ignore_empty_results_collection()
+    	{
+    	    Xunit.Assert.Equal(0, 1);
+    	}
+    	
+    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+    	public void Should_add_test_suites_from_results_collection()
+    	{
+    	    Xunit.Assert.Equal(0, 1);
+    	}
+    	
+    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+    	public void Should_add_test_suites_and_test_scenarios_from_results_collection()
+    	{
+    	    Xunit.Assert.Equal(0, 1);
+    	}
+    	
+    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+    	public void Should_add_test_results_from_results_collection()
+    	{
+    	    Xunit.Assert.Equal(0, 1);
+    	}
+    	
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_react_on_posting_a_test_suite()
         {
         	// Given
-            var browser = new Browser(new DefaultNancyBootstrapper());
+            // var browser = new Browser(new DefaultNancyBootstrapper());
+            var browser = TestFactory.GetBrowser();
             
             // When
             // /Results/suites/
@@ -58,7 +86,8 @@ namespace Tmx.Server.Tests.Modules
         public void Should_create_a_test_suite()
         {
         	// Given
-            var browser = new Browser(new DefaultNancyBootstrapper());
+            // var browser = new Browser(new DefaultNancyBootstrapper());
+            var browser = TestFactory.GetBrowser();
 			const string testSuiteNameExpected = "test suite name";
 			const string testSuiteIdExpected = "111";
             var testSuite = Substitute.For<TestSuite>();
@@ -81,7 +110,8 @@ namespace Tmx.Server.Tests.Modules
         public void Should_add_a_test_scenario()
         {
         	// Given
-            var browser = new Browser(new DefaultNancyBootstrapper());
+            // var browser = new Browser(new DefaultNancyBootstrapper());
+            var browser = TestFactory.GetBrowser();
 			const string testSuiteNameExpected = "test suite name";
 			const string testSuiteIdExpected = "111";
 //            var testSuitePlatformIdExpected = "555";
@@ -133,7 +163,8 @@ namespace Tmx.Server.Tests.Modules
         public void Should_add_a_test_result()
         {
         	// Given
-            var browser = new Browser(new DefaultNancyBootstrapper());
+            // var browser = new Browser(new DefaultNancyBootstrapper());
+            var browser = TestFactory.GetBrowser();
 			const string testSuiteNameExpected = "test suite name";
 			const string testSuiteIdExpected = "111";
             var testSuite = new TestSuite { Name = testSuiteNameExpected, Id = testSuiteIdExpected };
@@ -179,5 +210,49 @@ namespace Tmx.Server.Tests.Modules
 //            Xunit.Assert.Equal(testScenarioNameExpected, TestData.CurrentTestScenario.Name);
 //            Xunit.Assert.Equal(testScenarioIdExpected, TestData.CurrentTestScenario.Id);
         }
+        
+        void probe()
+        {
+            var suite01 = Substitute.For<ITestSuite>();
+            suite01.Id = "1";
+            suite01.Name = "s01";
+            var suite02 = Substitute.For<ITestSuite>();
+            suite02.Id = "2";
+            suite02.Name = "s02";
+            
+        }
+        
+        XElement getElementWithTestResults(IOrderedEnumerable<ITestSuite> suites, IOrderedEnumerable<ITestScenario> scenarios, IOrderedEnumerable<ITestResult> testResults)
+        {
+            // 
+            // return new XElement("aaaa");
+            // return TmxHelper.CreateSuitesXElementWithParameters(suites, scenarios, testResults,
+            return TmxHelper.CreateSuitesXElementWithParameters(suites, scenarios, testResults, (new XMLElementsNativeStruct()));            
+        }
+        
+        void whenPostingTestResults(XElement element)
+        {
+			var browser = TestFactory.GetBrowser();
+			var response = browser.Post(UrnList.TestResultsPostingPoint, (with) => with.JsonBody<XElement>(element));
+        }
+        
+        
+//        ITestClient givenSendingRegistration(ITestClient testClient)
+//        {
+//            var response = whenSendingRegistration(testClient);
+//            return response.Body.DeserializeJson<TestClient>();
+//        }
+//        
+//        BrowserResponse whenSendingRegistration(ITestClient testClient)
+//        {
+//            var browser = TestFactory.GetBrowser();
+//            return browser.Post(UrnList.TestClientRegistrationPoint, with => with.JsonBody<ITestClient>(testClient));
+//        }
+//        
+//        void whenSendingDeregistration(ITestClient testClient)
+//        {
+//            var browser = TestFactory.GetBrowser();
+//            browser.Delete(UrnList.TestClients_Root + "/" + testClient.Id);
+//        }
     }
 }

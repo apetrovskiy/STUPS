@@ -21,11 +21,13 @@ namespace TMX.Interfaces.Server
         public const string TestStructure_Suites = "/suites/";
         public const string TestStructure_Scenarios = "/scenarios/";
         public const string TestStructure_Results = "/testResults/";
+        public static string TestResultsPostingPoint = TestStructure_Root + TestStructure_AllResults;
         
         public const string TestClients_Root = "/Clients";
         public const string TestClients_Clients = "/";
         public const string TestClients_ClientById = "/{id:int}";
         public static string TestClientRegistrationPoint = TestClients_Root + TestClients_Clients;
+        public static string TestClientDeregistrationPoint = TestClients_ClientById;
         
         public const string TestTasks_Root = "/Tasks";
         public const string TestTasks_CurrentClient = "/{id:int}";

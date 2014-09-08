@@ -42,28 +42,9 @@ namespace Tmx.Server
 		public bool LoadWorkflow(string pathToWorkflowFile)
 		{
             try {
-                if (!System.IO.File.Exists(pathToWorkflowFile)) {
-                    throw new Exception(
-                        "There is no such file '" +
-                        pathToWorkflowFile +
-                        "'.");
-                }
-                
-                var doc = XDocument.Load(pathToWorkflowFile);
-                var tasks = from task in doc.Descendants("task")
-                    where task.Element(taskElement_isActive).Value == "1"
-                    select task;
-                
-                var importedTasks = tasks.Select(t => getNewTestTask(t));
-                TaskPool.Tasks.AddRange(importedTasks);
-                
-                if (0 == ClientsCollection.Clients.Count) return true;
-                
-                var taskSorter = new TaskSelector();
-                foreach (var clientId in ClientsCollection.Clients.Select(client => client.Id)) {
-                	TaskPool.TasksForClients.AddRange(taskSorter.SelectTasksForClient(clientId, importedTasks.ToList()));
-                }
-                
+				if (!System.IO.File.Exists(pathToWorkflowFile))
+					throw new Exception("There is no such file '" + pathToWorkflowFile + "'.");
+                importXdocument(XDocument.Load(pathToWorkflowFile));
             }
             catch (Exception eImportDocument) {
                 throw new Exception(
@@ -76,6 +57,30 @@ namespace Tmx.Server
 			return true;
 		}
 
+		void importXdocument(XContainer xDocument)
+		{
+			var tasks = from task in xDocument.Descendants("task")
+			            where task.Element(taskElement_isActive).Value == "1"
+			            select task;
+			var importedTasks = tasks.Select(tsk => getNewTestTask(tsk));
+			addTasksToCommonPool(importedTasks);
+			addTasksForEveryClient(importedTasks);
+		}
+
+		void addTasksToCommonPool(IEnumerable<ITestTask> importedTasks)
+		{
+			TaskPool.Tasks.AddRange(importedTasks);
+		}
+		
+		void addTasksForEveryClient(IEnumerable<ITestTask> importedTasks)
+		{
+		    if (0 == ClientsCollection.Clients.Count) return;
+			var taskSorter = new TaskSelector();
+			foreach (var clientId in ClientsCollection.Clients.Select(client => client.Id)) {
+				TaskPool.TasksForClients.AddRange(taskSorter.SelectTasksForClient(clientId, importedTasks.ToList()));
+			}
+		}
+		
 		ITestTask getNewTestTask(XContainer taskNode)
 		{
 			return new TestTask {

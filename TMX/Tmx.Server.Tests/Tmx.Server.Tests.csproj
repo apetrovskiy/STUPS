@@ -85,10 +85,12 @@
     <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Helpers\TestSettings.cs" />
+    <Compile Include="Helpers\WorkflowLoaderTestFixture.cs" />
     <Compile Include="Modules\TestClientsModuleTestFixture.cs" />
     <Compile Include="Modules\TestResultsModuleTestFixture.cs" />
     <Compile Include="Modules\TestTasksModuleTestFixture.cs" />
+    <Compile Include="UnitTestingHelpers\TestFactory.cs" />
+    <Compile Include="UnitTestingHelpers\TestSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
@@ -119,6 +121,7 @@
   <ItemGroup>
     <Folder Include="Modules" />
     <Folder Include="Helpers" />
+    <Folder Include="UnitTestingHelpers" />
     <Folder Include="Properties" />
     <Folder Include="Properties" />
   </ItemGroup>

@@ -529,9 +529,6 @@ namespace Tmx
 
 		public static XDocument GetTestResultsAsXdocument(ISearchCmdletBaseDataObject cmdlet)
 		{
-//			var gathered = new GatherTestResultsCollections();
-//			gathered.GatherCollections(cmdlet);
-//			var suitesElement = TmxHelper.CreateSuitesXElementWithParameters(gathered.TestSuites, gathered.TestScenarios, gathered.TestResults, (new XMLElementsNativeStruct()));
 			var suitesElement = GetTestResultsAsXelement(cmdlet);
 			var document = new XDocument();
 			document.Add(suitesElement);

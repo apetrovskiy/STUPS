@@ -42,7 +42,8 @@ namespace Tmx.Client
 	        
 			try {
 				_restTemplate.MessageConverters.Add(new XElementHttpMessageConverter());
-				var sendingResultsResponse = _restTemplate.PostForMessage(UrnList.TestStructure_Root + UrnList.TestStructure_AllResults, element);
+				// var sendingResultsResponse = _restTemplate.PostForMessage(UrnList.TestStructure_Root + UrnList.TestStructure_AllResults, element);
+				var sendingResultsResponse = _restTemplate.PostForMessage(UrnList.TestResultsPostingPoint, element);
 				return HttpStatusCode.Created == sendingResultsResponse.StatusCode;
 			}
             catch (Exception eSendingTestResults) {

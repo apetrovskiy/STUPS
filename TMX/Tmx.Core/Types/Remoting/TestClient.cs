@@ -31,6 +31,9 @@ namespace Tmx.Core
 	        IsAdmin = testPlatform.IsAdmin;
             // EnvironmentVersion = Environment.Version.Major + "." + Environment.Version.MajorRevision + "." + Environment.Version.Minor + "." + Environment.Version.MinorRevision + "." + Environment.Version.Build;
             Language = testPlatform.Language;
+            OsBits = testPlatform.OsBits;
+            // OsEdition = "";
+            // OsName = "";
             OsVersion = testPlatform.OsVersion;
             UptimeSeconds = testPlatform.UptimeSeconds;
             Username = testPlatform.Username;
@@ -46,6 +49,9 @@ namespace Tmx.Core
 		public string Username { get; set; } // Environment.UserName aka sAMAccountName
 		public bool IsInteractive { get; set; } // Environment.UserInteractive
 		public bool IsAdmin { get; set; }
+		public int OsBits { get; set; }
+		// public string OsEdition { get; set; }
+		// public string OsName { get; set; }
 		public string OsVersion { get; set; } // Environment.OSVersion like Microsoft Windows NT 6.2.9200.0
 		public string Language { get; set; }
 		public string EnvironmentVersion { get; set; } // Environment.Version like 2.0.50727.8000

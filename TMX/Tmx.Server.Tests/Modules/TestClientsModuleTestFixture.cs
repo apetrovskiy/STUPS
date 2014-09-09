@@ -21,6 +21,7 @@ namespace Tmx.Server.Tests.Modules
 	using Tmx.Interfaces;
 	using Tmx.Interfaces.Remoting;
 	using Tmx.Interfaces.TestStructure;
+	using Tmx.Server.Modules;
     using Xunit;
     using PSTestLib;
     
@@ -101,13 +102,13 @@ namespace Tmx.Server.Tests.Modules
         
         BrowserResponse whenSendingRegistration(ITestClient testClient)
         {
-            var browser = TestFactory.GetBrowser();
+            var browser = TestFactory.GetBrowserForTestClientsModule();
             return browser.Post(UrnList.TestClientRegistrationPoint, with => with.JsonBody<ITestClient>(testClient));
         }
         
         void whenSendingDeregistration(ITestClient testClient)
         {
-            var browser = TestFactory.GetBrowser();
+            var browser = TestFactory.GetBrowserForTestClientsModule();
             browser.Delete(UrnList.TestClients_Root + "/" + testClient.Id);
         }
         
@@ -137,6 +138,8 @@ namespace Tmx.Server.Tests.Modules
             Xunit.Assert.Equal(testClient.IsAdmin, ClientsCollection.Clients[testClientCounter].IsAdmin);
             Xunit.Assert.Equal(testClient.IsInteractive, ClientsCollection.Clients[testClientCounter].IsInteractive);
             Xunit.Assert.Equal(testClient.Language, ClientsCollection.Clients[testClientCounter].Language);
+            // Xunit.Assert.Equal(testClient.OsEdition, ClientsCollection.Clients[testClientCounter].OsEdition);
+            // Xunit.Assert.Equal(testClient.OsName, ClientsCollection.Clients[testClientCounter].OsName);
             Xunit.Assert.Equal(testClient.OsVersion, ClientsCollection.Clients[testClientCounter].OsVersion);
             Xunit.Assert.Equal(testClient.UptimeSeconds, ClientsCollection.Clients[testClientCounter].UptimeSeconds);
             Xunit.Assert.Equal(testClient.UserDomainName, ClientsCollection.Clients[testClientCounter].UserDomainName);

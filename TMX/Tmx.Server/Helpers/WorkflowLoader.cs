@@ -44,7 +44,7 @@ namespace Tmx.Server
             try {
 				if (!System.IO.File.Exists(pathToWorkflowFile))
 					throw new Exception("There is no such file '" + pathToWorkflowFile + "'.");
-                importXdocument(XDocument.Load(pathToWorkflowFile));
+                ImportXdocument(XDocument.Load(pathToWorkflowFile));
             }
             catch (Exception eImportDocument) {
                 throw new Exception(
@@ -57,7 +57,7 @@ namespace Tmx.Server
 			return true;
 		}
 
-		void importXdocument(XContainer xDocument)
+		public void ImportXdocument(XContainer xDocument)
 		{
 			var tasks = from task in xDocument.Descendants("task")
 			            where task.Element(taskElement_isActive).Value == "1"

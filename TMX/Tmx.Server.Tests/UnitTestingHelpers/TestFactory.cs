@@ -14,15 +14,26 @@ namespace Tmx.Server.Tests
     using Nancy.Testing;
 	using Tmx.Core;
 	using Tmx.Interfaces.Remoting;
+	using Tmx.Server.Modules;
     
     /// <summary>
     /// Description of TestFactory.
     /// </summary>
     public class TestFactory
     {
-        public static Browser GetBrowser()
+        public static Browser GetBrowserForTestClientsModule()
         {
-            return new Browser(new DefaultNancyBootstrapper());
+            return new Browser(with => with.Module(new TestClientsModule()));
+        }
+        
+        public static Browser GetBrowserForTestTasksModule()
+        {
+            return new Browser(with => with.Modules(typeof(TestClientsModule), typeof(TestTasksModule)));
+        }
+        
+        public static Browser GetBrowserForTestResultsModule()
+        {
+            return new Browser(with => with.Module(new TestResultsModule()));
         }
         
         public static ITestClient GivenTestClient(string hostname, string username)

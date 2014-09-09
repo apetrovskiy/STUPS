@@ -12,6 +12,7 @@ namespace Tmx.Server
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Security.Cryptography;
 	using System.Text.RegularExpressions;
 	using Tmx.Core;
 	using Tmx.Interfaces.Remoting;
@@ -40,6 +41,8 @@ namespace Tmx.Server
 	        	                      Regex.IsMatch(client.Hostname ?? string.Empty, task.Rule) ||
 	        	                      // task.Rule == client.IsAdmin.ToString() ||
 	        	                      // task.Rule == client.IsInteractive.ToString() ||
+	        	                      // Regex.IsMatch(client.OsEdition ?? string.Empty, task.Rule) ||
+	        	                      // Regex.IsMatch(client.OsName ?? string.Empty, task.Rule) ||
 	        	                      Regex.IsMatch(client.OsVersion ?? string.Empty, task.Rule) ||
 	        	                      Regex.IsMatch(client.UserDomainName ?? string.Empty, task.Rule) ||
 	        	                      Regex.IsMatch(client.Username ?? string.Empty, task.Rule))

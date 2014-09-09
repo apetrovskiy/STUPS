@@ -24,6 +24,7 @@ namespace Tmx.Server.Tests.Modules
 	using Tmx.Interfaces;
 	using Tmx.Interfaces.Remoting;
 	using Tmx.Interfaces.TestStructure;
+	using Tmx.Server.Modules;
     using Xunit;
     using PSTestLib;
     
@@ -48,8 +49,7 @@ namespace Tmx.Server.Tests.Modules
         public void Should_provide_a_task_to_test_client_if_the_client_matches_the_rule()
         {
         	// Given
-            // var browser = new Browser(new DefaultNancyBootstrapper());
-            var browser = TestFactory.GetBrowser();
+            var browser = TestFactory.GetBrowserForTestTasksModule();
 			const string testClientHostnameExpected = "testhost";
 			const string testClientUsernameExpected = "aaa";
             var testClient = new TestClient { Hostname = testClientHostnameExpected, Username = testClientUsernameExpected };
@@ -83,8 +83,7 @@ namespace Tmx.Server.Tests.Modules
         public void Should_provide_no_task_to_test_client_if_the_client_does_not_match_the_rule()
         {
         	// Given
-            // var browser = new Browser(new DefaultNancyBootstrapper());
-            var browser = TestFactory.GetBrowser();
+            var browser = TestFactory.GetBrowserForTestTasksModule();
 			const string testClientHostnameExpected = "testhost";
 			const string testClientUsernameExpected = "aaa";
             var testClient = new TestClient { Hostname = testClientHostnameExpected, Username = testClientUsernameExpected };
@@ -112,8 +111,7 @@ namespace Tmx.Server.Tests.Modules
         public void Should_provide_the_second_task_if_the_client_matches_the_rule()
         {
         	// Given
-            // var browser = new Browser(new DefaultNancyBootstrapper());
-            var browser = TestFactory.GetBrowser();
+            var browser = TestFactory.GetBrowserForTestTasksModule();
             var testClient = new TestClient {
                 Hostname = "h",
                 OsVersion = "w",
@@ -190,8 +188,7 @@ namespace Tmx.Server.Tests.Modules
         public void Should_provide_the_second_task_if_the_client_does_not_match_the_rule()
         {
         	// Given
-            // var browser = new Browser(new DefaultNancyBootstrapper());
-            var browser = TestFactory.GetBrowser();
+            var browser = TestFactory.GetBrowserForTestTasksModule();
             var testClient = new TestClient {
                 Hostname = "h",
                 OsVersion = "w",
@@ -237,8 +234,7 @@ namespace Tmx.Server.Tests.Modules
         public void Should_provide_the_second_task_if_the_client_matches_the_rule_and_there_are_several()
         {
         	// Given
-            // var browser = new Browser(new DefaultNancyBootstrapper());
-            var browser = TestFactory.GetBrowser();
+            var browser = TestFactory.GetBrowserForTestTasksModule();
             var testClient = new TestClient {
                 Hostname = "h",
                 OsVersion = "w",
@@ -304,8 +300,7 @@ namespace Tmx.Server.Tests.Modules
         public void Should_provide_the_second_task_if_the_client_does_not_match_the_rule_and_there_are_several()
         {
         	// Given
-            // var browser = new Browser(new DefaultNancyBootstrapper());
-            var browser = TestFactory.GetBrowser();
+            var browser = TestFactory.GetBrowserForTestTasksModule();
             var testClient = new TestClient {
                 Hostname = "h",
                 OsVersion = "w",

@@ -24,6 +24,9 @@ namespace TMX.Interfaces.Internal
 		string Username { get; set; } // Environment.UserName aka sAMAccountName
 		bool IsInteractive { get; set; } // Environment.UserInteractive
 		bool IsAdmin { get; set; }
+		int OsBits { get; set; }
+		// string OsEdition { get; set; }
+		// string OsName { get; set; }
 		string OsVersion { get; set; } // Environment.OSVersion like Microsoft Windows NT 6.2.9200.0
 		string Language { get; set; }
 		string EnvironmentVersion { get; set; } // Environment.Version like 2.0.50727.8000

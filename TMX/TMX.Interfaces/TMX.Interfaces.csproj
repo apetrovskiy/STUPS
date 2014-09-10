@@ -99,6 +99,7 @@
     <Compile Include="IXMLElementsStruct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Remoting\Enums.cs" />
+    <Compile Include="Remoting\ICommonData.cs" />
     <Compile Include="Remoting\ITestClient.cs" />
     <Compile Include="Remoting\ITestTask.cs" />
     <Compile Include="Remoting\ITestHost.cs" />

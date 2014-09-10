@@ -37,6 +37,10 @@ namespace TMX.Interfaces.Server
         public static string CurrentTaskForClientById = TestTasks_Root + TestTasks_CurrentTask;
         public static string CurrentTaskOfCurrentClient = TestTasks_CurrentTask + TestTasks_CurrentClient;
         
+        public const string TestData_Root = "/Data";
+        public const string TestData_CommonData = "/";
+        public static string CommonDataLoadingPoint = TestData_Root + TestData_CommonData;
+        
         public const string ExternalFiles_Root = "/Files";
         public static string ExternalFilesUploadPoint = "/";
     }

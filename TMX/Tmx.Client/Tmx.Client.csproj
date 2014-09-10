@@ -82,6 +82,7 @@
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Helpers\ClientSettings.cs" />
+    <Compile Include="Helpers\CommonDataLoader.cs" />
     <Compile Include="Helpers\Registration.cs" />
     <Compile Include="Helpers\RestRequestCreator.cs" />
     <Compile Include="Helpers\TaskLoader.cs" />

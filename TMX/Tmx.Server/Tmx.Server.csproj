@@ -84,11 +84,13 @@
     <Compile Include="Helpers\Control\InternalServerControl.cs" />
     <Compile Include="Helpers\Control\ServerControl.cs" />
     <Compile Include="Helpers\Objects\TaskPool.cs" />
+    <Compile Include="Helpers\ServerWatcher.cs" />
     <Compile Include="Helpers\TaskSelector.cs" />
     <Compile Include="Helpers\Objects\ClientsCollection.cs" />
     <Compile Include="Helpers\WorkflowLoader.cs" />
     <Compile Include="Modules\ExternalFilesModule.cs" />
     <Compile Include="Modules\TestClientsModule.cs" />
+    <Compile Include="Modules\TestDataModule.cs" />
     <Compile Include="Modules\TestResultsModule.cs" />
     <Compile Include="Modules\TestTasksModule.cs" />
     <Compile Include="TestBootstrapper.cs" />

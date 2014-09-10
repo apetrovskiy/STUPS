@@ -13,6 +13,7 @@ namespace Tmx.Server
 	using Nancy;
     using Nancy.Hosting.Self;
     using Nancy.Diagnostics;
+	using Tmx.Core;
     
     /// <summary>
     /// Description of Control.

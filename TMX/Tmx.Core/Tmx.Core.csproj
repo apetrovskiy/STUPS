@@ -89,6 +89,7 @@
     <Compile Include="Helpers\TMXHelper.cs" />
     <Compile Include="Helpers\UserSettings\Preferences.cs" />
     <Compile Include="TestData\TestData.cs" />
+    <Compile Include="Types\Remoting\CommonData.cs" />
     <Compile Include="Types\Remoting\TestClient.cs" />
     <Compile Include="Types\Remoting\TestTask.cs" />
     <Compile Include="Types\TestStructure\TestCase.cs" />

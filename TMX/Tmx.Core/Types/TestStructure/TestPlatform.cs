@@ -40,6 +40,7 @@ namespace Tmx
             // OsEdition = "";
             // OsName = "";
             OsVersion = Environment.OSVersion.VersionString;
+            ProcessBits = IntPtr.Size * 8;
             UptimeSeconds = Environment.TickCount / 1000;
             Username = Environment.UserName;
             UserDomainName = Environment.UserDomainName;
@@ -69,6 +70,7 @@ namespace Tmx
 		// public string OsEdition { get; set; }
 		// public string OsName { get; set; }
 		public string OsVersion { get; set; } // Environment.OSVersion like Microsoft Windows NT 6.2.9200.0
+		public int ProcessBits { get; set; }
 //		public string Language { get; set; }
 		public string EnvironmentVersion { get; set; } // Environment.Version like 2.0.50727.8000
 		public int UptimeSeconds { get; set; } // Environment.TickCount / 1000

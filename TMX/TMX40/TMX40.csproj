@@ -209,6 +209,9 @@
     <Compile Include="..\TMX\Commands\Status\GetTMXTestSuiteStatusCommand.cs">
       <Link>Commands\Status\GetTMXTestSuiteStatusCommand.cs</Link>
     </Compile>
+    <Compile Include="..\TMX\Commands\TestClient\InvokeTmxTestTaskCommand.cs">
+      <Link>Commands\TestClient\InvokeTmxTestTaskCommand.cs</Link>
+    </Compile>
     <Compile Include="..\Tmx\Commands\TestClient\ReceiveTmxTestTaskCommand.cs">
       <Link>Commands\TestClient\ReceiveTmxTestTaskCommand.cs</Link>
     </Compile>
@@ -217,6 +220,9 @@
     </Compile>
     <Compile Include="..\Tmx\Commands\TestClient\SendTmxTestTaskResultCommand.cs">
       <Link>Commands\TestClient\SendTmxTestTaskResultCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\TestClient\UnregisterTmxSystemUnderTestCommand.cs">
+      <Link>Commands\TestClient\UnregisterTmxSystemUnderTestCommand.cs</Link>
     </Compile>
     <Compile Include="..\TMX\Commands\TestExecution\InvokeTMXTestCaseCommand.cs">
       <Link>Commands\TestExecution\InvokeTMXTestCaseCommand.cs</Link>
@@ -419,6 +425,9 @@
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\Status\TMXGetTestSuiteStatusCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\Status\TMXGetTestSuiteStatusCommand.cs</Link>
     </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestClient\InvokeTestTaskCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TestClient\InvokeTestTaskCommand.cs</Link>
+    </Compile>
     <Compile Include="..\Tmx\Helpers\UnderlyingCode\Commands\TestClient\ReceiveTestTaskCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\TestClient\ReceiveTestTaskCommand.cs</Link>
     </Compile>
@@ -427,6 +436,9 @@
     </Compile>
     <Compile Include="..\Tmx\Helpers\UnderlyingCode\Commands\TestClient\SendTestTaskResultCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\TestClient\SendTestTaskResultCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestClient\UnregisterSystemUnderTestCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TestClient\UnregisterSystemUnderTestCommand.cs</Link>
     </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestExecution\TMXInvokeTestCaseCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\TestExecution\TMXInvokeTestCaseCommand.cs</Link>
@@ -572,12 +584,16 @@
     <Compile Include="..\TMX\TestData\TestData.cs">
       <Link>TestData\TestData.cs</Link>
     </Compile>
+    <Compile Include="Commands\TestServer\AddTmxTestCommonDataCommand.cs" />
     <Compile Include="Commands\TestServer\ImportTmxTestWorkflowCommand.cs" />
     <Compile Include="Commands\TestServer\StartTmxServerCommand.cs" />
     <Compile Include="Commands\TestServer\StopTmxServerCommand.cs" />
+    <Compile Include="Commands\TestServer\WaitTmxTestWorkflowCompletedCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestServer\AddTestCommonDataCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestServer\ImportTestWorkflowCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestServer\StartServerCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestServer\StopTmxServerCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestServer\WaitTestWorkflowCompletedCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">

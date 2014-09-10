@@ -22,7 +22,7 @@ namespace Tmx.Server
 	/// </summary>
 	public class TaskSelector
 	{
-	    public List<ITestTask> SelectTasksForClient(int clientId, List<ITestTask> tasks)
+	    public virtual List<ITestTask> SelectTasksForClient(int clientId, List<ITestTask> tasks)
 	    {
 	        var resultTaskScope = new List<ITestTask>();
 	        
@@ -50,7 +50,7 @@ namespace Tmx.Server
             return resultTaskScope;
 	    }
 	    
-		public ITestTask GetFirstLegibleTask(int clientId)
+		public virtual ITestTask GetFirstLegibleTask(int clientId)
 		{
 			var taskListForClient = getOnlyNewTestTasksForClient(clientId);
 			if (null == taskListForClient || !taskListForClient.Any()) return null;
@@ -58,19 +58,19 @@ namespace Tmx.Server
 			return isItTimeToPublishTask(taskCandidate) ? taskCandidate : null;
 		}
 		
-		public ITestTask GetNextLegibleTask(int clientId, int currentTaskId)
+		public virtual ITestTask GetNextLegibleTask(int clientId, int currentTaskId)
 		{
 			var taskListForClient = getOnlyNewTestTasksForClient(clientId);
 			if (null == taskListForClient || !taskListForClient.Any()) return null;
 			return taskListForClient.First(task => task.Id == taskListForClient.Where(t => t.Id > currentTaskId).Min(tsk => tsk.Id));
 		}
 		
-		IEnumerable<ITestTask> getOnlyNewTestTasksForClient(int clientId)
+		internal virtual IEnumerable<ITestTask> getOnlyNewTestTasksForClient(int clientId)
 		{
 		    return TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.IsActive && !task.TaskFinished);
 		}
 		
-		bool isItTimeToPublishTask(ITestTask task)
+		internal virtual bool isItTimeToPublishTask(ITestTask task)
 		{
 		    var tasksThatShouldBeCompletedBefore = task.AfterTask;
 //		    if (0 == tasksThatShouldBeCompletedBefore) return true;

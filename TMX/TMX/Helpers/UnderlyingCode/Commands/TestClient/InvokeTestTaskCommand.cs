@@ -14,6 +14,7 @@ namespace Tmx
 	using System.Linq;
 	using Tmx;
 	using Tmx.Client;
+	using Tmx.Core;
 	using Tmx.Interfaces.Remoting;
 	using Tmx.Commands;
 	
@@ -33,11 +34,18 @@ namespace Tmx
             if (TestTaskStatuses.Accepted != task.TaskStatus)
                 cmdlet.WriteError(cmdlet, "Task '" + task.Name + "' has been already processed", "AlreadyProcessed", ErrorCategory.InvalidData, true);
             
+            loadCommonData();
             runTask(task);
 			updateTask(task);
 			sendTestResults();
         }
         
+		void loadCommonData()
+		{
+		    var commonDataLoader = new CommonDataLoader(new RestRequestCreator());
+		    CommonData.Data = commonDataLoader.Load();
+		}
+		
 		void runTask(ITestTask task)
 		{
 			var taskRunner = new TaskRunner();

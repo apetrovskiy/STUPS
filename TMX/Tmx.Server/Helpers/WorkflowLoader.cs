@@ -39,7 +39,7 @@ namespace Tmx.Server
 		const string taskElement_code = "code";
 		const string taskElement_parameters = "parameters";
 		
-		public bool LoadWorkflow(string pathToWorkflowFile)
+		public virtual bool LoadWorkflow(string pathToWorkflowFile)
 		{
             try {
 				if (!System.IO.File.Exists(pathToWorkflowFile))
@@ -57,7 +57,7 @@ namespace Tmx.Server
 			return true;
 		}
 
-		public void ImportXdocument(XContainer xDocument)
+		public virtual void ImportXdocument(XContainer xDocument)
 		{
 			var tasks = from task in xDocument.Descendants("task")
 			            where task.Element(taskElement_isActive).Value == "1"
@@ -67,12 +67,12 @@ namespace Tmx.Server
 			addTasksForEveryClient(importedTasks);
 		}
 
-		void addTasksToCommonPool(IEnumerable<ITestTask> importedTasks)
+		internal virtual void addTasksToCommonPool(IEnumerable<ITestTask> importedTasks)
 		{
 			TaskPool.Tasks.AddRange(importedTasks);
 		}
 		
-		void addTasksForEveryClient(IEnumerable<ITestTask> importedTasks)
+		internal virtual void addTasksForEveryClient(IEnumerable<ITestTask> importedTasks)
 		{
 		    if (0 == ClientsCollection.Clients.Count) return;
 			var taskSorter = new TaskSelector();
@@ -81,7 +81,7 @@ namespace Tmx.Server
 			}
 		}
 		
-		ITestTask getNewTestTask(XContainer taskNode)
+		internal virtual ITestTask getNewTestTask(XContainer taskNode)
 		{
 			return new TestTask {
 		        Action = getActionCode(taskNode, taskElement_action),
@@ -108,13 +108,13 @@ namespace Tmx.Server
 			};
 		}
 		
-		string getActionCode(XContainer taskNode, string elementName)
+		internal virtual string getActionCode(XContainer taskNode, string elementName)
 		{
 		    var actionNode = taskNode.Element(elementName);
 		    return getTestTaskElementValue(actionNode, taskElement_code);
 		}
 		
-		List<object> getActionParameters(XContainer taskNode, string elementName)
+		internal virtual List<object> getActionParameters(XContainer taskNode, string elementName)
 		{
 		    var resultList = new List<object>();
 		    var nodeParameters = taskNode.Element(elementName);
@@ -128,12 +128,12 @@ namespace Tmx.Server
 		    return resultList;
 		}
 		
-		int convertTestTaskElementValue(XContainer taskNode, string elementName)
+		internal virtual int convertTestTaskElementValue(XContainer taskNode, string elementName)
 		{
 			return Convert.ToInt32(string.Empty == getTestTaskElementValue(taskNode, elementName) ? "0" : getTestTaskElementValue(taskNode, elementName));
 		}
 		
-		string getTestTaskElementValue(XContainer taskNode, string elementName)
+		internal virtual string getTestTaskElementValue(XContainer taskNode, string elementName)
 		{
 			try {
 				return taskNode.Element(elementName).Value ?? string.Empty;
@@ -144,7 +144,7 @@ namespace Tmx.Server
 			}
 		}
 		
-		TestTaskExecutionTypes getTestTaskType(string taskTypeStringValue)
+		internal virtual TestTaskExecutionTypes getTestTaskType(string taskTypeStringValue)
 		{
 			switch (taskTypeStringValue.ToUpper()) {
 				case "RDP":

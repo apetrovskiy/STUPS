@@ -49,9 +49,9 @@ namespace Tmx.Server.Tests.Modules
             
             var response = whenSendingRegistration(testClient);
             
-            thenResponseIsCreated(response);
+            thenHttpResponseIsCreated(response);
             thenTestClientPropertiesWereApplied(testClient);
-            thenIdOfTheFirstClientIs(response.Body.DeserializeJson<TestClient>().Id);
+            thenIdOfTheFirstClientEquals(response.Body.DeserializeJson<TestClient>().Id);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -62,9 +62,9 @@ namespace Tmx.Server.Tests.Modules
             
             var response = whenSendingRegistration(testClient02);
             
-            thenResponseIsCreated(response);
+            thenHttpResponseIsCreated(response);
             thenTestClientPropertiesWereApplied(testClient02);
-            thenIdOfTheFirstClientIs(response.Body.DeserializeJson<TestClient>().Id);
+            thenIdOfTheFirstClientEquals(response.Body.DeserializeJson<TestClient>().Id);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -86,7 +86,7 @@ namespace Tmx.Server.Tests.Modules
             whenSendingDeregistration(testClient01);
             
             thenThereIsTheNumberOfRegisteredClients(testClient01.Id);
-            thenIdOfTheFirstClientIs(testClient02.Id);
+            thenIdOfTheFirstClientEquals(testClient02.Id);
         }
         
         ITestClient givenTestClient(string hostname, string username)
@@ -117,13 +117,13 @@ namespace Tmx.Server.Tests.Modules
             Xunit.Assert.Equal(number, ClientsCollection.Clients.Count);
         }
         
-        void thenIdOfTheFirstClientIs(int clientId)
+        void thenIdOfTheFirstClientEquals(int clientId)
         {
             int testClientCounter = ClientsCollection.Clients.Count - 1;
             Xunit.Assert.Equal(clientId, ClientsCollection.Clients[testClientCounter].Id);
         }
         
-        void thenResponseIsCreated(BrowserResponse response)
+        void thenHttpResponseIsCreated(BrowserResponse response)
         {
             Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
         }

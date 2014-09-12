@@ -86,7 +86,9 @@
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Helpers\WorkflowLoaderTestFixture.cs" />
+    <Compile Include="Modules\ExternalFilesModuleTestFixture.cs" />
     <Compile Include="Modules\TestClientsModuleTestFixture.cs" />
+    <Compile Include="Modules\TestDataModuleTestFixture.cs" />
     <Compile Include="Modules\TestResultsModuleTestFixture.cs" />
     <Compile Include="Modules\TestTasksModuleTestFixture.cs" />
     <Compile Include="UnitTestingHelpers\TestFactory.cs" />

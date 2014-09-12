@@ -10,6 +10,7 @@
 namespace Tmx.Server.Modules
 {
     using System;
+    using System.Collections.Generic;
 	using Nancy;
 	using TMX.Interfaces.Server;
 	using Tmx.Core;

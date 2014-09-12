@@ -16,15 +16,14 @@ namespace Tmx.Core
     /// <summary>
     /// Description of CommonData.
     /// </summary>
-    public class CommonData : ICommonData
+    public static class CommonData // : ICommonData
     {
-        public CommonData()
+        static CommonData()
         {
-            if (null == Data)
-                Data = new Dictionary<string, object>();
+            Data = new Dictionary<string, string>();
         }
         
-        // TODO: convert to singleton
-        public static Dictionary<string, object> Data { get; set; }
+        // TODO: convert to a singleton
+        public static Dictionary<string, string> Data { get; set; }
     }
 }

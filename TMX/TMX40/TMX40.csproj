@@ -209,6 +209,9 @@
     <Compile Include="..\TMX\Commands\Status\GetTMXTestSuiteStatusCommand.cs">
       <Link>Commands\Status\GetTMXTestSuiteStatusCommand.cs</Link>
     </Compile>
+    <Compile Include="..\TMX\Commands\TestClient\GetTmxTestCommonDataCommand.cs">
+      <Link>Commands\TestClient\GetTmxTestCommonDataCommand.cs</Link>
+    </Compile>
     <Compile Include="..\TMX\Commands\TestClient\InvokeTmxTestTaskCommand.cs">
       <Link>Commands\TestClient\InvokeTmxTestTaskCommand.cs</Link>
     </Compile>
@@ -424,6 +427,9 @@
     </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\Status\TMXGetTestSuiteStatusCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\Status\TMXGetTestSuiteStatusCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestClient\GetTestCommonDataCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TestClient\GetTestCommonDataCommand.cs</Link>
     </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestClient\InvokeTestTaskCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\TestClient\InvokeTestTaskCommand.cs</Link>

@@ -38,6 +38,7 @@ namespace Tmx
             runTask(task);
 			updateTask(task);
 			sendTestResults();
+			ClientSettings.Instance.CurrentTask = null;
         }
         
 		void loadCommonData()

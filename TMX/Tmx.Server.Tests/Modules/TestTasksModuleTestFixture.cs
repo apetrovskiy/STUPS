@@ -64,14 +64,13 @@ namespace Tmx.Server.Tests.Modules
 			TaskPool.Tasks.Add(task);
             
             // When
-            // var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<ITestClient>(testClient));
             var response = browser.Post(UrnList.TestClientRegistrationPoint, with => with.JsonBody<ITestClient>(testClient));
             testClient = response.Body.DeserializeJson<TestClient>();
             response = browser.Get(UrnList.TestTasks_Root + "/" + testClient.Id);
             var loadedTask = response.Body.DeserializeJson<TestTask>();
             
             // Then
-            Xunit.Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            thenHttpResponseIsOk(response);
             Xunit.Assert.Equal(task.Id, loadedTask.Id);
             Xunit.Assert.Equal(task.Name, loadedTask.Name);
             Xunit.Assert.Equal(task.TaskStatus, loadedTask.TaskStatus);
@@ -98,13 +97,12 @@ namespace Tmx.Server.Tests.Modules
 			TaskPool.Tasks.Add(task);
             
             // When
-            // var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<ITestClient>(testClient));
             var response = browser.Post(UrnList.TestClientRegistrationPoint, with => with.JsonBody<ITestClient>(testClient));
             testClient = response.Body.DeserializeJson<TestClient>();
             response = browser.Get(UrnList.TestTasks_Root + "/" + testClient.Id);
             
             // Then
-            Xunit.Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+            thenHttpResponseIsNotFound(response);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -145,7 +143,6 @@ namespace Tmx.Server.Tests.Modules
             // var registration = new Registration();
             var registration = new Registration(new RestRequestCreator());
             
-            // var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<ITestClient>(testClient));
             var response = browser.Post(UrnList.TestClientRegistrationPoint, with => with.JsonBody<ITestClient>(testClient));
             var registeredClient = response.Body.DeserializeJson<TestClient>();
             // imitation
@@ -176,7 +173,7 @@ namespace Tmx.Server.Tests.Modules
             task = response.Body.DeserializeJson<TestTask>();
             
             // Then
-            Xunit.Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            thenHttpResponseIsOk(response);
             Xunit.Assert.Equal(testTask02.Id, task.Id);
             Xunit.Assert.Equal(testTask02.IsActive, task.IsActive);
             Xunit.Assert.Equal(testTask02.TaskFinished, task.TaskFinished);
@@ -212,7 +209,6 @@ namespace Tmx.Server.Tests.Modules
             TaskPool.Tasks.Add(testTask02);
             
             // When
-            // var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<ITestClient>(testClient));
             var response = browser.Post(UrnList.TestClientRegistrationPoint, with => with.JsonBody<ITestClient>(testClient));
             var registeredClient = response.Body.DeserializeJson<TestClient>();
             response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
@@ -225,7 +221,7 @@ namespace Tmx.Server.Tests.Modules
             response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
             
             // Then
-            Xunit.Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+            thenHttpResponseIsNotFound(response);
             // Xunit.Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             // Xunit.Assert.Equal(testTask.Name, clientsetting
         }
@@ -274,7 +270,6 @@ namespace Tmx.Server.Tests.Modules
             TaskPool.Tasks.Add(testTask04);
             
             // When
-            // var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<ITestClient>(testClient));
             var response = browser.Post(UrnList.TestClientRegistrationPoint, with => with.JsonBody<ITestClient>(testClient));
             var registeredClient = response.Body.DeserializeJson<TestClient>();
             response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
@@ -288,7 +283,7 @@ namespace Tmx.Server.Tests.Modules
             task = response.Body.DeserializeJson<TestTask>();
             
             // Then
-            Xunit.Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            thenHttpResponseIsOk(response);
             Xunit.Assert.Equal(testTask03.Id, task.Id);
             Xunit.Assert.Equal(testTask03.IsActive, task.IsActive);
             Xunit.Assert.Equal(testTask03.TaskFinished, task.TaskFinished);
@@ -340,7 +335,6 @@ namespace Tmx.Server.Tests.Modules
             TaskPool.Tasks.Add(testTask04);
             
             // When
-            // var response = browser.Post(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.JsonBody<ITestClient>(testClient));
             var response = browser.Post(UrnList.TestClientRegistrationPoint, with => with.JsonBody<ITestClient>(testClient));
             var registeredClient = response.Body.DeserializeJson<TestClient>();
             response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
@@ -353,9 +347,19 @@ namespace Tmx.Server.Tests.Modules
             response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
             
             // Then
-            Xunit.Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+            thenHttpResponseIsNotFound(response);
             // Xunit.Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             // Xunit.Assert.Equal(testTask.Name, clientsetting
+        }
+        
+        void thenHttpResponseIsOk(BrowserResponse response)
+        {
+            Xunit.Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        }
+        
+        void thenHttpResponseIsNotFound(BrowserResponse response)
+        {
+            Xunit.Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
         }
 	}
 }

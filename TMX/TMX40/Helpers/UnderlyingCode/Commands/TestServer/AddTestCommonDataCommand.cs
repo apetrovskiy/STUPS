@@ -11,7 +11,6 @@ namespace Tmx
 {
 	using System;
 	using Tmx.Core;
-	using Tmx.Server;
 	using Tmx.Commands;
 	
     /// <summary>
@@ -27,12 +26,11 @@ namespace Tmx
         {
             var cmdlet = (AddTmxTestCommonDataCommand)Cmdlet;
             try {
-                new CommonData();
                 CommonData.Data.Add(cmdlet.Key, cmdlet.Value);
                 cmdlet.WriteObject(true);
             }
             catch (Exception e) {
-                throw new Exception("Failed to add value with name '" + cmdlet.Key + "'. " + e.Message);
+                throw new Exception("Failed to add value with key '" + cmdlet.Key + "'. " + e.Message);
             }
         }
     }

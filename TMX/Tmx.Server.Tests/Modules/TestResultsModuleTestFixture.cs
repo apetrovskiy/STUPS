@@ -79,7 +79,7 @@ namespace Tmx.Server.Tests.Modules
             var response = browser.Post(UrnList.TestStructure_Root + UrnList.TestStructure_Suites);
             
             // Then
-            Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+            thenHttpResponseIsCreated(response);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -99,7 +99,7 @@ namespace Tmx.Server.Tests.Modules
             var response = browser.Post(UrnList.TestStructure_Root + UrnList.TestStructure_Suites, (with) => with.JsonBody<TestSuite>(testSuite));
             
             // Then
-            Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+            thenHttpResponseIsCreated(response);
             Xunit.Assert.Equal(testSuiteNameExpected, TestData.CurrentTestSuite.Name);
             Xunit.Assert.Equal(testSuiteIdExpected, TestData.CurrentTestSuite.Id);
             Xunit.Assert.Equal(TestData.GetDefaultPlatformId(), TestData.CurrentTestSuite.PlatformId);
@@ -152,7 +152,7 @@ namespace Tmx.Server.Tests.Modules
 			response = browser.Post(UrnList.TestStructure_Root + UrnList.TestStructure_Scenarios, (with) => with.JsonBody<TestScenario>(testScenario));
 			
             // Then
-            Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+            thenHttpResponseIsCreated(response);
             Xunit.Assert.Equal(testScenarioNameExpected, TestData.CurrentTestScenario.Name);
             Xunit.Assert.Equal(testScenarioIdExpected, TestData.CurrentTestScenario.Id);
         }
@@ -203,7 +203,7 @@ namespace Tmx.Server.Tests.Modules
 			var response = browser.Post(UrnList.TestStructure_Root + UrnList.TestStructure_Results, (with) => with.JsonBody<TestResult>(testResult));
 			
             // Then
-            Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+            thenHttpResponseIsCreated(response);
 //            Xunit.Assert.Equal(testScenarioNameExpected, TestData.CurrentTestScenario.Name);
 //            Xunit.Assert.Equal(testScenarioIdExpected, TestData.CurrentTestScenario.Id);
         }
@@ -251,5 +251,10 @@ namespace Tmx.Server.Tests.Modules
 //            var browser = TestFactory.GetBrowserForTestResultsModule();
 //            browser.Delete(UrnList.TestClients_Root + "/" + testClient.Id);
 //        }
+
+        void thenHttpResponseIsCreated(BrowserResponse response)
+        {
+            Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+        }
     }
 }

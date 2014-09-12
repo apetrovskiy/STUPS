@@ -57,6 +57,7 @@ namespace Tmx
             }
             
             clientSettings.StopImmediately = false;
+            clientSettings.CurrentTask = task;
             
             cmdlet.WriteObject(task);
         }

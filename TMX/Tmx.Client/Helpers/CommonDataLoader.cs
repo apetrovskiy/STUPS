@@ -27,11 +27,11 @@ namespace Tmx.Client
             _restTemplate = requestCreator.GetRestTemplate(string.Empty);
         }
         
-        public Dictionary<string, object> Load()
+        public Dictionary<string, string> Load()
         {
-			var commonDataResponse = _restTemplate.GetForMessage<Dictionary<string, object>>(UrnList.CommonDataLoadingPoint);
+			var commonDataResponse = _restTemplate.GetForMessage<Dictionary<string, string>>(UrnList.CommonDataLoadingPoint);
 			var commonData = commonDataResponse.Body;
-			return HttpStatusCode.NotFound == commonDataResponse.StatusCode ? null : commonData;
+			return HttpStatusCode.NotFound == commonDataResponse.StatusCode ? new Dictionary<string, string>() : commonData;
         }
     }
 }

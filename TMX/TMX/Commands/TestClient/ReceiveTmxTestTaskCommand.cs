@@ -25,9 +25,6 @@ namespace Tmx.Commands
 			this.Seconds = Preferences.ReceivingTaskTimeoutSeconds;
 		}
 		
-//	    [Parameter(Mandatory = false)]
-//	    public int Seconds { get; set; }
-		
 	    [Parameter(Mandatory = false,
 	               ParameterSetName = "LimitedTime")]
 	    public int Seconds { get; set; }

@@ -1,8 +1,8 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
- * Date: 9/10/2014
- * Time: 9:42 PM
+ * Date: 9/12/2014
+ * Time: 5:58 PM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
@@ -13,22 +13,18 @@ namespace Tmx.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of AddTmxTestCommonDataCommand.
+    /// Description of GetTmxTestCommonDataCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Add, "TmxTestCommonData")]
-    public class AddTmxTestCommonDataCommand : ServerCmdletBase
+    [Cmdlet(VerbsCommon.Get, "TmxTestCommonData")]
+    public class GetTmxTestCommonDataCommand : ServerCmdletBase
     {
         [Parameter(Mandatory = true,
                    Position = 0)]
         public string Key { get; set; }
         
-        [Parameter(Mandatory = true,
-                   Position = 1)]
-        public string Value { get; set; }
-        
 		protected override void BeginProcessing()
 		{
-			var command = new AddTestCommonDataCommand(this);
+			var command = new GetTestCommonDataCommand(this);
 			command.Execute();
 		}
     }

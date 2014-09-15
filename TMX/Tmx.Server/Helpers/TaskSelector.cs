@@ -72,10 +72,12 @@ namespace Tmx.Server
 		
 		internal virtual bool isItTimeToPublishTask(ITestTask task)
 		{
-		    var tasksThatShouldBeCompletedBefore = task.AfterTask;
+		    var numberOfMustDoneBeforeTask = task.AfterTask;
 //		    if (0 == tasksThatShouldBeCompletedBefore) return true;
 //			return !TaskPool.TasksForClients.Any(t => t.Id == tasksThatShouldBeCompletedBefore && t.TaskStatus != TestTaskStatuses.CompletedSuccessfully);
-			return 0 == tasksThatShouldBeCompletedBefore || !TaskPool.TasksForClients.Any(t => t.Id == tasksThatShouldBeCompletedBefore && t.TaskStatus != TestTaskStatuses.CompletedSuccessfully);
-		}
+		    // 20140914
+			// return 0 == numberOfMustDoneBeforeTask || !TaskPool.TasksForClients.Any(t => t.Id == numberOfMustDoneBeforeTask && t.TaskStatus != TestTaskStatuses.CompletedSuccessfully);
+            return 0 == numberOfMustDoneBeforeTask || !TaskPool.TasksForClients.Any(t => t.Id == numberOfMustDoneBeforeTask && t.TaskStatus != TestTaskStatuses.CompletedSuccessfully) || !TaskPool.TasksForClients.All(t => t.Id != numberOfMustDoneBeforeTask);
+        }
 	}
 }

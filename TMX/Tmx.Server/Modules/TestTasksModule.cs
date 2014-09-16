@@ -32,6 +32,8 @@ namespace Tmx.Server.Modules
 				return null != actualTask ? Response.AsJson(actualTask).WithStatusCode(HttpStatusCode.OK) : HttpStatusCode.NotFound;
 			};
             
+            Get[UrnList.TestTasks_AllDesignated] = _ => Response.AsJson(TaskPool.TasksForClients).WithStatusCode(HttpStatusCode.OK);
+            
             Put[UrnList.TestTasks_Task] = parameters => {
                 ITestTask loadedTask = this.Bind<TestTask>();
                 if (null == loadedTask) throw new UpdateTaskException("Failed to update task with id = " + parameters.id);
@@ -39,8 +41,13 @@ namespace Tmx.Server.Modules
                 storedTask.TaskFinished = loadedTask.TaskFinished;
                 storedTask.TaskStatus = loadedTask.TaskStatus;
                 
+                // 20140916
+                var taskSorter = new TaskSelector();
+                if (TestTaskStatuses.Failed == storedTask.TaskStatus)
+                    taskSorter.CancelFurtherTasks(storedTask.ClientId);
+                
                 if (storedTask.TaskFinished) {
-                    var taskSorter = new TaskSelector();
+                    // var taskSorter = new TaskSelector();
                     ITestTask nextTask = null;
                     try {
                         nextTask = taskSorter.GetNextLegibleTask(storedTask.ClientId, storedTask.Id);
@@ -62,8 +69,15 @@ namespace Tmx.Server.Modules
                 
                 var taskSorter = new TaskSelector();
                 var actualTask = taskSorter.GetFirstLegibleTask(parameters.id) as TestTask;
-				var currentTaskResult = actualTask.TaskResult ?? new List<object>();
-				actualTask.TaskResult = currentTaskResult.Concat(loadedTask.TaskResult).ToList<object>();
+                // 20140916
+				// var currentTaskResult = actualTask.TaskResult ?? new List<object>();
+				var currentTaskResult = actualTask.TaskResult ?? new Dictionary<string, string>();
+				// actualTask.TaskResult = currentTaskResult.Concat(loadedTask.TaskResult).ToList<object>();
+				// actualTask.TaskResult = currentTaskResult..Concat(loadedTask.TaskResult);
+                foreach (var pair in loadedTask.TaskResult) {
+                    currentTaskResult.Add(pair.Key, pair.Value);
+                }
+                actualTask.TaskResult = currentTaskResult;
                 return HttpStatusCode.OK;        		
         	};
         }

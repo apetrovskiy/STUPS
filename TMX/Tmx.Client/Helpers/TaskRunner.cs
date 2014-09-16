@@ -26,25 +26,56 @@ namespace Tmx.Client
             // TODO: move to an aspect
             try {
                 var runnerWithParams = new runScriptBlockWithParameters(runSBActionWithParams);
-                runScriptblockWithParameters(runnerWithParams, task.BeforeAction, task.BeforeActionParameters, task.PreviousTaskResult);
-                runScriptblockWithParameters(runnerWithParams, task.Action, task.ActionParameters, task.PreviousTaskResult);
-                runScriptblockWithParameters(runnerWithParams, task.AfterAction, task.AfterActionParameters, task.PreviousTaskResult);
-                return true;
+                // 20140946
+//                runScriptblockWithParameters(runnerWithParams, task.BeforeAction, task.BeforeActionParameters, task.PreviousTaskResult);
+//                runScriptblockWithParameters(runnerWithParams, task.Action, task.ActionParameters, task.PreviousTaskResult);
+//                runScriptblockWithParameters(runnerWithParams, task.AfterAction, task.AfterActionParameters, task.PreviousTaskResult);
+                var result = runScriptblockWithParameters(runnerWithParams, task.BeforeAction, task.BeforeActionParameters, task.PreviousTaskResult);
+                if (!result) return result;
+                result = runScriptblockWithParameters(runnerWithParams, task.Action, task.ActionParameters, task.PreviousTaskResult);
+                return !result ? result : runScriptblockWithParameters(runnerWithParams, task.AfterAction, task.AfterActionParameters, task.PreviousTaskResult);
+                // return true;
+                // return result;
             }
             catch {
                 return false;
             }
         }
         
-        void runScriptblockWithParameters(runScriptBlockWithParameters runnerWithParams, string code, List<object> parameters, List<object> previousTaskResults)
-		{
-			if (string.Empty == code) return;
+        // 20140916
+        // void runScriptblockWithParameters(runScriptBlockWithParameters runnerWithParams, string code, List<object> parameters, List<object> previousTaskResults)
+        bool runScriptblockWithParameters(
+            runScriptBlockWithParameters runnerWithParams,
+            string code,
+            IDictionary<string, string> parameters,
+            IDictionary<string, string> previousTaskResults)
+        {
+            if (string.Empty == code)
+                // return;
+                return false;
             var scriptblockParameters = 
                 (null == previousTaskResults || 0 == previousTaskResults.Count) ? 
-                new object[] { new object[]{}, parameters.ToArray() } :
-                    new object[] { previousTaskResults.ToArray(), parameters.ToArray() };
-            runnerWithParams(ScriptBlock.Create(code), scriptblockParameters);
-		}
+                new object[] {
+                    new object[]{ },
+                    // parameters.ToArray()
+                    parameters
+                } :
+                new object[] {
+                    // previousTaskResults.ToArray(),
+                    previousTaskResults,
+                    // parameters.ToArray()
+                    parameters
+                };
+            // 20140916
+            // runnerWithParams(ScriptBlock.Create(code), scriptblockParameters);
+            try {
+                runnerWithParams(ScriptBlock.Create(code), scriptblockParameters);
+                return true;
+            }
+            catch {
+                return false;
+            }
+        }
         
         #region Action delegate
         void runSBActionWithParams(

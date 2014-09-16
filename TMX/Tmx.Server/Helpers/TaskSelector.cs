@@ -65,6 +65,12 @@ namespace Tmx.Server
 			return taskListForClient.First(task => task.Id == taskListForClient.Where(t => t.Id > currentTaskId).Min(tsk => tsk.Id));
 		}
 		
+        public virtual void CancelFurtherTasks(int clientId)
+        {
+            var taskListForClient = getOnlyNewTestTasksForClient(clientId);
+            taskListForClient.Select(task => task.TaskStatus = TestTaskStatuses.Canceled);
+        }
+        
 		internal virtual IEnumerable<ITestTask> getOnlyNewTestTasksForClient(int clientId)
 		{
 		    return TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.IsActive && !task.TaskFinished);
@@ -73,14 +79,8 @@ namespace Tmx.Server
 		internal virtual bool isItTimeToPublishTask(ITestTask task)
 		{
 		    var numberOfMustDoneBeforeTask = task.AfterTask;
-//		    if (0 == tasksThatShouldBeCompletedBefore) return true;
-//			return !TaskPool.TasksForClients.Any(t => t.Id == tasksThatShouldBeCompletedBefore && t.TaskStatus != TestTaskStatuses.CompletedSuccessfully);
-		    // 20140914
-			// return 0 == numberOfMustDoneBeforeTask || !TaskPool.TasksForClients.Any(t => t.Id == numberOfMustDoneBeforeTask && t.TaskStatus != TestTaskStatuses.CompletedSuccessfully);
-            return 
-                0 == numberOfMustDoneBeforeTask ||
-                !TaskPool.TasksForClients.Any(t => t.Id == numberOfMustDoneBeforeTask && t.TaskStatus != TestTaskStatuses.CompletedSuccessfully) ||
-                !TaskPool.TasksForClients.All(t => t.Id != numberOfMustDoneBeforeTask);
+            if (0 == numberOfMustDoneBeforeTask) return true;
+			return TaskPool.TasksForClients.Any(t => t.Id == numberOfMustDoneBeforeTask) && !TaskPool.TasksForClients.Any(t => t.Id == numberOfMustDoneBeforeTask && !t.TaskFinished);
         }
 	}
 }

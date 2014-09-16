@@ -114,18 +114,24 @@ namespace Tmx.Server
 		    return getTestTaskElementValue(actionNode, taskElement_code);
 		}
 		
-		internal virtual List<object> getActionParameters(XContainer taskNode, string elementName)
+		// 20140916
+		// internal virtual List<object> getActionParameters(XContainer taskNode, string elementName)
+		internal virtual IDictionary<string, string> getActionParameters(XContainer taskNode, string elementName)
 		{
-		    var resultList = new List<object>();
+		    // var resultList = new List<object>();
+		    var resultDict = new Dictionary<string, string>();
 		    var nodeParameters = taskNode.Element(elementName);
 		    try {
                 nodeParameters = nodeParameters.Element(taskElement_parameters);
-                if (null == nodeParameters) return resultList;
+                // if (null == nodeParameters) return resultList;
+                if (null == nodeParameters) return resultDict;
                 foreach (var parameterNode in nodeParameters.Elements())
-                    resultList.Add(parameterNode.Value);
+                    // resultList.Add(parameterNode.Value);
+                    resultDict.Add(parameterNode.Name.LocalName, parameterNode.Value.ToString());
 		    }
 		    catch {}
-		    return resultList;
+		    // return resultList;
+		    return resultDict;
 		}
 		
 		internal virtual int convertTestTaskElementValue(XContainer taskNode, string elementName)

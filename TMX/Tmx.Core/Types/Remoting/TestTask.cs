@@ -34,17 +34,23 @@ namespace Tmx.Core.Types.Remoting
 		public string Name { get; set; }
 		public string StoryId { get; set; }
 		public string Action { get; set; }
-		public List<object> ActionParameters { get; set; }
+		// 20140916
+		// public List<object> ActionParameters { get; set; }
+		public IDictionary<string, string> ActionParameters { get; set; }
 		public string BeforeAction { get; set; }
-		public List<object> BeforeActionParameters { get; set; }
+		// public List<object> BeforeActionParameters { get; set; }
+		public IDictionary<string, string> BeforeActionParameters { get; set; }
 		public string AfterAction { get; set; }
-		public List<object> AfterActionParameters { get; set; }
+		// public List<object> AfterActionParameters { get; set; }
+		public IDictionary<string, string> AfterActionParameters { get; set; }
 		public string[] ExpectedResult { get; set; }
 		
 		public string TaskBanner { get; set; }
 		public TestTaskStatuses TaskStatus { get; set; }
-		public List<object> PreviousTaskResult { get; set; }
-		public List<object> TaskResult { get; set; }
+		// public List<object> PreviousTaskResult { get; set; }
+		public IDictionary<string, string> PreviousTaskResult { get; set; }
+		// public List<object> TaskResult { get; set; }
+		public IDictionary<string, string> TaskResult { get; set; }
 		public int ClientId { get; set; }
 		
 		public void StartTimer()

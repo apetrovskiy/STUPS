@@ -10,6 +10,7 @@
 namespace Tmx
 {
 	using System;
+    using System.Collections.Generic;
 	using System.Linq;
 	using Tmx;
 	using Tmx.Client;
@@ -29,7 +30,13 @@ namespace Tmx
         {
             var cmdlet = (SendTmxTestTaskResultCommand)Cmdlet;
             var taskUpdater = new TaskUpdater(new RestRequestCreator());
-            taskUpdater.SendTaskResult(new TestTask { TaskResult = cmdlet.Result.ToList<object>() }, ClientSettings.Instance.ClientId);
+            // 20140916
+            // taskUpdater.SendTaskResult(new TestTask { TaskResult = cmdlet.Result.ToList<object>() }, ClientSettings.Instance.ClientId);
+            var testTask = new TestTask { TaskResult = new Dictionary<string, string>() };
+            foreach (var key in cmdlet.Result.Keys) {
+                testTask.TaskResult.Add(key.ToString(), cmdlet.Result[key].ToString());
+            }
+            taskUpdater.SendTaskResult(testTask, ClientSettings.Instance.ClientId);
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Tmx.Server.Modules
 	{
 		public TestClientsModule() : base(UrnList.TestClients_Root)
 		{
-			Post[UrnList.TestClients_Clients] = parameters => {
+			Post[UrnList.TestClients_Clients] = _ => {
                 var testClient = this.Bind<TestClient>();
                 
                 int maxId = 0;
@@ -49,6 +49,11 @@ namespace Tmx.Server.Modules
 					return HttpStatusCode.InternalServerError;
 				}
 			};
+		    
+		    Get[UrnList.TestClients_Clients] = _ => 0 == ClientsCollection.Clients.Count ? HttpStatusCode.NotFound : Response.AsJson(ClientsCollection.Clients).WithStatusCode(HttpStatusCode.OK);
+		    
+		    // TODO: refactor this
+		    Get[UrnList.TestClientQueryPoint] = parameters => ClientsCollection.Clients.Any(client => client.Id == parameters.id) ? Response.AsJson(ClientsCollection.Clients.Any(client => client.Id == parameters.id)) : HttpStatusCode.NotFound;
 		}
 	}
 }

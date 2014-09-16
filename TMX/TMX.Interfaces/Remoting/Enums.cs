@@ -14,7 +14,8 @@ namespace Tmx.Interfaces.Remoting
 		New = 0,
 		Accepted = 1,
 		CompletedSuccessfully = 2,
-		Failed = 3
+		Failed = 3,
+		Canceled = 4
 	}
 	
 	public enum TestTaskExecutionTypes

@@ -22,9 +22,7 @@ namespace Tmx.Server.Modules
     {
         public TestDataModule() : base(UrnList.TestData_Root)
         {
-            Get[UrnList.TestData_CommonData] = _ => {
-				return null != CommonData.Data ? Response.AsJson(CommonData.Data).WithStatusCode(HttpStatusCode.OK) : HttpStatusCode.NotFound;
-            };
+            Get[UrnList.TestData_CommonData] = _ => null != CommonData.Data ? Response.AsJson(CommonData.Data).WithStatusCode(HttpStatusCode.OK) : HttpStatusCode.NotFound;
         }
     }
 }

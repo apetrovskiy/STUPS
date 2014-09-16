@@ -10,6 +10,7 @@
 namespace Tmx.Commands
 {
 	using System;
+    using System.Collections;
 	using System.Management.Automation;
 	using Tmx;
 	
@@ -23,7 +24,8 @@ namespace Tmx.Commands
 		           Position = 0,
 		           ValueFromPipeline = true)]
 		[ValidateNotNull]
-		public string[] Result { get; set; }
+		// public string[] Result { get; set; }
+		public Hashtable Result { get; set; }
 		
 		protected override void ProcessRecord()
 		{

@@ -28,6 +28,7 @@ namespace TMX.Interfaces.Server
         public const string TestClients_ClientById = "/{id:int}";
         public static string TestClientRegistrationPoint = TestClients_Root + TestClients_Clients;
         public static string TestClientDeregistrationPoint = TestClients_ClientById;
+        public static string TestClientQueryPoint = TestClients_ClientById;
         
         public const string TestTasks_Root = "/Tasks";
         public const string TestTasks_CurrentClient = "/{id:int}";
@@ -36,6 +37,7 @@ namespace TMX.Interfaces.Server
         private const string TestTasks_CurrentTask = "/currentTask";
         public static string CurrentTaskForClientById = TestTasks_Root + TestTasks_CurrentTask;
         public static string CurrentTaskOfCurrentClient = TestTasks_CurrentTask + TestTasks_CurrentClient;
+        public static string TestTasks_AllDesignated = "/";
         
         public const string TestData_Root = "/Data";
         public const string TestData_CommonData = "/";

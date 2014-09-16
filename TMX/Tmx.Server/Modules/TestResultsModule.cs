@@ -41,7 +41,6 @@ namespace Tmx.Server.Modules
                     return HttpStatusCode.Created;
                 }
                 catch (Exception eAllResultsPosting) {
-                    // Console.WriteLine(eAllResultsPosting.Message);
                     return HttpStatusCode.ExpectationFailed;
                 }
             };

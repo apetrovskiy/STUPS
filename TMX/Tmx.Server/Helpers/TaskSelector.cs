@@ -77,7 +77,10 @@ namespace Tmx.Server
 //			return !TaskPool.TasksForClients.Any(t => t.Id == tasksThatShouldBeCompletedBefore && t.TaskStatus != TestTaskStatuses.CompletedSuccessfully);
 		    // 20140914
 			// return 0 == numberOfMustDoneBeforeTask || !TaskPool.TasksForClients.Any(t => t.Id == numberOfMustDoneBeforeTask && t.TaskStatus != TestTaskStatuses.CompletedSuccessfully);
-            return 0 == numberOfMustDoneBeforeTask || !TaskPool.TasksForClients.Any(t => t.Id == numberOfMustDoneBeforeTask && t.TaskStatus != TestTaskStatuses.CompletedSuccessfully) || !TaskPool.TasksForClients.All(t => t.Id != numberOfMustDoneBeforeTask);
+            return 
+                0 == numberOfMustDoneBeforeTask ||
+                !TaskPool.TasksForClients.Any(t => t.Id == numberOfMustDoneBeforeTask && t.TaskStatus != TestTaskStatuses.CompletedSuccessfully) ||
+                !TaskPool.TasksForClients.All(t => t.Id != numberOfMustDoneBeforeTask);
         }
 	}
 }

@@ -45,90 +45,91 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_register_the_first_test_client()
         {
-            var testClient = givenTestClient("testhost_01", "aaa_01");
+            var testClient = GIVEN_TestClient("testhost_01", "aaa_01");
             
-            var response = whenSendingRegistration(testClient);
+            var response = WHEN_SendingRegistration(testClient);
             
-            thenHttpResponseIsCreated(response);
-            thenTestClientPropertiesWereApplied(testClient);
-            thenIdOfTheFirstClientEquals(response.Body.DeserializeJson<TestClient>().Id);
+            THEN_Http_Response_Is_Created(response);
+            THEN_Test_Client_Properties_Were_Applied(testClient);
+            THEN_Id_Of_The_First_Client_Equals(response.Body.DeserializeJson<TestClient>().Id);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_register_the_second_test_client()
         {
-            givenSendingRegistration(givenTestClient("testhost_001", "aaa_001"));
-            var testClient02 = givenTestClient("testhost_002", "aaa_002");
+            GIVEN_SendingRegistration(GIVEN_TestClient("testhost_001", "aaa_001"));
+            var testClient02 = GIVEN_TestClient("testhost_002", "aaa_002");
             
-            var response = whenSendingRegistration(testClient02);
+            var response = WHEN_SendingRegistration(testClient02);
             
-            thenHttpResponseIsCreated(response);
-            thenTestClientPropertiesWereApplied(testClient02);
-            thenIdOfTheFirstClientEquals(response.Body.DeserializeJson<TestClient>().Id);
+            THEN_Http_Response_Is_Created(response);
+            THEN_Test_Client_Properties_Were_Applied(testClient02);
+            THEN_Id_Of_The_First_Client_Equals(response.Body.DeserializeJson<TestClient>().Id);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_be_no_clients_after_unregistering_the_only_test_client()
         {
-            var testClient = givenSendingRegistration(givenTestClient("testhost_02", "aaa_02"));
+            var testClient = GIVEN_SendingRegistration(GIVEN_TestClient("testhost_02", "aaa_02"));
             
-            whenSendingDeregistration(testClient);
+            WHEN_SendingDeregistration(testClient);
             
-            thenThereIsTheNumberOfRegisteredClients(0);
+            THEN_There_Is_The_Number_Of_Registered_Clients(0);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_be_only_one_client_after_unregistering_one_of_two_test_clients()
         {
-            var testClient01 = givenSendingRegistration(givenTestClient("testhost_03", "aaa_03"));
-            var testClient02 = givenSendingRegistration(givenTestClient("testhost_04", "aaa_04"));
+            var testClient01 = GIVEN_SendingRegistration(GIVEN_TestClient("testhost_03", "aaa_03"));
+            var testClient02 = GIVEN_SendingRegistration(GIVEN_TestClient("testhost_04", "aaa_04"));
             
-            whenSendingDeregistration(testClient01);
+            WHEN_SendingDeregistration(testClient01);
             
-            thenThereIsTheNumberOfRegisteredClients(testClient01.Id);
-            thenIdOfTheFirstClientEquals(testClient02.Id);
+            THEN_There_Is_The_Number_Of_Registered_Clients(testClient01.Id);
+            THEN_Id_Of_The_First_Client_Equals(testClient02.Id);
         }
         
-        ITestClient givenTestClient(string hostname, string username)
+        // ============================================================================================================================
+        ITestClient GIVEN_TestClient(string hostname, string username)
         {
             return TestFactory.GivenTestClient(hostname, username);
         }
         
-        ITestClient givenSendingRegistration(ITestClient testClient)
+        ITestClient GIVEN_SendingRegistration(ITestClient testClient)
         {
-            var response = whenSendingRegistration(testClient);
+            var response = WHEN_SendingRegistration(testClient);
             return response.Body.DeserializeJson<TestClient>();
         }
         
-        BrowserResponse whenSendingRegistration(ITestClient testClient)
+        BrowserResponse WHEN_SendingRegistration(ITestClient testClient)
         {
             var browser = TestFactory.GetBrowserForTestClientsModule();
             return browser.Post(UrnList.TestClientRegistrationPoint, with => with.JsonBody<ITestClient>(testClient));
         }
         
-        void whenSendingDeregistration(ITestClient testClient)
+        void WHEN_SendingDeregistration(ITestClient testClient)
         {
             var browser = TestFactory.GetBrowserForTestClientsModule();
             browser.Delete(UrnList.TestClients_Root + "/" + testClient.Id);
         }
         
-        void thenThereIsTheNumberOfRegisteredClients(int number)
+        void THEN_There_Is_The_Number_Of_Registered_Clients(int number)
         {
             Xunit.Assert.Equal(number, ClientsCollection.Clients.Count);
         }
         
-        void thenIdOfTheFirstClientEquals(int clientId)
+        void THEN_Id_Of_The_First_Client_Equals(int clientId)
         {
             int testClientCounter = ClientsCollection.Clients.Count - 1;
             Xunit.Assert.Equal(clientId, ClientsCollection.Clients[testClientCounter].Id);
         }
         
-        void thenHttpResponseIsCreated(BrowserResponse response)
+        void THEN_Http_Response_Is_Created(BrowserResponse response)
         {
             Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
         }
         
-        void thenTestClientPropertiesWereApplied(ISystemInfo testClient)
+        void THEN_Test_Client_Properties_Were_Applied(ISystemInfo testClient)
         {
             int testClientCounter = ClientsCollection.Clients.Count - 1;
             Xunit.Assert.Equal(testClient.CustomString, ClientsCollection.Clients[testClientCounter].CustomString);

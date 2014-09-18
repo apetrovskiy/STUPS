@@ -12,6 +12,7 @@ namespace Tmx.Server.Tests
     using System;
 	using Tmx.Client;
 	using PSTestLib;
+    using Tmx.Core;
     
     /// <summary>
     /// Description of TestSettings.
@@ -30,6 +31,7 @@ namespace Tmx.Server.Tests
 			// ClientSettings.ResetData();
 			var clientSettings = ClientSettings.Instance;
 			clientSettings.ResetData();
+			CommonData.Data.Clear();
 			
 			Preferences.ClientRegistrationSleepIntervalMilliseconds = 0;
 			Preferences.ReceivingTaskSleepIntervalMilliseconds = 0;

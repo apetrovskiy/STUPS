@@ -16,15 +16,15 @@ namespace Tmx
     /// <summary>
     /// Description of GetTestCommonDataCommand.
     /// </summary>
-    class GetTestCommonDataCommand : TmxCommand
+    class GetCommonDataItemCommand : TmxCommand
     {
-        internal GetTestCommonDataCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        internal GetCommonDataItemCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
         internal override void Execute()
         {
-            var cmdlet = (GetTmxTestCommonDataCommand)Cmdlet;
+            var cmdlet = (GetTmxCommonDataItemCommand)Cmdlet;
             try {
                 cmdlet.WriteObject(CommonData.Data[cmdlet.Key]);
             }

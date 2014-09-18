@@ -27,10 +27,10 @@ namespace Tmx.Client
 	    
 	    public TaskLoader(RestRequestCreator requestCreator)
 	    {
-	    	_restTemplate = requestCreator.GetRestTemplate(string.Empty);
+	    	_restTemplate = requestCreator.GetRestTemplate();
 	    }
 	    
-		public ITestTask GetCurrentTask()
+		public virtual ITestTask GetCurrentTask()
 		{
 			var gettingTaskResponse = _restTemplate.GetForMessage<TestTask>(UrnList.TestTasks_Root + "/" + ClientSettings.Instance.ClientId);
 			

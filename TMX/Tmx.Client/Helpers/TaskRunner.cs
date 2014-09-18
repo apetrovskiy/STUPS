@@ -21,29 +21,21 @@ namespace Tmx.Client
     /// </summary>
     public class TaskRunner
     {
-        public bool Run(ITestTask task)
+        public virtual bool Run(ITestTask task)
         {
             // TODO: move to an aspect
             try {
                 var runnerWithParams = new runScriptBlockWithParameters(runSBActionWithParams);
-                // 20140946
-//                runScriptblockWithParameters(runnerWithParams, task.BeforeAction, task.BeforeActionParameters, task.PreviousTaskResult);
-//                runScriptblockWithParameters(runnerWithParams, task.Action, task.ActionParameters, task.PreviousTaskResult);
-//                runScriptblockWithParameters(runnerWithParams, task.AfterAction, task.AfterActionParameters, task.PreviousTaskResult);
                 var result = runScriptblockWithParameters(runnerWithParams, task.BeforeAction, task.BeforeActionParameters, task.PreviousTaskResult);
                 if (!result) return result;
                 result = runScriptblockWithParameters(runnerWithParams, task.Action, task.ActionParameters, task.PreviousTaskResult);
                 return !result ? result : runScriptblockWithParameters(runnerWithParams, task.AfterAction, task.AfterActionParameters, task.PreviousTaskResult);
-                // return true;
-                // return result;
             }
             catch {
                 return false;
             }
         }
         
-        // 20140916
-        // void runScriptblockWithParameters(runScriptBlockWithParameters runnerWithParams, string code, List<object> parameters, List<object> previousTaskResults)
         bool runScriptblockWithParameters(
             runScriptBlockWithParameters runnerWithParams,
             string code,
@@ -51,23 +43,18 @@ namespace Tmx.Client
             IDictionary<string, string> previousTaskResults)
         {
             if (string.Empty == code)
-                // return;
                 return false;
             var scriptblockParameters = 
                 (null == previousTaskResults || 0 == previousTaskResults.Count) ? 
                 new object[] {
                     new object[]{ },
-                    // parameters.ToArray()
                     parameters
                 } :
                 new object[] {
-                    // previousTaskResults.ToArray(),
                     previousTaskResults,
-                    // parameters.ToArray()
                     parameters
                 };
-            // 20140916
-            // runnerWithParams(ScriptBlock.Create(code), scriptblockParameters);
+            
             try {
                 runnerWithParams(ScriptBlock.Create(code), scriptblockParameters);
                 return true;

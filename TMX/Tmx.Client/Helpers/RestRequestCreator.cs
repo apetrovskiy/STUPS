@@ -18,7 +18,7 @@ namespace Tmx.Client
     /// </summary>
     public class RestRequestCreator
     {
-        public virtual RestTemplate GetRestTemplate(string url)
+        public virtual RestTemplate GetRestTemplate()
         {
             var restTemplate = new RestTemplate(ClientSettings.Instance.ServerUrl);
             restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());

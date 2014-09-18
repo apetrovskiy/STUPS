@@ -214,7 +214,7 @@ namespace PSRunner
                 throw(eRunspace); // 20120819 ON
                 // 20140107
                 // result = null;
-                resultObject = null;
+                // resultObject = null;
             }
             // 20140107
             // return result;

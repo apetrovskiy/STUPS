@@ -133,37 +133,24 @@ namespace Tmx.Server.Tests.Modules
             TaskPool.Tasks.Add(testTask02);
             
             // When
-            // imitation
-            // ClientSettings.ServerUrl = @"http://localhost:12340";
-            // ClientSettings.StopImmediately = false;
             var clientSettings = ClientSettings.Instance;
             clientSettings.ServerUrl = @"http://localhost:12340";
             clientSettings.StopImmediately = false;
             
-            // var registration = new Registration();
             var registration = new Registration(new RestRequestCreator());
             
             var response = browser.Post(UrnList.TestClientRegistrationPoint, with => with.JsonBody<ITestClient>(testClient));
             var registeredClient = response.Body.DeserializeJson<TestClient>();
-            // imitation
-            // ClientSettings.ClientId = registeredClient.Id;
-            // ClientSettings.StopImmediately = false;
             clientSettings.ClientId = registeredClient.Id;
             clientSettings.StopImmediately = false;
             
-            // var taskLoader = new TaskLoader();
             var taskLoader = new TaskLoader(new RestRequestCreator());
             
             response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
             var task = response.Body.DeserializeJson<TestTask>();
             task.TaskStatus = TestTaskStatuses.Accepted;
             response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => with.JsonBody<ITestTask>(task));
-            // imitation
-            // ClientSettings.CurrentTask = task; // taskLoader.GetCurrentTask();
-            // ClientSettings.CurrentTask.TaskResult = new[] { "aaaaa", "bbbbb", "ccccc" };
-            // var taskUpdater = new TaskUpdater();
             var taskUpdater = new TaskUpdater(new RestRequestCreator());
-            // response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => with.JsonBody<ITestTask>(ClientSettings.CurrentTask));
             response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => with.JsonBody<ITestTask>(task));
             
             task.TaskStatus = TestTaskStatuses.CompletedSuccessfully;
@@ -410,15 +397,6 @@ namespace Tmx.Server.Tests.Modules
 			const string testClientHostnameExpected = "testhost";
 			const string testClientUsernameExpected = "aaa";
             var testClient = new TestClient { Hostname = testClientHostnameExpected, Username = testClientUsernameExpected };
-//            var task = new TestTask {
-//            	Id = 4,
-//            	Name = "task name",
-//            	TaskFinished = false,
-//            	IsActive = true,
-//            	TaskStatus = TestTaskStatuses.New,
-//            	Rule = "another rule"
-//            };
-//            TaskPool.TasksForClients.Add(task);
             var task = new TestTask {
             	Id = 5,
             	AfterTask = 4,

@@ -24,10 +24,10 @@ namespace Tmx.Client
         
         public CommonDataLoader(RestRequestCreator requestCreator)
         {
-            _restTemplate = requestCreator.GetRestTemplate(string.Empty);
+            _restTemplate = requestCreator.GetRestTemplate();
         }
         
-        public Dictionary<string, string> Load()
+        public virtual Dictionary<string, string> Load()
         {
 			var commonDataResponse = _restTemplate.GetForMessage<Dictionary<string, string>>(UrnList.CommonDataLoadingPoint);
 			var commonData = commonDataResponse.Body;

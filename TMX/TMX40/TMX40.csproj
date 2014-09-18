@@ -108,13 +108,13 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SQLite">
-      <HintPath>..\..\packages\System.Data.SQLite.Core.1.0.93.0\lib\net40\System.Data.SQLite.dll</HintPath>
+      <HintPath>..\..\packages\System.Data.SQLite.Core.1.0.94.0\lib\net40\System.Data.SQLite.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.SQLite.EF6">
-      <HintPath>..\..\packages\System.Data.SQLite.EF6.1.0.93.0\lib\net40\System.Data.SQLite.EF6.dll</HintPath>
+      <HintPath>..\..\packages\System.Data.SQLite.EF6.1.0.94.0\lib\net40\System.Data.SQLite.EF6.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.SQLite.Linq">
-      <HintPath>..\..\packages\System.Data.SQLite.Linq.1.0.93.0\lib\net40\System.Data.SQLite.Linq.dll</HintPath>
+      <HintPath>..\..\packages\System.Data.SQLite.Linq.1.0.94.1\lib\net40\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System.Management.Automation" />
     <Reference Include="System.Windows.Forms" />
@@ -209,8 +209,11 @@
     <Compile Include="..\TMX\Commands\Status\GetTMXTestSuiteStatusCommand.cs">
       <Link>Commands\Status\GetTMXTestSuiteStatusCommand.cs</Link>
     </Compile>
-    <Compile Include="..\TMX\Commands\TestClient\GetTmxTestCommonDataCommand.cs">
-      <Link>Commands\TestClient\GetTmxTestCommonDataCommand.cs</Link>
+    <Compile Include="..\TMX\Commands\TestClient\GetTmxCommonDataItemCommand.cs">
+      <Link>Commands\TestClient\GetTmxCommonDataItemCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\TestClient\GetTmxCurrentTestTaskCommand.cs">
+      <Link>Commands\TestClient\GetTmxCurrentTestTaskCommand.cs</Link>
     </Compile>
     <Compile Include="..\TMX\Commands\TestClient\InvokeTmxTestTaskCommand.cs">
       <Link>Commands\TestClient\InvokeTmxTestTaskCommand.cs</Link>
@@ -220,6 +223,12 @@
     </Compile>
     <Compile Include="..\Tmx\Commands\TestClient\RegisterTmxSystemUnderTestCommand.cs">
       <Link>Commands\TestClient\RegisterTmxSystemUnderTestCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\TestClient\SendTmxCommonDataItemCommand.cs">
+      <Link>Commands\TestClient\SendTmxCommonDataItemCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\TestClient\SendTmxItemCommand.cs">
+      <Link>Commands\TestClient\SendTmxItemCommand.cs</Link>
     </Compile>
     <Compile Include="..\Tmx\Commands\TestClient\SendTmxTestTaskResultCommand.cs">
       <Link>Commands\TestClient\SendTmxTestTaskResultCommand.cs</Link>
@@ -428,8 +437,11 @@
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\Status\TMXGetTestSuiteStatusCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\Status\TMXGetTestSuiteStatusCommand.cs</Link>
     </Compile>
-    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestClient\GetTestCommonDataCommand.cs">
-      <Link>Helpers\UnderlyingCode\Commands\TestClient\GetTestCommonDataCommand.cs</Link>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestClient\GetCommonDataItemCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TestClient\GetCommonDataItemCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestClient\GetCurrentTestTaskCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TestClient\GetCurrentTestTaskCommand.cs</Link>
     </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestClient\InvokeTestTaskCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\TestClient\InvokeTestTaskCommand.cs</Link>
@@ -439,6 +451,12 @@
     </Compile>
     <Compile Include="..\Tmx\Helpers\UnderlyingCode\Commands\TestClient\RegisterSystemUnderTestCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\TestClient\RegisterSystemUnderTestCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestClient\SendCommonDataItemCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TestClient\SendCommonDataItemCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestClient\SendItemCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TestClient\SendItemCommand.cs</Link>
     </Compile>
     <Compile Include="..\Tmx\Helpers\UnderlyingCode\Commands\TestClient\SendTestTaskResultCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\TestClient\SendTestTaskResultCommand.cs</Link>
@@ -665,8 +683,7 @@
     </None>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="x64\SQLite.Interop.dll" />
-    <None Include="x86\SQLite.Interop.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <Import Project="..\..\packages\System.Data.SQLite.Core.1.0.94.0\build\net40\System.Data.SQLite.Core.targets" Condition="Exists('..\..\packages\System.Data.SQLite.Core.1.0.94.0\build\net40\System.Data.SQLite.Core.targets')" />
 </Project>

@@ -1,8 +1,8 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
- * Date: 9/10/2014
- * Time: 9:42 PM
+ * Date: 9/18/2014
+ * Time: 9:37 PM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
@@ -13,22 +13,25 @@ namespace Tmx.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of AddTmxTestCommonDataCommand.
+    /// Description of SendTmxItemCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Add, "TmxCommonDataItem")]
-    public class AddTmxCommonDataItemCommand : ServerCmdletBase
+    [Cmdlet(VerbsCommunications.Send, "TmxItem")]
+    public class SendTmxItemCommand : ClientCmdletBase
     {
         [Parameter(Mandatory = true,
                    Position = 0)]
-        public string Key { get; set; }
+        public string Path { get; set; }
         
         [Parameter(Mandatory = true,
                    Position = 1)]
-        public string Value { get; set; }
+        public string Destination { get; set; }
+        
+        [Parameter(Mandatory = false)]
+        public SwitchParameter Recurse { get; set; }
         
 		protected override void BeginProcessing()
 		{
-			var command = new AddCommonDataItemCommand(this);
+			var command = new SendItemCommand(this);
 			command.Execute();
 		}
     }

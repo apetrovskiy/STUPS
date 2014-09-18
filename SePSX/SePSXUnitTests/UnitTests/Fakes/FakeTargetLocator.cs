@@ -57,5 +57,10 @@ namespace SePSXUnitTests
         {
             throw new NotImplementedException();
         }
+        
+        public IWebDriver ParentFrame()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -16,15 +16,15 @@ namespace Tmx
     /// <summary>
     /// Description of AddTestCommonDataCommand.
     /// </summary>
-    class AddTestCommonDataCommand : TmxCommand
+    class AddCommonDataItemCommand : TmxCommand
     {
-        internal AddTestCommonDataCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        internal AddCommonDataItemCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
         internal override void Execute()
         {
-            var cmdlet = (AddTmxTestCommonDataCommand)Cmdlet;
+            var cmdlet = (AddTmxCommonDataItemCommand)Cmdlet;
             try {
                 CommonData.Data.Add(cmdlet.Key, cmdlet.Value);
                 cmdlet.WriteObject(true);

@@ -82,15 +82,13 @@ namespace BDDAddinUnitTests
 //            
 //            return (ITestSuite)CommonCmdletBase.UnitTestOutput[CommonCmdletBase.UnitTestOutput.Count - 1];
             
-            BDDFeatureCmdletBase cmdlet =
-                new BDDFeatureCmdletBase();
+            var cmdlet = new BDDFeatureCmdletBase();
             cmdlet.FeatureName = featureName;
             cmdlet.AsA = asA;
             cmdlet.IWant = iWant;
             cmdlet.SoThat = soThat;
             
-            BDDNewFeatureCommand command =
-                new BDDNewFeatureCommand(cmdlet);
+            var command = new BDDNewFeatureCommand(cmdlet);
             command.Execute();
             
             //return ((NBehave.Narrator.Framework.Feature)CommonCmdletBase.UnitTestOutput[CommonCmdletBase.UnitTestOutput.Count - 1]);
@@ -117,7 +115,6 @@ catch (Exception e02) {
     Console.WriteLine(e02.GetType().Name);
 }
             return ((NBehave.Narrator.Framework.Feature)(object)PSTestLib.UnitTestOutput.LastOutput[0]);
-Console.WriteLine("GetNewBDDSuite: 0002");
         }
     }
 }

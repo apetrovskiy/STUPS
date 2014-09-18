@@ -83,6 +83,8 @@
     </Compile>
     <Compile Include="Helpers\ClientSettings.cs" />
     <Compile Include="Helpers\CommonDataLoader.cs" />
+    <Compile Include="Helpers\CommonDataSender.cs" />
+    <Compile Include="Helpers\ItemSender.cs" />
     <Compile Include="Helpers\Registration.cs" />
     <Compile Include="Helpers\RestRequestCreator.cs" />
     <Compile Include="Helpers\TaskLoader.cs" />
@@ -92,6 +94,7 @@
     <Compile Include="Helpers\TestResultsSender.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App_Readme\Spring.Rest.txt" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -104,7 +104,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core">
-      <HintPath>..\..\packages\Castle.Core.3.3.0\lib\net35\Castle.Core.dll</HintPath>
+      <HintPath>..\..\packages\Castle.Core.3.3.1\lib\net35\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\..\packages\Ninject.3.2.2.0\lib\net35\Ninject.dll</HintPath>

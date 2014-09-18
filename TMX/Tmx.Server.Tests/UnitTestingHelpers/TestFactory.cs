@@ -36,6 +36,11 @@ namespace Tmx.Server.Tests
             return new Browser(with => with.Module(new TestResultsModule()));
         }
         
+        public static Browser GetBrowserForTestDataModule()
+        {
+            return new Browser(with => with.Module(new TestDataModule()));
+        }
+        
         public static ITestClient GivenTestClient(string hostname, string username)
         {
             return new TestClient { Hostname = hostname, Username = username };

@@ -15,8 +15,8 @@ namespace Tmx.Commands
     /// <summary>
     /// Description of GetTmxTestCommonDataCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "TmxTestCommonData")]
-    public class GetTmxTestCommonDataCommand : ServerCmdletBase
+    [Cmdlet(VerbsCommon.Get, "TmxCommonDataItem")]
+    public class GetTmxCommonDataItemCommand : ServerCmdletBase
     {
         [Parameter(Mandatory = true,
                    Position = 0)]
@@ -24,7 +24,7 @@ namespace Tmx.Commands
         
 		protected override void BeginProcessing()
 		{
-			var command = new GetTestCommonDataCommand(this);
+			var command = new GetCommonDataItemCommand(this);
 			command.Execute();
 		}
     }

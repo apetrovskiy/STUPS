@@ -28,10 +28,10 @@ namespace Tmx.Client
 	    
 	    public Registration(RestRequestCreator requestCreator)
 	    {
-	    	_restTemplate = requestCreator.GetRestTemplate(string.Empty);
+	    	_restTemplate = requestCreator.GetRestTemplate();
 	    }
         
-        public int SendRegistrationInfoAndGetClientId(string customClientString)
+        public virtual int SendRegistrationInfoAndGetClientId(string customClientString)
 		{
 			var registrationResponse = _restTemplate.PostForMessage<TestClient>(UrnList.TestClientRegistrationPoint, getNewTestClient(customClientString));
 			if (HttpStatusCode.Created == registrationResponse.StatusCode)
@@ -39,7 +39,7 @@ namespace Tmx.Client
 			throw new Exception("Failed to register a client. "+ registrationResponse.StatusCode); // TODO: new type!
 		}
         
-        public void UnregisterClient()
+        public virtual void UnregisterClient()
         {
 			try {
 			    _restTemplate.Delete(UrnList.TestClients_Root + "/" + ClientSettings.Instance.ClientId);

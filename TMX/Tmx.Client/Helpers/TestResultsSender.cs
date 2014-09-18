@@ -29,10 +29,10 @@ namespace Tmx.Client
 	    
 	    public TestResultsSender(RestRequestCreator requestCreator)
 	    {
-	    	_restTemplate = requestCreator.GetRestTemplate(string.Empty);
+	    	_restTemplate = requestCreator.GetRestTemplate();
 	    }
 	    
-	    public bool SendTestResults()
+	    public virtual bool SendTestResults()
 	    {
 	        var element =
 	            TmxHelper.GetTestResultsAsXelement(

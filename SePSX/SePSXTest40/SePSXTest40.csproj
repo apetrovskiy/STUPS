@@ -118,7 +118,7 @@
       <HintPath>..\..\..\..\..\Program Files\Gallio\bin\MbUnit.dll</HintPath>
     </Reference>
     <Reference Include="Moq">
-      <HintPath>..\..\packages\Moq.4.2.1408.0511\lib\net40\Moq.dll</HintPath>
+      <HintPath>..\..\packages\Moq.4.2.1409.1722\lib\net40\Moq.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -131,10 +131,10 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="WebDriver">
-      <HintPath>..\..\packages\Selenium.WebDriver.2.42.0\lib\net40\WebDriver.dll</HintPath>
+      <HintPath>..\..\packages\Selenium.WebDriver.2.43.1\lib\net40\WebDriver.dll</HintPath>
     </Reference>
     <Reference Include="WebDriver.Support">
-      <HintPath>..\..\packages\Selenium.Support.2.42.0\lib\net40\WebDriver.Support.dll</HintPath>
+      <HintPath>..\..\packages\Selenium.Support.2.43.1\lib\net40\WebDriver.Support.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

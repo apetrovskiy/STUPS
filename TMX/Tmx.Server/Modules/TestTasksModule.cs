@@ -41,13 +41,11 @@ namespace Tmx.Server.Modules
                 storedTask.TaskFinished = loadedTask.TaskFinished;
                 storedTask.TaskStatus = loadedTask.TaskStatus;
                 
-                // 20140916
                 var taskSorter = new TaskSelector();
                 if (TestTaskStatuses.Failed == storedTask.TaskStatus)
                     taskSorter.CancelFurtherTasks(storedTask.ClientId);
                 
                 if (storedTask.TaskFinished) {
-                    // var taskSorter = new TaskSelector();
                     ITestTask nextTask = null;
                     try {
                         nextTask = taskSorter.GetNextLegibleTask(storedTask.ClientId, storedTask.Id);
@@ -69,9 +67,8 @@ namespace Tmx.Server.Modules
                 
                 var taskSorter = new TaskSelector();
                 var actualTask = taskSorter.GetFirstLegibleTask(parameters.id) as TestTask;
-                // 20140916
-				// var currentTaskResult = actualTask.TaskResult ?? new List<object>();
 				var currentTaskResult = actualTask.TaskResult ?? new Dictionary<string, string>();
+				// TODO: improve
 				// actualTask.TaskResult = currentTaskResult.Concat(loadedTask.TaskResult).ToList<object>();
 				// actualTask.TaskResult = currentTaskResult..Concat(loadedTask.TaskResult);
                 foreach (var pair in loadedTask.TaskResult) {

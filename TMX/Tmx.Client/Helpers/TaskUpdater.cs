@@ -25,10 +25,10 @@ namespace Tmx.Client
 	    
 	    public TaskUpdater(RestRequestCreator requestCreator)
 	    {
-	    	_restTemplate = requestCreator.GetRestTemplate(string.Empty);
+	    	_restTemplate = requestCreator.GetRestTemplate();
 	    }
 	    
-		public bool UpdateTask(ITestTask task)
+		public virtual bool UpdateTask(ITestTask task)
 		{
 			try {
 			    _restTemplate.Put(UrnList.TestTasks_Root + "/" + task.Id, task);
@@ -39,7 +39,7 @@ namespace Tmx.Client
 			}
 		}
 		
-		public bool SendTaskResult(ITestTask task, int clientId)
+		public virtual bool SendTaskResult(ITestTask task, int clientId)
 		{
 			try {
 			    _restTemplate.Put(UrnList.CurrentTaskForClientById + "/" + clientId, task);

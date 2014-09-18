@@ -46,7 +46,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Common.Logging">
-      <HintPath>..\..\packages\Common.Logging.2.0.0\lib\2.0\Common.Logging.dll</HintPath>
+      <HintPath>..\..\packages\Common.Logging.2.2.0\lib\net35\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core">
+      <HintPath>..\..\packages\Common.Logging.Core.2.2.0\lib\net35\Common.Logging.Core.dll</HintPath>
     </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\..\packages\FluentNHibernate.1.4.0.0\lib\net35\FluentNHibernate.dll</HintPath>
@@ -90,6 +93,7 @@
     <Compile Include="Helpers\UserSettings\Preferences.cs" />
     <Compile Include="TestData\TestData.cs" />
     <Compile Include="Types\Remoting\CommonData.cs" />
+    <Compile Include="Types\Remoting\CommonDataItem.cs" />
     <Compile Include="Types\Remoting\TestClient.cs" />
     <Compile Include="Types\Remoting\TestTask.cs" />
     <Compile Include="Types\TestStructure\TestCase.cs" />

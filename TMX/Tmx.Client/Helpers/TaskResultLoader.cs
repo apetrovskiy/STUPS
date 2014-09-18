@@ -17,7 +17,7 @@ namespace Tmx.Client
     /// </summary>
     public class TaskResultLoader
     {
-        public void AddTaskResults(string[] results)
+        public virtual void AddTaskResults(string[] results)
         {
             var clientSettings = ClientSettings.Instance;
             var addTaskResultsDelegate = new AddTaskResults(clientSettings.AddTaskResult);

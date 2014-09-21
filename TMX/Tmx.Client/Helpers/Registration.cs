@@ -41,6 +41,8 @@ namespace Tmx.Client
         
         public virtual void UnregisterClient()
         {
+            // 20140921
+            closeCurrentTaskIfAny();
 			try {
 			    _restTemplate.Delete(UrnList.TestClients_Root + "/" + ClientSettings.Instance.ClientId);
                 ClientSettings.Instance.ResetData();
@@ -53,6 +55,16 @@ namespace Tmx.Client
         ITestClient getNewTestClient(string customClientString)
         {
             return new TestClient { CustomString = customClientString };
+        }
+        
+        void closeCurrentTaskIfAny()
+        {
+            var task = ClientSettings.Instance.CurrentTask;
+            if (null == task) return;
+            var taskUpdater = new TaskUpdater(new RestRequestCreator());
+            task.TaskFinished = true;
+            task.TaskStatus = TestTaskStatuses.CompletedSuccessfully;
+            taskUpdater.UpdateTask(task);
         }
     }
 }

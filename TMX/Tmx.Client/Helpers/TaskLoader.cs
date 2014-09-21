@@ -32,6 +32,9 @@ namespace Tmx.Client
 	    
 		public virtual ITestTask GetCurrentTask()
 		{
+            // 20140921
+            if (0 == ClientSettings.Instance.ClientId)
+                throw new ClientNotRegisteredException("Client is not registered. Run the Register-TmxSystemUnderTest cmdlet");
 			var gettingTaskResponse = _restTemplate.GetForMessage<TestTask>(UrnList.TestTasks_Root + "/" + ClientSettings.Instance.ClientId);
 			
 			var task = gettingTaskResponse.Body;

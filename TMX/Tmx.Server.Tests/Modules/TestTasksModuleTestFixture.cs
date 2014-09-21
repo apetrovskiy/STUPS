@@ -467,7 +467,71 @@ namespace Tmx.Server.Tests.Modules
             Xunit.Assert.Equal(task.IsActive, loadedTask.IsActive);
         }
         
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        public void Should_provide_no_task_to_unregistered_test_client()
+        {
+        	// Given
+            var browser = TestFactory.GetBrowserForTestTasksModule();
+			const string testClientHostnameExpected = "testhost";
+			const string testClientUsernameExpected = "aaa";
+            var testClient = new TestClient { Hostname = testClientHostnameExpected, Username = testClientUsernameExpected };
+            var task = new TestTask {
+            	Id = 5,
+            	Name = "task name",
+            	TaskFinished = false,
+            	IsActive = true,
+            	TaskStatus = TestTaskStatuses.New,
+            	Rule = "no matches"
+            };
+			TaskPool.Tasks.Add(task);
+            
+            // When
+            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => with.JsonBody<ITestClient>(testClient));
+            testClient = response.Body.DeserializeJson<TestClient>();
+            WHEN_SendingDeregistration(testClient);
+            response = browser.Get(UrnList.TestTasks_Root + "/" + 0);
+            
+            // Then
+            THEN_HttpResponse_Is_NotFound(response);
+        }
+        
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        public void Should_complete_the_current_task_on_client_unregistration()
+        {
+            // TODO: do it!
+//        	// Given
+//            var browser = TestFactory.GetBrowserForTestTasksModule();
+//			const string testClientHostnameExpected = "testhost";
+//			const string testClientUsernameExpected = "aaa";
+//            var testClient = new TestClient { Hostname = testClientHostnameExpected, Username = testClientUsernameExpected };
+//            var task = new TestTask {
+//            	Id = 5,
+//            	Name = "task name",
+//            	TaskFinished = false,
+//            	IsActive = true,
+//            	TaskStatus = TestTaskStatuses.New,
+//            	Rule = "no matches"
+//            };
+//			TaskPool.Tasks.Add(task);
+//            
+//            // When
+//            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => with.JsonBody<ITestClient>(testClient));
+//            testClient = response.Body.DeserializeJson<TestClient>();
+//            WHEN_SendingDeregistration(testClient);
+//            response = browser.Get(UrnList.TestTasks_Root + "/" + 0);
+//            
+//            // Then
+//            THEN_HttpResponse_Is_NotFound(response);
+        }
+        
         // ============================================================================================================================
+        // TODO: duplicated
+        void WHEN_SendingDeregistration(ITestClient testClient)
+        {
+            var browser = TestFactory.GetBrowserForTestTasksModule();
+            browser.Delete(UrnList.TestClients_Root + "/" + testClient.Id);
+        }
+        
         void THEN_HttpResponse_Is_Ok(BrowserResponse response)
         {
             Xunit.Assert.Equal(HttpStatusCode.OK, response.StatusCode);

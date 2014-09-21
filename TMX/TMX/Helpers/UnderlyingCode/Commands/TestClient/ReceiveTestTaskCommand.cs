@@ -10,6 +10,7 @@
 namespace Tmx
 {
 	using System;
+    using TMX.Interfaces.Exceptions;
 	using Tmx;
 	using Tmx.Client;
 	using Tmx.Interfaces.Remoting;
@@ -41,6 +42,9 @@ namespace Tmx
                 // TODO: move to aspect
                 try {
                     task = taskLoader.GetCurrentTask();
+                }
+                catch (ClientNotRegisteredException eNotRegistered) {
+                    throw;
                 }
                 catch (Exception e) {
 // Console.WriteLine("receiving a task " + e.Message);

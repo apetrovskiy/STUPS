@@ -1172,8 +1172,11 @@ namespace Tmx
 //                    
 //					if (result != null)
 //						return result;
+                    // 20140922
 					if (string.IsNullOrEmpty(testSuiteId) || testSuiteId == testSuite.Id)
-					    result = testSuite;
+					    // result = testSuite;
+					    if (testPlatformId == testSuite.PlatformId)
+					        result = testSuite;
 				    if (null != result)
 				       return result;
                 }

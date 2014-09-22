@@ -35,20 +35,23 @@ namespace Tmx.Server.Helpers
 
         internal virtual bool wait()
         {
-            return !ClientsCollection.Clients.Any() || !TaskPool.TasksForClients.Any() || TaskPool.TasksForClients.Any(task => task.TaskStatus == TestTaskStatuses.New || task.TaskStatus == TestTaskStatuses.Accepted);
+            // 20140922
+            // return !ClientsCollection.Clients.Any() || !TaskPool.TasksForClients.Any() || TaskPool.TasksForClients.Any(task => task.TaskStatus == TestTaskStatuses.New || task.TaskStatus == TestTaskStatuses.Accepted);
+//            return // !ClientsCollection.Clients.Any() ||
+//                // there have been clients
+//                (TaskPool.TasksForClients.Any() && !ClientsCollection.Clients.Any()) ||
+//                // there have not ever been tasks
+//                !TaskPool.TasksForClients.Any() || 
+//                // all tasks are complete
+//                TaskPool.TasksForClients.Any(task => task.TaskStatus == TestTaskStatuses.New || 
+//                                             task.TaskStatus == TestTaskStatuses.Accepted);
+            
+            // return thereHaveBeenClientsAlready() || thereHaveNotBeenTasksAllocated() || allTasksAreComplete();
+            return thereHaveNotBeenTasksAllocated() || allTasksAreComplete();
         }
         
         void temp_dumpTestTasks()
         {
-//            var list = new List<Class1>();
-//            list.Add(new Class1 { Id = 1, Name = "aaa" });
-//            list.Add(new Class1 { Id = 100, Name = "sadfr asf awsfd" });
-//            list.Add(new Class1 { Id = 1000000, Name = " safd sadf as " });
-//            var rootNode = new XElement("objects",
-//                                        from item in list
-//                                        select new XElement("object", new XAttribute("id", item.Id), new XAttribute("name", item.Name)));
-//            var xDoc = new XDocument(rootNode);
-//            xDoc.Save(@"e:\aaaabbbbcccc.xml");
             try {
                 var dateTimeString =
                     Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
@@ -60,8 +63,6 @@ namespace Tmx.Server.Helpers
                     DateTime.Now.Minute + 
                     DateTime.Now.Second + 
                     ".xml";
-                
-// Console.WriteLine(dateTimeString);
                 
                 var rootNode = new XElement(
                     "testTasks",
@@ -81,6 +82,22 @@ namespace Tmx.Server.Helpers
             catch (Exception ee) {
 // Console.WriteLine(ee.Message);
             }
+        }
+        
+//        bool thereHaveBeenClientsAlready()
+//        {
+//            return !TaskPool.TasksForClients.Any() && !ClientsCollection.Clients.Any();
+//        }
+        
+        bool thereHaveNotBeenTasksAllocated()
+        {
+            return !TaskPool.TasksForClients.Any();
+        }
+        
+        bool allTasksAreComplete()
+        {
+            return TaskPool.TasksForClients.Any(task => task.TaskStatus == TestTaskStatuses.New || 
+                                                task.TaskStatus == TestTaskStatuses.Accepted);
         }
     }
 }

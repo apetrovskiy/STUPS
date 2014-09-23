@@ -35,18 +35,6 @@ namespace Tmx.Server.Helpers
 
         internal virtual bool wait()
         {
-            // 20140922
-            // return !ClientsCollection.Clients.Any() || !TaskPool.TasksForClients.Any() || TaskPool.TasksForClients.Any(task => task.TaskStatus == TestTaskStatuses.New || task.TaskStatus == TestTaskStatuses.Accepted);
-//            return // !ClientsCollection.Clients.Any() ||
-//                // there have been clients
-//                (TaskPool.TasksForClients.Any() && !ClientsCollection.Clients.Any()) ||
-//                // there have not ever been tasks
-//                !TaskPool.TasksForClients.Any() || 
-//                // all tasks are complete
-//                TaskPool.TasksForClients.Any(task => task.TaskStatus == TestTaskStatuses.New || 
-//                                             task.TaskStatus == TestTaskStatuses.Accepted);
-            
-            // return thereHaveBeenClientsAlready() || thereHaveNotBeenTasksAllocated() || allTasksAreComplete();
             return thereHaveNotBeenTasksAllocated() || allTasksAreComplete();
         }
         

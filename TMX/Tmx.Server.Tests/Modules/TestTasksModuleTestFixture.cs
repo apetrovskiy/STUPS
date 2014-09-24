@@ -27,6 +27,7 @@ namespace Tmx.Server.Tests.Modules
 	using Tmx.Server.Modules;
     using Xunit;
     using PSTestLib;
+    using Xunit.Extensions;
     
 	/// <summary>
 	/// Description of TestTasksModuleTestFixture.
@@ -345,13 +346,42 @@ namespace Tmx.Server.Tests.Modules
             
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_not_provide_a_task_before_task_this_depends_on_is_completed()
+//[NUnit.Framework.Test, TestCaseSource("DivideCases")]
+//public void DivideTest(int n, int d, int q)
+//{
+//    NUnit.Framework.Assert.AreEqual( q, n / d );
+//}
+//
+//static object[] DivideCases =
+//{
+//    new object[] { 12, 3, 4 },
+//    new object[] { 12, 5, 6 },
+//    new object[] { 12, 2, 6 },
+//    new object[] { 12, 4, 3 } 
+//};
+        
+        [MbUnit.Framework.Test][NUnit.Framework.Test] // [Fact]
+        [Xunit.Extensions.Theory]
+        [InlineData("testHost001", "user001")]
+        [InlineData("testHost002", "user002")]
+        [InlineData("testHost003", "user003")]
+//        [TestCase("testHost001", "user000")]
+//        [TestCase("testHost002", "user002")]
+//        [TestCase("testHost003", "user003")]
+        // public void Should_not_provide_a_task_before_task_this_depends_on_is_completed() //string hostname, string username)
+        public void Should_not_provide_a_task_before_task_this_depends_on_is_completed<T1, T2>(T1 hostname, T2 username)
         {
         	// Given
             var browser = TestFactory.GetBrowserForTestTasksModule();
-			const string testClientHostnameExpected = "testhost";
-			const string testClientUsernameExpected = "aaa";
+//            const string testClientHostnameExpected = "testhost";
+//            const string testClientUsernameExpected = "aaa";
+            string testClientHostnameExpected = hostname.ToString();
+            string testClientUsernameExpected = username.ToString();
+            if ("user003" == username.ToString())
+                // Xunit.Assert.Equal(1, 2);
+                NUnit.Framework.Assert.AreEqual(1, 2);
+//            else
+//                NUnit.Framework.Assert.AreEqual(2, 3);
             var testClient = new TestClient { Hostname = testClientHostnameExpected, Username = testClientUsernameExpected };
             var task = new TestTask {
             	Id = 4,

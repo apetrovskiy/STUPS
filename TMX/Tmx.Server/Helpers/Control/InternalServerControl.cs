@@ -35,9 +35,16 @@ namespace Tmx.Server
         
         public static void Reset()
         {
+            /*
             ClientsCollection.Clients.Clear();
             TaskPool.TasksForClients.Clear();
             TaskPool.Tasks.Clear();
+            CommonData.Data.Clear();
+            */
+            ClientsCollection.Clients = new System.Collections.Generic.List<Tmx.Interfaces.Remoting.ITestClient>();
+            TaskPool.TasksForClients = new System.Collections.Generic.List<Tmx.Interfaces.Remoting.ITestTask>();
+            TaskPool.Tasks = new System.Collections.Generic.List<Tmx.Interfaces.Remoting.ITestTask>();
+            CommonData.Data = new System.Collections.Generic.Dictionary<string, string>();
         }
         
         protected override DiagnosticsConfiguration DiagnosticsConfiguration {

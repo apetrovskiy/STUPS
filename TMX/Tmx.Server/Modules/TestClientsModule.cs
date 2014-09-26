@@ -44,7 +44,7 @@ namespace Tmx.Server.Modules
 					var clientsToDelete = ClientsCollection.Clients.RemoveAll(client => client.Id == parameters.id);
 					// TODO: clean up the list of tasks for the client if ever existed
 					// 20140926
-					TaskPool.TasksForClients.RemoveAll(task => task.ClientId == parameters.id);
+					// TaskPool.TasksForClients.RemoveAll(task => task.ClientId == parameters.id);
 					return HttpStatusCode.NoContent;
 				}
 				catch {

@@ -20,6 +20,7 @@ namespace Tmx.Commands
     {
         [Parameter(Mandatory = true,
                    Position = 0)]
+        [ValidateNotNullOrEmpty]
         public string Key { get; set; }
         
 		protected override void BeginProcessing()

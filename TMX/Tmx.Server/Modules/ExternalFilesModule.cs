@@ -12,7 +12,7 @@ namespace Tmx.Server.Modules
     using System;
 	using Nancy;
 	using Nancy.ModelBinding;
-	using TMX.Interfaces.Server;
+	using Tmx.Interfaces.Server;
     
     /// <summary>
     /// Description of ExternalFilesModule.

@@ -25,4 +25,11 @@ namespace Tmx.Interfaces.Remoting
 	    PsRemoting = 2,
 	    Ssh = 10
 	}
+	
+	public enum ServerControlCommands
+	{
+	    LoadConfiguraiton = 0,
+	    Reset = 1,
+	    Stop = 2
+	}
 }

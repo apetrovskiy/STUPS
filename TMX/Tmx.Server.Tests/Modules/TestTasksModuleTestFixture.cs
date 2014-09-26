@@ -17,7 +17,7 @@ namespace Tmx.Server.Tests.Modules
     using Nancy.Testing;
     using MbUnit.Framework;
     using NUnit.Framework;
-	using TMX.Interfaces.Server;
+	using Tmx.Interfaces.Server;
 	using Tmx.Client;
 	using Tmx.Core;
 	using Tmx.Core.Types.Remoting;
@@ -377,9 +377,9 @@ namespace Tmx.Server.Tests.Modules
 //            const string testClientUsernameExpected = "aaa";
             string testClientHostnameExpected = hostname.ToString();
             string testClientUsernameExpected = username.ToString();
-            if ("user003" == username.ToString())
-                // Xunit.Assert.Equal(1, 2);
-                NUnit.Framework.Assert.AreEqual(1, 2);
+//            if ("user003" == username.ToString())
+//                // Xunit.Assert.Equal(1, 2);
+//                NUnit.Framework.Assert.AreEqual(1, 2);
 //            else
 //                NUnit.Framework.Assert.AreEqual(2, 3);
             var testClient = new TestClient { Hostname = testClientHostnameExpected, Username = testClientUsernameExpected };

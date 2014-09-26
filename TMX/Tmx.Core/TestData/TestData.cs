@@ -14,7 +14,7 @@ namespace Tmx
     using System.Management.Automation;
 //    using System.ComponentModel;
     using System.Linq;
-	using TMX.Interfaces;
+	using Tmx.Interfaces;
 	using Tmx.Interfaces;
 	using Tmx.Interfaces.TestStructure;
 	

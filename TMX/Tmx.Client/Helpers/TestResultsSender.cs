@@ -15,9 +15,9 @@ namespace Tmx.Client
 	using Spring.Http;
 	using Spring.Http.Converters.Xml;
 	using Spring.Rest.Client;
-	using TMX.Interfaces;
-	using TMX.Interfaces.Exceptions;
-	using TMX.Interfaces.Server;
+	using Tmx.Interfaces;
+	using Tmx.Interfaces.Exceptions;
+	using Tmx.Interfaces.Server;
 	
     /// <summary>
     /// Description of TestResultsSender.

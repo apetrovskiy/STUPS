@@ -15,8 +15,8 @@ namespace Tmx.Server.Modules
 	using System.Xml.Linq;
     using Nancy;
     using Nancy.ModelBinding;
-	using TMX.Interfaces;
-	using TMX.Interfaces.Server;
+	using Tmx.Interfaces;
+	using Tmx.Interfaces.Server;
 	using Tmx;
 	using Tmx.Interfaces;
 	using Tmx.Interfaces.TestStructure;

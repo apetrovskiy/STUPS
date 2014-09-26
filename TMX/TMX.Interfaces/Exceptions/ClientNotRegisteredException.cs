@@ -9,7 +9,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace TMX.Interfaces.Exceptions
+namespace Tmx.Interfaces.Exceptions
 {
     /// <summary>
     /// Desctiption of ClientNotRegisterdException.

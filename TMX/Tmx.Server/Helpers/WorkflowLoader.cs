@@ -13,7 +13,7 @@ namespace Tmx.Server
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Xml.Linq;
-	using TMX.Interfaces.Exceptions;
+	using Tmx.Interfaces.Exceptions;
 	using Tmx.Core.Types.Remoting;
 	using Tmx.Interfaces.Remoting;
 	

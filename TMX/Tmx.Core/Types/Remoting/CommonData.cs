@@ -11,7 +11,7 @@ namespace Tmx.Core
 {
     using System;
 	using System.Collections.Generic;
-	using TMX.Interfaces.Remoting;
+	using Tmx.Interfaces.Remoting;
     
     /// <summary>
     /// Description of CommonData.

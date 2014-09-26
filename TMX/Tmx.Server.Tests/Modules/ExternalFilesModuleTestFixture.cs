@@ -15,8 +15,8 @@ namespace Tmx.Server.Tests.Modules
     using Nancy.Testing;
     using MbUnit.Framework;
     using NUnit.Framework;
-	using TMX.Interfaces.Internal;
-	using TMX.Interfaces.Server;
+	using Tmx.Interfaces.Internal;
+	using Tmx.Interfaces.Server;
 	using Tmx.Core;
 	using Tmx.Interfaces;
 	using Tmx.Interfaces.Remoting;

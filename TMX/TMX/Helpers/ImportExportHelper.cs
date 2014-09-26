@@ -14,7 +14,7 @@ namespace Tmx.Helpers
 	using System.Management.Automation;
 	using System.Linq;
 	using System.Xml.Linq;
-	using TMX.Interfaces;
+	using Tmx.Interfaces;
     
     /// <summary>
     /// Description of ImportExportHelper.

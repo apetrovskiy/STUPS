@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX.Interfaces.Remoting
+namespace Tmx.Interfaces.Remoting
 {
     /// <summary>
     /// Description of ICommonDataItem.

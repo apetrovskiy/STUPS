@@ -30,9 +30,9 @@ namespace Tmx
         {
             var cmdlet = (SendTmxTestTaskResultCommand)Cmdlet;
             var taskUpdater = new TaskUpdater(new RestRequestCreator());
-            // 20140916
-            // taskUpdater.SendTaskResult(new TestTask { TaskResult = cmdlet.Result.ToList<object>() }, ClientSettings.Instance.ClientId);
-            var testTask = new TestTask { TaskResult = new Dictionary<string, string>() };
+            // 20140926
+            // var testTask = new TestTask { TaskResult = new Dictionary<string, string>() };
+            var testTask = new TestTask();
             foreach (var key in cmdlet.Result.Keys) {
                 testTask.TaskResult.Add(key.ToString(), cmdlet.Result[key].ToString());
             }

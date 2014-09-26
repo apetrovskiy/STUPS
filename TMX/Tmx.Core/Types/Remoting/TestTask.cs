@@ -18,6 +18,15 @@ namespace Tmx.Core.Types.Remoting
     /// </summary>
 	public class TestTask : ITestTask
 	{
+	    public TestTask()
+	    {
+	        ActionParameters = new Dictionary<string, string>();
+	        BeforeActionParameters = new Dictionary<string, string>();
+	        AfterActionParameters = new Dictionary<string, string>();
+	        PreviousTaskResult = new Dictionary<string, string>();
+	        TaskResult = new Dictionary<string, string>();
+	    }
+	    
 		public int Id { get; set; }
 		// public int Order { get; set; }
 		public int PreviousTaskId { get; set; }

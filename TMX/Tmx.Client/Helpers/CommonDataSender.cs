@@ -12,8 +12,8 @@ namespace Tmx.Client
     using System;
     using System.Net;
 	using Spring.Rest.Client;
-    using TMX.Interfaces.Remoting;
-	using TMX.Interfaces.Server;
+    using Tmx.Interfaces.Remoting;
+	using Tmx.Interfaces.Server;
     using Tmx.Core;
     using System;
 	using System.Collections.Generic;

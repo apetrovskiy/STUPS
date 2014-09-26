@@ -17,7 +17,7 @@ namespace Tmx.Commands
 	/// <summary>
 	/// Description of SendTmxTestTaskResultCommand.
 	/// </summary>
-	[Cmdlet(VerbsCommunications.Send, "TmxTestTaskResult")]
+	// [Cmdlet(VerbsCommunications.Send, "TmxTestTaskResult")]
 	public class SendTmxTestTaskResultCommand : ClientCmdletBase
 	{
 		[Parameter(Mandatory = true,

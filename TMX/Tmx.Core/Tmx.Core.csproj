@@ -94,6 +94,7 @@
     <Compile Include="TestData\TestData.cs" />
     <Compile Include="Types\Remoting\CommonData.cs" />
     <Compile Include="Types\Remoting\CommonDataItem.cs" />
+    <Compile Include="Types\Remoting\ServerCommand.cs" />
     <Compile Include="Types\Remoting\TestClient.cs" />
     <Compile Include="Types\Remoting\TestTask.cs" />
     <Compile Include="Types\TestStructure\TestCase.cs" />

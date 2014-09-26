@@ -10,7 +10,7 @@
 namespace Tmx
 {
 	using System;
-    using TMX.Interfaces.Exceptions;
+    using Tmx.Interfaces.Exceptions;
 	using Tmx;
 	using Tmx.Client;
 	using Tmx.Interfaces.Remoting;

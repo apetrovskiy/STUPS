@@ -18,7 +18,7 @@ namespace Tmx.Server.Tests.Modules
 	using NSubstitute;
     using Nancy;
     using Nancy.Testing;
-	using TMX.Interfaces.Server;
+	using Tmx.Interfaces.Server;
 	using Tmx.Server.Modules;
     // using MbUnit.Framework;
     using NUnit.Framework;

@@ -23,5 +23,10 @@ namespace Tmx.Server
         {
             InternalServerControl.Stop();
         }
+        
+        public static void Reset()
+        {
+            InternalServerControl.Reset();
+        }
     }
 }

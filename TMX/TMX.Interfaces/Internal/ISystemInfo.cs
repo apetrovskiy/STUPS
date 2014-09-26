@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TMX.Interfaces.Internal
+namespace Tmx.Interfaces.Internal
 {
     using System.Collections.Generic;
     

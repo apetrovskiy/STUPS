@@ -6,7 +6,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Release35</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">Release35</Platform>
     <OutputType>Library</OutputType>
-    <RootNamespace>TMX.Interfaces</RootNamespace>
+    <RootNamespace>Tmx.Interfaces</RootNamespace>
     <AssemblyName>Tmx.Interfaces</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -102,6 +102,7 @@
     <Compile Include="Remoting\Enums.cs" />
     <Compile Include="Remoting\ICommonData.cs" />
     <Compile Include="Remoting\ICommonDataItem.cs" />
+    <Compile Include="Remoting\IServerCommand.cs" />
     <Compile Include="Remoting\ITestClient.cs" />
     <Compile Include="Remoting\ITestTask.cs" />
     <Compile Include="Remoting\ITestHost.cs" />

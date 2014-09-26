@@ -8,7 +8,7 @@
  */
 
 using Tmx.Interfaces.TestStructure;
-namespace TMX.Interfaces
+namespace Tmx.Interfaces
 {
     /// <summary>
     /// Description of ITestResultCmdletBaseDataObject.

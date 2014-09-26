@@ -14,7 +14,7 @@ namespace Tmx.Commands
     using System.Data;
     using System.Data.OleDb;
     using System.Linq;
-	using TMX.Interfaces;
+	using Tmx.Interfaces;
     
     /// <summary>
     /// Description of GetTestResultsViaDataSetCommand.

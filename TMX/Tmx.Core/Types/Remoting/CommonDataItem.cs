@@ -10,7 +10,7 @@
 namespace Tmx.Core
 {
     using System;
-    using TMX.Interfaces.Remoting;
+    using Tmx.Interfaces.Remoting;
     
     /// <summary>
     /// Description of CommonDataItem.

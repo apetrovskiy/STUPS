@@ -13,7 +13,7 @@ namespace Tmx.Commands
     using System.Management.Automation;
     using System.Linq;
     using System.Xml.Linq;
-	using TMX.Interfaces;
+	using Tmx.Interfaces;
 	using Tmx.Interfaces.TestStructure;
     
     /// <summary>

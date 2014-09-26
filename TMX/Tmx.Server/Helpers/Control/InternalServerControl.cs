@@ -33,6 +33,13 @@ namespace Tmx.Server
             _nancyHost.Stop();
         }
         
+        public static void Reset()
+        {
+            ClientsCollection.Clients.Clear();
+            TaskPool.TasksForClients.Clear();
+            TaskPool.Tasks.Clear();
+        }
+        
         protected override DiagnosticsConfiguration DiagnosticsConfiguration {
             get {
                 return new DiagnosticsConfiguration { Password = @"=1qwerty" };

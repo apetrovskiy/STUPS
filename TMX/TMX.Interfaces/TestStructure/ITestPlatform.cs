@@ -10,7 +10,7 @@
 namespace Tmx.Interfaces.TestStructure
 {
     using System;
-	using TMX.Interfaces.Internal;
+	using Tmx.Interfaces.Internal;
     
     /// <summary>
     /// Description of ITestPlatform.

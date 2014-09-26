@@ -14,8 +14,8 @@ namespace Tmx.Server.Modules
     using System.Linq;
 	using Nancy;
 	using Nancy.ModelBinding;
-	using TMX.Interfaces.Exceptions;
-	using TMX.Interfaces.Server;
+	using Tmx.Interfaces.Exceptions;
+	using Tmx.Interfaces.Server;
 	using Tmx.Core.Types.Remoting;
 	using Tmx.Interfaces.Remoting;
     
@@ -26,7 +26,7 @@ namespace Tmx.Server.Modules
     {
         public TestTasksModule() : base(UrnList.TestTasks_Root)
         {
-            Get[UrnList.TestTasks_CurrentClient] = parameters => {
+            Get[UrnList.TestTasks_CurrentTaskForClientById] = parameters => {
 				var taskSorter = new TaskSelector();
 				ITestTask actualTask = taskSorter.GetFirstLegibleTask(parameters.id);
 				return null != actualTask ? Response.AsJson(actualTask).WithStatusCode(HttpStatusCode.OK) : HttpStatusCode.NotFound;
@@ -40,6 +40,7 @@ namespace Tmx.Server.Modules
                 var storedTask = TaskPool.TasksForClients.First(task => task.Id == parameters.id && task.ClientId == loadedTask.ClientId);
                 storedTask.TaskFinished = loadedTask.TaskFinished;
                 storedTask.TaskStatus = loadedTask.TaskStatus;
+                storedTask.TaskResult = loadedTask.TaskResult;
                 
                 var taskSorter = new TaskSelector();
                 if (TestTaskStatuses.Failed == storedTask.TaskStatus)
@@ -60,23 +61,28 @@ namespace Tmx.Server.Modules
                 }
                 return HttpStatusCode.OK;
             };
-        	
-        	Put[UrnList.CurrentTaskOfCurrentClient] = parameters => {
-                ITestTask loadedTask = this.Bind<TestTask>();
-                if (null == loadedTask) throw new UpdateTaskException("Failed to send results to task, client id = " + parameters.id);
-                
-                var taskSorter = new TaskSelector();
-                var actualTask = taskSorter.GetFirstLegibleTask(parameters.id) as TestTask;
-				var currentTaskResult = actualTask.TaskResult ?? new Dictionary<string, string>();
-				// TODO: improve
-				// actualTask.TaskResult = currentTaskResult.Concat(loadedTask.TaskResult).ToList<object>();
-				// actualTask.TaskResult = currentTaskResult..Concat(loadedTask.TaskResult);
-                foreach (var pair in loadedTask.TaskResult) {
-                    currentTaskResult.Add(pair.Key, pair.Value);
-                }
-                actualTask.TaskResult = currentTaskResult;
-                return HttpStatusCode.OK;        		
-        	};
+            
+			Delete[UrnList.TestTasks_Task] = parameters => {
+				try {
+                    TaskPool.TasksForClients.RemoveAll(task => task.Id == parameters.id);
+					return HttpStatusCode.NoContent;
+				}
+				catch {
+					return HttpStatusCode.InternalServerError;
+				}
+			};
+            
+            Get[UrnList.TestTasks_AllLoaded + "/"] = _ => Response.AsJson(TaskPool.Tasks).WithStatusCode(HttpStatusCode.OK);
+            
+			Delete[UrnList.TestTasks_AllLoaded + UrnList.TestTasks_Task] = parameters => {
+				try {
+                    TaskPool.Tasks.RemoveAll(task => task.Id == parameters.id);
+					return HttpStatusCode.NoContent;
+				}
+				catch {
+					return HttpStatusCode.InternalServerError;
+				}
+			};
         }
     }
 }

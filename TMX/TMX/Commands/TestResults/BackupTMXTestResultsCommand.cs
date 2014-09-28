@@ -11,7 +11,8 @@ namespace Tmx.Commands
 {
     using System;
     using System.Management.Automation;
-    using System.Data.SQLite;
+    // blocked due to the need to remove dependency on SQLite
+//    using System.Data.SQLite;
 	using Tmx;
     
     /// <summary>
@@ -25,15 +26,16 @@ namespace Tmx.Commands
         {
 			CheckCmdletParameters();
             
-//            this.WriteVerbose(this, "creating a new connection object");
-            var connection = new SQLiteConnection();
-//            this.WriteVerbose(this, "setting the connection string");
-//            this.WriteVerbose(this, TestData.CurrentResultsDB.ConnectionString);
-            connection.ConnectionString = TestData.CurrentResultsDB.ConnectionString;
-//            this.WriteVerbose(this, "opening the connection");
-            connection.Open();
-//            this.WriteVerbose(this, "the connection has been opened");
-            SQLiteHelper.BackupTestResults(this, TestData.CurrentResultsDB.Name); //connection);
+			// blocked due to the need to remove dependency on SQLite
+////            this.WriteVerbose(this, "creating a new connection object");
+//            var connection = new SQLiteConnection();
+////            this.WriteVerbose(this, "setting the connection string");
+////            this.WriteVerbose(this, TestData.CurrentResultsDB.ConnectionString);
+//            connection.ConnectionString = TestData.CurrentResultsDB.ConnectionString;
+////            this.WriteVerbose(this, "opening the connection");
+//            connection.Open();
+////            this.WriteVerbose(this, "the connection has been opened");
+//            SQLiteHelper.BackupTestResults(this, TestData.CurrentResultsDB.Name); //connection);
         }
     }
 }

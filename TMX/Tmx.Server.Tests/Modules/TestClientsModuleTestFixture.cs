@@ -43,11 +43,11 @@ namespace Tmx.Server.Tests.Modules
     	}
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_register_the_first_test_client()
+        public void Should_register_the_first_test_client_as_json()
         {
             var testClient = GIVEN_TestClient("testhost_01", "aaa_01");
             
-            var response = WHEN_SendingRegistration(testClient);
+            var response = WHEN_SendingRegistration_as_Json(testClient);
             
             THEN_Http_Response_Is_Created(response);
             THEN_Test_Client_Properties_Were_Applied(testClient);
@@ -55,12 +55,24 @@ namespace Tmx.Server.Tests.Modules
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_register_the_second_test_client()
+        public void Should_register_the_first_test_client_as_xml()
         {
-            GIVEN_SendingRegistration(GIVEN_TestClient("testhost_001", "aaa_001"));
+            var testClient = GIVEN_TestClient("testhost_01", "aaa_01");
+            
+            var response = WHEN_SendingRegistration_as_Xml(testClient as TestClient);
+            
+            THEN_Http_Response_Is_Created(response);
+            THEN_Test_Client_Properties_Were_Applied(testClient);
+            THEN_Id_Of_The_First_Client_Equals(response.Body.DeserializeXml<TestClient>().Id);
+        }
+        
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        public void Should_register_the_second_test_client_as_json()
+        {
+            GIVEN_SendingRegistration_as_Json(GIVEN_TestClient("testhost_001", "aaa_001"));
             var testClient02 = GIVEN_TestClient("testhost_002", "aaa_002");
             
-            var response = WHEN_SendingRegistration(testClient02);
+            var response = WHEN_SendingRegistration_as_Json(testClient02);
             
             THEN_Http_Response_Is_Created(response);
             THEN_Test_Client_Properties_Were_Applied(testClient02);
@@ -68,22 +80,57 @@ namespace Tmx.Server.Tests.Modules
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_be_no_clients_after_unregistering_the_only_test_client()
+        public void Should_register_the_second_test_client_as_xml()
         {
-            var testClient = GIVEN_SendingRegistration(GIVEN_TestClient("testhost_02", "aaa_02"));
+            GIVEN_SendingRegistration_as_Xml(GIVEN_TestClient("testhost_001", "aaa_001") as TestClient);
+            var testClient02 = GIVEN_TestClient("testhost_002", "aaa_002") as TestClient;
             
-            WHEN_SendingDeregistration(testClient);
+            var response = WHEN_SendingRegistration_as_Xml(testClient02);
+            
+            THEN_Http_Response_Is_Created(response);
+            THEN_Test_Client_Properties_Were_Applied(testClient02);
+            THEN_Id_Of_The_First_Client_Equals(response.Body.DeserializeXml<TestClient>().Id);
+        }
+        
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        public void Should_be_no_clients_after_unregistering_the_only_test_client_as_json()
+        {
+            var testClient = GIVEN_SendingRegistration_as_Json(GIVEN_TestClient("testhost_02", "aaa_02"));
+            
+            WHEN_SendingDeregistrationas_as_json(testClient);
             
             THEN_There_Is_The_Number_Of_Registered_Clients(0);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_be_only_one_client_after_unregistering_one_of_two_test_clients()
+        public void Should_be_no_clients_after_unregistering_the_only_test_client_as_xml()
         {
-            var testClient01 = GIVEN_SendingRegistration(GIVEN_TestClient("testhost_03", "aaa_03"));
-            var testClient02 = GIVEN_SendingRegistration(GIVEN_TestClient("testhost_04", "aaa_04"));
+            var testClient = GIVEN_SendingRegistration_as_Xml(GIVEN_TestClient("testhost_02", "aaa_02") as TestClient);
             
-            WHEN_SendingDeregistration(testClient01);
+            WHEN_SendingDeregistrationas_as_json(testClient);
+            
+            THEN_There_Is_The_Number_Of_Registered_Clients(0);
+        }
+        
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        public void Should_be_only_one_client_after_unregistering_one_of_two_test_clients_as_json()
+        {
+            var testClient01 = GIVEN_SendingRegistration_as_Json(GIVEN_TestClient("testhost_03", "aaa_03"));
+            var testClient02 = GIVEN_SendingRegistration_as_Json(GIVEN_TestClient("testhost_04", "aaa_04"));
+            
+            WHEN_SendingDeregistrationas_as_json(testClient01);
+            
+            THEN_There_Is_The_Number_Of_Registered_Clients(testClient01.Id);
+            THEN_Id_Of_The_First_Client_Equals(testClient02.Id);
+        }
+        
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        public void Should_be_only_one_client_after_unregistering_one_of_two_test_clients_as_xml()
+        {
+            var testClient01 = GIVEN_SendingRegistration_as_Xml(GIVEN_TestClient("testhost_03", "aaa_03") as TestClient);
+            var testClient02 = GIVEN_SendingRegistration_as_Xml(GIVEN_TestClient("testhost_04", "aaa_04") as TestClient);
+            
+            WHEN_SendingDeregistrationas_as_xml(testClient01);
             
             THEN_There_Is_The_Number_Of_Registered_Clients(testClient01.Id);
             THEN_Id_Of_The_First_Client_Equals(testClient02.Id);
@@ -95,22 +142,46 @@ namespace Tmx.Server.Tests.Modules
             return TestFactory.GivenTestClient(hostname, username);
         }
         
-        ITestClient GIVEN_SendingRegistration(ITestClient testClient)
+        ITestClient GIVEN_SendingRegistration_as_Json(ITestClient testClient)
         {
-            var response = WHEN_SendingRegistration(testClient);
+            var response = WHEN_SendingRegistration_as_Json(testClient);
             return response.Body.DeserializeJson<TestClient>();
         }
         
-        BrowserResponse WHEN_SendingRegistration(ITestClient testClient)
+        ITestClient GIVEN_SendingRegistration_as_Xml(TestClient testClient)
         {
-            var browser = TestFactory.GetBrowserForTestClientsModule();
-            return browser.Post(UrnList.TestClientRegistrationPoint, with => with.JsonBody<ITestClient>(testClient));
+            var response = WHEN_SendingRegistration_as_Xml(testClient);
+            return response.Body.DeserializeXml<TestClient>();
         }
         
-        void WHEN_SendingDeregistration(ITestClient testClient)
+        BrowserResponse WHEN_SendingRegistration_as_Json(ITestClient testClient)
         {
             var browser = TestFactory.GetBrowserForTestClientsModule();
-            browser.Delete(UrnList.TestClients_Root + "/" + testClient.Id);
+            return browser.Post(UrnList.TestClientRegistrationPoint, with => {
+                                	with.JsonBody<ITestClient>(testClient);
+                                	with.Accept("application/json");
+                                });
+        }
+        
+        BrowserResponse WHEN_SendingRegistration_as_Xml(TestClient testClient)
+        {
+            var browser = TestFactory.GetBrowserForTestClientsModule();
+            return browser.Post(UrnList.TestClientRegistrationPoint, with => {
+                                	with.XMLBody<TestClient>(testClient);
+                                	with.Accept("application/xml");
+                                });
+        }
+        
+        void WHEN_SendingDeregistrationas_as_json(ITestClient testClient)
+        {
+            var browser = TestFactory.GetBrowserForTestClientsModule();
+            browser.Delete(UrnList.TestClients_Root + "/" + testClient.Id, with => with.Accept("application/json"));
+        }
+        
+        void WHEN_SendingDeregistrationas_as_xml(ITestClient testClient)
+        {
+            var browser = TestFactory.GetBrowserForTestClientsModule();
+            browser.Delete(UrnList.TestClients_Root + "/" + testClient.Id, with => with.Accept("application/xml"));
         }
         
         void THEN_There_Is_The_Number_Of_Registered_Clients(int number)

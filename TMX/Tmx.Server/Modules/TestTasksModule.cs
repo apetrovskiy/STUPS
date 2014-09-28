@@ -26,63 +26,82 @@ namespace Tmx.Server.Modules
     {
         public TestTasksModule() : base(UrnList.TestTasks_Root)
         {
-            Get[UrnList.TestTasks_CurrentTaskForClientById] = parameters => {
-				var taskSorter = new TaskSelector();
-				ITestTask actualTask = taskSorter.GetFirstLegibleTask(parameters.id);
-				return null != actualTask ? Response.AsJson(actualTask).WithStatusCode(HttpStatusCode.OK) : HttpStatusCode.NotFound;
-			};
-            
-            Get[UrnList.TestTasks_AllDesignated] = _ => Response.AsJson(TaskPool.TasksForClients).WithStatusCode(HttpStatusCode.OK);
-            
+            Get[UrnList.TestTasks_CurrentTaskForClientById] = parameters => returnTaskByClientId(parameters.id);
+        	
             Put[UrnList.TestTasks_Task] = parameters => {
-                ITestTask loadedTask = this.Bind<TestTask>();
-                if (null == loadedTask) throw new UpdateTaskException("Failed to update task with id = " + parameters.id);
-                var storedTask = TaskPool.TasksForClients.First(task => task.Id == parameters.id && task.ClientId == loadedTask.ClientId);
-                storedTask.TaskFinished = loadedTask.TaskFinished;
-                storedTask.TaskStatus = loadedTask.TaskStatus;
-                storedTask.TaskResult = loadedTask.TaskResult;
-                
-                var taskSorter = new TaskSelector();
-                if (TestTaskStatuses.Failed == storedTask.TaskStatus)
-                    taskSorter.CancelFurtherTasks(storedTask.ClientId);
-                
-                if (storedTask.TaskFinished) {
-                    ITestTask nextTask = null;
-                    try {
-                        nextTask = taskSorter.GetNextLegibleTask(storedTask.ClientId, storedTask.Id);
-                    }
-                    catch (Exception eFailedToGetNextTask) {
-                        throw new FailedToGetNextTaskException(eFailedToGetNextTask.Message);
-                    }
-                    
-                    if (null == nextTask) return HttpStatusCode.OK;
-                    nextTask.PreviousTaskResult = storedTask.TaskResult;
-                    nextTask.PreviousTaskId = storedTask.Id;
-                }
-                return HttpStatusCode.OK;
+            	ITestTask loadedTask = this.Bind<TestTask>();
+                return updateTask(loadedTask, parameters.id);
             };
+        	
+        	Get[UrnList.TestTasks_AllDesignated] = _ => returnAllDesignatedTasks();
             
-			Delete[UrnList.TestTasks_Task] = parameters => {
-				try {
-                    TaskPool.TasksForClients.RemoveAll(task => task.Id == parameters.id);
-					return HttpStatusCode.NoContent;
-				}
-				catch {
-					return HttpStatusCode.InternalServerError;
-				}
-			};
+            Get[UrnList.TestTasks_AllLoaded + "/"] = _ => returnAllLoadedTasks();
             
-            Get[UrnList.TestTasks_AllLoaded + "/"] = _ => Response.AsJson(TaskPool.Tasks).WithStatusCode(HttpStatusCode.OK);
+            Delete[UrnList.TestTasks_Task] = parameters => deleteAllocatedTaskById(parameters.id);
             
-			Delete[UrnList.TestTasks_AllLoaded + UrnList.TestTasks_Task] = parameters => {
-				try {
-                    TaskPool.Tasks.RemoveAll(task => task.Id == parameters.id);
-					return HttpStatusCode.NoContent;
-				}
-				catch {
-					return HttpStatusCode.InternalServerError;
-				}
-			};
+			Delete[UrnList.TestTasks_AllLoaded + UrnList.TestTasks_Task] = parameters => deleteLoadedTaskById(parameters).id;
         }
+        
+		Response returnTaskByClientId(int clientId)
+		{
+			var taskSorter = new TaskSelector();
+			ITestTask actualTask = taskSorter.GetFirstLegibleTask(clientId);
+			return null != actualTask ? Response.AsJson(actualTask).WithStatusCode(HttpStatusCode.OK) : HttpStatusCode.NotFound;
+		}
+
+		HttpStatusCode updateTask(ITestTask loadedTask, int taskId)
+		{
+			// ITestTask loadedTask = this.Bind<TestTask>();
+			if (null == loadedTask)
+				throw new UpdateTaskException("Failed to update task with id = " + taskId);
+			var storedTask = TaskPool.TasksForClients.First(task => task.Id == taskId && task.ClientId == loadedTask.ClientId);
+			storedTask.TaskFinished = loadedTask.TaskFinished;
+			storedTask.TaskStatus = loadedTask.TaskStatus;
+			storedTask.TaskResult = loadedTask.TaskResult;
+			var taskSorter = new TaskSelector();
+			if (TestTaskStatuses.Failed == storedTask.TaskStatus)
+				taskSorter.CancelFurtherTasks(storedTask.ClientId);
+			if (storedTask.TaskFinished) {
+				ITestTask nextTask = null;
+				try {
+					nextTask = taskSorter.GetNextLegibleTask(storedTask.ClientId, storedTask.Id);
+				} catch (Exception eFailedToGetNextTask) {
+					throw new FailedToGetNextTaskException(eFailedToGetNextTask.Message);
+				}
+				if (null == nextTask)
+					return HttpStatusCode.OK;
+				nextTask.PreviousTaskResult = storedTask.TaskResult;
+				nextTask.PreviousTaskId = storedTask.Id;
+			}
+			return HttpStatusCode.OK;
+		}
+        Response returnAllDesignatedTasks()
+        {
+        	return 0 == TaskPool.TasksForClients.Count ? HttpStatusCode.NotFound : Response.AsJson(TaskPool.TasksForClients).WithStatusCode(HttpStatusCode.OK);
+        }
+        
+        Response returnAllLoadedTasks()
+        {
+        	return 0 == TaskPool.Tasks.Count ? HttpStatusCode.NotFound : Response.AsJson(TaskPool.Tasks).WithStatusCode(HttpStatusCode.OK);
+        }
+
+		HttpStatusCode deleteAllocatedTaskById(int taskId)
+		{
+//			try {
+				TaskPool.TasksForClients.RemoveAll(task => task.Id == taskId);
+				return HttpStatusCode.NoContent;
+//			} catch {
+//				return HttpStatusCode.InternalServerError;
+//			}
+		}
+		HttpStatusCode deleteLoadedTaskById(int taskId)
+		{
+//			try {
+				TaskPool.Tasks.RemoveAll(task => task.Id == taskId);
+				return HttpStatusCode.NoContent;
+//			} catch {
+//				return HttpStatusCode.InternalServerError;
+//			}
+		}
     }
 }

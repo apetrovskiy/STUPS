@@ -30,8 +30,9 @@ namespace Tmx.Commands
 				RepositoryDB = true;
 				ResultsDB = true;
             }
-
-			SQLiteHelper.OpenDatabase(this, FileName, StructureDB, RepositoryDB, ResultsDB);
+            
+            // blocked due to the need to remove dependency on SQLite
+//			SQLiteHelper.OpenDatabase(this, FileName, StructureDB, RepositoryDB, ResultsDB);
         }
     }
 }

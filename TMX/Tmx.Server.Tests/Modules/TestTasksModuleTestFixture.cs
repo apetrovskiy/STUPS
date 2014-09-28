@@ -65,7 +65,10 @@ namespace Tmx.Server.Tests.Modules
 			TaskPool.Tasks.Add(task);
             
             // When
-            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => with.JsonBody<ITestClient>(testClient));
+            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => {
+                                        	with.JsonBody<ITestClient>(testClient);
+                                        	with.Accept("application/json");
+                                        });
             testClient = response.Body.DeserializeJson<TestClient>();
             response = browser.Get(UrnList.TestTasks_Root + "/" + testClient.Id);
             var loadedTask = response.Body.DeserializeJson<TestTask>();
@@ -98,7 +101,10 @@ namespace Tmx.Server.Tests.Modules
 			TaskPool.Tasks.Add(task);
             
             // When
-            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => with.JsonBody<ITestClient>(testClient));
+            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => {
+                                        	with.JsonBody<ITestClient>(testClient);
+                                        	with.Accept("application/json");
+                                        });
             testClient = response.Body.DeserializeJson<TestClient>();
             response = browser.Get(UrnList.TestTasks_Root + "/" + testClient.Id);
             
@@ -140,7 +146,10 @@ namespace Tmx.Server.Tests.Modules
             
             var registration = new Registration(new RestRequestCreator());
             
-            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => with.JsonBody<ITestClient>(testClient));
+            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => {
+                                        	with.JsonBody<ITestClient>(testClient);
+                                        	with.Accept("application/json");
+                                        });
             var registeredClient = response.Body.DeserializeJson<TestClient>();
             clientSettings.ClientId = registeredClient.Id;
             clientSettings.StopImmediately = false;
@@ -197,12 +206,18 @@ namespace Tmx.Server.Tests.Modules
             TaskPool.Tasks.Add(testTask02);
             
             // When
-            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => with.JsonBody<ITestClient>(testClient));
+            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => {
+                                        	with.JsonBody<ITestClient>(testClient);
+                                        	with.Accept("application/json");
+                                        });
             var registeredClient = response.Body.DeserializeJson<TestClient>();
             response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
             var task = response.Body.DeserializeJson<TestTask>();
             task.TaskStatus = TestTaskStatuses.Accepted;
-            response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => with.JsonBody<ITestTask>(task));
+            response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => {
+                                   	with.JsonBody<ITestTask>(task);
+                                   	with.Accept("application/json");
+                                   });
             task.TaskStatus = TestTaskStatuses.CompletedSuccessfully;
             task.TaskFinished = true;
             response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => with.JsonBody<ITestTask>(task));
@@ -258,15 +273,24 @@ namespace Tmx.Server.Tests.Modules
             TaskPool.Tasks.Add(testTask04);
             
             // When
-            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => with.JsonBody<ITestClient>(testClient));
+            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => {
+                                        	with.JsonBody<ITestClient>(testClient);
+                                        	with.Accept("application/json");
+                                        });
             var registeredClient = response.Body.DeserializeJson<TestClient>();
             response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
             var task = response.Body.DeserializeJson<TestTask>();
             task.TaskStatus = TestTaskStatuses.Accepted;
-            response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => with.JsonBody<ITestTask>(task));
+            response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => {
+                                   	with.JsonBody<ITestTask>(task);
+                                   	with.Accept("application/json");
+                                   });
             task.TaskStatus = TestTaskStatuses.CompletedSuccessfully;
             task.TaskFinished = true;
-            response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => with.JsonBody<ITestTask>(task));
+            response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => {
+                                   	with.JsonBody<ITestTask>(task);
+                                   	with.Accept("application/json");
+                                   });
             response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
             task = response.Body.DeserializeJson<TestTask>();
             
@@ -323,15 +347,24 @@ namespace Tmx.Server.Tests.Modules
             TaskPool.Tasks.Add(testTask04);
             
             // When
-            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => with.JsonBody<ITestClient>(testClient));
+            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => {
+                                        	with.JsonBody<ITestClient>(testClient);
+                                        	with.Accept("application/json");
+                                        });
             var registeredClient = response.Body.DeserializeJson<TestClient>();
             response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
             var task = response.Body.DeserializeJson<TestTask>();
             task.TaskStatus = TestTaskStatuses.Accepted;
-            response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => with.JsonBody<ITestTask>(task));
+            response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => {
+                                   	with.JsonBody<ITestTask>(task);
+                                   	with.Accept("application/json");
+                                   });
             task.TaskStatus = TestTaskStatuses.CompletedSuccessfully;
             task.TaskFinished = true;
-            response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => with.JsonBody<ITestTask>(task));
+            response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => {
+                                   	with.JsonBody<ITestTask>(task);
+                                   	with.Accept("application/json");
+                                   });
             response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
             
             // Then
@@ -404,7 +437,10 @@ namespace Tmx.Server.Tests.Modules
 			TaskPool.Tasks.Add(task);
             
             // When
-            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => with.JsonBody<ITestClient>(testClient));
+            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => {
+                                        	with.JsonBody<ITestClient>(testClient);
+                                        	with.Accept("application/json");
+                                        });
             testClient = response.Body.DeserializeJson<TestClient>();
             response = browser.Get(UrnList.TestTasks_Root + "/" + testClient.Id);
             var loadedTask = response.Body.DeserializeJson<TestTask>();
@@ -439,7 +475,10 @@ namespace Tmx.Server.Tests.Modules
 			TaskPool.Tasks.Add(task);
             
             // When
-            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => with.JsonBody<ITestClient>(testClient));
+            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => {
+                                        	with.JsonBody<ITestClient>(testClient);
+                                        	with.Accept("application/json");
+                                        });
             testClient = response.Body.DeserializeJson<TestClient>();
             response = browser.Get(UrnList.TestTasks_Root + "/" + testClient.Id);
             var loadedTask = response.Body.DeserializeJson<TestTask>();
@@ -483,7 +522,10 @@ namespace Tmx.Server.Tests.Modules
 			TaskPool.Tasks.Add(task);
             
             // When
-            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => with.JsonBody<ITestClient>(testClient));
+            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => {
+                                        	with.JsonBody<ITestClient>(testClient);
+                                        	with.Accept("application/json");
+                                        });
             testClient = response.Body.DeserializeJson<TestClient>();
             response = browser.Get(UrnList.TestTasks_Root + "/" + testClient.Id);
             var loadedTask = response.Body.DeserializeJson<TestTask>();
@@ -516,9 +558,12 @@ namespace Tmx.Server.Tests.Modules
 			TaskPool.Tasks.Add(task);
             
             // When
-            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => with.JsonBody<ITestClient>(testClient));
+            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => {
+                                        	with.JsonBody<ITestClient>(testClient);
+                                        	with.Accept("application/json");
+                                        });
             testClient = response.Body.DeserializeJson<TestClient>();
-            WHEN_SendingDeregistration(testClient);
+            WHEN_SendingDeregistration_as_json(testClient);
             response = browser.Get(UrnList.TestTasks_Root + "/" + 0);
             
             // Then
@@ -556,10 +601,17 @@ namespace Tmx.Server.Tests.Modules
         
         // ============================================================================================================================
         // TODO: duplicated
-        void WHEN_SendingDeregistration(ITestClient testClient)
+        void WHEN_SendingDeregistration_as_json(ITestClient testClient)
         {
             var browser = TestFactory.GetBrowserForTestTasksModule();
-            browser.Delete(UrnList.TestClients_Root + "/" + testClient.Id);
+            // browser.Delete(UrnList.TestClients_Root + "/" + testClient.Id);
+            browser.Delete(UrnList.TestClients_Root + "/" + testClient.Id, with => with.Accept("application/json"));
+        }
+        
+        void WHEN_SendingDeregistration_as_xml(TestClient testClient)
+        {
+            var browser = TestFactory.GetBrowserForTestTasksModule();
+            browser.Delete(UrnList.TestClients_Root + "/" + testClient.Id, with => with.Accept("application/xml"));
         }
         
         void THEN_HttpResponse_Is_Ok(BrowserResponse response)

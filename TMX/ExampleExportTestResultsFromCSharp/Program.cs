@@ -106,43 +106,44 @@ namespace ExampleExportTestResultsFromCSharp
             }
             Console.WriteLine("test data are ready");
             
-            // creating a database
-            Console.WriteLine("creating DB");
-            SQLiteHelper.CreateDatabase(
-                new Tmx.DatabaseFileCmdletBase(),
-                @"c:\1\1.db3",
-                false,
-                false,
-                true);
-            Console.WriteLine("DB created");
-            
-            // export test results to the DB
-            Console.WriteLine("exporting test data to the DB");
-            SQLiteHelper.BackupTestResults(
-                new CommonCmdletBase(),
-                TestData.CurrentResultsDB.Name);
-            
-            // closing the database
-            Console.WriteLine("closing the DB");
-            SQLiteHelper.CloseDatabase(
-                new CommonCmdletBase(),
-                TestData.CurrentTestResult.Name);
-            
-            // export data to an XML sheet
-            Console.WriteLine("export to XML");
-            
-            // 20140721
-            var dataObject2 = new SearchCmdletBaseDataObject {
-                // FilterAll = AddScenarioCmdletBase.
-            };
-            
-            TmxHelper.ExportResultsToXML(
-                // (new ImportExportCmdletBase()),
-                dataObject2,
-                @"C:\1\export_file.xml");
-            
-            Console.Write("Press any key to continue . . . ");
-            Console.ReadKey(true);
+            // blocked due to the need to remove dependency on SQLite
+//            // creating a database
+//            Console.WriteLine("creating DB");
+//            SQLiteHelper.CreateDatabase(
+//                new Tmx.DatabaseFileCmdletBase(),
+//                @"c:\1\1.db3",
+//                false,
+//                false,
+//                true);
+//            Console.WriteLine("DB created");
+//            
+//            // export test results to the DB
+//            Console.WriteLine("exporting test data to the DB");
+//            SQLiteHelper.BackupTestResults(
+//                new CommonCmdletBase(),
+//                TestData.CurrentResultsDB.Name);
+//            
+//            // closing the database
+//            Console.WriteLine("closing the DB");
+//            SQLiteHelper.CloseDatabase(
+//                new CommonCmdletBase(),
+//                TestData.CurrentTestResult.Name);
+//            
+//            // export data to an XML sheet
+//            Console.WriteLine("export to XML");
+//            
+//            // 20140721
+//            var dataObject2 = new SearchCmdletBaseDataObject {
+//                // FilterAll = AddScenarioCmdletBase.
+//            };
+//            
+//            TmxHelper.ExportResultsToXML(
+//                // (new ImportExportCmdletBase()),
+//                dataObject2,
+//                @"C:\1\export_file.xml");
+//            
+//            Console.Write("Press any key to continue . . . ");
+//            Console.ReadKey(true);
         }
     }
     

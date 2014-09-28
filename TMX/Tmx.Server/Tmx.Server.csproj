@@ -94,7 +94,6 @@
     <Compile Include="Modules\TestDataModule.cs" />
     <Compile Include="Modules\TestResultsModule.cs" />
     <Compile Include="Modules\TestTasksModule.cs" />
-    <Compile Include="TestBootstrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

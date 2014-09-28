@@ -13,8 +13,9 @@ namespace Tmx
     using System.Management.Automation;
     using System.Collections.Generic;
     using System.Data;
-    using System.Data.Common;
-    using System.Data.SQLite;
+    // blocked due to the need to remove dependency on SQLite
+//    using System.Data.Common;
+//    using System.Data.SQLite;
 	using Tmx.Interfaces;
     
     /// <summary>
@@ -22,16 +23,17 @@ namespace Tmx
     /// </summary>
     public class Database : IDatabase
     {
-        public Database(
-            string name, 
-            string path, 
-            SQLiteConnection connection)
-        {
-            this.Name = name;
-            this.Path = path;
-            this.Connection = connection;
-            this.ConnectionString = connection.ConnectionString;
-        }
+    	// blocked due to the need to remove dependency on SQLite
+//        public Database(
+//            string name, 
+//            string path, 
+//            SQLiteConnection connection)
+//        {
+//            this.Name = name;
+//            this.Path = path;
+//            this.Connection = connection;
+//            this.ConnectionString = connection.ConnectionString;
+//        }
         
         public string Name { get; set; }
         public string Path { get; set; }

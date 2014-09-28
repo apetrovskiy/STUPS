@@ -31,7 +31,8 @@ namespace Tmx.Commands
 				ResultsDB = true;
             }
             
-			SQLiteHelper.CreateDatabase(this, FileName, StructureDB, RepositoryDB, ResultsDB);
+            // blocked due to the need to remove dependency on SQLite
+//			SQLiteHelper.CreateDatabase(this, FileName, StructureDB, RepositoryDB, ResultsDB);
         }
     }
 }

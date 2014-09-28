@@ -13,8 +13,9 @@ namespace Tmx
 {
     using System;
     using System.Data;
-    using System.Data.Common;
-    using System.Data.SQLite;
+    // blocked due to the need to remove dependency on SQLite
+//    using System.Data.Common;
+//    using System.Data.SQLite;
     using System.IO;
     using System.Management.Automation;
     using PSTestLib;
@@ -33,182 +34,183 @@ namespace Tmx
         //internal static IDatabase CurrentDatabase = null;
         
         #region Database
-        public static void CreateDatabase(
-            DatabaseFileCmdletBase cmdlet,
-            string fileName,
-            bool structureDB,
-            bool repositoryDB,
-            bool resultsDB)
-        {
-            // check input
-            
-            try {
-                
-                string absolutePath = Path.GetFullPath(fileName);
-
-                cmdlet.WriteVerbose(cmdlet, absolutePath);
-
-                SQLiteConnection.CreateFile(absolutePath);
-
-                if (File.Exists(absolutePath)) {
-                    string connectionString =
-                        "Data Source='" + 
-                        absolutePath + 
-                        "';Version=3;Max Pool Size=100;UseUTF16Encoding=True;";
-                    cmdlet.WriteVerbose(cmdlet, connectionString);
-
-                    using (var conn = new SQLiteConnection(connectionString)) {
-
-                        conn.Open();
-                        
-                        if (string.IsNullOrEmpty(cmdlet.Name))
-                            cmdlet.Name = fileName;
-                        
-                        var database = 
-                            new Database(
-                                ((DatabaseFileCmdletBase)cmdlet).Name,
-                                absolutePath,
-                                conn);
-
-                        // create tables
-                        if (repositoryDB) {
-                            runSQLCommand(
-                                cmdlet,
-                                database,
-                                "CREATE TABLE TestBuckets (BucketName TEXT, Id INTEGER PRIMARY KEY, BucketTag TEXT, Description TEXT);");
-
-                            runSQLCommand(
-                                cmdlet,
-                                database,
-                                "CREATE TABLE TestConstants (Id INTEGER PRIMARY KEY, ConstantName TEXT, ConstantType TEXT, ConstantValue BLOB, ConstantTag TEXT, Description TEXT, BucketId NUMERIC);");
-                        }
-                        
-                        if (structureDB) {
-
-                            runSQLCommand(
-                                cmdlet,
-                                database,
-                                "CREATE TABLE TestCases (AfterCode TEXT, BeforeCode TEXT, MainCode TEXT, Id INTEGER PRIMARY KEY, TestCaseName TEXT, TestCaseNumber TEXT, TestCaseTag TEXT, Description TEXT);");
-                        }
-                        
-                        if (resultsDB || structureDB) {
-
-                            runSQLCommand(
-                                cmdlet,
-                                database,
-                                "CREATE TABLE TestSuites (Id INTEGER PRIMARY KEY, SuiteId TEXT, SuiteName TEXT, StatusId NUMERIC, Description TEXT);");
-
-                            runSQLCommand(
-                                cmdlet,
-                                database,
-                                "CREATE TABLE TestScenarios (Id INTEGER PRIMARY KEY, SuiteId TEXT, ScenarioId TEXT, ScenarioName TEXT, StatusId NUMERIC, Description TEXT);");
-                        }
-                        
-                        if (resultsDB) {
-
-                            runSQLCommand(
-                                cmdlet,
-                                database,
-                                "CREATE TABLE TestResults (Id INTEGER PRIMARY KEY, TestResultId TEXT, TestResultName TEXT, " +
-                                "StatusId NUMERIC, ScriptName TEXT, LineNumber NUMERIC, " +
-                                //"Position NUMERIC, Error BLOB, Code TEXT, Description TEXT, Parameters BLOB, " +
-                                "Position NUMERIC, Error TEXT, Code TEXT, Description TEXT, Parameters BLOB, " +
-                                //"SuiteId TEXT, ScenarioId TEXT, Timestamp TEXT, TimeSpent NUMERIC, Generated NUMERIC, Screenshot TEXT);");
-                                "SuiteId TEXT, ScenarioId TEXT, Timestamp TEXT, TimeSpent NUMERIC, Generated NUMERIC, Screenshot BLOB);");
-
-                            runSQLCommand(
-                                cmdlet,
-                                database,
-                                "CREATE TABLE TestResultDetails (Id INTEGER PRIMARY KEY, TestResultId TEXT, TestResultDetailName TEXT, " +
-                                //"TestResultDetail BLOB, Timestamp TEXT);");
-                                "TestResultDetail TEXT, Timestamp TEXT);");
-                        }
-                        
-                        if (structureDB) {
-                            runSQLCommand(
-                                cmdlet,
-                                database,
-                                "CREATE INDEX TestCaseName ON TestCases(TestCaseName ASC);");
-                            runSQLCommand(
-                                cmdlet,
-                                database,
-                                "CREATE INDEX TestCaseNumber ON TestCases(TestCaseNumber ASC);");
-                        }
-                        
-                        if (repositoryDB) {
-                            runSQLCommand(
-                                cmdlet,
-                                database,
-                                "CREATE INDEX TestConstantName ON TestConstants(ConstantName ASC);");
-                        }
-                        
-                        if (resultsDB) {
-
-                            runSQLCommand(
-                                cmdlet,
-                                database,
-                                "CREATE INDEX TestResultId ON TestResults(TestResultId ASC);");
-
-                            runSQLCommand(
-                                cmdlet,
-                                database,
-                                "CREATE INDEX TestResultName ON TestResults(TestResultName ASC);");
-
-                            runSQLCommand(
-                                cmdlet,
-                                database,
-                                "CREATE INDEX TestResultDetailName ON TestResultDetails(TestResultDetailName ASC);");
-                        }
-
-                        cmdlet.WriteVerbose(cmdlet, "closing the connection");
-
-                        conn.Close();
-
-                        if (structureDB) {
-                            cmdlet.WriteVerbose(cmdlet, "setting the current structure DB");
-                            database.IsStructureDB = true;
-                            TestData.CurrentStructureDB = database;
-                        }
-                        if (repositoryDB) {
-                            cmdlet.WriteVerbose(cmdlet, "setting the current repository DB");
-                            database.IsRepositoryDB = true;
-                            TestData.CurrentRepositoryDB = database;
-                        }
-                        if (resultsDB) {
-
-                            cmdlet.WriteVerbose(cmdlet, "setting the current results DB");
-
-                            database.IsResultsDB = true;
-
-                            TestData.CurrentResultsDB = database;
-
-                        }
-                        cmdlet.WriteVerbose(cmdlet, "adding the database to the collection");
-
-                        SQLiteData.Databases.Add(database);
-
-                        cmdlet.WriteVerbose(cmdlet, "outputting the database");
-
-                        cmdlet.WriteObject(cmdlet, database);
-
-                    }
-                }
-            }
-            catch (Exception eCreateDB) {
-                cmdlet.WriteError(
-                    cmdlet,
-                    "Unable to create a database with structure. " +
-                    eCreateDB.Message,
-                    "CreateDBFailed",
-                    ErrorCategory.InvalidOperation,
-                    true);
-            }
-            
-            // create structure
-            
-            // http://sqlite.phxsoftware.com/forums/p/134/465.aspx#465
-            // http://sqlite.phxsoftware.com/forums/t/76.aspx
-        }
+        // blocked due to the need to remove dependency on SQLite
+//        public static void CreateDatabase(
+//            DatabaseFileCmdletBase cmdlet,
+//            string fileName,
+//            bool structureDB,
+//            bool repositoryDB,
+//            bool resultsDB)
+//        {
+//            // check input
+//            
+//            try {
+//                
+//                string absolutePath = Path.GetFullPath(fileName);
+//
+//                cmdlet.WriteVerbose(cmdlet, absolutePath);
+//
+//                SQLiteConnection.CreateFile(absolutePath);
+//
+//                if (File.Exists(absolutePath)) {
+//                    string connectionString =
+//                        "Data Source='" + 
+//                        absolutePath + 
+//                        "';Version=3;Max Pool Size=100;UseUTF16Encoding=True;";
+//                    cmdlet.WriteVerbose(cmdlet, connectionString);
+//
+//                    using (var conn = new SQLiteConnection(connectionString)) {
+//
+//                        conn.Open();
+//                        
+//                        if (string.IsNullOrEmpty(cmdlet.Name))
+//                            cmdlet.Name = fileName;
+//                        
+//                        var database = 
+//                            new Database(
+//                                ((DatabaseFileCmdletBase)cmdlet).Name,
+//                                absolutePath,
+//                                conn);
+//
+//                        // create tables
+//                        if (repositoryDB) {
+//                            runSQLCommand(
+//                                cmdlet,
+//                                database,
+//                                "CREATE TABLE TestBuckets (BucketName TEXT, Id INTEGER PRIMARY KEY, BucketTag TEXT, Description TEXT);");
+//
+//                            runSQLCommand(
+//                                cmdlet,
+//                                database,
+//                                "CREATE TABLE TestConstants (Id INTEGER PRIMARY KEY, ConstantName TEXT, ConstantType TEXT, ConstantValue BLOB, ConstantTag TEXT, Description TEXT, BucketId NUMERIC);");
+//                        }
+//                        
+//                        if (structureDB) {
+//
+//                            runSQLCommand(
+//                                cmdlet,
+//                                database,
+//                                "CREATE TABLE TestCases (AfterCode TEXT, BeforeCode TEXT, MainCode TEXT, Id INTEGER PRIMARY KEY, TestCaseName TEXT, TestCaseNumber TEXT, TestCaseTag TEXT, Description TEXT);");
+//                        }
+//                        
+//                        if (resultsDB || structureDB) {
+//
+//                            runSQLCommand(
+//                                cmdlet,
+//                                database,
+//                                "CREATE TABLE TestSuites (Id INTEGER PRIMARY KEY, SuiteId TEXT, SuiteName TEXT, StatusId NUMERIC, Description TEXT);");
+//
+//                            runSQLCommand(
+//                                cmdlet,
+//                                database,
+//                                "CREATE TABLE TestScenarios (Id INTEGER PRIMARY KEY, SuiteId TEXT, ScenarioId TEXT, ScenarioName TEXT, StatusId NUMERIC, Description TEXT);");
+//                        }
+//                        
+//                        if (resultsDB) {
+//
+//                            runSQLCommand(
+//                                cmdlet,
+//                                database,
+//                                "CREATE TABLE TestResults (Id INTEGER PRIMARY KEY, TestResultId TEXT, TestResultName TEXT, " +
+//                                "StatusId NUMERIC, ScriptName TEXT, LineNumber NUMERIC, " +
+//                                //"Position NUMERIC, Error BLOB, Code TEXT, Description TEXT, Parameters BLOB, " +
+//                                "Position NUMERIC, Error TEXT, Code TEXT, Description TEXT, Parameters BLOB, " +
+//                                //"SuiteId TEXT, ScenarioId TEXT, Timestamp TEXT, TimeSpent NUMERIC, Generated NUMERIC, Screenshot TEXT);");
+//                                "SuiteId TEXT, ScenarioId TEXT, Timestamp TEXT, TimeSpent NUMERIC, Generated NUMERIC, Screenshot BLOB);");
+//
+//                            runSQLCommand(
+//                                cmdlet,
+//                                database,
+//                                "CREATE TABLE TestResultDetails (Id INTEGER PRIMARY KEY, TestResultId TEXT, TestResultDetailName TEXT, " +
+//                                //"TestResultDetail BLOB, Timestamp TEXT);");
+//                                "TestResultDetail TEXT, Timestamp TEXT);");
+//                        }
+//                        
+//                        if (structureDB) {
+//                            runSQLCommand(
+//                                cmdlet,
+//                                database,
+//                                "CREATE INDEX TestCaseName ON TestCases(TestCaseName ASC);");
+//                            runSQLCommand(
+//                                cmdlet,
+//                                database,
+//                                "CREATE INDEX TestCaseNumber ON TestCases(TestCaseNumber ASC);");
+//                        }
+//                        
+//                        if (repositoryDB) {
+//                            runSQLCommand(
+//                                cmdlet,
+//                                database,
+//                                "CREATE INDEX TestConstantName ON TestConstants(ConstantName ASC);");
+//                        }
+//                        
+//                        if (resultsDB) {
+//
+//                            runSQLCommand(
+//                                cmdlet,
+//                                database,
+//                                "CREATE INDEX TestResultId ON TestResults(TestResultId ASC);");
+//
+//                            runSQLCommand(
+//                                cmdlet,
+//                                database,
+//                                "CREATE INDEX TestResultName ON TestResults(TestResultName ASC);");
+//
+//                            runSQLCommand(
+//                                cmdlet,
+//                                database,
+//                                "CREATE INDEX TestResultDetailName ON TestResultDetails(TestResultDetailName ASC);");
+//                        }
+//
+//                        cmdlet.WriteVerbose(cmdlet, "closing the connection");
+//
+//                        conn.Close();
+//
+//                        if (structureDB) {
+//                            cmdlet.WriteVerbose(cmdlet, "setting the current structure DB");
+//                            database.IsStructureDB = true;
+//                            TestData.CurrentStructureDB = database;
+//                        }
+//                        if (repositoryDB) {
+//                            cmdlet.WriteVerbose(cmdlet, "setting the current repository DB");
+//                            database.IsRepositoryDB = true;
+//                            TestData.CurrentRepositoryDB = database;
+//                        }
+//                        if (resultsDB) {
+//
+//                            cmdlet.WriteVerbose(cmdlet, "setting the current results DB");
+//
+//                            database.IsResultsDB = true;
+//
+//                            TestData.CurrentResultsDB = database;
+//
+//                        }
+//                        cmdlet.WriteVerbose(cmdlet, "adding the database to the collection");
+//
+//                        SQLiteData.Databases.Add(database);
+//
+//                        cmdlet.WriteVerbose(cmdlet, "outputting the database");
+//
+//                        cmdlet.WriteObject(cmdlet, database);
+//
+//                    }
+//                }
+//            }
+//            catch (Exception eCreateDB) {
+//                cmdlet.WriteError(
+//                    cmdlet,
+//                    "Unable to create a database with structure. " +
+//                    eCreateDB.Message,
+//                    "CreateDBFailed",
+//                    ErrorCategory.InvalidOperation,
+//                    true);
+//            }
+//            
+//            // create structure
+//            
+//            // http://sqlite.phxsoftware.com/forums/p/134/465.aspx#465
+//            // http://sqlite.phxsoftware.com/forums/t/76.aspx
+//        }
         
         internal static IDatabase GetDatabase(
             PSCmdletBase cmdlet, 
@@ -242,119 +244,120 @@ namespace Tmx
             //return database;
         }
         
-        public static void OpenDatabase(
-            PSCmdletBase cmdlet, 
-            string fileName,
-            bool structureDB,
-            bool repositoryDB,
-            bool resultsDB)
-        {
-            // check input
-            
-            try {
-                string absolutePath = 
-                    System.IO.Path.GetFullPath(fileName);
-                cmdlet.WriteVerbose(cmdlet, absolutePath);
-
-                if (!System.IO.File.Exists(absolutePath)) return;
-                string connectionString =
-                    "Data Source='" + 
-                    absolutePath + 
-                    "';Version=3;Max Pool Size=100;UseUTF16Encoding=True;";
-                cmdlet.WriteVerbose(cmdlet, connectionString);
-                    
-                using (var conn = new SQLiteConnection(connectionString)) {
-                        
-                    conn.Open();
-                        
-                    IDatabase database = 
-                        new Database(
-                            ((DatabaseFileCmdletBase)cmdlet).Name,
-                            fileName,
-                            conn);
-                        
-                        
-                    // check structure DB
-                        
-                        
-                    // check repository DB
-                        
-                    // check data DB
-                        
-                        
-                    conn.Close();
-                        
-                    if (structureDB) {
-                        TestData.CurrentStructureDB = database;
-                    }
-                    if (repositoryDB) {
-                        TestData.CurrentRepositoryDB = database;
-                    }
-                    if (resultsDB) {
-                        TestData.CurrentResultsDB = database;
-                    }
-                        
-                    SQLiteData.Databases.Add(database);
-                        
-                    cmdlet.WriteObject(cmdlet, database);
-                }
-
-                /*
-                if (System.IO.File.Exists(absolutePath)) {
-                    string connectionString =
-                        "Data Source='" + 
-                        absolutePath + 
-                        "';Version=3;Max Pool Size=100;UseUTF16Encoding=True;";
-                    cmdlet.WriteVerbose(cmdlet, connectionString);
-                    
-                    using (SQLiteConnection conn = new SQLiteConnection(connectionString)) {
-                        
-                        conn.Open();
-                        
-                        IDatabase database = 
-                            new Database(
-                                ((DatabaseFileCmdletBase)cmdlet).Name,
-                                fileName,
-                                conn);
-                        
-                        
-                        // check structure DB
-                        
-                        
-                        // check repository DB
-                        
-                        // check data DB
-                        
-                        
-                        conn.Close();
-                        
-                        if (structureDB) {
-                            TestData.CurrentStructureDB = database;
-                        }
-                        if (repositoryDB) {
-                            TestData.CurrentRepositoryDB = database;
-                        }
-                        if (resultsDB) {
-                            TestData.CurrentResultsDB = database;
-                        }
-                        
-                        SQLiteData.Databases.Add(database);
-                        
-                        cmdlet.WriteObject(cmdlet, database);
-                    }
-                }
-                */
-            }
-            catch (Exception eOpenDB) {
-                cmdlet.WriteError(
-                    cmdlet,
-                    "Unable to open the database. " +
-                    eOpenDB.Message,
-                    "OpenDBFailed",
-                    ErrorCategory.InvalidOperation,
-                    true);
-            }
-        }
+        // blocked due to the need to remove dependency on SQLite
+//        public static void OpenDatabase(
+//            PSCmdletBase cmdlet, 
+//            string fileName,
+//            bool structureDB,
+//            bool repositoryDB,
+//            bool resultsDB)
+//        {
+//            // check input
+//            
+//            try {
+//                string absolutePath = 
+//                    System.IO.Path.GetFullPath(fileName);
+//                cmdlet.WriteVerbose(cmdlet, absolutePath);
+//
+//                if (!System.IO.File.Exists(absolutePath)) return;
+//                string connectionString =
+//                    "Data Source='" + 
+//                    absolutePath + 
+//                    "';Version=3;Max Pool Size=100;UseUTF16Encoding=True;";
+//                cmdlet.WriteVerbose(cmdlet, connectionString);
+//                    
+//                using (var conn = new SQLiteConnection(connectionString)) {
+//                        
+//                    conn.Open();
+//                        
+//                    IDatabase database = 
+//                        new Database(
+//                            ((DatabaseFileCmdletBase)cmdlet).Name,
+//                            fileName,
+//                            conn);
+//                        
+//                        
+//                    // check structure DB
+//                        
+//                        
+//                    // check repository DB
+//                        
+//                    // check data DB
+//                        
+//                        
+//                    conn.Close();
+//                        
+//                    if (structureDB) {
+//                        TestData.CurrentStructureDB = database;
+//                    }
+//                    if (repositoryDB) {
+//                        TestData.CurrentRepositoryDB = database;
+//                    }
+//                    if (resultsDB) {
+//                        TestData.CurrentResultsDB = database;
+//                    }
+//                        
+//                    SQLiteData.Databases.Add(database);
+//                        
+//                    cmdlet.WriteObject(cmdlet, database);
+//                }
+//
+//                /*
+//                if (System.IO.File.Exists(absolutePath)) {
+//                    string connectionString =
+//                        "Data Source='" + 
+//                        absolutePath + 
+//                        "';Version=3;Max Pool Size=100;UseUTF16Encoding=True;";
+//                    cmdlet.WriteVerbose(cmdlet, connectionString);
+//                    
+//                    using (SQLiteConnection conn = new SQLiteConnection(connectionString)) {
+//                        
+//                        conn.Open();
+//                        
+//                        IDatabase database = 
+//                            new Database(
+//                                ((DatabaseFileCmdletBase)cmdlet).Name,
+//                                fileName,
+//                                conn);
+//                        
+//                        
+//                        // check structure DB
+//                        
+//                        
+//                        // check repository DB
+//                        
+//                        // check data DB
+//                        
+//                        
+//                        conn.Close();
+//                        
+//                        if (structureDB) {
+//                            TestData.CurrentStructureDB = database;
+//                        }
+//                        if (repositoryDB) {
+//                            TestData.CurrentRepositoryDB = database;
+//                        }
+//                        if (resultsDB) {
+//                            TestData.CurrentResultsDB = database;
+//                        }
+//                        
+//                        SQLiteData.Databases.Add(database);
+//                        
+//                        cmdlet.WriteObject(cmdlet, database);
+//                    }
+//                }
+//                */
+//            }
+//            catch (Exception eOpenDB) {
+//                cmdlet.WriteError(
+//                    cmdlet,
+//                    "Unable to open the database. " +
+//                    eOpenDB.Message,
+//                    "OpenDBFailed",
+//                    ErrorCategory.InvalidOperation,
+//                    true);
+//            }
+//        }
         
         public static void CloseDatabase(
             PSCmdletBase cmdlet, 
@@ -439,64 +442,67 @@ namespace Tmx
             }
         }
         
-        private static void runSQLCommand(PSCmdletBase cmdlet, IDatabase database, string SQLCode)
-        {
-            if (null == database) {
-                cmdlet.WriteError(
-                    cmdlet,
-                    "Could not find the database with name '" +
-                    database.Name +
-                    "' among registered databases",
-                    "CouldNotFindDB",
-                    ErrorCategory.InvalidArgument,
-                    true);
-            }
-
-            if (null == database.Connection) {
-
-                database.Connection = 
-                    new SQLiteConnection(database.ConnectionString);
-
-            }
-            if (database.Connection.State == ConnectionState.Closed) {
-                database.Connection.Open();
-            }
-
-            using (var cmd = 
-                   new SQLiteCommand(SQLCode)) {
-                
-                // 20140717
-                // cmd.Connection = database.Connection;
-                cmd.Connection = database.Connection as SQLiteConnection;
-                //cmdlet.WriteVerbose(cmdlet, cmd.ExecuteNonQuery().ToString());
-
-                int result = cmd.ExecuteNonQuery();
-
-                cmdlet.WriteVerbose(
-                    cmdlet,
-                    SQLCode +
-                    ": " + 
-                    result.ToString());
-            }
-        }
+        // blocked due to the need to remove dependency on SQLite
+//        static void runSQLCommand(PSCmdletBase cmdlet, IDatabase database, string SQLCode)
+//        {
+//            if (null == database) {
+//                cmdlet.WriteError(
+//                    cmdlet,
+//                    "Could not find the database with name '" +
+//                    database.Name +
+//                    "' among registered databases",
+//                    "CouldNotFindDB",
+//                    ErrorCategory.InvalidArgument,
+//                    true);
+//            }
+//
+//            if (null == database.Connection) {
+//
+//                database.Connection = 
+//                    new SQLiteConnection(database.ConnectionString);
+//
+//            }
+//            if (database.Connection.State == ConnectionState.Closed) {
+//                database.Connection.Open();
+//            }
+//
+//            using (var cmd = 
+//                   new SQLiteCommand(SQLCode)) {
+//                
+//                // 20140717
+//                // cmd.Connection = database.Connection;
+//                cmd.Connection = database.Connection as SQLiteConnection;
+//                //cmdlet.WriteVerbose(cmdlet, cmd.ExecuteNonQuery().ToString());
+//
+//                int result = cmd.ExecuteNonQuery();
+//
+//                cmdlet.WriteVerbose(
+//                    cmdlet,
+//                    SQLCode +
+//                    ": " + 
+//                    result.ToString());
+//            }
+//        }
         
         //private static void runSQLCommand(PSCmdletBase cmdlet, SQLiteConnection connection, string SQLCode)
-        private static void runSQLCommand(PSCmdletBase cmdlet, string databaseName, string SQLCode)
-        {
-            IDatabase db = 
-                Tmx.SQLiteHelper.GetDatabase(
-                    cmdlet,
-                    databaseName);
-            runSQLCommand(cmdlet, db, SQLCode);
-        }
+        // blocked due to the need to remove dependency on SQLite
+//        static void runSQLCommand(PSCmdletBase cmdlet, string databaseName, string SQLCode)
+//        {
+//            IDatabase db = 
+//                Tmx.SQLiteHelper.GetDatabase(
+//                    cmdlet,
+//                    databaseName);
+//            runSQLCommand(cmdlet, db, SQLCode);
+//        }
         
-        private static void checkConnection(IDbConnection connection)
-        // private static void checkConnection(SQLiteConnection connection)
-        {
-            if (connection.State == ConnectionState.Closed) {
-                connection.Open();
-            }
-        }
+        // blocked due to the need to remove dependency on SQLite
+//        static void checkConnection(IDbConnection connection)
+//        // private static void checkConnection(SQLiteConnection connection)
+//        {
+//            if (connection.State == ConnectionState.Closed) {
+//                connection.Open();
+//            }
+//        }
         
             #region doubts
 //        public static void CompressDatabase(PSCmdletBase cmdlet, string fileName)
@@ -515,432 +521,434 @@ namespace Tmx
             #region connection
         // 20140717
         // internal static SQLiteConnection ConnectionMakeAlive(PSCmdletBase cmdlet, string databaseName)
-        internal static IDbConnection ConnectionMakeAlive(PSCmdletBase cmdlet, string databaseName)
-        {
-            // 20140717
-            // SQLiteConnection connection = null;
-            IDbConnection connection = null;
-            
-            var database = GetDatabase(cmdlet, databaseName);
-            if (null == database) {
-                cmdlet.WriteError(
-                    cmdlet,
-                    "Could not find the database with name '" +
-                    database.Name +
-                    "' among registered databases.",
-                    "CouldNotFindDB",
-                    ErrorCategory.InvalidArgument,
-                    true);
-                return connection;
-            }
-            
-            if (string.IsNullOrEmpty(database.ConnectionString)) {
-
-                cmdlet.WriteError(
-                    cmdlet,
-                    "Could not find the connectionString to the database with name '" +
-                    database.Name +
-                    "'.",
-                    "CouldNotFindConnString",
-                    ErrorCategory.InvalidArgument,
-                    true);
-                return connection;
-            }
-
-
-            /*
-            if (null == database.ConnectionString ||
-                string.Empty == database.ConnectionString) {
-
-                cmdlet.WriteError(
-                    cmdlet,
-                    "Could not find the connectionString to the database with name '" +
-                    database.Name +
-                    "'.",
-                    "CouldNotFindConnString",
-                    ErrorCategory.InvalidArgument,
-                    true);
-                return connection;
-            }
-            */
-
-            try {
-                if (null == database.Connection) {
-
-                    database.Connection = 
-                        new SQLiteConnection(database.ConnectionString);
-
-                    database.Connection.Open();
-
-                }
-
-                try {
-                if (database.Connection.State != ConnectionState.Open) {
-
-                    database.Connection.ConnectionString = database.ConnectionString;
-
-                    database.Connection.Open();
-                }
-                }
-                catch {
-                    database.Connection = 
-                        new SQLiteConnection(database.ConnectionString);
-                    database.Connection.Open();
-                }
-
-                connection = database.Connection;
-            }
-            catch (Exception eCheckConnection) {
-
-                cmdlet.WriteError(
-                    cmdlet,
-                    "Could not open a connection to the database with name '" +
-                    database.Name +
-                    "'. " +
-                    eCheckConnection.Message,
-                    "CouldNotCheckConnection",
-                    ErrorCategory.InvalidOperation,
-                    true);
-            }
-            //SQLiteConnection connection = ConnectionMakeAlive(
-
-            return connection;
-        }
+        // blocked due to the need to remove dependency on SQLite
+//        internal static IDbConnection ConnectionMakeAlive(PSCmdletBase cmdlet, string databaseName)
+//        {
+//            // 20140717
+//            // SQLiteConnection connection = null;
+//            IDbConnection connection = null;
+//            
+//            var database = GetDatabase(cmdlet, databaseName);
+//            if (null == database) {
+//                cmdlet.WriteError(
+//                    cmdlet,
+//                    "Could not find the database with name '" +
+//                    database.Name +
+//                    "' among registered databases.",
+//                    "CouldNotFindDB",
+//                    ErrorCategory.InvalidArgument,
+//                    true);
+//                return connection;
+//            }
+//            
+//            if (string.IsNullOrEmpty(database.ConnectionString)) {
+//
+//                cmdlet.WriteError(
+//                    cmdlet,
+//                    "Could not find the connectionString to the database with name '" +
+//                    database.Name +
+//                    "'.",
+//                    "CouldNotFindConnString",
+//                    ErrorCategory.InvalidArgument,
+//                    true);
+//                return connection;
+//            }
+//
+//
+//            /*
+//            if (null == database.ConnectionString ||
+//                string.Empty == database.ConnectionString) {
+//
+//                cmdlet.WriteError(
+//                    cmdlet,
+//                    "Could not find the connectionString to the database with name '" +
+//                    database.Name +
+//                    "'.",
+//                    "CouldNotFindConnString",
+//                    ErrorCategory.InvalidArgument,
+//                    true);
+//                return connection;
+//            }
+//            */
+//
+//            try {
+//                if (null == database.Connection) {
+//
+//                    database.Connection = 
+//                        new SQLiteConnection(database.ConnectionString);
+//
+//                    database.Connection.Open();
+//
+//                }
+//
+//                try {
+//                if (database.Connection.State != ConnectionState.Open) {
+//
+//                    database.Connection.ConnectionString = database.ConnectionString;
+//
+//                    database.Connection.Open();
+//                }
+//                }
+//                catch {
+//                    database.Connection = 
+//                        new SQLiteConnection(database.ConnectionString);
+//                    database.Connection.Open();
+//                }
+//
+//                connection = database.Connection;
+//            }
+//            catch (Exception eCheckConnection) {
+//
+//                cmdlet.WriteError(
+//                    cmdlet,
+//                    "Could not open a connection to the database with name '" +
+//                    database.Name +
+//                    "'. " +
+//                    eCheckConnection.Message,
+//                    "CouldNotCheckConnection",
+//                    ErrorCategory.InvalidOperation,
+//                    true);
+//            }
+//            //SQLiteConnection connection = ConnectionMakeAlive(
+//
+//            return connection;
+//        }
             #endregion connection
         #endregion Database
   
         #region Test Result
         //public static void BackupTestResults(PSCmdletBase cmdlet, SQLiteConnection connection)
-        public static void BackupTestResults(PSCmdletBase cmdlet, string databaseName)
-        {
-            // 20120920
-            // 20140717
-            // SQLiteConnection connection = ConnectionMakeAlive(cmdlet, databaseName);
-            var connection = ConnectionMakeAlive(cmdlet, databaseName);
-
-            DbProviderFactory factory = new SQLiteFactory();
-
-            cmdlet.WriteVerbose(cmdlet, "begin transaction");
-            // 20140717
-            // using (DbTransaction dbTrans = connection.BeginTransaction()) {
-            using (var dbTrans = connection.BeginTransaction()) {
-
-                cmdlet.WriteVerbose(cmdlet, "creating a data adapter");
-                using (DbDataAdapter adp1 = factory.CreateDataAdapter()) {
-
-                    cmdlet.WriteVerbose(cmdlet, "creating a command");
-                    // 20140717
-                    // using (DbCommand cmd1 = connection.CreateCommand()) {
-                    using (var cmd1 = connection.CreateCommand()) {
-
-                        cmdlet.WriteVerbose(cmdlet, "1");
-                        cmd1.Transaction = dbTrans;
-
-                        cmdlet.WriteVerbose(cmdlet, "2");
-                        cmd1.CommandText = "SELECT * FROM TestSuites WHERE 1 = 2";
-                        cmdlet.WriteVerbose(cmdlet, "3");
-                        // 20140717
-                        // adp1.SelectCommand = cmd1;
-                        adp1.SelectCommand = cmd1 as DbCommand;
-                        
-                        cmdlet.WriteVerbose(cmdlet, "4");
-                        using (var bld1 = factory.CreateCommandBuilder()) {
-                            
-                            cmdlet.WriteVerbose(cmdlet, "5");
-                            bld1.DataAdapter = adp1;
-                            
-                            cmdlet.WriteVerbose(cmdlet, "6");
-                            using (var tbl1 = new DataTable()) {
-                                
-                                cmdlet.WriteVerbose(cmdlet, "7");
-                                adp1.Fill(tbl1);
-                                //for (int n = 0; n < 10000; n++) {
-                                cmdlet.WriteVerbose(cmdlet, "8");
-                                foreach (var tSuite in TestData.TestSuites)
-                                {
-                                    cmdlet.WriteVerbose(cmdlet, "9");
-                                    var row1 = tbl1.NewRow();
-                                    //row[1] = n;
-                                    //(Id INTEGER PRIMARY KEY, SuiteId TEXT, SuiteName TEXT, StatusId NUMERIC, Description TEXT);");
-                                    row1["SuiteId"] = SQLiteHelper.PrepareEscapedString(tSuite.Id);
-                                    row1["SuiteName"] = SQLiteHelper.PrepareEscapedString(tSuite.Name);
-                                    row1["StatusId"] = (int)tSuite.enStatus;
-                                    row1["Description"] = SQLiteHelper.PrepareEscapedString(tSuite.Description);
-                                    tbl1.Rows.Add(row1);
-                                }
-
-                                /*
-                                for (int suiteCounter = 0; suiteCounter < TestData.TestSuites.Count; suiteCounter++) {
-                                    cmdlet.WriteVerbose(cmdlet, "9");
-                                    DataRow row1 = tbl1.NewRow();
-                                    //row[1] = n;
-                                    //(Id INTEGER PRIMARY KEY, SuiteId TEXT, SuiteName TEXT, StatusId NUMERIC, Description TEXT);");
-                                    row1["SuiteId"] = SQLiteHelper.PrepareEscapedString(TestData.TestSuites[suiteCounter].Id);
-                                    row1["SuiteName"] = SQLiteHelper.PrepareEscapedString(TestData.TestSuites[suiteCounter].Name);
-                                    row1["StatusId"] = (int)TestData.TestSuites[suiteCounter].enStatus;
-                                    row1["Description"] = SQLiteHelper.PrepareEscapedString(TestData.TestSuites[suiteCounter].Description);
-                                    tbl1.Rows.Add(row1);
-                                }
-                                */
-                                cmdlet.WriteVerbose(cmdlet, "12");
-                                cmdlet.WriteVerbose(cmdlet, tbl1.Rows.Count.ToString() + " rows");
-                                adp1.Update(tbl1);
-                                cmdlet.WriteVerbose(cmdlet, tbl1.Rows.Count.ToString() + " rows");
-                                cmdlet.WriteVerbose(cmdlet, "14");
-                                //dbTrans.Commit();
-                            }
-                        }
-                    }
-                }
-                
-                cmdlet.WriteVerbose(cmdlet, "15");
-                using (DbDataAdapter adp2 = factory.CreateDataAdapter()) {
-                    
-                    cmdlet.WriteVerbose(cmdlet, "16");
-                    using (var cmd2 = connection.CreateCommand()) {
-                        
-                        cmdlet.WriteVerbose(cmdlet, "17");
-                        cmd2.Transaction = dbTrans;
-                        cmd2.CommandText = "SELECT * FROM TestScenarios WHERE 1 = 2";
-                        cmdlet.WriteVerbose(cmdlet, "19");
-                        // 20140717
-                        // adp2.SelectCommand = cmd2;
-                        adp2.SelectCommand = cmd2 as DbCommand;
-                        cmdlet.WriteVerbose(cmdlet, "20");
-                        using (DbCommandBuilder bld2 = factory.CreateCommandBuilder()) {
-                            
-                            cmdlet.WriteVerbose(cmdlet, "21");
-                            bld2.DataAdapter = adp2;
-                            cmdlet.WriteVerbose(cmdlet, "22");
-                            using (var tbl2 = new DataTable()) {
-                                
-                                cmdlet.WriteVerbose(cmdlet, "23");
-                                adp2.Fill(tbl2);
-                                //for (int n = 0; n < 10000; n++) {
-                                foreach (var testSuite in TestData.TestSuites) {
-                                    foreach (var tScenario in testSuite.TestScenarios)
-                                    {
-                                        DataRow row2 = tbl2.NewRow();
-                                        //row[1] = n;
-                                        //Id INTEGER PRIMARY KEY, SuiteId TEXT, ScenarioId TEXT, ScenarioName TEXT, StatusId NUMERIC, Description TEXT);");
-                                        row2["SuiteId"] = SQLiteHelper.PrepareEscapedString(tScenario.SuiteId);
-                                        row2["ScenarioId"] = SQLiteHelper.PrepareEscapedString(tScenario.Id);
-                                        row2["ScenarioName"] = SQLiteHelper.PrepareEscapedString(tScenario.Name);
-                                        //row["StatusId"] = (int)testSuite.TestScenarios[scenarioCounter].
-                                        row2["Description"] = SQLiteHelper.PrepareEscapedString(tScenario.Description);
-                                        tbl2.Rows.Add(row2);
-                                    }
-
-                                    /*
-                                    for (int scenarioCounter = 0; scenarioCounter < testSuite.TestScenarios.Count; scenarioCounter++) {
-                                        DataRow row2 = tbl2.NewRow();
-                                        //row[1] = n;
-                                        //Id INTEGER PRIMARY KEY, SuiteId TEXT, ScenarioId TEXT, ScenarioName TEXT, StatusId NUMERIC, Description TEXT);");
-                                        row2["SuiteId"] = SQLiteHelper.PrepareEscapedString(testSuite.TestScenarios[scenarioCounter].SuiteId);
-                                        row2["ScenarioId"] = SQLiteHelper.PrepareEscapedString(testSuite.TestScenarios[scenarioCounter].Id);
-                                        row2["ScenarioName"] = SQLiteHelper.PrepareEscapedString(testSuite.TestScenarios[scenarioCounter].Name);
-                                        //row["StatusId"] = (int)testSuite.TestScenarios[scenarioCounter].
-                                        row2["Description"] = SQLiteHelper.PrepareEscapedString(testSuite.TestScenarios[scenarioCounter].Description);
-                                        tbl2.Rows.Add(row2);
-                                    }
-                                    */
-                                }
-                                cmdlet.WriteVerbose(cmdlet, "27");
-                                adp2.Update(tbl2);
-                                cmdlet.WriteVerbose(cmdlet, "28");
-                                //dbTrans.Commit();
-                            }
-                        }
-                    }
-                }
-                
-                cmdlet.WriteVerbose(cmdlet, "29");
-                using (DbDataAdapter adp3 = factory.CreateDataAdapter()) {
-                    
-                    cmdlet.WriteVerbose(cmdlet, "30");
-                    using (var cmd3 = connection.CreateCommand()) {
-                        
-                        cmdlet.WriteVerbose(cmdlet, "31");
-                        cmd3.Transaction = dbTrans;
-                        cmd3.CommandText = "SELECT * FROM TestResults WHERE 1 = 2";
-                        // 20140717
-                        // adp3.SelectCommand = cmd3;
-                        adp3.SelectCommand = cmd3 as DbCommand;
-                        
-                        cmdlet.WriteVerbose(cmdlet, "34");
-                        using (DbCommandBuilder bld3 = factory.CreateCommandBuilder()) {
-                            
-                            cmdlet.WriteVerbose(cmdlet, "35");
-                            bld3.DataAdapter = adp3;
-                            
-                            cmdlet.WriteVerbose(cmdlet, "36");
-                            using (var tbl3 = new DataTable()) {
-                                
-                                cmdlet.WriteVerbose(cmdlet, "37");
-                                adp3.Fill(tbl3);
-                                //for (int n = 0; n < 10000; n++) {
-                                foreach (TestScenario testScenario in TestData.TestSuites.SelectMany(testSuite => testSuite.TestScenarios.Cast<TestScenario>()))
-                                {
-                                    foreach (ITestResult tResult in testScenario.TestResults)
-                                    {
-                                        DataRow row3= tbl3.NewRow();
-                                        //row[1] = n;
-                                        //Id INTEGER PRIMARY KEY, TestResultId TEXT, TestResultName TEXT, " +
-                                        //"StatusId NUMERIC, Description TEXT, ScriptName TEXT, LineNumber NUMERIC, " +
-                                        //"Position NUMERIC, Error BLOB, Code TEXT, Description TEXT, Parameters BLOB, " +
-                                        //"SuiteId TEXT, ScenarioId TEXT, Timestamp TEXT, TimeSpent NUMERIC, Generated NUMERIC, Screenshot TEXT);");
-                                        row3["SuiteId"] = SQLiteHelper.PrepareEscapedString(tResult.SuiteId);
-                                        row3["ScenarioId"] = SQLiteHelper.PrepareEscapedString(tResult.ScenarioId);
-
-                                        row3["TestResultId"] = SQLiteHelper.PrepareEscapedString(tResult.Id);
-                                        row3["TestResultName"] = SQLiteHelper.PrepareEscapedString(SQLiteHelper.PrepareEscapedString(tResult.Name));
-                                        row3["ScriptName"] = SQLiteHelper.PrepareEscapedString(tResult.ScriptName);
-                                        row3["LineNumber"] = tResult.LineNumber.ToString();
-                                        row3["Position"] = tResult.Position.ToString();
-                                        if (null != tResult.Error)
-                                        {
-                                            row3["Error"] = tResult.Error;
-                                        }
-                                        row3["Code"] = SQLiteHelper.PrepareEscapedString(tResult.Code);
-                                        row3["Parameters"] = tResult.Parameters;
-                                        row3["Timestamp"] = tResult.Timestamp;
-                                        row3["TimeSpent"] = tResult.TimeSpent;
-                                        row3["Generated"] = Convert.ToInt32(tResult.Generated);
-                                        //row3["Screenshot"] = testScenario.TestResults[trCounter].Screenshot;
-                                        if (null != tResult.Screenshot)
-                                        {
-                                            byte[] screenshot = 
-                                                GetScreenshotFromFileSystem(
-                                                    tResult.Screenshot);
-                                            row3["Screenshot"] = screenshot;
-                                        }
-                                        row3["StatusId"] = (int)tResult.enStatus;
-
-                                        row3["Description"] = SQLiteHelper.PrepareEscapedString(tResult.Description);
-                                            
-                                        tbl3.Rows.Add(row3);
-                                    }
-                                }
-
-                                /*
-                                foreach (TestSuite testSuite in TestData.TestSuites) {
-                                    foreach (TestScenario testScenario in testSuite.TestScenarios) {
-                                        for (int trCounter = 0; trCounter < testScenario.TestResults.Count; trCounter++) {
-                                            DataRow row3= tbl3.NewRow();
-                                            //row[1] = n;
-                                            //Id INTEGER PRIMARY KEY, TestResultId TEXT, TestResultName TEXT, " +
-                            //"StatusId NUMERIC, Description TEXT, ScriptName TEXT, LineNumber NUMERIC, " +
-                            //"Position NUMERIC, Error BLOB, Code TEXT, Description TEXT, Parameters BLOB, " +
-                            //"SuiteId TEXT, ScenarioId TEXT, Timestamp TEXT, TimeSpent NUMERIC, Generated NUMERIC, Screenshot TEXT);");
-                                            row3["SuiteId"] = SQLiteHelper.PrepareEscapedString(testScenario.TestResults[trCounter].SuiteId);
-                                            row3["ScenarioId"] = SQLiteHelper.PrepareEscapedString(testScenario.TestResults[trCounter].ScenarioId);
-                                            
-                                            row3["TestResultId"] = SQLiteHelper.PrepareEscapedString(testScenario.TestResults[trCounter].Id);
-                                            row3["TestResultName"] = SQLiteHelper.PrepareEscapedString(SQLiteHelper.PrepareEscapedString(testScenario.TestResults[trCounter].Name));
-                                            row3["ScriptName"] = SQLiteHelper.PrepareEscapedString(testScenario.TestResults[trCounter].ScriptName);
-                                            row3["LineNumber"] = testScenario.TestResults[trCounter].LineNumber.ToString();
-                                            row3["Position"] = testScenario.TestResults[trCounter].Position.ToString();
-                                            if (null != testScenario.TestResults[trCounter].Error) {
-                                                row3["Error"] = testScenario.TestResults[trCounter].Error;
-                                            }
-                                            row3["Code"] = SQLiteHelper.PrepareEscapedString(testScenario.TestResults[trCounter].Code);
-                                            row3["Parameters"] = testScenario.TestResults[trCounter].Parameters;
-                                            row3["Timestamp"] = testScenario.TestResults[trCounter].Timestamp;
-                                            row3["TimeSpent"] = testScenario.TestResults[trCounter].TimeSpent;
-                                            row3["Generated"] = Convert.ToInt32(testScenario.TestResults[trCounter].Generated);
-                                            //row3["Screenshot"] = testScenario.TestResults[trCounter].Screenshot;
-                                            if (null != testScenario.TestResults[trCounter].Screenshot) {
-                                                byte[] screenshot = 
-                                                    GetScreenshotFromFileSystem(
-                                                        testScenario.TestResults[trCounter].Screenshot);
-                                                row3["Screenshot"] = screenshot;
-                                            }
-                                            row3["StatusId"] = (int)testScenario.TestResults[trCounter].enStatus;
-                                            
-                                            row3["Description"] = SQLiteHelper.PrepareEscapedString(testScenario.TestResults[trCounter].Description);
-                                            
-                                            tbl3.Rows.Add(row3);
-                                        }
-                                    }
-                                }
-                                */
-                                cmdlet.WriteVerbose(cmdlet, "38");
-                                adp3.Update(tbl3);
-                                cmdlet.WriteVerbose(cmdlet, "39");
-                                //dbTrans.Commit();
-                                cmdlet.WriteVerbose(cmdlet, "40");
-                            }
-                        }
-                    }
-                }
-                
-                
-                cmdlet.WriteVerbose(cmdlet, "41");
-                using (DbDataAdapter adp4 = factory.CreateDataAdapter()) {
-                    
-                    cmdlet.WriteVerbose(cmdlet, "42");
-                    using (var cmd4 = connection.CreateCommand()) {
-                        
-                        cmdlet.WriteVerbose(cmdlet, "43");
-                        cmd4.Transaction = dbTrans;
-                        cmd4.CommandText = "SELECT * FROM TestResultDetails WHERE 1 = 2";
-                        cmdlet.WriteVerbose(cmdlet, "45");
-                        // 20140717
-                        // adp4.SelectCommand = cmd4;
-                        adp4.SelectCommand = cmd4 as DbCommand;
-                        
-                        cmdlet.WriteVerbose(cmdlet, "46");
-                        using (DbCommandBuilder bld4 = factory.CreateCommandBuilder()) {
-                            
-                            bld4.DataAdapter = adp4;
-                            
-                            cmdlet.WriteVerbose(cmdlet, "48");
-                            using (var tbl4 = new DataTable()) {
-                                
-                                cmdlet.WriteVerbose(cmdlet, "49");
-                                adp4.Fill(tbl4);
-                                //for (int n = 0; n < 10000; n++) {
-                                foreach (TestResult testResult in from testSuite in TestData.TestSuites from TestScenario testScenario in testSuite.TestScenarios from TestResult testResult in testScenario.TestResults select testResult)
-                                {
-                                    foreach (ITestResultDetail tResultDetail in testResult.Details)
-                                    {
-                                        var row4 = tbl4.NewRow();
-                                        //Id INTEGER PRIMARY KEY, TestResultId TEXT, TestResultDetailName TEXT, " +
-                                        //"TestResultDetail BLOB);"
-                                        row4["TestResultId"] = SQLiteHelper.PrepareEscapedString(testResult.Id);
-                                        row4["TestResultDetailName"] = SQLiteHelper.PrepareEscapedString(tResultDetail.Name);
-                                        row4["Timestamp"] = tResultDetail.Timestamp;
-                                        row4["TestResultDetail"] = SQLiteHelper.PrepareEscapedString(tResultDetail.GetDetail().ToString());
-                                        tbl4.Rows.Add(row4);
-                                    }
-                                }
-
-                                /*
-                                foreach (TestSuite testSuite in TestData.TestSuites) {
-                                    foreach (TestScenario testScenario in testSuite.TestScenarios) {
-                                        foreach (TestResult testResult in testScenario.TestResults) {
-                                            for (int trdCounter = 0; trdCounter < testResult.Details.Count; trdCounter++) {
-                                                DataRow row4 = tbl4.NewRow();
-                                                //Id INTEGER PRIMARY KEY, TestResultId TEXT, TestResultDetailName TEXT, " +
-                                                //"TestResultDetail BLOB);"
-                                                row4["TestResultId"] = SQLiteHelper.PrepareEscapedString(testResult.Id);
-                                                row4["TestResultDetailName"] = SQLiteHelper.PrepareEscapedString(testResult.Details[trdCounter].Name);
-                                                row4["Timestamp"] = testResult.Details[trdCounter].Timestamp;
-                                                row4["TestResultDetail"] = SQLiteHelper.PrepareEscapedString(testResult.Details[trdCounter].GetDetail().ToString());
-                                                tbl4.Rows.Add(row4);
-                                            }
-                                        }
-                                    }
-                                }
-                                */
-                                adp4.Update(tbl4);
-                                dbTrans.Commit();
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        // blocked due to the need to remove dependency on SQLite
+//        public static void BackupTestResults(PSCmdletBase cmdlet, string databaseName)
+//        {
+//            // 20120920
+//            // 20140717
+//            // SQLiteConnection connection = ConnectionMakeAlive(cmdlet, databaseName);
+//            var connection = ConnectionMakeAlive(cmdlet, databaseName);
+//
+//            DbProviderFactory factory = new SQLiteFactory();
+//
+//            cmdlet.WriteVerbose(cmdlet, "begin transaction");
+//            // 20140717
+//            // using (DbTransaction dbTrans = connection.BeginTransaction()) {
+//            using (var dbTrans = connection.BeginTransaction()) {
+//
+//                cmdlet.WriteVerbose(cmdlet, "creating a data adapter");
+//                using (DbDataAdapter adp1 = factory.CreateDataAdapter()) {
+//
+//                    cmdlet.WriteVerbose(cmdlet, "creating a command");
+//                    // 20140717
+//                    // using (DbCommand cmd1 = connection.CreateCommand()) {
+//                    using (var cmd1 = connection.CreateCommand()) {
+//
+//                        cmdlet.WriteVerbose(cmdlet, "1");
+//                        cmd1.Transaction = dbTrans;
+//
+//                        cmdlet.WriteVerbose(cmdlet, "2");
+//                        cmd1.CommandText = "SELECT * FROM TestSuites WHERE 1 = 2";
+//                        cmdlet.WriteVerbose(cmdlet, "3");
+//                        // 20140717
+//                        // adp1.SelectCommand = cmd1;
+//                        adp1.SelectCommand = cmd1 as DbCommand;
+//                        
+//                        cmdlet.WriteVerbose(cmdlet, "4");
+//                        using (var bld1 = factory.CreateCommandBuilder()) {
+//                            
+//                            cmdlet.WriteVerbose(cmdlet, "5");
+//                            bld1.DataAdapter = adp1;
+//                            
+//                            cmdlet.WriteVerbose(cmdlet, "6");
+//                            using (var tbl1 = new DataTable()) {
+//                                
+//                                cmdlet.WriteVerbose(cmdlet, "7");
+//                                adp1.Fill(tbl1);
+//                                //for (int n = 0; n < 10000; n++) {
+//                                cmdlet.WriteVerbose(cmdlet, "8");
+//                                foreach (var tSuite in TestData.TestSuites)
+//                                {
+//                                    cmdlet.WriteVerbose(cmdlet, "9");
+//                                    var row1 = tbl1.NewRow();
+//                                    //row[1] = n;
+//                                    //(Id INTEGER PRIMARY KEY, SuiteId TEXT, SuiteName TEXT, StatusId NUMERIC, Description TEXT);");
+//                                    row1["SuiteId"] = SQLiteHelper.PrepareEscapedString(tSuite.Id);
+//                                    row1["SuiteName"] = SQLiteHelper.PrepareEscapedString(tSuite.Name);
+//                                    row1["StatusId"] = (int)tSuite.enStatus;
+//                                    row1["Description"] = SQLiteHelper.PrepareEscapedString(tSuite.Description);
+//                                    tbl1.Rows.Add(row1);
+//                                }
+//
+//                                /*
+//                                for (int suiteCounter = 0; suiteCounter < TestData.TestSuites.Count; suiteCounter++) {
+//                                    cmdlet.WriteVerbose(cmdlet, "9");
+//                                    DataRow row1 = tbl1.NewRow();
+//                                    //row[1] = n;
+//                                    //(Id INTEGER PRIMARY KEY, SuiteId TEXT, SuiteName TEXT, StatusId NUMERIC, Description TEXT);");
+//                                    row1["SuiteId"] = SQLiteHelper.PrepareEscapedString(TestData.TestSuites[suiteCounter].Id);
+//                                    row1["SuiteName"] = SQLiteHelper.PrepareEscapedString(TestData.TestSuites[suiteCounter].Name);
+//                                    row1["StatusId"] = (int)TestData.TestSuites[suiteCounter].enStatus;
+//                                    row1["Description"] = SQLiteHelper.PrepareEscapedString(TestData.TestSuites[suiteCounter].Description);
+//                                    tbl1.Rows.Add(row1);
+//                                }
+//                                */
+//                                cmdlet.WriteVerbose(cmdlet, "12");
+//                                cmdlet.WriteVerbose(cmdlet, tbl1.Rows.Count.ToString() + " rows");
+//                                adp1.Update(tbl1);
+//                                cmdlet.WriteVerbose(cmdlet, tbl1.Rows.Count.ToString() + " rows");
+//                                cmdlet.WriteVerbose(cmdlet, "14");
+//                                //dbTrans.Commit();
+//                            }
+//                        }
+//                    }
+//                }
+//                
+//                cmdlet.WriteVerbose(cmdlet, "15");
+//                using (DbDataAdapter adp2 = factory.CreateDataAdapter()) {
+//                    
+//                    cmdlet.WriteVerbose(cmdlet, "16");
+//                    using (var cmd2 = connection.CreateCommand()) {
+//                        
+//                        cmdlet.WriteVerbose(cmdlet, "17");
+//                        cmd2.Transaction = dbTrans;
+//                        cmd2.CommandText = "SELECT * FROM TestScenarios WHERE 1 = 2";
+//                        cmdlet.WriteVerbose(cmdlet, "19");
+//                        // 20140717
+//                        // adp2.SelectCommand = cmd2;
+//                        adp2.SelectCommand = cmd2 as DbCommand;
+//                        cmdlet.WriteVerbose(cmdlet, "20");
+//                        using (DbCommandBuilder bld2 = factory.CreateCommandBuilder()) {
+//                            
+//                            cmdlet.WriteVerbose(cmdlet, "21");
+//                            bld2.DataAdapter = adp2;
+//                            cmdlet.WriteVerbose(cmdlet, "22");
+//                            using (var tbl2 = new DataTable()) {
+//                                
+//                                cmdlet.WriteVerbose(cmdlet, "23");
+//                                adp2.Fill(tbl2);
+//                                //for (int n = 0; n < 10000; n++) {
+//                                foreach (var testSuite in TestData.TestSuites) {
+//                                    foreach (var tScenario in testSuite.TestScenarios)
+//                                    {
+//                                        DataRow row2 = tbl2.NewRow();
+//                                        //row[1] = n;
+//                                        //Id INTEGER PRIMARY KEY, SuiteId TEXT, ScenarioId TEXT, ScenarioName TEXT, StatusId NUMERIC, Description TEXT);");
+//                                        row2["SuiteId"] = SQLiteHelper.PrepareEscapedString(tScenario.SuiteId);
+//                                        row2["ScenarioId"] = SQLiteHelper.PrepareEscapedString(tScenario.Id);
+//                                        row2["ScenarioName"] = SQLiteHelper.PrepareEscapedString(tScenario.Name);
+//                                        //row["StatusId"] = (int)testSuite.TestScenarios[scenarioCounter].
+//                                        row2["Description"] = SQLiteHelper.PrepareEscapedString(tScenario.Description);
+//                                        tbl2.Rows.Add(row2);
+//                                    }
+//
+//                                    /*
+//                                    for (int scenarioCounter = 0; scenarioCounter < testSuite.TestScenarios.Count; scenarioCounter++) {
+//                                        DataRow row2 = tbl2.NewRow();
+//                                        //row[1] = n;
+//                                        //Id INTEGER PRIMARY KEY, SuiteId TEXT, ScenarioId TEXT, ScenarioName TEXT, StatusId NUMERIC, Description TEXT);");
+//                                        row2["SuiteId"] = SQLiteHelper.PrepareEscapedString(testSuite.TestScenarios[scenarioCounter].SuiteId);
+//                                        row2["ScenarioId"] = SQLiteHelper.PrepareEscapedString(testSuite.TestScenarios[scenarioCounter].Id);
+//                                        row2["ScenarioName"] = SQLiteHelper.PrepareEscapedString(testSuite.TestScenarios[scenarioCounter].Name);
+//                                        //row["StatusId"] = (int)testSuite.TestScenarios[scenarioCounter].
+//                                        row2["Description"] = SQLiteHelper.PrepareEscapedString(testSuite.TestScenarios[scenarioCounter].Description);
+//                                        tbl2.Rows.Add(row2);
+//                                    }
+//                                    */
+//                                }
+//                                cmdlet.WriteVerbose(cmdlet, "27");
+//                                adp2.Update(tbl2);
+//                                cmdlet.WriteVerbose(cmdlet, "28");
+//                                //dbTrans.Commit();
+//                            }
+//                        }
+//                    }
+//                }
+//                
+//                cmdlet.WriteVerbose(cmdlet, "29");
+//                using (DbDataAdapter adp3 = factory.CreateDataAdapter()) {
+//                    
+//                    cmdlet.WriteVerbose(cmdlet, "30");
+//                    using (var cmd3 = connection.CreateCommand()) {
+//                        
+//                        cmdlet.WriteVerbose(cmdlet, "31");
+//                        cmd3.Transaction = dbTrans;
+//                        cmd3.CommandText = "SELECT * FROM TestResults WHERE 1 = 2";
+//                        // 20140717
+//                        // adp3.SelectCommand = cmd3;
+//                        adp3.SelectCommand = cmd3 as DbCommand;
+//                        
+//                        cmdlet.WriteVerbose(cmdlet, "34");
+//                        using (DbCommandBuilder bld3 = factory.CreateCommandBuilder()) {
+//                            
+//                            cmdlet.WriteVerbose(cmdlet, "35");
+//                            bld3.DataAdapter = adp3;
+//                            
+//                            cmdlet.WriteVerbose(cmdlet, "36");
+//                            using (var tbl3 = new DataTable()) {
+//                                
+//                                cmdlet.WriteVerbose(cmdlet, "37");
+//                                adp3.Fill(tbl3);
+//                                //for (int n = 0; n < 10000; n++) {
+//                                foreach (TestScenario testScenario in TestData.TestSuites.SelectMany(testSuite => testSuite.TestScenarios.Cast<TestScenario>()))
+//                                {
+//                                    foreach (ITestResult tResult in testScenario.TestResults)
+//                                    {
+//                                        DataRow row3= tbl3.NewRow();
+//                                        //row[1] = n;
+//                                        //Id INTEGER PRIMARY KEY, TestResultId TEXT, TestResultName TEXT, " +
+//                                        //"StatusId NUMERIC, Description TEXT, ScriptName TEXT, LineNumber NUMERIC, " +
+//                                        //"Position NUMERIC, Error BLOB, Code TEXT, Description TEXT, Parameters BLOB, " +
+//                                        //"SuiteId TEXT, ScenarioId TEXT, Timestamp TEXT, TimeSpent NUMERIC, Generated NUMERIC, Screenshot TEXT);");
+//                                        row3["SuiteId"] = SQLiteHelper.PrepareEscapedString(tResult.SuiteId);
+//                                        row3["ScenarioId"] = SQLiteHelper.PrepareEscapedString(tResult.ScenarioId);
+//
+//                                        row3["TestResultId"] = SQLiteHelper.PrepareEscapedString(tResult.Id);
+//                                        row3["TestResultName"] = SQLiteHelper.PrepareEscapedString(SQLiteHelper.PrepareEscapedString(tResult.Name));
+//                                        row3["ScriptName"] = SQLiteHelper.PrepareEscapedString(tResult.ScriptName);
+//                                        row3["LineNumber"] = tResult.LineNumber.ToString();
+//                                        row3["Position"] = tResult.Position.ToString();
+//                                        if (null != tResult.Error)
+//                                        {
+//                                            row3["Error"] = tResult.Error;
+//                                        }
+//                                        row3["Code"] = SQLiteHelper.PrepareEscapedString(tResult.Code);
+//                                        row3["Parameters"] = tResult.Parameters;
+//                                        row3["Timestamp"] = tResult.Timestamp;
+//                                        row3["TimeSpent"] = tResult.TimeSpent;
+//                                        row3["Generated"] = Convert.ToInt32(tResult.Generated);
+//                                        //row3["Screenshot"] = testScenario.TestResults[trCounter].Screenshot;
+//                                        if (null != tResult.Screenshot)
+//                                        {
+//                                            byte[] screenshot = 
+//                                                GetScreenshotFromFileSystem(
+//                                                    tResult.Screenshot);
+//                                            row3["Screenshot"] = screenshot;
+//                                        }
+//                                        row3["StatusId"] = (int)tResult.enStatus;
+//
+//                                        row3["Description"] = SQLiteHelper.PrepareEscapedString(tResult.Description);
+//                                            
+//                                        tbl3.Rows.Add(row3);
+//                                    }
+//                                }
+//
+//                                /*
+//                                foreach (TestSuite testSuite in TestData.TestSuites) {
+//                                    foreach (TestScenario testScenario in testSuite.TestScenarios) {
+//                                        for (int trCounter = 0; trCounter < testScenario.TestResults.Count; trCounter++) {
+//                                            DataRow row3= tbl3.NewRow();
+//                                            //row[1] = n;
+//                                            //Id INTEGER PRIMARY KEY, TestResultId TEXT, TestResultName TEXT, " +
+//                            //"StatusId NUMERIC, Description TEXT, ScriptName TEXT, LineNumber NUMERIC, " +
+//                            //"Position NUMERIC, Error BLOB, Code TEXT, Description TEXT, Parameters BLOB, " +
+//                            //"SuiteId TEXT, ScenarioId TEXT, Timestamp TEXT, TimeSpent NUMERIC, Generated NUMERIC, Screenshot TEXT);");
+//                                            row3["SuiteId"] = SQLiteHelper.PrepareEscapedString(testScenario.TestResults[trCounter].SuiteId);
+//                                            row3["ScenarioId"] = SQLiteHelper.PrepareEscapedString(testScenario.TestResults[trCounter].ScenarioId);
+//                                            
+//                                            row3["TestResultId"] = SQLiteHelper.PrepareEscapedString(testScenario.TestResults[trCounter].Id);
+//                                            row3["TestResultName"] = SQLiteHelper.PrepareEscapedString(SQLiteHelper.PrepareEscapedString(testScenario.TestResults[trCounter].Name));
+//                                            row3["ScriptName"] = SQLiteHelper.PrepareEscapedString(testScenario.TestResults[trCounter].ScriptName);
+//                                            row3["LineNumber"] = testScenario.TestResults[trCounter].LineNumber.ToString();
+//                                            row3["Position"] = testScenario.TestResults[trCounter].Position.ToString();
+//                                            if (null != testScenario.TestResults[trCounter].Error) {
+//                                                row3["Error"] = testScenario.TestResults[trCounter].Error;
+//                                            }
+//                                            row3["Code"] = SQLiteHelper.PrepareEscapedString(testScenario.TestResults[trCounter].Code);
+//                                            row3["Parameters"] = testScenario.TestResults[trCounter].Parameters;
+//                                            row3["Timestamp"] = testScenario.TestResults[trCounter].Timestamp;
+//                                            row3["TimeSpent"] = testScenario.TestResults[trCounter].TimeSpent;
+//                                            row3["Generated"] = Convert.ToInt32(testScenario.TestResults[trCounter].Generated);
+//                                            //row3["Screenshot"] = testScenario.TestResults[trCounter].Screenshot;
+//                                            if (null != testScenario.TestResults[trCounter].Screenshot) {
+//                                                byte[] screenshot = 
+//                                                    GetScreenshotFromFileSystem(
+//                                                        testScenario.TestResults[trCounter].Screenshot);
+//                                                row3["Screenshot"] = screenshot;
+//                                            }
+//                                            row3["StatusId"] = (int)testScenario.TestResults[trCounter].enStatus;
+//                                            
+//                                            row3["Description"] = SQLiteHelper.PrepareEscapedString(testScenario.TestResults[trCounter].Description);
+//                                            
+//                                            tbl3.Rows.Add(row3);
+//                                        }
+//                                    }
+//                                }
+//                                */
+//                                cmdlet.WriteVerbose(cmdlet, "38");
+//                                adp3.Update(tbl3);
+//                                cmdlet.WriteVerbose(cmdlet, "39");
+//                                //dbTrans.Commit();
+//                                cmdlet.WriteVerbose(cmdlet, "40");
+//                            }
+//                        }
+//                    }
+//                }
+//                
+//                
+//                cmdlet.WriteVerbose(cmdlet, "41");
+//                using (DbDataAdapter adp4 = factory.CreateDataAdapter()) {
+//                    
+//                    cmdlet.WriteVerbose(cmdlet, "42");
+//                    using (var cmd4 = connection.CreateCommand()) {
+//                        
+//                        cmdlet.WriteVerbose(cmdlet, "43");
+//                        cmd4.Transaction = dbTrans;
+//                        cmd4.CommandText = "SELECT * FROM TestResultDetails WHERE 1 = 2";
+//                        cmdlet.WriteVerbose(cmdlet, "45");
+//                        // 20140717
+//                        // adp4.SelectCommand = cmd4;
+//                        adp4.SelectCommand = cmd4 as DbCommand;
+//                        
+//                        cmdlet.WriteVerbose(cmdlet, "46");
+//                        using (DbCommandBuilder bld4 = factory.CreateCommandBuilder()) {
+//                            
+//                            bld4.DataAdapter = adp4;
+//                            
+//                            cmdlet.WriteVerbose(cmdlet, "48");
+//                            using (var tbl4 = new DataTable()) {
+//                                
+//                                cmdlet.WriteVerbose(cmdlet, "49");
+//                                adp4.Fill(tbl4);
+//                                //for (int n = 0; n < 10000; n++) {
+//                                foreach (TestResult testResult in from testSuite in TestData.TestSuites from TestScenario testScenario in testSuite.TestScenarios from TestResult testResult in testScenario.TestResults select testResult)
+//                                {
+//                                    foreach (ITestResultDetail tResultDetail in testResult.Details)
+//                                    {
+//                                        var row4 = tbl4.NewRow();
+//                                        //Id INTEGER PRIMARY KEY, TestResultId TEXT, TestResultDetailName TEXT, " +
+//                                        //"TestResultDetail BLOB);"
+//                                        row4["TestResultId"] = SQLiteHelper.PrepareEscapedString(testResult.Id);
+//                                        row4["TestResultDetailName"] = SQLiteHelper.PrepareEscapedString(tResultDetail.Name);
+//                                        row4["Timestamp"] = tResultDetail.Timestamp;
+//                                        row4["TestResultDetail"] = SQLiteHelper.PrepareEscapedString(tResultDetail.GetDetail().ToString());
+//                                        tbl4.Rows.Add(row4);
+//                                    }
+//                                }
+//
+//                                /*
+//                                foreach (TestSuite testSuite in TestData.TestSuites) {
+//                                    foreach (TestScenario testScenario in testSuite.TestScenarios) {
+//                                        foreach (TestResult testResult in testScenario.TestResults) {
+//                                            for (int trdCounter = 0; trdCounter < testResult.Details.Count; trdCounter++) {
+//                                                DataRow row4 = tbl4.NewRow();
+//                                                //Id INTEGER PRIMARY KEY, TestResultId TEXT, TestResultDetailName TEXT, " +
+//                                                //"TestResultDetail BLOB);"
+//                                                row4["TestResultId"] = SQLiteHelper.PrepareEscapedString(testResult.Id);
+//                                                row4["TestResultDetailName"] = SQLiteHelper.PrepareEscapedString(testResult.Details[trdCounter].Name);
+//                                                row4["Timestamp"] = testResult.Details[trdCounter].Timestamp;
+//                                                row4["TestResultDetail"] = SQLiteHelper.PrepareEscapedString(testResult.Details[trdCounter].GetDetail().ToString());
+//                                                tbl4.Rows.Add(row4);
+//                                            }
+//                                        }
+//                                    }
+//                                }
+//                                */
+//                                adp4.Update(tbl4);
+//                                dbTrans.Commit();
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
         
         internal static string PrepareEscapedString(string inputString)
         {
@@ -1076,79 +1084,80 @@ namespace Tmx
         #endregion Test Result
         
         #region Bucket
-        public static void CreateBucket(
-            PSCmdletBase cmdlet, 
-            string[] bucketNames,
-            string[] bucketTags,
-            string[] bucketDescriptions)
-        {
-            
-            try {
-                checkConnection(TestData.CurrentStructureDB.Connection);
-                
-                DbProviderFactory factory = new SQLiteFactory();
-            
-                cmdlet.WriteVerbose(cmdlet, "begin transaction");
-                // 20140717
-//                using (DbTransaction dbTrans = 
-//                       TestData.CurrentStructureDB.Connection.BeginTransaction()) {
-                using (var dbTrans = TestData.CurrentStructureDB.Connection.BeginTransaction()) {
-                    
-                    cmdlet.WriteVerbose(cmdlet, "creating a data adapter");
-                    using (DbDataAdapter adpBucket = factory.CreateDataAdapter()) {
-                        
-                        cmdlet.WriteVerbose(cmdlet, "creating a command");
-                        using (var cmd1 = TestData.CurrentStructureDB.Connection.CreateCommand()) {
-                            
-                            cmd1.Transaction = dbTrans;
-                            cmd1.CommandText = "SELECT * FROM TestBuckets WHERE 1 = 2";
-                            // 20140717
-                            // adpBucket.SelectCommand = cmd1;
-                            adpBucket.SelectCommand = cmd1 as DbCommand;
-                            
-                            using (DbCommandBuilder bldBucket = factory.CreateCommandBuilder()) {
-                                
-                                bldBucket.DataAdapter = adpBucket;
-                                
-                                using (var tblBucket = new DataTable()) {
-                                    
-                                    adpBucket.Fill(tblBucket);
-
-                                    for (int i = 0; i < bucketNames.Length; i++) {
-                                        var rowBucket = tblBucket.NewRow();
-                                        rowBucket["BucketName"] = bucketNames[i];
-                                        rowBucket["BucketTag"] = bucketTags[i];
-                                        rowBucket["Description"] = bucketDescriptions[i];
-                                        tblBucket.Rows.Add(rowBucket);
-                                        
-                                        var bucket =
-                                            new TestBucket(
-                                                bucketNames[i],
-                                                bucketTags[i],
-                                                bucketDescriptions[i]);
-                                        bucket.BucketId = (int)rowBucket["BucketId"];
-                                    }
-                                    cmdlet.WriteVerbose(cmdlet, "12");
-                                    cmdlet.WriteVerbose(cmdlet, tblBucket.Rows.Count.ToString() + " rows");
-                                    adpBucket.Update(tblBucket);
-                                    cmdlet.WriteVerbose(cmdlet, tblBucket.Rows.Count.ToString() + " rows");
-                                    cmdlet.WriteVerbose(cmdlet, "14");
-                                }
-                            }
-                        }
-                    }
-                    dbTrans.Commit();
-                }
-            }
-            catch (Exception eCreateBucket) {
-                cmdlet.WriteError(cmdlet,
-                                  "Failed to create test bucket(s). " +
-                                  eCreateBucket.Message,
-                                  "CreateBucketFailed",
-                                  ErrorCategory.InvalidOperation,
-                                  true);
-            }
-        }
+        // blocked due to the need to remove dependency on SQLite
+//        public static void CreateBucket(
+//            PSCmdletBase cmdlet, 
+//            string[] bucketNames,
+//            string[] bucketTags,
+//            string[] bucketDescriptions)
+//        {
+//            
+//            try {
+//                checkConnection(TestData.CurrentStructureDB.Connection);
+//                
+//                DbProviderFactory factory = new SQLiteFactory();
+//            
+//                cmdlet.WriteVerbose(cmdlet, "begin transaction");
+//                // 20140717
+////                using (DbTransaction dbTrans = 
+////                       TestData.CurrentStructureDB.Connection.BeginTransaction()) {
+//                using (var dbTrans = TestData.CurrentStructureDB.Connection.BeginTransaction()) {
+//                    
+//                    cmdlet.WriteVerbose(cmdlet, "creating a data adapter");
+//                    using (DbDataAdapter adpBucket = factory.CreateDataAdapter()) {
+//                        
+//                        cmdlet.WriteVerbose(cmdlet, "creating a command");
+//                        using (var cmd1 = TestData.CurrentStructureDB.Connection.CreateCommand()) {
+//                            
+//                            cmd1.Transaction = dbTrans;
+//                            cmd1.CommandText = "SELECT * FROM TestBuckets WHERE 1 = 2";
+//                            // 20140717
+//                            // adpBucket.SelectCommand = cmd1;
+//                            adpBucket.SelectCommand = cmd1 as DbCommand;
+//                            
+//                            using (DbCommandBuilder bldBucket = factory.CreateCommandBuilder()) {
+//                                
+//                                bldBucket.DataAdapter = adpBucket;
+//                                
+//                                using (var tblBucket = new DataTable()) {
+//                                    
+//                                    adpBucket.Fill(tblBucket);
+//
+//                                    for (int i = 0; i < bucketNames.Length; i++) {
+//                                        var rowBucket = tblBucket.NewRow();
+//                                        rowBucket["BucketName"] = bucketNames[i];
+//                                        rowBucket["BucketTag"] = bucketTags[i];
+//                                        rowBucket["Description"] = bucketDescriptions[i];
+//                                        tblBucket.Rows.Add(rowBucket);
+//                                        
+//                                        var bucket =
+//                                            new TestBucket(
+//                                                bucketNames[i],
+//                                                bucketTags[i],
+//                                                bucketDescriptions[i]);
+//                                        bucket.BucketId = (int)rowBucket["BucketId"];
+//                                    }
+//                                    cmdlet.WriteVerbose(cmdlet, "12");
+//                                    cmdlet.WriteVerbose(cmdlet, tblBucket.Rows.Count.ToString() + " rows");
+//                                    adpBucket.Update(tblBucket);
+//                                    cmdlet.WriteVerbose(cmdlet, tblBucket.Rows.Count.ToString() + " rows");
+//                                    cmdlet.WriteVerbose(cmdlet, "14");
+//                                }
+//                            }
+//                        }
+//                    }
+//                    dbTrans.Commit();
+//                }
+//            }
+//            catch (Exception eCreateBucket) {
+//                cmdlet.WriteError(cmdlet,
+//                                  "Failed to create test bucket(s). " +
+//                                  eCreateBucket.Message,
+//                                  "CreateBucketFailed",
+//                                  ErrorCategory.InvalidOperation,
+//                                  true);
+//            }
+//        }
         
         public static void DeleteBucket(PSCmdletBase cmdlet, string[] bucketNames)
         {
@@ -1173,84 +1182,85 @@ namespace Tmx
         #endregion Bucket
         
         #region Constant
-        public static void CreateConstant(
-            PSCmdletBase cmdlet,
-            //int testBucketId,
-            ITestBucket bucket,
-            string[] constantNames, 
-            object[] constantValues,
-            System.Type[] constantTypes)
-        {
-            try {
-                checkConnection(TestData.CurrentStructureDB.Connection);
-                
-                DbProviderFactory factory = new SQLiteFactory();
-            
-                cmdlet.WriteVerbose(cmdlet, "begin transaction");
-                // 20140717
-//                using (DbTransaction dbTrans =
-//                       TestData.CurrentStructureDB.Connection.BeginTransaction()) {
-                using (var dbTrans = TestData.CurrentStructureDB.Connection.BeginTransaction()) {
-                    
-                    cmdlet.WriteVerbose(cmdlet, "creating a data adapter");
-                    using (var adpConstant = factory.CreateDataAdapter()) {
-                        
-                        cmdlet.WriteVerbose(cmdlet, "creating a command");
-                        // 20140717
-                        using (var cmd1 = TestData.CurrentStructureDB.Connection.CreateCommand()) {
-                            
-                            cmd1.Transaction = dbTrans;
-                            cmd1.CommandText = "SELECT * FROM TestConstants WHERE 1 = 2";
-                            // 20140717
-                            // adpConstant.SelectCommand = cmd1;
-                            adpConstant.SelectCommand = cmd1 as DbCommand;
-                            
-                            using (DbCommandBuilder bldConstant = factory.CreateCommandBuilder()) {
-                                
-                                bldConstant.DataAdapter = adpConstant;
-                                
-                                using (var tblConstant = new DataTable()) {
-                                    
-                                    adpConstant.Fill(tblConstant);
-
-                                    for (int i = 0; i < constantNames.Length; i++) {
-                                        DataRow rowConstant = tblConstant.NewRow();
-                                        rowConstant["ConstantName"] = constantNames[i];
-                                        //rowConstant["ConstantTag"] = constantTags[i];
-                                        //rowConstant["Description"] = constantDescriptions[i];
-                                        rowConstant["ConstantValue"] = constantValues[i];
-                                        rowConstant["ConstantType"] = constantTypes[i];
-                                        rowConstant["BucketId"] = bucket.BucketId;
-                                        tblConstant.Rows.Add(rowConstant);
-                                        
-                                        ITestConstant constant =
-                                            new TestConstant(
-                                                constantNames[i],
-                                                constantValues[i],
-                                                constantTypes[i]);
-                                        constant.BucketId = bucket.BucketId;
-                                    }
-                                    cmdlet.WriteVerbose(cmdlet, "12");
-                                    cmdlet.WriteVerbose(cmdlet, tblConstant.Rows.Count.ToString() + " rows");
-                                    adpConstant.Update(tblConstant);
-                                    cmdlet.WriteVerbose(cmdlet, tblConstant.Rows.Count.ToString() + " rows");
-                                    cmdlet.WriteVerbose(cmdlet, "14");
-                                }
-                            }
-                        }
-                    }
-                    dbTrans.Commit();
-                }
-            }
-            catch (Exception eCreateConstant) {
-                cmdlet.WriteError(cmdlet,
-                                  "Failed to create test constant(s). " +
-                                  eCreateConstant.Message,
-                                  "CreateConstantFailed",
-                                  ErrorCategory.InvalidOperation,
-                                  true);
-            }
-        }
+        // blocked due to the need to remove dependency on SQLite
+//        public static void CreateConstant(
+//            PSCmdletBase cmdlet,
+//            //int testBucketId,
+//            ITestBucket bucket,
+//            string[] constantNames, 
+//            object[] constantValues,
+//            System.Type[] constantTypes)
+//        {
+//            try {
+//                checkConnection(TestData.CurrentStructureDB.Connection);
+//                
+//                DbProviderFactory factory = new SQLiteFactory();
+//            
+//                cmdlet.WriteVerbose(cmdlet, "begin transaction");
+//                // 20140717
+////                using (DbTransaction dbTrans =
+////                       TestData.CurrentStructureDB.Connection.BeginTransaction()) {
+//                using (var dbTrans = TestData.CurrentStructureDB.Connection.BeginTransaction()) {
+//                    
+//                    cmdlet.WriteVerbose(cmdlet, "creating a data adapter");
+//                    using (var adpConstant = factory.CreateDataAdapter()) {
+//                        
+//                        cmdlet.WriteVerbose(cmdlet, "creating a command");
+//                        // 20140717
+//                        using (var cmd1 = TestData.CurrentStructureDB.Connection.CreateCommand()) {
+//                            
+//                            cmd1.Transaction = dbTrans;
+//                            cmd1.CommandText = "SELECT * FROM TestConstants WHERE 1 = 2";
+//                            // 20140717
+//                            // adpConstant.SelectCommand = cmd1;
+//                            adpConstant.SelectCommand = cmd1 as DbCommand;
+//                            
+//                            using (DbCommandBuilder bldConstant = factory.CreateCommandBuilder()) {
+//                                
+//                                bldConstant.DataAdapter = adpConstant;
+//                                
+//                                using (var tblConstant = new DataTable()) {
+//                                    
+//                                    adpConstant.Fill(tblConstant);
+//
+//                                    for (int i = 0; i < constantNames.Length; i++) {
+//                                        DataRow rowConstant = tblConstant.NewRow();
+//                                        rowConstant["ConstantName"] = constantNames[i];
+//                                        //rowConstant["ConstantTag"] = constantTags[i];
+//                                        //rowConstant["Description"] = constantDescriptions[i];
+//                                        rowConstant["ConstantValue"] = constantValues[i];
+//                                        rowConstant["ConstantType"] = constantTypes[i];
+//                                        rowConstant["BucketId"] = bucket.BucketId;
+//                                        tblConstant.Rows.Add(rowConstant);
+//                                        
+//                                        ITestConstant constant =
+//                                            new TestConstant(
+//                                                constantNames[i],
+//                                                constantValues[i],
+//                                                constantTypes[i]);
+//                                        constant.BucketId = bucket.BucketId;
+//                                    }
+//                                    cmdlet.WriteVerbose(cmdlet, "12");
+//                                    cmdlet.WriteVerbose(cmdlet, tblConstant.Rows.Count.ToString() + " rows");
+//                                    adpConstant.Update(tblConstant);
+//                                    cmdlet.WriteVerbose(cmdlet, tblConstant.Rows.Count.ToString() + " rows");
+//                                    cmdlet.WriteVerbose(cmdlet, "14");
+//                                }
+//                            }
+//                        }
+//                    }
+//                    dbTrans.Commit();
+//                }
+//            }
+//            catch (Exception eCreateConstant) {
+//                cmdlet.WriteError(cmdlet,
+//                                  "Failed to create test constant(s). " +
+//                                  eCreateConstant.Message,
+//                                  "CreateConstantFailed",
+//                                  ErrorCategory.InvalidOperation,
+//                                  true);
+//            }
+//        }
         
         public static void DeleteConstant(PSCmdletBase cmdlet, string[] constantNames)
         {

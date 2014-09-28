@@ -11,8 +11,11 @@ namespace Tmx.Server
 {
     using System;
 	using Nancy;
+	using Nancy.Bootstrapper;
+	using Nancy.Conventions;
     using Nancy.Hosting.Self;
     using Nancy.Diagnostics;
+	using Nancy.TinyIoc;
 	using Tmx.Core;
     
     /// <summary>
@@ -47,10 +50,23 @@ namespace Tmx.Server
             CommonData.Data = new System.Collections.Generic.Dictionary<string, string>();
         }
         
+    	protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
+    	{
+    		
+    	}
+        
         protected override DiagnosticsConfiguration DiagnosticsConfiguration {
             get {
                 return new DiagnosticsConfiguration { Password = @"=1qwerty" };
             }
         }
+    	
+    	protected override void ConfigureConventions(NancyConventions conventions)
+    	{
+    		// base.ConfigureConventions(conventions);
+    		// conventions.StaticContentsConventions.Add(
+    		// 	StaticContentConventionBuilder.AddDirectory(@"C:\Projects\PS\STUPS\TMX\Tmx.Server.Runner\bin\Release35", "Root"));
+    		base.ConfigureConventions(conventions);
+    	}
     }
 }

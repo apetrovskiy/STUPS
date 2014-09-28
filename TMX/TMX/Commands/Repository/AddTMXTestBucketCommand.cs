@@ -24,7 +24,8 @@ namespace Tmx.Commands
         {
 			checkDatabaseInput(InputObject);
             
-			SQLiteHelper.CreateBucket(this, BucketName, Tag, Description);
+			// blocked due to the need to remove dependency on SQLite
+//			SQLiteHelper.CreateBucket(this, BucketName, Tag, Description);
         }
     }
 }

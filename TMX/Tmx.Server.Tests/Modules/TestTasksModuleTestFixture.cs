@@ -604,7 +604,6 @@ namespace Tmx.Server.Tests.Modules
         void WHEN_SendingDeregistration_as_json(ITestClient testClient)
         {
             var browser = TestFactory.GetBrowserForTestTasksModule();
-            // browser.Delete(UrnList.TestClients_Root + "/" + testClient.Id);
             browser.Delete(UrnList.TestClients_Root + "/" + testClient.Id, with => with.Accept("application/json"));
         }
         

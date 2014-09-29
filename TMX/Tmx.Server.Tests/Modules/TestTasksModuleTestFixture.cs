@@ -12,6 +12,7 @@ namespace Tmx.Server.Tests.Modules
     using System;
     using System.Linq;
     using System.Management.Automation;
+    using System.Threading.Tasks;
 	using Gallio.Model.Filters;
     using Nancy;
     using Nancy.Testing;
@@ -75,11 +76,7 @@ namespace Tmx.Server.Tests.Modules
             
             // Then
             THEN_HttpResponse_Is_Ok(response);
-            Xunit.Assert.Equal(task.Id, loadedTask.Id);
-            Xunit.Assert.Equal(task.Name, loadedTask.Name);
-            Xunit.Assert.Equal(task.TaskStatus, loadedTask.TaskStatus);
-            Xunit.Assert.Equal(task.TaskFinished, loadedTask.TaskFinished);
-            Xunit.Assert.Equal(task.IsActive, loadedTask.IsActive);
+            THEN_TestTask_Properties_Equal_To(task, loadedTask);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -171,11 +168,7 @@ namespace Tmx.Server.Tests.Modules
             
             // Then
             THEN_HttpResponse_Is_Ok(response);
-            Xunit.Assert.Equal(testTask02.Id, task.Id);
-            Xunit.Assert.Equal(testTask02.IsActive, task.IsActive);
-            Xunit.Assert.Equal(testTask02.TaskFinished, task.TaskFinished);
-            Xunit.Assert.Equal(testTask02.Name, task.Name);
-            // Xunit.Assert.Equal(testTask.Name, clientsetting
+            THEN_TestTask_Properties_Equal_To(testTask02, task);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -225,8 +218,6 @@ namespace Tmx.Server.Tests.Modules
             
             // Then
             THEN_HttpResponse_Is_NotFound(response);
-            // Xunit.Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-            // Xunit.Assert.Equal(testTask.Name, clientsetting
         }
         
     	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -296,10 +287,7 @@ namespace Tmx.Server.Tests.Modules
             
             // Then
             THEN_HttpResponse_Is_Ok(response);
-            Xunit.Assert.Equal(testTask03.Id, task.Id);
-            Xunit.Assert.Equal(testTask03.IsActive, task.IsActive);
-            Xunit.Assert.Equal(testTask03.TaskFinished, task.TaskFinished);
-            Xunit.Assert.Equal(testTask03.Name, task.Name);
+            THEN_TestTask_Properties_Equal_To(testTask03, task);
             Xunit.Assert.Equal(testTask03.Id, TaskPool.TasksForClients.OrderBy(t => t.Id).Skip(1).First().Id);
         }
         
@@ -369,8 +357,6 @@ namespace Tmx.Server.Tests.Modules
             
             // Then
             THEN_HttpResponse_Is_NotFound(response);
-            // Xunit.Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-            // Xunit.Assert.Equal(testTask.Name, clientsetting
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -446,13 +432,7 @@ namespace Tmx.Server.Tests.Modules
             var loadedTask = response.Body.DeserializeJson<TestTask>();
             
             // Then
-            Xunit.Assert.Equal(null, loadedTask);
-//            THEN_HttpResponse_Is_Ok(response);
-//            Xunit.Assert.Equal(task.Id, loadedTask.Id);
-//            Xunit.Assert.Equal(task.Name, loadedTask.Name);
-//            Xunit.Assert.Equal(task.TaskStatus, loadedTask.TaskStatus);
-//            Xunit.Assert.Equal(task.TaskFinished, loadedTask.TaskFinished);
-//            Xunit.Assert.Equal(task.IsActive, loadedTask.IsActive);
+            THEN_TestTask_Is_Null(loadedTask);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -484,13 +464,7 @@ namespace Tmx.Server.Tests.Modules
             var loadedTask = response.Body.DeserializeJson<TestTask>();
             
             // Then
-            Xunit.Assert.Equal(null, loadedTask);
-//            THEN_HttpResponse_Is_Ok(response);
-//            Xunit.Assert.Equal(task.Id, loadedTask.Id);
-//            Xunit.Assert.Equal(task.Name, loadedTask.Name);
-//            Xunit.Assert.Equal(task.TaskStatus, loadedTask.TaskStatus);
-//            Xunit.Assert.Equal(task.TaskFinished, loadedTask.TaskFinished);
-//            Xunit.Assert.Equal(task.IsActive, loadedTask.IsActive);
+            THEN_TestTask_Is_Null(loadedTask);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -532,11 +506,7 @@ namespace Tmx.Server.Tests.Modules
             
             // Then
             THEN_HttpResponse_Is_Ok(response);
-            Xunit.Assert.Equal(task.Id, loadedTask.Id);
-            Xunit.Assert.Equal(task.Name, loadedTask.Name);
-            Xunit.Assert.Equal(task.TaskStatus, loadedTask.TaskStatus);
-            Xunit.Assert.Equal(task.TaskFinished, loadedTask.TaskFinished);
-            Xunit.Assert.Equal(task.IsActive, loadedTask.IsActive);
+            THEN_TestTask_Properties_Equal_To(task, loadedTask);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -621,6 +591,20 @@ namespace Tmx.Server.Tests.Modules
         void THEN_HttpResponse_Is_NotFound(BrowserResponse response)
         {
             Xunit.Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+        }
+        
+        void THEN_TestTask_Properties_Equal_To(ITestTask expectedTask, ITestTask actualTask)
+        {
+            Xunit.Assert.Equal(expectedTask.Id, actualTask.Id);
+            Xunit.Assert.Equal(expectedTask.Name, actualTask.Name);
+            Xunit.Assert.Equal(expectedTask.TaskStatus, actualTask.TaskStatus);
+            Xunit.Assert.Equal(expectedTask.TaskFinished, actualTask.TaskFinished);
+            Xunit.Assert.Equal(expectedTask.IsActive, actualTask.IsActive);
+        }
+        
+        void THEN_TestTask_Is_Null(ITestTask task)
+        {
+            Xunit.Assert.Equal(null, task);
         }
 	}
 }

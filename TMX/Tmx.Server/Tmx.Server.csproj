@@ -83,6 +83,7 @@
     </Compile>
     <Compile Include="Helpers\Control\InternalServerControl.cs" />
     <Compile Include="Helpers\Control\ServerControl.cs" />
+    <Compile Include="Helpers\Control\TmxServerRootPathProvider.cs" />
     <Compile Include="Helpers\Objects\TaskPool.cs" />
     <Compile Include="Helpers\ServerWatcher.cs" />
     <Compile Include="Helpers\TaskSelector.cs" />

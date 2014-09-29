@@ -41,7 +41,6 @@ namespace Tmx.Client
         
         public virtual void UnregisterClient()
         {
-            // 20140921
             closeCurrentTaskIfAny();
 			try {
 			    _restTemplate.Delete(UrnList.TestClients_Root + "/" + ClientSettings.Instance.ClientId);

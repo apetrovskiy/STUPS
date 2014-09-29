@@ -17,6 +17,7 @@ namespace Tmx.Server
     using Nancy.Diagnostics;
 	using Nancy.TinyIoc;
 	using Tmx.Core;
+    using Tmx.Server.Helpers.Control;
     
     /// <summary>
     /// Description of Control.
@@ -67,6 +68,11 @@ namespace Tmx.Server
     		// conventions.StaticContentsConventions.Add(
     		// 	StaticContentConventionBuilder.AddDirectory(@"C:\Projects\PS\STUPS\TMX\Tmx.Server.Runner\bin\Release35", "Root"));
     		base.ConfigureConventions(conventions);
+    	}
+    	
+    	protected override IRootPathProvider RootPathProvider
+    	{
+    	    get { return new TmxServerRootPathProvider(); }
     	}
     }
 }

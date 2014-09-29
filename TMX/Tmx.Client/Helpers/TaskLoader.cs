@@ -32,13 +32,14 @@ namespace Tmx.Client
 	    
 		public virtual ITestTask GetCurrentTask()
 		{
-            // 20140921
             if (0 == ClientSettings.Instance.ClientId)
-                throw new ClientNotRegisteredException("Client is not registered. Run the Register-TmxSystemUnderTest cmdlet");
+                throw new ClientNotRegisteredException("Client is not registered. Run the Register-TmxSystemUnderTest cmdlet first");
 			var gettingTaskResponse = _restTemplate.GetForMessage<TestTask>(UrnList.TestTasks_Root + "/" + ClientSettings.Instance.ClientId);
 			
 			var task = gettingTaskResponse.Body;
             if (HttpStatusCode.NotFound == gettingTaskResponse.StatusCode) return null; // a waiting task?
+            if (HttpStatusCode.ExpectationFailed == gettingTaskResponse.StatusCode)
+                throw new ClientNotRegisteredException("Client is not registered. Run the Register-TmxSystemUnderTest cmdlet first");
 			if (HttpStatusCode.OK == gettingTaskResponse.StatusCode) return acceptCurrentTask(task);
 			throw new LoadTaskException("Failed to load task. " + gettingTaskResponse.StatusCode);
 		}

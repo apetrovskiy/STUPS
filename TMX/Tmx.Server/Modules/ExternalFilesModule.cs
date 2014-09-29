@@ -24,6 +24,14 @@ namespace Tmx.Server.Modules
             Post[UrnList.ExternalFilesUploadPoint] = _ => {
                 
                 // need path
+                var fileValue = Request.Files.First().Value;
+                var fileName = Request.Files.First().Name;
+                var actualBytes = new byte[fileValue.Length];
+                fileValue.Read(actualBytes, 0, (int)fileValue.Length);
+                using (var writer = new BinaryWriter(File.Open(@"E:\20140905\dst\" + fileName, FileMode.Create))) {
+                    writer.Write(actualBytes);
+                }
+                return HttpStatusCode.NoContent;
                 
                 return HttpStatusCode.NoContent;
             };

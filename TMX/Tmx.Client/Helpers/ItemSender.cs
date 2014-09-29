@@ -41,12 +41,13 @@ namespace Tmx.Client
 	        return result;
 	    }
 	    
-        bool sendSingleFile(string sourcePath)
+        bool sendSingleFile(string sourcePath, string destinationPath)
         {
             var partsOfFile = new Dictionary<string, object>();
             var fileHttpEntity = new HttpEntity(new FileInfo(sourcePath));
             partsOfFile.Add("file", fileHttpEntity);
-            var pathHttpEntity = new HttpEntity(sourcePath.Substring(0, sourcePath.LastIndexOf('\\') + 1));
+            // var pathHttpEntity = new HttpEntity(sourcePath.Substring(0, sourcePath.LastIndexOf('\\') + 1));
+            var pathHttpEntity = new HttpEntity(destinationPath.Substring(0, destinationPath.LastIndexOf('\\') + 1));
             partsOfFile.Add("path", pathHttpEntity);
             var fileUploadResponse = _restTemplate.PostForMessage(UrnList.ExternalFiles_Root, partsOfFile);
             return HttpStatusCode.Created == fileUploadResponse.StatusCode;

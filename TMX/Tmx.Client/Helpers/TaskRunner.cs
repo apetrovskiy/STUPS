@@ -42,17 +42,12 @@ namespace Tmx.Client
             IDictionary<string, string> parameters,
             IDictionary<string, string> previousTaskResults)
         {
-            if (string.Empty == code)
-                return false;
-            var scriptblockParameters = 
-                (null == previousTaskResults || 0 == previousTaskResults.Count) ? 
+            if (string.Empty == code) return true;
+            
+            var scriptblockParameters =
                 new object[] {
-                    new object[]{ },
-                    parameters
-                } :
-                new object[] {
-                    previousTaskResults,
-                    parameters
+                    previousTaskResults ?? new Dictionary<string, string>(),
+                    parameters ?? new Dictionary<string, string>()
                 };
             
             try {

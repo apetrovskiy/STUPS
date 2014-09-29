@@ -14,6 +14,7 @@ namespace Tmx.Server.Modules
     using System.Linq;
 	using Nancy;
 	using Nancy.ModelBinding;
+    using Nancy.Responses.Negotiation;
 	using Tmx.Interfaces.Exceptions;
 	using Tmx.Interfaces.Server;
 	using Tmx.Core.Types.Remoting;
@@ -44,6 +45,8 @@ namespace Tmx.Server.Modules
         
 		Response returnTaskByClientId(int clientId)
 		{
+            if (ClientsCollection.Clients.All(client => client.Id != clientId))
+                return HttpStatusCode.ExpectationFailed;
 			var taskSorter = new TaskSelector();
 			ITestTask actualTask = taskSorter.GetFirstLegibleTask(clientId);
 			return null != actualTask ? Response.AsJson(actualTask).WithStatusCode(HttpStatusCode.OK) : HttpStatusCode.NotFound;
@@ -51,7 +54,6 @@ namespace Tmx.Server.Modules
 
 		HttpStatusCode updateTask(ITestTask loadedTask, int taskId)
 		{
-			// ITestTask loadedTask = this.Bind<TestTask>();
 			if (null == loadedTask)
 				throw new UpdateTaskException("Failed to update task with id = " + taskId);
 			var storedTask = TaskPool.TasksForClients.First(task => task.Id == taskId && task.ClientId == loadedTask.ClientId);
@@ -80,28 +82,20 @@ namespace Tmx.Server.Modules
         	return 0 == TaskPool.TasksForClients.Count ? HttpStatusCode.NotFound : Response.AsJson(TaskPool.TasksForClients).WithStatusCode(HttpStatusCode.OK);
         }
         
-        Response returnAllLoadedTasks()
+        Negotiator returnAllLoadedTasks()
         {
-        	return 0 == TaskPool.Tasks.Count ? HttpStatusCode.NotFound : Response.AsJson(TaskPool.Tasks).WithStatusCode(HttpStatusCode.OK);
+        	return 0 == TaskPool.Tasks.Count ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(TaskPool.Tasks).WithStatusCode(HttpStatusCode.OK);
         }
 
 		HttpStatusCode deleteAllocatedTaskById(int taskId)
 		{
-//			try {
-				TaskPool.TasksForClients.RemoveAll(task => task.Id == taskId);
-				return HttpStatusCode.NoContent;
-//			} catch {
-//				return HttpStatusCode.InternalServerError;
-//			}
+			TaskPool.TasksForClients.RemoveAll(task => task.Id == taskId);
+			return HttpStatusCode.NoContent;
 		}
 		HttpStatusCode deleteLoadedTaskById(int taskId)
 		{
-//			try {
-				TaskPool.Tasks.RemoveAll(task => task.Id == taskId);
-				return HttpStatusCode.NoContent;
-//			} catch {
-//				return HttpStatusCode.InternalServerError;
-//			}
+			TaskPool.Tasks.RemoveAll(task => task.Id == taskId);
+			return HttpStatusCode.NoContent;
 		}
     }
 }

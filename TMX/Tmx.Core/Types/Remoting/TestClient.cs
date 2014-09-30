@@ -39,6 +39,7 @@ namespace Tmx.Core
             UptimeSeconds = testPlatform.UptimeSeconds;
             Username = testPlatform.Username;
             UserDomainName = testPlatform.UserDomainName;
+            Status = TestClientStatuses.NoTasks;
 	    }
 	    
 		public int Id { get; set; }
@@ -59,5 +60,6 @@ namespace Tmx.Core
 		public string EnvironmentVersion { get; set; } // Environment.Version like 2.0.50727.8000
 		public int UptimeSeconds { get; set; } // Environment.TickCount / 1000
 		public string CustomString { get; set; }
+		public TestClientStatuses Status { get; set; }
 	}
 }

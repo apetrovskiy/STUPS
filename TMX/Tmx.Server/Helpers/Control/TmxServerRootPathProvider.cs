@@ -15,11 +15,11 @@ namespace Tmx.Server.Helpers.Control
     /// <summary>
     /// Description of TmxServerRootPathProvider.
     /// </summary>
-    public class TmxServerRootPathProvider : IRootPathProvider
-    {
-        public string GetRootPath()
-        {
-            return Environment.CurrentDirectory;
-        }
-    }
+//    public class TmxServerRootPathProvider : IRootPathProvider
+//    {
+//        public string GetRootPath()
+//        {
+//            return Environment.CurrentDirectory;
+//        }
+//    }
 }

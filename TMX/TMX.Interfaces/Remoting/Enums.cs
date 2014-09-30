@@ -32,4 +32,10 @@ namespace Tmx.Interfaces.Remoting
 	    Reset = 1,
 	    Stop = 2
 	}
+	
+	public enum TestClientStatuses
+	{
+	    WorkflowInProgress = 0,
+	    NoTasks = 1
+	}
 }

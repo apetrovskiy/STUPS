@@ -212,8 +212,8 @@
     <Compile Include="..\TMX\Commands\TestClient\SendTmxCommonDataItemCommand.cs">
       <Link>Commands\TestClient\SendTmxCommonDataItemCommand.cs</Link>
     </Compile>
-    <Compile Include="..\TMX\Commands\TestClient\SendTmxItemCommand.cs">
-      <Link>Commands\TestClient\SendTmxItemCommand.cs</Link>
+    <Compile Include="..\TMX\Commands\TestClient\SendTmxFileSystemItemCommand.cs">
+      <Link>Commands\TestClient\SendTmxFileSystemItemCommand.cs</Link>
     </Compile>
     <Compile Include="..\Tmx\Commands\TestClient\SendTmxTestTaskResultCommand.cs">
       <Link>Commands\TestClient\SendTmxTestTaskResultCommand.cs</Link>
@@ -440,8 +440,8 @@
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestClient\SendCommonDataItemCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\TestClient\SendCommonDataItemCommand.cs</Link>
     </Compile>
-    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestClient\SendItemCommand.cs">
-      <Link>Helpers\UnderlyingCode\Commands\TestClient\SendItemCommand.cs</Link>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestClient\SendFileSystemItemCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TestClient\SendFileSystemItemCommand.cs</Link>
     </Compile>
     <Compile Include="..\Tmx\Helpers\UnderlyingCode\Commands\TestClient\SendTestTaskResultCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\TestClient\SendTestTaskResultCommand.cs</Link>

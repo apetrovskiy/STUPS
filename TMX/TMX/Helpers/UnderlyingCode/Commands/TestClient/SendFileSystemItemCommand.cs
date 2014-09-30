@@ -15,19 +15,19 @@ namespace Tmx
     using Tmx.Commands;
     
     /// <summary>
-    /// Description of SendItemCommand.
+    /// Description of SendFileSystemItemCommand.
     /// </summary>
-    class SendItemCommand : TmxCommand
+    class SendFileSystemItemCommand : TmxCommand
     {
-        internal SendItemCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        internal SendFileSystemItemCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
         internal override void Execute()
         {
-            var cmdlet = (SendTmxItemCommand)Cmdlet;
+            var cmdlet = (SendTmxFileSystemItemCommand)Cmdlet;
             var itemSender = new ItemSender(new RestRequestCreator());
-            cmdlet.WriteObject(itemSender.SendFileSystemHierarchy(cmdlet.Path, cmdlet.Destination, cmdlet.Recurse));
+            cmdlet.WriteObject(itemSender.SendFileSystemHierarchy(cmdlet.Path, cmdlet.Destination, cmdlet.Recurse, cmdlet.Force));
         }
     }
 }

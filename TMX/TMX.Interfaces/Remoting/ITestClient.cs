@@ -17,5 +17,6 @@ namespace Tmx.Interfaces.Remoting
 	public interface ITestClient : ISystemInfo
 	{
 		int Id { get; set; }
+		TestClientStatuses Status { get; set; }
 	}
 }

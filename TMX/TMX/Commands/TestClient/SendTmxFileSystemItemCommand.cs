@@ -13,10 +13,10 @@ namespace Tmx.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of SendTmxItemCommand.
+    /// Description of SendTmxFileSystemItemCommand.
     /// </summary>
-    [Cmdlet(VerbsCommunications.Send, "TmxItem")]
-    public class SendTmxItemCommand : ClientCmdletBase
+    [Cmdlet(VerbsCommunications.Send, "TmxFileSystemItem")]
+    public class SendTmxFileSystemItemCommand : ClientCmdletBase
     {
         [Parameter(Mandatory = true,
                    Position = 0)]
@@ -29,9 +29,12 @@ namespace Tmx.Commands
         [Parameter(Mandatory = false)]
         public SwitchParameter Recurse { get; set; }
         
+        [Parameter(Mandatory = false)]
+        public SwitchParameter Force { get; set; }
+        
 		protected override void BeginProcessing()
 		{
-			var command = new SendItemCommand(this);
+			var command = new SendFileSystemItemCommand(this);
 			command.Execute();
 		}
     }

@@ -62,17 +62,17 @@ namespace Tmx.Server
             }
         }
     	
-    	protected override void ConfigureConventions(NancyConventions conventions)
-    	{
-    		// base.ConfigureConventions(conventions);
-    		// conventions.StaticContentsConventions.Add(
-    		// 	StaticContentConventionBuilder.AddDirectory(@"C:\Projects\PS\STUPS\TMX\Tmx.Server.Runner\bin\Release35", "Root"));
-    		base.ConfigureConventions(conventions);
-    	}
+//    	protected override void ConfigureConventions(NancyConventions conventions)
+//    	{
+//    		// base.ConfigureConventions(conventions);
+//    		// conventions.StaticContentsConventions.Add(
+//    		// 	StaticContentConventionBuilder.AddDirectory(@"C:\Projects\PS\STUPS\TMX\Tmx.Server.Runner\bin\Release35", "Root"));
+//    		base.ConfigureConventions(conventions);
+//    	}
     	
-    	protected override IRootPathProvider RootPathProvider
-    	{
-    	    get { return new TmxServerRootPathProvider(); }
-    	}
+//    	protected override IRootPathProvider RootPathProvider
+//    	{
+//    	    get { return new TmxServerRootPathProvider(); }
+//    	}
     }
 }

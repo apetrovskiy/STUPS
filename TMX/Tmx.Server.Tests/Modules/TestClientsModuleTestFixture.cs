@@ -52,6 +52,7 @@ namespace Tmx.Server.Tests.Modules
             THEN_Http_Response_Is_Created(response);
             THEN_Test_Client_Properties_Were_Applied(testClient);
             THEN_Id_Of_The_First_Client_Equals(response.Body.DeserializeJson<TestClient>().Id);
+            THEN_test_client_is_free(testClient);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -64,6 +65,7 @@ namespace Tmx.Server.Tests.Modules
             THEN_Http_Response_Is_Created(response);
             THEN_Test_Client_Properties_Were_Applied(testClient);
             THEN_Id_Of_The_First_Client_Equals(response.Body.DeserializeXml<TestClient>().Id);
+            THEN_test_client_is_free(testClient);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -77,6 +79,7 @@ namespace Tmx.Server.Tests.Modules
             THEN_Http_Response_Is_Created(response);
             THEN_Test_Client_Properties_Were_Applied(testClient02);
             THEN_Id_Of_The_First_Client_Equals(response.Body.DeserializeJson<TestClient>().Id);
+            THEN_test_client_is_free(testClient02);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -90,6 +93,7 @@ namespace Tmx.Server.Tests.Modules
             THEN_Http_Response_Is_Created(response);
             THEN_Test_Client_Properties_Were_Applied(testClient02);
             THEN_Id_Of_The_First_Client_Equals(response.Body.DeserializeXml<TestClient>().Id);
+            THEN_test_client_is_free(testClient02);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -216,6 +220,17 @@ namespace Tmx.Server.Tests.Modules
             Xunit.Assert.Equal(testClient.UptimeSeconds, ClientsCollection.Clients[testClientCounter].UptimeSeconds);
             Xunit.Assert.Equal(testClient.UserDomainName, ClientsCollection.Clients[testClientCounter].UserDomainName);
             Xunit.Assert.Equal(testClient.Username, ClientsCollection.Clients[testClientCounter].Username);
+        }
+        
+        // TODO: duplicated
+        void THEN_test_client_is_busy(ITestClient testClient)
+        {
+            Xunit.Assert.Equal(TestClientStatuses.WorkflowInProgress, testClient.Status);
+        }
+        
+        void THEN_test_client_is_free(ITestClient testClient)
+        {
+            Xunit.Assert.Equal(TestClientStatuses.NoTasks, testClient.Status);
         }
     }
 }

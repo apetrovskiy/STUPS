@@ -77,6 +77,7 @@ namespace Tmx.Server.Tests.Modules
             // Then
             THEN_HttpResponse_Is_Ok(response);
             THEN_TestTask_Properties_Equal_To(task, loadedTask);
+            THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == testClient.Id));
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -107,6 +108,7 @@ namespace Tmx.Server.Tests.Modules
             
             // Then
             THEN_HttpResponse_Is_NotFound(response);
+            THEN_test_client_is_free(testClient);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -169,10 +171,11 @@ namespace Tmx.Server.Tests.Modules
             // Then
             THEN_HttpResponse_Is_Ok(response);
             THEN_TestTask_Properties_Equal_To(testTask02, task);
+            THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == registeredClient.Id));
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_provide_the_second_task_if_the_client_does_not_match_the_rule()
+        public void Should_not_provide_the_second_task_if_the_client_does_not_match_the_rule()
         {
         	// Given
             var browser = TestFactory.GetBrowserForTestTasksModule();
@@ -289,10 +292,11 @@ namespace Tmx.Server.Tests.Modules
             THEN_HttpResponse_Is_Ok(response);
             THEN_TestTask_Properties_Equal_To(testTask03, task);
             Xunit.Assert.Equal(testTask03.Id, TaskPool.TasksForClients.OrderBy(t => t.Id).Skip(1).First().Id);
+            THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == registeredClient.Id));
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_provide_the_second_task_if_the_client_does_not_match_the_rule_and_there_are_several()
+        public void Should_not_provide_the_second_task_if_the_client_does_not_match_the_rule_and_there_are_several()
         {
         	// Given
             var browser = TestFactory.GetBrowserForTestTasksModule();
@@ -433,6 +437,7 @@ namespace Tmx.Server.Tests.Modules
             
             // Then
             THEN_TestTask_Is_Null(loadedTask);
+            THEN_test_client_is_busy(testClient);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -465,6 +470,7 @@ namespace Tmx.Server.Tests.Modules
             
             // Then
             THEN_TestTask_Is_Null(loadedTask);
+            THEN_test_client_is_free(testClient);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -507,6 +513,7 @@ namespace Tmx.Server.Tests.Modules
             // Then
             THEN_HttpResponse_Is_Ok(response);
             THEN_TestTask_Properties_Equal_To(task, loadedTask);
+            THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == testClient.Id));
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -537,7 +544,8 @@ namespace Tmx.Server.Tests.Modules
             response = browser.Get(UrnList.TestTasks_Root + "/" + 0);
             
             // Then
-            THEN_HttpResponse_Is_NotFound(response);
+            // THEN_HttpResponse_Is_NotFound(response);
+            THEN_HttpResponse_Is_ExpectationFailed(response);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -593,6 +601,11 @@ namespace Tmx.Server.Tests.Modules
             Xunit.Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
         }
         
+        void THEN_HttpResponse_Is_ExpectationFailed(BrowserResponse response)
+        {
+            Xunit.Assert.Equal(HttpStatusCode.ExpectationFailed, response.StatusCode);
+        }
+        
         void THEN_TestTask_Properties_Equal_To(ITestTask expectedTask, ITestTask actualTask)
         {
             Xunit.Assert.Equal(expectedTask.Id, actualTask.Id);
@@ -605,6 +618,16 @@ namespace Tmx.Server.Tests.Modules
         void THEN_TestTask_Is_Null(ITestTask task)
         {
             Xunit.Assert.Equal(null, task);
+        }
+        
+        void THEN_test_client_is_busy(ITestClient testClient)
+        {
+            Xunit.Assert.Equal(TestClientStatuses.WorkflowInProgress, testClient.Status);
+        }
+        
+        void THEN_test_client_is_free(ITestClient testClient)
+        {
+            Xunit.Assert.Equal(TestClientStatuses.NoTasks, testClient.Status);
         }
 	}
 }

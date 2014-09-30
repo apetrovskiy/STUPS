@@ -14,8 +14,9 @@ namespace Tmx.Server.Modules
 	using Nancy;
 	using Nancy.ModelBinding;
 	using Nancy.Responses.Negotiation;
-	using Tmx.Interfaces.Server;
 	using Tmx.Core;
+	using Tmx.Interfaces.Server;
+	using Tmx.Interfaces.Remoting;
 	
 	/// <summary>
 	/// Description of TestClientsModule.
@@ -43,18 +44,17 @@ namespace Tmx.Server.Modules
 			// TODO: DI
 			var taskSorter = new TaskSelector();
 			TaskPool.TasksForClients.AddRange(taskSorter.SelectTasksForClient(testClient.Id, TaskPool.Tasks));
+			// setting status
+			// if (TaskPool.TasksForClients.Any(task => task.ClientId == testClient.Id && task.TaskFinished == false))
+			//     testClient.Status = TestClientStatuses.WorkflowInProgress;
 			// return Response.AsJson(testClient).WithStatusCode(HttpStatusCode.Created);
 			return Negotiate.WithModel(testClient).WithStatusCode(HttpStatusCode.Created);
 		}
 		
 		HttpStatusCode deleteClientById(int clientId)
 		{
-//			try {
-				ClientsCollection.Clients.RemoveAll(client => client.Id == clientId);
-				return HttpStatusCode.NoContent;
-//			} catch {
-//				return HttpStatusCode.InternalServerError;
-//			}
+			ClientsCollection.Clients.RemoveAll(client => client.Id == clientId);
+			return HttpStatusCode.NoContent;
 		}
 		
 		Negotiator returnAllClients()

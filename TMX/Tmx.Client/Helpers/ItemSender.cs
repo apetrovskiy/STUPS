@@ -12,6 +12,7 @@ namespace Tmx.Client
 	using System;
 	using System.IO;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Net;
     using Spring.Http;
 	using Spring.Rest.Client;
@@ -30,37 +31,66 @@ namespace Tmx.Client
 	    	_restTemplate = requestCreator.GetRestTemplate();
 	    }
 	    
-	    public virtual bool SendFileSystemHierarchy(string sourcePath, string destinationPath, bool recurse)
+	    public virtual bool SendFileSystemHierarchy(string sourcePath, string destinationPath, bool recurse, bool force)
 	    {
-	        var result = false;
-	        
-	        // TODO: cycle
-	        
-	        result = sendSingleFile(sourcePath);
-	        
-	        return result;
+            if (Directory.Exists(sourcePath))
+                return sendHierarchy(sourcePath, destinationPath, recurse, force);
+            return File.Exists(sourcePath) && sendSingleFile(sourcePath.Substring(0, sourcePath.LastIndexOf('\\') + 1), sourcePath, destinationPath, force);
 	    }
 	    
-        bool sendSingleFile(string sourcePath, string destinationPath)
+        bool sendHierarchy(string sourcePath, string destinationPath, bool recurse, bool force)
         {
-            var partsOfFile = new Dictionary<string, object>();
-            var fileHttpEntity = new HttpEntity(new FileInfo(sourcePath));
-            partsOfFile.Add("file", fileHttpEntity);
-            // var pathHttpEntity = new HttpEntity(sourcePath.Substring(0, sourcePath.LastIndexOf('\\') + 1));
-            var pathHttpEntity = new HttpEntity(destinationPath.Substring(0, destinationPath.LastIndexOf('\\') + 1));
-            partsOfFile.Add("path", pathHttpEntity);
-            var fileUploadResponse = _restTemplate.PostForMessage(UrnList.ExternalFiles_Root, partsOfFile);
+            // http://msdn.microsoft.com/en-us/library/bb513869.aspx
+            var rootDirectory = new DirectoryInfo(sourcePath);
+            return walkIntoDirectory(rootDirectory, sourcePath, destinationPath, force);
+        }
+        
+        bool walkIntoDirectory(DirectoryInfo rootDirectory, string sourcePath, string destinationPath, bool force)
+        {
+            var files = getFiles(rootDirectory);
+            if (null != files)
+                foreach (var file in files)
+                    sendSingleFile(sourcePath, file.FullName, destinationPath, force);
+            
+            var subDirs = getSubDirectories(rootDirectory);
+            if (null != subDirs)
+                foreach (var dir in subDirs)
+                    walkIntoDirectory(dir, sourcePath, destinationPath, force);
+            
+            return true;
+        }
+        
+        FileInfo[] getFiles(DirectoryInfo rootDirectory)
+        {
+            try {
+                return rootDirectory.GetFiles("*.*");
+            } catch (UnauthorizedAccessException eUnauthorizedAccessFiles) {
+                return null;
+            } catch (DirectoryNotFoundException eDirectoryNotFoundFiles) {
+                return null;
+            }
+        }
+        
+        DirectoryInfo[] getSubDirectories(DirectoryInfo rootDirectory)
+        {
+            try {
+                return rootDirectory.GetDirectories();
+            } catch (UnauthorizedAccessException eUnauthorizedAccessDirs) {
+                return null;
+            } catch (DirectoryNotFoundException eDirectoryNotFoundDirs) {
+                return null;
+            }
+        }
+        
+        bool sendSingleFile(string sourceFolderPath, string sourceFilePath, string destinationPath, bool force)
+        {
+            var fileContentAndPaths = new Dictionary<string, object> {
+                { "file", new HttpEntity(new FileInfo(sourceFilePath)) },
+                { "relativePath", new HttpEntity(sourceFilePath.Substring(sourceFolderPath.Length)) },
+                { "destinationPath", new HttpEntity(destinationPath) }
+            };
+            var fileUploadResponse = _restTemplate.PostForMessage(UrnList.ExternalFiles_Root + UrnList.ExternalFilesUploadPoint, fileContentAndPaths);
             return HttpStatusCode.Created == fileUploadResponse.StatusCode;
-//                var restTemplate04 = new RestTemplate();
-//                var parts04 = new Dictionary<string, object>();
-//                var entity04 = new HttpEntity(new FileInfo(args[0]));
-//                parts04.Add("data", entity04);
-//                
-//                var entity041 = new HttpEntity(args[0].Substring(0, args[0].LastIndexOf('\\') + 1));
-//                parts04.Add("path", entity041);
-//                
-//                // HttpResponseMessage result04 = restTemplate04.PostForMessage("http://localhost:12340/probe4/", parts04);
-//                HttpResponseMessage result04 = restTemplate04.PostForMessage("http://localhost:12340/probe4/", parts04);
         }
     }
 }

@@ -595,7 +595,7 @@ namespace Tmx
                 writer.Flush();
                 writer.Close();
             }
-            catch (Exception eee) {
+            catch (Exception) {
                 try{
                     
                     Encoding en = new UnicodeEncoding();
@@ -606,7 +606,7 @@ namespace Tmx
                     writer.Close();
                     return;
                 }
-                catch (Exception ee) {
+                catch (Exception) {
                     
                     // 20130428
 //                    ErrorRecord err = 

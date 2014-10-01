@@ -62,7 +62,12 @@ namespace Tmx.Server
 		{
 			var taskListForClient = getOnlyNewTestTasksForClient(clientId);
 			if (null == taskListForClient || !taskListForClient.Any()) return null;
-			return taskListForClient.First(task => task.Id == taskListForClient.Where(t => t.Id > currentTaskId).Min(tsk => tsk.Id));
+			// 20141001
+			// return taskListForClient.First(task => task.Id == taskListForClient.Where(t => t.Id > currentTaskId).Min(tsk => tsk.Id));
+			var tasksToBeNextOne = taskListForClient.Where(t => t.Id > currentTaskId);
+			if (null == tasksToBeNextOne || !tasksToBeNextOne.Any()) return null;
+			
+			return taskListForClient.First(task => task.Id == tasksToBeNextOne.Min(tsk => tsk.Id));
 		}
 		
         public virtual void CancelFurtherTasks(int clientId)

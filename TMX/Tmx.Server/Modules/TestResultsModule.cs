@@ -40,7 +40,7 @@ namespace Tmx.Server.Modules
                     // maybe, there's no such need? // TODO: set current test suite, test scenario, test result?
                     return HttpStatusCode.Created;
                 }
-                catch (Exception eAllResultsPosting) {
+                catch (Exception) {
                     return HttpStatusCode.ExpectationFailed;
                 }
             };

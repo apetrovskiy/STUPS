@@ -10,6 +10,8 @@
 namespace Tmx
 {
 	using System;
+    using System.Net;
+    using System.Net.NetworkInformation;
 	using Tmx.Commands;
 	
 	/// <summary>
@@ -24,7 +26,17 @@ namespace Tmx
         internal override void Execute()
         {
             var cmdlet = (StartTmxServerCommand)Cmdlet;
+            // 20141001
             Tmx.Server.ServerControl.Start(@"http://localhost:" + cmdlet.Port);
+            
+//            var hostname = Dns.GetHostName();
+//            if (string.Empty != IPGlobalProperties.GetIPGlobalProperties().DomainName) {
+//                hostname += ".";
+//                hostname += IPGlobalProperties.GetIPGlobalProperties().DomainName;
+//            }
+//            Tmx.Server.ServerControl.Start(hostname, cmdlet.Port);
+            
+            Tmx.Server.ServerControl.Start(cmdlet.Hostname, cmdlet.Port);
         }
     }
 }

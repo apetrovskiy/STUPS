@@ -60,7 +60,7 @@ namespace UIAutomation.Commands
                     SendKeys.SendWait(Text);
                     WriteObject(this, true);
                 }
-                catch (Exception eKeys) {
+                catch (Exception) {
                     // 20131216 
     //                ErrorRecord err = 
     //                    new ErrorRecord(

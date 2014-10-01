@@ -258,7 +258,7 @@ namespace PSRunner
                 //return resultObject;
                 result = true;
             } 
-            catch (Exception eRunspace) {
+            catch (Exception) {
                 //throw(eRunspace);
                 //result = null;
                 return result;
@@ -279,7 +279,7 @@ namespace PSRunner
                 //pipeline.Output.
                 return resultObject;
             } 
-            catch (Exception eRunspace) {
+            catch (Exception) {
                 //throw(eRunspace);
                 result = null;
             }
@@ -342,7 +342,7 @@ namespace PSRunner
                 //return resultObject;
                 result = true;
             } 
-            catch (Exception eRunspace) {
+            catch (Exception) {
                 //throw(eRunspace);
                 //result = null;
                 return result;
@@ -446,7 +446,7 @@ namespace PSRunner
                 try {
                     pipeline.Stop();
                 }
-                catch (Exception eClosingPipeline) {
+                catch (Exception) {
                     // Console.WriteLine(eClosingPipeline.Message);
                 }
                 
@@ -460,7 +460,7 @@ namespace PSRunner
                 
                 result = true;
             }
-            catch (Exception eClosingRunspace) {
+            catch (Exception) {
                 //
 // Console.WriteLine("The runspace could not be disposed. {0}", eClosingRunspace.Message);
             }

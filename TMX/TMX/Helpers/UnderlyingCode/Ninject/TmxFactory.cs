@@ -47,7 +47,7 @@ namespace Tmx
 		    try {
 		        Kernel = new StandardKernel(_ninjectModule);
 		    }
-		    catch (Exception eInitFailure) {
+		    catch (Exception) {
 		        // TODO
 		        // write error to error object!!!
 		        // Console.WriteLine("Init Kernel");

@@ -19,6 +19,11 @@ namespace Tmx.Server
             InternalServerControl.Start(url);
         }
         
+        public static void Start(string hostname, int port)
+        {
+            InternalServerControl.Start(@"http://" + hostname + ":" + port);
+        }
+        
         public static void Stop()
         {
             InternalServerControl.Stop();

@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+			function getSourceName() {
+				var combo = document.getElementById("src");
+				return combo.options[combo.selectedIndex].text;
+			}
+			
+			function setSource() {
+				// var url = "http://localhost:12340/data/";
+				var url = "@Model/data/";
+				var data = new FormData();
+				data.append('key', "sourceName");
+				data.append('value', getSourceName());
+				var xhr = new XMLHttpRequest();
+				xhr.open('POST', url, false);
+				xhr.send(data);
+			}
+			
+			function resetTasks() {
+				// var url = "http://localhost:12340/serverControl/";
+				var url = "@Model/serverControl/";
+				var data = new FormData();
+				data.append('command', 4);
+				var xhr = new XMLHttpRequest();
+				xhr.open('PUT', url, false);
+				xhr.send(data);
+				var data = new FormData();
+				data.append('command', 5);
+				var xhr = new XMLHttpRequest();
+				xhr.open('PUT', url, false);
+				xhr.send(data);
+			}
+			
+			function loadWorkflow() {
+				// var url = "http://localhost:12340/serverControl/";
+				var url = "@Model/serverControl/";
+				var data = new FormData();
+				data.append('command', 0);
+				data.append('data', 'data\\workflow.xml');
+				var xhr = new XMLHttpRequest();
+				xhr.open('PUT', url, false);
+				xhr.send(data);
+			}
+			
+			function showLinkToReport() {
+				// 
+			}
+			
+			function storeReportToDatabase() {
+				// 
+			}
+			
+			function disableButton() {
+				document.getElementById("run").disabled = true;
+			}
+			
+			function enableButton() {
+				document.getElementById("run").disabled = false;
+			}
+			
+			function initServer() {
+				disableButton();
+				setSource();
+				resetTasks();
+				loadWorkflow();
+				showLinkToReport();
+				storeReportToDatabase();
+				enableButton();
+			}
+		</script>
+	</head>
+	<body>
+		Tmx.Server.Runner<br>
+		<select id="src">
+			<option value="src01">source 01</option>
+			<option value="src02">source 02</option>
+			<option value="src03">source 03</option>
+			<option value="src04">source 04</option>
+		</select>
+		<br>
+		<button id="run" type="button" onclick="initServer()">Run</button>
+
+	</body>
+</html>

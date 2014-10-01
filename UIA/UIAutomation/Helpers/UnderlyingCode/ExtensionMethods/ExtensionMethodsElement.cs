@@ -440,7 +440,7 @@ namespace UIAutomation
                         })) {
                 }
             }
-            catch (Exception eClickONControl) {
+            catch (Exception) {
                 throw new Exception("failed to click on the control");
             }
             

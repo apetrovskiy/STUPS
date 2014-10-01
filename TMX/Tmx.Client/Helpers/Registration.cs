@@ -34,6 +34,11 @@ namespace Tmx.Client
         public virtual int SendRegistrationInfoAndGetClientId(string customClientString)
 		{
 			var registrationResponse = _restTemplate.PostForMessage<TestClient>(UrnList.TestClientRegistrationPoint, getNewTestClient(customClientString));
+			
+			// 20141001
+			if (HttpStatusCode.Created == registrationResponse.StatusCode)
+			    ClientSettings.Instance.CurrentClient = registrationResponse.Body;
+			
 			if (HttpStatusCode.Created == registrationResponse.StatusCode)
 				return registrationResponse.Body.Id;
 			throw new Exception("Failed to register a client. "+ registrationResponse.StatusCode); // TODO: new type!

@@ -446,7 +446,7 @@ namespace PSTestLib
                     // 20130430
                     WriteLog(LogLevels.Trace, text);
                 }
-                catch (Exception eNotUsed) {
+                catch (Exception) {
                     // ??
                 }
             }
@@ -771,7 +771,7 @@ namespace PSTestLib
                                     
 //                                    cmdlet.WriteVerbose(cmdlet, "the scriptblock runner has finished");
                                 }
-                            } catch (Exception eInner) {
+                            } catch (Exception) {
 
                                 // 20130318
 //                                ErrorRecord err = 
@@ -803,7 +803,7 @@ namespace PSTestLib
                         }
                     }
                 }
-            } catch (Exception eOuter) {
+            } catch (Exception) {
 //                WriteError(this, 
 //                           new ErrorRecord(eOuter, "runScriptBlocks", ErrorCategory.InvalidArgument, null),
 //                           true);

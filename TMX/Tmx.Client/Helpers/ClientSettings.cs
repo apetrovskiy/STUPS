@@ -39,6 +39,8 @@ namespace Tmx.Client
         public bool StopImmediately { get; set; }
         public IEnumerable<string> TaskResult { get; set; }
         public ITestTask CurrentTask { get; set; }
+        // 20141001
+        public ITestClient CurrentClient { get; set; }
         
         public void ResetData()
         {
@@ -47,6 +49,8 @@ namespace Tmx.Client
 			StopImmediately = false;
 			TaskResult = new string[] {};
 			CurrentTask = null;
+			// 20141001
+			CurrentClient = null;
         }
         
         public void AddTaskResult(string[] results)

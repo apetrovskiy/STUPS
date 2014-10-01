@@ -230,7 +230,7 @@ namespace PSTestRunner
                 result = PSRunner.Runner.CloseRunspace();
                 result = true;
             }
-            catch (Exception eCloseRunspace) {
+            catch (Exception) {
 //                System.Windows.Forms.MessageBox.Show(
 //                    eCloseRunspace.Message,
 //                    "Close runspace");

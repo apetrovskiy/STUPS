@@ -114,7 +114,7 @@ namespace UIAutomation
         	       // cmdletCtrl.WriteInfo(cmdletCtrl, "there was no manipulation with wizard steps' order");
         	   }
         	}
-        	catch (Exception eMovingToTheEnd) {
+        	catch (Exception) {
         	    // cmdletCtrl.WriteInfo(cmdletCtrl, eMovingToTheEnd.Message);
         	}
         	

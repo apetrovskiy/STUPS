@@ -26,8 +26,11 @@ namespace Tmx.Server
     {
         static NancyHost _nancyHost;
         
+        public static string Url { get; set; }
+        
         public static void Start(string url)
         {
+            Url = url;
             _nancyHost = new NancyHost(new Uri(url));
 			_nancyHost.Start();
         }
@@ -60,6 +63,11 @@ namespace Tmx.Server
     	{
     		nancyConventions.StaticContentsConventions.Add(
     		    StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath(), "Root"));
+    	    
+    	    // TODO: to a separate assembly
+    	    nancyConventions.StaticContentsConventions.Add(
+    	        StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + @"\Nwx", "Nwx"));
+    	    
     		base.ConfigureConventions(nancyConventions);
     	}
     	

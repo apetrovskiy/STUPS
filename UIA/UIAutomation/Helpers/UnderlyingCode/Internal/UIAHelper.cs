@@ -785,7 +785,7 @@ namespace UIAutomation
                                 element.GetElementPropertyString(cmdlet, "Value", pattern, ref hasName);
                         }
                     }
-                    catch (Exception eeeee) {
+                    catch (Exception) {
                     }
                     if (hasName) {
                         elementVerbosity +=
@@ -951,7 +951,7 @@ namespace UIAutomation
                                 }
                             }
                             strElementPatterns += "\r\n";
-                        } catch (Exception ePatterns) {
+                        } catch (Exception) {
 //                                                                Exception ePatterns2 =
 //                                                                    new Exception("Patterns:\r\n" +
 //                                                                                  ePatterns.Message +
@@ -1587,7 +1587,7 @@ namespace UIAutomation
                 }
                 result = _element;
             }
-            catch (Exception e) {
+            catch (Exception) {
                 // cmdlet.WriteVerbose(cmdlet, e.Message);
             }
             return result;
@@ -2706,7 +2706,7 @@ namespace UIAutomation
                     
                     }
                 }
-                catch (Exception eFromHandle) {
+                catch (Exception) {
 //Console.WriteLine(eFromHandle.Message);
                 }
             }

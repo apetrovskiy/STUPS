@@ -24,8 +24,7 @@ namespace UIAutomation
         
         public override void Execute()
         {
-            StepUiaWizardCommand cmdlet =
-                (StepUiaWizardCommand)Cmdlet;
+            var cmdlet = (StepUiaWizardCommand)Cmdlet;
             
             WizardHelper.StepWizardStep(cmdlet);
         }

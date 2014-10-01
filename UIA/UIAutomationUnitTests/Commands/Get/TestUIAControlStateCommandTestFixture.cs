@@ -93,7 +93,7 @@ namespace UIAutomationUnitTests.Commands.Get
             string automationId = string.Empty;
             string className = string.Empty;
             string txtValue = string.Empty;
-            ControlType controlType = null;
+            // ControlType controlType = null;
             TestParametersAgainstCollection(
                 null,
                 null,
@@ -107,7 +107,7 @@ namespace UIAutomationUnitTests.Commands.Get
             string automationId = string.Empty;
             string className = string.Empty;
             string txtValue = string.Empty;
-            ControlType controlType = null;
+            // ControlType controlType = null;
             TestParametersAgainstCollection(
                 null,
                 new UiElement[] {},
@@ -124,7 +124,7 @@ namespace UIAutomationUnitTests.Commands.Get
             string automationId = string.Empty;
             string className = string.Empty;
             string txtValue = string.Empty;
-            ControlType controlType = null;
+            // ControlType controlType = null;
             TestParametersAgainstCollection(
                 new Hashtable[] {},
                 null,
@@ -138,7 +138,7 @@ namespace UIAutomationUnitTests.Commands.Get
             string automationId = string.Empty;
             string className = string.Empty;
             string txtValue = string.Empty;
-            ControlType controlType = null;
+            // ControlType controlType = null;
             TestParametersAgainstCollection(
                 new Hashtable[] {},
                 new UiElement[] {},
@@ -152,7 +152,7 @@ namespace UIAutomationUnitTests.Commands.Get
             string automationId = string.Empty;
             string className = string.Empty;
             string txtValue = string.Empty;
-            ControlType controlType = null;
+            // ControlType controlType = null;
             TestParametersAgainstCollection(
                 new Hashtable[] {},
                 new [] {
@@ -174,12 +174,12 @@ namespace UIAutomationUnitTests.Commands.Get
             string txtValue = string.Empty;
             ControlType controlType = ControlType.Button;
             
-            var ht =
-                new Hashtable();
+            var ht = new Hashtable();
             ht.Add("controlType", "button");
             ht.Add("class", className);
-            Hashtable[] inputData =
-                new[] { ht };
+//            Hashtable[] inputData =
+//                new[] { ht };
+            Hashtable[] inputData = { ht };
             TestParametersAgainstCollection(
                 inputData,
                 new UiElement[] {},
@@ -195,12 +195,12 @@ namespace UIAutomationUnitTests.Commands.Get
             string txtValue = string.Empty;
             ControlType controlType = ControlType.Button;
             
-            var ht =
-                new Hashtable();
+            var ht = new Hashtable();
             ht.Add("controlType", "button");
             ht.Add("class", className);
-            Hashtable[] inputData =
-                new[] { ht };
+//            Hashtable[] inputData =
+//                new[] { ht };
+            Hashtable[] inputData = { ht };
             TestParametersAgainstCollection(
                 inputData,
                 new [] {
@@ -221,12 +221,12 @@ namespace UIAutomationUnitTests.Commands.Get
             string txtValue = string.Empty;
             ControlType controlType = ControlType.Button;
             
-            var ht =
-                new Hashtable();
+            var ht = new Hashtable();
             ht.Add("controlType", "button");
             ht.Add("class", className);
-            Hashtable[] inputData =
-                new[] { ht };
+//            Hashtable[] inputData =
+//                new[] { ht };
+            Hashtable[] inputData = { ht };
             TestParametersAgainstCollection(
                 inputData,
                 new [] {
@@ -247,15 +247,14 @@ namespace UIAutomationUnitTests.Commands.Get
             string txtValue = string.Empty;
             ControlType controlType = ControlType.Button;
             
-            var ht1 =
-                new Hashtable();
+            var ht1 = new Hashtable();
             ht1.Add("controlType", "button");
             ht1.Add("class", className);
-            var ht2 =
-                new Hashtable();
+            var ht2 = new Hashtable();
             ht2.Add("controlType", "headeritem");
-            Hashtable[] inputData =
-                new[] { ht1, ht2 };
+//            Hashtable[] inputData =
+//                new[] { ht1, ht2 };
+            Hashtable[] inputData = { ht1, ht2 };
             TestParametersAgainstCollection(
                 inputData,
                 new [] {
@@ -276,15 +275,14 @@ namespace UIAutomationUnitTests.Commands.Get
             string txtValue = string.Empty;
             ControlType controlType = ControlType.Button;
             
-            var ht1 =
-                new Hashtable();
+            var ht1 = new Hashtable();
             ht1.Add("controlType", "button");
             ht1.Add("class", className);
-            var ht2 =
-                new Hashtable();
+            var ht2 = new Hashtable();
             ht2.Add("controlType", "menu");
-            Hashtable[] inputData =
-                new[] { ht1, ht2 };
+//            Hashtable[] inputData =
+//                new[] { ht1, ht2 };
+            Hashtable[] inputData = { ht1, ht2 };
             TestParametersAgainstCollection(
                 inputData,
                 new [] {
@@ -305,26 +303,22 @@ namespace UIAutomationUnitTests.Commands.Get
             string txtValue = string.Empty;
             ControlType controlType = ControlType.Button;
             
-            var ht1 =
-                new Hashtable();
+            var ht1 = new Hashtable();
             ht1.Add("controlType", "button");
             ht1.Add("class", className);
-            var ht2 =
-                new Hashtable();
+            var ht2 = new Hashtable();
             ht2.Add("controlType", "headeritem");
-            var ht3 =
-                new Hashtable();
+            var ht3 = new Hashtable();
             ht3.Add("controlType", "button");
             ht3.Add("class", "cl03");
-            var ht4 =
-                new Hashtable();
+            var ht4 = new Hashtable();
             ht4.Add("controlType", "button");
             ht4.Add("class", className);
-            var ht5 =
-                new Hashtable();
+            var ht5 = new Hashtable();
             ht5.Add("controlType", "headeritem");
-            Hashtable[] inputData =
-                new[] { ht1, ht2, ht3, ht4, ht5 };
+//            Hashtable[] inputData =
+//                new[] { ht1, ht2, ht3, ht4, ht5 };
+            Hashtable[] inputData = { ht1, ht2, ht3, ht4, ht5 };
             TestParametersAgainstCollection(
                 inputData,
                 new [] {
@@ -345,26 +339,22 @@ namespace UIAutomationUnitTests.Commands.Get
             string txtValue = string.Empty;
             ControlType controlType = ControlType.Button;
             
-            var ht1 =
-                new Hashtable();
+            var ht1 = new Hashtable();
             ht1.Add("controlType", "button");
             ht1.Add("class", className);
-            var ht2 =
-                new Hashtable();
+            var ht2 = new Hashtable();
             ht2.Add("controlType", "menu");
-            var ht3 =
-                new Hashtable();
+            var ht3 = new Hashtable();
             ht3.Add("controlType", "button");
             ht3.Add("class", "cl03");
-            var ht4 =
-                new Hashtable();
+            var ht4 = new Hashtable();
             ht4.Add("controlType", "button");
             ht4.Add("class", className);
-            var ht5 =
-                new Hashtable();
+            var ht5 = new Hashtable();
             ht5.Add("controlType", "headeritem");
-            Hashtable[] inputData =
-                new[] { ht1, ht2, ht3, ht4, ht5 };
+//            Hashtable[] inputData =
+//                new[] { ht1, ht2, ht3, ht4, ht5 };
+            Hashtable[] inputData = { ht1, ht2, ht3, ht4, ht5 };
             TestParametersAgainstCollection(
                 inputData,
                 new [] {

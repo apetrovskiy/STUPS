@@ -506,7 +506,7 @@ namespace UIAutomation
                     // there's no need to output the True value
                     // since the output will be what we want 
                     // (some part of AutomationElement, as an example)
-                } catch (Exception eControlTypeException) {
+                } catch (Exception) {
                     
                     if (PassThru) {
                         

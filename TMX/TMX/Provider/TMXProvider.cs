@@ -135,15 +135,14 @@ namespace Tmx
                 string name = string.Empty;
             
                 WriteVerbose("TmxProvider::NewDrive()");
-                var dynamicParameters = 
-                    base.DynamicParameters as RuntimeDefinedParameterDictionary;
-                try{id = dynamicParameters["Id"].Value.ToString();} 
-                catch (Exception e1) {
+                var dynamicParameters = DynamicParameters as RuntimeDefinedParameterDictionary;
+                try{ id = dynamicParameters["Id"].Value.ToString(); } 
+                catch (Exception) {
                     // nothing to report
                     // there might not be a parameter
                 }
                 try{name = dynamicParameters["Name"].Value.ToString();} 
-                catch (Exception e2) {
+                catch (Exception) {
                     // nothing to report
                     // there might not be a parameter
                 }
@@ -415,7 +414,7 @@ namespace Tmx
                 //_driveWindow = 
                 //    AutomationElement.RootElement;
             }
-            catch (Exception e) {
+            catch (Exception) {
                 //WriteVerbose(e.Message);
                 //WriteVerbose("TmxDriveInfo(PSDriveInfo)");
             }
@@ -438,7 +437,7 @@ namespace Tmx
 //                        0,
 //                        processNameOrWindowTitle);
             }
-            catch (Exception e){
+            catch (Exception){
                 //WriteVerbose(e.Message);
                 //WriteVerbose("TmxDriveInfo(string, PSDriveInfo)");
             }

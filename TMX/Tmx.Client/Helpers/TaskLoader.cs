@@ -43,7 +43,7 @@ namespace Tmx.Client
 			if (HttpStatusCode.OK == gettingTaskResponse.StatusCode) return acceptCurrentTask(task);
 			throw new LoadTaskException("Failed to load task. " + gettingTaskResponse.StatusCode);
 		}
-
+		
 		ITestTask acceptCurrentTask(ITestTask task)
 		{
 		    if (null == task)

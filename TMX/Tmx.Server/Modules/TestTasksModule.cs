@@ -66,8 +66,10 @@ namespace Tmx.Server.Modules
 			storedTask.TaskStatus = loadedTask.TaskStatus;
 			storedTask.TaskResult = loadedTask.TaskResult;
 			var taskSorter = new TaskSelector();
+			
 			if (TestTaskStatuses.Failed == storedTask.TaskStatus)
 				taskSorter.CancelFurtherTasks(storedTask.ClientId);
+			
 			if (storedTask.TaskFinished) {
 				ITestTask nextTask = null;
 				try {

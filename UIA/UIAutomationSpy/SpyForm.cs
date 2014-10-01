@@ -1180,7 +1180,7 @@ namespace UIAutomationSpy
                                 // elementPID = element.Cached.ProcessId;
                                 // elementPID = (element as ISupportsCached).Cached.ProcessId;
                                 elementPID = element.GetCached().ProcessId;
-                            } catch (Exception eUhh) {
+                            } catch (Exception) {
                             }
                         }
                         

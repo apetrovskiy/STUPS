@@ -67,7 +67,7 @@ namespace Tmx.Server.Helpers
                 var xDoc = new XDocument(rootNode);
                 xDoc.Save(dateTimeString);
             }
-            catch (Exception ee) {
+            catch (Exception) {
 // Console.WriteLine(ee.Message);
             }
         }

@@ -85,7 +85,7 @@ namespace UIAutomation
                 // Kernel.Settings.ActivationCacheDisabled = true;
 		        Kernel.Settings.ActivationCacheDisabled = false;
 		    }
-		    catch (Exception eInitFailure) {
+		    catch (Exception) {
 		        // TODO
 		        // write error to error object!!!
 		        // Console.WriteLine("Init Kernel");
@@ -116,7 +116,7 @@ namespace UIAutomation
 		        // 20140130
 		        // HasScriptBlockCmdletBase.
 		    }
-		    catch (Exception eInitFailure) {
+		    catch (Exception) {
 		        // TODO
 		        // write error to error object!!!
 		        // Console.WriteLine("Init Kernel for unit tests");
@@ -185,7 +185,7 @@ namespace UIAutomation
                             new MethodSelectorAspect(), new ErrorHandlingAspect());
                 }
             }
-            catch (Exception eConvertation) {
+            catch (Exception) {
                 // Console.WriteLine(eConvertation.Message);
             }
     		return proxiedElement;
@@ -206,7 +206,7 @@ namespace UIAutomation
                         // new LoggingAspect(), new ErrorHandlingAspect(), new FaultInjectionAspect());
                         new LoggingAspect(), new ErrorHandlingAspect(), new FaultInjectionAspect(), new MethodSelectorAspect());
                 
-            } catch (Exception eProxying) {
+            } catch (Exception) {
                 // Console.WriteLine("ProxiedObject");
                 // Console.WriteLine(eProxying.Message);
             }
@@ -228,7 +228,7 @@ namespace UIAutomation
                         // new LoggingAspect(), new InputValidationAspect(), new ErrorHandlingAspect(), new HighlighterAspect(), new TestResultAspect());
                         new LoggingAspect(), new InputValidationAspect(), new ErrorHandlingAspect(), new HighlighterAspect(), new TestResultAspect(), new FaultInjectionAspect());
                 
-            } catch (Exception eProxying) {
+            } catch (Exception) {
                 // Console.WriteLine("ProxiedObject");
                 // Console.WriteLine(eProxying.Message);
             }
@@ -332,7 +332,7 @@ namespace UIAutomation
     			
     			return proxiedHolder;
 			}
-			catch (Exception eFailedToIssueHolder) {
+			catch (Exception) {
 			    // TODO
 			    // write error to error object!!!
 			    // Console.WriteLine("Holder");
@@ -398,7 +398,7 @@ namespace UIAutomation
     			
     			return proxiedHolder;
     			
-            } catch (Exception eFailedToIssueHolder) {
+            } catch (Exception) {
                 // TODO
 			    // write error to error object!!!
 			    // Console.WriteLine("Holder");
@@ -422,7 +422,7 @@ namespace UIAutomation
 //                    return Kernel.Get<InputSimulator>(new IParameter[] {});
 //                }
                 
-            } catch (Exception eFailedToIssueInputSimulator) {
+            } catch (Exception) {
                 // TODO
 			    // write error to error object!!!
 			    // Console.WriteLine("InputSimulator");
@@ -544,7 +544,7 @@ namespace UIAutomation
     			}
     			
 			}
-			catch (Exception eFailedToIssueElement) {
+			catch (Exception) {
 			    // TODO
 			    // write error to error object!!!
 			    // Console.WriteLine("Element 01");
@@ -592,7 +592,7 @@ namespace UIAutomation
     			    return adapterElement;
     			}
 			}
-			catch (Exception eFailedToIssueElement) {
+			catch (Exception) {
 			    // TODO
 			    // write error to error object!!!
 			    // Console.WriteLine("Element 02");
@@ -629,7 +629,7 @@ namespace UIAutomation
     			    return adapterElement;
     			}
 			}
-			catch (Exception eFailedToIssueElement) {
+			catch (Exception) {
 			    // TODO
 			    // write error to error object!!!
 			    // Console.WriteLine("Element 03");
@@ -656,7 +656,7 @@ namespace UIAutomation
 //    			}
     			return adapterInformation;
 			}
-			catch (Exception eFailedToIssueInformation) {
+			catch (Exception) {
 			    // TODO
 			    // write error to error object!!!
                 // Console.WriteLine("Information");
@@ -707,7 +707,7 @@ namespace UIAutomation
 //	      		}
 	       		return adapterCollection;
 			}
-			catch (Exception eFailedToIssueCollection) {
+			catch (Exception) {
 			    // TODO
 			    // write error to error object!!!
 			    // Console.WriteLine("Collection 01");
@@ -727,7 +727,7 @@ namespace UIAutomation
 	      		IUiEltCollection adapterCollection = ChildKernel.Get<IUiEltCollection>("UiEltCollection", manyElements);
 	       		return adapterCollection;
 			}
-			catch (Exception eFailedToIssueCollection) {
+			catch (Exception) {
 			    // TODO
 			    // write error to error object!!!
 			    // Console.WriteLine("Collection 02");
@@ -747,7 +747,7 @@ namespace UIAutomation
 	      		IUiEltCollection adapterCollection = ChildKernel.Get<IUiEltCollection>("AnyCollection", manyElements);
 	       		return adapterCollection;
 			}
-			catch (Exception eFailedToIssueCollection) {
+			catch (Exception) {
 			    // TODO
 			    // write error to error object!!!
 			    // Console.WriteLine("Collection 03");
@@ -764,7 +764,7 @@ namespace UIAutomation
 	      		IUiEltCollection adapterCollection = ChildKernel.Get<IUiEltCollection>("Empty", boolArgument);
 	       		return adapterCollection;
 			}
-			catch (Exception eFailedToIssueCollection) {
+			catch (Exception) {
 			    // TODO
 			    // write error to error object!!!
 			    // Console.WriteLine("Collection 04");
@@ -787,7 +787,7 @@ namespace UIAutomation
 		        adapterPattern.SetSourcePattern(pattern);
 	       		return adapterPattern;
 			}
-			catch (Exception eFailedToIssuePattern) {
+			catch (Exception) {
 			    // TODO
 			    // write error to error object!!!
 			    // Console.WriteLine("Pattern");
@@ -808,7 +808,7 @@ namespace UIAutomation
 		        adapterPattern.SetSourcePattern(pattern);
 	       		return adapterPattern;
 			}
-			catch (Exception eFailedToIssuePattern) {
+			catch (Exception) {
 			    // TODO
 			    // write error to error object!!!
 			    // Console.WriteLine("Pattern");
@@ -844,7 +844,7 @@ namespace UIAutomation
                 var cmdletParam = new ConstructorArgument("cmdlet", cmdlet);
                 newCommand = Kernel.Get<T>(cmdletParam);
                 return ConvertToProxiedCommand<T>(newCommand, cmdlet);
-            } catch (Exception eCommand) {
+            } catch (Exception) {
 			    // TODO
 			    // write error to error object!!!
 			    // Console.WriteLine("Command 01");
@@ -863,7 +863,7 @@ namespace UIAutomation
                 }
                 return logger;
                 
-            } catch (Exception eLogger) {
+            } catch (Exception) {
                 // TODO
                 // write error to error object!!!
 			    // Console.WriteLine("LogHelper 01");

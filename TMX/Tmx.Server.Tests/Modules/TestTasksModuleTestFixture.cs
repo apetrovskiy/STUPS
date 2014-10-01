@@ -322,7 +322,7 @@ namespace Tmx.Server.Tests.Modules
             var browser = TestFactory.GetBrowserForTestTasksModule();
 			const string testClientHostnameExpected = "testhost";
 			const string testClientUsernameExpected = "aaa";
-            var givenTask01 = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, "no matches", 0);
+            var givenTask01 = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, testClientHostnameExpected, 0);
             var registeredClient = GIVEN_Registered_TestClient(testClientHostnameExpected, testClientUsernameExpected);
 			
             // When
@@ -330,8 +330,32 @@ namespace Tmx.Server.Tests.Modules
             var response = browser.Get(UrnList.TestTasks_Root + "/" + 0, with => with.Accept("application/json"));
             
             // Then
-            // THEN_HttpResponse_Is_NotFound(response);
             THEN_HttpResponse_Is_ExpectationFailed(response);
+        }
+        
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        public void Should_provide_no_task_to_test_client_that_lost_its_registration()
+        {
+        	// Given
+            var browser = TestFactory.GetBrowserForTestTasksModule();
+			const string testClientHostnameExpected = "testhost";
+			const string testClientUsernameExpected = "aaa";
+            var givenTask01 = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, testClientHostnameExpected, 0);
+            var registeredClient = GIVEN_Registered_TestClient(testClientHostnameExpected, testClientUsernameExpected);
+			
+            // When
+            ClientsCollection.Clients.RemoveAll(client => client.Id == registeredClient.Id);
+            var response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id, with => with.Accept("application/json"));
+            if (HttpStatusCode.ExpectationFailed == response.StatusCode)
+                registeredClient = GIVEN_Registered_TestClient(testClientHostnameExpected, testClientUsernameExpected);
+            response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id, with => with.Accept("application/json"));
+            var actualTask = response.Body.DeserializeJson<TestTask>();
+            
+            // Then
+            THEN_HttpResponse_Is_Ok(response);
+            THEN_TestTask_Properties_Equal_To(givenTask01, actualTask);
+            Xunit.Assert.Equal(givenTask01.Id, TaskPool.TasksForClients.OrderBy(t => t.Id).Skip(1).First().Id);
+            THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == registeredClient.Id));
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -361,6 +385,51 @@ namespace Tmx.Server.Tests.Modules
 //            
 //            // Then
 //            THEN_HttpResponse_Is_NotFound(response);
+        }
+        
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        public void Should_provide_task_by_task_on_loading_new_tasks()
+        {
+        	// Given
+            var browser = TestFactory.GetBrowserForTestTasksModule();
+			const string testClientHostnameExpected = "testhost";
+			const string testClientUsernameExpected = "aaa";
+            var givenTask01 = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, testClientHostnameExpected, 0);
+            var registeredClient = GIVEN_Registered_TestClient(testClientHostnameExpected, testClientUsernameExpected);
+			
+            // When
+            // the first task
+            var response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id, with => with.Accept("application/json"));
+            var actualTask = response.Body.DeserializeJson<TestTask>();
+            actualTask.TaskFinished = true;
+            actualTask.TaskStatus = TestTaskStatuses.CompletedSuccessfully;
+            actualTask.TaskResult.Add("result01", "res01");
+            actualTask.TaskResult.Add("result02", "res02");
+            response = browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => {
+                with.Accept("application/json");
+                with.JsonBody<ITestTask>(actualTask);
+            });
+			
+            // the second task
+            var givenTask02 = GIVEN_Loaded_TestTask(10, "task name", false, TestTaskStatuses.New, true, testClientHostnameExpected, 0);
+            givenTask02.ClientId = registeredClient.Id;
+            TaskPool.TasksForClients.Add(givenTask02);
+            response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id, with => with.Accept("application/json"));
+            actualTask = response.Body.DeserializeJson<TestTask>();
+            actualTask.TaskFinished = true;
+            actualTask.TaskStatus = TestTaskStatuses.CompletedSuccessfully;
+            actualTask.TaskResult.Add("result01", "res01");
+            actualTask.TaskResult.Add("result02", "res02");
+            response = browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => {
+                with.Accept("application/json");
+                with.JsonBody<ITestTask>(actualTask);
+            });
+            
+            // Then
+            THEN_HttpResponse_Is_Ok(response);
+            THEN_TestTask_Properties_Equal_To(givenTask02, actualTask);
+            Xunit.Assert.Equal(givenTask02.Id, TaskPool.TasksForClients.OrderBy(t => t.Id).Skip(1).First().Id);
+            THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == registeredClient.Id));
         }
         
         // ============================================================================================================================

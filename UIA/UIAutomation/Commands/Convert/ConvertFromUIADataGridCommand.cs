@@ -168,7 +168,7 @@ namespace UIAutomation.Commands
                     }
                     */
     
-                } catch (Exception eGridPattern) {
+                } catch (Exception) {
                     if (gridPattern != null) continue;
                     // WriteVerbose(this, "couldn't get TablePattern");
                     WriteVerbose(this, "couldn't get GridPattern");

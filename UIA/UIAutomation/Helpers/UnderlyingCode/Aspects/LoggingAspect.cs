@@ -29,7 +29,7 @@ namespace UIAutomation
                         logger.LogCmdlet(cmdlet);
                     }
                 }
-                catch (Exception eLoggingAspect) {
+                catch (Exception) {
                     // Console.WriteLine(eLoggingAspect.Message);
                 }
             }

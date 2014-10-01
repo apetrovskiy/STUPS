@@ -33,7 +33,7 @@ namespace UIAutomation.Helpers.Commands
                 try {
                     control =
                         inputObject;
-                } catch (Exception eControlTypeException) {
+                } catch (Exception) {
 //                    WriteVerbose(this, "PatternCmdletBase: Control is not an AutomationElement");
 //                    WriteVerbose(this, "PatternCmdletBase: " + eControlTypeException.Message);
                     cmdlet.WriteObject(this, false);

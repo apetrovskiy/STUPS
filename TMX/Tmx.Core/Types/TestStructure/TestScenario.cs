@@ -123,7 +123,7 @@ Console.WriteLine("000016");
                     TestData.CurrentTestScenario.TestResults.Add(TestData.CurrentTestResult);
                 }
             }
-            catch (Exception eeeee) {
+            catch (Exception) {
                 //Console.WriteLine(eeeee.Message);
             }
             TestData.CurrentTestResult = 

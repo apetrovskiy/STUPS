@@ -187,7 +187,7 @@ namespace UIAutomation
                     WriteVerbose(this, "couldn't get WindowPattern");
                     WriteObject(this, false);
                 }
-            } catch (Exception eWindowPatternException) {
+            } catch (Exception) {
             }
         }
         
@@ -435,7 +435,7 @@ namespace UIAutomation
                     WriteVerbose(this, "couldn't get TogglePattern");
                     WriteObject(this, false);
                 }
-            } catch (Exception eToggleStatePatternException) {
+            } catch (Exception) {
                 //!!!!!!!!!!!!
                 if (Preferences.PerformWin32ClickOnFail) {
 
@@ -482,7 +482,7 @@ namespace UIAutomation
                     WriteVerbose(this, "couldn't get TogglePattern");
                     WriteObject(this, false);
                 }
-            } catch (Exception eTogglePatternException) {
+            } catch (Exception) {
             }
         }
         
@@ -500,7 +500,7 @@ namespace UIAutomation
                     WriteVerbose(this, "couldn't get TextPattern");
                     WriteObject(this, false);
                 }
-            } catch (Exception eTextSetPatternException) {
+            } catch (Exception) {
             }
         }
         
@@ -529,7 +529,7 @@ namespace UIAutomation
                     WriteVerbose(this, "couldn't get TextPattern");
                     WriteObject(this, false);
                 }
-            } catch (Exception eTextGetPatternException) {
+            } catch (Exception) {
             }
         }
 
@@ -544,7 +544,7 @@ namespace UIAutomation
                 ITablePattern tablePattern = control.GetCurrentPattern<ITablePattern>(classic.TablePattern.Pattern);
                 if (tablePattern != null) {
                 }
-            } catch (Exception eTablePatternException) {
+            } catch (Exception) {
             }
         }
 
@@ -558,7 +558,7 @@ namespace UIAutomation
                 if (tableItemPattern != null) {
                     //tableItemPattern.Current.
                 }
-            } catch (Exception eTableItemPatternException) {
+            } catch (Exception) {
             }
         }
 
@@ -583,7 +583,7 @@ namespace UIAutomation
                     WriteVerbose(this, "couldn't get SelectionPattern");
                     WriteObject(this, false);
                 }
-            } catch (Exception eSelectionPatternException) {
+            } catch (Exception) {
             }
         }
         
@@ -597,7 +597,7 @@ namespace UIAutomation
                 if (selItemPattern.Current.IsSelected) {
                     WriteObject(this, InputObject);
                 }
-            } catch (Exception eSeleItemStatePatternException) {
+            } catch (Exception) {
             }
         }
         
@@ -613,7 +613,7 @@ namespace UIAutomation
                     WriteVerbose(this, "couldn't get SelectionItemPattern");
                     WriteObject(this, false);
                 }
-            } catch (Exception eSeleItemStatePatternException) {
+            } catch (Exception) {
             }
         }
         
@@ -649,7 +649,7 @@ namespace UIAutomation
                     WriteVerbose(this, "couldn't get SelectionItemPattern");
                     WriteObject(this, false);
                 }
-            } catch (Exception eSelePatternException) {
+            } catch (Exception) {
             }
         }
 
@@ -799,7 +799,7 @@ namespace UIAutomation
                 } catch {
                     WriteObject(this, false);
                 }
-            } catch (Exception eRVSetPatternException) {
+            } catch (Exception) {
             }
         }
         
@@ -813,7 +813,7 @@ namespace UIAutomation
                 if (rvPatternGet != null) {
                     WriteObject(this, rvPatternGet.Current.Value);
                 }
-            } catch (Exception eRVGetPatternException) {
+            } catch (Exception) {
             }
         }
 
@@ -936,7 +936,7 @@ namespace UIAutomation
                 IGridPattern gridPattern = control.GetCurrentPattern<IGridPattern>(classic.GridPattern.Pattern);
                 if (gridPattern != null) {
                 }
-            } catch (Exception eGridPatternException) {
+            } catch (Exception) {
             }
         }
 

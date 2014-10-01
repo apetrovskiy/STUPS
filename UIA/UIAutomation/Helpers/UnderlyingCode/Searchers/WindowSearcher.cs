@@ -29,7 +29,7 @@ namespace UIAutomation
         internal bool wasFound = false;
         
         // 20140208
-        private classic.CacheRequest ClonedCacheRequest { get; set; }
+        classic.CacheRequest ClonedCacheRequest { get; set; }
         
         public override void OnStartHook()
         {
@@ -48,7 +48,7 @@ namespace UIAutomation
                     // CurrentData.CacheRequest.Pop();
                     ClonedCacheRequest = null;
                 }
-                catch (Exception eeeee) {
+                catch (Exception) {
 //Console.WriteLine("failed to stop the cache request");
 //Console.WriteLine(eeeee.Message);
                 }
@@ -83,7 +83,9 @@ namespace UIAutomation
                 } else if (null != data.ProcessNames && data.ProcessNames.Length > 0) {
                     
                     if (null == ResultCollection || 0 == ResultCollection.Count) {
-                        ResultCollection = GetWindowCollectionByProcessName(UiElement.RootElement, data);
+                        // 20141001
+                        // ResultCollection = GetWindowCollectionByProcessName(UiElement.RootElement, data);
+                        ResultCollection = GetWindowCollectionByProcessName(data);
                     }
                 } else if ((null != data.Name && data.Name.Length > 0) ||
                            !string.IsNullOrEmpty(data.AutomationId) ||
@@ -99,7 +101,7 @@ namespace UIAutomation
                     AutomationFactory.ChildKernel.Release(ResultCollection);
                 }
                 
-            } catch (Exception eSearchFailure) {
+            } catch (Exception) {
                 
                 // 
                 // throw;
@@ -151,7 +153,7 @@ namespace UIAutomation
 						ClonedCacheRequest = CurrentData.CacheRequest.Clone();
 						ClonedCacheRequest.Push();
 						Preferences.FromCache = true;
-					} catch (Exception eeee) {
+					} catch (Exception) {
 						Preferences.FromCache = false;
 //Console.WriteLine("failed to start cache request");
 //Console.WriteLine(eeee.Message);
@@ -196,7 +198,7 @@ namespace UIAutomation
 							break;
 						}
                         
-                    } catch (Exception eWindowIsGone) {
+                    } catch (Exception) {
 
                         // forcing to a next loop
                         ResultCollection.Clear();
@@ -225,14 +227,14 @@ namespace UIAutomation
                 
                 CurrentData.CurrentWindow = (IUiElement)ResultCollection[ResultCollection.Count - 1];
                 
-            } catch (Exception eEvaluatingWindowAndWritingToPipeline) {
+            } catch (Exception) {
                 
                 CurrentData.CurrentWindow = null;
                 
             }
         }
         
-        private List<IUiElement> GetWindowCollectionViaWin32(
+        List<IUiElement> GetWindowCollectionViaWin32(
             WindowSearcherData data)
         {
             return UiaHelper.EnumChildWindowsFromHandle(
@@ -242,14 +244,14 @@ namespace UIAutomation
                 IntPtr.Zero);
         }
         
-        private List<IUiElement> GetWindowCollectionFromProcess(
+        List<IUiElement> GetWindowCollectionFromProcess(
             WindowSearcherData data)
         {
             data.ProcessIds = (from process in data.InputObject where null != process && 0 != process.Id select process.Id).ToList().ToArray();
             return GetWindowCollectionByPid(UiElement.RootElement, data);
         }
         
-        private List<IUiElement> GetWindowCollectionByName(
+        List<IUiElement> GetWindowCollectionByName(
             IUiElement rootElement,
             WindowSearcherData data)
         {
@@ -259,7 +261,9 @@ namespace UIAutomation
                 new List<IUiElement>();
             
             if (null == data.Name) {
-                data.Name = new string[]{ string.Empty };
+                // 20141001
+                // data.Name = new string[]{ string.Empty };
+                data.Name = new []{ string.Empty };
             }
             
             classic.OrCondition conditionsSet = null;
@@ -295,7 +299,9 @@ namespace UIAutomation
                     AutomationId = data.AutomationId,
                     Class = data.Class,
                     Value = string.Empty,
-                    ControlType = (new string[]{ "Window", "Pane", "Menu" })
+                    // 20141001
+                    // ControlType = (new string[]{ "Window", "Pane", "Menu" })
+                    ControlType = (new []{ "Window", "Pane", "Menu" })
                 };
                 
                 windowCollectionByProperties =
@@ -322,9 +328,10 @@ namespace UIAutomation
                         IUiElement tempElement = null;
                         
                         // one more attempt using the FindWindow function
-                        IntPtr wndHandle =
-                            NativeMethods.FindWindowByCaption(IntPtr.Zero, windowTitle);
-                        if (wndHandle != null && wndHandle != IntPtr.Zero) {
+                        IntPtr wndHandle = NativeMethods.FindWindowByCaption(IntPtr.Zero, windowTitle);
+                        // 20141001
+                        // if (wndHandle != null && wndHandle != IntPtr.Zero) {
+                        if (wndHandle != IntPtr.Zero) {
                             tempElement =
                                 UiElement.FromHandle(wndHandle);
                         }
@@ -355,8 +362,9 @@ namespace UIAutomation
             return resultCollection;
         }
         
-        private List<IUiElement> GetWindowCollectionByProcessName(
-            IUiElement rootElement,
+        // 20141001
+        List<IUiElement> GetWindowCollectionByProcessName(
+            // IUiElement rootElement,
             WindowSearcherData data)
         {
             data.InputObject = data.ProcessNames.SelectMany(processName => Process.GetProcessesByName(processName)).ToList().ToArray();
@@ -372,7 +380,9 @@ namespace UIAutomation
             var elementsByProcessId =
                 new List<IUiElement>();
             
-            if ((null != data.Name && 0 < data.Name.Count()) ||
+            // 20141001
+            // if ((null != data.Name && 0 < data.Name.Count()) ||
+            if ((null != data.Name && data.Name.Any()) ||
                 !string.IsNullOrEmpty(data.AutomationId) ||
                 !string.IsNullOrEmpty(data.Class)) {
                 
@@ -462,7 +472,7 @@ namespace UIAutomation
                             }
                         }
                     }
-                } catch (Exception eGetFirstChildOfRootByProcessId) {
+                } catch (Exception) {
                     
                     // WriteVerbose(
                     //     this,
@@ -472,7 +482,9 @@ namespace UIAutomation
             }
             
             if (!data.Recurse ||
-                ((null == data.Name || 0 == data.Name.Count()) && string.IsNullOrEmpty(data.AutomationId) &&
+                // 20141001
+                // ((null == data.Name || 0 == data.Name.Count()) && string.IsNullOrEmpty(data.AutomationId) &&
+                ((null == data.Name || !data.Name.Any()) && string.IsNullOrEmpty(data.AutomationId) &&
                  string.IsNullOrEmpty(data.Class))) return elementsByProcessId;
             
             var resultList =
@@ -482,7 +494,9 @@ namespace UIAutomation
                 new List<IUiElement>();
             */
             
-            if (null != data.Name && 0 < data.Name.Count()) {
+            // 20141001
+            // if (null != data.Name && 0 < data.Name.Count()) {
+            if (null != data.Name && data.Name.Any()) {
                 foreach (string name in data.Name) {
                     
                     var controlSearcherData =
@@ -653,7 +667,7 @@ namespace UIAutomation
                 
                 resultCollection.AddRange(query);
             }
-            catch (Exception eProcessing) {
+            catch (Exception) {
                 //                cmdlet.WriteVerbose(eProcessing.Message);
             }
             

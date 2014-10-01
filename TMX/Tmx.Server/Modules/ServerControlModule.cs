@@ -10,6 +10,7 @@
 namespace Tmx.Server.Modules
 {
     using System;
+    using System.Collections.Generic;
     using Nancy;
     using Nancy.ModelBinding;
     using Tmx.Core.Types.Remoting;
@@ -37,11 +38,20 @@ namespace Tmx.Server.Modules
                     var workflowLoader = new WorkflowLoader();
                     workflowLoader.LoadWorkflow(serverCommand.Data);
                     break;
-                case ServerControlCommands.Reset:
+                case ServerControlCommands.ResetFull:
                     ServerControl.Reset();
                     break;
                 case ServerControlCommands.Stop:
                     ServerControl.Stop();
+                    break;
+                case ServerControlCommands.ResetClients:
+                    ClientsCollection.Clients = new List<ITestClient>();
+                    break;
+                case ServerControlCommands.ResetAllocatedTasks:
+                    TaskPool.TasksForClients = new List<ITestTask>();
+                    break;
+                case ServerControlCommands.ResetLoadedTasks:
+                    TaskPool.Tasks = new List<ITestTask>();
                     break;
             }
         }

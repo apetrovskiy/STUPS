@@ -33,7 +33,8 @@ namespace testAddingTestResults
 //    				Description = null
 //    			});
         		
-            Tmx.Server.ServerControl.Start(@"http://localhost:12340");
+            // Tmx.Server.ServerControl.Start(@"http://localhost:12340");
+            Tmx.Server.ServerControl.Start("localhost", 12340);
             
             Console.Write("Press any key to continue . . . ");
             Console.ReadKey(true);

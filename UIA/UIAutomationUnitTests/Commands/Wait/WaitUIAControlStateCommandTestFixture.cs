@@ -94,7 +94,7 @@ namespace UIAutomationUnitTests.Commands.Wait
             string automationId = string.Empty;
             string className = string.Empty;
             string txtValue = string.Empty;
-            ControlType controlType = null;
+            // ControlType controlType = null;
             TestParametersAgainstCollection(
                 null,
                 null,
@@ -108,7 +108,7 @@ namespace UIAutomationUnitTests.Commands.Wait
             string automationId = string.Empty;
             string className = string.Empty;
             string txtValue = string.Empty;
-            ControlType controlType = null;
+            // ControlType controlType = null;
             TestParametersAgainstCollection(
                 null,
                 new UiElement[] {},
@@ -125,7 +125,7 @@ namespace UIAutomationUnitTests.Commands.Wait
             string automationId = string.Empty;
             string className = string.Empty;
             string txtValue = string.Empty;
-            ControlType controlType = null;
+            // ControlType controlType = null;
             TestParametersAgainstCollection(
                 new Hashtable[] {},
                 null,
@@ -139,7 +139,7 @@ namespace UIAutomationUnitTests.Commands.Wait
             string automationId = string.Empty;
             string className = string.Empty;
             string txtValue = string.Empty;
-            ControlType controlType = null;
+            // ControlType controlType = null;
             TestParametersAgainstCollection(
                 new Hashtable[] {},
                 new UiElement[] {},
@@ -153,7 +153,7 @@ namespace UIAutomationUnitTests.Commands.Wait
             string automationId = string.Empty;
             string className = string.Empty;
             string txtValue = string.Empty;
-            ControlType controlType = null;
+            // ControlType controlType = null;
             TestParametersAgainstCollection(
                 new Hashtable[] {},
                 new [] {

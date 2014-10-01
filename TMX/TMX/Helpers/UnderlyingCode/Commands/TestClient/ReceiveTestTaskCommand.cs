@@ -43,10 +43,14 @@ namespace Tmx
                 try {
                     task = taskLoader.GetCurrentTask();
                 }
-                catch (ClientNotRegisteredException eNotRegistered) {
+                catch (ClientNotRegisteredException) {
+                    if (0 != ClientSettings.Instance.ClientId && string.Empty != ClientSettings.Instance.ServerUrl) {
+                        var registration = new Registration(new RestRequestCreator());
+                        ClientSettings.Instance.ClientId = registration.SendRegistrationInfoAndGetClientId(ClientSettings.Instance.CurrentClient.CustomString);
+                    }
                     throw;
                 }
-                catch (Exception e) {
+                catch (Exception) {
 // Console.WriteLine("receiving a task " + e.Message);
                 }
                 

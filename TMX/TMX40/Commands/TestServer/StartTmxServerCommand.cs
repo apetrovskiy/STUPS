@@ -11,6 +11,8 @@ namespace Tmx.Commands
 {
     using System;
     using System.Management.Automation;
+    using System.Net;
+    using System.Net.NetworkInformation;
     
     /// <summary>
     /// Description of StartTmxServerCommand.
@@ -20,12 +22,20 @@ namespace Tmx.Commands
     {
     	public StartTmxServerCommand()
     	{
+            Hostname = Dns.GetHostName();
+            if (string.Empty != IPGlobalProperties.GetIPGlobalProperties().DomainName) {
+                Hostname += ".";
+                Hostname += IPGlobalProperties.GetIPGlobalProperties().DomainName;
+            }
     		this.Port = 12340;
     	}
     	
     	[Parameter(Mandatory = false,
     	           Position = 0)]
     	public int Port { get; set; }
+    	
+    	[Parameter(Mandatory = false)]
+    	public string Hostname { get; set; }
     	
         protected override void BeginProcessing()
         {

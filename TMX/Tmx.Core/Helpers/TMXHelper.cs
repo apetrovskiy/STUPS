@@ -1560,7 +1560,7 @@ namespace Tmx
 				var currentlyAddedTestResult = TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1];
 				try {
 					currentlyAddedTestResult.PlatformId = singleTestResult.Attribute("platformId").Value;
-				} catch (Exception eTestResultPlatform) {
+				} catch (Exception) {
 					//                                cmdlet.WriteVerbose(cmdlet, "adding test platform to the current test result");
 					//                                cmdlet.WriteVerbose(cmdlet, eTestResultPlatform.Message);
 				}
@@ -1571,7 +1571,7 @@ namespace Tmx
 					if (null == testResultDetails || !testResultDetails.Any())
 						continue;
 					importTestResultDetails(testResultDetails, currentlyAddedTestResult);
-				} catch (Exception eImportDetails) {
+				} catch (Exception) {
 					//                                cmdlet.WriteVerbose(cmdlet, eImportDetails);
 				}
 			}

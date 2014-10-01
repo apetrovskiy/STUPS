@@ -104,6 +104,9 @@
     <None Include="index.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Nwx\sources.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="tasks.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -129,6 +132,7 @@
     <Folder Include="Modules" />
     <Folder Include="Modules" />
     <Folder Include="Helpers" />
+    <Folder Include="Nwx" />
     <Folder Include="Properties" />
     <Folder Include="Properties" />
   </ItemGroup>

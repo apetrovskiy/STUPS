@@ -75,9 +75,9 @@ namespace Tmx.Client
         {
             try {
                 return rootDirectory.GetDirectories();
-            } catch (UnauthorizedAccessException eUnauthorizedAccessDirs) {
+            } catch (UnauthorizedAccessException) {
                 return null;
-            } catch (DirectoryNotFoundException eDirectoryNotFoundDirs) {
+            } catch (DirectoryNotFoundException) {
                 return null;
             }
         }

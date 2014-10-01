@@ -29,8 +29,11 @@ namespace Tmx.Interfaces.Remoting
 	public enum ServerControlCommands
 	{
 	    LoadConfiguraiton = 0,
-	    Reset = 1,
-	    Stop = 2
+	    ResetFull = 1,
+	    Stop = 2,
+	    ResetClients = 3,
+	    ResetAllocatedTasks = 4,
+	    ResetLoadedTasks = 5
 	}
 	
 	public enum TestClientStatuses

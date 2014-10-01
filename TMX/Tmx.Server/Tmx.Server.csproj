@@ -95,10 +95,19 @@
     <Compile Include="Modules\TestDataModule.cs" />
     <Compile Include="Modules\TestResultsModule.cs" />
     <Compile Include="Modules\TestTasksModule.cs" />
-    <Compile Include="Modules\WithViewModule.cs" />
+    <Compile Include="Modules\RootModule.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="clients.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="index.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
+    <None Include="tasks.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">

@@ -10,16 +10,18 @@
 namespace Tmx.Server.Helpers.Control
 {
     using System;
+    using System.Linq;
     using Nancy;
     
     /// <summary>
     /// Description of TmxServerRootPathProvider.
     /// </summary>
-//    public class TmxServerRootPathProvider : IRootPathProvider
-//    {
-//        public string GetRootPath()
-//        {
-//            return Environment.CurrentDirectory;
-//        }
-//    }
+    public class TmxServerRootPathProvider : IRootPathProvider
+    {
+        public string GetRootPath()
+        {
+            var serverAssembly = (AppDomain.CurrentDomain.GetAssemblies().First(asm => asm.FullName.Contains("Tmx.Server")));
+            return serverAssembly.Location.Substring(0, serverAssembly.Location.LastIndexOf('\\'));
+        }
+    }
 }

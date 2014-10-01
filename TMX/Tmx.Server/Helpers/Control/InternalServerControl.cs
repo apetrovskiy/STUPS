@@ -39,12 +39,6 @@ namespace Tmx.Server
         
         public static void Reset()
         {
-            /*
-            ClientsCollection.Clients.Clear();
-            TaskPool.TasksForClients.Clear();
-            TaskPool.Tasks.Clear();
-            CommonData.Data.Clear();
-            */
             ClientsCollection.Clients = new System.Collections.Generic.List<Tmx.Interfaces.Remoting.ITestClient>();
             TaskPool.TasksForClients = new System.Collections.Generic.List<Tmx.Interfaces.Remoting.ITestTask>();
             TaskPool.Tasks = new System.Collections.Generic.List<Tmx.Interfaces.Remoting.ITestTask>();
@@ -58,21 +52,20 @@ namespace Tmx.Server
         
         protected override DiagnosticsConfiguration DiagnosticsConfiguration {
             get {
-                return new DiagnosticsConfiguration { Password = @"=1qwerty" };
+                return new DiagnosticsConfiguration { Password = @"Tmx=admin" };
             }
         }
     	
-//    	protected override void ConfigureConventions(NancyConventions conventions)
-//    	{
-//    		// base.ConfigureConventions(conventions);
-//    		// conventions.StaticContentsConventions.Add(
-//    		// 	StaticContentConventionBuilder.AddDirectory(@"C:\Projects\PS\STUPS\TMX\Tmx.Server.Runner\bin\Release35", "Root"));
-//    		base.ConfigureConventions(conventions);
-//    	}
+    	protected override void ConfigureConventions(NancyConventions nancyConventions)
+    	{
+    		nancyConventions.StaticContentsConventions.Add(
+    		    StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath(), "Root"));
+    		base.ConfigureConventions(nancyConventions);
+    	}
     	
-//    	protected override IRootPathProvider RootPathProvider
-//    	{
-//    	    get { return new TmxServerRootPathProvider(); }
-//    	}
+    	protected override IRootPathProvider RootPathProvider
+    	{
+    	    get { return new TmxServerRootPathProvider(); }
+    	}
     }
 }

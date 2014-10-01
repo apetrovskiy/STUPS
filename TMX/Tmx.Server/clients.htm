@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+        </style>
+    </head>
+    <body>
+        <table border="1">
+            <tr>
+                <th>Id</th>
+                <th>Hostname</th>
+                <th>Username</th>
+                <th>CustomString</th>
+            </tr>
+            @Each.Model
+            <tr>
+                <td>@Current.Id</td>
+                <td>@Current.Hostname</td>
+                <td>@Current.Username</td>
+                <td>@Current.CustomString</td>
+            </tr>
+            @EndEach
+        </table>
+    </body>
+</html>

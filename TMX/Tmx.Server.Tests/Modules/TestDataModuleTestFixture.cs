@@ -20,7 +20,6 @@ namespace Tmx.Server.Tests.Modules
 	using Tmx.Interfaces.Server;
 	using Tmx.Core;
 	using Tmx.Interfaces;
-	using Tmx.Interfaces.Remoting;
 	using Tmx.Interfaces.TestStructure;
 	using Tmx.Server.Modules;
     using Xunit;
@@ -44,34 +43,61 @@ namespace Tmx.Server.Tests.Modules
     	}
     	
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_accept_common_data_item_sent_to_empty_CommonData()
+        public void Should_accept_common_data_item_sent_to_empty_CommonData_as_json()
         {
             const string expectedKey = "a1";
             const string expectedValue = "b1";
             var commonDataItem = GIVEN_CommonDataItem(expectedKey, expectedValue);
             
-            var response = WHEN_SendingCommonDataItem(commonDataItem);
+            var response = WHEN_SendingCommonDataItem_as_Json(commonDataItem);
             
             THEN_Http_Response_Is_Created(response);
             THEN_CommonDataItem_Matches(commonDataItem);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_accept_common_data_item_sent_to_non_empty_CommonData()
+        public void Should_accept_common_data_item_sent_to_empty_CommonData_as_xml()
+        {
+            const string expectedKey = "a1";
+            const string expectedValue = "b1";
+            var commonDataItem = GIVEN_CommonDataItem(expectedKey, expectedValue) as CommonDataItem;
+            
+            var response = WHEN_SendingCommonDataItem_as_Xml(commonDataItem);
+            
+            THEN_Http_Response_Is_Created(response);
+            THEN_CommonDataItem_Matches(commonDataItem);
+        }
+        
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        public void Should_accept_common_data_item_sent_to_non_empty_CommonData_as_json()
         {
             GIVEN_non_empty_CommonData();
             const string expectedKey = "a1";
             const string expectedValue = "b1";
             var commonDataItem = GIVEN_CommonDataItem(expectedKey, expectedValue);
             
-            var response = WHEN_SendingCommonDataItem(commonDataItem);
+            var response = WHEN_SendingCommonDataItem_as_Json(commonDataItem);
             
             THEN_Http_Response_Is_Created(response);
             THEN_CommonDataItem_Matches(commonDataItem);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_accept_common_data_item_sent_for_replacement()
+        public void Should_accept_common_data_item_sent_to_non_empty_CommonData_as_xml()
+        {
+            GIVEN_non_empty_CommonData();
+            const string expectedKey = "a1";
+            const string expectedValue = "b1";
+            var commonDataItem = GIVEN_CommonDataItem(expectedKey, expectedValue) as CommonDataItem;
+            
+            var response = WHEN_SendingCommonDataItem_as_Xml(commonDataItem);
+            
+            THEN_Http_Response_Is_Created(response);
+            THEN_CommonDataItem_Matches(commonDataItem);
+        }
+        
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        public void Should_accept_common_data_item_sent_for_replacement_as_json()
         {
             GIVEN_non_empty_CommonData();
             const string expectedKey = "a1";
@@ -79,7 +105,22 @@ namespace Tmx.Server.Tests.Modules
             GIVEN_dataItem_with_key(expectedKey, expectedValue);
             var commonDataItem = GIVEN_CommonDataItem(expectedKey, expectedValue);
             
-            var response = WHEN_SendingCommonDataItem(commonDataItem);
+            var response = WHEN_SendingCommonDataItem_as_Json(commonDataItem);
+            
+            THEN_Http_Response_Is_Created(response);
+            THEN_CommonDataItem_Matches(commonDataItem);
+        }
+        
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        public void Should_accept_common_data_item_sent_for_replacement_as_xml()
+        {
+            GIVEN_non_empty_CommonData();
+            const string expectedKey = "a1";
+            const string expectedValue = "b1";
+            GIVEN_dataItem_with_key(expectedKey, expectedValue);
+            var commonDataItem = GIVEN_CommonDataItem(expectedKey, expectedValue) as CommonDataItem;
+            
+            var response = WHEN_SendingCommonDataItem_as_Xml(commonDataItem);
             
             THEN_Http_Response_Is_Created(response);
             THEN_CommonDataItem_Matches(commonDataItem);
@@ -101,10 +142,22 @@ namespace Tmx.Server.Tests.Modules
     	    return new CommonDataItem { Key = key, Value = value };
     	}
     	
-        BrowserResponse WHEN_SendingCommonDataItem(ICommonDataItem dataItem)
+        BrowserResponse WHEN_SendingCommonDataItem_as_Json(ICommonDataItem dataItem)
         {
             var browser = TestFactory.GetBrowserForTestDataModule();
-            return browser.Post(UrnList.CommonDataLoadingPoint, with => with.JsonBody<ICommonDataItem>(dataItem));
+            return browser.Post(UrnList.CommonDataLoadingPoint, with => {
+                with.JsonBody<ICommonDataItem>(dataItem);
+                with.Accept("application/json");
+            });
+        }
+        
+        BrowserResponse WHEN_SendingCommonDataItem_as_Xml(CommonDataItem dataItem)
+        {
+            var browser = TestFactory.GetBrowserForTestDataModule();
+            return browser.Post(UrnList.CommonDataLoadingPoint, with => {
+                with.XMLBody<CommonDataItem>(dataItem);
+                with.Accept("application/xml");
+            });
         }
         
         void THEN_Http_Response_Is_Created(BrowserResponse response)

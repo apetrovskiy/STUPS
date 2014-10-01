@@ -15,7 +15,6 @@ namespace Tmx.Client
     using Tmx.Interfaces.Remoting;
 	using Tmx.Interfaces.Server;
     using Tmx.Core;
-    using System;
 	using System.Collections.Generic;
     
     /// <summary>

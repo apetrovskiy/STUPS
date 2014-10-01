@@ -43,25 +43,18 @@ namespace Tmx.Server.Modules
 			Delete[UrnList.TestTasks_AllLoaded + UrnList.TestTasks_Task] = parameters => deleteLoadedTaskById(parameters).id;
         }
         
-		Response returnTaskByClientId(int clientId)
-		// Negotiator returnTaskByClientId(int clientId)
+		Negotiator returnTaskByClientId(int clientId)
 		{
             if (ClientsCollection.Clients.All(client => client.Id != clientId))
-                return HttpStatusCode.ExpectationFailed;
+                return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed);
 			var taskSorter = new TaskSelector();
 			ITestTask actualTask = taskSorter.GetFirstLegibleTask(clientId);
 			// setting status
 			// TODO: refactor
 			if (null == actualTask)
-//                from client in ClientsCollection.Clients
-//                   where client.Id == clientId
-//                   select client.Status = TestClientStatuses.NoTasks;
-			     // ClientsCollection.Clients.Where(client => client.Id == clientId).Select(client => client.Status = TestClientStatuses.NoTasks);
                 ClientsCollection.Clients.First(client => client.Id == clientId).Status = TestClientStatuses.NoTasks;
-			// ClientsCollection.Clients.Where(client => client.Id == clientId).Select(client => client.Status = TestClientStatuses.WorkflowInProgress);
 			ClientsCollection.Clients.First(client => client.Id == clientId).Status = TestClientStatuses.WorkflowInProgress;
-			return null != actualTask ? Response.AsJson(actualTask).WithStatusCode(HttpStatusCode.OK) : HttpStatusCode.NotFound;
-			// return null != actualTask ? Negotiate.WithModel(actualTask).WithStatusCode(HttpStatusCode.OK) : HttpStatusCode.NotFound;
+			return null != actualTask ? Negotiate.WithModel(actualTask).WithStatusCode(HttpStatusCode.OK) : Negotiate.WithStatusCode(HttpStatusCode.NotFound);
 		}
 
 		HttpStatusCode updateTask(ITestTask loadedTask, int taskId)
@@ -90,11 +83,9 @@ namespace Tmx.Server.Modules
 			return HttpStatusCode.OK;
 		}
 		
-        Response returnAllDesignatedTasks()
-        // Negotiator returnAllDesignatedTasks()
+        Negotiator returnAllDesignatedTasks()
         {
-        	return 0 == TaskPool.TasksForClients.Count ? HttpStatusCode.NotFound : Response.AsJson(TaskPool.TasksForClients).WithStatusCode(HttpStatusCode.OK);
-        	// return 0 == TaskPool.TasksForClients.Count ? HttpStatusCode.NotFound : Negotiate.WithModel(TaskPool.TasksForClients).WithStatusCode(HttpStatusCode.OK);
+        	return 0 == TaskPool.TasksForClients.Count ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(TaskPool.TasksForClients).WithStatusCode(HttpStatusCode.OK);
         }
         
         Negotiator returnAllLoadedTasks()

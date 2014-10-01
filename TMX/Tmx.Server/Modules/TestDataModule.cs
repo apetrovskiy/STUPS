@@ -13,6 +13,7 @@ namespace Tmx.Server.Modules
     using System.Collections.Generic;
 	using Nancy;
 	using Nancy.ModelBinding;
+    using Nancy.Responses.Negotiation;
 	using Tmx.Interfaces.Remoting;
 	using Tmx.Interfaces.Server;
 	using Tmx.Core;
@@ -34,9 +35,9 @@ namespace Tmx.Server.Modules
             // TODO: delete
         }
         
-        Response returnCommonData()
+        Negotiator returnCommonData()
         {
-        	return null != CommonData.Data ? Response.AsJson(CommonData.Data).WithStatusCode(HttpStatusCode.OK) : HttpStatusCode.NotFound;
+        	return null != CommonData.Data ? Negotiate.WithModel(CommonData.Data).WithStatusCode(HttpStatusCode.OK) : Negotiate.WithStatusCode(HttpStatusCode.NotFound);
         }
 
 		HttpStatusCode addCommonDataItem(ICommonDataItem commonDataItem)

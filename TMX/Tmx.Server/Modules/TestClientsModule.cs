@@ -44,10 +44,6 @@ namespace Tmx.Server.Modules
 			// TODO: DI
 			var taskSorter = new TaskSelector();
 			TaskPool.TasksForClients.AddRange(taskSorter.SelectTasksForClient(testClient.Id, TaskPool.Tasks));
-			// setting status
-			// if (TaskPool.TasksForClients.Any(task => task.ClientId == testClient.Id && task.TaskFinished == false))
-			//     testClient.Status = TestClientStatuses.WorkflowInProgress;
-			// return Response.AsJson(testClient).WithStatusCode(HttpStatusCode.Created);
 			return Negotiate.WithModel(testClient).WithStatusCode(HttpStatusCode.Created);
 		}
 		
@@ -59,15 +55,13 @@ namespace Tmx.Server.Modules
 		
 		Negotiator returnAllClients()
 		{
-			// return 0 == ClientsCollection.Clients.Count ? HttpStatusCode.NotFound : Response.AsJson(ClientsCollection.Clients).WithStatusCode(HttpStatusCode.OK);
 			return 0 == ClientsCollection.Clients.Count ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(ClientsCollection.Clients).WithStatusCode(HttpStatusCode.OK);
 		}
 		
 		Negotiator returnClientById(int clientId)
 		{
 			// TODO: refactor this
-		    // return ClientsCollection.Clients.Any(client => client.Id == clientId) ? Response.AsJson(ClientsCollection.Clients.Any(client => client.Id == clientId)) : HttpStatusCode.NotFound;
-		    return ClientsCollection.Clients.Any(client => client.Id == clientId) ? Negotiate.WithModel(ClientsCollection.Clients.Any(client => client.Id == clientId)) : Negotiate.WithStatusCode(HttpStatusCode.NotFound);
+		    return ClientsCollection.Clients.Any(client => client.Id == clientId) ? Negotiate.WithModel(ClientsCollection.Clients.Any(client => client.Id == clientId)).WithStatusCode(HttpStatusCode.OK) : Negotiate.WithStatusCode(HttpStatusCode.NotFound);
 		}
 	}
 }

@@ -145,9 +145,6 @@ namespace Tmx.Server.Tests.Modules
         
         XElement getElementWithTestResults(IOrderedEnumerable<ITestSuite> suites, IOrderedEnumerable<ITestScenario> scenarios, IOrderedEnumerable<ITestResult> testResults)
         {
-            // 
-            // return new XElement("aaaa");
-            // return TmxHelper.CreateSuitesXElementWithParameters(suites, scenarios, testResults,
             return TmxHelper.CreateSuitesXElementWithParameters(suites, scenarios, testResults, (new XMLElementsNativeStruct()));            
         }
         

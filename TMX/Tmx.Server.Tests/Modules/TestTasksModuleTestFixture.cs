@@ -50,33 +50,20 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_provide_a_task_to_test_client_if_the_client_matches_the_rule()
         {
-        	// Given
+            // Given
             var browser = TestFactory.GetBrowserForTestTasksModule();
 			const string testClientHostnameExpected = "testhost";
 			const string testClientUsernameExpected = "aaa";
-            var testClient = new TestClient { Hostname = testClientHostnameExpected, Username = testClientUsernameExpected };
-            var task = new TestTask {
-            	Id = 5,
-            	Name = "task name",
-            	TaskFinished = false,
-            	IsActive = true,
-            	TaskStatus = TestTaskStatuses.New,
-            	Rule = testClientHostnameExpected
-            };
-			TaskPool.Tasks.Add(task);
-            
-            // When
-            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => {
-                                        	with.JsonBody<ITestClient>(testClient);
-                                        	with.Accept("application/json");
-                                        });
-            testClient = response.Body.DeserializeJson<TestClient>();
-            response = browser.Get(UrnList.TestTasks_Root + "/" + testClient.Id);
-            var loadedTask = response.Body.DeserializeJson<TestTask>();
+			var expectedTask = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, testClientHostnameExpected, 0);
+			var testClient = GIVEN_Registered_TestClient(testClientHostnameExpected, testClientUsernameExpected);
+			
+			// When
+            var response = browser.Get(UrnList.TestTasks_Root + "/" + testClient.Id, with => with.Accept("application/json"));
+            var actualTask = response.Body.DeserializeJson<TestTask>();
             
             // Then
             THEN_HttpResponse_Is_Ok(response);
-            THEN_TestTask_Properties_Equal_To(task, loadedTask);
+            THEN_TestTask_Properties_Equal_To(expectedTask, actualTask);
             THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == testClient.Id));
         }
         
@@ -87,24 +74,11 @@ namespace Tmx.Server.Tests.Modules
             var browser = TestFactory.GetBrowserForTestTasksModule();
 			const string testClientHostnameExpected = "testhost";
 			const string testClientUsernameExpected = "aaa";
-            var testClient = new TestClient { Hostname = testClientHostnameExpected, Username = testClientUsernameExpected };
-            var task = new TestTask {
-            	Id = 5,
-            	Name = "task name",
-            	TaskFinished = false,
-            	IsActive = true,
-            	TaskStatus = TestTaskStatuses.New,
-            	Rule = "no matches"
-            };
-			TaskPool.Tasks.Add(task);
+			var givenTask = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, "no matches", 0);
+			var testClient = GIVEN_Registered_TestClient(testClientHostnameExpected, testClientUsernameExpected);
             
             // When
-            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => {
-                                        	with.JsonBody<ITestClient>(testClient);
-                                        	with.Accept("application/json");
-                                        });
-            testClient = response.Body.DeserializeJson<TestClient>();
-            response = browser.Get(UrnList.TestTasks_Root + "/" + testClient.Id);
+            var response = browser.Get(UrnList.TestTasks_Root + "/" + testClient.Id, with => with.Accept("application/json"));
             
             // Then
             THEN_HttpResponse_Is_NotFound(response);
@@ -116,61 +90,39 @@ namespace Tmx.Server.Tests.Modules
         {
         	// Given
             var browser = TestFactory.GetBrowserForTestTasksModule();
-            var testClient = new TestClient {
-                Hostname = "h",
-                OsVersion = "w",
-                Username = "u"
-            };
-            var testTask01 = new TestTask {
-                Id = 1,
-                IsActive = true,
-                TaskFinished = false,
-                Name = "task name",
-                Rule = ".*h.*"
-            };
-            TaskPool.Tasks.Add(testTask01);
-            var testTask02 = new TestTask {
-                Id = 2,
-                IsActive = true,
-                TaskFinished = false,
-                Name = "task name 02",
-                Rule = "u"
-            };
-            TaskPool.Tasks.Add(testTask02);
+            var givenTask01 = GIVEN_Loaded_TestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
+            var givenTask02 = GIVEN_Loaded_TestTask(2, "task name 02", false, TestTaskStatuses.New, true, "u", 0);
+            var registeredClient = GIVEN_Registered_TestClient("h", "u");
             
             // When
             var clientSettings = ClientSettings.Instance;
             clientSettings.ServerUrl = @"http://localhost:12340";
             clientSettings.StopImmediately = false;
             
-            var registration = new Registration(new RestRequestCreator());
-            
-            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => {
-                                        	with.JsonBody<ITestClient>(testClient);
-                                        	with.Accept("application/json");
-                                        });
-            var registeredClient = response.Body.DeserializeJson<TestClient>();
             clientSettings.ClientId = registeredClient.Id;
             clientSettings.StopImmediately = false;
             
             var taskLoader = new TaskLoader(new RestRequestCreator());
             
-            response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
-            var task = response.Body.DeserializeJson<TestTask>();
-            task.TaskStatus = TestTaskStatuses.Accepted;
-            response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => with.JsonBody<ITestTask>(task));
+            var response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id, with => with.Accept("application/json"));
+            var actualTask = response.Body.DeserializeJson<TestTask>();
+            actualTask.TaskStatus = TestTaskStatuses.Accepted;
+            response = browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => with.JsonBody<ITestTask>(actualTask));
             var taskUpdater = new TaskUpdater(new RestRequestCreator());
-            response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => with.JsonBody<ITestTask>(task));
+            response = browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => with.JsonBody<ITestTask>(actualTask));
             
-            task.TaskStatus = TestTaskStatuses.CompletedSuccessfully;
-            task.TaskFinished = true;
-            response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => with.JsonBody<ITestTask>(task));
-            response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
-            task = response.Body.DeserializeJson<TestTask>();
+            actualTask.TaskStatus = TestTaskStatuses.CompletedSuccessfully;
+            actualTask.TaskFinished = true;
+            response = browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => with.JsonBody<ITestTask>(actualTask));
+            response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id, with => {
+                with.Accept("application/json");
+                with.JsonBody<ITestTask>(actualTask);
+            });
+            actualTask = response.Body.DeserializeJson<TestTask>();
             
             // Then
             THEN_HttpResponse_Is_Ok(response);
-            THEN_TestTask_Properties_Equal_To(testTask02, task);
+            THEN_TestTask_Properties_Equal_To(givenTask02, actualTask);
             THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == registeredClient.Id));
         }
         
@@ -179,45 +131,22 @@ namespace Tmx.Server.Tests.Modules
         {
         	// Given
             var browser = TestFactory.GetBrowserForTestTasksModule();
-            var testClient = new TestClient {
-                Hostname = "h",
-                OsVersion = "w",
-                Username = "u"
-            };
-            var testTask01 = new TestTask {
-                Id = 1,
-                IsActive = true,
-                TaskFinished = false,
-                Name = "task name",
-                Rule = ".*h.*"
-            };
-            TaskPool.Tasks.Add(testTask01);
-            var testTask02 = new TestTask {
-                Id = 2,
-                IsActive = true,
-                TaskFinished = false,
-                Name = "task name 02",
-                Rule = "aaa"
-            };
-            TaskPool.Tasks.Add(testTask02);
+            var givenTask01 = GIVEN_Loaded_TestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
+            var givenTask02 = GIVEN_Loaded_TestTask(2, "task name 02", false, TestTaskStatuses.New, true, "aaa", 0);
+            var registeredClient = GIVEN_Registered_TestClient("h", "u");
             
             // When
-            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => {
-                                        	with.JsonBody<ITestClient>(testClient);
-                                        	with.Accept("application/json");
-                                        });
-            var registeredClient = response.Body.DeserializeJson<TestClient>();
-            response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
-            var task = response.Body.DeserializeJson<TestTask>();
-            task.TaskStatus = TestTaskStatuses.Accepted;
-            response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => {
-                                   	with.JsonBody<ITestTask>(task);
+            var response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id, with => with.Accept("application/json"));
+            var actualTask = response.Body.DeserializeJson<TestTask>();
+            actualTask.TaskStatus = TestTaskStatuses.Accepted;
+            response = browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => {
+                                   	with.JsonBody<ITestTask>(actualTask);
                                    	with.Accept("application/json");
                                    });
-            task.TaskStatus = TestTaskStatuses.CompletedSuccessfully;
-            task.TaskFinished = true;
-            response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => with.JsonBody<ITestTask>(task));
-            response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
+            actualTask.TaskStatus = TestTaskStatuses.CompletedSuccessfully;
+            actualTask.TaskFinished = true;
+            response = browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => with.JsonBody<ITestTask>(actualTask));
+            response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id, with => with.Accept("application/json"));
             
             // Then
             THEN_HttpResponse_Is_NotFound(response);
@@ -228,70 +157,33 @@ namespace Tmx.Server.Tests.Modules
         {
         	// Given
             var browser = TestFactory.GetBrowserForTestTasksModule();
-            var testClient = new TestClient {
-                Hostname = "h",
-                OsVersion = "w",
-                Username = "u"
-            };
-            var testTask01 = new TestTask {
-                Id = 1,
-                IsActive = true,
-                TaskFinished = false,
-                Name = "task name",
-                Rule = ".*h.*"
-            };
-            TaskPool.Tasks.Add(testTask01);
-            var testTask02 = new TestTask {
-                Id = 2,
-                IsActive = true,
-                TaskFinished = false,
-                Name = "task name",
-                Rule = ".*aaa.*"
-            };
-            TaskPool.Tasks.Add(testTask02);
-            var testTask03 = new TestTask {
-                Id = 3,
-                IsActive = true,
-                TaskFinished = false,
-                Name = "task name 02",
-                Rule = "u"
-            };
-            TaskPool.Tasks.Add(testTask03);
-            var testTask04 = new TestTask {
-                Id = 4,
-                IsActive = true,
-                TaskFinished = false,
-                Name = "task name",
-                Rule = ".*aaa.*"
-            };
-            TaskPool.Tasks.Add(testTask04);
+            var givenTask01 = GIVEN_Loaded_TestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
+            var givenTask02 = GIVEN_Loaded_TestTask(2, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
+            var givenTask03 = GIVEN_Loaded_TestTask(3, "task name 02", false, TestTaskStatuses.New, true, "u", 0);
+            var givenTask04 = GIVEN_Loaded_TestTask(4, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
+            var registeredClient = GIVEN_Registered_TestClient("h", "u");
             
             // When
-            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => {
-                                        	with.JsonBody<ITestClient>(testClient);
-                                        	with.Accept("application/json");
-                                        });
-            var registeredClient = response.Body.DeserializeJson<TestClient>();
-            response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
-            var task = response.Body.DeserializeJson<TestTask>();
-            task.TaskStatus = TestTaskStatuses.Accepted;
-            response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => {
-                                   	with.JsonBody<ITestTask>(task);
+            var response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id, with => with.Accept("application/json"));
+            var actualTask = response.Body.DeserializeJson<TestTask>();
+            actualTask.TaskStatus = TestTaskStatuses.Accepted;
+            response = browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => {
+                                   	with.JsonBody<ITestTask>(actualTask);
                                    	with.Accept("application/json");
                                    });
-            task.TaskStatus = TestTaskStatuses.CompletedSuccessfully;
-            task.TaskFinished = true;
-            response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => {
-                                   	with.JsonBody<ITestTask>(task);
+            actualTask.TaskStatus = TestTaskStatuses.CompletedSuccessfully;
+            actualTask.TaskFinished = true;
+            response = browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => {
+                                   	with.JsonBody<ITestTask>(actualTask);
                                    	with.Accept("application/json");
                                    });
-            response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
-            task = response.Body.DeserializeJson<TestTask>();
+            response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id, with => with.Accept("application/json"));
+            actualTask = response.Body.DeserializeJson<TestTask>();
             
             // Then
             THEN_HttpResponse_Is_Ok(response);
-            THEN_TestTask_Properties_Equal_To(testTask03, task);
-            Xunit.Assert.Equal(testTask03.Id, TaskPool.TasksForClients.OrderBy(t => t.Id).Skip(1).First().Id);
+            THEN_TestTask_Properties_Equal_To(givenTask03, actualTask);
+            Xunit.Assert.Equal(givenTask03.Id, TaskPool.TasksForClients.OrderBy(t => t.Id).Skip(1).First().Id);
             THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == registeredClient.Id));
         }
         
@@ -300,51 +192,14 @@ namespace Tmx.Server.Tests.Modules
         {
         	// Given
             var browser = TestFactory.GetBrowserForTestTasksModule();
-            var testClient = new TestClient {
-                Hostname = "h",
-                OsVersion = "w",
-                Username = "u"
-            };
-            var testTask01 = new TestTask {
-                Id = 1,
-                IsActive = true,
-                TaskFinished = false,
-                Name = "task name",
-                Rule = ".*h.*"
-            };
-            TaskPool.Tasks.Add(testTask01);
-            var testTask02 = new TestTask {
-                Id = 2,
-                IsActive = true,
-                TaskFinished = false,
-                Name = "task name",
-                Rule = ".*aaa.*"
-            };
-            TaskPool.Tasks.Add(testTask02);
-            var testTask03 = new TestTask {
-                Id = 3,
-                IsActive = true,
-                TaskFinished = false,
-                Name = "task name 02",
-                Rule = "aaa"
-            };
-            TaskPool.Tasks.Add(testTask03);
-            var testTask04 = new TestTask {
-                Id = 4,
-                IsActive = true,
-                TaskFinished = false,
-                Name = "task name 02",
-                Rule = "aaa"
-            };
-            TaskPool.Tasks.Add(testTask04);
+            var givenTask01 = GIVEN_Loaded_TestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
+            var givenTask02 = GIVEN_Loaded_TestTask(2, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
+            var givenTask03 = GIVEN_Loaded_TestTask(3, "task name 02", false, TestTaskStatuses.New, true, "aaa", 0);
+            var givenTask04 = GIVEN_Loaded_TestTask(4, "task name 02", false, TestTaskStatuses.New, true, "aaa", 0);
+            var registeredClient = GIVEN_Registered_TestClient("h", "u");
             
             // When
-            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => {
-                                        	with.JsonBody<ITestClient>(testClient);
-                                        	with.Accept("application/json");
-                                        });
-            var registeredClient = response.Body.DeserializeJson<TestClient>();
-            response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
+            var response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id, with => with.Accept("application/json"));
             var task = response.Body.DeserializeJson<TestTask>();
             task.TaskStatus = TestTaskStatuses.Accepted;
             response = browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => {
@@ -357,7 +212,7 @@ namespace Tmx.Server.Tests.Modules
                                    	with.JsonBody<ITestTask>(task);
                                    	with.Accept("application/json");
                                    });
-            response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id);
+            response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id, with => with.Accept("application/json"));
             
             // Then
             THEN_HttpResponse_Is_NotFound(response);
@@ -405,39 +260,18 @@ namespace Tmx.Server.Tests.Modules
 //                NUnit.Framework.Assert.AreEqual(1, 2);
 //            else
 //                NUnit.Framework.Assert.AreEqual(2, 3);
-            var testClient = new TestClient { Hostname = testClientHostnameExpected, Username = testClientUsernameExpected };
-            var task = new TestTask {
-            	Id = 4,
-            	Name = "task name",
-            	TaskFinished = false,
-            	IsActive = true,
-            	TaskStatus = TestTaskStatuses.New,
-            	Rule = "another rule"
-            };
-            TaskPool.TasksForClients.Add(task);
-            task = new TestTask {
-            	Id = 5,
-            	AfterTask = 4,
-            	Name = "task name",
-            	TaskFinished = false,
-            	IsActive = true,
-            	TaskStatus = TestTaskStatuses.New,
-            	Rule = testClientHostnameExpected
-            };
-			TaskPool.Tasks.Add(task);
             
+			var givenTask01 = GIVEN_Loaded_TestTask(4, "task name", false, TestTaskStatuses.New, true, "another rule", 0);
+            var givenTask02 = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, testClientHostnameExpected, 4);
+            var registeredClient = GIVEN_Registered_TestClient(testClientHostnameExpected, testClientUsernameExpected);
+			
             // When
-            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => {
-                                        	with.JsonBody<ITestClient>(testClient);
-                                        	with.Accept("application/json");
-                                        });
-            testClient = response.Body.DeserializeJson<TestClient>();
-            response = browser.Get(UrnList.TestTasks_Root + "/" + testClient.Id);
-            var loadedTask = response.Body.DeserializeJson<TestTask>();
+            var response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id, with => with.Accept("application/json"));
+            var actualTask = response.Body.DeserializeJson<TestTask>();
             
             // Then
-            THEN_TestTask_Is_Null(loadedTask);
-            THEN_test_client_is_busy(testClient);
+            THEN_TestTask_Is_Null(actualTask);
+            THEN_test_client_is_free(registeredClient);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -447,30 +281,17 @@ namespace Tmx.Server.Tests.Modules
             var browser = TestFactory.GetBrowserForTestTasksModule();
 			const string testClientHostnameExpected = "testhost";
 			const string testClientUsernameExpected = "aaa";
-            var testClient = new TestClient { Hostname = testClientHostnameExpected, Username = testClientUsernameExpected };
-            var task = new TestTask {
-            	Id = 5,
-            	AfterTask = 4,
-            	Name = "task name",
-            	TaskFinished = false,
-            	IsActive = true,
-            	TaskStatus = TestTaskStatuses.New,
-            	Rule = testClientHostnameExpected
-            };
-			TaskPool.Tasks.Add(task);
             
+            var givenTask = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, testClientHostnameExpected, 4);
+            var registeredClient = GIVEN_Registered_TestClient(testClientHostnameExpected, testClientUsernameExpected);
+			
             // When
-            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => {
-                                        	with.JsonBody<ITestClient>(testClient);
-                                        	with.Accept("application/json");
-                                        });
-            testClient = response.Body.DeserializeJson<TestClient>();
-            response = browser.Get(UrnList.TestTasks_Root + "/" + testClient.Id);
+            var response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id, with => with.Accept("application/json"));
             var loadedTask = response.Body.DeserializeJson<TestTask>();
             
             // Then
             THEN_TestTask_Is_Null(loadedTask);
-            THEN_test_client_is_free(testClient);
+            THEN_test_client_is_free(registeredClient);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -480,40 +301,18 @@ namespace Tmx.Server.Tests.Modules
             var browser = TestFactory.GetBrowserForTestTasksModule();
 			const string testClientHostnameExpected = "testhost";
 			const string testClientUsernameExpected = "aaa";
-            var testClient = new TestClient { Hostname = testClientHostnameExpected, Username = testClientUsernameExpected };
-            var task = new TestTask {
-            	Id = 4,
-            	Name = "task name",
-            	TaskFinished = true,
-            	IsActive = true,
-            	TaskStatus = TestTaskStatuses.CompletedSuccessfully,
-            	Rule = "another rule"
-            };
-            TaskPool.TasksForClients.Add(task);
-            task = new TestTask {
-            	Id = 5,
-            	AfterTask = 4,
-            	Name = "task name",
-            	TaskFinished = false,
-            	IsActive = true,
-            	TaskStatus = TestTaskStatuses.New,
-            	Rule = testClientHostnameExpected
-            };
-			TaskPool.Tasks.Add(task);
-            
+            var givenTask01 = GIVEN_Allocated_TestTask(4, "task name", true, TestTaskStatuses.CompletedSuccessfully, true, "another rule", 0);
+            var givenTask02 = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, testClientHostnameExpected, 4);
+            var registeredClient = GIVEN_Registered_TestClient(testClientHostnameExpected, testClientUsernameExpected);
+			
             // When
-            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => {
-                                        	with.JsonBody<ITestClient>(testClient);
-                                        	with.Accept("application/json");
-                                        });
-            testClient = response.Body.DeserializeJson<TestClient>();
-            response = browser.Get(UrnList.TestTasks_Root + "/" + testClient.Id);
-            var loadedTask = response.Body.DeserializeJson<TestTask>();
+            var response = browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id, with => with.Accept("application/json"));
+            var actualTask = response.Body.DeserializeJson<TestTask>();
             
             // Then
             THEN_HttpResponse_Is_Ok(response);
-            THEN_TestTask_Properties_Equal_To(task, loadedTask);
-            THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == testClient.Id));
+            THEN_TestTask_Properties_Equal_To(givenTask02, actualTask);
+            THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == registeredClient.Id));
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -523,25 +322,12 @@ namespace Tmx.Server.Tests.Modules
             var browser = TestFactory.GetBrowserForTestTasksModule();
 			const string testClientHostnameExpected = "testhost";
 			const string testClientUsernameExpected = "aaa";
-            var testClient = new TestClient { Hostname = testClientHostnameExpected, Username = testClientUsernameExpected };
-            var task = new TestTask {
-            	Id = 5,
-            	Name = "task name",
-            	TaskFinished = false,
-            	IsActive = true,
-            	TaskStatus = TestTaskStatuses.New,
-            	Rule = "no matches"
-            };
-			TaskPool.Tasks.Add(task);
-            
+            var givenTask01 = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, "no matches", 0);
+            var registeredClient = GIVEN_Registered_TestClient(testClientHostnameExpected, testClientUsernameExpected);
+			
             // When
-            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => {
-                                        	with.JsonBody<ITestClient>(testClient);
-                                        	with.Accept("application/json");
-                                        });
-            testClient = response.Body.DeserializeJson<TestClient>();
-            WHEN_SendingDeregistration_as_json(testClient);
-            response = browser.Get(UrnList.TestTasks_Root + "/" + 0);
+            WHEN_SendingDeregistration_as_json(registeredClient);
+            var response = browser.Get(UrnList.TestTasks_Root + "/" + 0, with => with.Accept("application/json"));
             
             // Then
             // THEN_HttpResponse_Is_NotFound(response);
@@ -578,6 +364,47 @@ namespace Tmx.Server.Tests.Modules
         }
         
         // ============================================================================================================================
+        ITestClient GIVEN_Registered_TestClient(string hostname, string username)
+        {
+            var browser = TestFactory.GetBrowserForTestTasksModule();
+            var testClient = new TestClient { Hostname = hostname, Username = username };
+            var response = browser.Post(UrnList.TestClientRegistrationPoint, with => {
+                                        	with.JsonBody<ITestClient>(testClient);
+                                        	with.Accept("application/json");
+                                        });
+            return response.Body.DeserializeJson<TestClient>();
+        }
+        
+        ITestTask GIVEN_Loaded_TestTask(int id, string taskName, bool finished, TestTaskStatuses status, bool isActive, string rule, int afterTask)
+        {
+            var task = new TestTask {
+            	Id = id,
+            	Name = taskName,
+            	TaskFinished = finished,
+            	IsActive = isActive,
+            	TaskStatus = status,
+            	Rule = rule,
+            	AfterTask = afterTask
+            };
+			TaskPool.Tasks.Add(task);
+			return task;
+        }
+        
+        ITestTask GIVEN_Allocated_TestTask(int id, string taskName, bool finished, TestTaskStatuses status, bool isActive, string rule, int afterTask)
+        {
+            var task = new TestTask {
+            	Id = id,
+            	Name = taskName,
+            	TaskFinished = finished,
+            	IsActive = isActive,
+            	TaskStatus = status,
+            	Rule = rule,
+            	AfterTask = afterTask
+            };
+			TaskPool.TasksForClients.Add(task);
+			return task;
+        }
+        
         // TODO: duplicated
         void WHEN_SendingDeregistration_as_json(ITestClient testClient)
         {

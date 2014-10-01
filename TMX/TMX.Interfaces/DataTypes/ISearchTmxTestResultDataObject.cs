@@ -16,7 +16,7 @@ namespace Tmx.Interfaces
     /// </summary>
     public interface ISearchTmxTestResultDataObject : ISearchCmdletBaseDataObject
     {
-        SwitchParameter OrderByPassRate { get; set; }
-        SwitchParameter OrderByFailRate { get; set; }
+//        SwitchParameter OrderByPassRate { get; set; }
+//        SwitchParameter OrderByFailRate { get; set; }
     }
 }

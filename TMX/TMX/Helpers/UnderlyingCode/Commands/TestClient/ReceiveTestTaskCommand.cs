@@ -50,8 +50,9 @@ namespace Tmx
                     }
                     throw;
                 }
-                catch (Exception) {
-// Console.WriteLine("receiving a task " + e.Message);
+                catch (Exception e) {
+//Console.WriteLine("receiving a task " + e.Message);
+//Console.WriteLine("receiving a task " + e.GetType().Name);
                 }
                 
 				if (null != task)

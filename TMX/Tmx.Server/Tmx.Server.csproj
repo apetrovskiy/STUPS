@@ -82,6 +82,7 @@
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Helpers\Control\InternalServerControl.cs" />
+    <Compile Include="Helpers\Control\PluginsLoader.cs" />
     <Compile Include="Helpers\Control\ServerControl.cs" />
     <Compile Include="Helpers\Control\TmxServerRootPathProvider.cs" />
     <Compile Include="Helpers\Objects\TaskPool.cs" />
@@ -108,6 +109,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+    <None Include="Scripts\jquery-2.1.1-vsdoc.js" />
+    <None Include="Scripts\jquery-2.1.1.js" />
+    <None Include="Scripts\jquery-2.1.1.min.js" />
+    <None Include="Scripts\jquery-2.1.1.min.map" />
     <None Include="tasks.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -132,6 +137,7 @@
     <Folder Include="Modules" />
     <Folder Include="Modules" />
     <Folder Include="Helpers" />
+    <Folder Include="Plugins" />
     <Folder Include="Nwx" />
     <Folder Include="Properties" />
     <Folder Include="Properties" />

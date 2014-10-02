@@ -10,11 +10,13 @@
 namespace Tmx.Server.Modules
 {
     using System;
+    using System.IO;
     using System.Net;
     using System.Net.NetworkInformation;
     using System.Text.RegularExpressions;
     using Nancy;
     using Nancy.ModelBinding;
+    using Tmx.Server.Helpers.Control;
     
     /// <summary>
     /// Description of RootModule.
@@ -29,12 +31,17 @@ namespace Tmx.Server.Modules
             
             Get["/tasks.htm"] = parameters => View["tasks.htm", TaskPool.TasksForClients.ToArray()];
             
-            // TODO: to a separate module
-            // Get["Nwx/sources.htm"] = parameters => View[@"Nwx/sources.htm", InternalServerControl.Url];
-            Get["Nwx/sources.htm"] = parameters => {
-                // return View[@"Nwx/sources.htm", "http://" + getHostname() + ":" + getPortFromUrl()];
-                return View[@"Nwx/sources.htm", InternalServerControl.Url];
-            };
+//            Get["Nwx/sources.htm"] = parameters => {
+//                try {
+//                    var path = (new TmxServerRootPathProvider()).GetRootPath() + @"\Content\report.htm";
+//                    if (File.Exists(path))
+//                        File.Delete(path);
+//                    }
+//                catch (Exception e) {
+//                    // Console.WriteLine(e.Message);
+//                }
+//                return View[@"Nwx/sources.htm"];
+//            };
         }
         
         // TODO: move to a separate class
@@ -48,9 +55,9 @@ namespace Tmx.Server.Modules
             return hostname;
         }
         
-        string getPortFromUrl()
-        {
-            return Regex.Match(InternalServerControl.Url, @"(?<=https?\:\/\/[\w\-\.]+\:).*[^\/\r\n]").Value;
-        }
+//        string getPortFromUrl()
+//        {
+//            return Regex.Match(InternalServerControl.Url, @"(?<=https?\:\/\/[\w\-\.]+\:).*[^\/\r\n]").Value;
+//        }
     }
 }

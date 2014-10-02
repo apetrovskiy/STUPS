@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Server.Helpers.Control
+namespace Tmx.Server
 {
     using System;
     using System.Linq;

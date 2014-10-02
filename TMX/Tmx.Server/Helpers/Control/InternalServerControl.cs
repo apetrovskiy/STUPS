@@ -10,6 +10,8 @@
 namespace Tmx.Server
 {
     using System;
+    using System.IO;
+    using System.Linq;
 	using Nancy;
 	using Nancy.Bootstrapper;
 	using Nancy.Conventions;
@@ -31,6 +33,7 @@ namespace Tmx.Server
         public static void Start(string url)
         {
             Url = url;
+            loadPlugins();
             _nancyHost = new NancyHost(new Uri(url));
 			_nancyHost.Start();
         }
@@ -75,5 +78,12 @@ namespace Tmx.Server
     	{
     	    get { return new TmxServerRootPathProvider(); }
     	}
+
+        static void loadPlugins()
+        {
+            // TODO: implement
+            var pluginsLoader = new PluginsLoader((new TmxServerRootPathProvider()).GetRootPath() + @"\Plugins");
+            pluginsLoader.Load();
+        }
     }
 }

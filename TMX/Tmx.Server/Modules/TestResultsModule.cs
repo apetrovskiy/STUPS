@@ -30,20 +30,7 @@ namespace Tmx.Server.Modules
         {
             StaticConfiguration.DisableErrorTraces = false;
             
-            Post[UrnList.TestStructure_AllResults] = _ => {
-                try {
-                    var actualBytes = new byte[Request.Body.Length];
-                    Request.Body.Read(actualBytes, 0, (int)Request.Body.Length);
-                    var actual = Encoding.UTF8.GetString(actualBytes);
-                    var xDoc = XDocument.Parse(actual);
-                    TmxHelper.ImportTestResultsFromXdocument(xDoc);
-                    // maybe, there's no such need? // TODO: set current test suite, test scenario, test result?
-                    return HttpStatusCode.Created;
-                }
-                catch (Exception) {
-                    return HttpStatusCode.ExpectationFailed;
-                }
-            };
+            Post[UrnList.TestStructure_AllResults] = _ => importTestResults();
             
             Post[UrnList.TestStructure_Suites] = _ => {
                 var testSuite = this.Bind<TestSuite>();
@@ -163,6 +150,21 @@ catch (Exception eeee) {
 //Console.WriteLine(result);
         		return HttpStatusCode.Created;
         	};
+        }
+
+        HttpStatusCode importTestResults()
+        {
+            try {
+                var actualBytes = new byte[Request.Body.Length];
+                Request.Body.Read(actualBytes, 0, (int)Request.Body.Length);
+                var actual = Encoding.UTF8.GetString(actualBytes);
+                var xDoc = XDocument.Parse(actual);
+                TmxHelper.ImportTestResultsFromXdocument(xDoc);
+                // maybe, there's no such need? // TODO: set current test suite, test scenario, test result?
+                return HttpStatusCode.Created;
+            } catch (Exception) {
+                return HttpStatusCode.ExpectationFailed;
+            }
         }
     }
 }

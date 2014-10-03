@@ -59,10 +59,7 @@ namespace Tmx.Client
             }
         }
         
-        #region Action delegate
-        void runSBActionWithParams(
-            ScriptBlock sb,
-            object[] parameters)
+        void runSBActionWithParams(ScriptBlock sb, object[] parameters)
         {
             Collection<PSObject> psObjects = null;
             try {
@@ -78,12 +75,7 @@ namespace Tmx.Client
                     eOuter.Message);
             }
         }
-        #endregion Action delegate
     }
     
-    #region Action delegate
-    delegate void runScriptBlockWithParameters(
-        ScriptBlock sb,
-        object[] parameters);
-    #endregion Action delegate
+    delegate void runScriptBlockWithParameters(ScriptBlock sb, object[] parameters);
 }

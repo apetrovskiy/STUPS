@@ -28,6 +28,11 @@ namespace Tmx.Server.Modules
 			Post[UrnList.TestClients_Clients] = _ => createNewClient(this.Bind<TestClient>());
 			
 			Delete[UrnList.TestClientDeregistrationPoint] = parameters => deleteClientById(parameters.id);
+			
+			Put[UrnList.TestClient_Status] = parameters => {
+            	var status = this.Bind<string>();
+                return updateStatus(parameters.id, status);
+			};
 		    
 		    Get[UrnList.TestClients_Clients] = _ => returnAllClients();
 		    
@@ -53,6 +58,14 @@ namespace Tmx.Server.Modules
 			return HttpStatusCode.NoContent;
 		}
 		
+        HttpStatusCode updateStatus(int clientId, string status)
+        {
+            if (ClientsCollection.Clients.All(client => client.Id != clientId))
+                return HttpStatusCode.NotFound;
+            ClientsCollection.Clients.First(client => client.Id == clientId).DetailedStatus = status;
+            return HttpStatusCode.OK;
+        }
+        
 		Negotiator returnAllClients()
 		{
 			return 0 == ClientsCollection.Clients.Count ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(ClientsCollection.Clients).WithStatusCode(HttpStatusCode.OK);

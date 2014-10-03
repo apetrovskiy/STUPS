@@ -34,9 +34,11 @@ namespace Tmx.Server.Modules
                 return updateTask(loadedTask, parameters.id);
             };
         	
-        	Get[UrnList.TestTasks_AllDesignated] = _ => returnAllDesignatedTasks();
-            
-            Get[UrnList.TestTasks_AllLoaded + "/"] = _ => returnAllLoadedTasks();
+            // 20141003
+            // temporarily hidden
+//        	Get[UrnList.TestTasks_AllDesignated] = _ => returnAllDesignatedTasks();
+//            
+//            Get[UrnList.TestTasks_AllLoaded + "/"] = _ => returnAllLoadedTasks();
             
             Delete[UrnList.TestTasks_Task] = parameters => deleteAllocatedTaskById(parameters.id);
             
@@ -44,19 +46,37 @@ namespace Tmx.Server.Modules
         }
         
 		Negotiator returnTaskByClientId(int clientId)
-		{
+        {
             if (ClientsCollection.Clients.All(client => client.Id != clientId))
                 return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed);
-			var taskSorter = new TaskSelector();
-			ITestTask actualTask = taskSorter.GetFirstLegibleTask(clientId);
-			// setting status
-			// TODO: refactor
-			if (null == actualTask)
-                ClientsCollection.Clients.First(client => client.Id == clientId).Status = TestClientStatuses.NoTasks;
-			ClientsCollection.Clients.First(client => client.Id == clientId).Status = TestClientStatuses.WorkflowInProgress;
-			return null != actualTask ? Negotiate.WithModel(actualTask).WithStatusCode(HttpStatusCode.OK) : Negotiate.WithStatusCode(HttpStatusCode.NotFound);
-		}
-
+            var taskSorter = new TaskSelector();
+            ITestTask actualTask = taskSorter.GetFirstLegibleTask(clientId);
+            // setting status
+            // TODO: refactor
+            // 20141003
+//			if (null == actualTask)
+//                ClientsCollection.Clients.First(client => client.Id == clientId).Status = TestClientStatuses.NoTasks;
+//			ClientsCollection.Clients.First(client => client.Id == clientId).Status = TestClientStatuses.WorkflowInProgress;
+//			return null != actualTask ? Negotiate.WithModel(actualTask).WithStatusCode(HttpStatusCode.OK) : Negotiate.WithStatusCode(HttpStatusCode.NotFound);
+            var clientInQuestion = ClientsCollection.Clients.First(client => client.Id == clientId);
+            return null == actualTask ? returnStatusTaskNotFound(clientInQuestion) : returnTaskToClientAndOk(clientInQuestion, actualTask);
+            // ClientsCollection.Clients.First(client => client.Id == clientId).Status = TestClientStatuses.WorkflowInProgress;
+        }
+		
+        Negotiator returnStatusTaskNotFound(ITestClient testClient)
+        {
+            testClient.Status = TestClientStatuses.NoTasks;
+            return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
+        }
+        
+        Negotiator returnTaskToClientAndOk(ITestClient testClient, ITestTask actualTask)
+        {
+            testClient.Status = TestClientStatuses.WorkflowInProgress;
+            testClient.TaskId = actualTask.Id;
+            testClient.TaskName = actualTask.Name;
+            return Negotiate.WithModel(actualTask).WithStatusCode(HttpStatusCode.OK);
+        }
+        
 		HttpStatusCode updateTask(ITestTask loadedTask, int taskId)
 		{
 			if (null == loadedTask)
@@ -65,35 +85,40 @@ namespace Tmx.Server.Modules
 			storedTask.TaskFinished = loadedTask.TaskFinished;
 			storedTask.TaskStatus = loadedTask.TaskStatus;
 			storedTask.TaskResult = loadedTask.TaskResult;
-			var taskSorter = new TaskSelector();
 			
+			var taskSorter = new TaskSelector();
 			if (TestTaskStatuses.Failed == storedTask.TaskStatus)
 				taskSorter.CancelFurtherTasks(storedTask.ClientId);
 			
-			if (storedTask.TaskFinished) {
-				ITestTask nextTask = null;
-				try {
-					nextTask = taskSorter.GetNextLegibleTask(storedTask.ClientId, storedTask.Id);
-				} catch (Exception eFailedToGetNextTask) {
-					throw new FailedToGetNextTaskException(eFailedToGetNextTask.Message);
-				}
-				if (null == nextTask)
-					return HttpStatusCode.OK;
-				nextTask.PreviousTaskResult = storedTask.TaskResult;
-				nextTask.PreviousTaskId = storedTask.Id;
-			}
-			return HttpStatusCode.OK;
+            return storedTask.TaskFinished ? updateNextTaskAndReturnOk(taskSorter, storedTask) : HttpStatusCode.OK;
 		}
 		
-        Negotiator returnAllDesignatedTasks()
+        HttpStatusCode updateNextTaskAndReturnOk(TaskSelector taskSorter, ITestTask storedTask)
         {
-        	return 0 == TaskPool.TasksForClients.Count ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(TaskPool.TasksForClients).WithStatusCode(HttpStatusCode.OK);
+            ITestTask nextTask = null;
+            try {
+                nextTask = taskSorter.GetNextLegibleTask(storedTask.ClientId, storedTask.Id);
+            } catch (Exception eFailedToGetNextTask) {
+                throw new FailedToGetNextTaskException(eFailedToGetNextTask.Message);
+            }
+            if (null == nextTask)
+                return HttpStatusCode.OK;
+            nextTask.PreviousTaskResult = storedTask.TaskResult;
+            nextTask.PreviousTaskId = storedTask.Id;
+            return HttpStatusCode.OK;
         }
         
-        Negotiator returnAllLoadedTasks()
-        {
-        	return 0 == TaskPool.Tasks.Count ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(TaskPool.Tasks).WithStatusCode(HttpStatusCode.OK);
-        }
+		// 20141003
+		// temporarily hidden
+//        Negotiator returnAllDesignatedTasks()
+//        {
+//        	return 0 == TaskPool.TasksForClients.Count ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(TaskPool.TasksForClients).WithStatusCode(HttpStatusCode.OK);
+//        }
+//        
+//        Negotiator returnAllLoadedTasks()
+//        {
+//        	return 0 == TaskPool.Tasks.Count ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(TaskPool.Tasks).WithStatusCode(HttpStatusCode.OK);
+//        }
 
 		HttpStatusCode deleteAllocatedTaskById(int taskId)
 		{

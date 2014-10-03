@@ -12,6 +12,7 @@ namespace Tmx
     using System;
     using Tmx.Client;
     using Tmx.Core;
+    using Tmx.Interfaces.Exceptions;
     using Tmx.Commands;
     
     /// <summary>
@@ -32,8 +33,9 @@ namespace Tmx
                 commonDataSender.Send(keyValuePair);
                 cmdlet.WriteObject(true);
             }
-            catch (Exception e) {
-                throw new Exception("Failed to send data with key '" + cmdlet.Key + "'. " + e.Message);
+            catch (SendingCommonDataItemException e) {
+                // throw new Exception("Failed to send data with key '" + cmdlet.Key + "'. " + e.Message);
+                throw;
             }
         }
     }

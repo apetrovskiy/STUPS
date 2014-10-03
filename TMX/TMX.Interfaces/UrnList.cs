@@ -31,6 +31,8 @@ namespace Tmx.Interfaces.Server
         public static string TestClientRegistrationPoint = TestClients_Root + TestClients_Clients;
         public static string TestClientDeregistrationPoint = TestClients_ClientById;
         public static string TestClientQueryPoint = TestClients_ClientById;
+        public static string TestClient_Status = TestClients_ClientById + "/status";
+        public static string TestClientStatusPoint = TestClients_Root + TestClient_Status;
         
         // TestTasksModule
         public const string TestTasks_Root = "/Tasks";
@@ -55,5 +57,21 @@ namespace Tmx.Interfaces.Server
         // ServerControlModule
         public const string ServerControl_Root = "/ServerControl";
         public const string ServerControlPoint = "/";
+        
+        // RootPageModule
+        public const string RootPage_Root = "/";
+        public const string RootPage_RootPageName = "index.htm";
+        
+        // TestStatusViewsModule
+        public const string TestStatusViews_Root = "/status";
+        public const string TestStatusViews_ClientsPageName = "/clients.htm";
+        public static string TestStatusViews_ClientsPage = "/" + TestStatusViews_ClientsPageName;
+        public const string TestStatusViews_TasksPageName = "tasks.htm";
+        public static string TestStatusViews_TasksPage = "/" + TestStatusViews_TasksPageName;
+        
+        // TestResultsViewsModule
+        public const string TestResultsViews_Root = "/results";
+        public const string TestResultsViews_OverviewPageName = "overview.htm";
+        public static string TestResultsViews_OverviewPage = "/" + TestResultsViews_OverviewPageName;
     }
 }

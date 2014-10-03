@@ -9,6 +9,7 @@
 
 namespace Tmx.Interfaces.Remoting
 {
+    using System;
     using System.Collections.Generic;
     
 	/// <summary>
@@ -23,6 +24,7 @@ namespace Tmx.Interfaces.Remoting
 		bool IsActive { get; set; }
 		bool TaskFinished { get; set; }
 		int Timeout { get; set; }
+		DateTime StartTime { get; set; }
 		int RetryCount { get; set; }
 		bool IsCritical { get; set; }
 		

@@ -184,6 +184,7 @@
     <Compile Include="Commands\TestClient\ReceiveTmxTestTaskCommand.cs" />
     <Compile Include="Commands\TestClient\RegisterTmxSystemUnderTestCommand.cs" />
     <Compile Include="Commands\TestClient\SendTmxCommonDataItemCommand.cs" />
+    <Compile Include="Commands\TestClient\SendTmxDetailedStatusCommand.cs" />
     <Compile Include="Commands\TestClient\SendTmxFileSystemItemCommand.cs" />
     <Compile Include="Commands\TestClient\SendTmxTestTaskResultCommand.cs" />
     <Compile Include="Commands\TestClient\UnregisterTmxSystemUnderTestCommand.cs" />
@@ -267,6 +268,7 @@
     <Compile Include="Helpers\UnderlyingCode\Commands\TestClient\ReceiveTestTaskCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestClient\RegisterSystemUnderTestCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestClient\SendCommonDataItemCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestClient\SendDetailedStatusCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestClient\SendFileSystemItemCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestClient\SendTestTaskResultCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestClient\UnregisterSystemUnderTestCommand.cs" />

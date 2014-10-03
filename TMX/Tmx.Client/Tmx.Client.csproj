@@ -87,6 +87,7 @@
     <Compile Include="Helpers\ItemSender.cs" />
     <Compile Include="Helpers\Registration.cs" />
     <Compile Include="Helpers\RestRequestCreator.cs" />
+    <Compile Include="Helpers\StatusSender.cs" />
     <Compile Include="Helpers\TaskLoader.cs" />
     <Compile Include="Helpers\TaskResultLoader.cs" />
     <Compile Include="Helpers\TaskRunner.cs" />

@@ -61,5 +61,9 @@ namespace Tmx.Core
 		public int UptimeSeconds { get; set; } // Environment.TickCount / 1000
 		public string CustomString { get; set; }
 		public TestClientStatuses Status { get; set; }
+		// 20141003
+		public int TaskId { get; set; }
+		public string TaskName { get; set; }
+		public string DetailedStatus { get; set; }
 	}
 }

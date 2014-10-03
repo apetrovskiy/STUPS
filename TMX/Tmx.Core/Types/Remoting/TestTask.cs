@@ -34,6 +34,7 @@ namespace Tmx.Core.Types.Remoting
 		public bool IsActive { get; set; }
 		public bool TaskFinished { get; set; }
 		public int Timeout { get; set; }
+		public DateTime StartTime { get; set; }
 		public int RetryCount { get; set; }
 		public bool IsCritical { get; set; }
 		
@@ -59,6 +60,7 @@ namespace Tmx.Core.Types.Remoting
 		public void StartTimer()
 		{
 		    // TODO: implement a timer
+		    StartTime = DateTime.Now;
 		}
 	}
 }

@@ -1,8 +1,8 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
- * Date: 9/18/2014
- * Time: 4:49 PM
+ * Date: 10/3/2014
+ * Time: 8:47 PM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
@@ -19,24 +19,26 @@ namespace Tmx.Client
 	using System.Collections.Generic;
     
     /// <summary>
-    /// Description of CommonDataSender.
+    /// Description of StatusSender.
     /// </summary>
-    public class CommonDataSender
+    public class StatusSender
     {
         readonly RestTemplate _restTemplate;
         
-        public CommonDataSender(RestRequestCreator requestCreator)
+        public StatusSender(RestRequestCreator requestCreator)
         {
             _restTemplate = requestCreator.GetRestTemplate();
         }
         
-        public virtual void Send(ICommonDataItem item)
+        public virtual void Send(string status)
         {
-            // TODO: add an error handler
-			var dataItemSendingResponse = _restTemplate.PostForMessage(UrnList.CommonDataLoadingPoint, item);
-			if (HttpStatusCode.Created == dataItemSendingResponse.StatusCode)
-				return;
-			throw new SendingCommonDataItemException("Failed to send data item. "+ dataItemSendingResponse.StatusCode);
+            // TODO: add an error handler (??)
+            try {
+                _restTemplate.Put(UrnList.TestClients_Root + "/" + ClientSettings.Instance.ClientId + "/status", status);
+            }
+            catch (Exception e) {
+                throw new SendingDetailedStatusException("Failed to send detailed status. " + e.Message);
+            }
         }
     }
 }

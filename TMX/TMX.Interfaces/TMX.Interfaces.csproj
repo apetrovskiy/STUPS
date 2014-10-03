@@ -90,6 +90,8 @@
     <Compile Include="Exceptions\CompleteTaskException.cs" />
     <Compile Include="Exceptions\FailedToGetNextTaskException.cs" />
     <Compile Include="Exceptions\LoadTaskException.cs" />
+    <Compile Include="Exceptions\SendingCommonDataItemException.cs" />
+    <Compile Include="Exceptions\SendingDetailedStatusException.cs" />
     <Compile Include="Exceptions\SendingTestResultsException.cs" />
     <Compile Include="Exceptions\UpdateTaskException.cs" />
     <Compile Include="Exceptions\WrongTaskDataException.cs" />

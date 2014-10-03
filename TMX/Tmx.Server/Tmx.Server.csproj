@@ -91,31 +91,33 @@
     <Compile Include="Helpers\Objects\ClientsCollection.cs" />
     <Compile Include="Helpers\WorkflowLoader.cs" />
     <Compile Include="Modules\ExternalFilesModule.cs" />
+    <Compile Include="Modules\RootPageModule.cs" />
     <Compile Include="Modules\ServerControlModule.cs" />
     <Compile Include="Modules\TestClientsModule.cs" />
     <Compile Include="Modules\TestDataModule.cs" />
     <Compile Include="Modules\TestResultsModule.cs" />
+    <Compile Include="Modules\TestResultsViewsModule.cs" />
     <Compile Include="Modules\TestTasksModule.cs" />
-    <Compile Include="Modules\RootModule.cs" />
+    <Compile Include="Modules\TestStatusViewsModule.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="clients.htm">
+    <None Include="status\clients.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="status\tasks.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="index.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Nwx\sources.htm">
+    <None Include="packages.config" />
+    <None Include="results\overview.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="packages.config" />
     <None Include="Scripts\jquery-2.1.1-vsdoc.js" />
     <None Include="Scripts\jquery-2.1.1.js" />
     <None Include="Scripts\jquery-2.1.1.min.js" />
     <None Include="Scripts\jquery-2.1.1.min.map" />
-    <None Include="tasks.htm">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
@@ -137,8 +139,9 @@
     <Folder Include="Modules" />
     <Folder Include="Modules" />
     <Folder Include="Helpers" />
+    <Folder Include="status" />
+    <Folder Include="results" />
     <Folder Include="Plugins" />
-    <Folder Include="Nwx" />
     <Folder Include="Properties" />
     <Folder Include="Properties" />
   </ItemGroup>

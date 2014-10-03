@@ -1,6 +1,6 @@
 ﻿/*
  * Created by SharpDevelop.
- * User: alexa_000
+ * User: Alexander Petrovskiy
  * Date: 9/30/2014
  * Time: 8:26 PM
  * 
@@ -16,32 +16,19 @@ namespace Tmx.Server.Modules
     using System.Text.RegularExpressions;
     using Nancy;
     using Nancy.ModelBinding;
+    using Tmx.Interfaces.Server;
     using Tmx.Server.Helpers.Control;
     
     /// <summary>
-    /// Description of RootModule.
+    /// Description of TestStatusViewsModule.
     /// </summary>
-    public class RootModule : NancyModule
+    public class TestStatusViewsModule : NancyModule
     {
-        public RootModule()
+        public TestStatusViewsModule() : base(UrnList.TestStatusViews_Root)
         {
-            Get["/"] = parameters => View["index.htm"];
+            Get[UrnList.TestStatusViews_ClientsPage] = parameters => View[UrnList.TestStatusViews_ClientsPageName, ClientsCollection.Clients];
             
-            Get["/clients.htm"] = parameters => View["clients.htm", ClientsCollection.Clients];
-            
-            Get["/tasks.htm"] = parameters => View["tasks.htm", TaskPool.TasksForClients.ToArray()];
-            
-//            Get["Nwx/sources.htm"] = parameters => {
-//                try {
-//                    var path = (new TmxServerRootPathProvider()).GetRootPath() + @"\Content\report.htm";
-//                    if (File.Exists(path))
-//                        File.Delete(path);
-//                    }
-//                catch (Exception e) {
-//                    // Console.WriteLine(e.Message);
-//                }
-//                return View[@"Nwx/sources.htm"];
-//            };
+            Get[UrnList.TestStatusViews_TasksPage] = parameters => View[UrnList.TestStatusViews_TasksPageName, TaskPool.TasksForClients.ToArray()];
         }
         
         // TODO: move to a separate class

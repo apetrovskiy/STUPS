@@ -36,7 +36,7 @@ namespace Tmx
 //            }
 //            Tmx.Server.ServerControl.Start(hostname, cmdlet.Port);
             
-            Tmx.Server.ServerControl.Start(cmdlet.Hostname, cmdlet.Port);
+            // Tmx.Server.ServerControl.Start(cmdlet.Hostname, cmdlet.Port);
         }
     }
 }

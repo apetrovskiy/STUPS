@@ -18,5 +18,9 @@ namespace Tmx.Interfaces.Remoting
 	{
 		int Id { get; set; }
 		TestClientStatuses Status { get; set; }
+		// 20141003
+		int TaskId { get; set; }
+		string TaskName { get; set; }
+		string DetailedStatus { get; set; }
 	}
 }

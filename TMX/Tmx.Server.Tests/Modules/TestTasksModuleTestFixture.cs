@@ -82,25 +82,16 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_provide_the_second_task_if_the_client_matches_the_rule()
         {
-        	// Given
             var givenTask01 = GIVEN_Loaded_TestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
             var givenTask02 = GIVEN_Loaded_TestTask(2, "task name 02", false, TestTaskStatuses.New, true, "u", 0);
             var registeredClient = GIVEN_Registered_TestClient("h", "u");
             
-            // When
             var actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
-            actualTask.TaskStatus = TestTaskStatuses.CompletedSuccessfully;
-            actualTask.TaskFinished = true;
-            _browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => with.JsonBody<ITestTask>(actualTask));
-            response = _browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id, with => {
-                with.Accept("application/json");
-                with.JsonBody<ITestTask>(actualTask);
-            });
-            actualTask = response.Body.DeserializeJson<TestTask>();
+            WHEN_Finishing_Task(actualTask);
+            actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
             
-            // Then
             THEN_HttpResponse_Is_Ok();
-            THEN_TestTask_Properties_Equal_To(givenTask02, actualTask);
+            THEN_TestTask_Properties_Equal_To(givenTask02, actualTask, TestTaskStatuses.Accepted);
             THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == registeredClient.Id));
         }
         
@@ -114,10 +105,8 @@ namespace Tmx.Server.Tests.Modules
             
             // When
             var actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
-            actualTask.TaskStatus = TestTaskStatuses.CompletedSuccessfully;
-            actualTask.TaskFinished = true;
-            _browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => with.JsonBody<ITestTask>(actualTask));
-            response = _browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id, with => with.Accept("application/json"));
+            WHEN_Finishing_Task(actualTask);
+            WHEN_Getting_task_as_json(registeredClient.Id);
             
             // Then
             THEN_HttpResponse_Is_NotFound();
@@ -126,27 +115,18 @@ namespace Tmx.Server.Tests.Modules
     	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_provide_the_second_task_if_the_client_matches_the_rule_and_there_are_several()
         {
-        	// Given
             var givenTask01 = GIVEN_Loaded_TestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
             var givenTask02 = GIVEN_Loaded_TestTask(2, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
             var givenTask03 = GIVEN_Loaded_TestTask(3, "task name 02", false, TestTaskStatuses.New, true, "u", 0);
             var givenTask04 = GIVEN_Loaded_TestTask(4, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
             var registeredClient = GIVEN_Registered_TestClient("h", "u");
             
-            // When
             var actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
-            actualTask.TaskStatus = TestTaskStatuses.CompletedSuccessfully;
-            actualTask.TaskFinished = true;
-            _browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => {
-                                   	with.JsonBody<ITestTask>(actualTask);
-                                   	with.Accept("application/json");
-                                   });
-            response = _browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id, with => with.Accept("application/json"));
-            actualTask = response.Body.DeserializeJson<TestTask>();
+            WHEN_Finishing_Task(actualTask);
+            actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
             
-            // Then
             THEN_HttpResponse_Is_Ok();
-            THEN_TestTask_Properties_Equal_To(givenTask03, actualTask);
+            THEN_TestTask_Properties_Equal_To(givenTask03, actualTask, TestTaskStatuses.Accepted);
             Xunit.Assert.Equal(givenTask03.Id, TaskPool.TasksForClients.OrderBy(t => t.Id).Skip(1).First().Id);
             THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == registeredClient.Id));
         }
@@ -154,24 +134,16 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_not_provide_the_second_task_if_the_client_does_not_match_the_rule_and_there_are_several()
         {
-        	// Given
             var givenTask01 = GIVEN_Loaded_TestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
             var givenTask02 = GIVEN_Loaded_TestTask(2, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
             var givenTask03 = GIVEN_Loaded_TestTask(3, "task name 02", false, TestTaskStatuses.New, true, "aaa", 0);
             var givenTask04 = GIVEN_Loaded_TestTask(4, "task name 02", false, TestTaskStatuses.New, true, "aaa", 0);
             var registeredClient = GIVEN_Registered_TestClient("h", "u");
             
-            // When
             var task = WHEN_Getting_task_as_json(registeredClient.Id);
-            task.TaskStatus = TestTaskStatuses.CompletedSuccessfully;
-            task.TaskFinished = true;
-            _browser.Put(UrnList.TestTasks_Root + "/" + task.Id, with => {
-                                   	with.JsonBody<ITestTask>(task);
-                                   	with.Accept("application/json");
-                                   });
-            response = _browser.Get(UrnList.TestTasks_Root + "/" + registeredClient.Id, with => with.Accept("application/json"));
+            WHEN_Finishing_Task(task);
+            WHEN_Getting_task_as_json(registeredClient.Id);
             
-            // Then
             THEN_HttpResponse_Is_NotFound();
         }
         
@@ -316,14 +288,9 @@ namespace Tmx.Server.Tests.Modules
             // When
             // the first task
             var actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
-            actualTask.TaskFinished = true;
-            actualTask.TaskStatus = TestTaskStatuses.CompletedSuccessfully;
             actualTask.TaskResult.Add("result01", "res01");
             actualTask.TaskResult.Add("result02", "res02");
-            _browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => {
-                with.Accept("application/json");
-                with.JsonBody<ITestTask>(actualTask);
-            });
+            WHEN_Finishing_Task(actualTask);
 			
             // the second task
             var givenTask02 = GIVEN_Loaded_TestTask(10, "task name", false, TestTaskStatuses.New, true, _testClientHostnameExpected, 0);
@@ -424,6 +391,13 @@ namespace Tmx.Server.Tests.Modules
         void WHEN_Removing_Registered_Client_On_Server(ITestClient registeredClient)
         {
             ClientsCollection.Clients.RemoveAll(client => client.Id == registeredClient.Id);
+        }
+        
+        void WHEN_Finishing_Task(TestTask actualTask)
+        {
+            actualTask.TaskStatus = TestTaskStatuses.CompletedSuccessfully;
+            actualTask.TaskFinished = true;
+            _browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => with.JsonBody<ITestTask>(actualTask));
         }
         
         void THEN_HttpResponse_Is_Ok()

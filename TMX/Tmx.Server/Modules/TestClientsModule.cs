@@ -15,6 +15,7 @@ namespace Tmx.Server.Modules
 	using Nancy.ModelBinding;
 	using Nancy.Responses.Negotiation;
 	using Tmx.Core;
+    using Tmx.Core.Types.Remoting;
 	using Tmx.Interfaces.Server;
 	using Tmx.Interfaces.Remoting;
 	
@@ -30,8 +31,8 @@ namespace Tmx.Server.Modules
 			Delete[UrnList.TestClientDeregistrationPoint] = parameters => deleteClientById(parameters.id);
 			
 			Put[UrnList.TestClient_Status] = parameters => {
-            	var status = this.Bind<string>();
-                return updateStatus(parameters.id, status);
+            	var detailedStatus = this.Bind<DetailedStatus>();
+                return updateStatus(parameters.id, detailedStatus);
 			};
 		    
 		    Get[UrnList.TestClients_Clients] = _ => returnAllClients();
@@ -58,11 +59,11 @@ namespace Tmx.Server.Modules
 			return HttpStatusCode.NoContent;
 		}
 		
-        HttpStatusCode updateStatus(int clientId, string status)
+        HttpStatusCode updateStatus(int clientId, DetailedStatus detailedStatus)
         {
             if (ClientsCollection.Clients.All(client => client.Id != clientId))
                 return HttpStatusCode.NotFound;
-            ClientsCollection.Clients.First(client => client.Id == clientId).DetailedStatus = status;
+            ClientsCollection.Clients.First(client => client.Id == clientId).DetailedStatus = detailedStatus.Status;
             return HttpStatusCode.OK;
         }
         
@@ -74,7 +75,7 @@ namespace Tmx.Server.Modules
 		Negotiator returnClientById(int clientId)
 		{
 			// TODO: refactor this
-		    return ClientsCollection.Clients.Any(client => client.Id == clientId) ? Negotiate.WithModel(ClientsCollection.Clients.Any(client => client.Id == clientId)).WithStatusCode(HttpStatusCode.OK) : Negotiate.WithStatusCode(HttpStatusCode.NotFound);
+		    return ClientsCollection.Clients.Any(client => client.Id == clientId) ? Negotiate.WithModel(ClientsCollection.Clients.First(client => client.Id == clientId)).WithStatusCode(HttpStatusCode.OK) : Negotiate.WithStatusCode(HttpStatusCode.NotFound);
 		}
 	}
 }

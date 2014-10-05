@@ -12,6 +12,7 @@ namespace Tmx.Client
     using System;
     using System.Net;
 	using Spring.Rest.Client;
+    using Tmx.Core.Types.Remoting;
     using Tmx.Interfaces.Exceptions;
     using Tmx.Interfaces.Remoting;
 	using Tmx.Interfaces.Server;
@@ -34,7 +35,7 @@ namespace Tmx.Client
         {
             // TODO: add an error handler (??)
             try {
-                _restTemplate.Put(UrnList.TestClients_Root + "/" + ClientSettings.Instance.ClientId + "/status", status);
+                _restTemplate.Put(UrnList.TestClients_Root + "/" + ClientSettings.Instance.ClientId + "/status", new DetailedStatus(status));
             }
             catch (Exception e) {
                 throw new SendingDetailedStatusException("Failed to send detailed status. " + e.Message);

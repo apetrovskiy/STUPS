@@ -51,16 +51,8 @@ namespace Tmx.Server.Modules
                 return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed);
             var taskSorter = new TaskSelector();
             ITestTask actualTask = taskSorter.GetFirstLegibleTask(clientId);
-            // setting status
-            // TODO: refactor
-            // 20141003
-//			if (null == actualTask)
-//                ClientsCollection.Clients.First(client => client.Id == clientId).Status = TestClientStatuses.NoTasks;
-//			ClientsCollection.Clients.First(client => client.Id == clientId).Status = TestClientStatuses.WorkflowInProgress;
-//			return null != actualTask ? Negotiate.WithModel(actualTask).WithStatusCode(HttpStatusCode.OK) : Negotiate.WithStatusCode(HttpStatusCode.NotFound);
             var clientInQuestion = ClientsCollection.Clients.First(client => client.Id == clientId);
             return null == actualTask ? returnStatusTaskNotFound(clientInQuestion) : returnTaskToClientAndOk(clientInQuestion, actualTask);
-            // ClientsCollection.Clients.First(client => client.Id == clientId).Status = TestClientStatuses.WorkflowInProgress;
         }
 		
         Negotiator returnStatusTaskNotFound(ITestClient testClient)

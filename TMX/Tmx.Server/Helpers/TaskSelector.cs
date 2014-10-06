@@ -62,8 +62,6 @@ namespace Tmx.Server
 		{
 			var taskListForClient = getOnlyNewTestTasksForClient(clientId);
 			if (null == taskListForClient || !taskListForClient.Any()) return null;
-			// 20141001
-			// return taskListForClient.First(task => task.Id == taskListForClient.Where(t => t.Id > currentTaskId).Min(tsk => tsk.Id));
 			var tasksToBeNextOne = taskListForClient.Where(t => t.Id > currentTaskId);
 			if (null == tasksToBeNextOne || !tasksToBeNextOne.Any()) return null;
 			
@@ -72,13 +70,15 @@ namespace Tmx.Server
 		
         public virtual void CancelFurtherTasks(int clientId)
         {
-            var taskListForClient = getOnlyNewTestTasksForClient(clientId);
-            taskListForClient.Select(task => task.TaskStatus = TestTaskStatuses.Canceled);
+             TaskPool.TasksForClients
+                 .Where(task => task.ClientId == clientId && task.TaskStatus != TestTaskStatuses.Failed && task.TaskStatus != TestTaskStatuses.CompletedSuccessfully)
+                 .ToList()
+                 .ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled); 
         }
         
 		internal virtual IEnumerable<ITestTask> getOnlyNewTestTasksForClient(int clientId)
 		{
-		    return TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.IsActive && !task.TaskFinished);
+		    return TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.IsActive && task.TaskStatus == TestTaskStatuses.New);
 		}
 		
 		internal virtual bool isItTimeToPublishTask(ITestTask task)

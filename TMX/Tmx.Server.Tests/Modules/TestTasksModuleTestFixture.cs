@@ -150,7 +150,21 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_cancel_all_further_tasks_on_fail()
         {
+            var givenTask01 = GIVEN_Loaded_TestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
+            var givenTask02 = GIVEN_Loaded_TestTask(2, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
+            var givenTask03 = GIVEN_Loaded_TestTask(3, "task name 02", false, TestTaskStatuses.New, true, "u", 0);
+            var givenTask04 = GIVEN_Loaded_TestTask(4, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
+            var givenTask05 = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, "h", 0);
+            var registeredClient = GIVEN_Registered_TestClient("h", "u");
             
+            var actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
+            WHEN_Failing_Task(actualTask);
+            actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
+            
+            THEN_HttpResponse_Is_NotFound();
+            Xunit.Assert.Equal(null, actualTask);
+            Xunit.Assert.Equal(0, TaskPool.TasksForClients.Count(task => task.TaskStatus != TestTaskStatuses.Failed && task.TaskStatus != TestTaskStatuses.Canceled));
+            Xunit.Assert.Equal(givenTask03.Id, TaskPool.TasksForClients.OrderBy(t => t.Id).Skip(1).First().Id);
         }
         
 //[NUnit.Framework.Test, TestCaseSource("DivideCases")]
@@ -396,6 +410,13 @@ namespace Tmx.Server.Tests.Modules
         void WHEN_Finishing_Task(TestTask actualTask)
         {
             actualTask.TaskStatus = TestTaskStatuses.CompletedSuccessfully;
+            actualTask.TaskFinished = true;
+            _browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => with.JsonBody<ITestTask>(actualTask));
+        }
+        
+        void WHEN_Failing_Task(TestTask actualTask)
+        {
+            actualTask.TaskStatus = TestTaskStatuses.Failed;
             actualTask.TaskFinished = true;
             _browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => with.JsonBody<ITestTask>(actualTask));
         }

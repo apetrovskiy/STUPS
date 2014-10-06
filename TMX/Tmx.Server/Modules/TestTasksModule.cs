@@ -77,6 +77,7 @@ namespace Tmx.Server.Modules
 			storedTask.TaskFinished = loadedTask.TaskFinished;
 			storedTask.TaskStatus = loadedTask.TaskStatus;
 			storedTask.TaskResult = loadedTask.TaskResult;
+			storedTask.StartTime = loadedTask.StartTime;
 			
 			var taskSorter = new TaskSelector();
 			if (TestTaskStatuses.Failed == storedTask.TaskStatus)

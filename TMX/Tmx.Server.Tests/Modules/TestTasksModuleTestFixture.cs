@@ -387,8 +387,8 @@ namespace Tmx.Server.Tests.Modules
             var actualTask = response.Body.DeserializeJson<TestTask>();
             if (null == actualTask) return actualTask;
             actualTask.TaskStatus = TestTaskStatuses.Accepted;
-            // actualTask.StartTimer();
-            _startTime = System.DateTime.Now;
+            // emulates actualTask.StartTimer();
+            _startTime = DateTime.Now;
             actualTask.StartTime = _startTime;
             _browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => {
                                    	with.JsonBody<ITestTask>(actualTask);

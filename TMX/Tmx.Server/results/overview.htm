@@ -40,13 +40,15 @@
         <table border="1">
             <tr>
                 <th>Id</th>
-                <th>Suite name</th>
+                <th>Scenario name</th>
+                <th>Platform</th>
                 <th>Status</th>
             </tr>
             @Each.Model
             <tr>
                 <td>@Current.Id</td>
                 <td>@Current.Name</td>
+                <td>@Current.PlatformId</td>
                 <td>@Current.Status</td>
             </tr>
             @EndEach

@@ -24,7 +24,7 @@ namespace Tmx.Client
     public class ItemSender
     {
 	    // volatile RestTemplate _restTemplate;
-	    readonly RestTemplate _restTemplate;
+	    readonly IRestOperations _restTemplate;
 	    
 	    public ItemSender(RestRequestCreator requestCreator)
 	    {

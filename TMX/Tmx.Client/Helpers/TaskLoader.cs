@@ -25,7 +25,7 @@ namespace Tmx.Client
 	public class TaskLoader
 	{
 	    // volatile RestTemplate _restTemplate;
-	    readonly RestTemplate _restTemplate;
+	    readonly IRestOperations _restTemplate;
 	    
 	    public TaskLoader(RestRequestCreator requestCreator)
 	    {

@@ -24,7 +24,7 @@ namespace Tmx.Client
     /// </summary>
     public class StatusSender
     {
-        readonly RestTemplate _restTemplate;
+        readonly IRestOperations _restTemplate;
         
         public StatusSender(RestRequestCreator requestCreator)
         {

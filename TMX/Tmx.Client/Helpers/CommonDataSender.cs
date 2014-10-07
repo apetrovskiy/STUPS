@@ -23,7 +23,7 @@ namespace Tmx.Client
     /// </summary>
     public class CommonDataSender
     {
-        readonly RestTemplate _restTemplate;
+        readonly IRestOperations _restTemplate;
         
         public CommonDataSender(RestRequestCreator requestCreator)
         {

@@ -25,7 +25,7 @@ namespace Tmx.Client
     public class TestResultsSender
     {
 	    // volatile RestTemplate _restTemplate;
-	    readonly RestTemplate _restTemplate;
+	    readonly IRestOperations _restTemplate;
 	    
 	    public TestResultsSender(RestRequestCreator requestCreator)
 	    {
@@ -41,7 +41,7 @@ namespace Tmx.Client
 	                });
 	        
 			try {
-				_restTemplate.MessageConverters.Add(new XElementHttpMessageConverter());
+				(_restTemplate as RestTemplate).MessageConverters.Add(new XElementHttpMessageConverter());
 				var sendingResultsResponse = _restTemplate.PostForMessage(UrnList.TestResultsPostingPoint, element);
 				return HttpStatusCode.Created == sendingResultsResponse.StatusCode;
 			}

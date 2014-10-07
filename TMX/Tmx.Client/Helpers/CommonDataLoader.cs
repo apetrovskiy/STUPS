@@ -20,7 +20,7 @@ namespace Tmx.Client
     /// </summary>
     public class CommonDataLoader
     {
-        readonly RestTemplate _restTemplate;
+        readonly IRestOperations _restTemplate;
         
         public CommonDataLoader(RestRequestCreator requestCreator)
         {

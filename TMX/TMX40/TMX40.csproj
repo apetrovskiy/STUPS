@@ -194,6 +194,9 @@
     <Compile Include="..\TMX\Commands\Status\GetTMXTestSuiteStatusCommand.cs">
       <Link>Commands\Status\GetTMXTestSuiteStatusCommand.cs</Link>
     </Compile>
+    <Compile Include="..\TMX\Commands\TestClient\AddTmxTestTaskResultCommand.cs">
+      <Link>Commands\TestClient\AddTmxTestTaskResultCommand.cs</Link>
+    </Compile>
     <Compile Include="..\TMX\Commands\TestClient\GetTmxCommonDataItemCommand.cs">
       <Link>Commands\TestClient\GetTmxCommonDataItemCommand.cs</Link>
     </Compile>
@@ -211,6 +214,9 @@
     </Compile>
     <Compile Include="..\TMX\Commands\TestClient\SendTmxCommonDataItemCommand.cs">
       <Link>Commands\TestClient\SendTmxCommonDataItemCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\TestClient\SendTmxDetailedStatusCommand.cs">
+      <Link>Commands\TestClient\SendTmxDetailedStatusCommand.cs</Link>
     </Compile>
     <Compile Include="..\TMX\Commands\TestClient\SendTmxFileSystemItemCommand.cs">
       <Link>Commands\TestClient\SendTmxFileSystemItemCommand.cs</Link>
@@ -422,6 +428,9 @@
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\Status\TMXGetTestSuiteStatusCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\Status\TMXGetTestSuiteStatusCommand.cs</Link>
     </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestClient\AddTestTaskResultCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TestClient\AddTestTaskResultCommand.cs</Link>
+    </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestClient\GetCommonDataItemCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\TestClient\GetCommonDataItemCommand.cs</Link>
     </Compile>
@@ -439,6 +448,9 @@
     </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestClient\SendCommonDataItemCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\TestClient\SendCommonDataItemCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestClient\SendDetailedStatusCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TestClient\SendDetailedStatusCommand.cs</Link>
     </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestClient\SendFileSystemItemCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\TestClient\SendFileSystemItemCommand.cs</Link>

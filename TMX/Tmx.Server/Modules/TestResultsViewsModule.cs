@@ -23,15 +23,6 @@ namespace Tmx.Server.Modules
     {
         public TestResultsViewsModule() : base(UrnList.TestResultsViews_Root)
         {
-            // Get[UrnList.TestResultsViews_OverviewPage] = parameters => View[UrnList.TestResultsViews_OverviewPageName, TestData.TestSuites];
-//            Get[UrnList.TestResultsViews_OverviewPage] = parameters => {
-//                var data = TestData.TestSuites.Select(suite => {
-//                                                          return suite.TestScenarios.Select(scenario => {
-//                                                                                                return new[] { scenario.Id, scenario.Name, scenario.Status, scenario.SuiteId};
-//                                                                                            });
-//                                                      });
-//                return View[UrnList.TestResultsViews_OverviewPageName, data];
-//            };
             Get[UrnList.TestResultsViews_OverviewPage] = parameters => {
                 var data = TestData.TestSuites.SelectMany(suite => { return suite.TestScenarios; });
                 return View[UrnList.TestResultsViews_OverviewPageName, data];

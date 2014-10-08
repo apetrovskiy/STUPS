@@ -34,6 +34,7 @@ namespace Tmx.Server
         {
             Url = url;
             loadPlugins();
+            setConfiguration();
             _nancyHost = new NancyHost(new Uri(url));
 			_nancyHost.Start();
         }
@@ -84,6 +85,11 @@ namespace Tmx.Server
             // TODO: implement
             var pluginsLoader = new PluginsLoader((new TmxServerRootPathProvider()).GetRootPath() + @"\Plugins");
             pluginsLoader.Load();
+        }
+        
+        static void setConfiguration()
+        {
+            StaticConfiguration.Caching.EnableRuntimeViewUpdates = true;
         }
     }
 }

@@ -86,6 +86,7 @@
     <Compile Include="Helpers\Control\ServerControl.cs" />
     <Compile Include="Helpers\Control\TmxServerRootPathProvider.cs" />
     <Compile Include="Helpers\Objects\TaskPool.cs" />
+    <Compile Include="Helpers\Objects\WorkflowCollection.cs" />
     <Compile Include="Helpers\ServerWatcher.cs" />
     <Compile Include="Helpers\TaskSelector.cs" />
     <Compile Include="Helpers\Objects\ClientsCollection.cs" />
@@ -114,10 +115,18 @@
     <None Include="results\overview.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Scripts\jquery-2.1.1-vsdoc.js" />
-    <None Include="Scripts\jquery-2.1.1.js" />
-    <None Include="Scripts\jquery-2.1.1.min.js" />
-    <None Include="Scripts\jquery-2.1.1.min.map" />
+    <None Include="Scripts\jquery-2.1.1-vsdoc.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Scripts\jquery-2.1.1.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Scripts\jquery-2.1.1.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Scripts\jquery-2.1.1.min.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">

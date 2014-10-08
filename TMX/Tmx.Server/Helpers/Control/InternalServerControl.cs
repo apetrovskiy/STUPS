@@ -90,6 +90,8 @@ namespace Tmx.Server
         static void setConfiguration()
         {
             StaticConfiguration.Caching.EnableRuntimeViewUpdates = true;
+            StaticConfiguration.DisableErrorTraces = false;
+            StaticConfiguration.EnableRequestTracing = true;
         }
     }
 }

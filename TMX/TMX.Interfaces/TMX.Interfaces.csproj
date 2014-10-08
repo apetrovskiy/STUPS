@@ -110,6 +110,7 @@
     <Compile Include="Remoting\ITestTask.cs" />
     <Compile Include="Remoting\ITestHost.cs" />
     <Compile Include="Remoting\ITestHostGroup.cs" />
+    <Compile Include="Remoting\IWorkflow.cs" />
     <Compile Include="TestStructure\Enumerations.cs" />
     <Compile Include="TestStructure\ITestBucket.cs" />
     <Compile Include="TestStructure\ITestCase.cs" />

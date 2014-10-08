@@ -27,7 +27,7 @@ namespace Tmx.Server.Modules
     {
         public TestResultsModule() : base(UrnList.TestStructure_Root)
         {
-            StaticConfiguration.DisableErrorTraces = false;
+            // StaticConfiguration.DisableErrorTraces = false;
             
             Post[UrnList.TestStructure_AllResults] = _ => importTestResults();
             

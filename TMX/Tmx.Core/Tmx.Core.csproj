@@ -98,6 +98,7 @@
     <Compile Include="Types\Remoting\ServerCommand.cs" />
     <Compile Include="Types\Remoting\TestClient.cs" />
     <Compile Include="Types\Remoting\TestTask.cs" />
+    <Compile Include="Types\Remoting\TestWorkflow.cs" />
     <Compile Include="Types\TestStructure\TestCase.cs" />
     <Compile Include="Types\TestStructure\TestPlatform.cs" />
     <Compile Include="Types\TestStructure\TestResult.cs" />

@@ -63,10 +63,27 @@ namespace Tmx.Server
 			            where task.Element(taskElement_isActive).Value == "1"
 			            select task;
 			var importedTasks = tasks.Select(tsk => getNewTestTask(tsk));
+			int workflowId = addWorkflow();
+			importedTasks.AsQueryable<ITestTask>().ToList().ForEach(task => task.WorkflowId = workflowId);
 			addTasksToCommonPool(importedTasks);
 			addTasksForEveryClient(importedTasks);
 		}
-
+		
+        int addWorkflow()
+        {
+            var workflow = new TestWorkflow();
+			int maxId = 0;
+			if (0 < WorkflowCollection.Workflows.Count)
+				maxId = WorkflowCollection.Workflows.Max(wkfl => wkfl.Id);
+			workflow.Id = ++maxId;
+			WorkflowCollection.Workflows.Add(workflow);
+			// TODO: DI
+//			var taskSorter = new TaskSelector();
+//			TaskPool.TasksForClients.AddRange(taskSorter.SelectTasksForClient(testClient.Id, TaskPool.Tasks));
+//			return Negotiate.WithModel(testClient).WithStatusCode(HttpStatusCode.Created);
+			return workflow.Id;
+        }
+        
 		internal virtual void addTasksToCommonPool(IEnumerable<ITestTask> importedTasks)
 		{
 			TaskPool.Tasks.AddRange(importedTasks);

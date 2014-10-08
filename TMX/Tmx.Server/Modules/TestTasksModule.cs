@@ -66,6 +66,7 @@ namespace Tmx.Server.Modules
             testClient.Status = TestClientStatuses.WorkflowInProgress;
             testClient.TaskId = actualTask.Id;
             testClient.TaskName = actualTask.Name;
+            testClient.WorkflowId = actualTask.WorkflowId;
             return Negotiate.WithModel(actualTask).WithStatusCode(HttpStatusCode.OK);
         }
         

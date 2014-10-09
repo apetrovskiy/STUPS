@@ -58,14 +58,31 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_provide_a_task_to_test_client_if_the_client_matches_the_rule()
         {
+			var workflow = new TestWorkflow();
+			workflow.Id = 1;
+			WorkflowCollection.Workflows.Add(workflow);
+			
+			// TaskPool.TasksForClients.ForEach(task => task.WorkflowId = workflow.Id);
+			
 			var expectedTask = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, _testClientHostnameExpected, 0);
+			
+			// expectedTask
+			// expectedTask.WorkflowId = workflow.Id;
+			
+			
+			// ClientsCollection.Clients.ForEach(client => client.WorkflowId = workflow.Id);
+			
 			var testClient = GIVEN_Registered_TestClient_as_json(_testClientHostnameExpected, _testClientUsernameExpected);
+			
+			// testClient.WorkflowId = workflow.Id;
+			
 			
             var actualTask = WHEN_Getting_task_as_json(testClient.Id);
             
             THEN_HttpResponse_Is_Ok();
             THEN_TestTask_Properties_Equal_To(expectedTask, actualTask, TestTaskStatuses.Accepted);
             THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == testClient.Id));
+            Xunit.Assert.Equal(WorkflowCollection.Workflows.First().Id, actualTask.WorkflowId);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -335,7 +352,9 @@ namespace Tmx.Server.Tests.Modules
             clientSettings.StopImmediately = false;
             
             clientSettings.ClientId = testClient.Id;
-            clientSettings.StopImmediately = false;
+            // clientSettings.StopImmediately = false;
+            
+            
             
             return testClient;
         }
@@ -349,7 +368,8 @@ namespace Tmx.Server.Tests.Modules
             	IsActive = isActive,
             	TaskStatus = status,
             	Rule = rule,
-            	AfterTask = afterTask
+            	AfterTask = afterTask,
+            	WorkflowId = WorkflowCollection.Workflows.Last().Id
             };
 			TaskPool.Tasks.Add(task);
 			return task;
@@ -364,7 +384,8 @@ namespace Tmx.Server.Tests.Modules
             	IsActive = isActive,
             	TaskStatus = status,
             	Rule = rule,
-            	AfterTask = afterTask
+            	AfterTask = afterTask,
+            	WorkflowId = WorkflowCollection.Workflows.Last().Id
             };
 			TaskPool.TasksForClients.Add(task);
 			return task;

@@ -18,5 +18,6 @@ namespace Tmx.Interfaces.Remoting
     {
         int Id { get; set; }
         string Name { get; set; }
+        WorkflowStatuses WorkflowStatus { get; set; }
     }
 }

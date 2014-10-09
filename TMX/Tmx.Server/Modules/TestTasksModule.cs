@@ -84,6 +84,8 @@ namespace Tmx.Server.Modules
 			if (TestTaskStatuses.Failed == storedTask.TaskStatus)
 				taskSorter.CancelFurtherTasks(storedTask.ClientId);
 			
+			updateWorklowStatus(storedTask.WorkflowId);
+			
             return storedTask.TaskFinished ? updateNextTaskAndReturnOk(taskSorter, storedTask) : HttpStatusCode.OK;
 		}
 		
@@ -100,6 +102,12 @@ namespace Tmx.Server.Modules
             nextTask.PreviousTaskResult = storedTask.TaskResult;
             nextTask.PreviousTaskId = storedTask.Id;
             return HttpStatusCode.OK;
+        }
+        
+        void updateWorklowStatus(int workflowId)
+        {
+            if (TaskPool.TasksForClients.All(task => task.WorkflowId == workflowId && task.TaskStatus != TestTaskStatuses.Accepted && task.TaskStatus != TestTaskStatuses.New))
+                WorkflowCollection.Workflows.Where(wfl => wfl.Id == workflowId).AsEnumerable().ToList().ForEach(wfl => wfl.WorkflowStatus = WorkflowStatuses.NoTasks);
         }
         
 		// 20141003

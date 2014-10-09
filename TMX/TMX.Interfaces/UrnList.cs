@@ -45,6 +45,13 @@ namespace Tmx.Interfaces.Server
         public static string TestTasks_AllDesignated = "/";
         public static string TestTasks_AllLoaded = "/loaded";
         
+        // TestWorkflowsModule
+        public const string TestWorkflows_Root = "/Workflows";
+        public const string TestWorkflows_GetByWorkflowId = "/{id:int}";
+        public static string TestWorkflowById = TestWorkflows_Root + TestWorkflows_GetByWorkflowId;
+        public const string TestWorkflows_All = "/";
+        public static string TestWorkflowLoadAll = TestWorkflows_Root + TestWorkflows_All;
+        
         // TestDataModule
         public const string TestData_Root = "/Data";
         public const string TestData_CommonData = "/";
@@ -61,6 +68,7 @@ namespace Tmx.Interfaces.Server
         // RootPageModule
         public const string RootPage_Root = "/";
         public const string RootPage_RootPageName = "index.htm";
+        public const string RootPage_ScriptsFolder = "Scripts/";
         
         // TestStatusViewsModule
         public const string TestStatusViews_Root = "/status";

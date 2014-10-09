@@ -59,19 +59,28 @@ namespace Tmx.Server
 
 		public virtual void ImportXdocument(XContainer xDocument)
 		{
+		    var workflowId = getWorkflowId(xDocument);
 			var tasks = from task in xDocument.Descendants("task")
 			            where task.Element(taskElement_isActive).Value == "1"
 			            select task;
-			var importedTasks = tasks.Select(tsk => getNewTestTask(tsk));
-			int workflowId = addWorkflow();
-			importedTasks.AsQueryable<ITestTask>().ToList().ForEach(task => task.WorkflowId = workflowId);
+			var importedTasks = tasks.Select(tsk => getNewTestTask(tsk, workflowId));
+			// int workflowId = addWorkflow();
+			// importedTasks.AsQueryable<ITestTask>().ToList().ForEach(task => task.WorkflowId = workflowId);
 			addTasksToCommonPool(importedTasks);
 			addTasksForEveryClient(importedTasks);
+			setWorkflowStatusInProgress(workflowId);
 		}
 		
-        int addWorkflow()
+        int getWorkflowId(XContainer xDocument)
         {
-            var workflow = new TestWorkflow();
+            var wfl = xDocument.Descendants("workflow").FirstOrDefault();
+            var workflowName = null != wfl ? wfl.Name.LocalName : "unnamed workflow";
+            return addWorkflow(workflowName);
+        }
+        
+        int addWorkflow(string name)
+        {
+            var workflow = new TestWorkflow { Name = name };
 			int maxId = 0;
 			if (0 < WorkflowCollection.Workflows.Count)
 				maxId = WorkflowCollection.Workflows.Max(wkfl => wkfl.Id);
@@ -82,6 +91,15 @@ namespace Tmx.Server
 //			TaskPool.TasksForClients.AddRange(taskSorter.SelectTasksForClient(testClient.Id, TaskPool.Tasks));
 //			return Negotiate.WithModel(testClient).WithStatusCode(HttpStatusCode.Created);
 			return workflow.Id;
+        }
+        
+        void setWorkflowStatusInProgress(int workflowId)
+        {
+            if (TaskPool.TasksForClients.All(task => task.WorkflowId == workflowId && (task.TaskStatus == TestTaskStatuses.Accepted || task.TaskStatus == TestTaskStatuses.New)))
+                // WorkflowCollection.Workflows.Where(wfl => wfl.Id == workflowId).AsEnumerable().ToList().ForEach(wfl => wfl.WorkflowStatus = WorkflowStatuses.WorkflowInProgress);
+                (from wfl in WorkflowCollection.Workflows
+                             where wfl.Id == workflowId
+                             select wfl).AsEnumerable().ToList().ForEach(wfl => wfl.WorkflowStatus = WorkflowStatuses.WorkflowInProgress);
         }
         
 		internal virtual void addTasksToCommonPool(IEnumerable<ITestTask> importedTasks)
@@ -98,7 +116,7 @@ namespace Tmx.Server
 			}
 		}
 		
-		internal virtual ITestTask getNewTestTask(XContainer taskNode)
+		internal virtual ITestTask getNewTestTask(XContainer taskNode, int workflowId)
 		{
 			return new TestTask {
 		        Action = getActionCode(taskNode, taskElement_action),
@@ -121,7 +139,8 @@ namespace Tmx.Server
 				StoryId = getTestTaskElementValue(taskNode, taskElement_storyId),
 				// TaskResult
 				TaskType = getTestTaskType(taskNode.Element(taskElement_taskType).Value),
-				Timeout = convertTestTaskElementValue(taskNode, taskElement_timeout)
+				Timeout = convertTestTaskElementValue(taskNode, taskElement_timeout),
+				WorkflowId = workflowId
 			};
 		}
 		

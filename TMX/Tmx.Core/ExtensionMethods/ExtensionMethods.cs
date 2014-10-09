@@ -42,7 +42,10 @@ namespace Tmx.Core
                 TaskStatus = task.TaskStatus,
                 StoryId = task.StoryId,
                 TaskResult = task.TaskResult, // ??
-                Timeout = task.Timeout
+                Timeout = task.Timeout,
+                // new
+                // 20141009
+                WorkflowId = task.WorkflowId
             };
         }
     }

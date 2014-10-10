@@ -64,8 +64,6 @@ namespace Tmx.Server
 			            where task.Element(taskElement_isActive).Value == "1"
 			            select task;
 			var importedTasks = tasks.Select(tsk => getNewTestTask(tsk, workflowId));
-			// int workflowId = addWorkflow();
-			// importedTasks.AsQueryable<ITestTask>().ToList().ForEach(task => task.WorkflowId = workflowId);
 			addTasksToCommonPool(importedTasks);
 			addTasksForEveryClient(importedTasks);
 			setWorkflowStatusInProgress(workflowId);
@@ -74,7 +72,7 @@ namespace Tmx.Server
         int getWorkflowId(XContainer xDocument)
         {
             var wfl = xDocument.Descendants("workflow").FirstOrDefault();
-            var workflowName = null != wfl ? wfl.Name.LocalName : "unnamed workflow";
+            var workflowName = null != wfl ? wfl.Attribute("name").Value : "unnamed workflow";
             return addWorkflow(workflowName);
         }
         

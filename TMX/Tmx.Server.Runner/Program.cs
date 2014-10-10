@@ -12,11 +12,17 @@ namespace Tmx.Server.Runner
     using System;
     using System.Net;
     using System.Net.NetworkInformation;
+//    using Tmx.Client;
+//    using Spring.Rest.Client;
     
     class Program
     {
         public static void Main(string[] args)
         {
+            // temporary
+//            var requestCreator = new RestRequestCreator();
+//            var restTemplate = requestCreator.GetRestTemplate();
+            
             ServerControl.Start(@"http://localhost:" + 12340);
             
 //            if (null != args && 0 < args.Length) {

@@ -53,6 +53,9 @@ namespace Tmx.Server.Modules
                 case ServerControlCommands.ResetLoadedTasks:
                     TaskPool.Tasks = new List<ITestTask>();
                     break;
+                case ServerControlCommands.ResetWorkflows:
+                    WorkflowCollection.Workflows = new List<IWorkflow>();
+                    break;
             }
         }
     }

@@ -33,7 +33,8 @@ namespace Tmx.Interfaces.Remoting
 	    Stop = 2,
 	    ResetClients = 3,
 	    ResetAllocatedTasks = 4,
-	    ResetLoadedTasks = 5
+	    ResetLoadedTasks = 5,
+	    ResetWorkflows = 6
 	}
 	
 	public enum TestClientStatuses

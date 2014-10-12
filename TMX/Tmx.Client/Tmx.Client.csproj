@@ -81,21 +81,20 @@
     <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Helpers\ClientSettings.cs" />
-    <Compile Include="Helpers\CommonDataLoader.cs" />
-    <Compile Include="Helpers\CommonDataSender.cs" />
-    <Compile Include="Helpers\ItemSender.cs" />
-    <Compile Include="Helpers\Registration.cs" />
     <Compile Include="Helpers\RestRequestCreator.cs" />
-    <Compile Include="Helpers\StatusSender.cs" />
-    <Compile Include="Helpers\TaskLoader.cs" />
-    <Compile Include="Helpers\TaskResultLoader.cs" />
-    <Compile Include="Helpers\TaskRunner.cs" />
-    <Compile Include="Helpers\TaskUpdater.cs" />
-    <Compile Include="Helpers\TestResultsSender.cs" />
+    <Compile Include="ObjectModel\ClientSettings.cs" />
+    <Compile Include="ObjectModel\CommonDataLoader.cs" />
+    <Compile Include="ObjectModel\CommonDataSender.cs" />
+    <Compile Include="ObjectModel\ItemSender.cs" />
+    <Compile Include="ObjectModel\Registration.cs" />
+    <Compile Include="ObjectModel\StatusSender.cs" />
+    <Compile Include="ObjectModel\TaskLoader.cs" />
+    <Compile Include="ObjectModel\TaskResultLoader.cs" />
+    <Compile Include="ObjectModel\TaskRunner.cs" />
+    <Compile Include="ObjectModel\TaskUpdater.cs" />
+    <Compile Include="ObjectModel\TestResultsSender.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App_Readme\Spring.Rest.txt" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -114,6 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helpers" />
+    <Folder Include="ObjectModel" />
     <Folder Include="Properties" />
     <Folder Include="Properties" />
   </ItemGroup>

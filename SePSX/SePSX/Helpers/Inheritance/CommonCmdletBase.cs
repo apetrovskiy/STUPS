@@ -608,8 +608,8 @@ Console.WriteLine("WriteSingleObject 00008");
                         }
                     }
                 }
-                catch (Exception eeee) {
-                    this.WriteVerbose(this, "for working with test results you need to import the TMX module");
+                catch (Exception) {
+					WriteVerbose(this, "for working with test results you need to import the TMX module");
                 }
             }
         }
@@ -620,7 +620,7 @@ Console.WriteLine("WriteSingleObject 00008");
         {
             //this.WriteVerbose(this, "WriteObjectMethod045OnSuccessScreenshot SePSX");
             
-            if (SePSX.Preferences.OnSuccessScreenShot) {
+            if (Preferences.OnSuccessScreenShot) {
                 //UIAutomation.UiaHelper.GetScreenshotOfSquare(
                 SeHelper.GetScreenshotOfWebElement(
                     //(cmdlet as HasWebElementInputCmdletBase),

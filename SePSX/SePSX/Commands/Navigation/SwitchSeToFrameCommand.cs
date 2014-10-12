@@ -46,17 +46,20 @@ namespace SePSX.Commands
         
         protected override void ProcessRecord()
         {
-            this.checkInputWebDriver(true);
+			checkInputWebDriver(true);
             
             //SeHelper.SwitchToFrame(this, ((IWebDriver[])this.InputObject), this.FrameIndex);
-            if (null != this.FrameElement && null == this.FrameIndex && null == this.FrameName) {
-                SeHelper.SwitchToFrame(this, this.InputObject, SwitchToFrameWays.FrameElement);
+            // if (null != this.FrameElement && null == this.FrameIndex && null == this.FrameName) {
+            if (null != FrameElement && null == FrameName) {
+                SeHelper.SwitchToFrame(this, InputObject, SwitchToFrameWays.FrameElement);
             }
-            if (null != this.FrameIndex && null == this.FrameElement && null == this.FrameName) {
-                SeHelper.SwitchToFrame(this, this.InputObject, SwitchToFrameWays.FrameIndex);
+            // if (null != this.FrameIndex && null == this.FrameElement && null == this.FrameName) {
+            if (null == FrameElement && null == FrameName) {
+                SeHelper.SwitchToFrame(this, InputObject, SwitchToFrameWays.FrameIndex);
             }
-            if (null != this.FrameName && null == this.FrameElement && null == this.FrameIndex) {
-                SeHelper.SwitchToFrame(this, this.InputObject, SwitchToFrameWays.FrameName);
+            // if (null != this.FrameName && null == this.FrameElement && null == this.FrameIndex) {
+            if (null != FrameName && null == FrameElement) {
+                SeHelper.SwitchToFrame(this, InputObject, SwitchToFrameWays.FrameName);
             }
         }
     }

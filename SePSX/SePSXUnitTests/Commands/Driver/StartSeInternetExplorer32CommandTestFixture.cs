@@ -13,7 +13,6 @@ namespace SePSXUnitTests.Commands.Driver
     using SePSX;
     using OpenQA.Selenium;
     using OpenQA.Selenium.IE;
-    using SePSX;
     using SePSX.Commands;
     using MbUnit.Framework;
 //    using Moq;

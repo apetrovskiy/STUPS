@@ -346,7 +346,7 @@ namespace UIAutomation
                         false);
                 }
             }
-            catch (Exception eeee) {
+            catch (Exception) {
                 WriteVerbose(this, "for working with test results you need to import the TMX module");
             }
         }

@@ -13,7 +13,6 @@ namespace SePSXUnitTests.Commands.Driver
     using SePSX;
     using OpenQA.Selenium;
     using OpenQA.Selenium.Chrome;
-    using SePSX;
     using SePSX.Commands;
     using MbUnit.Framework;
     using Autofac;

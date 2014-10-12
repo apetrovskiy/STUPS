@@ -503,7 +503,7 @@ namespace UIAutomation
                     //AutomationElement.RootElement;
                     UiElement.RootElement; //.SourceElement;
             }
-            catch (Exception e) {
+            catch (Exception) {
                 //WriteVerbose(e.Message);
                 //WriteVerbose("UiaDriveInfo(PSDriveInfo)");
             }

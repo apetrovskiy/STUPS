@@ -204,3 +204,6 @@ RallyAddin
 RallyAddinUnitTests
 obj
 *.log
+*.dll
+*.exe
+packages.config

@@ -1,0 +1,26 @@
+﻿<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+	<br>
+	Hello {{ 'tobi' }}
+		<p>{{ 'tobi' | upcase }} has to do:</p>
+
+		<ul>
+		{% for suite in @Model.Suites -%}
+		  <li>{{ suite.Id }} {{ suite.Name }}</li>
+		  <ul>
+		  {% for scenario in suite.Scenarios -%}
+			<li>{{ scenario.Id }} {{ scenario.Name }} {{ scenario.Status }}</li>
+			<ul>
+			{% for result in scenario.Results -%}
+				<li>{{ result.Id }} {{ result.Name }} {{ result.Status }}</li>
+			{% endfor -%}
+			</ul>
+		  {% endfor -%}
+		  </ul>
+		{% endfor -%}
+		</ul>
+	</body>
+</html>

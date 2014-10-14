@@ -95,6 +95,7 @@
     <Compile Include="Exceptions\SendingDetailedStatusException.cs" />
     <Compile Include="Exceptions\SendingTestResultsException.cs" />
     <Compile Include="Exceptions\UpdateTaskException.cs" />
+    <Compile Include="Exceptions\WorkflowLoadingException.cs" />
     <Compile Include="Exceptions\WrongTaskDataException.cs" />
     <Compile Include="IDatabase.cs" />
     <Compile Include="Internal\ISystemInfo.cs" />

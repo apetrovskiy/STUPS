@@ -15,6 +15,20 @@ namespace Tmx.Server.Modules
     using Tmx.Interfaces;
     using Tmx.Interfaces.Server;
     using Tmx.Interfaces.TestStructure;
+    using DotLiquid;
+    using DotLiquid.NamingConventions;
+    using DotLiquid.Tags.Html;
+    using DotLiquid.Util;
+    using Nancy.ViewEngines.DotLiquid;
+    
+//	using System;
+//	using System.Linq;
+//	using Nancy;
+//	using Nancy.ModelBinding;
+//	using DotLiquid;
+//	using DotLiquid.NamingConventions;
+//	using DotLiquid.Tags.Html;
+//	using DotLiquid.Util;
     
     /// <summary>
     /// Description of TestResultsViewsModule.
@@ -26,6 +40,12 @@ namespace Tmx.Server.Modules
             Get[UrnList.TestResultsViews_OverviewPage] = parameters => {
                 var data = TestData.TestSuites.SelectMany(suite => { return suite.TestScenarios; });
                 return View[UrnList.TestResultsViews_OverviewPageName, data];
+            };
+            
+            Get[UrnList.TestResultsViews_OverviewNewPage] = parameters => {
+                // var data = TestData.TestSuites.SelectMany(suite => { return suite.TestScenarios; });
+                var data = new TestData();
+                return View[UrnList.TestResultsViews_OverviewNewPageName, data];
             };
         }
     }

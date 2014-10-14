@@ -27,8 +27,13 @@ namespace Tmx
         {
             var cmdlet = (StartTmxServerCommand)Cmdlet;
             // 20141001
-            Tmx.Server.ServerControl.Start(@"http://localhost:" + cmdlet.Port);
-            
+            try {
+                Tmx.Server.ServerControl.Start(@"http://localhost:" + cmdlet.Port);
+            }
+            catch (Exception eStartingServer) {
+Console.WriteLine(eStartingServer.Message);
+Console.WriteLine(eStartingServer.InnerException.Message);
+            }
 //            var hostname = Dns.GetHostName();
 //            if (string.Empty != IPGlobalProperties.GetIPGlobalProperties().DomainName) {
 //                hostname += ".";

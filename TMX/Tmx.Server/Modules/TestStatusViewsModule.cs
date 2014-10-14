@@ -19,6 +19,8 @@ namespace Tmx.Server.Modules
     using Tmx.Interfaces.Server;
     using Tmx.Server.Helpers.Control;
     
+    using Nancy.ViewEngines;
+    
     /// <summary>
     /// Description of TestStatusViewsModule.
     /// </summary>

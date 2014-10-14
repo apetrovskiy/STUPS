@@ -1,8 +1,8 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
- * Date: 10/2/2014
- * Time: 8:00 PM
+ * Date: 10/14/2014
+ * Time: 2:20 PM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
@@ -16,45 +16,42 @@ namespace Tmx.Server.Helpers.Control
     using System.Reflection;
     
     /// <summary>
-    /// Description of PluginsLoader.
+    /// Description of ModulesLoader.
     /// </summary>
     // TODO: to template method
-    public class PluginsLoader
+    public class ModulesLoader
     {
         string _path;
         
-        public PluginsLoader(string path)
+        public ModulesLoader(string path)
         {
             _path = path;
         }
         
         public void Load()
         {
-            recursivelyLoad(_path);
-        }
-        
-        void recursivelyLoad(string path)
-        {
-            if (!Directory.Exists(path)) return;
+            if (!Directory.Exists(_path)) return;
             try {
-                var dir = new DirectoryInfo(path);
-                var files = dir.GetFiles("*.dll");
+                var dir = new DirectoryInfo(_path);
+                var files = dir.GetFiles(@"Nancy*.dll");
                 if (null == files || !files.Any()) return;
+                Assembly.LoadFrom(_path + @"\Nancy.dll");
                 foreach (var probablyAssembly in files) {
+Console.WriteLine("loading modules 00007");
                     try {
+Console.WriteLine("loading " + probablyAssembly.FullName);
                         Assembly.LoadFrom(probablyAssembly.FullName);
+Console.WriteLine("loading modules 00008");
                     }
-                    catch {}
+                    catch (Exception e1) {
+Console.WriteLine(e1.Message);
+                    }
                 }
                 
-                var subDirs = dir.GetDirectories();
-                if (null != subDirs && subDirs.Any()) {
-                    foreach (var subDir in subDirs) {
-                        recursivelyLoad(subDir.FullName);
-                    }
-                }
             }
-            catch {}
+            catch (Exception e2) {
+Console.WriteLine(e2.Message);
+            }
         }
     }
 }

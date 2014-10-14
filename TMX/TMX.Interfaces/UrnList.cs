@@ -81,5 +81,7 @@ namespace Tmx.Interfaces.Server
         public const string TestResultsViews_Root = "/results";
         public const string TestResultsViews_OverviewPageName = "overview.htm";
         public static string TestResultsViews_OverviewPage = "/" + TestResultsViews_OverviewPageName;
+        public const string TestResultsViews_OverviewNewPageName = "overview.liquid";
+        public static string TestResultsViews_OverviewNewPage = "/overview";
     }
 }

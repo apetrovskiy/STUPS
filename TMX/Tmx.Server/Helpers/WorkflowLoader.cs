@@ -72,7 +72,15 @@ namespace Tmx.Server
         int getWorkflowId(XContainer xDocument)
         {
             var wfl = xDocument.Descendants("workflow").FirstOrDefault();
-            var workflowName = null != wfl ? wfl.Attribute("name").Value : "unnamed workflow";
+            // 20141014
+            if (null == wfl)
+                throw new WorkflowLoadingException("There's no workflow element in the document");
+            // var workflowName = null != wfl ? wfl.Attribute("name").Value : "unnamed workflow";
+            var nameAttribute = wfl.Attribute("name");
+            // if (null == nameAttribute)
+                // throw new WorkflowLoadingException("There is no name attribute in the workflow element");
+            var workflowName = null != nameAttribute ? nameAttribute.Value : "unnamed workflow";
+            
             return addWorkflow(workflowName);
         }
         

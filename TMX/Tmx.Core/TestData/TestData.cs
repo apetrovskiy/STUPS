@@ -23,7 +23,9 @@ namespace Tmx
     /// <summary>
     /// Description of TestSuitesCollection.
     /// </summary>
-    public static class TestData
+    // 20141014
+    // public static class TestData
+    public class TestData
     {
         // ----------------- Variables ---------------------------
         
@@ -36,7 +38,9 @@ namespace Tmx
         public const string DefaultPlatformName = "default platform";
         public const string DefaultPlatformId = "1";
         
-        static TestData()
+        // 20141014
+        // static TestData()
+        public TestData()
         {
             TestSuites = new List<ITestSuite>();
             TestPlatforms = new List<ITestPlatform>();
@@ -220,7 +224,9 @@ namespace Tmx
         // ------------------ Methods ----------------------------
         public static void ResetData()
         {
-            TestSuites.Clear();
+            // 20141014
+            // TestSuites.Clear();
+            if (null != TestSuites) TestSuites.Clear();
             CurrentTestResult = null;
             CurrentTestScenario = null;
             CurrentTestSuite = null;
@@ -229,12 +235,18 @@ namespace Tmx
         
         public static void CleanData()
         {
-            foreach (var suite in TestSuites) {
-                foreach (var scenario in suite.TestScenarios) {
-                    scenario.TestResults.Clear();
-                    scenario.enStatus = TestScenarioStatuses.NotTested;
+            // 20141014
+            if (null != TestSuites) {
+                foreach (var suite in TestSuites) {
+                    // 20141014
+                    if (null != suite.TestScenarios) {
+                        foreach (var scenario in suite.TestScenarios) {
+                            scenario.TestResults.Clear();
+                            scenario.enStatus = TestScenarioStatuses.NotTested;
+                        }
+                    }
+                    suite.enStatus = TestSuiteStatuses.NotTested;
                 }
-                suite.enStatus = TestSuiteStatuses.NotTested;
             }
             CurrentTestResult = null;
             CurrentTestScenario = null;

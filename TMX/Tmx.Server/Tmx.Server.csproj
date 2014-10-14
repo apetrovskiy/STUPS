@@ -57,6 +57,9 @@
     <Reference Include="Common.Logging.Core">
       <HintPath>..\..\packages\Common.Logging.Core.2.2.0\lib\net40\Common.Logging.Core.dll</HintPath>
     </Reference>
+    <Reference Include="DotLiquid">
+      <HintPath>..\..\packages\DotLiquid.1.7.0\lib\NET40\DotLiquid.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
@@ -65,6 +68,15 @@
     </Reference>
     <Reference Include="Nancy.Hosting.Self">
       <HintPath>..\..\packages\Nancy.Hosting.Self.0.23.2\lib\net40\Nancy.Hosting.Self.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Serialization.JsonNet">
+      <HintPath>..\..\packages\Nancy.Serialization.JsonNet.0.23.2\lib\net40\Nancy.Serialization.JsonNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.ViewEngines.DotLiquid">
+      <HintPath>..\..\packages\Nancy.Viewengines.DotLiquid.0.23.2\lib\net40\Nancy.ViewEngines.DotLiquid.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.5\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -81,7 +93,9 @@
     <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="FakeType.cs" />
     <Compile Include="Helpers\Control\InternalServerControl.cs" />
+    <Compile Include="Helpers\Control\ModulesLoader.cs" />
     <Compile Include="Helpers\Control\PluginsLoader.cs" />
     <Compile Include="Helpers\Control\ServerControl.cs" />
     <Compile Include="Helpers\Control\TmxServerRootPathProvider.cs" />
@@ -103,29 +117,32 @@
     <Compile Include="Modules\TestWorkflowsModule.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="status\clients.htm">
+    <None Include="overview.liquid">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="status\tasks.htm">
+    <None Include="Views\index.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="index.htm">
+    <None Include="Views\status\clients.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Views\status\tasks.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
-    <None Include="results\overview.htm">
+    <None Include="Views\results\overview.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Scripts\jquery-2.1.1-vsdoc.js">
+    <None Include="Views\Scripts\jquery-2.1.1-vsdoc.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Scripts\jquery-2.1.1.js">
+    <None Include="Views\Scripts\jquery-2.1.1.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Scripts\jquery-2.1.1.min.js">
+    <None Include="Views\Scripts\jquery-2.1.1.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Scripts\jquery-2.1.1.min.map">
+    <None Include="Views\Scripts\jquery-2.1.1.min.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -149,8 +166,9 @@
     <Folder Include="Modules" />
     <Folder Include="Modules" />
     <Folder Include="Helpers" />
-    <Folder Include="status" />
-    <Folder Include="results" />
+    <Folder Include="Views" />
+    <Folder Include="Views\status" />
+    <Folder Include="Views\results" />
     <Folder Include="Plugins" />
     <Folder Include="Properties" />
     <Folder Include="Properties" />

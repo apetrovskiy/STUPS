@@ -7,13 +7,37 @@
 
 		<ul>
 		{% for suite in @Model.TestSuites -%}
-		  <li>{{ suite.Id }} {{ suite.Name }} {{ suite.Status }}</li>
+		  {% if suite.Status == 'PASSED' %}
+            <li><font color="green">{{ suite.Id }} {{ suite.Name }} {{ suite.Status }}</font></li>
+          {% endif %}
+		  {% if suite.Status == 'FAILED' %}
+            <li><font color="red">{{ suite.Id }} {{ suite.Name }} {{ suite.Status }}</font></li>
+          {% endif %}
+		  {% if suite.Status == 'NOT TESTED' %}
+            <li><font color="gray">{{ suite.Id }} {{ suite.Name }} {{ suite.Status }}</font></li>
+          {% endif %}
 		  <ul>
 		  {% for scenario in suite.TestScenarios -%}
-			<li>{{ scenario.Id }} {{ scenario.Name }} {{ scenario.Status }}</li>
+		    {% if scenario.Status == 'PASSED' %}
+		      <li><font color="green">{{ scenario.Id }} {{ scenario.Name }} {{ scenario.Status }}</font></li>
+		    {% endif %}
+		    {% if scenario.Status == 'FAILED' %}
+		      <li><font color="red">{{ scenario.Id }} {{ scenario.Name }} {{ scenario.Status }}</font></li>
+		    {% endif %}
+		    {% if scenario.Status == 'NOT TESTED' %}
+		      <li><font color="gray">{{ scenario.Id }} {{ scenario.Name }} {{ scenario.Status }}</font></li>
+		    {% endif %}
 			<ul>
 			{% for result in scenario.TestResults -%}
-				<li>{{ result.Id }} {{ result.Name }} {{ result.Status }}</li>
+                {% if result.Status == 'PASSED' %}
+                    <li><font color="green">{{ result.Id }} {{ result.Name }} {{ result.Status }}</font></li>
+                {% endif %}
+                {% if result.Status == 'FAILED' %}
+                    <li><font color="red">{{ result.Id }} {{ result.Name }} {{ result.Status }}</font></li>
+                {% endif %}
+                {% if result.Status == 'NOT TESTED' %}
+                    <li><font color="gray">{{ result.Id }} {{ result.Name }} {{ result.Status }}</font></li>
+                {% endif %}
 			{% endfor -%}
 			</ul>
 		  {% endfor -%}

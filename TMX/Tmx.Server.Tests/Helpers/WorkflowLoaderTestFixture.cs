@@ -35,9 +35,9 @@ namespace Tmx.Server.Tests.Helpers
     	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
     	public void Should_add_no_tasks_to_the_common_pool_on_adding_empty_task_collection()
     	{
-    	    givenThereAreTasksInCommonPool();
-    	    whenAddedImportedTasks();
-    	    thenNumberOfCommonTasksIncreasedBy(0);
+    	    GIVEN_ThereAreTasksInCommonPool();
+    	    WHEN_AddedImportedTasks();
+    	    THEN_NumberOfCommonTasksIncreasedBy(0);
     	}
     	
 //    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -97,19 +97,24 @@ namespace Tmx.Server.Tests.Helpers
 //    	    Xunit.Assert.Equal(0, 1);
 //    	}
     	// ==========================================================================================
-    	void givenThereAreTasksInCommonPool()
+    	void GIVEN_ThereAreTasksInCommonPool()
     	{
     	    TaskPool.Tasks.Add(new TestTask { Name = "task001", Id = 10 });
     	    TaskPool.Tasks.Add(new TestTask { Name = "task002", Id = 20 });
     	}
     	
-    	void whenAddedImportedTasks(params ITestTask[] tasks)
+    	void WHEN_AddedImportedTasks(params ITestTask[] tasks)
     	{
     	    var workflowLoader = new WorkflowLoader();
-    	    workflowLoader.ImportXdocument(new XDocument());
+    	    // workflowLoader.ImportXdocument(new XDocument());
+    	    var xDoc = new XDocument();
+    	    var workflowElement = new XElement("workflow");
+    	    workflowElement.Add(new XAttribute("name", "some name"));
+    	    xDoc.Add(workflowElement);
+    	    workflowLoader.ImportXdocument(xDoc);
     	}
     	
-    	void thenNumberOfCommonTasksIncreasedBy(int number)
+    	void THEN_NumberOfCommonTasksIncreasedBy(int number)
     	{
     	    Xunit.Assert.Equal(2 + number, TaskPool.Tasks.Count);
     	}

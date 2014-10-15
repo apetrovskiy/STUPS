@@ -99,6 +99,7 @@
     <Compile Include="Helpers\Control\PluginsLoader.cs" />
     <Compile Include="Helpers\Control\ServerControl.cs" />
     <Compile Include="Helpers\Control\TmxServerRootPathProvider.cs" />
+    <Compile Include="Helpers\Objects\ContainerForTests.cs" />
     <Compile Include="Helpers\Objects\TaskPool.cs" />
     <Compile Include="Helpers\Objects\WorkflowCollection.cs" />
     <Compile Include="Helpers\ServerWatcher.cs" />
@@ -117,10 +118,10 @@
     <Compile Include="Modules\TestWorkflowsModule.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="overview.liquid">
+    <None Include="Views\index.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Views\index.htm">
+    <None Include="Views\results\overview.liquid">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Views\status\clients.htm">

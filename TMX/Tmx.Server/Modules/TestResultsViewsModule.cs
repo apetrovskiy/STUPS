@@ -44,7 +44,9 @@ namespace Tmx.Server.Modules
             
             Get[UrnList.TestResultsViews_OverviewNewPage] = parameters => {
                 // var data = TestData.TestSuites.SelectMany(suite => { return suite.TestScenarios; });
-                var data = new TestData();
+                // var data = new TestData();
+                var data = new ContainerForTests();
+                data.TestSuites = TestData.TestSuites;
                 return View[UrnList.TestResultsViews_OverviewNewPageName, data];
             };
         }

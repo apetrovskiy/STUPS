@@ -18,7 +18,7 @@ namespace Tmx.Commands
     /// Description of StartTmxServerCommand.
     /// </summary>
     [Cmdlet(VerbsLifecycle.Start, "TmxServer")]
-    public class StartTmxServerCommand : ServerCmdletBase // CommonCmdletBase
+    public class StartTmxServerCommand : ServerCmdletBase
     {
     	public StartTmxServerCommand()
     	{

@@ -15,6 +15,7 @@ namespace Tmx.Server
     /// <summary>
     /// Description of FakeType.
     /// </summary>
+//    [LiquidType]
 //    public class FakeType : Drop, ILiquidizable
 //    {
 //    }

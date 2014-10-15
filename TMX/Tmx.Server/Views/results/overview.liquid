@@ -1,20 +1,18 @@
 ﻿<html>
 	<head>
-		<title></title>
+		<title>Test results overview</title>
 	</head>
 	<body>
 	<br>
-	Hello {{ 'tobi' }}
-		<p>{{ 'tobi' | upcase }} has to do:</p>
 
 		<ul>
-		{% for suite in @Model.Suites -%}
-		  <li>{{ suite.Id }} {{ suite.Name }}</li>
+		{% for suite in @Model.TestSuites -%}
+		  <li>{{ suite.Id }} {{ suite.Name }} {{ suite.Status }}</li>
 		  <ul>
-		  {% for scenario in suite.Scenarios -%}
+		  {% for scenario in suite.TestScenarios -%}
 			<li>{{ scenario.Id }} {{ scenario.Name }} {{ scenario.Status }}</li>
 			<ul>
-			{% for result in scenario.Results -%}
+			{% for result in scenario.TestResults -%}
 				<li>{{ result.Id }} {{ result.Name }} {{ result.Status }}</li>
 			{% endfor -%}
 			</ul>

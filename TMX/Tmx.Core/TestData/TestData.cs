@@ -24,8 +24,8 @@ namespace Tmx
     /// Description of TestSuitesCollection.
     /// </summary>
     // 20141014
-    // public static class TestData
-    public class TestData
+    public static class TestData
+    // public class TestData
     {
         // ----------------- Variables ---------------------------
         
@@ -39,8 +39,8 @@ namespace Tmx
         public const string DefaultPlatformId = "1";
         
         // 20141014
-        // static TestData()
-        public TestData()
+        static TestData()
+        // public TestData()
         {
             TestSuites = new List<ITestSuite>();
             TestPlatforms = new List<ITestPlatform>();

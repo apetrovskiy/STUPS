@@ -10,8 +10,8 @@
 namespace Tmx.Server
 {
     using System;
-    using System.IO;
     using System.Linq;
+    using DotLiquid.NamingConventions;
 	using Nancy;
 	using Nancy.Bootstrapper;
 	using Nancy.Conventions;
@@ -36,25 +36,14 @@ namespace Tmx.Server
         public static void Start(string url)
         {
             Url = url;
-            // setConfiguration();
-            // should work without explicit loading of modules
+            
             loadModules();
-            registerTypes();
-            loadPlugins();
-            // setConfiguration();
-            
-            
-            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies()) {
-                Console.WriteLine(assembly.FullName);
-            }
             
             _nancyHost = new NancyHost(new Uri(url));
             
-            
-            
-            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies()) {
-                Console.WriteLine(assembly.FullName);
-            }
+            setDotLiquidNamingConventions();
+            registerTypes();
+            loadPlugins();
             
 			_nancyHost.Start();
         }
@@ -72,11 +61,6 @@ namespace Tmx.Server
             CommonData.Data = new System.Collections.Generic.Dictionary<string, string>();
         }
         
-//    	protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
-//    	{
-//    		
-//    	}
-        
         protected override DiagnosticsConfiguration DiagnosticsConfiguration {
             get {
                 return new DiagnosticsConfiguration { Password = @"Tmx=admin" };
@@ -85,23 +69,15 @@ namespace Tmx.Server
     	
     	protected override void ConfigureConventions(NancyConventions nancyConventions)
     	{
-Console.WriteLine("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-Console.WriteLine((new TmxServerRootPathProvider()).GetRootPath());
     		nancyConventions.StaticContentsConventions.Add(
     		    StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath(), "Root"));
     	    
     	    // TODO: to a separate assembly
     	    nancyConventions.StaticContentsConventions.Add(
-    	        // StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + @"\Nwx", "Nwx"));
     	        StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + @"/Nwx", "Nwx"));
     	    
     	    nancyConventions.StaticContentsConventions.Add(
-    	        // StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + @"\results", "results"));
     	        StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + @"/results", "results"));
-    	    
-//    	    nancyConventions.StaticContentsConventions.Add(
-//    	        // StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + @"\results", "results"));
-//    	        StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + @"/Views/results", "results2"));
     	    
     		base.ConfigureConventions(nancyConventions);
     	}
@@ -111,26 +87,23 @@ Console.WriteLine((new TmxServerRootPathProvider()).GetRootPath());
     	    get { return new TmxServerRootPathProvider(); }
     	}
     	
-//        static void setConfiguration()
-//        {
-//            // StaticConfiguration.Caching.EnableRuntimeViewUpdates = true;
-//            StaticConfiguration.DisableErrorTraces = false;
-//            // StaticConfiguration.EnableRequestTracing = true;
-//        }
-    	
         static void loadModules()
         {
             var modulesLoader = new ModulesLoader((new TmxServerRootPathProvider()).GetRootPath());
             modulesLoader.Load();
         }
         
+        static void setDotLiquidNamingConventions()
+        {
+            Template.NamingConvention = new CSharpNamingConvention();
+        }
+        
         static void registerTypes()
         {
-            // Template.RegisterSafeType(typeof(FakeType), new string[] {});
-//			Template.RegisterSafeType(typeof(TestSuite), new[] { "Id", "Name", "TestScenarios" });
-//			Template.RegisterSafeType(typeof(TestScenario), new[] { "Id", "Name", "Status", "TestResults" });
-//			Template.RegisterSafeType(typeof(TestResult), new[] { "Id", "Name", "Status" });
-			Template.RegisterSafeType(typeof(ITestSuite), new[] { "Id", "Name", "TestScenarios" });
+			Template.RegisterSafeType(typeof(TestSuite), new[] { "Id", "Name", "Status", "TestScenarios" });
+			Template.RegisterSafeType(typeof(TestScenario), new[] { "Id", "Name", "Status", "TestResults" });
+			Template.RegisterSafeType(typeof(TestResult), new[] { "Id", "Name", "Status" });
+			Template.RegisterSafeType(typeof(ITestSuite), new[] { "Id", "Name", "Status", "TestScenarios" });
 			Template.RegisterSafeType(typeof(ITestScenario), new[] { "Id", "Name", "Status", "TestResults" });
 			Template.RegisterSafeType(typeof(ITestResult), new[] { "Id", "Name", "Status" });
 			// Template.RegisterSafeType(typeof(ITestResultDetail), new[] { "Name" });

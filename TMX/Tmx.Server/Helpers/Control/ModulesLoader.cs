@@ -14,6 +14,7 @@ namespace Tmx.Server.Helpers.Control
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
+    using Nancy.Bootstrapper;
     
     /// <summary>
     /// Description of ModulesLoader.
@@ -33,25 +34,18 @@ namespace Tmx.Server.Helpers.Control
             if (!Directory.Exists(_path)) return;
             try {
                 var dir = new DirectoryInfo(_path);
-                var files = dir.GetFiles(@"Nancy*.dll");
+                var files = dir.GetFiles(@"Nancy.ViewEngines*.dll");
                 if (null == files || !files.Any()) return;
-                Assembly.LoadFrom(_path + @"\Nancy.dll");
                 foreach (var probablyAssembly in files) {
-Console.WriteLine("loading modules 00007");
                     try {
-Console.WriteLine("loading " + probablyAssembly.FullName);
-                        Assembly.LoadFrom(probablyAssembly.FullName);
-Console.WriteLine("loading modules 00008");
+                        var assembly = Assembly.LoadFrom(probablyAssembly.FullName);
+                        AppDomainAssemblyTypeScanner.AddAssembliesToScan(assembly.FullName);
                     }
-                    catch (Exception e1) {
-Console.WriteLine(e1.Message);
-                    }
+                    catch {}
                 }
-                
+                AppDomainAssemblyTypeScanner.UpdateTypes();
             }
-            catch (Exception e2) {
-Console.WriteLine(e2.Message);
-            }
+            catch {}
         }
     }
 }

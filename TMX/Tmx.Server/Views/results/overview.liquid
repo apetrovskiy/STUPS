@@ -7,26 +7,30 @@
 
 		<ul>
 		{% for suite in @Model.TestSuites -%}
-		  {% case suite.Status %}
-          {% when 'PASSED' %}
-            {% assign suiteColor = 'green' %}
-          {% when 'FAILED' %}
-            {% assign suiteColor = 'red' %}
-          {% when 'NOT TESTED' %}
-            {% assign suiteColor = 'gray' %}
-          {% endcase %}
-		  <li><font color="{{ suiteColor }}">{{ suite.Id }} {{ suite.Name }} {{ suite.Status }}</font></li>
+		  {% if suite.Status != 'NOT TESTED' %}
+    		  {% case suite.Status %}
+              {% when 'PASSED' %}
+                {% assign suiteColor = 'green' %}
+              {% when 'FAILED' %}
+                {% assign suiteColor = 'red' %}
+              {% when 'NOT TESTED' %}
+                {% assign suiteColor = 'gray' %}
+              {% endcase %}
+    		  <li><font color="{{ suiteColor }}">{{ suite.Id }} {{ suite.Name }}</font></li>
+		  {% endif %}
 		  <ul>
 		  {% for scenario in suite.TestScenarios -%}
-		    {% case scenario.Status %}
-            {% when 'PASSED' %}
-                {% assign scenarioColor = 'green' %}
-            {% when 'FAILED' %}
-                {% assign scenarioColor = 'red' %}
-            {% when 'NOT TESTED' %}
-                {% assign scenarioColor = 'gray' %}
-            {% endcase %}
-            <li><font color="{{ scenarioColor }}">{{ scenario.Id }} {{ scenario.Name }} {{ scenario.Status }}</font></li>
+		    {% if scenario.Status != 'NOT TESTED' %}
+    		    {% case scenario.Status %}
+                {% when 'PASSED' %}
+                    {% assign scenarioColor = 'green' %}
+                {% when 'FAILED' %}
+                    {% assign scenarioColor = 'red' %}
+                {% when 'NOT TESTED' %}
+                    {% assign scenarioColor = 'gray' %}
+                {% endcase %}
+                <li><font color="{{ scenarioColor }}">{{ scenario.Id }} {{ scenario.Name }}</font></li>
+            {% endif %}
 			<ul>
 			{% for result in scenario.TestResults -%}
 			  {% if result.Origin == 'Logical' %}
@@ -40,7 +44,7 @@
                   {% when 'KNOWN ISSUE' %}
                     {% assign resultColor = 'olive' %}
                   {% endcase %}
-                  <li><font color="{{ resultColor }}">{{ result.Id }} {{ result.Name }} {{ result.Status }}</font></li>
+                  <li><font color="{{ resultColor }}">{{ result.Id }} {{ result.Name }}</font></li>
               {% endif %}
 			{% endfor -%}
 			</ul>

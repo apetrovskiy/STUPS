@@ -102,11 +102,11 @@ namespace Tmx.Server
         {
 			Template.RegisterSafeType(typeof(TestSuite), new[] { "Id", "Name", "Status", "TestScenarios" });
 			Template.RegisterSafeType(typeof(TestScenario), new[] { "Id", "Name", "Status", "TestResults" });
-			Template.RegisterSafeType(typeof(TestResult), new[] { "Id", "Name", "Status" });
+			Template.RegisterSafeType(typeof(TestResult), new[] { "Id", "Name", "Status", "Origin" });
 			Template.RegisterSafeType(typeof(ITestSuite), new[] { "Id", "Name", "Status", "TestScenarios" });
 			Template.RegisterSafeType(typeof(ITestScenario), new[] { "Id", "Name", "Status", "TestResults" });
-			Template.RegisterSafeType(typeof(ITestResult), new[] { "Id", "Name", "Status" });
-			// Template.RegisterSafeType(typeof(ITestResultDetail), new[] { "Name" });
+			Template.RegisterSafeType(typeof(ITestResult), new[] { "Id", "Name", "Status", "Origin" });
+			Template.RegisterSafeType(typeof(TestResultOrigins), member => member.ToString());
         }
         
         static void loadPlugins()

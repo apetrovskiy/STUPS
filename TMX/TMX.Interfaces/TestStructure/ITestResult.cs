@@ -45,7 +45,7 @@ namespace Tmx.Interfaces.TestStructure
         double TimeSpent { get; }
         void SetTimeSpent(double timeSpent);
         
-        System.DateTime Timestamp { get; }
+        DateTime Timestamp { get; }
         void SetNow();
         
         bool Generated { get; }

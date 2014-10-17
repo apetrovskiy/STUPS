@@ -374,7 +374,7 @@ namespace Tmx.Server.Tests.Modules
         
         void WHEN_SendingRegistration_as_Json(ITestClient testClient)
         {
-            response = _browser.Post(UrnList.TestClientRegistrationPoint, with => {
+            response = _browser.Post(UrnList.TestClientRegistrationPoint_absPath, with => {
                 with.JsonBody<ITestClient>(testClient);
                 with.Accept("application/json");
             });
@@ -382,7 +382,7 @@ namespace Tmx.Server.Tests.Modules
         
         void WHEN_SendingRegistration_as_Xml(TestClient testClient)
         {
-            response = _browser.Post(UrnList.TestClientRegistrationPoint, with => {
+            response = _browser.Post(UrnList.TestClientRegistrationPoint_absPath, with => {
                 with.XMLBody<TestClient>(testClient);
                 with.Accept("application/xml");
             });
@@ -416,13 +416,13 @@ namespace Tmx.Server.Tests.Modules
         
         List<TestClient> WHEN_Getting_all_registered_clients_as_json()
         {
-            response = _browser.Get(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.Accept("application/json"));
+            response = _browser.Get(UrnList.TestClients_Root + UrnList.TestClientRegistrationPoint_relPath, with => with.Accept("application/json"));
             return response.Body.DeserializeJson<List<TestClient>>();
         }
         
         List<TestClient> WHEN_Getting_all_registered_clients_as_xml()
         {
-            response = _browser.Get(UrnList.TestClients_Root + UrnList.TestClients_Clients, with => with.Accept("application/xml"));
+            response = _browser.Get(UrnList.TestClients_Root + UrnList.TestClientRegistrationPoint_relPath, with => with.Accept("application/xml"));
             return response.Body.DeserializeJson<List<TestClient>>();
         }
         

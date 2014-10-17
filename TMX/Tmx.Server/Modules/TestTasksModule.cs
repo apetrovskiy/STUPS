@@ -27,7 +27,7 @@ namespace Tmx.Server.Modules
     {
         public TestTasksModule() : base(UrnList.TestTasks_Root)
         {
-            Get[UrnList.TestTasks_CurrentTaskForClientById] = parameters => returnTaskByClientId(parameters.id);
+            Get[UrnList.TestTasks_CurrentTaskForClientById_relPath] = parameters => returnTaskByClientId(parameters.id);
         	
             Put[UrnList.TestTasks_Task] = parameters => {
             	ITestTask loadedTask = this.Bind<TestTask>();
@@ -42,7 +42,7 @@ namespace Tmx.Server.Modules
             
             Delete[UrnList.TestTasks_Task] = parameters => deleteAllocatedTaskById(parameters.id);
             
-			Delete[UrnList.TestTasks_AllLoaded + UrnList.TestTasks_Task] = parameters => deleteLoadedTaskById(parameters).id;
+			Delete[UrnList.TestTasks_AllLoaded_relPath + UrnList.TestTasks_Task] = parameters => deleteLoadedTaskById(parameters).id;
         }
         
 		Negotiator returnTaskByClientId(int clientId)

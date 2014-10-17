@@ -126,14 +126,17 @@ namespace PSRunner
             try {
                 testRunSpace = null;
                 testRunSpace = RunspaceFactory.CreateRunspace();
-                testRunSpace.AvailabilityChanged += new EventHandler<RunspaceAvailabilityEventArgs>(runspace_AvailabilityChanged);
-                testRunSpace.StateChanged += new EventHandler<RunspaceStateEventArgs>(runspace_StateChanged);
+                // testRunSpace.AvailabilityChanged += new EventHandler<RunspaceAvailabilityEventArgs>(runspace_AvailabilityChanged);
+                testRunSpace.AvailabilityChanged += runspace_AvailabilityChanged;
+                // testRunSpace.StateChanged += new EventHandler<RunspaceStateEventArgs>(runspace_StateChanged);
+                testRunSpace.StateChanged += runspace_StateChanged;
                 testRunSpace.Open();
                 // 20140722
                 // pipeline = null;
                 
                 pipeline = testRunSpace.CreatePipeline(command);
-                pipeline.StateChanged += new EventHandler<PipelineStateEventArgs>(pipeline_StateChanged);
+                // pipeline.StateChanged += new EventHandler<PipelineStateEventArgs>(pipeline_StateChanged);
+                pipeline.StateChanged += pipeline_StateChanged;
                 
 //if (PipelineState.Running == pipeline.PipelineStateInfo.State) {
 //    pipeline.Stop();
@@ -192,20 +195,15 @@ namespace PSRunner
             // System.Collections.ObjectModel.Collection<PSObject> result = null;
             System.Collections.ObjectModel.Collection<PSObject> resultObject;
             try {
-                if (displayRunningCode) {
+                if (displayRunningCode)
                     reportRunningCode(codeSnippet);
-                }
-                pipeline =
-                    testRunSpace.CreatePipeline(codeSnippet);
-                pipeline.StateChanged += new EventHandler<PipelineStateEventArgs>(pipeline_StateChanged);
+                pipeline = testRunSpace.CreatePipeline(codeSnippet);
+                // pipeline.StateChanged += new EventHandler<PipelineStateEventArgs>(pipeline_StateChanged);
+                pipeline.StateChanged += pipeline_StateChanged;
                 // 20140107
                 // System.Collections.ObjectModel.Collection<PSObject> resultObject =
                 //     pipeline.Invoke();
-                if (null == inputData) {
-                    resultObject = pipeline.Invoke();
-                } else {
-                    resultObject = pipeline.Invoke(inputData);
-                }
+                resultObject = null == inputData ? pipeline.Invoke() : pipeline.Invoke(inputData);
                     //pipeline.InvokeAsync();
                 //pipeline.Output.
                 return resultObject;
@@ -218,7 +216,8 @@ namespace PSRunner
             }
             // 20140107
             // return result;
-            return resultObject;
+            // 20141017
+            // return resultObject;
         }
         
         public static bool RunPSCodeAsync(string codeSnippet)
@@ -368,6 +367,7 @@ namespace PSRunner
         
         static void pipeline_StateChanged(object sender, PipelineStateEventArgs e)
         {
+            /*
             if (e.PipelineStateInfo.State == PipelineState.Failed)
 //                Console.WriteLine(e.PipelineStateInfo.Reason);
 //                //Console.WriteLine("The pipeline has {0} error!", PsPipeline.Error.Count);
@@ -386,6 +386,27 @@ namespace PSRunner
                 OnPSCodeStopped(e.PipelineStateInfo.Reason.Message);
             else if (e.PipelineStateInfo.State == PipelineState.Stopping)
                 OnPSCodeStopping("");
+            */
+            switch (e.PipelineStateInfo.State) {
+                case PipelineState.Failed:
+                    PSErrorThrown(e.PipelineStateInfo.Reason.Message);
+                    break;
+                case PipelineState.Completed:
+                    OnPSCodeCompleted("");
+                    break;
+                case PipelineState.NotStarted:
+                    OnPSCodeNotStarted(e.PipelineStateInfo.Reason.Message);
+                    break;
+                case PipelineState.Running:
+                    OnPSCodeRunning("");
+                    break;
+                case PipelineState.Stopped:
+                    OnPSCodeStopped(e.PipelineStateInfo.Reason.Message);
+                    break;
+                case PipelineState.Stopping:
+                    OnPSCodeStopping("");
+                    break;
+            }
 //            else {
 //                Console.WriteLine("All OK");
 //                Console.WriteLine("e.PipelineStateInfo.State = " + e.PipelineStateInfo.State.ToString());

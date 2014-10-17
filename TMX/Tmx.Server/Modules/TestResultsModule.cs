@@ -15,6 +15,7 @@ namespace Tmx.Server.Modules
 	using System.Xml.Linq;
     using Nancy;
     using Nancy.ModelBinding;
+    using Nancy.Responses.Negotiation;
 	using Tmx.Interfaces;
 	using Tmx.Interfaces.Server;
 	using Tmx;
@@ -29,7 +30,9 @@ namespace Tmx.Server.Modules
         {
             // StaticConfiguration.DisableErrorTraces = false;
             
-            Post[UrnList.TestStructure_AllResults] = _ => importTestResults();
+            Post[UrnList.TestResultsPostingPoint_relPath] = _ => importTestResults();
+            
+            Get[UrnList.TestResultsPostingPoint_relPath] = _ => exportTestResults();
             
             Post[UrnList.TestStructure_Suites] = _ => {
                 var testSuite = this.Bind<TestSuite>();
@@ -54,11 +57,12 @@ namespace Tmx.Server.Modules
         		TmxHelper.AddTestScenario(dataObjectAdd);
         		TestData.SetScenarioStatus(true);
         		
-        		var dataObjectOpen = new OpenScenarioCmdletBaseDataObject {
-        			Name = testScenario.Name,
-        			Id = testScenario.Id,
-        			TestPlatformId = testScenario.PlatformId
-        		};
+        		// TODO: investigate into the code below
+//        		var dataObjectOpen = new OpenScenarioCmdletBaseDataObject {
+//        			Name = testScenario.Name,
+//        			Id = testScenario.Id,
+//        			TestPlatformId = testScenario.PlatformId
+//        		};
 //        		return TmxHelper.OpenTestScenario(dataObjectOpen) ? HttpStatusCode.Created : HttpStatusCode.InternalServerError;
         		
         		return HttpStatusCode.Created;
@@ -112,6 +116,17 @@ catch (Exception eeee) {
             } catch (Exception) {
                 return HttpStatusCode.ExpectationFailed;
             }
+        }
+        
+        Negotiator exportTestResults()
+        {
+            var xDoc = TmxHelper.GetTestResultsAsXdocument(new SearchCmdletBaseDataObject {
+                                                               Descending = false,
+                                                               FilterAll = true,
+                                                               FilterFailed = false,
+                                                               OrderById = true
+                                                           });
+            return null == xDoc ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(xDoc).WithStatusCode(HttpStatusCode.OK);
         }
     }
 }

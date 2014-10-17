@@ -25,9 +25,9 @@ namespace Tmx.Server.Modules
     {
         public TestWorkflowsModule() : base(UrnList.TestWorkflows_Root)
         {
-            Get[UrnList.TestWorkflows_GetByWorkflowId] = parameters => returnWorkflowById(parameters.id);
-            Get[UrnList.TestWorkflows_All] = _ => returnAllWorkflows();
-            Delete[UrnList.TestWorkflows_GetByWorkflowId] = parameters => deleteWorkflowById(parameters.id);
+            Get[UrnList.TestWorkflows_GetByWorkflowId_relPath] = parameters => returnWorkflowById(parameters.id);
+            Get[UrnList.TestWorkflows_All_relPath] = _ => returnAllWorkflows();
+            Delete[UrnList.TestWorkflows_GetByWorkflowId_relPath] = parameters => deleteWorkflowById(parameters.id);
         }
 
         Negotiator returnWorkflowById(int workflowId)

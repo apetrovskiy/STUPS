@@ -29,7 +29,7 @@ namespace Tmx.Client
         
         public virtual Dictionary<string, string> Load()
         {
-			var commonDataResponse = _restTemplate.GetForMessage<Dictionary<string, string>>(UrnList.CommonDataLoadingPoint);
+			var commonDataResponse = _restTemplate.GetForMessage<Dictionary<string, string>>(UrnList.CommonDataLoadingPoint_absPath);
 			var commonData = commonDataResponse.Body;
 			return HttpStatusCode.NotFound == commonDataResponse.StatusCode ? new Dictionary<string, string>() : commonData;
         }

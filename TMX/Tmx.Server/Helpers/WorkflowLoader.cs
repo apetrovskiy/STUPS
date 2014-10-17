@@ -43,11 +43,15 @@ namespace Tmx.Server
 		{
             try {
 				if (!System.IO.File.Exists(pathToWorkflowFile))
-					throw new Exception("There is no such file '" + pathToWorkflowFile + "'.");
+				    // 20141017
+					// throw new Exception("There is no such file '" + pathToWorkflowFile + "'.");
+				    throw new WorkflowLoadingException("There is no such file '" + pathToWorkflowFile + "'.");
                 ImportXdocument(XDocument.Load(pathToWorkflowFile));
             }
             catch (Exception eImportDocument) {
-                throw new Exception(
+		        // 20141017
+                // throw new Exception(
+                throw new WorkflowLoadingException(
                     "Unable to load an XML workflow from the file '" +
                     pathToWorkflowFile +
                     "'. " + 

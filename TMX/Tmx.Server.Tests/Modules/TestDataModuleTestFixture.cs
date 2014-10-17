@@ -145,7 +145,7 @@ namespace Tmx.Server.Tests.Modules
         BrowserResponse WHEN_SendingCommonDataItem_as_Json(ICommonDataItem dataItem)
         {
             var browser = TestFactory.GetBrowserForTestDataModule();
-            return browser.Post(UrnList.CommonDataLoadingPoint, with => {
+            return browser.Post(UrnList.CommonDataLoadingPoint_absPath, with => {
                 with.JsonBody<ICommonDataItem>(dataItem);
                 with.Accept("application/json");
             });
@@ -154,7 +154,7 @@ namespace Tmx.Server.Tests.Modules
         BrowserResponse WHEN_SendingCommonDataItem_as_Xml(CommonDataItem dataItem)
         {
             var browser = TestFactory.GetBrowserForTestDataModule();
-            return browser.Post(UrnList.CommonDataLoadingPoint, with => {
+            return browser.Post(UrnList.CommonDataLoadingPoint_absPath, with => {
                 with.XMLBody<CommonDataItem>(dataItem);
                 with.Accept("application/xml");
             });

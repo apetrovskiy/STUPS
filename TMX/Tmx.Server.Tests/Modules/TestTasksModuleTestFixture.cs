@@ -341,7 +341,7 @@ namespace Tmx.Server.Tests.Modules
         ITestClient GIVEN_Registered_TestClient_as_json(string hostname, string username)
         {
             var testClient = new TestClient { Hostname = hostname, Username = username };
-            response = _browser.Post(UrnList.TestClientRegistrationPoint, with => {
+            response = _browser.Post(UrnList.TestClientRegistrationPoint_absPath, with => {
                                         	with.JsonBody<ITestClient>(testClient);
                                         	with.Accept("application/json");
                                         });

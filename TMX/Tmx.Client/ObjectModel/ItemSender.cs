@@ -89,7 +89,7 @@ namespace Tmx.Client
                 { "relativePath", new HttpEntity(sourceFilePath.Substring(sourceFolderPath.Length)) },
                 { "destinationPath", new HttpEntity(destinationPath) }
             };
-            var fileUploadResponse = _restTemplate.PostForMessage(UrnList.ExternalFiles_Root + UrnList.ExternalFilesUploadPoint, fileContentAndPaths);
+            var fileUploadResponse = _restTemplate.PostForMessage(UrnList.ExternalFiles_Root + UrnList.ExternalFilesUploadPoint_relPath, fileContentAndPaths);
             return HttpStatusCode.Created == fileUploadResponse.StatusCode;
         }
     }

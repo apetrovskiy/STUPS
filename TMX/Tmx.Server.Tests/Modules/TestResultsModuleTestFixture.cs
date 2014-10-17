@@ -216,7 +216,7 @@ namespace Tmx.Server.Tests.Modules
             string path = string.Empty;
 			switch (type.Name) {
 			    case "XElement":
-			        return UrnList.TestResultsPostingPoint;
+			        return UrnList.TestResultsPostingPoint_absPath;
 			    case "TestSuite":
 			        return UrnList.TestStructure_Root + UrnList.TestStructure_Suites;
 			    case "TestScenario":

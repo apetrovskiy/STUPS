@@ -1,0 +1,30 @@
+﻿
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <form action="/SimpleListDemo" method="post">
+              User 1:<input type="text" name="Name[0]" value="thecodejunkie" /> 
+              Commits <input type="text" name="Commits[0]" value="1068"/>
+              <br />
+              User 2:<input type="text" name="Name[1]" value="grumpydev" />  
+              Commits <input type="text" name="Commits[1]" value="1049"/>
+              <br />
+              User 3:<input type="text" name="Name[2]" value="jchannon" />  
+              Commits <input type="text" name="Commits[2]" value="109"/>
+              <br />
+              User 4:<input type="text" name="Name[3]" value="prabirshrestha" />  
+              Commits <input type="text" name="Commits[3]" value="75"/>
+              <br />
+              User 5:<input type="text" name="Name[4]" value="phillip-haydon" />  
+              Commits <input type="text" name="Commits[4]" value="40"/>
+              <br />
+              <input type="submit" value="Test the binding thingy"/>
+        </form>
+        
+        @Each.@Model
+           @Current
+        @EndEach
+    </body>
+</html>

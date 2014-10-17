@@ -1,22 +1,23 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
- * Date: 10/14/2014
- * Time: 11:02 AM
+ * Date: 10/17/2014
+ * Time: 9:13 PM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Server
+namespace Tmx.Server.ObjectModel
 {
     using System;
-    using DotLiquid;
     
     /// <summary>
-    /// Description of FakeType.
+    /// Description of GlobalSettings.
     /// </summary>
-//    [LiquidType]
-//    public class FakeType : Drop, ILiquidizable
-//    {
-//    }
+    public class GlobalSettings
+    {
+        public GlobalSettings()
+        {
+        }
+    }
 }

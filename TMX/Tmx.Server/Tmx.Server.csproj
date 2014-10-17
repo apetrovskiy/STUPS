@@ -93,13 +93,14 @@
     <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="FakeType.cs" />
     <Compile Include="Helpers\CommonDataItems.cs" />
     <Compile Include="Helpers\Control\InternalServerControl.cs" />
     <Compile Include="Helpers\Control\ModulesLoader.cs" />
     <Compile Include="Helpers\Control\PluginsLoader.cs" />
     <Compile Include="Helpers\Control\ServerControl.cs" />
     <Compile Include="Helpers\Control\TmxServerRootPathProvider.cs" />
+    <Compile Include="Helpers\ObjectModel\GlobalSettings.cs" />
+    <Compile Include="Helpers\ObjectModel\WorkflowSettings.cs" />
     <Compile Include="Helpers\Objects\ContainerForTests.cs" />
     <Compile Include="Helpers\Objects\TaskPool.cs" />
     <Compile Include="Helpers\Objects\WorkflowCollection.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="Helpers\Objects\ClientsCollection.cs" />
     <Compile Include="Helpers\WorkflowLoader.cs" />
     <Compile Include="Modules\ExternalFilesModule.cs" />
+    <Compile Include="Modules\GlobalSettingsViewsModule.cs" />
     <Compile Include="Modules\RootPageModule.cs" />
     <Compile Include="Modules\ServerControlModule.cs" />
     <Compile Include="Modules\TestClientsModule.cs" />
@@ -123,6 +125,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Views\results\overview.liquid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Views\settings\global.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Views\settings\list.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Views\settings\workflow.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Views\status\clients.htm">
@@ -164,11 +175,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helpers\Control" />
+    <Folder Include="Helpers\ObjectModel" />
     <Folder Include="Helpers\Objects" />
     <Folder Include="Modules" />
     <Folder Include="Modules" />
     <Folder Include="Helpers" />
     <Folder Include="Views" />
+    <Folder Include="Views\settings" />
     <Folder Include="Views\status" />
     <Folder Include="Views\results" />
     <Folder Include="Plugins" />

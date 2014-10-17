@@ -552,20 +552,13 @@ namespace Tmx
         /// </summary>
         /// <param name="cmdlet"></param>
         /// <returns></returns>
-        // 20140720
-        // public static IOrderedEnumerable<TestSuite> SearchForSuites(SearchCmdletBase cmdlet)
         public static IOrderedEnumerable<ITestSuite> SearchForSuites(ISearchCmdletBaseDataObject cmdlet)
         {
-            // 20140720
-            // IOrderedEnumerable<TestSuite> suites = null;
             IOrderedEnumerable<ITestSuite> suites = null;
-            //IQueryable<TestSuite> suites = null;
             
             // Filtering results
             
             // default result
-            // 20140720
-            // Func<TestSuite, bool> query = suite => true;
             Func<ITestSuite, bool> query = suite => true;
             
 //            System.Collections.Generic.List<Func<TestSuite, bool>> queriesList =

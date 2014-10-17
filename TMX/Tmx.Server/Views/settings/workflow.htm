@@ -1,0 +1,22 @@
+﻿
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <form action="/ArrayOnObject" method="post">
+          <input type="text" name="Tags" value="Tag1,Tag2,Tag3"/>
+          <input type="text" name="Ints" value="1,2,3,4,4,5,6,3,2,21,1"/>
+          <input type="submit" value="Submit"/>
+        </form>
+        
+        
+        @Each.@Model.Tags
+           @Current
+        @EndEach
+        
+        @Each.@Model.Ints
+           @Current
+        @EndEach
+    </body>
+</html>

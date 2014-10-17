@@ -33,7 +33,7 @@ namespace Tmx.Client
         public virtual void Send(ICommonDataItem item)
         {
             // TODO: add an error handler
-			var dataItemSendingResponse = _restTemplate.PostForMessage(UrnList.CommonDataLoadingPoint, item);
+			var dataItemSendingResponse = _restTemplate.PostForMessage(UrnList.CommonDataLoadingPoint_absPath, item);
 			if (HttpStatusCode.Created == dataItemSendingResponse.StatusCode)
 				return;
 			throw new SendingCommonDataItemException("Failed to send data item. "+ dataItemSendingResponse.StatusCode);

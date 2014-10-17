@@ -123,6 +123,33 @@ namespace Tmx.Server
             StaticConfiguration.Caching.EnableRuntimeViewUpdates = true;
             StaticConfiguration.DisableErrorTraces = false;
             StaticConfiguration.EnableRequestTracing = true;
+            
+            pipelines.BeforeRequest += ctx => { outputMethod(ctx, "BeforeRequest"); return null; };
+            
+            // pipelines.AfterRequest += ctx => { outputMethod(ctx, "AfterRequest"); return null; };
+        }
+        
+        void outputMethod(NancyContext ctx, string state)
+        {
+            try { Console.WriteLine(state + " ControlPanelEnabled = " + ctx.ControlPanelEnabled); } catch {}
+            try { Console.WriteLine(state + " Culture.DisplayName = " + ctx.Culture.DisplayName); } catch {}
+            try { Console.WriteLine(state + " CurrentUser.UserName = " + ctx.CurrentUser.UserName); } catch {}
+            try { 
+                if (null != ctx.Items) {
+                    foreach (var item in ctx.Items) {
+                        Console.WriteLine(state + " Items " + item.Key + ": " + item.Value);
+                    }
+                }
+            } catch {}
+            try { Console.WriteLine(state + " ModelValidationResult.IsValid = " + ctx.ModelValidationResult.IsValid); } catch {}
+            try { Console.WriteLine(state + " NegotiationContext.ViewName = " + ctx.NegotiationContext.ViewName); } catch {}
+            try { Console.WriteLine(state + " NegotiationContext.ModuleName = " + ctx.NegotiationContext.ModuleName); } catch {}
+            try { Console.WriteLine(state + " NegotiationContext.ModulePath = " + ctx.NegotiationContext.ModulePath); } catch {}
+            try { Console.WriteLine(state + " NegotiationContext.Headers = " + ctx.NegotiationContext.Headers.Select(hdr => hdr.Value)); } catch {}
+            try { Console.WriteLine(state + " NegotiationContext.StatusCode = " + ctx.NegotiationContext.StatusCode); } catch {}
+            try { Console.WriteLine(state + " ResolvedRoute = " + ctx.ResolvedRoute); } catch {}
+            try { Console.WriteLine(state + " Text = " + ctx.Text); } catch {}
+            try { Console.WriteLine(state + " ViewBag = " + ctx.ViewBag); } catch {}
         }
     }
 }

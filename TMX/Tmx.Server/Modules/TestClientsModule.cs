@@ -26,18 +26,18 @@ namespace Tmx.Server.Modules
 	{
 		public TestClientsModule() : base(UrnList.TestClients_Root)
 		{
-			Post[UrnList.TestClients_Clients] = _ => createNewClient(this.Bind<TestClient>());
+			Post[UrnList.TestClientRegistrationPoint_relPath] = _ => createNewClient(this.Bind<TestClient>());
 			
-			Delete[UrnList.TestClientDeregistrationPoint] = parameters => deleteClientById(parameters.id);
+			Delete[UrnList.TestClientDeregistrationPoint_relPath] = parameters => deleteClientById(parameters.id);
 			
-			Put[UrnList.TestClient_Status] = parameters => {
+			Put[UrnList.TestClient_Status_relPath] = parameters => {
             	var detailedStatus = this.Bind<DetailedStatus>();
                 return updateStatus(parameters.id, detailedStatus);
 			};
 		    
-		    Get[UrnList.TestClients_Clients] = _ => returnAllClients();
+		    Get[UrnList.TestClientRegistrationPoint_relPath] = _ => returnAllClients();
 		    
-		    Get[UrnList.TestClientQueryPoint] = parameters => returnClientById(parameters.id);
+		    Get[UrnList.TestClientQueryPoint_relPath] = parameters => returnClientById(parameters.id);
 		}
 		
 		Negotiator createNewClient(TestClient testClient)

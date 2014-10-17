@@ -37,7 +37,9 @@ namespace Tmx.Server.Modules
         string getHostname()
         {
             var hostname = Dns.GetHostName();
-            if (string.Empty != IPGlobalProperties.GetIPGlobalProperties().DomainName) {
+            // 20141017
+            // if (string.Empty != IPGlobalProperties.GetIPGlobalProperties().DomainName) {
+            if (!string.IsNullOrEmpty(IPGlobalProperties.GetIPGlobalProperties().DomainName)) {
                 hostname += ".";
                 hostname += IPGlobalProperties.GetIPGlobalProperties().DomainName;
             }

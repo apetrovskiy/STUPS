@@ -24,7 +24,7 @@ namespace Tmx.Server.Modules
     {
         public ServerControlModule() : base(UrnList.ServerControl_Root)
         {
-            Put[UrnList.ServerControlPoint] = parameters => {
+            Put[UrnList.ServerControlPoint_relPath] = parameters => {
                 IServerCommand serverCommand = this.Bind<ServerCommand>();
                 processServerCommand(serverCommand);
                 return HttpStatusCode.OK;

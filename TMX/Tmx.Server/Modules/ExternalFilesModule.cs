@@ -23,7 +23,7 @@ namespace Tmx.Server.Modules
     {
         public ExternalFilesModule() : base(UrnList.ExternalFiles_Root)
         {
-            Post[UrnList.ExternalFilesUploadPoint] = _ => {
+            Post[UrnList.ExternalFilesUploadPoint_relPath] = _ => {
                 var dict = Request.Form.ToDictionary();
                 var destinationPath = dict["destinationPath"];
                 var relativePath = dict["relativePath"];
@@ -31,7 +31,8 @@ namespace Tmx.Server.Modules
                 if (null == Request.Files || !Request.Files.Any()) return HttpStatusCode.BadRequest;
                 var fileValue = Request.Files.First().Value;
                 if (null == fileValue) return HttpStatusCode.BadRequest;
-                var fileName = Request.Files.First().Name;
+                // 20141017
+                // var fileName = Request.Files.First().Name;
                 var actualBytes = new byte[fileValue.Length];
                 fileValue.Read(actualBytes, 0, (int)fileValue.Length);
                 writeFile(destinationPath, relativePath, actualBytes);
@@ -48,8 +49,15 @@ namespace Tmx.Server.Modules
             }
             catch {}
             
-            using (var writer = new BinaryWriter(File.Open(destinationPath + '\\' + relativePath, FileMode.Create))) {
-                writer.Write(actualBytes);
+            // 20141017
+//            using (var writer = new BinaryWriter(File.Open(destinationPath + '\\' + relativePath, FileMode.Create))) {
+//                writer.Write(actualBytes);
+//            }
+            
+            using (var fileStream = File.Open(destinationPath + '\\' + relativePath, FileMode.Create)) {
+                using (var writer = new BinaryWriter(fileStream)) {
+                    writer.Write(actualBytes);
+                }
             }
         }
     }

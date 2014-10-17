@@ -26,9 +26,9 @@ namespace Tmx.Server.Modules
     {
         public TestDataModule() : base(UrnList.TestData_Root)
         {
-        	Get[UrnList.TestData_CommonData] = _ => returnCommonData();
+        	Get[UrnList.TestData_CommonData_relPath] = _ => returnCommonData();
             
-            Post[UrnList.TestData_CommonData] = _ => {
+            Post[UrnList.TestData_CommonData_relPath] = _ => {
                 var commonDataItem = this.Bind<CommonDataItem>();
                 return addCommonDataItem(commonDataItem);
             };

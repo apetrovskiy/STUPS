@@ -20,6 +20,7 @@ namespace Tmx.Server
 	using Nancy.TinyIoc;
 	using Tmx.Core;
     using Tmx.Interfaces;
+    using Tmx.Interfaces.Remoting;
     using Tmx.Interfaces.TestStructure;
     using Tmx.Server.Helpers.Control;
     using DotLiquid;
@@ -50,14 +51,16 @@ namespace Tmx.Server
         
         public static void Stop()
         {
+            Reset();
             _nancyHost.Stop();
         }
         
         public static void Reset()
         {
-            ClientsCollection.Clients = new System.Collections.Generic.List<Tmx.Interfaces.Remoting.ITestClient>();
-            TaskPool.TasksForClients = new System.Collections.Generic.List<Tmx.Interfaces.Remoting.ITestTask>();
-            TaskPool.Tasks = new System.Collections.Generic.List<Tmx.Interfaces.Remoting.ITestTask>();
+            ClientsCollection.Clients = new System.Collections.Generic.List<ITestClient>();
+            ClientsCollection.MaxUsedClientId = 0;
+            TaskPool.TasksForClients = new System.Collections.Generic.List<ITestTask>();
+            TaskPool.Tasks = new System.Collections.Generic.List<ITestTask>();
             CommonData.Data = new System.Collections.Generic.Dictionary<string, string>();
         }
         
@@ -100,12 +103,12 @@ namespace Tmx.Server
         
         static void registerTypes()
         {
-			Template.RegisterSafeType(typeof(TestSuite), new[] { "Id", "Name", "Status", "TestScenarios" });
-			Template.RegisterSafeType(typeof(TestScenario), new[] { "Id", "Name", "Status", "TestResults" });
-			Template.RegisterSafeType(typeof(TestResult), new[] { "Id", "Name", "Status", "Origin" });
-			Template.RegisterSafeType(typeof(ITestSuite), new[] { "Id", "Name", "Status", "TestScenarios" });
-			Template.RegisterSafeType(typeof(ITestScenario), new[] { "Id", "Name", "Status", "TestResults" });
-			Template.RegisterSafeType(typeof(ITestResult), new[] { "Id", "Name", "Status", "Origin" });
+			Template.RegisterSafeType(typeof(TestSuite), new[] { "Id", "Name", "Status", "TestScenarios", "PlatformId" });
+			Template.RegisterSafeType(typeof(TestScenario), new[] { "Id", "Name", "Status", "TestResults", "PlatformId" });
+			Template.RegisterSafeType(typeof(TestResult), new[] { "Id", "Name", "Status", "Origin", "PlatformId" });
+			Template.RegisterSafeType(typeof(ITestSuite), new[] { "Id", "Name", "Status", "TestScenarios", "PlatformId" });
+			Template.RegisterSafeType(typeof(ITestScenario), new[] { "Id", "Name", "Status", "TestResults", "PlatformId" });
+			Template.RegisterSafeType(typeof(ITestResult), new[] { "Id", "Name", "Status", "Origin", "PlatformId" });
 			Template.RegisterSafeType(typeof(TestResultOrigins), member => member.ToString());
         }
         

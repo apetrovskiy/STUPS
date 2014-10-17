@@ -11,6 +11,7 @@ namespace Tmx
 {
 	using System;
 	using Tmx.Core;
+    using Tmx.Server;
 	using Tmx.Commands;
 	
     /// <summary>
@@ -26,7 +27,11 @@ namespace Tmx
         {
             var cmdlet = (AddTmxCommonDataItemCommand)Cmdlet;
             try {
-                CommonData.Data.Add(cmdlet.Key, cmdlet.Value);
+                // 20141016
+                // CommonData.Data.Add(cmdlet.Key, cmdlet.Value);
+                // TODO: DI
+                var commonDataItems = new CommonDataItems();
+                commonDataItems.AddOrUpdateDataItem(new CommonDataItem { Key = cmdlet.Key, Value = cmdlet.Value });
                 cmdlet.WriteObject(true);
             }
             catch (Exception e) {

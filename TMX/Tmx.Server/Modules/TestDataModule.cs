@@ -11,6 +11,7 @@ namespace Tmx.Server.Modules
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 	using Nancy;
 	using Nancy.ModelBinding;
     using Nancy.Responses.Negotiation;
@@ -42,19 +43,37 @@ namespace Tmx.Server.Modules
 
 		HttpStatusCode addCommonDataItem(ICommonDataItem commonDataItem)
 		{
-			try {
-				var existingDataItem = CommonData.Data[commonDataItem.Key];
-				if (null != existingDataItem)
-					CommonData.Data[commonDataItem.Key] = commonDataItem.Value;
-				return HttpStatusCode.Created;
-			} catch {
-				try {
-					CommonData.Data.Add(commonDataItem.Key, commonDataItem.Value);
-					return HttpStatusCode.Created;
-				} catch {
-					return HttpStatusCode.ExpectationFailed;
-				}
-			}
+//			try {
+//				var existingDataItem = CommonData.Data[commonDataItem.Key];
+//				if (null != existingDataItem)
+//					CommonData.Data[commonDataItem.Key] = commonDataItem.Value;
+//				return HttpStatusCode.Created;
+//			} catch {
+//				try {
+//					CommonData.Data.Add(commonDataItem.Key, commonDataItem.Value);
+//					return HttpStatusCode.Created;
+//				} catch {
+//					return HttpStatusCode.ExpectationFailed;
+//				}
+//			}
+		    
+//            return CommonData.Data.Keys.Any(key => key == commonDataItem.Key) ? updateExistingCommonDataItem(commonDataItem) : addNewCommonDataItem(commonDataItem);
+//		}
+//		
+//        HttpStatusCode updateExistingCommonDataItem(ICommonDataItem commonDataItem)
+//        {
+//            CommonData.Data[commonDataItem.Key] = commonDataItem.Value;
+//            return HttpStatusCode.Created; // to simplify the logic
+//        }
+//        
+//        HttpStatusCode addNewCommonDataItem(ICommonDataItem commonDataItem)
+//        {
+//            CommonData.Data.Add(commonDataItem.Key, commonDataItem.Value);
+//            return HttpStatusCode.Created;
+//        }
+            var commonDataItems = new CommonDataItems();
+            commonDataItems.AddOrUpdateDataItem(commonDataItem);
+            return HttpStatusCode.Created;
 		}
     }
 }

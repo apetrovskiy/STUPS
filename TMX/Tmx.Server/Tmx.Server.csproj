@@ -94,6 +94,7 @@
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="FakeType.cs" />
+    <Compile Include="Helpers\CommonDataItems.cs" />
     <Compile Include="Helpers\Control\InternalServerControl.cs" />
     <Compile Include="Helpers\Control\ModulesLoader.cs" />
     <Compile Include="Helpers\Control\PluginsLoader.cs" />

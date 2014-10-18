@@ -139,6 +139,15 @@
     <None Include="Views\status\clients.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Views\status\workflow.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Views\status\testTask.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Views\status\testClient.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Views\status\tasks.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

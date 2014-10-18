@@ -1,1 +1,63 @@
-1
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Task</title>
+</head>
+<body>
+
+    <div>
+        Id: @Model.Id
+        <br />
+        Name: @Model.Name
+        <br />
+        Previous Task Id: @Model.PreviousTaskId
+        <br />
+        After task: @Model.AfterTask
+        <br />
+        Is active: @Model.IsActive
+        <br />
+        Finished: @Model.TaskFinished
+        <br />
+        Timeout: @Model.Timeout
+        <br />
+        Start Time: @Model.StartTime
+        <br />
+        Time taken: 
+        <br />
+        Retry count: $@Model.RetryCount
+        <br />
+        Is critical: $@Model.IsCritical
+        <br />
+        Task type: $@Model.TaskType
+        <br />
+        Rule: $@Model.Rule
+        <br />
+        Story Id: $@Model.StoryId
+        <br />
+        Previous Task Id: $@Model.PreviousTaskId
+        <br />
+        Previous Task Id: $@Model.PreviousTaskId
+        <br />
+
+		<!--- string StoryId { get; set; }
+		string Action { get; set; }
+		IDictionary<string, string> ActionParameters { get; set; }
+		string BeforeAction { get; set; }
+		IDictionary<string, string> BeforeActionParameters { get; set; }
+		string AfterAction { get; set; }
+		IDictionary<string, string> AfterActionParameters { get; set; }
+		string[] ExpectedResult { get; set; }
+		
+		string TaskBanner { get; set; }
+		TestTaskStatuses TaskStatus { get; set; }
+		IDictionary<string, string> PreviousTaskResult { get; set; }
+		IDictionary<string, string> TaskResult { get; set; }
+		int ClientId { get; set; }
+		int WorkflowId { get; set; }
+		
+		void StartTimer(); -->
+    </div>
+
+</body>
+</html>

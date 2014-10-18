@@ -142,6 +142,9 @@
     <None Include="Views\status\workflow.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Views\status\workflows.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Views\status\testTask.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

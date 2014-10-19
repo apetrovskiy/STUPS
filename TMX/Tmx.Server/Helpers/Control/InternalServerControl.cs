@@ -133,12 +133,12 @@ namespace Tmx.Server
             StaticConfiguration.DisableErrorTraces = false;
             StaticConfiguration.EnableRequestTracing = true;
             
-            pipelines.BeforeRequest += ctx => { outputMethod(ctx, "BeforeRequest"); return null; };
+            // pipelines.BeforeRequest += ctx => { temporary_outputMethod(ctx, "BeforeRequest"); return null; };
             
-            // pipelines.AfterRequest += ctx => { outputMethod(ctx, "AfterRequest"); return null; };
+            // pipelines.AfterRequest += ctx => { temporary_outputMethod(ctx, "AfterRequest"); return null; };
         }
         
-        void outputMethod(NancyContext ctx, string state)
+        void temporary_outputMethod(NancyContext ctx, string state)
         {
             try { Console.WriteLine(state + " ControlPanelEnabled = " + ctx.ControlPanelEnabled); } catch {}
             try { Console.WriteLine(state + " Culture.DisplayName = " + ctx.Culture.DisplayName); } catch {}

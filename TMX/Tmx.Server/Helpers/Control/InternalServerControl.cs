@@ -80,10 +80,10 @@ namespace Tmx.Server
     	        StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + @"/Nwx", "Nwx"));
     	    
     	    nancyConventions.StaticContentsConventions.Add(
-    	        StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + @"/results", "results"));
+    	        StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + @"Views/results", "results"));
     	    
     	    nancyConventions.StaticContentsConventions.Add(
-                StaticContentConventionBuilder.AddDirectory("Scripts", @"Scripts", ".js")
+                StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + "Views/Scripts", @"Scripts", ".js")
     	    
     		base.ConfigureConventions(nancyConventions);
     	}

@@ -72,8 +72,8 @@ namespace Tmx.Server
     	
     	protected override void ConfigureConventions(NancyConventions nancyConventions)
     	{
-    		nancyConventions.StaticContentsConventions.Add(
-    		    StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath(), "Root"));
+    	    // nancyConventions.StaticContentsConventions.Add(
+    	    //     StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath(), "Root"));
     	    
     	    // TODO: to a separate assembly
     	    nancyConventions.StaticContentsConventions.Add(
@@ -81,6 +81,9 @@ namespace Tmx.Server
     	    
     	    nancyConventions.StaticContentsConventions.Add(
     	        StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + @"/results", "results"));
+    	    
+    	    nancyConventions.StaticContentsConventions.Add(
+                StaticContentConventionBuilder.AddDirectory("Scripts", @"Scripts", ".js")
     	    
     		base.ConfigureConventions(nancyConventions);
     	}

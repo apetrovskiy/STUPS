@@ -12,13 +12,13 @@ namespace Tmx.Server
     using System;
     using System.Linq;
     using DotLiquid.NamingConventions;
-	using Nancy;
-	using Nancy.Bootstrapper;
-	using Nancy.Conventions;
+    using Nancy;
+    using Nancy.Bootstrapper;
+    using Nancy.Conventions;
     using Nancy.Hosting.Self;
     using Nancy.Diagnostics;
-	using Nancy.TinyIoc;
-	using Tmx.Core;
+    using Nancy.TinyIoc;
+    using Tmx.Core;
     using Tmx.Interfaces;
     using Tmx.Interfaces.Remoting;
     using Tmx.Interfaces.TestStructure;

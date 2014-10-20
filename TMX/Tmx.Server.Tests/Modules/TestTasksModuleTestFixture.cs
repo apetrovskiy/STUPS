@@ -402,17 +402,23 @@ namespace Tmx.Server.Tests.Modules
             _browser.Delete(UrnList.TestClients_Root + "/" + testClient.Id, with => with.Accept("application/xml"));
         }
         
+        // 20141020
         TestTask WHEN_Getting_task_as_json(int clientId)
+        // TestTaskProxy WHEN_Getting_task_as_json(int clientId)
         {
             response = _browser.Get(UrnList.TestTasks_Root + "/" + clientId, with => with.Accept("application/json"));
+            // 20141020
             var actualTask = response.Body.DeserializeJson<TestTask>();
+            // var actualTask = response.Body.DeserializeJson<TestTaskProxy>();
             if (null == actualTask) return actualTask;
             actualTask.TaskStatus = TestTaskStatuses.Accepted;
             // emulates actualTask.StartTimer();
             _startTime = DateTime.Now;
             actualTask.StartTime = _startTime;
             _browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => {
+                                    // 20141020
                                    	with.JsonBody<ITestTask>(actualTask);
+                                   	// with.JsonBody<ITestTaskProxy>(actualTask);
                                    	with.Accept("application/json");
                                    });
             return actualTask;
@@ -423,21 +429,29 @@ namespace Tmx.Server.Tests.Modules
             ClientsCollection.Clients.RemoveAll(client => client.Id == registeredClient.Id);
         }
         
+        // 20141020
         void WHEN_Finishing_Task_as_json(TestTask actualTask)
+        // void WHEN_Finishing_Task_as_json(TestTaskProxy actualTask)
         {
             actualTask.TaskStatus = TestTaskStatuses.CompletedSuccessfully;
             actualTask.TaskFinished = true;
             _browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => {
                 with.Accept("application/json");
+                // 20141020
                 with.JsonBody<ITestTask>(actualTask);
+                // with.JsonBody<ITestTaskProxy>(actualTask);
             });
         }
         
+        // 20141020
         void WHEN_Failing_Task(TestTask actualTask)
+        // void WHEN_Failing_Task(TestTaskProxy actualTask)
         {
             actualTask.TaskStatus = TestTaskStatuses.Failed;
             actualTask.TaskFinished = true;
+            // 20141020
             _browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => with.JsonBody<ITestTask>(actualTask));
+            // _browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => with.JsonBody<ITestTaskProxy>(actualTask));
         }
         
         void THEN_HttpResponse_Is_Ok()
@@ -455,23 +469,30 @@ namespace Tmx.Server.Tests.Modules
             Xunit.Assert.Equal(HttpStatusCode.ExpectationFailed, response.StatusCode);
         }
         
+        // 20141020
         void THEN_TestTask_Properties_Equal_To(ITestTask expectedTask, ITestTask actualTask)
+        // void THEN_TestTask_Properties_Equal_To(ITestTask expectedTask, ITestTaskProxy actualTask)
         {
             Xunit.Assert.Equal(expectedTask.Id, actualTask.Id);
             Xunit.Assert.Equal(expectedTask.Name, actualTask.Name);
             Xunit.Assert.Equal(expectedTask.TaskStatus, actualTask.TaskStatus);
             Xunit.Assert.Equal(expectedTask.TaskFinished, actualTask.TaskFinished);
+            // 20141020
             Xunit.Assert.Equal(expectedTask.IsActive, actualTask.IsActive);
-            Xunit.Assert.Equal(_startTime, actualTask.StartTime);
+            // Xunit.Assert.Equal(_startTime, actualTask.StartTime);
         }
         
+        // 20141020
         void THEN_TestTask_Properties_Equal_To(ITestTask expectedTask, ITestTask actualTask, TestTaskStatuses status)
+        // void THEN_TestTask_Properties_Equal_To(ITestTask expectedTask, ITestTaskProxy actualTask, TestTaskStatuses status)
         {
             expectedTask.TaskStatus = status;
             THEN_TestTask_Properties_Equal_To(expectedTask, actualTask);
         }
         
+        // 20141020
         void THEN_TestTask_Is_Null(ITestTask task)
+        // void THEN_TestTask_Is_Null(ITestTaskProxy task)
         {
             Xunit.Assert.Equal(null, task);
         }

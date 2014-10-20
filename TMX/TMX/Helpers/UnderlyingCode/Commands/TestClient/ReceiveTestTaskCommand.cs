@@ -32,7 +32,10 @@ namespace Tmx
             clientSettings.StopImmediately = false;
             
             var taskLoader = new TaskLoader(new RestRequestCreator());
+            // 20141020
             ITestTask task = null;
+            // ITestTaskProxy task = null;
+            // ITestTaskCodeProxy task = null;
             
             // temporarily
             // TODO: to a template method

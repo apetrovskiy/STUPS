@@ -17,6 +17,7 @@ namespace Tmx.Server.Modules
     using Nancy.Responses.Negotiation;
 	using Tmx.Interfaces.Exceptions;
 	using Tmx.Interfaces.Server;
+	using Tmx.Core;
 	using Tmx.Core.Types.Remoting;
 	using Tmx.Interfaces.Remoting;
     
@@ -30,8 +31,12 @@ namespace Tmx.Server.Modules
             Get[UrnList.TestTasks_CurrentTaskForClientById_relPath] = parameters => returnTaskByClientId(parameters.id);
         	
             Put[UrnList.TestTasks_Task] = parameters => {
+                // 20141020
             	ITestTask loadedTask = this.Bind<TestTask>();
+            	// ITestTaskProxy loadedTask = this.Bind<TestTaskProxy>();
+            	// ITestTaskResultProxy loadedTask = this.Bind<TestTaskResultProxy>();
                 return updateTask(loadedTask, parameters.id);
+                // return updateTask(loadedTask, parameters.id);
             };
         	
             // 20141003
@@ -67,10 +72,14 @@ namespace Tmx.Server.Modules
             testClient.TaskId = actualTask.Id;
             testClient.TaskName = actualTask.Name;
             testClient.WorkflowId = actualTask.WorkflowId;
+            // 20141020
             return Negotiate.WithModel(actualTask).WithStatusCode(HttpStatusCode.OK);
+            // return Negotiate.WithModel(actualTask.SqueezeTaskToTaskResultProxy()).WithStatusCode(HttpStatusCode.OK);
         }
         
+        // 20141020
 		HttpStatusCode updateTask(ITestTask loadedTask, int taskId)
+		// HttpStatusCode updateTask(ITestTaskResultProxy loadedTask, int taskId)
 		{
 			if (null == loadedTask)
 				throw new UpdateTaskException("Failed to update task with id = " + taskId);

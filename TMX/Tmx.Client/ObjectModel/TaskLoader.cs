@@ -32,13 +32,19 @@ namespace Tmx.Client
 	    	_restTemplate = requestCreator.GetRestTemplate();
 	    }
 	    
+	    // 20141020
 		public virtual ITestTask GetCurrentTask()
+		// public virtual ITestTaskCodeProxy GetCurrentTask()
 		{
             if (0 == ClientSettings.Instance.ClientId)
                 throw new ClientNotRegisteredException("Client is not registered. Run the Register-TmxSystemUnderTest cmdlet first");
+            // 20141020
             HttpResponseMessage<TestTask> gettingTaskResponse = null;
+            // HttpResponseMessage<TestTaskCodeProxy> gettingTaskResponse = null;
 			try {
+                // 20141020
 			    gettingTaskResponse = _restTemplate.GetForMessage<TestTask>(UrnList.TestTasks_Root + "/" + ClientSettings.Instance.ClientId);
+			    // gettingTaskResponse = _restTemplate.GetForMessage<TestTaskCodeProxy>(UrnList.TestTasks_Root + "/" + ClientSettings.Instance.ClientId);
 			}
 			catch (Exception eHttpClientErrorException) {
 			    if (string.Empty != eHttpClientErrorException.Message)
@@ -57,7 +63,9 @@ namespace Tmx.Client
 			throw new LoadTaskException("Failed to load task. " + gettingTaskResponse.StatusCode);
 		}
 		
+		// 20141020
 		ITestTask acceptCurrentTask(ITestTask task)
+		// ITestTaskProxy acceptCurrentTask(ITestTaskCodeProxy task)
 		{
 		    if (null == task)
 		        throw new AcceptTaskException("Failed to accept task.");

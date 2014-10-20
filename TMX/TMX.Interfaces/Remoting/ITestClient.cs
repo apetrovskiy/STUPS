@@ -14,14 +14,13 @@ namespace Tmx.Interfaces.Remoting
 	/// <summary>
 	/// Description of ITestClient.
 	/// </summary>
-	public interface ITestClient : ISystemInfo
+	public interface ITestClient : ISystemInfo, ITestClientProxy
 	{
-		int Id { get; set; }
+		// int Id { get; set; }
 		TestClientStatuses Status { get; set; }
-		// 20141003
-		int TaskId { get; set; }
-		string TaskName { get; set; }
-		string DetailedStatus { get; set; }
-		int WorkflowId { get; set; }
+		// int TaskId { get; set; }
+		// string TaskName { get; set; }
+		string DetailedStatus { get; set; } //?
+		// int WorkflowId { get; set; }
 	}
 }

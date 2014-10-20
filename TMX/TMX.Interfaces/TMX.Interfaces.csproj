@@ -108,9 +108,14 @@
     <Compile Include="Remoting\ICommonDataItem.cs" />
     <Compile Include="Remoting\IServerCommand.cs" />
     <Compile Include="Remoting\ITestClient.cs" />
+    <Compile Include="Remoting\ITestClientProxy.cs" />
     <Compile Include="Remoting\ITestTask.cs" />
     <Compile Include="Remoting\ITestHost.cs" />
     <Compile Include="Remoting\ITestHostGroup.cs" />
+    <Compile Include="Remoting\ITestTaskCodeProxy.cs" />
+    <Compile Include="Remoting\ITestTaskProxy.cs" />
+    <Compile Include="Remoting\ITestTaskResultProxy.cs" />
+    <Compile Include="Remoting\ITestTaskStatusProxy.cs" />
     <Compile Include="Remoting\IWorkflow.cs" />
     <Compile Include="TestStructure\Enumerations.cs" />
     <Compile Include="TestStructure\ITestBucket.cs" />

@@ -98,6 +98,10 @@
     <Compile Include="Types\Remoting\ServerCommand.cs" />
     <Compile Include="Types\Remoting\TestClient.cs" />
     <Compile Include="Types\Remoting\TestTask.cs" />
+    <Compile Include="Types\Remoting\TestTaskCodeProxy.cs" />
+    <Compile Include="Types\Remoting\TestTaskProxy.cs" />
+    <Compile Include="Types\Remoting\TestTaskResultProxy.cs" />
+    <Compile Include="Types\Remoting\TestTaskStatusProxy.cs" />
     <Compile Include="Types\Remoting\TestWorkflow.cs" />
     <Compile Include="Types\TestStructure\TestCase.cs" />
     <Compile Include="Types\TestStructure\TestPlatform.cs" />

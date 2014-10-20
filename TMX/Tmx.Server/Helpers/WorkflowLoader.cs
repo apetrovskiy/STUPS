@@ -149,7 +149,7 @@ namespace Tmx.Server
 				StoryId = getTestTaskElementValue(taskNode, taskElement_storyId),
 				// TaskResult
 				TaskType = getTestTaskType(taskNode.Element(taskElement_taskType).Value),
-				Timeout = convertTestTaskElementValue(taskNode, taskElement_timeout),
+				TimeLimit = convertTestTaskElementValue(taskNode, taskElement_timeout),
 				WorkflowId = workflowId
 			};
 		}

@@ -28,7 +28,9 @@ namespace Tmx.Client
 	    	_restTemplate = requestCreator.GetRestTemplate();
 	    }
 	    
+	    // 20141020
 		public virtual bool UpdateTask(ITestTask task)
+		// public virtual bool UpdateTask(ITestTaskStatusProxy task)
 		{
 			try {
 			    _restTemplate.Put(UrnList.TestTasks_Root + "/" + task.Id, task);

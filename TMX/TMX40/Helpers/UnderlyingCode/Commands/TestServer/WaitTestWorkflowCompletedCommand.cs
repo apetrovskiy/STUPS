@@ -25,8 +25,9 @@ namespace Tmx
         
         internal override void Execute()
         {
+            var cmdlet = (WaitTmxTestWorkflowCompletedCommand)Cmdlet;
             var serverWatcher = new ServerWatcher();
-            serverWatcher.IsWorkflowCompleted();
+            serverWatcher.IsWorkflowCompleted(cmdlet.Name);
         }
     }
 }

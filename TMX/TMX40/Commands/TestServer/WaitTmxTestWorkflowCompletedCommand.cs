@@ -11,6 +11,7 @@ namespace Tmx.Commands
 {
     using System;
     using System.Management.Automation;
+    using Ninject.Parameters;
 	using PSTestLib;
     
     /// <summary>
@@ -19,6 +20,9 @@ namespace Tmx.Commands
     [Cmdlet(VerbsLifecycle.Wait, "TmxTestWorkflowCompleted")]
     public class WaitTmxTestWorkflowCompletedCommand : ServerCmdletBase
     {
+        [Parameter(Mandatory = false)]
+        public string Name { get; set; }
+        
 		protected override void BeginProcessing()
 		{
 			var command = new WaitTestWorkflowCompletedCommand(this);

@@ -10,6 +10,7 @@
 namespace Tmx.Server.Modules
 {
     using System;
+    using System.Dynamic;
     using System.Linq;
     using Nancy;
     using Tmx.Interfaces;
@@ -45,8 +46,12 @@ namespace Tmx.Server.Modules
             Get[UrnList.TestResultsViews_OverviewNewPage] = parameters => {
                 // var data = TestData.TestSuites.SelectMany(suite => { return suite.TestScenarios; });
                 // var data = new TestData();
-                var data = new ContainerForTests();
+//                var data = new ContainerForTests();
+//                data.TestSuites = TestData.TestSuites;
+//                return View[UrnList.TestResultsViews_OverviewNewPageName, data];
+                dynamic data = new ExpandoObject();
                 data.TestSuites = TestData.TestSuites;
+                data.Tasks = TaskPool.TasksForClients;
                 return View[UrnList.TestResultsViews_OverviewNewPageName, data];
             };
         }

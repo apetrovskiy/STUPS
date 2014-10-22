@@ -27,9 +27,26 @@ namespace Tmx.Server.Modules
         public TestDataModule() : base(UrnList.TestData_Root)
         {
         	Get[UrnList.TestData_CommonData_relPath] = _ => returnCommonData();
+        	
+        	Get[UrnList.TestData_CommonData_relPath + "{key}"] = parameters => {
+        	    string key = parameters.key;
+        	    /*
+        	    Console.WriteLine("requested key: " + key);
+        	    foreach (var k in CommonData.Data.Keys) {
+        	        Console.WriteLine("key: " + k + ", value: " + CommonData.Data[k]);
+        	    }
+        	    */
+        	    return (null == CommonData.Data[key]) ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(CommonData.Data[key]).WithStatusCode(HttpStatusCode.OK);
+        	};
             
             Post[UrnList.TestData_CommonData_relPath] = _ => {
                 var commonDataItem = this.Bind<CommonDataItem>();
+                /*
+                foreach (var header in Request.Headers) {
+                    Console.WriteLine(header.Key);
+                    Console.WriteLine(header.Value);
+                }
+                */
                 return addCommonDataItem(commonDataItem);
             };
             

@@ -90,8 +90,14 @@ namespace Tmx.Server.Modules
 			storedTask.StartTime = loadedTask.StartTime;
 			
 			var taskSorter = new TaskSelector();
-			if (TestTaskStatuses.Failed == storedTask.TaskStatus)
+			// 20141022
+			// if (TestTaskStatuses.Failed == storedTask.TaskStatus)
+			if (storedTask.IsFailed())
 				taskSorter.CancelFurtherTasks(storedTask.ClientId);
+			// 20141022
+			// if (TestTaskStatuses.Accepted == storedTask.TaskStatus)
+			if (storedTask.IsFinished())
+			    cleanUpClientdetailedStatus(storedTask.ClientId);
 			
 			updateWorklowStatus(storedTask.WorkflowId);
 			
@@ -113,9 +119,16 @@ namespace Tmx.Server.Modules
             return HttpStatusCode.OK;
         }
         
+        void cleanUpClientdetailedStatus(int clientId)
+        {
+            ClientsCollection.Clients.First(client => client.Id == clientId).DetailedStatus = string.Empty;
+        }
+        
         void updateWorklowStatus(int workflowId)
         {
-            if (TaskPool.TasksForClients.All(task => task.WorkflowId == workflowId && task.TaskStatus != TestTaskStatuses.Accepted && task.TaskStatus != TestTaskStatuses.New))
+            // 20141022
+            // if (TaskPool.TasksForClients.All(task => task.WorkflowId == workflowId && task.TaskStatus != TestTaskStatuses.Accepted && task.TaskStatus != TestTaskStatuses.New))
+            if (TaskPool.TasksForClients.All(task => task.WorkflowId == workflowId && task.IsFinished()))
                 WorkflowCollection.Workflows.Where(wfl => wfl.Id == workflowId).AsEnumerable().ToList().ForEach(wfl => wfl.WorkflowStatus = WorkflowStatuses.NoTasks);
         }
         

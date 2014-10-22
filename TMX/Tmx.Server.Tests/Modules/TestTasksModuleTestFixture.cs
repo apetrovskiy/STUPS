@@ -181,7 +181,9 @@ namespace Tmx.Server.Tests.Modules
             
             THEN_HttpResponse_Is_NotFound();
             Xunit.Assert.Equal(null, actualTask);
-            Xunit.Assert.Equal(0, TaskPool.TasksForClients.Count(task => task.TaskStatus != TestTaskStatuses.Failed && task.TaskStatus != TestTaskStatuses.Canceled));
+            // 20141022
+            // Xunit.Assert.Equal(0, TaskPool.TasksForClients.Count(task => task.TaskStatus != TestTaskStatuses.Failed && task.TaskStatus != TestTaskStatuses.Canceled));
+            Xunit.Assert.Equal(0, TaskPool.TasksForClients.Count(task => !task.IsFailed() && !task.IsCancelled()));
             Xunit.Assert.Equal(givenTask03.Id, TaskPool.TasksForClients.OrderBy(t => t.Id).Skip(1).First().Id);
         }
         

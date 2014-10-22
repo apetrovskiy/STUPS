@@ -109,15 +109,15 @@
     <Compile Include="Helpers\Objects\ClientsCollection.cs" />
     <Compile Include="Helpers\WorkflowLoader.cs" />
     <Compile Include="Modules\ExternalFilesModule.cs" />
-    <Compile Include="Modules\GlobalSettingsViewsModule.cs" />
-    <Compile Include="Modules\RootPageModule.cs" />
+    <Compile Include="Modules\ViewsGlobalSettingsModule.cs" />
+    <Compile Include="Modules\ViewsRootPageModule.cs" />
     <Compile Include="Modules\ServerControlModule.cs" />
     <Compile Include="Modules\TestClientsModule.cs" />
     <Compile Include="Modules\TestDataModule.cs" />
     <Compile Include="Modules\TestResultsModule.cs" />
-    <Compile Include="Modules\TestResultsViewsModule.cs" />
+    <Compile Include="Modules\ViewsTestResultsModule.cs" />
     <Compile Include="Modules\TestTasksModule.cs" />
-    <Compile Include="Modules\TestStatusViewsModule.cs" />
+    <Compile Include="Modules\ViewsTestStatusModule.cs" />
     <Compile Include="Modules\TestWorkflowsModule.cs" />
   </ItemGroup>
   <ItemGroup>

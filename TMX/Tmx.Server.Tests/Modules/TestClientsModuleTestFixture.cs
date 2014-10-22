@@ -230,7 +230,7 @@ namespace Tmx.Server.Tests.Modules
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_not_set_test_client_status_fro_wrong_clientId_as_json()
+        public void Should_not_set_test_client_status_from_wrong_clientId_as_json()
         {
             const string detailedStatus01 = "the current status";
             const string detailedStatus02 = "the latest status";
@@ -245,7 +245,7 @@ namespace Tmx.Server.Tests.Modules
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_not_set_test_client_status_fro_wrong_clientId_as_xml()
+        public void Should_not_set_test_client_status_from_wrong_clientId_as_xml()
         {
             const string detailedStatus01 = "the current status";
             const string detailedStatus02 = "the latest status";
@@ -258,6 +258,55 @@ namespace Tmx.Server.Tests.Modules
             THEN_Http_Response_Is_NotFound();
             Xunit.Assert.Equal(detailedStatus01, ClientsCollection.Clients.First(client => client.Id == testClient01.Id).DetailedStatus);
         }
+        
+        
+        
+        
+        
+        
+        
+        
+        // cleaning up detailed status on finishing a task
+        
+//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        public void Should_set_test_client_second_status_as_json()
+//        {
+//            const string detailedStatus01 = "the current status";
+//            const string detailedStatus02 = "the latest status";
+//            var testClient01 = GIVEN_SendingRegistration_as_Json(GIVEN_TestClient("testhost_03", "aaa_03"));
+//            
+//            WHEN_SendingStatus_as_json(testClient01.Id, new DetailedStatus(detailedStatus01));
+//            WHEN_SendingStatus_as_json(testClient01.Id, new DetailedStatus(detailedStatus02));
+//            
+//            THEN_There_Is_The_Number_Of_Registered_Clients(testClient01.Id);
+//            Xunit.Assert.Equal(detailedStatus02, ClientsCollection.Clients.First(client => client.Id == testClient01.Id).DetailedStatus);
+//        }
+//        
+//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        public void Should_set_test_client_second_status_as_xml()
+//        {
+//            const string detailedStatus01 = "the current status";
+//            const string detailedStatus02 = "the latest status";
+//            var testClient01 = GIVEN_SendingRegistration_as_Xml(GIVEN_TestClient("testhost_03", "aaa_03") as TestClient);
+//            
+//            WHEN_SendingStatus_as_xml(testClient01.Id, new DetailedStatus(detailedStatus01));
+//            WHEN_SendingStatus_as_xml(testClient01.Id, new DetailedStatus(detailedStatus02));
+//            
+//            THEN_There_Is_The_Number_Of_Registered_Clients(testClient01.Id);
+//            Xunit.Assert.Equal(detailedStatus02, ClientsCollection.Clients.First(client => client.Id == testClient01.Id).DetailedStatus);
+//        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         // ============================================= Querying clients =============================================================
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_return_all_registered_clients_as_json()

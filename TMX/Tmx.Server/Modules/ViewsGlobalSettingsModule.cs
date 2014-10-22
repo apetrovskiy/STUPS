@@ -17,9 +17,9 @@ namespace Tmx.Server.Modules
     /// <summary>
     /// Description of GlobalSettingsViewsModule.
     /// </summary>
-    public class GlobalSettingsViewsModule : NancyModule
+    public class ViewsGlobalSettingsModule : NancyModule
     {
-        public GlobalSettingsViewsModule() : base("/settings")
+        public ViewsGlobalSettingsModule() : base("/settings")
         {
             Get["/global.htm"] = parameters => {
                 var data = this.Bind<LoginModel>();

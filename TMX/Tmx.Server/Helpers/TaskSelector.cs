@@ -71,7 +71,10 @@ namespace Tmx.Server
         public virtual void CancelFurtherTasks(int clientId)
         {
              TaskPool.TasksForClients
-                 .Where(task => task.ClientId == clientId && task.TaskStatus != TestTaskStatuses.Failed && task.TaskStatus != TestTaskStatuses.CompletedSuccessfully)
+                 // 20141022
+                 // .Where(task => task.ClientId == clientId && task.TaskStatus != TestTaskStatuses.Failed && task.TaskStatus != TestTaskStatuses.CompletedSuccessfully)
+                 // .Where(task => task.ClientId == clientId && !task.IsFinished() && !task.IsCancelled()) // ??
+                 .Where(task => task.ClientId == clientId && !task.IsFinished())
                  .ToList()
                  .ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled); 
         }

@@ -31,7 +31,9 @@ namespace Tmx
         {
             var cmdlet = (InvokeTmxTestTaskCommand)Cmdlet;
             var task = cmdlet.InputObject;
-            if (TestTaskStatuses.Accepted != task.TaskStatus)
+            // 20141022
+            // if (TestTaskStatuses.Accepted != task.TaskStatus)
+            if (task.IsFinished())
                 cmdlet.WriteError(cmdlet, "Task '" + task.Name + "' has been already processed", "AlreadyProcessed", ErrorCategory.InvalidData, true);
             
             loadCommonData();

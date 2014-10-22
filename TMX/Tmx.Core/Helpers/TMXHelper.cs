@@ -371,7 +371,9 @@ namespace Tmx
 
             var testScenariosFiltered = 
                 from scenario in scenarios
-                where scenario.SuiteId == suite.Id
+                // 20141022
+                // where scenario.SuiteId == suite.Id
+                where scenario.SuiteId == suite.Id && scenario.PlatformId == suite.PlatformId
                 select scenario;
 
             if (!testScenariosFiltered.Any()) {
@@ -432,7 +434,10 @@ namespace Tmx
                 where testResult.SuiteId == suite.Id &&
                 testResult.ScenarioId == scenario.Id &&
                 testResult.Id != null &&
-                testResult.Name != null
+                // 20141022
+                // testResult.Name != null
+                testResult.Name != null &&
+                testResult.PlatformId == scenario.PlatformId
                 select testResult;
 
             if (!testResultsFiltered.Any()) {
@@ -1248,7 +1253,9 @@ namespace Tmx
 				if (cmdlet.KnownIssue)
 					TestData.CurrentTestResult.enStatus = TestResultStatuses.KnownIssue;
                 
+				// 20141022
                 TestData.CurrentTestResult.SetOrigin(cmdlet.TestOrigin);
+                // TestData.CurrentTestResult.Origin = cmdlet.TestOrigin;
 
             } else {
 

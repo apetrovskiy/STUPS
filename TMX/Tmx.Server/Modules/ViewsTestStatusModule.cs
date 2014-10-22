@@ -24,9 +24,9 @@ namespace Tmx.Server.Modules
     /// <summary>
     /// Description of TestStatusViewsModule.
     /// </summary>
-    public class TestStatusViewsModule : NancyModule
+    public class ViewsTestStatusModule : NancyModule
     {
-        public TestStatusViewsModule() : base(UrnList.TestStatusViews_Root)
+        public ViewsTestStatusModule() : base(UrnList.TestStatusViews_Root)
         {
             Get[UrnList.TestStatusViews_ClientsPage] = parameters => View[UrnList.TestStatusViews_ClientsPageName, ClientsCollection.Clients];
             
@@ -37,8 +37,6 @@ namespace Tmx.Server.Modules
         string getHostname()
         {
             var hostname = Dns.GetHostName();
-            // 20141017
-            // if (string.Empty != IPGlobalProperties.GetIPGlobalProperties().DomainName) {
             if (!string.IsNullOrEmpty(IPGlobalProperties.GetIPGlobalProperties().DomainName)) {
                 hostname += ".";
                 hostname += IPGlobalProperties.GetIPGlobalProperties().DomainName;

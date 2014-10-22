@@ -10,15 +10,25 @@
 namespace Tmx.Core.Types.Remoting
 {
     using System;
+    using System.Collections.Generic;
     using Tmx.Interfaces.Remoting;
+    using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of TestWorkflow.
     /// </summary>
     public class TestWorkflow : IWorkflow
     {
+        public TestWorkflow()
+        {
+            Data = new Dictionary<string, string>();
+            TestSuites = new List<ITestSuite>();
+        }
+        
         public int Id { get; set; }
         public string Name { get; set; }
         public WorkflowStatuses WorkflowStatus { get; set; }
+        public Dictionary<string, string> Data { get; set; }
+        public List<ITestSuite> TestSuites { get; set; }
     }
 }

@@ -54,8 +54,10 @@ namespace Tmx.Interfaces.TestStructure
         string Screenshot { get; }
         void SetScreenshot(string path);
         
+        // 20141022
         TestResultOrigins Origin { get; }
         void SetOrigin(TestResultOrigins origin);
+        // TestResultOrigins Origin { get; set; }
         
         object[] ListDetailNames(TestResultStatuses status);
         

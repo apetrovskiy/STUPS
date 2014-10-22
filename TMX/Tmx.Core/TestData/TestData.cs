@@ -303,10 +303,14 @@ namespace Tmx
 
             // setting test result's origin
             if (generated) {
+                // 20141022
                 currentTestResult.SetOrigin(TestResultOrigins.Automatic);
+                // currentTestResult.Origin = TestResultOrigins.Automatic;
             } else {
                 //currentTestResult.SetOrigin(TestResultOrigins.Logical);
+                // 20141022
                 currentTestResult.SetOrigin(origin);
+                // currentTestResult.Origin = origin;
             }
 
             if (string.IsNullOrEmpty(currentTestResult.Id)) {

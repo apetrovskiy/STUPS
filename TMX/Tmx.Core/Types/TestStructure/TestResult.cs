@@ -122,6 +122,7 @@ namespace Tmx.Interfaces
         {
 			Screenshot = path;
         }
+        // 20141022
         
         public virtual TestResultOrigins Origin { get; protected internal set; }
         public virtual void SetOrigin(TestResultOrigins origin)
@@ -134,6 +135,15 @@ namespace Tmx.Interfaces
 				Origin = origin;
             }
         }
+        
+//       public virtual TestResultOrigins Origin
+//       {
+//           get { return Origin; }
+//           set {
+//                if (TestResultOrigins.Logical != value)
+//                    Origin = value;
+//           }
+//       }
         
         // 20140703
         // refactoring

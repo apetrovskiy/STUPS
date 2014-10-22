@@ -14,6 +14,7 @@ namespace Tmx.Server
 	using System.Linq;
 	using System.Xml.Linq;
 	using Tmx.Interfaces.Exceptions;
+	using Tmx.Core;
 	using Tmx.Core.Types.Remoting;
 	using Tmx.Interfaces.Remoting;
 	
@@ -105,7 +106,9 @@ namespace Tmx.Server
         
         void setWorkflowStatusInProgress(int workflowId)
         {
-            if (TaskPool.TasksForClients.All(task => task.WorkflowId == workflowId && (task.TaskStatus == TestTaskStatuses.Accepted || task.TaskStatus == TestTaskStatuses.New)))
+            // 20141022
+            // if (TaskPool.TasksForClients.All(task => task.WorkflowId == workflowId && (task.TaskStatus == TestTaskStatuses.Accepted || task.TaskStatus == TestTaskStatuses.New)))
+            if (TaskPool.TasksForClients.All(task => task.WorkflowId == workflowId && !task.IsFinished()))
                 // WorkflowCollection.Workflows.Where(wfl => wfl.Id == workflowId).AsEnumerable().ToList().ForEach(wfl => wfl.WorkflowStatus = WorkflowStatuses.WorkflowInProgress);
                 (from wfl in WorkflowCollection.Workflows
                              where wfl.Id == workflowId

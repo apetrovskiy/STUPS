@@ -92,6 +92,7 @@
     <Compile Include="ObjectModel\TaskResultLoader.cs" />
     <Compile Include="ObjectModel\TaskRunner.cs" />
     <Compile Include="ObjectModel\TaskUpdater.cs" />
+    <Compile Include="ObjectModel\TestResultsLoader.cs" />
     <Compile Include="ObjectModel\TestResultsSender.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -60,6 +60,10 @@ namespace Tmx.Server.Modules
 		HttpStatusCode deleteClientById(int clientId)
 		{
 			ClientsCollection.Clients.RemoveAll(client => client.Id == clientId);
+			// 20141022
+			TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.TaskStatus == TestTaskStatuses.New)
+			    .ToList()
+			    .ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled);
 			return HttpStatusCode.NoContent;
 		}
 		

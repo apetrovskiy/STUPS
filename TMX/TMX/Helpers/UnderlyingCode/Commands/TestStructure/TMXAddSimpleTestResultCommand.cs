@@ -99,7 +99,9 @@ namespace Tmx
             }
             catch {}
             
+            // 20141022
             TestData.CurrentTestScenario.TestResults[newTestResultIndex].SetOrigin(cmdlet.TestOrigin);
+            // TestData.CurrentTestScenario.TestResults[newTestResultIndex].Origin = cmdlet.TestOrigin;
             
 //            if (null != TestData.CurrentTestResult) {
 //

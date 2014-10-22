@@ -10,6 +10,8 @@
 namespace Tmx.Interfaces.Remoting
 {
     using System;
+    using System.Collections.Generic;
+    using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of IWorkflow.
@@ -19,5 +21,7 @@ namespace Tmx.Interfaces.Remoting
         int Id { get; set; }
         string Name { get; set; }
         WorkflowStatuses WorkflowStatus { get; set; }
+        Dictionary<string, string> Data { get; set; }
+        List<ITestSuite> TestSuites { get; set; }
     }
 }

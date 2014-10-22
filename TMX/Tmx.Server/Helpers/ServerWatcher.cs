@@ -13,6 +13,7 @@ namespace Tmx.Server.Helpers
     using System.Collections.Generic;
     using System.Linq;
     using System.Xml.Linq;
+    using Tmx.Core;
     using Tmx.Interfaces.Remoting;
     
     /// <summary>
@@ -90,11 +91,16 @@ namespace Tmx.Server.Helpers
         {
 //            return TaskPool.TasksForClients.Any(task => task.TaskStatus == TestTaskStatuses.New || 
 //                                                task.TaskStatus == TestTaskStatuses.Accepted);
+            // 20141022
+//            return 0 == workflowId ?
+//                TaskPool.TasksForClients.Any(task => task.TaskStatus == TestTaskStatuses.New || 
+//                                             task.TaskStatus == TestTaskStatuses.Accepted) :
+//                TaskPool.TasksForClients.Any(task => task.WorkflowId == workflowId && (task.TaskStatus == TestTaskStatuses.New || 
+//                                                                                       task.TaskStatus == TestTaskStatuses.Accepted));
+            
             return 0 == workflowId ?
-                TaskPool.TasksForClients.Any(task => task.TaskStatus == TestTaskStatuses.New || 
-                                             task.TaskStatus == TestTaskStatuses.Accepted) :
-                TaskPool.TasksForClients.Any(task => task.WorkflowId == workflowId && (task.TaskStatus == TestTaskStatuses.New || 
-                                                                                       task.TaskStatus == TestTaskStatuses.Accepted));
+                TaskPool.TasksForClients.Any(task => !task.IsFinished()) :
+                TaskPool.TasksForClients.Any(task => task.WorkflowId == workflowId && !task.IsFinished());
         }
     }
 }

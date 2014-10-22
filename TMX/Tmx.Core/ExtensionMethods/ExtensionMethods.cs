@@ -144,5 +144,25 @@ namespace Tmx.Core
 //                WorkflowId = task.WorkflowId
             };
         }
+        
+        public static bool IsAccepted(this ITestTask task)
+        {
+            return TestTaskStatuses.Accepted == task.TaskStatus;
+        }
+        
+        public static bool IsFinished(this ITestTask task)
+        {
+            return TestTaskStatuses.CompletedSuccessfully == task.TaskStatus || TestTaskStatuses.Failed == task.TaskStatus || TestTaskStatuses.Canceled == task.TaskStatus;
+        }
+        
+        public static bool IsCancelled(this ITestTask task)
+        {
+            return TestTaskStatuses.Canceled == task.TaskStatus;
+        }
+        
+        public static bool IsFailed(this ITestTask task)
+        {
+            return TestTaskStatuses.Failed == task.TaskStatus;
+        }
     }
 }

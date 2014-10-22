@@ -34,9 +34,9 @@ namespace Tmx.Server.Modules
     /// <summary>
     /// Description of TestResultsViewsModule.
     /// </summary>
-    public class TestResultsViewsModule : NancyModule
+    public class ViewsTestResultsModule : NancyModule
     {
-        public TestResultsViewsModule() : base(UrnList.TestResultsViews_Root)
+        public ViewsTestResultsModule() : base(UrnList.TestResultsViews_Root)
         {
             Get[UrnList.TestResultsViews_OverviewPage] = parameters => {
                 var data = TestData.TestSuites.SelectMany(suite => { return suite.TestScenarios; });

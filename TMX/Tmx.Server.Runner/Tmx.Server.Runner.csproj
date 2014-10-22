@@ -55,6 +55,7 @@
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Management.Automation" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -72,6 +73,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Tmx.Core\Tmx.Core.csproj">
+      <Project>{069651A0-FE15-42E2-89D5-9A761A47B143}</Project>
+      <Name>Tmx.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tmx.Interfaces\Tmx.Interfaces.csproj">
+      <Project>{9C5DA25F-6A59-4F97-B107-64DD549CB800}</Project>
+      <Name>Tmx.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Tmx.Server\Tmx.Server.csproj">
       <Project>{A80B14D0-C8DB-4F70-B18E-4FD1C16E0AEC}</Project>
       <Name>Tmx.Server</Name>

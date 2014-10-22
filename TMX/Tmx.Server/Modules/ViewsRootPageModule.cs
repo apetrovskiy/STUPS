@@ -16,9 +16,9 @@ namespace Tmx.Server.Modules
     /// <summary>
     /// Description of RootPageModule.
     /// </summary>
-    public class RootPageModule : NancyModule
+    public class ViewsRootPageModule : NancyModule
     {
-        public RootPageModule()
+        public ViewsRootPageModule()
         {
             Get[UrnList.RootPage_Root] = _ => View[UrnList.RootPage_RootPageName];
             Get[UrnList.RootPage_ScriptsFolder] = _ => null;

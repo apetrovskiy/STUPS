@@ -14,6 +14,7 @@ namespace Tmx.Server.Modules
     using Nancy;
     using Nancy.ModelBinding;
     using Tmx.Core.Types.Remoting;
+    using Tmx.Interfaces;
     using Tmx.Interfaces.Remoting;
     using Tmx.Interfaces.Server;
     
@@ -55,6 +56,9 @@ namespace Tmx.Server.Modules
                     break;
                 case ServerControlCommands.ResetWorkflows:
                     WorkflowCollection.Workflows = new List<IWorkflow>();
+                    break;
+                case ServerControlCommands.ExportTestResults:
+                    TmxHelper.ExportResultsToXML(new SearchCmdletBaseDataObject { FilterAll = true }, serverCommand.Data);
                     break;
             }
         }

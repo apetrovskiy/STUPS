@@ -31,7 +31,7 @@ namespace Tmx.Server
 		const string taskElement_rule = "rule";
 		const string taskElement_storyId = "storyId";
 		const string taskElement_taskType = "taskType";
-		const string taskElement_timeout = "timeout";
+		const string taskElement_timeLimit = "timelimit";
 		const string taskElement_retryCount = "retryCount";
 		
 		const string taskElement_action = "action";
@@ -44,14 +44,10 @@ namespace Tmx.Server
 		{
             try {
 				if (!System.IO.File.Exists(pathToWorkflowFile))
-				    // 20141017
-					// throw new Exception("There is no such file '" + pathToWorkflowFile + "'.");
 				    throw new WorkflowLoadingException("There is no such file '" + pathToWorkflowFile + "'.");
                 ImportXdocument(XDocument.Load(pathToWorkflowFile));
             }
             catch (Exception eImportDocument) {
-		        // 20141017
-                // throw new Exception(
                 throw new WorkflowLoadingException(
                     "Unable to load an XML workflow from the file '" +
                     pathToWorkflowFile +
@@ -64,26 +60,22 @@ namespace Tmx.Server
 
 		public virtual void ImportXdocument(XContainer xDocument)
 		{
-		    var workflowId = getWorkflowId(xDocument);
-			var tasks = from task in xDocument.Descendants("task")
-			            where task.Element(taskElement_isActive).Value == "1"
-			            select task;
-			var importedTasks = tasks.Select(tsk => getNewTestTask(tsk, workflowId));
-			addTasksToCommonPool(importedTasks);
-			addTasksForEveryClient(importedTasks);
-			setWorkflowStatusInProgress(workflowId);
+            var workflowId = getWorkflowId(xDocument);
+            var tasks = from task in xDocument.Descendants("task")
+                        where task.Element(taskElement_isActive).Value == "1"
+                        select task;
+            var importedTasks = tasks.Select(tsk => getNewTestTask(tsk, workflowId));
+            addTasksToCommonPool(importedTasks);
+            addTasksForEveryClient(importedTasks);
+            trySetWorkflowStatusInProgress(workflowId);
 		}
 		
         int getWorkflowId(XContainer xDocument)
         {
             var wfl = xDocument.Descendants("workflow").FirstOrDefault();
-            // 20141014
             if (null == wfl)
                 throw new WorkflowLoadingException("There's no workflow element in the document");
-            // var workflowName = null != wfl ? wfl.Attribute("name").Value : "unnamed workflow";
             var nameAttribute = wfl.Attribute("name");
-            // if (null == nameAttribute)
-                // throw new WorkflowLoadingException("There is no name attribute in the workflow element");
             var workflowName = null != nameAttribute ? nameAttribute.Value : "unnamed workflow";
             
             return addWorkflow(workflowName);
@@ -92,11 +84,18 @@ namespace Tmx.Server
         int addWorkflow(string name)
         {
             var workflow = new TestWorkflow { Name = name };
-			int maxId = 0;
-			if (0 < WorkflowCollection.Workflows.Count)
-				maxId = WorkflowCollection.Workflows.Max(wkfl => wkfl.Id);
-			workflow.Id = ++maxId;
-			WorkflowCollection.Workflows.Add(workflow);
+            // 20141023
+//			int maxId = 0;
+//			if (0 < WorkflowCollection.Workflows.Count)
+//				maxId = WorkflowCollection.Workflows.Max(wkfl => wkfl.Id);
+//			workflow.Id = ++maxId;
+			workflow.Id = generateWorkflowId();
+			// 20141023
+			// WorkflowCollection.Workflows.Add(workflow);
+			WorkflowCollection.AddWorkflow(workflow);
+            // 20141023
+            // if (!WorkflowCollection.Workflows.HasActiveWorkflow())
+            //     WorkflowCollection.ActiveWorkflow = workflow;
 			// TODO: DI
 //			var taskSorter = new TaskSelector();
 //			TaskPool.TasksForClients.AddRange(taskSorter.SelectTasksForClient(testClient.Id, TaskPool.Tasks));
@@ -104,12 +103,20 @@ namespace Tmx.Server
 			return workflow.Id;
         }
         
-        void setWorkflowStatusInProgress(int workflowId)
+        int generateWorkflowId()
         {
-            // 20141022
-            // if (TaskPool.TasksForClients.All(task => task.WorkflowId == workflowId && (task.TaskStatus == TestTaskStatuses.Accepted || task.TaskStatus == TestTaskStatuses.New)))
+			int maxId = 0;
+			if (0 < WorkflowCollection.Workflows.Count)
+				maxId = WorkflowCollection.Workflows.Max(wkfl => wkfl.Id);
+			return ++maxId;
+        }
+        
+        void trySetWorkflowStatusInProgress(int workflowId)
+        {
+            // 20141023
+            if (WorkflowCollection.ActiveWorkflow.Id != workflowId) return;
+            
             if (TaskPool.TasksForClients.All(task => task.WorkflowId == workflowId && !task.IsFinished()))
-                // WorkflowCollection.Workflows.Where(wfl => wfl.Id == workflowId).AsEnumerable().ToList().ForEach(wfl => wfl.WorkflowStatus = WorkflowStatuses.WorkflowInProgress);
                 (from wfl in WorkflowCollection.Workflows
                              where wfl.Id == workflowId
                              select wfl).AsEnumerable().ToList().ForEach(wfl => wfl.WorkflowStatus = WorkflowStatuses.WorkflowInProgress);
@@ -124,7 +131,10 @@ namespace Tmx.Server
 		{
 		    if (0 == ClientsCollection.Clients.Count) return;
 			var taskSorter = new TaskSelector();
-			foreach (var clientId in ClientsCollection.Clients.Select(client => client.Id)) {
+			// 20141023
+			// foreach (var clientId in ClientsCollection.Clients.Select(client => client.Id)) {
+			foreach (var clientId in ClientsCollection.Clients.Where(client => client.IsInActiveWorkflow()).Select(client => client.Id)) {
+			// foreach (var clientId in ClientsCollection.Clients.Where<ITestClient>(IsInActiveWorkflow).Select(client => client.Id)) {
 				TaskPool.TasksForClients.AddRange(taskSorter.SelectTasksForClient(clientId, importedTasks.ToList()));
 			}
 		}
@@ -152,7 +162,7 @@ namespace Tmx.Server
 				StoryId = getTestTaskElementValue(taskNode, taskElement_storyId),
 				// TaskResult
 				TaskType = getTestTaskType(taskNode.Element(taskElement_taskType).Value),
-				TimeLimit = convertTestTaskElementValue(taskNode, taskElement_timeout),
+				TimeLimit = convertTestTaskElementValue(taskNode, taskElement_timeLimit),
 				WorkflowId = workflowId
 			};
 		}

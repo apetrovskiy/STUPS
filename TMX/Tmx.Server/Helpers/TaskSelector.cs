@@ -46,7 +46,9 @@ namespace Tmx.Server
 	        	                      Regex.IsMatch(client.OsVersion ?? string.Empty, task.Rule) ||
 	        	                      Regex.IsMatch(client.UserDomainName ?? string.Empty, task.Rule) ||
 	        	                      Regex.IsMatch(client.Username ?? string.Empty, task.Rule))
-	                                ).Select(t => { var newTask = t.CloneTaskForNewTestClient(); newTask.ClientId = clientId; return newTask; }).ToList<ITestTask>();
+	                        // 20141023
+	                                // ).Select(t => { var newTask = t.CloneTaskForNewTestClient(); newTask.ClientId = clientId; return newTask; }).ToList<ITestTask>();
+	                               ).Select(t => { var newTask = t.CloneTaskForNewTestClient(); newTask.ClientId = clientId; newTask.WorkflowId = WorkflowCollection.ActiveWorkflow.Id; return newTask; }).ToList<ITestTask>();
             return resultTaskScope;
 	    }
 	    
@@ -54,7 +56,9 @@ namespace Tmx.Server
 		{
 			var taskListForClient = getOnlyNewTestTasksForClient(clientId);
 			if (null == taskListForClient || !taskListForClient.Any()) return null;
-			var taskCandidate = taskListForClient.First(task => task.Id == taskListForClient.Min(tsk => tsk.Id));
+			// 20141023
+			// var taskCandidate = taskListForClient.First(task => task.Id == taskListForClient.Min(tsk => tsk.Id));
+			var taskCandidate = taskListForClient.Where(task => task.WorkflowId == ClientsCollection.Clients.First(client => client.Id == clientId).WorkflowId).First(task => task.Id == taskListForClient.Min(tsk => tsk.Id));
 			return isItTimeToPublishTask(taskCandidate) ? taskCandidate : null;
 		}
 		
@@ -74,7 +78,9 @@ namespace Tmx.Server
                  // 20141022
                  // .Where(task => task.ClientId == clientId && task.TaskStatus != TestTaskStatuses.Failed && task.TaskStatus != TestTaskStatuses.CompletedSuccessfully)
                  // .Where(task => task.ClientId == clientId && !task.IsFinished() && !task.IsCancelled()) // ??
-                 .Where(task => task.ClientId == clientId && !task.IsFinished())
+                 // 20141023
+                 // .Where(task => task.ClientId == clientId && !task.IsFinished())
+                 .Where(task => task.ClientId == clientId && !task.IsFinished() && task.WorkflowId == WorkflowCollection.ActiveWorkflow.Id)
                  .ToList()
                  .ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled); 
         }

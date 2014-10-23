@@ -23,5 +23,6 @@ namespace Tmx.Interfaces.Remoting
         WorkflowStatuses WorkflowStatus { get; set; }
         Dictionary<string, string> Data { get; set; }
         List<ITestSuite> TestSuites { get; set; }
+        bool IsActive { get; set; }
     }
 }

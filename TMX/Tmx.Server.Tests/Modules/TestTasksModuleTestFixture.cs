@@ -46,6 +46,8 @@ namespace Tmx.Server.Tests.Modules
 		{
 		    TestSettings.PrepareModuleTests();
 		    _browser = TestFactory.GetBrowserForTestTasksModule();
+		    // WorkflowCollection.Workflows.Add(new TestWorkflow { Id = 1, Name = "w" });
+		    WorkflowCollection.AddWorkflow(new TestWorkflow { Id = 1, Name = "w" });
 		}
         
     	[MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
@@ -53,14 +55,20 @@ namespace Tmx.Server.Tests.Modules
     	{
     	    TestSettings.PrepareModuleTests();
     	    _browser = TestFactory.GetBrowserForTestTasksModule();
+    	    // WorkflowCollection.Workflows.Add(new TestWorkflow { Id = 1, Name = "w" });
+    	    WorkflowCollection.AddWorkflow(new TestWorkflow { Id = 1, Name = "w" });
     	}
     	
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_provide_a_task_to_test_client_if_the_client_matches_the_rule()
         {
 			var workflow = new TestWorkflow();
-			workflow.Id = 1;
-			WorkflowCollection.Workflows.Add(workflow);
+			// 20141023
+			// workflow.Id = 1;
+			workflow.Id = 2;
+			// 20141023
+			// WorkflowCollection.Workflows.Add(workflow);
+			WorkflowCollection.AddWorkflow(workflow);
 			
 			// TaskPool.TasksForClients.ForEach(task => task.WorkflowId = workflow.Id);
 			
@@ -82,7 +90,9 @@ namespace Tmx.Server.Tests.Modules
             THEN_HttpResponse_Is_Ok();
             THEN_TestTask_Properties_Equal_To(expectedTask, actualTask, TestTaskStatuses.Accepted);
             THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == testClient.Id));
-            Xunit.Assert.Equal(WorkflowCollection.Workflows.First().Id, actualTask.WorkflowId);
+            // 20141023
+            // Xunit.Assert.Equal(WorkflowCollection.Workflows.First().Id, actualTask.WorkflowId);
+            Xunit.Assert.Equal(WorkflowCollection.Workflows.First(wfl => wfl.IsActive()).Id, actualTask.WorkflowId);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]

@@ -47,6 +47,7 @@ namespace Tmx.Interfaces.Remoting
 	public enum WorkflowStatuses
 	{
 	    WorkflowInProgress = 0,
-	    NoTasks = 1
+	    NoTasks = 1,
+	    Completed = 2
 	}
 }

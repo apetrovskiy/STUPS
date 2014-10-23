@@ -34,6 +34,8 @@ namespace Tmx.Server.Tests
 			var clientSettings = ClientSettings.Instance;
 			clientSettings.ResetData();
 			CommonData.Data.Clear();
+			// 20141023
+			WorkflowCollection.Workflows.Clear();
 			
 			Preferences.ClientRegistrationSleepIntervalMilliseconds = 0;
 			Preferences.ReceivingTaskSleepIntervalMilliseconds = 0;

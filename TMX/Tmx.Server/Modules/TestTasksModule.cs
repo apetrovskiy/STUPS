@@ -83,7 +83,9 @@ namespace Tmx.Server.Modules
 		{
 			if (null == loadedTask)
 				throw new UpdateTaskException("Failed to update task with id = " + taskId);
-			var storedTask = TaskPool.TasksForClients.First(task => task.Id == taskId && task.ClientId == loadedTask.ClientId);
+			// 20141023
+			// var storedTask = TaskPool.TasksForClients.First(task => task.Id == taskId && task.ClientId == loadedTask.ClientId);
+			var storedTask = TaskPool.TasksForClients.First(task => task.Id == taskId && task.ClientId == loadedTask.ClientId && task.WorkflowId == WorkflowCollection.ActiveWorkflow.Id);
 			storedTask.TaskFinished = loadedTask.TaskFinished;
 			storedTask.TaskStatus = loadedTask.TaskStatus;
 			storedTask.TaskResult = loadedTask.TaskResult;
@@ -97,7 +99,7 @@ namespace Tmx.Server.Modules
 			// 20141022
 			// if (TestTaskStatuses.Accepted == storedTask.TaskStatus)
 			if (storedTask.IsFinished())
-			    cleanUpClientdetailedStatus(storedTask.ClientId);
+			    cleanUpClientDetailedStatus(storedTask.ClientId);
 			
 			updateWorklowStatus(storedTask.WorkflowId);
 			
@@ -119,7 +121,7 @@ namespace Tmx.Server.Modules
             return HttpStatusCode.OK;
         }
         
-        void cleanUpClientdetailedStatus(int clientId)
+        void cleanUpClientDetailedStatus(int clientId)
         {
             ClientsCollection.Clients.First(client => client.Id == clientId).DetailedStatus = string.Empty;
         }

@@ -36,7 +36,7 @@ namespace Tmx.Server.Tests.Modules
     {
 	    const string _testClientHostnameExpected = "testhost";
 	    const string _testClientUsernameExpected = "aaa";
-	    BrowserResponse response;
+	    BrowserResponse _response;
 	    Browser _browser;
         
         public TestClientsModuleTestFixture()
@@ -61,7 +61,7 @@ namespace Tmx.Server.Tests.Modules
             
             THEN_Http_Response_Is_Created();
             THEN_Test_Client_Properties_Were_Applied(testClient);
-            THEN_Id_Of_The_First_Client_Equals(response.Body.DeserializeJson<TestClient>().Id);
+            THEN_Id_Of_The_First_Client_Equals(_response.Body.DeserializeJson<TestClient>().Id);
             THEN_test_client_is_free(testClient);
         }
         
@@ -74,7 +74,7 @@ namespace Tmx.Server.Tests.Modules
             
             THEN_Http_Response_Is_Created();
             THEN_Test_Client_Properties_Were_Applied(testClient);
-            THEN_Id_Of_The_First_Client_Equals(response.Body.DeserializeXml<TestClient>().Id);
+            THEN_Id_Of_The_First_Client_Equals(_response.Body.DeserializeXml<TestClient>().Id);
             THEN_test_client_is_free(testClient);
         }
         
@@ -88,7 +88,7 @@ namespace Tmx.Server.Tests.Modules
             
             THEN_Http_Response_Is_Created();
             THEN_Test_Client_Properties_Were_Applied(testClient02);
-            THEN_Id_Of_The_First_Client_Equals(response.Body.DeserializeJson<TestClient>().Id);
+            THEN_Id_Of_The_First_Client_Equals(_response.Body.DeserializeJson<TestClient>().Id);
             THEN_test_client_is_free(testClient02);
         }
         
@@ -102,7 +102,7 @@ namespace Tmx.Server.Tests.Modules
             
             THEN_Http_Response_Is_Created();
             THEN_Test_Client_Properties_Were_Applied(testClient02);
-            THEN_Id_Of_The_First_Client_Equals(response.Body.DeserializeXml<TestClient>().Id);
+            THEN_Id_Of_The_First_Client_Equals(_response.Body.DeserializeXml<TestClient>().Id);
             THEN_test_client_is_free(testClient02);
         }
         
@@ -302,8 +302,32 @@ namespace Tmx.Server.Tests.Modules
         
         
         
+        // ============================================= Multi-workflow =============================================================
+//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        public void Should_register_test_client_only_in_the_first_workflow_if_there_is_no_active_workflow()
+//        {
+//            var workflow01 = GIVEN_LoadedWorkflow(1, "w1");
+//            GIVEN_LoadedWorkflow(2, "w2");
+//            var testClient = GIVEN_TestClient("h", "u");
+//            WorkflowCollection.ActiveWorkflow = null;
+//            
+//            WHEN_SendingRegistration_as_Json(testClient);
+//            
+//            Xunit.Assert.Equal(workflow01.Id, ClientsCollection.Clients.First(client => client.Id == testClient.Id).WorkflowId);
+//        }
         
-        
+//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        public void Should_register_test_client_only_in_the_active_workflow_if_there_is_any()
+//        {
+//            GIVEN_LoadedWorkflow(1, "w1");
+//            var workflow02 = GIVEN_LoadedWorkflow(2, "w2");
+//            WorkflowCollection.ActiveWorkflow = workflow02;
+//            var testClient = GIVEN_TestClient("h", "u");
+//            
+//            WHEN_SendingRegistration_as_Json(testClient);
+//            
+//            Xunit.Assert.Equal(workflow02.Id, ClientsCollection.Clients.First(client => client.Id == testClient.Id).WorkflowId);
+//        }
         
         
         
@@ -412,18 +436,27 @@ namespace Tmx.Server.Tests.Modules
         ITestClient GIVEN_SendingRegistration_as_Json(ITestClient testClient)
         {
             WHEN_SendingRegistration_as_Json(testClient);
-            return response.Body.DeserializeJson<TestClient>();
+            return _response.Body.DeserializeJson<TestClient>();
         }
         
         ITestClient GIVEN_SendingRegistration_as_Xml(TestClient testClient)
         {
             WHEN_SendingRegistration_as_Xml(testClient);
-            return response.Body.DeserializeXml<TestClient>();
+            return _response.Body.DeserializeXml<TestClient>();
+        }
+        
+        IWorkflow GIVEN_LoadedWorkflow(int id, string name)
+        {
+            var workflow = new TestWorkflow { Id = id, Name = name };
+            // WorkflowCollection.Workflows.Add(workflow);
+            // WorkflowCollection.ActiveWorkflow = workflow;
+            WorkflowCollection.AddWorkflow(workflow);
+            return workflow;
         }
         
         void WHEN_SendingRegistration_as_Json(ITestClient testClient)
         {
-            response = _browser.Post(UrnList.TestClientRegistrationPoint_absPath, with => {
+            _response = _browser.Post(UrnList.TestClientRegistrationPoint_absPath, with => {
                 with.JsonBody<ITestClient>(testClient);
                 with.Accept("application/json");
             });
@@ -431,7 +464,7 @@ namespace Tmx.Server.Tests.Modules
         
         void WHEN_SendingRegistration_as_Xml(TestClient testClient)
         {
-            response = _browser.Post(UrnList.TestClientRegistrationPoint_absPath, with => {
+            _response = _browser.Post(UrnList.TestClientRegistrationPoint_absPath, with => {
                 with.XMLBody<TestClient>(testClient);
                 with.Accept("application/xml");
             });
@@ -449,7 +482,7 @@ namespace Tmx.Server.Tests.Modules
         
         void WHEN_SendingStatus_as_json(int clientId, DetailedStatus detailedStatus)
         {
-            response = _browser.Put(UrnList.TestClients_Root + "/" + clientId + "/status", with => {
+            _response = _browser.Put(UrnList.TestClients_Root + "/" + clientId + "/status", with => {
                 with.JsonBody<DetailedStatus>(detailedStatus);
                 with.Accept("application/json");
             });
@@ -457,7 +490,7 @@ namespace Tmx.Server.Tests.Modules
         
         void WHEN_SendingStatus_as_xml(int clientId, DetailedStatus detailedStatus)
         {
-            response = _browser.Put(UrnList.TestClients_Root + "/" + clientId + "/status", with => {
+            _response = _browser.Put(UrnList.TestClients_Root + "/" + clientId + "/status", with => {
                 with.JsonBody<DetailedStatus>(detailedStatus);
                 with.Accept("application/xml");
             });
@@ -465,26 +498,26 @@ namespace Tmx.Server.Tests.Modules
         
         List<TestClient> WHEN_Getting_all_registered_clients_as_json()
         {
-            response = _browser.Get(UrnList.TestClients_Root + UrnList.TestClientRegistrationPoint_relPath, with => with.Accept("application/json"));
-            return response.Body.DeserializeJson<List<TestClient>>();
+            _response = _browser.Get(UrnList.TestClients_Root + UrnList.TestClientRegistrationPoint_relPath, with => with.Accept("application/json"));
+            return _response.Body.DeserializeJson<List<TestClient>>();
         }
         
         List<TestClient> WHEN_Getting_all_registered_clients_as_xml()
         {
-            response = _browser.Get(UrnList.TestClients_Root + UrnList.TestClientRegistrationPoint_relPath, with => with.Accept("application/xml"));
-            return response.Body.DeserializeJson<List<TestClient>>();
+            _response = _browser.Get(UrnList.TestClients_Root + UrnList.TestClientRegistrationPoint_relPath, with => with.Accept("application/xml"));
+            return _response.Body.DeserializeJson<List<TestClient>>();
         }
         
         TestClient WHEN_Getting_registered_client_by_Id_as_json(int clientId)
         {
-            response = _browser.Get(UrnList.TestClients_Root + "/" + clientId, with => with.Accept("application/json"));
-            return response.Body.DeserializeJson<TestClient>();
+            _response = _browser.Get(UrnList.TestClients_Root + "/" + clientId, with => with.Accept("application/json"));
+            return _response.Body.DeserializeJson<TestClient>();
         }
         
         TestClient WHEN_Getting_registered_client_by_Id_as_xml(int clientId)
         {
-            response = _browser.Get(UrnList.TestClients_Root + "/" + clientId, with => with.Accept("application/xml"));
-            return response.Body.DeserializeXml<TestClient>();
+            _response = _browser.Get(UrnList.TestClients_Root + "/" + clientId, with => with.Accept("application/xml"));
+            return _response.Body.DeserializeXml<TestClient>();
         }
         
         void THEN_There_Is_The_Number_Of_Registered_Clients(int number)
@@ -500,17 +533,17 @@ namespace Tmx.Server.Tests.Modules
         
         void THEN_Http_Response_Is_Ok()
         {
-            Xunit.Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Xunit.Assert.Equal(HttpStatusCode.OK, _response.StatusCode);
         }
         
         void THEN_Http_Response_Is_Created()
         {
-            Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+            Xunit.Assert.Equal(HttpStatusCode.Created, _response.StatusCode);
         }
         
         void THEN_Http_Response_Is_NotFound()
         {
-            Xunit.Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+            Xunit.Assert.Equal(HttpStatusCode.NotFound, _response.StatusCode);
         }
         
         void THEN_Test_Client_Properties_Were_Applied(ISystemInfo testClient)

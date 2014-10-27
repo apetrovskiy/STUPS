@@ -19,27 +19,27 @@ namespace Tmx.Server
     /// </summary>
     public static class ExtensionMethods
     {
-        public static bool IsInProgress(this IWorkflow workflow)
-        {
-            return WorkflowStatuses.WorkflowInProgress == workflow.WorkflowStatus;
-        }
+//        public static bool IsInProgress(this IWorkflow workflow)
+//        {
+//            return WorkflowStatuses.WorkflowInProgress == workflow.WorkflowStatus;
+//        }
         
         public static bool IsFirstInRow(this IWorkflow workflow)
         {
             return WorkflowCollection.Workflows.Min(wfl => wfl.Id) == workflow.Id;
         }
         
-        public static bool IsActive(this IWorkflow workflow)
-        {
-            return WorkflowCollection.Workflows.Any(IsInProgress) ? workflow.IsInProgress() : workflow.IsFirstInRow();
-        }
+//        public static bool IsActive(this IWorkflow workflow)
+//        {
+//            return WorkflowCollection.Workflows.Any(IsInProgress) ? workflow.IsInProgress() : workflow.IsFirstInRow();
+//        }
         
         public static bool HasActiveWorkflow(this List<IWorkflow> list)
         {
             // return list.Any(IsActive);
-            var activeWorkflow = list.First(IsActive);
-            if (null == activeWorkflow) return false;
-            WorkflowCollection.ActiveWorkflow = activeWorkflow;
+//            var activeWorkflow = list.First(IsActive);
+//            if (null == activeWorkflow) return false;
+//            WorkflowCollection.ActiveWorkflow = activeWorkflow;
             return true;
         }
         
@@ -48,9 +48,9 @@ namespace Tmx.Server
             return list.First(IsFirstInRow);
         }
         
-        public static bool IsInActiveWorkflow(this ITestClient testClient)
-        {
-            return WorkflowCollection.ActiveWorkflow.Id == testClient.WorkflowId;
-        }
+//        public static bool IsInActiveWorkflow(this ITestClient testClient)
+//        {
+//            return WorkflowCollection.ActiveWorkflow.Id == testClient.TestRunId;
+//        }
     }
 }

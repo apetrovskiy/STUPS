@@ -68,10 +68,10 @@ namespace Tmx.Server.Modules
         
         Negotiator returnTaskToClientAndOk(ITestClient testClient, ITestTask actualTask)
         {
-            testClient.Status = TestClientStatuses.WorkflowInProgress;
+            testClient.Status = TestClientStatuses.Running;
             testClient.TaskId = actualTask.Id;
             testClient.TaskName = actualTask.Name;
-            testClient.WorkflowId = actualTask.WorkflowId;
+            testClient.TestRunId = actualTask.WorkflowId;
             // 20141020
             return Negotiate.WithModel(actualTask).WithStatusCode(HttpStatusCode.OK);
             // return Negotiate.WithModel(actualTask.SqueezeTaskToTaskResultProxy()).WithStatusCode(HttpStatusCode.OK);
@@ -85,7 +85,7 @@ namespace Tmx.Server.Modules
 				throw new UpdateTaskException("Failed to update task with id = " + taskId);
 			// 20141023
 			// var storedTask = TaskPool.TasksForClients.First(task => task.Id == taskId && task.ClientId == loadedTask.ClientId);
-			var storedTask = TaskPool.TasksForClients.First(task => task.Id == taskId && task.ClientId == loadedTask.ClientId && task.WorkflowId == WorkflowCollection.ActiveWorkflow.Id);
+			var storedTask = TaskPool.TasksForClients.First(task => task.Id == taskId && task.ClientId == loadedTask.ClientId); // && task.WorkflowId == WorkflowCollection.ActiveWorkflow.Id);
 			storedTask.TaskFinished = loadedTask.TaskFinished;
 			storedTask.TaskStatus = loadedTask.TaskStatus;
 			storedTask.TaskResult = loadedTask.TaskResult;
@@ -101,7 +101,7 @@ namespace Tmx.Server.Modules
 			if (storedTask.IsFinished())
 			    cleanUpClientDetailedStatus(storedTask.ClientId);
 			
-			updateWorklowStatus(storedTask.WorkflowId);
+//			updateWorklowStatus(storedTask.WorkflowId);
 			
             return storedTask.TaskFinished ? updateNextTaskAndReturnOk(taskSorter, storedTask) : HttpStatusCode.OK;
 		}
@@ -126,13 +126,13 @@ namespace Tmx.Server.Modules
             ClientsCollection.Clients.First(client => client.Id == clientId).DetailedStatus = string.Empty;
         }
         
-        void updateWorklowStatus(int workflowId)
-        {
-            // 20141022
-            // if (TaskPool.TasksForClients.All(task => task.WorkflowId == workflowId && task.TaskStatus != TestTaskStatuses.Accepted && task.TaskStatus != TestTaskStatuses.New))
-            if (TaskPool.TasksForClients.All(task => task.WorkflowId == workflowId && task.IsFinished()))
-                WorkflowCollection.Workflows.Where(wfl => wfl.Id == workflowId).AsEnumerable().ToList().ForEach(wfl => wfl.WorkflowStatus = WorkflowStatuses.NoTasks);
-        }
+//        void updateWorklowStatus(int workflowId)
+//        {
+//            // 20141022
+//            // if (TaskPool.TasksForClients.All(task => task.WorkflowId == workflowId && task.TaskStatus != TestTaskStatuses.Accepted && task.TaskStatus != TestTaskStatuses.New))
+//            if (TaskPool.TasksForClients.All(task => task.WorkflowId == workflowId && task.IsFinished()))
+//                WorkflowCollection.Workflows.Where(wfl => wfl.Id == workflowId).AsEnumerable().ToList().ForEach(wfl => wfl.WorkflowStatus = WorkflowStatuses.NoTasks);
+//        }
         
 		// 20141003
 		// temporarily hidden

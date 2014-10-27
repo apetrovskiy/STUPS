@@ -21,6 +21,6 @@ namespace Tmx.Interfaces.Remoting
 		int TaskId { get; set; }
 		string TaskName { get; set; }
 		// string DetailedStatus { get; set; }
-		int WorkflowId { get; set; }
+		int TestRunId { get; set; }
     }
 }

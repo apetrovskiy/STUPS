@@ -51,8 +51,8 @@ namespace Tmx.Server.Modules
                 return Negotiate.WithStatusCode(HttpStatusCode.OK);
             WorkflowCollection.Workflows.RemoveAll(wfl => wfl.Id == workflowId);
             // 20141023
-            if (WorkflowCollection.ActiveWorkflow.Id == workflowId)
-                WorkflowCollection.ActiveWorkflow = WorkflowCollection.Workflows.FirstInRow();
+//            if (WorkflowCollection.ActiveWorkflow.Id == workflowId)
+//                WorkflowCollection.ActiveWorkflow = WorkflowCollection.Workflows.FirstInRow();
             return Negotiate.WithStatusCode(HttpStatusCode.OK);
         }
     }

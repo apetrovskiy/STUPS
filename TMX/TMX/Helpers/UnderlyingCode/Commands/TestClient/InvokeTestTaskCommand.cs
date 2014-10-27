@@ -54,7 +54,7 @@ namespace Tmx
 			var taskRunner = new TaskRunner();
 			var runResult = taskRunner.Run(task);
 			task.TaskFinished = true;
-			task.TaskStatus = runResult ? TestTaskStatuses.CompletedSuccessfully : TestTaskStatuses.Failed;
+			task.TaskStatus = runResult ? TestTaskStatuses.CompletedSuccessfully : TestTaskStatuses.Interrupted;
 		}
 		
 		void updateTask(ITestTask task)

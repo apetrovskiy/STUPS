@@ -572,7 +572,7 @@ namespace Tmx.Server.Tests.Modules
         // TODO: duplicated
         void THEN_test_client_is_busy(ITestClient testClient)
         {
-            Xunit.Assert.Equal(TestClientStatuses.WorkflowInProgress, testClient.Status);
+            Xunit.Assert.Equal(TestClientStatuses.Running, testClient.Status);
         }
         
         void THEN_test_client_is_free(ITestClient testClient)

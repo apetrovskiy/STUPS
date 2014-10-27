@@ -17,19 +17,21 @@ namespace Tmx.Core.Types.Remoting
     /// <summary>
     /// Description of TestWorkflow.
     /// </summary>
-    public class TestWorkflow : IWorkflow
+    public class TestWorkflow : ITestWorkflow
     {
-        public TestWorkflow()
-        {
-            Data = new Dictionary<string, string>();
-            TestSuites = new List<ITestSuite>();
-        }
-        
+//        public TestWorkflow()
+//        {
+//            Data = new Dictionary<string, string>();
+//            TestSuites = new List<ITestSuite>();
+//        }
+//        
         public int Id { get; set; }
         public string Name { get; set; }
-        public WorkflowStatuses WorkflowStatus { get; set; }
-        public Dictionary<string, string> Data { get; set; }
-        public List<ITestSuite> TestSuites { get; set; }
+        public string Description { get; set; }
+        // public WorkflowStatuses WorkflowStatus { get; set; }
+        // public Dictionary<string, string> Data { get; set; }
+        // public List<ITestSuite> TestSuites { get; set; }
         public bool IsActive { get; set; }
+        public int TestLabId { get; set; }
     }
 }

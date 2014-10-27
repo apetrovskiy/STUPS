@@ -114,12 +114,12 @@ namespace Tmx.Server
         void trySetWorkflowStatusInProgress(int workflowId)
         {
             // 20141023
-            if (WorkflowCollection.ActiveWorkflow.Id != workflowId) return;
+//            if (WorkflowCollection.ActiveWorkflow.Id != workflowId) return;
             
-            if (TaskPool.TasksForClients.All(task => task.WorkflowId == workflowId && !task.IsFinished()))
-                (from wfl in WorkflowCollection.Workflows
-                             where wfl.Id == workflowId
-                             select wfl).AsEnumerable().ToList().ForEach(wfl => wfl.WorkflowStatus = WorkflowStatuses.WorkflowInProgress);
+//            if (TaskPool.TasksForClients.All(task => task.WorkflowId == workflowId && !task.IsFinished()))
+//                (from wfl in WorkflowCollection.Workflows
+//                             where wfl.Id == workflowId
+//                             select wfl).AsEnumerable().ToList().ForEach(wfl => wfl.WorkflowStatus = WorkflowStatuses.WorkflowInProgress);
         }
         
 		internal virtual void addTasksToCommonPool(IEnumerable<ITestTask> importedTasks)
@@ -133,10 +133,10 @@ namespace Tmx.Server
 			var taskSorter = new TaskSelector();
 			// 20141023
 			// foreach (var clientId in ClientsCollection.Clients.Select(client => client.Id)) {
-			foreach (var clientId in ClientsCollection.Clients.Where(client => client.IsInActiveWorkflow()).Select(client => client.Id)) {
-			// foreach (var clientId in ClientsCollection.Clients.Where<ITestClient>(IsInActiveWorkflow).Select(client => client.Id)) {
-				TaskPool.TasksForClients.AddRange(taskSorter.SelectTasksForClient(clientId, importedTasks.ToList()));
-			}
+//			foreach (var clientId in ClientsCollection.Clients.Where(client => client.IsInActiveWorkflow()).Select(client => client.Id)) {
+//			// foreach (var clientId in ClientsCollection.Clients.Where<ITestClient>(IsInActiveWorkflow).Select(client => client.Id)) {
+//				TaskPool.TasksForClients.AddRange(taskSorter.SelectTasksForClient(clientId, importedTasks.ToList()));
+//			}
 		}
 		
 		internal virtual ITestTask getNewTestTask(XContainer taskNode, int workflowId)

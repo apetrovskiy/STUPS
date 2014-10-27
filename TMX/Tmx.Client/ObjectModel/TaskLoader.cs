@@ -69,7 +69,7 @@ namespace Tmx.Client
 		{
 		    if (null == task)
 		        throw new AcceptTaskException("Failed to accept task.");
-			task.TaskStatus = TestTaskStatuses.Accepted;
+			task.TaskStatus = TestTaskStatuses.Running;
 			task.StartTimer();
 			try {
                 _restTemplate.Put(UrnList.TestTasks_Root + "/" + task.Id, task);

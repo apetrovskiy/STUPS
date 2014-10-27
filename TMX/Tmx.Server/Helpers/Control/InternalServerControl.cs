@@ -77,7 +77,7 @@ namespace Tmx.Server
     	    
     	    // TODO: to a separate assembly
     	    nancyConventions.StaticContentsConventions.Add(
-    	        StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + @"/Nwx", "Nwx"));
+    	        StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + @"Views/Nwx", "Nwx"));
     	    
     	    nancyConventions.StaticContentsConventions.Add(
     	        StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + @"Views/results", "results"));

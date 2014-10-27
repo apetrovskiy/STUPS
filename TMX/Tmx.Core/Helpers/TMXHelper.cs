@@ -1455,7 +1455,7 @@ namespace Tmx
         
 		public static void ImportTestResultsFromXdocument(XDocument doc)
 		{
-			var currentTestSuite = TestData.CurrentTestSuite;
+			ITestSuite currentTestSuite = TestData.CurrentTestSuite;
 			var currentTestScenario = TestData.CurrentTestScenario;
 			var currentTestResult = TestData.CurrentTestResult;
 			TestData.CurrentTestSuite = null;

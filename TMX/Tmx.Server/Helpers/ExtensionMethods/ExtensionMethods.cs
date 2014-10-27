@@ -39,7 +39,8 @@ namespace Tmx.Server
             // return list.Any(IsActive);
             var activeWorkflow = list.First(IsActive);
             if (null == activeWorkflow) return false;
-            WorkflowCollection.ActiveWorkflow = activeWorkflow;
+            // WorkflowCollection.ActiveWorkflow = activeWorkflow;
+            WorkflowCollection.SetActiveWorkflow(activeWorkflow);
             return true;
         }
         

@@ -132,8 +132,8 @@ namespace Tmx.Server
 		    if (0 == ClientsCollection.Clients.Count) return;
 			var taskSorter = new TaskSelector();
 			// 20141023
-			// foreach (var clientId in ClientsCollection.Clients.Select(client => client.Id)) {
-			foreach (var clientId in ClientsCollection.Clients.Where(client => client.IsInActiveWorkflow()).Select(client => client.Id)) {
+			foreach (var clientId in ClientsCollection.Clients.Select(client => client.Id)) {
+			// foreach (var clientId in ClientsCollection.Clients.Where(client => client.IsInActiveWorkflow()).Select(client => client.Id)) {
 			// foreach (var clientId in ClientsCollection.Clients.Where<ITestClient>(IsInActiveWorkflow).Select(client => client.Id)) {
 				TaskPool.TasksForClients.AddRange(taskSorter.SelectTasksForClient(clientId, importedTasks.ToList()));
 			}

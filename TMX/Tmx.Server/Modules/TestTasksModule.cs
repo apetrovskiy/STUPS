@@ -84,8 +84,8 @@ namespace Tmx.Server.Modules
 			if (null == loadedTask)
 				throw new UpdateTaskException("Failed to update task with id = " + taskId);
 			// 20141023
-			// var storedTask = TaskPool.TasksForClients.First(task => task.Id == taskId && task.ClientId == loadedTask.ClientId);
-			var storedTask = TaskPool.TasksForClients.First(task => task.Id == taskId && task.ClientId == loadedTask.ClientId && task.WorkflowId == WorkflowCollection.ActiveWorkflow.Id);
+			var storedTask = TaskPool.TasksForClients.First(task => task.Id == taskId && task.ClientId == loadedTask.ClientId);
+			// var storedTask = TaskPool.TasksForClients.First(task => task.Id == taskId && task.ClientId == loadedTask.ClientId && task.WorkflowId == WorkflowCollection.ActiveWorkflow.Id);
 			storedTask.TaskFinished = loadedTask.TaskFinished;
 			storedTask.TaskStatus = loadedTask.TaskStatus;
 			storedTask.TaskResult = loadedTask.TaskResult;

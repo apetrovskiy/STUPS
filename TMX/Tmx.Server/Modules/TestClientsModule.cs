@@ -49,7 +49,7 @@ namespace Tmx.Server.Modules
             maxId = ClientsCollection.Clients.Count > ClientsCollection.MaxUsedClientId ? ClientsCollection.Clients.Max(client => client.Id) : ClientsCollection.MaxUsedClientId;
 			testClient.Id = ++maxId;
 			// 20141023
-			testClient.WorkflowId = WorkflowCollection.ActiveWorkflow.Id;
+//			testClient.TestRunId = WorkflowCollection.ActiveWorkflow.Id;
 			// 20141015
 			ClientsCollection.MaxUsedClientId = maxId;
 			ClientsCollection.Clients.Add(testClient);

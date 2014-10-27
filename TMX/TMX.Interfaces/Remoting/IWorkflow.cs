@@ -20,9 +20,7 @@ namespace Tmx.Interfaces.Remoting
     {
         int Id { get; set; }
         string Name { get; set; }
-        WorkflowStatuses WorkflowStatus { get; set; }
-        Dictionary<string, string> Data { get; set; }
-        List<ITestSuite> TestSuites { get; set; }
-        bool IsActive { get; set; }
+        string Description { get; set; }
+        int TestLabId { get; set; }
     }
 }

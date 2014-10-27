@@ -12,9 +12,9 @@ namespace Tmx.Interfaces.Remoting
 	public enum TestTaskStatuses
 	{
 		New = 0,
-		Accepted = 1,
+		Running = 1,
 		CompletedSuccessfully = 2,
-		Failed = 3,
+		Interrupted = 3,
 		Canceled = 4
 	}
 	
@@ -40,14 +40,22 @@ namespace Tmx.Interfaces.Remoting
 	
 	public enum TestClientStatuses
 	{
-	    WorkflowInProgress = 0,
+	    // WorkflowInProgress = 0,
+	    Running = 0,
 	    NoTasks = 1
 	}
 	
-	public enum WorkflowStatuses
+	public enum TestRunStatuses
 	{
-	    WorkflowInProgress = 0,
-	    NoTasks = 1,
-	    Completed = 2
+		Running = 0,
+		Pending = 1,
+		Sheduled = 2,
+		Completed = 3
+	}
+	
+	public enum TestRunStartTypes
+	{
+		Immediately = 0,
+		Scheduled = 1
 	}
 }

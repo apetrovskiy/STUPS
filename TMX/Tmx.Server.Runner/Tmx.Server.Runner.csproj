@@ -70,7 +70,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tmx.Core\Tmx.Core.csproj">
@@ -85,6 +84,9 @@
       <Project>{A80B14D0-C8DB-4F70-B18E-4FD1C16E0AEC}</Project>
       <Name>Tmx.Server</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

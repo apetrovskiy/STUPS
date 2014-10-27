@@ -63,20 +63,27 @@ namespace Tmx.Interfaces.Server
         // ServerControlModule
         public const string ServerControl_Root = "/api/serverControl";
         public const string ServerControlPoint_relPath = "/";
+        public const string ServerControlPoint_absPath = ServerControl_Root + ServerControlPoint_relPath;
         
-        // RootPageModule
+        public const string TestRuns_Root = "/api/testRuns";
+        public const string TestRunsControlPoint_relPath = "/";
+        public const string TestRunsControlPoint_absPath = TestRuns_Root + TestRunsControlPoint_relPath;
+        public const string TestRuns_One_relPath = "/{int}";
+        public const string TestRuns_One_absPath = TestRuns_Root + TestRuns_One_relPath;
+        
+        // ViewsRootPageModule
         public const string RootPage_Root = "/";
         public const string RootPage_RootPageName = "index.htm";
         public const string RootPage_ScriptsFolder = "Scripts/";
         
-        // TestStatusViewsModule
+        // ViewsTestStatusModule
         public const string TestStatusViews_Root = "/status";
         public const string TestStatusViews_ClientsPageName = "/clients.htm";
         public static string TestStatusViews_ClientsPage = "/" + TestStatusViews_ClientsPageName;
         public const string TestStatusViews_TasksPageName = "tasks.htm";
         public static string TestStatusViews_TasksPage = "/" + TestStatusViews_TasksPageName;
         
-        // TestResultsViewsModule
+        // ViewsTestResultsModule
         public const string TestResultsViews_Root = "/results";
         public const string TestResultsViews_OverviewPageName = "overview.htm";
         public static string TestResultsViews_OverviewPage = "/" + TestResultsViews_OverviewPageName;

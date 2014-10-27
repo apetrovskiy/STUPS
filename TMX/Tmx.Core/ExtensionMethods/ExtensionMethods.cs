@@ -147,12 +147,12 @@ namespace Tmx.Core
         
         public static bool IsAccepted(this ITestTask task)
         {
-            return TestTaskStatuses.Accepted == task.TaskStatus;
+            return TestTaskStatuses.Running == task.TaskStatus;
         }
         
         public static bool IsFinished(this ITestTask task)
         {
-            return TestTaskStatuses.CompletedSuccessfully == task.TaskStatus || TestTaskStatuses.Failed == task.TaskStatus || TestTaskStatuses.Canceled == task.TaskStatus;
+            return TestTaskStatuses.CompletedSuccessfully == task.TaskStatus || TestTaskStatuses.Interrupted == task.TaskStatus || TestTaskStatuses.Canceled == task.TaskStatus;
         }
         
         public static bool IsCancelled(this ITestTask task)
@@ -162,7 +162,7 @@ namespace Tmx.Core
         
         public static bool IsFailed(this ITestTask task)
         {
-            return TestTaskStatuses.Failed == task.TaskStatus;
+            return TestTaskStatuses.Interrupted == task.TaskStatus;
         }
     }
 }

@@ -13,6 +13,7 @@ namespace Tmx.Server.Tests
 	using Tmx.Client;
 	using PSTestLib;
     using Tmx.Core;
+	using Tmx.Server.Helpers.Objects;
     
     /// <summary>
     /// Description of TestSettings.
@@ -36,6 +37,8 @@ namespace Tmx.Server.Tests
 			CommonData.Data.Clear();
 			// 20141023
 			WorkflowCollection.Workflows.Clear();
+			// 20141026
+			TestRunQueue.TestRuns.Clear();
 			
 			Preferences.ClientRegistrationSleepIntervalMilliseconds = 0;
 			Preferences.ReceivingTaskSleepIntervalMilliseconds = 0;

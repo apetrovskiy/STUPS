@@ -55,7 +55,7 @@ namespace Tmx.Server.Modules
                     TaskPool.Tasks = new List<ITestTask>();
                     break;
                 case ServerControlCommands.ResetWorkflows:
-                    WorkflowCollection.Workflows = new List<IWorkflow>();
+                    WorkflowCollection.Workflows = new List<ITestWorkflow>();
                     break;
                 case ServerControlCommands.ExportTestResults:
                     TmxHelper.ExportResultsToXML(new SearchCmdletBaseDataObject { FilterAll = true }, serverCommand.Data);

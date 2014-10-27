@@ -88,11 +88,11 @@ namespace Tmx.Server.Tests.Modules
             var actualTask = WHEN_Getting_task_as_json(testClient.Id);
             
             THEN_HttpResponse_Is_Ok();
-            THEN_TestTask_Properties_Equal_To(expectedTask, actualTask, TestTaskStatuses.Accepted);
+            THEN_TestTask_Properties_Equal_To(expectedTask, actualTask, TestTaskStatuses.Running);
             THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == testClient.Id));
             // 20141023
             // Xunit.Assert.Equal(WorkflowCollection.Workflows.First().Id, actualTask.WorkflowId);
-            Xunit.Assert.Equal(WorkflowCollection.Workflows.First(wfl => wfl.IsActive()).Id, actualTask.WorkflowId);
+//            Xunit.Assert.Equal(WorkflowCollection.Workflows.First(wfl => wfl.IsActive()).Id, actualTask.WorkflowId);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -119,7 +119,7 @@ namespace Tmx.Server.Tests.Modules
             actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
             
             THEN_HttpResponse_Is_Ok();
-            THEN_TestTask_Properties_Equal_To(givenTask02, actualTask, TestTaskStatuses.Accepted);
+            THEN_TestTask_Properties_Equal_To(givenTask02, actualTask, TestTaskStatuses.Running);
             THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == registeredClient.Id));
         }
         
@@ -154,7 +154,7 @@ namespace Tmx.Server.Tests.Modules
             actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
             
             THEN_HttpResponse_Is_Ok();
-            THEN_TestTask_Properties_Equal_To(givenTask03, actualTask, TestTaskStatuses.Accepted);
+            THEN_TestTask_Properties_Equal_To(givenTask03, actualTask, TestTaskStatuses.Running);
             Xunit.Assert.Equal(givenTask03.Id, TaskPool.TasksForClients.OrderBy(t => t.Id).Skip(1).First().Id);
             THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == registeredClient.Id));
         }
@@ -262,7 +262,7 @@ namespace Tmx.Server.Tests.Modules
             var actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
             
             THEN_HttpResponse_Is_Ok(); //response);
-            THEN_TestTask_Properties_Equal_To(givenTask02, actualTask, TestTaskStatuses.Accepted);
+            THEN_TestTask_Properties_Equal_To(givenTask02, actualTask, TestTaskStatuses.Running);
             THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == registeredClient.Id));
         }
         
@@ -291,7 +291,7 @@ namespace Tmx.Server.Tests.Modules
             var actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
             
             THEN_HttpResponse_Is_Ok(); //response);
-            THEN_TestTask_Properties_Equal_To(givenTask01, actualTask, TestTaskStatuses.Accepted);
+            THEN_TestTask_Properties_Equal_To(givenTask01, actualTask, TestTaskStatuses.Running);
             Xunit.Assert.Equal(givenTask01.Id, TaskPool.TasksForClients.OrderBy(t => t.Id).Skip(1).First().Id);
             THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == registeredClient.Id));
         }
@@ -423,7 +423,7 @@ namespace Tmx.Server.Tests.Modules
             var actualTask = response.Body.DeserializeJson<TestTask>();
             // var actualTask = response.Body.DeserializeJson<TestTaskProxy>();
             if (null == actualTask) return actualTask;
-            actualTask.TaskStatus = TestTaskStatuses.Accepted;
+            actualTask.TaskStatus = TestTaskStatuses.Running;
             // emulates actualTask.StartTimer();
             _startTime = DateTime.Now;
             actualTask.StartTime = _startTime;
@@ -459,7 +459,7 @@ namespace Tmx.Server.Tests.Modules
         void WHEN_Failing_Task(TestTask actualTask)
         // void WHEN_Failing_Task(TestTaskProxy actualTask)
         {
-            actualTask.TaskStatus = TestTaskStatuses.Failed;
+            actualTask.TaskStatus = TestTaskStatuses.Interrupted;
             actualTask.TaskFinished = true;
             // 20141020
             _browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => with.JsonBody<ITestTask>(actualTask));
@@ -511,7 +511,7 @@ namespace Tmx.Server.Tests.Modules
         
         void THEN_test_client_is_busy(ITestClient testClient)
         {
-            Xunit.Assert.Equal(TestClientStatuses.WorkflowInProgress, testClient.Status);
+            Xunit.Assert.Equal(TestClientStatuses.Running, testClient.Status);
         }
         
         void THEN_test_client_is_free(ITestClient testClient)

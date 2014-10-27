@@ -65,6 +65,6 @@ namespace Tmx.Core
 		public int TaskId { get; set; }
 		public string TaskName { get; set; }
 		public string DetailedStatus { get; set; }
-		public int WorkflowId { get; set; }
+		public int TestRunId { get; set; }
 	}
 }

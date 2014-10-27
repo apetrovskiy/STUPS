@@ -31,6 +31,16 @@ namespace Tmx.Server.Tests
             return new Browser(with => with.Modules(typeof(TestClientsModule), typeof(TestTasksModule)));
         }
         
+        public static Browser GetBrowserForServerControlModule()
+        {
+            return new Browser(with => with.Modules(typeof(ServerControlModule)));
+        }
+        
+        public static Browser GetBrowserForTestRunsModule()
+        {
+        	return new Browser(with => with.Modules(typeof(TestRunsModule), typeof(ServerControlModule)));
+        }
+        
         public static Browser GetBrowserForTestResultsModule()
         {
             return new Browser(with => with.Module(new TestResultsModule()));

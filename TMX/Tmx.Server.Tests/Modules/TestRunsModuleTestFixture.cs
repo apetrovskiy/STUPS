@@ -15,7 +15,6 @@ namespace Tmx.Server.Tests.Modules
 	using Tmx.Core.Types.Remoting;
 	using Tmx.Interfaces.Remoting;
 	using Tmx.Interfaces.Server;
-	using Tmx.Server.Helpers.Objects;
 	using Xunit;
 	
 	/// <summary>
@@ -64,7 +63,10 @@ namespace Tmx.Server.Tests.Modules
 		
 		void WHEN_sending_testRun_as_json(string testWorkflowName)
 		{
-			var testRun = new TestRun(WorkflowCollection.Workflows.First(wfl => wfl.Name == testWorkflowName));
+			// var testRun = new TestRun(WorkflowCollection.Workflows.First(wfl => wfl.Name == testWorkflowName));
+			var testRun = new TestRun { Name = testWorkflowName };
+			// testRun.Workflow = WorkflowCollection.Workflows.First(wfl => wfl.Name == testWorkflowName);
+			(testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testWorkflowName));
 			_browser.Post(UrnList.TestRunsControlPoint_absPath, with => {
 				with.JsonBody(testRun);
 				with.Accept("application/json");

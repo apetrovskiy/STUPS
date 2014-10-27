@@ -41,7 +41,7 @@ namespace Tmx.Client
 	                });
 	        
 			try {
-				(_restTemplate as RestTemplate).MessageConverters.Add(new XElementHttpMessageConverter());
+				// (_restTemplate as RestTemplate).MessageConverters.Add(new XElementHttpMessageConverter());
 				var sendingResultsResponse = _restTemplate.PostForMessage(UrnList.TestResultsPostingPoint_absPath, element);
 				return HttpStatusCode.Created == sendingResultsResponse.StatusCode;
 			}

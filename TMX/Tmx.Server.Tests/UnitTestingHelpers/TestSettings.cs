@@ -13,7 +13,6 @@ namespace Tmx.Server.Tests
 	using Tmx.Client;
 	using PSTestLib;
     using Tmx.Core;
-	using Tmx.Server.Helpers.Objects;
     
     /// <summary>
     /// Description of TestSettings.

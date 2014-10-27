@@ -1,0 +1,13 @@
+﻿<html>
+	<head>
+		<title>Test runs queue</title>
+	</head>
+	<body>
+	<br>
+		<ul>
+		{% for testRun in @Model.TestRuns -%}
+		  <li>{{ testRun.Id }} {{ testRun.Name }} {{ testRun.TestLabId }} {{ testRun.Description }}</li>
+		{% endfor -%}
+		</ul>
+	</body>
+</html>

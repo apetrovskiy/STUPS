@@ -10,6 +10,7 @@
 namespace Tmx.Server.Modules
 {
 	using System;
+	using System.Collections.Generic;
 	using System.Linq;
 	using Nancy;
 	using Nancy.ModelBinding;
@@ -17,7 +18,6 @@ namespace Tmx.Server.Modules
 	using Tmx.Core.Types.Remoting;
 	using Tmx.Interfaces.Remoting;
 	using Tmx.Interfaces.Server;
-	using Tmx.Server.Helpers.Objects;
 	
 	/// <summary>
 	/// Description of TestRunsModule.
@@ -27,19 +27,35 @@ namespace Tmx.Server.Modules
 		public TestRunsModule() : base(UrnList.TestRuns_Root)
 		{
 			Post[UrnList.TestRunsControlPoint_relPath] = _ => createNewTestRun(this.Bind<TestRun>());
+			Post[UrnList.TestRuns_ByName_relPath] = parameters => createNewTestRun(parameters.name);
 			Delete[UrnList.TestRuns_One_relPath] = parameters => deleteTestRun(parameters.id);
 		}
 		
 		Negotiator createNewTestRun(ITestRun testRun)
 		{
-			if (null == testRun)
-				return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed);
-			TestRunQueue.TestRuns.Add(testRun);
-			int workflowId = WorkflowCollection.Workflows.First(w => w.Name == testRun.Name).Id;
-			TaskPool.TasksForClients.AddRange(TaskPool.Tasks.Where(task => task.WorkflowId == workflowId));
-			return Negotiate.WithStatusCode(HttpStatusCode.Created);
+            return null == testRun ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : setTestRun(testRun);
 		}
 		
+		Negotiator createNewTestRun(string testRunName)
+		{
+            return string.IsNullOrEmpty(testRunName) ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : setTestRun(new TestRun());
+		}
+		
+        Negotiator setTestRun(ITestRun testRun)
+        {
+            (testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testRun.Name));
+            if (0 == testRun.WorkflowId)
+                return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
+            if (TestRunStartTypes.Immediately == testRun.StartType)
+                testRun.StartTime = DateTime.Now;
+            TestRunQueue.TestRuns.Add(testRun);
+            // int workflowId = WorkflowCollection.Workflows.First(w => w.Name == testRun.Name).Id;
+            // TaskPool.TasksForClients.AddRange(TaskPool.Tasks.Where(task => task.WorkflowId == workflowId));
+            // later, on registering a client
+            // TaskPool.TasksForClients.AddRange(TaskPool.Tasks.Where(task => task.WorkflowId == testRun.Workflow.Id));
+            return Negotiate.WithStatusCode(HttpStatusCode.Created);
+        }
+        
 		Negotiator deleteTestRun(int testRunId)
 		{
 			TestRunQueue.TestRuns.RemoveAll(tr => tr.Id == testRunId);

@@ -19,6 +19,7 @@ namespace Tmx.Server
     using Nancy.Diagnostics;
     using Nancy.TinyIoc;
     using Tmx.Core;
+    using Tmx.Core.Types.Remoting;
     using Tmx.Interfaces;
     using Tmx.Interfaces.Remoting;
     using Tmx.Interfaces.TestStructure;
@@ -119,6 +120,7 @@ namespace Tmx.Server
 			Template.RegisterSafeType(typeof(ITestScenario), new[] { "Id", "Name", "Status", "TestResults", "PlatformId" });
 			Template.RegisterSafeType(typeof(ITestResult), new[] { "Id", "Name", "Status", "Origin", "PlatformId" });
 			Template.RegisterSafeType(typeof(TestResultOrigins), member => member.ToString());
+			Template.RegisterSafeType(typeof(TestRun), new[] { "Id", "Name", "WorkflowId", "TestLabId", "Description" });
         }
         
         static void loadPlugins()

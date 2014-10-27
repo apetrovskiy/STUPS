@@ -120,6 +120,7 @@
     <Compile Include="Modules\TestResultsModule.cs" />
     <Compile Include="Modules\ViewsTestResultsModule.cs" />
     <Compile Include="Modules\TestTasksModule.cs" />
+    <Compile Include="Modules\ViewsTestRunsModule.cs" />
     <Compile Include="Modules\ViewsTestStatusModule.cs" />
     <Compile Include="Modules\TestWorkflowsModule.cs" />
   </ItemGroup>
@@ -140,6 +141,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Views\status\clients.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Views\status\TestRuns.liquid">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Views\status\workflow.htm">

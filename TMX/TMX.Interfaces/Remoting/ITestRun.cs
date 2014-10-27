@@ -22,6 +22,10 @@ namespace Tmx.Interfaces.Remoting
 		TestRunStartTypes StartType { get; set; }
         Dictionary<string, string> Data { get; set; }
         List<ITestSuite> TestSuites { get; set; }
-        int WorkflowId { get; set; }
+        // int WorkflowId { get; set; }
+        int WorkflowId { get; }
+        
+        // ITestWorkflow Workflow { get; set; }
+        DateTime StartTime { get; set; }
 	}
 }

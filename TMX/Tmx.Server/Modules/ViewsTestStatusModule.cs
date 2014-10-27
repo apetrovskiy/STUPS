@@ -10,6 +10,7 @@
 namespace Tmx.Server.Modules
 {
     using System;
+    using System.Dynamic;
     using System.IO;
     using System.Net;
     using System.Net.NetworkInformation;
@@ -18,7 +19,6 @@ namespace Tmx.Server.Modules
     using Nancy.ModelBinding;
     using Tmx.Interfaces.Server;
     using Tmx.Server.Helpers.Control;
-    
     using Nancy.ViewEngines;
     
     /// <summary>
@@ -31,6 +31,12 @@ namespace Tmx.Server.Modules
             Get[UrnList.TestStatusViews_ClientsPage] = parameters => View[UrnList.TestStatusViews_ClientsPageName, ClientsCollection.Clients];
             
             Get[UrnList.TestStatusViews_TasksPage] = parameters => View[UrnList.TestStatusViews_TasksPageName, TaskPool.TasksForClients.ToArray()];
+            
+            Get[UrnList.TestStatusViews_TestRunsPage] = parameters => {
+                dynamic data = new ExpandoObject();
+                data.TestRuns = TestRunQueue.TestRuns;
+                return View[UrnList.TestStatusViews_TestRunsPageName, data];
+            };
         }
         
         // TODO: move to a separate class

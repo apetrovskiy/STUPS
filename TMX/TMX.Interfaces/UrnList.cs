@@ -65,11 +65,18 @@ namespace Tmx.Interfaces.Server
         public const string ServerControlPoint_relPath = "/";
         public const string ServerControlPoint_absPath = ServerControl_Root + ServerControlPoint_relPath;
         
+        // TestRunsModule
         public const string TestRuns_Root = "/api/testRuns";
         public const string TestRunsControlPoint_relPath = "/";
         public const string TestRunsControlPoint_absPath = TestRuns_Root + TestRunsControlPoint_relPath;
-        public const string TestRuns_One_relPath = "/{int}";
+        public const string TestRuns_One_relPath = "/{id:int}";
         public const string TestRuns_One_absPath = TestRuns_Root + TestRuns_One_relPath;
+        public const string TestRuns_ByName_relPath = "/{name}";
+        public const string TestRuns_ByName_absPath = TestRuns_Root + TestRuns_ByName_relPath;
+        
+        // ViewsTestRunsModule
+//        public const string TestRunsViews_Root = "/testRuns";
+//        public const string TestRunsViews_OverviewPageName = "TestRuns.liquid";
         
         // ViewsRootPageModule
         public const string RootPage_Root = "/";
@@ -79,9 +86,11 @@ namespace Tmx.Interfaces.Server
         // ViewsTestStatusModule
         public const string TestStatusViews_Root = "/status";
         public const string TestStatusViews_ClientsPageName = "/clients.htm";
-        public static string TestStatusViews_ClientsPage = "/" + TestStatusViews_ClientsPageName;
+        public static string TestStatusViews_ClientsPage = "/clients"; // + TestStatusViews_ClientsPageName;
         public const string TestStatusViews_TasksPageName = "tasks.htm";
-        public static string TestStatusViews_TasksPage = "/" + TestStatusViews_TasksPageName;
+        public static string TestStatusViews_TasksPage = "/tasks"; // + TestStatusViews_TasksPageName;
+        public const string TestStatusViews_TestRunsPageName = "TestRuns.liquid";
+        public static string TestStatusViews_TestRunsPage = "/TestRuns"; // + TestStatusViews_TestRunsPageName;
         
         // ViewsTestResultsModule
         public const string TestResultsViews_Root = "/results";

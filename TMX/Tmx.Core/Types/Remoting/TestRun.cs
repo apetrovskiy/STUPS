@@ -28,19 +28,11 @@ namespace Tmx.Core.Types.Remoting
             TestSuites = new List<ITestSuite>();
 		}
 		
-//		public TestRun(ITestWorkflow workflow)
-//		{
-//			_workflow = workflow;
-//			Data = new Dictionary<string, string>();
-//            TestSuites = new List<ITestSuite>();
-//		}
-		
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public Dictionary<string, string> Data { get; set; }
         public List<ITestSuite> TestSuites { get; set; }
-        // public bool IsActive { get; set; }
         public int TestLabId { get; set; }
         
 		public TestRunStatuses Status { get; set; }
@@ -49,12 +41,6 @@ namespace Tmx.Core.Types.Remoting
 		{
 		    get { return _workflow.Id; }
 		}
-		
-//		public ITestWorkflow Workflow
-//		{
-//		    get { return _workflow; }
-//		    set { _workflow = value; }
-//		}
 		
 		internal void SetWorkflow(ITestWorkflow testWorkflow)
 		{

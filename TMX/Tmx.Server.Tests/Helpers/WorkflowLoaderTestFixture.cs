@@ -10,6 +10,7 @@
 namespace Tmx.Server.Tests.Helpers
 {
     using System;
+    using System.Linq;
 	using System.Xml.Linq;
 	using Tmx.Core.Types.Remoting;
 	using Tmx.Interfaces.Remoting;
@@ -55,6 +56,16 @@ namespace Tmx.Server.Tests.Helpers
     	    int workflowId = WHEN_ImportingTasks(@"../../Modules/Workflow1.xml");
     	    THEN_NumberOfCommonTasksIncreasedBy(10);
     	    THEN_workflow_has_been_added(workflowId);
+    	}
+    	
+    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+    	public void Should_add_tasks_with_workflow_id()
+    	{
+    	    GIVEN_ThereAreTasksInCommonPool();
+    	    int workflowId = WHEN_ImportingTasks(@"../../Modules/Workflow1.xml");
+    	    THEN_NumberOfCommonTasksIncreasedBy(10);
+    	    THEN_workflow_has_been_added(workflowId);
+    	    THEN_there_are_number_of_tasks_for_selected_workflow(10, workflowId);
     	}
     	
 //    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -143,7 +154,12 @@ namespace Tmx.Server.Tests.Helpers
     	
 		void THEN_workflow_has_been_added(int workflowId)
 		{
-			//
+			Xunit.Assert.Equal(true, WorkflowCollection.Workflows.Any(wfl => wfl.Id == workflowId));
+		}
+		
+		void THEN_there_are_number_of_tasks_for_selected_workflow(int numberOfTasks, int workflowId)
+		{
+			Xunit.Assert.Equal(numberOfTasks, TaskPool.Tasks.Count(task => task.WorkflowId == workflowId));
 		}
     }
 }

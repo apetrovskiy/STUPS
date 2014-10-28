@@ -58,7 +58,7 @@ namespace Tmx.Server
 			return true;
 		}
 
-		public virtual void ImportXdocument(XContainer xDocument)
+		public virtual int ImportXdocument(XContainer xDocument)
 		{
             var workflowId = getWorkflowId(xDocument);
             var tasks = from task in xDocument.Descendants("task")
@@ -68,6 +68,7 @@ namespace Tmx.Server
             addTasksToCommonPool(importedTasks);
             addTasksForEveryClient(importedTasks);
             trySetWorkflowStatusInProgress(workflowId);
+            return workflowId;
 		}
 		
         int getWorkflowId(XContainer xDocument)

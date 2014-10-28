@@ -36,8 +36,25 @@ namespace Tmx.Server.Tests.Helpers
     	public void Should_add_no_tasks_to_the_common_pool_on_adding_empty_task_collection()
     	{
     	    GIVEN_ThereAreTasksInCommonPool();
-    	    WHEN_AddedImportedTasks();
+    	    WHEN_AddedFakeImportedTasks();
     	    THEN_NumberOfCommonTasksIncreasedBy(0);
+    	}
+    	
+    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+    	public void Should_add_8_tasks_to_the_common_pool_on_adding_a_task_collection()
+    	{
+    	    GIVEN_ThereAreTasksInCommonPool();
+    	    WHEN_ImportingTasks(@"../../Modules/Workflow1.xml");
+    	    THEN_NumberOfCommonTasksIncreasedBy(10);
+    	}
+    	
+    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+    	public void Should_add_a_workflow_to_the_collection()
+    	{
+    	    GIVEN_ThereAreTasksInCommonPool();
+    	    int workflowId = WHEN_ImportingTasks(@"../../Modules/Workflow1.xml");
+    	    THEN_NumberOfCommonTasksIncreasedBy(10);
+    	    THEN_workflow_has_been_added(workflowId);
     	}
     	
 //    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -99,14 +116,13 @@ namespace Tmx.Server.Tests.Helpers
     	// ==========================================================================================
     	void GIVEN_ThereAreTasksInCommonPool()
     	{
-    	    TaskPool.Tasks.Add(new TestTask { Name = "task001", Id = 10 });
-    	    TaskPool.Tasks.Add(new TestTask { Name = "task002", Id = 20 });
+    	    TaskPool.Tasks.Add(new TestTask { Name = "task001", Id = 10, WorkflowId = 100 });
+    	    TaskPool.Tasks.Add(new TestTask { Name = "task002", Id = 20, WorkflowId = 101 });
     	}
     	
-    	void WHEN_AddedImportedTasks(params ITestTask[] tasks)
+    	void WHEN_AddedFakeImportedTasks(params ITestTask[] tasks)
     	{
     	    var workflowLoader = new WorkflowLoader();
-    	    // workflowLoader.ImportXdocument(new XDocument());
     	    var xDoc = new XDocument();
     	    var workflowElement = new XElement("workflow");
     	    workflowElement.Add(new XAttribute("name", "some name"));
@@ -114,9 +130,20 @@ namespace Tmx.Server.Tests.Helpers
     	    workflowLoader.ImportXdocument(xDoc);
     	}
     	
+		int WHEN_ImportingTasks(string path)
+		{
+			var workflowLoader = new WorkflowLoader();
+			return workflowLoader.ImportXdocument(XDocument.Load(path));
+		}
+		
     	void THEN_NumberOfCommonTasksIncreasedBy(int number)
     	{
     	    Xunit.Assert.Equal(2 + number, TaskPool.Tasks.Count);
     	}
+    	
+		void THEN_workflow_has_been_added(int workflowId)
+		{
+			//
+		}
     }
 }

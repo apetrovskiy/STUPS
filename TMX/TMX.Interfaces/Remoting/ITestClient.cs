@@ -16,11 +16,7 @@ namespace Tmx.Interfaces.Remoting
 	/// </summary>
 	public interface ITestClient : ISystemInfo, ITestClientProxy
 	{
-		// int Id { get; set; }
 		TestClientStatuses Status { get; set; }
-		// int TaskId { get; set; }
-		// string TaskName { get; set; }
 		string DetailedStatus { get; set; } //?
-		// int WorkflowId { get; set; }
 	}
 }

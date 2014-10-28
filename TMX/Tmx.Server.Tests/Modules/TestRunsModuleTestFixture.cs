@@ -49,6 +49,63 @@ namespace Tmx.Server.Tests.Modules
 			THEN_there_should_be_the_following_number_of_testRun_objects(1);
 		}
 		
+//    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//    	public void Should_add_one_task_to_the_common_pool_on_imporing_one_task()
+//    	{
+//    	    Xunit.Assert.Equal(0, 1);
+//    	}
+//    	
+//    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//    	public void Should_add_all_tasks_to_the_common_pool_on_importing_several_tasks()
+//    	{
+//    	    Xunit.Assert.Equal(0, 1);
+//    	}
+//    	
+//    	// ==========================================================================================
+//    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//    	public void Should_add_one_task_to_one_client_pool()
+//    	{
+//    	    Xunit.Assert.Equal(0, 1);
+//    	}
+//    	
+//    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//    	public void Should_add_all_tasks_to_one_client_pool()
+//    	{
+//    	    Xunit.Assert.Equal(0, 1);
+//    	}
+//    	
+//    	// ==========================================================================================
+//    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//    	public void Should_add_one_task_to_all_client_pools()
+//    	{
+//    	    Xunit.Assert.Equal(0, 1);
+//    	}
+//    	
+//    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//    	public void Should_add_all_tasks_to_all_client_pools()
+//    	{
+//    	    Xunit.Assert.Equal(0, 1);
+//    	}
+//    	
+//    	// ==========================================================================================
+//    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//    	public void Should_add_no_tasks_to_not_matching_client_pools()
+//    	{
+//    	    Xunit.Assert.Equal(0, 1);
+//    	}
+//    	
+//    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//    	public void Should_add_one_task_to_matching_client_pools()
+//    	{
+//    	    Xunit.Assert.Equal(0, 1);
+//    	}
+//    	
+//    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//    	public void Should_add_all_tasks_to_matching_client_pools()
+//    	{
+//    	    Xunit.Assert.Equal(0, 1);
+//    	}
+		
 		void GIVEN_testWorkflow()
 		{
 			var serverCommand = new ServerCommand {
@@ -63,9 +120,7 @@ namespace Tmx.Server.Tests.Modules
 		
 		void WHEN_sending_testRun_as_json(string testWorkflowName)
 		{
-			// var testRun = new TestRun(WorkflowCollection.Workflows.First(wfl => wfl.Name == testWorkflowName));
 			var testRun = new TestRun { Name = testWorkflowName };
-			// testRun.Workflow = WorkflowCollection.Workflows.First(wfl => wfl.Name == testWorkflowName);
 			(testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testWorkflowName));
 			_browser.Post(UrnList.TestRunsControlPoint_absPath, with => {
 				with.JsonBody(testRun);

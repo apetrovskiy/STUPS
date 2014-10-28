@@ -66,8 +66,8 @@ namespace Tmx.Server
                         select task;
             var importedTasks = tasks.Select(tsk => getNewTestTask(tsk, workflowId));
             addTasksToCommonPool(importedTasks);
-            addTasksForEveryClient(importedTasks);
-            trySetWorkflowStatusInProgress(workflowId);
+//            addTasksForEveryClient(importedTasks);
+//            trySetWorkflowStatusInProgress(workflowId);
             return workflowId;
 		}
 		
@@ -128,45 +128,45 @@ namespace Tmx.Server
 			TaskPool.Tasks.AddRange(importedTasks);
 		}
 		
-		internal virtual void addTasksForEveryClient(IEnumerable<ITestTask> importedTasks)
-		{
-		    if (0 == ClientsCollection.Clients.Count) return;
-			var taskSorter = new TaskSelector();
-			// 20141023
-			// foreach (var clientId in ClientsCollection.Clients.Select(client => client.Id)) {
-//			foreach (var clientId in ClientsCollection.Clients.Where(client => client.IsInActiveWorkflow()).Select(client => client.Id)) {
-//			// foreach (var clientId in ClientsCollection.Clients.Where<ITestClient>(IsInActiveWorkflow).Select(client => client.Id)) {
-//				TaskPool.TasksForClients.AddRange(taskSorter.SelectTasksForClient(clientId, importedTasks.ToList()));
-//			}
-		}
-		
-		internal virtual ITestTask getNewTestTask(XContainer taskNode, int workflowId)
-		{
-			return new TestTask {
-		        Action = getActionCode(taskNode, taskElement_action),
-		        ActionParameters = getActionParameters(taskNode, taskElement_action),
-				AfterAction = getActionCode(taskNode, taskElement_afterAction),
-				AfterActionParameters = getActionParameters(taskNode, taskElement_afterAction),
-				BeforeAction = getActionCode(taskNode, taskElement_beforeAction),
-				BeforeActionParameters = getActionParameters(taskNode, taskElement_beforeAction),
-				TaskFinished = false,
-				// ExpectedResult
-				Id = convertTestTaskElementValue(taskNode, taskElement_id),
-				AfterTask = convertTestTaskElementValue(taskNode, taskElement_afterTask),
-				IsActive = "1" == getTestTaskElementValue(taskNode, taskElement_isActive),
-				IsCritical = "1" == getTestTaskElementValue(taskNode, taskElement_isCritical),
-				Name = getTestTaskElementValue(taskNode, taskElement_name),
-				// PreviousTaskId
-				RetryCount = convertTestTaskElementValue(taskNode, taskElement_retryCount),
-				Rule = getTestTaskElementValue(taskNode, taskElement_rule),
-				TaskStatus = TestTaskStatuses.New,
-				StoryId = getTestTaskElementValue(taskNode, taskElement_storyId),
-				// TaskResult
-				TaskType = getTestTaskType(taskNode.Element(taskElement_taskType).Value),
-				TimeLimit = convertTestTaskElementValue(taskNode, taskElement_timeLimit),
-				WorkflowId = workflowId
-			};
-		}
+//		internal virtual void addTasksForEveryClient(IEnumerable<ITestTask> importedTasks)
+//		{
+//		    if (0 == ClientsCollection.Clients.Count) return;
+//			var taskSorter = new TaskSelector();
+//			// 20141023
+//			// foreach (var clientId in ClientsCollection.Clients.Select(client => client.Id)) {
+////			foreach (var clientId in ClientsCollection.Clients.Where(client => client.IsInActiveWorkflow()).Select(client => client.Id)) {
+////			// foreach (var clientId in ClientsCollection.Clients.Where<ITestClient>(IsInActiveWorkflow).Select(client => client.Id)) {
+////				TaskPool.TasksForClients.AddRange(taskSorter.SelectTasksForClient(clientId, importedTasks.ToList()));
+////			}
+//		}
+//		
+//		internal virtual ITestTask getNewTestTask(XContainer taskNode, int workflowId)
+//		{
+//			return new TestTask {
+//		        Action = getActionCode(taskNode, taskElement_action),
+//		        ActionParameters = getActionParameters(taskNode, taskElement_action),
+//				AfterAction = getActionCode(taskNode, taskElement_afterAction),
+//				AfterActionParameters = getActionParameters(taskNode, taskElement_afterAction),
+//				BeforeAction = getActionCode(taskNode, taskElement_beforeAction),
+//				BeforeActionParameters = getActionParameters(taskNode, taskElement_beforeAction),
+//				TaskFinished = false,
+//				// ExpectedResult
+//				Id = convertTestTaskElementValue(taskNode, taskElement_id),
+//				AfterTask = convertTestTaskElementValue(taskNode, taskElement_afterTask),
+//				IsActive = "1" == getTestTaskElementValue(taskNode, taskElement_isActive),
+//				IsCritical = "1" == getTestTaskElementValue(taskNode, taskElement_isCritical),
+//				Name = getTestTaskElementValue(taskNode, taskElement_name),
+//				// PreviousTaskId
+//				RetryCount = convertTestTaskElementValue(taskNode, taskElement_retryCount),
+//				Rule = getTestTaskElementValue(taskNode, taskElement_rule),
+//				TaskStatus = TestTaskStatuses.New,
+//				StoryId = getTestTaskElementValue(taskNode, taskElement_storyId),
+//				// TaskResult
+//				TaskType = getTestTaskType(taskNode.Element(taskElement_taskType).Value),
+//				TimeLimit = convertTestTaskElementValue(taskNode, taskElement_timeLimit),
+//				WorkflowId = workflowId
+//			};
+//		}
 		
 		internal virtual string getActionCode(XContainer taskNode, string elementName)
 		{

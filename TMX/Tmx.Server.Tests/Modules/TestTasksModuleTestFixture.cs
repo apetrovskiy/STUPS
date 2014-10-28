@@ -38,6 +38,8 @@ namespace Tmx.Server.Tests.Modules
 	{
 	    const string _testClientHostnameExpected = "testhost";
 	    const string _testClientUsernameExpected = "aaa";
+	    ITestWorkflow _workflow;
+	    ITestRun _testRun;
 	    BrowserResponse response;
 	    Browser _browser;
 	    DateTime _startTime;
@@ -47,7 +49,12 @@ namespace Tmx.Server.Tests.Modules
 		    TestSettings.PrepareModuleTests();
 		    _browser = TestFactory.GetBrowserForTestTasksModule();
 		    // WorkflowCollection.Workflows.Add(new TestWorkflow { Id = 1, Name = "w" });
-		    WorkflowCollection.AddWorkflow(new TestWorkflow { Id = 1, Name = "w" });
+		    // WorkflowCollection.AddWorkflow(new TestWorkflow { Id = 1, Name = "w" });
+		    _workflow = new TestWorkflow { Id = 1, Name = "w" };
+		    WorkflowCollection.AddWorkflow(_workflow);
+		    _testRun = new TestRun { Id = 1, Name = "ww" };
+		    (_testRun as TestRun).SetWorkflow(_workflow);
+		    TestRunQueue.TestRuns.Add(_testRun);
 		}
         
     	[MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
@@ -55,20 +62,23 @@ namespace Tmx.Server.Tests.Modules
     	{
     	    TestSettings.PrepareModuleTests();
     	    _browser = TestFactory.GetBrowserForTestTasksModule();
-    	    // WorkflowCollection.Workflows.Add(new TestWorkflow { Id = 1, Name = "w" });
-    	    WorkflowCollection.AddWorkflow(new TestWorkflow { Id = 1, Name = "w" });
+    	    // WorkflowCollection.AddWorkflow(new TestWorkflow { Id = 1, Name = "w" });
+    	    _workflow = new TestWorkflow { Id = 1, Name = "w" };
+		    WorkflowCollection.AddWorkflow(_workflow);
+		    _testRun = new TestRun { Id = 1, Name = "ww" };
+		    (_testRun as TestRun).SetWorkflow(_workflow);
+		    TestRunQueue.TestRuns.Add(_testRun);
     	}
     	
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_provide_a_task_to_test_client_if_the_client_matches_the_rule()
         {
-			var workflow = new TestWorkflow();
-			// 20141023
-			// workflow.Id = 1;
-			workflow.Id = 2;
-			// 20141023
-			// WorkflowCollection.Workflows.Add(workflow);
-			WorkflowCollection.AddWorkflow(workflow);
+//			var workflow = new TestWorkflow();
+//			workflow.Id = 2;
+//			WorkflowCollection.AddWorkflow(workflow);
+//			var testRun = new TestRun { Id = 3 };
+//			testRun.SetWorkflow(workflow);
+//			TestRunQueue.TestRuns.Add(testRun);
 			
 			// TaskPool.TasksForClients.ForEach(task => task.WorkflowId = workflow.Id);
 			
@@ -186,7 +196,7 @@ namespace Tmx.Server.Tests.Modules
             var registeredClient = GIVEN_Registered_TestClient_as_json("h", "u");
             
             var actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
-            WHEN_Failing_Task(actualTask);
+            WHEN_Failing_Task_as_json(actualTask);
             actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
             
             THEN_HttpResponse_Is_NotFound();
@@ -381,7 +391,12 @@ namespace Tmx.Server.Tests.Modules
             	TaskStatus = status,
             	Rule = rule,
             	AfterTask = afterTask,
-            	WorkflowId = WorkflowCollection.Workflows.Last().Id
+            	// WorkflowId = WorkflowCollection.Workflows.Last().Id,
+            	// TestRunId = TestRunQueue.TestRuns.Last().Id
+            	// WorkflowId = workflowId,
+            	// TestRunId = testRunId
+            	WorkflowId = _workflow.Id,
+            	TestRunId = _testRun.Id
             };
 			TaskPool.Tasks.Add(task);
 			return task;
@@ -397,7 +412,10 @@ namespace Tmx.Server.Tests.Modules
             	TaskStatus = status,
             	Rule = rule,
             	AfterTask = afterTask,
-            	WorkflowId = WorkflowCollection.Workflows.Last().Id
+            	// WorkflowId = WorkflowCollection.Workflows.Last().Id,
+            	// TestRunId = TestRunQueue.TestRuns.Last().Id
+            	WorkflowId = _workflow.Id,
+            	TestRunId = _testRun.Id
             };
 			TaskPool.TasksForClients.Add(task);
 			return task;
@@ -456,13 +474,16 @@ namespace Tmx.Server.Tests.Modules
         }
         
         // 20141020
-        void WHEN_Failing_Task(TestTask actualTask)
+        void WHEN_Failing_Task_as_json(TestTask actualTask)
         // void WHEN_Failing_Task(TestTaskProxy actualTask)
         {
             actualTask.TaskStatus = TestTaskStatuses.Interrupted;
             actualTask.TaskFinished = true;
             // 20141020
-            _browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => with.JsonBody<ITestTask>(actualTask));
+            _browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => {
+                             with.Accept("application/json");
+                             with.JsonBody<ITestTask>(actualTask);
+                         });
             // _browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => with.JsonBody<ITestTaskProxy>(actualTask));
         }
         

@@ -33,23 +33,70 @@ namespace Tmx.Server
 	        if (null == client) return resultTaskScope;
 	        
 	        // TODO: add IsAdmin and IsInteractive to the checking
-	        resultTaskScope =
-	        	tasks.Where(task => // 0 == task.ClientId && 
-	        	                     (Regex.IsMatch(client.CustomString ?? string.Empty, task.Rule)  ||
-	        	                      Regex.IsMatch(client.EnvironmentVersion ?? string.Empty, task.Rule) ||
-	        	                      Regex.IsMatch(client.Fqdn ?? string.Empty, task.Rule) ||
-	        	                      Regex.IsMatch(client.Hostname ?? string.Empty, task.Rule) ||
-	        	                      // task.Rule == client.IsAdmin.ToString() ||
-	        	                      // task.Rule == client.IsInteractive.ToString() ||
-	        	                      // Regex.IsMatch(client.OsEdition ?? string.Empty, task.Rule) ||
-	        	                      // Regex.IsMatch(client.OsName ?? string.Empty, task.Rule) ||
-	        	                      Regex.IsMatch(client.OsVersion ?? string.Empty, task.Rule) ||
-	        	                      Regex.IsMatch(client.UserDomainName ?? string.Empty, task.Rule) ||
-	        	                      Regex.IsMatch(client.Username ?? string.Empty, task.Rule))
+//	        resultTaskScope =
+//	        	tasks.Where(task => // 0 == task.ClientId && 
+//	        	                     (Regex.IsMatch(client.CustomString ?? string.Empty, task.Rule)  ||
+//	        	                      Regex.IsMatch(client.EnvironmentVersion ?? string.Empty, task.Rule) ||
+//	        	                      Regex.IsMatch(client.Fqdn ?? string.Empty, task.Rule) ||
+//	        	                      Regex.IsMatch(client.Hostname ?? string.Empty, task.Rule) ||
+//	        	                      // task.Rule == client.IsAdmin.ToString() ||
+//	        	                      // task.Rule == client.IsInteractive.ToString() ||
+//	        	                      // Regex.IsMatch(client.OsEdition ?? string.Empty, task.Rule) ||
+//	        	                      // Regex.IsMatch(client.OsName ?? string.Empty, task.Rule) ||
+//	        	                      Regex.IsMatch(client.OsVersion ?? string.Empty, task.Rule) ||
+//	        	                      Regex.IsMatch(client.UserDomainName ?? string.Empty, task.Rule) ||
+//	        	                      Regex.IsMatch(client.Username ?? string.Empty, task.Rule))
+//	                        // 20141023
+//	                                // ).Select(t => { var newTask = t.CloneTaskForNewTestClient(); newTask.ClientId = clientId; return newTask; }).ToList<ITestTask>();
+//	                               // ).Select(t => { var newTask = t.CloneTaskForNewTestClient(); newTask.ClientId = clientId; newTask.WorkflowId = WorkflowCollection.ActiveWorkflow.Id; return newTask; }).ToList<ITestTask>();
+//	                               ).Select(t => { var newTask = t.CloneTaskForNewTestClient(); newTask.ClientId = clientId; return newTask; }).ToList<ITestTask>();
+	        
+	        var workflowSelectionIds = WorkflowCollection.Workflows.Select(wfl => wfl.Id).Intersect(TestRunQueue.TestRuns.Where(tr => tr.Status == TestRunStatuses.Running).Select(tr => tr.WorkflowId));
+	        
+if (null != workflowSelectionIds) {
+    foreach (var w in workflowSelectionIds) {
+        Console.WriteLine("workflow Id = " + w);
+    }
+}
+	        
+var tasksAfterQueryOne = tasks.Where(task => workflowSelectionIds.Contains(task.WorkflowId));
+if (null != tasksAfterQueryOne) {
+    foreach (var t in tasksAfterQueryOne) {
+        Console.WriteLine("PRESELECTED task Id = " + t.Id + ", name = " + t.Name + ", w id = " + t.WorkflowId + ", tr id = " + t.TestRunId);
+    }
+}
+	        
+            resultTaskScope =
+	            tasks.Where(task => workflowSelectionIds.Contains(task.WorkflowId))
+	            .Where(task => // 0 == task.ClientId && 
+	        	                        (Regex.IsMatch(client.CustomString ?? string.Empty, task.Rule) ||
+                                        Regex.IsMatch(client.EnvironmentVersion ?? string.Empty, task.Rule) ||
+                                        Regex.IsMatch(client.Fqdn ?? string.Empty, task.Rule) ||
+                                        Regex.IsMatch(client.Hostname ?? string.Empty, task.Rule) ||
+                                        // task.Rule == client.IsAdmin.ToString() ||
+                                        // task.Rule == client.IsInteractive.ToString() ||
+                                        // Regex.IsMatch(client.OsEdition ?? string.Empty, task.Rule) ||
+                                        // Regex.IsMatch(client.OsName ?? string.Empty, task.Rule) ||
+                                        Regex.IsMatch(client.OsVersion ?? string.Empty, task.Rule) ||
+                                        Regex.IsMatch(client.UserDomainName ?? string.Empty, task.Rule) ||
+                                        Regex.IsMatch(client.Username ?? string.Empty, task.Rule))
 	                        // 20141023
 	                                // ).Select(t => { var newTask = t.CloneTaskForNewTestClient(); newTask.ClientId = clientId; return newTask; }).ToList<ITestTask>();
 	                               // ).Select(t => { var newTask = t.CloneTaskForNewTestClient(); newTask.ClientId = clientId; newTask.WorkflowId = WorkflowCollection.ActiveWorkflow.Id; return newTask; }).ToList<ITestTask>();
-	                               ).Select(t => { var newTask = t.CloneTaskForNewTestClient(); newTask.ClientId = clientId; return newTask; }).ToList<ITestTask>();
+            ).Select(t => {
+                var newTask = t.CloneTaskForNewTestClient();
+                newTask.ClientId = clientId;
+                return newTask;
+            }).ToList<ITestTask>();
+	        
+            if (null != resultTaskScope) {
+                foreach (var t in resultTaskScope) {
+                    Console.WriteLine("SELECTED task Id = " + t.Id + ", name = " + t.Name + ", w id = " + t.WorkflowId + ", tr id = " + t.TestRunId);
+                }
+            } else {
+                Console.WriteLine("there are NO tasks");
+            }
+            
             return resultTaskScope;
 	    }
 	    
@@ -59,7 +106,8 @@ namespace Tmx.Server
 			if (null == taskListForClient || !taskListForClient.Any()) return null;
 			// 20141023
 			// var taskCandidate = taskListForClient.First(task => task.Id == taskListForClient.Min(tsk => tsk.Id));
-			var taskCandidate = taskListForClient.Where(task => task.WorkflowId == ClientsCollection.Clients.First(client => client.Id == clientId).TestRunId).First(task => task.Id == taskListForClient.Min(tsk => tsk.Id));
+			// var taskCandidate = taskListForClient.Where(task => task.WorkflowId == ClientsCollection.Clients.First(client => client.Id == clientId).TestRunId).First(task => task.Id == taskListForClient.Min(tsk => tsk.Id));
+			var taskCandidate = taskListForClient.Where(task => task.TestRunId == ClientsCollection.Clients.First(client => client.Id == clientId).TestRunId).First(task => task.Id == taskListForClient.Min(tsk => tsk.Id));
 			return isItTimeToPublishTask(taskCandidate) ? taskCandidate : null;
 		}
 		
@@ -83,7 +131,11 @@ namespace Tmx.Server
 //                 // .Where(task => task.ClientId == clientId && !task.IsFinished())
 //                 .Where(task => task.ClientId == clientId && !task.IsFinished() && task.WorkflowId == WorkflowCollection.ActiveWorkflow.Id)
 //                 .ToList()
-//                 .ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled); 
+//                 .ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled);
+            TaskPool.TasksForClients
+                .Where(task => task.ClientId == clientId && !task.IsFinished())
+                .ToList()
+                .ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled);
         }
         
 		internal virtual IEnumerable<ITestTask> getOnlyNewTestTasksForClient(int clientId)

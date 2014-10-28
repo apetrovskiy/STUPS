@@ -51,9 +51,9 @@ namespace Tmx.Server.Tests
             return new Browser(with => with.Module(new TestDataModule()));
         }
         
-        public static ITestClient GivenTestClient(string hostname, string username)
+        public static ITestClient GivenTestClient(string hostname, string username, int testRunId)
         {
-            return new TestClient { Hostname = hostname, Username = username };
+            return new TestClient { Hostname = hostname, Username = username, TestRunId = testRunId };
         }
     }
 }

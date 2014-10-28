@@ -10,6 +10,8 @@
 namespace Tmx.Core
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
 	using Tmx.Interfaces.Remoting;
 	using Tmx.Core.Types.Remoting;
     
@@ -45,6 +47,7 @@ namespace Tmx.Core
                 TaskResult = task.TaskResult, // ??
                 TimeLimit = task.TimeLimit,
                 WorkflowId = task.WorkflowId,
+                TestRunId = task.TestRunId,
                 TaskType = task.TaskType
             };
         }
@@ -164,5 +167,12 @@ namespace Tmx.Core
         {
             return TestTaskStatuses.Interrupted == task.TaskStatus;
         }
+//        
+//        public static int GetNextId<T>(this List<T> list)
+//        {
+//            int result = 0;
+//            result = list.Max<T>(t => t.Id);
+//            return result++;
+//        }
     }
 }

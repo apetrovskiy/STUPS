@@ -26,6 +26,7 @@ namespace Tmx.Core.Types.Remoting
 		{
 		    Data = new Dictionary<string, string>();
             TestSuites = new List<ITestSuite>();
+            Status = TestRunStatuses.Pending;
 		}
 		
         public int Id { get; set; }

@@ -68,62 +68,17 @@ namespace Tmx.Server.Tests.Helpers
     	    THEN_there_are_number_of_tasks_for_selected_workflow(10, workflowId);
     	}
     	
-//    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-//    	public void Should_add_one_task_to_the_common_pool_on_imporing_one_task()
-//    	{
-//    	    Xunit.Assert.Equal(0, 1);
-//    	}
-//    	
-//    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-//    	public void Should_add_all_tasks_to_the_common_pool_on_importing_several_tasks()
-//    	{
-//    	    Xunit.Assert.Equal(0, 1);
-//    	}
-//    	
-//    	// ==========================================================================================
-//    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-//    	public void Should_add_one_task_to_one_client_pool()
-//    	{
-//    	    Xunit.Assert.Equal(0, 1);
-//    	}
-//    	
-//    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-//    	public void Should_add_all_tasks_to_one_client_pool()
-//    	{
-//    	    Xunit.Assert.Equal(0, 1);
-//    	}
-//    	
-//    	// ==========================================================================================
-//    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-//    	public void Should_add_one_task_to_all_client_pools()
-//    	{
-//    	    Xunit.Assert.Equal(0, 1);
-//    	}
-//    	
-//    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-//    	public void Should_add_all_tasks_to_all_client_pools()
-//    	{
-//    	    Xunit.Assert.Equal(0, 1);
-//    	}
-//    	
-//    	// ==========================================================================================
-//    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-//    	public void Should_add_no_tasks_to_not_matching_client_pools()
-//    	{
-//    	    Xunit.Assert.Equal(0, 1);
-//    	}
-//    	
-//    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-//    	public void Should_add_one_task_to_matching_client_pools()
-//    	{
-//    	    Xunit.Assert.Equal(0, 1);
-//    	}
-//    	
-//    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-//    	public void Should_add_all_tasks_to_matching_client_pools()
-//    	{
-//    	    Xunit.Assert.Equal(0, 1);
-//    	}
+    	[MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
+    	[MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
+    	public void Should_add_no_tasks_if_no_valid_path_provided()
+    	{
+    	    GIVEN_ThereAreTasksInCommonPool();
+    	    int workflowId = WHEN_ImportingTasks(@"../../Modules/wrong_path.xml");
+    	    THEN_NumberOfCommonTasksIncreasedBy(10);
+    	    THEN_workflow_has_been_added(workflowId);
+    	    THEN_there_are_number_of_tasks_for_selected_workflow(10, workflowId);
+    	}
+    	
     	// ==========================================================================================
     	void GIVEN_ThereAreTasksInCommonPool()
     	{
@@ -144,7 +99,9 @@ namespace Tmx.Server.Tests.Helpers
 		int WHEN_ImportingTasks(string path)
 		{
 			var workflowLoader = new WorkflowLoader();
-			return workflowLoader.ImportXdocument(XDocument.Load(path));
+			// return workflowLoader.ImportXdocument(XDocument.Load(path));
+			workflowLoader.LoadWorkflow(path);
+			return WorkflowCollection.Workflows.Last().Id;
 		}
 		
     	void THEN_NumberOfCommonTasksIncreasedBy(int number)

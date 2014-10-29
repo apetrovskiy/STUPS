@@ -118,15 +118,27 @@ namespace Tmx.Server.Tests.Modules
 			});
 		}
 		
-		ITestRun WHEN_sending_testRun_as_json(string testWorkflowName)
+//		ITestRun WHEN_sending_testRun_as_json(string testWorkflowName)
+//		{
+//			var testRun = new TestRun { Name = testWorkflowName };
+//			(testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testWorkflowName));
+//			_response = _browser.Post(UrnList.TestRunsControlPoint_absPath, with => {
+//				with.JsonBody(testRun);
+//				with.Accept("application/json");
+//			});
+//			return _response.Body.DeserializeJson<TestRun>();
+//		}
+		
+		TestRunCommand WHEN_sending_testRun_as_json(string testWorkflowName)
 		{
-			var testRun = new TestRun { Name = testWorkflowName };
+		    var testRun = new TestRun();
+			var testRunCommand = new TestRunCommand { WorkflowName = testWorkflowName, Status = TestRunStatuses.Running };
 			(testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testWorkflowName));
 			_response = _browser.Post(UrnList.TestRunsControlPoint_absPath, with => {
-				with.JsonBody(testRun);
+				with.JsonBody(testRunCommand);
 				with.Accept("application/json");
 			});
-			return _response.Body.DeserializeJson<TestRun>();
+			return _response.Body.DeserializeJson<TestRunCommand>();
 		}
 		
 		void THEN_there_should_be_the_following_number_of_testRun_objects(int number)

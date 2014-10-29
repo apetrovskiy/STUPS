@@ -94,6 +94,7 @@
     <Compile Include="ObjectModel\TaskUpdater.cs" />
     <Compile Include="ObjectModel\TestResultsLoader.cs" />
     <Compile Include="ObjectModel\TestResultsSender.cs" />
+    <Compile Include="ObjectModel\TestRunCreator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

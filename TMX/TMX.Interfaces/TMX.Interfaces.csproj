@@ -112,6 +112,7 @@
     <Compile Include="Remoting\ITestClientProxy.cs" />
     <Compile Include="Remoting\ITestLab.cs" />
     <Compile Include="Remoting\ITestRun.cs" />
+    <Compile Include="Remoting\ITestRunCommand.cs" />
     <Compile Include="Remoting\ITestTask.cs" />
     <Compile Include="Remoting\ITestHost.cs" />
     <Compile Include="Remoting\ITestHostGroup.cs" />

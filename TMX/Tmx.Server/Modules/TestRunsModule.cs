@@ -26,24 +26,50 @@ namespace Tmx.Server.Modules
 	{
 		public TestRunsModule() : base(UrnList.TestRuns_Root)
 		{
-			Post[UrnList.TestRunsControlPoint_relPath] = _ => createNewTestRun(this.Bind<TestRun>());
+			// Post[UrnList.TestRunsControlPoint_relPath] = _ => createNewTestRun(this.Bind<TestRun>());
+			Post[UrnList.TestRunsControlPoint_relPath] = _ => createNewTestRun(this.Bind<TestRunCommand>());
 			Post[UrnList.TestRuns_ByName_relPath] = parameters => createNewTestRun(parameters.name);
 			Delete[UrnList.TestRuns_One_relPath] = parameters => deleteTestRun(parameters.id);
 		}
 		
-		Negotiator createNewTestRun(ITestRun testRun)
+//		Negotiator createNewTestRun(ITestRun testRun)
+//		{
+//            return null == testRun ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : setTestRun(testRun);
+//		}
+		
+		Negotiator createNewTestRun(TestRunCommand testRunCommand)
 		{
-            return null == testRun ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : setTestRun(testRun);
+            return null == testRunCommand ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : setTestRun(testRunCommand);
 		}
 		
-		Negotiator createNewTestRun(string testRunName)
-		{
-            return string.IsNullOrEmpty(testRunName) ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : setTestRun(new TestRun());
-		}
+//		Negotiator createNewTestRun(string testRunName)
+//		{
+//            return string.IsNullOrEmpty(testRunName) ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : setTestRun(new TestRun());
+//		}
 		
-        Negotiator setTestRun(ITestRun testRun)
+//        Negotiator setTestRun(ITestRun testRun)
+//        {
+//            (testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testRun.Name));
+//            if (0 == testRun.WorkflowId)
+//                return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
+//            if (TestRunStartTypes.Immediately == testRun.StartType) {
+//                testRun.StartTime = DateTime.Now;
+//                testRun.Status = TestRunStatuses.Running;
+//            }
+//			int maxId = 0;
+//			if (0 < TestRunQueue.TestRuns.Count)
+//			   maxId = TestRunQueue.TestRuns.Max(tr => tr.Id);
+//			testRun.Id = ++maxId;
+//            TestRunQueue.TestRuns.Add(testRun);
+//            addTasksForEveryClient(TaskPool.Tasks.Where(task => WorkflowCollection.Workflows.ActiveWorkflowIds().Contains(task.WorkflowId)));
+//            // TODO: trySet InProgress
+//            return Negotiate.WithStatusCode(HttpStatusCode.Created);
+//        }
+        
+        Negotiator setTestRun(TestRunCommand testRunCommand)
         {
-            (testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testRun.Name));
+            var testRun = new TestRun { Name = testRunCommand.Name, Status = testRunCommand.Status };
+            (testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testRunCommand.WorkflowName));
             if (0 == testRun.WorkflowId)
                 return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
             if (TestRunStartTypes.Immediately == testRun.StartType) {

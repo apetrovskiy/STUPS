@@ -357,7 +357,21 @@ namespace Tmx.Server.Tests.Modules
             
             THEN_Http_Response_Is_Created();
             Xunit.Assert.Equal(1, ClientsCollection.Clients.Count);
-            // Xunit.Assert.Equal(TestRunQueue.TestRuns.Min(tr => tr.Id), ClientsCollection.Clients.First().TestRunId);
+            Xunit.Assert.Equal(TestRunQueue.TestRuns.Min(tr => tr.Id), testClient.TestRunId);
+        }
+        
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        public void Should_register_new_client_only_in_one_testRun_as_xml()
+        {
+            var testRun = GIVEN_Active_TestRun();
+            // the second active test run
+            TestFactory.GetTestRunWithStatus(TestRunStatuses.Running);
+            var testClient = GIVEN_TestClient("testhost_01", "aaa_01", testRun.Id);
+            
+            testClient = WHEN_SendingRegistration_as_Xml(testClient as TestClient);
+            
+            THEN_Http_Response_Is_Created();
+            Xunit.Assert.Equal(1, ClientsCollection.Clients.Count);
             Xunit.Assert.Equal(TestRunQueue.TestRuns.Min(tr => tr.Id), testClient.TestRunId);
         }
         

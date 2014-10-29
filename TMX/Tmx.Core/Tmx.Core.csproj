@@ -99,6 +99,7 @@
     <Compile Include="Types\Remoting\TestClient.cs" />
     <Compile Include="Types\Remoting\TestLab.cs" />
     <Compile Include="Types\Remoting\TestRun.cs" />
+    <Compile Include="Types\Remoting\TestRunCommand.cs" />
     <Compile Include="Types\Remoting\TestTask.cs" />
     <Compile Include="Types\Remoting\TestTaskCodeProxy.cs" />
     <Compile Include="Types\Remoting\TestTaskProxy.cs" />

@@ -206,6 +206,12 @@
     <Compile Include="..\TMX\Commands\TestClient\InvokeTmxTestTaskCommand.cs">
       <Link>Commands\TestClient\InvokeTmxTestTaskCommand.cs</Link>
     </Compile>
+    <Compile Include="..\TMX\Commands\TestClient\NewTmxTestRunCommand.cs">
+      <Link>Commands\TestClient\NewTmxTestRunCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\TestClient\ReceiveTmxTestResultsCommand.cs">
+      <Link>Commands\TestClient\ReceiveTmxTestResultsCommand.cs</Link>
+    </Compile>
     <Compile Include="..\Tmx\Commands\TestClient\ReceiveTmxTestTaskCommand.cs">
       <Link>Commands\TestClient\ReceiveTmxTestTaskCommand.cs</Link>
     </Compile>
@@ -439,6 +445,12 @@
     </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestClient\InvokeTestTaskCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\TestClient\InvokeTestTaskCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestClient\NewTestRunCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TestClient\NewTestRunCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestClient\ReceiveTestResultsCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TestClient\ReceiveTestResultsCommand.cs</Link>
     </Compile>
     <Compile Include="..\Tmx\Helpers\UnderlyingCode\Commands\TestClient\ReceiveTestTaskCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\TestClient\ReceiveTestTaskCommand.cs</Link>

@@ -6,7 +6,7 @@
 	<br>
 		<ul>
 		{% for testRun in @Model.TestRuns -%}
-		  <li>{{ testRun.Id }} {{ testRun.Name }} {{ testRun.TestLabId }} {{ testRun.Description }}</li>
+		  <li>{{ testRun.Id }} '{{ testRun.Name }}' {{ testRun.TestLabId }} '{{ testRun.Description }}' {{ testRun.Status }}</li>
 		{% endfor -%}
 		</ul>
 	</body>

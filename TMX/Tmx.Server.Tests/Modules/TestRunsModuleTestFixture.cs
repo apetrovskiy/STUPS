@@ -49,6 +49,17 @@ namespace Tmx.Server.Tests.Modules
 			THEN_there_should_be_the_following_number_of_testRun_objects(1);
 		}
 		
+		[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+		public void Should_create_second_testRun_object_as_json()
+		{
+			GIVEN_testWorkflow();
+			
+			WHEN_sending_testRun_as_json("CRsuite");
+			WHEN_sending_testRun_as_json("CRsuite");
+			
+			THEN_there_should_be_the_following_number_of_testRun_objects(2);
+		}
+		
 //    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //    	public void Should_add_one_task_to_the_common_pool_on_imporing_one_task()
 //    	{
@@ -117,17 +128,6 @@ namespace Tmx.Server.Tests.Modules
 				with.Accept("application/json");
 			});
 		}
-		
-//		ITestRun WHEN_sending_testRun_as_json(string testWorkflowName)
-//		{
-//			var testRun = new TestRun { Name = testWorkflowName };
-//			(testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testWorkflowName));
-//			_response = _browser.Post(UrnList.TestRunsControlPoint_absPath, with => {
-//				with.JsonBody(testRun);
-//				with.Accept("application/json");
-//			});
-//			return _response.Body.DeserializeJson<TestRun>();
-//		}
 		
 		TestRunCommand WHEN_sending_testRun_as_json(string testWorkflowName)
 		{

@@ -103,10 +103,18 @@ namespace Tmx.Server.Modules
 			    cleanUpClientDetailedStatus(storedTask.ClientId);
 			
 //			updateWorklowStatus(storedTask.WorkflowId);
+			// 20141029
+			if (storedTask.IsLastTaskInTestRun())
+			    completeTestRun(storedTask);
 			
             return storedTask.TaskFinished ? updateNextTaskAndReturnOk(taskSorter, storedTask) : HttpStatusCode.OK;
 		}
 		
+        void completeTestRun(ITestTask task)
+        {
+            TestRunQueue.TestRuns.First(testRun => testRun.Id == task.TestRunId).Status = TestRunStatuses.Completed;
+        }
+        
         HttpStatusCode updateNextTaskAndReturnOk(TaskSelector taskSorter, ITestTask storedTask)
         {
             ITestTask nextTask = null;

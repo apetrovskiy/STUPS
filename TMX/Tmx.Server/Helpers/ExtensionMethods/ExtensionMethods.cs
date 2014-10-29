@@ -76,5 +76,10 @@ namespace Tmx.Server
             return WorkflowCollection.Workflows.Select(wfl => wfl.Id).Intersect(TestRunQueue.TestRuns.Where(tr => tr.IsActive()).Select(tr => tr.WorkflowId));
             // return WorkflowCollection.Workflows.Select(wfl => wfl.Id).Intersect(TestRunQueue.TestRuns.Where(IsActive).Select(tr => tr.WorkflowId));
         }
+        
+        public static bool IsLastTaskInTestRun(this ITestTask task)
+        {
+            return !TaskPool.TasksForClients.Any(tsk => tsk.TestRunId == task.TestRunId && tsk.Id != task.Id && !tsk.IsFinished());
+        }
     }
 }

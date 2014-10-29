@@ -38,7 +38,7 @@ namespace Tmx.Client
         public int ClientId { get; set; }
         public bool StopImmediately { get; set; }
         public IEnumerable<string> TaskResult { get; set; }
-        // 20141020
+        // 20141020 sqeezing a task to its proxy
         public ITestTask CurrentTask { get; set; }
         // public ITestTaskProxy CurrentTask { get; set; }
         // 20141001

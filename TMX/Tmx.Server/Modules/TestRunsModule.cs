@@ -55,6 +55,8 @@ namespace Tmx.Server.Modules
 			   maxId = TestRunQueue.TestRuns.Max(tr => tr.Id);
 			testRun.Id = ++maxId;
             TestRunQueue.TestRuns.Add(testRun);
+            addTasksForEveryClient(TaskPool.Tasks.Where(task => WorkflowCollection.Workflows.ActiveWorkflowIds().Contains(task.WorkflowId)));
+            // TODO: trySet InProgress
             return Negotiate.WithStatusCode(HttpStatusCode.Created);
         }
         
@@ -64,7 +66,8 @@ namespace Tmx.Server.Modules
 			return Negotiate.WithStatusCode(HttpStatusCode.OK);
 		}
 		
-		internal virtual void addTasksForEveryClient(IEnumerable<ITestTask> importedTasks)
+		// internal virtual void addTasksForEveryClient(IEnumerable<ITestTask> importedTasks)
+		internal virtual void addTasksForEveryClient(IEnumerable<ITestTask> activeWorkflowsTasks)
 		{
 		    if (0 == ClientsCollection.Clients.Count) return;
 			var taskSorter = new TaskSelector();
@@ -74,6 +77,10 @@ namespace Tmx.Server.Modules
 //			// foreach (var clientId in ClientsCollection.Clients.Where<ITestClient>(IsInActiveWorkflow).Select(client => client.Id)) {
 //				TaskPool.TasksForClients.AddRange(taskSorter.SelectTasksForClient(clientId, importedTasks.ToList()));
 //			}
+			foreach (var clientId in ClientsCollection.Clients.Where(client => client.IsInActiveTestRun()).Select(client => client.Id)) {
+			    // addTasksForEveryClient(
+			    TaskPool.TasksForClients.AddRange(taskSorter.SelectTasksForClient(clientId, activeWorkflowsTasks.ToList()));
+			}
 		}
 		
         void trySetWorkflowStatusInProgress(int workflowId)

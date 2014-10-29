@@ -19,6 +19,7 @@ namespace Tmx.Core.Types.Remoting
     public class TestTaskCodeProxy : ITestTaskCodeProxy
     {
         public int Id { get; set; }
+        public int ClientId { get; set; }
         public TestTaskStatuses TaskStatus { get; set; }
 		public int TimeLimit { get; set; }
 		public DateTime StartTime { get; set; }

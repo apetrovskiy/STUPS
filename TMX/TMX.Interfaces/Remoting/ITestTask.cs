@@ -17,8 +17,6 @@ namespace Tmx.Interfaces.Remoting
 	/// </summary>
 	public interface ITestTask : ITestTaskResultProxy, ITestTaskStatusProxy, ITestTaskCodeProxy // ITestTaskProxy
 	{
-//		int Id { get; set; }
-		// int Order { get; set; }
 		int PreviousTaskId { get; set; }
 		int AfterTask { get; set; }
 		bool IsActive { get; set; }
@@ -45,7 +43,7 @@ namespace Tmx.Interfaces.Remoting
 //		TestTaskStatuses TaskStatus { get; set; }
 		// IDictionary<string, string> PreviousTaskResult { get; set; }
 		// IDictionary<string, string> TaskResult { get; set; }
-		int ClientId { get; set; }
+		// int ClientId { get; set; }
 		int WorkflowId { get; set; }
 		int TestRunId { get; set; }
 		

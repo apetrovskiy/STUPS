@@ -28,7 +28,7 @@ namespace Tmx.Client
 	    	_restTemplate = requestCreator.GetRestTemplate();
 	    }
 	    
-	    // 20141020
+	    // 20141020 sqeezing a task to its proxy
 		public virtual bool UpdateTask(ITestTask task)
 		// public virtual bool UpdateTask(ITestTaskStatusProxy task)
 		{

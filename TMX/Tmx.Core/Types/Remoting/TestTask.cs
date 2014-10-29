@@ -59,14 +59,14 @@ namespace Tmx.Core.Types.Remoting
 		public int WorkflowId { get; set; }
 		public int TestRunId { get; set; }
 		
-		// 20141020
+		// 20141020 sqeezing a task to its proxy
 		public void StartTimer()
 		{
 		    // TODO: implement a timer
 		    StartTime = DateTime.Now;
 		}
 		
-		// 20141020
+		// 20141020 sqeezing a task to its proxy
 //		public void StartTimer()
 //		{
 //		}

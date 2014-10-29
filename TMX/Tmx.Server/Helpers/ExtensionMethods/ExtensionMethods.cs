@@ -12,6 +12,7 @@ namespace Tmx.Server
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Tmx.Core;
 	using Tmx.Interfaces.Remoting;
     
     /// <summary>
@@ -52,5 +53,28 @@ namespace Tmx.Server
 //        {
 //            return WorkflowCollection.ActiveWorkflow.Id == testClient.TestRunId;
 //        }
+        
+        public static IEnumerable<int> ActiveTestRunIds(this List<ITestRun> list)
+        {
+            return TestRunQueue.TestRuns.Where(tr => tr.IsActive()).Select(tr => tr.Id);
+        }
+        
+        public static bool HasActiveTestRuns(this List<ITestRun> list)
+        {
+            return TestRunQueue.TestRuns.Any(tr => tr.IsActive());
+            // return TestRunQueue.TestRuns.Any(IsActive);
+        }
+        
+        public static bool IsInActiveTestRun(this ITestClient testClient)
+        {
+            return TestRunQueue.TestRuns.ActiveTestRunIds().Contains(testClient.TestRunId);
+        }
+        
+        public static IEnumerable<int> ActiveWorkflowIds(this List<ITestWorkflow> list)
+        {
+            // return WorkflowCollection.Workflows.Select(wfl => wfl.Id).Intersect(TestRunQueue.TestRuns.Where(tr => tr.Status == TestRunStatuses.Running).Select(tr => tr.WorkflowId));
+            return WorkflowCollection.Workflows.Select(wfl => wfl.Id).Intersect(TestRunQueue.TestRuns.Where(tr => tr.IsActive()).Select(tr => tr.WorkflowId));
+            // return WorkflowCollection.Workflows.Select(wfl => wfl.Id).Intersect(TestRunQueue.TestRuns.Where(IsActive).Select(tr => tr.WorkflowId));
+        }
     }
 }

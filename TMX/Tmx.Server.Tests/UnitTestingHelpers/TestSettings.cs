@@ -38,6 +38,8 @@ namespace Tmx.Server.Tests
 			WorkflowCollection.Workflows.Clear();
 			// 20141026
 			TestRunQueue.TestRuns.Clear();
+			TestLabCollection.TestLabs.Clear();
+			var testLabCollection = new TestLabCollection();
 			
 			Preferences.ClientRegistrationSleepIntervalMilliseconds = 0;
 			Preferences.ReceivingTaskSleepIntervalMilliseconds = 0;

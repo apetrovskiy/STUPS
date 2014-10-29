@@ -42,16 +42,19 @@ namespace Tmx.Server.Modules
 		
 		Negotiator createNewClient(TestClient testClient)
 		{
+		    // 20141029
+		    if (!TestRunQueue.TestRuns.HasActiveTestRuns())
+		        return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed);
 			int maxId = 0;
 			// 20141015
 //			if (0 < ClientsCollection.Clients.Count)
 //				maxId = ClientsCollection.Clients.Max(client => client.Id);
             maxId = ClientsCollection.Clients.Count > ClientsCollection.MaxUsedClientId ? ClientsCollection.Clients.Max(client => client.Id) : ClientsCollection.MaxUsedClientId;
 			testClient.Id = ++maxId;
-			// 20141023
-//			testClient.TestRunId = WorkflowCollection.ActiveWorkflow.Id;
 			// 20141015
 			ClientsCollection.MaxUsedClientId = maxId;
+			// 20141029
+			testClient.TestRunId = TestRunQueue.TestRuns.ActiveTestRunIds().First();
 			ClientsCollection.Clients.Add(testClient);
 			// TODO: DI
 			var taskSorter = new TaskSelector();

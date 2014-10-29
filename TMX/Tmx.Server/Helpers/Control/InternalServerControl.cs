@@ -38,15 +38,12 @@ namespace Tmx.Server
         public static void Start(string url)
         {
             Url = url;
-            
+            prepareComponents();
             loadModules();
-            
             _nancyHost = new NancyHost(new Uri(url));
-            
             setDotLiquidNamingConventions();
             registerTypes();
             loadPlugins();
-            
 			_nancyHost.Start();
         }
         
@@ -100,6 +97,11 @@ namespace Tmx.Server
     	    get { return new TmxServerRootPathProvider(); }
     	}
     	
+        static void prepareComponents()
+        {
+            var testLabCollection = new TestLabCollection();
+        }
+        
         static void loadModules()
         {
             var modulesLoader = new ModulesLoader((new TmxServerRootPathProvider()).GetRootPath());
@@ -121,6 +123,7 @@ namespace Tmx.Server
 			Template.RegisterSafeType(typeof(ITestResult), new[] { "Id", "Name", "Status", "Origin", "PlatformId" });
 			Template.RegisterSafeType(typeof(TestResultOrigins), member => member.ToString());
 			Template.RegisterSafeType(typeof(TestRun), new[] { "Id", "Name", "WorkflowId", "TestLabId", "Description" });
+			Template.RegisterSafeType(typeof(TestLab), new[] { "Id", "Name", "Description" });
         }
         
         static void loadPlugins()

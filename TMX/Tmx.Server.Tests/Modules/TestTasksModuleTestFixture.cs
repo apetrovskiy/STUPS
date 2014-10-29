@@ -50,11 +50,14 @@ namespace Tmx.Server.Tests.Modules
 		    _browser = TestFactory.GetBrowserForTestTasksModule();
 		    // WorkflowCollection.Workflows.Add(new TestWorkflow { Id = 1, Name = "w" });
 		    // WorkflowCollection.AddWorkflow(new TestWorkflow { Id = 1, Name = "w" });
-		    _workflow = new TestWorkflow { Id = 1, Name = "w" };
-		    WorkflowCollection.AddWorkflow(_workflow);
-		    _testRun = new TestRun { Id = 1, Name = "ww" };
-		    (_testRun as TestRun).SetWorkflow(_workflow);
-		    TestRunQueue.TestRuns.Add(_testRun);
+//		    _workflow = new TestWorkflow { Id = 1, Name = "w" };
+//		    WorkflowCollection.AddWorkflow(_workflow);
+//		    _testRun = new TestRun { Id = 1, Name = "ww" };
+//		    (_testRun as TestRun).SetWorkflow(_workflow);
+//		    TestRunQueue.TestRuns.Add(_testRun);
+		    TestFactory.GetTestRunWithStatus(TestRunStatuses.Running);
+		    _workflow = WorkflowCollection.Workflows.First();
+		    _testRun = TestRunQueue.TestRuns.First();
 		}
         
     	[MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
@@ -63,33 +66,20 @@ namespace Tmx.Server.Tests.Modules
     	    TestSettings.PrepareModuleTests();
     	    _browser = TestFactory.GetBrowserForTestTasksModule();
     	    // WorkflowCollection.AddWorkflow(new TestWorkflow { Id = 1, Name = "w" });
-    	    _workflow = new TestWorkflow { Id = 1, Name = "w" };
-		    WorkflowCollection.AddWorkflow(_workflow);
-		    _testRun = new TestRun { Id = 1, Name = "ww" };
-		    (_testRun as TestRun).SetWorkflow(_workflow);
-		    TestRunQueue.TestRuns.Add(_testRun);
+//    	    _workflow = new TestWorkflow { Id = 1, Name = "w" };
+//		    WorkflowCollection.AddWorkflow(_workflow);
+//		    _testRun = new TestRun { Id = 1, Name = "ww" };
+//		    (_testRun as TestRun).SetWorkflow(_workflow);
+//		    TestRunQueue.TestRuns.Add(_testRun);
+		    TestFactory.GetTestRunWithStatus(TestRunStatuses.Running);
+		    _workflow = WorkflowCollection.Workflows.First();
+		    _testRun = TestRunQueue.TestRuns.First();
     	}
     	
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_provide_a_task_to_test_client_if_the_client_matches_the_rule()
         {
-//			var workflow = new TestWorkflow();
-//			workflow.Id = 2;
-//			WorkflowCollection.AddWorkflow(workflow);
-//			var testRun = new TestRun { Id = 3 };
-//			testRun.SetWorkflow(workflow);
-//			TestRunQueue.TestRuns.Add(testRun);
-			
-			// TaskPool.TasksForClients.ForEach(task => task.WorkflowId = workflow.Id);
-			
 			var expectedTask = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, _testClientHostnameExpected, 0);
-			
-			// expectedTask
-			// expectedTask.WorkflowId = workflow.Id;
-			
-			
-			// ClientsCollection.Clients.ForEach(client => client.WorkflowId = workflow.Id);
-			
 			var testClient = GIVEN_Registered_TestClient_as_json(_testClientHostnameExpected, _testClientUsernameExpected);
 			
 			// testClient.WorkflowId = workflow.Id;
@@ -391,10 +381,6 @@ namespace Tmx.Server.Tests.Modules
             	TaskStatus = status,
             	Rule = rule,
             	AfterTask = afterTask,
-            	// WorkflowId = WorkflowCollection.Workflows.Last().Id,
-            	// TestRunId = TestRunQueue.TestRuns.Last().Id
-            	// WorkflowId = workflowId,
-            	// TestRunId = testRunId
             	WorkflowId = _workflow.Id,
             	TestRunId = _testRun.Id
             };
@@ -432,12 +418,12 @@ namespace Tmx.Server.Tests.Modules
             _browser.Delete(UrnList.TestClients_Root + "/" + testClient.Id, with => with.Accept("application/xml"));
         }
         
-        // 20141020
+        // 20141020 sqeezing a task to its proxy
         TestTask WHEN_Getting_task_as_json(int clientId)
         // TestTaskProxy WHEN_Getting_task_as_json(int clientId)
         {
             response = _browser.Get(UrnList.TestTasks_Root + "/" + clientId, with => with.Accept("application/json"));
-            // 20141020
+            // 20141020 sqeezing a task to its proxy
             var actualTask = response.Body.DeserializeJson<TestTask>();
             // var actualTask = response.Body.DeserializeJson<TestTaskProxy>();
             if (null == actualTask) return actualTask;
@@ -446,7 +432,7 @@ namespace Tmx.Server.Tests.Modules
             _startTime = DateTime.Now;
             actualTask.StartTime = _startTime;
             _browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => {
-                                    // 20141020
+                                    // 20141020 sqeezing a task to its proxy
                                    	with.JsonBody<ITestTask>(actualTask);
                                    	// with.JsonBody<ITestTaskProxy>(actualTask);
                                    	with.Accept("application/json");
@@ -459,7 +445,7 @@ namespace Tmx.Server.Tests.Modules
             ClientsCollection.Clients.RemoveAll(client => client.Id == registeredClient.Id);
         }
         
-        // 20141020
+        // 20141020 sqeezing a task to its proxy
         void WHEN_Finishing_Task_as_json(TestTask actualTask)
         // void WHEN_Finishing_Task_as_json(TestTaskProxy actualTask)
         {
@@ -467,19 +453,19 @@ namespace Tmx.Server.Tests.Modules
             actualTask.TaskFinished = true;
             _browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => {
                 with.Accept("application/json");
-                // 20141020
+                // 20141020 sqeezing a task to its proxy
                 with.JsonBody<ITestTask>(actualTask);
                 // with.JsonBody<ITestTaskProxy>(actualTask);
             });
         }
         
-        // 20141020
+        // 20141020 sqeezing a task to its proxy
         void WHEN_Failing_Task_as_json(TestTask actualTask)
         // void WHEN_Failing_Task(TestTaskProxy actualTask)
         {
             actualTask.TaskStatus = TestTaskStatuses.Interrupted;
             actualTask.TaskFinished = true;
-            // 20141020
+            // 20141020 sqeezing a task to its proxy
             _browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => {
                              with.Accept("application/json");
                              with.JsonBody<ITestTask>(actualTask);
@@ -502,7 +488,7 @@ namespace Tmx.Server.Tests.Modules
             Xunit.Assert.Equal(HttpStatusCode.ExpectationFailed, response.StatusCode);
         }
         
-        // 20141020
+        // 20141020 sqeezing a task to its proxy
         void THEN_TestTask_Properties_Equal_To(ITestTask expectedTask, ITestTask actualTask)
         // void THEN_TestTask_Properties_Equal_To(ITestTask expectedTask, ITestTaskProxy actualTask)
         {
@@ -510,12 +496,12 @@ namespace Tmx.Server.Tests.Modules
             Xunit.Assert.Equal(expectedTask.Name, actualTask.Name);
             Xunit.Assert.Equal(expectedTask.TaskStatus, actualTask.TaskStatus);
             Xunit.Assert.Equal(expectedTask.TaskFinished, actualTask.TaskFinished);
-            // 20141020
+            // 20141020 sqeezing a task to its proxy
             Xunit.Assert.Equal(expectedTask.IsActive, actualTask.IsActive);
             // Xunit.Assert.Equal(_startTime, actualTask.StartTime);
         }
         
-        // 20141020
+        // 20141020 sqeezing a task to its proxy
         void THEN_TestTask_Properties_Equal_To(ITestTask expectedTask, ITestTask actualTask, TestTaskStatuses status)
         // void THEN_TestTask_Properties_Equal_To(ITestTask expectedTask, ITestTaskProxy actualTask, TestTaskStatuses status)
         {
@@ -523,7 +509,7 @@ namespace Tmx.Server.Tests.Modules
             THEN_TestTask_Properties_Equal_To(expectedTask, actualTask);
         }
         
-        // 20141020
+        // 20141020 sqeezing a task to its proxy
         void THEN_TestTask_Is_Null(ITestTask task)
         // void THEN_TestTask_Is_Null(ITestTaskProxy task)
         {

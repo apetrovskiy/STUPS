@@ -51,23 +51,15 @@ namespace Tmx.Server
 //	                               // ).Select(t => { var newTask = t.CloneTaskForNewTestClient(); newTask.ClientId = clientId; newTask.WorkflowId = WorkflowCollection.ActiveWorkflow.Id; return newTask; }).ToList<ITestTask>();
 //	                               ).Select(t => { var newTask = t.CloneTaskForNewTestClient(); newTask.ClientId = clientId; return newTask; }).ToList<ITestTask>();
 	        
-	        var workflowSelectionIds = WorkflowCollection.Workflows.Select(wfl => wfl.Id).Intersect(TestRunQueue.TestRuns.Where(tr => tr.Status == TestRunStatuses.Running).Select(tr => tr.WorkflowId));
+	        // var workflowSelectionIds = WorkflowCollection.Workflows.Select(wfl => wfl.Id).Intersect(TestRunQueue.TestRuns.Where(tr => tr.Status == TestRunStatuses.Running).Select(tr => tr.WorkflowId));
+//	        var workflowSelectionIds = WorkflowCollection.Workflows.ActiveWorkflowIds();
 	        
-if (null != workflowSelectionIds) {
-    foreach (var w in workflowSelectionIds) {
-        Console.WriteLine("workflow Id = " + w);
-    }
-}
 	        
-var tasksAfterQueryOne = tasks.Where(task => workflowSelectionIds.Contains(task.WorkflowId));
-if (null != tasksAfterQueryOne) {
-    foreach (var t in tasksAfterQueryOne) {
-        Console.WriteLine("PRESELECTED task Id = " + t.Id + ", name = " + t.Name + ", w id = " + t.WorkflowId + ", tr id = " + t.TestRunId);
-    }
-}
+            var workflowId = TestRunQueue.TestRuns.First(testRun => testRun.Id == client.TestRunId).WorkflowId;
 	        
             resultTaskScope =
-	            tasks.Where(task => workflowSelectionIds.Contains(task.WorkflowId))
+	            // tasks.Where(task => workflowSelectionIds.Contains(task.WorkflowId))
+                tasks.Where(task => task.WorkflowId == workflowId)
 	            .Where(task => // 0 == task.ClientId && 
 	        	                        (Regex.IsMatch(client.CustomString ?? string.Empty, task.Rule) ||
                                         Regex.IsMatch(client.EnvironmentVersion ?? string.Empty, task.Rule) ||
@@ -88,14 +80,6 @@ if (null != tasksAfterQueryOne) {
                 newTask.ClientId = clientId;
                 return newTask;
             }).ToList<ITestTask>();
-	        
-            if (null != resultTaskScope) {
-                foreach (var t in resultTaskScope) {
-                    Console.WriteLine("SELECTED task Id = " + t.Id + ", name = " + t.Name + ", w id = " + t.WorkflowId + ", tr id = " + t.TestRunId);
-                }
-            } else {
-                Console.WriteLine("there are NO tasks");
-            }
             
             return resultTaskScope;
 	    }
@@ -107,7 +91,19 @@ if (null != tasksAfterQueryOne) {
 			// 20141023
 			// var taskCandidate = taskListForClient.First(task => task.Id == taskListForClient.Min(tsk => tsk.Id));
 			// var taskCandidate = taskListForClient.Where(task => task.WorkflowId == ClientsCollection.Clients.First(client => client.Id == clientId).TestRunId).First(task => task.Id == taskListForClient.Min(tsk => tsk.Id));
-			var taskCandidate = taskListForClient.Where(task => task.TestRunId == ClientsCollection.Clients.First(client => client.Id == clientId).TestRunId).First(task => task.Id == taskListForClient.Min(tsk => tsk.Id));
+			
+//			var taskCands = taskListForClient.Where(task => task.TestRunId == ClientsCollection.Clients.First(client => client.Id == clientId).TestRunId);
+//			if (null == taskCands)
+//			    Console.WriteLine("");
+//			else
+//			    foreach (var t in taskCands) {
+//                    Console.WriteLine("task id = {0}, name = {1}", t.Id, t.Name);
+//			    }
+//			var taskCand = taskCands.First(task => task.Id == taskListForClient.Min(tsk => tsk.Id));
+			
+			
+			// var taskCandidate = taskListForClient.Where(task => task.TestRunId == ClientsCollection.Clients.First(client => client.Id == clientId).TestRunId).First(task => task.Id == taskListForClient.Min(tsk => tsk.Id));
+			var taskCandidate = taskListForClient.First(task => task.Id == taskListForClient.Min(tsk => tsk.Id));
 			return isItTimeToPublishTask(taskCandidate) ? taskCandidate : null;
 		}
 		
@@ -141,6 +137,8 @@ if (null != tasksAfterQueryOne) {
 		internal virtual IEnumerable<ITestTask> getOnlyNewTestTasksForClient(int clientId)
 		{
 		    return TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.IsActive && task.TaskStatus == TestTaskStatuses.New);
+		    // return TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.TestRunId == ClientsCollection.Clients.First(client => client.Id == clientId).TestRunId && task.TaskStatus == TestTaskStatuses.New);
+		    // .Where(task => task.TestRunId == ClientsCollection.Clients.First(client => client.Id == clientId).TestRunId);
 		}
 		
 		internal virtual bool isItTimeToPublishTask(ITestTask task)

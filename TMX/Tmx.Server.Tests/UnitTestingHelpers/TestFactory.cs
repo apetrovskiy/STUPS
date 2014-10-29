@@ -10,9 +10,11 @@
 namespace Tmx.Server.Tests
 {
     using System;
+    using System.Linq;
     using Nancy;
     using Nancy.Testing;
 	using Tmx.Core;
+    using Tmx.Core.Types.Remoting;
 	using Tmx.Interfaces.Remoting;
 	using Tmx.Server.Modules;
     
@@ -54,6 +56,25 @@ namespace Tmx.Server.Tests
         public static ITestClient GivenTestClient(string hostname, string username, int testRunId)
         {
             return new TestClient { Hostname = hostname, Username = username, TestRunId = testRunId };
+        }
+        
+        public static ITestRun GetTestRunWithStatus(TestRunStatuses status)
+        {
+            var workflow = new TestWorkflow {
+                Id = 1,
+                Name = "workflow 01",
+                TestLabId = TestLabCollection.TestLabs.First().Id
+            };
+            WorkflowCollection.Workflows.Add(workflow);
+            var testRun = new TestRun {
+                Id = 3,
+                Name = "test run 03",
+                TestLabId = TestLabCollection.TestLabs.First().Id
+            };
+            testRun.Status = status;
+            testRun.SetWorkflow(workflow);
+            TestRunQueue.TestRuns.Add(testRun);
+            return testRun;
         }
     }
 }

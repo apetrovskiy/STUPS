@@ -174,5 +174,25 @@ namespace Tmx.Core
 //            result = list.Max<T>(t => t.Id);
 //            return result++;
 //        }
+        
+        public static bool IsActive(this ITestRun testRun)
+        {
+            return TestRunStatuses.Running == testRun.Status;
+        }
+        
+        public static bool IsPending(this ITestRun testRun)
+        {
+            return TestRunStatuses.Pending == testRun.Status;
+        }
+        
+        public static bool IsScheduled(this ITestRun testRun)
+        {
+            return TestRunStatuses.Sheduled == testRun.Status;
+        }
+        
+        public static bool IsCompleted(this ITestRun testRun)
+        {
+            return TestRunStatuses.Completed == testRun.Status;
+        }
     }
 }

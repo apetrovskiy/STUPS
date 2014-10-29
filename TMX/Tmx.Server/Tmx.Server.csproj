@@ -104,6 +104,7 @@
     <Compile Include="Helpers\ObjectModel\WorkflowSettings.cs" />
     <Compile Include="Helpers\Objects\ContainerForTests.cs" />
     <Compile Include="Helpers\Objects\TaskPool.cs" />
+    <Compile Include="Helpers\Objects\TestLabCollection.cs" />
     <Compile Include="Helpers\Objects\TestRunQueue.cs" />
     <Compile Include="Helpers\Objects\WorkflowCollection.cs" />
     <Compile Include="Helpers\ServerWatcher.cs" />

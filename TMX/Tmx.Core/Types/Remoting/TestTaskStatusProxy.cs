@@ -10,7 +10,6 @@
 namespace Tmx.Core.Types.Remoting
 {
     using System;
-	using System.Collections.Generic;
 	using Tmx.Interfaces.Remoting;
     
     /// <summary>

@@ -46,8 +46,6 @@ namespace Tmx.Interfaces.Remoting
 		// int ClientId { get; set; }
 		int WorkflowId { get; set; }
 		int TestRunId { get; set; }
-		
-		// void StartTimer();
 	}
 	
 	/*

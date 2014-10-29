@@ -42,9 +42,6 @@ namespace Tmx
                 "Checking whether the current test result is fulfilled and must be added to the current test scenario's results");
             
             // inserting the new simple test result to the suite/scenario the user provided
-            // 20140721
-//            TestSuite testSuiteToAddTestResult = null;
-//            TestScenario testScenarioToAddTestResult = null;
             ITestSuite testSuiteToAddTestResult = null;
             ITestScenario testScenarioToAddTestResult = null;
             if (!string.IsNullOrEmpty(cmdlet.TestSuiteName) || !string.IsNullOrEmpty(cmdlet.TestSuiteId)) {

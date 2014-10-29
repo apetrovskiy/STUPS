@@ -23,7 +23,7 @@ namespace Tmx.Server.Tests.Modules
 	[MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
 	public class TestRunsModuleTestFixture
 	{
-	    // BrowserResponse _response;
+	    BrowserResponse _response;
 	    Browser _browser;
 		
 		public TestRunsModuleTestFixture()
@@ -118,14 +118,15 @@ namespace Tmx.Server.Tests.Modules
 			});
 		}
 		
-		void WHEN_sending_testRun_as_json(string testWorkflowName)
+		ITestRun WHEN_sending_testRun_as_json(string testWorkflowName)
 		{
 			var testRun = new TestRun { Name = testWorkflowName };
 			(testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testWorkflowName));
-			_browser.Post(UrnList.TestRunsControlPoint_absPath, with => {
+			_response = _browser.Post(UrnList.TestRunsControlPoint_absPath, with => {
 				with.JsonBody(testRun);
 				with.Accept("application/json");
 			});
+			return _response.Body.DeserializeJson<TestRun>();
 		}
 		
 		void THEN_there_should_be_the_following_number_of_testRun_objects(int number)

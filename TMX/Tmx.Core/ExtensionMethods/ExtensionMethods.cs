@@ -48,7 +48,8 @@ namespace Tmx.Core
                 TimeLimit = task.TimeLimit,
                 WorkflowId = task.WorkflowId,
                 TestRunId = task.TestRunId,
-                TaskType = task.TaskType
+                TaskType = task.TaskType,
+                StartTime = task.StartTime
             };
         }
         
@@ -61,90 +62,34 @@ namespace Tmx.Core
                 AfterActionParameters = task.AfterActionParameters,
                 BeforeAction = task.BeforeAction,
                 BeforeActionParameters = task.BeforeActionParameters,
-                // ClientId = 0,
-                // TaskFinished = false,
-                // ExpectedResult = task.ExpectedResult,
                 Id = task.Id,
-                // AfterTask = task.AfterTask,
-                // IsActive = task.IsActive,
-                // IsCritical = task.IsCritical,
+                ClientId = task.ClientId,
                 Name = task.Name,
-                // PreviousTaskId = task.PreviousTaskId, // ??
-                PreviousTaskResult = task.PreviousTaskResult, // ??
+                PreviousTaskResult = task.PreviousTaskResult,
                 TaskBanner = task.TaskBanner,
-                // RetryCount = task.RetryCount,
-                // Rule = task.Rule,
-                // TaskStatus = task.TaskStatus,
-                // StoryId = task.StoryId,
-                // TaskResult = task.TaskResult, // ??
-                TimeLimit = task.TimeLimit// ,
-                // new
-                // 20141009
-                // WorkflowId = task.WorkflowId
+                TimeLimit = task.TimeLimit,
+                StartTime = task.StartTime,
+                TaskStatus = task.TaskStatus
             };
         }
         
         public static ITestTaskResultProxy SqueezeTaskToTaskResultProxy(this ITestTask task)
         {
             return new TestTaskResultProxy {
-//                Action = task.Action,
-//                ActionParameters = task.ActionParameters,
-//                AfterAction = task.AfterAction,
-//                AfterActionParameters = task.AfterActionParameters,
-//                BeforeAction = task.BeforeAction,
-//                BeforeActionParameters = task.BeforeActionParameters,
-//                ClientId = 0,
-                // TaskFinished = false,
-                // ExpectedResult = task.ExpectedResult,
                 Id = task.Id,
-                // AfterTask = task.AfterTask,
-                // IsActive = task.IsActive,
-                // IsCritical = task.IsCritical,
-//                Name = task.Name,
-                // PreviousTaskId = task.PreviousTaskId, // ??
-//                PreviousTaskResult = task.PreviousTaskResult, // ??
-//                TaskBanner = task.TaskBanner,
-                // RetryCount = task.RetryCount,
-                // Rule = task.Rule,
+                ClientId = task.ClientId,
                 TaskStatus = task.TaskStatus,
-                // StoryId = task.StoryId,
-                TaskResult = task.TaskResult //, // ??
-//                TimeLimit = task.TimeLimit,
-                // new
-                // 20141009
-//                WorkflowId = task.WorkflowId
+                TaskResult = task.TaskResult
             };
         }
         
         public static ITestTaskStatusProxy SqueezeTaskToTaskStatusProxy(this ITestTask task)
         {
             return new TestTaskStatusProxy {
-//                Action = task.Action,
-//                ActionParameters = task.ActionParameters,
-//                AfterAction = task.AfterAction,
-//                AfterActionParameters = task.AfterActionParameters,
-//                BeforeAction = task.BeforeAction,
-//                BeforeActionParameters = task.BeforeActionParameters,
-//                ClientId = 0,
                 TaskFinished = false,
-                // ExpectedResult = task.ExpectedResult,
                 Id = task.Id,
-                // AfterTask = task.AfterTask,
-                // IsActive = task.IsActive,
-                // IsCritical = task.IsCritical,
-//                Name = task.Name,
-                // PreviousTaskId = task.PreviousTaskId, // ??
-//                PreviousTaskResult = task.PreviousTaskResult, // ??
-//                TaskBanner = task.TaskBanner,
-                // RetryCount = task.RetryCount,
-                // Rule = task.Rule,
-                TaskStatus = task.TaskStatus //,
-                // StoryId = task.StoryId,
-                // TaskResult = task.TaskResult, // ??
-//                TimeLimit = task.TimeLimit,
-                // new
-                // 20141009
-//                WorkflowId = task.WorkflowId
+                ClientId = task.ClientId,
+                TaskStatus = task.TaskStatus
             };
         }
         

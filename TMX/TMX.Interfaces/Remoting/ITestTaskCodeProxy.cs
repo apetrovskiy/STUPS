@@ -39,8 +39,6 @@ namespace Tmx.Interfaces.Remoting
 //		TestTaskStatuses TaskStatus { get; set; }
 		IDictionary<string, string> PreviousTaskResult { get; set; }
 //		IDictionary<string, string> TaskResult { get; set; }
-//		int ClientId { get; set; }
-//		int WorkflowId { get; set; }
 		
 		void StartTimer();
     }

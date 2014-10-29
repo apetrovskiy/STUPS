@@ -41,6 +41,7 @@ namespace Tmx.Client
         // 20141020 sqeezing a task to its proxy
         public ITestTask CurrentTask { get; set; }
         // public ITestTaskProxy CurrentTask { get; set; }
+        // public ITestTaskCodeProxy CurrentTask { get; set; }
         // 20141001
         public ITestClient CurrentClient { get; set; }
         

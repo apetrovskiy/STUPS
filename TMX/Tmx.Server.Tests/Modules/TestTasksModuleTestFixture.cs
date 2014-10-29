@@ -426,6 +426,7 @@ namespace Tmx.Server.Tests.Modules
             // 20141020 sqeezing a task to its proxy
             var actualTask = response.Body.DeserializeJson<TestTask>();
             // var actualTask = response.Body.DeserializeJson<TestTaskProxy>();
+            // var actualTask = response.Body.DeserializeJson<TestTaskCodeProxy>();
             if (null == actualTask) return actualTask;
             actualTask.TaskStatus = TestTaskStatuses.Running;
             // emulates actualTask.StartTimer();
@@ -435,6 +436,7 @@ namespace Tmx.Server.Tests.Modules
                                     // 20141020 sqeezing a task to its proxy
                                    	with.JsonBody<ITestTask>(actualTask);
                                    	// with.JsonBody<ITestTaskProxy>(actualTask);
+                                   	// with.JsonBody<ITestTaskStatusProxy>((actualTask as ITestTask).SqueezeTaskToTaskStatusProxy());
                                    	with.Accept("application/json");
                                    });
             return actualTask;

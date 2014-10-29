@@ -345,6 +345,22 @@ namespace Tmx.Server.Tests.Modules
 //            Xunit.Assert.Equal(workflow02.Id, ClientsCollection.Clients.First(client => client.Id == testClient.Id).WorkflowId);
 //        }
         
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        public void Should_register_new_client_only_in_one_testRun_as_json()
+        {
+            var testRun = GIVEN_Active_TestRun();
+            // the second active test run
+            TestFactory.GetTestRunWithStatus(TestRunStatuses.Running);
+            var testClient = GIVEN_TestClient("testhost_01", "aaa_01", testRun.Id);
+            
+            testClient = WHEN_SendingRegistration_as_Json(testClient);
+            
+            THEN_Http_Response_Is_Created();
+            Xunit.Assert.Equal(1, ClientsCollection.Clients.Count);
+            // Xunit.Assert.Equal(TestRunQueue.TestRuns.Min(tr => tr.Id), ClientsCollection.Clients.First().TestRunId);
+            Xunit.Assert.Equal(TestRunQueue.TestRuns.Min(tr => tr.Id), testClient.TestRunId);
+        }
+        
         // ============================================= No active test runs =============================================================
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_not_register_a_test_client_if_there_are_no_active_testRuns_only_pending_as_json()
@@ -508,25 +524,6 @@ namespace Tmx.Server.Tests.Modules
         {
             return TestFactory.GetTestRunWithStatus(status);
         }
-
-//        public static ITestRun GetTestRunWithStatus(TestRunStatuses status)
-//        {
-//            var workflow = new TestWorkflow {
-//                Id = 1,
-//                Name = "w",
-//                TestLabId = TestLabCollection.TestLabs.First().Id
-//            };
-//            WorkflowCollection.Workflows.Add(workflow);
-//            var testRun = new TestRun {
-//                Id = 3,
-//                Name = "w",
-//                TestLabId = TestLabCollection.TestLabs.First().Id
-//            };
-//            testRun.Status = status;
-//            testRun.SetWorkflow(workflow);
-//            TestRunQueue.TestRuns.Add(testRun);
-//            return testRun;
-//        }
         
         ITestClient GIVEN_SendingRegistration_as_Json(ITestClient testClient)
         {
@@ -543,26 +540,26 @@ namespace Tmx.Server.Tests.Modules
         IWorkflow GIVEN_LoadedWorkflow(int id, string name)
         {
             var workflow = new TestWorkflow { Id = id, Name = name };
-            // WorkflowCollection.Workflows.Add(workflow);
-            // WorkflowCollection.ActiveWorkflow = workflow;
             WorkflowCollection.AddWorkflow(workflow);
             return workflow;
         }
         
-        void WHEN_SendingRegistration_as_Json(ITestClient testClient)
+        ITestClient WHEN_SendingRegistration_as_Json(ITestClient testClient)
         {
             _response = _browser.Post(UrnList.TestClientRegistrationPoint_absPath, with => {
                 with.JsonBody<ITestClient>(testClient);
                 with.Accept("application/json");
             });
+            return _response.Body.DeserializeJson<TestClient>();
         }
         
-        void WHEN_SendingRegistration_as_Xml(TestClient testClient)
+        ITestClient WHEN_SendingRegistration_as_Xml(TestClient testClient)
         {
             _response = _browser.Post(UrnList.TestClientRegistrationPoint_absPath, with => {
                 with.XMLBody<TestClient>(testClient);
                 with.Accept("application/xml");
             });
+            return _response.Body.DeserializeXml<TestClient>();
         }
         
         void WHEN_SendingDeregistration_as_json(ITestClient testClient)

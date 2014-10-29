@@ -55,19 +55,22 @@ namespace Tmx.Server.Tests
         
         public static ITestClient GivenTestClient(string hostname, string username, int testRunId)
         {
-            return new TestClient { Hostname = hostname, Username = username, TestRunId = testRunId };
+            // return new TestClient { Hostname = hostname, Username = username, TestRunId = testRunId };
+            return new TestClient { Hostname = hostname, Username = username };
         }
         
         public static ITestRun GetTestRunWithStatus(TestRunStatuses status)
         {
+            int maxWorkflowId = 0 < WorkflowCollection.Workflows.Count ? WorkflowCollection.Workflows.Max(w => w.Id) : 0;
             var workflow = new TestWorkflow {
-                Id = 1,
+                Id = ++maxWorkflowId,
                 Name = "workflow 01",
                 TestLabId = TestLabCollection.TestLabs.First().Id
             };
             WorkflowCollection.Workflows.Add(workflow);
+            int maxTestRunId = 0 < TestRunQueue.TestRuns.Count ? TestRunQueue.TestRuns.Max(tr => tr.Id) : 0;
             var testRun = new TestRun {
-                Id = 3,
+                Id = ++maxTestRunId,
                 Name = "test run 03",
                 TestLabId = TestLabCollection.TestLabs.First().Id
             };

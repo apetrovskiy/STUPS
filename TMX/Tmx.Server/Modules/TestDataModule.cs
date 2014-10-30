@@ -15,6 +15,7 @@ namespace Tmx.Server.Modules
 	using Nancy;
 	using Nancy.ModelBinding;
     using Nancy.Responses.Negotiation;
+    using Tmx.Core.Types.Remoting;
 	using Tmx.Interfaces.Remoting;
 	using Tmx.Interfaces.Server;
 	using Tmx.Core;
@@ -26,20 +27,28 @@ namespace Tmx.Server.Modules
     {
         public TestDataModule() : base(UrnList.TestData_Root)
         {
-        	Get[UrnList.TestData_CommonData_relPath] = _ => returnCommonData();
+            // TODO: fix it 20141030
+        	// Get[UrnList.TestData_CommonData_relPath] = _ => returnCommonData();
+        	Get[UrnList.TestData_CommonData_relPath] = parameters => returnCommonData(parameters.id);
+        	
+//        	Get[UrnList.TestData_CommonData_relPath + "{key}"] = parameters => {
+//        	    string key = parameters.key;
+//        	    /*
+//        	    Console.WriteLine("requested key: " + key);
+//        	    foreach (var k in CommonData.Data.Keys) {
+//        	        Console.WriteLine("key: " + k + ", value: " + CommonData.Data[k]);
+//        	    }
+//        	    */
+//        	    return (null == CommonData.Data[key]) ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(CommonData.Data[key]).WithStatusCode(HttpStatusCode.OK);
+//        	};
         	
         	Get[UrnList.TestData_CommonData_relPath + "{key}"] = parameters => {
+        	    var commonData = TestRunQueue.TestRuns.First(testRun => testRun.Id == parameters.id).Data.Data;
         	    string key = parameters.key;
-        	    /*
-        	    Console.WriteLine("requested key: " + key);
-        	    foreach (var k in CommonData.Data.Keys) {
-        	        Console.WriteLine("key: " + k + ", value: " + CommonData.Data[k]);
-        	    }
-        	    */
-        	    return (null == CommonData.Data[key]) ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(CommonData.Data[key]).WithStatusCode(HttpStatusCode.OK);
+        	    return (null == commonData[key]) ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(commonData[key]).WithStatusCode(HttpStatusCode.OK);
         	};
             
-            Post[UrnList.TestData_CommonData_relPath] = _ => {
+            Post[UrnList.TestData_CommonData_relPath] = parameters => {
                 var commonDataItem = this.Bind<CommonDataItem>();
                 /*
                 foreach (var header in Request.Headers) {
@@ -47,18 +56,22 @@ namespace Tmx.Server.Modules
                     Console.WriteLine(header.Value);
                 }
                 */
-                return addCommonDataItem(commonDataItem);
+                return addCommonDataItem(commonDataItem, parameters.id);
             };
             
             // TODO: delete
         }
-        
-        Negotiator returnCommonData()
+        // TODO: fix it 20141030
+        // Negotiator returnCommonData()
+        Negotiator returnCommonData(Guid testRunId)
         {
-        	return null != CommonData.Data ? Negotiate.WithModel(CommonData.Data).WithStatusCode(HttpStatusCode.OK) : Negotiate.WithStatusCode(HttpStatusCode.NotFound);
+        	// return null != CommonData.Data ? Negotiate.WithModel(CommonData.Data).WithStatusCode(HttpStatusCode.OK) : Negotiate.WithStatusCode(HttpStatusCode.NotFound);
+        	var commonData = TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId).Data.Data;
+        	return null != commonData ? Negotiate.WithModel(commonData) : Negotiate.WithStatusCode(HttpStatusCode.NotFound);
         }
 
-		HttpStatusCode addCommonDataItem(ICommonDataItem commonDataItem)
+		// HttpStatusCode addCommonDataItem(ICommonDataItem commonDataItem)
+		HttpStatusCode addCommonDataItem(ICommonDataItem commonDataItem, Guid testRunId)
 		{
 //			try {
 //				var existingDataItem = CommonData.Data[commonDataItem.Key];
@@ -88,8 +101,10 @@ namespace Tmx.Server.Modules
 //            CommonData.Data.Add(commonDataItem.Key, commonDataItem.Value);
 //            return HttpStatusCode.Created;
 //        }
-            var commonDataItems = new CommonDataItems();
-            commonDataItems.AddOrUpdateDataItem(commonDataItem);
+            
+//            var commonDataItems = new CommonData();
+//            commonDataItems.AddOrUpdateDataItem(commonDataItem);
+            TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId).Data.AddOrUpdateDataItem(commonDataItem);
             return HttpStatusCode.Created;
 		}
     }

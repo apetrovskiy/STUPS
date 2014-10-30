@@ -17,6 +17,7 @@ namespace Tmx.Commands
     /// <summary>
     /// Description of InvokeTmxTestTaskCommand.
     /// </summary>
+    // TODO: fix it 20141030
     [Cmdlet(VerbsLifecycle.Invoke, "TmxTestTask")]
     public class InvokeTmxTestTaskCommand : ClientCmdletBase
     {

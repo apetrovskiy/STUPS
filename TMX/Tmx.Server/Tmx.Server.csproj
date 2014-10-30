@@ -93,7 +93,7 @@
     <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Helpers\CommonDataItems.cs" />
+    <Compile Include="Helpers\CommonData.cs" />
     <Compile Include="Helpers\Control\InternalServerControl.cs" />
     <Compile Include="Helpers\Control\ModulesLoader.cs" />
     <Compile Include="Helpers\Control\PluginsLoader.cs" />

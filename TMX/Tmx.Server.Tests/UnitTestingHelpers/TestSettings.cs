@@ -33,7 +33,8 @@ namespace Tmx.Server.Tests
 			// ClientSettings.ResetData();
 			var clientSettings = ClientSettings.Instance;
 			clientSettings.ResetData();
-			CommonData.Data.Clear();
+			// 20141030
+			// CommonData.Data.Clear();
 			// 20141023
 			WorkflowCollection.Workflows.Clear();
 			// 20141026

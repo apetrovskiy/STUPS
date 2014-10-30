@@ -24,7 +24,8 @@ namespace Tmx.Core.Types.Remoting
 		
 		public TestRun()
 		{
-		    Data = new Dictionary<string, string>();
+		    // Data = new Dictionary<string, string>();
+		    Data = new CommonData();
             TestSuites = new List<ITestSuite>();
             Status = TestRunStatuses.Pending;
             Id = Guid.NewGuid();
@@ -33,7 +34,8 @@ namespace Tmx.Core.Types.Remoting
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public Dictionary<string, string> Data { get; set; }
+        // public Dictionary<string, string> Data { get; set; }
+        public ICommonData Data { get; set; }
         public List<ITestSuite> TestSuites { get; set; }
         public Guid TestLabId {
             get { return _workflow.TestLabId; }

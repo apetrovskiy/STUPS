@@ -10,27 +10,31 @@
 namespace Tmx
 {
     using System;
+    using System.Linq;
     using Tmx.Core;
+    using Tmx.Server;
     using Tmx.Commands;
     
     /// <summary>
     /// Description of GetTestCommonDataCommand.
     /// </summary>
-    class GetCommonDataItemCommand : TmxCommand
-    {
-        internal GetCommonDataItemCommand(CommonCmdletBase cmdlet) : base (cmdlet)
-        {
-        }
-        
-        internal override void Execute()
-        {
-            var cmdlet = (GetTmxCommonDataItemCommand)Cmdlet;
-            try {
-                cmdlet.WriteObject(CommonData.Data[cmdlet.Key]);
-            }
-            catch (Exception e) {
-                throw new Exception("Failed to get value with key '" + cmdlet.Key + "'. " + e.Message);
-            }
-        }
-    }
+    // TODO: fix it 20141030
+//    class GetCommonDataItemCommand : TmxCommand
+//    {
+//        internal GetCommonDataItemCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+//        {
+//        }
+//        
+//        internal override void Execute()
+//        {
+//            var cmdlet = (GetTmxCommonDataItemCommand)Cmdlet;
+//            try {
+//                // cmdlet.WriteObject(CommonData.Data[cmdlet.Key]);
+//                var commonData = TestRunQueue.TestRuns.First(testRun => testRun.Id == ClientsCollection
+//            }
+//            catch (Exception e) {
+//                throw new Exception("Failed to get value with key '" + cmdlet.Key + "'. " + e.Message);
+//            }
+//        }
+//    }
 }

@@ -11,10 +11,13 @@ namespace Tmx.Server.Tests.Modules
 {
     using System;
     using System.Management.Automation;
+    using System.Linq;
     using Nancy;
     using Nancy.Testing;
     using MbUnit.Framework;
     using NUnit.Framework;
+    using Tmx.Client;
+    using Tmx.Core.Types.Remoting;
 	using Tmx.Interfaces.Internal;
     using Tmx.Interfaces.Remoting;
 	using Tmx.Interfaces.Server;
@@ -31,15 +34,26 @@ namespace Tmx.Server.Tests.Modules
     [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class TestDataModuleTestFixture
     {
+	    ITestWorkflow _workflow;
+	    ITestRun _testRun;
+        
         public TestDataModuleTestFixture()
         {
             TestSettings.PrepareModuleTests();
+		    TestFactory.GetTestRunWithStatus(TestRunStatuses.Running);
+		    _workflow = WorkflowCollection.Workflows.First();
+		    _testRun = TestRunQueue.TestRuns.First();
+		    // ClientSettings.Instance.CurrentTask = new TestTask { TestRunId = _testRun };
         }
         
     	[MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
     	public void SetUp()
     	{
     	    TestSettings.PrepareModuleTests();
+		    TestFactory.GetTestRunWithStatus(TestRunStatuses.Running);
+		    _workflow = WorkflowCollection.Workflows.First();
+		    _testRun = TestRunQueue.TestRuns.First();
+		    // ClientSettings.Instance.CurrentTask = new TestTask { TestRunId = Guid.NewGuid() };
     	}
     	
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -129,12 +143,14 @@ namespace Tmx.Server.Tests.Modules
     	
     	void GIVEN_non_empty_CommonData()
     	{
-    	    CommonData.Data.Add("aaa", "bbb");
+    	    // CommonData.Data.Add("aaa", "bbb");
+    	    TestRunQueue.TestRuns.First().Data.Data.Add("aaa", "bbb");
     	}
     	
     	void GIVEN_dataItem_with_key(string key, string value)
     	{
-    	    CommonData.Data.Add(key, value);
+    	    // CommonData.Data.Add(key, value);
+    	    TestRunQueue.TestRuns.First().Data.Data.Add(key, value);
     	}
     	
     	ICommonDataItem GIVEN_CommonDataItem(string key, string value)
@@ -145,7 +161,10 @@ namespace Tmx.Server.Tests.Modules
         BrowserResponse WHEN_SendingCommonDataItem_as_Json(ICommonDataItem dataItem)
         {
             var browser = TestFactory.GetBrowserForTestDataModule();
-            return browser.Post(UrnList.CommonDataLoadingPoint_absPath, with => {
+            // var urn = UrnList.TestData_Root + "/" + ClientSettings.Instance.CurrentTask.TestRunId + UrnList.TestData_CommonData_forClient_relPath;
+            var urn = UrnList.TestData_Root + "/" + _testRun.Id + UrnList.TestData_CommonData_forClient_relPath;
+            // return browser.Post(UrnList.CommonDataLoadingPoint_absPath, with => {
+            return browser.Post(urn, with => {
                 with.JsonBody<ICommonDataItem>(dataItem);
                 with.Accept("application/json");
             });
@@ -154,7 +173,10 @@ namespace Tmx.Server.Tests.Modules
         BrowserResponse WHEN_SendingCommonDataItem_as_Xml(CommonDataItem dataItem)
         {
             var browser = TestFactory.GetBrowserForTestDataModule();
-            return browser.Post(UrnList.CommonDataLoadingPoint_absPath, with => {
+            // var urn = UrnList.TestData_Root + "/" + ClientSettings.Instance.CurrentTask.TestRunId + UrnList.TestData_CommonData_forClient_relPath;
+            var urn = UrnList.TestData_Root + "/" + _testRun.Id + UrnList.TestData_CommonData_forClient_relPath;
+            // return browser.Post(UrnList.CommonDataLoadingPoint_absPath, with => {
+            return browser.Post(urn, with => {
                 with.XMLBody<CommonDataItem>(dataItem);
                 with.Accept("application/xml");
             });
@@ -167,7 +189,9 @@ namespace Tmx.Server.Tests.Modules
         
         void THEN_CommonDataItem_Matches(ICommonDataItem dataItem)
         {
-            Xunit.Assert.Equal(CommonData.Data[dataItem.Key], dataItem.Value);
+            // Xunit.Assert.Equal(CommonData.Data[dataItem.Key], dataItem.Value);
+            // Xunit.Assert.Equal(TestRunQueue.TestRuns.First().Data.Data[dataItem.Key], dataItem.Value);
+            Xunit.Assert.Equal(_testRun.Data.Data[dataItem.Key], dataItem.Value);
         }
     }
 }

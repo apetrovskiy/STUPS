@@ -20,7 +20,8 @@ namespace Tmx.Interfaces.Remoting
 	{
 		TestRunStatuses Status { get; set; }
 		TestRunStartTypes StartType { get; set; }
-        Dictionary<string, string> Data { get; set; }
+        // Dictionary<string, string> Data { get; set; }
+        ICommonData Data { get; set; }
         List<ITestSuite> TestSuites { get; set; }
         // int WorkflowId { get; set; }
         // int WorkflowId { get; }

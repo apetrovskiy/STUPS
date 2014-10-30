@@ -55,9 +55,13 @@ namespace Tmx.Interfaces.Server
         public static string TestWorkflowLoadAll_absPath = TestWorkflows_Root + TestWorkflows_All_relPath;
         
         // TestDataModule
-        public const string TestData_Root = "/api/data";
-        public const string TestData_CommonData_relPath = "/";
-        public static string CommonDataLoadingPoint_absPath = TestData_Root + TestData_CommonData_relPath;
+        // public const string TestData_Root = "/api/data";
+        // public const string TestData_Root = "/api/testRuns/{id:guid}/data";
+        public static string TestData_Root = TestRuns_Root;
+        // public const string TestData_CommonData_relPath = "/";
+        public const string TestData_CommonData_relPath = "/{id:guid}/data/";
+        // public static string CommonDataLoadingPoint_absPath = TestData_Root + TestData_CommonData_relPath;
+        public static string TestData_CommonData_forClient_relPath = "/data/";
         
         // ExternalFilesModule
         public const string ExternalFiles_Root = "/api/files";

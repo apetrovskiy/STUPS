@@ -12,6 +12,7 @@ namespace Tmx.Client
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Tmx.Core.Types.Remoting;
     using Tmx.Interfaces.Remoting;
     
     /// <summary>
@@ -27,6 +28,8 @@ namespace Tmx.Client
         
         private ClientSettings()
         {
+            // 20141030
+            CommonData = new CommonData();
         }
         
         public static ClientSettings Instance
@@ -59,5 +62,9 @@ namespace Tmx.Client
         {
             TaskResult = null == TaskResult ? results : TaskResult.Concat(results);
         }
+        
+        // 20141030
+        public ICommonData CommonData { get; set; }
+        // public Guid TestRunId { get; set; }
     }
 }

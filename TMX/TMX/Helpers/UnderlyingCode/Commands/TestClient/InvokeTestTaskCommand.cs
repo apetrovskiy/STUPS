@@ -21,6 +21,7 @@ namespace Tmx
     /// <summary>
     /// Description of InvokeTestTaskCommand.
     /// </summary>
+    // TODO: fix it 20141030
     class InvokeTestTaskCommand : TmxCommand
     {
         internal InvokeTestTaskCommand(CommonCmdletBase cmdlet) : base (cmdlet)
@@ -46,7 +47,9 @@ namespace Tmx
 		void loadCommonData()
 		{
 		    var commonDataLoader = new CommonDataLoader(new RestRequestCreator());
-		    CommonData.Data = commonDataLoader.Load();
+		    // 20141030
+		    // CommonData.Data = commonDataLoader.Load();
+		    ClientSettings.Instance.CommonData.Data = commonDataLoader.Load();
 		}
 		
 		void runTask(ITestTask task)

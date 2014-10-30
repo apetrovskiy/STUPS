@@ -1,29 +1,51 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
- * Date: 9/10/2014
- * Time: 9:32 PM
+ * Date: 10/16/2014
+ * Time: 9:24 AM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Core
+namespace Tmx.Core.Types.Remoting
 {
     using System;
-	using System.Collections.Generic;
-	using Tmx.Interfaces.Remoting;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Tmx.Core;
+    using Tmx.Interfaces.Remoting;
     
     /// <summary>
     /// Description of CommonData.
     /// </summary>
-    public static class CommonData // : ICommonData
+    public class CommonData : ICommonData
     {
-        static CommonData()
+        public CommonData()
         {
             Data = new Dictionary<string, string>();
         }
         
-        // TODO: convert to a singleton
-        public static Dictionary<string, string> Data { get; set; }
+        public Dictionary<string, string> Data { get; set; }
+        
+        public void AddOrUpdateDataItem(ICommonDataItem commonDataItem)
+        {
+            // if (CommonData.Data.Keys.Any(key => key == commonDataItem.Key))
+            if (Data.Keys.Any(key => key == commonDataItem.Key))
+                updateExistingDataItem(commonDataItem);
+            else
+                addNewDataItem(commonDataItem);
+        }
+        
+        void addNewDataItem(ICommonDataItem commonDataItem)
+        {
+            // CommonData.Data.Add(commonDataItem.Key, commonDataItem.Value);
+            Data.Add(commonDataItem.Key, commonDataItem.Value);
+        }
+        
+        void updateExistingDataItem(ICommonDataItem commonDataItem)
+        {
+            // CommonData.Data[commonDataItem.Key] = commonDataItem.Value;
+            Data[commonDataItem.Key] = commonDataItem.Value;
+        }
     }
 }

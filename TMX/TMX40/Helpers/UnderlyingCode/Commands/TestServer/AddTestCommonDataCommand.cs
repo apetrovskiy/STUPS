@@ -17,26 +17,26 @@ namespace Tmx
     /// <summary>
     /// Description of AddTestCommonDataCommand.
     /// </summary>
-    class AddCommonDataItemCommand : TmxCommand
-    {
-        internal AddCommonDataItemCommand(CommonCmdletBase cmdlet) : base (cmdlet)
-        {
-        }
-        
-        internal override void Execute()
-        {
-            var cmdlet = (AddTmxCommonDataItemCommand)Cmdlet;
-            try {
-                // 20141016
-                // CommonData.Data.Add(cmdlet.Key, cmdlet.Value);
-                // TODO: DI
-                var commonDataItems = new CommonDataItems();
-                commonDataItems.AddOrUpdateDataItem(new CommonDataItem { Key = cmdlet.Key, Value = cmdlet.Value });
-                cmdlet.WriteObject(true);
-            }
-            catch (Exception e) {
-                throw new Exception("Failed to add value with key '" + cmdlet.Key + "'. " + e.Message);
-            }
-        }
-    }
+//    class AddCommonDataItemCommand : TmxCommand
+//    {
+//        internal AddCommonDataItemCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+//        {
+//        }
+//        
+//        internal override void Execute()
+//        {
+//            var cmdlet = (AddTmxCommonDataItemCommand)Cmdlet;
+//            try {
+//                // 20141016
+//                // CommonData.Data.Add(cmdlet.Key, cmdlet.Value);
+//                // TODO: DI
+//                var commonDataItems = new CommonData();
+//                commonDataItems.AddOrUpdateDataItem(new CommonDataItem { Key = cmdlet.Key, Value = cmdlet.Value });
+//                cmdlet.WriteObject(true);
+//            }
+//            catch (Exception e) {
+//                throw new Exception("Failed to add value with key '" + cmdlet.Key + "'. " + e.Message);
+//            }
+//        }
+//    }
 }

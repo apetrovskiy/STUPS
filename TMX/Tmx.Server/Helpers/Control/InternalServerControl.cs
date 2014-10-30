@@ -59,7 +59,8 @@ namespace Tmx.Server
 //            ClientsCollection.MaxUsedClientId = 0;
             TaskPool.TasksForClients = new System.Collections.Generic.List<ITestTask>();
             TaskPool.Tasks = new System.Collections.Generic.List<ITestTask>();
-            CommonData.Data = new System.Collections.Generic.Dictionary<string, string>();
+            // 20141030
+            // CommonData.Data = new System.Collections.Generic.Dictionary<string, string>();
         }
         
         protected override DiagnosticsConfiguration DiagnosticsConfiguration {
@@ -129,6 +130,8 @@ namespace Tmx.Server
 			Template.RegisterSafeType(typeof(TestRunStartTypes), member => member.ToString());
 			Template.RegisterSafeType(typeof(TestLab), new[] { "Id", "Name", "Description" });
 			Template.RegisterSafeType(typeof(TestTask), new[] { "Id", "Name", "TaskStatus", "TaskResult" });
+			
+			Template.RegisterSafeType(typeof(Guid), member => member.ToString());
         }
         
         static void loadPlugins()

@@ -7,16 +7,19 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-//namespace Tmx.Interfaces.Remoting
-//{
-//    using System;
-//	using System.Collections.Generic;
-//    
-//    /// <summary>
-//    /// Description of ICommonData.
-//    /// </summary>
-//    public interface ICommonData
-//    {
-//        // Dictionary<string, object> Data { get; set; }
-//    }
-//}
+namespace Tmx.Interfaces.Remoting
+{
+    using System;
+	using System.Collections.Generic;
+    
+    /// <summary>
+    /// Description of ICommonData.
+    /// </summary>
+    public interface ICommonData
+    {
+        Dictionary<string, string> Data { get; set; }
+        void AddOrUpdateDataItem(ICommonDataItem commonDataItem);
+//        void addNewDataItem(ICommonDataItem commonDataItem);
+//        void updateExistingDataItem(ICommonDataItem commonDataItem);
+    }
+}

@@ -27,7 +27,8 @@ namespace Tmx.Interfaces.Server
         // TestClientsModule
         public const string TestClients_Root = "/api/clients";
         public const string TestClientRegistrationPoint_relPath = "/";
-        const string TestClients_ClientById_relPath = "/{id:int}";
+        // const string TestClients_ClientById_relPath = "/{id:int}";
+        const string TestClients_ClientById_relPath = "/{id:guid}";
         public static string TestClientRegistrationPoint_absPath = TestClients_Root + TestClientRegistrationPoint_relPath;
         public static string TestClientDeregistrationPoint_relPath = TestClients_ClientById_relPath;
         public static string TestClientQueryPoint_relPath = TestClients_ClientById_relPath;
@@ -36,7 +37,8 @@ namespace Tmx.Interfaces.Server
         
         // TestTasksModule
         public const string TestTasks_Root = "/api/tasks";
-        public const string TestTasks_CurrentTaskForClientById_relPath = "/{id:int}";
+        // public const string TestTasks_CurrentTaskForClientById_relPath = "/{id:int}";
+        public const string TestTasks_CurrentTaskForClientById_relPath = "/{id:guid}";
         public const string TestTasks_Task = "/{id:int}";
         const string _testTasks_CurrentTask = "/currentTask";
         public static string CurrentTaskForClientById = TestTasks_Root + _testTasks_CurrentTask;
@@ -46,7 +48,8 @@ namespace Tmx.Interfaces.Server
         
         // TestWorkflowsModule
         public const string TestWorkflows_Root = "/api/workflows";
-        public const string TestWorkflows_GetByWorkflowId_relPath = "/{id:int}";
+        // public const string TestWorkflows_GetByWorkflowId_relPath = "/{id:int}";
+        public const string TestWorkflows_GetByWorkflowId_relPath = "/{id:guid}";
         public static string TestWorkflowById = TestWorkflows_Root + TestWorkflows_GetByWorkflowId_relPath;
         public const string TestWorkflows_All_relPath = "/";
         public static string TestWorkflowLoadAll_absPath = TestWorkflows_Root + TestWorkflows_All_relPath;
@@ -69,7 +72,8 @@ namespace Tmx.Interfaces.Server
         public const string TestRuns_Root = "/api/testRuns";
         public const string TestRunsControlPoint_relPath = "/";
         public const string TestRunsControlPoint_absPath = TestRuns_Root + TestRunsControlPoint_relPath;
-        public const string TestRuns_One_relPath = "/{id:int}";
+        // public const string TestRuns_One_relPath = "/{id:int}";
+        public const string TestRuns_One_relPath = "/{id:guid}";
         public const string TestRuns_One_absPath = TestRuns_Root + TestRuns_One_relPath;
         public const string TestRuns_ByName_relPath = "/{name}";
         public const string TestRuns_ByName_absPath = TestRuns_Root + TestRuns_ByName_relPath;

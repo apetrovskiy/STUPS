@@ -57,7 +57,8 @@ namespace Tmx.Server
 			return true;
 		}
 
-		public virtual int ImportXdocument(XContainer xDocument)
+		// public virtual int ImportXdocument(XContainer xDocument)
+		public virtual Guid ImportXdocument(XContainer xDocument)
 		{
             var workflowId = getWorkflowId(xDocument);
             var tasks = from task in xDocument.Descendants("task")
@@ -68,7 +69,8 @@ namespace Tmx.Server
             return workflowId;
 		}
 		
-        int getWorkflowId(XContainer xDocument)
+        // int getWorkflowId(XContainer xDocument)
+        Guid getWorkflowId(XContainer xDocument)
         {
             var wfl = xDocument.Descendants("workflow").FirstOrDefault();
             if (null == wfl)
@@ -79,28 +81,30 @@ namespace Tmx.Server
             return addWorkflow(workflowName);
         }
         
-        int addWorkflow(string name)
+        // int addWorkflow(string name)
+        Guid addWorkflow(string name)
         {
-            var workflow = new TestWorkflow { Name = name };
-			workflow.Id = generateWorkflowId();
+            var workflow = new TestWorkflow(TestLabCollection.TestLabs.First()) { Name = name };
+			// workflow.Id = generateWorkflowId();
 			WorkflowCollection.AddWorkflow(workflow);
 			return workflow.Id;
         }
         
-        int generateWorkflowId()
-        {
-			int maxId = 0;
-			if (0 < WorkflowCollection.Workflows.Count)
-				maxId = WorkflowCollection.Workflows.Max(wkfl => wkfl.Id);
-			return ++maxId;
-        }
+//        int generateWorkflowId()
+//        {
+//			int maxId = 0;
+//			if (0 < WorkflowCollection.Workflows.Count)
+//				maxId = WorkflowCollection.Workflows.Max(wkfl => wkfl.Id);
+//			return ++maxId;
+//        }
         
 		internal virtual void addTasksToCommonPool(IEnumerable<ITestTask> importedTasks)
 		{
 			TaskPool.Tasks.AddRange(importedTasks);
 		}
 		
-		internal virtual ITestTask getNewTestTask(XContainer taskNode, int workflowId)
+		// internal virtual ITestTask getNewTestTask(XContainer taskNode, int workflowId)
+		internal virtual ITestTask getNewTestTask(XContainer taskNode, Guid workflowId)
 		{
 			return new TestTask {
 		        Action = getActionCode(taskNode, taskElement_action),

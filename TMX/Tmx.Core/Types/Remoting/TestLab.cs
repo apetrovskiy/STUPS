@@ -17,7 +17,12 @@ namespace Tmx.Core.Types.Remoting
 	/// </summary>
 	public class TestLab : ITestLab
 	{
-		public int Id { get; set; }
+	    public TestLab()
+	    {
+	        Id = Guid.NewGuid();
+	    }
+	    
+		public Guid Id { get; set; }
 		public string Name { get; set; }
 		public string Description { get; set; }
 	}

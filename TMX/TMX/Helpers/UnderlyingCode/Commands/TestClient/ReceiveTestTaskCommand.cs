@@ -47,7 +47,8 @@ namespace Tmx
                     task = taskLoader.GetCurrentTask();
                 }
                 catch (ClientNotRegisteredException) {
-                    if (0 != ClientSettings.Instance.ClientId && string.Empty != ClientSettings.Instance.ServerUrl) {
+                    // if (0 != ClientSettings.Instance.ClientId && string.Empty != ClientSettings.Instance.ServerUrl) {
+                    if (Guid.Empty != ClientSettings.Instance.ClientId && string.Empty != ClientSettings.Instance.ServerUrl) {
                         var registration = new Registration(new RestRequestCreator());
                         ClientSettings.Instance.ClientId = registration.SendRegistrationInfoAndGetClientId(ClientSettings.Instance.CurrentClient.CustomString);
                     }

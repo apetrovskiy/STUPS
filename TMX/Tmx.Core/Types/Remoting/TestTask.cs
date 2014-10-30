@@ -28,7 +28,6 @@ namespace Tmx.Core.Types.Remoting
 	    }
 	    
 		public int Id { get; set; }
-		// public int Order { get; set; }
 		public int PreviousTaskId { get; set; }
 		public int AfterTask { get; set; }
 		public bool IsActive { get; set; }
@@ -55,9 +54,9 @@ namespace Tmx.Core.Types.Remoting
 		public TestTaskStatuses TaskStatus { get; set; }
 		public IDictionary<string, string> PreviousTaskResult { get; set; }
 		public IDictionary<string, string> TaskResult { get; set; }
-		public int ClientId { get; set; }
-		public int WorkflowId { get; set; }
-		public int TestRunId { get; set; }
+		public Guid ClientId { get; set; }
+		public Guid WorkflowId { get; set; }
+		public Guid TestRunId { get; set; }
 		
 		// 20141020 sqeezing a task to its proxy
 		public void StartTimer()

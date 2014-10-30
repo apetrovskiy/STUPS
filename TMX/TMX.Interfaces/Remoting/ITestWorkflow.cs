@@ -16,6 +16,6 @@ namespace Tmx.Interfaces.Remoting
 	/// </summary>
 	public interface ITestWorkflow : IWorkflow
 	{
-		
+		void SetTestLab(ITestLab testLab);
 	}
 }

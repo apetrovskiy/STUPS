@@ -29,7 +29,7 @@ namespace Tmx.Core
                 AfterActionParameters = task.AfterActionParameters,
                 BeforeAction = task.BeforeAction,
                 BeforeActionParameters = task.BeforeActionParameters,
-                ClientId = 0,
+                // ClientId = 0,
                 TaskFinished = false,
                 ExpectedResult = task.ExpectedResult,
                 Id = task.Id,

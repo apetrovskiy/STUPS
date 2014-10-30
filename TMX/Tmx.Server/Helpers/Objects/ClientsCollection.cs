@@ -19,6 +19,6 @@ namespace Tmx.Server
 	public class ClientsCollection
 	{
 		public static List<ITestClient> Clients = new List<ITestClient>();
-		public static int MaxUsedClientId { get; set; }
+//		public static int MaxUsedClientId { get; set; }
 	}
 }

@@ -22,7 +22,8 @@ namespace Tmx.Server
 	/// </summary>
 	public class TaskSelector
 	{
-	    public virtual List<ITestTask> SelectTasksForClient(int clientId, List<ITestTask> tasks)
+	    // public virtual List<ITestTask> SelectTasksForClient(int clientId, List<ITestTask> tasks)
+	    public virtual List<ITestTask> SelectTasksForClient(Guid clientId, List<ITestTask> tasks)
 	    {
 	        var resultTaskScope = new List<ITestTask>();
 	        
@@ -84,7 +85,8 @@ namespace Tmx.Server
             return resultTaskScope;
 	    }
 	    
-		public virtual ITestTask GetFirstLegibleTask(int clientId)
+		// public virtual ITestTask GetFirstLegibleTask(int clientId)
+		public virtual ITestTask GetFirstLegibleTask(Guid clientId)
 		{
 			var taskListForClient = getOnlyNewTestTasksForClient(clientId);
 			if (null == taskListForClient || !taskListForClient.Any()) return null;
@@ -107,7 +109,8 @@ namespace Tmx.Server
 			return isItTimeToPublishTask(taskCandidate) ? taskCandidate : null;
 		}
 		
-		public virtual ITestTask GetNextLegibleTask(int clientId, int currentTaskId)
+		// public virtual ITestTask GetNextLegibleTask(int clientId, int currentTaskId)
+		public virtual ITestTask GetNextLegibleTask(Guid clientId, int currentTaskId)
 		{
 			var taskListForClient = getOnlyNewTestTasksForClient(clientId);
 			if (null == taskListForClient || !taskListForClient.Any()) return null;
@@ -117,7 +120,8 @@ namespace Tmx.Server
 			return taskListForClient.First(task => task.Id == tasksToBeNextOne.Min(tsk => tsk.Id));
 		}
 		
-        public virtual void CancelFurtherTasks(int clientId)
+        // public virtual void CancelFurtherTasks(int clientId)
+        public virtual void CancelFurtherTasks(Guid clientId)
         {
 //             TaskPool.TasksForClients
 //                 // 20141022
@@ -134,7 +138,8 @@ namespace Tmx.Server
                 .ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled);
         }
         
-		internal virtual IEnumerable<ITestTask> getOnlyNewTestTasksForClient(int clientId)
+		// internal virtual IEnumerable<ITestTask> getOnlyNewTestTasksForClient(int clientId)
+		internal virtual IEnumerable<ITestTask> getOnlyNewTestTasksForClient(Guid clientId)
 		{
 		    return TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.IsActive && task.TaskStatus == TestTaskStatuses.New);
 		    // return TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.TestRunId == ClientsCollection.Clients.First(client => client.Id == clientId).TestRunId && task.TaskStatus == TestTaskStatuses.New);
@@ -147,5 +152,23 @@ namespace Tmx.Server
             if (0 == numberOfMustDoneBeforeTask) return true;
 			return TaskPool.TasksForClients.Any(t => t.Id == numberOfMustDoneBeforeTask) && !TaskPool.TasksForClients.Any(t => t.Id == numberOfMustDoneBeforeTask && !t.TaskFinished);
         }
+		
+		// internal virtual void addTasksForEveryClient(IEnumerable<ITestTask> activeWorkflowsTasks)
+		internal virtual void AddTasksForEveryClient(IEnumerable<ITestTask> activeWorkflowsTasks, Guid testRunId)
+		{
+		    if (0 == ClientsCollection.Clients.Count) return;
+			var taskSorter = new TaskSelector();
+			foreach (var clientId in ClientsCollection.Clients.Where(client => client.IsInActiveTestRun()).Select(client => client.Id)) {
+			    // TaskPool.TasksForClients.AddRange(taskSorter.SelectTasksForClient(clientId, activeWorkflowsTasks.ToList()));
+			    // taskSorter.SelectTasksForClient(clientId, activeWorkflowsTasks.ToList()).ForEach(task => task.TestRunId = testRunId);
+Console.WriteLine("test run Id = {0}", testRunId);
+			    var tasksForClient = taskSorter.SelectTasksForClient(clientId, activeWorkflowsTasks.ToList());
+if (null != tasksForClient)
+    foreach (var t in tasksForClient)
+        Console.WriteLine("task Id = {0}, name = {1}, clientId = {2}", t.Id, t.Name, t.ClientId);
+			    tasksForClient.ForEach(task => task.TestRunId = testRunId);
+			    TaskPool.TasksForClients.AddRange(tasksForClient);
+			}
+		}
 	}
 }

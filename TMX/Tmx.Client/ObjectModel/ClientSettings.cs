@@ -35,7 +35,7 @@ namespace Tmx.Client
         }
         
         public string ServerUrl { get; set; }
-        public int ClientId { get; set; }
+        public Guid ClientId { get; set; }
         public bool StopImmediately { get; set; }
         public IEnumerable<string> TaskResult { get; set; }
         // 20141020 sqeezing a task to its proxy
@@ -47,12 +47,11 @@ namespace Tmx.Client
         
         public void ResetData()
         {
-			ClientId = 0;
+			ClientId = Guid.Empty;
 			ServerUrl = string.Empty;
 			StopImmediately = false;
 			TaskResult = new string[] {};
 			CurrentTask = null;
-			// 20141001
 			CurrentClient = null;
         }
         

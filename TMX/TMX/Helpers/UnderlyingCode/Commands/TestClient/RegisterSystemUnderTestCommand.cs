@@ -44,7 +44,8 @@ namespace Tmx
                     // cmdlet.WriteProgress(new System.Management.Automation.ProgressRecord(
                 }
                 
-				if (0 != clientSettings.ClientId)
+				// if (0 != clientSettings.ClientId)
+				if (Guid.Empty != clientSettings.ClientId)
 					break;
                 
 				if (!cmdlet.Continuous)

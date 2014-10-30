@@ -30,7 +30,8 @@ namespace Tmx.Server.Modules
             Delete[UrnList.TestWorkflows_GetByWorkflowId_relPath] = parameters => deleteWorkflowById(parameters.id);
         }
 
-        Negotiator returnWorkflowById(int workflowId)
+        // Negotiator returnWorkflowById(int workflowId)
+        Negotiator returnWorkflowById(Guid workflowId)
         {
             if (WorkflowCollection.Workflows.All(wfl => wfl.Id != workflowId))
                 return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed);
@@ -45,7 +46,8 @@ namespace Tmx.Server.Modules
             return Negotiate.WithModel(WorkflowCollection.Workflows).WithStatusCode(HttpStatusCode.OK);
         }
         
-        Negotiator deleteWorkflowById(int workflowId)
+        // Negotiator deleteWorkflowById(int workflowId)
+        Negotiator deleteWorkflowById(Guid workflowId)
         {
             if (WorkflowCollection.Workflows.All(wfl => wfl.Id != workflowId))
                 return Negotiate.WithStatusCode(HttpStatusCode.OK);

@@ -36,7 +36,7 @@ namespace Tmx.Client
 		public virtual ITestTask GetCurrentTask()
 		// public virtual ITestTaskCodeProxy GetCurrentTask()
 		{
-            if (0 == ClientSettings.Instance.ClientId)
+            if (Guid.Empty == ClientSettings.Instance.ClientId)
                 throw new ClientNotRegisteredException("Client is not registered. Run the Register-TmxSystemUnderTest cmdlet first");
             // 20141020 sqeezing a task to its proxy
             HttpResponseMessage<TestTask> gettingTaskResponse = null;

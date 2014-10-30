@@ -31,7 +31,7 @@ namespace Tmx.Client
 	    	_restTemplate = requestCreator.GetRestTemplate();
 	    }
         
-        public virtual int SendRegistrationInfoAndGetClientId(string customClientString)
+        public virtual Guid SendRegistrationInfoAndGetClientId(string customClientString)
 		{
 			var registrationResponse = _restTemplate.PostForMessage<TestClient>(UrnList.TestClientRegistrationPoint_absPath, getNewTestClient(customClientString));
 			

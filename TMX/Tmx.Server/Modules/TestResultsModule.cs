@@ -28,8 +28,6 @@ namespace Tmx.Server.Modules
     {
         public TestResultsModule() : base(UrnList.TestStructure_Root)
         {
-            // StaticConfiguration.DisableErrorTraces = false;
-            
             Post[UrnList.TestResultsPostingPoint_relPath] = _ => importTestResults();
             
             Get[UrnList.TestResultsPostingPoint_relPath] = _ => exportTestResults();

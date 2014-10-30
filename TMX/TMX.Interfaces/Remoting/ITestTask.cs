@@ -44,8 +44,10 @@ namespace Tmx.Interfaces.Remoting
 		// IDictionary<string, string> PreviousTaskResult { get; set; }
 		// IDictionary<string, string> TaskResult { get; set; }
 		// int ClientId { get; set; }
-		int WorkflowId { get; set; }
-		int TestRunId { get; set; }
+		// int WorkflowId { get; set; }
+		Guid WorkflowId { get; set; }
+		// int TestRunId { get; set; }
+		Guid TestRunId { get; set; }
 	}
 	
 	/*

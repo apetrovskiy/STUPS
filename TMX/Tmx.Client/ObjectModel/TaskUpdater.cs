@@ -41,7 +41,7 @@ namespace Tmx.Client
 			}
 		}
 		
-		public virtual bool SendTaskResult(ITestTask task, int clientId)
+		public virtual bool SendTaskResult(ITestTask task, Guid clientId)
 		{
 			try {
 			    _restTemplate.Put(UrnList.CurrentTaskForClientById + "/" + clientId, task);

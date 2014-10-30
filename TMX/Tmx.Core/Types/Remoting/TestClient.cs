@@ -40,9 +40,11 @@ namespace Tmx.Core
             Username = testPlatform.Username;
             UserDomainName = testPlatform.UserDomainName;
             Status = TestClientStatuses.NoTasks;
+            Id = Guid.NewGuid();
 	    }
 	    
-		public int Id { get; set; }
+		// public int Id { get; set; }
+		public Guid Id { get; set; }
 		public string Hostname { get; set; } // Environment.MachineNam
 		public string Fqdn { get; set; }
 		public List<string> IpAddresses { get; set; }
@@ -61,10 +63,9 @@ namespace Tmx.Core
 		public int UptimeSeconds { get; set; } // Environment.TickCount / 1000
 		public string CustomString { get; set; }
 		public TestClientStatuses Status { get; set; }
-		// 20141003
 		public int TaskId { get; set; }
 		public string TaskName { get; set; }
 		public string DetailedStatus { get; set; }
-		public int TestRunId { get; set; }
+		public Guid TestRunId { get; set; }
 	}
 }

@@ -36,8 +36,10 @@ namespace Tmx.Server.Helpers
 
         internal virtual bool waitForWorkflow(string name)
         {
-            int workflowId = 0;
+            // int workflowId = 0;
+            var workflowId = Guid.Empty;
             if (!string.IsNullOrEmpty(name))
+                // workflowId = WorkflowCollection.Workflows.First(wfl => wfl.Name == name).Id;
                 workflowId = WorkflowCollection.Workflows.First(wfl => wfl.Name == name).Id;
             return thereHaveNotBeenTasksAllocated(workflowId) || allTasksAreComplete(workflowId);
         }
@@ -81,13 +83,16 @@ namespace Tmx.Server.Helpers
 //            return !TaskPool.TasksForClients.Any() && !ClientsCollection.Clients.Any();
 //        }
         
-        bool thereHaveNotBeenTasksAllocated(int workflowId)
+        // bool thereHaveNotBeenTasksAllocated(int workflowId)
+        bool thereHaveNotBeenTasksAllocated(Guid workflowId)
         {
             // return !TaskPool.TasksForClients.Any();
-            return 0 == workflowId ? !TaskPool.TasksForClients.Any() : TaskPool.TasksForClients.All(task => task.WorkflowId != workflowId);
+            // return 0 == workflowId ? !TaskPool.TasksForClients.Any() : TaskPool.TasksForClients.All(task => task.WorkflowId != workflowId);
+            return Guid.Empty == workflowId ? !TaskPool.TasksForClients.Any() : TaskPool.TasksForClients.All(task => task.WorkflowId != workflowId);
         }
         
-        bool allTasksAreComplete(int workflowId)
+        // bool allTasksAreComplete(int workflowId)
+        bool allTasksAreComplete(Guid workflowId)
         {
 //            return TaskPool.TasksForClients.Any(task => task.TaskStatus == TestTaskStatuses.New || 
 //                                                task.TaskStatus == TestTaskStatuses.Accepted);
@@ -98,7 +103,8 @@ namespace Tmx.Server.Helpers
 //                TaskPool.TasksForClients.Any(task => task.WorkflowId == workflowId && (task.TaskStatus == TestTaskStatuses.New || 
 //                                                                                       task.TaskStatus == TestTaskStatuses.Accepted));
             
-            return 0 == workflowId ?
+            // return 0 == workflowId ?
+            return Guid.Empty == workflowId ?
                 TaskPool.TasksForClients.Any(task => !task.IsFinished()) :
                 TaskPool.TasksForClients.Any(task => task.WorkflowId == workflowId && !task.IsFinished());
         }

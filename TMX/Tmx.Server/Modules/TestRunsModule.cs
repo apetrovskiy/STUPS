@@ -15,6 +15,7 @@ namespace Tmx.Server.Modules
 	using Nancy;
 	using Nancy.ModelBinding;
 	using Nancy.Responses.Negotiation;
+	using Tmx.Core;
 	using Tmx.Core.Types.Remoting;
 	using Tmx.Interfaces.Remoting;
 	using Tmx.Interfaces.Server;
@@ -43,37 +44,35 @@ namespace Tmx.Server.Modules
         
         Negotiator setTestRun(TestRunCommand testRunCommand)
         {
+            if (string.IsNullOrEmpty(testRunCommand.WorkflowName))
+                return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
+            if (string.IsNullOrEmpty(testRunCommand.Name))
+                testRunCommand.Name = testRunCommand.WorkflowName + " " + DateTime.Now;
             var testRun = new TestRun { Name = testRunCommand.Name, Status = testRunCommand.Status };
             (testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testRunCommand.WorkflowName));
-            if (0 == testRun.WorkflowId)
+            if (Guid.Empty == testRun.WorkflowId)
                 return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
             if (TestRunStartTypes.Immediately == testRun.StartType) {
-                testRun.StartTime = DateTime.Now;
-                testRun.Status = TestRunStatuses.Running;
+                if (TestRunQueue.TestRuns.Any(tr => tr.TestLabId == testRun.TestLabId))
+                    testRun.Status = TestRunStatuses.Pending;
+                else {
+                    testRun.StartTime = DateTime.Now;
+                    testRun.Status = TestRunStatuses.Running;
+                }
             }
-			int maxId = 0;
-			if (0 < TestRunQueue.TestRuns.Count)
-			   maxId = TestRunQueue.TestRuns.Max(tr => tr.Id);
-			testRun.Id = ++maxId;
             TestRunQueue.TestRuns.Add(testRun);
-            addTasksForEveryClient(TaskPool.Tasks.Where(task => WorkflowCollection.Workflows.ActiveWorkflowIds().Contains(task.WorkflowId)));
+            // there are no test clients on the new test run
+            // var taskSelector = new TaskSelector();
+            // taskSelector.AddTasksForEveryClient(TaskPool.Tasks.Where(task => WorkflowCollection.Workflows.ActiveWorkflowIds().Contains(task.WorkflowId)), testRun.Id);
+            
             // TODO: trySet InProgress
             return Negotiate.WithStatusCode(HttpStatusCode.Created);
         }
         
-		Negotiator deleteTestRun(int testRunId)
+		Negotiator deleteTestRun(Guid testRunId)
 		{
 			TestRunQueue.TestRuns.RemoveAll(tr => tr.Id == testRunId);
 			return Negotiate.WithStatusCode(HttpStatusCode.OK);
-		}
-		
-		internal virtual void addTasksForEveryClient(IEnumerable<ITestTask> activeWorkflowsTasks)
-		{
-		    if (0 == ClientsCollection.Clients.Count) return;
-			var taskSorter = new TaskSelector();
-			foreach (var clientId in ClientsCollection.Clients.Where(client => client.IsInActiveTestRun()).Select(client => client.Id)) {
-			    TaskPool.TasksForClients.AddRange(taskSorter.SelectTasksForClient(clientId, activeWorkflowsTasks.ToList()));
-			}
 		}
 	}
 }

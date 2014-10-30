@@ -53,7 +53,8 @@ namespace Tmx.Server.Tests.Helpers
     	public void Should_add_a_workflow_to_the_collection()
     	{
     	    GIVEN_ThereAreTasksInCommonPool();
-    	    int workflowId = WHEN_ImportingTasks(@"../../Modules/Workflow1.xml");
+    	    // int workflowId = WHEN_ImportingTasks(@"../../Modules/Workflow1.xml");
+    	    var workflowId = WHEN_ImportingTasks(@"../../Modules/Workflow1.xml");
     	    THEN_NumberOfCommonTasksIncreasedBy(10);
     	    THEN_workflow_has_been_added(workflowId);
     	}
@@ -62,7 +63,8 @@ namespace Tmx.Server.Tests.Helpers
     	public void Should_add_tasks_with_workflow_id()
     	{
     	    GIVEN_ThereAreTasksInCommonPool();
-    	    int workflowId = WHEN_ImportingTasks(@"../../Modules/Workflow1.xml");
+    	    // int workflowId = WHEN_ImportingTasks(@"../../Modules/Workflow1.xml");
+    	    var workflowId = WHEN_ImportingTasks(@"../../Modules/Workflow1.xml");
     	    THEN_NumberOfCommonTasksIncreasedBy(10);
     	    THEN_workflow_has_been_added(workflowId);
     	    THEN_there_are_number_of_tasks_for_selected_workflow(10, workflowId);
@@ -73,7 +75,8 @@ namespace Tmx.Server.Tests.Helpers
     	public void Should_add_no_tasks_if_no_valid_path_provided()
     	{
     	    GIVEN_ThereAreTasksInCommonPool();
-    	    int workflowId = WHEN_ImportingTasks(@"../../Modules/wrong_path.xml");
+    	    // int workflowId = WHEN_ImportingTasks(@"../../Modules/wrong_path.xml");
+    	    var workflowId = WHEN_ImportingTasks(@"../../Modules/wrong_path.xml");
     	    THEN_NumberOfCommonTasksIncreasedBy(10);
     	    THEN_workflow_has_been_added(workflowId);
     	    THEN_there_are_number_of_tasks_for_selected_workflow(10, workflowId);
@@ -82,8 +85,10 @@ namespace Tmx.Server.Tests.Helpers
     	// ==========================================================================================
     	void GIVEN_ThereAreTasksInCommonPool()
     	{
-    	    TaskPool.Tasks.Add(new TestTask { Name = "task001", Id = 10, WorkflowId = 100 });
-    	    TaskPool.Tasks.Add(new TestTask { Name = "task002", Id = 20, WorkflowId = 101 });
+    	    // TaskPool.Tasks.Add(new TestTask { Name = "task001", Id = 10, WorkflowId = 100 });
+    	    TaskPool.Tasks.Add(new TestTask { Name = "task001", Id = 10, WorkflowId = new Guid() });
+    	    // TaskPool.Tasks.Add(new TestTask { Name = "task002", Id = 20, WorkflowId = 101 });
+    	    TaskPool.Tasks.Add(new TestTask { Name = "task002", Id = 20, WorkflowId = new Guid() });
     	}
     	
     	void WHEN_AddedFakeImportedTasks(params ITestTask[] tasks)
@@ -96,7 +101,8 @@ namespace Tmx.Server.Tests.Helpers
     	    workflowLoader.ImportXdocument(xDoc);
     	}
     	
-		int WHEN_ImportingTasks(string path)
+		// int WHEN_ImportingTasks(string path)
+		Guid WHEN_ImportingTasks(string path)
 		{
 			var workflowLoader = new WorkflowLoader();
 			// return workflowLoader.ImportXdocument(XDocument.Load(path));
@@ -109,12 +115,14 @@ namespace Tmx.Server.Tests.Helpers
     	    Xunit.Assert.Equal(2 + number, TaskPool.Tasks.Count);
     	}
     	
-		void THEN_workflow_has_been_added(int workflowId)
+		// void THEN_workflow_has_been_added(int workflowId)
+		void THEN_workflow_has_been_added(Guid workflowId)
 		{
 			Xunit.Assert.Equal(true, WorkflowCollection.Workflows.Any(wfl => wfl.Id == workflowId));
 		}
 		
-		void THEN_there_are_number_of_tasks_for_selected_workflow(int numberOfTasks, int workflowId)
+		// void THEN_there_are_number_of_tasks_for_selected_workflow(int numberOfTasks, int workflowId)
+		void THEN_there_are_number_of_tasks_for_selected_workflow(int numberOfTasks, Guid workflowId)
 		{
 			Xunit.Assert.Equal(numberOfTasks, TaskPool.Tasks.Count(task => task.WorkflowId == workflowId));
 		}

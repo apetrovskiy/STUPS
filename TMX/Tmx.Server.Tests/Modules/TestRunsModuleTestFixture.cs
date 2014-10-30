@@ -12,6 +12,7 @@ namespace Tmx.Server.Tests.Modules
 	using System;
 	using System.Linq;
 	using Nancy.Testing;
+	using Tmx.Core;
 	using Tmx.Core.Types.Remoting;
 	using Tmx.Interfaces.Remoting;
 	using Tmx.Interfaces.Server;
@@ -42,22 +43,55 @@ namespace Tmx.Server.Tests.Modules
 		[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 		public void Should_create_first_testRun_object_as_json()
 		{
-			GIVEN_testWorkflow();
+			GIVEN_first_testWorkflow();
 			
 			WHEN_sending_testRun_as_json("CRsuite");
 			
 			THEN_there_should_be_the_following_number_of_testRun_objects(1);
+			THEN_testRun_is_running(TestRunQueue.TestRuns[0]);
 		}
 		
 		[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-		public void Should_create_second_testRun_object_as_json()
+		public void Should_create_second_testRun_object_to_another_workflow_and_another_testLab_Running_as_json()
 		{
-			GIVEN_testWorkflow();
+			GIVEN_first_testWorkflow();
+			GIVEN_second_testWorkflow();
+			var secondTestWorkflow = WorkflowCollection.Workflows.Skip(1).First();
+			secondTestWorkflow.SetTestLab(new TestLab());
+			
+			WHEN_sending_testRun_as_json("CRsuite");
+			WHEN_sending_testRun_as_json("NAC");
+			
+			THEN_there_should_be_the_following_number_of_testRun_objects(2);
+			THEN_testRun_is_running(TestRunQueue.TestRuns[0]);
+			THEN_testRun_is_running(TestRunQueue.TestRuns[1]);
+		}
+		
+		[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+		public void Should_create_second_testRun_object_to_another_workflow_Pending_as_json()
+		{
+			GIVEN_first_testWorkflow();
+			GIVEN_second_testWorkflow();
+			
+			WHEN_sending_testRun_as_json("CRsuite");
+			WHEN_sending_testRun_as_json("NAC");
+			
+			THEN_there_should_be_the_following_number_of_testRun_objects(2);
+			THEN_testRun_is_running(TestRunQueue.TestRuns[0]);
+			THEN_testRun_is_pending(TestRunQueue.TestRuns[1]);
+		}
+		
+		[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+		public void Should_create_second_testRun_object_to_the_same_workflow_Pending_as_json()
+		{
+		    GIVEN_first_testWorkflow();
 			
 			WHEN_sending_testRun_as_json("CRsuite");
 			WHEN_sending_testRun_as_json("CRsuite");
 			
 			THEN_there_should_be_the_following_number_of_testRun_objects(2);
+			THEN_testRun_is_running(TestRunQueue.TestRuns[0]);
+			THEN_testRun_is_pending(TestRunQueue.TestRuns[1]);
 		}
 		
 //    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -117,11 +151,23 @@ namespace Tmx.Server.Tests.Modules
 //    	    Xunit.Assert.Equal(0, 1);
 //    	}
 		
-		void GIVEN_testWorkflow()
+		void GIVEN_first_testWorkflow()
 		{
 			var serverCommand = new ServerCommand {
 				Command = ServerControlCommands.LoadConfiguraiton,
 				Data = @"../../Modules/Workflow1.xml"
+			};
+			_browser.Put(UrnList.ServerControlPoint_absPath, with => {
+				with.JsonBody<ServerCommand>(serverCommand);
+				with.Accept("application/json");
+			});
+		}
+		
+		void GIVEN_second_testWorkflow()
+		{
+			var serverCommand = new ServerCommand {
+				Command = ServerControlCommands.LoadConfiguraiton,
+				Data = @"../../Modules/Workflow2.xml"
 			};
 			_browser.Put(UrnList.ServerControlPoint_absPath, with => {
 				with.JsonBody<ServerCommand>(serverCommand);
@@ -145,5 +191,15 @@ namespace Tmx.Server.Tests.Modules
 		{
 			Xunit.Assert.Equal(number, TestRunQueue.TestRuns.Count);
 		}
+		
+        void THEN_testRun_is_running(ITestRun testRun)
+        {
+            Xunit.Assert.Equal(true, testRun.IsActive());
+        }
+        
+        void THEN_testRun_is_pending(ITestRun testRun)
+        {
+            Xunit.Assert.Equal(true, testRun.IsPending());
+        }
 	}
 }

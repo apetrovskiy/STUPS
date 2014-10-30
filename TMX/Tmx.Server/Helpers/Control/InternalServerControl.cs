@@ -56,7 +56,7 @@ namespace Tmx.Server
         public static void Reset()
         {
             ClientsCollection.Clients = new System.Collections.Generic.List<ITestClient>();
-            ClientsCollection.MaxUsedClientId = 0;
+//            ClientsCollection.MaxUsedClientId = 0;
             TaskPool.TasksForClients = new System.Collections.Generic.List<ITestTask>();
             TaskPool.Tasks = new System.Collections.Generic.List<ITestTask>();
             CommonData.Data = new System.Collections.Generic.Dictionary<string, string>();
@@ -122,8 +122,13 @@ namespace Tmx.Server
 			Template.RegisterSafeType(typeof(ITestScenario), new[] { "Id", "Name", "Status", "TestResults", "PlatformId" });
 			Template.RegisterSafeType(typeof(ITestResult), new[] { "Id", "Name", "Status", "Origin", "PlatformId" });
 			Template.RegisterSafeType(typeof(TestResultOrigins), member => member.ToString());
+			
+			Template.RegisterSafeType(typeof(TestWorkflow), new[] { "Id", "Name", "TestLabId", "Description" });
 			Template.RegisterSafeType(typeof(TestRun), new[] { "Id", "Name", "WorkflowId", "TestLabId", "Description", "Status" });
+			Template.RegisterSafeType(typeof(TestRunStatuses), member => member.ToString());
+			Template.RegisterSafeType(typeof(TestRunStartTypes), member => member.ToString());
 			Template.RegisterSafeType(typeof(TestLab), new[] { "Id", "Name", "Description" });
+			Template.RegisterSafeType(typeof(TestTask), new[] { "Id", "Name", "TaskStatus", "TaskResult" });
         }
         
         static void loadPlugins()

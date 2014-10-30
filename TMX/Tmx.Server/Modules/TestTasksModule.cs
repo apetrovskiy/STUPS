@@ -50,7 +50,8 @@ namespace Tmx.Server.Modules
 			Delete[UrnList.TestTasks_AllLoaded_relPath + UrnList.TestTasks_Task] = parameters => deleteLoadedTaskById(parameters).id;
         }
         
-		Negotiator returnTaskByClientId(int clientId)
+		// Negotiator returnTaskByClientId(int clientId)
+		Negotiator returnTaskByClientId(Guid clientId)
         {
             if (ClientsCollection.Clients.All(client => client.Id != clientId))
                 return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed);
@@ -130,7 +131,8 @@ namespace Tmx.Server.Modules
             return HttpStatusCode.OK;
         }
         
-        void cleanUpClientDetailedStatus(int clientId)
+        // void cleanUpClientDetailedStatus(int clientId)
+        void cleanUpClientDetailedStatus(Guid clientId)
         {
             ClientsCollection.Clients.First(client => client.Id == clientId).DetailedStatus = string.Empty;
         }

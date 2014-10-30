@@ -27,7 +27,7 @@ namespace Tmx.Server.Tests
 			TestData.ResetData();
 			ClientsCollection.Clients.Clear();
 			// 20141015
-			ClientsCollection.MaxUsedClientId = 0;
+//			ClientsCollection.MaxUsedClientId = 0;
 			TaskPool.Tasks.Clear();
 			TaskPool.TasksForClients.Clear();
 			// ClientSettings.ResetData();

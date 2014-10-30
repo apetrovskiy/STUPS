@@ -18,7 +18,7 @@ namespace Tmx.Core.Types.Remoting
     public class TestTaskStatusProxy : ITestTaskStatusProxy
     {
         public int Id { get; set; }
-        public int ClientId { get; set; }
+        public Guid ClientId { get; set; }
         public TestTaskStatuses TaskStatus { get; set; }
         public bool TaskFinished { get; set; }
     }

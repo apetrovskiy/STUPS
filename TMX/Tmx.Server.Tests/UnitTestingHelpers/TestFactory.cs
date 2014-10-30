@@ -61,18 +61,20 @@ namespace Tmx.Server.Tests
         
         public static ITestRun GetTestRunWithStatus(TestRunStatuses status)
         {
-            int maxWorkflowId = 0 < WorkflowCollection.Workflows.Count ? WorkflowCollection.Workflows.Max(w => w.Id) : 0;
-            var workflow = new TestWorkflow {
-                Id = ++maxWorkflowId,
+            // int maxWorkflowId = 0 < WorkflowCollection.Workflows.Count ? WorkflowCollection.Workflows.Max(w => w.Id) : 0;
+            // var workflow = new TestWorkflow {
+            var workflow = new TestWorkflow(TestLabCollection.TestLabs.First()) {
+                // Id = ++maxWorkflowId,
                 Name = "workflow 01",
-                TestLabId = TestLabCollection.TestLabs.First().Id
+                // TestLabId = TestLabCollection.TestLabs.First().Id
             };
+            workflow.SetTestLab(TestLabCollection.TestLabs.First());
             WorkflowCollection.Workflows.Add(workflow);
-            int maxTestRunId = 0 < TestRunQueue.TestRuns.Count ? TestRunQueue.TestRuns.Max(tr => tr.Id) : 0;
+            // int maxTestRunId = 0 < TestRunQueue.TestRuns.Count ? TestRunQueue.TestRuns.Max(tr => tr.Id) : 0;
             var testRun = new TestRun {
-                Id = ++maxTestRunId,
-                Name = "test run 03",
-                TestLabId = TestLabCollection.TestLabs.First().Id
+                // Id = ++maxTestRunId,
+                Name = "test run 03" // ,
+                // TestLabId = TestLabCollection.TestLabs.First().Id
             };
             testRun.Status = status;
             testRun.SetWorkflow(workflow);

@@ -26,7 +26,6 @@ namespace Tmx.Client
             if (null == _restTemplate)
                 _restTemplate = new RestTemplate(ClientSettings.Instance.ServerUrl);
             _restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
-            // 20141027
             _restTemplate.MessageConverters.Add(new XElementHttpMessageConverter());
             return _restTemplate;
         }

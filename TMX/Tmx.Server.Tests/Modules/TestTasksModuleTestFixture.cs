@@ -48,13 +48,6 @@ namespace Tmx.Server.Tests.Modules
 		{
 		    TestSettings.PrepareModuleTests();
 		    _browser = TestFactory.GetBrowserForTestTasksModule();
-		    // WorkflowCollection.Workflows.Add(new TestWorkflow { Id = 1, Name = "w" });
-		    // WorkflowCollection.AddWorkflow(new TestWorkflow { Id = 1, Name = "w" });
-//		    _workflow = new TestWorkflow { Id = 1, Name = "w" };
-//		    WorkflowCollection.AddWorkflow(_workflow);
-//		    _testRun = new TestRun { Id = 1, Name = "ww" };
-//		    (_testRun as TestRun).SetWorkflow(_workflow);
-//		    TestRunQueue.TestRuns.Add(_testRun);
 		    TestFactory.GetTestRunWithStatus(TestRunStatuses.Running);
 		    _workflow = WorkflowCollection.Workflows.First();
 		    _testRun = TestRunQueue.TestRuns.First();
@@ -65,12 +58,6 @@ namespace Tmx.Server.Tests.Modules
     	{
     	    TestSettings.PrepareModuleTests();
     	    _browser = TestFactory.GetBrowserForTestTasksModule();
-    	    // WorkflowCollection.AddWorkflow(new TestWorkflow { Id = 1, Name = "w" });
-//    	    _workflow = new TestWorkflow { Id = 1, Name = "w" };
-//		    WorkflowCollection.AddWorkflow(_workflow);
-//		    _testRun = new TestRun { Id = 1, Name = "ww" };
-//		    (_testRun as TestRun).SetWorkflow(_workflow);
-//		    TestRunQueue.TestRuns.Add(_testRun);
 		    TestFactory.GetTestRunWithStatus(TestRunStatuses.Running);
 		    _workflow = WorkflowCollection.Workflows.First();
 		    _testRun = TestRunQueue.TestRuns.First();
@@ -82,17 +69,11 @@ namespace Tmx.Server.Tests.Modules
 			var expectedTask = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, _testClientHostnameExpected, 0);
 			var testClient = GIVEN_Registered_TestClient_as_json(_testClientHostnameExpected, _testClientUsernameExpected);
 			
-			// testClient.WorkflowId = workflow.Id;
-			
-			
             var actualTask = WHEN_Getting_task_as_json(testClient.Id);
             
             THEN_HttpResponse_Is_Ok();
             THEN_TestTask_Properties_Equal_To(expectedTask, actualTask, TestTaskStatuses.Running);
             THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == testClient.Id));
-            // 20141023
-            // Xunit.Assert.Equal(WorkflowCollection.Workflows.First().Id, actualTask.WorkflowId);
-//            Xunit.Assert.Equal(WorkflowCollection.Workflows.First(wfl => wfl.IsActive()).Id, actualTask.WorkflowId);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -191,8 +172,6 @@ namespace Tmx.Server.Tests.Modules
             
             THEN_HttpResponse_Is_NotFound();
             Xunit.Assert.Equal(null, actualTask);
-            // 20141022
-            // Xunit.Assert.Equal(0, TaskPool.TasksForClients.Count(task => task.TaskStatus != TestTaskStatuses.Failed && task.TaskStatus != TestTaskStatuses.Canceled));
             Xunit.Assert.Equal(0, TaskPool.TasksForClients.Count(task => !task.IsFailed() && !task.IsCancelled()));
             Xunit.Assert.Equal(givenTask03.Id, TaskPool.TasksForClients.OrderBy(t => t.Id).Skip(1).First().Id);
         }
@@ -261,7 +240,7 @@ namespace Tmx.Server.Tests.Modules
 			
             var actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
             
-            THEN_HttpResponse_Is_Ok(); //response);
+            THEN_HttpResponse_Is_Ok();
             THEN_TestTask_Properties_Equal_To(givenTask02, actualTask, TestTaskStatuses.Running);
             THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == registeredClient.Id));
         }
@@ -273,9 +252,9 @@ namespace Tmx.Server.Tests.Modules
             var registeredClient = GIVEN_Registered_TestClient_as_json(_testClientHostnameExpected, _testClientUsernameExpected);
 			
             WHEN_SendingDeregistration_as_json(registeredClient);
-            WHEN_Getting_task_as_json(0);
+            WHEN_Getting_task_as_json(Guid.Empty);
             
-            THEN_HttpResponse_Is_ExpectationFailed(); //response);
+            THEN_HttpResponse_Is_ExpectationFailed();
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -296,7 +275,8 @@ namespace Tmx.Server.Tests.Modules
             THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == registeredClient.Id));
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
+        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         public void Should_complete_the_current_task_on_client_unregistration()
         {
             // TODO: do it!
@@ -398,8 +378,6 @@ namespace Tmx.Server.Tests.Modules
             	TaskStatus = status,
             	Rule = rule,
             	AfterTask = afterTask,
-            	// WorkflowId = WorkflowCollection.Workflows.Last().Id,
-            	// TestRunId = TestRunQueue.TestRuns.Last().Id
             	WorkflowId = _workflow.Id,
             	TestRunId = _testRun.Id
             };
@@ -419,7 +397,7 @@ namespace Tmx.Server.Tests.Modules
         }
         
         // 20141020 sqeezing a task to its proxy
-        TestTask WHEN_Getting_task_as_json(int clientId)
+        TestTask WHEN_Getting_task_as_json(Guid clientId)
         // TestTaskProxy WHEN_Getting_task_as_json(int clientId)
         {
             response = _browser.Get(UrnList.TestTasks_Root + "/" + clientId, with => with.Accept("application/json"));

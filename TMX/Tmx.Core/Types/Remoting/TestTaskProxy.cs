@@ -28,7 +28,6 @@ namespace Tmx.Core.Types.Remoting
         }
         
 		public int Id { get; set; }
-		// int Order { get; set; }
 		// int PreviousTaskId { get; set; }
 		// int AfterTask { get; set; }
 		// bool IsActive { get; set; }
@@ -55,8 +54,8 @@ namespace Tmx.Core.Types.Remoting
 		public TestTaskStatuses TaskStatus { get; set; }
 		public IDictionary<string, string> PreviousTaskResult { get; set; }
 		public IDictionary<string, string> TaskResult { get; set; }
-		public int ClientId { get; set; }
-		public int WorkflowId { get; set; }
+		public Guid ClientId { get; set; }
+		public Guid WorkflowId { get; set; }
 		
 		public void StartTimer()
 		{

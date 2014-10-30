@@ -23,7 +23,8 @@ namespace Tmx.Interfaces.Remoting
         Dictionary<string, string> Data { get; set; }
         List<ITestSuite> TestSuites { get; set; }
         // int WorkflowId { get; set; }
-        int WorkflowId { get; }
+        // int WorkflowId { get; }
+        Guid WorkflowId { get; }
         
         // ITestWorkflow Workflow { get; set; }
         DateTime StartTime { get; set; }

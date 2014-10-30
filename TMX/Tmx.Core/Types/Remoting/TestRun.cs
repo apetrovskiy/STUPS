@@ -27,18 +27,21 @@ namespace Tmx.Core.Types.Remoting
 		    Data = new Dictionary<string, string>();
             TestSuites = new List<ITestSuite>();
             Status = TestRunStatuses.Pending;
+            Id = Guid.NewGuid();
 		}
 		
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public Dictionary<string, string> Data { get; set; }
         public List<ITestSuite> TestSuites { get; set; }
-        public int TestLabId { get; set; }
+        public Guid TestLabId {
+            get { return _workflow.TestLabId; }
+        }
         
 		public TestRunStatuses Status { get; set; }
 		public TestRunStartTypes StartType { get; set; }
-		public int WorkflowId
+		public Guid WorkflowId
 		{
 		    get { return _workflow.Id; }
 		}

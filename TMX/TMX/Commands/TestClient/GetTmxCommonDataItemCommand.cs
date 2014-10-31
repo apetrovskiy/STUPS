@@ -16,18 +16,18 @@ namespace Tmx.Commands
     /// Description of GetTmxTestCommonDataCommand.
     /// </summary>
     // TODO: fix it 20141030
-//    [Cmdlet(VerbsCommon.Get, "TmxCommonDataItem")]
-//    public class GetTmxCommonDataItemCommand : ServerCmdletBase
-//    {
-//        [Parameter(Mandatory = true,
-//                   Position = 0)]
-//        [ValidateNotNullOrEmpty]
-//        public string Key { get; set; }
-//        
-//		protected override void BeginProcessing()
-//		{
-//			var command = new GetCommonDataItemCommand(this);
-//			command.Execute();
-//		}
-//    }
+    [Cmdlet(VerbsCommon.Get, "TmxCommonDataItem")]
+    public class GetTmxCommonDataItemCommand : ServerCmdletBase
+    {
+        [Parameter(Mandatory = true,
+                   Position = 0)]
+        [ValidateNotNullOrEmpty]
+        public string Key { get; set; }
+        
+		protected override void BeginProcessing()
+		{
+			var command = new GetCommonDataItemCommand(this);
+			command.Execute();
+		}
+    }
 }

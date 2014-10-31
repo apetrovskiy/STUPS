@@ -41,7 +41,9 @@ namespace Tmx.Client
 	                });
 	        
 			try {
-				var sendingResultsResponse = _restTemplate.PostForMessage(UrnList.TestResultsPostingPoint_absPath, element);
+				// var sendingResultsResponse = _restTemplate.PostForMessage(UrnList.TestResultsPostingPoint_absPath, element);
+				var urn = UrnList.TestRuns_Root + "/" + ClientSettings.Instance.CurrentClient.TestRunId + UrnList.TestResultsPostingPoint_forClient_relPath;
+				var sendingResultsResponse = _restTemplate.PostForMessage(urn, element);
 				return HttpStatusCode.Created == sendingResultsResponse.StatusCode;
 			}
             catch (Exception eSendingTestResults) {

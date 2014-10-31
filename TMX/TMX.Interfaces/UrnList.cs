@@ -17,13 +17,21 @@ namespace Tmx.Interfaces.Server
     public static class UrnList
     {
         // TestResultsModule
-        public const string TestStructure_Root = "/api/results";
-        public const string TestResultsPostingPoint_relPath = "/";
-        public const string TestStructure_Suites = "/suites/";
-        public const string TestStructure_Scenarios = "/scenarios/";
-        public const string TestStructure_Results = "/testResults/";
-        public static string TestResultsPostingPoint_absPath = TestStructure_Root + TestResultsPostingPoint_relPath;
+        // 20141031
+        // public const string TestStructure_Root = "/api/results";
+        // public const string TestStructure_Root = TestRuns_Root;
+        public const string TestResults_Root = TestRuns_Root;
+        // public const string TestResultsPostingPoint_relPath = "/";
+        public const string TestResultsPostingPoint_relPath = "/{id:guid}/results/";
+        public static string TestResultsPostingPoint_forClient_relPath = "/results/";
+        // 20141031
+        // postponed
+//        public const string TestStructure_Suites = "/suites/";
+//        public const string TestStructure_Scenarios = "/scenarios/";
+//        public const string TestStructure_Results = "/testResults/";
+        public static string TestResultsPostingPoint_absPath = TestResults_Root + TestResultsPostingPoint_relPath;
         
+        #region 111
         // TestClientsModule
         public const string TestClients_Root = "/api/clients";
         public const string TestClientRegistrationPoint_relPath = "/";
@@ -53,7 +61,7 @@ namespace Tmx.Interfaces.Server
         public static string TestWorkflowById = TestWorkflows_Root + TestWorkflows_GetByWorkflowId_relPath;
         public const string TestWorkflows_All_relPath = "/";
         public static string TestWorkflowLoadAll_absPath = TestWorkflows_Root + TestWorkflows_All_relPath;
-        
+        #endregion 111
         // TestDataModule
         // public const string TestData_Root = "/api/data";
         // public const string TestData_Root = "/api/testRuns/{id:guid}/data";

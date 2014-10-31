@@ -18,6 +18,8 @@ namespace Tmx.Server.Tests.Modules
 	using NSubstitute;
     using Nancy;
     using Nancy.Testing;
+    using Tmx.Core;
+    using Tmx.Interfaces.Remoting;
 	using Tmx.Interfaces.Server;
 	using Tmx.Server.Modules;
     // using MbUnit.Framework;
@@ -34,15 +36,28 @@ namespace Tmx.Server.Tests.Modules
     [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class TestResultsModuleTestFixture
     {
+	    ITestWorkflow _workflow;
+	    ITestRun _testRun;
+	    BrowserResponse _response;
+	    Browser _browser;
+        
     	public TestResultsModuleTestFixture()
     	{
     	    TestSettings.PrepareModuleTests();
+		    _browser = TestFactory.GetBrowserForTestTasksModule();
+		    TestFactory.GetTestRunWithStatus(TestRunStatuses.Running);
+		    _workflow = WorkflowCollection.Workflows.First();
+		    _testRun = TestRunQueue.TestRuns.First();
     	}
 		
     	[MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
     	public void SetUp()
     	{
     	    TestSettings.PrepareModuleTests();
+		    _browser = TestFactory.GetBrowserForTestTasksModule();
+		    TestFactory.GetTestRunWithStatus(TestRunStatuses.Running);
+		    _workflow = WorkflowCollection.Workflows.First();
+		    _testRun = TestRunQueue.TestRuns.First();
     	}
     	
 //    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -74,62 +89,106 @@ namespace Tmx.Server.Tests.Modules
         {
         	var element = GIVEN_empty_element();
             
-            var response = WHEN_Posting_TestResults<XElement>(element);
+            // _response = WHEN_Posting_TestResults<XElement>(element);
+            WHEN_Posting_TestResults<XElement>(element);
             
-            THEN_HttpResponse_Is_ExpectationFailed(response);
+            THEN_HttpResponse_Is_ExpectationFailed(); // _response);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_create_a_test_suite()
+        public void Should_react_on_posting_no_data_2()
         {
-			const string testSuiteNameExpected = "test suite name";
-			const string testSuiteIdExpected = "111";
-            var testSuite = GIVEN_test_suite(testSuiteIdExpected, testSuiteNameExpected);
+        	var element = GIVEN_empty_element();
             
-            var response = WHEN_Posting_TestResults<TestSuite>(testSuite);
+            // _response = WHEN_Posting_TestResults<XElement>(element);
+            WHEN_Posting_TestResults<XElement>(element);
             
-            THEN_HttpResponse_Is_Created(response);
-            Xunit.Assert.Equal(testSuiteNameExpected, TestData.CurrentTestSuite.Name);
-            Xunit.Assert.Equal(testSuiteIdExpected, TestData.CurrentTestSuite.Id);
-            Xunit.Assert.Equal(TestData.GetDefaultPlatformId(), TestData.CurrentTestSuite.PlatformId);
-        }
-        
-        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
-        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
-        public void Should_add_a_test_scenario()
-        {
-			const string testSuiteNameExpected = "test suite name";
-			const string testSuiteIdExpected = "111";
-			var testSuite = GIVEN_test_suite(testSuiteIdExpected, testSuiteNameExpected);
-			const string testScenarioNameExpected = "test scenario name";
-			const string testScenarioIdExpected = "222";
-            var testScenario = GIVEN_test_scenario(testScenarioIdExpected, testScenarioNameExpected, testSuiteIdExpected, testSuite.PlatformId);
-			
-			var response = WHEN_Posting_TestResults<TestSuite>(testSuite);
-			response = WHEN_Posting_TestResults<TestScenario>(testScenario);
-			
-            THEN_HttpResponse_Is_Created(response);
-            Xunit.Assert.Equal(testScenarioNameExpected, TestData.CurrentTestScenario.Name);
-            Xunit.Assert.Equal(testScenarioIdExpected, TestData.CurrentTestScenario.Id);
+            THEN_HttpResponse_Is_ExpectationFailed(); // _response);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_add_a_test_result()
+        public void Should_react_on_posting_bunch_of_data()
         {
-			const string testSuiteNameExpected = "test suite name";
-			const string testSuiteIdExpected = "111";
-            var testSuite = GIVEN_test_suite(testSuiteIdExpected, testSuiteNameExpected);
-			const string testScenarioNameExpected = "test scenario name";
-			const string testScenarioIdExpected = "222";
-            var testScenario = GIVEN_test_scenario(testScenarioIdExpected, testScenarioNameExpected, testSuiteIdExpected, testSuite.PlatformId);
-            var testResult = GIVEN_test_result("test result name", TestResultStatuses.Passed);
+        	// var element = GIVEN_empty_element();
+        	// var xDoc = XDocument.Load(@"../../Modules/TMX_report.xml");
+        	// var xDoc = XDocument.Load(@"../../Modules/TMX_red_report.xml");
+        	// var xDoc = XDocument.Load(@"../../Modules/1.xml");
+        	// var xDoc = XDocument.Load(@"../../Modules/0.xml");
+        	// var xDoc = XDocument.Load(@"../../Modules/-1.xml");
+        	// var xDoc = XDocument.Load(@"../../Modules/-2.xml");
+        	// var xDoc = XDocument.Load(@"../../Modules/-3.xml");
+        	// var xDoc = XDocument.Load(@"../../Modules/-4.xml");
+        	var xDoc = XDocument.Load(@"../../Modules/-5.xml");
+            // var df = xDoc.Root.Name.Namespace;
+            var element = xDoc.Root;
+//            var suites = from suite in xDoc.Descendants("suite")
+//                                  where suite.Attribute("name").Value != TestData.Autogenerated
+//                                  select suite;
+        	// var element = 
             
-			var response = WHEN_Posting_TestResults<TestResult>(testResult);
-			
-            THEN_HttpResponse_Is_Created(response);
+            // _response = WHEN_Posting_TestResults<XElement>(element);
+            WHEN_Posting_TestResults<XElement>(element);
+            
+            THEN_HttpResponse_Is_ExpectationFailed(); // _response);
+        }
+        
+        // 20141031
+        // postponed
+//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        public void Should_create_a_test_suite()
+//        {
+//			const string testSuiteNameExpected = "test suite name";
+//			const string testSuiteIdExpected = "111";
+//            var testSuite = GIVEN_test_suite(testSuiteIdExpected, testSuiteNameExpected);
+//            
+//            var response = WHEN_Posting_TestResults<TestSuite>(testSuite);
+//            
+//            THEN_HttpResponse_Is_Created(response);
+//            Xunit.Assert.Equal(testSuiteNameExpected, TestData.CurrentTestSuite.Name);
+//            Xunit.Assert.Equal(testSuiteIdExpected, TestData.CurrentTestSuite.Id);
+//            Xunit.Assert.Equal(TestData.GetDefaultPlatformId(), TestData.CurrentTestSuite.PlatformId);
+//        }
+        
+        // 20141031
+        // postponed
+//        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
+//        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
+//        public void Should_add_a_test_scenario()
+//        {
+//			const string testSuiteNameExpected = "test suite name";
+//			const string testSuiteIdExpected = "111";
+//			var testSuite = GIVEN_test_suite(testSuiteIdExpected, testSuiteNameExpected);
+//			const string testScenarioNameExpected = "test scenario name";
+//			const string testScenarioIdExpected = "222";
+//            var testScenario = GIVEN_test_scenario(testScenarioIdExpected, testScenarioNameExpected, testSuiteIdExpected, testSuite.PlatformId);
+//			
+//			var response = WHEN_Posting_TestResults<TestSuite>(testSuite);
+//			response = WHEN_Posting_TestResults<TestScenario>(testScenario);
+//			
+//            THEN_HttpResponse_Is_Created(response);
 //            Xunit.Assert.Equal(testScenarioNameExpected, TestData.CurrentTestScenario.Name);
 //            Xunit.Assert.Equal(testScenarioIdExpected, TestData.CurrentTestScenario.Id);
-        }
+//        }
+        
+        // 20141031
+        // postponed
+//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        public void Should_add_a_test_result()
+//        {
+//			const string testSuiteNameExpected = "test suite name";
+//			const string testSuiteIdExpected = "111";
+//            var testSuite = GIVEN_test_suite(testSuiteIdExpected, testSuiteNameExpected);
+//			const string testScenarioNameExpected = "test scenario name";
+//			const string testScenarioIdExpected = "222";
+//            var testScenario = GIVEN_test_scenario(testScenarioIdExpected, testScenarioNameExpected, testSuiteIdExpected, testSuite.PlatformId);
+//            var testResult = GIVEN_test_result("test result name", TestResultStatuses.Passed);
+//            
+//			var response = WHEN_Posting_TestResults<TestResult>(testResult);
+//			
+//            THEN_HttpResponse_Is_Created(response);
+////            Xunit.Assert.Equal(testScenarioNameExpected, TestData.CurrentTestScenario.Name);
+////            Xunit.Assert.Equal(testScenarioIdExpected, TestData.CurrentTestScenario.Id);
+//        }
         
         // ============================================================================================================================
         void probe()
@@ -150,7 +209,17 @@ namespace Tmx.Server.Tests.Modules
         
         XElement GIVEN_empty_element()
         {
-            return new XElement("aaa");
+            // return new XElement("aaa");
+            return new XElement("suites");
+        }
+        
+        XElement GIVEN_suite_element()
+        {
+            // return new XElement("aaa");
+            // return new XElement("suites");
+            var suites = new XElement("suites");
+            suites.AddFirst(new XElement("suite"));
+            return suites;
         }
         
 //        XElement GIVEN_one_test_suite()
@@ -205,10 +274,13 @@ namespace Tmx.Server.Tests.Modules
             return testResult;
         }
         
-        BrowserResponse WHEN_Posting_TestResults<T>(T element)
+        // BrowserResponse WHEN_Posting_TestResults<T>(T element)
+        void WHEN_Posting_TestResults<T>(T element)
         {
-			var browser = TestFactory.GetBrowserForTestResultsModule();
-			return browser.Post(getPathToResourcesCollection(typeof(T)), (with) => with.JsonBody<T>(element));
+//			var browser = TestFactory.GetBrowserForTestResultsModule();
+//			return browser.Post(getPathToResourcesCollection(typeof(T)), (with) => with.JsonBody<T>(element));
+			// return _browser.Post(getPathToResourcesCollection(typeof(T)), (with) => with.JsonBody<T>(element));
+			_response = _browser.Post(getPathToResourcesCollection(typeof(T)), (with) => with.JsonBody<T>(element));
         }
         
         string getPathToResourcesCollection(MemberInfo type)
@@ -216,13 +288,17 @@ namespace Tmx.Server.Tests.Modules
             string path = string.Empty;
 			switch (type.Name) {
 			    case "XElement":
-			        return UrnList.TestResultsPostingPoint_absPath;
-			    case "TestSuite":
-			        return UrnList.TestStructure_Root + UrnList.TestStructure_Suites;
-			    case "TestScenario":
-			        return UrnList.TestStructure_Root + UrnList.TestStructure_Scenarios;
-			    case "TestResult":
-			        return UrnList.TestStructure_Root + UrnList.TestStructure_Results;
+			        // return UrnList.TestResultsPostingPoint_absPath;
+var aaa = UrnList.TestResults_Root + "/" + _testRun.Id + UrnList.TestResultsPostingPoint_forClient_relPath;
+			        return UrnList.TestResults_Root + "/" + _testRun.Id + UrnList.TestResultsPostingPoint_forClient_relPath;
+            // 20141031
+            // postponed
+//			    case "TestSuite":
+//			        return UrnList.TestStructure_Root + UrnList.TestStructure_Suites;
+//			    case "TestScenario":
+//			        return UrnList.TestStructure_Root + UrnList.TestStructure_Scenarios;
+//			    case "TestResult":
+//			        return UrnList.TestStructure_Root + UrnList.TestStructure_Results;
 			    default:
 			        return path;
 			}
@@ -246,14 +322,16 @@ namespace Tmx.Server.Tests.Modules
 //            browser.Delete(UrnList.TestClients_Root + "/" + testClient.Id);
 //        }
         
-        void THEN_HttpResponse_Is_Created(BrowserResponse response)
+        // void THEN_HttpResponse_Is_Created(BrowserResponse response)
+        void THEN_HttpResponse_Is_Created()
         {
-            Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+            Xunit.Assert.Equal(HttpStatusCode.Created, _response.StatusCode);
         }
         
-        void THEN_HttpResponse_Is_ExpectationFailed(BrowserResponse response)
+        // void THEN_HttpResponse_Is_ExpectationFailed(BrowserResponse response)
+        void THEN_HttpResponse_Is_ExpectationFailed()
         {
-            Xunit.Assert.Equal(HttpStatusCode.ExpectationFailed, response.StatusCode);
+            Xunit.Assert.Equal(HttpStatusCode.ExpectationFailed, _response.StatusCode);
         }
     }
 }

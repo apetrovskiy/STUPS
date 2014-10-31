@@ -133,7 +133,7 @@ namespace TmxUnitTests.Commands.TestResults
         void WHEN_importing_test_results(object rootElement)
         {
             var xDoc = new XDocument(rootElement);
-            TmxHelper.ImportTestResultsFromXdocument(xDoc);
+            TmxHelper.ImportTestResultsFromXdocumentAndStore(xDoc);
         }
         
         void THEN_there_are_number_of_test_suites(int number)

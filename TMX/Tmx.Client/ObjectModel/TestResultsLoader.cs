@@ -14,6 +14,7 @@ namespace Tmx.Client
     using System.Net;
     using System.Xml.Linq;
     using Spring.Rest.Client;
+    using Tmx.Core;
     using Tmx.Interfaces.Exceptions;
     using Tmx.Interfaces.Server;
     
@@ -33,7 +34,10 @@ namespace Tmx.Client
 	    {
 	        try {
 	            var loadingResultsResponse = _restTemplate.GetForMessage<XDocument>(UrnList.TestResultsPostingPoint_absPath);
-	            TmxHelper.ImportTestResultsFromXdocument(loadingResultsResponse.Body);
+	            // 20141031
+	            // TmxHelper.ImportTestResultsFromXdocumentAndStore(loadingResultsResponse.Body);
+	            var testResultsImporter = new TestResultsImporter();
+	            TestData.TestSuites.AddRange(testResultsImporter.ImportTestResultsFromXdocument(loadingResultsResponse.Body));
 	            return HttpStatusCode.OK == loadingResultsResponse.StatusCode;
 	        }
 	        catch (Exception eLoadingTestResults) {

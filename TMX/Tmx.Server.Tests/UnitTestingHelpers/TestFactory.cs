@@ -45,7 +45,7 @@ namespace Tmx.Server.Tests
         
         public static Browser GetBrowserForTestResultsModule()
         {
-            return new Browser(with => with.Module(new TestResultsModule()));
+            return new Browser(with => with.Modules(typeof(TestRunsModule), typeof(TestResultsModule)));
         }
         
         public static Browser GetBrowserForTestDataModule()
@@ -53,9 +53,8 @@ namespace Tmx.Server.Tests
             return new Browser(with => with.Module(new TestDataModule()));
         }
         
-        public static ITestClient GivenTestClient(string hostname, string username) //, int testRunId)
+        public static ITestClient GivenTestClient(string hostname, string username)
         {
-            // return new TestClient { Hostname = hostname, Username = username, TestRunId = testRunId };
             return new TestClient { Hostname = hostname, Username = username };
         }
         

@@ -105,6 +105,7 @@ namespace Tmx.Server.Modules
 			
 //			updateWorklowStatus(storedTask.WorkflowId);
 			// 20141029
+			
 			if (storedTask.IsLastTaskInTestRun())
 			    completeTestRun(storedTask);
 			
@@ -114,6 +115,15 @@ namespace Tmx.Server.Modules
         void completeTestRun(ITestTask task)
         {
             TestRunQueue.TestRuns.First(testRun => testRun.Id == task.TestRunId).Status = TestRunStatuses.Completed;
+            activateNextInRowTestRun();
+        }
+        
+        void activateNextInRowTestRun()
+        {
+            var testRunSelector = new TestRunSelector();
+            var testRun = testRunSelector.GetNextInRowTestRun();
+            if (null == testRun) return;
+            testRun.Status = TestRunStatuses.Running;
         }
         
         HttpStatusCode updateNextTaskAndReturnOk(TaskSelector taskSorter, ITestTask storedTask)

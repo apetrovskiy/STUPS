@@ -51,7 +51,10 @@ namespace Tmx.Server.Tests.Modules
 		    TestFactory.GetTestRunWithStatus(TestRunStatuses.Running);
 		    _workflow = WorkflowCollection.Workflows.First();
 		    _testRun = TestRunQueue.TestRuns.First();
+            TestFactory.GetAnotherTestRunWithStatus(TestRunStatuses.Pending, _workflow);
 		}
+		
+
         
     	[MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
     	public void SetUp()
@@ -61,6 +64,7 @@ namespace Tmx.Server.Tests.Modules
 		    TestFactory.GetTestRunWithStatus(TestRunStatuses.Running);
 		    _workflow = WorkflowCollection.Workflows.First();
 		    _testRun = TestRunQueue.TestRuns.First();
+		    TestFactory.GetAnotherTestRunWithStatus(TestRunStatuses.Pending, _workflow);
     	}
     	
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -329,6 +333,20 @@ namespace Tmx.Server.Tests.Modules
             THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == registeredClient.Id));
         }
         
+        // ======================================== Lack of pending test runs ========================================================
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        public void Should_provide_a_task_to_test_client_if_the_client_matches_the_rule_and_there_are_no_test_runs()
+        {
+            TestRunQueue.TestRuns.Skip(1).First().Status = TestRunStatuses.Running;
+			var expectedTask = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, _testClientHostnameExpected, 0);
+			var testClient = GIVEN_Registered_TestClient_as_json(_testClientHostnameExpected, _testClientUsernameExpected);
+			
+            var actualTask = WHEN_Getting_task_as_json(testClient.Id);
+            
+            THEN_HttpResponse_Is_Ok();
+            THEN_TestTask_Properties_Equal_To(expectedTask, actualTask, TestTaskStatuses.Running);
+            THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == testClient.Id));
+        }
         // ============================================================================================================================
         ITestClient GIVEN_Registered_TestClient_as_json(string hostname, string username)
         {

@@ -64,11 +64,20 @@ namespace Tmx.Server.Tests
             var workflow = new TestWorkflow(TestLabCollection.TestLabs.First()) { Name = "workflow 01" };
             workflow.SetTestLab(TestLabCollection.TestLabs.First());
             WorkflowCollection.Workflows.Add(workflow);
-            var testRun = new TestRun { Name = "test run 03" };
-            testRun.Status = status;
+            var testRun = new TestRun { Name = "test run 03", Status = status };
             testRun.SetWorkflow(workflow);
             TestRunQueue.TestRuns.Add(testRun);
             return testRun;
+        }
+        
+        public static void GetAnotherTestRunWithStatus(TestRunStatuses status, ITestWorkflow workflow)
+        {
+            var testRun = new TestRun {
+                Name = "test run the second",
+                Status = status
+            };
+            testRun.SetWorkflow(workflow);
+            TestRunQueue.TestRuns.Add(testRun);
         }
     }
 }

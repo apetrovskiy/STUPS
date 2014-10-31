@@ -110,6 +110,7 @@
     <Compile Include="Helpers\ServerWatcher.cs" />
     <Compile Include="Helpers\TaskSelector.cs" />
     <Compile Include="Helpers\Objects\ClientsCollection.cs" />
+    <Compile Include="Helpers\TestRunSelector.cs" />
     <Compile Include="Helpers\WorkflowLoader.cs" />
     <Compile Include="Modules\ExternalFilesModule.cs" />
     <Compile Include="Modules\TestRunsModule.cs" />

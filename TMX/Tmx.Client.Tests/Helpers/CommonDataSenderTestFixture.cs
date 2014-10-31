@@ -34,6 +34,13 @@ namespace Tmx.Client.Tests.Helpers
         
         public CommonDataSenderTestFixture()
         {
+            _restTemplate = new RestTemplate(_baseUrl);
+            _restServer = MockRestServiceServer.CreateServer(_restTemplate);
+            _responseHeaders = new HttpHeaders();
+            _responseHeaders.ContentType = new MediaType("application", "json");
+            ClientSettings.Instance.ServerUrl = _baseUrl;
+            _restRequestCreator = new RestRequestCreator();
+            _restRequestCreator.SetRestTemplate(_restTemplate);
         }
         
         [NUnit.Framework.SetUp]
@@ -57,7 +64,8 @@ namespace Tmx.Client.Tests.Helpers
         [NUnit.Framework.Test][Fact]
         public void Should_respond_Created_on_new_common_data_upload_as_json()
         {
-            var urn = UrnList.TestData_Root + "/" + ClientSettings.Instance.CurrentTask.TestRunId + UrnList.TestData_CommonData_forClient_relPath;
+            // var urn = UrnList.TestData_Root + "/" + ClientSettings.Instance.CurrentClient.TestRunId + UrnList.TestData_CommonData_forClient_relPath;
+            var urn = UrnList.TestData_Root + "/" + Guid.NewGuid() + UrnList.TestData_CommonData_forClient_relPath; // ??
             // _responseHeaders.Location = new Uri(_baseUrl + UrnList.CommonDataLoadingPoint_absPath);
             _responseHeaders.Location = new Uri(_baseUrl + urn);
             _restServer.ExpectNewRequest()
@@ -73,7 +81,8 @@ namespace Tmx.Client.Tests.Helpers
         [NUnit.Framework.Test][Fact]
         public void Should_respond_Ok_on_getting_common_data_as_json()
         {
-            var urn = UrnList.TestData_Root + "/" + ClientSettings.Instance.CurrentTask.TestRunId + UrnList.TestData_CommonData_forClient_relPath;
+            // var urn = UrnList.TestData_Root + "/" + ClientSettings.Instance.CurrentClient.TestRunId + UrnList.TestData_CommonData_forClient_relPath;
+            var urn = UrnList.TestData_Root + "/" + Guid.NewGuid() + UrnList.TestData_CommonData_forClient_relPath; // ??
             // _responseHeaders.Location = new Uri(_baseUrl + UrnList.CommonDataLoadingPoint_absPath);
             _responseHeaders.Location = new Uri(_baseUrl + urn);
             _restServer.ExpectNewRequest()

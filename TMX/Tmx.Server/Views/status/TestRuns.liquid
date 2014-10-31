@@ -1,13 +1,32 @@
 ﻿<html>
 	<head>
 		<title>Test runs queue</title>
-	</head>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+        </style>
+    </head>
 	<body>
 	<br>
-		<ul>
-		{% for testRun in @Model.TestRuns -%}
-		  <li>{{ testRun.Id }} '{{ testRun.Name }}' {{ testRun.TestLabId }} '{{ testRun.Description }}' {{ testRun.Status }}</li>
-		{% endfor -%}
-		</ul>
+        <table border="1">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Test Lab Id</th>
+                <th>Status</th>
+                <th>Description</th>
+            </tr>
+            {% for testRun in @Model.TestRuns -%}
+            <tr>
+                <td>{{ testRun.Id }}</td>
+                <td>{{ testRun.Name }}</td>
+                <td>{{ testRun.TestLabId }}</td>
+                <td>{{ testRun.Status }}</td>
+                <td>{{ testRun.Description }}</td>
+            </tr>
+            {% endfor -%}
+        </table>
 	</body>
 </html>

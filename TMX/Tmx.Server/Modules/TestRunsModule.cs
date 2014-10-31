@@ -53,12 +53,8 @@ namespace Tmx.Server.Modules
             if (Guid.Empty == testRun.WorkflowId)
                 return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
             if (TestRunStartTypes.Immediately == testRun.StartType) {
-                if (TestRunQueue.TestRuns.Any(tr => tr.TestLabId == testRun.TestLabId))
-                    testRun.Status = TestRunStatuses.Pending;
-                else {
-                    testRun.StartTime = DateTime.Now;
-                    testRun.Status = TestRunStatuses.Running;
-                }
+                testRun.StartTime = DateTime.Now;
+                testRun.Status = TestRunQueue.TestRuns.Any(tr => tr.TestLabId == testRun.TestLabId) ? TestRunStatuses.Pending : TestRunStatuses.Running;
             }
             TestRunQueue.TestRuns.Add(testRun);
             // there are no test clients on the new test run

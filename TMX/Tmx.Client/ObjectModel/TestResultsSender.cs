@@ -13,7 +13,7 @@ namespace Tmx.Client
 	using System.Net;
 	using System.Xml.Linq;
 	using Spring.Http;
-	using Spring.Http.Converters.Xml;
+//	using Spring.Http.Converters.Xml;
 	using Spring.Rest.Client;
 	using Tmx.Interfaces;
 	using Tmx.Interfaces.Exceptions;
@@ -25,7 +25,7 @@ namespace Tmx.Client
     public class TestResultsSender
     {
 	    // volatile RestTemplate _restTemplate;
-	    readonly IRestOperations _restTemplate;
+	    readonly IRestOperations _restTemplate; // chrome-extension://aejoelaoggembcahagimdiliamlcdmfm/dhc.html#void
 	    
 	    public TestResultsSender(RestRequestCreator requestCreator)
 	    {

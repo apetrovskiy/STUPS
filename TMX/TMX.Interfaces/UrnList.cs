@@ -22,7 +22,9 @@ namespace Tmx.Interfaces.Server
         // public const string TestStructure_Root = TestRuns_Root;
         public const string TestResults_Root = TestRuns_Root;
         // public const string TestResultsPostingPoint_relPath = "/";
-        public const string TestResultsPostingPoint_relPath = "/{id:guid}/results/";
+        // 20141101
+        // public const string TestResultsPostingPoint_relPath = "/{id:guid}/results/";
+        public const string TestResultsPostingPoint_relPath = "/{id}/results/";
         public static string TestResultsPostingPoint_forClient_relPath = "/results/";
         // 20141031
         // postponed

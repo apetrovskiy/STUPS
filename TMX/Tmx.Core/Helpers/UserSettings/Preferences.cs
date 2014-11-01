@@ -35,7 +35,8 @@ namespace Tmx
             ClientRegistrationTimeoutSeconds = 3600;
             ReceivingTaskTimeoutSeconds = 3600;
             ClientRegistrationSleepIntervalMilliseconds = 5000;
-            ReceivingTaskSleepIntervalMilliseconds = 2000;
+            // ReceivingTaskSleepIntervalMilliseconds = 2000;
+            ReceivingTaskSleepIntervalMilliseconds = 3000;
         }
         
         public static bool TestLog { get; set; }

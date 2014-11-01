@@ -29,9 +29,9 @@ namespace Tmx.Server.Modules
     {
         public TestResultsModule() : base(UrnList.TestResults_Root)
         {
-            Post[UrnList.TestResultsPostingPoint_relPath] = parameters => importTestResults(parameters.id);
+            Post[UrnList.TestResultsPostingPoint_relPath] = parameters => importTestResultsToTestRun(parameters.id);
             
-            Get[UrnList.TestResultsPostingPoint_relPath] = parameters => exportTestResults(parameters.id);
+            Get[UrnList.TestResultsPostingPoint_relPath] = parameters => exportTestResultsFromTestRun(parameters.id);
             
             // 20141031
             // postponed
@@ -104,7 +104,7 @@ namespace Tmx.Server.Modules
 //        	};
         }
 
-        HttpStatusCode importTestResults(Guid testRunId)
+        HttpStatusCode importTestResultsToTestRun(Guid testRunId)
         // HttpStatusCode importTestResults()
         {
             try {
@@ -126,8 +126,12 @@ namespace Tmx.Server.Modules
         }
         
         // Negotiator exportTestResults()
-        Negotiator exportTestResults(Guid testRunId)
+        Negotiator exportTestResultsFromTestRun(Guid testRunId)
         {
+            // temporary!
+            // 20141101
+            TestData.TestSuites = TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId).TestSuites;
+            
             var xDoc = TmxHelper.GetTestResultsAsXdocument(new SearchCmdletBaseDataObject {
                                                                Descending = false,
                                                                FilterAll = true,

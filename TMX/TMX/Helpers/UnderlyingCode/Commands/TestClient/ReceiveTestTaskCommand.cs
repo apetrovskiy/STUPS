@@ -55,7 +55,9 @@ namespace Tmx
                     throw;
                 }
                 catch (Exception e) {
-//Console.WriteLine("receiving a task " + e.Message);
+// 20141101 temp
+Console.WriteLine("receiving a task " + e.Message);
+Console.WriteLine("receiving a task " + e.InnerException.Message);
 //Console.WriteLine("receiving a task " + e.GetType().Name);
                 }
                 

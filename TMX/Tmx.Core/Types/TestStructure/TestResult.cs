@@ -22,7 +22,9 @@ namespace Tmx.Interfaces
     /// </summary>
     public class TestResult : ITestResult
     {
-        public TestResult() {}
+        public TestResult() {
+            Details = new List<ITestResultDetail>();
+        }
         
         public TestResult(
            string testScenarioId,

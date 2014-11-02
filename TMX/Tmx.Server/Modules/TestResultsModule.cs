@@ -107,16 +107,32 @@ namespace Tmx.Server.Modules
         HttpStatusCode importTestResultsToTestRun(Guid testRunId)
         // HttpStatusCode importTestResults()
         {
+// 20141101 temp
+Console.WriteLine(testRunId);
             try {
                 var actualBytes = new byte[Request.Body.Length];
                 Request.Body.Read(actualBytes, 0, (int)Request.Body.Length);
                 var actual = Encoding.UTF8.GetString(actualBytes);
                 var xDoc = XDocument.Parse(actual);
+// 20141101 temp
+Console.WriteLine("======================== IMPORTED ========================");
+Console.WriteLine(xDoc);
+// Console.WriteLine(xDoc.Root);
                 // 20141031
                 // TmxHelper.ImportTestResultsFromXdocumentAndStore(xDoc);
                 var currentTestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId);
-                var testResultsImporter = new TestResultsImporter();
+                var testResultsImporter = new TestResultsImportExport();
                 currentTestRun.TestSuites.AddRange(testResultsImporter.ImportTestResultsFromXdocument(xDoc));
+Console.WriteLine("======================== IMPORTED ========================");
+foreach (var suite in currentTestRun.TestSuites) {
+    Console.WriteLine("id = {0}, name = {1}, status = {2}", suite.Id, suite.Name, suite.Status);
+    foreach (var scenario in suite.TestScenarios) {
+        Console.WriteLine("\tid = {0}, name = {1}, status = {2}", scenario.Id, scenario.Name, scenario.Status);
+        foreach (var result in scenario.TestResults) {
+            Console.WriteLine("\t\tid = {0}, name = {1}, status = {2}", result.Id, result.Name, result.Status);
+        }
+    }
+}
                 
                 // maybe, there's no such need? // TODO: set current test suite, test scenario, test result?
                 return HttpStatusCode.Created;
@@ -132,12 +148,35 @@ namespace Tmx.Server.Modules
             // 20141101
             TestData.TestSuites = TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId).TestSuites;
             
+// 20141101 temp
+Console.WriteLine("0000000000000000000000000000002");
+Console.WriteLine(TestData.TestSuites.Count);
+Console.WriteLine("======================== TO EXPORT ========================");
+foreach (var suite in TestData.TestSuites) {
+    Console.WriteLine("id = {0}, name = {1}, status = {2}", suite.Id, suite.Name, suite.Status);
+    foreach (var scenario in suite.TestScenarios) {
+        Console.WriteLine("\tid = {0}, name = {1}, status = {2}", scenario.Id, scenario.Name, scenario.Status);
+        foreach (var result in scenario.TestResults) {
+            Console.WriteLine("\t\tid = {0}, name = {1}, status = {2}", result.Id, result.Name, result.Status);
+        }
+    }
+}
             var xDoc = TmxHelper.GetTestResultsAsXdocument(new SearchCmdletBaseDataObject {
                                                                Descending = false,
                                                                FilterAll = true,
                                                                FilterFailed = false,
                                                                OrderById = true
                                                            });
+// 20141101 temp
+Console.WriteLine("0000000000000000000000000000003");
+if (null == xDoc) {
+    Console.WriteLine("null == xDoc");
+} else {
+    Console.WriteLine("null != xDoc");
+}
+Console.WriteLine("======================== EXPORTED ========================");
+Console.WriteLine(xDoc);
+//Console.WriteLine(xDoc.Root);
             return null == xDoc ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(xDoc).WithStatusCode(HttpStatusCode.OK);
         }
     }

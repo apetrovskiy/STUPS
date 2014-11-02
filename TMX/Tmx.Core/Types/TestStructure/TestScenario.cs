@@ -27,45 +27,47 @@ namespace Tmx.Interfaces
             this.TestCases = new List<ITestCase>();
             this.Statistics = new TestStat();
             this.enStatus = TestScenarioStatuses.NotTested;
-            
-            try{
-                if (TestData.CurrentTestResult.Details.Count > 0) {
-                    
-					TestData.AddTestResult(
-                        "autoclosed", 
-                        TestData.GetTestResultId(), 
-                        null, 
-                        false, // isKnownIssue
-                        false, // generateNextResult
-                        null, // MyInvocation
-                        null, // Error
-                        string.Empty,
-                        TestResultOrigins.Automatic,
-                        false);
-                } else {
-                    TestData.CurrentTestResult = null;
-                }
-            }
-            catch {}
-            
-            this.SetNow();
-            
-            // in detail 20140713
-            var testSuite1 = TestData.TestSuites[TestData.TestSuites.Count - 1];
-            var testScenario1 = testSuite1.TestScenarios[testSuite1.TestScenarios.Count - 1]; // HERE!!
-            string testScenarioId1 = testScenario1.Id;
-            // string testScenarioId1 = TestData.TestSuites[TestData.TestSuites.Count - 1].TestScenarios[TestData.TestSuites[TestData.TestSuites.Count - 1].TestScenarios.Count - 1].Id;
-            string testSuiteId1 = TestData.TestSuites[TestData.TestSuites.Count - 1].Id;
-            // 20140723
-            // var testResult1 = new TestResult(testScenarioId1, testSuiteId1);
-            // this.TestResults.Add(testResult1);
-            this.TestResults.Add(new TestResult(testScenarioId1, testSuiteId1)); // ??
-//            this.TestResults.Add(
-//                new TestResult(
-//                    TestData.TestSuites[TestData.TestSuites.Count - 1].TestScenarios[TestData.TestSuites[TestData.TestSuites.Count - 1].TestScenarios.Count - 1].Id, // "???",
-//                    TestData.TestSuites[TestData.TestSuites.Count - 1].Id)); // "???"));
-            TestData.CurrentTestResult = this.TestResults[TestResults.Count - 1];
         }
+        
+        // 20141102
+//            try{
+//                if (TestData.CurrentTestResult.Details.Count > 0) {
+//                    
+//					TestData.AddTestResult(
+//                        "autoclosed", 
+//                        TestData.GetTestResultId(), 
+//                        null, 
+//                        false, // isKnownIssue
+//                        false, // generateNextResult
+//                        null, // MyInvocation
+//                        null, // Error
+//                        string.Empty,
+//                        TestResultOrigins.Automatic,
+//                        false);
+//                } else {
+//                    TestData.CurrentTestResult = null;
+//                }
+//            }
+//            catch {}
+//            
+//            this.SetNow();
+//            
+//            // in detail 20140713
+//            var testSuite1 = TestData.TestSuites[TestData.TestSuites.Count - 1];
+//            var testScenario1 = testSuite1.TestScenarios[testSuite1.TestScenarios.Count - 1]; // HERE!!
+//            string testScenarioId1 = testScenario1.Id;
+//            // string testScenarioId1 = TestData.TestSuites[TestData.TestSuites.Count - 1].TestScenarios[TestData.TestSuites[TestData.TestSuites.Count - 1].TestScenarios.Count - 1].Id;
+//            string testSuiteId1 = TestData.TestSuites[TestData.TestSuites.Count - 1].Id;
+//            // 20140723
+//            // var testResult1 = new TestResult(testScenarioId1, testSuiteId1);
+//            // this.TestResults.Add(testResult1);
+//            this.TestResults.Add(new TestResult(testScenarioId1, testSuiteId1)); // ??
+////            this.TestResults.Add(
+////                new TestResult(
+////                    TestData.TestSuites[TestData.TestSuites.Count - 1].TestScenarios[TestData.TestSuites[TestData.TestSuites.Count - 1].TestScenarios.Count - 1].Id, // "???",
+////                    TestData.TestSuites[TestData.TestSuites.Count - 1].Id)); // "???"));
+//            TestData.CurrentTestResult = this.TestResults[TestResults.Count - 1];
+//        }
         
         public TestScenario(
             string testScenarioName, 

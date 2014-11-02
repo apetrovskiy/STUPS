@@ -22,6 +22,7 @@ namespace Tmx.Interfaces.TestStructure
         string Name { get; set; }
         string Id { get; set; }
         List<ITestResultDetail> Details { get; }
+        // List<ITestResultDetail> Details { get; set; }
         string Status { get; }
         TestResultStatuses enStatus { get; set; }
         

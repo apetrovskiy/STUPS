@@ -45,6 +45,7 @@ namespace Tmx.Interfaces
         public virtual string Id { get; set; }
         public virtual string Description { get; set; }
         public virtual List<ITestResultDetail> Details { get; protected internal set; }
+        // public virtual List<ITestResultDetail> Details { get; set; }
         
         public virtual string ScriptName { get; protected internal set; }
         public virtual void SetScriptName(string scriptName)

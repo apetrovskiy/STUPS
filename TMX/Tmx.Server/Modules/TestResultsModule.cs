@@ -53,7 +53,8 @@ namespace Tmx.Server.Modules
             }
         }
         
-        Negotiator exportTestResultsFromTestRun(Guid testRunId)
+        // Negotiator exportTestResultsFromTestRun(Guid testRunId)
+        Response exportTestResultsFromTestRun(Guid testRunId)
         {
             var testResultsExporter = new TestResultsImportExport();
             var xDoc = testResultsExporter.GetTestResultsAsXdocument(
@@ -74,7 +75,9 @@ if (null == xDoc) {
 Console.WriteLine("======================== EXPORTED ========================");
 Console.WriteLine(xDoc);
 Console.WriteLine(xDoc.Root);
-            return null == xDoc ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(xDoc).WithStatusCode(HttpStatusCode.OK);
+xDoc.Save(@"c:\1\export20141102.xml");
+            // return null == xDoc ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(xDoc).WithStatusCode(HttpStatusCode.OK).WithFullNegotiation();
+            return Response.AsJson(xDoc.Root);
         }
     }
 }

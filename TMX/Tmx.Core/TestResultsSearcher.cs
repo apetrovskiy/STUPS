@@ -13,7 +13,6 @@ namespace Tmx.Core
     using System.Collections.Generic;
     using System.Linq;
     using System.Xml.Linq;
-    using FluentNHibernate.Testing.Values;
     using Tmx.Interfaces;
     using Tmx.Interfaces.TestStructure;
     

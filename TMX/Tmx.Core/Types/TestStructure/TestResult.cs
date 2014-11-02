@@ -111,8 +111,11 @@ namespace Tmx.Interfaces
 			Timestamp = DateTime.Now;
         }
         
-        public virtual string SuiteId { get; protected internal set; }
-        public virtual string ScenarioId { get; protected internal set; }
+        // 20141102
+        // public virtual string SuiteId { get; protected internal set; }
+        public virtual string SuiteId { get; set; }
+        // public virtual string ScenarioId { get; protected internal set; }
+        public virtual string ScenarioId { get; set; }
         
         public virtual bool Generated { get; protected internal set; }
         public virtual void SetGenerated()

@@ -16,6 +16,7 @@ namespace Tmx
     using System.Reflection;
 	using Tmx.Interfaces;
 	using Tmx.Interfaces.TestStructure;
+    using Tmx.Core;
     
     /// <summary>
     /// Description of GatherTestResultsCollections.
@@ -35,6 +36,21 @@ namespace Tmx
             TestScenarios = scenarios;
             
             IOrderedEnumerable<ITestResult> testResults = TmxHelper.SearchForTestResults(cmdlet);
+            TestResults = testResults;
+        }
+        
+        // 20141102
+        public void GatherCollections(ISearchCmdletBaseDataObject searchCriteria, List<ITestSuite> suitesForSearch)
+        {
+            var testResultsSearcher = new TestResultsSearcher();
+            
+            IOrderedEnumerable<ITestSuite> suites = testResultsSearcher.SearchForSuites(searchCriteria, suitesForSearch);
+            TestSuites = suites;
+            
+            IOrderedEnumerable<ITestScenario> scenarios = testResultsSearcher.SearchForScenarios(searchCriteria, suitesForSearch);
+            TestScenarios = scenarios;
+            
+            IOrderedEnumerable<ITestResult> testResults = testResultsSearcher.SearchForTestResults(searchCriteria, suitesForSearch);
             TestResults = testResults;
         }
     }

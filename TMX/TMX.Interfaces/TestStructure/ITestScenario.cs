@@ -28,7 +28,9 @@ namespace Tmx.Interfaces.TestStructure
         string Description { get; set; }
         string Status { get; }
         
-        string SuiteId { get; }
+        // 20141102
+        // string SuiteId { get; }
+        string SuiteId { get; set; }
         // 20130301
         // 20140720
         // DateTime Timestamp { get; }

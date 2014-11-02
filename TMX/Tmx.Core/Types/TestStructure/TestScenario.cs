@@ -162,7 +162,9 @@ namespace Tmx.Interfaces
         
         public TestStat Statistics { get; set; }
         
-        public string SuiteId { get; protected internal set; }
+        // 20141102
+        // public string SuiteId { get; protected internal set; }
+        public string SuiteId { get; set; }
         
         public virtual DateTime Timestamp { get; set; }
         public void SetNow()

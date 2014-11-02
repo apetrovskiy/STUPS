@@ -39,9 +39,11 @@ namespace Tmx.Interfaces.TestStructure
         string Description { get; set; }
         List<object> Parameters { get; }
         
-        string ScenarioId { get; }
-        string SuiteId { get; }
-        
+        // 20141102
+        // string ScenarioId { get; }
+        string ScenarioId { get; set; }
+        // string SuiteId { get; }
+        string SuiteId { get; set; }
         
         double TimeSpent { get; }
         void SetTimeSpent(double timeSpent);

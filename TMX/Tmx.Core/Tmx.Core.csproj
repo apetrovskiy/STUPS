@@ -93,6 +93,7 @@
     <Compile Include="Helpers\UserSettings\Preferences.cs" />
     <Compile Include="TestData\TestData.cs" />
     <Compile Include="TestResultsImportExport.cs" />
+    <Compile Include="TestResultsSearcher.cs" />
     <Compile Include="Types\Remoting\CommonData.cs" />
     <Compile Include="Types\Remoting\CommonData_.cs" />
     <Compile Include="Types\Remoting\CommonDataItem.cs" />

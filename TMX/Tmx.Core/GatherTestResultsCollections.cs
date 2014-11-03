@@ -27,19 +27,19 @@ namespace Tmx
         public IOrderedEnumerable<ITestScenario> TestScenarios { get; set; }
         public IOrderedEnumerable<ITestResult> TestResults { get; set; }
         
-        public void GatherCollections(ISearchCmdletBaseDataObject cmdlet)
+        [Obsolete]
+        public void GatherCollections(ISearchCmdletBaseDataObject searchCriteria)
         {
-            IOrderedEnumerable<ITestSuite> suites = TmxHelper.SearchForSuites(cmdlet);
+            IOrderedEnumerable<ITestSuite> suites = TmxHelper.SearchForSuites(searchCriteria);
             TestSuites = suites;
             
-            IOrderedEnumerable<ITestScenario> scenarios = TmxHelper.SearchForScenarios(cmdlet);
+            IOrderedEnumerable<ITestScenario> scenarios = TmxHelper.SearchForScenarios(searchCriteria);
             TestScenarios = scenarios;
             
-            IOrderedEnumerable<ITestResult> testResults = TmxHelper.SearchForTestResults(cmdlet);
+            IOrderedEnumerable<ITestResult> testResults = TmxHelper.SearchForTestResults(searchCriteria);
             TestResults = testResults;
         }
         
-        // 20141102
         public void GatherCollections(ISearchCmdletBaseDataObject searchCriteria, List<ITestSuite> suitesForSearch)
         {
             var testResultsSearcher = new TestResultsSearcher();

@@ -135,6 +135,34 @@ namespace Tmx.Server.Tests.Modules
             THEN_HttpResponse_Is_ExpectationFailed(); // _response);
         }
         
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        public void Should_send_one_test_suite_with_inner_data()
+        {
+            var suites = new List<ITestSuite>() {
+                new TestSuite { Id = "1", Name = "s01", PlatformId = "3" }
+            };
+            var testScenario = new TestScenario {
+                Id = "2", Name = "sc01", PlatformId = "3"
+            };
+            testScenario.TestResults.Add(new TestResult {
+                                             Id = "4", Name = "tr01", PlatformId = "3"
+                                         });
+            suites[0].TestScenarios.Add(testScenario);
+            var testResultsExporter = new TestResultsImportExport();
+            var xDoc = testResultsExporter.GetTestResultsAsXdocument(new SearchCmdletBaseDataObject {
+                                                                         FilterAll = true,
+                                                                         OrderById = true
+                                                                     },
+                                                                     suites);
+            
+            WHEN_Posting_TestResults<XDocument>(xDoc);
+            
+            THEN_HttpResponse_Is_Created();
+            Xunit.Assert.Equal(suites[0].Id, _testRun.TestSuites[0].Id);
+            Xunit.Assert.Equal(suites[0].TestScenarios[0].Id, _testRun.TestSuites[0].TestScenarios[0].Id);
+            Xunit.Assert.Equal(suites[0].TestScenarios[0].TestResults[0].Id, _testRun.TestSuites[0].TestScenarios[0].TestResults[0].Id);
+        }
+        
         // 20141031
         // postponed
 //        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -277,12 +305,8 @@ namespace Tmx.Server.Tests.Modules
             return testResult;
         }
         
-        // BrowserResponse WHEN_Posting_TestResults<T>(T element)
         void WHEN_Posting_TestResults<T>(T element)
         {
-//			var browser = TestFactory.GetBrowserForTestResultsModule();
-//			return browser.Post(getPathToResourcesCollection(typeof(T)), (with) => with.JsonBody<T>(element));
-			// return _browser.Post(getPathToResourcesCollection(typeof(T)), (with) => with.JsonBody<T>(element));
 			_response = _browser.Post(getPathToResourcesCollection(typeof(T)), (with) => {
 			                              with.JsonBody<T>(element);
 			                              with.Accept("application/json");
@@ -292,11 +316,15 @@ namespace Tmx.Server.Tests.Modules
         string getPathToResourcesCollection(MemberInfo type)
         {
             string path = string.Empty;
+Console.WriteLine(_testRun.Id);
+Console.WriteLine(type.Name);
 			switch (type.Name) {
 			    case "XElement":
                 case "XDocument":
+    case ".XDocument":
 			        // return UrnList.TestResultsPostingPoint_absPath;
 var aaa = UrnList.TestResults_Root + "/" + _testRun.Id + UrnList.TestResultsPostingPoint_forClient_relPath;
+Console.WriteLine(aaa);
 			        return UrnList.TestResults_Root + "/" + _testRun.Id + UrnList.TestResultsPostingPoint_forClient_relPath;
             // 20141031
             // postponed

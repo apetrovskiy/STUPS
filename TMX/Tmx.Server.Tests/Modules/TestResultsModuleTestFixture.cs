@@ -118,7 +118,8 @@ namespace Tmx.Server.Tests.Modules
         	// var xDoc = XDocument.Load(@"../../Modules/-2.xml");
         	// var xDoc = XDocument.Load(@"../../Modules/-3.xml");
         	// var xDoc = XDocument.Load(@"../../Modules/-4.xml");
-        	var xDoc = XDocument.Load(@"../../Modules/-5.xml");
+        	// var xDoc = XDocument.Load(@"../../Modules/-5.xml");
+        	var xDoc = XDocument.Load(@"../../Modules/export20141102.xml");
             // var df = xDoc.Root.Name.Namespace;
             var element = xDoc.Root;
             element = element.Elements().First();
@@ -128,7 +129,8 @@ namespace Tmx.Server.Tests.Modules
         	// var element = 
             
             // _response = WHEN_Posting_TestResults<XElement>(element);
-            WHEN_Posting_TestResults<XElement>(element);
+            // WHEN_Posting_TestResults<XElement>(element);
+            WHEN_Posting_TestResults<XDocument>(xDoc);
             
             THEN_HttpResponse_Is_ExpectationFailed(); // _response);
         }
@@ -292,6 +294,7 @@ namespace Tmx.Server.Tests.Modules
             string path = string.Empty;
 			switch (type.Name) {
 			    case "XElement":
+                case "XDocument":
 			        // return UrnList.TestResultsPostingPoint_absPath;
 var aaa = UrnList.TestResults_Root + "/" + _testRun.Id + UrnList.TestResultsPostingPoint_forClient_relPath;
 			        return UrnList.TestResults_Root + "/" + _testRun.Id + UrnList.TestResultsPostingPoint_forClient_relPath;

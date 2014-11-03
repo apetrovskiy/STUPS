@@ -31,9 +31,7 @@ namespace Tmx.Server.Modules
         {
             Post[UrnList.TestResultsPostingPoint_relPath] = parameters => importTestResultsToTestRun(parameters.id);
             
-            Get[UrnList.TestResultsPostingPoint_relPath] = parameters => {
-                return exportTestResultsFromTestRun(parameters.id);
-            };
+            Get[UrnList.TestResultsPostingPoint_relPath] = parameters => exportTestResultsFromTestRun(parameters.id);
         }
 
         HttpStatusCode importTestResultsToTestRun(Guid testRunId)
@@ -42,13 +40,15 @@ namespace Tmx.Server.Modules
                 var actualBytes = new byte[Request.Body.Length];
                 Request.Body.Read(actualBytes, 0, (int)Request.Body.Length);
                 var actual = Encoding.UTF8.GetString(actualBytes);
+Console.WriteLine(actual);
                 var xDoc = XDocument.Parse(actual);
                 var currentTestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId);
                 var testResultsImporter = new TestResultsImportExport();
                 currentTestRun.TestSuites.AddRange(testResultsImporter.ImportTestResultsFromXdocument(xDoc));
                 // maybe, there's no such need? // TODO: set current test suite, test scenario, test result?
                 return HttpStatusCode.Created;
-            } catch (Exception) {
+            } catch (Exception eFailedToImportTestResults) {
+Console.WriteLine(eFailedToImportTestResults.Message);
                 return HttpStatusCode.ExpectationFailed;
             }
         }

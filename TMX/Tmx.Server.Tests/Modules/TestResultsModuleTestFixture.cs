@@ -155,6 +155,7 @@ namespace Tmx.Server.Tests.Modules
                                                                      },
                                                                      suites);
             
+            // WHEN_Posting_TestResults<string>(xDoc.ToString());
             WHEN_Posting_TestResults<XDocument>(xDoc);
             
             THEN_HttpResponse_Is_Created();
@@ -316,15 +317,16 @@ namespace Tmx.Server.Tests.Modules
         string getPathToResourcesCollection(MemberInfo type)
         {
             string path = string.Empty;
-Console.WriteLine(_testRun.Id);
-Console.WriteLine(type.Name);
+Console.WriteLine("test run id = {0}", _testRun.Id);
+Console.WriteLine("type name = {0}", type.Name);
 			switch (type.Name) {
 			    case "XElement":
                 case "XDocument":
     case ".XDocument":
+    case "String":
 			        // return UrnList.TestResultsPostingPoint_absPath;
 var aaa = UrnList.TestResults_Root + "/" + _testRun.Id + UrnList.TestResultsPostingPoint_forClient_relPath;
-Console.WriteLine(aaa);
+Console.WriteLine("url = {0}", aaa);
 			        return UrnList.TestResults_Root + "/" + _testRun.Id + UrnList.TestResultsPostingPoint_forClient_relPath;
             // 20141031
             // postponed

@@ -25,12 +25,12 @@ namespace Tmx.Server.Tests
     {
         public static Browser GetBrowserForTestClientsModule()
         {
-            return new Browser(with => with.Module(new TestClientsModule()));
+            return new Browser(with => with.Modules(typeof(TestClientsModule), typeof(ServerControlModule), typeof(TestRunsModule)));
         }
         
         public static Browser GetBrowserForTestTasksModule()
         {
-            return new Browser(with => with.Modules(typeof(TestClientsModule), typeof(TestTasksModule)));
+            return new Browser(with => with.Modules(typeof(TestTasksModule), typeof(TestClientsModule))); // , typeof(ServerControlModule), typeof(TestRunsModule)));
         }
         
         public static Browser GetBrowserForServerControlModule()
@@ -45,12 +45,12 @@ namespace Tmx.Server.Tests
         
         public static Browser GetBrowserForTestResultsModule()
         {
-            return new Browser(with => with.Modules(typeof(TestRunsModule), typeof(TestResultsModule)));
+            return new Browser(with => with.Modules(typeof(TestResultsModule))); // , typeof(TestRunsModule), typeof(ServerControlModule)));
         }
         
         public static Browser GetBrowserForTestDataModule()
         {
-            return new Browser(with => with.Module(new TestDataModule()));
+            return new Browser(with => with.Modules(typeof(TestDataModule))); // , typeof(TestRunsModule), typeof(ServerControlModule)));
         }
         
         public static ITestClient GivenTestClient(string hostname, string username)

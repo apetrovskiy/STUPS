@@ -53,8 +53,8 @@ Console.WriteLine(eFailedToImportTestResults.Message);
             }
         }
         
-        // Negotiator exportTestResultsFromTestRun(Guid testRunId)
-        Response exportTestResultsFromTestRun(Guid testRunId)
+        Negotiator exportTestResultsFromTestRun(Guid testRunId)
+        // Response exportTestResultsFromTestRun(Guid testRunId)
         {
             var testResultsExporter = new TestResultsImportExport();
             var xDoc = testResultsExporter.GetTestResultsAsXdocument(
@@ -76,8 +76,8 @@ Console.WriteLine("======================== EXPORTED ========================");
 Console.WriteLine(xDoc);
 Console.WriteLine(xDoc.Root);
 xDoc.Save(@"c:\1\export20141102.xml");
-            // return null == xDoc ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(xDoc).WithStatusCode(HttpStatusCode.OK).WithFullNegotiation();
-            return Response.AsJson(xDoc.Root);
+            return null == xDoc ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(xDoc).WithStatusCode(HttpStatusCode.OK).WithFullNegotiation();
+            // return Response.AsJson(xDoc.Root);
         }
     }
 }

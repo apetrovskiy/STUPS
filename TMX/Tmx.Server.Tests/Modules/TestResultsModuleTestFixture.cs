@@ -138,16 +138,7 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_send_one_test_suite_with_inner_data()
         {
-            var suites = new List<ITestSuite>() {
-                new TestSuite { Id = "1", Name = "s01", PlatformId = "3" }
-            };
-            var testScenario = new TestScenario {
-                Id = "2", Name = "sc01", PlatformId = "3"
-            };
-            testScenario.TestResults.Add(new TestResult {
-                                             Id = "4", Name = "tr01", PlatformId = "3"
-                                         });
-            suites[0].TestScenarios.Add(testScenario);
+            var suites = GIVEN_one_testSuite_with_inner_hierarchy();
             var testResultsExporter = new TestResultsImportExport();
             var xDoc = testResultsExporter.GetTestResultsAsXdocument(new SearchCmdletBaseDataObject {
                                                                          FilterAll = true,
@@ -162,6 +153,20 @@ namespace Tmx.Server.Tests.Modules
             Xunit.Assert.Equal(suites[0].Id, _testRun.TestSuites[0].Id);
             Xunit.Assert.Equal(suites[0].TestScenarios[0].Id, _testRun.TestSuites[0].TestScenarios[0].Id);
             Xunit.Assert.Equal(suites[0].TestScenarios[0].TestResults[0].Id, _testRun.TestSuites[0].TestScenarios[0].TestResults[0].Id);
+        }
+        
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        public void Should_receive_test_results_from_test_run()
+        {
+            var suites = GIVEN_one_testSuite_with_inner_hierarchy();
+            _testRun.TestSuites.AddRange(suites);
+            
+            WHEN_Getting_TestResults();
+            
+            var testResultsImporter = new TestResultsImportExport();
+            // var result = testResultsImporter.ImportTestResultsFromXdocument(_response.Body as XDocument);
+            
+            Console.WriteLine(_response.Body);
         }
         
         // 20141031
@@ -254,6 +259,29 @@ namespace Tmx.Server.Tests.Modules
             return suites;
         }
         
+        List<ITestSuite> GIVEN_one_testSuite_with_inner_hierarchy()
+        {
+            var suites = new List<ITestSuite>() {
+                new TestSuite {
+                    Id = "1",
+                    Name = "s01",
+                    PlatformId = "3"
+                }
+            };
+            var testScenario = new TestScenario {
+                Id = "2",
+                Name = "sc01",
+                PlatformId = "3"
+            };
+            testScenario.TestResults.Add(new TestResult {
+                Id = "4",
+                Name = "tr01",
+                PlatformId = "3"
+            });
+            suites[0].TestScenarios.Add(testScenario);
+            return suites;
+        }
+        
 //        XElement GIVEN_one_test_suite()
 //        {
 //            return new XElement("aaa");
@@ -310,6 +338,13 @@ namespace Tmx.Server.Tests.Modules
         {
 			_response = _browser.Post(getPathToResourcesCollection(typeof(T)), (with) => {
 			                              with.JsonBody<T>(element);
+			                              with.Accept("application/json");
+			                          });
+        }
+        
+        void WHEN_Getting_TestResults()
+        {
+			_response = _browser.Get(getPathToResourcesCollection(typeof(XDocument)), (with) => {
 			                              with.Accept("application/json");
 			                          });
         }

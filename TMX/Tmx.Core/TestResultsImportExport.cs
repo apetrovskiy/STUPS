@@ -186,7 +186,8 @@ Console.WriteLine(e.Message);
 		public XDocument GetTestResultsAsXdocument(ISearchCmdletBaseDataObject searchCriteria, List<ITestSuite> suites)
 		{
 		    var suitesElement = GetTestResultsAsXelement(searchCriteria, suites);
-			var document = new XDocument();
+			// var document = new XDocument();
+			var document = new XDocument(new XDeclaration("1.0", "utf-8", "yes"));
 			document.Add(suitesElement);
 			return document;
 		}

@@ -12,6 +12,7 @@ namespace Tmx.Interfaces
     using System;
     using System.Collections.Generic;
     using System.Management.Automation;
+    using System.Xml.Serialization;
 	using Tmx.Interfaces;
 	using Tmx.Interfaces.TestStructure;
 	// using Tmx.Core;
@@ -123,6 +124,7 @@ namespace Tmx.Interfaces
                 TestResults[TestResults.Count - 1];
         }
         
+        [XmlIgnore]
         public virtual int DbId { get; set; }
         public string Name { get; set; }
         public string Id { get; set; }
@@ -164,6 +166,7 @@ namespace Tmx.Interfaces
         
         // 20141102
         // public string SuiteId { get; protected internal set; }
+        [XmlIgnore]
         public string SuiteId { get; set; }
         
         public virtual DateTime Timestamp { get; set; }
@@ -178,13 +181,19 @@ namespace Tmx.Interfaces
 			TimeSpent = timeSpent;
         }
         
+        [XmlIgnore]
         public virtual string Tags { get; set; }
         public virtual string PlatformId { get; set; }
         
+        [XmlIgnore]
         public virtual ScriptBlock[] BeforeTest { get; set; }
+        [XmlIgnore]
         public virtual ScriptBlock[] AfterTest { get; set; }
+        [XmlIgnore]
         public virtual object[] BeforeTestParameters { get; set; }
+        [XmlIgnore]
         public virtual object[] AfterTestParameters { get; set; }
+        [XmlIgnore]
         public List<ITestCase> TestCases { get; set; }
     }
 }

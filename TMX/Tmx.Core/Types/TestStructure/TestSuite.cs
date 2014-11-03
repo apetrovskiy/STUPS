@@ -13,6 +13,7 @@ namespace Tmx.Interfaces
     using System.Collections.Generic;
     using System.Linq;
     using System.Management.Automation;
+    using System.Xml.Serialization;
 	using Tmx.Interfaces.TestStructure;
 	// using Tmx.Core;
     
@@ -55,6 +56,7 @@ namespace Tmx.Interfaces
 			PlatformId = TestData.GetDefaultPlatformId();
 		}
 		
+		[XmlIgnore]
         public virtual int DbId { get; set; }
         public string Name { get; set; }
         public string Id { get; set; }
@@ -103,12 +105,17 @@ namespace Tmx.Interfaces
 			TimeSpent = timeSpent;
         }
         
+        [XmlIgnore]
         public virtual string Tags { get; set; }
         public virtual string PlatformId { get; set; }
         
+        [XmlIgnore]
         public virtual ScriptBlock[] BeforeScenario { get; set; }
+        [XmlIgnore]
         public virtual ScriptBlock[] AfterScenario { get; set; }
+        [XmlIgnore]
         public virtual object[] BeforeScenarioParameters { get; set; }
+        [XmlIgnore]
         public virtual object[] AfterScenarioParameters { get; set; }
     }
 }

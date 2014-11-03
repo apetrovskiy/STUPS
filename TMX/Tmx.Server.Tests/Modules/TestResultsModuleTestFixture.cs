@@ -271,12 +271,17 @@ namespace Tmx.Server.Tests.Modules
             var testScenario = new TestScenario {
                 Id = "2",
                 Name = "sc01",
-                PlatformId = "3"
+                PlatformId = "3",
+                SuiteId = "1"
             };
             testScenario.TestResults.Add(new TestResult {
                 Id = "4",
                 Name = "tr01",
-                PlatformId = "3"
+                PlatformId = "3",
+                SuiteId = "1",
+                ScenarioId = "2",
+                Origin = TestResultOrigins.Logical,
+                enStatus = TestResultStatuses.Passed
             });
             suites[0].TestScenarios.Add(testScenario);
             return suites;

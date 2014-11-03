@@ -13,6 +13,7 @@ namespace Tmx.Interfaces
     using System.Collections.Generic;
     using System.Management.Automation;
     using System.ComponentModel;
+    using System.Xml.Serialization;
 	using Tmx.Interfaces.TestStructure;
     
     /// <summary>
@@ -28,6 +29,7 @@ namespace Tmx.Interfaces
             this.ExternalData = new List<string>();
         }
         
+        [XmlIgnore]
         public virtual int DbId { get; protected set; }
         public virtual DateTime Timestamp { get; set; }
         public virtual TestResultDetailTypes DetailType { get; set; }

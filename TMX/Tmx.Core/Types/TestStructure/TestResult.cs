@@ -14,6 +14,7 @@ namespace Tmx.Interfaces
     using System.Management.Automation;
     using System.Collections;
     using System.Linq;
+    using System.Xml.Serialization;
 	using Tmx.Interfaces.TestStructure;
 	// using Tmx.Core;
     
@@ -40,6 +41,7 @@ namespace Tmx.Interfaces
             this.SetNow();
         }
         
+        [XmlIgnore]
         public virtual int DbId { get; set; }
         public virtual string Name { get; set; }
         public virtual string Id { get; set; }
@@ -113,8 +115,10 @@ namespace Tmx.Interfaces
         
         // 20141102
         // public virtual string SuiteId { get; protected internal set; }
+        [XmlIgnore]
         public virtual string SuiteId { get; set; }
         // public virtual string ScenarioId { get; protected internal set; }
+        [XmlIgnore]
         public virtual string ScenarioId { get; set; }
         
         public virtual bool Generated { get; protected internal set; }

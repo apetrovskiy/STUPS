@@ -10,6 +10,7 @@
 namespace Tmx.Client
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Net;
     using System.Xml.Linq;
@@ -17,6 +18,7 @@ namespace Tmx.Client
     using Tmx.Core;
     using Tmx.Interfaces.Exceptions;
     using Tmx.Interfaces.Server;
+    using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of TestResultsLoader.
@@ -34,9 +36,12 @@ namespace Tmx.Client
 	    {
 	        try {
 				var urn = UrnList.TestResults_Root + "/" + ClientSettings.Instance.CurrentClient.TestRunId + UrnList.TestResultsPostingPoint_forClient_relPath;
-	            var loadingResultsResponse = _restTemplate.GetForMessage<XDocument>(urn);
-	            var testResultsImporter = new TestResultsImportExport();
-	            TestData.TestSuites.AddRange(testResultsImporter.ImportTestResultsFromXdocument(loadingResultsResponse.Body));
+//	            var loadingResultsResponse = _restTemplate.GetForMessage<XDocument>(urn);
+//	            var testResultsImporter = new TestResultsImportExport();
+//	            TestData.TestSuites.AddRange(testResultsImporter.ImportTestResultsFromXdocument(loadingResultsResponse.Body));
+	            
+	            var loadingResultsResponse = _restTemplate.GetForMessage<List<ITestSuite>>(urn);
+	            TestData.TestSuites.AddRange(loadingResultsResponse.Body);
 	            return HttpStatusCode.OK == loadingResultsResponse.StatusCode;
 	        }
 	        catch (Exception eLoadingTestResults) {

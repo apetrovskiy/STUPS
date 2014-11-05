@@ -62,7 +62,7 @@ namespace Tmx.Client
 				var urn = UrnList.TestResults_Root + "/" + ClientSettings.Instance.CurrentClient.TestRunId + UrnList.TestResultsPostingPoint_forClient_relPath;
 				// var sendingResultsResponse = _restTemplate.PostForMessage(urn, element);
 				
-				var sendingResultsResponse = _restTemplate.PostForMessage(urn, dataObject);
+				var sendingResultsResponse = _restTemplate.PostForMessage<TestResultsDataObject>(urn, dataObject);
 //				var sendingResultsResponse = _restTemplate.PostForMessage<List<ITestSuite>>(urn, TestData.TestSuites);
 				return HttpStatusCode.Created == sendingResultsResponse.StatusCode;
 			}

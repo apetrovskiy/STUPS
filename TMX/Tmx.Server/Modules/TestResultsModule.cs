@@ -33,11 +33,6 @@ namespace Tmx.Server.Modules
     {
         public TestResultsModule() : base(UrnList.TestResults_Root)
         {
-            // JsonSettings.MaxJsonLength = Int32.MaxValue;
-//            JsonSettings.MaxJsonLength = 10000000;
-//            JsonSettings.MaxRecursions = 25;
-//            JsonSerializer.
-            
             Post[UrnList.TestResultsPostingPoint_relPath] = parameters => importTestResultsToTestRun(parameters.id);
             
             Get[UrnList.TestResultsPostingPoint_relPath] = parameters => exportTestResultsFromTestRun(parameters.id);
@@ -77,7 +72,7 @@ namespace Tmx.Server.Modules
 //                currentTestRun.TestSuites.AddRange(testResultsImporter.ImportTestResultsFromXdocument(xDoc));
                 
                 var dataObject = this.Bind<TestResultsDataObject>();
-                var xElt = XDocument.Parse(dataObject.Data);
+                var xElt = XElement.Parse(dataObject.Data);
                 var currentTestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId);
                 var xDoc = new XDocument(xElt);
                 var testResultsImporter = new TestResultsImportExport();
@@ -171,15 +166,10 @@ Console.WriteLine(eFailedToImportTestResults.InnerException.Message);
                            TestRunQueue.TestRuns.FirstOrDefault(testRun => testRun.Id == testRunId).TestSuites);
             
             var dataObject = new TestResultsDataObject { Data = xElt.ToString() };
-            return null == dataObject ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(dataObject).WithStatusCode(HttpStatusCode.OK).WithFullNegotiation();
+            return null == dataObject ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(dataObject).WithStatusCode(HttpStatusCode.OK); // .WithFullNegotiation();
             
 //            var suites = TestRunQueue.TestRuns.FirstOrDefault(testRun => testRun.Id == testRunId).TestSuites;
 //            return null == suites ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(suites).WithStatusCode(HttpStatusCode.OK).WithFullNegotiation();
         }
-    }
-    
-    public class TempClass
-    {
-        public XDocument Doc { get; set; }
     }
 }

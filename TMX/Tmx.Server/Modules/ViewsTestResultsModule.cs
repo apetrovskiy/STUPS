@@ -50,7 +50,9 @@ namespace Tmx.Server.Modules
 //                data.TestSuites = TestData.TestSuites;
 //                return View[UrnList.TestResultsViews_OverviewNewPageName, data];
                 dynamic data = new ExpandoObject();
-                data.TestSuites = TestData.TestSuites;
+                // 20141105
+                // data.TestSuites = TestData.TestSuites;
+                data.TestRuns = TestRunQueue.TestRuns;
                 data.Tasks = TaskPool.TasksForClients;
                 return View[UrnList.TestResultsViews_OverviewNewPageName, data];
             };

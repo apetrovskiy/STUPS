@@ -107,8 +107,8 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_react_on_posting_bunch_of_data()
         {
-        	var xDoc = XDocument.Load(@"../../Modules/TMX_report.xml");
-//        	var xDoc = XDocument.Load(@"../../Modules/TMX_red_report.xml");
+//        	var xDoc = XDocument.Load(@"../../Modules/TMX_report.xml");
+        	var xDoc = XDocument.Load(@"../../Modules/TMX_red_report.xml");
             
             var dataObject = new TestResultsDataObject {
                 Data = xDoc.ToString()
@@ -148,9 +148,6 @@ namespace Tmx.Server.Tests.Modules
             _testRun.TestSuites.AddRange(suites);
             
             WHEN_Getting_TestResults();
-            
-            // var testResultsImporter = new TestResultsImportExport();
-            // var result = testResultsImporter.ImportTestResultsFromXdocument(_response.Body as XDocument);
             
             Console.WriteLine(_response.Body);
             Console.WriteLine(_response.Body.GetType().Name);

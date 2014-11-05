@@ -16,6 +16,8 @@ namespace Tmx.Client
     using System.Xml.Linq;
     using Spring.Rest.Client;
     using Tmx.Core;
+    using Tmx.Core.Types.Remoting;
+    using Tmx.Interfaces;
     using Tmx.Interfaces.Exceptions;
     using Tmx.Interfaces.Server;
     using Tmx.Interfaces.TestStructure;
@@ -40,8 +42,34 @@ namespace Tmx.Client
 //	            var testResultsImporter = new TestResultsImportExport();
 //	            TestData.TestSuites.AddRange(testResultsImporter.ImportTestResultsFromXdocument(loadingResultsResponse.Body));
 	            
-	            var loadingResultsResponse = _restTemplate.GetForMessage<List<ITestSuite>>(urn);
-	            TestData.TestSuites.AddRange(loadingResultsResponse.Body);
+//	            var loadingResultsResponse = _restTemplate.GetForMessage<List<ITestSuite>>(urn);
+//	            TestData.TestSuites.AddRange(loadingResultsResponse.Body);
+	            
+//				var loadingResultsResponse = _restTemplate.GetForMessage<TestResultsDataObject>(urn);
+//				var testResultsImporter = new TestResultsImportExport();
+//				var xDoc = XDocument.Parse(loadingResultsResponse.Body.Data);
+//				TestData.TestSuites.AddRange(testResultsImporter.ImportTestResultsFromXdocument(xDoc));
+	            
+				var loadingResultsResponse = _restTemplate.GetForMessage<TestResultsDataObject>(urn);
+				var testResultsImporter = new TestResultsImportExport();
+				var xElt = XElement.Parse(loadingResultsResponse.Body.Data);
+				var xDoc = new XDocument(xElt);
+				TestData.TestSuites.AddRange(testResultsImporter.ImportTestResultsFromXdocument(xDoc));
+				
+//				var loadingResultsResponse = _restTemplate.GetForMessage<TestResultsDataObject>(urn);
+//				var testResultsImporter = new TestResultsImportExport();
+//				TestData.TestSuites.AddRange(testResultsImporter.ImportTestResultsFromXdocument(loadingResultsResponse.Body.Doc));
+				
+//				var loadingResultsResponse = _restTemplate.GetForMessage<List<ITestSuite>>(urn);
+//				var testResultsImporter = new TestResultsImportExport();
+//				var list = loadingResultsResponse.Body;
+////				var newList = new List<ITestSuite>();
+////				foreach (var suite in list) {
+////				    newList.Add(suite);
+////				}
+////				TestData.TestSuites.AddRange(newList);
+//				TestData.TestSuites.AddRange(list);
+				
 	            return HttpStatusCode.OK == loadingResultsResponse.StatusCode;
 	        }
 	        catch (Exception eLoadingTestResults) {

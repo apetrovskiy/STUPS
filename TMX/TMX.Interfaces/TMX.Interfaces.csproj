@@ -111,6 +111,7 @@
     <Compile Include="Remoting\ITestClient.cs" />
     <Compile Include="Remoting\ITestClientProxy.cs" />
     <Compile Include="Remoting\ITestLab.cs" />
+    <Compile Include="Remoting\ITestResultsDataObject.cs" />
     <Compile Include="Remoting\ITestRun.cs" />
     <Compile Include="Remoting\ITestRunCommand.cs" />
     <Compile Include="Remoting\ITestTask.cs" />

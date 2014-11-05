@@ -100,6 +100,7 @@
     <Compile Include="Helpers\Control\ServerControl.cs" />
     <Compile Include="Helpers\Control\TmxServerRootPathProvider.cs" />
     <Compile Include="Helpers\ExtensionMethods\ExtensionMethods.cs" />
+    <Compile Include="Helpers\ModelBinders\TestSuitesModelBinder.cs" />
     <Compile Include="Helpers\ObjectModel\GlobalSettings.cs" />
     <Compile Include="Helpers\ObjectModel\WorkflowSettings.cs" />
     <Compile Include="Helpers\Objects\ContainerForTests.cs" />
@@ -197,6 +198,7 @@
   <ItemGroup>
     <Folder Include="Helpers\Control" />
     <Folder Include="Helpers\ExtensionMethods" />
+    <Folder Include="Helpers\ModelBinders" />
     <Folder Include="Helpers\ObjectModel" />
     <Folder Include="Helpers\Objects" />
     <Folder Include="Modules" />

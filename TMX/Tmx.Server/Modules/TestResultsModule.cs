@@ -15,9 +15,12 @@ namespace Tmx.Server.Modules
     using System.Linq;
 	using System.Xml.Linq;
     using Nancy;
+    using Nancy.Json;
     using Nancy.ModelBinding;
     using Nancy.Responses.Negotiation;
+    using Newtonsoft.Json;
     using Tmx.Core;
+    using Tmx.Core.Types.Remoting;
 	using Tmx.Interfaces;
 	using Tmx.Interfaces.Server;
 	using Tmx;
@@ -30,6 +33,11 @@ namespace Tmx.Server.Modules
     {
         public TestResultsModule() : base(UrnList.TestResults_Root)
         {
+            // JsonSettings.MaxJsonLength = Int32.MaxValue;
+//            JsonSettings.MaxJsonLength = 10000000;
+//            JsonSettings.MaxRecursions = 25;
+//            JsonSerializer.
+            
             Post[UrnList.TestResultsPostingPoint_relPath] = parameters => importTestResultsToTestRun(parameters.id);
             
             Get[UrnList.TestResultsPostingPoint_relPath] = parameters => exportTestResultsFromTestRun(parameters.id);
@@ -55,22 +63,44 @@ namespace Tmx.Server.Modules
         HttpStatusCode importTestResultsToTestRun(Guid testRunId)
         {
             try {
-                var actualBytes = new byte[Request.Body.Length];
-                Request.Body.Read(actualBytes, 0, (int)Request.Body.Length);
-                var actual = Encoding.UTF8.GetString(actualBytes);
-                var xDoc = XDocument.Parse(actual);
+//                var actualBytes = new byte[Request.Body.Length];
+//                Request.Body.Read(actualBytes, 0, (int)Request.Body.Length);
+//                var actual = Encoding.UTF8.GetString(actualBytes);
+//                var xDoc = XDocument.Parse(actual);
+//                var currentTestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId);
+//                var testResultsImporter = new TestResultsImportExport();
+                
+//                var dataObject = this.Bind<TestResultsDataObject>();
+//                var xDoc = XDocument.Parse(dataObject.Data);
+//                var currentTestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId);
+//                var testResultsImporter = new TestResultsImportExport();
+//                currentTestRun.TestSuites.AddRange(testResultsImporter.ImportTestResultsFromXdocument(xDoc));
+                
+                var dataObject = this.Bind<TestResultsDataObject>();
+                var xElt = XDocument.Parse(dataObject.Data);
                 var currentTestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId);
+                var xDoc = new XDocument(xElt);
                 var testResultsImporter = new TestResultsImportExport();
+                currentTestRun.TestSuites.AddRange(testResultsImporter.ImportTestResultsFromXdocument(xDoc));
+                
+//                var suites = this.Bind<List<ITestSuite>>();
+//                var currentTestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId);
+//                currentTestRun.TestSuites.AddRange(suites);
+                
+//                var dataObject = this.Bind<TestResultsDataObject>();
+//                var currentTestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId);
+//                var testResultsImporter = new TestResultsImportExport();
+//                currentTestRun.TestSuites.AddRange(testResultsImporter.ImportTestResultsFromXdocument(dataObject.Doc));
                 
 //                var currentTestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId);
 //                var suites = this.Bind<List<ITestSuite>>();
 //                currentTestRun.TestSuites.AddRange(suites);
                 
-                currentTestRun.TestSuites.AddRange(testResultsImporter.ImportTestResultsFromXdocument(xDoc));
-                
                 // maybe, there's no such need? // TODO: set current test suite, test scenario, test result?
                 return HttpStatusCode.Created;
             } catch (Exception eFailedToImportTestResults) {
+Console.WriteLine(eFailedToImportTestResults.Message);
+Console.WriteLine(eFailedToImportTestResults.InnerException.Message);
                 return HttpStatusCode.ExpectationFailed;
             }
         }
@@ -111,9 +141,40 @@ namespace Tmx.Server.Modules
             // return Response.AsJson(xDoc.Root);
             // return Response.AsXml(xDoc);
             // return Response.AsJson(xDoc);
-            var testRunOfInterest = TestRunQueue.TestRuns.FirstOrDefault(testRun => testRun.Id == testRunId);
-            var suites = testRunOfInterest.TestSuites ?? new List<ITestSuite>();
-            return null == suites ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(suites).WithStatusCode(HttpStatusCode.OK).WithFullNegotiation();
+            
+//            var testRunOfInterest = TestRunQueue.TestRuns.FirstOrDefault(testRun => testRun.Id == testRunId);
+//            var suites = testRunOfInterest.TestSuites ?? new List<ITestSuite>();
+//            return null == suites ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(suites).WithStatusCode(HttpStatusCode.OK).WithFullNegotiation();
+            
+//            var testResultsExporter = new TestResultsImportExport();
+//            var xDoc = testResultsExporter.GetTestResultsAsXdocument(
+//                           new SearchCmdletBaseDataObject {
+//                                Descending = false,
+//                                FilterAll = true,
+//                                FilterFailed = false,
+//                                OrderById = true
+//                            },
+//                           TestRunQueue.TestRuns.FirstOrDefault(testRun => testRun.Id == testRunId).TestSuites);
+//            
+//            var dataObject = new TestResultsDataObject { Data = xDoc.ToString() };
+//            // var dataObject = new TestResultsDataObject { Doc = xDoc };
+//            return null == dataObject ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(dataObject).WithStatusCode(HttpStatusCode.OK).WithFullNegotiation();
+            
+            var testResultsExporter = new TestResultsImportExport();
+            var xElt = testResultsExporter.GetTestResultsAsXelement(
+                           new SearchCmdletBaseDataObject {
+                                Descending = false,
+                                FilterAll = true,
+                                FilterFailed = false,
+                                OrderById = true
+                            },
+                           TestRunQueue.TestRuns.FirstOrDefault(testRun => testRun.Id == testRunId).TestSuites);
+            
+            var dataObject = new TestResultsDataObject { Data = xElt.ToString() };
+            return null == dataObject ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(dataObject).WithStatusCode(HttpStatusCode.OK).WithFullNegotiation();
+            
+//            var suites = TestRunQueue.TestRuns.FirstOrDefault(testRun => testRun.Id == testRunId).TestSuites;
+//            return null == suites ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(suites).WithStatusCode(HttpStatusCode.OK).WithFullNegotiation();
         }
     }
     

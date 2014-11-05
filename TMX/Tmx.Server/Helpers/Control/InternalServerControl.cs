@@ -17,6 +17,9 @@ namespace Tmx.Server
     using Nancy.Conventions;
     using Nancy.Hosting.Self;
     using Nancy.Diagnostics;
+    using Nancy.Json;
+    using Nancy.Responses;
+    using Nancy.Responses.Negotiation;
     using Nancy.TinyIoc;
     using Tmx.Core;
     using Tmx.Core.Types.Remoting;
@@ -45,6 +48,10 @@ namespace Tmx.Server
             registerTypes();
             loadPlugins();
 			_nancyHost.Start();
+//			JsonSettings.MaxJsonLength = Int32.MaxValue;
+			// Nancy.Responses.JsonResponse..JsonSettings.MaxJsonLength
+//			JsonSettings.MaxRecursions = 25;
+//			JsonSettings.MaxJsonLength = 10000000;
         }
         
         public static void Stop()
@@ -145,7 +152,7 @@ namespace Tmx.Server
             StaticConfiguration.Caching.EnableRuntimeViewUpdates = true;
             StaticConfiguration.DisableErrorTraces = false;
             StaticConfiguration.EnableRequestTracing = true;
-            
+            JsonSettings.MaxJsonLength = int.MaxValue;
             // pipelines.BeforeRequest += ctx => { temporary_outputMethod(ctx, "BeforeRequest"); return null; };
             
             // pipelines.AfterRequest += ctx => { temporary_outputMethod(ctx, "AfterRequest"); return null; };

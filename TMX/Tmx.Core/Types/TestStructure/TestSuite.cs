@@ -24,7 +24,9 @@ namespace Tmx.Interfaces
     {
         public TestSuite()
         {
+            // 20141106 refactoring 01
             TestScenarios = new List<ITestScenario>();
+            // TestScenarios = new List<TestScenario>();
             this.Statistics = new TestStat();
             this.enStatus = TestSuiteStatuses.NotTested;
             this.Id = TestData.GetTestSuiteId();
@@ -34,7 +36,9 @@ namespace Tmx.Interfaces
         
         public TestSuite(string testSuiteName, string testSuiteId)
         {
+            // 20141106 refactoring 01
             TestScenarios = new List<ITestScenario> ();
+            // TestScenarios = new List<TestScenario>();
             this.Statistics = new TestStat();
             this.enStatus = TestSuiteStatuses.NotTested;
             this.Name = testSuiteName;
@@ -58,14 +62,24 @@ namespace Tmx.Interfaces
 		
 		[XmlIgnore]
         public virtual int DbId { get; set; }
+        [XmlAttribute]
         public string Name { get; set; }
+        [XmlAttribute]
         public string Id { get; set; }
+        // [XmlInclude(typeof(List<ITestScenario>))]
+        // 20141106 refactoring 01
+        [XmlElement("TestScenarios", typeof(ITestScenario))]
         public virtual List<ITestScenario> TestScenarios { get; set; }
+        // [XmlElement("TestScenarios", typeof(TestScenario))]
+        // public virtual List<TestScenario> TestScenarios { get; set; }
+        [XmlAttribute]
         public virtual string Description { get; set; }
 
         string _status;
+        [XmlAttribute]
         public virtual string Status { get { return _status; } }
         TestSuiteStatuses _enStatus;
+        [XmlAttribute]
         public TestSuiteStatuses enStatus        
         { 
             get { return _enStatus; }
@@ -91,14 +105,17 @@ namespace Tmx.Interfaces
             }
         }
         
+        [XmlIgnore]
         public TestStat Statistics { get; set; }
         
+        [XmlAttribute]
         public virtual DateTime Timestamp { get; set; }
         public void SetNow()
         {
 			Timestamp = DateTime.Now;
         }
         
+        [XmlAttribute]
         public virtual double TimeSpent { get; set; }
         public virtual void SetTimeSpent(double timeSpent)
         {
@@ -107,6 +124,7 @@ namespace Tmx.Interfaces
         
         [XmlIgnore]
         public virtual string Tags { get; set; }
+        [XmlAttribute]
         public virtual string PlatformId { get; set; }
         
         [XmlIgnore]

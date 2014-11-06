@@ -43,39 +43,52 @@ namespace Tmx.Interfaces
         
         [XmlIgnore]
         public virtual int DbId { get; set; }
+        [XmlAttribute]
         public virtual string Name { get; set; }
+        [XmlAttribute]
         public virtual string Id { get; set; }
+        [XmlAttribute]
         public virtual string Description { get; set; }
+        // [XmlInclude(typeof(List<ITestResultDetail>))]
+        [XmlElement("TestResultDetails", typeof(ITestResultDetail))]
         public virtual List<ITestResultDetail> Details { get; protected internal set; }
         // public virtual List<ITestResultDetail> Details { get; set; }
         
+        [XmlAttribute]
         public virtual string ScriptName { get; protected internal set; }
         public virtual void SetScriptName(string scriptName)
         {
 			ScriptName = scriptName;
         }
+        [XmlAttribute]
         public virtual int LineNumber { get; protected internal set; }
         public virtual void SetLineNumber(int lineNumber)
         {
 			LineNumber = lineNumber;
         }
+        [XmlAttribute]
         public virtual int Position { get; protected internal set; }
         public virtual void SetPosition(int position)
         {
 			Position = position;
         }
+        [XmlIgnore]
         public virtual ErrorRecord Error { get; protected internal set; }
         public virtual void SetError(ErrorRecord error)
         {
 			Error = error;
         }
+        [XmlAttribute]
         public virtual string Code { get; set; }
         
+        [XmlIgnore]
         public virtual List<object> Parameters { get; protected internal set; }
 
         string status;
+        [XmlAttribute]
         public virtual string Status { get { return this.status; } }
         TestResultStatuses _enStatus;
+        [XmlAttribute]
         public virtual TestResultStatuses enStatus
         { 
             get { return _enStatus; }
@@ -101,12 +114,14 @@ namespace Tmx.Interfaces
             }
         }
         
+        [XmlAttribute]
         public virtual double TimeSpent { get; protected internal set; }
         public virtual void SetTimeSpent(double timeSpent)
         {
 			TimeSpent = timeSpent;
         }
         
+        [XmlAttribute]
         public virtual DateTime Timestamp { get; protected internal set; }
         public virtual void SetNow()
         {
@@ -120,13 +135,14 @@ namespace Tmx.Interfaces
         // public virtual string ScenarioId { get; protected internal set; }
         [XmlIgnore]
         public virtual string ScenarioId { get; set; }
-        
+        [XmlAttribute] // ??
         public virtual bool Generated { get; protected internal set; }
         public virtual void SetGenerated()
         {
 			Generated = true;
         }
         
+        [XmlAttribute]
         public virtual string Screenshot { get; protected internal set; }
         public virtual void SetScreenshot(string path)
         {
@@ -134,6 +150,7 @@ namespace Tmx.Interfaces
         }
         // 20141022
         
+        [XmlAttribute]
         public virtual TestResultOrigins Origin { get; protected internal set; }
         public virtual void SetOrigin(TestResultOrigins origin)
         {
@@ -255,6 +272,7 @@ namespace Tmx.Interfaces
             return detailsList;
         }
         
+        [XmlAttribute]
         public virtual string PlatformId { get; set; }
     }
 }

@@ -112,6 +112,7 @@
     <Compile Include="Remoting\ITestClientProxy.cs" />
     <Compile Include="Remoting\ITestLab.cs" />
     <Compile Include="Remoting\ITestResultsDataObject.cs" />
+    <Compile Include="Remoting\ITestResultsHolder.cs" />
     <Compile Include="Remoting\ITestRun.cs" />
     <Compile Include="Remoting\ITestRunCommand.cs" />
     <Compile Include="Remoting\ITestTask.cs" />
@@ -123,6 +124,7 @@
     <Compile Include="Remoting\ITestTaskStatusProxy.cs" />
     <Compile Include="Remoting\ITestWorkflow.cs" />
     <Compile Include="Remoting\IWorkflow.cs" />
+    <Compile Include="Remoting\ListOfTestSuites.cs" />
     <Compile Include="TestStructure\Enumerations.cs" />
     <Compile Include="TestStructure\ITestBucket.cs" />
     <Compile Include="TestStructure\ITestCase.cs" />

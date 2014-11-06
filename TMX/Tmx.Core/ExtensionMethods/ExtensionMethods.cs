@@ -11,7 +11,12 @@ namespace Tmx.Core
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
+    using System.Text;
+    using System.Xml;
+    using System.Xml.Linq;
+    using System.Xml.Serialization;
 	using Tmx.Interfaces.Remoting;
 	using Tmx.Core.Types.Remoting;
     
@@ -138,6 +143,69 @@ namespace Tmx.Core
         public static bool IsCompleted(this ITestRun testRun)
         {
             return TestRunStatuses.Completed == testRun.Status;
+        }
+        
+//        public static string SerializeToString<T>(this T testResultsCollection)
+//        {
+//			var serializer = new XmlSerializer(typeof(T));
+//            
+//			try {
+//	            using (var writer = new StringWriter())
+//	            {
+//	                serializer.Serialize(writer, testResultsCollection);
+//	                return writer.ToString();
+//	            }
+//			}
+////			catch {
+////				return string.Empty;
+////			}
+//			catch (Exception e) {
+//Console.WriteLine(e.GetType().Name);
+//Console.WriteLine(e.Message);
+//Console.WriteLine(e.InnerException.Message);
+//				return string.Empty;
+//			}
+//        }
+//		
+//        public static T DeserializeFromString<T>(this string testResultsCollection)
+//        {
+//			var serializer = new XmlSerializer(typeof(T));
+//			
+//			try {
+//				using (var stream = new MemoryStream()) {
+//					using (var writer = new StreamWriter(stream, Encoding.Unicode)) {
+//						writer.Write(testResultsCollection);
+//						writer.Flush();
+//						stream.Position = 0;
+//						return (T)serializer.Deserialize(stream);
+//					}
+//				}
+//			}
+//			catch {
+//				return default(T);
+//			}
+//        }
+        
+        public static string SerializeToString(this XDocument document)
+        {
+            using (var memoryStream = new MemoryStream(Encoding.ASCII.GetBytes(document.Root.ToString())))
+            {
+                var xmlSerializer = new XmlSerializer(typeof(string));
+                return (string)xmlSerializer.Deserialize(memoryStream);
+            }
+        }
+        
+        public static XDocument DeserializeFromString(this string documentAsString)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                using (TextWriter streamWriter = new StreamWriter(memoryStream))
+                {
+                    var xmlSerializer = new XmlSerializer(typeof(XElement));
+                    xmlSerializer.Serialize(streamWriter, documentAsString);
+                    return XDocument.Parse(Encoding.ASCII.GetString(memoryStream.ToArray()));
+                }
+            }
         }
     }
 }

@@ -45,16 +45,31 @@ namespace Tmx.Client
 //	            var loadingResultsResponse = _restTemplate.GetForMessage<List<ITestSuite>>(urn);
 //	            TestData.TestSuites.AddRange(loadingResultsResponse.Body);
 	            
-//				var loadingResultsResponse = _restTemplate.GetForMessage<TestResultsDataObject>(urn);
-//				var testResultsImporter = new TestResultsImportExport();
-//				var xDoc = XDocument.Parse(loadingResultsResponse.Body.Data);
-//				TestData.TestSuites.AddRange(testResultsImporter.ImportTestResultsFromXdocument(xDoc));
-	            
 				var loadingResultsResponse = _restTemplate.GetForMessage<TestResultsDataObject>(urn);
 				var testResultsImporter = new TestResultsImportExport();
-				var xElt = XElement.Parse(loadingResultsResponse.Body.Data);
-				var xDoc = new XDocument(xElt);
+				var xDoc = XDocument.Parse(loadingResultsResponse.Body.Data);
 				TestData.TestSuites.AddRange(testResultsImporter.ImportTestResultsFromXdocument(xDoc));
+	            
+//				var loadingResultsResponse = _restTemplate.GetForMessage<TestResultsDataObject>(urn);
+//				var testResultsImporter = new TestResultsImportExport();
+//				var xElt = XElement.Parse(loadingResultsResponse.Body.Data);
+//				var xDoc = new XDocument(xElt);
+//				TestData.TestSuites.AddRange(testResultsImporter.ImportTestResultsFromXdocument(xDoc));
+				
+//				var loadingResultsResponse = _restTemplate.GetForMessage<TestResultsDataObject>(urn);
+//				TestData.TestSuites.AddRange(loadingResultsResponse.Body.Data);
+				
+//				var loadingResultsResponse = _restTemplate.GetForMessage<TestResultsDataObject>(urn);
+//				var stringData = loadingResultsResponse.Body.Data;
+//				var suites = stringData.DeserializeFromString<List<ITestSuite>>();
+//				TestData.TestSuites.AddRange(suites);
+				
+//				var loadingResultsResponse = _restTemplate.GetForMessage<TestResultsDataObject>(urn);
+//				var stringData = loadingResultsResponse.Body.Data;
+//				var xDoc = stringData.DeserializeFromString();
+//				var testResultsImporter = new TestResultsImportExport();
+//				// TestData.TestSuites.AddRange(suites);
+//				TestData.TestSuites.AddRange(testResultsImporter.ImportTestResultsFromXdocument(xDoc));
 				
 //				var loadingResultsResponse = _restTemplate.GetForMessage<TestResultsDataObject>(urn);
 //				var testResultsImporter = new TestResultsImportExport();
@@ -72,7 +87,8 @@ namespace Tmx.Client
 				
 	            return HttpStatusCode.OK == loadingResultsResponse.StatusCode;
 	        }
-	        catch (Exception eLoadingTestResults) {
+	        // catch (Exception eLoadingTestResults) {
+	        catch (RestClientException eLoadingTestResults) {
 	            throw new LoadingTestResultsException("Failed to receive test results. " + eLoadingTestResults.Message);
 	        }
 	    }

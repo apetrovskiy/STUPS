@@ -126,14 +126,21 @@ namespace Tmx.Interfaces
         
         [XmlIgnore]
         public virtual int DbId { get; set; }
+        [XmlAttribute]
         public string Name { get; set; }
+        [XmlAttribute]
         public string Id { get; set; }
+        // [XmlInclude(typeof(List<ITestResult>))]
+        [XmlElement("TestResults", typeof(ITestResult))]
         public List<ITestResult> TestResults {get; protected internal set; }
+        [XmlAttribute]
         public virtual string Description { get; set; }
 
         string _status;
+        [XmlAttribute]
         public virtual string Status { get { return this._status; } }
         TestScenarioStatuses _enStatus;
+        [XmlAttribute]
         public TestScenarioStatuses enStatus
         { 
             get { return _enStatus; }
@@ -162,6 +169,7 @@ namespace Tmx.Interfaces
             }
         }
         
+        [XmlIgnore]
         public TestStat Statistics { get; set; }
         
         // 20141102
@@ -169,12 +177,14 @@ namespace Tmx.Interfaces
         [XmlIgnore]
         public string SuiteId { get; set; }
         
+        [XmlAttribute]
         public virtual DateTime Timestamp { get; set; }
         public void SetNow()
         {
 			Timestamp = DateTime.Now;
         }
         
+        [XmlAttribute]
         public virtual double TimeSpent { get; set; }
         public virtual void SetTimeSpent(double timeSpent)
         {
@@ -183,6 +193,7 @@ namespace Tmx.Interfaces
         
         [XmlIgnore]
         public virtual string Tags { get; set; }
+        [XmlAttribute]
         public virtual string PlatformId { get; set; }
         
         [XmlIgnore]

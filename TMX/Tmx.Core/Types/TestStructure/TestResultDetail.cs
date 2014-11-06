@@ -31,14 +31,22 @@ namespace Tmx.Interfaces
         
         [XmlIgnore]
         public virtual int DbId { get; protected set; }
+        [XmlAttribute]
         public virtual DateTime Timestamp { get; set; }
+        [XmlAttribute]
         public virtual TestResultDetailTypes DetailType { get; set; }
+        [XmlAttribute]
         public virtual string TextDetail { get; set; }
+        [XmlIgnore]
         public virtual ErrorRecord ErrorDetail { get; set; }
+        [XmlAttribute]
         public virtual string ScreenshotDetail { get; set; }
+        [XmlAttribute]
         public virtual string LogDetail { get; set; }
+        [XmlIgnore]
         public virtual List<string> ExternalData { get; set; }
         
+        [XmlAttribute]
         public virtual string Name
         {
             get {
@@ -93,6 +101,7 @@ namespace Tmx.Interfaces
 			return null != ErrorDetail ? ErrorDetail.Exception.Message : ScreenshotDetail ?? TextDetail ?? null;
         }
         
+        [XmlAttribute]
         public virtual TestResultStatuses DetailStatus { get; set; }
     }
 }

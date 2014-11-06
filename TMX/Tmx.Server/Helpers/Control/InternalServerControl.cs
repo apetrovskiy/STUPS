@@ -10,6 +10,7 @@
 namespace Tmx.Server
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using DotLiquid.NamingConventions;
     using Nancy;
@@ -132,7 +133,11 @@ namespace Tmx.Server
 			Template.RegisterSafeType(typeof(TestResultOrigins), member => member.ToString());
 			
 			Template.RegisterSafeType(typeof(TestWorkflow), new[] { "Id", "Name", "TestLabId", "Description" });
-			Template.RegisterSafeType(typeof(TestRun), new[] { "Id", "Name", "WorkflowId", "TestLabId", "Description", "Status" });
+			Template.RegisterSafeType(typeof(TestRun), new[] { "Id", "Name", "WorkflowId", "TestLabId", "Description", "Status", "StartType", "Data", "TestSuites", "StartTime" });
+			Template.RegisterSafeType(typeof(CommonData), new[] { "Data" });
+			Template.RegisterSafeType(typeof(Dictionary<string, string>), member => member.ToString());
+			Template.RegisterSafeType(typeof(KeyValuePair<string, string>), new[] { "Key", "Value" });
+			Template.RegisterSafeType(typeof(CommonDataItem), new[] { "Key", "Value" });
 			Template.RegisterSafeType(typeof(TestRunStatuses), member => member.ToString());
 			Template.RegisterSafeType(typeof(TestRunStartTypes), member => member.ToString());
 			Template.RegisterSafeType(typeof(TestLab), new[] { "Id", "Name", "Description" });

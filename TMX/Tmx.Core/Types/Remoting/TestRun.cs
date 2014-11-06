@@ -10,9 +10,9 @@
 namespace Tmx.Core.Types.Remoting
 {
 	using System;
-	using System.Collections.Generic;
+    using System.Collections.Generic;
 	using Tmx.Interfaces.Remoting;
-	using Tmx.Interfaces.TestStructure;
+    using Tmx.Interfaces.TestStructure;
 	
 	/// <summary>
 	/// Description of TestRun.
@@ -24,7 +24,9 @@ namespace Tmx.Core.Types.Remoting
 		public TestRun()
 		{
 		    Data = new CommonData();
+		    // 20141106
             TestSuites = new List<ITestSuite>();
+            // TestSuites = new ListOfTestSuites();
             Status = TestRunStatuses.Pending;
             Id = Guid.NewGuid();
 		}
@@ -33,7 +35,9 @@ namespace Tmx.Core.Types.Remoting
         public string Name { get; set; }
         public string Description { get; set; }
         public ICommonData Data { get; set; }
+        // 20141106
         public List<ITestSuite> TestSuites { get; set; }
+        // public ListOfTestSuites TestSuites { get; set; }
         public Guid TestLabId {
             get { return _workflow.TestLabId; }
         }

@@ -51,8 +51,8 @@ namespace Tmx.Client
 			    _restTemplate.Delete(UrnList.TestClients_Root + "/" + ClientSettings.Instance.ClientId);
                 ClientSettings.Instance.ResetData();
 			}
-			catch {
-			    throw new ClientDeregistrationException("Failed to unregister the client");
+            catch (RestClientException eUnregisteringClient) {
+			    throw new ClientDeregistrationException("Failed to unregister the client. " + eUnregisteringClient.Message);
 			}
         }
         

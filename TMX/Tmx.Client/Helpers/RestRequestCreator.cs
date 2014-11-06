@@ -34,6 +34,10 @@ namespace Tmx.Client
             _restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
             _restTemplate.MessageConverters.Add(new XElementHttpMessageConverter());
             
+            // _restTemplate.MessageConverters.Add(new StringHttpMessageConverter());
+            _restTemplate.MessageConverters.Add(new XmlSerializableHttpMessageConverter());
+            _restTemplate.MessageConverters.Add(new ResourceHttpMessageConverter());
+            _restTemplate.MessageConverters.Add(new StringHttpMessageConverter());
             // ??
 //            _restTemplate.MessageConverters.Add(new XmlDocumentHttpMessageConverter());
 //            _restTemplate.MessageConverters.Add(new XmlSerializableHttpMessageConverter());

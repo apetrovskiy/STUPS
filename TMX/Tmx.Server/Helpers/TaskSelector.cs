@@ -161,11 +161,11 @@ namespace Tmx.Server
 			foreach (var clientId in ClientsCollection.Clients.Where(client => client.IsInActiveTestRun()).Select(client => client.Id)) {
 			    // TaskPool.TasksForClients.AddRange(taskSorter.SelectTasksForClient(clientId, activeWorkflowsTasks.ToList()));
 			    // taskSorter.SelectTasksForClient(clientId, activeWorkflowsTasks.ToList()).ForEach(task => task.TestRunId = testRunId);
-Console.WriteLine("test run Id = {0}", testRunId);
+//Console.WriteLine("test run Id = {0}", testRunId);
 			    var tasksForClient = taskSorter.SelectTasksForClient(clientId, activeWorkflowsTasks.ToList());
-if (null != tasksForClient)
-    foreach (var t in tasksForClient)
-        Console.WriteLine("task Id = {0}, name = {1}, clientId = {2}", t.Id, t.Name, t.ClientId);
+//if (null != tasksForClient)
+//    foreach (var t in tasksForClient)
+//        Console.WriteLine("task Id = {0}, name = {1}, clientId = {2}", t.Id, t.Name, t.ClientId);
 			    tasksForClient.ForEach(task => task.TestRunId = testRunId);
 			    TaskPool.TasksForClients.AddRange(tasksForClient);
 			}

@@ -10,8 +10,8 @@
 namespace Tmx.Interfaces.Remoting
 {
 	using System;
-	using System.Collections.Generic;
-	using Tmx.Interfaces.TestStructure;
+    using System.Collections.Generic;
+    using Tmx.Interfaces.TestStructure;
 	
 	/// <summary>
 	/// Description of ITestRun.
@@ -21,7 +21,9 @@ namespace Tmx.Interfaces.Remoting
 		TestRunStatuses Status { get; set; }
 		TestRunStartTypes StartType { get; set; }
         ICommonData Data { get; set; }
+        // 20141106
         List<ITestSuite> TestSuites { get; set; }
+        // ListOfTestSuites TestSuites { get; set; }
         Guid WorkflowId { get; }
         DateTime StartTime { get; set; }
 	}

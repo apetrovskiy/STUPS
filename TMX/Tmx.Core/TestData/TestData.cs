@@ -12,6 +12,7 @@ namespace Tmx
     using System;
     using System.Collections.Generic;
     using System.Management.Automation;
+    using Tmx.Core.Types.Remoting;
 //    using System.ComponentModel;
     using System.Linq;
 	using Tmx.Interfaces;
@@ -42,7 +43,11 @@ namespace Tmx
         static TestData()
         // public TestData()
         {
+            // 20141106
+            // 20141106 refactoring 01
             TestSuites = new List<ITestSuite>();
+            // TestSuites = new List<TestSuite>();
+            // TestSuites = new ListOfTestSuites();
             TestPlatforms = new List<ITestPlatform>();
             AddDefaultPlatform();
         }
@@ -51,7 +56,11 @@ namespace Tmx
         // ----------------- Properties --------------------------
         
         // 20140720
+        // 20141106
+        // 20141106 refactoring 01
         public static List<ITestSuite> TestSuites {get; internal set; }
+        // public static List<TestSuite> TestSuites { get; internal set; }
+        // public static ListOfTestSuites TestSuites {get; internal set; }
 
         public static ITestSuite CurrentTestSuite { get; set; }
         public static ITestScenario CurrentTestScenario { get; set; }
@@ -502,7 +511,9 @@ namespace Tmx
             if (null == TestData.TestSuites)
                 // 20140720
                 // TestData.TestSuites = new List<TestSuite>();
+                // 20141106
                 TestData.TestSuites = new List<ITestSuite>();
+                // TestData.TestSuites = new ListOfTestSuites();
             if (null == TestData.TestPlatforms)
                 // 20140720
                 // TestData.TestPlatforms = new List<TestPlatform>();

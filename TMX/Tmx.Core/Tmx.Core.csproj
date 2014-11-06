@@ -110,10 +110,12 @@
     <Compile Include="Types\Remoting\CommonData.cs" />
     <Compile Include="Types\Remoting\CommonDataItem.cs" />
     <Compile Include="Types\Remoting\DetailedStatus.cs" />
+    <Compile Include="Types\Remoting\ListOfTestSuites.cs" />
     <Compile Include="Types\Remoting\ServerCommand.cs" />
     <Compile Include="Types\Remoting\TestClient.cs" />
     <Compile Include="Types\Remoting\TestLab.cs" />
     <Compile Include="Types\Remoting\TestResultsDataObject.cs" />
+    <Compile Include="Types\Remoting\TestResultsHolder.cs" />
     <Compile Include="Types\Remoting\TestRun.cs" />
     <Compile Include="Types\Remoting\TestRunCommand.cs" />
     <Compile Include="Types\Remoting\TestTask.cs" />

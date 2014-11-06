@@ -33,7 +33,8 @@ namespace Tmx.Core.Types.Remoting
         // public WorkflowStatuses WorkflowStatus { get; set; }
         // public Dictionary<string, string> Data { get; set; }
         // public List<ITestSuite> TestSuites { get; set; }
-        public bool IsActive { get; set; }
+        // 20141106 as useless
+        // public bool IsActive { get; set; }
         public Guid TestLabId {
             get { return _testLab.Id; }
         }

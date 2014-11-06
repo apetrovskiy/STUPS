@@ -95,8 +95,13 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_react_on_posting_no_data()
         {
+            var testResultsExporter = new TestResultsImportExport();
+            var xDoc = testResultsExporter.GetTestResultsAsXdocument(new SearchCmdletBaseDataObject { FilterAll = true }, new List<ITestSuite>());
+            
             var dataObject = new TestResultsDataObject {
                 Data = string.Empty
+                // Data = (new List<ITestSuite>()).SerializeToString<List<ITestSuite>>()
+                // Data = xDoc.SerializeToString()
             };
             
             WHEN_Posting_TestResults<TestResultsDataObject>(dataObject);
@@ -104,20 +109,20 @@ namespace Tmx.Server.Tests.Modules
             THEN_HttpResponse_Is_Created();
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_react_on_posting_bunch_of_data()
-        {
-//        	var xDoc = XDocument.Load(@"../../Modules/TMX_report.xml");
-        	var xDoc = XDocument.Load(@"../../Modules/TMX_red_report.xml");
-            
-            var dataObject = new TestResultsDataObject {
-                Data = xDoc.ToString()
-            };
-            
-            WHEN_Posting_TestResults<TestResultsDataObject>(dataObject);
-            
-            THEN_HttpResponse_Is_Created();
-        }
+//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        public void Should_react_on_posting_bunch_of_data()
+//        {
+////        	var xDoc = XDocument.Load(@"../../Modules/TMX_report.xml");
+//        	var xDoc = XDocument.Load(@"../../Modules/TMX_red_report.xml");
+//            
+//            var dataObject = new TestResultsDataObject {
+//                Data = xDoc.ToString()
+//            };
+//            
+//            WHEN_Posting_TestResults<TestResultsDataObject>(dataObject);
+//            
+//            THEN_HttpResponse_Is_Created();
+//        }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_send_one_test_suite_with_inner_data()
@@ -131,6 +136,9 @@ namespace Tmx.Server.Tests.Modules
                                                                      suites);
             var dataObject = new TestResultsDataObject {
                 Data = xDoc.ToString()
+                // Data = suites.SerializeToString<List<ITestSuite>>()
+                // Data = suites.SerializeToString()
+                // Data = xDoc.SerializeToString()
             };
             
             WHEN_Posting_TestResults<TestResultsDataObject>(dataObject);

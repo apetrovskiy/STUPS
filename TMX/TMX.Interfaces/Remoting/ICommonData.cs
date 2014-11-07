@@ -19,7 +19,5 @@ namespace Tmx.Interfaces.Remoting
     {
         Dictionary<string, string> Data { get; set; }
         void AddOrUpdateDataItem(ICommonDataItem commonDataItem);
-//        void addNewDataItem(ICommonDataItem commonDataItem);
-//        void updateExistingDataItem(ICommonDataItem commonDataItem);
     }
 }

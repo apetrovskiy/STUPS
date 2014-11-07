@@ -49,10 +49,6 @@ namespace Tmx.Server
             registerTypes();
             loadPlugins();
 			_nancyHost.Start();
-//			JsonSettings.MaxJsonLength = Int32.MaxValue;
-			// Nancy.Responses.JsonResponse..JsonSettings.MaxJsonLength
-//			JsonSettings.MaxRecursions = 25;
-//			JsonSettings.MaxJsonLength = 10000000;
         }
         
         public static void Stop()
@@ -64,11 +60,8 @@ namespace Tmx.Server
         public static void Reset()
         {
             ClientsCollection.Clients = new System.Collections.Generic.List<ITestClient>();
-//            ClientsCollection.MaxUsedClientId = 0;
             TaskPool.TasksForClients = new System.Collections.Generic.List<ITestTask>();
             TaskPool.Tasks = new System.Collections.Generic.List<ITestTask>();
-            // 20141030
-            // CommonData.Data = new System.Collections.Generic.Dictionary<string, string>();
         }
         
         protected override DiagnosticsConfiguration DiagnosticsConfiguration {

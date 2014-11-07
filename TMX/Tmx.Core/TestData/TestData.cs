@@ -12,6 +12,7 @@ namespace Tmx
     using System;
     using System.Collections.Generic;
     using System.Management.Automation;
+    using Tmx.Core;
     using Tmx.Core.Types.Remoting;
 //    using System.ComponentModel;
     using System.Linq;
@@ -641,59 +642,59 @@ namespace Tmx
             }
         }
         
-        internal static TestStat RefreshScenarioStatistics(ITestScenario scenario, bool skipAutomatic)
-        {
-            var ts = new TestStat();
-
-            if (null != scenario.TestResults && 0 < scenario.TestResults.Count) {
-                
-                ts.All = scenario.TestResults.Count;
-                foreach (var tr in scenario.TestResults) {
-                    
-                    if (skipAutomatic) {
-                        if (TestResultOrigins.Automatic == tr.Origin) {
-                            continue;
-                        }
-                    }
-                    
-                    if (tr.enStatus == TestResultStatuses.Passed ||
-                        tr.enStatus == TestResultStatuses.KnownIssue) {
-                        ts.Passed++;
-                        if (tr.enStatus == TestResultStatuses.KnownIssue){
-                            ts.PassedButWithBadSmell++;
-                        }
-                    }
-                    if (tr.enStatus == TestResultStatuses.Failed) {
-                        ts.Failed++;
-                    }
-                    ts.TimeSpent += tr.TimeSpent;
-                }
-            }
-            ts.NotTested = 
-                ts.All - 
-                ts.Passed -
-                ts.Failed;
-            scenario.Statistics = ts;
-            return ts;
-        }
-        
-        internal static TestStat RefreshSuiteStatistics(ITestSuite suite, bool skipAutomatic)
-        {
-            var ts = new TestStat();
-            foreach (var tsc in suite.TestScenarios) {
-                
-                //RefreshScenarioStatistics(tsc);
-                RefreshScenarioStatistics(tsc, skipAutomatic);
-                ts.All += tsc.Statistics.All;
-                ts.Passed += tsc.Statistics.Passed;
-                ts.Failed += tsc.Statistics.Failed;
-                ts.NotTested += tsc.Statistics.NotTested;
-                ts.TimeSpent += tsc.Statistics.TimeSpent;
-                ts.PassedButWithBadSmell += tsc.Statistics.PassedButWithBadSmell;
-            }
-            suite.Statistics = ts;
-            return ts;
-        }
+//        internal static TestStat RefreshScenarioStatistics(ITestScenario scenario, bool skipAutomatic)
+//        {
+//            var ts = new TestStat();
+//
+//            if (null != scenario.TestResults && 0 < scenario.TestResults.Count) {
+//                
+//                ts.All = scenario.TestResults.Count;
+//                foreach (var tr in scenario.TestResults) {
+//                    
+//                    if (skipAutomatic) {
+//                        if (TestResultOrigins.Automatic == tr.Origin) {
+//                            continue;
+//                        }
+//                    }
+//                    
+//                    if (tr.enStatus == TestResultStatuses.Passed ||
+//                        tr.enStatus == TestResultStatuses.KnownIssue) {
+//                        ts.Passed++;
+//                        if (tr.enStatus == TestResultStatuses.KnownIssue){
+//                            ts.PassedButWithBadSmell++;
+//                        }
+//                    }
+//                    if (tr.enStatus == TestResultStatuses.Failed) {
+//                        ts.Failed++;
+//                    }
+//                    ts.TimeSpent += tr.TimeSpent;
+//                }
+//            }
+//            ts.NotTested = 
+//                ts.All - 
+//                ts.Passed -
+//                ts.Failed;
+//            scenario.Statistics = ts;
+//            return ts;
+//        }
+//        
+//        internal static TestStat RefreshSuiteStatistics(ITestSuite suite, bool skipAutomatic)
+//        {
+//            var ts = new TestStat();
+//            foreach (var tsc in suite.TestScenarios) {
+//                
+//                //RefreshScenarioStatistics(tsc);
+//                RefreshScenarioStatistics(tsc, skipAutomatic);
+//                ts.All += tsc.Statistics.All;
+//                ts.Passed += tsc.Statistics.Passed;
+//                ts.Failed += tsc.Statistics.Failed;
+//                ts.NotTested += tsc.Statistics.NotTested;
+//                ts.TimeSpent += tsc.Statistics.TimeSpent;
+//                ts.PassedButWithBadSmell += tsc.Statistics.PassedButWithBadSmell;
+//            }
+//            suite.Statistics = ts;
+//            return ts;
+//        }
         
         internal static void SetScenarioStatus(bool skipAutomatic)
         {
@@ -739,7 +740,10 @@ namespace Tmx
                     TestData.CurrentTestScenario.enStatus = TestScenarioStatuses.KnownIssue;
             
                 // set statistics
-                RefreshScenarioStatistics(TestData.CurrentTestScenario, skipAutomatic);
+                // 20141107
+                // RefreshScenarioStatistics(TestData.CurrentTestScenario, skipAutomatic);
+                var testStatistics = new TestStatistics();
+                testStatistics.RefreshScenarioStatistics(TestData.CurrentTestScenario, skipAutomatic);
             }
         }
         
@@ -791,7 +795,10 @@ namespace Tmx
                     TestData.CurrentTestSuite.enStatus = TestSuiteStatuses.KnownIssue;
                 
                 // set statistics
-                RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
+                // 20141107
+                // RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
+                var testStatistics = new TestStatistics();
+                testStatistics.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
             }
         }
         

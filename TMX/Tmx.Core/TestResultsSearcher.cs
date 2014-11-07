@@ -30,6 +30,8 @@ namespace Tmx.Core
         public IOrderedEnumerable<ITestSuite> SearchForSuites(ISearchCmdletBaseDataObject cmdlet, List<ITestSuite> suitesForSearch)
         {
             IOrderedEnumerable<ITestSuite> suitesFound = null;
+            // 20141107
+            var testStatistics = new TestStatistics();
             
             // Filtering results
             
@@ -81,13 +83,17 @@ namespace Tmx.Core
             } 
 			if (cmdlet.OrderByPassRate) {
 				ordering += suite => {
-					TestData.RefreshSuiteStatistics(suite, cmdlet.FilterOutAutomaticResults);
+                    // 20141107
+					// TestData.RefreshSuiteStatistics(suite, cmdlet.FilterOutAutomaticResults);
+					testStatistics.RefreshSuiteStatistics(suite, cmdlet.FilterOutAutomaticResults);
 					return (suite.Statistics.Passed / suite.Statistics.All);
 				};
 			} 
 			if (cmdlet.OrderByFailRate) {
 				ordering += suite => {
-					TestData.RefreshSuiteStatistics(suite, cmdlet.FilterOutAutomaticResults);
+                    // 20141107
+					// TestData.RefreshSuiteStatistics(suite, cmdlet.FilterOutAutomaticResults);
+					testStatistics.RefreshSuiteStatistics(suite, cmdlet.FilterOutAutomaticResults);
 					return (suite.Statistics.Failed / suite.Statistics.All);
 				};
 			} 

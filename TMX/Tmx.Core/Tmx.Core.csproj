@@ -103,6 +103,7 @@
     <Compile Include="TestData\TestData.cs" />
     <Compile Include="TestResultsImportExport.cs" />
     <Compile Include="TestResultsSearcher.cs" />
+    <Compile Include="TestStatistics.cs" />
     <Compile Include="Types\Remoting\Binders\TestResultDetailSerializationBinder.cs" />
     <Compile Include="Types\Remoting\Binders\TestResultSerializationBinder.cs" />
     <Compile Include="Types\Remoting\Binders\TestScenarioSerializationBinder.cs" />

@@ -12,6 +12,7 @@ namespace Tmx.Commands
     using System;
     using System.Management.Automation;
 	using Tmx;
+    using Tmx.Core;
     
     /// <summary>
     /// Description of UpdateTmxTestStatisticsCommand.
@@ -24,9 +25,14 @@ namespace Tmx.Commands
             
             if (null != TestData.TestSuites && 0 < TestData.TestSuites.Count) {
                 
+                // 20141107
+                var testStatistics = new TestStatistics();
+                
                 foreach (var testSuite in TestData.TestSuites) {
                     
-                    TestData.RefreshSuiteStatistics(testSuite, false);
+                    // 20141107
+                    // TestData.RefreshSuiteStatistics(testSuite, false);
+                    testStatistics.RefreshSuiteStatistics(testSuite, false);
                 }
                 
             }

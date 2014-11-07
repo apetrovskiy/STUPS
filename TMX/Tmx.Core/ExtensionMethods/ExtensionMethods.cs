@@ -137,7 +137,7 @@ namespace Tmx.Core
         
         public static bool IsScheduled(this ITestRun testRun)
         {
-            return TestRunStatuses.Sheduled == testRun.Status;
+            return TestRunStatuses.Scheduled == testRun.Status;
         }
         
         public static bool IsCompleted(this ITestRun testRun)

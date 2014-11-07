@@ -87,10 +87,10 @@ namespace Tmx.Client
                 HttpEntity<String> entity = new HttpEntity<String>(requestJson,headers);
                 restTemplate.put(uRL, entity);
                 */
-                var headers = new HttpHeaders();
-                headers.ContentType = MediaType.APPLICATION_JSON;
-                headers.Accept = new[]{ MediaType.APPLICATION_JSON };
-                var entity = new HttpEntity(dataObject, headers);
+//                var headers = new HttpHeaders();
+//                headers.ContentType = MediaType.APPLICATION_JSON;
+//                headers.Accept = new[]{ MediaType.APPLICATION_JSON };
+//                var entity = new HttpEntity(dataObject, headers);
 				// var sendingResultsResponse = _restTemplate.PostForMessage<TestResultsDataObject>(urn, dataObject, entity);
 				// var sendingResultsResponse = _restTemplate.PostForMessage<TestResultsDataObject>(urn, entity);
 				// var sendingResultsResponse = _restTemplate.PostForMessage<TestResultsDataObject>(urn, dataObject);

@@ -49,7 +49,7 @@ namespace Tmx.Interfaces.Remoting
 	{
 		Running = 0,
 		Pending = 1,
-		Sheduled = 2,
+		Scheduled = 2,
 		Completed = 3
 	}
 	

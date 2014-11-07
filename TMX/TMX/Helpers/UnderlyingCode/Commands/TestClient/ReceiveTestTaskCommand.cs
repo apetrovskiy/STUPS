@@ -56,11 +56,6 @@ namespace Tmx
                 }
                 catch (Exception e) {
                     // NullreferenceException
-// 20141101 temp
-Console.WriteLine("receiving a task " + e.GetType().Name);
-Console.WriteLine("receiving a task " + e.Message);
-Console.WriteLine("receiving a task " + e.InnerException.Message);
-//Console.WriteLine("receiving a task " + e.GetType().Name);
                 }
                 
 				if (null != task)

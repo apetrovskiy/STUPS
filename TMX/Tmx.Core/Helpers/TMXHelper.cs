@@ -16,6 +16,7 @@ namespace Tmx
     
     using System.Collections.Generic;
     using System.Xml.Linq;
+    using Tmx.Core;
 //    using System.Reflection;
 	using Tmx.Interfaces;
 	using Tmx.Interfaces.TestStructure;
@@ -560,6 +561,8 @@ namespace Tmx
         public static IOrderedEnumerable<ITestSuite> SearchForSuites(ISearchCmdletBaseDataObject cmdlet)
         {
             IOrderedEnumerable<ITestSuite> suites = null;
+            // 20141107
+            var testStatistics = new TestStatistics();
             
             // Filtering results
             
@@ -649,14 +652,18 @@ namespace Tmx
 			if (cmdlet.OrderByPassRate) {
 				ordering += suite => {
 					//TestData.RefreshSuiteStatistics(suite);
-					TestData.RefreshSuiteStatistics(suite, cmdlet.FilterOutAutomaticResults);
+					// 20141107
+					// TestData.RefreshSuiteStatistics(suite, cmdlet.FilterOutAutomaticResults);
+					testStatistics.RefreshSuiteStatistics(suite, cmdlet.FilterOutAutomaticResults);
 					return (suite.Statistics.Passed / suite.Statistics.All);
 				};
 			} 
 			if (cmdlet.OrderByFailRate) {
 				ordering += suite => {
 					//TestData.RefreshSuiteStatistics(suite);
-					TestData.RefreshSuiteStatistics(suite, cmdlet.FilterOutAutomaticResults);
+					// 20141107
+					// TestData.RefreshSuiteStatistics(suite, cmdlet.FilterOutAutomaticResults);
+					testStatistics.RefreshSuiteStatistics(suite, cmdlet.FilterOutAutomaticResults);
 					return (suite.Statistics.Failed / suite.Statistics.All);
 				};
 			} 
@@ -1173,7 +1180,10 @@ namespace Tmx
         public static string GetCurrentTestSuiteStatus(IOpenSuiteCmdletBaseDataObject cmdlet, bool skipAutomatic)
         {
             if (null == TestData.CurrentTestSuite) return string.Empty;
-            TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
+            // 20141107
+            // TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
+            var testStatistics = new TestStatistics();
+            testStatistics.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
             return TestData.CurrentTestSuite.Status;
         }
         
@@ -1186,7 +1196,10 @@ namespace Tmx
             // 20140720
             // if (null == TestData.CurrentTestSuite) return;
             if (null == TestData.CurrentTestSuite) return string.Empty;
-            TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
+            // 20141107
+            // TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
+            var testStatistics = new TestStatistics();
+            testStatistics.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
             // 20140720
             // cmdlet.WriteObject(cmdlet, TestData.CurrentTestSuite.Status);
             return TestData.CurrentTestSuite.Status;
@@ -1199,14 +1212,20 @@ namespace Tmx
                 id,
                 testPlatformId);
             if (null == TestData.CurrentTestSuite) return string.Empty;
-            TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
+            // 20141107
+            // TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
+            var testStatistics = new TestStatistics();
+            testStatistics.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
             return TestData.CurrentTestSuite.Status;
         }
         
         public static string GetCurrentTestScenarioStatus(IOpenScenarioCmdletBaseDataObject cmdlet, bool skipAutomatic)
         {
             if (null == TestData.CurrentTestScenario) return string.Empty;
-            TestData.RefreshScenarioStatistics(TestData.CurrentTestScenario, skipAutomatic);
+            // 20141107
+            // TestData.RefreshScenarioStatistics(TestData.CurrentTestScenario, skipAutomatic);
+            var testStatistics = new TestStatistics();
+            testStatistics.RefreshScenarioStatistics(TestData.CurrentTestScenario, skipAutomatic);
             return TestData.CurrentTestScenario.Status;
         }
         
@@ -1214,7 +1233,10 @@ namespace Tmx
         {
             TmxHelper.OpenTestScenario(dataObject);
             if (null == TestData.CurrentTestScenario) return string.Empty;
-            TestData.RefreshScenarioStatistics(TestData.CurrentTestScenario, skipAutomatic);
+            // 20141107
+            // TestData.RefreshScenarioStatistics(TestData.CurrentTestScenario, skipAutomatic);
+            var testStatistics = new TestStatistics();
+            testStatistics.RefreshScenarioStatistics(TestData.CurrentTestScenario, skipAutomatic);
             return TestData.CurrentTestScenario.Status;
         }
         
@@ -1482,6 +1504,8 @@ namespace Tmx
 		static void importTestSuites(IEnumerable<XElement> suites)
 		{
             string lastTestSuiteName = string.Empty;
+            // 20141107
+            var testStatistics = new TestStatistics();
             
 			foreach (var singleSuite in suites) {
 				lastTestSuiteName = singleSuite.Attribute("name").Value;
@@ -1498,7 +1522,9 @@ namespace Tmx
                                 where scenario.Attribute("name").Value != TestData.Autogenerated
                                 select scenario;
 				importTestScenarios(scenarios);
-				TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite, true);
+				// 20141107
+				// TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite, true);
+				testStatistics.RefreshSuiteStatistics(TestData.CurrentTestSuite, true);
 			}
 		}
 

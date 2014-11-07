@@ -38,9 +38,6 @@ namespace Tmx
                 // TODO: move to aspect
                 try {
                     clientSettings.ClientId = registration.SendRegistrationInfoAndGetClientId(cmdlet.CustomClientString);
-// 20141101 temp
-//Console.WriteLine("client id = " + ClientSettings.Instance.ClientId);
-//Console.WriteLine("test runid = " + ClientSettings.Instance.CurrentClient.TestRunId);
                 }
                 catch (Exception e2) {
 // Console.WriteLine("registering " + e2.Message);

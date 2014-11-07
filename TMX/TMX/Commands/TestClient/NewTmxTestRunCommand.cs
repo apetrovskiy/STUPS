@@ -32,6 +32,7 @@ namespace Tmx.Commands
         // TODO: restrict using Completed
         [Parameter(Mandatory = true,
                    Position = 2)]
+        [ValidateSet("Running", "Scheduled")]
         public TestRunStatuses Status { get; set; }
         
 		protected override void BeginProcessing()

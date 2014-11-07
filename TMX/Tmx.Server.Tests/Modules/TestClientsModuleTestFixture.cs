@@ -544,7 +544,7 @@ namespace Tmx.Server.Tests.Modules
         
         ITestRun GIVEN_Scheduled_TestRun()
         {
-            return getTestRunWithStatus(TestRunStatuses.Sheduled);
+            return getTestRunWithStatus(TestRunStatuses.Scheduled);
         }
         
         ITestRun GIVEN_Completed_TestRun()

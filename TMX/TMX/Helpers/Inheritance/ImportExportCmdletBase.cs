@@ -15,6 +15,7 @@ namespace Tmx
     using System.Xml.Linq;
     using System.Text;
 	using Tmx;
+    using Tmx.Core;
 	using Tmx.Interfaces;
 	using Tmx.Interfaces.TestStructure;
     
@@ -820,7 +821,10 @@ namespace Tmx
             string result = string.Empty;
             // 20130322
             //TestData.RefreshScenarioStatistics(scenario);
-            TestData.RefreshScenarioStatistics(scenario, skipAutomatic);
+            // 20141107
+            // TestData.RefreshScenarioStatistics(scenario, skipAutomatic);
+            var testStatistics = new TestStatistics();
+            testStatistics.RefreshScenarioStatistics(scenario, skipAutomatic);
             result += @"<div id=""scenariostat"">";
             
             // test results
@@ -843,7 +847,10 @@ namespace Tmx
         string getStatisticsStringSuite(ITestSuite suite, bool skipAutomatic)
         {
             string result = string.Empty;
-            TestData.RefreshSuiteStatistics(suite, skipAutomatic);
+            // 20141107
+            // TestData.RefreshSuiteStatistics(suite, skipAutomatic);
+            var testStatistics = new TestStatistics();
+            testStatistics.RefreshSuiteStatistics(suite, skipAutomatic);
             result += @"<div id=""suitestat"">";
             
             int scPassed = 0;

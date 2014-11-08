@@ -97,7 +97,7 @@ namespace Tmx.Server.Modules
 			// 20141022
 			// if (TestTaskStatuses.Failed == storedTask.TaskStatus)
 			if (storedTask.IsFailed())
-				taskSorter.CancelFurtherTasks(storedTask.ClientId);
+				taskSorter.CancelFurtherTasksOfTestClient(storedTask.ClientId);
 			// 20141022
 			// if (TestTaskStatuses.Accepted == storedTask.TaskStatus)
 			if (storedTask.IsFinished())

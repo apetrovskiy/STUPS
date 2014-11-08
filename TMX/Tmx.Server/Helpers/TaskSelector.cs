@@ -79,7 +79,7 @@ namespace Tmx.Server
 			return taskListForClient.First(task => task.Id == tasksToBeNextOne.Min(tsk => tsk.Id));
 		}
 		
-        public virtual void CancelFurtherTasks(Guid clientId)
+        public virtual void CancelFurtherTasksOfTestClient(Guid clientId)
         {
             TaskPool.TasksForClients
                 .Where(task => task.ClientId == clientId && !task.IsFinished())
@@ -87,7 +87,7 @@ namespace Tmx.Server
                 .ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled);
         }
 
-        public virtual void CancelFurtherTasks(Guid testRunId)
+        public virtual void CancelFurtherTasksOfTestRun(Guid testRunId)
         {
             TaskPool.TasksForClients
                 .Where(task => task.TestRunId == testRunId && !task.IsFinished())

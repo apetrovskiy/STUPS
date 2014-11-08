@@ -12,8 +12,10 @@ namespace Tmx.Interfaces.Remoting
     /// <summary>
     /// Description of ITestHost.
     /// </summary>
+    /*
     public interface ITestHost
     {
         
     }
+    */
 }

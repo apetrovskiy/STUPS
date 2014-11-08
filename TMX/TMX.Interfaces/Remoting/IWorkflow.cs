@@ -18,12 +18,9 @@ namespace Tmx.Interfaces.Remoting
     /// </summary>
     public interface IWorkflow
     {
-        // int Id { get; set; }
         Guid Id { get; set; }
         string Name { get; set; }
         string Description { get; set; }
-        // int TestLabId { get; set; }
-        // int TestLabId { get; }
         Guid TestLabId { get; }
         // void SetTestLab(ITestLab testLab);
     }

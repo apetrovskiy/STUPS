@@ -30,6 +30,7 @@ namespace Tmx.Server.Modules
 			Post[UrnList.TestRunsControlPoint_relPath] = _ => createNewTestRun(this.Bind<TestRunCommand>());
 			Post[UrnList.TestRuns_ByName_relPath] = parameters => createNewTestRun(parameters.name);
 			Delete[UrnList.TestRuns_One_relPath] = parameters => deleteTestRun(parameters.id);
+            Put[UrnList.TestRuns_One_relPath] = parameters => changeTestRun(parameters.id);
 		}
 		
 		Negotiator createNewTestRun(TestRunCommand testRunCommand)
@@ -70,5 +71,10 @@ namespace Tmx.Server.Modules
 			TestRunQueue.TestRuns.RemoveAll(tr => tr.Id == testRunId);
 			return Negotiate.WithStatusCode(HttpStatusCode.OK);
 		}
+
+        Negotiator changeTestRun(Guid testRunId)
+        {
+            throw new NotImplementedException ();
+        }
 	}
 }

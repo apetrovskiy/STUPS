@@ -23,7 +23,6 @@ namespace Tmx.Server
         
         public TestLabCollection()
         {
-            // TestLabs.Add(new TestLab { Id = 1, Name = "default" });
             TestLabs.Add(new TestLab { Name = "default" });
         }
     }

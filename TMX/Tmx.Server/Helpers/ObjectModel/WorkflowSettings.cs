@@ -14,9 +14,11 @@ namespace Tmx.Server.ObjectModel
     /// <summary>
     /// Description of WorkflowSettings.
     /// </summary>
+    /*
     public class WorkflowSettings
     {
         public bool isTest { get; set; }
         public bool myData { get; set; }
     }
+    */
 }

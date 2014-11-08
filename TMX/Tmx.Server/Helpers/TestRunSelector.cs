@@ -22,11 +22,6 @@ namespace Tmx.Server
         {
             var testRunsThatPending = TestRunQueue.TestRuns.Where(testRun => TestRunStatuses.Pending == testRun.Status);
             return !testRunsThatPending.Any() ? null : testRunsThatPending.OrderBy(testRun => testRun.StartTime).First();
-            
-//            return TestRunQueue.TestRuns
-//                .Where(testRun => TestRunStatuses.Pending == testRun.Status)
-//                .OrderBy(testRun => testRun.StartTime)
-//                .First();
         }
     }
 }

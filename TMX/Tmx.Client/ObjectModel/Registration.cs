@@ -35,7 +35,6 @@ namespace Tmx.Client
 		{
 			var registrationResponse = _restTemplate.PostForMessage<TestClient>(UrnList.TestClientRegistrationPoint_absPath, getNewTestClient(customClientString));
 			
-			// 20141001
 			if (HttpStatusCode.Created == registrationResponse.StatusCode)
 			    ClientSettings.Instance.CurrentClient = registrationResponse.Body;
 			

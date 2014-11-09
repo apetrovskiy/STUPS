@@ -24,25 +24,15 @@ namespace Tmx.Client
         
         public virtual RestTemplate GetRestTemplate()
         {
-//            if (null == _restTemplate)
-//                _restTemplate = new RestTemplate(ClientSettings.Instance.ServerUrl);
-//            _restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
-//            _restTemplate.MessageConverters.Add(new XElementHttpMessageConverter());
-            
             if (null != _restTemplate) return _restTemplate;
             _restTemplate = new RestTemplate(ClientSettings.Instance.ServerUrl);
             _restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
             _restTemplate.MessageConverters.Add(new XElementHttpMessageConverter());
             
-            // _restTemplate.MessageConverters.Add(new StringHttpMessageConverter());
             _restTemplate.MessageConverters.Add(new XmlSerializableHttpMessageConverter());
             _restTemplate.MessageConverters.Add(new ResourceHttpMessageConverter());
             _restTemplate.MessageConverters.Add(new StringHttpMessageConverter());
-            // ??
-//            _restTemplate.MessageConverters.Add(new XmlDocumentHttpMessageConverter());
-//            _restTemplate.MessageConverters.Add(new XmlSerializableHttpMessageConverter());
-//            // _restTemplate.MessageConverters.Add(new JsonHttpMessageConverter());
-//            _restTemplate.MessageConverters.Add(new StringHttpMessageConverter());
+            
             return _restTemplate;
         }
         

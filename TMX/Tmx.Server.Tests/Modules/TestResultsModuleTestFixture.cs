@@ -50,9 +50,6 @@ namespace Tmx.Server.Tests.Modules
 		    TestFactory.GetTestRunWithStatus(TestRunStatuses.Running);
 		    _workflow = WorkflowCollection.Workflows.First();
 		    _testRun = TestRunQueue.TestRuns.First();
-//		    JsonSettings.MaxJsonLength = 10000000;
-//		    Nancy.Json.JsonSettings.MaxJsonLength = 10000000;
-//		    Nancy.Json.JsonSettings.MaxRecursions = 25;
     	}
 		
     	[MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
@@ -63,9 +60,6 @@ namespace Tmx.Server.Tests.Modules
 		    TestFactory.GetTestRunWithStatus(TestRunStatuses.Running);
 		    _workflow = WorkflowCollection.Workflows.First();
 		    _testRun = TestRunQueue.TestRuns.First();
-//		    JsonSettings.MaxJsonLength = 10000000;
-//		    Nancy.Json.JsonSettings.MaxJsonLength = 10000000;
-//		    Nancy.Json.JsonSettings.MaxRecursions = 25;
     	}
     	
 //    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -100,8 +94,6 @@ namespace Tmx.Server.Tests.Modules
             
             var dataObject = new TestResultsDataObject {
                 Data = string.Empty
-                // Data = (new List<ITestSuite>()).SerializeToString<List<ITestSuite>>()
-                // Data = xDoc.SerializeToString()
             };
             
             WHEN_Posting_TestResults<TestResultsDataObject>(dataObject);
@@ -136,9 +128,6 @@ namespace Tmx.Server.Tests.Modules
                                                                      suites);
             var dataObject = new TestResultsDataObject {
                 Data = xDoc.ToString()
-                // Data = suites.SerializeToString<List<ITestSuite>>()
-                // Data = suites.SerializeToString()
-                // Data = xDoc.SerializeToString()
             };
             
             WHEN_Posting_TestResults<TestResultsDataObject>(dataObject);
@@ -282,7 +271,6 @@ namespace Tmx.Server.Tests.Modules
         
         void WHEN_Getting_TestResults()
         {
-			// _response = _browser.Get(getPathToResourcesCollection(typeof(XDocument)), (with) => {
 			_response = _browser.Get(getPathToResourcesCollection(typeof(List<ITestSuite>)), (with) => {
 			                              with.Accept("application/json");
 			                          });
@@ -291,27 +279,13 @@ namespace Tmx.Server.Tests.Modules
         string getPathToResourcesCollection(MemberInfo type)
         {
             string path = string.Empty;
-Console.WriteLine("test run id = {0}", _testRun.Id);
-Console.WriteLine("type name = {0}", type.Name);
 			switch (type.Name) {
 			    case "XElement":
                 case "XDocument":
-    case ".XDocument":
-    case "String":
-			        // return UrnList.TestResultsPostingPoint_absPath;
-var aaa = UrnList.TestResults_Root + "/" + _testRun.Id + UrnList.TestResultsPostingPoint_forClient_relPath;
-Console.WriteLine("url = {0}", aaa);
+			    case ".XDocument":
+			    case "String":
 			        return UrnList.TestResults_Root + "/" + _testRun.Id + UrnList.TestResultsPostingPoint_forClient_relPath;
-            // 20141031
-            // postponed
-//			    case "TestSuite":
-//			        return UrnList.TestStructure_Root + UrnList.TestStructure_Suites;
-//			    case "TestScenario":
-//			        return UrnList.TestStructure_Root + UrnList.TestStructure_Scenarios;
-//			    case "TestResult":
-//			        return UrnList.TestStructure_Root + UrnList.TestStructure_Results;
 			    default:
-			        // return path;
 			        return UrnList.TestResults_Root + "/" + _testRun.Id + UrnList.TestResultsPostingPoint_forClient_relPath;
 			}
         }
@@ -334,13 +308,11 @@ Console.WriteLine("url = {0}", aaa);
 //            browser.Delete(UrnList.TestClients_Root + "/" + testClient.Id);
 //        }
         
-        // void THEN_HttpResponse_Is_Created(BrowserResponse response)
         void THEN_HttpResponse_Is_Created()
         {
             Xunit.Assert.Equal(HttpStatusCode.Created, _response.StatusCode);
         }
         
-        // void THEN_HttpResponse_Is_ExpectationFailed(BrowserResponse response)
         void THEN_HttpResponse_Is_ExpectationFailed()
         {
             Xunit.Assert.Equal(HttpStatusCode.ExpectationFailed, _response.StatusCode);

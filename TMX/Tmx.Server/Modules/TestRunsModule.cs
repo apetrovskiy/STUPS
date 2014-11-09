@@ -37,26 +37,14 @@ namespace Tmx.Server.Modules
 		{
             return null == testRunCommand ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : setTestRun(testRunCommand);
 		}
-		
-//		Negotiator createNewTestRun(string testRunName)
-//		{
-//            return string.IsNullOrEmpty(testRunName) ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : setTestRun(new TestRun());
-//		}
         
         Negotiator setTestRun(TestRunCommand testRunCommand)
         {
             if (string.IsNullOrEmpty(testRunCommand.WorkflowName))
                 return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
-            if (string.IsNullOrEmpty(testRunCommand.Name))
-                testRunCommand.Name = testRunCommand.WorkflowName + " " + DateTime.Now;
-            var testRun = new TestRun { Name = testRunCommand.Name, Status = testRunCommand.Status };
-            (testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testRunCommand.WorkflowName));
+            var testRun = setTestRunDetails(testRunCommand);
             if (Guid.Empty == testRun.WorkflowId)
                 return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
-            if (TestRunStartTypes.Immediately == testRun.StartType) {
-                testRun.StartTime = DateTime.Now;
-                testRun.Status = TestRunQueue.TestRuns.Any(tr => tr.TestLabId == testRun.TestLabId) ? TestRunStatuses.Pending : TestRunStatuses.Running;
-            }
             TestRunQueue.TestRuns.Add(testRun);
             // there are no test clients on the new test run
             // var taskSelector = new TaskSelector();
@@ -66,6 +54,19 @@ namespace Tmx.Server.Modules
             return Negotiate.WithStatusCode(HttpStatusCode.Created);
         }
         
+		ITestRun setTestRunDetails(TestRunCommand testRunCommand)
+		{
+			if (string.IsNullOrEmpty(testRunCommand.Name))
+				testRunCommand.Name = testRunCommand.WorkflowName + " " + DateTime.Now;
+            var testRun = new TestRun { Name = testRunCommand.Name, Status = testRunCommand.Status };
+            (testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testRunCommand.WorkflowName));
+            if (TestRunStartTypes.Immediately == testRun.StartType) {
+                testRun.StartTime = DateTime.Now;
+                testRun.Status = TestRunQueue.TestRuns.Any(tr => tr.TestLabId == testRun.TestLabId && tr.IsQueued()) ? TestRunStatuses.Pending : TestRunStatuses.Running;
+            }
+            return testRun;
+		}
+		
 		Negotiator deleteTestRun(Guid testRunId)
 		{
 			TestRunQueue.TestRuns.RemoveAll(tr => tr.Id == testRunId);

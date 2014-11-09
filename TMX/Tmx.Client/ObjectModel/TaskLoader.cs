@@ -46,7 +46,6 @@ namespace Tmx.Client
 			    gettingTaskResponse = _restTemplate.GetForMessage<TestTask>(UrnList.TestTasks_Root + "/" + ClientSettings.Instance.ClientId);
 			    // gettingTaskResponse = _restTemplate.GetForMessage<TestTaskCodeProxy>(UrnList.TestTasks_Root + "/" + ClientSettings.Instance.ClientId);
 			}
-			// catch (Exception eHttpClientErrorException) {
 			catch (RestClientException eHttpClientErrorException) {
 			    if (string.Empty != eHttpClientErrorException.Message)
 			        if (Regex.IsMatch(eHttpClientErrorException.Message, "resulted in 417"))

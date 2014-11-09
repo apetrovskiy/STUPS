@@ -64,12 +64,9 @@ namespace Tmx.Client.Tests.Helpers
         [NUnit.Framework.Test][Fact]
         public void Should_respond_Created_on_new_common_data_upload_as_json()
         {
-            // var urn = UrnList.TestData_Root + "/" + ClientSettings.Instance.CurrentClient.TestRunId + UrnList.TestData_CommonData_forClient_relPath;
             var urn = UrnList.TestData_Root + "/" + Guid.NewGuid() + UrnList.TestData_CommonData_forClient_relPath; // ??
-            // _responseHeaders.Location = new Uri(_baseUrl + UrnList.CommonDataLoadingPoint_absPath);
             _responseHeaders.Location = new Uri(_baseUrl + urn);
             _restServer.ExpectNewRequest()
-                // .AndExpectUri(_baseUrl + UrnList.CommonDataLoadingPoint_absPath)
                 .AndExpectUri(_baseUrl + urn)
                 .AndExpectMethod(HttpMethod.POST)
                 .AndRespondWith("", _responseHeaders, HttpStatusCode.Created, "");
@@ -81,12 +78,9 @@ namespace Tmx.Client.Tests.Helpers
         [NUnit.Framework.Test][Fact]
         public void Should_respond_Ok_on_getting_common_data_as_json()
         {
-            // var urn = UrnList.TestData_Root + "/" + ClientSettings.Instance.CurrentClient.TestRunId + UrnList.TestData_CommonData_forClient_relPath;
             var urn = UrnList.TestData_Root + "/" + Guid.NewGuid() + UrnList.TestData_CommonData_forClient_relPath; // ??
-            // _responseHeaders.Location = new Uri(_baseUrl + UrnList.CommonDataLoadingPoint_absPath);
             _responseHeaders.Location = new Uri(_baseUrl + urn);
             _restServer.ExpectNewRequest()
-                // .AndExpectUri(_baseUrl + UrnList.CommonDataLoadingPoint_absPath)
                 .AndExpectUri(_baseUrl + urn)
                 .AndExpectMethod(HttpMethod.GET)
                 .AndRespondWith("", _responseHeaders, HttpStatusCode.OK, "");

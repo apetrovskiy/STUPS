@@ -145,6 +145,11 @@ namespace Tmx.Core
             return TestRunStatuses.Completed == testRun.Status;
         }
         
+        public static bool IsQueued(this ITestRun testRun)
+        {
+        	return TestRunStatuses.Running == testRun.Status || TestRunStatuses.Pending == testRun.Status;
+        }
+        
 //        public static string SerializeToString<T>(this T testResultsCollection)
 //        {
 //			var serializer = new XmlSerializer(typeof(T));

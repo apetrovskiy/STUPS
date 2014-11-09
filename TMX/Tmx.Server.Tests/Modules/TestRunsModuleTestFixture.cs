@@ -41,11 +41,11 @@ namespace Tmx.Server.Tests.Modules
 		}
 		
 		[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-		public void Should_create_first_testRun_object_as_json()
+		public void Should_create_first_testRun_Running_as_json()
 		{
 			GIVEN_first_testWorkflow();
 			
-			WHEN_sending_testRun_as_json("CRsuite");
+			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
 			
 			THEN_there_should_be_the_following_number_of_testRun_objects(1);
 			THEN_testRun_is_running(TestRunQueue.TestRuns[0]);
@@ -59,8 +59,8 @@ namespace Tmx.Server.Tests.Modules
 			var secondTestWorkflow = WorkflowCollection.Workflows.Skip(1).First();
 			secondTestWorkflow.SetTestLab(new TestLab());
 			
-			WHEN_sending_testRun_as_json("CRsuite");
-			WHEN_sending_testRun_as_json("NAC");
+			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+			WHEN_sending_testRun_as_json("NAC", TestRunStatuses.Running);
 			
 			THEN_there_should_be_the_following_number_of_testRun_objects(2);
 			THEN_testRun_is_running(TestRunQueue.TestRuns[0]);
@@ -68,13 +68,13 @@ namespace Tmx.Server.Tests.Modules
 		}
 		
 		[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-		public void Should_create_second_testRun_object_to_another_workflow_Pending_as_json()
+		public void Should_create_second_testRun_object_to_the_same_testLab_and_another_workflow_Pending_as_json()
 		{
 			GIVEN_first_testWorkflow();
 			GIVEN_second_testWorkflow();
 			
-			WHEN_sending_testRun_as_json("CRsuite");
-			WHEN_sending_testRun_as_json("NAC");
+			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+			WHEN_sending_testRun_as_json("NAC", TestRunStatuses.Running);
 			
 			THEN_there_should_be_the_following_number_of_testRun_objects(2);
 			THEN_testRun_is_running(TestRunQueue.TestRuns[0]);
@@ -82,16 +82,31 @@ namespace Tmx.Server.Tests.Modules
 		}
 		
 		[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-		public void Should_create_second_testRun_object_to_the_same_workflow_Pending_as_json()
+		public void Should_create_second_testRun_object_to_the_same_testLab_and_the_same_workflow_Pending_as_json()
 		{
 		    GIVEN_first_testWorkflow();
 			
-			WHEN_sending_testRun_as_json("CRsuite");
-			WHEN_sending_testRun_as_json("CRsuite");
+			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
 			
 			THEN_there_should_be_the_following_number_of_testRun_objects(2);
 			THEN_testRun_is_running(TestRunQueue.TestRuns[0]);
 			THEN_testRun_is_pending(TestRunQueue.TestRuns[1]);
+		}
+		
+		[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+		public void Should_create_second_testRun_object_to_the_same_testLab_and_the_same_workflow_Running_as_json()
+		{
+		    GIVEN_first_testWorkflow();
+			
+			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+			TaskPool.TasksForClients.ForEach(task => task.TaskStatus = TestTaskStatuses.CompletedSuccessfully);
+			TestRunQueue.TestRuns.ForEach(testRun => testRun.Status = TestRunStatuses.Completed);
+			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+			
+			THEN_there_should_be_the_following_number_of_testRun_objects(2);
+			THEN_testRun_is_completed(TestRunQueue.TestRuns[0]);
+			THEN_testRun_is_running(TestRunQueue.TestRuns[1]);
 		}
 		
 //    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -175,10 +190,10 @@ namespace Tmx.Server.Tests.Modules
 			});
 		}
 		
-		TestRunCommand WHEN_sending_testRun_as_json(string testWorkflowName)
+		TestRunCommand WHEN_sending_testRun_as_json(string testWorkflowName, TestRunStatuses status)
 		{
 		    var testRun = new TestRun();
-			var testRunCommand = new TestRunCommand { WorkflowName = testWorkflowName, Status = TestRunStatuses.Running };
+			var testRunCommand = new TestRunCommand { WorkflowName = testWorkflowName, Status = status };
 			(testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testWorkflowName));
 			_response = _browser.Post(UrnList.TestRunsControlPoint_absPath, with => {
 				with.JsonBody(testRunCommand);
@@ -200,6 +215,11 @@ namespace Tmx.Server.Tests.Modules
         void THEN_testRun_is_pending(ITestRun testRun)
         {
             Xunit.Assert.Equal(true, testRun.IsPending());
+        }
+        
+        void THEN_testRun_is_completed(ITestRun testRun)
+        {
+        	Xunit.Assert.Equal(true, testRun.IsCompleted());
         }
 	}
 }

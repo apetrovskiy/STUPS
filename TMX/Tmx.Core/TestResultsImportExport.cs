@@ -38,21 +38,13 @@ namespace Tmx.Core
             
 			foreach (var suiteElement in suiteElements) {
 				string suiteDescription = string.Empty;
-//				try {
-					// suiteDescription = suiteElement.Attribute("description").Value;
                 suiteDescription = getStringAttribute(suiteElement, "description");
-//				} catch {
-//				}
 				
                 var testSuite = new TestSuite {
-                    // Id = suiteElement.Attribute("id").Value,
                     Id = getStringAttribute(suiteElement, "id"),
-                    // Name = suiteElement.Attribute("name").Value,
                     Name = getStringAttribute(suiteElement, "name"),
-                    // PlatformId = suiteElement.Attribute("platformId").Value,
                     PlatformId = getStringAttribute(suiteElement, "platformId"),
                     Description = suiteDescription,
-                    // TimeSpent = Convert.ToDouble(suiteElement.Attribute("timeSpent").Value ?? "0")
                     TimeSpent = getDoubleAttribute(suiteElement, "timeSpent")
                 };
                 var scenarios = from scenario in suiteElement.Descendants("scenario")
@@ -73,21 +65,13 @@ namespace Tmx.Core
             
 			foreach (var scenarioElement in scenarioElements) {
 				string scenarioDescription = string.Empty;
-//				try {
-					// scenarioDescription = scenarioElement.Attribute("description").Value;
                 scenarioDescription = getStringAttribute(scenarioElement, "description");
-//				} catch {
-//				}
 				
                 var testScenario = new TestScenario {
-                    // Id = scenarioElement.Attribute("id").Value,
                     Id = getStringAttribute(scenarioElement, "id"),
-                    // Name = scenarioElement.Attribute("name").Value,
                     Name = getStringAttribute(scenarioElement, "name"),
-                    // PlatformId = scenarioElement.Attribute("platformId").Value,
                     PlatformId = getStringAttribute(scenarioElement, "platformId"),
                     Description = scenarioDescription,
-                    // TimeSpent = Convert.ToDouble(scenarioElement.Attribute("timeSpent").Value ?? "0"),
                     TimeSpent = getDoubleAttribute(scenarioElement, "timeSpent"),
                     SuiteId = suiteId
                 };
@@ -108,38 +92,22 @@ namespace Tmx.Core
 			foreach (var testResultElement in testResultElements) {
 				bool passedValue = false;
 				bool knownIssueValue = false;
-//				try {
-                    // passedValue |= "PASSED" == testResultElement.Attribute("status").Value;
                 passedValue |= "PASSED" == getStringAttribute(testResultElement, "status");
-                    // knownIssueValue |= "KNOWN ISSUE" == testResultElement.Attribute("status").Value;
                 knownIssueValue |= "KNOWN ISSUE" == getStringAttribute(testResultElement, "status");
-//				} catch {
-//				}
 				TestResultOrigins origin = TestResultOrigins.Logical;
-//				try {
-                    // if ("TECHNICAL" == testResultElement.Attribute("origin").Value.ToUpper())
-                    if ("TECHNICAL" == getStringAttribute(testResultElement, "origin").ToUpper())
-                        origin = TestResultOrigins.Technical;
-                    // if ("AUTOMATIC" == testResultElement.Attribute("origin").Value.ToUpper())
-                    if ("AUTOMATIC" == getStringAttribute(testResultElement, "origin").ToUpper())
-                        origin = TestResultOrigins.Automatic;
-//				} catch {
-//				}
+                if ("TECHNICAL" == getStringAttribute(testResultElement, "origin").ToUpper())
+                    origin = TestResultOrigins.Technical;
+                if ("AUTOMATIC" == getStringAttribute(testResultElement, "origin").ToUpper())
+                    origin = TestResultOrigins.Automatic;
 				if ((TestResultOrigins.Technical == origin) &&
 				    passedValue) {
 					continue;
 				}
 				string testResultDescription = string.Empty;
-//				try {
-					// testResultDescription = testResultElement.Attribute("description").Value;
                 testResultDescription = getStringAttribute(testResultElement, "description");
-//				} catch {
-//				}
 				
 				var testResult = new TestResult {
-				    // Id = testResultElement.Attribute("id").Value,
 				    Id = getStringAttribute(testResultElement, "id"),
-				    // Name = testResultElement.Attribute("name").Value,
 				    Name = getStringAttribute(testResultElement, "name"),
 				    Description = testResultDescription,
 				    enStatus = (!passedValue ? TestResultStatuses.Failed : knownIssueValue ? TestResultStatuses.KnownIssue : passedValue ? TestResultStatuses.Passed : TestResultStatuses.NotTested),
@@ -147,18 +115,10 @@ namespace Tmx.Core
 				    ScenarioId = scenarioId
 				};
 				// TODO: DI
-				// testResult.SetTimestamp(Convert.ToDateTime(testResultElement.Attribute("timestamp").Value));
 				testResult.SetTimestamp(getDateTimeAttribute(testResultElement, "timestamp"));
 				testResult.SetOrigin(origin);
-				// testResult.SetTimeSpent(Convert.ToDouble(testResultElement.Attribute("timeSpent").Value ?? "0"));
 				testResult.SetTimeSpent(getDoubleAttribute(testResultElement, "timeSpent"));
-				try {
-					// testResult.PlatformId = testResultElement.Attribute("platformId").Value;
-					testResult.PlatformId = getStringAttribute(testResultElement, "platformId");
-				} catch (Exception) {
-					//                                cmdlet.WriteVerbose(cmdlet, "adding test platform to the current test result");
-					//                                cmdlet.WriteVerbose(cmdlet, eTestResultPlatform.Message);
-				}
+                testResult.PlatformId = getStringAttribute(testResultElement, "platformId");
 				try {
 					// lastTestResultDetailName = string.Empty;
                     var testResultDetails = from testResultDetail in testResultElement.Descendants("detail")
@@ -168,7 +128,6 @@ namespace Tmx.Core
 					testResult.Details.AddRange(importTestResultDetails(testResultDetails)); // , testResult);
 				} catch (Exception e) {
 					//                                cmdlet.WriteVerbose(cmdlet, eImportDetails);
-//Console.WriteLine(e.Message);
 				}
 				importedTestResults.Add(testResult);
 			}
@@ -182,10 +141,8 @@ namespace Tmx.Core
 		    
 			foreach (var testResultDetailElement in testResultDetailElements) {
 				var detail = new TestResultDetail {
-					// TextDetail = testResultDetailElement.Attribute("name").Value
 					TextDetail = getStringAttribute(testResultDetailElement, "name")
 				};
-				// string detailStatus = testResultDetailElement.Attribute("status").Value;
 				string detailStatus = getStringAttribute(testResultDetailElement, "status");
 				switch (detailStatus.ToUpper()) {
 					case "FAILED":
@@ -248,8 +205,10 @@ namespace Tmx.Core
                                                  createXattribute("platformId", suite.PlatformId),
                                                  CreateScenariosXElementCommon(
                                                      suite,
-                                                     scenarios,
-                                                     testResults,
+                                                     // scenarios,
+                                                     scenarios.Where(scenario => scenario.SuiteId == suite.Id).OrderBy(scenario => scenario.Id),
+                                                     // testResults,
+                                                     testResults.Where(testResult => testResult.SuiteId == suite.Id).OrderBy(testResult => testResult.Id),
                                                      xmlStruct)
                                                  )
                             );
@@ -277,7 +236,8 @@ namespace Tmx.Core
                               select getScenariosXElement(
                                   suite, 
                                   scenario, 
-                                  testResults, 
+                                  // testResults,
+                                  testResults.Where(testResult => testResult.SuiteId == suite.Id && testResult.ScenarioId == scenario.Id).OrderBy(testResult => testResult.Id),
                                   xmlStruct)
                              );
             return scenariosElement;
@@ -306,6 +266,7 @@ namespace Tmx.Core
                                  suite,
                                  scenario,
                                  testResults,
+                                 // testResults.Where(testResult => testResult.SuiteId == suite.Id && testResult.ScenarioId == scenario.Id).OrderBy(testResult => testResult.Id),
                                  xmlStruct)
                             );
 

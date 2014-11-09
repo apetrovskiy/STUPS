@@ -46,17 +46,8 @@ namespace Tmx
         public void GatherCollections(ISearchCmdletBaseDataObject searchCriteria, List<ITestSuite> suitesForSearch)
         {
             var testResultsSearcher = new TestResultsSearcher();
-            
-            // IOrderedEnumerable<ITestSuite> suites = testResultsSearcher.SearchForSuites(searchCriteria, suitesForSearch);
-            // TestSuites = suites;
             TestSuites = testResultsSearcher.SearchForSuites(searchCriteria, suitesForSearch);
-            
-            // IOrderedEnumerable<ITestScenario> scenarios = testResultsSearcher.SearchForScenarios(searchCriteria, suitesForSearch);
-            // TestScenarios = scenarios;
             TestScenarios = testResultsSearcher.SearchForScenarios(searchCriteria, suitesForSearch);
-            
-            // IOrderedEnumerable<ITestResult> testResults = testResultsSearcher.SearchForTestResults(searchCriteria, suitesForSearch);
-            // TestResults = testResults;
             TestResults = testResultsSearcher.SearchForTestResults(searchCriteria, suitesForSearch);
         }
     }

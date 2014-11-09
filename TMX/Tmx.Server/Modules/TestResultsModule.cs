@@ -59,6 +59,10 @@ namespace Tmx.Server.Modules
         {
             try {
                 var dataObject = this.Bind<TestResultsDataObject>();
+                // 20141109
+                // experimental
+                if (string.IsNullOrEmpty(dataObject.Data))
+                    return HttpStatusCode.Created;
                 var xDoc = XDocument.Parse(dataObject.Data);
                 var currentTestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId);
                 var testResultsImporter = new TestResultsImportExport();

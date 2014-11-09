@@ -87,7 +87,7 @@ namespace Tmx.Server.Tests.Modules
 //    	}
     	
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_react_on_posting_no_data()
+        public void Should_accept_when_posting_no_data()
         {
             var testResultsExporter = new TestResultsImportExport();
             var xDoc = testResultsExporter.GetTestResultsAsXdocument(new SearchCmdletBaseDataObject { FilterAll = true }, new List<ITestSuite>());
@@ -119,7 +119,7 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_send_one_test_suite_with_inner_data()
         {
-            var suites = GIVEN_one_testSuite_with_inner_hierarchy();
+            var suites = GIVEN_one_testSuite_with_inner_hierarchy("1", "2", "3", "4");
             var testResultsExporter = new TestResultsImportExport();
             var xDoc = testResultsExporter.GetTestResultsAsXdocument(new SearchCmdletBaseDataObject {
                                                                          FilterAll = true,
@@ -139,9 +139,44 @@ namespace Tmx.Server.Tests.Modules
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        public void Should_send_three_test_suites_with_inner_data()
+        {
+            var suites = GIVEN_one_testSuite_with_inner_hierarchy("1", "2", "3", "4");
+            suites.AddRange(GIVEN_one_testSuite_with_inner_hierarchy("10", "20", "30", "4"));
+            suites.AddRange(GIVEN_one_testSuite_with_inner_hierarchy("100", "200", "300", "4"));
+            var testResultsExporter = new TestResultsImportExport();
+            var xDoc = testResultsExporter.GetTestResultsAsXdocument(new SearchCmdletBaseDataObject {
+                                                                         FilterAll = true,
+                                                                         OrderById = true
+                                                                     },
+                                                                     suites);
+            var dataObject = new TestResultsDataObject {
+                Data = xDoc.ToString()
+            };
+            
+            Console.WriteLine(xDoc.ToString());
+            // System.Windows.Forms.MessageBox.Show(xDoc.ToString());
+            
+            WHEN_Posting_TestResults<TestResultsDataObject>(dataObject);
+            
+            THEN_HttpResponse_Is_Created();
+            Xunit.Assert.Equal(suites[0].Id, _testRun.TestSuites[0].Id);
+            Xunit.Assert.Equal(suites[0].TestScenarios[0].Id, _testRun.TestSuites[0].TestScenarios[0].Id);
+            Xunit.Assert.Equal(suites[0].TestScenarios[0].TestResults[0].Id, _testRun.TestSuites[0].TestScenarios[0].TestResults[0].Id);
+            
+            Xunit.Assert.Equal(suites[1].Id, _testRun.TestSuites[1].Id);
+            Xunit.Assert.Equal(suites[1].TestScenarios[0].Id, _testRun.TestSuites[1].TestScenarios[0].Id);
+            Xunit.Assert.Equal(suites[1].TestScenarios[0].TestResults[0].Id, _testRun.TestSuites[1].TestScenarios[0].TestResults[0].Id);
+            
+            Xunit.Assert.Equal(suites[2].Id, _testRun.TestSuites[2].Id);
+            Xunit.Assert.Equal(suites[2].TestScenarios[0].Id, _testRun.TestSuites[2].TestScenarios[0].Id);
+            Xunit.Assert.Equal(suites[2].TestScenarios[0].TestResults[0].Id, _testRun.TestSuites[2].TestScenarios[0].TestResults[0].Id);
+        }
+        
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_receive_test_results_from_test_run()
         {
-            var suites = GIVEN_one_testSuite_with_inner_hierarchy();
+            var suites = GIVEN_one_testSuite_with_inner_hierarchy("10", "11", "12", "14");
             _testRun.TestSuites.AddRange(suites);
             
             WHEN_Getting_TestResults();
@@ -181,27 +216,27 @@ namespace Tmx.Server.Tests.Modules
             return suites;
         }
         
-        List<ITestSuite> GIVEN_one_testSuite_with_inner_hierarchy()
+        List<ITestSuite> GIVEN_one_testSuite_with_inner_hierarchy(string suiteId, string scenarioId, string testResultId, string platformId)
         {
             var suites = new List<ITestSuite>() {
                 new TestSuite {
-                    Id = "1",
+                    Id = suiteId,
                     Name = "s01",
-                    PlatformId = "3"
+                    PlatformId = platformId
                 }
             };
             var testScenario = new TestScenario {
-                Id = "2",
+                Id = scenarioId,
                 Name = "sc01",
-                PlatformId = "3",
-                SuiteId = "1"
+                PlatformId = platformId,
+                SuiteId = suiteId
             };
             testScenario.TestResults.Add(new TestResult {
-                Id = "4",
+                Id = testResultId,
                 Name = "tr01",
-                PlatformId = "3",
-                SuiteId = "1",
-                ScenarioId = "2",
+                PlatformId = platformId,
+                SuiteId = suiteId,
+                ScenarioId = scenarioId,
                 Origin = TestResultOrigins.Logical,
                 enStatus = TestResultStatuses.Passed
             });
@@ -271,9 +306,7 @@ namespace Tmx.Server.Tests.Modules
         
         void WHEN_Getting_TestResults()
         {
-			_response = _browser.Get(getPathToResourcesCollection(typeof(List<ITestSuite>)), (with) => {
-			                              with.Accept("application/json");
-			                          });
+			_response = _browser.Get(getPathToResourcesCollection(typeof(List<ITestSuite>)), (with) => with.Accept("application/json"));
         }
         
         string getPathToResourcesCollection(MemberInfo type)

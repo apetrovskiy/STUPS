@@ -127,6 +127,11 @@ namespace Tmx.Interfaces
         {
 			Timestamp = DateTime.Now;
         }
+        // TODO: DI
+        public virtual void SetTimestamp(DateTime timestamp)
+        {
+            Timestamp = timestamp;
+        }
         
         // 20141102
         // public virtual string SuiteId { get; protected internal set; }

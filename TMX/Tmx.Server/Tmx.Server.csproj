@@ -149,6 +149,9 @@
     <None Include="Views\status\clients.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Views\status\tasks.liquid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Views\status\testLabs.liquid">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

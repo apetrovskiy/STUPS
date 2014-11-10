@@ -18,6 +18,8 @@ namespace Tmx.Core.Types.Remoting
     /// </summary>
 	public class TestTask : ITestTask
 	{
+	    TimeSpan _timeTaken;
+	    
 	    public TestTask()
 	    {
 	        ActionParameters = new Dictionary<string, string>();
@@ -57,6 +59,17 @@ namespace Tmx.Core.Types.Remoting
 		public Guid ClientId { get; set; }
 		public Guid WorkflowId { get; set; }
 		public Guid TestRunId { get; set; }
+		// public TimeSpan TimeTaken { get; set; }
+		// internal TimeSpan TimeTaken { get; set; }
+		public TimeSpan GetTimeTaken()
+		{
+		    return _timeTaken;
+		}
+		
+		public void SetTimeTaken()
+		{
+		    _timeTaken = DateTime.Now - StartTime;
+		}
 		
 		// 20141020 squeezing a task to its proxy
 		public void StartTimer()

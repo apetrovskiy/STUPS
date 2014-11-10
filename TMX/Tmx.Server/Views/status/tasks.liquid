@@ -1,6 +1,6 @@
-﻿<!DOCTYPE html>
-<html>
-    <head>
+﻿<html>
+	<head>
+		<title>Test tasks</title>
         <style>
             table, th, td {
                 border: 1px solid black;
@@ -8,7 +8,8 @@
             }
         </style>
     </head>
-    <body>
+	<body>
+	<br>
         <table border="1">
             <tr>
                 <th>Id</th>
@@ -19,17 +20,17 @@
                 <th>Status</th>
                 <th>Client Id</th>
             </tr>
-            @Each.Model
+            {% for task in @Model.TasksForClients -%}
             <tr>
-                <td>@Current.Id</td>
-                <td>@Current.Name</td>
-                <td>@Current.StartTime</td>
-                <td>@Current.GetTimeTaken()</td>
-                <td>@Current.TaskFinished</td>
-                <td>@Current.TaskStatus</td>
-                <td>@Current.ClientId</td>
+                <td>{{ task.Id }}</td>
+                <td>{{ task.Name }}</td>
+                <td>{{ task.StartTime }}</td>
+                <td>{{ task.GetTimeTaken() }}</td>
+                <td>{{ task.TaskFinished }}</td>
+                <td>{{ task.TaskStatus }}</td>
+                <td>{{ task.ClientId }}</td>
             </tr>
-            @EndEach
+            {% endfor -%}
         </table>
-    </body>
+	</body>
 </html>

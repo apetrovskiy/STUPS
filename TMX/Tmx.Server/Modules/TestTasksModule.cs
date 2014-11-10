@@ -98,8 +98,6 @@ namespace Tmx.Server.Modules
 			// if (TestTaskStatuses.Failed == storedTask.TaskStatus)
 			if (storedTask.IsFailed())
 				taskSorter.CancelFurtherTasksOfTestClient(storedTask.ClientId);
-			// 20141022
-			// if (TestTaskStatuses.Accepted == storedTask.TaskStatus)
 			if (storedTask.IsFinished())
 			    cleanUpClientDetailedStatus(storedTask.ClientId);
 			
@@ -109,12 +107,20 @@ namespace Tmx.Server.Modules
 			if (storedTask.IsLastTaskInTestRun())
 			    completeTestRun(storedTask);
 			
+			// 20141110
+			if (storedTask.IsFinished())
+                storedTask.SetTimeTaken();
+			
             return storedTask.TaskFinished ? updateNextTaskAndReturnOk(taskSorter, storedTask) : HttpStatusCode.OK;
 		}
 		
         void completeTestRun(ITestTask task)
         {
-            TestRunQueue.TestRuns.First(testRun => testRun.Id == task.TestRunId).Status = TestRunStatuses.Completed;
+            // 20141110
+            // TestRunQueue.TestRuns.First(testRun => testRun.Id == task.TestRunId).Status = TestRunStatuses.Completed;
+            var currentTestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == task.TestRunId);
+            currentTestRun.Status = TestRunStatuses.Completed;
+            currentTestRun.SetTimeTaken();
             activateNextInRowTestRun();
         }
         
@@ -126,7 +132,6 @@ namespace Tmx.Server.Modules
             // 20141110
             if (TestRunQueue.TestRuns.Any(tr => tr.IsActive() && tr.TestLabId == testRun.TestLabId)) return;
             // 20141110
-            // testRun.StartTime = DateTime.Now;
             testRun.SetStartTime();
             testRun.Status = TestRunStatuses.Running;
         }
@@ -146,19 +151,10 @@ namespace Tmx.Server.Modules
             return HttpStatusCode.OK;
         }
         
-        // void cleanUpClientDetailedStatus(int clientId)
         void cleanUpClientDetailedStatus(Guid clientId)
         {
             ClientsCollection.Clients.First(client => client.Id == clientId).DetailedStatus = string.Empty;
         }
-        
-//        void updateWorklowStatus(int workflowId)
-//        {
-//            // 20141022
-//            // if (TaskPool.TasksForClients.All(task => task.WorkflowId == workflowId && task.TaskStatus != TestTaskStatuses.Accepted && task.TaskStatus != TestTaskStatuses.New))
-//            if (TaskPool.TasksForClients.All(task => task.WorkflowId == workflowId && task.IsFinished()))
-//                WorkflowCollection.Workflows.Where(wfl => wfl.Id == workflowId).AsEnumerable().ToList().ForEach(wfl => wfl.WorkflowStatus = WorkflowStatuses.NoTasks);
-//        }
         
 		// 20141003
 		// temporarily hidden

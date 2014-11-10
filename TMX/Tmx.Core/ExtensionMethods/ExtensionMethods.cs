@@ -117,12 +117,10 @@ namespace Tmx.Core
         {
             return TestTaskStatuses.Interrupted == task.TaskStatus;
         }
-//        
-//        public static int GetNextId<T>(this List<T> list)
+        
+//        public static void SetTimeTaken(this ITestTask task)
 //        {
-//            int result = 0;
-//            result = list.Max<T>(t => t.Id);
-//            return result++;
+//            task.TimeTaken = DateTime.Now - task.StartTime;
 //        }
         
         public static bool IsActive(this ITestRun testRun)
@@ -153,6 +151,11 @@ namespace Tmx.Core
         public static void SetStartTime(this ITestRun testRun)
         {
             testRun.StartTime = DateTime.Now;
+        }
+        
+        public static void SetTimeTaken(this ITestRun testRun)
+        {
+            testRun.TimeTaken = DateTime.Now - testRun.StartTime;
         }
         
 //        public static string SerializeToString<T>(this T testResultsCollection)

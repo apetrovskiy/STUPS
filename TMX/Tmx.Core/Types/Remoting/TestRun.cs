@@ -56,5 +56,6 @@ namespace Tmx.Core.Types.Remoting
 		
 		public DateTime CreatedTime { get; set; }
 		public DateTime StartTime { get; set; }
+		public TimeSpan TimeTaken { get; set; }
 	}
 }

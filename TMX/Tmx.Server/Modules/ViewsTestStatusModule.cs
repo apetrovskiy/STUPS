@@ -30,7 +30,12 @@ namespace Tmx.Server.Modules
         {
             Get[UrnList.ViewTestStatus_ClientsPage] = parameters => View[UrnList.ViewTestStatus_ClientsPageName, ClientsCollection.Clients];
             
-            Get[UrnList.ViewTestStatus_TasksPage] = parameters => View[UrnList.ViewTestStatus_TasksPageName, TaskPool.TasksForClients.ToArray()];
+            // Get[UrnList.ViewTestStatus_TasksPage] = parameters => View[UrnList.ViewTestStatus_TasksPageName, TaskPool.TasksForClients.ToArray()];
+            Get[UrnList.ViewTestStatus_TasksPage] = parameters => {
+                dynamic data = new ExpandoObject();
+                data.TasksForClients = TaskPool.TasksForClients;
+                return View[UrnList.ViewTestStatus_TasksPageName, data];
+            };
             
             Get[UrnList.ViewTestStatus_TestRunsPage] = parameters => {
                 dynamic data = new ExpandoObject();

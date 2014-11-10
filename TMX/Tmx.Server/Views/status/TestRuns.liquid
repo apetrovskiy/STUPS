@@ -15,6 +15,7 @@
                 <th>Name</th>
                 <th>Test Lab Id</th>
                 <th>Started</th>
+                <th>Time taken</th>
                 <th>Status</th>
                 <th>Description</th>
                 <th>Test results</th>
@@ -26,6 +27,7 @@
                 <!-- <td>{{ testRun.TestLabId }}</td> -->
                 <td>{{ @Model.TestLabs.First(testLab => testLab.Id == testRun.TestLabId).Name }}</td>
                 <td>{{ testRun.StartTime }}</td>
+                <td>{{ testRun.TimeTaken }}</td>
                 <td>{{ testRun.Status }}</td>
                 <td>{{ testRun.Description }}</td>
                 <td><a href="/results/{{ testRun.Id }}/testResults">test results</a></td>

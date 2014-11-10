@@ -27,5 +27,6 @@ namespace Tmx.Interfaces.Remoting
         Guid WorkflowId { get; }
         DateTime CreatedTime { get; set; }
         DateTime StartTime { get; set; }
+        TimeSpan TimeTaken { get; set; }
 	}
 }

@@ -48,6 +48,9 @@ namespace Tmx.Interfaces.Remoting
 		Guid WorkflowId { get; set; }
 		// int TestRunId { get; set; }
 		Guid TestRunId { get; set; }
+		// TimeSpan TimeTaken { get; set; }
+		TimeSpan GetTimeTaken();
+		void SetTimeTaken();
 	}
 	
 	/*

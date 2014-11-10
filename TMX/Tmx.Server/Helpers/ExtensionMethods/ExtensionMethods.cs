@@ -20,41 +20,6 @@ namespace Tmx.Server
     /// </summary>
     public static class ExtensionMethods
     {
-//        public static bool IsInProgress(this IWorkflow workflow)
-//        {
-//            return WorkflowStatuses.WorkflowInProgress == workflow.WorkflowStatus;
-//        }
-        
-//        public static bool IsFirstInRow(this IWorkflow workflow)
-//        {
-//            return WorkflowCollection.Workflows.Min(wfl => wfl.Id) == workflow.Id;
-//        }
-        
-//        public static bool IsActive(this IWorkflow workflow)
-//        {
-//            return WorkflowCollection.Workflows.Any(IsInProgress) ? workflow.IsInProgress() : workflow.IsFirstInRow();
-//        }
-        
-//        public static bool HasActiveWorkflow(this List<IWorkflow> list)
-//        {
-//            // return list.Any(IsActive);
-////            var activeWorkflow = list.First(IsActive);
-////            if (null == activeWorkflow) return false;
-////            WorkflowCollection.ActiveWorkflow = activeWorkflow;
-//            return true;
-//        }
-        
-//        public static IWorkflow FirstInRow(this List<IWorkflow> list)
-//        {
-//            return list.First(IsFirstInRow);
-//        }
-        
-//        public static bool IsInActiveWorkflow(this ITestClient testClient)
-//        {
-//            return WorkflowCollection.ActiveWorkflow.Id == testClient.TestRunId;
-//        }
-        
-        // public static IEnumerable<int> ActiveTestRunIds(this List<ITestRun> list)
         public static IEnumerable<Guid> ActiveTestRunIds(this List<ITestRun> list)
         {
             return TestRunQueue.TestRuns.Where(tr => tr.IsActive()).Select(tr => tr.Id);
@@ -71,7 +36,6 @@ namespace Tmx.Server
             return TestRunQueue.TestRuns.ActiveTestRunIds().Contains(testClient.TestRunId);
         }
         
-        // public static IEnumerable<int> ActiveWorkflowIds(this List<ITestWorkflow> list)
         public static IEnumerable<Guid> ActiveWorkflowIds(this List<ITestWorkflow> list)
         {
             // return WorkflowCollection.Workflows.Select(wfl => wfl.Id).Intersect(TestRunQueue.TestRuns.Where(tr => tr.Status == TestRunStatuses.Running).Select(tr => tr.WorkflowId));

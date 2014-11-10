@@ -128,6 +128,14 @@
     <Compile Include="Modules\TestWorkflowsModule.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\..\NW\TestData\CRsuite\Workflow.xml">
+      <Link>Data\Workflow.xml</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\..\..\NW\TestData\NAC\Workflow.xml">
+      <Link>Data\Workflow.xml</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Views\index.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -149,6 +157,9 @@
     <None Include="Views\status\clients.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Views\status\clients.liquid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Views\status\tasks.liquid">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -168,9 +179,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Views\status\testClient.htm">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Views\status\tasks.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
@@ -216,6 +224,7 @@
     <Folder Include="Modules" />
     <Folder Include="Modules" />
     <Folder Include="Helpers" />
+    <Folder Include="Data" />
     <Folder Include="Views" />
     <Folder Include="Views\testRuns" />
     <Folder Include="Views\settings" />

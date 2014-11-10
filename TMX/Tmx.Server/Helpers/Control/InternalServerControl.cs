@@ -11,6 +11,7 @@ namespace Tmx.Server
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using DotLiquid.NamingConventions;
     using Nancy;
@@ -48,6 +49,7 @@ namespace Tmx.Server
             setDotLiquidNamingConventions();
             registerTypes();
             loadPlugins();
+            loadWorkflows();
 			_nancyHost.Start();
         }
         
@@ -147,6 +149,15 @@ namespace Tmx.Server
         {
             var pluginsLoader = new PluginsLoader((new TmxServerRootPathProvider()).GetRootPath() + @"\Plugins");
             pluginsLoader.Load();
+        }
+        
+        static void loadWorkflows()
+        {
+            var workflowsDirectoryPath = (new TmxServerRootPathProvider()).GetRootPath() + @"\Data";
+            if (!Directory.Exists(workflowsDirectoryPath)) return;
+            var workflowLoader = new WorkflowLoader();
+            foreach (var fileName in Directory.GetFiles(workflowsDirectoryPath))
+                workflowLoader.LoadWorkflow(fileName);
         }
         
         protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)

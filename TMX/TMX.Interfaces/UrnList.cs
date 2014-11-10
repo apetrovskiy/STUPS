@@ -104,7 +104,9 @@ namespace Tmx.Interfaces.Server
         // ViewsTestStatusModule
         public const string ViewTestStatus_Root = "/status";
         public const string ViewTestStatus_ClientsPage = "/clients";
-        public const string ViewTestStatus_ClientsPageName = "/clients.htm";
+        // deprecated
+        // public const string ViewTestStatus_ClientsPageName = "/clients.htm";
+        public const string ViewTestStatus_ClientsPageName = "/clients.liquid";
         public const string ViewTestStatus_TasksPage = "/tasks";
         // deprecated
         // public const string ViewTestStatus_TasksPageName = "tasks.htm";

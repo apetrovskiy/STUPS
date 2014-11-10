@@ -1,0 +1,36 @@
+﻿<html>
+	<head>
+		<title>Test tasks</title>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+        </style>
+    </head>
+	<body>
+	<br>
+        <table border="1">
+            <tr>
+                <th>Hostname</th>
+                <th>Username</th>
+                <th>CustomString</th>
+                <th>Status</th>
+                <th>Task Id</th>
+                <th>Task Name</th>
+                <th>Detailed Status</th>
+            </tr>
+            {% for testClient in @Model.Clients -%}
+            <tr>
+                <td>{{ testClient.Fqdn }}</td>
+                <td>{{ testClient.Username }}</td>
+                <td>{{ testClient.CustomString }}</td>
+                <td>{{ testClient.Status }}</td>
+                <td>{{ testClient.TaskId }}</td>
+                <td>{{ testClient.TaskName }}</td>
+                <td>{{ testClient.DetailedStatus }}</td>
+            </tr>
+            {% endfor -%}
+        </table>
+	</body>
+</html>

@@ -58,14 +58,14 @@ namespace Tmx.Core.Types.Remoting
 		public Guid WorkflowId { get; set; }
 		public Guid TestRunId { get; set; }
 		
-		// 20141020 sqeezing a task to its proxy
+		// 20141020 squeezing a task to its proxy
 		public void StartTimer()
 		{
 		    // TODO: implement a timer
 		    StartTime = DateTime.Now;
 		}
 		
-		// 20141020 sqeezing a task to its proxy
+		// 20141020 squeezing a task to its proxy
 //		public void StartTimer()
 //		{
 //		}

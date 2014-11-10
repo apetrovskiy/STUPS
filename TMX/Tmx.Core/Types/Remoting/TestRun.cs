@@ -54,6 +54,6 @@ namespace Tmx.Core.Types.Remoting
 		    _workflow = testWorkflow;
 		}
 		
-		public DateTime StartTime { get; set; }
+		public DateTime CreatedTime { get; set; }
 	}
 }

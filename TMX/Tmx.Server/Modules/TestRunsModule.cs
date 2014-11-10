@@ -28,9 +28,9 @@ namespace Tmx.Server.Modules
 		public TestRunsModule() : base(UrnList.TestRuns_Root)
 		{
 			Post[UrnList.TestRunsControlPoint_relPath] = _ => createNewTestRun(this.Bind<TestRunCommand>());
-			Post[UrnList.TestRuns_ByName_relPath] = parameters => createNewTestRun(parameters.name);
+			// Post[UrnList.TestRuns_ByName_relPath] = parameters => createNewTestRun(parameters.name);
 			Delete[UrnList.TestRuns_One_relPath] = parameters => deleteTestRun(parameters.id);
-            Put[UrnList.TestRuns_One_relPath] = parameters => changeTestRun(parameters.id);
+            // Put[UrnList.TestRuns_One_relPath] = parameters => changeTestRun(parameters.id);
 		}
 		
 		Negotiator createNewTestRun(TestRunCommand testRunCommand)
@@ -43,7 +43,7 @@ namespace Tmx.Server.Modules
             if (string.IsNullOrEmpty(testRunCommand.WorkflowName))
                 return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
             var testRun = setTestRunDetails(testRunCommand);
-            if (Guid.Empty == testRun.WorkflowId)
+            if (Guid.Empty == testRun.WorkflowId) // ??
                 return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
             TestRunQueue.TestRuns.Add(testRun);
             // there are no test clients on the new test run
@@ -60,10 +60,9 @@ namespace Tmx.Server.Modules
 				testRunCommand.Name = testRunCommand.WorkflowName + " " + DateTime.Now;
             var testRun = new TestRun { Name = testRunCommand.Name, Status = testRunCommand.Status };
             (testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testRunCommand.WorkflowName));
-            if (TestRunStartTypes.Immediately == testRun.StartType) {
-                testRun.StartTime = DateTime.Now;
+            testRun.CreatedTime = DateTime.Now;
+            if (TestRunStartTypes.Immediately == testRun.StartType)
                 testRun.Status = TestRunQueue.TestRuns.Any(tr => tr.TestLabId == testRun.TestLabId && tr.IsQueued()) ? TestRunStatuses.Pending : TestRunStatuses.Running;
-            }
             return testRun;
 		}
 		
@@ -73,9 +72,9 @@ namespace Tmx.Server.Modules
 			return Negotiate.WithStatusCode(HttpStatusCode.OK);
 		}
 
-        Negotiator changeTestRun(Guid testRunId)
-        {
-            throw new NotImplementedException ();
-        }
+//        Negotiator changeTestRun(Guid testRunId)
+//        {
+//            throw new NotImplementedException ();
+//        }
 	}
 }

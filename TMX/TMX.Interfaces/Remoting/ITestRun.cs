@@ -25,6 +25,6 @@ namespace Tmx.Interfaces.Remoting
         List<ITestSuite> TestSuites { get; set; }
         // ListOfTestSuites TestSuites { get; set; }
         Guid WorkflowId { get; }
-        DateTime StartTime { get; set; }
+        DateTime CreatedTime { get; set; }
 	}
 }

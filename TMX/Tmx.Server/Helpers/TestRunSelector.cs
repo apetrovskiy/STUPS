@@ -11,6 +11,7 @@ namespace Tmx.Server
 {
     using System;
     using System.Linq;
+    using Tmx.Core;
     using Tmx.Interfaces.Remoting;
     
     /// <summary>
@@ -20,8 +21,9 @@ namespace Tmx.Server
     {
         public ITestRun GetNextInRowTestRun()
         {
-            var testRunsThatPending = TestRunQueue.TestRuns.Where(testRun => TestRunStatuses.Pending == testRun.Status);
-            return !testRunsThatPending.Any() ? null : testRunsThatPending.OrderBy(testRun => testRun.StartTime).First();
+            // var testRunsThatPending = TestRunQueue.TestRuns.Where(testRun => TestRunStatuses.Pending == testRun.Status);
+            var testRunsThatPending = TestRunQueue.TestRuns.Where(testRun => testRun.IsPending());
+            return !testRunsThatPending.Any() ? null : testRunsThatPending.OrderBy(testRun => testRun.CreatedTime).First();
         }
     }
 }

@@ -1,15 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    <title>Workflows</title>
-</head>
+    <head>
+        <meta charset="utf-8" />
+        <title>Workflows</title>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+        </style>
+    </head>
 <body>
 
     <div>
-		@Each.@Model
-		   @Current
-		@EndEach
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Test lab</th>
+            </tr>
+        @Each.Model
+        <tr>
+            <td>@Current.Name</td>
+            <td>@Current.Description</td>
+            <td>@Current.TestLab</td>
+        </tr>
+        @EndEach
     </div>
 </body>
 </html>

@@ -1,0 +1,24 @@
+﻿<html>
+	<head>
+		<title>Test labs list</title>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+        </style>
+    </head>
+	<body>
+	<br>
+        <table border="1">
+            <tr>
+                <th>Name</th>
+            </tr>
+            {% for testLab in @Model.TestLabs -%}
+            <tr>
+                <td>{{ testLab.Name }}</td>
+            </tr>
+            {% endfor -%}
+        </table>
+	</body>
+</html>

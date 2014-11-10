@@ -7,22 +7,22 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Server
-{
-    using System;
-    using System.Collections.Generic;
-    using Tmx.Interfaces.TestStructure;
-        
-    /// <summary>
-    /// Description of ContainerForTests.
-    /// </summary>
-    public class ContainerForTests
-    {
-        public ContainerForTests()
-        {
-            TestSuites = new List<ITestSuite>();
-        }
-        
-        public List<ITestSuite> TestSuites { get; set; }
-    }
-}
+//namespace Tmx.Server
+//{
+//    using System;
+//    using System.Collections.Generic;
+//    using Tmx.Interfaces.TestStructure;
+//        
+//    /// <summary>
+//    /// Description of ContainerForTests.
+//    /// </summary>
+//    public class ContainerForTests
+//    {
+//        public ContainerForTests()
+//        {
+//            TestSuites = new List<ITestSuite>();
+//        }
+//        
+//        public List<ITestSuite> TestSuites { get; set; }
+//    }
+//}

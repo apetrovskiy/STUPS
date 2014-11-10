@@ -36,25 +36,26 @@ namespace Tmx.Server.Modules
     /// </summary>
     public class ViewsTestResultsModule : NancyModule
     {
-        public ViewsTestResultsModule() : base(UrnList.TestResultsViews_Root)
+        public ViewsTestResultsModule() : base(UrnList.ViewTestResults_Root)
         {
-            Get[UrnList.TestResultsViews_OverviewPage] = parameters => {
+            // deprecated
+            Get[UrnList.ViewTestResults_OverviewPage] = parameters => {
                 var data = TestData.TestSuites.SelectMany(suite => { return suite.TestScenarios; });
-                return View[UrnList.TestResultsViews_OverviewPageName, data];
+                return View[UrnList.ViewTestResults_OverviewPageName, data];
             };
             
-            Get[UrnList.TestResultsViews_OverviewNewPage] = parameters => {
-                // var data = TestData.TestSuites.SelectMany(suite => { return suite.TestScenarios; });
-                // var data = new TestData();
-//                var data = new ContainerForTests();
-//                data.TestSuites = TestData.TestSuites;
-//                return View[UrnList.TestResultsViews_OverviewNewPageName, data];
+            Get[UrnList.ViewTestResults_OverviewNewPage] = parameters => {
                 dynamic data = new ExpandoObject();
-                // 20141105
-                // data.TestSuites = TestData.TestSuites;
                 data.TestRuns = TestRunQueue.TestRuns;
                 data.Tasks = TaskPool.TasksForClients;
-                return View[UrnList.TestResultsViews_OverviewNewPageName, data];
+                return View[UrnList.ViewTestResults_OverviewNewPageName, data];
+            };
+            
+            Get[UrnList.ViewTestResults_TestRunResultsPage] = parameters => {
+                // var data = TestRunQueue.TestRuns.First(testRun => testRun.Id == parameters.id).TestSuites.SelectMany(suite => { return suite.TestScenarios; });
+                dynamic data = new ExpandoObject();
+                data.TestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == parameters.id);
+                return View[UrnList.ViewTestResults_TestRunResultsPageName, data];
             };
         }
     }

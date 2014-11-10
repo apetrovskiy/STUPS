@@ -134,6 +134,9 @@
     <None Include="Views\results\overview.liquid">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Views\results\testResults.liquid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Views\settings\global.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -144,6 +147,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Views\status\clients.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Views\status\testLabs.liquid">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Views\status\TestRuns.liquid">
@@ -180,6 +186,9 @@
     <None Include="Views\Scripts\jquery-2.1.1.min.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Views\testRuns\newTestRun.liquid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
@@ -205,6 +214,7 @@
     <Folder Include="Modules" />
     <Folder Include="Helpers" />
     <Folder Include="Views" />
+    <Folder Include="Views\testRuns" />
     <Folder Include="Views\settings" />
     <Folder Include="Views\status" />
     <Folder Include="Views\results" />

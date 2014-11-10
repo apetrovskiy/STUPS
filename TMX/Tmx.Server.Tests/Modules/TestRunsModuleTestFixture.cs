@@ -95,7 +95,7 @@ namespace Tmx.Server.Tests.Modules
 		}
 		
 		[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-		public void Should_create_second_testRun_object_to_the_same_testLab_and_the_same_workflow_Running_as_json()
+		public void Should_create_second_testRun_object_to_the_same_testLab_and_the_same_workflow_as_completed_Running_as_json()
 		{
 		    GIVEN_first_testWorkflow();
 			
@@ -107,6 +107,69 @@ namespace Tmx.Server.Tests.Modules
 			THEN_there_should_be_the_following_number_of_testRun_objects(2);
 			THEN_testRun_is_completed(TestRunQueue.TestRuns[0]);
 			THEN_testRun_is_running(TestRunQueue.TestRuns[1]);
+		}
+		
+		[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+		public void Should_run_only_one_testRun_after_completion_of_the_previous_one_as_json()
+		{
+		    GIVEN_first_testWorkflow();
+			
+			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+			TaskPool.TasksForClients.ForEach(task => task.TaskStatus = TestTaskStatuses.CompletedSuccessfully);
+			TestRunQueue.TestRuns.ForEach(testRun => testRun.Status = TestRunStatuses.Completed);
+			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+			
+			THEN_there_should_be_the_following_number_of_testRun_objects(5);
+			THEN_testRun_is_completed(TestRunQueue.TestRuns[0]);
+			THEN_testRun_is_running(TestRunQueue.TestRuns[1]);
+			THEN_testRun_is_pending(TestRunQueue.TestRuns[2]);
+			THEN_testRun_is_pending(TestRunQueue.TestRuns[3]);
+			THEN_testRun_is_pending(TestRunQueue.TestRuns[4]);
+		}
+		
+		[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+		public void Should_run_only_one_testRun_after_interruption_of_the_previous_one_as_json()
+		{
+		    GIVEN_first_testWorkflow();
+			
+			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+			TaskPool.TasksForClients.ForEach(task => task.TaskStatus = TestTaskStatuses.Interrupted);
+			TestRunQueue.TestRuns.ForEach(testRun => testRun.Status = TestRunStatuses.Completed);
+			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+			
+			THEN_there_should_be_the_following_number_of_testRun_objects(5);
+			THEN_testRun_is_completed(TestRunQueue.TestRuns[0]);
+			THEN_testRun_is_running(TestRunQueue.TestRuns[1]);
+			THEN_testRun_is_pending(TestRunQueue.TestRuns[2]);
+			THEN_testRun_is_pending(TestRunQueue.TestRuns[3]);
+			THEN_testRun_is_pending(TestRunQueue.TestRuns[4]);
+		}
+		
+		[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+		public void Should_run_only_one_testRun_after_cancellation_of_the_previous_one_as_json()
+		{
+		    GIVEN_first_testWorkflow();
+			
+			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+			TaskPool.TasksForClients.ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled);
+			TestRunQueue.TestRuns.ForEach(testRun => testRun.Status = TestRunStatuses.Completed);
+			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+			
+			THEN_there_should_be_the_following_number_of_testRun_objects(5);
+			THEN_testRun_is_completed(TestRunQueue.TestRuns[0]);
+			THEN_testRun_is_running(TestRunQueue.TestRuns[1]);
+			THEN_testRun_is_pending(TestRunQueue.TestRuns[2]);
+			THEN_testRun_is_pending(TestRunQueue.TestRuns[3]);
+			THEN_testRun_is_pending(TestRunQueue.TestRuns[4]);
 		}
 		
 //    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]

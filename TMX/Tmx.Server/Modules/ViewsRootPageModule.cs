@@ -20,8 +20,8 @@ namespace Tmx.Server.Modules
     {
         public ViewsRootPageModule()
         {
-            Get[UrnList.RootPage_Root] = _ => View[UrnList.RootPage_RootPageName];
-            Get[UrnList.RootPage_ScriptsFolder] = _ => null;
+            Get[UrnList.ViewRootPage_Root] = _ => View[UrnList.ViewRootPage_RootPageName];
+            Get[UrnList.ViewRootPage_ScriptsFolder] = _ => null;
         }
     }
 }

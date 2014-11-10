@@ -10,6 +10,7 @@
 namespace Tmx.Server.Modules
 {
     using System;
+    using System.Dynamic;
     using Nancy;
     using Nancy.ModelBinding;
     using Tmx.Interfaces.Server;
@@ -19,9 +20,14 @@ namespace Tmx.Server.Modules
     /// </summary>
     public class ViewsTestRunsModule : NancyModule
     {
-//        public ViewsTestRunsModule() : base(UrnList.TestRunsViews_Root)
-//        {
-////            Get[UrnList.TestRunsControlPoint_relPath] = parameters => View[UrnList.TestRunsViews_OverviewPageName, TestRunQueue.TestRuns];
-//        }
+        public ViewsTestRunsModule() : base(UrnList.ViewTestRuns_Root)
+        {
+            Get[UrnList.ViewTestRuns_NewTestRunPage] = _ => {
+                dynamic data = new ExpandoObject();
+                data.Workflows = WorkflowCollection.Workflows;
+                data.TestLabs = TestLabCollection.TestLabs;
+                return View[UrnList.ViewTestRuns_NewTestRunPageName, data];
+            };
+        }
     }
 }

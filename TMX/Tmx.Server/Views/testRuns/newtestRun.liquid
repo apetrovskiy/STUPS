@@ -1,0 +1,27 @@
+﻿<html>
+	<head>
+		<title>New test run</title>
+	</head>
+	<body>
+	   
+	   <!-- select workflow -->
+	   <form>
+	       <label for="workflows">Select test workflow</label><br>
+	       <select id="workflows">
+	           {% for workflow in @Model.Workflows -%}
+	               <option value="volvo">{{ workflow.Name }}</option>
+	           {% endfor -%}
+	       </select>
+	       <br>
+	       <input type="button"  />
+	   </form>
+	   
+	   <!-- display workflow inputs -->
+	   
+	   
+	   <!-- controls for test run creation -->
+	   
+	   
+	   
+	</body>
+</html>

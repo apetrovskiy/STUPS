@@ -86,35 +86,44 @@ namespace Tmx.Interfaces.Server
         public const string TestRuns_Root = "/api/testRuns";
         public const string TestRunsControlPoint_relPath = "/";
         public const string TestRunsControlPoint_absPath = TestRuns_Root + TestRunsControlPoint_relPath;
-        // public const string TestRuns_One_relPath = "/{id:int}";
         public const string TestRuns_One_relPath = "/{id:guid}";
         public const string TestRuns_One_absPath = TestRuns_Root + TestRuns_One_relPath;
         public const string TestRuns_ByName_relPath = "/{name}";
         public const string TestRuns_ByName_absPath = TestRuns_Root + TestRuns_ByName_relPath;
         
         // ViewsTestRunsModule
-//        public const string TestRunsViews_Root = "/testRuns";
-//        public const string TestRunsViews_OverviewPageName = "TestRuns.liquid";
+        public const string ViewTestRuns_Root = "/testRuns";
+        public const string ViewTestRuns_NewTestRunPage = "/newTestRun";
+        public const string ViewTestRuns_NewTestRunPageName = "newTestRun.liquid";
         
         // ViewsRootPageModule
-        public const string RootPage_Root = "/";
-        public const string RootPage_RootPageName = "index.htm";
-        public const string RootPage_ScriptsFolder = "Scripts/";
+        public const string ViewRootPage_Root = "/";
+        public const string ViewRootPage_RootPageName = "index.htm";
+        public const string ViewRootPage_ScriptsFolder = "Scripts/";
         
         // ViewsTestStatusModule
-        public const string TestStatusViews_Root = "/status";
-        public const string TestStatusViews_ClientsPageName = "/clients.htm";
-        public static string TestStatusViews_ClientsPage = "/clients"; // + TestStatusViews_ClientsPageName;
-        public const string TestStatusViews_TasksPageName = "tasks.htm";
-        public static string TestStatusViews_TasksPage = "/tasks"; // + TestStatusViews_TasksPageName;
-        public const string TestStatusViews_TestRunsPageName = "TestRuns.liquid";
-        public static string TestStatusViews_TestRunsPage = "/TestRuns"; // + TestStatusViews_TestRunsPageName;
+        public const string ViewTestStatus_Root = "/status";
+        public const string ViewTestStatus_ClientsPage = "/clients";
+        public const string ViewTestStatus_ClientsPageName = "/clients.htm";
+        public const string ViewTestStatus_TasksPage = "/tasks";
+        public const string ViewTestStatus_TasksPageName = "tasks.htm";
+        public const string ViewTestStatus_TestRunsPage = "/TestRuns";
+        public const string ViewTestStatus_TestRunsPageName = "TestRuns.liquid";
+        public const string ViewTestStatus_WorkflowsPage = "/workflows";
+        public const string ViewTestStatus_WorkflowsPageName = "workflows.htm";
+        public const string ViewTestStatus_TestLabsPage = "/testLabs";
+        public const string ViewTestStatus_TestLabsPageName = "testLabs.liquid";
         
         // ViewsTestResultsModule
-        public const string TestResultsViews_Root = "/results";
-        public const string TestResultsViews_OverviewPageName = "overview.htm";
-        public static string TestResultsViews_OverviewPage = "/" + TestResultsViews_OverviewPageName;
-        public const string TestResultsViews_OverviewNewPageName = "overview.liquid";
-        public static string TestResultsViews_OverviewNewPage = "/overview";
+        public const string ViewTestResults_Root = "/results";
+        // deprecated
+        public const string ViewTestResults_OverviewPageName = "overview.htm";
+        // deprecated
+        public static string ViewTestResults_OverviewPage = "/" + ViewTestResults_OverviewPageName;
+        public static string ViewTestResults_OverviewNewPage = "/overview";
+        public const string ViewTestResults_OverviewNewPageName = "overview.liquid";
+        
+        public const string ViewTestResults_TestRunResultsPageName = "testResults.liquid";
+        public const string ViewTestResults_TestRunResultsPage = "/{id:guid}/testResults";
     }
 }

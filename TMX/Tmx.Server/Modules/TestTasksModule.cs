@@ -31,7 +31,7 @@ namespace Tmx.Server.Modules
             Get[UrnList.TestTasks_CurrentTaskForClientById_relPath] = parameters => returnTaskByClientId(parameters.id);
         	
             Put[UrnList.TestTasks_Task] = parameters => {
-                // 20141020 sqeezing a task to its proxy
+                // 20141020 squeezing a task to its proxy
             	ITestTask loadedTask = this.Bind<TestTask>();
             	// ITestTaskProxy loadedTask = this.Bind<TestTaskProxy>();
             	// ITestTaskResultProxy loadedTask = this.Bind<TestTaskResultProxy>();
@@ -73,13 +73,13 @@ namespace Tmx.Server.Modules
             testClient.TaskId = actualTask.Id;
             testClient.TaskName = actualTask.Name;
             testClient.TestRunId = actualTask.WorkflowId;
-            // 20141020 sqeezing a task to its proxy
+            // 20141020 squeezing a task to its proxy
             return Negotiate.WithModel(actualTask).WithStatusCode(HttpStatusCode.OK);
             // return Negotiate.WithModel(actualTask.SqueezeTaskToTaskResultProxy()).WithStatusCode(HttpStatusCode.OK);
             // return Negotiate.WithModel(actualTask.SqueezeTaskToTaskCodeProxy()).WithStatusCode(HttpStatusCode.OK);
         }
         
-        // 20141020 sqeezing a task to its proxy
+        // 20141020 squeezing a task to its proxy
 		HttpStatusCode updateTask(ITestTask loadedTask, int taskId)
 		// HttpStatusCode updateTask(ITestTaskResultProxy loadedTask, int taskId)
 		{
@@ -123,6 +123,8 @@ namespace Tmx.Server.Modules
             var testRunSelector = new TestRunSelector();
             var testRun = testRunSelector.GetNextInRowTestRun();
             if (null == testRun) return;
+            // 20141110
+            if (TestRunQueue.TestRuns.Any(tr => tr.IsActive() && tr.TestLabId == testRun.TestLabId)) return;
             testRun.Status = TestRunStatuses.Running;
         }
         

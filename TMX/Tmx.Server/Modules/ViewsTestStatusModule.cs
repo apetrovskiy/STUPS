@@ -26,16 +26,28 @@ namespace Tmx.Server.Modules
     /// </summary>
     public class ViewsTestStatusModule : NancyModule
     {
-        public ViewsTestStatusModule() : base(UrnList.TestStatusViews_Root)
+        public ViewsTestStatusModule() : base(UrnList.ViewTestStatus_Root)
         {
-            Get[UrnList.TestStatusViews_ClientsPage] = parameters => View[UrnList.TestStatusViews_ClientsPageName, ClientsCollection.Clients];
+            Get[UrnList.ViewTestStatus_ClientsPage] = parameters => View[UrnList.ViewTestStatus_ClientsPageName, ClientsCollection.Clients];
             
-            Get[UrnList.TestStatusViews_TasksPage] = parameters => View[UrnList.TestStatusViews_TasksPageName, TaskPool.TasksForClients.ToArray()];
+            Get[UrnList.ViewTestStatus_TasksPage] = parameters => View[UrnList.ViewTestStatus_TasksPageName, TaskPool.TasksForClients.ToArray()];
             
-            Get[UrnList.TestStatusViews_TestRunsPage] = parameters => {
+            Get[UrnList.ViewTestStatus_TestRunsPage] = parameters => {
                 dynamic data = new ExpandoObject();
                 data.TestRuns = TestRunQueue.TestRuns;
-                return View[UrnList.TestStatusViews_TestRunsPageName, data];
+                data.TestLabs = TestLabCollection.TestLabs;
+                return View[UrnList.ViewTestStatus_TestRunsPageName, data];
+            };
+            
+            Get[UrnList.ViewTestStatus_WorkflowsPage] = _ => {
+                var data = WorkflowCollection.Workflows;
+                return View[UrnList.ViewTestStatus_WorkflowsPageName, data];
+            };
+            
+            Get[UrnList.ViewTestStatus_TestLabsPage] = _ => {
+                dynamic data = new ExpandoObject();
+                data.TestLabs = TestLabCollection.TestLabs;
+                return View[UrnList.ViewTestStatus_TestLabsPageName, data];
             };
         }
         

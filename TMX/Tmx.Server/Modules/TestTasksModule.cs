@@ -125,6 +125,9 @@ namespace Tmx.Server.Modules
             if (null == testRun) return;
             // 20141110
             if (TestRunQueue.TestRuns.Any(tr => tr.IsActive() && tr.TestLabId == testRun.TestLabId)) return;
+            // 20141110
+            // testRun.StartTime = DateTime.Now;
+            testRun.SetStartTime();
             testRun.Status = TestRunStatuses.Running;
         }
         

@@ -150,6 +150,11 @@ namespace Tmx.Core
         	return TestRunStatuses.Running == testRun.Status || TestRunStatuses.Pending == testRun.Status;
         }
         
+        public static void SetStartTime(this ITestRun testRun)
+        {
+            testRun.StartTime = DateTime.Now;
+        }
+        
 //        public static string SerializeToString<T>(this T testResultsCollection)
 //        {
 //			var serializer = new XmlSerializer(typeof(T));

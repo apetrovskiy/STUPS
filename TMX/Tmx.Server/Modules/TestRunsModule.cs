@@ -63,6 +63,10 @@ namespace Tmx.Server.Modules
             testRun.CreatedTime = DateTime.Now;
             if (TestRunStartTypes.Immediately == testRun.StartType)
                 testRun.Status = TestRunQueue.TestRuns.Any(tr => tr.TestLabId == testRun.TestLabId && tr.IsQueued()) ? TestRunStatuses.Pending : TestRunStatuses.Running;
+            // 20141110
+            if (testRun.IsActive())
+                // testRun.StartTime = DateTime.Now;
+                testRun.SetStartTime();
             return testRun;
 		}
 		

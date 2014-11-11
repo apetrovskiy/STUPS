@@ -101,7 +101,8 @@
     <Compile Include="Helpers\TMXHelper.cs" />
     <Compile Include="Helpers\UserSettings\Preferences.cs" />
     <Compile Include="TestData\TestData.cs" />
-    <Compile Include="TestResultsImportExport.cs" />
+    <Compile Include="TestResultsExporter.cs" />
+    <Compile Include="TestResultsImporter.cs" />
     <Compile Include="TestResultsSearcher.cs" />
     <Compile Include="TestStatistics.cs" />
     <Compile Include="Types\Remoting\Binders\TestResultDetailSerializationBinder.cs" />

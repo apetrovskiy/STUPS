@@ -50,7 +50,6 @@ namespace Tmx.Server.Modules
 			Delete[UrnList.TestTasks_AllLoaded_relPath + UrnList.TestTasks_Task] = parameters => deleteLoadedTaskById(parameters).id;
         }
         
-		// Negotiator returnTaskByClientId(int clientId)
 		Negotiator returnTaskByClientId(Guid clientId)
         {
             if (ClientsCollection.Clients.All(client => client.Id != clientId))
@@ -85,29 +84,21 @@ namespace Tmx.Server.Modules
 		{
 			if (null == loadedTask)
 				throw new UpdateTaskException("Failed to update task with id = " + taskId);
-			// 20141023
-			// var storedTask = TaskPool.TasksForClients.First(task => task.Id == taskId && task.ClientId == loadedTask.ClientId);
-			var storedTask = TaskPool.TasksForClients.First(task => task.Id == taskId && task.ClientId == loadedTask.ClientId); // && task.WorkflowId == WorkflowCollection.ActiveWorkflow.Id);
+			var storedTask = TaskPool.TasksForClients.First(task => task.Id == taskId && task.ClientId == loadedTask.ClientId);
 			storedTask.TaskFinished = loadedTask.TaskFinished;
 			storedTask.TaskStatus = loadedTask.TaskStatus;
 			storedTask.TaskResult = loadedTask.TaskResult;
 			storedTask.StartTime = loadedTask.StartTime;
 			
 			var taskSorter = new TaskSelector();
-			// 20141022
-			// if (TestTaskStatuses.Failed == storedTask.TaskStatus)
 			if (storedTask.IsFailed())
 				taskSorter.CancelFurtherTasksOfTestClient(storedTask.ClientId);
 			if (storedTask.IsFinished())
 			    cleanUpClientDetailedStatus(storedTask.ClientId);
 			
-//			updateWorklowStatus(storedTask.WorkflowId);
-			// 20141029
-			
 			if (storedTask.IsLastTaskInTestRun())
 			    completeTestRun(storedTask);
 			
-			// 20141110
 			if (storedTask.IsFinished())
                 storedTask.SetTimeTaken();
 			
@@ -116,8 +107,6 @@ namespace Tmx.Server.Modules
 		
         void completeTestRun(ITestTask task)
         {
-            // 20141110
-            // TestRunQueue.TestRuns.First(testRun => testRun.Id == task.TestRunId).Status = TestRunStatuses.Completed;
             var currentTestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == task.TestRunId);
             currentTestRun.Status = TestRunStatuses.Completed;
             currentTestRun.SetTimeTaken();
@@ -129,9 +118,7 @@ namespace Tmx.Server.Modules
             var testRunSelector = new TestRunSelector();
             var testRun = testRunSelector.GetNextInRowTestRun();
             if (null == testRun) return;
-            // 20141110
             if (TestRunQueue.TestRuns.Any(tr => tr.IsActive() && tr.TestLabId == testRun.TestLabId)) return;
-            // 20141110
             testRun.SetStartTime();
             testRun.Status = TestRunStatuses.Running;
         }

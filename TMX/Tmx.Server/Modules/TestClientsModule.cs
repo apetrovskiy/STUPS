@@ -48,7 +48,6 @@ namespace Tmx.Server.Modules
 			ClientsCollection.Clients.Add(testClient);
 			// TODO: DI
 			var taskSorter = new TaskSelector();
-			// TaskPool.TasksForClients.AddRange(taskSorter.SelectTasksForClient(testClient.Id, TaskPool.Tasks));
 			var tasksForClient = taskSorter.SelectTasksForClient(testClient.Id, TaskPool.Tasks);
 			tasksForClient.ForEach(task => task.TestRunId = testClient.TestRunId);
 			TaskPool.TasksForClients.AddRange(tasksForClient);

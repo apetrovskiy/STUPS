@@ -10,10 +10,12 @@
 namespace Tmx.Server.Modules
 {
     using System;
+    using System.Collections.Generic;
     using System.Dynamic;
     using Nancy;
     using Nancy.ModelBinding;
     using Tmx.Interfaces.Server;
+    using Tmx.Interfaces.Remoting;
     
     /// <summary>
     /// Description of ViewsTestRunsModule.
@@ -24,8 +26,8 @@ namespace Tmx.Server.Modules
         {
             Get[UrnList.ViewTestRuns_NewTestRunPage] = _ => {
                 dynamic data = new ExpandoObject();
-                data.Workflows = WorkflowCollection.Workflows;
-                data.TestLabs = TestLabCollection.TestLabs;
+                data.Workflows = WorkflowCollection.Workflows ?? new List<ITestWorkflow>();
+                data.TestLabs = TestLabCollection.TestLabs ?? new List<ITestLab>();
                 return View[UrnList.ViewTestRuns_NewTestRunPageName, data];
             };
         }

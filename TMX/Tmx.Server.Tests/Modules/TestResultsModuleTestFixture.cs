@@ -89,7 +89,7 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_accept_when_posting_no_data()
         {
-            var testResultsExporter = new TestResultsImportExport();
+            var testResultsExporter = new TestResultsExporter();
             var xDoc = testResultsExporter.GetTestResultsAsXdocument(new SearchCmdletBaseDataObject { FilterAll = true }, new List<ITestSuite>());
             
             var dataObject = new TestResultsDataObject {
@@ -120,7 +120,7 @@ namespace Tmx.Server.Tests.Modules
         public void Should_send_one_test_suite_with_inner_data()
         {
             var suites = GIVEN_one_testSuite_with_inner_hierarchy("1", "2", "3", "4");
-            var testResultsExporter = new TestResultsImportExport();
+            var testResultsExporter = new TestResultsExporter();
             var xDoc = testResultsExporter.GetTestResultsAsXdocument(new SearchCmdletBaseDataObject {
                                                                          FilterAll = true,
                                                                          OrderById = true
@@ -144,7 +144,7 @@ namespace Tmx.Server.Tests.Modules
             var suites = GIVEN_one_testSuite_with_inner_hierarchy("1", "2", "3", "4");
             suites.AddRange(GIVEN_one_testSuite_with_inner_hierarchy("10", "20", "30", "4"));
             suites.AddRange(GIVEN_one_testSuite_with_inner_hierarchy("100", "200", "300", "4"));
-            var testResultsExporter = new TestResultsImportExport();
+            var testResultsExporter = new TestResultsExporter();
             var xDoc = testResultsExporter.GetTestResultsAsXdocument(new SearchCmdletBaseDataObject {
                                                                          FilterAll = true,
                                                                          OrderById = true

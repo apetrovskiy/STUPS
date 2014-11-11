@@ -38,7 +38,7 @@ namespace Tmx.Client
 	    
 	    public virtual bool SendTestResults()
 	    {
-	        var testResultsExporter = new TestResultsImportExport();
+	        var testResultsExporter = new TestResultsExporter();
             var xDoc = testResultsExporter.GetTestResultsAsXdocument(
                         new SearchCmdletBaseDataObject {
                             FilterAll = true

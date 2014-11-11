@@ -39,7 +39,7 @@ namespace Tmx.Client
 	        try {
 				var urn = UrnList.TestResults_Root + "/" + ClientSettings.Instance.CurrentClient.TestRunId + UrnList.TestResultsPostingPoint_forClient_relPath;
 				var loadingResultsResponse = _restTemplate.GetForMessage<TestResultsDataObject>(urn);
-				var testResultsImporter = new TestResultsImportExport();
+				var testResultsImporter = new TestResultsImporter();
 				var xDoc = XDocument.Parse(loadingResultsResponse.Body.Data);
 				TestData.TestSuites.AddRange(testResultsImporter.ImportTestResultsFromXdocument(xDoc));
 	            return HttpStatusCode.OK == loadingResultsResponse.StatusCode;

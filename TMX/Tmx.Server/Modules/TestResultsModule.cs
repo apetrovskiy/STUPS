@@ -65,7 +65,7 @@ namespace Tmx.Server.Modules
                     return HttpStatusCode.Created;
                 var xDoc = XDocument.Parse(dataObject.Data);
                 var currentTestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId);
-                var testResultsImporter = new TestResultsImportExport();
+                var testResultsImporter = new TestResultsImporter();
                 currentTestRun.TestSuites.AddRange(testResultsImporter.ImportTestResultsFromXdocument(xDoc));
                 // maybe, there's no such need? // TODO: set current test suite, test scenario, test result?
                 return HttpStatusCode.Created;
@@ -76,7 +76,7 @@ namespace Tmx.Server.Modules
         
         Negotiator exportTestResultsFromTestRun(Guid testRunId)
         {
-            var testResultsExporter = new TestResultsImportExport();
+            var testResultsExporter = new TestResultsExporter();
             var xDoc = testResultsExporter.GetTestResultsAsXdocument(
                            new SearchCmdletBaseDataObject {
                                 Descending = false,

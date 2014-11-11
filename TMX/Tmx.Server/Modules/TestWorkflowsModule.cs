@@ -29,8 +29,7 @@ namespace Tmx.Server.Modules
             Get[UrnList.TestWorkflows_All_relPath] = _ => returnAllWorkflows();
             Delete[UrnList.TestWorkflows_GetByWorkflowId_relPath] = parameters => deleteWorkflowById(parameters.id);
         }
-
-        // Negotiator returnWorkflowById(int workflowId)
+        
         Negotiator returnWorkflowById(Guid workflowId)
         {
             if (WorkflowCollection.Workflows.All(wfl => wfl.Id != workflowId))
@@ -46,15 +45,11 @@ namespace Tmx.Server.Modules
             return Negotiate.WithModel(WorkflowCollection.Workflows).WithStatusCode(HttpStatusCode.OK);
         }
         
-        // Negotiator deleteWorkflowById(int workflowId)
         Negotiator deleteWorkflowById(Guid workflowId)
         {
             if (WorkflowCollection.Workflows.All(wfl => wfl.Id != workflowId))
                 return Negotiate.WithStatusCode(HttpStatusCode.OK);
             WorkflowCollection.Workflows.RemoveAll(wfl => wfl.Id == workflowId);
-            // 20141023
-//            if (WorkflowCollection.ActiveWorkflow.Id == workflowId)
-//                WorkflowCollection.ActiveWorkflow = WorkflowCollection.Workflows.FirstInRow();
             return Negotiate.WithStatusCode(HttpStatusCode.OK);
         }
     }

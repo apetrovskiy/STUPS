@@ -27,6 +27,14 @@ namespace Tmx
         {
             var cmdlet = (AddScenarioCmdletBase)Cmdlet;
             
+            // 20141112
+            var testPlatformId = cmdlet.TestPlatformId;
+            if (string.IsNullOrEmpty(testPlatformId))
+                if (null == cmdlet.InputObject || string.IsNullOrEmpty(cmdlet.InputObject.PlatformId))
+                    testPlatformId = TestData.CurrentTestSuite.PlatformId;
+                else
+                    testPlatformId = cmdlet.InputObject.PlatformId;
+            
             // 20140721
             var dataObject = new AddScenarioCmdletBaseDataObject {
                 AfterTest = cmdlet.AfterTest,
@@ -35,7 +43,10 @@ namespace Tmx
                 Id = cmdlet.Id,
                 InputObject = cmdlet.InputObject,
                 Name = cmdlet.Name,
-                TestPlatformId = cmdlet.TestPlatformId,
+                // 20141112
+                // TestPlatformId = cmdlet.TestPlatformId,
+                // TestPlatformId = string.IsNullOrEmpty(cmdlet.TestPlatformId) ? (stri cmdlet.InputObject.PlatformId) : cmdlet.TestPlatformId,
+                TestPlatformId = testPlatformId,
                 TestSuiteId = cmdlet.TestSuiteId,
                 TestSuiteName = cmdlet.TestSuiteName
             };

@@ -21,6 +21,32 @@ namespace Tmx.Core
     /// </summary>
     public class TestResultsImporter
     {
+        public List<ITestSuite> ImportResultsFromXML(IImportExportCmdletBaseDataObject cmdlet, string path)
+        {
+            try {
+                
+                string pathToImportFile = cmdlet.Path;
+                
+                if (!System.IO.File.Exists(pathToImportFile)) {
+                    throw new Exception(
+                        "There is no such file '" +
+                        cmdlet.Path +
+                        "'.");
+                }
+                
+                var xDoc = XDocument.Load(pathToImportFile);
+                // ImportTestResultsFromXdocumentAndStore(doc);
+                return ImportTestResultsFromXdocument(xDoc);
+            }
+            catch (Exception eImportDocument) {
+                throw new Exception(
+                    "Unable to load an XML report from the file '" +
+                    path +
+                    "'. " + 
+                    eImportDocument.Message);
+            }
+        }
+        
         public List<ITestSuite> ImportTestResultsFromXdocument(XDocument doc)
         {
             var df = doc.Root.Name.Namespace;

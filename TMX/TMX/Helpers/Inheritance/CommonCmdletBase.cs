@@ -29,7 +29,9 @@ namespace Tmx
                 TestData.InitTestData();
             }
             
-            this.TestPlatformId = TestData.CurrentTestPlatform.Id;
+            // 20141112
+            // removed
+            // this.TestPlatformId = TestData.CurrentTestPlatform.Id;
         }
         
         #region Parameters

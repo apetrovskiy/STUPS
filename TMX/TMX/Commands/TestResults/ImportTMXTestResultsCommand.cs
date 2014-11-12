@@ -11,6 +11,7 @@ namespace Tmx.Commands
 {
     using System;
     using System.Management.Automation;
+    using Tmx.Core;
 	using Tmx.Interfaces;
     
     /// <summary>
@@ -52,7 +53,11 @@ namespace Tmx.Commands
             string reportFormat = As.ToUpper();
             switch (reportFormat){
                 case "XML":
+                    // 20141112
+                    // still the old way
 					TmxHelper.ImportResultsFromXML(dataObject, Path);
+					// var testResultsImporter = new TestResultsImporter();
+					// TestData.TestSuites.AddRange(testResultsImporter.ImportResultsFromXML(dataObject, Path));
                     break;
                 case "JUNIT":
                 case "JUNITXML":

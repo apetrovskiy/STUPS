@@ -133,7 +133,7 @@ namespace Tmx.Server
 			Template.RegisterSafeType(typeof(TestRun), new[] { "Id", "Name", "WorkflowId", "TestLabId", "Description", "Status", "StartType", "Data", "TestSuites", "StartTime", "TimeTaken" });
 			Template.RegisterSafeType(typeof(CommonData), new[] { "Data" });
 			Template.RegisterSafeType(typeof(TestLab), new[] { "Id", "Name", "Description" });
-			Template.RegisterSafeType(typeof(TestTask), new[] { "Id", "Name", "TaskStatus", "TaskResult", "TimeTaken" });
+			Template.RegisterSafeType(typeof(TestTask), new[] { "Id", "Name", "StartTime", "TaskStatus", "TaskFinished", "TaskResult", "TimeTaken", "ClientId", "GetTimeTaken" });
 			Template.RegisterSafeType(typeof(TestClient), new[] { "Id", "Hostname", "Fqdn", "Username", "CustomString", "Status", "TaskId", "TaskName", "DetailedStatus" });
 			// .NET types
 			Template.RegisterSafeType(typeof(Guid), member => member.ToString());

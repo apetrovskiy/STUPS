@@ -11,6 +11,7 @@ namespace Tmx.Server.Modules
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
 	using System.Text;
     using System.Linq;
 	using System.Xml.Linq;
@@ -66,7 +67,9 @@ namespace Tmx.Server.Modules
                 var xDoc = XDocument.Parse(dataObject.Data);
                 var currentTestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId);
                 var testResultsImporter = new TestResultsImporter();
-                currentTestRun.TestSuites.AddRange(testResultsImporter.ImportTestResultsFromXdocument(xDoc));
+                // 20141113
+                // currentTestRun.TestSuites.AddRange(testResultsImporter.ImportTestResultsFromXdocument(xDoc));
+                testResultsImporter.MergeTestSuites(currentTestRun.TestSuites, testResultsImporter.ImportTestResultsFromXdocument(xDoc));
                 // maybe, there's no such need? // TODO: set current test suite, test scenario, test result?
                 return HttpStatusCode.Created;
             } catch (Exception eFailedToImportTestResults) {

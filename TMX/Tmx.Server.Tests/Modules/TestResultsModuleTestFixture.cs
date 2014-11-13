@@ -19,6 +19,7 @@ namespace Tmx.Server.Tests.Modules
     using Nancy;
     using Nancy.Json;
     using Nancy.Testing;
+    using Nancy.Testing.Fakes;
     using Tmx.Core;
     using Tmx.Core.Types.Remoting;
     using Tmx.Interfaces.Remoting;
@@ -174,7 +175,7 @@ namespace Tmx.Server.Tests.Modules
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_receive_test_results_from_test_run()
+        public void Should_receive_test_results_one_suite_from_test_run()
         {
             var suites = GIVEN_one_testSuite_with_inner_hierarchy("10", "11", "12", "14");
             _testRun.TestSuites.AddRange(suites);
@@ -183,8 +184,23 @@ namespace Tmx.Server.Tests.Modules
             
             Console.WriteLine(_response.Body);
             Console.WriteLine(_response.Body.GetType().Name);
+//            var model = _response..GetModel<TestResultsDataObject>();
 //            var loadedSuites = _response..Body as ITestSuite[];
 //            Xunit.Assert.Equal(suites[0].Id, loadedSuites[0].Id);
+        }
+        
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        public void Should_receive_test_results_two_suites_from_test_run()
+        {
+            var suites = GIVEN_one_testSuite_with_inner_hierarchy("10", "11", "12", "14");
+            suites.AddRange(GIVEN_one_testSuite_with_inner_hierarchy("10", "11", "12", "15"));
+            _testRun.TestSuites.AddRange(suites);
+            
+            WHEN_Getting_TestResults();
+            
+            Console.WriteLine(_response.Body);
+            Console.WriteLine(_response.Body.GetType().Name);
+//            var model = _response.GetModel<TestResultsDataObject>();
         }
         
         // ============================================================================================================================

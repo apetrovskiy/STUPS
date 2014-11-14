@@ -21,6 +21,21 @@ namespace Tmx.Core
     /// </summary>
     public class TestResultsExporter
     {
+        public void ExportResultsToXml(ISearchCmdletBaseDataObject cmdlet, string path, List<ITestSuite> suites)
+        {
+            try {
+                var document = GetTestResultsAsXdocument(cmdlet, suites);
+                document.Save(path);
+            }
+            catch (Exception eCreateDocument) {
+                throw new Exception(
+                    "Unable to save XML report to the file '" +
+                    path +
+                    "'. " + 
+                    eCreateDocument.Message);
+            }
+        }
+        
 		public XDocument GetTestResultsAsXdocument(ISearchCmdletBaseDataObject searchCriteria, List<ITestSuite> suites)
 		{
 		    var suitesElement = GetTestResultsAsXelement(searchCriteria, suites);
@@ -48,6 +63,7 @@ namespace Tmx.Core
                 new XElement(xmlStruct.SuitesNode,
                              from suite in suites
                              select new XElement(xmlStruct.SuiteNode,
+                                                 new XAttribute("uniqueId", suite.UniqueId),
                                                  new XAttribute("id", suite.Id),
                                                  new XAttribute("name", suite.Name),
                                                  new XAttribute("status", suite.Status),
@@ -107,6 +123,7 @@ namespace Tmx.Core
         {
             var scenariosElement =
                 new XElement(xmlStruct.ScenarioNode,
+                             new XAttribute("uniqueId", scenario.UniqueId),
                              new XAttribute("id", scenario.Id),
                              new XAttribute("name", scenario.Name),
                              new XAttribute("status", scenario.Status),
@@ -163,6 +180,7 @@ namespace Tmx.Core
         {
             var testResultsElement =
                 new XElement(xmlStruct.TestResultNode,
+                             new XAttribute("uniqueId", testResult.UniqueId),
                              new XAttribute("id", testResult.Id),
                              new XAttribute("name", testResult.Name),
                              new XAttribute("status", testResult.Status),

@@ -19,6 +19,8 @@ namespace Tmx.Interfaces.TestStructure
     /// </summary>
     public interface ITestSuite
     {
+        [XmlAttribute]
+        Guid UniqueId { get; set; }
         [XmlIgnore]
         int DbId { get; set; }
         // 20140725
@@ -51,7 +53,8 @@ namespace Tmx.Interfaces.TestStructure
         
         //List<string> PlatformIds { get; set; }
         [XmlAttribute]
-        string PlatformId { get; set; }
+        // string PlatformId { get; set; }
+        Guid PlatformId { get; set; }
         
         // 20130615
         //ScriptBlock[] BeforeTest { get; set; }

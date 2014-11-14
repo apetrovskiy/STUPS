@@ -10,6 +10,7 @@
 namespace Tmx
 {
     using System;
+    using System.Linq;
     using System.Management.Automation;
 	using Tmx.Interfaces;
     using Tmx.Commands;
@@ -43,7 +44,9 @@ namespace Tmx
     					// cmdlet,
     					// dataObject,
     					cmdlet.Name,
-    					cmdlet.TestPlatformId,
+    					// 20141114
+    					// cmdlet.TestPlatformId,
+    					TestData.TestPlatforms.FirstOrDefault(tp => tp.Id == cmdlet.TestPlatformId).UniqueId,
     					cmdlet.FilterOutAutomaticResults);
                 cmdlet.WriteObject(result);
             } else if (!string.IsNullOrEmpty(cmdlet.Id)) {
@@ -54,7 +57,9 @@ namespace Tmx
     					// cmdlet,
     					// dataObject,
     					cmdlet.Id,
-    					cmdlet.TestPlatformId,
+    					// 20141114
+    					// cmdlet.TestPlatformId,
+    					TestData.TestPlatforms.FirstOrDefault(tp => tp.Id == cmdlet.TestPlatformId).UniqueId,
     					cmdlet.FilterOutAutomaticResults);
                 cmdlet.WriteObject(result2);
             } else {

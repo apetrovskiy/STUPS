@@ -120,7 +120,9 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_send_one_test_suite_with_inner_data()
         {
-            var suites = GIVEN_one_testSuite_with_inner_hierarchy("1", "2", "3", "4");
+            // 20141114
+            // var suites = GIVEN_one_testSuite_with_inner_hierarchy("1", "2", "3", "4");
+            var suites = GIVEN_one_testSuite_with_inner_hierarchy("1", "2", "3", Guid.NewGuid());
             var testResultsExporter = new TestResultsExporter();
             var xDoc = testResultsExporter.GetTestResultsAsXdocument(new SearchCmdletBaseDataObject {
                                                                          FilterAll = true,
@@ -142,9 +144,14 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_send_three_test_suites_with_inner_data()
         {
-            var suites = GIVEN_one_testSuite_with_inner_hierarchy("1", "2", "3", "4");
-            suites.AddRange(GIVEN_one_testSuite_with_inner_hierarchy("10", "20", "30", "4"));
-            suites.AddRange(GIVEN_one_testSuite_with_inner_hierarchy("100", "200", "300", "4"));
+            // 20141114
+            var guid = Guid.NewGuid();
+            // var suites = GIVEN_one_testSuite_with_inner_hierarchy("1", "2", "3", "4");
+            var suites = GIVEN_one_testSuite_with_inner_hierarchy("1", "2", "3", guid);
+            // suites.AddRange(GIVEN_one_testSuite_with_inner_hierarchy("10", "20", "30", "4"));
+            suites.AddRange(GIVEN_one_testSuite_with_inner_hierarchy("10", "20", "30", guid));
+            // suites.AddRange(GIVEN_one_testSuite_with_inner_hierarchy("100", "200", "300", "4"));
+            suites.AddRange(GIVEN_one_testSuite_with_inner_hierarchy("100", "200", "300", guid));
             var testResultsExporter = new TestResultsExporter();
             var xDoc = testResultsExporter.GetTestResultsAsXdocument(new SearchCmdletBaseDataObject {
                                                                          FilterAll = true,
@@ -177,7 +184,9 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_receive_test_results_one_suite_from_test_run()
         {
-            var suites = GIVEN_one_testSuite_with_inner_hierarchy("10", "11", "12", "14");
+            // 20141114
+            // var suites = GIVEN_one_testSuite_with_inner_hierarchy("10", "11", "12", "14");
+            var suites = GIVEN_one_testSuite_with_inner_hierarchy("10", "11", "12", Guid.NewGuid());
             _testRun.TestSuites.AddRange(suites);
             
             WHEN_Getting_TestResults();
@@ -192,8 +201,11 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_receive_test_results_two_suites_from_test_run()
         {
-            var suites = GIVEN_one_testSuite_with_inner_hierarchy("10", "11", "12", "14");
-            suites.AddRange(GIVEN_one_testSuite_with_inner_hierarchy("10", "11", "12", "15"));
+            // 20141114
+            // var suites = GIVEN_one_testSuite_with_inner_hierarchy("10", "11", "12", "14");
+            var suites = GIVEN_one_testSuite_with_inner_hierarchy("10", "11", "12", Guid.NewGuid());
+            // suites.AddRange(GIVEN_one_testSuite_with_inner_hierarchy("10", "11", "12", "15"));
+            suites.AddRange(GIVEN_one_testSuite_with_inner_hierarchy("10", "11", "12", Guid.NewGuid()));
             _testRun.TestSuites.AddRange(suites);
             
             WHEN_Getting_TestResults();
@@ -232,7 +244,9 @@ namespace Tmx.Server.Tests.Modules
             return suites;
         }
         
-        List<ITestSuite> GIVEN_one_testSuite_with_inner_hierarchy(string suiteId, string scenarioId, string testResultId, string platformId)
+        // 20141114
+        // List<ITestSuite> GIVEN_one_testSuite_with_inner_hierarchy(string suiteId, string scenarioId, string testResultId, string platformId)
+        List<ITestSuite> GIVEN_one_testSuite_with_inner_hierarchy(string suiteId, string scenarioId, string testResultId, Guid platformId)
         {
             var suites = new List<ITestSuite>() {
                 new TestSuite {
@@ -294,7 +308,9 @@ namespace Tmx.Server.Tests.Modules
             return testSuite;
         }
         
-        TestScenario GIVEN_test_scenario(string testScenarioId, string testScenarioName, string testSuiteId, string testPlatformId)
+        // 20141114
+        // TestScenario GIVEN_test_scenario(string testScenarioId, string testScenarioName, string testSuiteId, string testPlatformId)
+        TestScenario GIVEN_test_scenario(string testScenarioId, string testScenarioName, string testSuiteId, Guid testPlatformId)
         {
             var testScenario = Substitute.For<TestScenario>();
             testScenario.Name = testScenarioName;

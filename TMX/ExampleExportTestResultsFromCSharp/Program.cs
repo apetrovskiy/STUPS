@@ -53,7 +53,9 @@ namespace ExampleExportTestResultsFromCSharp
                 TmxHelper.NewTestSuite(
                     story.Name,
                     story.Id,
-                    "platform",
+                    // 20141114
+                    // "platform",
+                    Guid.NewGuid(),
                     "description",
                     null,
                     null);

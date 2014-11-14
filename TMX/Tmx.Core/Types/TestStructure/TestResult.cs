@@ -24,6 +24,7 @@ namespace Tmx.Interfaces
     public class TestResult : ITestResult
     {
         public TestResult() {
+            UniqueId = Guid.NewGuid();
             Details = new List<ITestResultDetail>();
         }
         
@@ -31,6 +32,7 @@ namespace Tmx.Interfaces
            string testScenarioId,
            string testSuiteId)
         {
+            UniqueId = Guid.NewGuid();
             this.Details = new List<ITestResultDetail>();
             this.enStatus = TestResultStatuses.NotTested;
             
@@ -41,6 +43,8 @@ namespace Tmx.Interfaces
             this.SetNow();
         }
         
+        [XmlAttribute]
+        public virtual Guid UniqueId { get; set; }
         [XmlIgnore]
         public virtual int DbId { get; set; }
         [XmlAttribute]
@@ -278,6 +282,7 @@ namespace Tmx.Interfaces
         }
         
         [XmlAttribute]
-        public virtual string PlatformId { get; set; }
+        // public virtual string PlatformId { get; set; }
+        public virtual Guid PlatformId { get; set; }
     }
 }

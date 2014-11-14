@@ -24,6 +24,7 @@ namespace Tmx.Interfaces
     {
         public TestScenario()
         {
+            UniqueId = Guid.NewGuid();
             this.TestResults = new List<ITestResult>();
             this.TestCases = new List<ITestCase>();
             this.Statistics = new TestStat();
@@ -75,6 +76,7 @@ namespace Tmx.Interfaces
             string testScenarioId,
             string testSuiteId)
         {
+            UniqueId = Guid.NewGuid();
             this.TestResults = new List<ITestResult>();
             this.TestCases = new List<ITestCase>();
             this.Statistics = new TestStat();
@@ -124,6 +126,8 @@ namespace Tmx.Interfaces
                 TestResults[TestResults.Count - 1];
         }
         
+        [XmlAttribute]
+        public virtual Guid UniqueId { get; set; }
         [XmlIgnore]
         public virtual int DbId { get; set; }
         [XmlAttribute]
@@ -194,7 +198,8 @@ namespace Tmx.Interfaces
         [XmlIgnore]
         public virtual string Tags { get; set; }
         [XmlAttribute]
-        public virtual string PlatformId { get; set; }
+        // public virtual string PlatformId { get; set; }
+        public virtual Guid PlatformId { get; set; }
         
         [XmlIgnore]
         public virtual ScriptBlock[] BeforeTest { get; set; }

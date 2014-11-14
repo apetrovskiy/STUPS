@@ -19,6 +19,8 @@ namespace Tmx.Interfaces.TestStructure
     /// </summary>
     public interface ITestScenario
     {
+        [XmlAttribute]
+        Guid UniqueId { get; set; }
         [XmlIgnore]
         int DbId { get; set; }
         // 20140725
@@ -52,7 +54,8 @@ namespace Tmx.Interfaces.TestStructure
         string Tags { get; set; }
         //List<string> PlatformIds { get; set; }
         [XmlAttribute]
-        string PlatformId { get; set; }
+        // string PlatformId { get; set; }
+        Guid PlatformId { get; set; }
         
         // 20130615
         [XmlIgnore]

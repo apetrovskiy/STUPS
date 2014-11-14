@@ -55,9 +55,11 @@ namespace Tmx.Commands
                 case "XML":
                     // 20141112
                     // still the old way
-					TmxHelper.ImportResultsFromXML(dataObject, Path);
-					// var testResultsImporter = new TestResultsImporter();
+                    // 20141114
+					// TmxHelper.ImportResultsFromXML(dataObject, Path);
+					var testResultsImporter = new TestResultsImporter();
 					// TestData.TestSuites.AddRange(testResultsImporter.ImportResultsFromXML(dataObject, Path));
+					testResultsImporter.MergeTestSuites(TestData.TestSuites, testResultsImporter.ImportResultsFromXML(dataObject, Path));
                     break;
                 case "JUNIT":
                 case "JUNITXML":

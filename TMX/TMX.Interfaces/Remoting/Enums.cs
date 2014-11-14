@@ -34,8 +34,8 @@ namespace Tmx.Interfaces.Remoting
 	    ResetClients = 3,
 	    ResetAllocatedTasks = 4,
 	    ResetLoadedTasks = 5,
-	    ResetWorkflows = 6,
-	    ExportTestResults = 7
+	    ResetWorkflows = 6 // ,
+//	    ExportTestResults = 7
 	}
 	
 	public enum TestClientStatuses

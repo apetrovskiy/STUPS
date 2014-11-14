@@ -15,6 +15,7 @@ namespace TmxUnitTests.Commands.TestResults
     using System.Xml.Serialization.Configuration;
     using MbUnit.Framework;
     using Tmx;
+    using Tmx.Core;
     
     /// <summary>
     /// Description of ImportTmxTestResultsCommandTestFixture.
@@ -40,7 +41,9 @@ namespace TmxUnitTests.Commands.TestResults
             const string testSuiteName = "name";
             var rootNode =
                 GIVEN_root_node(
-                    GIVEN_testSuite(testSuiteId, testSuiteName, "pl001"));
+                    // 20141114
+                    // GIVEN_testSuite(testSuiteId, testSuiteName, "pl001"));
+                    GIVEN_testSuite(testSuiteId, testSuiteName, "pl001", Guid.NewGuid()));
             
             WHEN_importing_test_results(rootNode);
             
@@ -58,8 +61,11 @@ namespace TmxUnitTests.Commands.TestResults
             const string testSuiteName02 = "name2";
             var rootNode =
                 GIVEN_root_node(
-                    GIVEN_testSuite(testSuiteId01, testSuiteName01, "pl001"),
-                    GIVEN_testSuite(testSuiteId02, testSuiteName02, "pl001"));
+                    // 20141114
+                    // GIVEN_testSuite(testSuiteId01, testSuiteName01, "pl001"),
+                    GIVEN_testSuite(testSuiteId01, testSuiteName01, "pl001", Guid.NewGuid()),
+                    // GIVEN_testSuite(testSuiteId02, testSuiteName02, "pl001"));
+                    GIVEN_testSuite(testSuiteId02, testSuiteName02, "pl001", Guid.NewGuid()));
             
             WHEN_importing_test_results(rootNode);
             
@@ -77,8 +83,11 @@ namespace TmxUnitTests.Commands.TestResults
             const string testSuiteName = "name";
             var rootNode =
                 GIVEN_root_node(
-                    GIVEN_testSuite(testSuiteId, testSuiteName, "pl001"),
-                    GIVEN_testSuite(testSuiteId, testSuiteName, "pl001"));
+                    // 20141114
+                    // GIVEN_testSuite(testSuiteId, testSuiteName, "pl001"),
+                    GIVEN_testSuite(testSuiteId, testSuiteName, "pl001", Guid.NewGuid()),
+                    // GIVEN_testSuite(testSuiteId, testSuiteName, "pl001"));
+                    GIVEN_testSuite(testSuiteId, testSuiteName, "pl001", Guid.NewGuid()));
             
             WHEN_importing_test_results(rootNode);
             
@@ -93,23 +102,34 @@ namespace TmxUnitTests.Commands.TestResults
             const string testSuiteId01 = "1";
             const string testSuiteName01 = "name";
             const string testSuitePlatform01 = "pl001";
+            // 20141114
+            var guid01 = Guid.NewGuid();
             const string testSuiteId02 = "2";
             const string testSuiteName02 = "name2";
             const string testSuitePlatform02 = "pl002";
+            // 20141114
+            var guid02 = Guid.NewGuid();
             var rootNode =
                 GIVEN_root_node(
-                    GIVEN_testSuite(testSuiteId01, testSuiteName01, testSuitePlatform01),
-                    GIVEN_testSuite(testSuiteId02, testSuiteName02, testSuitePlatform02));
+                    // 20141114
+                    // GIVEN_testSuite(testSuiteId01, testSuiteName01, testSuitePlatform01),
+                    GIVEN_testSuite(testSuiteId01, testSuiteName01, testSuitePlatform01, guid01),
+                    // GIVEN_testSuite(testSuiteId02, testSuiteName02, testSuitePlatform02));
+                    GIVEN_testSuite(testSuiteId02, testSuiteName02, testSuitePlatform02, guid02));
             
             WHEN_importing_test_results(rootNode);
             
             THEN_there_are_number_of_test_suites(2);
             Assert.AreEqual(testSuiteId01, TestData.TestSuites[0].Id);
             Assert.AreEqual(testSuiteName01, TestData.TestSuites[0].Name);
-            Assert.AreEqual(testSuitePlatform01, TestData.TestSuites[0].PlatformId);
+            // 20141114
+            // Assert.AreEqual(testSuitePlatform01, TestData.TestSuites[0].PlatformId);
+            Assert.AreEqual(guid01, TestData.TestSuites[0].PlatformId);
             Assert.AreEqual(testSuiteId02, TestData.TestSuites[1].Id);
             Assert.AreEqual(testSuiteName02, TestData.TestSuites[1].Name);
-            Assert.AreEqual(testSuitePlatform02, TestData.TestSuites[1].PlatformId);
+            // 20141114
+            // Assert.AreEqual(testSuitePlatform02, TestData.TestSuites[1].PlatformId);
+            Assert.AreEqual(guid02, TestData.TestSuites[1].PlatformId);
         }
         
         // ============================================================================================================================
@@ -120,10 +140,14 @@ namespace TmxUnitTests.Commands.TestResults
                 elements);
         }
         
-        XElement GIVEN_testSuite(string id, string name, string platformId)
+        // 20141114
+        // XElement GIVEN_testSuite(string id, string name, string platformId)
+        XElement GIVEN_testSuite(string id, string name, string platformId, Guid guid)
         {
             return new XElement(
                 "suite",
+                // 20141114
+                new XAttribute("uniqueId", guid),
                 new XAttribute("id", id),
                 new XAttribute("name", name),
                 new XAttribute("status", "PASSED"),
@@ -133,7 +157,10 @@ namespace TmxUnitTests.Commands.TestResults
         void WHEN_importing_test_results(object rootElement)
         {
             var xDoc = new XDocument(rootElement);
-            TmxHelper.ImportTestResultsFromXdocumentAndStore(xDoc);
+            // 20141114
+            // TmxHelper.ImportTestResultsFromXdocumentAndStore(xDoc);
+            var testResultsImporter = new TestResultsImporter();
+            testResultsImporter.ImportTestResultsFromXdocument(xDoc);
         }
         
         void THEN_there_are_number_of_test_suites(int number)

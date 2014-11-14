@@ -10,6 +10,7 @@
 namespace Tmx
 {
     using System;
+    using System.Linq;
     using System.Management.Automation;
 	using Tmx;
     
@@ -30,7 +31,9 @@ namespace Tmx
                 TmxHelper.NewTestSuite(
                     cmdlet.Name,
                     cmdlet.Id,
-                    cmdlet.TestPlatformId,
+                    // 20141114
+                    // cmdlet.TestPlatformId,
+                    TestData.TestPlatforms.FirstOrDefault(tp => tp.Id == cmdlet.TestPlatformId).UniqueId,
                     cmdlet.Description,
                     cmdlet.BeforeScenario,
                     cmdlet.AfterScenario);

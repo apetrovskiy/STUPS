@@ -19,6 +19,8 @@ namespace Tmx.Interfaces.TestStructure
     /// </summary>
     public interface ITestResult
     {
+        [XmlAttribute]
+        Guid UniqueId { get; set; }
         [XmlIgnore]
         int DbId { get; set; }
         [XmlAttribute]
@@ -88,6 +90,7 @@ namespace Tmx.Interfaces.TestStructure
         
         //List<string> PlatformIds { get; set; }
         [XmlAttribute]
-        string PlatformId { get; set; }
+        // string PlatformId { get; set; }
+        Guid PlatformId { get; set; }
     }
 }

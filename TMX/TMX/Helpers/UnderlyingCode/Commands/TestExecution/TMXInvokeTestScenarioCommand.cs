@@ -10,6 +10,7 @@
 namespace Tmx
 {
     using System;
+    using System.Linq;
     using System.Management.Automation;
 	using Tmx;
     
@@ -33,7 +34,9 @@ namespace Tmx
             		cmdlet.Id,
             		TestData.CurrentTestSuite.Name,
             		TestData.CurrentTestSuite.Id,
-            		cmdlet.TestPlatformId);
+            		// 20141114
+            		// cmdlet.TestPlatformId);
+            		TestData.TestPlatforms.FirstOrDefault(tp => tp.Id == cmdlet.TestPlatformId).UniqueId);
             
             if (null == testScenario)
                 cmdlet.WriteError(

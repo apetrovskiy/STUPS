@@ -10,6 +10,7 @@
 namespace Tmx
 {
     using System;
+    using System.Linq;
     using System.Management.Automation;
 	using Tmx.Interfaces;
 	using Tmx;
@@ -30,10 +31,16 @@ namespace Tmx
             // 20141112
             var testPlatformId = cmdlet.TestPlatformId;
             if (string.IsNullOrEmpty(testPlatformId))
-                if (null == cmdlet.InputObject || string.IsNullOrEmpty(cmdlet.InputObject.PlatformId))
-                    testPlatformId = TestData.CurrentTestSuite.PlatformId;
+                // 20141114
+                // if (null == cmdlet.InputObject || string.IsNullOrEmpty(cmdlet.InputObject.PlatformId))
+                if (null == cmdlet.InputObject || Guid.Empty == cmdlet.InputObject.PlatformId)
+                    // 20141114
+                    // testPlatformId = TestData.CurrentTestSuite.PlatformId;
+                    testPlatformId = TestData.TestPlatforms.FirstOrDefault(tp => tp.UniqueId == TestData.CurrentTestSuite.PlatformId).Id;
                 else
-                    testPlatformId = cmdlet.InputObject.PlatformId;
+                    // 20141114
+                    // testPlatformId = cmdlet.InputObject.PlatformId;
+                    testPlatformId = TestData.TestPlatforms.FirstOrDefault(tp => tp.UniqueId == cmdlet.InputObject.PlatformId).Id;
             
             // 20140721
             var dataObject = new AddScenarioCmdletBaseDataObject {

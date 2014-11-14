@@ -10,6 +10,7 @@
 namespace Tmx
 {
     using System;
+    using System.Linq;
     using System.Management.Automation;
 	using Tmx;
 	using Tmx.Interfaces;
@@ -48,7 +49,9 @@ namespace Tmx
                 
                 cmdlet.WriteVerbose(cmdlet, "getting test suite '" + cmdlet.TestSuiteName + "' with Id '" + cmdlet.TestSuiteId + "'");
                 testSuiteToAddTestResult =
-                    TestData.GetTestSuite(cmdlet.TestSuiteName, cmdlet.TestSuiteId, cmdlet.TestPlatformId);
+                    // 20141114
+                    // TestData.GetTestSuite(cmdlet.TestSuiteName, cmdlet.TestSuiteId, cmdlet.TestPlatformId);
+                    TestData.GetTestSuite(cmdlet.TestSuiteName, cmdlet.TestSuiteId, TestData.TestPlatforms.FirstOrDefault(tp => tp.Id == cmdlet.TestPlatformId).UniqueId);
                 if (null == testSuiteToAddTestResult) {
                     
                     cmdlet.WriteVerbose(cmdlet, "getting the current test suite");
@@ -62,7 +65,9 @@ namespace Tmx
             
             if (null != cmdlet.TestScenarioName || null != cmdlet.TestScenarioId)
                 testScenarioToAddTestResult =
-                    TestData.GetTestScenario(testSuiteToAddTestResult, cmdlet.TestScenarioName, cmdlet.TestScenarioId, cmdlet.TestSuiteName, cmdlet.TestSuiteId, cmdlet.TestPlatformId) ??
+                    // 20141114
+                    // TestData.GetTestScenario(testSuiteToAddTestResult, cmdlet.TestScenarioName, cmdlet.TestScenarioId, cmdlet.TestSuiteName, cmdlet.TestSuiteId, cmdlet.TestPlatformId) ??
+                    TestData.GetTestScenario(testSuiteToAddTestResult, cmdlet.TestScenarioName, cmdlet.TestScenarioId, cmdlet.TestSuiteName, cmdlet.TestSuiteId, TestData.TestPlatforms.FirstOrDefault(tp => tp.Id == cmdlet.TestPlatformId).UniqueId) ??
                     TestData.CurrentTestScenario;
             else
                 testScenarioToAddTestResult = TestData.CurrentTestScenario;
@@ -92,7 +97,9 @@ namespace Tmx
             
             try {
                 TestData.CurrentTestScenario.TestResults[newTestResultIndex].PlatformId =
-                    TestData.CurrentTestPlatform.Id;
+                    // 20141114
+                    // TestData.CurrentTestPlatform.Id;
+                    TestData.CurrentTestPlatform.UniqueId;
             }
             catch {}
             

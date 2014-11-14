@@ -10,6 +10,7 @@
 namespace Tmx
 {
     using System;
+    using System.Linq;
     using System.Management.Automation;
 	using Tmx.Interfaces;
 	using Tmx;
@@ -106,7 +107,9 @@ namespace Tmx
             
             try {
                 TestData.CurrentTestResult.PlatformId =
-                    TestData.CurrentTestPlatform.Id;
+                    // 20141114
+                    // TestData.CurrentTestPlatform.Id;
+                    TestData.TestPlatforms.FirstOrDefault(tp => tp.Id == TestData.CurrentTestPlatform.Id).UniqueId;
             }
             catch {}
 

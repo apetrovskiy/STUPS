@@ -10,6 +10,7 @@
 namespace Tmx.Interfaces.TestStructure
 {
     using System;
+    using System.Xml.Serialization;
 	using Tmx.Interfaces.Internal;
     
     /// <summary>
@@ -17,12 +18,20 @@ namespace Tmx.Interfaces.TestStructure
     /// </summary>
     public interface ITestPlatform : ISystemInfo
     {
+        [XmlAttribute]
+        Guid UniqueId { get; set; }
+        [XmlAttribute]
         string Name { get; set; }
+        [XmlAttribute]
         string Id { get; set; }
+        [XmlAttribute]
         string Description { get; set; }
-
+        
+        [XmlAttribute]
         string OperatingSystem { get; set; }
+        [XmlAttribute]
         string Version { get; set; }
+        [XmlAttribute]
         string Architecture { get; set; }
     }
 }

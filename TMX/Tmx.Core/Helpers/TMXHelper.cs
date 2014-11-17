@@ -33,7 +33,12 @@ namespace Tmx
     {
         static TmxHelper()
         {
+//            try {
             TestData.InitTestData();
+//            }
+//            catch (Exception ee) {
+//                Console.WriteLine(ee.Message);
+//            }
         }
         
         internal static DateTime TestCaseStarted { get; set; }

@@ -29,6 +29,9 @@ namespace TmxUnitTests
             if (0 < UnitTestOutput.Count)
 				UnitTestOutput.Clear();
 			TestData.ResetData();
+			// 20141117
+			TestData.AlreadyInitialized = false;
+			TestData.InitTestData();
         }
         
         #region TestSuite

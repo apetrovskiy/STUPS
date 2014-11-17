@@ -27,6 +27,9 @@ namespace Tmx
         {
             var cmdlet = (NewSuiteCmdletBase)Cmdlet;
             
+            var aaa = TestData.TestPlatforms.FirstOrDefault(tp => tp.Id == cmdlet.TestPlatformId);
+            
+            
             bool result = 
                 TmxHelper.NewTestSuite(
                     cmdlet.Name,

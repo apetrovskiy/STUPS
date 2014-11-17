@@ -10,6 +10,7 @@
 namespace Tmx
 {
     using System;
+    using System.Linq;
     using System.Management.Automation;
     
     /// <summary>
@@ -34,5 +35,13 @@ namespace Tmx
         [Parameter(Mandatory = false)]
         public ScriptBlock[] AfterScenario { get; set; }
         #endregion Parameters
+        
+        // 20141117
+        public NewSuiteCmdletBase()
+        {
+            var defaultPlatform = TestData.TestPlatforms.FirstOrDefault(tp => tp.Name == TestData.DefaultPlatformName && tp.Id == TestData.DefaultPlatformId);
+            if (null != defaultPlatform)
+                TestPlatformId = defaultPlatform.Id;
+        }
     }
 }

@@ -9,6 +9,7 @@
 
 namespace Tmx.Interfaces
 {
+    using System;
 	using System.Management.Automation;
     using Tmx.Interfaces.TestStructure;
     
@@ -25,6 +26,7 @@ namespace Tmx.Interfaces
         string TestSuiteName { get; set; }
         string TestSuiteId { get; set; }
         string TestPlatformId { get; set; }
+        // Guid TestPlatformId { get; set; }
         
         ScriptBlock[] BeforeTest { get; set; }
         ScriptBlock[] AfterTest { get; set; }

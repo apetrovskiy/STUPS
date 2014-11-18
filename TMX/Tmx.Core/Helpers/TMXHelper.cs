@@ -121,9 +121,7 @@ namespace Tmx
             string testPlatformArchitecture,
             string testPlatformLanguage)
         {
-            bool result = false;
-            result = 
-                TestData.AddTestPlatform(
+            return TestData.AddTestPlatform(
                     testPlatformName,
                     testPlatformId,
                     testPlatformDesctiption,
@@ -131,8 +129,6 @@ namespace Tmx
                     testPlatformVersion,
                     testPlatformArchitecture,
                     testPlatformLanguage);
-            
-            return result;
         }
         
         public static bool NewTestSuite(string testSuiteName, 

@@ -24,12 +24,17 @@ namespace Tmx
     /// </summary>
     public class TestPlatform : ITestPlatform
     {
-        public TestPlatform(string name, string id) : this()
-        {
-            UniqueId = Guid.NewGuid();
-            this.Name = name;
-            this.Id = id;
-        }
+//        public TestPlatform(string name, string id) : this()
+//        {
+//            UniqueId = Guid.NewGuid();
+//            this.Name = name;
+//            this.Id = id;
+//        }
+        
+//        public TestPlatform()
+//        {
+//            UniqueId = Guid.NewGuid();
+//        }
         
         public TestPlatform()
         {

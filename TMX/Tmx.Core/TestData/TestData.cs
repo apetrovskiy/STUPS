@@ -239,8 +239,8 @@ namespace Tmx
             // 20141014
             // TestSuites.Clear();
             if (null != TestSuites) TestSuites.Clear();
-            // 20141117
-            if (null != TestPlatforms) TestPlatforms.Clear();
+//            // 20141117
+//            if (null != TestPlatforms) TestPlatforms.Clear();
             CurrentTestResult = null;
             CurrentTestScenario = null;
             CurrentTestSuite = null;
@@ -250,6 +250,12 @@ namespace Tmx
 //            catch (Exception ee) {
 //                Console.WriteLine(ee.Message);
 //            }
+        }
+        
+        public static void ResetDataFull()
+        {
+            ResetData();
+            if (null != TestPlatforms) TestPlatforms.Clear();
         }
         
         public static void CleanData()
@@ -1073,18 +1079,38 @@ namespace Tmx
 			if (string.IsNullOrEmpty(testPlatformId))
 				testPlatformId = GetTestPlatformId();
             
-			if (null != GetTestPlatform(testPlatformName, testPlatformId))
+            // 20141118
+//			if (null != GetTestPlatform(testPlatformName, testPlatformId))
+//                // the suite requested won't be duplicated, exit
+//                return false;
+            var alreadyExistingTestPlatform = GetTestPlatform(testPlatformName, testPlatformId);
+            if (null != alreadyExistingTestPlatform) {
+                TestData.CurrentTestPlatform = alreadyExistingTestPlatform;
                 // the suite requested won't be duplicated, exit
                 return false;
+            }
+            // 20141118
+            var testPlatform = new TestPlatform {
+                Id = testPlatformId,
+                Name = testPlatformName,
+                OperatingSystem = testPlatformOS,
+                Version = testPlatformVersion,
+                Architecture = testPlatformArchitecture,
+                Language = testPlatformLanguage,
+                Description = testPlatformDesctiption
+            };
+            TestPlatforms.Add(testPlatform);
             
-			TestPlatforms.Add(new TestPlatform(testPlatformName, testPlatformId));
-			if (!string.IsNullOrEmpty(testPlatformDesctiption))
-				TestData.TestPlatforms[TestPlatforms.Count - 1].Description = testPlatformDesctiption;
+            // 20141118
+//			TestPlatforms.Add(new TestPlatform(testPlatformName, testPlatformId));
+//			if (!string.IsNullOrEmpty(testPlatformDesctiption))
+//				TestData.TestPlatforms[TestPlatforms.Count - 1].Description = testPlatformDesctiption;
             
-			TestData.TestPlatforms[TestPlatforms.Count - 1].OperatingSystem = testPlatformOS;
-			TestData.TestPlatforms[TestPlatforms.Count - 1].Version = testPlatformVersion;
-			TestData.TestPlatforms[TestPlatforms.Count - 1].Architecture = testPlatformArchitecture;
-			TestData.TestPlatforms[TestPlatforms.Count - 1].Language = testPlatformLanguage;
+            // 20141118
+//			TestData.TestPlatforms[TestPlatforms.Count - 1].OperatingSystem = testPlatformOS;
+//			TestData.TestPlatforms[TestPlatforms.Count - 1].Version = testPlatformVersion;
+//			TestData.TestPlatforms[TestPlatforms.Count - 1].Architecture = testPlatformArchitecture;
+//			TestData.TestPlatforms[TestPlatforms.Count - 1].Language = testPlatformLanguage;
             
 			TestData.CurrentTestPlatform = 
                 TestData.TestPlatforms[TestPlatforms.Count - 1];
@@ -1196,6 +1222,9 @@ namespace Tmx
         internal static ITestPlatform GetTestPlatform(string testPlatformName, string testPlatformId)
         // internal static ITestPlatform GetTestPlatform(string testPlatformName, Guid testPlatformId)
         {
+            // 20141118
+            if (null == TestPlatforms || 0 == TestPlatforms.Count) return null;
+            
             ITestPlatform result = null;
             
             if (!string.IsNullOrEmpty(testPlatformName)) {

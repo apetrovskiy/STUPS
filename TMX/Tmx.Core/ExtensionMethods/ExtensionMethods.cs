@@ -140,7 +140,9 @@ namespace Tmx.Core
         
         public static bool IsCompleted(this ITestRun testRun)
         {
-            return TestRunStatuses.Completed == testRun.Status;
+            // 20141118
+            // return TestRunStatuses.CompletedSuccessfully == testRun.Status;
+            return TestRunStatuses.CompletedSuccessfully == testRun.Status || TestRunStatuses.Interrupted == testRun.Status;
         }
         
         public static bool IsQueued(this ITestRun testRun)

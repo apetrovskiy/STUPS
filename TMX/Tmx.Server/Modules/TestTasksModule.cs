@@ -57,16 +57,16 @@ namespace Tmx.Server.Modules
             var taskSorter = new TaskSelector();
             ITestTask actualTask = taskSorter.GetFirstLegibleTask(clientId);
             var clientInQuestion = ClientsCollection.Clients.First(client => client.Id == clientId);
-            return null == actualTask ? returnStatusTaskNotFound(clientInQuestion) : returnTaskToClientAndOk(clientInQuestion, actualTask);
+            return null == actualTask ? returnNoTask_StatusNotFound(clientInQuestion) : returnTaskToClient_StatusOk(clientInQuestion, actualTask);
         }
 		
-        Negotiator returnStatusTaskNotFound(ITestClient testClient)
+        Negotiator returnNoTask_StatusNotFound(ITestClient testClient)
         {
             testClient.Status = TestClientStatuses.NoTasks;
             return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
         }
         
-        Negotiator returnTaskToClientAndOk(ITestClient testClient, ITestTask actualTask)
+        Negotiator returnTaskToClient_StatusOk(ITestClient testClient, ITestTask actualTask)
         {
             testClient.Status = TestClientStatuses.Running;
             testClient.TaskId = actualTask.Id;
@@ -108,7 +108,9 @@ namespace Tmx.Server.Modules
         void completeTestRun(ITestTask task)
         {
             var currentTestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == task.TestRunId);
-            currentTestRun.Status = TestRunStatuses.Completed;
+            // 20141118
+            // currentTestRun.Status = TestRunStatuses.CompletedSuccessfully;
+            currentTestRun.Status = TaskPool.TasksForClients.Any (tsk => tsk.TestRunId == currentTestRun.Id && tsk.TaskStatus == TestTaskStatuses.Interrupted) ? TestRunStatuses.Interrupted : TestRunStatuses.CompletedSuccessfully;
             currentTestRun.SetTimeTaken();
             activateNextInRowTestRun();
         }

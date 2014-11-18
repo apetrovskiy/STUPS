@@ -6,7 +6,7 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-
+/*
 namespace Tmx.Interfaces
 {
     using System;
@@ -62,3 +62,4 @@ namespace Tmx.Interfaces
 //            </return_values>
     }
 }
+*/

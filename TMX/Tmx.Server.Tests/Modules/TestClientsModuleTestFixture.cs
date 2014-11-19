@@ -549,7 +549,7 @@ namespace Tmx.Server.Tests.Modules
         
         ITestRun GIVEN_Completed_TestRun()
         {
-            return getTestRunWithStatus(TestRunStatuses.Completed);
+            return getTestRunWithStatus(TestRunStatuses.CompletedSuccessfully);
         }
 
         ITestRun getTestRunWithStatus(TestRunStatuses status)

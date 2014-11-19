@@ -137,7 +137,9 @@ namespace Tmx
 			        testScenario.Id,
 			        testSuite.Name,
 			        testSuite.Id,
-			        testScenario.PlatformId);
+			        // 20141119
+			        // testScenario.PlatformId);
+			        testScenario.PlatformUniqueId);
 			if (null == testCase) {
 			    return;
 			}

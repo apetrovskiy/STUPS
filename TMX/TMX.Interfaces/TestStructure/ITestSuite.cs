@@ -53,8 +53,10 @@ namespace Tmx.Interfaces.TestStructure
         
         //List<string> PlatformIds { get; set; }
         [XmlAttribute]
-        // string PlatformId { get; set; }
-        Guid PlatformId { get; set; }
+        // 20141119
+        string PlatformId { get; set; }
+        [XmlAttribute]
+        Guid PlatformUniqueId { get; set; }
         
         // 20130615
         //ScriptBlock[] BeforeTest { get; set; }

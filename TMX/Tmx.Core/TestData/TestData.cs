@@ -411,7 +411,9 @@ namespace Tmx
             TestData.CurrentTestResult = currentTestResult;
             
             try {
-                TestData.CurrentTestResult.PlatformId = TestData.CurrentTestScenario.PlatformId;
+                // 20141119
+                // TestData.CurrentTestResult.PlatformId = TestData.CurrentTestScenario.PlatformId;
+                TestData.CurrentTestResult.PlatformUniqueId = TestData.CurrentTestScenario.PlatformUniqueId;
                     // 20130612
                     //TestData.CurrentTestPlatform.Id;
             }
@@ -1189,7 +1191,9 @@ namespace Tmx
                 
 			    // 20141114
 				// TestData.CurrentTestSuite.PlatformId = !string.IsNullOrEmpty(testPlatformId) ? testPlatformId : TestData.CurrentTestPlatform.Id;
-				TestData.CurrentTestSuite.PlatformId = testPlatformId != Guid.Empty ? testPlatformId : TestData.CurrentTestPlatform.UniqueId;
+				// 20141119
+				// TestData.CurrentTestSuite.PlatformId = testPlatformId != Guid.Empty ? testPlatformId : TestData.CurrentTestPlatform.UniqueId;
+				TestData.CurrentTestSuite.PlatformUniqueId = testPlatformId != Guid.Empty ? testPlatformId : TestData.CurrentTestPlatform.UniqueId;
 				TestData.CurrentTestSuite.BeforeScenario = testSuiteBeforeScenario;
 				TestData.CurrentTestSuite.AfterScenario = testSuiteAfterScenario;
                 
@@ -1294,7 +1298,9 @@ namespace Tmx
 					    // result = testSuite;
 					    // 20141114
 					    // if (testPlatformId == testSuite.PlatformId)
-					    if (testPlatformUniqueId == testSuite.PlatformId)
+					    // 20141119
+					    // if (testPlatformUniqueId == testSuite.PlatformId)
+					    if (testPlatformUniqueId == testSuite.PlatformUniqueId)
 					        result = testSuite;
 				    if (null != result)
 				       return result;
@@ -1307,7 +1313,9 @@ namespace Tmx
                         
                         // 20141114
 						// if (testPlatformId != testSuite.PlatformId)
-						if (testPlatformUniqueId != testSuite.PlatformId)
+						// 20141119
+						// if (testPlatformUniqueId != testSuite.PlatformId)
+						if (testPlatformUniqueId != testSuite.PlatformUniqueId)
 							continue;
 						if (testSuiteName != testSuite.Name && !string.IsNullOrEmpty(testSuiteName))
 							continue;
@@ -1519,7 +1527,9 @@ internal static void dumpTestStructure(string strNumber)
             
 			// 20141114
             // TestData.CurrentTestScenario.PlatformId = !string.IsNullOrEmpty(testPlatformId) ? testPlatformId : TestData.CurrentTestSuite.PlatformId;
-            TestData.CurrentTestScenario.PlatformId = testPlatformId != Guid.Empty ? testPlatformId : TestData.CurrentTestSuite.PlatformId;
+            // 20141119
+            // TestData.CurrentTestScenario.PlatformId = testPlatformId != Guid.Empty ? testPlatformId : TestData.CurrentTestSuite.PlatformId;
+            TestData.CurrentTestScenario.PlatformUniqueId = testPlatformId != Guid.Empty ? testPlatformId : TestData.CurrentTestSuite.PlatformUniqueId;
             
             // set the initial time for this scenario's session
             CurrentTestScenario.SetNow();
@@ -1662,7 +1672,9 @@ internal static void dumpTestStructure(string strNumber)
                 foreach (ITestScenario testScenario in TestData.CurrentTestSuite.TestScenarios.Cast<ITestScenario>().Where(testScenario => testScenario.Id == testScenarioId))
                 {
                     // 20130621
-                    if (testPlatformId != testScenario.PlatformId) {
+                    // 20141119
+                    // if (testPlatformId != testScenario.PlatformId) {
+                    if (testPlatformId != testScenario.PlatformUniqueId) {
                         continue;
                     } else {
                         // 20130912

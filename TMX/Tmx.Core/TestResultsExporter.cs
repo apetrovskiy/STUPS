@@ -75,6 +75,8 @@ namespace Tmx.Core
                                                  new XAttribute("knownIssue", suite.Statistics.PassedButWithBadSmell.ToString()),
                                                  createXattribute("description", suite.Description),
                                                  createXattribute("platformId", suite.PlatformId),
+                                                 // 20141119
+                                                 createXattribute("platformUniqueId", suite.PlatformUniqueId),
                                                  CreateScenariosXElementCommon(
                                                      suite,
                                                      // scenarios,
@@ -95,7 +97,9 @@ namespace Tmx.Core
         {
             var testScenariosFiltered = 
                 from scenario in scenarios
-                where scenario.SuiteId == suite.Id && scenario.PlatformId == suite.PlatformId
+                // 20141119
+                // where scenario.SuiteId == suite.Id && scenario.PlatformId == suite.PlatformId
+                where scenario.SuiteId == suite.Id && scenario.PlatformUniqueId == suite.PlatformUniqueId
                 select scenario;
 
             if (!testScenariosFiltered.Any()) {
@@ -134,7 +138,10 @@ namespace Tmx.Core
                              new XAttribute("notTested", scenario.Statistics.NotTested.ToString()),
                              new XAttribute("knownIssue", scenario.Statistics.PassedButWithBadSmell.ToString()),
                              createXattribute("description", scenario.Description),
+                             // 20141119
+                             // createXattribute("platformId", scenario.PlatformId),
                              createXattribute("platformId", scenario.PlatformId),
+                             createXattribute("platformUniqueId", scenario.PlatformUniqueId),
                              CreateTestResultsXElementCommon(
                                  suite,
                                  scenario,
@@ -158,7 +165,9 @@ namespace Tmx.Core
                 testResult.ScenarioId == scenario.Id &&
                 testResult.Id != null &&
                 testResult.Name != null &&
-                testResult.PlatformId == scenario.PlatformId
+                // 20141119
+                // testResult.PlatformId == scenario.PlatformId
+                testResult.PlatformUniqueId == scenario.PlatformUniqueId
                 select testResult;
 
             if (!testResultsFiltered.Any()) {
@@ -201,6 +210,8 @@ namespace Tmx.Core
                              createXattribute("screenshot", testResult.Screenshot),
                              createXattribute("description", testResult.Description),
                              createXattribute("platformId", testResult.PlatformId),
+                             // 20141119
+                             createXattribute("platformUniqueId", testResult.PlatformUniqueId),
                              CreateTestResultDetailsXElement(
                                  testResult,
                                  xmlStruct)

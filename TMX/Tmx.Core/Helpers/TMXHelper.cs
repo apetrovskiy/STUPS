@@ -385,7 +385,9 @@ namespace Tmx
                 from scenario in scenarios
                 // 20141022
                 // where scenario.SuiteId == suite.Id
-                where scenario.SuiteId == suite.Id && scenario.PlatformId == suite.PlatformId
+                // 20141119
+                // where scenario.SuiteId == suite.Id && scenario.PlatformId == suite.PlatformId
+                where scenario.SuiteId == suite.Id && scenario.PlatformUniqueId == suite.PlatformUniqueId
                 select scenario;
 
             if (!testScenariosFiltered.Any()) {
@@ -423,7 +425,9 @@ namespace Tmx
                              new XAttribute("notTested", scenario.Statistics.NotTested.ToString()),
                              new XAttribute("knownIssue", scenario.Statistics.PassedButWithBadSmell.ToString()),
                              TmxHelper.CreateXAttribute("description", scenario.Description),
-                             TmxHelper.CreateXAttribute("platformId", scenario.PlatformId),
+                             // 20141119
+                             // TmxHelper.CreateXAttribute("platformId", scenario.PlatformId),
+                             TmxHelper.CreateXAttribute("platformId", scenario.PlatformUniqueId),
                              TmxHelper.CreateTestResultsXElementCommon(
                                  suite,
                                  scenario,
@@ -449,7 +453,9 @@ namespace Tmx
                 // 20141022
                 // testResult.Name != null
                 testResult.Name != null &&
-                testResult.PlatformId == scenario.PlatformId
+                // 20141119
+                // testResult.PlatformId == scenario.PlatformId
+                testResult.PlatformUniqueId == scenario.PlatformUniqueId
                 select testResult;
 
             if (!testResultsFiltered.Any()) {

@@ -59,7 +59,9 @@ namespace Tmx.Interfaces
             // if (!TestData.TestPlatforms.Any(tp => tp.Name == TestData.DefaultPlatformName)) {
             if (TestData.TestPlatforms.All(tp => tp.Name != TestData.DefaultPlatformName))
                 TestData.AddDefaultPlatform();
-			PlatformId = TestData.GetDefaultPlatformId();
+            // 20141119
+			// PlatformId = TestData.GetDefaultPlatformId();
+			PlatformUniqueId = TestData.GetDefaultPlatformId();
 		}
 		
 		[XmlAttribute]
@@ -129,8 +131,10 @@ namespace Tmx.Interfaces
         [XmlIgnore]
         public virtual string Tags { get; set; }
         [XmlAttribute]
-        // public virtual string PlatformId { get; set; }
-        public virtual Guid PlatformId { get; set; }
+        // 20141119
+        public virtual string PlatformId { get; set; }
+        [XmlAttribute]
+        public virtual Guid PlatformUniqueId { get; set; }
         
         [XmlIgnore]
         public virtual ScriptBlock[] BeforeScenario { get; set; }

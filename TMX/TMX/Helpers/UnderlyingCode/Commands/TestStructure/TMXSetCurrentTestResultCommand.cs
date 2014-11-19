@@ -106,7 +106,9 @@ namespace Tmx
             }
             
             try {
-                TestData.CurrentTestResult.PlatformId =
+                // 20141119
+                // TestData.CurrentTestResult.PlatformId =
+                TestData.CurrentTestResult.PlatformUniqueId =
                     // 20141114
                     // TestData.CurrentTestPlatform.Id;
                     TestData.TestPlatforms.FirstOrDefault(tp => tp.Id == TestData.CurrentTestPlatform.Id).UniqueId;

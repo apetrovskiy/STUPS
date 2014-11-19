@@ -101,7 +101,7 @@ namespace Tmx.Server.Tests.Modules
 			
 			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
 			TaskPool.TasksForClients.ForEach(task => task.TaskStatus = TestTaskStatuses.CompletedSuccessfully);
-			TestRunQueue.TestRuns.ForEach(testRun => testRun.Status = TestRunStatuses.Completed);
+			TestRunQueue.TestRuns.ForEach(testRun => testRun.Status = TestRunStatuses.CompletedSuccessfully);
 			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
 			
 			THEN_there_should_be_the_following_number_of_testRun_objects(2);
@@ -116,7 +116,7 @@ namespace Tmx.Server.Tests.Modules
 			
 			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
 			TaskPool.TasksForClients.ForEach(task => task.TaskStatus = TestTaskStatuses.CompletedSuccessfully);
-			TestRunQueue.TestRuns.ForEach(testRun => testRun.Status = TestRunStatuses.Completed);
+			TestRunQueue.TestRuns.ForEach(testRun => testRun.Status = TestRunStatuses.CompletedSuccessfully);
 			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
 			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
 			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
@@ -137,7 +137,7 @@ namespace Tmx.Server.Tests.Modules
 			
 			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
 			TaskPool.TasksForClients.ForEach(task => task.TaskStatus = TestTaskStatuses.Interrupted);
-			TestRunQueue.TestRuns.ForEach(testRun => testRun.Status = TestRunStatuses.Completed);
+			TestRunQueue.TestRuns.ForEach(testRun => testRun.Status = TestRunStatuses.CompletedSuccessfully);
 			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
 			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
 			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
@@ -158,7 +158,7 @@ namespace Tmx.Server.Tests.Modules
 			
 			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
 			TaskPool.TasksForClients.ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled);
-			TestRunQueue.TestRuns.ForEach(testRun => testRun.Status = TestRunStatuses.Completed);
+			TestRunQueue.TestRuns.ForEach(testRun => testRun.Status = TestRunStatuses.CompletedSuccessfully);
 			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
 			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
 			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);

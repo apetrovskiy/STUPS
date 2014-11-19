@@ -124,12 +124,16 @@ namespace TmxUnitTests.Commands.TestResults
             Assert.AreEqual(testSuiteName01, TestData.TestSuites[0].Name);
             // 20141114
             // Assert.AreEqual(testSuitePlatform01, TestData.TestSuites[0].PlatformId);
-            Assert.AreEqual(guid01, TestData.TestSuites[0].PlatformId);
+            // 20141119
+            // Assert.AreEqual(guid01, TestData.TestSuites[0].PlatformId);
+            Assert.AreEqual(guid01, TestData.TestSuites[0].PlatformUniqueId);
             Assert.AreEqual(testSuiteId02, TestData.TestSuites[1].Id);
             Assert.AreEqual(testSuiteName02, TestData.TestSuites[1].Name);
             // 20141114
             // Assert.AreEqual(testSuitePlatform02, TestData.TestSuites[1].PlatformId);
-            Assert.AreEqual(guid02, TestData.TestSuites[1].PlatformId);
+            // 20141119
+            // Assert.AreEqual(guid02, TestData.TestSuites[1].PlatformId);
+            Assert.AreEqual(guid02, TestData.TestSuites[1].PlatformUniqueId);
         }
         
         // ============================================================================================================================

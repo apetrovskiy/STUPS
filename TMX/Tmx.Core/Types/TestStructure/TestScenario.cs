@@ -198,8 +198,10 @@ namespace Tmx.Interfaces
         [XmlIgnore]
         public virtual string Tags { get; set; }
         [XmlAttribute]
-        // public virtual string PlatformId { get; set; }
-        public virtual Guid PlatformId { get; set; }
+        // 20141119
+        public virtual string PlatformId { get; set; }
+        [XmlAttribute]
+        public virtual Guid PlatformUniqueId { get; set; }
         
         [XmlIgnore]
         public virtual ScriptBlock[] BeforeTest { get; set; }

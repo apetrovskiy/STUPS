@@ -96,7 +96,9 @@ namespace Tmx
                 TestData.CurrentTestScenario.TestResults[newTestResultIndex].enStatus = cmdlet.TestResultStatus;
             
             try {
-                TestData.CurrentTestScenario.TestResults[newTestResultIndex].PlatformId =
+                // 20141119
+                // TestData.CurrentTestScenario.TestResults[newTestResultIndex].PlatformId =
+                TestData.CurrentTestScenario.TestResults[newTestResultIndex].PlatformUniqueId =
                     // 20141114
                     // TestData.CurrentTestPlatform.Id;
                     TestData.CurrentTestPlatform.UniqueId;

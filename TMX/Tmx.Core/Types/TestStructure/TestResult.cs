@@ -282,7 +282,9 @@ namespace Tmx.Interfaces
         }
         
         [XmlAttribute]
-        // public virtual string PlatformId { get; set; }
-        public virtual Guid PlatformId { get; set; }
+        // 20141119
+        public virtual string PlatformId { get; set; }
+        [XmlAttribute]
+        public virtual Guid PlatformUniqueId { get; set; }
     }
 }

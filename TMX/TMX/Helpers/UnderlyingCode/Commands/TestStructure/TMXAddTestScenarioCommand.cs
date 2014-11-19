@@ -33,14 +33,20 @@ namespace Tmx
             if (string.IsNullOrEmpty(testPlatformId))
                 // 20141114
                 // if (null == cmdlet.InputObject || string.IsNullOrEmpty(cmdlet.InputObject.PlatformId))
-                if (null == cmdlet.InputObject || Guid.Empty == cmdlet.InputObject.PlatformId)
+                // 20141119
+                // if (null == cmdlet.InputObject || Guid.Empty == cmdlet.InputObject.PlatformId)
+                if (null == cmdlet.InputObject || Guid.Empty == cmdlet.InputObject.PlatformUniqueId)
                     // 20141114
                     // testPlatformId = TestData.CurrentTestSuite.PlatformId;
-                    testPlatformId = TestData.TestPlatforms.FirstOrDefault(tp => tp.UniqueId == TestData.CurrentTestSuite.PlatformId).Id;
+                    // 20141119
+                    // testPlatformId = TestData.TestPlatforms.FirstOrDefault(tp => tp.UniqueId == TestData.CurrentTestSuite.PlatformId).Id;
+                    testPlatformId = TestData.TestPlatforms.FirstOrDefault(tp => tp.UniqueId == TestData.CurrentTestSuite.PlatformUniqueId).Id;
                 else
                     // 20141114
                     // testPlatformId = cmdlet.InputObject.PlatformId;
-                    testPlatformId = TestData.TestPlatforms.FirstOrDefault(tp => tp.UniqueId == cmdlet.InputObject.PlatformId).Id;
+                    // 20141119
+                    // testPlatformId = TestData.TestPlatforms.FirstOrDefault(tp => tp.UniqueId == cmdlet.InputObject.PlatformId).Id;
+                    testPlatformId = TestData.TestPlatforms.FirstOrDefault(tp => tp.UniqueId == cmdlet.InputObject.PlatformUniqueId).Id;
             
             // 20140721
             var dataObject = new AddScenarioCmdletBaseDataObject {

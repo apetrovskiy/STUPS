@@ -252,19 +252,25 @@ namespace Tmx.Server.Tests.Modules
                 new TestSuite {
                     Id = suiteId,
                     Name = "s01",
-                    PlatformId = platformId
+                    // 20141119
+                    // PlatformId = platformId
+                    PlatformUniqueId = platformId
                 }
             };
             var testScenario = new TestScenario {
                 Id = scenarioId,
                 Name = "sc01",
-                PlatformId = platformId,
+                // 20141119
+                // PlatformId = platformId,
+                PlatformUniqueId = platformId,
                 SuiteId = suiteId
             };
             testScenario.TestResults.Add(new TestResult {
                 Id = testResultId,
                 Name = "tr01",
-                PlatformId = platformId,
+                // 20141119
+                // PlatformId = platformId,
+                PlatformUniqueId = platformId,
                 SuiteId = suiteId,
                 ScenarioId = scenarioId,
                 Origin = TestResultOrigins.Logical,
@@ -304,7 +310,9 @@ namespace Tmx.Server.Tests.Modules
             var testSuite = Substitute.For<TestSuite>();
             testSuite.Name = testSuiteName;
             testSuite.Id = testSuiteId;
-            testSuite.PlatformId = TestData.GetDefaultPlatformId();
+            // 20141119
+            // testSuite.PlatformId = TestData.GetDefaultPlatformId();
+            testSuite.PlatformUniqueId = TestData.GetDefaultPlatformId();
             return testSuite;
         }
         
@@ -315,7 +323,9 @@ namespace Tmx.Server.Tests.Modules
             var testScenario = Substitute.For<TestScenario>();
             testScenario.Name = testScenarioName;
             testScenario.Id = testScenarioId;
-            testScenario.PlatformId = testPlatformId;
+            // 20141119
+            // testScenario.PlatformId = testPlatformId;
+            testScenario.PlatformUniqueId = testPlatformId;
             testScenario.SuiteId = testSuiteId;
             return testScenario;
         }

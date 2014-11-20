@@ -15,6 +15,7 @@ namespace Tmx.Core
     using System.Xml.Linq;
     using Tmx.Interfaces;
     using Tmx.Interfaces.TestStructure;
+    using Tmx.Core.Types.Remoting;
     
     /// <summary>
     /// Description of TestResultsExporter.
@@ -39,11 +40,33 @@ namespace Tmx.Core
 		public XDocument GetTestResultsAsXdocument(ISearchCmdletBaseDataObject searchCriteria, List<ITestSuite> suites)
 		{
 		    var suitesElement = GetTestResultsAsXelement(searchCriteria, suites);
+		    // 20141120
+		    var platformsElement = GetTestPlatformsAsXelement(new XMLElementsNativeStruct());
 			var document = new XDocument(new XDeclaration("1.0", "utf-8", "yes"));
-			document.Add(suitesElement);
+			// 20141120
+			var rootElement = new XElement("results", platformsElement, suitesElement);
+//			document.Add(suitesElement);
+//			// 20141120
+//			document.Add(platformsElement);
+			document.Add(rootElement);
 			return document;
 		}
-
+		
+        XElement GetTestPlatformsAsXelement(IXMLElementsStruct xmlStruct)
+        {
+            var platformsElement = 
+                new XElement(xmlStruct.PlatformsNode,
+                             from platform in TestData.TestPlatforms
+                             select new XElement(xmlStruct.PlatformNode,
+                                                 new XAttribute("uniqueId", platform.UniqueId),
+                                                 new XAttribute("id", platform.Id),
+                                                 new XAttribute("name", platform.Name),
+                                                 createXattribute("description", platform.Description)
+                                                 )
+                            );
+            return platformsElement;
+        }
+        
 		public XElement GetTestResultsAsXelement(ISearchCmdletBaseDataObject searchCriteria, List<ITestSuite> suites)
 		{
 			var gathered = new GatherTestResultsCollections();

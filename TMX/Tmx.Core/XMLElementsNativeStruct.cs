@@ -23,6 +23,10 @@ namespace Tmx
 		const string scenarioNode = "scenario";
 		const string testResultsNode = "testResults";
 		const string testResultNode = "testResult";
+		// 20141120
+		const string platformsNode = "testplatforms";
+		const string platformNode = "testplatform";
+		
 		const string failedAttribute = "failed";
 
 		const string timeSpentAttribute = "timeSpent";
@@ -34,6 +38,10 @@ namespace Tmx
 		public string ScenarioNode { get { return scenarioNode; } }
 		public string TestResultsNode { get { return testResultsNode; } }
 		public string TestResultNode { get { return testResultNode; } }
+		// 20141120
+		public string PlatformsNode { get { return platformsNode; } }
+		public string PlatformNode { get { return platformNode; } }
+		
 		public string FailedAttribute { get { return failedAttribute; } }
 
 		public string TimeSpentAttribute { get { return timeSpentAttribute; } }

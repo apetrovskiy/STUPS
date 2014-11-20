@@ -24,7 +24,8 @@ namespace Tmx
     {
         public TestSuiteMap()
         {
-            Id(x => x.DbId);
+            // Id(x => x.DbId);
+            Id(x => x.UniqueId);
             Map(x => x.Name);
             Map(x => x.Id);
             Map(x => x.Status);

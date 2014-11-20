@@ -57,8 +57,8 @@ namespace Tmx
         
         [XmlAttribute]
         public virtual Guid UniqueId { get; set; }
-        [XmlIgnore]
-        public virtual int DbId { get; set; }
+//        [XmlIgnore]
+//        public virtual int DbId { get; set; }
         
         [XmlAttribute]
         public virtual string Name { get; set; }

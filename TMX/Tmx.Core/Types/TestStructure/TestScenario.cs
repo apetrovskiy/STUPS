@@ -128,8 +128,8 @@ namespace Tmx.Interfaces
         
         [XmlAttribute]
         public virtual Guid UniqueId { get; set; }
-        [XmlIgnore]
-        public virtual int DbId { get; set; }
+//        [XmlIgnore]
+//        public virtual int DbId { get; set; }
         [XmlAttribute]
         public string Name { get; set; }
         [XmlAttribute]

@@ -20,6 +20,10 @@ namespace Tmx.Interfaces
 		string TestResultsNode { get; }
 		string TestResultNode { get; }
 		
+		// 20141120
+		string PlatformsNode { get; }
+		string PlatformNode { get; }
+		
 		string FailedAttribute { get; }
 		
 		string TimeSpentAttribute { get; }

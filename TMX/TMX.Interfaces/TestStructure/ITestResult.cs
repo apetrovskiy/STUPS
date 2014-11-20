@@ -21,8 +21,8 @@ namespace Tmx.Interfaces.TestStructure
     {
         [XmlAttribute]
         Guid UniqueId { get; set; }
-        [XmlIgnore]
-        int DbId { get; set; }
+//        [XmlIgnore]
+//        int DbId { get; set; }
         [XmlAttribute]
         string Name { get; set; }
         [XmlAttribute]

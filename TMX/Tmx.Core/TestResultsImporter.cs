@@ -24,12 +24,10 @@ namespace Tmx.Core
         public void MergeTestSuites(List<ITestSuite> sourceTestSuites, List<ITestSuite> testSuitesToAdd)
         {
             foreach (var testSuite in testSuitesToAdd) {
-                // if (!sourceTestSuites.Any(ts => ts.Id == testSuite.Id && ts.Name == testSuite.Name && ts.PlatformId == testSuite.PlatformId)) {
                 if (sourceTestSuites.All(ts => ts.UniqueId != testSuite.UniqueId)) {
                     sourceTestSuites.Add(testSuite);
                     continue;
                 }
-                // var existingTestSuite = sourceTestSuites.First(ts => ts.Id == testSuite.Id && ts.Name == testSuite.Name && ts.PlatformId == testSuite.PlatformId);
                 var existingTestSuite = sourceTestSuites.First(ts => ts.UniqueId == testSuite.UniqueId);
                 MergeTestScenarios(existingTestSuite.TestScenarios, testSuite.TestScenarios);
             }
@@ -38,12 +36,10 @@ namespace Tmx.Core
         void MergeTestScenarios(List<ITestScenario> sourceTestScenarios, List<ITestScenario> testScenariosToAdd)
         {
             foreach (var testScenario in testScenariosToAdd) {
-                // if (!sourceTestScenarios.Any(tsc => tsc.Id == testScenario.Id && tsc.Name == testScenario.Name && tsc.PlatformId == testScenario.PlatformId)) {
                 if (sourceTestScenarios.All(tsc => tsc.UniqueId != testScenario.UniqueId)) {
                     sourceTestScenarios.Add(testScenario);
                     continue;
                 }
-                // var existingTestScenario = sourceTestScenarios.First(tsc => tsc.Id == testScenario.Id && tsc.Name == testScenario.Name && tsc.PlatformId == testScenario.PlatformId);
                 var existingTestScenario = sourceTestScenarios.First(tsc => tsc.UniqueId == testScenario.UniqueId);
                 MergeTestResults(existingTestScenario.TestResults, testScenario.TestResults);
             }
@@ -52,13 +48,22 @@ namespace Tmx.Core
         void MergeTestResults(List<ITestResult> sourceTestResults, List<ITestResult> testResultsToAdd)
         {
             foreach (var testResult in testResultsToAdd) {
-                // if (!sourceTestResults.Any(tr => tr.Id == testResult.Id && tr.Name == testResult.Name && tr.PlatformId == testResult.PlatformId)) {
                 if (sourceTestResults.All(tr => tr.UniqueId != testResult.UniqueId)) {
                     sourceTestResults.Add(testResult);
                     continue;
                 }
-                // var existingTestResult = sourceTestResults.First(tr => tr.Id == testResult.Id && tr.Name == testResult.Name && tr.PlatformId == testResult.PlatformId);
                 var existingTestResult = sourceTestResults.First(tr => tr.UniqueId == testResult.UniqueId);
+            }
+        }
+        
+        void MergeTestPlatforms(List<ITestPlatform> sourceTestPlatforms, List<ITestPlatform> testPlatformsToAdd)
+        {
+            foreach (var testPlatform in testPlatformsToAdd) {
+                if (sourceTestPlatforms.All(tr => tr.UniqueId != testPlatform.UniqueId)) {
+                    sourceTestPlatforms.Add(testPlatform);
+                    continue;
+                }
+                var existingTestPlatform = sourceTestPlatforms.First(tp => tp.UniqueId == testPlatform.UniqueId);
             }
         }
         
@@ -76,7 +81,8 @@ namespace Tmx.Core
                 }
                 
                 var xDoc = XDocument.Load(pathToImportFile);
-                // ImportTestResultsFromXdocumentAndStore(doc);
+                // 20141120
+                importTestPlatformFromXdocument(xDoc);
                 return ImportTestResultsFromXdocument(xDoc);
             }
             catch (Exception eImportDocument) {
@@ -88,10 +94,44 @@ namespace Tmx.Core
             }
         }
         
-        public List<ITestSuite> ImportTestResultsFromXdocument(XDocument doc)
+        void importTestPlatformFromXdocument(XDocument xDoc)
         {
-            var df = doc.Root.Name.Namespace;
-            var suites = from suite in doc.Descendants("suite")
+            var df = xDoc.Root.Name.Namespace;
+            var platforms = from platform in xDoc.Descendants("testplatform")
+                                  where platform.Attribute("name").Value != TestData.DefaultPlatformName
+                                  select platform;
+            importTestPlatforms(platforms);
+        }
+        
+        void importTestPlatforms(IEnumerable<XElement> platformElements)
+        {
+            var importedTestPlatforms = new List<ITestPlatform>();
+            
+            foreach (var platformElement in platformElements) {
+                bool addTestPlatform = false;
+                var testPlatform = importedTestPlatforms.FirstOrDefault(tp => tp.Id == getStringAttribute(platformElement, "id") &&
+                                                                        tp.Name == getStringAttribute(platformElement, "name") &&
+                                                                        tp.UniqueId == getGuidAttribute(platformElement, "uniqueId"));
+                
+                if (null == testPlatform) {
+                    testPlatform = new TestPlatform {
+                        UniqueId = getGuidAttribute(platformElement, "uniqueId"),
+                        Id = getStringAttribute(platformElement, "id"),
+                        Name = getStringAttribute(platformElement, "name"),
+                        Description = getStringAttribute(platformElement, "description")
+                    };
+                    addTestPlatform = true;
+                }
+                
+                if (addTestPlatform)
+				   importedTestPlatforms.Add(testPlatform);                
+            }
+        }
+        
+        public List<ITestSuite> ImportTestResultsFromXdocument(XDocument xDoc)
+        {
+            var df = xDoc.Root.Name.Namespace;
+            var suites = from suite in xDoc.Descendants("suite")
                                   where suite.Attribute("name").Value != TestData.Autogenerated
                                   select suite;
             return ImportTestSuites(suites);
@@ -107,27 +147,16 @@ namespace Tmx.Core
 				string suiteDescription = string.Empty;
                 suiteDescription = getStringAttribute(suiteElement, "description");
 				
-                // 20141113
                 bool addTestSuite = false;
                 var testSuite = importedTestSuites.FirstOrDefault(ts => ts.Id == getStringAttribute(suiteElement, "id") &&
                                                          ts.Name == getStringAttribute(suiteElement, "name") &&
-                                                         // 20141114
-                                                         // ts.PlatformId == getStringAttribute(suiteElement, "platformId"));
-                                                         // 20141119
-                                                         // ts.PlatformId == getGuidAttribute(suiteElement, "platformId"));
                                                          ts.PlatformUniqueId == getGuidAttribute(suiteElement, "platformUniqueId"));
                 
-                // 20141113
-                // var testSuite = new TestSuite {
                 if (null == testSuite) {
                     testSuite = new TestSuite {
                         UniqueId = getGuidAttribute(suiteElement, "uniqueId"),
                         Id = getStringAttribute(suiteElement, "id"),
                         Name = getStringAttribute(suiteElement, "name"),
-                        // 20141114
-                        // PlatformId = getStringAttribute(suiteElement, "platformId"),
-                        // 20141119
-                        // PlatformId = getGuidAttribute(suiteElement, "platformId"),
                         PlatformId = getStringAttribute(suiteElement, "platformId"),
                         PlatformUniqueId = getGuidAttribute(suiteElement, "platformUniqueId"),
                         Description = suiteDescription,
@@ -137,20 +166,12 @@ namespace Tmx.Core
                 }
                 
                 var scenarioElements = from scenarioElement in suiteElement.Descendants("scenario")
-                                            // 20141113
-                                            // where scenario.Attribute("name").Value != TestData.Autogenerated
                                             where getStringAttribute(scenarioElement, "name") != TestData.Autogenerated
-                                            // 20141114
-                                            // && testSuite.PlatformId == getStringAttribute(scenarioElement, "platformId")
-                                            // 20141119
-                                            // && testSuite.PlatformId == getGuidAttribute(scenarioElement, "platformId")
                                             && testSuite.PlatformUniqueId == getGuidAttribute(scenarioElement, "platformUniqueId")
                                             select scenarioElement;
                 testSuite.TestScenarios.AddRange(importTestScenarios(scenarioElements, testSuite.Id));
 				testStatistics.RefreshSuiteStatistics(testSuite, true);
 				setSuiteStatus(testSuite, true);
-				// 20141113
-				// importedTestSuites.Add(testSuite);
 				if (addTestSuite)
 				   importedTestSuites.Add(testSuite);
 			}
@@ -166,27 +187,16 @@ namespace Tmx.Core
 				string scenarioDescription = string.Empty;
                 scenarioDescription = getStringAttribute(scenarioElement, "description");
 				
-                // 20141113
                 bool addTestScenario = false;
                 var testScenario = importedTestScenarios.FirstOrDefault(tsc => tsc.Id == getStringAttribute(scenarioElement, "id") &&
                                                                tsc.Name == getStringAttribute(scenarioElement, "name") &&
-                                                               // 20141114
-                                                               // tsc.PlatformId == getStringAttribute(scenarioElement, "platformId"));
-                                                               // 20141119
-                                                               // tsc.PlatformId == getGuidAttribute(scenarioElement, "platformId"));
                                                                tsc.PlatformUniqueId == getGuidAttribute(scenarioElement, "platformUniqueId"));
                 
-                // 20141113
-                // var testScenario = new TestScenario {
                 if (null == testScenario) {
                     testScenario = new TestScenario {
                         UniqueId = getGuidAttribute(scenarioElement, "uniqueId"),
                         Id = getStringAttribute(scenarioElement, "id"),
                         Name = getStringAttribute(scenarioElement, "name"),
-                        // 20141114
-                        // PlatformId = getStringAttribute(scenarioElement, "platformId"),
-                        // 20141119
-                        // PlatformId = getGuidAttribute(scenarioElement, "platformId"),
                         PlatformId = getStringAttribute(scenarioElement, "platformId"),
                         PlatformUniqueId = getGuidAttribute(scenarioElement, "platformUniqueId"),
                         Description = scenarioDescription,
@@ -195,18 +205,11 @@ namespace Tmx.Core
                     };
                     addTestScenario = true;
                 }
-                // 20141113
-                // var testResults = from testResult in scenarioElement.Descendants("testResult")
                 var testResultElements = from testResultElement in scenarioElement.Descendants("testResult")
-                    // 20141114
-                    // where testScenario.PlatformId == getStringAttribute(testResultElement, "platformId")
-                    // 20141119
                     where testScenario.PlatformUniqueId == getGuidAttribute(testResultElement, "platformUniqueId")
                                   //where testResult.Attribute("name").Value != "autoclosed"
 				select testResultElement;
                 testScenario.TestResults.AddRange(importTestResults(testResultElements, testScenario.SuiteId, testScenario.Id));
-                // 20141113
-                // importedTestScenarios.Add(testScenario);
                 if (addTestScenario)
                     importedTestScenarios.Add(testScenario);
 			}
@@ -235,12 +238,10 @@ namespace Tmx.Core
 				string testResultDescription = string.Empty;
                 testResultDescription = getStringAttribute(testResultElement, "description");
 				
-                // 20141113
                 bool addTestResult = false;
                 var testResult = importedTestResults.FirstOrDefault(tr => tr.Id == getStringAttribute(testResultElement, "id") &&
                                                            tr.Name == getStringAttribute(testResultElement, "name"));
-                // 20141113
-				// var testResult = new TestResult {
+
 				if (null == testResult) {
     				testResult = new TestResult {
 				        UniqueId = getGuidAttribute(testResultElement, "uniqueId"),
@@ -254,15 +255,9 @@ namespace Tmx.Core
 				    addTestResult = true;
 				}
 				// TODO: DI
-				// 20141113
-				// testResult.SetTimestamp(getDateTimeAttribute(testResultElement, "timestamp"));
 				(testResult as TestResult).SetTimestamp(getDateTimeAttribute(testResultElement, "timestamp"));
 				testResult.SetOrigin(origin);
 				testResult.SetTimeSpent(getDoubleAttribute(testResultElement, "timeSpent"));
-				// 20141114
-                // testResult.PlatformId = getStringAttribute(testResultElement, "platformId");
-                // 20141119
-                // testResult.PlatformId = getGuidAttribute(testResultElement, "platformId");
                 testResult.PlatformId = getStringAttribute(testResultElement, "platformId");
                 testResult.PlatformUniqueId = getGuidAttribute(testResultElement, "platformUniqueId");
 				try {
@@ -275,8 +270,6 @@ namespace Tmx.Core
 				} catch (Exception e) {
 					//                                cmdlet.WriteVerbose(cmdlet, eImportDetails);
 				}
-                // 20141113
-				// importedTestResults.Add(testResult);
 				if (addTestResult)
 				    importedTestResults.Add(testResult);
 			}

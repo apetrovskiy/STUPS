@@ -49,24 +49,17 @@ namespace Tmx.Core
         
         void MergeTestResults(List<ITestResult> sourceTestResults, List<ITestResult> testResultsToAdd)
         {
-            foreach (var testResult in testResultsToAdd) {
-                if (sourceTestResults.All(tr => tr.UniqueId != testResult.UniqueId)) {
+            foreach (var testResult in testResultsToAdd)
+                if (sourceTestResults.All(tr => tr.UniqueId != testResult.UniqueId))
                     sourceTestResults.Add(testResult);
-                    continue;
-                }
-                var existingTestResult = sourceTestResults.First(tr => tr.UniqueId == testResult.UniqueId);
-            }
+
         }
         
         public void MergeTestPlatforms(List<ITestPlatform> sourceTestPlatforms, List<ITestPlatform> testPlatformsToAdd)
         {
-            foreach (var testPlatform in testPlatformsToAdd) {
-                if (sourceTestPlatforms.All(tr => tr.UniqueId != testPlatform.UniqueId)) {
+            foreach (var testPlatform in testPlatformsToAdd)
+                if (sourceTestPlatforms.All(tr => tr.UniqueId != testPlatform.UniqueId))
                     sourceTestPlatforms.Add(testPlatform);
-                    continue;
-                }
-                var existingTestPlatform = sourceTestPlatforms.First(tp => tp.UniqueId == testPlatform.UniqueId);
-            }
         }
         
         public bool LoadDocument(IImportExportCmdletBaseDataObject cmdlet, string path)

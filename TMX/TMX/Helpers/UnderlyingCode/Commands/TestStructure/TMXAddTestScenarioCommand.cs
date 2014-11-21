@@ -14,6 +14,7 @@ namespace Tmx
     using System.Management.Automation;
 	using Tmx.Interfaces;
 	using Tmx;
+    using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of TmxAddTestScenarioCommand.
@@ -30,23 +31,31 @@ namespace Tmx
             
             // 20141112
             var testPlatformId = cmdlet.TestPlatformId;
-            if (string.IsNullOrEmpty(testPlatformId))
+            if (string.IsNullOrEmpty(testPlatformId)) {
                 // 20141114
                 // if (null == cmdlet.InputObject || string.IsNullOrEmpty(cmdlet.InputObject.PlatformId))
                 // 20141119
                 // if (null == cmdlet.InputObject || Guid.Empty == cmdlet.InputObject.PlatformId)
-                if (null == cmdlet.InputObject || Guid.Empty == cmdlet.InputObject.PlatformUniqueId)
+                // 20141121
+                ITestPlatform testPlatform = null;
+                
+                if (null == cmdlet.InputObject || Guid.Empty == cmdlet.InputObject.PlatformUniqueId) {
                     // 20141114
                     // testPlatformId = TestData.CurrentTestSuite.PlatformId;
                     // 20141119
                     // testPlatformId = TestData.TestPlatforms.FirstOrDefault(tp => tp.UniqueId == TestData.CurrentTestSuite.PlatformId).Id;
-                    testPlatformId = TestData.TestPlatforms.FirstOrDefault(tp => tp.UniqueId == TestData.CurrentTestSuite.PlatformUniqueId).Id;
-                else
+                    // 20141121
+                    // testPlatformId = TestData.TestPlatforms.FirstOrDefault(tp => tp.UniqueId == TestData.CurrentTestSuite.PlatformUniqueId).Id;
+                    testPlatform = TestData.TestPlatforms.FirstOrDefault(tp => tp.UniqueId == TestData.CurrentTestSuite.PlatformUniqueId);
+                } else {
                     // 20141114
                     // testPlatformId = cmdlet.InputObject.PlatformId;
                     // 20141119
                     // testPlatformId = TestData.TestPlatforms.FirstOrDefault(tp => tp.UniqueId == cmdlet.InputObject.PlatformId).Id;
-                    testPlatformId = TestData.TestPlatforms.FirstOrDefault(tp => tp.UniqueId == cmdlet.InputObject.PlatformUniqueId).Id;
+                    // 20141121
+                    // testPlatformId = TestData.TestPlatforms.FirstOrDefault(tp => tp.UniqueId == cmdlet.InputObject.PlatformUniqueId).Id;
+                    testPlatform = TestData.TestPlatforms.FirstOrDefault(tp => tp.UniqueId == cmdlet.InputObject.PlatformUniqueId);
+                }
             
             // 20140721
             var dataObject = new AddScenarioCmdletBaseDataObject {
@@ -59,7 +68,10 @@ namespace Tmx
                 // 20141112
                 // TestPlatformId = cmdlet.TestPlatformId,
                 // TestPlatformId = string.IsNullOrEmpty(cmdlet.TestPlatformId) ? (stri cmdlet.InputObject.PlatformId) : cmdlet.TestPlatformId,
-                TestPlatformId = testPlatformId,
+                // 20141121
+                // TestPlatformId = testPlatformId,
+                TestPlatformId = testPlatform.Id,
+                TestPlatformUniqueId = testPlatform.UniqueId,
                 TestSuiteId = cmdlet.TestSuiteId,
                 TestSuiteName = cmdlet.TestSuiteName
             };
@@ -78,6 +90,7 @@ namespace Tmx
                     "AddingTestScenario",
                     ErrorCategory.InvalidArgument,
                     true);
+            }
         }
     }
 }

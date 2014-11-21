@@ -33,6 +33,8 @@ namespace Tmx.Interfaces
         public string TestSuiteName { get; set; }
         public string TestSuiteId { get; set; }
         public string TestPlatformId { get; set; }
+        // 20141121
+        public Guid TestPlatformUniqueId { get; set; }
         // public Guid TestPlatformId { get; set; }
         
         public ScriptBlock[] BeforeTest { get; set; }

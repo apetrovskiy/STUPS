@@ -21,6 +21,8 @@ namespace Tmx.Core
     /// </summary>
     public class TestResultsImporter
     {
+        public XDocument ImportedDocument { get; set; }
+        
         public void MergeTestSuites(List<ITestSuite> sourceTestSuites, List<ITestSuite> testSuitesToAdd)
         {
             foreach (var testSuite in testSuitesToAdd) {
@@ -56,7 +58,7 @@ namespace Tmx.Core
             }
         }
         
-        void MergeTestPlatforms(List<ITestPlatform> sourceTestPlatforms, List<ITestPlatform> testPlatformsToAdd)
+        public void MergeTestPlatforms(List<ITestPlatform> sourceTestPlatforms, List<ITestPlatform> testPlatformsToAdd)
         {
             foreach (var testPlatform in testPlatformsToAdd) {
                 if (sourceTestPlatforms.All(tr => tr.UniqueId != testPlatform.UniqueId)) {
@@ -67,7 +69,7 @@ namespace Tmx.Core
             }
         }
         
-        public List<ITestSuite> ImportResultsFromXML(IImportExportCmdletBaseDataObject cmdlet, string path)
+        public bool LoadDocument(IImportExportCmdletBaseDataObject cmdlet, string path)
         {
             try {
                 
@@ -80,10 +82,8 @@ namespace Tmx.Core
                         "'.");
                 }
                 
-                var xDoc = XDocument.Load(pathToImportFile);
-                // 20141120
-                importTestPlatformFromXdocument(xDoc);
-                return ImportTestResultsFromXdocument(xDoc);
+                ImportedDocument = XDocument.Load(pathToImportFile);
+                return true;
             }
             catch (Exception eImportDocument) {
                 throw new Exception(
@@ -91,19 +91,76 @@ namespace Tmx.Core
                     path +
                     "'. " + 
                     eImportDocument.Message);
+                return false;
             }
         }
         
-        void importTestPlatformFromXdocument(XDocument xDoc)
+//        public List<ITestPlatform> ImportPlatformsFromXML(IImportExportCmdletBaseDataObject cmdlet, string path)
+//        {
+//            try {
+//                
+//                string pathToImportFile = cmdlet.Path;
+//                
+//                if (!System.IO.File.Exists(pathToImportFile)) {
+//                    throw new Exception(
+//                        "There is no such file '" +
+//                        cmdlet.Path +
+//                        "'.");
+//                }
+//                
+//                var xDoc = XDocument.Load(pathToImportFile);
+//                // 20141120
+//                // importTestPlatformFromXdocument(xDoc);
+//                // MergeTestPlatforms(TestData.TestPlatforms, importTestPlatformFromXdocument(xDoc));
+//                return importTestPlatformFromXdocument(xDoc);
+//            }
+//            catch (Exception eImportDocument) {
+//                throw new Exception(
+//                    "Unable to load an XML report from the file '" +
+//                    path +
+//                    "'. " + 
+//                    eImportDocument.Message);
+//            }
+//        }
+        
+//        public List<ITestSuite> ImportResultsFromXML(IImportExportCmdletBaseDataObject cmdlet, string path)
+//        {
+//            try {
+//                
+//                string pathToImportFile = cmdlet.Path;
+//                
+//                if (!System.IO.File.Exists(pathToImportFile)) {
+//                    throw new Exception(
+//                        "There is no such file '" +
+//                        cmdlet.Path +
+//                        "'.");
+//                }
+//                
+//                var xDoc = XDocument.Load(pathToImportFile);
+//                // 20141120
+//                // importTestPlatformFromXdocument(xDoc);
+//                // MergeTestPlatforms(TestData.TestPlatforms, importTestPlatformFromXdocument(xDoc));
+//                return ImportTestResultsFromXdocument(xDoc);
+//            }
+//            catch (Exception eImportDocument) {
+//                throw new Exception(
+//                    "Unable to load an XML report from the file '" +
+//                    path +
+//                    "'. " + 
+//                    eImportDocument.Message);
+//            }
+//        }
+        
+        public List<ITestPlatform> ImportTestPlatformFromXdocument(XDocument xDoc)
         {
             var df = xDoc.Root.Name.Namespace;
             var platforms = from platform in xDoc.Descendants("testplatform")
                                   where platform.Attribute("name").Value != TestData.DefaultPlatformName
                                   select platform;
-            importTestPlatforms(platforms);
+            return importTestPlatforms(platforms);
         }
         
-        void importTestPlatforms(IEnumerable<XElement> platformElements)
+        List<ITestPlatform> importTestPlatforms(IEnumerable<XElement> platformElements)
         {
             var importedTestPlatforms = new List<ITestPlatform>();
             
@@ -126,6 +183,8 @@ namespace Tmx.Core
                 if (addTestPlatform)
 				   importedTestPlatforms.Add(testPlatform);                
             }
+            
+            return importedTestPlatforms;
         }
         
         public List<ITestSuite> ImportTestResultsFromXdocument(XDocument xDoc)

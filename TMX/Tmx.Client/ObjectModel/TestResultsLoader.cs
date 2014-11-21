@@ -41,6 +41,7 @@ namespace Tmx.Client
 				var loadingResultsResponse = _restTemplate.GetForMessage<TestResultsDataObject>(urn);
 				var testResultsImporter = new TestResultsImporter();
 				var xDoc = XDocument.Parse(loadingResultsResponse.Body.Data);
+				TestData.TestPlatforms.AddRange(testResultsImporter.ImportTestPlatformFromXdocument(xDoc));
 				TestData.TestSuites.AddRange(testResultsImporter.ImportTestResultsFromXdocument(xDoc));
 	            return HttpStatusCode.OK == loadingResultsResponse.StatusCode;
 	        }

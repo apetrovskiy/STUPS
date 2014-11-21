@@ -69,6 +69,7 @@ namespace Tmx.Server.Modules
                 var testResultsImporter = new TestResultsImporter();
                 // 20141113
                 // currentTestRun.TestSuites.AddRange(testResultsImporter.ImportTestResultsFromXdocument(xDoc));
+                testResultsImporter.MergeTestPlatforms(currentTestRun.TestPlatforms, testResultsImporter.ImportTestPlatformFromXdocument(xDoc));
                 testResultsImporter.MergeTestSuites(currentTestRun.TestSuites, testResultsImporter.ImportTestResultsFromXdocument(xDoc));
                 // maybe, there's no such need? // TODO: set current test suite, test scenario, test result?
                 return HttpStatusCode.Created;
@@ -87,7 +88,8 @@ namespace Tmx.Server.Modules
                                 FilterFailed = false,
                                 OrderById = true
                             },
-                           TestRunQueue.TestRuns.FirstOrDefault(testRun => testRun.Id == testRunId).TestSuites);
+                           TestRunQueue.TestRuns.FirstOrDefault(testRun => testRun.Id == testRunId).TestSuites,
+                           TestRunQueue.TestRuns.FirstOrDefault(testRun => testRun.Id == testRunId).TestPlatforms);
             
             var dataObject = new TestResultsDataObject { Data = xDoc.ToString() };
             return null == dataObject ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(dataObject).WithStatusCode(HttpStatusCode.OK).WithFullNegotiation();

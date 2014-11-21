@@ -23,6 +23,7 @@ namespace Tmx.Interfaces.Remoting
         ICommonData Data { get; set; }
         // 20141106
         List<ITestSuite> TestSuites { get; set; }
+        List<ITestPlatform> TestPlatforms { get; set; }
         // ListOfTestSuites TestSuites { get; set; }
         Guid WorkflowId { get; }
         DateTime CreatedTime { get; set; }

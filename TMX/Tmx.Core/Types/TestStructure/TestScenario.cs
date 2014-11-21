@@ -128,8 +128,6 @@ namespace Tmx.Interfaces
         
         [XmlAttribute]
         public virtual Guid UniqueId { get; set; }
-//        [XmlIgnore]
-//        public virtual int DbId { get; set; }
         [XmlAttribute]
         public string Name { get; set; }
         [XmlAttribute]
@@ -176,8 +174,6 @@ namespace Tmx.Interfaces
         [XmlIgnore]
         public TestStat Statistics { get; set; }
         
-        // 20141102
-        // public string SuiteId { get; protected internal set; }
         [XmlIgnore]
         public string SuiteId { get; set; }
         
@@ -198,7 +194,6 @@ namespace Tmx.Interfaces
         [XmlIgnore]
         public virtual string Tags { get; set; }
         [XmlAttribute]
-        // 20141119
         public virtual string PlatformId { get; set; }
         [XmlAttribute]
         public virtual Guid PlatformUniqueId { get; set; }

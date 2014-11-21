@@ -56,7 +56,7 @@ namespace Tmx.Commands
                     // 20141114
 					// TmxHelper.ExportResultsToXML(dataObject, Path);
 					var testResultsExporter = new TestResultsExporter();
-					testResultsExporter.ExportResultsToXml(dataObject, Path, TestData.TestSuites);
+					testResultsExporter.ExportResultsToXml(dataObject, Path, TestData.TestSuites, TestData.TestPlatforms);
                     break;
                 case "JUNIT":
                 case "JUNITXML":

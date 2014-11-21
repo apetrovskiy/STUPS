@@ -45,7 +45,7 @@ namespace Tmx
             //this.AlternateAfterTest = afterCode;
         }
         
-        public virtual int DbId { get; set; }
+        public virtual int UniqueId { get; set; }
         //public int TestCaseId { get; set; }
         public string TestCaseId { get; set; }
         public string TestCaseName { get; set; }

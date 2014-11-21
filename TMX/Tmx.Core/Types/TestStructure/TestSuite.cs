@@ -25,9 +25,7 @@ namespace Tmx.Interfaces
         public TestSuite()
         {
             UniqueId = Guid.NewGuid();
-            // 20141106 refactoring 01
             TestScenarios = new List<ITestScenario>();
-            // TestScenarios = new List<TestScenario>();
             this.Statistics = new TestStat();
             this.enStatus = TestSuiteStatuses.NotTested;
             this.Id = TestData.GetTestSuiteId();
@@ -38,9 +36,7 @@ namespace Tmx.Interfaces
         public TestSuite(string testSuiteName, string testSuiteId)
         {
             UniqueId = Guid.NewGuid();
-            // 20141106 refactoring 01
             TestScenarios = new List<ITestScenario> ();
-            // TestScenarios = new List<TestScenario>();
             this.Statistics = new TestStat();
             this.enStatus = TestSuiteStatuses.NotTested;
             this.Name = testSuiteName;
@@ -56,28 +52,20 @@ namespace Tmx.Interfaces
 		
 		void addDefaultPlatform()
 		{
-            // if (!TestData.TestPlatforms.Any(tp => tp.Name == TestData.DefaultPlatformName)) {
             if (TestData.TestPlatforms.All(tp => tp.Name != TestData.DefaultPlatformName))
                 TestData.AddDefaultPlatform();
-            // 20141119
-			// PlatformId = TestData.GetDefaultPlatformId();
-			PlatformUniqueId = TestData.GetDefaultPlatformId();
+			PlatformId = TestData.GetDefaultPlatformId();
+			PlatformUniqueId = TestData.GetDefaultPlatformUniqueId();
 		}
 		
 		[XmlAttribute]
         public virtual Guid UniqueId { get; set; }
-//		[XmlIgnore]
-//        public virtual int DbId { get; set; }
         [XmlAttribute]
         public string Name { get; set; }
         [XmlAttribute]
         public string Id { get; set; }
-        // [XmlInclude(typeof(List<ITestScenario>))]
-        // 20141106 refactoring 01
         [XmlElement("TestScenarios", typeof(ITestScenario))]
         public virtual List<ITestScenario> TestScenarios { get; set; }
-        // [XmlElement("TestScenarios", typeof(TestScenario))]
-        // public virtual List<TestScenario> TestScenarios { get; set; }
         [XmlAttribute]
         public virtual string Description { get; set; }
 
@@ -131,7 +119,6 @@ namespace Tmx.Interfaces
         [XmlIgnore]
         public virtual string Tags { get; set; }
         [XmlAttribute]
-        // 20141119
         public virtual string PlatformId { get; set; }
         [XmlAttribute]
         public virtual Guid PlatformUniqueId { get; set; }

@@ -572,29 +572,8 @@
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Types\TestBucket.cs">
       <Link>Helpers\UnderlyingCode\Types\TestBucket.cs</Link>
     </Compile>
-    <Compile Include="..\TMX\Helpers\UnderlyingCode\Types\TestCase.cs">
-      <Link>Helpers\UnderlyingCode\Types\TestCase.cs</Link>
-    </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Types\TestConstant.cs">
       <Link>Helpers\UnderlyingCode\Types\TestConstant.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Helpers\UnderlyingCode\Types\TestPlatform.cs">
-      <Link>Helpers\UnderlyingCode\Types\TestPlatform.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Helpers\UnderlyingCode\Types\TestResult.cs">
-      <Link>Helpers\UnderlyingCode\Types\TestResult.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Helpers\UnderlyingCode\Types\TestResultDetail.cs">
-      <Link>Helpers\UnderlyingCode\Types\TestResultDetail.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Helpers\UnderlyingCode\Types\TestScenario.cs">
-      <Link>Helpers\UnderlyingCode\Types\TestScenario.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Helpers\UnderlyingCode\Types\TestStat.cs">
-      <Link>Helpers\UnderlyingCode\Types\TestStat.cs</Link>
-    </Compile>
-    <Compile Include="..\TMX\Helpers\UnderlyingCode\Types\TestSuite.cs">
-      <Link>Helpers\UnderlyingCode\Types\TestSuite.cs</Link>
     </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\XMLElementsJUnitStruct.cs">
       <Link>Helpers\UnderlyingCode\XMLElementsJUnitStruct.cs</Link>

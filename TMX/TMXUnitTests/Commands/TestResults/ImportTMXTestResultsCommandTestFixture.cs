@@ -164,6 +164,7 @@ namespace TmxUnitTests.Commands.TestResults
             // 20141114
             // TmxHelper.ImportTestResultsFromXdocumentAndStore(xDoc);
             var testResultsImporter = new TestResultsImporter();
+            testResultsImporter.ImportTestPlatformFromXdocument(xDoc);
             testResultsImporter.ImportTestResultsFromXdocument(xDoc);
         }
         

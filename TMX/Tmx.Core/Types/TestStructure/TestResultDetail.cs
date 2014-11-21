@@ -32,8 +32,6 @@ namespace Tmx.Interfaces
         
 		[XmlAttribute]
         public virtual Guid UniqueId { get; set; }
-//        [XmlIgnore]
-//        public virtual int DbId { get; protected set; }
         [XmlAttribute]
         public virtual DateTime Timestamp { get; set; }
         [XmlAttribute]

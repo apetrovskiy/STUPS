@@ -59,7 +59,13 @@ namespace Tmx.Commands
 					// TmxHelper.ImportResultsFromXML(dataObject, Path);
 					var testResultsImporter = new TestResultsImporter();
 					// TestData.TestSuites.AddRange(testResultsImporter.ImportResultsFromXML(dataObject, Path));
-					testResultsImporter.MergeTestSuites(TestData.TestSuites, testResultsImporter.ImportResultsFromXML(dataObject, Path));
+					if (testResultsImporter.LoadDocument(dataObject, Path)) {
+					    testResultsImporter.MergeTestPlatforms(TestData.TestPlatforms, testResultsImporter.ImportTestPlatformFromXdocument(testResultsImporter.ImportedDocument));
+					    testResultsImporter.MergeTestSuites(TestData.TestSuites, testResultsImporter.ImportTestResultsFromXdocument(testResultsImporter.ImportedDocument));
+					}
+//					testResultsImporter.MergeTestPlatforms(TestData.TestPlatforms, testResultsImporter.ImportPlatformsFromXML(dataObject, Path));
+//					testResultsImporter.MergeTestSuites(TestData.TestSuites, testResultsImporter.ImportResultsFromXML(dataObject, Path));
+					
                     break;
                 case "JUNIT":
                 case "JUNITXML":

@@ -17,7 +17,8 @@ namespace Tmx.Interfaces.TestStructure
     /// </summary>
     public interface ITestCase
     {
-        int DbId { get; set; }
+        // int DbId { get; set; }
+        int UniqueId { get; set; }
         //int TestCaseId { get; set; }
         string TestCaseId { get; set; }
         string TestCaseName { get; set; }

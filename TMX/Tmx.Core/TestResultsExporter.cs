@@ -22,10 +22,10 @@ namespace Tmx.Core
     /// </summary>
     public class TestResultsExporter
     {
-        public void ExportResultsToXml(ISearchCmdletBaseDataObject cmdlet, string path, List<ITestSuite> suites)
+        public void ExportResultsToXml(ISearchCmdletBaseDataObject cmdlet, string path, List<ITestSuite> suites, List<ITestPlatform> platforms)
         {
             try {
-                var document = GetTestResultsAsXdocument(cmdlet, suites);
+                var document = GetTestResultsAsXdocument(cmdlet, suites, platforms);
                 document.Save(path);
             }
             catch (Exception eCreateDocument) {
@@ -37,34 +37,32 @@ namespace Tmx.Core
             }
         }
         
-		public XDocument GetTestResultsAsXdocument(ISearchCmdletBaseDataObject searchCriteria, List<ITestSuite> suites)
+		public XDocument GetTestResultsAsXdocument(ISearchCmdletBaseDataObject searchCriteria, List<ITestSuite> suites, List<ITestPlatform> platforms)
 		{
 		    var suitesElement = GetTestResultsAsXelement(searchCriteria, suites);
-		    // 20141120
-		    var platformsElement = GetTestPlatformsAsXelement(new XMLElementsNativeStruct());
+		    var platformsElement = GetTestPlatformsAsXelement(new XMLElementsNativeStruct(), platforms);
 			var document = new XDocument(new XDeclaration("1.0", "utf-8", "yes"));
-			// 20141120
 			var rootElement = new XElement("results", platformsElement, suitesElement);
-//			document.Add(suitesElement);
-//			// 20141120
-//			document.Add(platformsElement);
 			document.Add(rootElement);
 			return document;
 		}
 		
-        XElement GetTestPlatformsAsXelement(IXMLElementsStruct xmlStruct)
+        XElement GetTestPlatformsAsXelement(IXMLElementsStruct xmlStruct, List<ITestPlatform> platforms)
         {
-            var platformsElement = 
-                new XElement(xmlStruct.PlatformsNode,
-                             from platform in TestData.TestPlatforms
-                             select new XElement(xmlStruct.PlatformNode,
-                                                 new XAttribute("uniqueId", platform.UniqueId),
-                                                 new XAttribute("id", platform.Id),
-                                                 new XAttribute("name", platform.Name),
-                                                 createXattribute("description", platform.Description)
-                                                 )
-                            );
+            var query = from platform in platforms
+                select generateTestPlatformXelement(xmlStruct.PlatformNode, platform);
+            var platformsElement = new XElement(xmlStruct.PlatformsNode, query);
             return platformsElement;
+        }
+        
+        XElement generateTestPlatformXelement(string platformNodeName, ITestPlatform platform)
+        {
+            return new XElement(platformNodeName,
+                new XAttribute("uniqueId", platform.UniqueId),
+                new XAttribute("id", platform.Id ?? string.Empty),
+                new XAttribute("name", platform.Name ?? string.Empty),
+                createXattribute("description", platform.Description ?? string.Empty)
+            );
         }
         
 		public XElement GetTestResultsAsXelement(ISearchCmdletBaseDataObject searchCriteria, List<ITestSuite> suites)
@@ -81,7 +79,6 @@ namespace Tmx.Core
                 IOrderedEnumerable<ITestResult> testResults,
                 IXMLElementsStruct xmlStruct)
         {
-
             var suitesElement = 
                 new XElement(xmlStruct.SuitesNode,
                              from suite in suites
@@ -98,13 +95,10 @@ namespace Tmx.Core
                                                  new XAttribute("knownIssue", suite.Statistics.PassedButWithBadSmell.ToString()),
                                                  createXattribute("description", suite.Description),
                                                  createXattribute("platformId", suite.PlatformId),
-                                                 // 20141119
                                                  createXattribute("platformUniqueId", suite.PlatformUniqueId),
                                                  CreateScenariosXElementCommon(
                                                      suite,
-                                                     // scenarios,
                                                      scenarios.Where(scenario => scenario.SuiteId == suite.Id).OrderBy(scenario => scenario.Id),
-                                                     // testResults,
                                                      testResults.Where(testResult => testResult.SuiteId == suite.Id).OrderBy(testResult => testResult.Id),
                                                      xmlStruct)
                                                  )
@@ -120,8 +114,6 @@ namespace Tmx.Core
         {
             var testScenariosFiltered = 
                 from scenario in scenarios
-                // 20141119
-                // where scenario.SuiteId == suite.Id && scenario.PlatformId == suite.PlatformId
                 where scenario.SuiteId == suite.Id && scenario.PlatformUniqueId == suite.PlatformUniqueId
                 select scenario;
 
@@ -135,7 +127,6 @@ namespace Tmx.Core
                               select getScenariosXElement(
                                   suite, 
                                   scenario, 
-                                  // testResults,
                                   testResults.Where(testResult => testResult.SuiteId == suite.Id && testResult.ScenarioId == scenario.Id).OrderBy(testResult => testResult.Id),
                                   xmlStruct)
                              );
@@ -161,15 +152,12 @@ namespace Tmx.Core
                              new XAttribute("notTested", scenario.Statistics.NotTested.ToString()),
                              new XAttribute("knownIssue", scenario.Statistics.PassedButWithBadSmell.ToString()),
                              createXattribute("description", scenario.Description),
-                             // 20141119
-                             // createXattribute("platformId", scenario.PlatformId),
                              createXattribute("platformId", scenario.PlatformId),
                              createXattribute("platformUniqueId", scenario.PlatformUniqueId),
                              CreateTestResultsXElementCommon(
                                  suite,
                                  scenario,
                                  testResults,
-                                 // testResults.Where(testResult => testResult.SuiteId == suite.Id && testResult.ScenarioId == scenario.Id).OrderBy(testResult => testResult.Id),
                                  xmlStruct)
                             );
 
@@ -188,8 +176,6 @@ namespace Tmx.Core
                 testResult.ScenarioId == scenario.Id &&
                 testResult.Id != null &&
                 testResult.Name != null &&
-                // 20141119
-                // testResult.PlatformId == scenario.PlatformId
                 testResult.PlatformUniqueId == scenario.PlatformUniqueId
                 select testResult;
 
@@ -233,7 +219,6 @@ namespace Tmx.Core
                              createXattribute("screenshot", testResult.Screenshot),
                              createXattribute("description", testResult.Description),
                              createXattribute("platformId", testResult.PlatformId),
-                             // 20141119
                              createXattribute("platformUniqueId", testResult.PlatformUniqueId),
                              CreateTestResultDetailsXElement(
                                  testResult,

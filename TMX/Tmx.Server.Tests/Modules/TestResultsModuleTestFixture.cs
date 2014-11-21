@@ -91,7 +91,7 @@ namespace Tmx.Server.Tests.Modules
         public void Should_accept_when_posting_no_data()
         {
             var testResultsExporter = new TestResultsExporter();
-            var xDoc = testResultsExporter.GetTestResultsAsXdocument(new SearchCmdletBaseDataObject { FilterAll = true }, new List<ITestSuite>());
+            var xDoc = testResultsExporter.GetTestResultsAsXdocument(new SearchCmdletBaseDataObject { FilterAll = true }, new List<ITestSuite>(), new List<ITestPlatform>());
             
             var dataObject = new TestResultsDataObject {
                 Data = string.Empty
@@ -120,15 +120,15 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_send_one_test_suite_with_inner_data()
         {
-            // 20141114
-            // var suites = GIVEN_one_testSuite_with_inner_hierarchy("1", "2", "3", "4");
-            var suites = GIVEN_one_testSuite_with_inner_hierarchy("1", "2", "3", Guid.NewGuid());
+            var testPlatform = new TestPlatform();
+            var suites = GIVEN_one_testSuite_with_inner_hierarchy("1", "2", "3", testPlatform.UniqueId);
             var testResultsExporter = new TestResultsExporter();
             var xDoc = testResultsExporter.GetTestResultsAsXdocument(new SearchCmdletBaseDataObject {
                                                                          FilterAll = true,
                                                                          OrderById = true
                                                                      },
-                                                                     suites);
+                                                                     suites,
+                                                                     new List<ITestPlatform> { testPlatform });
             var dataObject = new TestResultsDataObject {
                 Data = xDoc.ToString()
             };
@@ -144,26 +144,22 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_send_three_test_suites_with_inner_data()
         {
-            // 20141114
             var guid = Guid.NewGuid();
-            // var suites = GIVEN_one_testSuite_with_inner_hierarchy("1", "2", "3", "4");
             var suites = GIVEN_one_testSuite_with_inner_hierarchy("1", "2", "3", guid);
-            // suites.AddRange(GIVEN_one_testSuite_with_inner_hierarchy("10", "20", "30", "4"));
             suites.AddRange(GIVEN_one_testSuite_with_inner_hierarchy("10", "20", "30", guid));
-            // suites.AddRange(GIVEN_one_testSuite_with_inner_hierarchy("100", "200", "300", "4"));
             suites.AddRange(GIVEN_one_testSuite_with_inner_hierarchy("100", "200", "300", guid));
             var testResultsExporter = new TestResultsExporter();
             var xDoc = testResultsExporter.GetTestResultsAsXdocument(new SearchCmdletBaseDataObject {
                                                                          FilterAll = true,
                                                                          OrderById = true
                                                                      },
-                                                                     suites);
+                                                                     suites,
+                                                                     new List<ITestPlatform> { new TestPlatform { UniqueId = guid } });
             var dataObject = new TestResultsDataObject {
                 Data = xDoc.ToString()
             };
             
             Console.WriteLine(xDoc.ToString());
-            // System.Windows.Forms.MessageBox.Show(xDoc.ToString());
             
             WHEN_Posting_TestResults<TestResultsDataObject>(dataObject);
             
@@ -184,8 +180,6 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_receive_test_results_one_suite_from_test_run()
         {
-            // 20141114
-            // var suites = GIVEN_one_testSuite_with_inner_hierarchy("10", "11", "12", "14");
             var suites = GIVEN_one_testSuite_with_inner_hierarchy("10", "11", "12", Guid.NewGuid());
             _testRun.TestSuites.AddRange(suites);
             
@@ -201,10 +195,7 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_receive_test_results_two_suites_from_test_run()
         {
-            // 20141114
-            // var suites = GIVEN_one_testSuite_with_inner_hierarchy("10", "11", "12", "14");
             var suites = GIVEN_one_testSuite_with_inner_hierarchy("10", "11", "12", Guid.NewGuid());
-            // suites.AddRange(GIVEN_one_testSuite_with_inner_hierarchy("10", "11", "12", "15"));
             suites.AddRange(GIVEN_one_testSuite_with_inner_hierarchy("10", "11", "12", Guid.NewGuid()));
             _testRun.TestSuites.AddRange(suites);
             
@@ -244,32 +235,24 @@ namespace Tmx.Server.Tests.Modules
             return suites;
         }
         
-        // 20141114
-        // List<ITestSuite> GIVEN_one_testSuite_with_inner_hierarchy(string suiteId, string scenarioId, string testResultId, string platformId)
         List<ITestSuite> GIVEN_one_testSuite_with_inner_hierarchy(string suiteId, string scenarioId, string testResultId, Guid platformId)
         {
             var suites = new List<ITestSuite>() {
                 new TestSuite {
                     Id = suiteId,
                     Name = "s01",
-                    // 20141119
-                    // PlatformId = platformId
                     PlatformUniqueId = platformId
                 }
             };
             var testScenario = new TestScenario {
                 Id = scenarioId,
                 Name = "sc01",
-                // 20141119
-                // PlatformId = platformId,
                 PlatformUniqueId = platformId,
                 SuiteId = suiteId
             };
             testScenario.TestResults.Add(new TestResult {
                 Id = testResultId,
                 Name = "tr01",
-                // 20141119
-                // PlatformId = platformId,
                 PlatformUniqueId = platformId,
                 SuiteId = suiteId,
                 ScenarioId = scenarioId,
@@ -310,21 +293,15 @@ namespace Tmx.Server.Tests.Modules
             var testSuite = Substitute.For<TestSuite>();
             testSuite.Name = testSuiteName;
             testSuite.Id = testSuiteId;
-            // 20141119
-            // testSuite.PlatformId = TestData.GetDefaultPlatformId();
-            testSuite.PlatformUniqueId = TestData.GetDefaultPlatformId();
+            testSuite.PlatformUniqueId = TestData.GetDefaultPlatformUniqueId();
             return testSuite;
         }
         
-        // 20141114
-        // TestScenario GIVEN_test_scenario(string testScenarioId, string testScenarioName, string testSuiteId, string testPlatformId)
         TestScenario GIVEN_test_scenario(string testScenarioId, string testScenarioName, string testSuiteId, Guid testPlatformId)
         {
             var testScenario = Substitute.For<TestScenario>();
             testScenario.Name = testScenarioName;
             testScenario.Id = testScenarioId;
-            // 20141119
-            // testScenario.PlatformId = testPlatformId;
             testScenario.PlatformUniqueId = testPlatformId;
             testScenario.SuiteId = testSuiteId;
             return testScenario;

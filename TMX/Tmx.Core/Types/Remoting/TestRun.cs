@@ -23,9 +23,16 @@ namespace Tmx.Core.Types.Remoting
 		
 		public TestRun()
 		{
-		    Data = new CommonData();
-		    // 20141106
+            Data = new CommonData();
+            // 20141106
             TestSuites = new List<ITestSuite>();
+            TestPlatforms = new List<ITestPlatform> {
+                new TestPlatform {
+                    Id = TestData.DefaultPlatformId,
+                    Name = TestData.DefaultPlatformName,
+                    Description = "This platform has been created automatically"
+                }
+            };
             // TestSuites = new ListOfTestSuites();
             Status = TestRunStatuses.Pending;
             Id = Guid.NewGuid();
@@ -37,6 +44,7 @@ namespace Tmx.Core.Types.Remoting
         public ICommonData Data { get; set; }
         // 20141106
         public List<ITestSuite> TestSuites { get; set; }
+        public List<ITestPlatform> TestPlatforms { get; set; }
         // public ListOfTestSuites TestSuites { get; set; }
         public Guid TestLabId {
             get { return _workflow.TestLabId; }

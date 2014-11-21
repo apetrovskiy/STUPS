@@ -43,7 +43,8 @@ namespace Tmx.Client
                         new SearchCmdletBaseDataObject {
                             FilterAll = true
                         },
-                        TestData.TestSuites);
+                        TestData.TestSuites,
+                        TestData.TestPlatforms);
 	        
 	        var dataObject = new TestResultsDataObject {
 	            Data = xDoc.ToString()

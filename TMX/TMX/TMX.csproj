@@ -313,16 +313,8 @@
     <Compile Include="Helpers\UnderlyingCode\TestExecHelper.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\Database.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\TestBucket.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Types\TestCase.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\TestConstant.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Types\TestPlatform.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Types\TestResult.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Types\TestResultDetail.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Types\TestScenario.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Types\TestStat.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Types\TestSuite.cs" />
     <Compile Include="Helpers\UnderlyingCode\SQLiteHelper.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Types\WorkflowStep.cs" />
     <Compile Include="Helpers\UnderlyingCode\XMLElementsJUnitStruct.cs" />
     <Compile Include="Helpers\UnderlyingCode\XMLElementsNativeStruct.cs" />
     <Compile Include="Helpers\UserSettings\Preferences.cs" />

@@ -53,12 +53,12 @@ namespace Tmx
             UptimeSeconds = Environment.TickCount / 1000;
             Username = Environment.UserName;
             UserDomainName = Environment.UserDomainName;
+            Version = Environment.OSVersion.VersionString;
+            Architecture = Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE");
         }
         
         [XmlAttribute]
         public virtual Guid UniqueId { get; set; }
-//        [XmlIgnore]
-//        public virtual int DbId { get; set; }
         
         [XmlAttribute]
         public virtual string Name { get; set; }
@@ -76,7 +76,6 @@ namespace Tmx
         [XmlAttribute]
         public virtual string Language { get; set; }
         
-//		public int Id { get; set; }
         [XmlAttribute]
 		public string Hostname { get; set; } // Environment.MachineNam
 		[XmlAttribute]

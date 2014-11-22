@@ -248,7 +248,9 @@ namespace Tmx.Server.Tests.Modules
                 Id = scenarioId,
                 Name = "sc01",
                 PlatformUniqueId = platformId,
-                SuiteId = suiteId
+                SuiteId = suiteId,
+                // 20141122
+                SuiteUniqueId = suites[0].UniqueId
             };
             testScenario.TestResults.Add(new TestResult {
                 Id = testResultId,
@@ -256,6 +258,9 @@ namespace Tmx.Server.Tests.Modules
                 PlatformUniqueId = platformId,
                 SuiteId = suiteId,
                 ScenarioId = scenarioId,
+                // 20141122
+                SuiteUniqueId = suites[0].UniqueId,
+                ScenarioUniqueId = testScenario.UniqueId,
                 Origin = TestResultOrigins.Logical,
                 enStatus = TestResultStatuses.Passed
             });

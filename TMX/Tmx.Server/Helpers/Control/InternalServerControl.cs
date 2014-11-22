@@ -96,6 +96,9 @@ namespace Tmx.Server
     	    nancyConventions.StaticContentsConventions.Add(
     	        StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + "Views/testRuns", @"testRuns"));
     	    
+    	    nancyConventions.StaticContentsConventions.Add(
+    	        StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + "Views/workflows", @"workflows"));
+    	    
     		base.ConfigureConventions(nancyConventions);
     	}
     	

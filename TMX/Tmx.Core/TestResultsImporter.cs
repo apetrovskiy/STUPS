@@ -57,16 +57,9 @@ namespace Tmx.Core
         
         public void MergeTestPlatforms(List<ITestPlatform> sourceTestPlatforms, List<ITestPlatform> testPlatformsToAdd)
         {
-Console.WriteLine("======================= source platforms =======================");
-foreach(var p in sourceTestPlatforms)
-    Console.WriteLine(p.Id + " " + p.Name + " " + p.UniqueId);
-Console.WriteLine("======================= new platforms =======================");
-foreach(var p in testPlatformsToAdd)
-    Console.WriteLine(p.Id + " " + p.Name + " " + p.UniqueId);
-//            foreach (var testPlatform in testPlatformsToAdd)
-//                if (sourceTestPlatforms.All(tr => tr.UniqueId != testPlatform.UniqueId))
-//                    sourceTestPlatforms.Add(testPlatform);
-            sourceTestPlatforms.AddRange(testPlatformsToAdd.Where(tp => !sourceTestPlatforms.Contains(tp)));
+            foreach (var testPlatform in testPlatformsToAdd)
+                if (sourceTestPlatforms.All(tr => tr.UniqueId != testPlatform.UniqueId))
+                    sourceTestPlatforms.Add(testPlatform);
         }
         
         public bool LoadDocument(IImportExportCmdletBaseDataObject cmdlet, string path)
@@ -95,62 +88,6 @@ foreach(var p in testPlatformsToAdd)
             }
         }
         
-//        public List<ITestPlatform> ImportPlatformsFromXML(IImportExportCmdletBaseDataObject cmdlet, string path)
-//        {
-//            try {
-//                
-//                string pathToImportFile = cmdlet.Path;
-//                
-//                if (!System.IO.File.Exists(pathToImportFile)) {
-//                    throw new Exception(
-//                        "There is no such file '" +
-//                        cmdlet.Path +
-//                        "'.");
-//                }
-//                
-//                var xDoc = XDocument.Load(pathToImportFile);
-//                // 20141120
-//                // importTestPlatformFromXdocument(xDoc);
-//                // MergeTestPlatforms(TestData.TestPlatforms, importTestPlatformFromXdocument(xDoc));
-//                return importTestPlatformFromXdocument(xDoc);
-//            }
-//            catch (Exception eImportDocument) {
-//                throw new Exception(
-//                    "Unable to load an XML report from the file '" +
-//                    path +
-//                    "'. " + 
-//                    eImportDocument.Message);
-//            }
-//        }
-        
-//        public List<ITestSuite> ImportResultsFromXML(IImportExportCmdletBaseDataObject cmdlet, string path)
-//        {
-//            try {
-//                
-//                string pathToImportFile = cmdlet.Path;
-//                
-//                if (!System.IO.File.Exists(pathToImportFile)) {
-//                    throw new Exception(
-//                        "There is no such file '" +
-//                        cmdlet.Path +
-//                        "'.");
-//                }
-//                
-//                var xDoc = XDocument.Load(pathToImportFile);
-//                // 20141120
-//                // importTestPlatformFromXdocument(xDoc);
-//                // MergeTestPlatforms(TestData.TestPlatforms, importTestPlatformFromXdocument(xDoc));
-//                return ImportTestResultsFromXdocument(xDoc);
-//            }
-//            catch (Exception eImportDocument) {
-//                throw new Exception(
-//                    "Unable to load an XML report from the file '" +
-//                    path +
-//                    "'. " + 
-//                    eImportDocument.Message);
-//            }
-//        }
-        
         public List<ITestPlatform> ImportTestPlatformFromXdocument(XDocument xDoc)
         {
             var df = xDoc.Root.Name.Namespace;
@@ -167,9 +104,15 @@ foreach(var p in testPlatformsToAdd)
             foreach (var platformElement in platformElements) {
                 bool addTestPlatform = false;
                 var testPlatform = importedTestPlatforms.FirstOrDefault(tp => tp.Id == getStringAttribute(platformElement, "id") &&
+//                ITestPlatform testPlatform = null;
+//                try {
+//                    testPlatform = importedTestPlatforms.First(tp => tp.Id == getStringAttribute(platformElement, "id") &&
                                                                         tp.Name == getStringAttribute(platformElement, "name") &&
                                                                         tp.UniqueId == getGuidAttribute(platformElement, "uniqueId"));
-                
+//                }
+//                catch (Exception ee) {
+//Console.WriteLine(ee.Message);
+//                }
                 if (null == testPlatform) {
                     testPlatform = new TestPlatform {
                         UniqueId = getGuidAttribute(platformElement, "uniqueId"),

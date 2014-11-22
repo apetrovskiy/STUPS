@@ -25,6 +25,8 @@ namespace Tmx.Interfaces
         
         string TestSuiteName { get; set; }
         string TestSuiteId { get; set; }
+        // 20141122
+        Guid TestSuiteUniqueId { get; set; }
         string TestPlatformId { get; set; }
         // Guid TestPlatformId { get; set; }
         

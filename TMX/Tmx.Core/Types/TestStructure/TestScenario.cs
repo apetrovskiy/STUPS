@@ -176,6 +176,9 @@ namespace Tmx.Interfaces
         
         [XmlIgnore]
         public string SuiteId { get; set; }
+        // 20141122
+        [XmlIgnore]
+        public Guid SuiteUniqueId { get; set; }
         
         [XmlAttribute]
         public virtual DateTime Timestamp { get; set; }

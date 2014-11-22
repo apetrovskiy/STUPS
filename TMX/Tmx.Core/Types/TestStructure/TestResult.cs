@@ -139,9 +139,15 @@ namespace Tmx.Interfaces
         // public virtual string SuiteId { get; protected internal set; }
         [XmlIgnore]
         public virtual string SuiteId { get; set; }
+        // 20141122
+        [XmlIgnore]
+        public virtual Guid SuiteUniqueId { get; set; }
         // public virtual string ScenarioId { get; protected internal set; }
         [XmlIgnore]
         public virtual string ScenarioId { get; set; }
+        // 20141122
+        [XmlIgnore]
+        public virtual Guid ScenarioUniqueId { get; set; }
         [XmlAttribute] // ??
         public virtual bool Generated { get; protected internal set; }
         public virtual void SetGenerated()

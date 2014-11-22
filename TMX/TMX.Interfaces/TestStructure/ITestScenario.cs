@@ -42,6 +42,9 @@ namespace Tmx.Interfaces.TestStructure
         // string SuiteId { get; }
         [XmlIgnore]
         string SuiteId { get; set; }
+        // 20141122
+        [XmlIgnore]
+        Guid SuiteUniqueId { get; set; }
         // 20130301
         // 20140720
         // DateTime Timestamp { get; }

@@ -14,6 +14,7 @@ namespace Tmx.Core
     using System.Linq;
     using System.Xml.Linq;
     using Tmx.Interfaces;
+    using Tmx.Interfaces.Remoting;
     using Tmx.Interfaces.TestStructure;
     using Tmx.Core.Types.Remoting;
     
@@ -100,8 +101,11 @@ namespace Tmx.Core
                                                  createXattribute("platformUniqueId", suite.PlatformUniqueId),
                                                  CreateScenariosXElementCommon(
                                                      suite,
-                                                     scenarios.Where(scenario => scenario.SuiteId == suite.Id).OrderBy(scenario => scenario.Id),
-                                                     testResults.Where(testResult => testResult.SuiteId == suite.Id).OrderBy(testResult => testResult.Id),
+                                                     // 20141122
+                                                     // scenarios.Where(scenario => scenario.SuiteId == suite.Id).OrderBy(scenario => scenario.Id),
+                                                     // testResults.Where(testResult => testResult.SuiteId == suite.Id).OrderBy(testResult => testResult.Id),
+                                                     scenarios.Where(scenario => scenario.SuiteId == suite.Id && scenario.SuiteUniqueId == suite.UniqueId).OrderBy(scenario => scenario.Id),
+                                                     testResults.Where(testResult => testResult.SuiteId == suite.Id && testResult.SuiteUniqueId == suite.UniqueId).OrderBy(testResult => testResult.Id),
                                                      xmlStruct)
                                                  )
                             );
@@ -128,8 +132,14 @@ namespace Tmx.Core
                               from scenario in testScenariosFiltered
                               select getScenariosXElement(
                                   suite, 
-                                  scenario, 
-                                  testResults.Where(testResult => testResult.SuiteId == suite.Id && testResult.ScenarioId == scenario.Id).OrderBy(testResult => testResult.Id),
+                                  scenario,
+                                  // 20141122
+                                  // testResults.Where(testResult => testResult.SuiteId == suite.Id && testResult.ScenarioId == scenario.Id).OrderBy(testResult => testResult.Id),
+                                  testResults.Where(
+                                      testResult => testResult.SuiteId == suite.Id && 
+                                      testResult.SuiteUniqueId == suite.UniqueId && 
+                                      testResult.ScenarioId == scenario.Id && 
+                                      testResult.ScenarioUniqueId == scenario.UniqueId).OrderBy(testResult => testResult.Id),
                                   xmlStruct)
                              );
             return scenariosElement;

@@ -73,6 +73,8 @@ namespace Tmx
                 TestPlatformId = testPlatform.Id,
                 TestPlatformUniqueId = testPlatform.UniqueId,
                 TestSuiteId = cmdlet.TestSuiteId,
+                // 20141122
+                // TestSuiteUniqueId = null != cmdlet.InputObject ? cmdlet.InputObject.UniqueId : TestData.CurrentTestSuite.UniqueId,
                 TestSuiteName = cmdlet.TestSuiteName
             };
             

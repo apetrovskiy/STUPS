@@ -495,7 +495,9 @@ namespace Tmx
                 TestData.CurrentTestScenario.TestResults.Add(
                     new TestResult(
                        TestData.CurrentTestScenario.Id,
-                       TestData.CurrentTestScenario.SuiteId));
+                       // 20141122
+                       // TestData.CurrentTestScenario.SuiteId));
+                       TestData.CurrentTestScenario.SuiteId) { SuiteUniqueId = CurrentTestScenario.SuiteUniqueId, ScenarioUniqueId = CurrentTestScenario.UniqueId });
                 TestData.CurrentTestResult = 
                     TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1];
             } else {
@@ -862,7 +864,8 @@ namespace Tmx
             string result = string.Empty;            
             
             // read the last id used and generate a new one
-            int testNumber = TestData.TestSuites.Count; // + 1;
+            // int testNumber = TestData.TestSuites.Count; // + 1;
+            int testNumber = null != TestData.TestSuites ? TestData.TestSuites.Count : 1;
             bool noValidId = true;
             do {
                 foreach (var suite in TestData.TestSuites) {
@@ -870,6 +873,7 @@ namespace Tmx
                         testNumber++;
                     }
                 }
+                // TestData.TestSuites.Select(ts => ts.Id == testNumber.Where(ts => ts.Id == testNumber).ForEach(ts => ts == testNumber ? testNumber++ : continue }
                 noValidId = false;
                 result = testNumber.ToString();
             } while (noValidId);
@@ -881,44 +885,44 @@ namespace Tmx
         {
             string result = string.Empty;            
             
-            int scNumber = 1;
+            int scenarioNumber = 1;
             if (null != TestData.TestSuites && 0 < TestData.TestSuites.Count) {
 
                 if (null != TestData.CurrentTestSuite.TestScenarios) {
 
                     // read the last used id and generate a new one
-                    scNumber = 
+                    scenarioNumber = 
                         TestData.CurrentTestSuite.TestScenarios.Count; // + 1;
                     bool noValidId = true;
 
                     do {
                         foreach (var scenario in TestData.CurrentTestSuite.TestScenarios) {
 
-                            if (scenario.Id == scNumber.ToString()) {
+                            if (scenario.Id == scenarioNumber.ToString()) {
 
-                                scNumber++;
+                                scenarioNumber++;
                             }
                         }
                         noValidId = false;
                         
-                        if (0 == scNumber) {
-                            scNumber++;
+                        if (0 == scenarioNumber) {
+                            scenarioNumber++;
                         }
                         
-                        result = scNumber.ToString();
+                        result = scenarioNumber.ToString();
                     } while (noValidId);
                     
                     
                     
                 } else {
 
-                    result = scNumber.ToString();
+                    result = scenarioNumber.ToString();
                 }
                 
                 
             } else {
 
-                result = scNumber.ToString();
+                result = scenarioNumber.ToString();
             }
             
             return result;
@@ -1506,7 +1510,9 @@ internal static void dumpTestStructure(string strNumber)
 //            }
             
             TestData.CurrentTestSuite.TestScenarios.Add(
-                new TestScenario(testScenarioName, testScenarioId, TestData.CurrentTestSuite.Id)); //testSuiteId));
+                // 20141122
+                // new TestScenario(testScenarioName, testScenarioId, TestData.CurrentTestSuite.Id)); //testSuiteId));
+                new TestScenario(testScenarioName, testScenarioId, TestData.CurrentTestSuite.Id) { SuiteUniqueId = TestData.CurrentTestSuite.UniqueId }); //testSuiteId));
             
             if (!string.IsNullOrEmpty(testScenarioDescription))
                 TestData.CurrentTestSuite.TestScenarios[CurrentTestSuite.TestScenarios.Count - 1].Description = testScenarioDescription;

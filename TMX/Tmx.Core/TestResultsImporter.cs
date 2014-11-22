@@ -57,9 +57,16 @@ namespace Tmx.Core
         
         public void MergeTestPlatforms(List<ITestPlatform> sourceTestPlatforms, List<ITestPlatform> testPlatformsToAdd)
         {
-            foreach (var testPlatform in testPlatformsToAdd)
-                if (sourceTestPlatforms.All(tr => tr.UniqueId != testPlatform.UniqueId))
-                    sourceTestPlatforms.Add(testPlatform);
+Console.WriteLine("======================= source platforms =======================");
+foreach(var p in sourceTestPlatforms)
+    Console.WriteLine(p.Id + " " + p.Name + " " + p.UniqueId);
+Console.WriteLine("======================= new platforms =======================");
+foreach(var p in testPlatformsToAdd)
+    Console.WriteLine(p.Id + " " + p.Name + " " + p.UniqueId);
+//            foreach (var testPlatform in testPlatformsToAdd)
+//                if (sourceTestPlatforms.All(tr => tr.UniqueId != testPlatform.UniqueId))
+//                    sourceTestPlatforms.Add(testPlatform);
+            sourceTestPlatforms.AddRange(testPlatformsToAdd.Where(tp => !sourceTestPlatforms.Contains(tp)));
         }
         
         public bool LoadDocument(IImportExportCmdletBaseDataObject cmdlet, string path)

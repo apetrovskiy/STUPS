@@ -33,5 +33,8 @@ namespace Tmx.Interfaces.TestStructure
         string Version { get; set; }
         [XmlAttribute]
         string Architecture { get; set; }
+        
+        [XmlAttribute]
+        DateTime Created { get; set; }
     }
 }

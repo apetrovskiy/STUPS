@@ -24,7 +24,6 @@ namespace Tmx.Core.Types.Remoting
 		public TestRun()
 		{
             Data = new CommonData();
-            // 20141106
             TestSuites = new List<ITestSuite>();
             TestPlatforms = new List<ITestPlatform> {
                 new TestPlatform {
@@ -42,7 +41,6 @@ namespace Tmx.Core.Types.Remoting
         public string Name { get; set; }
         public string Description { get; set; }
         public ICommonData Data { get; set; }
-        // 20141106
         public List<ITestSuite> TestSuites { get; set; }
         public List<ITestPlatform> TestPlatforms { get; set; }
         // public ListOfTestSuites TestSuites { get; set; }

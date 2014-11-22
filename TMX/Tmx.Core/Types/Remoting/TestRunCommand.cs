@@ -15,11 +15,10 @@ namespace Tmx.Core.Types.Remoting
     /// <summary>
     /// Description of TestRunCommand.
     /// </summary>
-    public class TestRunCommand
+    public class TestRunCommand : ITestRunCommand
     {
         public string Name { get; set; }
         public string WorkflowName { get; set; }
-        public TestRunStatuses
-            Status { get; set; }
+        public TestRunStatuses Status { get; set; }
     }
 }

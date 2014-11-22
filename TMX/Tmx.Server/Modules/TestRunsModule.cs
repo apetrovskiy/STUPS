@@ -42,7 +42,9 @@ namespace Tmx.Server.Modules
         {
             if (string.IsNullOrEmpty(testRunCommand.WorkflowName))
                 return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
-            var testRun = setTestRunDetails(testRunCommand);
+            var testRunInitializer = new TestRunInitializer();
+            var testRun = testRunInitializer.CreateTestRun(testRunCommand, Request.Form);
+            // var testRun = setTestRunDetails(testRunCommand);
             if (Guid.Empty == testRun.WorkflowId) // ??
                 return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
             TestRunQueue.TestRuns.Add(testRun);
@@ -54,20 +56,47 @@ namespace Tmx.Server.Modules
             return Negotiate.WithStatusCode(HttpStatusCode.Created);
         }
         
-		ITestRun setTestRunDetails(TestRunCommand testRunCommand)
-		{
-			if (string.IsNullOrEmpty(testRunCommand.Name))
-				testRunCommand.Name = testRunCommand.WorkflowName + " " + DateTime.Now;
-            var testRun = new TestRun { Name = testRunCommand.Name, Status = testRunCommand.Status };
-            (testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testRunCommand.WorkflowName));
-            testRun.CreatedTime = DateTime.Now;
-            if (TestRunStartTypes.Immediately == testRun.StartType)
-                testRun.Status = TestRunQueue.TestRuns.Any(tr => tr.TestLabId == testRun.TestLabId && tr.IsQueued()) ? TestRunStatuses.Pending : TestRunStatuses.Running;
-            if (testRun.IsActive())
-                testRun.SetStartTime();
-            return testRun;
-		}
-		
+//		ITestRun setTestRunDetails(TestRunCommand testRunCommand)
+//		{
+//			if (string.IsNullOrEmpty(testRunCommand.Name))
+//				testRunCommand.Name = testRunCommand.WorkflowName + " " + DateTime.Now;
+//            var testRun = new TestRun { Name = testRunCommand.Name, Status = testRunCommand.Status };
+//            setWorkflow(testRunCommand, testRun);
+//            setStartUpParameters(testRun);
+//            setCommonData(testRun);
+//            setCreatedTime(testRun);
+//            return testRun;
+//		}
+//		
+//        void setWorkflow(TestRunCommand testRunCommand, TestRun testRun)
+//        {
+//            (testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testRunCommand.WorkflowName));
+//        }
+//        
+//        void setStartUpParameters(ITestRun testRun)
+//        {
+//            if (TestRunStartTypes.Immediately == testRun.StartType)
+//                testRun.Status = TestRunQueue.TestRuns.Any(tr => tr.TestLabId == testRun.TestLabId && tr.IsQueued()) ? TestRunStatuses.Pending : TestRunStatuses.Running;
+//            if (testRun.IsActive())
+//                testRun.SetStartTime();
+//        }
+//        
+//        void setCommonData(ITestRun testRun)
+//        {
+//            if (null == Request.Form || 0 >= Request.Form.Count)
+//                return;
+//            foreach (var key in Request.Form)
+//                testRun.Data.AddOrUpdateDataItem(new CommonDataItem {
+//                    Key = key,
+//                    Value = Request.Form[key]
+//                });
+//        }
+//        
+//        void setCreatedTime(ITestRun testRun)
+//        {
+//            testRun.CreatedTime = DateTime.Now;
+//        }
+        
 		Negotiator deleteTestRun(Guid testRunId)
 		{
 			TestRunQueue.TestRuns.RemoveAll(tr => tr.Id == testRunId);

@@ -34,7 +34,7 @@ namespace Tmx.Interfaces.TestStructure
         [XmlAttribute]
         string Architecture { get; set; }
         
-        [XmlAttribute]
-        DateTime Created { get; set; }
+//        [XmlAttribute]
+//        DateTime Created { get; set; }
     }
 }

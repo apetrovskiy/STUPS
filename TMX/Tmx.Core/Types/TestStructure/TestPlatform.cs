@@ -56,7 +56,7 @@ namespace Tmx
             Version = Environment.OSVersion.VersionString;
             Architecture = Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE");
             
-            Created = DateTime.Now;
+//            Created = DateTime.Now;
         }
         
         [XmlAttribute]
@@ -116,7 +116,7 @@ namespace Tmx
             return principal.IsInRole(WindowsBuiltInRole.Administrator);
         }
         
-        [XmlAttribute]
-        public DateTime Created { get; set; }
+//        [XmlAttribute]
+//        public DateTime Created { get; set; }
     }
 }

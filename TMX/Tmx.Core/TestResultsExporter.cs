@@ -61,9 +61,9 @@ namespace Tmx.Core
                 new XAttribute("uniqueId", platform.UniqueId),
                 new XAttribute("id", platform.Id ?? string.Empty),
                 new XAttribute("name", platform.Name ?? string.Empty),
-                createXattribute("description", platform.Description ?? string.Empty),
+                createXattribute("description", platform.Description ?? string.Empty) //,
                 
-                new XAttribute("created", platform.Created)
+//                new XAttribute("created", platform.Created)
             );
         }
         

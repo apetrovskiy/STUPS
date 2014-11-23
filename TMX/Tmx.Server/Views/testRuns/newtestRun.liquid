@@ -5,11 +5,11 @@
 	<body>
 	   
 	   <!-- select workflow -->
-	   <form>
+	   <form method="POST">
 	       <label for="workflows">Select test workflow</label><br>
 	       <select id="workflows">
 	           {% for workflow in @Model.Workflows -%}
-	               <option value="volvo">{{ workflow.Name }}</option>
+	               <option value="workflowName">{{ workflow.Name }}</option>
 	           {% endfor -%}
 	       </select>
 	       <br>

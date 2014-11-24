@@ -13,6 +13,7 @@ namespace Tmx.Commands
     using System.Management.Automation;
     using System.Linq;
     using System.Xml.Linq;
+    using Tmx.Core;
 	using Tmx.Interfaces;
 	using Tmx.Interfaces.TestStructure;
     
@@ -69,12 +70,20 @@ cmdlet.FilterNone = true;
             
             IOrderedEnumerable<ITestResult> testResults = TmxHelper.SearchForTestResults(dataObject);
             
-            XElement suitesElement = 
-                TmxHelper.CreateSuitesXElementWithParameters(
-                    suites,
-                    scenarios,
-                    testResults,
-                    (new XMLElementsNativeStruct()));
+            // 20141124
+//            XElement suitesElement = 
+//                TmxHelper.CreateSuitesXElementWithParameters(
+//                    suites,
+//                    scenarios,
+//                    testResults,
+//                    (new XMLElementsNativeStruct()));
+            
+            var testResultsExporter = new TestResultsExporter();
+            var suitesElement = testResultsExporter.CreateSuitesXElementWithParameters(
+                suites,
+                scenarios,
+                testResults,
+                (new XMLElementsNativeStruct()));
             
 			WriteObject(this, suitesElement);
 

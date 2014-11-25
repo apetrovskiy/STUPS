@@ -4,17 +4,12 @@
 	</head>
 	<body>
 	<br>
-        <!-- <h1>Overall status is {{ overallSatus }}</h1> -->
+        <!-- <h1>Overall status is {{ overallStatus }}</h1> -->
 		<!-- <ul> -->
-		{% assign overallSatus = '<h1>NOT TESTED</h1>' %}
+		{% assign overallStatus = '<h1>NOT TESTED</h1>' %}
 		
 		<h1>{{ @Model.TestRun.Name }} /{{ @Model.TestRun.Status }}/</h1>
-		
-		<h3>Common data:<br></h3>
-		{% for item in @Model.TestRun.Data.Data -%}
-            ['{{ item.Key }}'='{{ item.Value }}']<br>
-		{% endfor -%}
-		
+        
 		<h3>Test results:<br></h3>
 		
 		<ul>

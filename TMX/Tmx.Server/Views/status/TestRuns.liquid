@@ -19,6 +19,7 @@
                 <th>Status</th>
                 <th>Description</th>
                 <th>Test results</th>
+                <th>Parameters</th>
                 <th>Cancel</th>
             </tr>
             {% for testRun in @Model.TestRuns -%}
@@ -31,6 +32,7 @@
                 <td>{{ testRun.Status }}</td>
                 <td>{{ testRun.Description }}</td>
                 <td><a href="/results/{{ testRun.Id }}/testResults">test results</a></td>
+                <td><a href="/status/{{ testRun.Id }}/testParameters">parameters</a></td>
                 <td><a href="/results/{{ testRun.Id }}">cancel</a></td>
             </tr>
             {% endfor -%}

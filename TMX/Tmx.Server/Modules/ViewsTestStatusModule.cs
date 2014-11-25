@@ -61,6 +61,12 @@ namespace Tmx.Server.Modules
                 data.TestLabs = TestLabCollection.TestLabs ?? new List<ITestLab>();
                 return View[UrnList.ViewTestStatus_TestLabsPageName, data];
             };
+
+            Get [UrnList.ViewTestStatus_TestParametersPage] = _ => {
+                dynamic data = new ExpandoObject();
+                data.TestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == parameters.id);
+                return View[UrnList.ViewTestStatus_TestParametersPageName, data];
+            };
         }
         
         // TODO: move to a separate class

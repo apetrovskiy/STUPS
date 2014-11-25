@@ -117,7 +117,7 @@ namespace Tmx.Interfaces.Server
         public const string ViewTestStatus_WorkflowsPageName = "workflows.htm";
         public const string ViewTestStatus_TestLabsPage = "/testLabs";
         public const string ViewTestStatus_TestLabsPageName = "testLabs.liquid";
-        public const string ViewTestStatus_TestParametersPage = "/testParameters";
+        public const string ViewTestStatus_TestParametersPage = "/{id:guid}/testParameters";
         public const string ViewTestStatus_TestParametersPageName = "testParameters.liquid";
         
         // ViewsTestResultsModule

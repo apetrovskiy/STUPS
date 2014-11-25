@@ -156,6 +156,9 @@
     <None Include="Views\status\testLabs.liquid">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Views\status\testParameters.liquid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Views\status\TestRuns.liquid">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

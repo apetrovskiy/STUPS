@@ -13,6 +13,7 @@ namespace Tmx.Server.Modules
     using System.Collections.Generic;
     using System.Dynamic;
     using System.IO;
+    using System.Linq;
     using System.Net;
     using System.Net.NetworkInformation;
     using System.Text.RegularExpressions;
@@ -62,7 +63,7 @@ namespace Tmx.Server.Modules
                 return View[UrnList.ViewTestStatus_TestLabsPageName, data];
             };
 
-            Get [UrnList.ViewTestStatus_TestParametersPage] = _ => {
+            Get [UrnList.ViewTestStatus_TestParametersPage] = parameters => {
                 dynamic data = new ExpandoObject();
                 data.TestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == parameters.id);
                 return View[UrnList.ViewTestStatus_TestParametersPageName, data];

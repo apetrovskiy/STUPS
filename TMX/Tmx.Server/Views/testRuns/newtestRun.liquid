@@ -1,19 +1,42 @@
 ﻿<html>
 	<head>
 		<title>New test run</title>
+        <script>
+            // http://www.dyn-web.com/tutorials/iframes/height/
+            function getDocHeight(doc) {
+                doc = doc || document;
+                // stackoverflow.com/questions/1145850/
+                var body = doc.body, html = doc.documentElement;
+                var height = Math.max( body.scrollHeight, body.offsetHeight, 
+                    html.clientHeight, html.scrollHeight, html.offsetHeight );
+                return height;
+            }
+            
+            function setIframeHeight(id) {
+                var ifrm = document.getElementById(id);
+                var doc = ifrm.contentDocument? ifrm.contentDocument: 
+                    ifrm.contentWindow.document;
+                ifrm.style.visibility = 'hidden';
+                ifrm.style.height = "10px"; // reset to minimal height ...
+                // IE opt. for bing/msn needs a bit added or scrollbar appears
+                ifrm.style.height = getDocHeight( doc ) + 4 + "px";
+                ifrm.style.visibility = 'visible';
+            }
+        </script>
 	</head>
 	<body>
-	   
+        <a href="/">Home</a>
+        <br>
+	    <br>
 	   <!-- select workflow -->
 	   <form method="POST">
 	       <label for="workflows">Select test workflow</label><br>
-	       <select id="workflows_id" name="workflows">
+	       <select id="workflow_id" name="workflow">
 	           {% for workflow in @Model.Workflows -%}
 	               <option>{{ workflow.Name }}</option>
 	           {% endfor -%}
 	       </select>
-	       <br>
-	       <input type="button"  />
+	       <input type="submit" value="Select" />
 	   </form>
 	   
 	   <!-- display workflow inputs -->
@@ -21,7 +44,7 @@
 	   
 	   <!-- controls for test run creation -->
 	   
-	   
-	   
+	   <h3>Test parameters</h3>
+	   <iframe id="t_id" src="@Model.Path" name="t_name" seamless width="100%" onload="setIframeHeight(this.id)" scrolling=auto></iframe>
 	</body>
 </html>

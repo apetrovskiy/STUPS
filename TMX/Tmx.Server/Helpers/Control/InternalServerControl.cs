@@ -133,9 +133,9 @@ namespace Tmx.Server
 			Template.RegisterSafeType(typeof(ITestScenario), new[] { "Id", "Name", "Status", "TestResults", "PlatformId" });
 			Template.RegisterSafeType(typeof(ITestResult), new[] { "Id", "Name", "Status", "Origin", "PlatformId" });
 			Template.RegisterSafeType(typeof(TestWorkflow), new[] { "Id", "Name", "TestLabId", "Description" });
-			Template.RegisterSafeType(typeof(TestRun), new[] { "Id", "Name", "WorkflowId", "TestLabId", "Description", "Status", "StartType", "Data", "TestSuites", "StartTime", "TimeTaken" });
+			Template.RegisterSafeType(typeof(TestRun), new[] { "Id", "Name", "WorkflowId", "TestLabId", "Description", "Status", "StartType", "Data", "TestSuites", "StartTime", "TimeTaken", "GetTestLabName" });
 			Template.RegisterSafeType(typeof(CommonData), new[] { "Data" });
-			Template.RegisterSafeType(typeof(TestLab), new[] { "Id", "Name", "Description" });
+			Template.RegisterSafeType(typeof(TestLab), new[] { "Id", "Name", "Description", "Status" });
 			Template.RegisterSafeType(typeof(TestTask), new[] { "Id", "Name", "StartTime", "TaskStatus", "TaskFinished", "TaskResult", "TimeTaken", "ClientId", "GetTimeTaken" });
 			Template.RegisterSafeType(typeof(TestClient), new[] { "Id", "Hostname", "Fqdn", "Username", "CustomString", "Status", "TaskId", "TaskName", "DetailedStatus" });
 			// .NET types

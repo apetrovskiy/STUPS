@@ -1,13 +1,14 @@
 <html>
     <head>
-        <title>Test results overview</title>
+        <title>Test parameters</title>
     </head>
     <body>
-    <br>
+        <a href="/">Home</a>
+        <br>
+	    <br>
         
         <h1>{{ @Model.TestRun.Name }} /{{ @Model.TestRun.Status }}/</h1>
 
-        <h3>Common data:<br></h3>
         {% for item in @Model.TestRun.Data.Data -%}
             ['{{ item.Key }}'='{{ item.Value }}']<br>
         {% endfor -%}

@@ -31,18 +31,16 @@ namespace Tmx.Server.Modules
     {
         public ViewsTestStatusModule() : base(UrnList.ViewTestStatus_Root)
         {
-            // Get[UrnList.ViewTestStatus_ClientsPage] = parameters => View[UrnList.ViewTestStatus_ClientsPageName, ClientsCollection.Clients];
-            Get[UrnList.ViewTestStatus_ClientsPage] = parameters => {
+            Get[UrnList.ViewTestStatus_All_ClientsPage] = parameters => {
                 dynamic data = new ExpandoObject();
                 data.Clients = ClientsCollection.Clients ?? new List<ITestClient>();
-                return View[UrnList.ViewTestStatus_ClientsPageName, data];
+                return View[UrnList.ViewTestStatus_All_ClientsPageName, data];
             };
             
-            // Get[UrnList.ViewTestStatus_TasksPage] = parameters => View[UrnList.ViewTestStatus_TasksPageName, TaskPool.TasksForClients.ToArray()];
-            Get[UrnList.ViewTestStatus_TasksPage] = parameters => {
+            Get[UrnList.ViewTestStatus_All_TasksPage] = parameters => {
                 dynamic data = new ExpandoObject();
                 data.TasksForClients = TaskPool.TasksForClients ?? new List<ITestTask>();
-                return View[UrnList.ViewTestStatus_TasksPageName, data];
+                return View[UrnList.ViewTestStatus_All_TasksPageName, data];
             };
             
             Get[UrnList.ViewTestStatus_TestRunsPage] = parameters => {
@@ -61,12 +59,6 @@ namespace Tmx.Server.Modules
                 dynamic data = new ExpandoObject();
                 data.TestLabs = TestLabCollection.TestLabs ?? new List<ITestLab>();
                 return View[UrnList.ViewTestStatus_TestLabsPageName, data];
-            };
-
-            Get [UrnList.ViewTestStatus_TestParametersPage] = parameters => {
-                dynamic data = new ExpandoObject();
-                data.TestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == parameters.id);
-                return View[UrnList.ViewTestStatus_TestParametersPageName, data];
             };
         }
         

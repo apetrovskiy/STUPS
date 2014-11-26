@@ -47,5 +47,15 @@ namespace Tmx.Server
         {
             return !TaskPool.TasksForClients.Any(tsk => tsk.TestRunId == task.TestRunId && tsk.Id != task.Id && !tsk.IsFinished());
         }
+//        
+//        public static string GetTestLabName(this IWorkflow testRun)
+//        {
+//            return TestLabCollection.TestLabs.FirstOrDefault(testLab => testLab.Id == testRun.TestLabId).Name;
+//        }
+        
+        public static string GetTestLabName(this ITestRun testRun)
+        {
+            return TestLabCollection.TestLabs.FirstOrDefault(testLab => testLab.Id == testRun.TestLabId).Name;
+        }
     }
 }

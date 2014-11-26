@@ -71,7 +71,9 @@ namespace Tmx.Server.Modules
             testClient.Status = TestClientStatuses.Running;
             testClient.TaskId = actualTask.Id;
             testClient.TaskName = actualTask.Name;
-            testClient.TestRunId = actualTask.WorkflowId;
+            // 20141126
+            // testClient.TestRunId = actualTask.WorkflowId;
+            testClient.TestRunId = actualTask.TestRunId;
             // 20141020 squeezing a task to its proxy
             return Negotiate.WithModel(actualTask).WithStatusCode(HttpStatusCode.OK);
             // return Negotiate.WithModel(actualTask.SqueezeTaskToTaskResultProxy()).WithStatusCode(HttpStatusCode.OK);

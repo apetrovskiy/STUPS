@@ -10,22 +10,24 @@
             }
         </style>
     </head>
-<body>
-
-    <div>
-        <table border="1">
+    <body>
+        <a href="/">Home</a>
+        <br>
+	    <br>
+        <div>
+            <table border="1">
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Test lab</th>
+                </tr>
+            @Each.Model
             <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Test lab</th>
+                <td>@Current.Name</td>
+                <td>@Current.Description</td>
+                <td>@Current.TestLab</td>
             </tr>
-        @Each.Model
-        <tr>
-            <td>@Current.Name</td>
-            <td>@Current.Description</td>
-            <td>@Current.TestLab</td>
-        </tr>
-        @EndEach
-    </div>
-</body>
+            @EndEach
+        </div>
+    </body>
 </html>

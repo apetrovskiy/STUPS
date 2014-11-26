@@ -25,5 +25,11 @@ namespace Tmx.Server
             var testRunsThatPending = TestRunQueue.TestRuns.Where(testRun => testRun.IsPending());
             return !testRunsThatPending.Any() ? null : testRunsThatPending.OrderBy(testRun => testRun.CreatedTime).First();
         }
+        
+        public void CancelTestRun(ITestRun testRun)
+        {
+            TaskPool.TasksForClients.Where(task => task.TestRunId == testRun.Id && !task.IsFinished()).ToList().ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled);
+            testRun.Status = TestRunStatuses.Cancelled;
+        }
     }
 }

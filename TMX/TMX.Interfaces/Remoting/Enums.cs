@@ -52,12 +52,19 @@ namespace Tmx.Interfaces.Remoting
 		Scheduled = 2,
         // 20141118
 		CompletedSuccessfully = 3,
-        Interrupted = 4
+        Interrupted = 4,
+        Cancelled = 5
 	}
 	
 	public enum TestRunStartTypes
 	{
 		Immediately = 0,
 		Scheduled = 1
+	}
+	
+	public enum TestLabStatuses
+	{
+	    Free = 0,
+	    Busy = 1
 	}
 }

@@ -53,13 +53,6 @@ namespace Tmx.Server.Modules
                 data.Tasks = TaskPool.TasksForClients ?? new List<ITestTask>();
                 return View[UrnList.ViewTestResults_OverviewNewPageName, data];
             };
-            
-            Get[UrnList.ViewTestResults_TestRunResultsPage] = parameters => {
-                // var data = TestRunQueue.TestRuns.First(testRun => testRun.Id == parameters.id).TestSuites.SelectMany(suite => { return suite.TestScenarios; });
-                dynamic data = new ExpandoObject();
-                data.TestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == parameters.id);
-                return View[UrnList.ViewTestResults_TestRunResultsPageName, data];
-            };
         }
     }
 }

@@ -7,6 +7,21 @@
                 border-collapse: collapse;
             }
         </style>
+        <!--
+        <script src="/Scripts/jquery-2.1.1.min.js"></script>
+        <script>
+            function cancelTestRun(id)
+            {
+                $.ajax({
+                    url: '/api/testRuns/${id}/cancelTestRun',
+                    type: 'PUT',
+                    success: function(result) {
+                        // Do something with the result
+                    }
+                });
+            }
+        </script>
+        -->
     </head>
 	<body>
         <a href="/">Home</a>
@@ -39,7 +54,11 @@
                 <td><a href="/testRuns/{{ testRun.Id }}/testParameters">parameters</a></td>
                 <td><a href="/testRuns/{{ testRun.Id }}/clients">clients</a></td>
                 <td><a href="/testRuns/{{ testRun.Id }}/tasks">tasks</a></td>
-                <td><a href="/testRuns/{{ testRun.Id }}/cancelTestRun">cancel</a></td>
+                <!-- http://blog.nancyfx.org/x-http-method-override-with-nancyfx/ -->                
+                <form action="/api/testRuns/{{ testRun.Id }}/cancelTestRun" method="POST">
+                    <input type="hidden" name="_method" value="PUT"/>
+                    <td><input type="submit" value="Cancel"/></td>
+                </form> 
             </tr>
             {% endfor -%}
         </table>

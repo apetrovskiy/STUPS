@@ -60,6 +60,10 @@ namespace Tmx.Server
 		public virtual Guid ImportXdocument(XContainer xDocument)
 		{
             var workflowId = getWorkflowId(xDocument);
+            
+            // 20141127
+            setParameterspageName(workflowId, xDocument);
+            
             var tasks = from task in xDocument.Descendants("task")
                         where task.Element(taskElement_isActive).Value == "1"
                         select task;
@@ -70,22 +74,57 @@ namespace Tmx.Server
 		
         Guid getWorkflowId(XContainer xDocument)
         {
-            var wfl = xDocument.Descendants("workflow").FirstOrDefault();
-            if (null == wfl)
+            var workflow = xDocument.Descendants("workflow").FirstOrDefault();
+            if (null == workflow)
                 throw new WorkflowLoadingException("There's no workflow element in the document");
-            var nameAttribute = wfl.Attribute("name");
+            var nameAttribute = workflow.Attribute("name");
             var workflowName = null != nameAttribute ? nameAttribute.Value : "unnamed workflow";
             
-            return addWorkflow(workflowName);
+            // 20141127
+            // return addWorkflow(workflowName);
+            return addWorkflow(workflowName, xDocument);
         }
         
-        Guid addWorkflow(string name)
+        Guid addWorkflow(string name, XContainer xDocument)
         {
-            var workflow = new TestWorkflow(TestLabCollection.TestLabs.First()) { Name = name };
+            // 20141127
+            // var workflow = new TestWorkflow(TestLabCollection.TestLabs.First()) { Name = name };
+            var testLabName = xDocument.Descendants("testLabName").FirstOrDefault().Value;
+//            var testLab = TestLabCollection.TestLabs.First();
+//            if (!string.IsNullOrEmpty(testLabName))
+//                testLab = TestLabCollection.TestLabs.FirstOrDefault(tl => tl.Name.ToLower() == testLabName.ToLower());
+//            if (null == testLab)
+//                testLab = new TestLab { Name = testLabName };
+            
+            var testLab = string.IsNullOrEmpty(testLabName) ? 
+                getFirstTestLab() :
+                getOrCreateTestLab(testLabName);
+            
+            var workflow = new TestWorkflow(testLab) { Name = name };
 			WorkflowCollection.AddWorkflow(workflow);
 			return workflow.Id;
         }
-
+        
+        ITestLab getFirstTestLab()
+        {
+            return TestLabCollection.TestLabs.First();
+        }
+        
+        ITestLab getOrCreateTestLab(string testLabName)
+        {
+            var testLab = TestLabCollection.TestLabs.FirstOrDefault(tl => tl.Name.ToLower() == testLabName.ToLower());
+            if (null != testLab)
+                return testLab;
+            testLab = new TestLab { Name = testLabName };
+            TestLabCollection.TestLabs.Add(testLab);
+            return testLab;
+        }
+        
+        void setParameterspageName(Guid workflowId, XContainer xDocument)
+        {
+            WorkflowCollection.Workflows.FirstOrDefault(wfl => wfl.Id == workflowId).ParametersPageName = xDocument.Descendants("parametersPage").FirstOrDefault().Value;
+        }
+        
 		internal virtual void addTasksToCommonPool(IEnumerable<ITestTask> importedTasks)
 		{
 			TaskPool.Tasks.AddRange(importedTasks);

@@ -77,6 +77,7 @@ namespace Tmx.Interfaces.Server
         public const string TestRuns_One_absPath = TestRuns_Root + TestRuns_One_relPath;
         public const string TestRuns_ByName_relPath = "/{name}";
         public const string TestRuns_ByName_absPath = TestRuns_Root + TestRuns_ByName_relPath;
+        public const string TestRuns_One_Cancel = TestRuns_One_relPath + "/cancelTestRun";
         
         // ViewsTestRunsModule
         public const string ViewTestRuns_Root = "/testRuns";

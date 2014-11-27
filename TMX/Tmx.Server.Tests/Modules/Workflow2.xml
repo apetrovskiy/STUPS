@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0"?>
 <workflow name="NAC">
+    <parametersPage>crsuite_upgrade</parametersPage>
+    <testLabName>njqcat1</testLabName>
     <tasks>
 
         <task>

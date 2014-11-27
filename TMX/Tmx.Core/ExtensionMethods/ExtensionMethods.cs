@@ -103,6 +103,11 @@ namespace Tmx.Core
             return TestTaskStatuses.Running == task.TaskStatus;
         }
         
+        public static bool IsActive(this ITestTask task)
+        {
+            return task.IsAccepted();
+        }
+        
         public static bool IsFinished(this ITestTask task)
         {
             return TestTaskStatuses.CompletedSuccessfully == task.TaskStatus || TestTaskStatuses.Interrupted == task.TaskStatus || TestTaskStatuses.Canceled == task.TaskStatus;
@@ -125,7 +130,10 @@ namespace Tmx.Core
         
         public static bool IsActive(this ITestRun testRun)
         {
-            return TestRunStatuses.Running == testRun.Status;
+            // 20141127
+            // return TestRunStatuses.Running == testRun.Status;
+            return TestRunStatuses.Running == testRun.Status
+            || TestRunStatuses.Cancelling == testRun.Status;
         }
         
         public static bool IsPending(this ITestRun testRun)
@@ -142,7 +150,11 @@ namespace Tmx.Core
         {
             // 20141118
             // return TestRunStatuses.CompletedSuccessfully == testRun.Status;
-            return TestRunStatuses.CompletedSuccessfully == testRun.Status || TestRunStatuses.Interrupted == testRun.Status;
+            // 20141127
+            // return TestRunStatuses.CompletedSuccessfully == testRun.Status || TestRunStatuses.Interrupted == testRun.Status;
+            return TestRunStatuses.CompletedSuccessfully == testRun.Status
+            || TestRunStatuses.Interrupted == testRun.Status
+            || TestRunStatuses.Cancelled == testRun.Status;
         }
         
         public static bool IsQueued(this ITestRun testRun)

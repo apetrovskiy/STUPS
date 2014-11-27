@@ -31,6 +31,9 @@ namespace Tmx.Server.Modules
 			// Post[UrnList.TestRuns_ByName_relPath] = parameters => createNewTestRun(parameters.name);
 			Delete[UrnList.TestRuns_One_relPath] = parameters => deleteTestRun(parameters.id);
             // Put[UrnList.TestRuns_One_relPath] = parameters => changeTestRun(parameters.id);
+            
+            // http://blog.nancyfx.org/x-http-method-override-with-nancyfx/
+            Put[UrnList.TestRuns_One_Cancel] = parameters => cancelTestRun(parameters.id);
 		}
 		
 		Negotiator createNewTestRun(TestRunCommand testRunCommand)
@@ -56,47 +59,6 @@ namespace Tmx.Server.Modules
             return Negotiate.WithStatusCode(HttpStatusCode.Created);
         }
         
-//		ITestRun setTestRunDetails(TestRunCommand testRunCommand)
-//		{
-//			if (string.IsNullOrEmpty(testRunCommand.Name))
-//				testRunCommand.Name = testRunCommand.WorkflowName + " " + DateTime.Now;
-//            var testRun = new TestRun { Name = testRunCommand.Name, Status = testRunCommand.Status };
-//            setWorkflow(testRunCommand, testRun);
-//            setStartUpParameters(testRun);
-//            setCommonData(testRun);
-//            setCreatedTime(testRun);
-//            return testRun;
-//		}
-//		
-//        void setWorkflow(TestRunCommand testRunCommand, TestRun testRun)
-//        {
-//            (testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testRunCommand.WorkflowName));
-//        }
-//        
-//        void setStartUpParameters(ITestRun testRun)
-//        {
-//            if (TestRunStartTypes.Immediately == testRun.StartType)
-//                testRun.Status = TestRunQueue.TestRuns.Any(tr => tr.TestLabId == testRun.TestLabId && tr.IsQueued()) ? TestRunStatuses.Pending : TestRunStatuses.Running;
-//            if (testRun.IsActive())
-//                testRun.SetStartTime();
-//        }
-//        
-//        void setCommonData(ITestRun testRun)
-//        {
-//            if (null == Request.Form || 0 >= Request.Form.Count)
-//                return;
-//            foreach (var key in Request.Form)
-//                testRun.Data.AddOrUpdateDataItem(new CommonDataItem {
-//                    Key = key,
-//                    Value = Request.Form[key]
-//                });
-//        }
-//        
-//        void setCreatedTime(ITestRun testRun)
-//        {
-//            testRun.CreatedTime = DateTime.Now;
-//        }
-        
 		Negotiator deleteTestRun(Guid testRunId)
 		{
 			TestRunQueue.TestRuns.RemoveAll(tr => tr.Id == testRunId);
@@ -107,5 +69,17 @@ namespace Tmx.Server.Modules
 //        {
 //            throw new NotImplementedException ();
 //        }
+        
+        Negotiator cancelTestRun(Guid testRunId)
+        {
+            var testRun = TestRunQueue.TestRuns.First(tr => tr.Id == testRunId);
+            if (null == testRun)
+                return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed); // ??
+            if (testRun.IsCompleted())
+                return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed); // ??
+            var testRunSelector = new TestRunSelector();
+            testRunSelector.CancelTestRun(testRun);
+            return Negotiate.WithStatusCode(HttpStatusCode.OK);
+        }
 	}
 }

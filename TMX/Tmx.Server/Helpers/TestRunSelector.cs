@@ -28,8 +28,16 @@ namespace Tmx.Server
         
         public void CancelTestRun(ITestRun testRun)
         {
-            TaskPool.TasksForClients.Where(task => task.TestRunId == testRun.Id && !task.IsFinished()).ToList().ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled);
+            // 20141127
+            // TaskPool.TasksForClients.Where(task => task.TestRunId == testRun.Id && !task.IsFinished()).ToList().ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled);
+            // testRun.Status = TestRunStatuses.Cancelled;
+            
+            TaskPool.TasksForClients.Where(task => task.TestRunId == testRun.Id && !task.IsFinished() && !task.IsActive()).ToList().ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled);
             testRun.Status = TestRunStatuses.Cancelled;
+            if (TaskPool.TasksForClients.Any(task => task.TestRunId == testRun.Id && task.IsActive())) {
+                TaskPool.TasksForClients.Where(task => task.TestRunId == testRun.Id && task.IsActive()).ToList().ForEach(task => task.TaskStatus = TestTaskStatuses.Interrupted);
+                testRun.Status = TestRunStatuses.Cancelling;
+            }
         }
     }
 }

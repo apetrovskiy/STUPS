@@ -50,10 +50,10 @@ namespace Tmx.Interfaces.Remoting
 		Running = 0,
 		Pending = 1,
 		Scheduled = 2,
-        // 20141118
 		CompletedSuccessfully = 3,
         Interrupted = 4,
-        Cancelled = 5
+        Cancelled = 5,
+        Cancelling = 6
 	}
 	
 	public enum TestRunStartTypes

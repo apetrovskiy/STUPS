@@ -17,5 +17,7 @@ namespace Tmx.Interfaces.Remoting
 	public interface ITestWorkflow : IWorkflow
 	{
 		void SetTestLab(ITestLab testLab);
+		// 20141127
+		string ParametersPageName { get; set; }
 	}
 }

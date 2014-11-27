@@ -98,6 +98,12 @@ namespace Tmx.Server.Tests.Helpers
     	    var workflowElement = new XElement("workflow");
     	    workflowElement.Add(new XAttribute("name", "some name"));
     	    xDoc.Add(workflowElement);
+    	    // 20141127
+    	    var testLabElement = new XElement("testLabName", "testlab");
+    	    workflowElement.Add(testLabElement);
+    	    var parametersPageElement = new XElement("parametersPage", "page");
+    	    workflowElement.Add(parametersPageElement);
+    	    
     	    workflowLoader.ImportXdocument(xDoc);
     	}
     	

@@ -26,6 +26,13 @@ namespace Tmx.Server
 			if (string.IsNullOrEmpty(testRunCommand.Name))
 				testRunCommand.Name = testRunCommand.WorkflowName + " " + DateTime.Now;
             var testRun = new TestRun { Name = testRunCommand.Name, Status = testRunCommand.Status };
+            foreach (var key in formData) {
+                testRun.Data.AddOrUpdateDataItem(
+                    new CommonDataItem {
+                        Key = key,
+                        Value = formData[key]
+                    });
+            }
             setWorkflow(testRunCommand, testRun);
             setStartUpParameters(testRun);
             setCommonData(testRun, formData);
@@ -50,12 +57,13 @@ namespace Tmx.Server
         {
             if (null == formData || 0 >= formData.Count)
                 return;
-            foreach (var key in formData)
+            foreach (var key in formData) {
                 testRun.Data.AddOrUpdateDataItem(
                     new CommonDataItem {
                         Key = key,
                         Value = formData[key]
                     });
+            }
         }
         
         void setCreatedTime(ITestRun testRun)

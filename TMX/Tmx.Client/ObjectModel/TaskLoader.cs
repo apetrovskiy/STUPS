@@ -43,7 +43,7 @@ namespace Tmx.Client
             // HttpResponseMessage<TestTaskCodeProxy> gettingTaskResponse = null;
 			try {
                 // 20141020 squeezing a task to its proxy
-			    gettingTaskResponse = _restTemplate.GetForMessage<TestTask>(UrnList.TestTasks_Root + "/" + ClientSettings.Instance.ClientId);
+			    gettingTaskResponse = _restTemplate.GetForMessage<TestTask>(UrlList.TestTasks_Root + "/" + ClientSettings.Instance.ClientId);
 			    // gettingTaskResponse = _restTemplate.GetForMessage<TestTaskCodeProxy>(UrnList.TestTasks_Root + "/" + ClientSettings.Instance.ClientId);
 			}
 			catch (RestClientException eHttpClientErrorException) {
@@ -72,7 +72,7 @@ namespace Tmx.Client
 			task.TaskStatus = TestTaskStatuses.Running;
 			task.StartTimer();
 			try {
-                _restTemplate.Put(UrnList.TestTasks_Root + "/" + task.Id, task);
+                _restTemplate.Put(UrlList.TestTasks_Root + "/" + task.Id, task);
 				return task;
 			}
 			catch (RestClientException eAcceptingTask) {

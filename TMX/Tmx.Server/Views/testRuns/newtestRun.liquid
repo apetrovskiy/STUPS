@@ -28,23 +28,18 @@
         <a href="/">Home</a>
         <br>
 	    <br>
-	   <!-- select workflow -->
-	   <form method="POST">
-	       <label for="workflows">Select test workflow</label><br>
-	       <select id="workflow_id" name="workflow">
-	           {% for workflow in @Model.Workflows -%}
-	               <option>{{ workflow.Name }}</option>
-	           {% endfor -%}
-	       </select>
-	       <input type="submit" value="Select" />
-	   </form>
-	   
-	   <!-- display workflow inputs -->
-	   
-	   
-	   <!-- controls for test run creation -->
-	   
-	   <h3>Test parameters</h3>
-	   <iframe id="t_id" src="@Model.Path" name="t_name" seamless width="100%" onload="setIframeHeight(this.id)" scrolling=auto></iframe>
+        
+        <form method="POST">
+           <label for="workflows">Select test workflow</label><br>
+           <select id="workflow_id" name="workflow_name">
+               {% for workflow in @Model.Workflows -%}
+                   <option>{{ workflow.Name }}</option>
+               {% endfor -%}
+           </select>
+           <input type="submit" value="Select" />
+        </form>
+        
+        <h3>Test parameters</h3>
+        <iframe id="t_id" src="{{ @Model.Path }}.html" name="t_name" seamless width="100%" onload="setIframeHeight(this.id)" scrolling=auto></iframe>
 	</body>
 </html>

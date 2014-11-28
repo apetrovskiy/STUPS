@@ -127,6 +127,7 @@
     <Compile Include="Modules\ViewsTestRunsModule.cs" />
     <Compile Include="Modules\ViewsTestStatusModule.cs" />
     <Compile Include="Modules\TestWorkflowsModule.cs" />
+    <Compile Include="Modules\ViewsTestWorkflowParametersModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\index.htm">
@@ -145,9 +146,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Views\status\testLabs.liquid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Views\status\TestRuns.liquid">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Views\status\workflow.htm">
@@ -204,6 +202,10 @@
     <None Include="Views\testRuns\testResults.liquid">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Views\testRuns\TestRuns.liquid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Workflows\without_parameters.html" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">

@@ -37,7 +37,7 @@ namespace Tmx.Client
 	    public virtual bool LoadTestResults()
 	    {
 	        try {
-				var urn = UrnList.TestResults_Root + "/" + ClientSettings.Instance.CurrentClient.TestRunId + UrnList.TestResultsPostingPoint_forClient_relPath;
+				var urn = UrlList.TestResults_Root + "/" + ClientSettings.Instance.CurrentClient.TestRunId + UrlList.TestResultsPostingPoint_forClient_relPath;
 				var loadingResultsResponse = _restTemplate.GetForMessage<TestResultsDataObject>(urn);
 				var testResultsImporter = new TestResultsImporter();
 				var xDoc = XDocument.Parse(loadingResultsResponse.Body.Data);

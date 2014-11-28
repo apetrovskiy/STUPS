@@ -23,49 +23,56 @@ namespace Tmx.Server.Modules
     /// </summary>
     public class ViewsTestRunsModule : NancyModule
     {
-        public ViewsTestRunsModule() : base(UrnList.ViewTestRuns_Root)
+        public ViewsTestRunsModule() : base(UrlList.ViewTestRuns_Root)
         {
-            Get[UrnList.ViewTestRuns_NewTestRunPage] = _ => {
+            Get[UrlList.ViewTestRuns_NewTestRunPage] = _ => {
                 dynamic data = new ExpandoObject();
                 data.Workflows = WorkflowCollection.Workflows ?? new List<ITestWorkflow>();
                 data.TestLabs = TestLabCollection.TestLabs ?? new List<ITestLab>();
-                return View[UrnList.ViewTestRuns_NewTestRunPageName, data];
+                data.Path = UrlList.ViewTestWorkflowParameters_Root + "/" + UrlList.ViewTestWorkflowParameters_DefaultPageName;
+                data.WorkflowName = string.Empty;
+                return View[UrlList.ViewTestRuns_NewTestRunPageName, data];
             };
             
-            Get[UrnList.ViewTestRuns_TestRun_CancelPage] = parameters => {
+            Post[UrlList.ViewTestRuns_NewTestRunPage] = _ => {
                 dynamic data = new ExpandoObject();
-                data.TestRun = TestRunQueue.TestRuns.FirstOrDefault(testRun => testRun.Id == parameters.id);
-                return View[UrnList.ViewTestRuns_TestRun_CancelPageName, data];
+                data.Workflows = WorkflowCollection.Workflows ?? new List<ITestWorkflow>();
+                data.TestLabs = TestLabCollection.TestLabs ?? new List<ITestLab>();
+                string workflowName = Request.Form.workflow_name;
+                data.Path = "/workflows/" + WorkflowCollection.Workflows.FirstOrDefault(wfl => wfl.Name == workflowName).ParametersPageName;
+                data.WorkflowName = workflowName;
+                return View[UrlList.ViewTestRuns_NewTestRunPageName, data];
             };
             
-            Post[UrnList.ViewTestRuns_TestRun_CancelPage] = parameters => {
-                var testRunSelector = new TestRunSelector();
-                testRunSelector.CancelTestRun(TestRunQueue.TestRuns.FirstOrDefault(testRun => testRun.Id == parameters.id));
-                return View[UrnList.ViewTestRuns_TestRun_CancelPageName];
+            Get[UrlList.ViewTestRuns_TestRunsPage] = parameters => {
+                dynamic data = new ExpandoObject();
+                data.TestRuns = TestRunQueue.TestRuns ?? new List<ITestRun>();
+                data.TestLabs = TestLabCollection.TestLabs ?? new List<ITestLab>();
+                return View[UrlList.ViewTestRuns_TestRunsPageName, data];
             };
             
-            Get [UrnList.ViewTestRuns_ParametersPage] = parameters => {
+            Get [UrlList.ViewTestRuns_ParametersPage] = parameters => {
                 dynamic data = new ExpandoObject();
                 data.TestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == parameters.id);
-                return View[UrnList.ViewTestRuns_ParametersPageName, data];
+                return View[UrlList.ViewTestRuns_ParametersPageName, data];
             };
             
-            Get [UrnList.ViewTestRuns_ClientsPage] = parameters => {
+            Get [UrlList.ViewTestRuns_ClientsPage] = parameters => {
                 dynamic data = new ExpandoObject();
                 data.Clients = ClientsCollection.Clients.Where(client => client.TestRunId == parameters.id).ToList() ?? new List<ITestClient>();
-                return View[UrnList.ViewTestRuns_ClientsPageName, data];
+                return View[UrlList.ViewTestRuns_ClientsPageName, data];
             };
             
-            Get [UrnList.ViewTestRuns_TasksPage] = parameters => {
+            Get [UrlList.ViewTestRuns_TasksPage] = parameters => {
                 dynamic data = new ExpandoObject();
                 data.TasksForClients = TaskPool.TasksForClients.Where(task => task.TestRunId == parameters.id).ToList() ?? new List<ITestTask>();
-                return View[UrnList.ViewTestRuns_TasksPageName, data];
+                return View[UrlList.ViewTestRuns_TasksPageName, data];
             };
             
-            Get[UrnList.ViewTestRuns_ResultsPage] = parameters => {
+            Get[UrlList.ViewTestRuns_ResultsPage] = parameters => {
                 dynamic data = new ExpandoObject();
                 data.TestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == parameters.id);
-                return View[UrnList.ViewTestRuns_ResultsPageName, data];
+                return View[UrlList.ViewTestRuns_ResultsPageName, data];
             };
         }
     }

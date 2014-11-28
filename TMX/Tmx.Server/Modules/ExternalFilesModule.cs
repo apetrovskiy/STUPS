@@ -21,9 +21,9 @@ namespace Tmx.Server.Modules
     /// </summary>
     public class ExternalFilesModule : NancyModule
     {
-        public ExternalFilesModule() : base(UrnList.ExternalFiles_Root)
+        public ExternalFilesModule() : base(UrlList.ExternalFiles_Root)
         {
-            Post[UrnList.ExternalFilesUploadPoint_relPath] = _ => {
+            Post[UrlList.ExternalFilesUploadPoint_relPath] = _ => {
                 var dict = Request.Form.ToDictionary();
                 var destinationPath = dict["destinationPath"];
                 var relativePath = dict["relativePath"];

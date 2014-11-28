@@ -64,7 +64,7 @@ namespace Tmx.Client.Tests.Helpers
         [NUnit.Framework.Test][Fact]
         public void Should_respond_Created_on_new_common_data_upload_as_json()
         {
-            var urn = UrnList.TestData_Root + "/" + Guid.NewGuid() + UrnList.TestData_CommonData_forClient_relPath; // ??
+            var urn = UrlList.TestData_Root + "/" + Guid.NewGuid() + UrlList.TestData_CommonData_forClient_relPath; // ??
             _responseHeaders.Location = new Uri(_baseUrl + urn);
             _restServer.ExpectNewRequest()
                 .AndExpectUri(_baseUrl + urn)
@@ -78,7 +78,7 @@ namespace Tmx.Client.Tests.Helpers
         [NUnit.Framework.Test][Fact]
         public void Should_respond_Ok_on_getting_common_data_as_json()
         {
-            var urn = UrnList.TestData_Root + "/" + Guid.NewGuid() + UrnList.TestData_CommonData_forClient_relPath; // ??
+            var urn = UrlList.TestData_Root + "/" + Guid.NewGuid() + UrlList.TestData_CommonData_forClient_relPath; // ??
             _responseHeaders.Location = new Uri(_baseUrl + urn);
             _restServer.ExpectNewRequest()
                 .AndExpectUri(_baseUrl + urn)

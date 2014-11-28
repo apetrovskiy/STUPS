@@ -33,7 +33,7 @@ namespace Tmx.Client
 		// public virtual bool UpdateTask(ITestTaskStatusProxy task)
 		{
 			try {
-			    _restTemplate.Put(UrnList.TestTasks_Root + "/" + task.Id, task);
+			    _restTemplate.Put(UrlList.TestTasks_Root + "/" + task.Id, task);
 			    return true;
 			}
 			catch {
@@ -44,7 +44,7 @@ namespace Tmx.Client
 		public virtual bool SendTaskResult(ITestTask task, Guid clientId)
 		{
 			try {
-			    _restTemplate.Put(UrnList.CurrentTaskForClientById + "/" + clientId, task);
+			    _restTemplate.Put(UrlList.CurrentTaskForClientById + "/" + clientId, task);
 			    return true;
 			}
 			catch {

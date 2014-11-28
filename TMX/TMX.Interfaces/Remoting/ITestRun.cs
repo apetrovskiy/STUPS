@@ -21,7 +21,6 @@ namespace Tmx.Interfaces.Remoting
 		TestRunStatuses Status { get; set; }
 		TestRunStartTypes StartType { get; set; }
         ICommonData Data { get; set; }
-        // 20141106
         List<ITestSuite> TestSuites { get; set; }
         List<ITestPlatform> TestPlatforms { get; set; }
         // ListOfTestSuites TestSuites { get; set; }

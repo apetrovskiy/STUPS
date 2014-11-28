@@ -29,36 +29,29 @@ namespace Tmx.Server.Modules
     /// </summary>
     public class ViewsTestStatusModule : NancyModule
     {
-        public ViewsTestStatusModule() : base(UrnList.ViewTestStatus_Root)
+        public ViewsTestStatusModule() : base(UrlList.ViewTestStatus_Root)
         {
-            Get[UrnList.ViewTestStatus_All_ClientsPage] = parameters => {
+            Get[UrlList.ViewTestStatus_All_ClientsPage] = parameters => {
                 dynamic data = new ExpandoObject();
                 data.Clients = ClientsCollection.Clients ?? new List<ITestClient>();
-                return View[UrnList.ViewTestStatus_All_ClientsPageName, data];
+                return View[UrlList.ViewTestStatus_All_ClientsPageName, data];
             };
             
-            Get[UrnList.ViewTestStatus_All_TasksPage] = parameters => {
+            Get[UrlList.ViewTestStatus_All_TasksPage] = parameters => {
                 dynamic data = new ExpandoObject();
                 data.TasksForClients = TaskPool.TasksForClients ?? new List<ITestTask>();
-                return View[UrnList.ViewTestStatus_All_TasksPageName, data];
+                return View[UrlList.ViewTestStatus_All_TasksPageName, data];
             };
             
-            Get[UrnList.ViewTestStatus_TestRunsPage] = parameters => {
-                dynamic data = new ExpandoObject();
-                data.TestRuns = TestRunQueue.TestRuns ?? new List<ITestRun>();
-                data.TestLabs = TestLabCollection.TestLabs ?? new List<ITestLab>();
-                return View[UrnList.ViewTestStatus_TestRunsPageName, data];
-            };
-            
-            Get[UrnList.ViewTestStatus_WorkflowsPage] = _ => {
+            Get[UrlList.ViewTestStatus_WorkflowsPage] = _ => {
                 var data = WorkflowCollection.Workflows ?? new List<ITestWorkflow>();
-                return View[UrnList.ViewTestStatus_WorkflowsPageName, data];
+                return View[UrlList.ViewTestStatus_WorkflowsPageName, data];
             };
             
-            Get[UrnList.ViewTestStatus_TestLabsPage] = _ => {
+            Get[UrlList.ViewTestStatus_TestLabsPage] = _ => {
                 dynamic data = new ExpandoObject();
                 data.TestLabs = TestLabCollection.TestLabs ?? new List<ITestLab>();
-                return View[UrnList.ViewTestStatus_TestLabsPageName, data];
+                return View[UrlList.ViewTestStatus_TestLabsPageName, data];
             };
         }
         

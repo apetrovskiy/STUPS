@@ -33,7 +33,7 @@ namespace Tmx.Client
         
         public virtual Guid SendRegistrationInfoAndGetClientId(string customClientString)
 		{
-			var registrationResponse = _restTemplate.PostForMessage<TestClient>(UrnList.TestClientRegistrationPoint_absPath, getNewTestClient(customClientString));
+			var registrationResponse = _restTemplate.PostForMessage<TestClient>(UrlList.TestClientRegistrationPoint_absPath, getNewTestClient(customClientString));
 			
 			if (HttpStatusCode.Created == registrationResponse.StatusCode)
 			    ClientSettings.Instance.CurrentClient = registrationResponse.Body;
@@ -47,7 +47,7 @@ namespace Tmx.Client
         {
             closeCurrentTaskIfAny();
 			try {
-			    _restTemplate.Delete(UrnList.TestClients_Root + "/" + ClientSettings.Instance.ClientId);
+			    _restTemplate.Delete(UrlList.TestClients_Root + "/" + ClientSettings.Instance.ClientId);
                 ClientSettings.Instance.ResetData();
 			}
             catch (RestClientException eUnregisteringClient) {

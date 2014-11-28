@@ -235,7 +235,7 @@ namespace Tmx.Server.Tests.Modules
 				Command = ServerControlCommands.LoadConfiguraiton,
 				Data = @"../../Modules/Workflow1.xml"
 			};
-			_browser.Put(UrnList.ServerControlPoint_absPath, with => {
+			_browser.Put(UrlList.ServerControlPoint_absPath, with => {
 				with.JsonBody<ServerCommand>(serverCommand);
 				with.Accept("application/json");
 			});
@@ -247,7 +247,7 @@ namespace Tmx.Server.Tests.Modules
 				Command = ServerControlCommands.LoadConfiguraiton,
 				Data = @"../../Modules/Workflow2.xml"
 			};
-			_browser.Put(UrnList.ServerControlPoint_absPath, with => {
+			_browser.Put(UrlList.ServerControlPoint_absPath, with => {
 				with.JsonBody<ServerCommand>(serverCommand);
 				with.Accept("application/json");
 			});
@@ -258,7 +258,7 @@ namespace Tmx.Server.Tests.Modules
 		    var testRun = new TestRun();
 			var testRunCommand = new TestRunCommand { WorkflowName = testWorkflowName, Status = status };
 			(testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testWorkflowName));
-			_response = _browser.Post(UrnList.TestRunsControlPoint_absPath, with => {
+			_response = _browser.Post(UrlList.TestRunsControlPoint_absPath, with => {
 				with.JsonBody(testRunCommand);
 				with.Accept("application/json");
 			});

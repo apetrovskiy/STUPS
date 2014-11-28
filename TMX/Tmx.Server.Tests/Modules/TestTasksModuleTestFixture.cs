@@ -347,7 +347,7 @@ namespace Tmx.Server.Tests.Modules
         ITestClient GIVEN_Registered_TestClient_as_json(string hostname, string username)
         {
             var testClient = new TestClient { Hostname = hostname, Username = username };
-            response = _browser.Post(UrnList.TestClientRegistrationPoint_absPath, with => {
+            response = _browser.Post(UrlList.TestClientRegistrationPoint_absPath, with => {
                                         	with.JsonBody<ITestClient>(testClient);
                                         	with.Accept("application/json");
                                         });
@@ -402,19 +402,19 @@ namespace Tmx.Server.Tests.Modules
         // TODO: duplicated
         void WHEN_SendingDeregistration_as_json(ITestClient testClient)
         {
-            _browser.Delete(UrnList.TestClients_Root + "/" + testClient.Id, with => with.Accept("application/json"));
+            _browser.Delete(UrlList.TestClients_Root + "/" + testClient.Id, with => with.Accept("application/json"));
         }
         
         void WHEN_SendingDeregistration_as_xml(TestClient testClient)
         {
-            _browser.Delete(UrnList.TestClients_Root + "/" + testClient.Id, with => with.Accept("application/xml"));
+            _browser.Delete(UrlList.TestClients_Root + "/" + testClient.Id, with => with.Accept("application/xml"));
         }
         
         // 20141020 squeezing a task to its proxy
         TestTask WHEN_Getting_task_as_json(Guid clientId)
         // TestTaskProxy WHEN_Getting_task_as_json(int clientId)
         {
-            response = _browser.Get(UrnList.TestTasks_Root + "/" + clientId, with => with.Accept("application/json"));
+            response = _browser.Get(UrlList.TestTasks_Root + "/" + clientId, with => with.Accept("application/json"));
             // 20141020 squeezing a task to its proxy
             var actualTask = response.Body.DeserializeJson<TestTask>();
             // var actualTask = response.Body.DeserializeJson<TestTaskProxy>();
@@ -424,7 +424,7 @@ namespace Tmx.Server.Tests.Modules
             // emulates actualTask.StartTimer();
             _startTime = DateTime.Now;
             actualTask.StartTime = _startTime;
-            _browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => {
+            _browser.Put(UrlList.TestTasks_Root + "/" + actualTask.Id, with => {
                                     // 20141020 squeezing a task to its proxy
                                    	with.JsonBody<ITestTask>(actualTask);
                                    	// with.JsonBody<ITestTaskProxy>(actualTask);
@@ -445,7 +445,7 @@ namespace Tmx.Server.Tests.Modules
         {
             actualTask.TaskStatus = TestTaskStatuses.CompletedSuccessfully;
             actualTask.TaskFinished = true;
-            _browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => {
+            _browser.Put(UrlList.TestTasks_Root + "/" + actualTask.Id, with => {
                 with.Accept("application/json");
                 // 20141020 squeezing a task to its proxy
                 with.JsonBody<ITestTask>(actualTask);
@@ -460,7 +460,7 @@ namespace Tmx.Server.Tests.Modules
             actualTask.TaskStatus = TestTaskStatuses.Interrupted;
             actualTask.TaskFinished = true;
             // 20141020 squeezing a task to its proxy
-            _browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => {
+            _browser.Put(UrlList.TestTasks_Root + "/" + actualTask.Id, with => {
                              with.Accept("application/json");
                              with.JsonBody<ITestTask>(actualTask);
                          });

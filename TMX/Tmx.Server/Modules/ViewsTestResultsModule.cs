@@ -39,19 +39,19 @@ namespace Tmx.Server.Modules
     /// </summary>
     public class ViewsTestResultsModule : NancyModule
     {
-        public ViewsTestResultsModule() : base(UrnList.ViewTestResults_Root)
+        public ViewsTestResultsModule() : base(UrlList.ViewTestResults_Root)
         {
             // deprecated
-            Get[UrnList.ViewTestResults_OverviewPage] = parameters => {
+            Get[UrlList.ViewTestResults_OverviewPage] = parameters => {
                 var data = TestData.TestSuites.SelectMany(suite => { return suite.TestScenarios; }) ?? new List<ITestScenario>();
-                return View[UrnList.ViewTestResults_OverviewPageName, data];
+                return View[UrlList.ViewTestResults_OverviewPageName, data];
             };
             
-            Get[UrnList.ViewTestResults_OverviewNewPage] = parameters => {
+            Get[UrlList.ViewTestResults_OverviewNewPage] = parameters => {
                 dynamic data = new ExpandoObject();
                 data.TestRuns = TestRunQueue.TestRuns ?? new List<ITestRun>();
                 data.Tasks = TaskPool.TasksForClients ?? new List<ITestTask>();
-                return View[UrnList.ViewTestResults_OverviewNewPageName, data];
+                return View[UrlList.ViewTestResults_OverviewNewPageName, data];
             };
         }
     }

@@ -162,7 +162,7 @@ namespace Tmx.Server.Tests.Modules
         {
             var browser = TestFactory.GetBrowserForTestDataModule();
             // var urn = UrnList.TestData_Root + "/" + ClientSettings.Instance.CurrentTask.TestRunId + UrnList.TestData_CommonData_forClient_relPath;
-            var urn = UrnList.TestData_Root + "/" + _testRun.Id + UrnList.TestData_CommonData_forClient_relPath;
+            var urn = UrlList.TestData_Root + "/" + _testRun.Id + UrlList.TestData_CommonData_forClient_relPath;
             // return browser.Post(UrnList.CommonDataLoadingPoint_absPath, with => {
             return browser.Post(urn, with => {
                 with.JsonBody<ICommonDataItem>(dataItem);
@@ -174,7 +174,7 @@ namespace Tmx.Server.Tests.Modules
         {
             var browser = TestFactory.GetBrowserForTestDataModule();
             // var urn = UrnList.TestData_Root + "/" + ClientSettings.Instance.CurrentTask.TestRunId + UrnList.TestData_CommonData_forClient_relPath;
-            var urn = UrnList.TestData_Root + "/" + _testRun.Id + UrnList.TestData_CommonData_forClient_relPath;
+            var urn = UrlList.TestData_Root + "/" + _testRun.Id + UrlList.TestData_CommonData_forClient_relPath;
             // return browser.Post(UrnList.CommonDataLoadingPoint_absPath, with => {
             return browser.Post(urn, with => {
                 with.XMLBody<CommonDataItem>(dataItem);

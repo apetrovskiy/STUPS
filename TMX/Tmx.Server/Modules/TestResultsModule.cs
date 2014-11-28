@@ -32,11 +32,11 @@ namespace Tmx.Server.Modules
     /// </summary>
     public class TestResultsModule : NancyModule
     {
-        public TestResultsModule() : base(UrnList.TestResults_Root)
+        public TestResultsModule() : base(UrlList.TestResults_Root)
         {
-            Post[UrnList.TestResultsPostingPoint_relPath] = parameters => importTestResultsToTestRun(parameters.id);
+            Post[UrlList.TestResultsPostingPoint_relPath] = parameters => importTestResultsToTestRun(parameters.id);
             
-            Get[UrnList.TestResultsPostingPoint_relPath] = parameters => exportTestResultsFromTestRun(parameters.id);
+            Get[UrlList.TestResultsPostingPoint_relPath] = parameters => exportTestResultsFromTestRun(parameters.id);
         }
 
 //        HttpStatusCode importTestResultsToTestRun(Guid testRunId)

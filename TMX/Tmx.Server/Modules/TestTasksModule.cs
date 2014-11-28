@@ -26,11 +26,11 @@ namespace Tmx.Server.Modules
     /// </summary>
     public class TestTasksModule : NancyModule
     {
-        public TestTasksModule() : base(UrnList.TestTasks_Root)
+        public TestTasksModule() : base(UrlList.TestTasks_Root)
         {
-            Get[UrnList.TestTasks_CurrentTaskForClientById_relPath] = parameters => returnTaskByClientId(parameters.id);
+            Get[UrlList.TestTasks_CurrentTaskForClientById_relPath] = parameters => returnTaskByClientId(parameters.id);
         	
-            Put[UrnList.TestTasks_Task] = parameters => {
+            Put[UrlList.TestTasks_Task] = parameters => {
                 // 20141020 squeezing a task to its proxy
             	ITestTask loadedTask = this.Bind<TestTask>();
             	// ITestTaskProxy loadedTask = this.Bind<TestTaskProxy>();
@@ -45,9 +45,9 @@ namespace Tmx.Server.Modules
 //            
 //            Get[UrnList.TestTasks_AllLoaded + "/"] = _ => returnAllLoadedTasks();
             
-            Delete[UrnList.TestTasks_Task] = parameters => deleteAllocatedTaskById(parameters.id);
+            Delete[UrlList.TestTasks_Task] = parameters => deleteAllocatedTaskById(parameters.id);
             
-			Delete[UrnList.TestTasks_AllLoaded_relPath + UrnList.TestTasks_Task] = parameters => deleteLoadedTaskById(parameters).id;
+			Delete[UrlList.TestTasks_AllLoaded_relPath + UrlList.TestTasks_Task] = parameters => deleteLoadedTaskById(parameters).id;
         }
         
 		Negotiator returnTaskByClientId(Guid clientId)

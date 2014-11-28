@@ -23,11 +23,11 @@ namespace Tmx.Server.Modules
     /// </summary>
     public class TestWorkflowsModule : NancyModule
     {
-        public TestWorkflowsModule() : base(UrnList.TestWorkflows_Root)
+        public TestWorkflowsModule() : base(UrlList.TestWorkflows_Root)
         {
-            Get[UrnList.TestWorkflows_GetByWorkflowId_relPath] = parameters => returnWorkflowById(parameters.id);
-            Get[UrnList.TestWorkflows_All_relPath] = _ => returnAllWorkflows();
-            Delete[UrnList.TestWorkflows_GetByWorkflowId_relPath] = parameters => deleteWorkflowById(parameters.id);
+            Get[UrlList.TestWorkflows_GetByWorkflowId_relPath] = parameters => returnWorkflowById(parameters.id);
+            Get[UrlList.TestWorkflows_All_relPath] = _ => returnAllWorkflows();
+            Delete[UrlList.TestWorkflows_GetByWorkflowId_relPath] = parameters => deleteWorkflowById(parameters.id);
         }
         
         Negotiator returnWorkflowById(Guid workflowId)

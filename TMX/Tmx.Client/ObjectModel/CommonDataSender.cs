@@ -33,7 +33,7 @@ namespace Tmx.Client
         public virtual void Send(ICommonDataItem item)
         {
             // TODO: add an error handler
-			var urn = UrnList.TestData_Root + "/" + ClientSettings.Instance.CurrentClient.TestRunId + UrnList.TestData_CommonData_forClient_relPath;
+			var urn = UrlList.TestData_Root + "/" + ClientSettings.Instance.CurrentClient.TestRunId + UrlList.TestData_CommonData_forClient_relPath;
 			var dataItemSendingResponse = _restTemplate.PostForMessage(urn, item);
 			if (HttpStatusCode.Created == dataItemSendingResponse.StatusCode)
 				return;

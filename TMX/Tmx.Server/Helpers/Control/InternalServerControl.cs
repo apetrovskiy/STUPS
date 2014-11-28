@@ -132,7 +132,7 @@ namespace Tmx.Server
 			Template.RegisterSafeType(typeof(ITestSuite), new[] { "Id", "Name", "Status", "TestScenarios", "PlatformId" });
 			Template.RegisterSafeType(typeof(ITestScenario), new[] { "Id", "Name", "Status", "TestResults", "PlatformId" });
 			Template.RegisterSafeType(typeof(ITestResult), new[] { "Id", "Name", "Status", "Origin", "PlatformId" });
-			Template.RegisterSafeType(typeof(TestWorkflow), new[] { "Id", "Name", "TestLabId", "Description" });
+			Template.RegisterSafeType(typeof(TestWorkflow), new[] { "Id", "Name", "TestLabId", "Description", "ParametersPageName" });
 			Template.RegisterSafeType(typeof(ITestRun), new[] { "Id", "Name", "WorkflowId", "TestLabId", "Description", "Status", "StartType", "Data", "TestSuites", "StartTime", "TimeTaken", "GetTestLabName" });
 			Template.RegisterSafeType(typeof(TestRun), new[] { "Id", "Name", "WorkflowId", "TestLabId", "Description", "Status", "StartType", "Data", "TestSuites", "StartTime", "TimeTaken", "GetTestLabName" });
 			Template.RegisterSafeType(typeof(CommonData), new[] { "Data" });
@@ -165,8 +165,15 @@ namespace Tmx.Server
             var workflowsDirectoryPath = (new TmxServerRootPathProvider()).GetRootPath() + @"\Workflows";
             if (!Directory.Exists(workflowsDirectoryPath)) return;
             var workflowLoader = new WorkflowLoader();
-            foreach (var fileName in Directory.GetFiles(workflowsDirectoryPath))
-                workflowLoader.LoadWorkflow(fileName);
+            // 20141127
+//            foreach (var fileName in Directory.GetFiles(workflowsDirectoryPath))
+//                workflowLoader.LoadWorkflow(fileName);
+            foreach (var fileName in Directory.GetFiles(workflowsDirectoryPath)) {
+                try {
+                    workflowLoader.LoadWorkflow(fileName);
+                }
+                catch {}
+            }
         }
         
         protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)

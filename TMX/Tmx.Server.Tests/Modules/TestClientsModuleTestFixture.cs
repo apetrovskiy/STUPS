@@ -578,7 +578,7 @@ namespace Tmx.Server.Tests.Modules
         
         ITestClient WHEN_SendingRegistration_as_Json(ITestClient testClient)
         {
-            _response = _browser.Post(UrnList.TestClientRegistrationPoint_absPath, with => {
+            _response = _browser.Post(UrlList.TestClientRegistrationPoint_absPath, with => {
                 with.JsonBody<ITestClient>(testClient);
                 with.Accept("application/json");
             });
@@ -587,7 +587,7 @@ namespace Tmx.Server.Tests.Modules
         
         ITestClient WHEN_SendingRegistration_as_Xml(TestClient testClient)
         {
-            _response = _browser.Post(UrnList.TestClientRegistrationPoint_absPath, with => {
+            _response = _browser.Post(UrlList.TestClientRegistrationPoint_absPath, with => {
                 with.XMLBody<TestClient>(testClient);
                 with.Accept("application/xml");
             });
@@ -596,17 +596,17 @@ namespace Tmx.Server.Tests.Modules
         
         void WHEN_SendingDeregistration_as_json(ITestClient testClient)
         {
-            _browser.Delete(UrnList.TestClients_Root + "/" + testClient.Id, with => with.Accept("application/json"));
+            _browser.Delete(UrlList.TestClients_Root + "/" + testClient.Id, with => with.Accept("application/json"));
         }
         
         void WHEN_SendingDeregistration_as_xml(ITestClient testClient)
         {
-            _browser.Delete(UrnList.TestClients_Root + "/" + testClient.Id, with => with.Accept("application/xml"));
+            _browser.Delete(UrlList.TestClients_Root + "/" + testClient.Id, with => with.Accept("application/xml"));
         }
         
         void WHEN_SendingStatus_as_json(Guid clientId, DetailedStatus detailedStatus)
         {
-            _response = _browser.Put(UrnList.TestClients_Root + "/" + clientId + "/status", with => {
+            _response = _browser.Put(UrlList.TestClients_Root + "/" + clientId + "/status", with => {
                 with.JsonBody<DetailedStatus>(detailedStatus);
                 with.Accept("application/json");
             });
@@ -614,7 +614,7 @@ namespace Tmx.Server.Tests.Modules
         
         void WHEN_SendingStatus_as_xml(Guid clientId, DetailedStatus detailedStatus)
         {
-            _response = _browser.Put(UrnList.TestClients_Root + "/" + clientId + "/status", with => {
+            _response = _browser.Put(UrlList.TestClients_Root + "/" + clientId + "/status", with => {
                 with.JsonBody<DetailedStatus>(detailedStatus);
                 with.Accept("application/xml");
             });
@@ -622,25 +622,25 @@ namespace Tmx.Server.Tests.Modules
         
         List<TestClient> WHEN_Getting_all_registered_clients_as_json()
         {
-            _response = _browser.Get(UrnList.TestClients_Root + UrnList.TestClientRegistrationPoint_relPath, with => with.Accept("application/json"));
+            _response = _browser.Get(UrlList.TestClients_Root + UrlList.TestClientRegistrationPoint_relPath, with => with.Accept("application/json"));
             return _response.Body.DeserializeJson<List<TestClient>>();
         }
         
         List<TestClient> WHEN_Getting_all_registered_clients_as_xml()
         {
-            _response = _browser.Get(UrnList.TestClients_Root + UrnList.TestClientRegistrationPoint_relPath, with => with.Accept("application/xml"));
+            _response = _browser.Get(UrlList.TestClients_Root + UrlList.TestClientRegistrationPoint_relPath, with => with.Accept("application/xml"));
             return _response.Body.DeserializeJson<List<TestClient>>();
         }
         
         TestClient WHEN_Getting_registered_client_by_Id_as_json(Guid clientId)
         {
-            _response = _browser.Get(UrnList.TestClients_Root + "/" + clientId, with => with.Accept("application/json"));
+            _response = _browser.Get(UrlList.TestClients_Root + "/" + clientId, with => with.Accept("application/json"));
             return _response.Body.DeserializeJson<TestClient>();
         }
         
         TestClient WHEN_Getting_registered_client_by_Id_as_xml(Guid clientId)
         {
-            _response = _browser.Get(UrnList.TestClients_Root + "/" + clientId, with => with.Accept("application/xml"));
+            _response = _browser.Get(UrlList.TestClients_Root + "/" + clientId, with => with.Accept("application/xml"));
             return _response.Body.DeserializeXml<TestClient>();
         }
         

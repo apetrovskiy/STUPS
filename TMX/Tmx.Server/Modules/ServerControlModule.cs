@@ -23,9 +23,9 @@ namespace Tmx.Server.Modules
     /// </summary>
     public class ServerControlModule : NancyModule
     {
-        public ServerControlModule() : base(UrnList.ServerControl_Root)
+        public ServerControlModule() : base(UrlList.ServerControl_Root)
         {
-            Put[UrnList.ServerControlPoint_relPath] = parameters => {
+            Put[UrlList.ServerControlPoint_relPath] = parameters => {
                 IServerCommand serverCommand = this.Bind<ServerCommand>();
                 processServerCommand(serverCommand);
                 return HttpStatusCode.OK;

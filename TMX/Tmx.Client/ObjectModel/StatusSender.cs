@@ -35,7 +35,7 @@ namespace Tmx.Client
         {
             // TODO: add an error handler (??)
             try {
-                _restTemplate.Put(UrnList.TestClients_Root + "/" + ClientSettings.Instance.ClientId + "/status", new DetailedStatus(status));
+                _restTemplate.Put(UrlList.TestClients_Root + "/" + ClientSettings.Instance.ClientId + "/status", new DetailedStatus(status));
             }
             catch (RestClientException eSendingDetialedStatus) {
                 throw new SendingDetailedStatusException("Failed to send detailed status. " + eSendingDetialedStatus.Message);

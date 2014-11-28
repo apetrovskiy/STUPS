@@ -35,7 +35,7 @@ namespace Tmx.Client
                 Status = status,
                 WorkflowName = workflowName
             };
-            var creatingTestRunResponse = _restTemplate.PostForMessage(UrnList.TestRunsControlPoint_absPath, testRunCommand);
+            var creatingTestRunResponse = _restTemplate.PostForMessage(UrlList.TestRunsControlPoint_absPath, testRunCommand);
             return HttpStatusCode.Created == creatingTestRunResponse.StatusCode;
         }
     }

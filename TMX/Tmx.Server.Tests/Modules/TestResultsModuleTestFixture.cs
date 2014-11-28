@@ -344,9 +344,9 @@ namespace Tmx.Server.Tests.Modules
                 case "XDocument":
 			    case ".XDocument":
 			    case "String":
-			        return UrnList.TestResults_Root + "/" + _testRun.Id + UrnList.TestResultsPostingPoint_forClient_relPath;
+			        return UrlList.TestResults_Root + "/" + _testRun.Id + UrlList.TestResultsPostingPoint_forClient_relPath;
 			    default:
-			        return UrnList.TestResults_Root + "/" + _testRun.Id + UrnList.TestResultsPostingPoint_forClient_relPath;
+			        return UrlList.TestResults_Root + "/" + _testRun.Id + UrlList.TestResultsPostingPoint_forClient_relPath;
 			}
         }
         

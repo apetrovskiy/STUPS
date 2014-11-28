@@ -12,9 +12,9 @@ namespace Tmx.Interfaces.Server
     using System;
     
     /// <summary>
-    /// Description of UrnList.
+    /// Description of UrlList.
     /// </summary>
-    public static class UrnList
+    public static class UrlList
     {
         // TestResultsModule
         public const string TestResults_Root = TestRuns_Root;
@@ -83,6 +83,10 @@ namespace Tmx.Interfaces.Server
         public const string ViewTestRuns_Root = "/testRuns";
         public const string ViewTestRuns_NewTestRunPage = "/newTestRun";
         public const string ViewTestRuns_NewTestRunPageName = "newTestRun.liquid";
+        
+        public const string ViewTestRuns_TestRunsPage = "/TestRuns";
+        public const string ViewTestRuns_TestRunsPageName = "TestRuns.liquid";
+        
         public const string ViewTestRuns_ParametersPage = "/{id:guid}/testParameters";
         public const string ViewTestRuns_ParametersPageName = "testParameters.liquid";
         public const string ViewTestRuns_ClientsPage = "/{id:guid}/clients";
@@ -92,8 +96,8 @@ namespace Tmx.Interfaces.Server
         public const string ViewTestRuns_ResultsPage = "/{id:guid}/testResults";
         public const string ViewTestRuns_ResultsPageName = "testResults.liquid";
         
-        public const string ViewTestRuns_TestRun_CancelPage = "/{id:guid}/cancelTestRun";
-        public const string ViewTestRuns_TestRun_CancelPageName = "cancelTestRun.liquid";
+//        public const string ViewTestRuns_TestRun_CancelPage = "/{id:guid}/cancelTestRun";
+//        public const string ViewTestRuns_TestRun_CancelPageName = "cancelTestRun.liquid";
         
         // ViewsRootPageModule
         public const string ViewRootPage_Root = "/";
@@ -106,8 +110,8 @@ namespace Tmx.Interfaces.Server
         public const string ViewTestStatus_All_ClientsPageName = "/clients.liquid";
         public const string ViewTestStatus_All_TasksPage = "/tasks";
         public const string ViewTestStatus_All_TasksPageName = "tasks.liquid";
-        public const string ViewTestStatus_TestRunsPage = "/TestRuns";
-        public const string ViewTestStatus_TestRunsPageName = "TestRuns.liquid";
+//        public const string ViewTestStatus_TestRunsPage = "/TestRuns";
+//        public const string ViewTestStatus_TestRunsPageName = "TestRuns.liquid";
         public const string ViewTestStatus_WorkflowsPage = "/workflows";
         public const string ViewTestStatus_WorkflowsPageName = "workflows.htm";
         public const string ViewTestStatus_TestLabsPage = "/testLabs";
@@ -123,5 +127,8 @@ namespace Tmx.Interfaces.Server
         public static string ViewTestResults_OverviewPage = "/" + ViewTestResults_OverviewPageName;
         public static string ViewTestResults_OverviewNewPage = "/overview";
         public const string ViewTestResults_OverviewNewPageName = "overview.liquid";
+        
+        public const string ViewTestWorkflowParameters_Root = "/workflows";
+        public const string ViewTestWorkflowParameters_DefaultPageName = "without_parameters.html";
     }
 }

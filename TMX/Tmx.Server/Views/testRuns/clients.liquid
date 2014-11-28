@@ -1,6 +1,6 @@
 ﻿<html>
-	<head>
-		<title>Test clients</title>
+    <head>
+        <title>Test clients</title>
         <style>
             table, th, td {
                 border: 1px solid black;
@@ -8,10 +8,10 @@
             }
         </style>
     </head>
-	<body>
+    <body>
         <a href="/">Home</a>
         <br>
-	    <br>
+        <br>
         <table border="1">
             <tr>
                 <th>Hostname</th>
@@ -23,7 +23,7 @@
                 <th>Detailed Status</th>
             </tr>
             {% for testClient in @Model.Clients -%}
-            <tr>
+                <tr>
                 <td>{{ testClient.Fqdn }}</td>
                 <td>{{ testClient.Username }}</td>
                 <td>{{ testClient.CustomString }}</td>
@@ -31,8 +31,8 @@
                 <td>{{ testClient.TaskId }}</td>
                 <td>{{ testClient.TaskName }}</td>
                 <td>{{ testClient.DetailedStatus }}</td>
-            </tr>
+                </tr>
             {% endfor -%}
         </table>
-	</body>
+    </body>
 </html>

@@ -57,7 +57,9 @@ namespace Tmx.Server.Tests.Modules
 			GIVEN_first_testWorkflow();
 			GIVEN_second_testWorkflow();
 			var secondTestWorkflow = WorkflowCollection.Workflows.Skip(1).First();
-			secondTestWorkflow.SetTestLab(new TestLab());
+			var secondTestLab = new TestLab();
+			TestLabCollection.TestLabs.Add(secondTestLab);
+			secondTestWorkflow.SetTestLab(secondTestLab);
 			
 			WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
 			WHEN_sending_testRun_as_json("NAC", TestRunStatuses.Running);

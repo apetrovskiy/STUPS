@@ -114,6 +114,11 @@ namespace Tmx.Server.Modules
             // currentTestRun.Status = TestRunStatuses.CompletedSuccessfully;
             currentTestRun.Status = TaskPool.TasksForClients.Any (tsk => tsk.TestRunId == currentTestRun.Id && tsk.TaskStatus == TestTaskStatuses.Interrupted) ? TestRunStatuses.Interrupted : TestRunStatuses.CompletedSuccessfully;
             currentTestRun.SetTimeTaken();
+            
+            // 20141128
+            if (!TestRunQueue.TestRuns.Any(testRun => testRun.TestLabId == currentTestRun.TestLabId && testRun.Id != currentTestRun.Id))
+                TestLabCollection.TestLabs.First(testLab => testLab.Id == currentTestRun.TestLabId).Status = TestLabStatuses.Free;
+            
             activateNextInRowTestRun();
         }
         

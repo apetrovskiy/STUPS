@@ -205,7 +205,9 @@
     <None Include="Views\testRuns\TestRuns.liquid">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Workflows\without_parameters.html" />
+    <None Include="Workflows\without_parameters.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">

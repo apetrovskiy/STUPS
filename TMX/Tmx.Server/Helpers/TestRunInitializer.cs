@@ -23,8 +23,8 @@ namespace Tmx.Server
     {
         public ITestRun CreateTestRun(ITestRunCommand testRunCommand, DynamicDictionary formData)
         {
-			if (string.IsNullOrEmpty(testRunCommand.Name))
-				testRunCommand.Name = testRunCommand.WorkflowName + " " + DateTime.Now;
+            if (string.IsNullOrEmpty(testRunCommand.Name))
+                testRunCommand.Name = testRunCommand.WorkflowName + " " + DateTime.Now;
             var testRun = new TestRun { Name = testRunCommand.Name, Status = testRunCommand.Status };
             foreach (var key in formData) {
                 testRun.Data.AddOrUpdateDataItem(
@@ -43,6 +43,8 @@ namespace Tmx.Server
         void setWorkflow(ITestRunCommand testRunCommand, TestRun testRun)
         {
             (testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testRunCommand.WorkflowName));
+            // 20141128
+            TestLabCollection.TestLabs.First(testLab => testLab.Id == testRun.TestLabId).Status = TestLabStatuses.Busy;
         }
         
         void setStartUpParameters(ITestRun testRun)

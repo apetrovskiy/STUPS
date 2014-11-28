@@ -129,6 +129,7 @@ namespace Tmx.Interfaces.Server
         public const string ViewTestResults_OverviewNewPageName = "overview.liquid";
         
         public const string ViewTestWorkflowParameters_Root = "/workflows";
+        public const string ViewTestWorkflowParameters_DefaultPage = "without_parameters";
         public const string ViewTestWorkflowParameters_DefaultPageName = "without_parameters.html";
     }
 }

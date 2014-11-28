@@ -1,6 +1,6 @@
 ﻿<html>
-	<head>
-		<title>Test labs list</title>
+    <head>
+        <title>Test labs list</title>
         <style>
             table, th, td {
                 border: 1px solid black;
@@ -8,19 +8,23 @@
             }
         </style>
     </head>
-	<body>
+    <body>
         <a href="/">Home</a>
         <br>
-	    <br>
+        <br>
         <table border="1">
             <tr>
                 <th>Name</th>
+                <th>Description</th>
+                <th>Status</th>
             </tr>
             {% for testLab in @Model.TestLabs -%}
-            <tr>
+                <tr>
                 <td>{{ testLab.Name }}</td>
-            </tr>
+                <td>{{ testLab.Description }}</td>
+                <td>{{ testLab.Status }}</td>
+                </tr>
             {% endfor -%}
         </table>
-	</body>
+    </body>
 </html>

@@ -15,17 +15,17 @@ namespace Tmx.Core.Types.Remoting
 	/// <summary>
 	/// Description of TestLab.
 	/// </summary>
-	public class TestLab : ITestLab
-	{
-	    public TestLab()
-	    {
-	        Id = Guid.NewGuid();
-	        Status = TestLabStatuses.Free;
-	    }
-	    
-		public Guid Id { get; set; }
-		public string Name { get; set; }
-		public string Description { get; set; }
-		public TestLabStatuses Status { get; set; }
-	}
+    public class TestLab : ITestLab
+    {
+        public TestLab()
+        {
+            Id = Guid.NewGuid();
+            Status = TestLabStatuses.Free;
+        }
+        
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public TestLabStatuses Status { get; set; }
+    }
 }

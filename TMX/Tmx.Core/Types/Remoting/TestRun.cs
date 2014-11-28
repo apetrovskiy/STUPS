@@ -48,22 +48,22 @@ namespace Tmx.Core.Types.Remoting
             get { return _workflow.TestLabId; }
         }
         
-		public TestRunStatuses Status { get; set; }
-		public TestRunStartTypes StartType { get; set; }
-		public Guid WorkflowId
-		{
-		    get { return _workflow.Id; }
-		}
-		
-		internal void SetWorkflow(ITestWorkflow testWorkflow)
-		{
-		    _workflow = testWorkflow;
-		}
-		
-		public DateTime CreatedTime { get; set; }
-		public DateTime StartTime { get; set; }
-		public TimeSpan TimeTaken { get; set; }
-		
+        public TestRunStatuses Status { get; set; }
+        public TestRunStartTypes StartType { get; set; }
+        public Guid WorkflowId
+        {
+            get { return _workflow.Id; }
+        }
+        
+        internal void SetWorkflow(ITestWorkflow testWorkflow)
+        {
+            _workflow = testWorkflow;
+        }
+        
+        public DateTime CreatedTime { get; set; }
+        public DateTime StartTime { get; set; }
+        public TimeSpan TimeTaken { get; set; }
+
 //		// 20141126
 //        string GetTestLabName()
 //        {

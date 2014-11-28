@@ -1,6 +1,6 @@
 ﻿<html>
-	<head>
-		<title>New test run</title>
+    <head>
+        <title>New test run</title>
         <script>
             // http://www.dyn-web.com/tutorials/iframes/height/
             function getDocHeight(doc) {
@@ -23,11 +23,11 @@
                 ifrm.style.visibility = 'visible';
             }
         </script>
-	</head>
-	<body>
+    </head>
+    <body>
         <a href="/">Home</a>
         <br>
-	    <br>
+        <br>
         
         <form method="POST">
            <label for="workflows">Select test workflow</label><br>
@@ -41,5 +41,5 @@
         
         <h3>Test parameters</h3>
         <iframe id="t_id" src="{{ @Model.Path }}.html" name="t_name" seamless width="100%" onload="setIframeHeight(this.id)" scrolling=auto></iframe>
-	</body>
+    </body>
 </html>

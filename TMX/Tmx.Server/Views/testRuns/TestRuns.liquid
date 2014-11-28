@@ -1,6 +1,6 @@
 ﻿<html>
-	<head>
-		<title>Test runs queue</title>
+    <head>
+        <title>Test runs queue</title>
         <style>
             table, th, td {
                 border: 1px solid black;
@@ -23,10 +23,10 @@
         </script>
         -->
     </head>
-	<body>
+    <body>
         <a href="/">Home</a>
         <br>
-	    <br>
+        <br>
         <table border="1">
             <tr>
                 <th>Name</th>
@@ -44,7 +44,6 @@
             {% for testRun in @Model.TestRuns -%}
             <tr>
                 <td>{{ testRun.Name }}</td>
-                <!-- <td>{{ @Model.TestLabs.First(testLab => testLab.Id == testRun.TestLabId).Name }}</td> -->
                 <td>{{ testRun.GetTestLabName() }}</td>
                 <td>{{ testRun.StartTime }}</td>
                 <td>{{ testRun.TimeTaken }}</td>
@@ -62,5 +61,5 @@
             </tr>
             {% endfor -%}
         </table>
-	</body>
+    </body>
 </html>

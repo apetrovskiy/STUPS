@@ -26,28 +26,32 @@ namespace Tmx.Server.Modules
         public ViewsTestRunsModule() : base(UrlList.ViewTestRuns_Root)
         {
             Get[UrlList.ViewTestRuns_NewTestRunPage] = _ => {
-                dynamic data = new ExpandoObject();
-                data.Workflows = WorkflowCollection.Workflows ?? new List<ITestWorkflow>();
-                data.TestLabs = TestLabCollection.TestLabs ?? new List<ITestLab>();
-                data.Path = UrlList.ViewTestWorkflowParameters_Root + "/" + UrlList.ViewTestWorkflowParameters_DefaultPageName;
-                data.WorkflowName = string.Empty;
+//                dynamic data = new ExpandoObject();
+//                data.Workflows = WorkflowCollection.Workflows ?? new List<ITestWorkflow>();
+//                data.TestLabs = TestLabCollection.TestLabs ?? new List<ITestLab>();
+//                data.Path = UrlList.ViewTestWorkflowParameters_Root + "/" + UrlList.ViewTestWorkflowParameters_DefaultPage;
+//                data.WorkflowName = string.Empty;
+                var data = createNewTestRunExpandoObject(UrlList.ViewTestWorkflowParameters_Root + "/" + UrlList.ViewTestWorkflowParameters_DefaultPage, string.Empty);
                 return View[UrlList.ViewTestRuns_NewTestRunPageName, data];
             };
             
             Post[UrlList.ViewTestRuns_NewTestRunPage] = _ => {
-                dynamic data = new ExpandoObject();
-                data.Workflows = WorkflowCollection.Workflows ?? new List<ITestWorkflow>();
-                data.TestLabs = TestLabCollection.TestLabs ?? new List<ITestLab>();
+//                dynamic data = new ExpandoObject();
+//                data.Workflows = WorkflowCollection.Workflows ?? new List<ITestWorkflow>();
+//                data.TestLabs = TestLabCollection.TestLabs ?? new List<ITestLab>();
+//                string workflowName = Request.Form.workflow_name;
+//                data.Path = "/workflows/" + WorkflowCollection.Workflows.FirstOrDefault(wfl => wfl.Name == workflowName).ParametersPageName;
+//                data.WorkflowName = workflowName;
                 string workflowName = Request.Form.workflow_name;
-                data.Path = "/workflows/" + WorkflowCollection.Workflows.FirstOrDefault(wfl => wfl.Name == workflowName).ParametersPageName;
-                data.WorkflowName = workflowName;
+                var data = createNewTestRunExpandoObject("/workflows/" + WorkflowCollection.Workflows.FirstOrDefault(wfl => wfl.Name == workflowName).ParametersPageName, workflowName);
                 return View[UrlList.ViewTestRuns_NewTestRunPageName, data];
             };
             
             Get[UrlList.ViewTestRuns_TestRunsPage] = parameters => {
-                dynamic data = new ExpandoObject();
-                data.TestRuns = TestRunQueue.TestRuns ?? new List<ITestRun>();
-                data.TestLabs = TestLabCollection.TestLabs ?? new List<ITestLab>();
+//                dynamic data = new ExpandoObject();
+//                data.TestRuns = TestRunQueue.TestRuns ?? new List<ITestRun>();
+//                data.TestLabs = TestLabCollection.TestLabs ?? new List<ITestLab>();
+                var data = createTestRunExpandoObject();
                 return View[UrlList.ViewTestRuns_TestRunsPageName, data];
             };
             
@@ -74,6 +78,24 @@ namespace Tmx.Server.Modules
                 data.TestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == parameters.id);
                 return View[UrlList.ViewTestRuns_ResultsPageName, data];
             };
+        }
+
+        dynamic createNewTestRunExpandoObject(string path, string workflowName)
+        {
+            dynamic data = new ExpandoObject();
+            data.Workflows = WorkflowCollection.Workflows ?? new List<ITestWorkflow>();
+            data.TestLabs = TestLabCollection.TestLabs ?? new List<ITestLab>();
+            data.Path = path;
+            data.WorkflowName = workflowName;
+            return data;
+        }
+        
+        dynamic createTestRunExpandoObject()
+        {
+            dynamic data = new ExpandoObject();
+            data.TestRuns = TestRunQueue.TestRuns ?? new List<ITestRun>();
+            data.TestLabs = TestLabCollection.TestLabs ?? new List<ITestLab>();
+            return data;
         }
     }
 }

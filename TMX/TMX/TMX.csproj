@@ -321,7 +321,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provider\TMXProvider.cs" />
     <Compile Include="SQLiteData\SQLiteData.cs" />
-    <Compile Include="TestData\TestData.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

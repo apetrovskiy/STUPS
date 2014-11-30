@@ -60,13 +60,13 @@ namespace Tmx.Interfaces
         public virtual string ScriptName { get; protected internal set; }
         public virtual void SetScriptName(string scriptName)
         {
-			ScriptName = scriptName;
+            ScriptName = scriptName;
         }
         [XmlAttribute]
         public virtual int LineNumber { get; protected internal set; }
         public virtual void SetLineNumber(int lineNumber)
         {
-			LineNumber = lineNumber;
+            LineNumber = lineNumber;
         }
         [XmlAttribute]
         public virtual int Position { get; protected internal set; }
@@ -95,20 +95,20 @@ namespace Tmx.Interfaces
         { 
             get { return _enStatus; }
             set{
-				_enStatus = value;
-
+                _enStatus = value;
+                
                 switch (value) {
                     case TestResultStatuses.Passed:
-						status = TestData.TestStatePassed;
+                        status = TestData.TestStatePassed;
                         break;
                     case TestResultStatuses.Failed:
-						status = TestData.TestStateFailed;
+                        status = TestData.TestStateFailed;
                         break;
                     case TestResultStatuses.NotTested:
-						status = TestData.TestStateNotTested;
+                        status = TestData.TestStateNotTested;
                         break;
                     case TestResultStatuses.KnownIssue:
-						status = TestData.TestStateKnownIssue;
+                        status = TestData.TestStateKnownIssue;
                         break;
                     default:
                         throw new Exception("Invalid value for TestResultStatuses");
@@ -120,7 +120,7 @@ namespace Tmx.Interfaces
         public virtual double TimeSpent { get; protected internal set; }
         public virtual void SetTimeSpent(double timeSpent)
         {
-			TimeSpent = timeSpent;
+            TimeSpent = timeSpent;
         }
         
         [XmlAttribute]

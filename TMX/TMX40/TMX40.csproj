@@ -593,9 +593,6 @@
     <Compile Include="..\TMX\SQLiteData\SQLiteData.cs">
       <Link>SQLiteData\SQLiteData.cs</Link>
     </Compile>
-    <Compile Include="..\TMX\TestData\TestData.cs">
-      <Link>TestData\TestData.cs</Link>
-    </Compile>
     <Compile Include="Commands\TestServer\AddTmxTestCommonDataCommand.cs" />
     <Compile Include="Commands\TestServer\ImportTmxTestWorkflowCommand.cs" />
     <Compile Include="Commands\TestServer\StartTmxServerCommand.cs" />

@@ -829,22 +829,15 @@ namespace Tmx
         /// </summary>
         /// <param name="cmdlet"></param>
         /// <returns></returns>
-        // 20140720
-        // public static IOrderedEnumerable<TestResult> SearchForTestResults(SearchCmdletBase cmdlet)
         public static IOrderedEnumerable<ITestResult> SearchForTestResults(ISearchCmdletBaseDataObject dataObject)
         {
-            // 20140720
-            // IOrderedEnumerable<TestResult> testResults = null;
             IOrderedEnumerable<ITestResult> testResults = null;
 
             // Filtering results
             
             // default result
-            // 20140720
-            // Func<TestResult, bool> query = testResult => true;
             Func<ITestResult, bool> query = testResult => true;
             
-            // 20140722
             dataObject.FilterAll = false;
             
 			if (!string.IsNullOrEmpty(dataObject.FilterNameContains))
@@ -950,214 +943,12 @@ namespace Tmx
             return testResults;
         }
         
-        // 20140720
-        // public static void SearchForTestResultsPS(SearchCmdletBase cmdlet)
-        // public static void SearchForTestResultsPS(ISearchCmdletBaseDataObject cmdlet)
         public static IOrderedEnumerable<ITestResult> SearchForTestResultsPS(ISearchCmdletBaseDataObject dataObject)
         {
             var testResults = SearchForTestResults(dataObject);
 			return testResults.Any() ? testResults : null;
         }
-        // 20141124
-        // deprecated
-//        internal static XAttribute CreateXAttribute(string name, object valueObject)
-//        {
-//            XAttribute result = null;
-//            
-//            if (null == valueObject)
-//                return null;
-//            
-//            result = new XAttribute(name, valueObject);
-//            
-//            return result;
-//        }
-//        
-//        internal static XElement CreateXElement(string name, params object[] content)
-//        {
-//            XElement result = null;
-//            
-//			if (null == content[0])
-//				return null;
-//            
-//            result = new XElement(name, content);
-//            
-//            return result;
-//        }
         #endregion Search
-        
-//        #region Test settings
-//        public static void ExportTestSettings(
-//            // 20140720
-//            // SettingsCmdletBase cmdlet,
-//            ISettingsCmdletBaseDataObject cmdlet,
-//            string path,
-//            string[] variableNames)
-//        {
-//            try {
-//                var rootElement = new XElement("variables");
-//                
-//                foreach (string variableName in variableNames) {
-//                    PSVariable variable = 
-//                        cmdlet.SessionState.PSVariable.Get(variableName);
-//                    try {
-//                        if (string.IsNullOrEmpty(variable.Name)) continue;
-//                        // if (null != variable.Name && string.Empty != variable.Name) {
-//                        var variableElement =
-//                            new XElement("variable",
-//                                new XAttribute("name", variable.Name),
-//                                new XAttribute("value", variable.Value));
-//                        rootElement.Add(variableElement);
-//
-//                        /*
-//                        if (!string.IsNullOrEmpty(variable.Name)) {
-//                        // if (null != variable.Name && string.Empty != variable.Name) {
-//                            XElement variableElement =
-//                                new XElement("variable",
-//                                             new XAttribute("name", variable.Name),
-//                                             new XAttribute("value", variable.Value));
-//                            rootElement.Add(variableElement);
-//                        }
-//                        */
-//                    }
-//                    catch (Exception eVariable) {
-//                        // 20140720
-////                        cmdlet.WriteError(
-////                            cmdlet,
-////                            "Unable to export variable '" +
-////                            variableName +
-////                            "'.",
-////                            "FailedToExportVariable",
-////                            ErrorCategory.InvalidArgument,
-////                            false);
-//                        throw new Exception(
-//                            "Unable to export variable '" +
-//                            variableName +
-//                            "'.");
-//                    }
-//                }
-//                
-//                var document = new XDocument();
-//                document.Add(rootElement);
-//                document.Save(path);
-//            }
-//            catch (Exception eCreateDocument) {
-//                // 20140720
-////                cmdlet.WriteError(
-////                    cmdlet,
-////                    "Unable to save XML report to the file '" +
-////                    path +
-////                    "'. " + 
-////                    eCreateDocument.Message,
-////                    "FailedToSaveReport",
-////                    ErrorCategory.InvalidOperation,
-////                    true);
-//                throw new Exception(
-//                    "Unable to save XML report to the file '" +
-//                    path +
-//                    "'. " + 
-//                    eCreateDocument.Message);
-//            }
-//        }
-//        
-//        public static void ImportTestSettings(
-//            // 20140720
-//            // SettingsCmdletBase cmdlet,
-//            ISettingsCmdletBaseDataObject cmdlet,
-//            string path,
-//            string[] variableNames)
-//        {
-//            XElement wholeXML =
-//                XElement.Load(path);
-//            
-//            // default result
-//            Func<IEnumerable<string>, XElement, bool> query = (variableNamesCollection, variableElement) => true;
-//            
-////            cmdlet.WriteVerbose(cmdlet, "checking the VariableName list");
-//            if (null != variableNames && variableNames.Any()) {
-////                cmdlet.WriteVerbose(cmdlet, "the VariableName list is not empty");
-//                query = (variableNamesCollection, variableElement) => variableNamesCollection.Contains(variableElement.Attribute((XName)"name").Value);
-//            }
-//            
-////            cmdlet.WriteVerbose(cmdlet, "getting the variables collection");
-//            var variablesCollection = 
-//                from variableElement in wholeXML.Elements()
-//                where query(((IEnumerable<string>)variableNames), variableElement)
-//                    select variableElement;
-//            
-////            cmdlet.WriteVerbose(cmdlet, "collection created");
-//            
-//            if (null == variablesCollection || !variablesCollection.Any()) {
-////                cmdlet.WriteVerbose(cmdlet, "there are no variables to import");
-//                return;
-//            }
-//            
-//            TmxHelper.ImportVariables(cmdlet, variablesCollection);
-//        }
-//        
-//        public static bool ImportVariables(
-//            // 20140720
-//            // SettingsCmdletBase cmdlet,
-//            ISettingsCmdletBaseDataObject cmdlet,
-//            IEnumerable<XElement> variablesCollection)
-//        {
-//            bool result = false;
-//            
-//            foreach (XElement element in variablesCollection) {
-//                
-//                string variableName = string.Empty;
-//                
-//                try {
-//                
-//                    variableName =
-//                            element.Attribute((XName)"name").Value;
-//                    
-////                    cmdlet.WriteVerbose(cmdlet, "importing the '" + variableName + "' variable");
-//                    
-//                    string variableValue =
-//                        string.Empty;
-//                    try {
-//                        variableValue =
-//                            element.Attribute((XName)"value").Value;
-//                    }
-//                    catch {
-//                        // nothing to do
-//                    }
-//                        
-//                    //ScopedItemOptions.AllScope
-//                    //ScopedItemOptions.Constant
-//                    //ScopedItemOptions.None
-//                    //ScopedItemOptions.Private
-//                    //ScopedItemOptions.ReadOnly
-//                    //ScopedItemOptions.Unspecified
-//                
-//                    var variable = 
-//                        new PSVariable(
-//                            variableName,
-//                            variableValue);
-//                    cmdlet.SessionState.PSVariable.Set(variable);
-//                }
-//                catch (Exception eLoadingVariable) {
-//                    // 20140720
-////                    cmdlet.WriteError(
-////                        cmdlet,
-////                        "Unable to load variable '" +
-////                        variableName +
-////                        "'. " +
-////                        eLoadingVariable.Message,
-////                        "FailedToLoadVariable",
-////                        ErrorCategory.InvalidData,
-////                        false);
-//                    throw new Exception(
-//                        "Unable to load variable '" +
-//                        variableName +
-//                        "'. " +
-//                        eLoadingVariable.Message);
-//                }
-//            }
-//
-//            return result;
-//        }
-//        #endregion Test settings
         
         public static void ExportResultsToJUnitXML(ISearchCmdletBaseDataObject cmdlet, string path)
         {
@@ -1165,14 +956,6 @@ namespace Tmx
 
                 var gathered = new GatherTestResultsCollections();
                 gathered.GatherCollections(cmdlet);
-                
-                // 20141124
-//                var suitesElement = 
-//                    TmxHelper.CreateSuitesXElementWithParameters(
-//                        gathered.TestSuites,
-//                        gathered.TestScenarios,
-//                        gathered.TestResults,
-//                        (new XMLElementsJUnitStruct()));
                 
                 var testResultsExporter = new TestResultsExporter();
                 var suitesElement = testResultsExporter.CreateSuitesXElementWithParameters(
@@ -1207,35 +990,23 @@ namespace Tmx
         public static string GetCurrentTestSuiteStatus(IOpenSuiteCmdletBaseDataObject cmdlet, bool skipAutomatic)
         {
             if (null == TestData.CurrentTestSuite) return string.Empty;
-            // 20141107
-            // TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
             var testStatistics = new TestStatistics();
             testStatistics.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
             return TestData.CurrentTestSuite.Status;
         }
         
-        // 20141114
-        // public static string GetTestSuiteStatusByName(string name, string testPlatformId, bool skipAutomatic)
         public static string GetTestSuiteStatusByName(string name, Guid testPlatformId, bool skipAutomatic)
         {
             TmxHelper.OpenTestSuite(
                 name,
                 string.Empty,
                 testPlatformId);
-            // 20140720
-            // if (null == TestData.CurrentTestSuite) return;
             if (null == TestData.CurrentTestSuite) return string.Empty;
-            // 20141107
-            // TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
             var testStatistics = new TestStatistics();
             testStatistics.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
-            // 20140720
-            // cmdlet.WriteObject(cmdlet, TestData.CurrentTestSuite.Status);
             return TestData.CurrentTestSuite.Status;
         }
         
-        // 20141114
-        // public static string GetTestSuiteStatusById(string id, string testPlatformId, bool skipAutomatic)
         public static string GetTestSuiteStatusById(string id, Guid testPlatformId, bool skipAutomatic)
         {
             TmxHelper.OpenTestSuite(
@@ -1243,8 +1014,6 @@ namespace Tmx
                 id,
                 testPlatformId);
             if (null == TestData.CurrentTestSuite) return string.Empty;
-            // 20141107
-            // TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
             var testStatistics = new TestStatistics();
             testStatistics.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
             return TestData.CurrentTestSuite.Status;
@@ -1253,8 +1022,6 @@ namespace Tmx
         public static string GetCurrentTestScenarioStatus(IOpenScenarioCmdletBaseDataObject cmdlet, bool skipAutomatic)
         {
             if (null == TestData.CurrentTestScenario) return string.Empty;
-            // 20141107
-            // TestData.RefreshScenarioStatistics(TestData.CurrentTestScenario, skipAutomatic);
             var testStatistics = new TestStatistics();
             testStatistics.RefreshScenarioStatistics(TestData.CurrentTestScenario, skipAutomatic);
             return TestData.CurrentTestScenario.Status;
@@ -1264,8 +1031,6 @@ namespace Tmx
         {
             TmxHelper.OpenTestScenario(dataObject);
             if (null == TestData.CurrentTestScenario) return string.Empty;
-            // 20141107
-            // TestData.RefreshScenarioStatistics(TestData.CurrentTestScenario, skipAutomatic);
             var testStatistics = new TestStatistics();
             testStatistics.RefreshScenarioStatistics(TestData.CurrentTestScenario, skipAutomatic);
             return TestData.CurrentTestScenario.Status;
@@ -1276,23 +1041,7 @@ namespace Tmx
             if (null != TestData.CurrentTestResult) {
 
                 TestData.CurrentTestResult.Name = !string.IsNullOrEmpty(cmdlet.TestResultName) ? cmdlet.TestResultName : "this test result is not provided with name";
-
-                /*
-                if (!string.IsNullOrEmpty(cmdlet.TestResultName)) {
-                // if (null != cmdlet.TestResultName && 0 < cmdlet.TestResultName.Length) {
-
-                    TestData.CurrentTestResult.Name = cmdlet.TestResultName;
-                } else {
-                    
-                    // 20130819
-                    //TestData.CurrentTestResult.Name = "this test result was preset";
-                    // this is a potential bug
-                    
-                    // 20130918
-                    TestData.CurrentTestResult.Name = "this test result is not provided with name";
-                }
-                */
-
+                
 				if (!string.IsNullOrEmpty(cmdlet.Id))
 					TestData.CurrentTestResult.Id = cmdlet.Id;
 				else
@@ -1306,9 +1055,7 @@ namespace Tmx
 				if (cmdlet.KnownIssue)
 					TestData.CurrentTestResult.enStatus = TestResultStatuses.KnownIssue;
                 
-				// 20141022
                 TestData.CurrentTestResult.SetOrigin(cmdlet.TestOrigin);
-                // TestData.CurrentTestResult.Origin = cmdlet.TestOrigin;
 
             } else {
 
@@ -1470,461 +1217,6 @@ namespace Tmx
                 // cmdlet.WriteObject(cmdlet, TestData.CurrentTestResult.ListDetailNames(cmdlet.TestResultStatus));
             }
         }
-		
-//        public static void ImportResultsFromXML(IImportExportCmdletBaseDataObject cmdlet, string path)
-//        {
-//            try {
-//                
-//                string pathToImportFile = cmdlet.Path;
-//                
-//                if (!System.IO.File.Exists(pathToImportFile)) {
-//                    throw new Exception(
-//                        "There is no such file '" +
-//                        cmdlet.Path +
-//                        "'.");
-//                }
-//                
-//                var doc = XDocument.Load(pathToImportFile);
-//                ImportTestResultsFromXdocumentAndStore(doc);
-//            }
-//            catch (Exception eImportDocument) {
-//                throw new Exception(
-//                    "Unable to load an XML report from the file '" +
-//                    path +
-//                    "'. " + 
-////                    eImportDocument.Message +
-////                    "\r\nsuite='" + 
-////                    lastTestSuiteName +
-////                    "', scenario='" +
-////                    lastTestScenarioName +
-////                    "', test result='" +
-////                    lastTestResultName +
-////                    "', detail='" +
-////                    lastTestResultDetailName +
-////                    "',");
-//                    eImportDocument.Message);
-//            }
-//        }
-//        
-//		public static void ImportTestResultsFromXdocumentAndStore(XDocument doc)
-//		{
-//			ITestSuite currentTestSuite = TestData.CurrentTestSuite;
-//			var currentTestScenario = TestData.CurrentTestScenario;
-//			var currentTestResult = TestData.CurrentTestResult;
-//			TestData.CurrentTestSuite = null;
-//			TestData.CurrentTestScenario = null;
-//			TestData.CurrentTestResult = null;
-//			
-//			// 20141031
-//			importTestResultsFromXdocumentAsCollection(doc);
-//			
-//			TestData.CurrentTestSuite = currentTestSuite;
-//			TestData.CurrentTestScenario = currentTestScenario;
-//			TestData.CurrentTestResult = currentTestResult;
-//		}
-//		
-//        static void importTestResultsFromXdocumentAsCollection(XDocument doc)
-//        {
-//            var df = doc.Root.Name.Namespace;
-//            var suites = from suite in doc.Descendants("suite")
-//                                  where suite.Attribute("name").Value != TestData.Autogenerated
-//                                  select suite;
-//            importTestSuites(suites);
-//        }
-//        
-//		static void importTestSuites(IEnumerable<XElement> suites)
-//		{
-//            string lastTestSuiteName = string.Empty;
-//            // 20141107
-//            var testStatistics = new TestStatistics();
-//            
-//			foreach (var singleSuite in suites) {
-//				lastTestSuiteName = singleSuite.Attribute("name").Value;
-//				string suiteDescription = string.Empty;
-//				try {
-//					suiteDescription = singleSuite.Attribute("description").Value;
-//				} catch {
-//				}
-//				var testSuite = TestData.GetTestSuite(singleSuite.Attribute("name").Value, singleSuite.Attribute("id").Value, singleSuite.Attribute("platformId").Value);
-//				TestData.CurrentTestSuite = testSuite;
-//				if (null == testSuite)
-//					TestData.AddTestSuite(singleSuite.Attribute("name").Value, singleSuite.Attribute("id").Value, singleSuite.Attribute("platformId").Value, suiteDescription, null, null);
-//                var scenarios = from scenario in singleSuite.Descendants("scenario")
-//                                where scenario.Attribute("name").Value != TestData.Autogenerated
-//                                select scenario;
-//				importTestScenarios(scenarios);
-//				// 20141107
-//				// TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite, true);
-//				testStatistics.RefreshSuiteStatistics(TestData.CurrentTestSuite, true);
-//			}
-//		}
-//
-//		static void importTestScenarios(IEnumerable<XElement> scenarios)
-//		{
-//            string lastTestScenarioName = string.Empty;
-//            
-//			foreach (var singleScenario in scenarios) {
-//				lastTestScenarioName = singleScenario.Attribute("name").Value;
-//				string scenarioDescription = string.Empty;
-//				try {
-//					scenarioDescription = singleScenario.Attribute("description").Value;
-//				} catch {
-//				}
-//				var testScenario = TestData.GetTestScenario(TestData.CurrentTestSuite, singleScenario.Attribute("name").Value, singleScenario.Attribute("id").Value, TestData.CurrentTestSuite.Name, TestData.CurrentTestSuite.Id, TestData.CurrentTestSuite.PlatformId);
-//				TestData.CurrentTestScenario = testScenario;
-//				if (null == testScenario) {
-//					TestData.AddTestScenario(TestData.CurrentTestSuite, singleScenario.Attribute("name").Value, singleScenario.Attribute("id").Value, scenarioDescription, string.Empty, string.Empty, singleScenario.Attribute("platformId").Value, null, null);
-//				}
-//                var testResults = from testResult in singleScenario.Descendants("testResult")
-//                                  //where testResult.Attribute("name").Value != "autoclosed"
-//				select testResult;
-//				importTestResults(testResults);
-//			}
-//		}
-//
-//		static void importTestResults(IEnumerable<XElement> testResults)
-//		{
-//            string lastTestResultName = string.Empty;
-//            
-//			foreach (var singleTestResult in testResults) {
-//				lastTestResultName = singleTestResult.Attribute("name").Value;
-//				bool passedValue = false;
-//				bool knownIssueValue = false;
-//				try {
-//					if ("PASSED" == singleTestResult.Attribute("status").Value) {
-//						passedValue = true;
-//					}
-//					if ("KNOWN ISSUE" == singleTestResult.Attribute("status").Value) {
-//						knownIssueValue = true;
-//					}
-//				} catch {
-//				}
-//				TestResultOrigins origin = TestResultOrigins.Logical;
-//				try {
-//					if ("TECHNICAL" == singleTestResult.Attribute("origin").Value.ToUpper()) {
-//						origin = TestResultOrigins.Technical;
-//					}
-//					if ("AUTOMATIC" == singleTestResult.Attribute("origin").Value.ToUpper()) {
-//						origin = TestResultOrigins.Automatic;
-//					}
-//				} catch {
-//				}
-//				if ((TestResultOrigins.Technical == origin) && //(!knownIssueValue &&
-//				    passedValue) {
-//					continue;
-//				}
-//				string testResultDescription = string.Empty;
-//				try {
-//					testResultDescription = singleTestResult.Attribute("description").Value;
-//				} catch {
-//				}
-//				
-//				TestData.AddTestResult(singleTestResult.Attribute("name").Value, singleTestResult.Attribute("id").Value, passedValue, knownIssueValue, false, null, null, testResultDescription, origin, true);
-//				var currentlyAddedTestResult = TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1];
-//				try {
-//					currentlyAddedTestResult.PlatformId = singleTestResult.Attribute("platformId").Value;
-//				} catch (Exception) {
-//					//                                cmdlet.WriteVerbose(cmdlet, "adding test platform to the current test result");
-//					//                                cmdlet.WriteVerbose(cmdlet, eTestResultPlatform.Message);
-//				}
-//				try {
-//					// lastTestResultDetailName = string.Empty;
-//                    var testResultDetails = from testResultDetail in singleTestResult.Descendants("detail")
-//                                            select testResultDetail;
-//					if (null == testResultDetails || !testResultDetails.Any())
-//						continue;
-//					importTestResultDetails(testResultDetails, currentlyAddedTestResult);
-//				} catch (Exception) {
-//					//                                cmdlet.WriteVerbose(cmdlet, eImportDetails);
-//				}
-//			}
-//		}
-//
-//		static void importTestResultDetails(IEnumerable<XElement> testResultDetails, ITestResult currentlyAddedTestResult)
-//		{
-//		    string lastTestResultDetailName = string.Empty;
-//		    
-//			foreach (var singleDetail in testResultDetails) {
-//				lastTestResultDetailName = singleDetail.Attribute("name").Value;
-//				var detail = new TestResultDetail {
-//					TextDetail = singleDetail.Attribute("name").Value
-//				};
-//				string detailStatus = singleDetail.Attribute("status").Value;
-//				switch (detailStatus.ToUpper()) {
-//					case "FAILED":
-//						detail.DetailStatus = TestResultStatuses.Failed;
-//						break;
-//					case "PASSED":
-//						detail.DetailStatus = TestResultStatuses.Passed;
-//						break;
-//					case "KNOWNISSUE":
-//						detail.DetailStatus = TestResultStatuses.KnownIssue;
-//						break;
-//					case "NOTTESTED":
-//						detail.DetailStatus = TestResultStatuses.NotTested;
-//						break;
-//					default:
-//						detail.DetailStatus = TestResultStatuses.NotTested;
-//						break;
-//				}
-//				currentlyAddedTestResult.Details.Add(detail);
-//			}
-//		}
-
-        /*
-        public static void ImportResultsFromXML(IImportExportCmdletBaseDataObject cmdlet, string path)
-        {
-            
-            string lastTestSuiteName = string.Empty;
-            string lastTestScenarioName = string.Empty;
-            string lastTestResultName = string.Empty;
-            string lastTestResultDetailName = string.Empty;
-            
-            try {
-            
-                if (!System.IO.File.Exists(cmdlet.Path)) {
-                    // 20140720
-//                    cmdlet.WriteError(
-//                        cmdlet,
-//                        "There is no such file '" +
-//                        cmdlet.Path +
-//                        "'.",
-//                        "NoSuchFile",
-//                        ErrorCategory.InvalidArgument,
-//                        true);
-                    throw new Exception(
-                        "There is no such file '" +
-                        cmdlet.Path +
-                        "'.");
-                }
-                
-                // 20140720
-                // TestSuite currentTestSuite = TestData.CurrentTestSuite;
-                // TestScenario currentTestScenario = TestData.CurrentTestScenario;
-                // ITestResult currentTestResult = TestData.CurrentTestResult;
-                var currentTestSuite = TestData.CurrentTestSuite;
-                var currentTestScenario = TestData.CurrentTestScenario;
-                var currentTestResult = TestData.CurrentTestResult;
-                
-				TestData.CurrentTestSuite = null;
-				TestData.CurrentTestScenario = null;
-				TestData.CurrentTestResult = null;
-                
-                var doc = XDocument.Load(cmdlet.Path);
-                var df = doc.Root.Name.Namespace;
-                var suites = from suite in doc.Descendants("suite")
-                	// 20140716
-                    // where suite.Attribute("name").Value != "autogenerated"
-                	where suite.Attribute("name").Value != TestData.Autogenerated
-                    select suite;
-                
-                foreach (var singleSuite in suites) {
-                    
-                    lastTestSuiteName = singleSuite.Attribute("name").Value;
-                    
-                    string suiteDescription = string.Empty;
-                    try {
-                        suiteDescription = singleSuite.Attribute("description").Value;
-                    }
-                    catch {}
-                    
-                    var testSuite =
-						TestData.GetTestSuite(
-                            singleSuite.Attribute("name").Value,
-                            singleSuite.Attribute("id").Value,
-                            singleSuite.Attribute("platformId").Value);
-					TestData.CurrentTestSuite = testSuite;
-                    
-                    if (null == testSuite) {
-						TestData.AddTestSuite(
-                            singleSuite.Attribute("name").Value,
-                            singleSuite.Attribute("id").Value,
-                            singleSuite.Attribute("platformId").Value,
-                            suiteDescription,
-                            null,
-                            null);
-                    }
-                    
-                    var scenarios = from scenario in singleSuite.Descendants("scenario")
-                    	// 20140716
-                        // where scenario.Attribute("name").Value != "autogenerated"
-                    	where scenario.Attribute("name").Value != TestData.Autogenerated
-                        select scenario;
-                    
-                    foreach (var singleScenario in scenarios) {
-                        
-                        lastTestScenarioName = singleScenario.Attribute("name").Value;
-                        
-                        string scenarioDescription = string.Empty;
-                        try {
-                            scenarioDescription = singleScenario.Attribute("description").Value;
-                        }
-                        catch {}
-                        
-                        var testScenario =
-							TestData.GetTestScenario(
-								TestData.CurrentTestSuite,
-                                singleScenario.Attribute("name").Value,
-                                singleScenario.Attribute("id").Value,
-								TestData.CurrentTestSuite.Name,
-								TestData.CurrentTestSuite.Id,
-								TestData.CurrentTestSuite.PlatformId);
-						TestData.CurrentTestScenario = testScenario;
-                        
-                        if (null == testScenario) {
-							TestData.AddTestScenario(
-								TestData.CurrentTestSuite,
-                                singleScenario.Attribute("name").Value,
-                                singleScenario.Attribute("id").Value,
-                                scenarioDescription,
-                                string.Empty,
-                                string.Empty,
-                                singleScenario.Attribute("platformId").Value,
-                                null,
-                                null);
-                        }
-                        
-                        var testResults = from testResult in singleScenario.Descendants("testResult")
-                            //where testResult.Attribute("name").Value != "autoclosed"
-                            select testResult;
-                        
-                        foreach (var singleTestResult in testResults) {
-                            
-                            lastTestResultName = singleTestResult.Attribute("name").Value;
-                            
-                            bool passedValue = false;
-                            bool knownIssueValue = false;
-                            try {
-                                if ("PASSED" == singleTestResult.Attribute("status").Value) {
-                                    passedValue = true;
-                                }
-                                if ("KNOWN ISSUE" == singleTestResult.Attribute("status").Value) {
-                                    knownIssueValue = true;
-                                }
-                            }
-                            catch {}
-                            
-                            TestResultOrigins origin = TestResultOrigins.Logical;
-                            try {
-                                if ("TECHNICAL" == singleTestResult.Attribute("origin").Value.ToUpper()) {
-                                    origin = TestResultOrigins.Technical;
-                                }
-                                if ("AUTOMATIC" == singleTestResult.Attribute("origin").Value.ToUpper()) {
-                                    origin = TestResultOrigins.Automatic;
-                                }
-                            }
-                            catch {}
-                            
-                            if ((TestResultOrigins.Technical == origin) &&
-                                //(!knownIssueValue &&
-                                 passedValue) {
-                                
-                                continue;
-                            }
-                            
-                            string testResultDescription = string.Empty;
-                            try {
-                                testResultDescription = singleTestResult.Attribute("description").Value;
-                            }
-                            catch {}
-                            
-							TestData.AddTestResult(
-                                singleTestResult.Attribute("name").Value,
-                                singleTestResult.Attribute("id").Value,
-                                passedValue,
-                                knownIssueValue,
-                                false,
-                                null,
-                                null,
-                                testResultDescription,
-                                origin,
-                                true);
-                            
-                            var currentlyAddedTestResult = TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1];
-                            
-                            try {
-                                currentlyAddedTestResult.PlatformId =
-                                    singleTestResult.Attribute("platformId").Value;
-                            }
-                            catch (Exception eTestResultPlatform) {
-//                                cmdlet.WriteVerbose(cmdlet, "adding test platform to the current test result");
-//                                cmdlet.WriteVerbose(cmdlet, eTestResultPlatform.Message);
-                            }
-                            
-                            try {
-                                lastTestResultDetailName = string.Empty;
-                                
-                                var testResultDetails = from testResultDetail in singleTestResult.Descendants("detail")
-                                    select testResultDetail;
-
-                                if (null == testResultDetails || !testResultDetails.Any()) continue;
-                                foreach (var singleDetail in testResultDetails) {
-                                        
-//                                    cmdlet.WriteVerbose(cmdlet, "importing test result detail '" + singleDetail.Attribute("name").Value + "', status = '" + singleDetail.Attribute("status").Value + "'");
-                                    lastTestResultDetailName = singleDetail.Attribute("name").Value;
-                                        
-                                    var detail = new TestResultDetail
-                                    {
-                                        TextDetail = singleDetail.Attribute("name").Value
-                                    };
-                                    // TestResultDetail detail = new TestResultDetail();
-                                    // detail.TextDetail = singleDetail.Attribute("name").Value;
-                                    string detailStatus = singleDetail.Attribute("status").Value;
-                                    switch (detailStatus.ToUpper()) {
-                                        case "FAILED":
-                                            detail.DetailStatus = TestResultStatuses.Failed;
-                                            break;
-                                        case "PASSED":
-                                            detail.DetailStatus = TestResultStatuses.Passed;
-                                            break;
-                                        case "KNOWNISSUE":
-                                            detail.DetailStatus = TestResultStatuses.KnownIssue;
-                                            break;
-                                        case "NOTTESTED":
-                                            detail.DetailStatus = TestResultStatuses.NotTested;
-                                            break;
-                                        default:
-                                            detail.DetailStatus = TestResultStatuses.NotTested;
-                                            break;
-                                    }
-                                    
-                                    currentlyAddedTestResult.Details.Add(detail);
-                                        
-                                }
-                            }
-                            catch (Exception eImportDetails) {
-//                                cmdlet.WriteVerbose(cmdlet, eImportDetails);
-                            }
-                        }
-                    }
-                    
-					TestData.RefreshSuiteStatistics(TestData.CurrentTestSuite, true);
-                }
-                
-				TestData.CurrentTestSuite = currentTestSuite;
-				TestData.CurrentTestScenario = currentTestScenario;
-                
-				TestData.CurrentTestResult = currentTestResult;
-                
-            }
-            catch (Exception eImportDocument) {
-                throw new Exception(
-                    "Unable to load an XML report from the file '" +
-                    path +
-                    "'. " + 
-                    eImportDocument.Message +
-                    "\r\nsuite='" + 
-                    lastTestSuiteName +
-                    "', scenario='" +
-                    lastTestScenarioName +
-                    "', test result='" +
-                    lastTestResultName +
-                    "', detail='" +
-                    lastTestResultDetailName +
-                    "',");
-            }
-        }
-        */
         
         public static void ImportResultsFromJUnitXML(ISearchCmdletBaseDataObject cmdlet, string path)
         {

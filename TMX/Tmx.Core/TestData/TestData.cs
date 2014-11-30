@@ -50,7 +50,6 @@ namespace Tmx
             AddDefaultPlatform();
         }
         
-        
         // ----------------- Properties --------------------------
         
         public static List<ITestSuite> TestSuites {get; internal set; }
@@ -226,8 +225,6 @@ namespace Tmx
         // ------------------ Methods ----------------------------
         public static void ResetData()
         {
-            // 20141014
-            // TestSuites.Clear();
             if (null != TestSuites) TestSuites.Clear();
 //            // 20141117
 //            if (null != TestPlatforms) TestPlatforms.Clear();
@@ -250,10 +247,8 @@ namespace Tmx
         
         public static void CleanData()
         {
-            // 20141014
             if (null != TestSuites) {
                 foreach (var suite in TestSuites) {
-                    // 20141014
                     if (null != suite.TestScenarios) {
                         foreach (var scenario in suite.TestScenarios) {
                             scenario.TestResults.Clear();
@@ -317,33 +312,20 @@ namespace Tmx
             }
 
             // setting test result's origin
-            if (generated) {
-                // 20141022
+            if (generated)
                 currentTestResult.SetOrigin(TestResultOrigins.Automatic);
-                // currentTestResult.Origin = TestResultOrigins.Automatic;
-            } else {
-                //currentTestResult.SetOrigin(TestResultOrigins.Logical);
-                // 20141022
+            else
                 currentTestResult.SetOrigin(origin);
-                // currentTestResult.Origin = origin;
-            }
 
             if (string.IsNullOrEmpty(currentTestResult.Id)) {
-            	
-//                if (closingTestResultId != null &&
-//                    closingTestResultId != string.Empty &&
-//                    closingTestResultId.Length > 0 &&
-//                    null != TestData.CurrentTestResult &&
-//                    closingTestResultId != TestData.CurrentTestResult.Id) {
+                
                 if (!string.IsNullOrEmpty(closingTestResultId) &&
                     ((null != TestData.CurrentTestResult &&
-                      closingTestResultId != TestData.CurrentTestResult.Id) ||
-                      null == TestData.CurrentTestResult)) {
-					
+                    closingTestResultId != TestData.CurrentTestResult.Id) ||
+                    null == TestData.CurrentTestResult))
                     currentTestResult.Id = closingTestResultId;
-                } else {
+                else
                     currentTestResult.Id = GetTestResultId();
-                }
             } else {
                 // there already was the Id
                 // nothing to do
@@ -368,8 +350,7 @@ namespace Tmx
                 if (null == currentTestResult.Error &&
                     TestResultStatuses.Failed != currentTestResult.enStatus &&
                     TestResultStatuses.KnownIssue != currentTestResult.enStatus) {
-                	
-                    //foreach (ITestResultDetail detail in currentTestResult.Details) {
+                    
                     foreach (ITestResultDetail detail in currentTestResult.Details) {
                         if (null == ((TestResultDetail)detail).ErrorDetail) {
                             noErrors = false;
@@ -377,7 +358,7 @@ namespace Tmx
                         }
                     }
                 }
-                //if (noErrors) {
+                
                 if (noErrors && null != passed) {
                     currentTestResult.enStatus = TestResultStatuses.Passed;
                 }
@@ -401,13 +382,8 @@ namespace Tmx
             TestData.CurrentTestResult = currentTestResult;
             
             try {
-                // 20141119
-                // TestData.CurrentTestResult.PlatformId = TestData.CurrentTestScenario.PlatformId;
                 TestData.CurrentTestResult.PlatformUniqueId = TestData.CurrentTestScenario.PlatformUniqueId;
-                // 20141121
                 CurrentTestResult.PlatformId = CurrentTestScenario.PlatformId;
-                    // 20130612
-                    //TestData.CurrentTestPlatform.Id;
             }
             catch {}
             
@@ -495,8 +471,6 @@ namespace Tmx
                 TestData.CurrentTestScenario.TestResults.Add(
                     new TestResult(
                        TestData.CurrentTestScenario.Id,
-                       // 20141122
-                       // TestData.CurrentTestScenario.SuiteId));
                        TestData.CurrentTestScenario.SuiteId) { SuiteUniqueId = CurrentTestScenario.SuiteUniqueId, ScenarioUniqueId = CurrentTestScenario.UniqueId });
                 TestData.CurrentTestResult = 
                     TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1];
@@ -518,20 +492,13 @@ namespace Tmx
         
         internal static void InitTestData()
         {
-            // 20141117
             if (AlreadyInitialized) return;
             
             TmxHelper.TestCaseStarted = DateTime.Now;
             
             if (null == TestData.TestSuites)
-                // 20140720
-                // TestData.TestSuites = new List<TestSuite>();
-                // 20141106
                 TestData.TestSuites = new List<ITestSuite>();
-                // TestData.TestSuites = new ListOfTestSuites();
             if (null == TestData.TestPlatforms)
-                // 20140720
-                // TestData.TestPlatforms = new List<TestPlatform>();
                 TestData.TestPlatforms = new List<ITestPlatform>();
             
             // check that at least one platform exists
@@ -555,12 +522,8 @@ namespace Tmx
             // check that at least one suite exists
             if (TestData.TestSuites.Count == 0)
                 TmxHelper.NewTestSuite(
-            		// 20140716
-                    // "autogenerated",
                     TestData.Autogenerated,
                     GetTestSuiteId(),
-                    // 20141114
-                    // TestData.CurrentTestPlatform.Id,
                     TestData.CurrentTestPlatform.UniqueId,
                     "This suite has been created automatically",
                     null,
@@ -570,7 +533,6 @@ namespace Tmx
             if (TestData.CurrentTestSuite.TestScenarios.Count == 0)
                 CreateAutogeneratedTestScenario();
             
-            // 20141117
             AlreadyInitialized = true;
         }
         
@@ -643,8 +605,7 @@ namespace Tmx
                     }
                 }
                 
-                TestData.CurrentTestSuite =
-                    TestData.TestSuites[TestData.TestSuites.Count - 1];
+                TestData.CurrentTestSuite = TestData.TestSuites[TestData.TestSuites.Count - 1];
             }
         }
         
@@ -679,74 +640,19 @@ namespace Tmx
             }
         }
         
-//        internal static TestStat RefreshScenarioStatistics(ITestScenario scenario, bool skipAutomatic)
-//        {
-//            var ts = new TestStat();
-//
-//            if (null != scenario.TestResults && 0 < scenario.TestResults.Count) {
-//                
-//                ts.All = scenario.TestResults.Count;
-//                foreach (var tr in scenario.TestResults) {
-//                    
-//                    if (skipAutomatic) {
-//                        if (TestResultOrigins.Automatic == tr.Origin) {
-//                            continue;
-//                        }
-//                    }
-//                    
-//                    if (tr.enStatus == TestResultStatuses.Passed ||
-//                        tr.enStatus == TestResultStatuses.KnownIssue) {
-//                        ts.Passed++;
-//                        if (tr.enStatus == TestResultStatuses.KnownIssue){
-//                            ts.PassedButWithBadSmell++;
-//                        }
-//                    }
-//                    if (tr.enStatus == TestResultStatuses.Failed) {
-//                        ts.Failed++;
-//                    }
-//                    ts.TimeSpent += tr.TimeSpent;
-//                }
-//            }
-//            ts.NotTested = 
-//                ts.All - 
-//                ts.Passed -
-//                ts.Failed;
-//            scenario.Statistics = ts;
-//            return ts;
-//        }
-//        
-//        internal static TestStat RefreshSuiteStatistics(ITestSuite suite, bool skipAutomatic)
-//        {
-//            var ts = new TestStat();
-//            foreach (var tsc in suite.TestScenarios) {
-//                
-//                //RefreshScenarioStatistics(tsc);
-//                RefreshScenarioStatistics(tsc, skipAutomatic);
-//                ts.All += tsc.Statistics.All;
-//                ts.Passed += tsc.Statistics.Passed;
-//                ts.Failed += tsc.Statistics.Failed;
-//                ts.NotTested += tsc.Statistics.NotTested;
-//                ts.TimeSpent += tsc.Statistics.TimeSpent;
-//                ts.PassedButWithBadSmell += tsc.Statistics.PassedButWithBadSmell;
-//            }
-//            suite.Statistics = ts;
-//            return ts;
-//        }
-        
         internal static void SetScenarioStatus(bool skipAutomatic)
         {
             if (null == TestData.CurrentTestScenario) {
                 TestData.InitCurrentTestScenario();
             }
-
+            
             int counterPassedResults = 0;
             int counterKnownIssueResults = 0;
             
             if (null != TestData.CurrentTestScenario &&
                 null != TestData.CurrentTestScenario.TestResults &&
                 0 < TestData.CurrentTestScenario.TestResults.Count) {
-                foreach (var testResult in TestData.CurrentTestScenario.TestResults) {
-
+                foreach (var testResult in TestData.CurrentTestScenario.TestResults)
                     switch (testResult.enStatus) {
                         case TestResultStatuses.Passed:
                             counterPassedResults++;
@@ -758,7 +664,7 @@ namespace Tmx
                         case TestResultStatuses.Failed:
                             TestData.CurrentTestScenario.enStatus = TestScenarioStatuses.Failed;
                             return;
-                            //break;
+                    //break;
                         case TestResultStatuses.NotTested:
                             
                             break;
@@ -772,13 +678,10 @@ namespace Tmx
                         default:
                             throw new Exception("Invalid value for TestResultStatuses");
                     }
-                }
                 if (0 == counterPassedResults && 0 < counterKnownIssueResults)
                     TestData.CurrentTestScenario.enStatus = TestScenarioStatuses.KnownIssue;
             
                 // set statistics
-                // 20141107
-                // RefreshScenarioStatistics(TestData.CurrentTestScenario, skipAutomatic);
                 var testStatistics = new TestStatistics();
                 testStatistics.RefreshScenarioStatistics(TestData.CurrentTestScenario, skipAutomatic);
             }
@@ -802,21 +705,16 @@ namespace Tmx
                     switch (scenario.enStatus) {
                         case TestScenarioStatuses.Passed:
                             counterPassedResults++;
-                            // 20131001
-                            //TestData.CurrentTestSuite.enStatus = TestSuiteStatuses.Passed;
                             if (TestSuiteStatuses.Failed != TestData.CurrentTestSuite.enStatus)
                                 TestData.CurrentTestSuite.enStatus = TestSuiteStatuses.Passed;
                             break;
                         case TestScenarioStatuses.Failed:
                             TestData.CurrentTestSuite.enStatus = TestSuiteStatuses.Failed;
                             return;
-                            //break;
                         case TestScenarioStatuses.NotTested:
                             break;
                         case TestScenarioStatuses.KnownIssue:
                             counterKnownIssueResults++;
-                            // 20131001
-                            //TestData.CurrentTestSuite.enStatus = TestSuiteStatuses.Passed;
                             if (TestSuiteStatuses.Failed != TestData.CurrentTestSuite.enStatus)
                                 TestData.CurrentTestSuite.enStatus = TestSuiteStatuses.Passed;
                             break;
@@ -832,8 +730,6 @@ namespace Tmx
                     TestData.CurrentTestSuite.enStatus = TestSuiteStatuses.KnownIssue;
                 
                 // set statistics
-                // 20141107
-                // RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
                 var testStatistics = new TestStatistics();
                 testStatistics.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
             }
@@ -864,7 +760,6 @@ namespace Tmx
             string result = string.Empty;            
             
             // read the last id used and generate a new one
-            // int testNumber = TestData.TestSuites.Count; // + 1;
             int testNumber = null != TestData.TestSuites ? TestData.TestSuites.Count : 1;
             bool noValidId = true;
             do {
@@ -896,35 +791,18 @@ namespace Tmx
                     bool noValidId = true;
 
                     do {
-                        foreach (var scenario in TestData.CurrentTestSuite.TestScenarios) {
-
-                            if (scenario.Id == scenarioNumber.ToString()) {
-
+                        foreach (var scenario in TestData.CurrentTestSuite.TestScenarios)
+                            if (scenario.Id == scenarioNumber.ToString())
                                 scenarioNumber++;
-                            }
-                        }
                         noValidId = false;
-                        
-                        if (0 == scenarioNumber) {
+                        if (0 == scenarioNumber)
                             scenarioNumber++;
-                        }
-                        
                         result = scenarioNumber.ToString();
                     } while (noValidId);
-                    
-                    
-                    
-                } else {
-
+                } else
                     result = scenarioNumber.ToString();
-                }
-                
-                
-            } else {
-
+            } else
                 result = scenarioNumber.ToString();
-            }
-            
             return result;
         }
         
@@ -944,32 +822,19 @@ namespace Tmx
                             TestData.CurrentTestScenario.TestResults.Count; // + 1;
                         bool noValidId = true;
                         do {
-                            foreach (var testResult in TestData.CurrentTestScenario.TestResults) {
-                                if (testResult.Id == testNumber.ToString()) {
+                            foreach (var testResult in TestData.CurrentTestScenario.TestResults)
+                                if (testResult.Id == testNumber.ToString())
                                     testNumber++;
-                                }
-                            }
                             noValidId = false;
                             result = testNumber.ToString();
                         } while (noValidId);
                         
-                    } else {
-                        
+                    } else
                         result = testNumber.ToString();
-                        
-                    }
-                    
-                } else {
-                    
+                } else
                     result = testNumber.ToString();
-                    
-                }
-            } else {
-                
+            } else
                 result = testNumber.ToString();
-                
-            }
-            
             return result;
         }
         
@@ -1069,23 +934,19 @@ namespace Tmx
             string testPlatformVersion,
             string testPlatformArchitecture,
             string testPlatformLanguage)
-		{
-			bool result = false;
+        {
+            bool result = false;
             
-			if (string.IsNullOrEmpty(testPlatformId))
-				testPlatformId = GetTestPlatformId();
+            if (string.IsNullOrEmpty(testPlatformId))
+                testPlatformId = GetTestPlatformId();
             
-            // 20141118
-//			if (null != GetTestPlatform(testPlatformName, testPlatformId))
-//                // the suite requested won't be duplicated, exit
-//                return false;
             var alreadyExistingTestPlatform = GetTestPlatform(testPlatformName, testPlatformId);
             if (null != alreadyExistingTestPlatform) {
                 TestData.CurrentTestPlatform = alreadyExistingTestPlatform;
-                // the suite requested won't be duplicated, exit
+                // the test platform requested won't be duplicated, exit
                 return false;
             }
-            // 20141118
+            
             var testPlatform = new TestPlatform {
                 Id = testPlatformId,
                 Name = testPlatformName,
@@ -1097,37 +958,24 @@ namespace Tmx
             };
             TestPlatforms.Add(testPlatform);
             
-            // 20141118
-//			TestPlatforms.Add(new TestPlatform(testPlatformName, testPlatformId));
-//			if (!string.IsNullOrEmpty(testPlatformDesctiption))
-//				TestData.TestPlatforms[TestPlatforms.Count - 1].Description = testPlatformDesctiption;
-            
-            // 20141118
-//			TestData.TestPlatforms[TestPlatforms.Count - 1].OperatingSystem = testPlatformOS;
-//			TestData.TestPlatforms[TestPlatforms.Count - 1].Version = testPlatformVersion;
-//			TestData.TestPlatforms[TestPlatforms.Count - 1].Architecture = testPlatformArchitecture;
-//			TestData.TestPlatforms[TestPlatforms.Count - 1].Language = testPlatformLanguage;
-            
-			TestData.CurrentTestPlatform = 
+            TestData.CurrentTestPlatform = 
                 TestData.TestPlatforms[TestPlatforms.Count - 1];
             
-			if (TestData.CurrentTestPlatform != null)
-				OnTmxNewTestPlatformCreated(TestData.CurrentTestPlatform, new EventArgs()); //null);
+            if (TestData.CurrentTestPlatform != null)
+                OnTmxNewTestPlatformCreated(TestData.CurrentTestPlatform, new EventArgs()); //null);
             
-			if (Preferences.Storage) {
-				using (var session = StorageHelper.SessionFactory.OpenSession()) {
-					session.Save(TestData.CurrentTestPlatform);
-				}
-			}
+            if (Preferences.Storage) {
+                using (var session = StorageHelper.SessionFactory.OpenSession()) {
+                    session.Save(TestData.CurrentTestPlatform);
+                }
+            }
             
-			result = true;
-			return result;
-		}
+            result = true;
+            return result;
+        }
         
         internal static bool AddTestSuite(string testSuiteName, 
                                           string testSuiteId,
-                                          // 20141114
-                                          // string testPlatformId,
                                           Guid testPlatformId,
                                           string testSuiteDesctiption,
                                           ScriptBlock[] testSuiteBeforeScenario,
@@ -1144,9 +992,6 @@ namespace Tmx
             
 			// removing the first (autogenerated) suite
 			try {
-				// 20140716
-				// if (1 == TestData.TestSuites.Count && "autogenerated" == TestData.TestSuites[0].Name &&
-				// 	   1 == TestData.TestSuites[0].TestScenarios.Count && "autogenerated" == TestData.TestSuites[0].TestScenarios[0].Name &&
 				if (null == TestData.TestSuites)
 				    TestData.TestSuites = new List<ITestSuite>();
                 // 20141117
@@ -1162,55 +1007,49 @@ namespace Tmx
 			    Console.WriteLine(ee.Message);
 			}
             
-			// set time spent on the previous suite
-			if (null != TestData.CurrentTestSuite) {
+            // set time spent on the previous suite
+            if (null != TestData.CurrentTestSuite) {
                 
-				if (DateTime.MinValue != TestData.CurrentTestSuite.Timestamp) {
+                if (DateTime.MinValue != TestData.CurrentTestSuite.Timestamp) {
                     
-					TestData.CurrentTestSuite.SetTimeSpent(
-						TestData.CurrentTestSuite.TimeSpent +=
+                    TestData.CurrentTestSuite.SetTimeSpent(
+                        TestData.CurrentTestSuite.TimeSpent +=
                         (DateTime.Now - TestData.CurrentTestSuite.Timestamp).TotalSeconds);
                     
-					TestData.CurrentTestSuite.Timestamp = DateTime.MinValue;
-				}
+                    TestData.CurrentTestSuite.Timestamp = DateTime.MinValue;
+                }
+            }
+            
+            TestSuites.Add(new TestSuite(testSuiteName, testSuiteId));
+            if (!string.IsNullOrEmpty(testSuiteDesctiption))
+                TestData.TestSuites[TestSuites.Count - 1].Description = testSuiteDesctiption;
+            
+            TestData.CurrentTestSuite = TestData.TestSuites[TestSuites.Count - 1];
+            
+            if (TestData.CurrentTestSuite != null) {
+                
+                TestData.CurrentTestSuite.PlatformUniqueId = testPlatformId != Guid.Empty ? testPlatformId : TestData.CurrentTestPlatform.UniqueId;
+                TestData.CurrentTestSuite.PlatformId = TestPlatforms.First(tp => tp.UniqueId == CurrentTestSuite.PlatformUniqueId).Id;
+                TestData.CurrentTestSuite.BeforeScenario = testSuiteBeforeScenario;
+                TestData.CurrentTestSuite.AfterScenario = testSuiteAfterScenario;
+                
+                // set the initial time for this suite's session
+                TestData.CurrentTestSuite.SetNow();
+                
+                OnTmxNewTestSuiteCreated(TestData.CurrentTestSuite, new EventArgs()); //null);
 			}
             
-			TestSuites.Add(new TestSuite(testSuiteName, testSuiteId));
-			if (!string.IsNullOrEmpty(testSuiteDesctiption))
-				TestData.TestSuites[TestSuites.Count - 1].Description = testSuiteDesctiption;
+            if (Preferences.Storage) {
+                using (var session = StorageHelper.SessionFactory.OpenSession()) {
+                    session.Save(TestData.CurrentTestSuite);
+                }
+            }
             
-			TestData.CurrentTestSuite = TestData.TestSuites[TestSuites.Count - 1];
+            if (0 == TestData.CurrentTestSuite.TestScenarios.Count)
+            	CreateAutogeneratedTestScenario();
             
-			if (TestData.CurrentTestSuite != null) {
-                
-			    // 20141114
-				// TestData.CurrentTestSuite.PlatformId = !string.IsNullOrEmpty(testPlatformId) ? testPlatformId : TestData.CurrentTestPlatform.Id;
-				// 20141119
-				// TestData.CurrentTestSuite.PlatformId = testPlatformId != Guid.Empty ? testPlatformId : TestData.CurrentTestPlatform.UniqueId;
-				TestData.CurrentTestSuite.PlatformUniqueId = testPlatformId != Guid.Empty ? testPlatformId : TestData.CurrentTestPlatform.UniqueId;
-				// 20141121
-				TestData.CurrentTestSuite.PlatformId = TestPlatforms.First(tp => tp.UniqueId == CurrentTestSuite.PlatformUniqueId).Id;
-				TestData.CurrentTestSuite.BeforeScenario = testSuiteBeforeScenario;
-				TestData.CurrentTestSuite.AfterScenario = testSuiteAfterScenario;
-                
-				// set the initial time for this suite's session
-				TestData.CurrentTestSuite.SetNow();
-                
-				OnTmxNewTestSuiteCreated(TestData.CurrentTestSuite, new EventArgs()); //null);
-			}
-            
-			if (Preferences.Storage) {
-				using (var session = StorageHelper.SessionFactory.OpenSession()) {
-					session.Save(TestData.CurrentTestSuite);
-				}
-			}
-			
-			// 20140716
-			if (0 == TestData.CurrentTestSuite.TestScenarios.Count)
-				CreateAutogeneratedTestScenario();
-			
-			result = true;
-			return result;
+            result = true;
+            return result;
 		}
         
         internal static ITestPlatform GetTestPlatform(Guid testPlatformId)
@@ -1222,7 +1061,6 @@ namespace Tmx
         internal static ITestPlatform GetTestPlatform(string testPlatformName, string testPlatformId)
         // internal static ITestPlatform GetTestPlatform(string testPlatformName, Guid testPlatformId)
         {
-            // 20141118
             if (null == TestPlatforms || 0 == TestPlatforms.Count) return null;
             
             ITestPlatform result = null;
@@ -1231,17 +1069,17 @@ namespace Tmx
                 foreach (var testPlatform in TestPlatforms.Where(tp => tp.Name == testPlatformName)) {
                     
                     // id does not match
-					if (!string.IsNullOrEmpty(testPlatformId) && testPlatformId != testPlatform.Id)
-						continue;
+                    if (!string.IsNullOrEmpty(testPlatformId) && testPlatformId != testPlatform.Id)
+                    	continue;
                     
-					if (!string.IsNullOrEmpty(testPlatformId) && testPlatformId == testPlatform.Id)
-						result = testPlatform;
+                    if (!string.IsNullOrEmpty(testPlatformId) && testPlatformId == testPlatform.Id)
+                    	result = testPlatform;
                     
-					if (string.IsNullOrEmpty(testPlatformId))
-						result = testPlatform;
+                    if (string.IsNullOrEmpty(testPlatformId))
+                    	result = testPlatform;
                     
-					if (result != null)
-						return result;
+                    if (result != null)
+                    	return result;
                 }
             }
             
@@ -1323,20 +1161,6 @@ namespace Tmx
             return result;
         }
         
-internal static void dumpTestStructure(string strNumber)
-{
-//    try {
-//        int tsCounter = TestData.TestSuites.Count;
-//        int tscCounter = TestData.TestSuites[tsCounter - 1].TestScenarios.Count;
-//        int trCounter = TestData.TestSuites[tsCounter - 1].TestScenarios[tscCounter - 1].TestResults.Count;
-//        try { Console.WriteLine(strNumber + " TestData.TestSuites[tsCounter - 1].TestScenarios[tscCounter - 1].TestResults[trCounter - 1].Status = " + TestData.TestSuites[tsCounter - 1].TestScenarios[tscCounter - 1].TestResults[trCounter - 1].Status); } catch {}
-//        try { Console.WriteLine(strNumber + " TestData.TestSuites[tsCounter - 1].TestScenarios[tscCounter - 2].TestResults[trCounter - 1].Status = " + TestData.TestSuites[tsCounter - 1].TestScenarios[tscCounter - 2].TestResults[trCounter - 1].Status); } catch {}
-//        try { Console.WriteLine(strNumber + " TestData.CurrentTestSuite.TestScenarios[tscCounter44 - 1].TestResults[trCounter44 - 1].Status = " + TestData.CurrentTestSuite.TestScenarios[tscCounter - 1].TestResults[trCounter - 1].Status); } catch {}
-//        try { Console.WriteLine(strNumber + " TestData.CurrentTestScenario.TestResults[trCounter44 - 1].Status = " + TestData.CurrentTestScenario.TestResults[trCounter - 1].Status); } catch {}
-//        try { Console.WriteLine(strNumber + " TestData.CurrentTestResult.Status = " + TestData.CurrentTestResult.Status); } catch {}
-//    } catch {}
-}
-        
         internal static bool AddTestCase(
             string testCaseName,
             string testCaseId,
@@ -1345,8 +1169,6 @@ internal static void dumpTestStructure(string strNumber)
             string testSuiteId,
             string testScenarioName,
             string testScenarioId,
-            // 20141114
-            // string testPlatformId,
             Guid testPlatformId,
             ScriptBlock[] testCode)
         {
@@ -1407,8 +1229,6 @@ internal static void dumpTestStructure(string strNumber)
                                              string testScenarioDescription,
                                              string testSuiteName,
                                              string testSuiteId,
-                                             // 20141114
-                                             // string testPlatformId,
                                              Guid testPlatformId,
                                              ScriptBlock[] testScenarioBeforeTest,
                                              ScriptBlock[] testScenarioAfterTest)
@@ -1417,7 +1237,6 @@ internal static void dumpTestStructure(string strNumber)
             
             // clean up the last empty test result
             // in the previous scenario
-            // if (TestData.CurrentTestScenario != null) {
             if (null != TestData.CurrentTestScenario) {
                 
                 if (TestData.CurrentTestScenario.TestResults.Count > 0) {
@@ -1510,9 +1329,7 @@ internal static void dumpTestStructure(string strNumber)
 //            }
             
             TestData.CurrentTestSuite.TestScenarios.Add(
-                // 20141122
-                // new TestScenario(testScenarioName, testScenarioId, TestData.CurrentTestSuite.Id)); //testSuiteId));
-                new TestScenario(testScenarioName, testScenarioId, TestData.CurrentTestSuite.Id) { SuiteUniqueId = TestData.CurrentTestSuite.UniqueId }); //testSuiteId));
+                new TestScenario(testScenarioName, testScenarioId, TestData.CurrentTestSuite.Id) { SuiteUniqueId = TestData.CurrentTestSuite.UniqueId });
             
             if (!string.IsNullOrEmpty(testScenarioDescription))
                 TestData.CurrentTestSuite.TestScenarios[CurrentTestSuite.TestScenarios.Count - 1].Description = testScenarioDescription;
@@ -1520,15 +1337,10 @@ internal static void dumpTestStructure(string strNumber)
             TestData.CurrentTestScenario = 
                 (TestScenario)TestData.CurrentTestSuite.TestScenarios[CurrentTestSuite.TestScenarios.Count - 1];
             
-			TestData.CurrentTestScenario.BeforeTest = testScenarioBeforeTest;
-			TestData.CurrentTestScenario.AfterTest = testScenarioAfterTest;
+            TestData.CurrentTestScenario.BeforeTest = testScenarioBeforeTest;
+            TestData.CurrentTestScenario.AfterTest = testScenarioAfterTest;
             
-			// 20141114
-            // TestData.CurrentTestScenario.PlatformId = !string.IsNullOrEmpty(testPlatformId) ? testPlatformId : TestData.CurrentTestSuite.PlatformId;
-            // 20141119
-            // TestData.CurrentTestScenario.PlatformId = testPlatformId != Guid.Empty ? testPlatformId : TestData.CurrentTestSuite.PlatformId;
             TestData.CurrentTestScenario.PlatformUniqueId = testPlatformId != Guid.Empty ? testPlatformId : TestData.CurrentTestSuite.PlatformUniqueId;
-            // 20141121
             TestData.CurrentTestScenario.PlatformId = TestPlatforms.First(tp => tp.UniqueId == CurrentTestScenario.PlatformUniqueId).Id;
             
             // set the initial time for this scenario's session
@@ -1538,11 +1350,8 @@ internal static void dumpTestStructure(string strNumber)
             
             if (Preferences.Storage) {
                 
-    			using (var session = StorageHelper.SessionFactory.OpenSession())
-                {
-    			    
+                using (var session = StorageHelper.SessionFactory.OpenSession())
                     session.Save(TestData.CurrentTestScenario);
-    			}
             }
             
             result = true;
@@ -1558,8 +1367,6 @@ internal static void dumpTestStructure(string strNumber)
             string testScenarioId,
             string testSuiteName,
             string testSuiteId,
-            // 20141114
-            // string testPlatformId)
             Guid testPlatformId)
         {
             ITestCase result = null;
@@ -1580,36 +1387,30 @@ internal static void dumpTestStructure(string strNumber)
             
             ITestScenario testScenario = null;
             
-            if (null != testSuite) {
-                
+            if (null != testSuite)
                 testScenario =
                     TestData.GetTestScenario(
-                        testSuite,
-                        testScenarioName,
-                        testScenarioId,
-                        testSuiteName,
-                        testSuiteId,
-                        testPlatformId);
-            }
+                    testSuite,
+                    testScenarioName,
+                    testScenarioId,
+                    testSuiteName,
+                    testSuiteId,
+                    testPlatformId);
             
             if (null == testScenario)
                 // better error description?
                 return result;
             
-            if (null != testScenario && 0 < testScenario.TestCases.Count) {
-                
-                foreach (var testCase in testScenario.TestCases) {
-                    
+            if (null != testScenario && 0 < testScenario.TestCases.Count)
+                foreach (var testCase in testScenario.TestCases)
                     if ((testCaseName == testCase.TestCaseName &&
                         testCaseId == testCase.TestCaseId) ||
                         (string.IsNullOrEmpty(testCaseName) && testCaseId == testCase.TestCaseId) ||
-                        (string.IsNullOrEmpty(testCaseId) && testCaseName == testCase.TestCaseName)){
+                        (string.IsNullOrEmpty(testCaseId) && testCaseName == testCase.TestCaseName)) {
                         
                         result = testCase;
                         break;
                     }
-                }
-            }
             
             return result;
         }
@@ -1620,8 +1421,6 @@ internal static void dumpTestStructure(string strNumber)
             string testScenarioId,
             string testSuiteName,
             string testSuiteId,
-            // 20141114
-            // string testPlatformId)
             Guid testPlatformId)
         {
             TestScenario result = null;
@@ -1655,39 +1454,25 @@ internal static void dumpTestStructure(string strNumber)
             
             if (!string.IsNullOrEmpty(testScenarioName)) {
                 
-                foreach (ITestScenario testScenario in TestData.CurrentTestSuite.TestScenarios) {
-                    
+                foreach (ITestScenario testScenario in TestData.CurrentTestSuite.TestScenarios)
                     if (testScenario.Name == testScenarioName) {
                         
                         TestData.CurrentTestScenario = testScenario;
                         return TestData.CurrentTestScenario;
+                        // TODO: try this
+                        // return TestData.CurrentTestScenario = testScenario;
                     }
-                }
             }
             
             if (!string.IsNullOrEmpty(testScenarioId)) {
-            // if (testScenarioId != null && testScenarioId != string.Empty) {
-                // 20140720
-                // foreach (TestScenario testScenario in TestData.CurrentTestSuite.TestScenarios.Cast<TestScenario>().Where(testScenario => testScenario.Id == testScenarioId))
-                foreach (ITestScenario testScenario in TestData.CurrentTestSuite.TestScenarios.Cast<ITestScenario>().Where(testScenario => testScenario.Id == testScenarioId))
-                {
-                    // 20130621
-                    // 20141119
-                    // if (testPlatformId != testScenario.PlatformId) {
-                    if (testPlatformId != testScenario.PlatformUniqueId) {
+                // foreach (ITestScenario testScenario in TestData.CurrentTestSuite.TestScenarios.Cast<ITestScenario>().Where(testScenario => testScenario.Id == testScenarioId)) {
+                foreach (ITestScenario testScenario in TestData.CurrentTestSuite.TestScenarios.Where(testScenario => testScenario.Id == testScenarioId)) {
+                    if (testPlatformId != testScenario.PlatformUniqueId)
                         continue;
-                    } else {
-                        // 20130912
-                        //if (testScenarioName != testScenario.Name) {
-                        if (testScenarioName != testScenario.Name && !string.IsNullOrEmpty(testScenarioName)) {
-                            continue;
-                        } else {
-                            TestData.CurrentTestScenario = testScenario;
-                            return testScenario;
-                        }
-                    }
-//                        TestData.CurrentTestScenario = testScenario;
-//                        return testScenario;
+                    if (testScenarioName != testScenario.Name && !string.IsNullOrEmpty(testScenarioName))
+                        continue;
+                    TestData.CurrentTestScenario = testScenario;
+                    return testScenario;
                 }
             }
 
@@ -1719,8 +1504,6 @@ internal static void dumpTestStructure(string strNumber)
         
         static IEnumerable<ITestScenario> getAllScenarios()
         {
-            // 20140720
-            // return TestData.TestSuites.SelectMany(suite => suite.TestScenarios.Cast<TestScenario>()).ToList();
             return TestData.TestSuites.SelectMany(suite => suite.TestScenarios).ToList();
         }
         
@@ -1750,8 +1533,6 @@ internal static void dumpTestStructure(string strNumber)
         
         static IEnumerable<ITestResult> getAllTestResults()
         {
-            // 20140720
-            // return (from suite in TestData.TestSuites from TestScenario scenario in suite.TestScenarios from TestResult testResult in scenario.TestResults select testResult).ToList();
             return (from suite in TestData.TestSuites from ITestScenario scenario in suite.TestScenarios from ITestResult testResult in scenario.TestResults select testResult).ToList();
             /*
             List<TestResult> result = new List<TestResult>();

@@ -22,7 +22,9 @@
                 <th>Status</th>
                 <th>Client Id</th>
             </tr>
-            {% for task in @Model.TasksForClients -%}
+            {% assign unsortedTasks = @Model.TasksForClients -%}
+            {% assign sortedTasks = unsortedTasks|sort: Id -%}
+            {% for task in sortedTasks -%}
             <tr>
                 <td>{{ task.Id }}</td>
                 <td>{{ task.Name }}</td>

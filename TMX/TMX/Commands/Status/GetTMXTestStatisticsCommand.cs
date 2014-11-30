@@ -23,28 +23,29 @@ namespace Tmx.Commands
     {
         protected override void BeginProcessing()
         {
-            var stat = new TestStat();
-            
-            if (null != TestData.TestSuites && 0 < TestData.TestSuites.Count) {
-                
-                // 20141107
-                var testStatistics = new TestStatistics();
-                
-                foreach (var testSuite in TestData.TestSuites) {
-                    
-                    // 20141107
-                    // TestData.RefreshSuiteStatistics(testSuite, false);
-                    testStatistics.RefreshSuiteStatistics(testSuite, false);
-                    stat.Passed += testSuite.Statistics.Passed;
-                    stat.Failed += testSuite.Statistics.Failed;
-                    stat.PassedButWithBadSmell += testSuite.Statistics.PassedButWithBadSmell;
-                    stat.NotTested += testSuite.Statistics.NotTested;
-                    stat.All += testSuite.Statistics.All;
-                }
-                
-            }
-            
-            this.WriteObject(this, stat);
+//            var stat = new TestStat();
+//            
+//            if (null != TestData.TestSuites && 0 < TestData.TestSuites.Count) {
+//                
+//                // 20141107
+//                var testStatistics = new TestStatistics();
+//                
+//                foreach (var testSuite in TestData.TestSuites) {
+//                    
+//                    // 20141107
+//                    // TestData.RefreshSuiteStatistics(testSuite, false);
+//                    testStatistics.RefreshSuiteStatistics(testSuite, false);
+//                    stat.Passed += testSuite.Statistics.Passed;
+//                    stat.Failed += testSuite.Statistics.Failed;
+//                    stat.PassedButWithBadSmell += testSuite.Statistics.PassedButWithBadSmell;
+//                    stat.NotTested += testSuite.Statistics.NotTested;
+//                    stat.All += testSuite.Statistics.All;
+//                }
+//                
+//            }
+            var testStatistics = new TestStatistics();
+            var stat = testStatistics.RefreshAllStatistics(TestData.TestSuites, false);
+            WriteObject(this, stat);
         }
     }
 }

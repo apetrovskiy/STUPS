@@ -25,7 +25,6 @@ namespace Tmx.Interfaces
         public double TimeSpent;
         public int PassedButWithBadSmell;
         
-        
         int member; // this is just an example member, replace it with your own struct members!
         
         #region Equals and GetHashCode implementation

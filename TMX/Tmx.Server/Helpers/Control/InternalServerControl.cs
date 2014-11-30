@@ -61,9 +61,9 @@ namespace Tmx.Server
         
         public static void Reset()
         {
-            ClientsCollection.Clients = new System.Collections.Generic.List<ITestClient>();
-            TaskPool.TasksForClients = new System.Collections.Generic.List<ITestTask>();
-            TaskPool.Tasks = new System.Collections.Generic.List<ITestTask>();
+            ClientsCollection.Clients = new List<ITestClient>();
+            TaskPool.TasksForClients = new List<ITestTask>();
+            TaskPool.Tasks = new List<ITestTask>();
         }
         
         protected override DiagnosticsConfiguration DiagnosticsConfiguration {
@@ -77,9 +77,9 @@ namespace Tmx.Server
     	    // nancyConventions.StaticContentsConventions.Add(
     	    //     StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath(), "Root"));
     	    
-    	    // TODO: to a separate assembly
-    	    nancyConventions.StaticContentsConventions.Add(
-    	        StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + @"Views/Nwx", "Nwx"));
+//    	    // TODO: to a separate assembly
+//    	    nancyConventions.StaticContentsConventions.Add(
+//    	        StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + @"Views/Nwx", "Nwx"));
     	    
     	    nancyConventions.StaticContentsConventions.Add(
     	        StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + @"Views/results", "results"));
@@ -169,7 +169,6 @@ namespace Tmx.Server
             var workflowsDirectoryPath = (new TmxServerRootPathProvider()).GetRootPath() + @"\Workflows";
             if (!Directory.Exists(workflowsDirectoryPath)) return;
             var workflowLoader = new WorkflowLoader();
-            // 20141127
 //            foreach (var fileName in Directory.GetFiles(workflowsDirectoryPath))
 //                workflowLoader.LoadWorkflow(fileName);
             foreach (var fileName in Directory.GetFiles(workflowsDirectoryPath)) {

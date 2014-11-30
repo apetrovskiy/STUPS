@@ -10,6 +10,7 @@
 namespace Tmx.Core
 {
     using System;
+    using System.Collections.Generic;
     using Tmx.Interfaces;
     using Tmx.Interfaces.TestStructure;
     
@@ -20,11 +21,11 @@ namespace Tmx.Core
     {
         public virtual TestStat RefreshScenarioStatistics(ITestScenario scenario, bool skipAutomatic)
         {
-            var ts = new TestStat();
+            var testScenarioStatistics = new TestStat();
 
             if (null != scenario.TestResults && 0 < scenario.TestResults.Count) {
                 
-                ts.All = scenario.TestResults.Count;
+                testScenarioStatistics.All = scenario.TestResults.Count;
                 foreach (var testResult in scenario.TestResults) {
                     
                     if (skipAutomatic)
@@ -32,36 +33,51 @@ namespace Tmx.Core
                             continue;
                     
                     if (testResult.enStatus == TestResultStatuses.Passed || testResult.enStatus == TestResultStatuses.KnownIssue) {
-                        ts.Passed++;
+                        testScenarioStatistics.Passed++;
                         if (testResult.enStatus == TestResultStatuses.KnownIssue)
-                            ts.PassedButWithBadSmell++;
+                            testScenarioStatistics.PassedButWithBadSmell++;
                     }
                     if (testResult.enStatus == TestResultStatuses.Failed)
-                        ts.Failed++;
-                    ts.TimeSpent += testResult.TimeSpent;
+                        testScenarioStatistics.Failed++;
+                    testScenarioStatistics.TimeSpent += testResult.TimeSpent;
                 }
             }
-            ts.NotTested = ts.All - ts.Passed - ts.Failed;
-            scenario.Statistics = ts;
-            return ts;
+            testScenarioStatistics.NotTested = testScenarioStatistics.All - testScenarioStatistics.Passed - testScenarioStatistics.Failed;
+            scenario.Statistics = testScenarioStatistics;
+            return testScenarioStatistics;
         }
         
         public virtual TestStat RefreshSuiteStatistics(ITestSuite suite, bool skipAutomatic)
         {
-            var ts = new TestStat();
+            var testSuiteStatistics = new TestStat();
             foreach (var testScenario in suite.TestScenarios) {
                 
                 //RefreshScenarioStatistics(tsc);
                 RefreshScenarioStatistics(testScenario, skipAutomatic);
-                ts.All += testScenario.Statistics.All;
-                ts.Passed += testScenario.Statistics.Passed;
-                ts.Failed += testScenario.Statistics.Failed;
-                ts.NotTested += testScenario.Statistics.NotTested;
-                ts.TimeSpent += testScenario.Statistics.TimeSpent;
-                ts.PassedButWithBadSmell += testScenario.Statistics.PassedButWithBadSmell;
+                testSuiteStatistics.All += testScenario.Statistics.All;
+                testSuiteStatistics.Passed += testScenario.Statistics.Passed;
+                testSuiteStatistics.Failed += testScenario.Statistics.Failed;
+                testSuiteStatistics.NotTested += testScenario.Statistics.NotTested;
+                testSuiteStatistics.TimeSpent += testScenario.Statistics.TimeSpent;
+                testSuiteStatistics.PassedButWithBadSmell += testScenario.Statistics.PassedButWithBadSmell;
             }
-            suite.Statistics = ts;
-            return ts;
+            suite.Statistics = testSuiteStatistics;
+            return testSuiteStatistics;
+        }
+        
+        public virtual TestStat RefreshAllStatistics(List<ITestSuite> suites, bool skipAutomatic)
+        {
+            var testStatistics = new TestStat();
+            foreach (var testSuite in suites) {
+                RefreshSuiteStatistics(testSuite, skipAutomatic);
+                testStatistics.All += testSuite.Statistics.All;
+                testStatistics.Passed += testSuite.Statistics.Passed;
+                testStatistics.Failed += testSuite.Statistics.Failed;
+                testStatistics.NotTested += testSuite.Statistics.NotTested;
+                testStatistics.TimeSpent += testSuite.Statistics.TimeSpent;
+                testStatistics.PassedButWithBadSmell += testSuite.Statistics.PassedButWithBadSmell;
+            }
+            return testStatistics;
         }
     }
 }

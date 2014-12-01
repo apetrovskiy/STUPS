@@ -11,6 +11,8 @@
     <body>
         <a href="/">Home</a>
         <br>
+        <a href="/testRuns/testRuns">Test runs</a>
+        <br>
         <br>
         <table border="1">
             <tr>
@@ -26,11 +28,11 @@
                 <tr>
                 <td>{{ testClient.Fqdn }}</td>
                 <td>{{ testClient.Username }}</td>
-                <td>{{ testClient.CustomString }}</td>
+                <td>{{ testClient.Custom_String }}</td>
                 <td>{{ testClient.Status }}</td>
-                <td>{{ testClient.TaskId }}</td>
-                <td>{{ testClient.TaskName }}</td>
-                <td>{{ testClient.DetailedStatus }}</td>
+                <td>{{ testClient.Task_Id }}</td>
+                <td>{{ testClient.Task_Name }}</td>
+                <td>{{ testClient.Detailed_Status }}</td>
                 </tr>
             {% endfor -%}
         </table>

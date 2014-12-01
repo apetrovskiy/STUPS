@@ -131,5 +131,31 @@ namespace Tmx.Interfaces
         public virtual object[] BeforeScenarioParameters { get; set; }
         [XmlIgnore]
         public virtual object[] AfterScenarioParameters { get; set; }
+        
+        // 20141201
+        public virtual int GetAll()
+        {
+            return Statistics.All;
+        }
+        
+        public virtual int GetPassed()
+        {
+            return Statistics.Passed;
+        }
+        
+        public virtual int GetFailed()
+        {
+            return Statistics.Failed;
+        }
+        
+        public virtual int GetPassedButWithBadSmell()
+        {
+            return Statistics.PassedButWithBadSmell;
+        }
+        
+        public virtual int GetNotTested()
+        {
+            return Statistics.NotTested;
+        }
     }
 }

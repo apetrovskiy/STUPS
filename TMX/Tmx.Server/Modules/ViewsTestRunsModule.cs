@@ -71,12 +71,13 @@ namespace Tmx.Server.Modules
                 
                 // 20141130
                 // var currentTestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == parameters.id);
-                var currentTestRun = getCurrentTestRun(parameters.id);
+                ITestRun currentTestRun = getCurrentTestRun(parameters.id);
                 var testStatistics = new TestStatistics();
                 testStatistics.RefreshAllStatistics(currentTestRun.TestSuites, true);
                 // data.TestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == parameters.id);
                 data.TestRun = currentTestRun;
-                data.Suites = data.TestRun.TestSuites.ToArray();
+                // data.Suites = data.TestRun.TestSuites.ToArray();
+                data.Suites = currentTestRun.TestSuites.ToArray();
                 
                 return View[UrlList.ViewTestRuns_ResultsPageName, data];
             };

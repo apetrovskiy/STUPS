@@ -14,6 +14,7 @@ namespace Tmx.Server
     using System.Linq;
     using Tmx.Core;
 	using Tmx.Interfaces.Remoting;
+    using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of ExtensionMethods.

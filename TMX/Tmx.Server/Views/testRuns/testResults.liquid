@@ -1,70 +1,67 @@
 ﻿<html>
-	<head>
-		<title>Test results</title>
-	</head>
-	<body>
+    <head>
+        <title>Test results</title>
+        <style>
+        table {
+            border-collapse: collapse;
+            width:100%;
+        }
+        
+        td, th {
+            border: 1px solid gray;
+        }
+        </style>
+    </head>
+    <body>
         <a href="/">Home</a>
         <br>
+        <a href="/testRuns/testRuns">Test runs</a>
         <br>
-        <!-- <h1>Overall status is {{ overallStatus }}</h1> -->
-        <!-- <ul> -->
-        {% assign overallStatus = '<h1>NOT TESTED</h1>' %}
+        <br>
         
         <h1>{{ @Model.TestRun.Name }} /{{ @Model.TestRun.Status }}/</h1>
         
-        <!--
         <h2>Summary</h2>
-        <table border="1">
+        <table>
             <tr>
-                <th>Story</th>
-                <th>Platform</th>
-                <th colspan=4>Results</th>
-                <th>Time spent</th>
+                <th style="width:35%">Story</th>
+                <th style="width:10%">Platform</th>
+                <th style="width:50%">Results</th>
+                <th style="width:5%">Time spent</th>
             </tr>
-            {% for suite in @Model.TestRun.TestSuites -%}
-            <tr>
-                <td>{{ suite.Name }}</td>
-                <td>{{ suite.PlatformId }}</td>
-                <td width={{ suite.Statistics.Passed / suite.Statistics.All }}% color="green">{{ suite.Statistics.Passed }}</td>
-                <td width={{ suite.Statistics.Failed / suite.Statistics.All }}% color="red">{{ suite.Statistics.Failed }}</td>
-                <td width={{ suite.Statistics.PassedButWithBadSmell / suite.Statistics.All }}% color="olive">{{ suite.Statistics.PassedButWithBadSmell }}</td>
-                <td width={{ suite.Statistics.NotTested / suite.Statistics.All }}% color="gray">{{ suite.Statistics.NotTested }}</td>
-                <td>{{ suite.Statistics.TimeSpent }}</td>
-            </tr>
-            {% endfor -%}
-        </table>
-        <br>
-        <br>
-        <h2>Detailed report</h2>
-        -->
-        
-        <h2>Summary</h2>
-        <table border="1">
-            <tr>
-                <th>Story</th>
-                <th>Platform</th>
-                <th colspan=4>Results</th>
-                <th>Time spent</th>
-            </tr>
-            {% assign sortedTestSuites = @Model.Suites | sort: 'name', 'platformId', 'timestamp' %}
+            {% assign sortedTestSuites = @Model.Suites | sort:'id' %}
             {% for suite in sortedTestSuites %}
-            <tr>
-                <td>{{ suite.Name }}</td>
-                <td>{{ suite.PlatformId }}</td>
-                <td width={{ suite.Statistics.Passed / suite.Statistics.All }}% color="green">{{ suite.Statistics.Passed }}</td>
-                <td width={{ suite.Statistics.Failed / suite.Statistics.All }}% color="red">{{ suite.Statistics.Failed }}</td>
-                <td width={{ suite.Statistics.PassedButWithBadSmell / suite.Statistics.All }}% color="olive">{{ suite.Statistics.PassedButWithBadSmell }}</td>
-                <td width={{ suite.Statistics.NotTested / suite.Statistics.All }}% color="gray">{{ suite.Statistics.NotTested }}</td>
-                <td>{{ suite.Statistics.TimeSpent }}</td>
-            </tr>
+                {% if suite.status != 'NOT TESTED' %}
+                    <tr>
+                        <td style="width:35%"><a href="#{{ suite.Id }} {{ suite.Name }} {{ suite.Platform_Id }}">{{ suite.Name }}</a.</td>
+                        <td style="width:10%">{{ suite.Platform_Id }}</td>
+                        <td style="width:50%">
+                            <table>
+                                {% if suite.get_passed > 0 %}
+                                    <td style="width:{{ suite.get_passed | times:50 | divided_by:suite.get_all }}%; background-color:green; text-align:center">{{ suite.get_Passed }}</td>
+                                    {% endif %}
+                                    {% if suite.get_failed > 0 %}
+                                    <td style="width:{{ suite.get_Failed | times:50 | divided_by:suite.get_all }}%; background-color:red; text-align:center">{{ suite.get_Failed }}</td>
+                                    {% endif %}
+                                    {% if suite.get_passed_but_with_bad_smell > 0 %}
+                                    <td style="width:{{ (suite.get_Passed_But_With_Bad_Smell | times:50 | divided_by:suite.get_all)? }}%; background-color:olive; text-align:center">{{ suite.get_Passed_But_With_Bad_Smell }}</td>
+                                    {% endif %}
+                                    {% if suite.get_not_tested > 0 %}
+                                    <td style="width:{{ suite.get_Not_Tested | times:50 | divided_by:suite.get_all }}%; background-color:gray; text-align:center">{{ suite.get_Not_Tested }}</td>
+                                {% endif %}
+                            </table>
+                        </td>
+                        <td style="width:5%; text-align:right">{{ suite.time_spent }}</td>
+                    </tr>
+                {% endif %}
             {% endfor %}
         </table>
         <br>
         <br>
-        <h2>Detailed report</h2>
         
+        <h2>Detailed report</h2>
         <ul>
-        {% for suite in @Model.TestRun.TestSuites -%}
+        {% for suite in @Model.TestRun.Test_Suites -%}
             {% if suite.Name != 'autogenerated' %}
                 {% case suite.Status %}
                 {% when 'PASSED' %}
@@ -74,10 +71,11 @@
                 {% when 'NOT TESTED' %}
                     {% assign suiteColor = 'gray' %}
                 {% endcase %}
-                <li><font color="{{ suiteColor }}">{{ suite.Id }} {{ suite.Name }} {{ suite.PlatformId }}</font></li>
+                <!-- <li><font color="{{ suiteColor }}"><a id="{{ suite.Id }} {{ suite.Name }} {{ suite.Platform_Id }}">{{ suite.Id }} {{ suite.Name }} {{ suite.Platform_Id }}</a></font></li> -->
+                <li><font style="color:{{ suiteColor }}"><a id="{{ suite.Id }} {{ suite.Name }} {{ suite.Platform_Id }}">{{ suite.Id }} {{ suite.Name }} {{ suite.Platform_Id }}</a></font></li>
             {% endif %}
             <ul>
-            {% for scenario in suite.TestScenarios -%}
+            {% for scenario in suite.Test_Scenarios -%}
                 {% if scenario.Name != 'autogenerated' %}
                     {% case scenario.Status %}
                     {% when 'PASSED' %}
@@ -87,10 +85,11 @@
                     {% when 'NOT TESTED' %}
                         {% assign scenarioColor = 'gray' %}
                     {% endcase %}
-                    <li><font color="{{ scenarioColor }}">{{ scenario.Id }} {{ scenario.Name }} {{ scenario.PlatformId }}</font></li>
+                    <!-- <li><font color="{{ scenarioColor }}">{{ scenario.Id }} {{ scenario.Name }} {{ scenario.Platform_Id }}</font></li> -->
+                    <li><font style="color:{{ scenarioColor }}">{{ scenario.Id }} {{ scenario.Name }} {{ scenario.Platform_Id }}</font></li>
                 {% endif %}
                 <ul>
-                {% assign sortedTestResults = scenario.TestResults | sort: 'Timestamp' %}
+                {% assign sortedTestResults = scenario.Test_Results | sort: 'Timestamp' %}
                 {% for result in sortedTestResults -%}
                     {% if result.Origin == 'Logical' %}
                         {% case result.Status %}
@@ -103,7 +102,8 @@
                         {% when 'KNOWN ISSUE' %}
                             {% assign resultColor = 'olive' %}
                         {% endcase %}
-                        <li><font color="{{ resultColor }}">{{ result.Id }} {{ result.Name }}</font></li>
+                        <!-- <li><font color="{{ resultColor }}">{{ result.Id }} {{ result.Name }}</font></li> -->
+                        <li><font style="color:{{ resultColor }}">{{ result.Id }} {{ result.Name }}</font></li>
                     {% endif %}
                 {% endfor -%}
                 </ul>

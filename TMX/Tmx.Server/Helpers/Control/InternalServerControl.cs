@@ -120,17 +120,19 @@ namespace Tmx.Server
         
         static void setDotLiquidNamingConventions()
         {
-            Template.NamingConvention = new CSharpNamingConvention();
+            // Template.NamingConvention = new CSharpNamingConvention();
         }
         
         static void registerTypes()
         {
             // specific types
-            Template.RegisterSafeType(typeof(TestSuite), new[] { "Id", "Name", "Status", "Description", "TestScenarios", "PlatformId", "Statistics", "TimeSpent", "Timestamp", "Tags" });
+            // Template.RegisterSafeType(typeof(TestSuite), new[] { "Id", "Name", "Status", "Description", "TestScenarios", "PlatformId", "Statistics", "TimeSpent", "Timestamp", "Tags", "Statistics.All", "Statistics.Passed" });
+            Template.RegisterSafeType(typeof(TestSuite), new[] { "Id", "Name", "Status", "Description", "TestScenarios", "PlatformId", "Statistics", "TimeSpent", "Timestamp", "Tags", "Statistics.All", "Statistics.Passed", "GetAll", "GetPassed", "GetFailed", "GetPassedButWithBadSmell", "GetNotTested" });
             Template.RegisterSafeType(typeof(TestScenario), new[] { "Id", "Name", "Status", "Description", "TestResults", "PlatformId", "Statistics", "TimeSpent", "Timestamp", "Tags", "TestCases" });
             Template.RegisterSafeType(typeof(TestResult), new[] { "Id", "Name", "Status", "Description", "Origin", "PlatformId", "Timestamp", "Details", "ScriptName", "LineNumber", "Position", "Error", "Code", "Parameters", "TimeSpent", "Generated", "Screenshot", "ListDetailNames" });
             Template.RegisterSafeType(typeof(TestResultDetail), new[] { "Name", "Timestamp", "GetDetail", "DetailStatus", "DetailType", "TextDetail", "ErrorDetail", "ScreenshotDetail", "LogDetail", "ExternalData" });
-            Template.RegisterSafeType(typeof(ITestSuite), new[] { "Id", "Name", "Status", "Description", "TestScenarios", "PlatformId", "Statistics", "TimeSpent", "Timestamp", "Tags" });
+            // Template.RegisterSafeType(typeof(ITestSuite), new[] { "Id", "Name", "Status", "Description", "TestScenarios", "PlatformId", "Statistics", "TimeSpent", "Timestamp", "Tags", "Statistics.All", "Statistics.Passed" });
+            Template.RegisterSafeType(typeof(ITestSuite), new[] { "Id", "Name", "Status", "Description", "TestScenarios", "PlatformId", "Statistics", "TimeSpent", "Timestamp", "Tags", "Statistics.All", "Statistics.Passed", "GetAll", "GetPassed", "GetFailed", "GetPassedButWithBadSmell", "GetNotTested" });
             Template.RegisterSafeType(typeof(ITestScenario), new[] { "Id", "Name", "Status", "Description", "TestResults", "PlatformId", "Statistics", "TimeSpent", "Timestamp", "Tags", "TestCases" });
             Template.RegisterSafeType(typeof(ITestResult), new[] { "Id", "Name", "Status", "Description", "Origin", "PlatformId", "Timestamp", "Details", "ScriptName", "LineNumber", "Position", "Error", "Code", "Parameters", "TimeSpent", "Generated", "Screenshot", "ListDetailNames" });
             Template.RegisterSafeType(typeof(ITestResultDetail), new[] { "Name", "Timestamp", "GetDetail", "DetailStatus", "DetailType", "TextDetail", "ErrorDetail", "ScreenshotDetail", "LogDetail", "ExternalData" });
@@ -143,6 +145,24 @@ namespace Tmx.Server
             Template.RegisterSafeType(typeof(TestClient), new[] { "Id", "Hostname", "Fqdn", "Username", "CustomString", "Status", "TaskId", "TaskName", "DetailedStatus" });
             Template.RegisterSafeType(typeof(CommonDataItem), new[] { "Key", "Value" });
             Template.RegisterSafeType(typeof(TestStat), new[] { "All", "Passed", "Failed", "PassedButWithBadSmell", "NotTested", "TimeSpent" });
+            Template.RegisterSafeType(typeof(TestStat), member => member.ToString());
+//            Template.RegisterSafeType(typeof(TestSuite), new[] { "Id", "Name", "Status", "Description", "test_scenarios", "platform_id", "Statistics", "time_spent", "Timestamp", "Tags" });
+//            Template.RegisterSafeType(typeof(TestScenario), new[] { "Id", "Name", "Status", "Description", "test_results", "platform_id", "Statistics", "time_spent", "Timestamp", "Tags", "TestCases" });
+//            Template.RegisterSafeType(typeof(TestResult), new[] { "Id", "Name", "Status", "Description", "Origin", "platform_id", "Timestamp", "Details", "ScriptName", "line_number", "Position", "Error", "Code", "Parameters", "time_spent", "Generated", "Screenshot", "ListDetailNames" });
+//            Template.RegisterSafeType(typeof(TestResultDetail), new[] { "Name", "Timestamp", "GetDetail", "DetailStatus", "detail_type", "TextDetail", "ErrorDetail", "ScreenshotDetail", "LogDetail", "ExternalData" });
+//            Template.RegisterSafeType(typeof(ITestSuite), new[] { "Id", "Name", "Status", "Description", "test_scenarios", "platform_id", "Statistics", "time_spent", "Timestamp", "Tags" });
+//            Template.RegisterSafeType(typeof(ITestScenario), new[] { "Id", "Name", "Status", "Description", "test_results", "platform_id", "Statistics", "time_spent", "Timestamp", "Tags", "TestCases" });
+//            Template.RegisterSafeType(typeof(ITestResult), new[] { "Id", "Name", "Status", "Description", "Origin", "platform_id", "Timestamp", "Details", "ScriptName", "line_number", "Position", "Error", "Code", "Parameters", "time_spent", "Generated", "Screenshot", "ListDetailNames" });
+//            Template.RegisterSafeType(typeof(ITestResultDetail), new[] { "Name", "Timestamp", "GetDetail", "DetailStatus", "detail_type", "TextDetail", "ErrorDetail", "ScreenshotDetail", "LogDetail", "ExternalData" });
+//            Template.RegisterSafeType(typeof(TestWorkflow), new[] { "Id", "Name", "test_lab_id", "Description", "ParametersPageName" });
+//            Template.RegisterSafeType(typeof(ITestRun), new[] { "Id", "Name", "workflow_id", "test_lab_id", "Description", "Status", "StartType", "Data", "test_suites", "start_time", "time_taken", "GetTestLabName" });
+//            Template.RegisterSafeType(typeof(TestRun), new[] { "Id", "Name", "workflow_id", "test_lab_id", "Description", "Status", "StartType", "Data", "test_suites", "start_time", "time_taken", "GetTestLabName" });
+//            Template.RegisterSafeType(typeof(CommonData), new[] { "Data" });
+//            Template.RegisterSafeType(typeof(TestLab), new[] { "Id", "Name", "Description", "Status" });
+//            Template.RegisterSafeType(typeof(TestTask), new[] { "Id", "Name", "start_time", "TaskStatus", "TaskFinished", "TaskResult", "time_taken", "ClientId", "Gettime_taken" });
+//            Template.RegisterSafeType(typeof(TestClient), new[] { "Id", "Hostname", "Fqdn", "Username", "CustomString", "Status", "TaskId", "TaskName", "DetailedStatus" });
+//            Template.RegisterSafeType(typeof(CommonDataItem), new[] { "Key", "Value" });
+//            Template.RegisterSafeType(typeof(TestStat), new[] { "all", "passed", "Failed", "passed_but_with_bad_smell", "not_tested", "time_spent" });
             // .NET types
             Template.RegisterSafeType(typeof(Guid), member => member.ToString());
             Template.RegisterSafeType(typeof(Dictionary<string, string>), member => member.ToString());

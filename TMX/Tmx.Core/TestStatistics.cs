@@ -51,8 +51,6 @@ namespace Tmx.Core
         {
             var testSuiteStatistics = new TestStat();
             foreach (var testScenario in suite.TestScenarios) {
-                
-                //RefreshScenarioStatistics(tsc);
                 RefreshScenarioStatistics(testScenario, skipAutomatic);
                 testSuiteStatistics.All += testScenario.Statistics.All;
                 testSuiteStatistics.Passed += testScenario.Statistics.Passed;
@@ -67,17 +65,17 @@ namespace Tmx.Core
         
         public virtual TestStat RefreshAllStatistics(List<ITestSuite> suites, bool skipAutomatic)
         {
-            var testStatistics = new TestStat();
+            var testAllStatistics = new TestStat();
             foreach (var testSuite in suites) {
                 RefreshSuiteStatistics(testSuite, skipAutomatic);
-                testStatistics.All += testSuite.Statistics.All;
-                testStatistics.Passed += testSuite.Statistics.Passed;
-                testStatistics.Failed += testSuite.Statistics.Failed;
-                testStatistics.NotTested += testSuite.Statistics.NotTested;
-                testStatistics.TimeSpent += testSuite.Statistics.TimeSpent;
-                testStatistics.PassedButWithBadSmell += testSuite.Statistics.PassedButWithBadSmell;
+                testAllStatistics.All += testSuite.Statistics.All;
+                testAllStatistics.Passed += testSuite.Statistics.Passed;
+                testAllStatistics.Failed += testSuite.Statistics.Failed;
+                testAllStatistics.NotTested += testSuite.Statistics.NotTested;
+                testAllStatistics.TimeSpent += testSuite.Statistics.TimeSpent;
+                testAllStatistics.PassedButWithBadSmell += testSuite.Statistics.PassedButWithBadSmell;
             }
-            return testStatistics;
+            return testAllStatistics;
         }
     }
 }

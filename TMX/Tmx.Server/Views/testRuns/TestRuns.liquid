@@ -29,9 +29,9 @@
             {% for testRun in @Model.TestRuns -%}
             <tr>
                 <td>{{ testRun.Name }}</td>
-                <td>{{ testRun.GetTestLabName() }}</td>
-                <td>{{ testRun.StartTime }}</td>
-                <td>{{ testRun.TimeTaken }}</td>
+                <td>{{ testRun.Get_Test_Lab_Name() }}</td>
+                <td>{{ testRun.Start_Time }}</td>
+                <td>{{ testRun.Time_Taken }}</td>
                 <td>{{ testRun.Status }}</td>
                 <td>{{ testRun.Description }}</td>
                 <td><a href="/testRuns/{{ testRun.Id }}/testResults">test results</a></td>

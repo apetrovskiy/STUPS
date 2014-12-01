@@ -16,6 +16,7 @@ namespace Tmx.Commands
     /// <summary>
     /// Description of OpenTmxTestPlatformCommand.
     /// </summary>
+    [Cmdlet(VerbsCommon.Open, "TmxTestPlatform")]
     public class OpenTmxTestPlatformCommand : PlatformCmdletBase
     {
         protected override void BeginProcessing()
@@ -24,6 +25,7 @@ namespace Tmx.Commands
             
             // temporary
             var platform = TmxHelper.GetTestPlatformById(this.Id);
+            TestData.CurrentTestPlatform = platform;
             WriteObject(this, platform);
         }
     }

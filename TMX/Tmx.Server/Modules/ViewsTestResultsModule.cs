@@ -37,22 +37,23 @@ namespace Tmx.Server.Modules
     /// <summary>
     /// Description of TestResultsViewsModule.
     /// </summary>
-    public class ViewsTestResultsModule : NancyModule
-    {
-        public ViewsTestResultsModule() : base(UrlList.ViewTestResults_Root)
-        {
-            // deprecated
-            Get[UrlList.ViewTestResults_OverviewPage] = parameters => {
-                var data = TestData.TestSuites.SelectMany(suite => { return suite.TestScenarios; }) ?? new List<ITestScenario>();
-                return View[UrlList.ViewTestResults_OverviewPageName, data];
-            };
-            
-            Get[UrlList.ViewTestResults_OverviewNewPage] = parameters => {
-                dynamic data = new ExpandoObject();
-                data.TestRuns = TestRunQueue.TestRuns ?? new List<ITestRun>();
-                data.Tasks = TaskPool.TasksForClients ?? new List<ITestTask>();
-                return View[UrlList.ViewTestResults_OverviewNewPageName, data];
-            };
-        }
-    }
+//    public class ViewsTestResultsModule : NancyModule
+//    {
+//        public ViewsTestResultsModule() : base(UrlList.ViewTestResults_Root)
+//        {
+//            // deprecated
+//            Get[UrlList.ViewTestResults_OverviewPage] = parameters => {
+//                var data = TestData.TestSuites.SelectMany(suite => { return suite.TestScenarios; }) ?? new List<ITestScenario>();
+//                return View[UrlList.ViewTestResults_OverviewPageName, data];
+//            };
+//            
+//            // deprecated
+//            Get[UrlList.ViewTestResults_OverviewNewPage] = parameters => {
+//                dynamic data = new ExpandoObject();
+//                data.TestRuns = TestRunQueue.TestRuns ?? new List<ITestRun>();
+//                data.Tasks = TaskPool.TasksForClients ?? new List<ITestTask>();
+//                return View[UrlList.ViewTestResults_OverviewNewPageName, data];
+//            };
+//        }
+//    }
 }

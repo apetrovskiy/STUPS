@@ -133,7 +133,7 @@
     <None Include="Views\index.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Views\results\overview.liquid">
+    <None Include="Views\results\overview_.liquid">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Views\settings\global.htm">
@@ -161,7 +161,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
-    <None Include="Views\results\overview.htm">
+    <None Include="Views\results\overview_.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Views\Scripts\jquery-2.1.1-vsdoc.js">

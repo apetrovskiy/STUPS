@@ -120,13 +120,13 @@ namespace Tmx.Interfaces.Server
 //        public const string ViewTestStatus_TestRun_CancelPageName = "cancelTestRun.liquid";
         
         // ViewsTestResultsModule
-        public const string ViewTestResults_Root = "/results";
+        // public const string ViewTestResults_Root = "/results";
         // deprecated
-        public const string ViewTestResults_OverviewPageName = "overview.htm";
+        // public const string ViewTestResults_OverviewPageName = "overview.htm";
         // deprecated
-        public static string ViewTestResults_OverviewPage = "/" + ViewTestResults_OverviewPageName;
-        public static string ViewTestResults_OverviewNewPage = "/overview";
-        public const string ViewTestResults_OverviewNewPageName = "overview.liquid";
+        // public static string ViewTestResults_OverviewPage = "/" + ViewTestResults_OverviewPageName;
+        // public static string ViewTestResults_OverviewNewPage = "/overview";
+        // public const string ViewTestResults_OverviewNewPageName = "overview.liquid";
         
         public const string ViewTestWorkflowParameters_Root = "/workflows";
         public const string ViewTestWorkflowParameters_DefaultPage = "without_parameters";

@@ -38,11 +38,17 @@
                 <td><a href="/testRuns/{{ testRun.Id }}/testParameters">parameters</a></td>
                 <td><a href="/testRuns/{{ testRun.Id }}/clients">clients</a></td>
                 <td><a href="/testRuns/{{ testRun.Id }}/tasks">tasks</a></td>
-                <!-- http://blog.nancyfx.org/x-http-method-override-with-nancyfx/ -->                
-                <form action="/api/testRuns/{{ testRun.Id }}/cancelTestRun" method="POST">
-                    <input type="hidden" name="_method" value="PUT"/>
-                    <td><input type="submit" value="Cancel"/></td>
-                </form> 
+                {% if testRun.Status == 'Pending' %}
+                    <!-- http://blog.nancyfx.org/x-http-method-override-with-nancyfx/ -->                
+                    <form action="/api/testRuns/{{ testRun.Id }}/cancelTestRun" method="POST">
+                        <input type="hidden" name="_method" value="PUT"/>
+                        <td><input type="submit" value="Cancel"/></td>
+                    </form>
+                {% elsif testRun.Status == 'Running' %}
+                    <td style="text-align:center">Sorry!</td>
+                {% else %}
+                    <td><input type="submit" value="Cancel" disabled/></td>
+                {% endif %}
             </tr>
             {% endfor -%}
         </table>

@@ -38,16 +38,27 @@
                         <td style="width:50%">
                             <table>
                                 {% if suite.get_passed > 0 %}
-                                    <td style="width:{{ suite.get_passed | times:50 | divided_by:suite.get_all }}%; background-color:green; text-align:center">{{ suite.get_Passed }}</td>
-                                    {% endif %}
-                                    {% if suite.get_failed > 0 %}
-                                    <td style="width:{{ suite.get_Failed | times:50 | divided_by:suite.get_all }}%; background-color:red; text-align:center">{{ suite.get_Failed }}</td>
-                                    {% endif %}
-                                    {% if suite.get_passed_but_with_bad_smell > 0 %}
-                                    <td style="width:{{ (suite.get_Passed_But_With_Bad_Smell | times:50 | divided_by:suite.get_all)? }}%; background-color:olive; text-align:center">{{ suite.get_Passed_But_With_Bad_Smell }}</td>
-                                    {% endif %}
-                                    {% if suite.get_not_tested > 0 %}
-                                    <td style="width:{{ suite.get_Not_Tested | times:50 | divided_by:suite.get_all }}%; background-color:gray; text-align:center">{{ suite.get_Not_Tested }}</td>
+                                    {% assign passedWidth = suite.get_passed | times:100 | divided_by:suite.get_all %}
+                                    {% if passedWidth == 0 %} {{ assign passedWidth = 1 }} {% endif %}
+                                    <td style="width:{{ passedWidth }}%; background-color:green; text-align:center">{{ suite.get_Passed }}</td>
+                                {% endif %}
+                                
+                                {% if suite.get_Failed > 0 %}
+                                    {% assign failedWidth = suite.get_Failed | times:100 | divided_by:suite.get_all %}
+                                    {% if failedWidth == 0 %} {{ assign failedWidth = 1 }} {% endif %}
+                                    <td style="width:{{ failedWidth }}%; background-color:red; text-align:center">{{ suite.get_Failed }}</td> 
+                                {% endif %}
+                                
+                                {% if suite.get_passed_but_with_bad_smell > 0 %}
+                                    {% assign smelledWidth = suite.get_Passed_But_With_Bad_Smell | times:100 | divided_by:suite.get_all %}
+                                    {% if smelledWidth == 0 %} {{ assign smelledWidth = 1 }} {% endif %}
+                                    <td style="width:{{ smelledWidth }}%; background-color:olive; text-align:center">{{ suite.get_Passed_But_With_Bad_Smell }}</td>
+                                {% endif %}
+                                
+                                {% if suite.get_not_tested > 0 %}
+                                    {% assign notTestedWidth = suite.get_Not_Tested | times:100 | divided_by:suite.get_all %}
+                                    {% if notTestedWidth == 0 %} {{ assign notTestedWidth = 1 }} {% endif %}
+                                    <td style="width:{{ notTestedWidth }}%; background-color:gray; text-align:center">{{ suite.get_Not_Tested }}</td>
                                 {% endif %}
                             </table>
                         </td>

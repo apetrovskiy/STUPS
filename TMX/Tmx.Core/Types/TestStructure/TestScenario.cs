@@ -211,5 +211,31 @@ namespace Tmx.Interfaces
         public virtual object[] AfterTestParameters { get; set; }
         [XmlIgnore]
         public List<ITestCase> TestCases { get; set; }
+        
+        // 20141203
+        public virtual int GetAll()
+        {
+            return Statistics.All;
+        }
+        
+        public virtual int GetPassed()
+        {
+            return Statistics.Passed;
+        }
+        
+        public virtual int GetFailed()
+        {
+            return Statistics.Failed;
+        }
+        
+        public virtual int GetPassedButWithBadSmell()
+        {
+            return Statistics.PassedButWithBadSmell;
+        }
+        
+        public virtual int GetNotTested()
+        {
+            return Statistics.NotTested;
+        }
     }
 }

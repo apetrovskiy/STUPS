@@ -84,5 +84,12 @@ namespace Tmx.Interfaces.TestStructure
         TestStat Statistics { get; set; }
         [XmlAttribute]
         TestScenarioStatuses enStatus { get; set; }
+        
+        // 20141203
+        int GetAll();
+        int GetPassed();
+        int GetFailed();
+        int GetPassedButWithBadSmell();
+        int GetNotTested();
     }
 }

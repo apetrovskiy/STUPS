@@ -32,7 +32,43 @@
             {% assign sortedTestSuites = @Model.Suites | sort:'id' %}
             {% for suite in sortedTestSuites %}
                 {% if suite.status != 'NOT TESTED' %}
+                    <tr><td colspan=4 style="text-align:center">{{ suite.Id }} {{ suite.Name }} {{ suite.Platform_Id }}</td></tr>
+                    
+                    {% assign sortedTestScenarios = suite.Test_Scenarios | sort:'platform_id' %}
+                    {% for scenario in sortedTestScenarios %}
                     <tr>
+                        <td style="width:35%"><a href="#{{ scenario.Id }} {{ scenario.Name }} {{ scenario.Platform_Id }}">{{ scenario.Name }}</a.</td>
+                        <td style="width:10%">{{ scenario.Platform_Id }}</td>
+                        <td style="width:50%">
+                            <table>
+                                {% if scenario.get_passed > 0 %}
+                                    {% assign passedWidth = scenario.get_passed | times:100 | divided_by:scenario.get_all %}
+                                    {% if passedWidth == 0 %} {{ assign passedWidth = 1 }} {% endif %}
+                                    <td style="width:{{ passedWidth }}%; background-color:green; text-align:center">{{ scenario.get_Passed }}</td>
+                                {% endif %}
+                                
+                                {% if scenario.get_Failed > 0 %}
+                                    {% assign failedWidth = scenario.get_Failed | times:100 | divided_by:scenario.get_all %}
+                                    {% if failedWidth == 0 %} {{ assign failedWidth = 1 }} {% endif %}
+                                    <td style="width:{{ failedWidth }}%; background-color:red; text-align:center">{{ scenario.get_Failed }}</td> 
+                                {% endif %}
+                                
+                                {% if scenario.get_passed_but_with_bad_smell > 0 %}
+                                    {% assign smelledWidth = scenario.get_Passed_But_With_Bad_Smell | times:100 | divided_by:scenario.get_all %}
+                                    {% if smelledWidth == 0 %} {{ assign smelledWidth = 1 }} {% endif %}
+                                    <td style="width:{{ smelledWidth }}%; background-color:olive; text-align:center">{{ scenario.get_Passed_But_With_Bad_Smell }}</td>
+                                {% endif %}
+                                
+                                {% if scenario.get_not_tested > 0 %}
+                                    {% assign notTestedWidth = scenario.get_Not_Tested | times:100 | divided_by:scenario.get_all %}
+                                    {% if notTestedWidth == 0 %} {{ assign notTestedWidth = 1 }} {% endif %}
+                                    <td style="width:{{ notTestedWidth }}%; background-color:gray; text-align:center">{{ scenario.get_Not_Tested }}</td>
+                                {% endif %}
+                            </table>
+                        </td>
+                        <td style="width:5%; text-align:right">{{ scenario.time_spent }}</td>
+                        
+                        <!--
                         <td style="width:35%"><a href="#{{ suite.Id }} {{ suite.Name }} {{ suite.Platform_Id }}">{{ suite.Name }}</a.</td>
                         <td style="width:10%">{{ suite.Platform_Id }}</td>
                         <td style="width:50%">
@@ -63,7 +99,11 @@
                             </table>
                         </td>
                         <td style="width:5%; text-align:right">{{ suite.time_spent }}</td>
+                        -->
                     </tr>
+                    
+                    
+                    {% endfor %}
                 {% endif %}
             {% endfor %}
         </table>

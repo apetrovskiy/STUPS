@@ -28,27 +28,27 @@ namespace Tmx.Commands
                 Name = this.Name,
                 Id = this.Id,
                 // Descriprion = this.Description,
-                TestSuiteName = this.TestSuiteName,
-                TestSuiteId = this.TestSuiteId,
-                TestPlatformId = this.TestPlatformId
+                // 20141203
+//                TestSuiteName = this.TestSuiteName,
+//                TestSuiteId = this.TestSuiteId,
+//                TestPlatformId = this.TestPlatformId
+                TestSuiteName = this.TestSuiteName ?? TestData.CurrentTestSuite.Name,
+                TestSuiteId = this.TestSuiteId ?? TestData.CurrentTestSuite.Id,
+                TestPlatformId = this.TestPlatformId ?? TestData.CurrentTestPlatform.Id
             };
             
             // bool result = TmxHelper.OpenTestScenario(this);
             bool result = TmxHelper.OpenTestScenario(dataObject);
-
-            if (result) {
-
+            
+            if (result)
                 WriteObject(TestData.CurrentTestScenario);
-
-            } else {
-
+            else
                 WriteError(
                     this,
                     "Couldn't open a test scenario",
                     "GettingTestScenario",
                     ErrorCategory.InvalidData,
                     true);
-            }
         }
     }
 }

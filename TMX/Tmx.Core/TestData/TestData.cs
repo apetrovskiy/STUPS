@@ -1424,11 +1424,10 @@ namespace Tmx
             Guid testPlatformId)
         {
             TestScenario result = null;
-
-            if (testSuite != null) {
+            if (testSuite != null)
                 TestData.CurrentTestSuite = testSuite;
-            } else if (!string.IsNullOrEmpty(testSuiteName)) {
-            /*
+            else if (!string.IsNullOrEmpty(testSuiteName)) {
+                /*
             } else if (testSuite == null && 
                         testSuiteName != string.Empty &&
                         testSuiteName != null) {
@@ -1438,15 +1437,14 @@ namespace Tmx
                     TestData.CurrentTestSuite = testSuite2;
                 
             } else if (!string.IsNullOrEmpty(testSuiteId)) {
-            /*
+                /*
             } else if (testSuite == null && 
                         testSuiteId != string.Empty &&
                         testSuiteId != null) {
             */
-				var testSuite3 = GetTestSuite(testSuiteName, testSuiteId, testPlatformId);
-                if (testSuite3 != null) {
+                var testSuite3 = GetTestSuite(testSuiteName, testSuiteId, testPlatformId);
+                if (testSuite3 != null)
                     TestData.CurrentTestSuite = testSuite3;
-                }
             }
             
             if (TestData.CurrentTestSuite == null)

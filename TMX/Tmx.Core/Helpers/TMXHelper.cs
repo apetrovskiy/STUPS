@@ -154,28 +154,28 @@ namespace Tmx
             
             if (TestData.CurrentTestResult.Details.Count > 0) {
             	
-				TestData.AddTestResult(
-                "autoclosed", 
-                TestData.GetTestResultId(), 
-                null, 
-                false, // isKnownIssue
-                false, // geenrateNextResult
-                // 20140720
-                // cmdlet.MyInvocation,
-                null,
-                null, // Error
-                string.Empty,
-                TestResultOrigins.Automatic,
-                false);
+                TestData.AddTestResult(
+                    "autoclosed", 
+                    TestData.GetTestResultId(), 
+                    null, 
+                    false, // isKnownIssue
+                    false, // geenrateNextResult
+                    // 20140720
+                    // cmdlet.MyInvocation,
+                    null,
+                    null, // Error
+                    string.Empty,
+                    TestResultOrigins.Automatic,
+                    false);
             }
             
             // set time spent on the previous scenario
             if (null != TestData.CurrentTestScenario) {
                 if (DateTime.MinValue != TestData.CurrentTestScenario.Timestamp) {
-					TestData.CurrentTestScenario.SetTimeSpent(
-						TestData.CurrentTestScenario.TimeSpent +=
+                    TestData.CurrentTestScenario.SetTimeSpent(
+                        TestData.CurrentTestScenario.TimeSpent +=
                         (DateTime.Now - TestData.CurrentTestScenario.Timestamp).TotalSeconds);
-					TestData.CurrentTestScenario.Timestamp = DateTime.MinValue;
+                    TestData.CurrentTestScenario.Timestamp = DateTime.MinValue;
                 }
             }
             
@@ -191,19 +191,19 @@ namespace Tmx
                                      TestData.TestPlatforms.FirstOrDefault(tp => tp.Id == cmdlet.TestPlatformId).UniqueId);
             
             if (TestData.CurrentTestScenario == null) return result;
-			TestData.CurrentTestScenario.TestResults.Add(
+            TestData.CurrentTestScenario.TestResults.Add(
                 new TestResult(
-					TestData.CurrentTestScenario.Id,
-					TestData.CurrentTestScenario.SuiteId));
-			TestData.CurrentTestResult =
+                    TestData.CurrentTestScenario.Id,
+                    TestData.CurrentTestScenario.SuiteId));
+            TestData.CurrentTestResult =
                 TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1];
-			
+            
             // set the initial time for this scenario's session
-			TestData.CurrentTestScenario.SetNow();
+            TestData.CurrentTestScenario.SetNow();
             //TestData.FireTmxTestScenarioOpened(TestData.CurrentTestResult, null);
-			TestData.OnTmxTestScenarioOpened(TestData.CurrentTestScenario, null);
+            TestData.OnTmxTestScenarioOpened(TestData.CurrentTestScenario, null);
             result = true;
-
+            
             /*
             if (TestData.CurrentTestScenario != null) {
 

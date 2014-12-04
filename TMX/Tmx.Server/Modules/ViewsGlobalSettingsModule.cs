@@ -15,7 +15,7 @@ namespace Tmx.Server.Modules
     using Nancy.ModelBinding;
     
     /// <summary>
-    /// Description of GlobalSettingsViewsModule.
+    /// Description of ViewsGlobalSettingsModule.
     /// </summary>
     public class ViewsGlobalSettingsModule : NancyModule
     {

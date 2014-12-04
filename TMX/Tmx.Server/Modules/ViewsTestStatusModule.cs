@@ -25,7 +25,7 @@ namespace Tmx.Server.Modules
     using Nancy.ViewEngines;
     
     /// <summary>
-    /// Description of TestStatusViewsModule.
+    /// Description of ViewsTestStatusModule.
     /// </summary>
     public class ViewsTestStatusModule : NancyModule
     {

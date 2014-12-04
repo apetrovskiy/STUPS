@@ -14,7 +14,7 @@ namespace Tmx.Server.ObjectModel
     /// <summary>
     /// Description of GlobalSettings.
     /// </summary>
-    public class GlobalSettings
+    public class GlobalSettings : ISettings
     {
         public GlobalSettings()
         {

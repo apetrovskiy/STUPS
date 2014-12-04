@@ -133,19 +133,17 @@ namespace Tmx
         
         public static bool NewTestSuite(string testSuiteName, 
                                         string testSuiteId,
-                                        // 20141114
-                                        // string testPlatformId,
                                         Guid testPlatformId,
                                         string testSuiteDesctiption,
                                         ScriptBlock[] testSuiteBeforeScenario,
                                         ScriptBlock[] testSuiteAfterScenario)
         {
             return TestData.AddTestSuite(testSuiteName,
-        	                             testSuiteId,
-        	                             testPlatformId,
-        	                             testSuiteDesctiption,
-        	                             testSuiteBeforeScenario,
-        	                             testSuiteAfterScenario);
+                                         testSuiteId,
+                                         testPlatformId,
+                                         testSuiteDesctiption,
+                                         testSuiteBeforeScenario,
+                                         testSuiteAfterScenario);
         }
         
         public static bool OpenTestScenario(IOpenScenarioCmdletBaseDataObject cmdlet)

@@ -282,10 +282,18 @@ namespace Tmx
             if (null != TestData.CurrentTestResult) {
                 currentTestResult = TestData.CurrentTestResult;
             } else {
+                // 20141204
+//                currentTestResult =
+//                    new TestResult(
+//                        TestData.CurrentTestScenario.Id,
+//                        TestData.CurrentTestSuite.Id);
                 currentTestResult =
                     new TestResult(
                         TestData.CurrentTestScenario.Id,
-                        TestData.CurrentTestSuite.Id);
+                        TestData.CurrentTestSuite.Id) {
+                    SuiteUniqueId = TestData.CurrentTestSuite.UniqueId,
+                    ScenarioUniqueId = TestData.CurrentTestScenario.UniqueId
+                };
             }
             
             if (string.IsNullOrEmpty(currentTestResult.Name)) {
@@ -384,6 +392,9 @@ namespace Tmx
             try {
                 TestData.CurrentTestResult.PlatformUniqueId = TestData.CurrentTestScenario.PlatformUniqueId;
                 CurrentTestResult.PlatformId = CurrentTestScenario.PlatformId;
+                // 20141204
+                CurrentTestResult.SuiteUniqueId = CurrentTestSuite.UniqueId;
+                CurrentTestResult.ScenarioUniqueId = CurrentTestScenario.UniqueId;
             }
             catch {}
             
@@ -393,7 +404,12 @@ namespace Tmx
                 !string.IsNullOrEmpty(TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 1].Name)) {
                 
                 TmxHelper.TestCaseStarted = DateTime.Now;
-                TestData.CurrentTestScenario.TestResults.Add(new TestResult(TestData.CurrentTestScenario.Id, TestData.CurrentTestSuite.Id));
+                // 20141204
+                // TestData.CurrentTestScenario.TestResults.Add(new TestResult(TestData.CurrentTestScenario.Id, TestData.CurrentTestSuite.Id));
+                TestData.CurrentTestScenario.TestResults.Add(new TestResult(TestData.CurrentTestScenario.Id, TestData.CurrentTestSuite.Id) {
+                                                                 SuiteUniqueId = TestData.CurrentTestSuite.UniqueId,
+                                                                 ScenarioUniqueId = TestData.CurrentTestScenario.UniqueId
+                                                             });
             }
 
             /*

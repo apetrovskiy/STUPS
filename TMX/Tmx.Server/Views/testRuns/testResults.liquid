@@ -35,7 +35,7 @@
                 {% if suite.status != 'NOT TESTED' %}
                     {% if currentTestSuite != suite.Name %}
                         {% assign currentTestSuite = suite.Name %}
-                        <tr><td colspan=4 style="text-align:center">{{ suite.Id }}  {{ suite.Name }}</td></tr>
+                        <tr><td colspan=4 style="font-weight: bold; font-size: big">{{ suite.Name }}</td></tr> <!-- font-style: italic;  -->
                     {% endif %}
                     {% assign sortedTestScenarios = suite.Test_Scenarios | sort:'platform_id' %}
                     {% for scenario in sortedTestScenarios %}
@@ -43,7 +43,8 @@
                         {% if testresultsNumber != 0 %}
                         <tr>
                             <td style="width:35%"><a href="#{{ scenario.Id }} {{ scenario.Name }} {{ scenario.Platform_Id }}">{{ scenario.Name }}</a.</td>
-                            <td style="width:10%">{{ scenario.Platform_Id }}</td>
+                            <!-- <td style="width:10%">{{ scenario.Platform_Id }}</td> -->
+                            <td style="width:15%">{{ scenario.Platform_Id }}</td>
                             <td style="width:50%">
                                 <table>
                                     {% if scenario.get_passed > 0 %}

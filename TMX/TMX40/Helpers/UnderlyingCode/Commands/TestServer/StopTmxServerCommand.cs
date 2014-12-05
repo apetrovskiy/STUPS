@@ -10,6 +10,7 @@
 namespace Tmx
 {
 	using System;
+    using Tmx.Server.ObjectModel.ServerControl;
 	
 	/// <summary>
 	/// Description of StopTmxServerCommand.
@@ -22,7 +23,7 @@ namespace Tmx
         
         internal override void Execute()
         {
-            Tmx.Server.ServerControl.Stop();
+            ServerControl.Stop();
         }
     }
 }

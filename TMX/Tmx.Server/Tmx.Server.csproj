@@ -51,9 +51,6 @@
     <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Common.Logging">
-      <HintPath>..\..\packages\Common.Logging.2.3.1\lib\net40\Common.Logging.dll</HintPath>
-    </Reference>
     <Reference Include="DotLiquid">
       <HintPath>..\..\packages\DotLiquid.1.7.0\lib\NET40\DotLiquid.dll</HintPath>
     </Reference>
@@ -90,6 +87,10 @@
     <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Helpers\Mailer.cs" />
+    <Compile Include="Interfaces\IMailSettings.cs" />
+    <Compile Include="Interfaces\ISettings.cs" />
+    <Compile Include="ObjectModel\Data\MailSettings.cs" />
     <Compile Include="ObjectModel\ServerControl\InternalServerControl.cs" />
     <Compile Include="ObjectModel\ServerControl\ModulesLoader.cs" />
     <Compile Include="ObjectModel\ServerControl\PluginsLoader.cs" />
@@ -106,7 +107,6 @@
     <Compile Include="Helpers\TestRunInitializer.cs" />
     <Compile Include="Helpers\TestRunSelector.cs" />
     <Compile Include="Helpers\WorkflowLoader.cs" />
-    <Compile Include="Interfaces\ISettings.cs" />
     <Compile Include="Modules\ExternalFilesModule.cs" />
     <Compile Include="Modules\TestRunsModule.cs" />
     <Compile Include="Modules\ViewsGlobalSettingsModule.cs" />
@@ -220,6 +220,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Interfaces" />
+    <Folder Include="ObjectModel" />
+    <Folder Include="ObjectModel\ExtensionMethods" />
+    <Folder Include="ObjectModel\Data" />
+    <Folder Include="ObjectModel\Objects" />
     <Folder Include="ObjectModel\ServerControl" />
     <Folder Include="ObjectModel\ExtensionMethods" />
     <Folder Include="ObjectModel\Objects" />
@@ -228,6 +233,8 @@
     <Folder Include="Helpers" />
     <Folder Include="Interfaces" />
     <Folder Include="ObjectModel" />
+    <Folder Include="ObjectModel\ServerControl" />
+    <Folder Include="ObjectModel\Settings" />
     <Folder Include="ObjectModel\Settings" />
     <Folder Include="Views\parts" />
     <Folder Include="Workflows" />

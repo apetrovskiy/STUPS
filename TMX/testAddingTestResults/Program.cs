@@ -11,6 +11,7 @@ namespace testAddingTestResults
 {
     using System;
     using Tmx;
+    using Tmx.Server.ObjectModel.ServerControl;
     
     class Program
     {
@@ -34,7 +35,7 @@ namespace testAddingTestResults
 //    			});
         		
             // Tmx.Server.ServerControl.Start(@"http://localhost:12340");
-            Tmx.Server.ServerControl.Start("localhost", 12340);
+            ServerControl.Start("localhost", 12340);
             
             Console.Write("Press any key to continue . . . ");
             Console.ReadKey(true);

@@ -10,6 +10,7 @@
 namespace Tmx
 {
 	using System;
+	using System.Threading;
 	using Tmx;
 	using Tmx.Client;
 	using Tmx.Commands;
@@ -40,7 +41,7 @@ namespace Tmx
                     clientSettings.ClientId = registration.SendRegistrationInfoAndGetClientId(cmdlet.CustomClientString);
                 }
                 catch (Exception e2) {
-Console.WriteLine("registering " + e2.Message);
+// Console.WriteLine("registering " + e2.Message);
                     // cmdlet.WriteProgress(new System.Management.Automation.ProgressRecord(
                 }
                 
@@ -51,7 +52,7 @@ Console.WriteLine("registering " + e2.Message);
                     if ((DateTime.Now - startTime).TotalSeconds >= cmdlet.Seconds)
                         throw new Exception("Failed to register client in " + cmdlet.Seconds + " seconds");
                 
-                System.Threading.Thread.Sleep(Preferences.ClientRegistrationSleepIntervalMilliseconds);
+                Thread.Sleep(Preferences.ClientRegistrationSleepIntervalMilliseconds);
             }
             
             clientSettings.StopImmediately = false;

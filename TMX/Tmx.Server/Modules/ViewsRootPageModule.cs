@@ -14,7 +14,7 @@ namespace Tmx.Server.Modules
     using Tmx.Interfaces.Server;
     
     /// <summary>
-    /// Description of RootPageModule.
+    /// Description of ViewsRootPageModule.
     /// </summary>
     public class ViewsRootPageModule : NancyModule
     {

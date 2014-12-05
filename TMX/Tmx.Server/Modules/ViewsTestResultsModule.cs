@@ -35,7 +35,7 @@ namespace Tmx.Server.Modules
 //	using DotLiquid.Util;
     
     /// <summary>
-    /// Description of TestResultsViewsModule.
+    /// Description of ViewsTestResultsModule.
     /// </summary>
 //    public class ViewsTestResultsModule : NancyModule
 //    {

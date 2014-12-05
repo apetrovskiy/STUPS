@@ -40,11 +40,10 @@ namespace Tmx
                     clientSettings.ClientId = registration.SendRegistrationInfoAndGetClientId(cmdlet.CustomClientString);
                 }
                 catch (Exception e2) {
-// Console.WriteLine("registering " + e2.Message);
+Console.WriteLine("registering " + e2.Message);
                     // cmdlet.WriteProgress(new System.Management.Automation.ProgressRecord(
                 }
                 
-				// if (0 != clientSettings.ClientId)
 				if (Guid.Empty != clientSettings.ClientId)
 					break;
                 

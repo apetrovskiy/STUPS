@@ -27,25 +27,23 @@ namespace Tmx.Server.Modules
         public ViewsTestRunsModule() : base(UrlList.ViewTestRuns_Root)
         {
             Get[UrlList.ViewTestRuns_NewTestRunPage] = _ => {
-                var data = createNewTestRunExpandoObject(UrlList.ViewTestWorkflowParameters_Root + "/" + UrlList.ViewTestWorkflowParameters_DefaultPage, string.Empty);
+                var data = CreateNewTestRunModel(UrlList.ViewTestWorkflowParameters_Root + "/" + UrlList.ViewTestWorkflowParameters_DefaultPage, string.Empty);
                 return View[UrlList.ViewTestRuns_NewTestRunPageName, data];
             };
             
             Post[UrlList.ViewTestRuns_NewTestRunPage] = _ => {
                 string workflowName = Request.Form.workflow_name;
-                var data = createNewTestRunExpandoObject("/workflows/" + WorkflowCollection.Workflows.FirstOrDefault(wfl => wfl.Name == workflowName).ParametersPageName, workflowName);
+                var data = CreateNewTestRunModel("/workflows/" + WorkflowCollection.Workflows.FirstOrDefault(wfl => wfl.Name == workflowName).ParametersPageName, workflowName);
                 return View[UrlList.ViewTestRuns_NewTestRunPageName, data];
             };
             
             Get[UrlList.ViewTestRuns_TestRunsPage] = parameters => {
-                var data = createTestRunExpandoObject();
+                var data = CreateTestRunListModel();
                 return View[UrlList.ViewTestRuns_TestRunsPageName, data];
             };
             
             Get [UrlList.ViewTestRuns_ParametersPage] = parameters => {
                 dynamic data = new ExpandoObject();
-                // 20141130
-                // data.TestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == parameters.id);
                 data.TestRun = getCurrentTestRun(parameters.id);
                 return View[UrlList.ViewTestRuns_ParametersPageName, data];
             };
@@ -74,16 +72,14 @@ namespace Tmx.Server.Modules
                 ITestRun currentTestRun = getCurrentTestRun(parameters.id);
                 var testStatistics = new TestStatistics();
                 testStatistics.RefreshAllStatistics(currentTestRun.TestSuites, true);
-                // data.TestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == parameters.id);
                 data.TestRun = currentTestRun;
-                // data.Suites = data.TestRun.TestSuites.ToArray();
                 data.Suites = currentTestRun.TestSuites.ToArray();
                 
                 return View[UrlList.ViewTestRuns_ResultsPageName, data];
             };
         }
 
-        dynamic createNewTestRunExpandoObject(string path, string workflowName)
+        public virtual dynamic CreateNewTestRunModel(string path, string workflowName)
         {
             dynamic data = new ExpandoObject();
             // 20141130
@@ -96,7 +92,7 @@ namespace Tmx.Server.Modules
             return data;
         }
         
-        dynamic createTestRunExpandoObject()
+        public virtual dynamic CreateTestRunListModel()
         {
             dynamic data = new ExpandoObject();
             // 20141130

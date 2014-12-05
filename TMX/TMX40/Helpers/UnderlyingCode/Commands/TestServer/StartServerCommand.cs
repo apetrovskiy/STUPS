@@ -10,8 +10,9 @@
 namespace Tmx
 {
 	using System;
-    using System.Net;
-    using System.Net.NetworkInformation;
+//    using System.Net;
+//    using System.Net.NetworkInformation;
+    using Tmx.Server.ObjectModel.ServerControl;
 	using Tmx.Commands;
 	
 	/// <summary>
@@ -28,7 +29,7 @@ namespace Tmx
             var cmdlet = (StartTmxServerCommand)Cmdlet;
             // 20141001
             try {
-                Tmx.Server.ServerControl.Start(@"http://localhost:" + cmdlet.Port);
+                ServerControl.Start(@"http://localhost:" + cmdlet.Port);
             }
             catch (Exception eStartingServer) {
 Console.WriteLine(eStartingServer.Message);

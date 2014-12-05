@@ -63,8 +63,6 @@ namespace Tmx.Client
             TaskResult = null == TaskResult ? results : TaskResult.Concat(results);
         }
         
-        // 20141030
         public ICommonData CommonData { get; set; }
-        // public Guid TestRunId { get; set; }
     }
 }

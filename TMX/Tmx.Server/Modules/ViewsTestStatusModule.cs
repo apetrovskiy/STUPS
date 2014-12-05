@@ -21,11 +21,10 @@ namespace Tmx.Server.Modules
     using Nancy.ModelBinding;
     using Tmx.Interfaces.Server;
     using Tmx.Interfaces.Remoting;
-    using Tmx.Server.Helpers.Control;
     using Nancy.ViewEngines;
     
     /// <summary>
-    /// Description of TestStatusViewsModule.
+    /// Description of ViewsTestStatusModule.
     /// </summary>
     public class ViewsTestStatusModule : NancyModule
     {

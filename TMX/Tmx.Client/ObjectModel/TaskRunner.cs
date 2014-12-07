@@ -12,6 +12,7 @@ namespace Tmx.Client
 	using System;
 	using System.Collections.Generic;
 	using System.Collections.ObjectModel;
+    using System.Diagnostics;
 	using System.Linq;
 	using System.Management.Automation;
 	using Tmx.Interfaces.Remoting;
@@ -68,6 +69,7 @@ namespace Tmx.Client
 				else
 					psObjects = sb.Invoke(parameters);
             } catch (Exception eOuter) {
+                Trace.TraceError(eOuter.Message);
                 throw new Exception(
                     "Unable to issue the following command:\r\n" +
                     sb +

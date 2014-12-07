@@ -11,6 +11,7 @@ namespace Tmx.Server.Modules
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
 	using Nancy;
 	using Nancy.ModelBinding;
@@ -36,14 +37,7 @@ namespace Tmx.Server.Modules
             	// ITestTaskProxy loadedTask = this.Bind<TestTaskProxy>();
             	// ITestTaskResultProxy loadedTask = this.Bind<TestTaskResultProxy>();
                 return updateTask(loadedTask, parameters.id);
-                // return updateTask(loadedTask, parameters.id);
             };
-        	
-            // 20141003
-            // temporarily hidden
-//        	Get[UrnList.TestTasks_AllDesignated] = _ => returnAllDesignatedTasks();
-//            
-//            Get[UrnList.TestTasks_AllLoaded + "/"] = _ => returnAllLoadedTasks();
             
             Delete[UrlList.TestTasks_Task] = parameters => deleteAllocatedTaskById(parameters.id);
             
@@ -71,8 +65,6 @@ namespace Tmx.Server.Modules
             testClient.Status = TestClientStatuses.Running;
             testClient.TaskId = actualTask.Id;
             testClient.TaskName = actualTask.Name;
-            // 20141126
-            // testClient.TestRunId = actualTask.WorkflowId;
             testClient.TestRunId = actualTask.TestRunId;
             // 20141020 squeezing a task to its proxy
             return Negotiate.WithModel(actualTask).WithStatusCode(HttpStatusCode.OK);
@@ -110,12 +102,9 @@ namespace Tmx.Server.Modules
         void completeTestRun(ITestTask task)
         {
             var currentTestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == task.TestRunId);
-            // 20141118
-            // currentTestRun.Status = TestRunStatuses.CompletedSuccessfully;
             currentTestRun.Status = TaskPool.TasksForClients.Any (tsk => tsk.TestRunId == currentTestRun.Id && tsk.TaskStatus == TestTaskStatuses.Interrupted) ? TestRunStatuses.Interrupted : TestRunStatuses.CompletedSuccessfully;
             currentTestRun.SetTimeTaken();
             
-            // 20141128
             if (!TestRunQueue.TestRuns.Any(testRun => testRun.TestLabId == currentTestRun.TestLabId && testRun.Id != currentTestRun.Id))
                 TestLabCollection.TestLabs.First(testLab => testLab.Id == currentTestRun.TestLabId).Status = TestLabStatuses.Free;
             
@@ -138,6 +127,7 @@ namespace Tmx.Server.Modules
             try {
                 nextTask = taskSorter.GetNextLegibleTask(storedTask.ClientId, storedTask.Id);
             } catch (Exception eFailedToGetNextTask) {
+                Trace.TraceError(eFailedToGetNextTask.Message);
                 throw new FailedToGetNextTaskException(eFailedToGetNextTask.Message);
             }
             if (null == nextTask)
@@ -152,18 +142,6 @@ namespace Tmx.Server.Modules
             ClientsCollection.Clients.First(client => client.Id == clientId).DetailedStatus = string.Empty;
         }
         
-		// 20141003
-		// temporarily hidden
-//        Negotiator returnAllDesignatedTasks()
-//        {
-//        	return 0 == TaskPool.TasksForClients.Count ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(TaskPool.TasksForClients).WithStatusCode(HttpStatusCode.OK);
-//        }
-//        
-//        Negotiator returnAllLoadedTasks()
-//        {
-//        	return 0 == TaskPool.Tasks.Count ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(TaskPool.Tasks).WithStatusCode(HttpStatusCode.OK);
-//        }
-
 		HttpStatusCode deleteAllocatedTaskById(int taskId)
 		{
 			TaskPool.TasksForClients.RemoveAll(task => task.Id == taskId);

@@ -62,48 +62,14 @@ namespace Tmx.Server.Modules
             // TODO: delete
         }
         // TODO: fix it 20141030
-        // Negotiator returnCommonData()
         Negotiator returnCommonData(Guid testRunId)
         {
-        	// return null != CommonData.Data ? Negotiate.WithModel(CommonData.Data).WithStatusCode(HttpStatusCode.OK) : Negotiate.WithStatusCode(HttpStatusCode.NotFound);
         	var commonData = TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId).Data.Data;
         	return null != commonData ? Negotiate.WithModel(commonData) : Negotiate.WithStatusCode(HttpStatusCode.NotFound);
         }
-
-		// HttpStatusCode addCommonDataItem(ICommonDataItem commonDataItem)
+        
 		HttpStatusCode addCommonDataItem(ICommonDataItem commonDataItem, Guid testRunId)
 		{
-//			try {
-//				var existingDataItem = CommonData.Data[commonDataItem.Key];
-//				if (null != existingDataItem)
-//					CommonData.Data[commonDataItem.Key] = commonDataItem.Value;
-//				return HttpStatusCode.Created;
-//			} catch {
-//				try {
-//					CommonData.Data.Add(commonDataItem.Key, commonDataItem.Value);
-//					return HttpStatusCode.Created;
-//				} catch {
-//					return HttpStatusCode.ExpectationFailed;
-//				}
-//			}
-		    
-//            return CommonData.Data.Keys.Any(key => key == commonDataItem.Key) ? updateExistingCommonDataItem(commonDataItem) : addNewCommonDataItem(commonDataItem);
-//		}
-//		
-//        HttpStatusCode updateExistingCommonDataItem(ICommonDataItem commonDataItem)
-//        {
-//            CommonData.Data[commonDataItem.Key] = commonDataItem.Value;
-//            return HttpStatusCode.Created; // to simplify the logic
-//        }
-//        
-//        HttpStatusCode addNewCommonDataItem(ICommonDataItem commonDataItem)
-//        {
-//            CommonData.Data.Add(commonDataItem.Key, commonDataItem.Value);
-//            return HttpStatusCode.Created;
-//        }
-            
-//            var commonDataItems = new CommonData();
-//            commonDataItems.AddOrUpdateDataItem(commonDataItem);
             TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId).Data.AddOrUpdateDataItem(commonDataItem);
             return HttpStatusCode.Created;
 		}

@@ -10,6 +10,7 @@
 namespace Tmx.Client
 {
 	using System;
+    using System.Diagnostics;
 	using System.Net;
     using System.Text.RegularExpressions;
     using Spring.Http;
@@ -47,6 +48,7 @@ namespace Tmx.Client
 			    // gettingTaskResponse = _restTemplate.GetForMessage<TestTaskCodeProxy>(UrnList.TestTasks_Root + "/" + ClientSettings.Instance.ClientId);
 			}
 			catch (RestClientException eHttpClientErrorException) {
+                Trace.TraceError(eHttpClientErrorException.Message);
 			    if (string.Empty != eHttpClientErrorException.Message)
 			        if (Regex.IsMatch(eHttpClientErrorException.Message, "resulted in 417"))
 			            // GET request for 'http://172.28.8.105:12340/Tasks/1' resulted in 417 - ExpectationFailed (Expectation Failed).
@@ -76,6 +78,7 @@ namespace Tmx.Client
 				return task;
 			}
 			catch (RestClientException eAcceptingTask) {
+			    Trace.TraceError(eAcceptingTask.Message);
                 throw new AcceptTaskException("Failed to accept task '" + task.Name + "'. " + eAcceptingTask.Message);
 			}
 		}

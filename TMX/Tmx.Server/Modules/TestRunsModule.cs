@@ -66,6 +66,12 @@ namespace Tmx.Server.Modules
 //            dynamic data = new ExpandoObject();
 //            data.TestRuns = TestRunQueue.TestRuns ?? new List<ITestRun>();
 //            data.TestLabs = TestLabCollection.TestLabs ?? new List<ITestLab>();
+            
+            // 20141207
+            foreach (var testRunAction in testRun.BeforeActions) {
+                testRunAction.Run();
+            }
+            
             var data = createTestRunExpandoObject();
             
             // return Negotiate.WithStatusCode(HttpStatusCode.OK).WithView(UrnList.ViewTestStatus_Root + "/" + UrnList.ViewTestStatus_TestRunsPage).WithModel((ExpandoObject)data);

@@ -11,6 +11,7 @@ namespace Tmx.Client
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
     using System.Net;
     using System.Xml.Linq;
@@ -46,6 +47,7 @@ namespace Tmx.Client
 	            return HttpStatusCode.OK == loadingResultsResponse.StatusCode;
 	        }
 	        catch (RestClientException eLoadingTestResults) {
+	            Trace.TraceError(eLoadingTestResults.Message);
 	            throw new LoadingTestResultsException("Failed to receive test results. " + eLoadingTestResults.Message);
 	        }
 	    }

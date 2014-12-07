@@ -11,6 +11,7 @@ namespace Tmx.Client
 {
 	using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
 	using System.Net;
 	using System.Xml.Linq;
 	using Spring.Http;
@@ -56,6 +57,7 @@ namespace Tmx.Client
 				return HttpStatusCode.Created == sendingResultsResponse.StatusCode;
 			}
             catch (RestClientException eSendingTestResults) {
+	            Trace.TraceError(eSendingTestResults.Message);
 			    throw new SendingTestResultsException("Failed to send test results. " + eSendingTestResults.Message);
 			}
 	    }

@@ -11,6 +11,7 @@ namespace Tmx.Server.ObjectModel.ServerControl
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.IO;
     using System.Linq;
     using DotLiquid.NamingConventions;
@@ -37,10 +38,17 @@ namespace Tmx.Server.ObjectModel.ServerControl
     {
         static NancyHost _nancyHost;
         
+        // temporary
+        static bool _alreadyInitialized;
+        
         public static string Url { get; set; }
         
         public static void Start(string url)
         {
+            // temporary
+            // TODO: rewrite it
+            setTracing();
+            
             Url = url;
             prepareComponents();
             loadModules();
@@ -52,6 +60,30 @@ namespace Tmx.Server.ObjectModel.ServerControl
 			_nancyHost.Start();
         }
         
+        static void setTracing()
+        {
+            if (_alreadyInitialized) return;
+			var fileStream = getFileStream("TmxServer_");
+            var listener = new TextWriterTraceListener(fileStream);
+            listener.TraceOutputOptions = TraceOptions.DateTime;
+            Trace.Listeners.Add(listener);
+			Trace.AutoFlush = true;
+            _alreadyInitialized = true;
+        }
+        
+		static FileStream getFileStream(string fileName)
+		{
+			string filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\" + fileName + getCurrentDateTime() + ".log";
+			var fileStream = new FileStream(filePath, FileMode.Append);
+			return fileStream;
+        }
+		
+		static string getCurrentDateTime()
+		{
+			var now = DateTime.Now;
+			return (string.Format("{0}{1}{2}{3}{4}{5}", now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second));
+		}
+		
         public static void Stop()
         {
             Reset();
@@ -63,6 +95,9 @@ namespace Tmx.Server.ObjectModel.ServerControl
             ClientsCollection.Clients = new List<ITestClient>();
             TaskPool.TasksForClients = new List<ITestTask>();
             TaskPool.Tasks = new List<ITestTask>();
+            TestRunQueue.TestRuns = new List<ITestRun>();
+            WorkflowCollection.Workflows = new List<ITestWorkflow>();
+            TestLabCollection.TestLabs = new List<ITestLab>();
         }
         
         protected override DiagnosticsConfiguration DiagnosticsConfiguration {

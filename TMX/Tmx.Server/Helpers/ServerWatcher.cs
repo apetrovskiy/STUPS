@@ -11,6 +11,7 @@ namespace Tmx.Server.Helpers
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
     using System.Xml.Linq;
     using Tmx.Core;
@@ -71,8 +72,9 @@ namespace Tmx.Server.Helpers
                 var xDoc = new XDocument(rootNode);
                 xDoc.Save(dateTimeString);
             }
-            catch (Exception) {
+            catch (Exception ex) {
 // Console.WriteLine(ee.Message);
+                Trace.TraceError(ex.Message);
             }
         }
 

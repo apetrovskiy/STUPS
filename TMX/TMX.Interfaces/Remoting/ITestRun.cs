@@ -32,5 +32,7 @@ namespace Tmx.Interfaces.Remoting
 //        string GetTestLabName();
         List<IAction> BeforeActions { get; set; }
         List<IAction> AfterActions { get; set; }
+        List<IAction> CancelActions { get; set; }
+        List<IAction> FailureActions { get; set; }
 	}
 }

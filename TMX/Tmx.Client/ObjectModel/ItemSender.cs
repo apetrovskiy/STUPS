@@ -10,6 +10,7 @@
 namespace Tmx.Client
 {
 	using System;
+    using System.Diagnostics;
 	using System.IO;
     using System.Collections.Generic;
     using System.Linq;
@@ -65,8 +66,10 @@ namespace Tmx.Client
             try {
                 return rootDirectory.GetFiles("*.*");
             } catch (UnauthorizedAccessException eUnauthorizedAccessFiles) {
+                Trace.TraceError(eUnauthorizedAccessFiles.Message);
                 return null;
             } catch (DirectoryNotFoundException eDirectoryNotFoundFiles) {
+                Trace.TraceError(eDirectoryNotFoundFiles.Message);
                 return null;
             }
         }

@@ -10,6 +10,7 @@
 namespace Tmx.Client
 {
     using System;
+    using System.Diagnostics;
 	using System.Net;
 	using Spring.Http;
 	using Spring.Rest.Client;
@@ -52,6 +53,7 @@ namespace Tmx.Client
                 ClientSettings.Instance.ResetData();
 			}
             catch (RestClientException eUnregisteringClient) {
+                Trace.TraceError(eUnregisteringClient.Message);
 			    throw new ClientDeregistrationException("Failed to unregister the client. " + eUnregisteringClient.Message);
 			}
         }

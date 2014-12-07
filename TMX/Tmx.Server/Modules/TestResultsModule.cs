@@ -11,6 +11,7 @@ namespace Tmx.Server.Modules
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.IO;
 	using System.Text;
     using System.Linq;
@@ -74,6 +75,7 @@ namespace Tmx.Server.Modules
                 // maybe, there's no such need? // TODO: set current test suite, test scenario, test result?
                 return HttpStatusCode.Created;
             } catch (Exception eFailedToImportTestResults) {
+                Trace.TraceError(eFailedToImportTestResults.Message);
                 return HttpStatusCode.ExpectationFailed;
             }
         }

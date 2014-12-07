@@ -69,5 +69,8 @@ namespace Tmx.Core.Types.Remoting
 //        {
 //            return testlabcollection
 //        }
+        
+        public List<IAction> BeforeActions { get; set; }
+        public List<IAction> AfterActions { get; set; }
 	}
 }

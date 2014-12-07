@@ -13,6 +13,7 @@ namespace Tmx.Client
 	using System.Net;
 	using Spring.Http;
 	using Spring.Rest.Client;
+    using Tmx.Core.Types.Remoting;
 	using Tmx.Interfaces.Exceptions;
 	using Tmx.Interfaces.Server;
 	using Tmx.Core;

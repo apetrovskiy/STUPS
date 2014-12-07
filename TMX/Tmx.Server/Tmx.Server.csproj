@@ -91,19 +91,8 @@
     <Compile Include="Interfaces\IMailSettings.cs" />
     <Compile Include="Interfaces\ISettings.cs" />
     <Compile Include="ObjectModel\Data\MailSettings.cs" />
-    <Compile Include="ObjectModel\ServerControl\InternalServerControl.cs" />
-    <Compile Include="ObjectModel\ServerControl\ModulesLoader.cs" />
-    <Compile Include="ObjectModel\ServerControl\PluginsLoader.cs" />
-    <Compile Include="ObjectModel\ServerControl\ServerControl.cs" />
-    <Compile Include="ObjectModel\ServerControl\TmxServerRootPathProvider.cs" />
-    <Compile Include="ObjectModel\ExtensionMethods\ExtensionMethods.cs" />
-    <Compile Include="ObjectModel\Objects\TaskPool.cs" />
-    <Compile Include="ObjectModel\Objects\TestLabCollection.cs" />
-    <Compile Include="ObjectModel\Objects\TestRunQueue.cs" />
-    <Compile Include="ObjectModel\Objects\WorkflowCollection.cs" />
     <Compile Include="Helpers\ServerWatcher.cs" />
     <Compile Include="Helpers\TaskSelector.cs" />
-    <Compile Include="ObjectModel\Objects\ClientsCollection.cs" />
     <Compile Include="Helpers\TestRunInitializer.cs" />
     <Compile Include="Helpers\TestRunSelector.cs" />
     <Compile Include="Helpers\WorkflowLoader.cs" />
@@ -121,9 +110,7 @@
     <Compile Include="Modules\ViewsTestStatusModule.cs" />
     <Compile Include="Modules\TestWorkflowsModule.cs" />
     <Compile Include="Modules\ViewsTestWorkflowParametersModule.cs" />
-    <Compile Include="ObjectModel\Settings\GlobalSettings.cs" />
     <Compile Include="ObjectModel\Settings\TestRunSettings.cs" />
-    <Compile Include="ObjectModel\Settings\WorkflowSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\index.htm">
@@ -222,18 +209,12 @@
   <ItemGroup>
     <Folder Include="Interfaces" />
     <Folder Include="ObjectModel" />
-    <Folder Include="ObjectModel\ExtensionMethods" />
     <Folder Include="ObjectModel\Data" />
-    <Folder Include="ObjectModel\Objects" />
-    <Folder Include="ObjectModel\ServerControl" />
-    <Folder Include="ObjectModel\ExtensionMethods" />
-    <Folder Include="ObjectModel\Objects" />
     <Folder Include="Modules" />
     <Folder Include="Modules" />
     <Folder Include="Helpers" />
     <Folder Include="Interfaces" />
     <Folder Include="ObjectModel" />
-    <Folder Include="ObjectModel\ServerControl" />
     <Folder Include="ObjectModel\Settings" />
     <Folder Include="ObjectModel\Settings" />
     <Folder Include="Views\parts" />

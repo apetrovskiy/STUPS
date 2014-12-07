@@ -17,6 +17,7 @@ namespace Tmx.Server.Modules
     using Tmx.Interfaces;
     using Tmx.Interfaces.Remoting;
     using Tmx.Interfaces.Server;
+    using Tmx.Server.ObjectModel.ServerControl;
     
     /// <summary>
     /// Description of ServerControlModule.

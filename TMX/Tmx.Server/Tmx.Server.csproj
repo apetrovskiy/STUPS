@@ -110,6 +110,17 @@
     <Compile Include="Modules\ViewsTestStatusModule.cs" />
     <Compile Include="Modules\TestWorkflowsModule.cs" />
     <Compile Include="Modules\ViewsTestWorkflowParametersModule.cs" />
+    <Compile Include="ObjectModel\ExtensionMethods\ExtensionMethods.cs" />
+    <Compile Include="ObjectModel\Objects\ClientsCollection.cs" />
+    <Compile Include="ObjectModel\Objects\TaskPool.cs" />
+    <Compile Include="ObjectModel\Objects\TestLabCollection.cs" />
+    <Compile Include="ObjectModel\Objects\TestRunQueue.cs" />
+    <Compile Include="ObjectModel\Objects\WorkflowCollection.cs" />
+    <Compile Include="ObjectModel\ServerControl\InternalServerControl.cs" />
+    <Compile Include="ObjectModel\ServerControl\ModulesLoader.cs" />
+    <Compile Include="ObjectModel\ServerControl\PluginsLoader.cs" />
+    <Compile Include="ObjectModel\ServerControl\ServerControl.cs" />
+    <Compile Include="ObjectModel\ServerControl\TmxServerRootPathProvider.cs" />
     <Compile Include="ObjectModel\Settings\TestRunSettings.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -215,6 +226,9 @@
     <Folder Include="Helpers" />
     <Folder Include="Interfaces" />
     <Folder Include="ObjectModel" />
+    <Folder Include="ObjectModel\ExtensionMethods" />
+    <Folder Include="ObjectModel\Objects" />
+    <Folder Include="ObjectModel\ServerControl" />
     <Folder Include="ObjectModel\Settings" />
     <Folder Include="ObjectModel\Settings" />
     <Folder Include="Views\parts" />

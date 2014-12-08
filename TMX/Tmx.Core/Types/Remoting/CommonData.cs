@@ -29,7 +29,6 @@ namespace Tmx.Core.Types.Remoting
         
         public void AddOrUpdateDataItem(ICommonDataItem commonDataItem)
         {
-            // if (CommonData.Data.Keys.Any(key => key == commonDataItem.Key))
             if (Data.Keys.Any(key => key == commonDataItem.Key))
                 updateExistingDataItem(commonDataItem);
             else
@@ -38,13 +37,11 @@ namespace Tmx.Core.Types.Remoting
         
         void addNewDataItem(ICommonDataItem commonDataItem)
         {
-            // CommonData.Data.Add(commonDataItem.Key, commonDataItem.Value);
             Data.Add(commonDataItem.Key, commonDataItem.Value);
         }
         
         void updateExistingDataItem(ICommonDataItem commonDataItem)
         {
-            // CommonData.Data[commonDataItem.Key] = commonDataItem.Value;
             Data[commonDataItem.Key] = commonDataItem.Value;
         }
     }

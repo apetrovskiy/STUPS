@@ -28,19 +28,7 @@ namespace Tmx.Server.Modules
         public TestDataModule() : base(UrlList.TestData_Root)
         {
             // TODO: fix it 20141030
-        	// Get[UrnList.TestData_CommonData_relPath] = _ => returnCommonData();
         	Get[UrlList.TestData_CommonData_relPath] = parameters => returnCommonData(parameters.id);
-        	
-//        	Get[UrnList.TestData_CommonData_relPath + "{key}"] = parameters => {
-//        	    string key = parameters.key;
-//        	    /*
-//        	    Console.WriteLine("requested key: " + key);
-//        	    foreach (var k in CommonData.Data.Keys) {
-//        	        Console.WriteLine("key: " + k + ", value: " + CommonData.Data[k]);
-//        	    }
-//        	    */
-//        	    return (null == CommonData.Data[key]) ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(CommonData.Data[key]).WithStatusCode(HttpStatusCode.OK);
-//        	};
         	
         	Get[UrlList.TestData_CommonData_relPath + "{key}"] = parameters => {
         	    var commonData = TestRunQueue.TestRuns.First(testRun => testRun.Id == parameters.id).Data.Data;
@@ -50,12 +38,6 @@ namespace Tmx.Server.Modules
             
             Post[UrlList.TestData_CommonData_relPath] = parameters => {
                 var commonDataItem = this.Bind<CommonDataItem>();
-                /*
-                foreach (var header in Request.Headers) {
-                    Console.WriteLine(header.Key);
-                    Console.WriteLine(header.Value);
-                }
-                */
                 return addCommonDataItem(commonDataItem, parameters.id);
             };
             

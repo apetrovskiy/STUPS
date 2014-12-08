@@ -157,7 +157,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="App_Readme\Spring.Rest.txt" />
     <None Include="packages.config" />
   </ItemGroup>

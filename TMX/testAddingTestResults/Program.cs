@@ -11,7 +11,7 @@ namespace testAddingTestResults
 {
     using System;
     using Tmx;
-    using Tmx.Server.ObjectModel.ServerControl;
+    using Tmx.Server;
     
     class Program
     {

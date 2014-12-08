@@ -1,6 +1,6 @@
 ﻿/*
  * Created by SharpDevelop.
-Alexander Petrovskiy
+ * User: Alexander Petrovskiy
  * Date: 12/7/2014
  * Time: 6:29 PM
  * 
@@ -15,7 +15,7 @@ namespace Tmx.Core.Types.Remoting
     /// <summary>
     /// Description of TestTaskAction.
     /// </summary>
-    public class TestTaskAction : IAction
+    public class TestTaskAction : ITestTaskAction
     {
         public bool Run()
         {

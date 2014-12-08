@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Server.ObjectModel.ServerControl
+namespace Tmx.Server //.ObjectModel.ServerControl
 {
     /// <summary>
     /// Description of ServerControl.

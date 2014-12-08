@@ -10,17 +10,21 @@
 namespace Tmx.Server.Runner
 {
     using System;
-    using System.Net.NetworkInformation;
     using Tmx.Interfaces;
     using Tmx.Interfaces.TestStructure;
-    using Tmx.Server.ObjectModel.ServerControl;
     
     class Program
     {
         public static void Main(string[] args)
         {
+            try {
             ServerControl.Start(@"http://localhost:" + 12340);
-            
+            }
+            catch (Exception ex) {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+                Console.WriteLine(ex.InnerException.Message);
+            }
             Console.Write("Press any key to stop server . . . ");
             Console.ReadKey(true);
             ServerControl.Stop();

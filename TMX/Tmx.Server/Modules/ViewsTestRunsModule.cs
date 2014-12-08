@@ -14,7 +14,10 @@ namespace Tmx.Server.Modules
     using System.Dynamic;
     using System.Linq;
     using Nancy;
+    using Nancy.Cookies;
     using Nancy.ModelBinding;
+    using Nancy.Responses.Negotiation;
+    using Nancy.Extensions;
     using Tmx.Core;
     using Tmx.Interfaces.Server;
     using Tmx.Interfaces.Remoting;
@@ -24,17 +27,27 @@ namespace Tmx.Server.Modules
     /// </summary>
     public class ViewsTestRunsModule : NancyModule
     {
+        const string _workflowCookieName = "workflow_name";
+        
         public ViewsTestRunsModule() : base(UrlList.ViewTestRuns_Root)
         {
             Get[UrlList.ViewTestRuns_NewTestRunPage] = _ => {
                 var data = CreateNewTestRunModel(UrlList.ViewTestWorkflowParameters_Root + "/" + UrlList.ViewTestWorkflowParameters_DefaultPage, string.Empty);
+                data.Selected = string.Empty;
+                try {
+                    var cookieValue = Context.Request.Cookies[_workflowCookieName];
+                    cookieValue = cookieValue.Replace("+", " ");
+                    data.Selected = cookieValue;
+                }
+                catch {}
                 return View[UrlList.ViewTestRuns_NewTestRunPageName, data];
             };
             
             Post[UrlList.ViewTestRuns_NewTestRunPage] = _ => {
                 string workflowName = Request.Form.workflow_name;
                 var data = CreateNewTestRunModel("/workflows/" + WorkflowCollection.Workflows.FirstOrDefault(wfl => wfl.Name == workflowName).ParametersPageName, workflowName);
-                return View[UrlList.ViewTestRuns_NewTestRunPageName, data];
+                data.Selected = workflowName;
+                return Negotiate.WithCookie(new NancyCookie(_workflowCookieName, workflowName)).WithView(UrlList.ViewTestRuns_NewTestRunPageName).WithModel((ExpandoObject)data);
             };
             
             Get[UrlList.ViewTestRuns_TestRunsPage] = parameters => {

@@ -17,34 +17,32 @@ namespace Tmx
     /// </summary>
     public struct XMLElementsJUnitStruct : IXMLElementsStruct //IEquatable<XMLElementsJUnitStruct>
     {
-		const string suitesNode = "testsuites";
-		const string suiteNode = "testsuite";
-		const string scenariosNode = "testsuites";
-		const string scenarioNode = "testsuite";
-		const string testResultsNode = "testcases";
-		const string testResultNode = "testcase";
-		// 20141120
-		const string platformsNode = "testplatforms";
-		const string platformNode = "testplatform";
-		
-		const string failedAttribute = "errors";
-
-		const string timeSpentAttribute = "time";
-		const string timeStampAttribute = "timestamp";
-		
-		public string SuitesNode { get { return suitesNode; } }
-		public string SuiteNode { get { return suiteNode; } }
-		public string ScenariosNode { get { return scenariosNode; } }
-		public string ScenarioNode { get { return scenarioNode; } }
-		public string TestResultsNode { get { return testResultsNode; } }
-		public string TestResultNode { get { return testResultNode; } }
-		// 20141120
-		public string PlatformsNode { get { return platformsNode; } }
-		public string PlatformNode { get { return platformNode; } }
-		
-		public string FailedAttribute { get { return failedAttribute; } }
-
-		public string TimeSpentAttribute { get { return timeSpentAttribute; } }
-		public string TimeStampAttribute { get { return timeStampAttribute; } }
+        const string suitesNode = "testsuites";
+        const string suiteNode = "testsuite";
+        const string scenariosNode = "testsuites";
+        const string scenarioNode = "testsuite";
+        const string testResultsNode = "testcases";
+        const string testResultNode = "testcase";
+        const string platformsNode = "testplatforms";
+        const string platformNode = "testplatform";
+        
+        const string failedAttribute = "errors";
+        
+        const string timeSpentAttribute = "time";
+        const string timeStampAttribute = "timestamp";
+        
+        public string SuitesNode { get { return suitesNode; } }
+        public string SuiteNode { get { return suiteNode; } }
+        public string ScenariosNode { get { return scenariosNode; } }
+        public string ScenarioNode { get { return scenarioNode; } }
+        public string TestResultsNode { get { return testResultsNode; } }
+        public string TestResultNode { get { return testResultNode; } }
+        public string PlatformsNode { get { return platformsNode; } }
+        public string PlatformNode { get { return platformNode; } }
+        
+        public string FailedAttribute { get { return failedAttribute; } }
+        
+        public string TimeSpentAttribute { get { return timeSpentAttribute; } }
+        public string TimeStampAttribute { get { return timeStampAttribute; } }
     }
 }

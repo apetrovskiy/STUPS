@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Server.ObjectModel.ServerControl
+namespace Tmx.Server //.ObjectModel.ServerControl
 {
     using System;
     using System.Collections.Generic;
@@ -21,8 +21,6 @@ namespace Tmx.Server.ObjectModel.ServerControl
     using Nancy.Hosting.Self;
     using Nancy.Diagnostics;
     using Nancy.Json;
-    using Nancy.Responses;
-    using Nancy.Responses.Negotiation;
     using Nancy.TinyIoc;
     using Tmx.Core;
     using Tmx.Core.Types.Remoting;
@@ -37,18 +35,14 @@ namespace Tmx.Server.ObjectModel.ServerControl
     public class InternalServerControl : DefaultNancyBootstrapper
     {
         static NancyHost _nancyHost;
-        
-        // temporary
-        static bool _alreadyInitialized;
+        static bool _tracingAlreadyInitialized;
         
         public static string Url { get; set; }
         
         public static void Start(string url)
         {
-            // temporary
             // TODO: rewrite it
             setTracing();
-            
             Url = url;
             prepareComponents();
             loadModules();
@@ -57,33 +51,33 @@ namespace Tmx.Server.ObjectModel.ServerControl
             registerTypes();
             loadPlugins();
             loadWorkflows();
-			_nancyHost.Start();
+            _nancyHost.Start();
         }
         
         static void setTracing()
         {
-            if (_alreadyInitialized) return;
-			var fileStream = getFileStream("TmxServer_");
+            if (_tracingAlreadyInitialized) return;
+            var fileStream = getFileStream("TmxServer_");
             var listener = new TextWriterTraceListener(fileStream);
             listener.TraceOutputOptions = TraceOptions.DateTime;
             Trace.Listeners.Add(listener);
-			Trace.AutoFlush = true;
-            _alreadyInitialized = true;
+            Trace.AutoFlush = true;
+            _tracingAlreadyInitialized = true;
         }
         
-		static FileStream getFileStream(string fileName)
-		{
-			string filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\" + fileName + getCurrentDateTime() + ".log";
-			var fileStream = new FileStream(filePath, FileMode.Append);
-			return fileStream;
+        static FileStream getFileStream(string fileName)
+        {
+            string filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\" + fileName + getCurrentDateTime() + ".log";
+            var fileStream = new FileStream(filePath, FileMode.Append);
+            return fileStream;
         }
-		
-		static string getCurrentDateTime()
-		{
-			var now = DateTime.Now;
-			return (string.Format("{0}{1}{2}{3}{4}{5}", now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second));
-		}
-		
+
+        static string getCurrentDateTime()
+        {
+            var now = DateTime.Now;
+            return (string.Format("{0}{1}{2}{3}{4}{5}", now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second));
+        }
+        
         public static void Stop()
         {
             Reset();
@@ -105,42 +99,38 @@ namespace Tmx.Server.ObjectModel.ServerControl
                 return new DiagnosticsConfiguration { Password = @"Tmx=admin" };
             }
         }
-    	
-    	protected override void ConfigureConventions(NancyConventions nancyConventions)
-    	{
-    	    // nancyConventions.StaticContentsConventions.Add(
-    	    //     StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath(), "Root"));
-    	    
-//    	    // TODO: to a separate assembly
-//    	    nancyConventions.StaticContentsConventions.Add(
-//    	        StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + @"Views/Nwx", "Nwx"));
-    	    
-    	    nancyConventions.StaticContentsConventions.Add(
-    	        StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + @"Views/results", "results"));
-    	    
-    	    nancyConventions.StaticContentsConventions.Add(
-    	        StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + "Views/Scripts", @"Scripts", ".js"));
+        
+        protected override void ConfigureConventions(NancyConventions nancyConventions)
+        {
+            // nancyConventions.StaticContentsConventions.Add(
+            //     StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath(), "Root"));
+            
+            nancyConventions.StaticContentsConventions.Add(
+                StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + @"Views/results", "results"));
+            
+            nancyConventions.StaticContentsConventions.Add(
+                StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + "Views/Scripts", @"Scripts", ".js"));
                 
-    	    nancyConventions.StaticContentsConventions.Add(
-    	        StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + "Views/settings", @"settings"));
+            nancyConventions.StaticContentsConventions.Add(
+                StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + "Views/settings", @"settings"));
                 
-    	    nancyConventions.StaticContentsConventions.Add(
-    	        StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + "Views/status", @"status"));
-    	    
-    	    nancyConventions.StaticContentsConventions.Add(
-    	        StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + "Views/testRuns", @"testRuns"));
-    	    
-    	    nancyConventions.StaticContentsConventions.Add(
-    	        StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + "Views/workflows", @"workflows"));
-    	    
-    		base.ConfigureConventions(nancyConventions);
-    	}
-    	
-    	protected override IRootPathProvider RootPathProvider
-    	{
-    	    get { return new TmxServerRootPathProvider(); }
-    	}
-    	
+            nancyConventions.StaticContentsConventions.Add(
+                StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + "Views/status", @"status"));
+            
+            nancyConventions.StaticContentsConventions.Add(
+                StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + "Views/testRuns", @"testRuns"));
+            
+            nancyConventions.StaticContentsConventions.Add(
+                StaticContentConventionBuilder.AddDirectory((new TmxServerRootPathProvider()).GetRootPath() + "Views/workflows", @"workflows"));
+            
+            base.ConfigureConventions(nancyConventions);
+        }
+        
+        protected override IRootPathProvider RootPathProvider
+        {
+            get { return new TmxServerRootPathProvider(); }
+        }
+        
         static void prepareComponents()
         {
             var testLabCollection = new TestLabCollection();

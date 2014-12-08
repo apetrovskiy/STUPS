@@ -30,9 +30,9 @@ namespace Tmx.Client
         public virtual Dictionary<string, string> Load()
         {
             var urn = UrlList.TestData_Root + "/" + ClientSettings.Instance.CurrentClient.TestRunId + UrlList.TestData_CommonData_forClient_relPath;
-			var commonDataResponse = _restTemplate.GetForMessage<Dictionary<string, string>>(urn);
-			var commonData = commonDataResponse.Body;
-			return HttpStatusCode.NotFound == commonDataResponse.StatusCode ? new Dictionary<string, string>() : commonData;
+            var commonDataResponse = _restTemplate.GetForMessage<Dictionary<string, string>>(urn);
+            var commonData = commonDataResponse.Body;
+            return HttpStatusCode.NotFound == commonDataResponse.StatusCode ? new Dictionary<string, string>() : commonData;
         }
     }
 }

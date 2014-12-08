@@ -115,10 +115,12 @@
     <Compile Include="Remoting\ITestResultsDataObject.cs" />
     <Compile Include="Remoting\ITestResultsHolder.cs" />
     <Compile Include="Remoting\ITestRun.cs" />
+    <Compile Include="Remoting\ITestRunAction.cs" />
     <Compile Include="Remoting\ITestRunCommand.cs" />
     <Compile Include="Remoting\ITestTask.cs" />
     <Compile Include="Remoting\ITestHost.cs" />
     <Compile Include="Remoting\ITestHostGroup.cs" />
+    <Compile Include="Remoting\ITestTaskAction.cs" />
     <Compile Include="Remoting\ITestTaskCodeProxy.cs" />
     <Compile Include="Remoting\ITestTaskProxy.cs" />
     <Compile Include="Remoting\ITestTaskResultProxy.cs" />

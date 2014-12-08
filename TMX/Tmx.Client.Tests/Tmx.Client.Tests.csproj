@@ -82,7 +82,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\CommonDataSenderTestFixture.cs" />
+    <Compile Include="Helpers\FakeFactory.cs" />
+    <Compile Include="ObjectModel\CommonDataSenderTestFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -102,6 +103,7 @@
   <ItemGroup>
     <Folder Include="App_Readme" />
     <Folder Include="Helpers" />
+    <Folder Include="ObjectModel" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Readme\Spring.Rest.txt" />

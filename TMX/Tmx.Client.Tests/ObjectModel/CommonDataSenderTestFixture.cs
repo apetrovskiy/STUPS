@@ -65,34 +65,44 @@ Call MockRestServiceServer.Verify() method.
         [NUnit.Framework.Test][Fact]
         public void Should_respond_Created_on_new_common_data_upload_as_json()
         {
+            const string expectedKey = "aaa";
+            const string expectedValue = "bbb";
             var url = GIVEN_url_to_testRun_data();
             _responseHeaders.Location = new Uri(_baseUrl + url);
             _mockRestServer.ExpectNewRequest()
                 .AndExpectUri(_baseUrl + url)
                 .AndExpectMethod(HttpMethod.POST)
+                .AndExpectBodyContains(expectedKey)
+                .AndExpectBodyContains(expectedValue)
                 .AndRespondWith("", _responseHeaders, HttpStatusCode.Created, "");
             
             var commonDataSender = new CommonDataSender(_restRequestCreator);
-            commonDataSender.Send(new CommonDataItem { Key = "aaa", Value = "bbb" });
+            commonDataSender.Send(new CommonDataItem { Key = expectedKey, Value = expectedValue });
         }
         
         [NUnit.Framework.Test][Fact]
         public void Should_respond_ExpectationFailed_on_common_data_update_as_json()
         {
+            const string expectedKey = "aaa";
+            const string expectedValue = "bbb";
             var url = GIVEN_url_to_testRun_data();
             _responseHeaders.Location = new Uri(_baseUrl + url);
             _mockRestServer.ExpectNewRequest()
                 .AndExpectUri(_baseUrl + url)
                 .AndExpectMethod(HttpMethod.POST)
+                .AndExpectBodyContains(expectedKey)
+                .AndExpectBodyContains(expectedValue)
                 .AndRespondWith("", _responseHeaders, HttpStatusCode.Created, "");
             _mockRestServer.ExpectNewRequest()
                 .AndExpectUri(_baseUrl + url)
                 .AndExpectMethod(HttpMethod.POST)
+                .AndExpectBodyContains(expectedKey)
+                .AndExpectBodyContains(expectedValue)
                 .AndRespondWith("", _responseHeaders, HttpStatusCode.Created, "");
             
             var commonDataSender = new CommonDataSender(_restRequestCreator);
-            commonDataSender.Send(new CommonDataItem { Key = "aaa", Value = "bbb" });
-            commonDataSender.Send(new CommonDataItem { Key = "aaa", Value = "bbb" });
+            commonDataSender.Send(new CommonDataItem { Key = expectedKey, Value = expectedValue });
+            commonDataSender.Send(new CommonDataItem { Key = expectedKey, Value = expectedValue });
         }
         
         [NUnit.Framework.Test][Fact]
@@ -103,10 +113,17 @@ Call MockRestServiceServer.Verify() method.
             _mockRestServer.ExpectNewRequest()
                 .AndExpectUri(_baseUrl + url)
                 .AndExpectMethod(HttpMethod.GET)
-                .AndRespondWith("", _responseHeaders, HttpStatusCode.OK, "");
+                .AndRespondWith("{key:'aaa',value:'bbb'}", _responseHeaders, HttpStatusCode.OK, "");
             
             var commonDataLoader = new CommonDataLoader(_restRequestCreator);
-            commonDataLoader.Load();
+            var resultDictionary = commonDataLoader.Load();
+            
+//            foreach (var key in resultDictionary.Keys) {
+//                Console.WriteLine(key);
+//                Console.WriteLine(resultDictionary[key]);
+//            }
+//            
+//            Assert.Equal("bbb", resultDictionary["aaa"]);
         }
 
         string GIVEN_url_to_testRun_data()

@@ -96,13 +96,14 @@
     <Compile Include="Helpers\Mapping\TestSuiteMap.cs" />
     <Compile Include="Helpers\Spring.IoC\ObjectFactory.cs" />
     <Compile Include="Helpers\StorageHelper.cs" />
+    <Compile Include="Helpers\TestResultsExporter.cs" />
+    <Compile Include="Helpers\TestResultsImporter.cs" />
+    <Compile Include="Helpers\TestResultsSearcher.cs" />
     <Compile Include="Helpers\TMXHelper.cs" />
     <Compile Include="Helpers\UserSettings\Preferences.cs" />
     <Compile Include="TestData\TestData.cs" />
-    <Compile Include="TestResultsExporter.cs" />
-    <Compile Include="TestResultsImporter.cs" />
-    <Compile Include="TestResultsSearcher.cs" />
-    <Compile Include="TestStatistics.cs" />
+    <Compile Include="Types\ImportExport\XMLElementsJUnitStruct.cs" />
+    <Compile Include="Types\ImportExport\XMLElementsNativeStruct.cs" />
     <Compile Include="Types\Remoting\Binders\TestResultDetailSerializationBinder.cs" />
     <Compile Include="Types\Remoting\Binders\TestResultSerializationBinder.cs" />
     <Compile Include="Types\Remoting\Binders\TestScenarioSerializationBinder.cs" />
@@ -131,10 +132,9 @@
     <Compile Include="Types\TestStructure\TestResult.cs" />
     <Compile Include="Types\TestStructure\TestResultDetail.cs" />
     <Compile Include="Types\TestStructure\TestScenario.cs" />
+    <Compile Include="Types\TestStructure\TestStatistics.cs" />
     <Compile Include="Types\TestStructure\TestSuite.cs" />
     <Compile Include="Types\TestStructure\TestTaskAction.cs" />
-    <Compile Include="XMLElementsJUnitStruct.cs" />
-    <Compile Include="XMLElementsNativeStruct.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helpers" />
@@ -146,6 +146,7 @@
     <Folder Include="Types" />
     <Folder Include="TestData" />
     <Folder Include="Properties" />
+    <Folder Include="Types\ImportExport" />
     <Folder Include="Types\Remoting\Binders" />
     <Folder Include="Types\TestStructure" />
     <Folder Include="Types\Remoting" />

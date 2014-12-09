@@ -113,17 +113,14 @@ Call MockRestServiceServer.Verify() method.
             _mockRestServer.ExpectNewRequest()
                 .AndExpectUri(_baseUrl + url)
                 .AndExpectMethod(HttpMethod.GET)
-                .AndRespondWith("{key:'aaa',value:'bbb'}", _responseHeaders, HttpStatusCode.OK, "");
+                // .AndRespondWith("{'key':'aaa','value':'bbb'}", _responseHeaders, HttpStatusCode.OK, "");
+                .AndRespondWith("{ \"Key\":\"aaa\",\"Value\":\"bbb\" }", _responseHeaders, HttpStatusCode.OK, "");
             
             var commonDataLoader = new CommonDataLoader(_restRequestCreator);
             var resultDictionary = commonDataLoader.Load();
             
-//            foreach (var key in resultDictionary.Keys) {
-//                Console.WriteLine(key);
-//                Console.WriteLine(resultDictionary[key]);
-//            }
-//            
-//            Assert.Equal("bbb", resultDictionary["aaa"]);
+            Assert.Equal("aaa", resultDictionary["Key"]);
+            Assert.Equal("bbb", resultDictionary["Value"]);
         }
 
         string GIVEN_url_to_testRun_data()

@@ -16,6 +16,7 @@ namespace Tmx.Server
 	using Tmx.Interfaces.Exceptions;
 	using Tmx.Core.Types.Remoting;
 	using Tmx.Interfaces.Remoting;
+    using Tmx.Server.Helpers;
 	
 	/// <summary>
 	/// Description of WorkflowLoader.
@@ -61,10 +62,10 @@ namespace Tmx.Server
 		{
             var workflowId = getWorkflowId(xDocument);
             
-            // 20141127
-            setParameterspageName(workflowId, xDocument);
+            setParametersPageName(workflowId, xDocument);
             
-            var tasks = from task in xDocument.Descendants("task")
+            // var tasks = from task in xDocument.Descendants("task")
+            var tasks = from task in xDocument.Descendants(WorkflowXmlConstants.TaskNode)
                         where task.Element(taskElement_isActive).Value == "1"
                         select task;
             var importedTasks = tasks.Select(tsk => getNewTestTask(tsk, workflowId));
@@ -74,10 +75,12 @@ namespace Tmx.Server
 		
         Guid getWorkflowId(XContainer xDocument)
         {
-            var workflow = xDocument.Descendants("workflow").FirstOrDefault();
+            // var workflow = xDocument.Descendants("workflow").FirstOrDefault();
+            var workflow = xDocument.Descendants(WorkflowXmlConstants.WorkflowNode).FirstOrDefault();
             if (null == workflow)
                 throw new WorkflowLoadingException("There's no workflow element in the document");
-            var nameAttribute = workflow.Attribute("name");
+            // var nameAttribute = workflow.Attribute("name");
+            var nameAttribute = workflow.Attribute(WorkflowXmlConstants.NameAttribute);
             var workflowName = null != nameAttribute ? nameAttribute.Value : "unnamed workflow";
             
             // 20141127
@@ -89,7 +92,8 @@ namespace Tmx.Server
         {
             // 20141127
             // var workflow = new TestWorkflow(TestLabCollection.TestLabs.First()) { Name = name };
-            var testLabName = xDocument.Descendants("testLabName").FirstOrDefault().Value;
+            // var testLabName = xDocument.Descendants("testLabName").FirstOrDefault().Value;
+            var testLabName = xDocument.Descendants(WorkflowXmlConstants.TestLabNode).FirstOrDefault().Value;
 //            var testLab = TestLabCollection.TestLabs.First();
 //            if (!string.IsNullOrEmpty(testLabName))
 //                testLab = TestLabCollection.TestLabs.FirstOrDefault(tl => tl.Name.ToLower() == testLabName.ToLower());
@@ -120,9 +124,10 @@ namespace Tmx.Server
             return testLab;
         }
         
-        void setParameterspageName(Guid workflowId, XContainer xDocument)
+        void setParametersPageName(Guid workflowId, XContainer xDocument)
         {
-            WorkflowCollection.Workflows.FirstOrDefault(wfl => wfl.Id == workflowId).ParametersPageName = xDocument.Descendants("parametersPage").FirstOrDefault().Value;
+            // WorkflowCollection.Workflows.FirstOrDefault(wfl => wfl.Id == workflowId).ParametersPageName = xDocument.Descendants("parametersPage").FirstOrDefault().Value;
+            WorkflowCollection.Workflows.FirstOrDefault(wfl => wfl.Id == workflowId).ParametersPageName = xDocument.Descendants(WorkflowXmlConstants.ParametersPageNode).FirstOrDefault().Value;
         }
         
 		internal virtual void addTasksToCommonPool(IEnumerable<ITestTask> importedTasks)

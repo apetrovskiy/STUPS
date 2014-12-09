@@ -7,6 +7,7 @@
                 border-collapse: collapse;
             }
         </style>
+        <meta http-equiv="refresh" content="30">
     </head>
     <body>
         <a href="/">Home</a>
@@ -38,17 +39,17 @@
                 <td><a href="/testRuns/{{ testRun.Id }}/testParameters">parameters</a></td>
                 <td><a href="/testRuns/{{ testRun.Id }}/clients">clients</a></td>
                 <td><a href="/testRuns/{{ testRun.Id }}/tasks">tasks</a></td>
-                {% if testRun.Status == 'Pending' %}
+                {% if testRun.Status == 'Pending' or testRun.Status == 'Running' -%}
                     <!-- http://blog.nancyfx.org/x-http-method-override-with-nancyfx/ -->                
                     <form action="/api/testRuns/{{ testRun.Id }}/cancelTestRun" method="POST">
                         <input type="hidden" name="_method" value="PUT"/>
                         <td><input type="submit" value="Cancel"/></td>
                     </form>
-                {% elsif testRun.Status == 'Running' %}
-                    <td style="text-align:center">Sorry!</td>
-                {% else %}
+                <!-- {% elsif testRun.Status == 'Running' -%}
+                    <td style="text-align:center">Sorry!</td> -->
+                {% else -%}
                     <td><input type="submit" value="Cancel" disabled/></td>
-                {% endif %}
+                {% endif -%}
             </tr>
             {% endfor -%}
         </table>

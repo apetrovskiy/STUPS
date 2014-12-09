@@ -85,6 +85,8 @@
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Helpers\Mailer.cs" />
+    <Compile Include="Helpers\TestRunLifecycle.cs" />
+    <Compile Include="Helpers\WorkflowXmlConstants.cs" />
     <Compile Include="Interfaces\IMailSettings.cs" />
     <Compile Include="Interfaces\ISettings.cs" />
     <Compile Include="ObjectModel\Data\MailSettings.cs" />

@@ -45,12 +45,12 @@ namespace Tmx.Server.Tests
         
         public static Browser GetBrowserForTestResultsModule()
         {
-            return new Browser(with => with.Modules(typeof(TestResultsModule))); // , typeof(TestRunsModule), typeof(ServerControlModule)));
+            return new Browser(with => with.Modules(typeof(TestResultsModule)));
         }
         
         public static Browser GetBrowserForTestDataModule()
         {
-            return new Browser(with => with.Modules(typeof(TestDataModule))); // , typeof(TestRunsModule), typeof(ServerControlModule)));
+            return new Browser(with => with.Modules(typeof(TestDataModule)));
         }
         
         public static ITestClient GivenTestClient(string hostname, string username)

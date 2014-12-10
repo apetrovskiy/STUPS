@@ -103,7 +103,7 @@ namespace Tmx.Server.Tests.Helpers
         Guid WHEN_ImportingTasks(string path)
         {
             var workflowLoader = new WorkflowLoader();
-            workflowLoader.LoadWorkflow(path);
+            workflowLoader.Load(path);
             return WorkflowCollection.Workflows.Last().Id;
         }
         

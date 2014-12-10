@@ -27,35 +27,35 @@ namespace Tmx.Client
     {
         // volatile RestTemplate _restTemplate;
         RestTemplate _restTemplate;
-	    
-	    public Registration(RestRequestCreator requestCreator)
-	    {
-	    	_restTemplate = requestCreator.GetRestTemplate();
-	    }
+        
+        public Registration(RestRequestCreator requestCreator)
+        {
+        	_restTemplate = requestCreator.GetRestTemplate();
+        }
         
         public virtual Guid SendRegistrationInfoAndGetClientId(string customClientString)
-		{
-			var registrationResponse = _restTemplate.PostForMessage<TestClient>(UrlList.TestClientRegistrationPoint_absPath, getNewTestClient(customClientString));
-			
-			if (HttpStatusCode.Created == registrationResponse.StatusCode)
-			    ClientSettings.Instance.CurrentClient = registrationResponse.Body;
-			
-			if (HttpStatusCode.Created == registrationResponse.StatusCode)
-				return registrationResponse.Body.Id;
-			throw new Exception("Failed to register a client. "+ registrationResponse.StatusCode); // TODO: new type!
-		}
+        {
+            var registrationResponse = _restTemplate.PostForMessage<TestClient>(UrlList.TestClientRegistrationPoint_absPath, getNewTestClient(customClientString));
+            
+            if (HttpStatusCode.Created == registrationResponse.StatusCode)
+                ClientSettings.Instance.CurrentClient = registrationResponse.Body;
+            
+            if (HttpStatusCode.Created == registrationResponse.StatusCode)
+            	return registrationResponse.Body.Id;
+            throw new Exception("Failed to register a client. "+ registrationResponse.StatusCode); // TODO: new type!
+        }
         
         public virtual void UnregisterClient()
         {
             closeCurrentTaskIfAny();
-			try {
-			    _restTemplate.Delete(UrlList.TestClients_Root + "/" + ClientSettings.Instance.ClientId);
+            try {
+                _restTemplate.Delete(UrlList.TestClients_Root + "/" + ClientSettings.Instance.ClientId);
                 ClientSettings.Instance.ResetData();
-			}
+            }
             catch (RestClientException eUnregisteringClient) {
                 Trace.TraceError(eUnregisteringClient.Message);
-			    throw new ClientDeregistrationException("Failed to unregister the client. " + eUnregisteringClient.Message);
-			}
+                throw new ClientDeregistrationException("Failed to unregister the client. " + eUnregisteringClient.Message);
+            }
         }
         
         ITestClient getNewTestClient(string customClientString)

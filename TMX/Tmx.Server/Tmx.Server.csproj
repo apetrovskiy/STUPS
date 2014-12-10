@@ -86,6 +86,7 @@
     </Compile>
     <Compile Include="Helpers\Mailer.cs" />
     <Compile Include="Helpers\TestRunLifecycle.cs" />
+    <Compile Include="Helpers\WorkflowLifecycle.cs" />
     <Compile Include="Helpers\WorkflowXmlConstants.cs" />
     <Compile Include="Interfaces\IMailSettings.cs" />
     <Compile Include="Interfaces\ISettings.cs" />

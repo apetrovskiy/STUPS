@@ -193,12 +193,13 @@ namespace Tmx.Server //.ObjectModel.ServerControl
         {
             var workflowsDirectoryPath = (new TmxServerRootPathProvider()).GetRootPath() + @"\Workflows";
             if (!Directory.Exists(workflowsDirectoryPath)) return;
-            var workflowLoader = new WorkflowLoader();
+            // var workflowLoader = new WorkflowLoader();
+            var workflowLoader = TinyIoCContainer.Current.Resolve<WorkflowLoader>();
 //            foreach (var fileName in Directory.GetFiles(workflowsDirectoryPath))
 //                workflowLoader.LoadWorkflow(fileName);
             foreach (var fileName in Directory.GetFiles(workflowsDirectoryPath)) {
                 try {
-                    workflowLoader.LoadWorkflow(fileName);
+                    workflowLoader.Load(fileName);
                 }
                 catch {}
             }
@@ -237,5 +238,18 @@ namespace Tmx.Server //.ObjectModel.ServerControl
             try { Console.WriteLine(state + " Text = " + ctx.Text); } catch {}
             try { Console.WriteLine(state + " ViewBag = " + ctx.ViewBag); } catch {}
         }
+        
+//        protected override void ConfigureApplicationContainer(TinyIoCContainer container)
+//        {
+//            base.ConfigureApplicationContainer(container);
+//            
+//            // container.Register<
+//        }
+        
+//        protected override void ConfigureRequestContainer(TinyIoCContainer container, NancyContext context)
+//        {
+//            // base.ConfigureRequestContainer(container, context);
+//            // var session = container.Resolve<
+//        }
     }
 }

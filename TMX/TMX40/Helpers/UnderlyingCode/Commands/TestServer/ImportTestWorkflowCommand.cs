@@ -26,7 +26,7 @@ namespace Tmx
         {
             var cmdlet = (ImportTmxTestWorkflowCommand)Cmdlet;
             var workflowLoader = new WorkflowLoader();
-            cmdlet.WriteObject(workflowLoader.LoadWorkflow(cmdlet.Path));
+            cmdlet.WriteObject(workflowLoader.Load(cmdlet.Path));
         }
     }
 }

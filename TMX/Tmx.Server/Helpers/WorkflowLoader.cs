@@ -23,28 +23,28 @@ namespace Tmx.Server
 	/// </summary>
 	public class WorkflowLoader
 	{
-		const string taskElement_id = "id";
-		const string taskElement_afterTask = "afterTask";
-		const string taskElement_isActive = "isActive";
-		const string taskElement_isCritical = "isCritical";
-		const string taskElement_name = "name";
-		const string taskElement_rule = "rule";
-		const string taskElement_storyId = "storyId";
-		const string taskElement_taskType = "taskType";
-		const string taskElement_timeLimit = "timelimit";
-		const string taskElement_retryCount = "retryCount";
-		
-		const string taskElement_action = "action";
-		const string taskElement_beforeAction = "beforeAction";
-		const string taskElement_afterAction = "afterAction";
-		const string taskElement_code = "code";
-		const string taskElement_parameters = "parameters";
-		
-		public virtual bool LoadWorkflow(string pathToWorkflowFile)
-		{
+        const string taskElement_id = "id";
+        const string taskElement_afterTask = "afterTask";
+        const string taskElement_isActive = "isActive";
+        const string taskElement_isCritical = "isCritical";
+        const string taskElement_name = "name";
+        const string taskElement_rule = "rule";
+        const string taskElement_storyId = "storyId";
+        const string taskElement_taskType = "taskType";
+        const string taskElement_timeLimit = "timelimit";
+        const string taskElement_retryCount = "retryCount";
+        
+        const string taskElement_action = "action";
+        const string taskElement_beforeAction = "beforeAction";
+        const string taskElement_afterAction = "afterAction";
+        const string taskElement_code = "code";
+        const string taskElement_parameters = "parameters";
+        
+        public virtual bool Load(string pathToWorkflowFile)
+        {
             try {
-				if (!System.IO.File.Exists(pathToWorkflowFile))
-				    throw new WorkflowLoadingException("There is no such file '" + pathToWorkflowFile + "'.");
+                if (!System.IO.File.Exists(pathToWorkflowFile))
+                    throw new WorkflowLoadingException("There is no such file '" + pathToWorkflowFile + "'.");
                 ImportXdocument(XDocument.Load(pathToWorkflowFile));
             }
             catch (Exception eImportDocument) {
@@ -54,37 +54,35 @@ namespace Tmx.Server
                     "'. " + 
                     eImportDocument.Message);
             }
-			
-			return true;
-		}
-
-		public virtual Guid ImportXdocument(XContainer xDocument)
-		{
+            return true;
+        }
+        
+        public virtual void Reload(string pathToWorkflowFile)
+        {
+            // TODO: write code
+        }
+        
+        public virtual Guid ImportXdocument(XContainer xDocument)
+        {
             var workflowId = getWorkflowId(xDocument);
             
             setParametersPageName(workflowId, xDocument);
             
-            // var tasks = from task in xDocument.Descendants("task")
             var tasks = from task in xDocument.Descendants(WorkflowXmlConstants.TaskNode)
                         where task.Element(taskElement_isActive).Value == "1"
                         select task;
             var importedTasks = tasks.Select(tsk => getNewTestTask(tsk, workflowId));
             addTasksToCommonPool(importedTasks);
             return workflowId;
-		}
-		
+        }
+        
         Guid getWorkflowId(XContainer xDocument)
         {
-            // var workflow = xDocument.Descendants("workflow").FirstOrDefault();
             var workflow = xDocument.Descendants(WorkflowXmlConstants.WorkflowNode).FirstOrDefault();
             if (null == workflow)
                 throw new WorkflowLoadingException("There's no workflow element in the document");
-            // var nameAttribute = workflow.Attribute("name");
             var nameAttribute = workflow.Attribute(WorkflowXmlConstants.NameAttribute);
             var workflowName = null != nameAttribute ? nameAttribute.Value : "unnamed workflow";
-            
-            // 20141127
-            // return addWorkflow(workflowName);
             return addWorkflow(workflowName, xDocument);
         }
         

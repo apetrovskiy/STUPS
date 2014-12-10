@@ -18,6 +18,7 @@ namespace Tmx.Server.Modules
     using Nancy.ModelBinding;
     using Nancy.Responses.Negotiation;
     using Nancy.Extensions;
+    using Nancy.TinyIoc;
     using Tmx.Core;
     using Tmx.Interfaces.Server;
     using Tmx.Interfaces.Remoting;
@@ -79,11 +80,8 @@ namespace Tmx.Server.Modules
             
             Get[UrlList.ViewTestRuns_ResultsPage] = parameters => {
                 dynamic data = new ExpandoObject();
-                
-                // 20141130
-                // var currentTestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == parameters.id);
                 ITestRun currentTestRun = getCurrentTestRun(parameters.id);
-                var testStatistics = new TestStatistics();
+                var testStatistics = TinyIoCContainer.Current.Resolve<TestStatistics>();
                 testStatistics.RefreshAllStatistics(currentTestRun.TestSuites, true);
                 data.TestRun = currentTestRun;
                 data.Suites = currentTestRun.TestSuites.ToArray();

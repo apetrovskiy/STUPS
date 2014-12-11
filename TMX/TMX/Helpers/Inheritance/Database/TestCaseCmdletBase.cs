@@ -18,6 +18,12 @@ namespace Tmx
     /// </summary>
     public class TestCaseCmdletBase : DatabaseCmdletBase
     {
+        // 20141211
+        public TestCaseCmdletBase()
+        {
+            TestCode = new ScriptBlock[]{};
+        }
+        
         #region Parameters
         [Parameter(Mandatory = false)]
         public ScriptBlock[] TestCode { get; set; }

@@ -10,7 +10,7 @@
 namespace Tmx
 {
     using System;
-    using System.Management.Automation;
+    // using System.Management.Automation;
     using NHibernate;
     using FluentNHibernate.Cfg;
     using FluentNHibernate.Cfg.Db;

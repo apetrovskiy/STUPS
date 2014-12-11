@@ -29,17 +29,20 @@
                 ifrm.style.visibility = 'visible';
             }
         </script>
+        <meta http-equiv="refresh" content="30">
     </head>
     <body>
         <a href="/">Home</a>
         <br>
+        <a href="/testRuns/testRuns">Test runs</a>
+        <br>
         <br>
         
         <form method="POST">
-           <label for="workflows">Select test workflow</label><br>
+           <label for="workflow_name">Select test workflow</label><br>
            <select id="workflow_id" name="workflow_name">
                {% for workflow in @Model.Workflows -%}
-                   <option>{{ workflow.Name }}</option>
+                   <option{% if workflow.Name == @Model.Selected %} {{ 'selected' }}{% endif %}>{{ workflow.Name }}</option>
                {% endfor -%}
            </select>
            <input type="submit" value="Select" />

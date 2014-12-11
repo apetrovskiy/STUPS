@@ -11,6 +11,7 @@ namespace Tmx.Server.Modules
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.IO;
 	using System.Text;
     using System.Linq;
@@ -19,6 +20,7 @@ namespace Tmx.Server.Modules
     using Nancy.Json;
     using Nancy.ModelBinding;
     using Nancy.Responses.Negotiation;
+    using Nancy.TinyIoc;
     using Newtonsoft.Json;
     using Tmx.Core;
     using Tmx.Core.Types.Remoting;
@@ -66,7 +68,7 @@ namespace Tmx.Server.Modules
                     return HttpStatusCode.Created;
                 var xDoc = XDocument.Parse(dataObject.Data);
                 var currentTestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId);
-                var testResultsImporter = new TestResultsImporter();
+                var testResultsImporter = TinyIoCContainer.Current.Resolve<TestResultsImporter>();
                 // 20141113
                 // currentTestRun.TestSuites.AddRange(testResultsImporter.ImportTestResultsFromXdocument(xDoc));
                 testResultsImporter.MergeTestPlatforms(currentTestRun.TestPlatforms, testResultsImporter.ImportTestPlatformFromXdocument(xDoc));
@@ -74,13 +76,16 @@ namespace Tmx.Server.Modules
                 // maybe, there's no such need? // TODO: set current test suite, test scenario, test result?
                 return HttpStatusCode.Created;
             } catch (Exception eFailedToImportTestResults) {
+                // TODO: AOP
+                Trace.TraceError("importTestResultsToTestRun(Guid testRunId)");
+                Trace.TraceError(eFailedToImportTestResults.Message);
                 return HttpStatusCode.ExpectationFailed;
             }
         }
         
         Negotiator exportTestResultsFromTestRun(Guid testRunId)
         {
-            var testResultsExporter = new TestResultsExporter();
+            var testResultsExporter = TinyIoCContainer.Current.Resolve<TestResultsExporter>();
             var xDoc = testResultsExporter.GetTestResultsAsXdocument(
                            new SearchCmdletBaseDataObject {
                                 Descending = false,

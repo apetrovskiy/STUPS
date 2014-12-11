@@ -12,7 +12,7 @@ namespace Tmx.Interfaces
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Management.Automation;
+    // using System.Management.Automation;
     using System.Xml.Serialization;
 	using Tmx.Interfaces.TestStructure;
 	// using Tmx.Core;
@@ -124,15 +124,18 @@ namespace Tmx.Interfaces
         public virtual Guid PlatformUniqueId { get; set; }
         
         [XmlIgnore]
-        public virtual ScriptBlock[] BeforeScenario { get; set; }
+        // 20141211
+        // public virtual ScriptBlock[] BeforeScenario { get; set; }
+        public virtual ICodeBlock[] BeforeScenario { get; set; }
         [XmlIgnore]
-        public virtual ScriptBlock[] AfterScenario { get; set; }
+        // 20141211
+        // public virtual ScriptBlock[] AfterScenario { get; set; }
+        public virtual ICodeBlock[] AfterScenario { get; set; }
         [XmlIgnore]
         public virtual object[] BeforeScenarioParameters { get; set; }
         [XmlIgnore]
         public virtual object[] AfterScenarioParameters { get; set; }
         
-        // 20141201
         public virtual int GetAll()
         {
             return Statistics.All;

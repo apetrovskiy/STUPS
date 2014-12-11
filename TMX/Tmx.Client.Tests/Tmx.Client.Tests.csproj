@@ -79,7 +79,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\CommonDataSenderTestFixture.cs" />
+    <Compile Include="Helpers\FakeFactory.cs" />
+    <Compile Include="ObjectModel\CommonDataSenderTestFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +92,15 @@
       <Project>{5C749900-0F40-49D6-987B-ABFCCB062FC3}</Project>
       <Name>Tmx.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Tmx.Interfaces\Tmx.Interfaces.csproj">
+      <Project>{9C5DA25F-6A59-4F97-B107-64DD549CB800}</Project>
+      <Name>Tmx.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Readme" />
+    <Folder Include="Helpers" />
+    <Folder Include="ObjectModel" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Readme\Spring.Rest.txt" />

@@ -81,22 +81,18 @@ namespace Tmx.Core
             if (cmdlet.OrderById) {
                 ordering += suite => suite.Id;
             } 
-			if (cmdlet.OrderByPassRate) {
-				ordering += suite => {
-                    // 20141107
-					// TestData.RefreshSuiteStatistics(suite, cmdlet.FilterOutAutomaticResults);
-					testStatistics.RefreshSuiteStatistics(suite, cmdlet.FilterOutAutomaticResults);
-					return (suite.Statistics.Passed / suite.Statistics.All);
-				};
-			} 
-			if (cmdlet.OrderByFailRate) {
-				ordering += suite => {
-                    // 20141107
-					// TestData.RefreshSuiteStatistics(suite, cmdlet.FilterOutAutomaticResults);
-					testStatistics.RefreshSuiteStatistics(suite, cmdlet.FilterOutAutomaticResults);
-					return (suite.Statistics.Failed / suite.Statistics.All);
-				};
-			} 
+            if (cmdlet.OrderByPassRate) {
+                ordering += suite => {
+                    testStatistics.RefreshSuiteStatistics(suite, cmdlet.FilterOutAutomaticResults);
+                    return (suite.Statistics.Passed / suite.Statistics.All);
+                };
+            } 
+            if (cmdlet.OrderByFailRate) {
+                ordering += suite => {
+                    testStatistics.RefreshSuiteStatistics(suite, cmdlet.FilterOutAutomaticResults);
+                    return (suite.Statistics.Failed / suite.Statistics.All);
+                };
+            } 
             
             suitesFound = SearchTestSuite(
                 suitesForSearch,
@@ -131,24 +127,6 @@ namespace Tmx.Core
             }
             return result;
         }
-        
-//        public IOrderedEnumerable<ITestSuite> SearchForSuitesPS(ISearchCmdletBaseDataObject cmdlet)
-//        {
-//            IOrderedEnumerable<ITestSuite> suites = SearchForSuites(cmdlet);
-//			return suites.Any() ? suites : null;
-//        }
-        
-//        public static Func<TInput, bool> Combine<TInput, Tout>
-//            (Func<bool, bool, bool> aggregator,
-//            params Func<TInput, bool>[] delegates) {
-//
-//            // delegates[0] provides the initial value
-//            return t => delegates.Skip(1).Aggregate(delegates[0](t), aggregator);
-//        }
-//
-////        public static Func<T, bool> And<T>(params Func<T, bool>[] predicates) {
-////            return Combine<T, bool>((x, y) => x && y, predicates);
-////        }
         
         /// <summary>
         /// Performs parametrized search for Test Scenarios.
@@ -253,15 +231,8 @@ namespace Tmx.Core
         
         IEnumerable<ITestScenario> getAllScenarios(List<ITestSuite> suites)
         {
-            // return TestData.TestSuites.SelectMany(suite => suite.TestScenarios).ToList();
             return suites.SelectMany(suite => suite.TestScenarios).ToList();
         }
-        
-//        public IOrderedEnumerable<ITestScenario> SearchForScenariosPS(ISearchCmdletBaseDataObject cmdlet)
-//        {
-//            var scenarios = SearchForScenarios(cmdlet);
-//			return scenarios.Any() ? scenarios : null;
-//        }
         
         /// <summary>
         /// Performs parametrized search for Test Results.
@@ -355,39 +326,8 @@ namespace Tmx.Core
         
         IEnumerable<ITestResult> getAllTestResults(List<ITestSuite> suites)
         {
-            // return (from suite in TestData.TestSuites from ITestScenario scenario in suite.TestScenarios from ITestResult testResult in scenario.TestResults select testResult).ToList();
             return (from suite in suites from ITestScenario scenario in suite.TestScenarios from ITestResult testResult in scenario.TestResults select testResult).ToList();
         }
-        
-//        public IOrderedEnumerable<ITestResult> SearchForTestResultsPS(ISearchCmdletBaseDataObject dataObject)
-//        {
-//            var testResults = SearchForTestResults(dataObject);
-//			return testResults.Any() ? testResults : null;
-//        }
-        
-//        XAttribute CreateXAttribute(string name, object valueObject)
-//        {
-//            XAttribute result = null;
-//            
-//            if (null == valueObject)
-//                return null;
-//            
-//            result = new XAttribute(name, valueObject);
-//            
-//            return result;
-//        }
-//        
-//        XElement CreateXElement(string name, params object[] content)
-//        {
-//            XElement result = null;
-//            
-//			if (null == content[0])
-//				return null;
-//            
-//            result = new XElement(name, content);
-//            
-//            return result;
-//        }
         #endregion Search
     }
 }

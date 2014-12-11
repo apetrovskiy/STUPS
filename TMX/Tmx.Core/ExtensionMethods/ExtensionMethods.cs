@@ -54,6 +54,8 @@ namespace Tmx.Core
                 WorkflowId = task.WorkflowId,
                 TestRunId = task.TestRunId,
                 TaskType = task.TaskType,
+                // 20141211
+                TaskRuntimeType = task.TaskRuntimeType,
                 StartTime = task.StartTime
             };
         }
@@ -74,7 +76,10 @@ namespace Tmx.Core
                 TaskBanner = task.TaskBanner,
                 TimeLimit = task.TimeLimit,
                 StartTime = task.StartTime,
-                TaskStatus = task.TaskStatus
+                TaskStatus = task.TaskStatus,
+                // 20141211
+                TaskType = task.TaskType,
+                TaskRuntimeType = task.TaskRuntimeType
             };
         }
         
@@ -130,11 +135,22 @@ namespace Tmx.Core
         
         public static bool IsActive(this ITestRun testRun)
         {
-            // 20141127
-            // return TestRunStatuses.Running == testRun.Status;
+            // 20141211
+            // return TestRunStatuses.Running == testRun.Status
+            // || TestRunStatuses.Cancelling == testRun.Status;
+            return TestRunStatuses.Running == testRun.Status;
+        }
+        
+        public static bool IsNotQuiet(this ITestRun testRun)
+        {
             return TestRunStatuses.Running == testRun.Status
             || TestRunStatuses.Cancelling == testRun.Status;
         }
+        
+//        public static bool IsAcceptingClients(this ITestRun testRun)
+//        {
+//            return TestRunStatuses.Running == testRun.Status;
+//        }
         
         public static bool IsPending(this ITestRun testRun)
         {
@@ -148,10 +164,6 @@ namespace Tmx.Core
         
         public static bool IsCompleted(this ITestRun testRun)
         {
-            // 20141118
-            // return TestRunStatuses.CompletedSuccessfully == testRun.Status;
-            // 20141127
-            // return TestRunStatuses.CompletedSuccessfully == testRun.Status || TestRunStatuses.Interrupted == testRun.Status;
             return TestRunStatuses.CompletedSuccessfully == testRun.Status
             || TestRunStatuses.Interrupted == testRun.Status
             || TestRunStatuses.Cancelled == testRun.Status;
@@ -233,6 +245,13 @@ namespace Tmx.Core
                     return XDocument.Parse(Encoding.ASCII.GetString(memoryStream.ToArray()));
                 }
             }
+        }
+        
+        public static void SetNoTasksStatus(this ITestClient testClient)
+        {
+            testClient.Status = TestClientStatuses.NoTasks;
+            testClient.TaskId = 0;
+            testClient.TaskName = string.Empty;
         }
     }
 }

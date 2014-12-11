@@ -12,7 +12,7 @@ namespace Tmx.Server.Tests.Modules
     using System;
 	using System.Collections.Generic;
 	using System.Linq;
-    using System.Management.Automation;
+    // using System.Management.Automation;
     using System.Reflection;
 	using System.Xml.Linq;
 	using NSubstitute;
@@ -220,8 +220,6 @@ namespace Tmx.Server.Tests.Modules
         
         XElement getElementWithTestResults(IOrderedEnumerable<ITestSuite> suites, IOrderedEnumerable<ITestScenario> scenarios, IOrderedEnumerable<ITestResult> testResults)
         {
-            // 20141124
-            // return TmxHelper.CreateSuitesXElementWithParameters(suites, scenarios, testResults, (new XMLElementsNativeStruct()));
             var testResultsExporter = new TestResultsExporter();
             return testResultsExporter.CreateSuitesXElementWithParameters(suites, scenarios, testResults, (new XMLElementsNativeStruct()));
         }

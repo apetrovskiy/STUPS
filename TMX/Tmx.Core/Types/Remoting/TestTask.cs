@@ -27,6 +27,11 @@ namespace Tmx.Core.Types.Remoting
 	        AfterActionParameters = new Dictionary<string, string>();
 	        PreviousTaskResult = new Dictionary<string, string>();
 	        TaskResult = new Dictionary<string, string>();
+	        
+	        // 20141211
+	        // temporary
+	        // TODO: change the behavior
+	        TaskRuntimeType = TestTaskRuntimeTypes.Powershell;
 	    }
 	    
 		public int Id { get; set; }
@@ -40,6 +45,8 @@ namespace Tmx.Core.Types.Remoting
 		public bool IsCritical { get; set; }
 		
 		public TestTaskExecutionTypes TaskType { get; set; }
+		// 20141211
+		public TestTaskRuntimeTypes TaskRuntimeType { get; set; }
 		public string Rule { get; set; }
 		
 		public string Name { get; set; }

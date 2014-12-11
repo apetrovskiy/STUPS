@@ -11,10 +11,12 @@ namespace Tmx.Server.Modules
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
 	using Nancy;
 	using Nancy.ModelBinding;
     using Nancy.Responses.Negotiation;
+    using Nancy.TinyIoc;
 	using Tmx.Interfaces.Exceptions;
 	using Tmx.Interfaces.Server;
 	using Tmx.Core;
@@ -29,40 +31,38 @@ namespace Tmx.Server.Modules
         public TestTasksModule() : base(UrlList.TestTasks_Root)
         {
             Get[UrlList.TestTasks_CurrentTaskForClientById_relPath] = parameters => returnTaskByClientId(parameters.id);
-        	
+            
             Put[UrlList.TestTasks_Task] = parameters => {
                 // 20141020 squeezing a task to its proxy
-            	ITestTask loadedTask = this.Bind<TestTask>();
-            	// ITestTaskProxy loadedTask = this.Bind<TestTaskProxy>();
-            	// ITestTaskResultProxy loadedTask = this.Bind<TestTaskResultProxy>();
+                ITestTask loadedTask = this.Bind<TestTask>();
+                // ITestTaskProxy loadedTask = this.Bind<TestTaskProxy>();
+                // ITestTaskResultProxy loadedTask = this.Bind<TestTaskResultProxy>();
                 return updateTask(loadedTask, parameters.id);
-                // return updateTask(loadedTask, parameters.id);
             };
-        	
-            // 20141003
-            // temporarily hidden
-//        	Get[UrnList.TestTasks_AllDesignated] = _ => returnAllDesignatedTasks();
-//            
-//            Get[UrnList.TestTasks_AllLoaded + "/"] = _ => returnAllLoadedTasks();
             
             Delete[UrlList.TestTasks_Task] = parameters => deleteAllocatedTaskById(parameters.id);
             
-			Delete[UrlList.TestTasks_AllLoaded_relPath + UrlList.TestTasks_Task] = parameters => deleteLoadedTaskById(parameters).id;
+            Delete[UrlList.TestTasks_AllLoaded_relPath + UrlList.TestTasks_Task] = parameters => deleteLoadedTaskById(parameters).id;
         }
         
-		Negotiator returnTaskByClientId(Guid clientId)
+        Negotiator returnTaskByClientId(Guid clientId)
         {
             if (ClientsCollection.Clients.All(client => client.Id != clientId))
                 return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed);
-            var taskSorter = new TaskSelector();
+            var taskSorter = TinyIoCContainer.Current.Resolve<TaskSelector>();
             ITestTask actualTask = taskSorter.GetFirstLegibleTask(clientId);
             var clientInQuestion = ClientsCollection.Clients.First(client => client.Id == clientId);
             return null == actualTask ? returnNoTask_StatusNotFound(clientInQuestion) : returnTaskToClient_StatusOk(clientInQuestion, actualTask);
         }
-		
+        
         Negotiator returnNoTask_StatusNotFound(ITestClient testClient)
         {
-            testClient.Status = TestClientStatuses.NoTasks;
+//            testClient.Status = TestClientStatuses.NoTasks;
+//            // 20141211
+//            // set no active task everywhere
+//            testClient.TaskId = 0;
+//            testClient.TaskName = string.Empty;
+            testClient.SetNoTasksStatus();
             return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
         }
         
@@ -71,8 +71,6 @@ namespace Tmx.Server.Modules
             testClient.Status = TestClientStatuses.Running;
             testClient.TaskId = actualTask.Id;
             testClient.TaskName = actualTask.Name;
-            // 20141126
-            // testClient.TestRunId = actualTask.WorkflowId;
             testClient.TestRunId = actualTask.TestRunId;
             // 20141020 squeezing a task to its proxy
             return Negotiate.WithModel(actualTask).WithStatusCode(HttpStatusCode.OK);
@@ -81,41 +79,38 @@ namespace Tmx.Server.Modules
         }
         
         // 20141020 squeezing a task to its proxy
-		HttpStatusCode updateTask(ITestTask loadedTask, int taskId)
-		// HttpStatusCode updateTask(ITestTaskResultProxy loadedTask, int taskId)
-		{
-			if (null == loadedTask)
-				throw new UpdateTaskException("Failed to update task with id = " + taskId);
-			var storedTask = TaskPool.TasksForClients.First(task => task.Id == taskId && task.ClientId == loadedTask.ClientId);
-			storedTask.TaskFinished = loadedTask.TaskFinished;
-			storedTask.TaskStatus = loadedTask.TaskStatus;
-			storedTask.TaskResult = loadedTask.TaskResult;
-			storedTask.StartTime = loadedTask.StartTime;
-			
-			var taskSorter = new TaskSelector();
-			if (storedTask.IsFailed())
-				taskSorter.CancelFurtherTasksOfTestClient(storedTask.ClientId);
-			if (storedTask.IsFinished())
-			    cleanUpClientDetailedStatus(storedTask.ClientId);
-			
-			if (storedTask.IsLastTaskInTestRun())
-			    completeTestRun(storedTask);
-			
-			if (storedTask.IsFinished())
+        HttpStatusCode updateTask(ITestTask loadedTask, int taskId)
+        // HttpStatusCode updateTask(ITestTaskResultProxy loadedTask, int taskId)
+        {
+            if (null == loadedTask)
+                throw new UpdateTaskException("Failed to update task with id = " + taskId);
+            var storedTask = TaskPool.TasksForClients.First(task => task.Id == taskId && task.ClientId == loadedTask.ClientId);
+            storedTask.TaskFinished = loadedTask.TaskFinished;
+            storedTask.TaskStatus = loadedTask.TaskStatus;
+            storedTask.TaskResult = loadedTask.TaskResult;
+            storedTask.StartTime = loadedTask.StartTime;
+            
+            var taskSorter = TinyIoCContainer.Current.Resolve<TaskSelector>();
+            if (storedTask.IsFailed())
+                taskSorter.CancelFurtherTasksOfTestClient(storedTask.ClientId);
+            if (storedTask.IsFinished())
+                cleanUpClientDetailedStatus(storedTask.ClientId);
+            
+            if (storedTask.IsLastTaskInTestRun())
+                completeTestRun(storedTask);
+            
+            if (storedTask.IsFinished())
                 storedTask.SetTimeTaken();
-			
+            
             return storedTask.TaskFinished ? updateNextTaskAndReturnOk(taskSorter, storedTask) : HttpStatusCode.OK;
-		}
-		
+        }
+
         void completeTestRun(ITestTask task)
         {
             var currentTestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == task.TestRunId);
-            // 20141118
-            // currentTestRun.Status = TestRunStatuses.CompletedSuccessfully;
             currentTestRun.Status = TaskPool.TasksForClients.Any (tsk => tsk.TestRunId == currentTestRun.Id && tsk.TaskStatus == TestTaskStatuses.Interrupted) ? TestRunStatuses.Interrupted : TestRunStatuses.CompletedSuccessfully;
             currentTestRun.SetTimeTaken();
             
-            // 20141128
             if (!TestRunQueue.TestRuns.Any(testRun => testRun.TestLabId == currentTestRun.TestLabId && testRun.Id != currentTestRun.Id))
                 TestLabCollection.TestLabs.First(testLab => testLab.Id == currentTestRun.TestLabId).Status = TestLabStatuses.Free;
             
@@ -124,7 +119,7 @@ namespace Tmx.Server.Modules
         
         void activateNextInRowTestRun()
         {
-            var testRunSelector = new TestRunSelector();
+            var testRunSelector = TinyIoCContainer.Current.Resolve<TestRunSelector>();
             var testRun = testRunSelector.GetNextInRowTestRun();
             if (null == testRun) return;
             if (TestRunQueue.TestRuns.Any(tr => tr.IsActive() && tr.TestLabId == testRun.TestLabId)) return;
@@ -138,6 +133,9 @@ namespace Tmx.Server.Modules
             try {
                 nextTask = taskSorter.GetNextLegibleTask(storedTask.ClientId, storedTask.Id);
             } catch (Exception eFailedToGetNextTask) {
+                // TODO: AOP
+                Trace.TraceError("updateNextTaskAndReturnOk(TaskSelector taskSorter, ITestTask storedTask)");
+                Trace.TraceError(eFailedToGetNextTask.Message);
                 throw new FailedToGetNextTaskException(eFailedToGetNextTask.Message);
             }
             if (null == nextTask)
@@ -152,27 +150,15 @@ namespace Tmx.Server.Modules
             ClientsCollection.Clients.First(client => client.Id == clientId).DetailedStatus = string.Empty;
         }
         
-		// 20141003
-		// temporarily hidden
-//        Negotiator returnAllDesignatedTasks()
-//        {
-//        	return 0 == TaskPool.TasksForClients.Count ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(TaskPool.TasksForClients).WithStatusCode(HttpStatusCode.OK);
-//        }
-//        
-//        Negotiator returnAllLoadedTasks()
-//        {
-//        	return 0 == TaskPool.Tasks.Count ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(TaskPool.Tasks).WithStatusCode(HttpStatusCode.OK);
-//        }
-
-		HttpStatusCode deleteAllocatedTaskById(int taskId)
-		{
-			TaskPool.TasksForClients.RemoveAll(task => task.Id == taskId);
-			return HttpStatusCode.NoContent;
-		}
-		HttpStatusCode deleteLoadedTaskById(int taskId)
-		{
-			TaskPool.Tasks.RemoveAll(task => task.Id == taskId);
-			return HttpStatusCode.NoContent;
-		}
+        HttpStatusCode deleteAllocatedTaskById(int taskId)
+        {
+            TaskPool.TasksForClients.RemoveAll(task => task.Id == taskId);
+            return HttpStatusCode.NoContent;
+        }
+        HttpStatusCode deleteLoadedTaskById(int taskId)
+        {
+            TaskPool.Tasks.RemoveAll(task => task.Id == taskId);
+            return HttpStatusCode.NoContent;
+        }
     }
 }

@@ -11,11 +11,13 @@ namespace Tmx.Server.Modules
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.Design;
     using System.Dynamic;
     using System.Linq;
     using Nancy;
     using Nancy.ModelBinding;
     using Nancy.Responses.Negotiation;
+    using Nancy.TinyIoc;
     using Tmx.Core;
     using Tmx.Core.Types.Remoting;
     using Tmx.Interfaces.Remoting;
@@ -36,7 +38,6 @@ namespace Tmx.Server.Modules
             Put[UrlList.TestRuns_One_Cancel] = parameters => cancelTestRun(parameters.id);
         }
         
-        // Negotiator createNewTestRun()
         Negotiator createNewTestRun(ITestRunCommand testRunCommand)
         {
             if (null == testRunCommand)
@@ -50,7 +51,7 @@ namespace Tmx.Server.Modules
         {
             if (string.IsNullOrEmpty(testRunCommand.WorkflowName))
                 return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
-            var testRunInitializer = new TestRunInitializer();
+            var testRunInitializer = TinyIoCContainer.Current.Resolve<TestRunInitializer>();
             var testRun = testRunInitializer.CreateTestRun(testRunCommand, Request.Form);
             if (Guid.Empty == testRun.WorkflowId) // ??
                 return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
@@ -59,25 +60,23 @@ namespace Tmx.Server.Modules
             // var taskSelector = new TaskSelector();
             // taskSelector.AddTasksForEveryClient(TaskPool.Tasks.Where(task => WorkflowCollection.Workflows.ActiveWorkflowIds().Contains(task.WorkflowId)), testRun.Id);
             
-            // TODO: trySet InProgress
-            // 20141128
-            // return Negotiate.WithStatusCode(HttpStatusCode.Created);
-            // TODO: fix code duplication
-//            dynamic data = new ExpandoObject();
-//            data.TestRuns = TestRunQueue.TestRuns ?? new List<ITestRun>();
-//            data.TestLabs = TestLabCollection.TestLabs ?? new List<ITestLab>();
+            // 20141207
+            foreach (var testRunAction in testRun.BeforeActions) {
+                testRunAction.Run();
+            }
+            
             var data = createTestRunExpandoObject();
             
             // return Negotiate.WithStatusCode(HttpStatusCode.OK).WithView(UrnList.ViewTestStatus_Root + "/" + UrnList.ViewTestStatus_TestRunsPage).WithModel((ExpandoObject)data);
             return Negotiate.WithStatusCode(HttpStatusCode.OK).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data);
         }
         
-		Negotiator deleteTestRun(Guid testRunId)
-		{
-			TestRunQueue.TestRuns.RemoveAll(tr => tr.Id == testRunId);
-			return Negotiate.WithStatusCode(HttpStatusCode.OK);
-		}
-
+        Negotiator deleteTestRun(Guid testRunId)
+        {
+            TestRunQueue.TestRuns.RemoveAll(tr => tr.Id == testRunId);
+            return Negotiate.WithStatusCode(HttpStatusCode.OK);
+        }
+        
 //        Negotiator changeTestRun(Guid testRunId)
 //        {
 //            throw new NotImplementedException ();
@@ -91,16 +90,8 @@ namespace Tmx.Server.Modules
                 return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data); // ??
             if (testRun.IsCompleted())
                 return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data); // ??
-            var testRunSelector = new TestRunSelector();
+            var testRunSelector = TinyIoCContainer.Current.Resolve<TestRunSelector>();
             testRunSelector.CancelTestRun(testRun);
-            
-            // TODO: fix code duplication
-//            dynamic data = new ExpandoObject();
-//            data.TestRuns = TestRunQueue.TestRuns ?? new List<ITestRun>();
-//            data.TestLabs = TestLabCollection.TestLabs ?? new List<ITestLab>();
-            // var data = createTestRunExpandoObject();
-            
-            // return Negotiate.WithStatusCode(HttpStatusCode.OK).WithView(UrnList.ViewTestStatus_Root + "/" + UrnList.ViewTestStatus_TestRunsPage).WithModel((ExpandoObject)data);
             return Negotiate.WithStatusCode(HttpStatusCode.OK).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data);
         }
 

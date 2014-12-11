@@ -45,10 +45,10 @@ namespace Tmx
                     // cmdlet.WriteProgress(new System.Management.Automation.ProgressRecord(
                 }
                 
-				if (Guid.Empty != clientSettings.ClientId)
-					break;
+                if (Guid.Empty != clientSettings.ClientId)
+                    break;
                 
-				if (!cmdlet.Continuous)
+                if (!cmdlet.Continuous)
                     if ((DateTime.Now - startTime).TotalSeconds >= cmdlet.Seconds)
                         throw new Exception("Failed to register client in " + cmdlet.Seconds + " seconds");
                 

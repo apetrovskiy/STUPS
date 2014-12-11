@@ -135,33 +135,27 @@ namespace Tmx.Interfaces
             Timestamp = timestamp;
         }
         
-        // 20141102
-        // public virtual string SuiteId { get; protected internal set; }
         [XmlIgnore]
         public virtual string SuiteId { get; set; }
-        // 20141122
         [XmlIgnore]
         public virtual Guid SuiteUniqueId { get; set; }
-        // public virtual string ScenarioId { get; protected internal set; }
         [XmlIgnore]
         public virtual string ScenarioId { get; set; }
-        // 20141122
         [XmlIgnore]
         public virtual Guid ScenarioUniqueId { get; set; }
         [XmlAttribute] // ??
         public virtual bool Generated { get; protected internal set; }
         public virtual void SetGenerated()
         {
-			Generated = true;
+            Generated = true;
         }
         
         [XmlAttribute]
         public virtual string Screenshot { get; protected internal set; }
         public virtual void SetScreenshot(string path)
         {
-			Screenshot = path;
+            Screenshot = path;
         }
-        // 20141022
         
         [XmlAttribute]
         public virtual TestResultOrigins Origin { get; protected internal set; }
@@ -239,19 +233,10 @@ namespace Tmx.Interfaces
         
         public virtual object[] ListDetailNames(TestResultStatuses status)
         {
-            //ArrayList detailsList =
-            //    new ArrayList();
-            
-            // 20130402
             ITestResultDetail[] detailsList = null;
             
-            // 20140208
-            // if (null == this.Details || 0 >= this.Details.Count) return detailsList;
             if (null == this.Details || 0 == this.Details.Count) return detailsList;
-            // if (null != this.Details && 0 < this.Details.Count) {
-
-            // 20130402
-            //if (null == cmdlet.TestResultStatus) {
+            
             if (TestResultStatuses.NotTested == status) {
                     
                 var testResultDetailsNonFiltered = 
@@ -286,7 +271,6 @@ namespace Tmx.Interfaces
         }
         
         [XmlAttribute]
-        // 20141119
         public virtual string PlatformId { get; set; }
         [XmlAttribute]
         public virtual Guid PlatformUniqueId { get; set; }

@@ -98,6 +98,7 @@
     <Compile Include="Modules\TestResultsModuleTestFixture.cs" />
     <Compile Include="Modules\TestRunsModuleTestFixture.cs" />
     <Compile Include="Modules\TestTasksModuleTestFixture.cs" />
+    <Compile Include="UnitTestingHelpers\TestConstants.cs" />
     <Compile Include="UnitTestingHelpers\TestFactory.cs" />
     <Compile Include="UnitTestingHelpers\TestSettings.cs" />
   </ItemGroup>
@@ -114,21 +115,33 @@
       <Project>{3E575B6F-BA0A-4169-A94B-58DFC26767E8}</Project>
       <Name>Tmx.Server</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TMX\TMX.csproj">
+      <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>
+      <Name>TMX</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Modules\-1.xml" />
-    <None Include="Modules\-2.xml" />
-    <None Include="Modules\-3.xml" />
-    <None Include="Modules\-4.xml" />
-    <None Include="Modules\-5.xml" />
-    <None Include="Modules\0.xml" />
-    <None Include="Modules\1.xml" />
-    <None Include="Modules\TMX_red_report.xml" />
-    <None Include="Modules\TMX_report.xml" />
-    <None Include="Modules\Workflow1.xml">
+    <Folder Include="Modules" />
+    <Folder Include="Helpers" />
+    <Folder Include="Data" />
+    <Folder Include="UnitTestingHelpers" />
+    <Folder Include="Properties" />
+    <Folder Include="Properties" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\-1.xml" />
+    <None Include="Data\-2.xml" />
+    <None Include="Data\-3.xml" />
+    <None Include="Data\-4.xml" />
+    <None Include="Data\-5.xml" />
+    <None Include="Data\0.xml" />
+    <None Include="Data\1.xml" />
+    <None Include="Data\TMX_red_report.xml" />
+    <None Include="Data\TMX_report.xml" />
+    <None Include="Data\Workflow1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Modules\Workflow2.xml">
+    <None Include="Data\Workflow2.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />

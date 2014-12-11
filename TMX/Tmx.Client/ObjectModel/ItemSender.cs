@@ -10,6 +10,7 @@
 namespace Tmx.Client
 {
 	using System;
+    using System.Diagnostics;
 	using System.IO;
     using System.Collections.Generic;
     using System.Linq;
@@ -65,8 +66,14 @@ namespace Tmx.Client
             try {
                 return rootDirectory.GetFiles("*.*");
             } catch (UnauthorizedAccessException eUnauthorizedAccessFiles) {
+                // TODO: AOP
+                Trace.TraceError("FileInfo[] getFiles(DirectoryInfo rootDirectory)");
+                Trace.TraceError(eUnauthorizedAccessFiles.Message);
                 return null;
             } catch (DirectoryNotFoundException eDirectoryNotFoundFiles) {
+                // TODO: AOP
+                Trace.TraceError("FileInfo[] getFiles(DirectoryInfo rootDirectory)");
+                Trace.TraceError(eDirectoryNotFoundFiles.Message);
                 return null;
             }
         }
@@ -76,8 +83,12 @@ namespace Tmx.Client
             try {
                 return rootDirectory.GetDirectories();
             } catch (UnauthorizedAccessException) {
+                // TODO: AOP
+                Trace.TraceError("DirectoryInfo[] getSubDirectories(DirectoryInfo rootDirectory)");
                 return null;
             } catch (DirectoryNotFoundException) {
+                // TODO: AOP
+                Trace.TraceError("DirectoryInfo[] getSubDirectories(DirectoryInfo rootDirectory)");
                 return null;
             }
         }

@@ -12,6 +12,7 @@ namespace Tmx.Server.Helpers
 {
     using System;
     using System.Collections;
+    using System.Diagnostics;
     using System.Net;
     using System.Net.Mail;
     using System.Net.Mime;
@@ -47,7 +48,10 @@ namespace Tmx.Server.Helpers
                     client.Send(message);
                 }
                 catch (Exception ex) {
+                    // TODO: AOP
+                    Trace.TraceError("SendMessage(IMailSettings settings)");
                     // ??
+                    Trace.TraceError(ex.Message);
                 }
             }
         }
@@ -70,7 +74,10 @@ namespace Tmx.Server.Helpers
                 client.Send(message);
             }
             catch (Exception ex) {
-                Console.WriteLine("Exception caught in CreateTestMessage2(): {0}", ex);			  
+                // TODO: AOP
+                Trace.TraceError("CreateTestMessage2(string server)");
+                Console.WriteLine("Exception caught in CreateTestMessage2(): {0}", ex);
+                Trace.TraceError(ex.Message);
             }
         }
         
@@ -106,7 +113,10 @@ namespace Tmx.Server.Helpers
                 client.Send(message);
             }
             catch (Exception ex) {
-                Console.WriteLine("Exception caught in CreateMessageWithAttachment(): {0}", ex);			  
+                // TODO: AOP
+                Trace.TraceError("CreateMessageWithAttachment(string server)");
+                Console.WriteLine("Exception caught in CreateMessageWithAttachment(): {0}", ex);
+                Trace.TraceError(ex.Message);
             }
             // Display the values in the ContentDisposition for the attachment.
             ContentDisposition cd = data.ContentDisposition;

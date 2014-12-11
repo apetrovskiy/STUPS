@@ -32,6 +32,12 @@ namespace Tmx.Core.Types.Remoting
                     Description = "This platform has been created automatically"
                 }
             };
+            // 20141207
+            BeforeActions = new List<IAction>();
+            AfterActions = new List<IAction>();
+            CancelActions = new List<IAction>();
+            FailureActions = new List<IAction>();
+            
             // TestSuites = new ListOfTestSuites();
             Status = TestRunStatuses.Pending;
             Id = Guid.NewGuid();
@@ -69,5 +75,11 @@ namespace Tmx.Core.Types.Remoting
 //        {
 //            return testlabcollection
 //        }
+        
+        // 20141207
+        public List<IAction> BeforeActions { get; set; }
+        public List<IAction> AfterActions { get; set; }
+        public List<IAction> CancelActions { get; set; }
+        public List<IAction> FailureActions { get; set; }
 	}
 }

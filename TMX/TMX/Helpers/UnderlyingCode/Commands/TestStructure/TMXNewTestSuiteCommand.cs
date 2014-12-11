@@ -13,6 +13,8 @@ namespace Tmx
     using System.Linq;
     using System.Management.Automation;
 	using Tmx;
+    using Tmx.Core;
+    using Tmx.Interfaces;
     
     /// <summary>
     /// Description of TmxNewTestSuiteCommand.
@@ -44,8 +46,13 @@ namespace Tmx
                     cmdlet.Id,
                     testPlatformId,
                     cmdlet.Description,
-                    cmdlet.BeforeScenario,
-                    cmdlet.AfterScenario);
+                    // 20141211
+                    // cmdlet.BeforeScenario,
+                    // cmdlet.AfterScenario);
+                    // (cmdlet.BeforeScenario.Select(scriptblock => new CodeBlock { Code = scriptblock.ToString() }) ?? new CodeBlock[]{}).ToArray(),
+                    // (cmdlet.AfterScenario.Select(scriptblock => new CodeBlock { Code = scriptblock.ToString() }) ?? new CodeBlock[]{}).ToArray());
+                    cmdlet.BeforeScenario.Select(scriptblock => new CodeBlock { Code = scriptblock.ToString() }).ToArray(),
+                    cmdlet.AfterScenario.Select(scriptblock => new CodeBlock { Code = scriptblock.ToString() }).ToArray());
             
             if (result)
                 cmdlet.WriteObject(cmdlet, TestData.CurrentTestSuite);

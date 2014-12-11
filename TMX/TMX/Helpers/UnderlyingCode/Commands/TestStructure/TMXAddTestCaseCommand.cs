@@ -10,7 +10,9 @@
 namespace Tmx
 {
     using System;
+    using System.Linq;
     using System.Management.Automation;
+    using Tmx.Core;
 	using Tmx.Interfaces;
 	using Tmx;
     
@@ -31,7 +33,9 @@ namespace Tmx
             var dataObject = new AddTestCaseCmdletBaseDataObject {
                 Id = cmdlet.Id,
                 Name = cmdlet.Name,
-                TestCode = cmdlet.TestCode,
+                // 20141211
+                // TestCode = cmdlet.TestCode,
+                TestCode = cmdlet.TestCode.Select(scriptblock => new CodeBlock { Code = scriptblock.ToString() }).ToArray(),
                 TestPlatformId = cmdlet.TestPlatformId
             };
             

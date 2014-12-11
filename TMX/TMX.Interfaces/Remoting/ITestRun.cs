@@ -30,5 +30,9 @@ namespace Tmx.Interfaces.Remoting
         TimeSpan TimeTaken { get; set; }
 //        // 20141126
 //        string GetTestLabName();
+        List<IAction> BeforeActions { get; set; }
+        List<IAction> AfterActions { get; set; }
+        List<IAction> CancelActions { get; set; }
+        List<IAction> FailureActions { get; set; }
 	}
 }

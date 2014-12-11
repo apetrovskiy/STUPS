@@ -9,55 +9,66 @@
 
 namespace Tmx.Client
 {
-	using System;
+    using System;
     using System.Collections.Generic;
-	using System.Net;
-	using System.Xml.Linq;
-	using Spring.Http;
+    using System.Diagnostics;
+    using System.Net;
+    using System.Xml.Linq;
+    using Spring.Http;
     using Tmx.Core;
     using Tmx.Core.Types.Remoting;
     using Tmx.Interfaces.TestStructure;
 //	using Spring.Http.Converters.Xml;
-	using Spring.Rest.Client;
-	using Tmx.Interfaces;
-	using Tmx.Interfaces.Exceptions;
-	using Tmx.Interfaces.Server;
-	
+    using Spring.Rest.Client;
+    using Tmx.Interfaces;
+    using Tmx.Interfaces.Exceptions;
+    using Tmx.Interfaces.Server;
+    
     /// <summary>
     /// Description of TestResultsSender.
     /// </summary>
     public class TestResultsSender
     {
-	    // volatile RestTemplate _restTemplate;
-	    readonly IRestOperations _restTemplate; // chrome-extension://aejoelaoggembcahagimdiliamlcdmfm/dhc.html#void
-	    
-	    public TestResultsSender(RestRequestCreator requestCreator)
-	    {
-	    	_restTemplate = requestCreator.GetRestTemplate();
-	    }
-	    
-	    public virtual bool SendTestResults()
-	    {
-	        var testResultsExporter = new TestResultsExporter();
+        // volatile RestTemplate _restTemplate;
+        readonly IRestOperations _restTemplate; // chrome-extension://aejoelaoggembcahagimdiliamlcdmfm/dhc.html#void
+        
+        public TestResultsSender(RestRequestCreator requestCreator)
+        {
+        	_restTemplate = requestCreator.GetRestTemplate();
+        }
+        
+        public virtual bool SendTestResults()
+        {
+            var testResultsExporter = new TestResultsExporter();
             var xDoc = testResultsExporter.GetTestResultsAsXdocument(
                         new SearchCmdletBaseDataObject {
                             FilterAll = true
                         },
                         TestData.TestSuites,
                         TestData.TestPlatforms);
-	        
-	        var dataObject = new TestResultsDataObject {
-	            Data = xDoc.ToString()
-	        };
-	        
-			try {
-				var urn = UrlList.TestResults_Root + "/" + ClientSettings.Instance.CurrentClient.TestRunId + UrlList.TestResultsPostingPoint_forClient_relPath;
-				var sendingResultsResponse = _restTemplate.PostForMessage(urn, dataObject);
-				return HttpStatusCode.Created == sendingResultsResponse.StatusCode;
-			}
+            
+            var dataObject = new TestResultsDataObject {
+                Data = xDoc.ToString()
+            };
+            
+            try {
+                var url = UrlList.TestResults_Root + "/" + ClientSettings.Instance.CurrentClient.TestRunId + UrlList.TestResultsPostingPoint_forClient_relPath;
+                
+                
+                // 20141211
+                // TODO: AOP
+                Trace.TraceInformation("SendTestResults(): testRun id = {0}, url = {1}", ClientSettings.Instance.CurrentClient.TestRunId, url);
+                
+                
+                var sendingResultsResponse = _restTemplate.PostForMessage(url, dataObject);
+                return HttpStatusCode.Created == sendingResultsResponse.StatusCode;
+            }
             catch (RestClientException eSendingTestResults) {
-			    throw new SendingTestResultsException("Failed to send test results. " + eSendingTestResults.Message);
-			}
+                // TODO: AOP
+                Trace.TraceError("SendTestResults()");
+                Trace.TraceError(eSendingTestResults.Message);
+                throw new SendingTestResultsException("Failed to send test results. " + eSendingTestResults.Message);
+            }
 	    }
     }
 }

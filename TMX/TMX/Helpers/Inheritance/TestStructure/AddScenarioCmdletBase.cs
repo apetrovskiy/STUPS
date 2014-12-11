@@ -17,6 +17,13 @@ namespace Tmx
     /// </summary>
     public class AddScenarioCmdletBase : ScenarioCmdletBase
     {
+        // 20141211
+        public AddScenarioCmdletBase()
+        {
+            BeforeTest = new ScriptBlock[]{};
+            AfterTest = new ScriptBlock[]{};
+        }
+        
         #region Parameters
         [Parameter(Mandatory = true,
                    Position = 0)]

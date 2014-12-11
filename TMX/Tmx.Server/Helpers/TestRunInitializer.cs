@@ -12,6 +12,7 @@ namespace Tmx.Server
     using System;
     using System.Linq;
     using Nancy;
+    using Nancy.TinyIoc;
     using Tmx.Core;
     using Tmx.Core.Types.Remoting;
     using Tmx.Interfaces.Remoting;
@@ -43,7 +44,6 @@ namespace Tmx.Server
         void setWorkflow(ITestRunCommand testRunCommand, TestRun testRun)
         {
             (testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testRunCommand.WorkflowName));
-            // 20141128
             TestLabCollection.TestLabs.First(testLab => testLab.Id == testRun.TestLabId).Status = TestLabStatuses.Busy;
         }
         

@@ -1,23 +1,22 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
- * Date: 7/28/2014
- * Time: 8:55 PM
+ * Date: 12/11/2014
+ * Time: 6:47 PM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+// namespace Tmx.Client.ObjectModel
 namespace Tmx.Client
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Collections.ObjectModel;
-	using System.Linq;
-	using System.Management.Automation;
-	using Tmx.Interfaces.Remoting;
-	
+    using System;
+    using System.Diagnostics;
+    using Tmx.Interfaces.Remoting;
+    using Tmx.Client.ObjectModel.Runners;
+    
     /// <summary>
-    /// Description of TaskRunner.
+    /// Description of TaskRunnerNew.
     /// </summary>
     public class TaskRunner
     {
@@ -25,57 +24,23 @@ namespace Tmx.Client
         {
             // TODO: move to an aspect
             try {
-                var runnerWithParams = new runScriptBlockWithParameters(runSBActionWithParams);
-                var result = runScriptblockWithParameters(runnerWithParams, task.BeforeAction, task.BeforeActionParameters, task.PreviousTaskResult);
+                var runnerSelector = new TaskRunnerSelector();
+                var runner = runnerSelector.GetRunnableClient(task.TaskRuntimeType);
+                
+                var result = runner.RunBeforeAction(task.BeforeAction, task.BeforeActionParameters, task.PreviousTaskResult);
                 if (!result) return result;
-                result = runScriptblockWithParameters(runnerWithParams, task.Action, task.ActionParameters, task.PreviousTaskResult);
-                return !result ? result : runScriptblockWithParameters(runnerWithParams, task.AfterAction, task.AfterActionParameters, task.PreviousTaskResult);
+                result = runner.RunMainAction(task.Action, task.ActionParameters, task.PreviousTaskResult);
+                return !result ? result : runner.RunAfterAction(task.AfterAction, task.AfterActionParameters, task.PreviousTaskResult);
             }
-            catch {
+            // 20141211
+            // catch {
+            catch (Exception eOnRunningTaskCode) {
+                // TODO: AOP
+                Trace.TraceError("Run(ITestTask task)");
+                // 20141211
+                Trace.TraceError(eOnRunningTaskCode.Message);
                 return false;
-            }
-        }
-        
-        bool runScriptblockWithParameters(
-            runScriptBlockWithParameters runnerWithParams,
-            string code,
-            IDictionary<string, string> parameters,
-            IDictionary<string, string> previousTaskResults)
-        {
-            if (string.Empty == code) return true;
-            
-            var scriptblockParameters =
-                new object[] {
-                    previousTaskResults ?? new Dictionary<string, string>(),
-                    parameters ?? new Dictionary<string, string>()
-                };
-            
-            try {
-                runnerWithParams(ScriptBlock.Create(code), scriptblockParameters);
-                return true;
-            }
-            catch {
-                return false;
-            }
-        }
-        
-        void runSBActionWithParams(ScriptBlock sb, object[] parameters)
-        {
-            Collection<PSObject> psObjects = null;
-            try {
-				if (null == parameters || 0 == parameters.Length)
-                    psObjects = sb.Invoke();
-				else
-					psObjects = sb.Invoke(parameters);
-            } catch (Exception eOuter) {
-                throw new Exception(
-                    "Unable to issue the following command:\r\n" +
-                    sb +
-                    "\r\nThe exception raised is\r\n" +
-                    eOuter.Message);
             }
         }
     }
-    
-    delegate void runScriptBlockWithParameters(ScriptBlock sb, object[] parameters);
 }

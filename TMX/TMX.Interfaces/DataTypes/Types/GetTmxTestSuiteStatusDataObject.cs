@@ -9,14 +9,15 @@
 
 namespace Tmx.Interfaces
 {
-    using System.Management.Automation;
+    // using System.Management.Automation;
     
     /// <summary>
     /// Description of GetTmxTestSuiteStatusDataObject.
     /// </summary>
     public class GetTmxTestSuiteStatusDataObject : IGetTmxTestSuiteStatusDataObject
     {
-        public SwitchParameter FilterOutAutomaticResults { get; set; }
+        // public SwitchParameter FilterOutAutomaticResults { get; set; }
+        public bool FilterOutAutomaticResults { get; set; }
         public string Name { get; set; }
         
 //        public string Name { get; set; }

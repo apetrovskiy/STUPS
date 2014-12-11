@@ -14,7 +14,7 @@ namespace Tmx.Interfaces
     using System.Management.Automation;
     using System.ComponentModel;
     using System.Xml.Serialization;
-	using Tmx.Interfaces.TestStructure;
+    using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of TestResultDetail.
@@ -51,12 +51,12 @@ namespace Tmx.Interfaces
         public virtual string Name
         {
             get {
-				if (!string.IsNullOrEmpty(TextDetail))
-					return TextDetail;
-				if (ErrorDetail != null)
-					return ErrorDetail.Exception.Message;
-				return !string.IsNullOrEmpty(ScreenshotDetail) ? ScreenshotDetail : string.Empty;
-			}
+                if (!string.IsNullOrEmpty(TextDetail))
+                    return TextDetail;
+                if (ErrorDetail != null)
+                    return ErrorDetail.Exception.Message;
+                return !string.IsNullOrEmpty(ScreenshotDetail) ? ScreenshotDetail : string.Empty;
+            }
         }
         public virtual void AddTestResultDetail(
            TestResultDetailTypes detailType,
@@ -65,23 +65,23 @@ namespace Tmx.Interfaces
             if (TmxHelper.TestCaseStarted == DateTime.MinValue) {
                 TmxHelper.TestCaseStarted = DateTime.Now;
             }
-			DetailType = detailType;
+            DetailType = detailType;
 
             switch (detailType) {
                 case TestResultDetailTypes.Screenshot:
-					ScreenshotDetail = detail;
+                    ScreenshotDetail = detail;
                     break;
 //                case TestResultDetailTypes.ErrorRecord:
 //                    
 //                    break;
                 case TestResultDetailTypes.Comment:
-					TextDetail = detail;
+                    TextDetail = detail;
                     break;
                 case TestResultDetailTypes.Log:
-					LogDetail = detail;
+                    LogDetail = detail;
                     break;
                 case TestResultDetailTypes.ExternalData:
-					ExternalData.Add(detail);
+                    ExternalData.Add(detail);
                     break;
                 default:
                     throw new Exception("Invalid value for TestResultDetailTypes");
@@ -91,15 +91,15 @@ namespace Tmx.Interfaces
            TestResultDetailTypes detailType,
            ErrorRecord detail)
         {
-			if (TmxHelper.TestCaseStarted == DateTime.MinValue)
-				TmxHelper.TestCaseStarted = DateTime.Now;
-			DetailType = detailType;
-			if (detailType == TestResultDetailTypes.ErrorRecord)
-				ErrorDetail = detail;
+            if (TmxHelper.TestCaseStarted == DateTime.MinValue)
+                TmxHelper.TestCaseStarted = DateTime.Now;
+            DetailType = detailType;
+            if (detailType == TestResultDetailTypes.ErrorRecord)
+                ErrorDetail = detail;
         }
         public virtual object GetDetail()
         {
-			return null != ErrorDetail ? ErrorDetail.Exception.Message : ScreenshotDetail ?? TextDetail ?? null;
+            return null != ErrorDetail ? ErrorDetail.Exception.Message : ScreenshotDetail ?? TextDetail ?? null;
         }
         
         [XmlAttribute]

@@ -10,7 +10,7 @@
 namespace Tmx.Interfaces.TestStructure
 {
     using System;
-	using System.Collections.Generic;
+    using System.Collections.Generic;
     using System.Management.Automation;
     using System.Xml.Serialization;
 
@@ -27,11 +27,9 @@ namespace Tmx.Interfaces.TestStructure
         void AddTestResultDetail(TestResultDetailTypes detailType, ErrorRecord detail);
         object GetDetail();
         
-        // 20130402
         [XmlAttribute]
         TestResultStatuses DetailStatus { get; set; }
         
-        // 20140720
         [XmlAttribute]
         TestResultDetailTypes DetailType { get; set; }
         [XmlAttribute]

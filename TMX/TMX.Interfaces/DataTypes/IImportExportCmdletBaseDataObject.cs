@@ -9,7 +9,7 @@
 
 namespace Tmx.Interfaces
 {
-    using System.Management.Automation;
+    // using System.Management.Automation;
     
     /// <summary>
     /// Description of IImportExportCmdletBaseDataObject.
@@ -18,6 +18,7 @@ namespace Tmx.Interfaces
     {
         string As { get; set; }
         string Path { get; set; }
-        SwitchParameter ExcludeAutomatic { get; set; }
+//        SwitchParameter ExcludeAutomatic { get; set; }
+        bool ExcludeAutomatic { get; set; }
     }
 }

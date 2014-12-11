@@ -9,13 +9,14 @@
 
 namespace Tmx.Interfaces
 {
-    using System.Management.Automation;
+    // using System.Management.Automation;
     
     /// <summary>
     /// Description of IGetTmxTestSuiteStatusDataObject.
     /// </summary>
     public interface IGetTmxTestSuiteStatusDataObject : IOpenSuiteCmdletBaseDataObject, ICommonCmdletBaseDataObject
     {
-        SwitchParameter FilterOutAutomaticResults { get; set; }
+        // SwitchParameter FilterOutAutomaticResults { get; set; }
+        bool FilterOutAutomaticResults { get; set; }
     }
 }

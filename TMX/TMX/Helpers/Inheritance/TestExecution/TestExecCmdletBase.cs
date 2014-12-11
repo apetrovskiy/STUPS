@@ -22,13 +22,15 @@ namespace Tmx
     public class TestExecCmdletBase : CommonCmdletBase
     {
         public void RunTestSuite(
-        	TestSuiteExecCmdletBase cmdlet,
-        	ITestSuite testSuite)
+            TestSuiteExecCmdletBase cmdlet,
+            ITestSuite testSuite)
         {
             foreach (var testScenario in testSuite.TestScenarios.Where(testScenario => null != testScenario.TestCases && 0 < testScenario.TestCases.Count))
             {
                 cmdlet.runTwoScriptBlockCollections(
-                    testSuite.BeforeScenario,
+                    // 20141211
+                    // testSuite.BeforeScenario,
+                    testSuite.BeforeScenario.Select(codeblock => ScriptBlock.Create(codeblock.Code)).ToArray(),
                     null, // alternate scriptblocks
                     cmdlet,
                     testSuite.BeforeScenarioParameters);
@@ -39,19 +41,25 @@ namespace Tmx
                 foreach (ITestCase testCase in testScenario.TestCases) {
 	        	        
                     cmdlet.runTwoScriptBlockCollections(
-                        testScenario.BeforeTest,
+                        // 20141211
+                        // testScenario.BeforeTest,
+                        testScenario.BeforeTest.Select(codeblock => ScriptBlock.Create(codeblock.Code)).ToArray(),
                         null, // alternate scriptblocks
                         cmdlet,
                         testScenario.BeforeTestParameters);
 		        		
                     cmdlet.runTwoScriptBlockCollections(
-                        testCase.TestCode,
+                        // 20141211
+                        // testCase.TestCode,
+                        testCase.TestCode.Select(codeblock => ScriptBlock.Create(codeblock.Code)).ToArray(),
                         null,
                         cmdlet,
                         testCase.TestCodeParameters);
 		        		
                     cmdlet.runTwoScriptBlockCollections(
-                        testScenario.AfterTest,
+                        // 20141211
+                        // testScenario.AfterTest,
+                        testScenario.AfterTest.Select(codeblock => ScriptBlock.Create(codeblock.Code)).ToArray(),
                         null, // alternate scriptblocks
                         cmdlet,
                         testScenario.AfterTestParameters);
@@ -62,7 +70,9 @@ namespace Tmx
                 // run AfterScenario scriptblocks
                 //if (null != testScenario) {
                 cmdlet.runTwoScriptBlockCollections(
-                    testSuite.AfterScenario,
+                    // 20141211
+                    // testSuite.AfterScenario,
+                    testSuite.AfterScenario.Select(codeblock => ScriptBlock.Create(codeblock.Code)).ToArray(),
                     null, // alternate scriptblocks
                     cmdlet,
                     testSuite.AfterScenarioParameters);
@@ -82,7 +92,9 @@ namespace Tmx
             // if (null != testSuite && null != testScenario && 0 < testScenario.TestCases.Count) {
 
             cmdlet.runTwoScriptBlockCollections(
-                testSuite.BeforeScenario,
+                // 20141211
+                // testSuite.BeforeScenario,
+                testSuite.BeforeScenario.Select(codeblock => ScriptBlock.Create(codeblock.Code)).ToArray(),
                 null, // alternate scriptblocks
                 cmdlet,
                 testSuite.BeforeScenarioParameters);
@@ -90,19 +102,25 @@ namespace Tmx
         	
             foreach (ITestCase testCase in testScenario.TestCases) {
                 cmdlet.runTwoScriptBlockCollections(
-                    testScenario.BeforeTest,
+                    // 20141211
+                    // testScenario.BeforeTest,
+                    testScenario.BeforeTest.Select(codeblock => ScriptBlock.Create(codeblock.Code)).ToArray(),
                     null, // alternate scriptblocks
                     cmdlet,
                     testScenario.BeforeTestParameters);
         		
                 cmdlet.runTwoScriptBlockCollections(
-                    testCase.TestCode,
+                    // 20141211
+                    // testCase.TestCode,
+                    testCase.TestCode.Select(codeblock => ScriptBlock.Create(codeblock.Code)).ToArray(),
                     null,
                     cmdlet,
                     testCase.TestCodeParameters);
         		
                 cmdlet.runTwoScriptBlockCollections(
-                    testScenario.AfterTest,
+                    // 20141211
+                    // testScenario.AfterTest,
+                    testScenario.AfterTest.Select(codeblock => ScriptBlock.Create(codeblock.Code)).ToArray(),
                     null, // alternate scriptblocks
                     cmdlet,
                     testScenario.AfterTestParameters);
@@ -112,7 +130,9 @@ namespace Tmx
             //if (null != testSuite) {
             //if (null != testSuite && null != testScenario && 0 < testScenario.TestCases.Count) {
             cmdlet.runTwoScriptBlockCollections(
-                testSuite.AfterScenario,
+                // 20141211
+                // testSuite.AfterScenario,
+                testSuite.AfterScenario.Select(codeblock => ScriptBlock.Create(codeblock.Code)).ToArray(),
                 null, // alternate scriptblocks
                 cmdlet,
                 testSuite.AfterScenarioParameters);
@@ -148,7 +168,9 @@ namespace Tmx
 			//if (null != testSuite) {
 			if (null != testSuite && null != testScenario) {
 				cmdlet.runTwoScriptBlockCollections(
-					testSuite.BeforeScenario,
+			        // 20141211
+					// testSuite.BeforeScenario,
+					testSuite.BeforeScenario.Select(codeblock => ScriptBlock.Create(codeblock.Code)).ToArray(),
 					null, // alternate scriptblocks
 					cmdlet,
 					testSuite.BeforeScenarioParameters);
@@ -157,7 +179,9 @@ namespace Tmx
 			// run BeforeTest scriptblocks
 			if (null != testScenario) {
 				cmdlet.runTwoScriptBlockCollections(
-					testScenario.BeforeTest,
+			        // 20141211
+					// testScenario.BeforeTest,
+					testScenario.BeforeTest.Select(codeblock => ScriptBlock.Create(codeblock.Code)).ToArray(),
 					null, // alternate scriptblocks
 					cmdlet,
 					testScenario.BeforeTestParameters);
@@ -166,7 +190,9 @@ namespace Tmx
 			// run TestCode scriptblocks
 			cmdlet.runTwoScriptBlockCollections(
 				//cmdlet.TestCode,
-				testCase.TestCode,
+				// 20141211
+				// testCase.TestCode,
+				testCase.TestCode.Select(codeblock => ScriptBlock.Create(codeblock.Code)).ToArray(),
 				null,
 				cmdlet,
 				cmdlet.TestCodeParameters);
@@ -174,7 +200,9 @@ namespace Tmx
 			// run AfterTest scriptblocks
 			if (null != testScenario) {
 				cmdlet.runTwoScriptBlockCollections(
-					testScenario.AfterTest,
+			        // 20141211
+					// testScenario.AfterTest,
+					testScenario.AfterTest.Select(codeblock => ScriptBlock.Create(codeblock.Code)).ToArray(),
 					null, // alternate scriptblocks
 					cmdlet,
 					testScenario.AfterTestParameters);
@@ -184,7 +212,9 @@ namespace Tmx
 			//if (null != testSuite) {
 			if (null != testSuite && null != testScenario) {
 				cmdlet.runTwoScriptBlockCollections(
-					testSuite.AfterScenario,
+			        // 20141211
+					// testSuite.AfterScenario,
+					testSuite.AfterScenario.Select(codeblock => ScriptBlock.Create(codeblock.Code)).ToArray(),
 					null, // alternate scriptblocks
 					cmdlet,
 					testSuite.AfterScenarioParameters);

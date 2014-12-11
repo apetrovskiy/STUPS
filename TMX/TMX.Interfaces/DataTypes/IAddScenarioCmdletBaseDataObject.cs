@@ -10,7 +10,7 @@
 namespace Tmx.Interfaces
 {
     using System;
-	using System.Management.Automation;
+    // using System.Management.Automation;
     using Tmx.Interfaces.TestStructure;
     
     /// <summary>
@@ -30,7 +30,10 @@ namespace Tmx.Interfaces
         string TestPlatformId { get; set; }
         // Guid TestPlatformId { get; set; }
         
-        ScriptBlock[] BeforeTest { get; set; }
-        ScriptBlock[] AfterTest { get; set; }
+        // 20141211
+        // ScriptBlock[] BeforeTest { get; set; }
+        // ScriptBlock[] AfterTest { get; set; }
+        ICodeBlock[] BeforeTest { get; set; }
+        ICodeBlock[] AfterTest { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace Tmx.Interfaces
 {
     using System;
     using System.Collections.Generic;
-    using System.Management.Automation;
+    // using System.Management.Automation;
     using System.Xml.Serialization;
 	using Tmx.Interfaces;
 	using Tmx.Interfaces.TestStructure;
@@ -132,7 +132,6 @@ namespace Tmx.Interfaces
         public string Name { get; set; }
         [XmlAttribute]
         public string Id { get; set; }
-        // [XmlInclude(typeof(List<ITestResult>))]
         [XmlElement("TestResults", typeof(ITestResult))]
         public List<ITestResult> TestResults {get; protected internal set; }
         [XmlAttribute]
@@ -176,7 +175,6 @@ namespace Tmx.Interfaces
         
         [XmlIgnore]
         public string SuiteId { get; set; }
-        // 20141122
         [XmlIgnore]
         public Guid SuiteUniqueId { get; set; }
         
@@ -202,9 +200,13 @@ namespace Tmx.Interfaces
         public virtual Guid PlatformUniqueId { get; set; }
         
         [XmlIgnore]
-        public virtual ScriptBlock[] BeforeTest { get; set; }
+        // 20141211
+        // public virtual ScriptBlock[] BeforeTest { get; set; }
+        public virtual ICodeBlock[] BeforeTest { get; set; }
         [XmlIgnore]
-        public virtual ScriptBlock[] AfterTest { get; set; }
+        // 20141211
+        // public virtual ScriptBlock[] AfterTest { get; set; }
+        public virtual ICodeBlock[] AfterTest { get; set; }
         [XmlIgnore]
         public virtual object[] BeforeTestParameters { get; set; }
         [XmlIgnore]
@@ -212,7 +214,6 @@ namespace Tmx.Interfaces
         [XmlIgnore]
         public List<ITestCase> TestCases { get; set; }
         
-        // 20141203
         public virtual int GetAll()
         {
             return Statistics.All;

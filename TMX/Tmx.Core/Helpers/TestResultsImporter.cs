@@ -84,7 +84,6 @@ namespace Tmx.Core
                     path +
                     "'. " + 
                     eImportDocument.Message);
-                return false;
             }
         }
         

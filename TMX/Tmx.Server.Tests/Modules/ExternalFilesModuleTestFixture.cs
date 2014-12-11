@@ -10,7 +10,7 @@
 namespace Tmx.Server.Tests.Modules
 {
     using System;
-    using System.Management.Automation;
+    // using System.Management.Automation;
     using Nancy;
     using Nancy.Testing;
     using MbUnit.Framework;

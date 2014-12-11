@@ -98,6 +98,7 @@
     <Compile Include="Exceptions\UpdateTaskException.cs" />
     <Compile Include="Exceptions\WorkflowLoadingException.cs" />
     <Compile Include="Exceptions\WrongTaskDataException.cs" />
+    <Compile Include="ICodeBlock.cs" />
     <Compile Include="IDatabase.cs" />
     <Compile Include="Internal\ISystemInfo.cs" />
     <Compile Include="ITestSuitesCollection.cs" />
@@ -137,7 +138,7 @@
     <Compile Include="TestStructure\ITestResultDetail.cs" />
     <Compile Include="TestStructure\ITestScenario.cs" />
     <Compile Include="TestStructure\ITestSuite.cs" />
-    <Compile Include="Types\TestStructure\TestStat.cs" />
+    <Compile Include="TestStructure\TestStat.cs" />
     <Compile Include="UrlList.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -149,10 +150,8 @@
     <Folder Include="Exceptions" />
     <Folder Include="Delegates" />
     <Folder Include="Internal" />
-    <Folder Include="Types" />
     <Folder Include="Remoting" />
     <Folder Include="TestStructure" />
-    <Folder Include="Types\TestStructure" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

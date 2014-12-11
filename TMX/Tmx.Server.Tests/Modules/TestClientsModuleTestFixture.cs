@@ -11,7 +11,7 @@ namespace Tmx.Server.Tests.Modules
 {
     using System;
     using System.Collections.Generic;
-    using System.Management.Automation;
+    // using System.Management.Automation;
     using System.Linq;
     using Nancy;
     using Nancy.Testing;

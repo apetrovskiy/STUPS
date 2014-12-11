@@ -9,14 +9,14 @@
 
 namespace Tmx.Client
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Collections.ObjectModel;
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Diagnostics;
-	using System.Linq;
-	using System.Management.Automation;
-	using Tmx.Interfaces.Remoting;
-	
+    using System.Linq;
+    using System.Management.Automation;
+    using Tmx.Interfaces.Remoting;
+
     /// <summary>
     /// Description of TaskRunner.
     /// </summary>

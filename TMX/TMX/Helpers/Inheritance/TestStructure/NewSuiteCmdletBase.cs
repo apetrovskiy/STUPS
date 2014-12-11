@@ -18,6 +18,13 @@ namespace Tmx
     /// </summary>
     public class NewSuiteCmdletBase : CommonCmdletBase
     {
+        // 20141211
+        public NewSuiteCmdletBase()
+        {
+            BeforeScenario = new ScriptBlock[]{};
+            AfterScenario = new ScriptBlock[]{};
+        }
+        
         #region Parameters
         [Parameter(Mandatory = true,
                    Position = 0)]

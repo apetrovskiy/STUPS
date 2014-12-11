@@ -12,6 +12,7 @@ namespace Tmx.Server //.ObjectModel.ServerControl
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.Dynamic;
     using System.IO;
     using System.Linq;
     using DotLiquid.NamingConventions;
@@ -22,6 +23,7 @@ namespace Tmx.Server //.ObjectModel.ServerControl
     using Nancy.Diagnostics;
     using Nancy.Json;
     using Nancy.TinyIoc;
+    using Nancy.ViewEngines.DotLiquid;
     using Tmx.Core;
     using Tmx.Core.Types.Remoting;
     using Tmx.Interfaces;
@@ -140,6 +142,9 @@ namespace Tmx.Server //.ObjectModel.ServerControl
         {
             var modulesLoader = new ModulesLoader((new TmxServerRootPathProvider()).GetRootPath());
             modulesLoader.Load();
+            
+            // just for copying the Nancy.ViewEngines.DotLiquid assembly to dependant projects
+            var drop = new DynamicDrop(new ExpandoObject());
         }
         
         static void setDotLiquidNamingConventions()
@@ -162,6 +167,8 @@ namespace Tmx.Server //.ObjectModel.ServerControl
             Template.RegisterSafeType(typeof(ITestRun), new[] { "Id", "Name", "WorkflowId", "TestLabId", "Description", "Status", "StartType", "Data", "TestSuites", "StartTime", "TimeTaken", "GetTestLabName" });
             Template.RegisterSafeType(typeof(TestRun), new[] { "Id", "Name", "WorkflowId", "TestLabId", "Description", "Status", "StartType", "Data", "TestSuites", "StartTime", "TimeTaken", "GetTestLabName" });
             Template.RegisterSafeType(typeof(CommonData), new[] { "Data" });
+            Template.RegisterSafeType(typeof(ICodeBlock), new[] { "Code" });
+            Template.RegisterSafeType(typeof(CodeBlock), new[] { "Code" });
             Template.RegisterSafeType(typeof(TestLab), new[] { "Id", "Name", "Description", "Status" });
             Template.RegisterSafeType(typeof(TestTask), new[] { "Id", "Name", "StartTime", "TaskStatus", "TaskFinished", "TaskResult", "TimeTaken", "ClientId", "GetTimeTaken" });
             Template.RegisterSafeType(typeof(TestClient), new[] { "Id", "Hostname", "Fqdn", "Username", "CustomString", "Status", "TaskId", "TaskName", "DetailedStatus" });

@@ -928,7 +928,9 @@ Console.WriteLine("WriteSingleObject 00008");
         protected internal void RunOnSuccessScriptBlocks(PSCmdletBase cmdlet, object[] parameters)
         {
             runTwoScriptBlockCollections(
+                // 20141211
                 Preferences.OnSuccessAction,
+                // Preferences.OnSuccessAction.ToString(),
                 cmdlet.OnSuccessAction,
                 // 20130318
                 //cmdlet);

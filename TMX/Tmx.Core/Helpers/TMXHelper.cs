@@ -135,8 +135,11 @@ namespace Tmx
                                         string testSuiteId,
                                         Guid testPlatformId,
                                         string testSuiteDesctiption,
-                                        ScriptBlock[] testSuiteBeforeScenario,
-                                        ScriptBlock[] testSuiteAfterScenario)
+                                        // 20141211
+                                        // ScriptBlock[] testSuiteBeforeScenario,
+                                        // ScriptBlock[] testSuiteAfterScenario)
+                                        ICodeBlock[] testSuiteBeforeScenario,
+                                        ICodeBlock[] testSuiteAfterScenario)
         {
             return TestData.AddTestSuite(testSuiteName,
                                          testSuiteId,

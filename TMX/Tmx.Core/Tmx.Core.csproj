@@ -87,6 +87,7 @@
     <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="CodeBlock.cs" />
     <Compile Include="ExtensionMethods\ExtensionMethods.cs" />
     <Compile Include="GatherTestResultsCollections.cs" />
     <Compile Include="Helpers\Mapping\TestPlatformMap.cs" />

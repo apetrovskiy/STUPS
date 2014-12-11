@@ -10,7 +10,7 @@
 namespace Tmx.Interfaces.TestStructure
 {
     using System;
-    using System.Management.Automation;
+    // using System.Management.Automation;
     
     /// <summary>
     /// Description of ITestCase.
@@ -25,7 +25,9 @@ namespace Tmx.Interfaces.TestStructure
         // 20130617
         //string TestCaseNumber { get; set; }
         //ScriptBlock[] AlternateBeforeTest { get; set; }
-        ScriptBlock[] TestCode { get; set; }
+        // 20141211
+        // ScriptBlock[] TestCode { get; set; }
+        ICodeBlock[] TestCode { get; set; }
         //ScriptBlock[] AlternateAfterTest { get; set; }
         string TestCaseTag { get; set; }
         object[] TestCodeParameters { get; set; }

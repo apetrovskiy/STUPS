@@ -87,9 +87,15 @@
     <Compile Include="ObjectModel\CommonDataSender.cs" />
     <Compile Include="ObjectModel\ItemSender.cs" />
     <Compile Include="ObjectModel\Registration.cs" />
+    <Compile Include="ObjectModel\Runners\MbUnitTaskRunner.cs" />
+    <Compile Include="ObjectModel\Runners\NunitTaskRunner.cs" />
+    <Compile Include="ObjectModel\Runners\PowerShellTaskRunner.cs" />
+    <Compile Include="ObjectModel\Runners\TaskRunnerSelector.cs" />
+    <Compile Include="ObjectModel\Runners\XunitTaskRunner.cs" />
     <Compile Include="ObjectModel\StatusSender.cs" />
     <Compile Include="ObjectModel\TaskLoader.cs" />
     <Compile Include="ObjectModel\TaskResultLoader.cs" />
+    <Compile Include="ObjectModel\TaskRunnerLegacy.cs" />
     <Compile Include="ObjectModel\TaskRunner.cs" />
     <Compile Include="ObjectModel\TaskUpdater.cs" />
     <Compile Include="ObjectModel\TestResultsLoader.cs" />
@@ -113,6 +119,7 @@
   <ItemGroup>
     <Folder Include="Helpers" />
     <Folder Include="ObjectModel" />
+    <Folder Include="ObjectModel\Runners" />
     <Folder Include="Properties" />
     <Folder Include="Properties" />
   </ItemGroup>

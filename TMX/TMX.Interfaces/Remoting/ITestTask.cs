@@ -27,6 +27,8 @@ namespace Tmx.Interfaces.Remoting
 		bool IsCritical { get; set; }
 		
 		TestTaskExecutionTypes TaskType { get; set; }
+		// 20141211
+		TestTaskRuntimeTypes TaskRuntimeType { get; set; }
 		string Rule { get; set; }
 		
 		// string Name { get; set; }

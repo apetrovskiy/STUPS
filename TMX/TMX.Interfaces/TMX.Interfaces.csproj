@@ -109,6 +109,7 @@
     <Compile Include="Remoting\IAction.cs" />
     <Compile Include="Remoting\ICommonData.cs" />
     <Compile Include="Remoting\ICommonDataItem.cs" />
+    <Compile Include="Remoting\IRunnableClient.cs" />
     <Compile Include="Remoting\IServerCommand.cs" />
     <Compile Include="Remoting\ITestClient.cs" />
     <Compile Include="Remoting\ITestClientProxy.cs" />

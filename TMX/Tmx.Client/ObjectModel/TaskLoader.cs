@@ -43,6 +43,11 @@ namespace Tmx.Client
             HttpResponseMessage<TestTask> gettingTaskResponse = null;
             // HttpResponseMessage<TestTaskCodeProxy> gettingTaskResponse = null;
             try {
+                
+                // 20141211
+                // TODO: AOP
+                Trace.TraceInformation("GetCurrentTask(): client id = {0}, url = {1}", ClientSettings.Instance.ClientId, UrlList.TestTasks_Root + "/" + ClientSettings.Instance.ClientId);
+                
                 // 20141020 squeezing a task to its proxy
                 gettingTaskResponse = _restTemplate.GetForMessage<TestTask>(UrlList.TestTasks_Root + "/" + ClientSettings.Instance.ClientId);
                 // gettingTaskResponse = _restTemplate.GetForMessage<TestTaskCodeProxy>(UrnList.TestTasks_Root + "/" + ClientSettings.Instance.ClientId);
@@ -76,9 +81,19 @@ namespace Tmx.Client
         {
             if (null == task)
                 throw new AcceptTaskException("Failed to accept task.");
+            
+            // 20141211
+            // TODO: AOP
+            Trace.TraceInformation("acceptCurrentTask(ITestTask task).1: task id = {0}", task.Id);
+            
             task.TaskStatus = TestTaskStatuses.Running;
             task.StartTimer();
             try {
+                
+                // 20141211
+                // TODO: AOP
+                Trace.TraceInformation("acceptCurrentTask(ITestTask task).2: task id = {0}, url = {1}", task.Id, UrlList.TestTasks_Root + "/" + task.Id);
+                
                 _restTemplate.Put(UrlList.TestTasks_Root + "/" + task.Id, task);
             	return task;
             }

@@ -12,27 +12,28 @@ namespace Tmx.Interfaces.Remoting
     using System;
     using System.Collections.Generic;
     
-	/// <summary>
-	/// Description of ITestTask.
-	/// </summary>
-	public interface ITestTask : ITestTaskResultProxy, ITestTaskStatusProxy, ITestTaskCodeProxy // ITestTaskProxy
-	{
-		int PreviousTaskId { get; set; }
-		int AfterTask { get; set; }
-		bool IsActive { get; set; }
-		// bool TaskFinished { get; set; }
-		// int TimeLimit { get; set; }
-		// DateTime StartTime { get; set; }
-		int RetryCount { get; set; }
-		bool IsCritical { get; set; }
-		
-		TestTaskExecutionTypes TaskType { get; set; }
-		// 20141211
-		TestTaskRuntimeTypes TaskRuntimeType { get; set; }
-		string Rule { get; set; }
-		
-		// string Name { get; set; }
-		string StoryId { get; set; }
+    /// <summary>
+    /// Description of ITestTask.
+    /// </summary>
+    public interface ITestTask : ITestTaskResultProxy, ITestTaskStatusProxy, ITestTaskCodeProxy // ITestTaskProxy
+    {
+        int PreviousTaskId { get; set; }
+        int AfterTask { get; set; }
+        bool IsActive { get; set; }
+        // bool TaskFinished { get; set; }
+        // int TimeLimit { get; set; }
+        // DateTime StartTime { get; set; }
+        int RetryCount { get; set; }
+        bool IsCritical { get; set; }
+        
+        // 20141211
+//		TestTaskExecutionTypes TaskType { get; set; }
+//		// 20141211
+//		TestTaskRuntimeTypes TaskRuntimeType { get; set; }
+        string Rule { get; set; }
+        
+        // string Name { get; set; }
+        string StoryId { get; set; }
 //		string Action { get; set; }
 //		IDictionary<string, string> ActionParameters { get; set; }
 //		string BeforeAction { get; set; }
@@ -43,19 +44,19 @@ namespace Tmx.Interfaces.Remoting
 		
 		// string TaskBanner { get; set; }
 //		TestTaskStatuses TaskStatus { get; set; }
-		// IDictionary<string, string> PreviousTaskResult { get; set; }
-		// IDictionary<string, string> TaskResult { get; set; }
-		// int ClientId { get; set; }
-		// int WorkflowId { get; set; }
-		Guid WorkflowId { get; set; }
-		// int TestRunId { get; set; }
-		Guid TestRunId { get; set; }
-		// TimeSpan TimeTaken { get; set; }
-		TimeSpan GetTimeTaken();
-		void SetTimeTaken();
-	}
-	
-	/*
+        // IDictionary<string, string> PreviousTaskResult { get; set; }
+        // IDictionary<string, string> TaskResult { get; set; }
+        // int ClientId { get; set; }
+        // int WorkflowId { get; set; }
+        Guid WorkflowId { get; set; }
+        // int TestRunId { get; set; }
+        Guid TestRunId { get; set; }
+        // TimeSpan TimeTaken { get; set; }
+        TimeSpan GetTimeTaken();
+        void SetTimeTaken();
+    }
+    
+    /*
     	<activity>
             <section_name>MSI UPGRADE: gathering of the real-life data</section_name>
             *<test_name>MSI UPGRADE: gathering of the real-life data</test_name>

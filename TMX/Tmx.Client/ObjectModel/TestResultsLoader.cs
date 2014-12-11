@@ -38,12 +38,24 @@ namespace Tmx.Client
         public virtual bool LoadTestResults()
         {
             try {
-                var urn = UrlList.TestResults_Root + "/" + ClientSettings.Instance.CurrentClient.TestRunId + UrlList.TestResultsPostingPoint_forClient_relPath;
-                var loadingResultsResponse = _restTemplate.GetForMessage<TestResultsDataObject>(urn);
+                var url = UrlList.TestResults_Root + "/" + ClientSettings.Instance.CurrentClient.TestRunId + UrlList.TestResultsPostingPoint_forClient_relPath;
+                
+                // 20141211
+                // TODO: AOP
+                Trace.TraceInformation("LoadTestResults().1: testRun id = {0}, url = {1}", ClientSettings.Instance.CurrentClient.TestRunId, url);
+                
+                
+                var loadingResultsResponse = _restTemplate.GetForMessage<TestResultsDataObject>(url);
                 var testResultsImporter = new TestResultsImporter();
                 var xDoc = XDocument.Parse(loadingResultsResponse.Body.Data);
                 testResultsImporter.MergeTestPlatforms(TestData.TestPlatforms, testResultsImporter.ImportTestPlatformFromXdocument(xDoc));
                 testResultsImporter.MergeTestSuites(TestData.TestSuites, testResultsImporter.ImportTestResultsFromXdocument(xDoc));
+                
+                // 20141211
+                // TODO: AOP
+                Trace.TraceInformation("LoadTestResults().2: still okay");
+                
+                
                 return HttpStatusCode.OK == loadingResultsResponse.StatusCode;
 	        }
 	        catch (RestClientException eLoadingTestResults) {

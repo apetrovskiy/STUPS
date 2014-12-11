@@ -10,13 +10,14 @@
 namespace Tmx.Client
 {
     using System;
+    using System.Diagnostics;
     using System.Net;
-	using Spring.Rest.Client;
+    using Spring.Rest.Client;
     using Tmx.Interfaces.Exceptions;
     using Tmx.Interfaces.Remoting;
-	using Tmx.Interfaces.Server;
+    using Tmx.Interfaces.Server;
     using Tmx.Core;
-	using System.Collections.Generic;
+    using System.Collections.Generic;
     
     /// <summary>
     /// Description of CommonDataSender.
@@ -33,11 +34,16 @@ namespace Tmx.Client
         public virtual void Send(ICommonDataItem item)
         {
             // TODO: add an error handler
-			var urn = UrlList.TestData_Root + "/" + ClientSettings.Instance.CurrentClient.TestRunId + UrlList.TestData_CommonData_forClient_relPath;
-			var dataItemSendingResponse = _restTemplate.PostForMessage(urn, item);
-			if (HttpStatusCode.Created == dataItemSendingResponse.StatusCode)
-				return;
-			throw new SendingCommonDataItemException("Failed to send data item. "+ dataItemSendingResponse.StatusCode);
+            var url = UrlList.TestData_Root + "/" + ClientSettings.Instance.CurrentClient.TestRunId + UrlList.TestData_CommonData_forClient_relPath;
+            
+            // 20141211
+            // TODO: AOP
+            Trace.TraceInformation("Send(ICommonDataItem item): testRun id = {0}, url = {1}", ClientSettings.Instance.CurrentClient.TestRunId, url);
+            
+            var dataItemSendingResponse = _restTemplate.PostForMessage(url, item);
+            if (HttpStatusCode.Created == dataItemSendingResponse.StatusCode)
+                return;
+            throw new SendingCommonDataItemException("Failed to send data item. "+ dataItemSendingResponse.StatusCode);
         }
     }
 }

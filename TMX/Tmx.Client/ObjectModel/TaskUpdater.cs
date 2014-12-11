@@ -35,6 +35,11 @@ namespace Tmx.Client
         {
             // TODO: try several times
             try {
+                
+                // 20141211
+                // TODO: AOP
+                Trace.TraceInformation("UpdateTask(ITestTask task): task id = {0}, task name = {1}, url = {2}", task.Id, task.Name, UrlList.TestTasks_Root + "/" + task.Id);
+                
                 _restTemplate.Put(UrlList.TestTasks_Root + "/" + task.Id, task);
                 return true;
             }
@@ -52,6 +57,11 @@ namespace Tmx.Client
         public virtual bool SendTaskResult(ITestTask task, Guid clientId)
         {
             try {
+                
+                // 20141211
+                // TODO: AOP
+                Trace.TraceInformation("SendTaskResult(ITestTask task, Guid clientId): client id = {0}, task id = {1}, task name = {2}, url = {3}", clientId, task.Id, task.Name, UrlList.CurrentTaskForClientById + "/" + clientId);
+                
                 _restTemplate.Put(UrlList.CurrentTaskForClientById + "/" + clientId, task);
                 return true;
             }

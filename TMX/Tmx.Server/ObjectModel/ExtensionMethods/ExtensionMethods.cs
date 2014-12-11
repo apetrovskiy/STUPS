@@ -37,12 +37,14 @@ namespace Tmx.Server
             return TestRunQueue.TestRuns.ActiveTestRunIds().Contains(testClient.TestRunId);
         }
         
-        public static IEnumerable<Guid> ActiveWorkflowIds(this List<ITestWorkflow> list)
-        {
-            // return WorkflowCollection.Workflows.Select(wfl => wfl.Id).Intersect(TestRunQueue.TestRuns.Where(tr => tr.Status == TestRunStatuses.Running).Select(tr => tr.WorkflowId));
-            return WorkflowCollection.Workflows.Select(wfl => wfl.Id).Intersect(TestRunQueue.TestRuns.Where(tr => tr.IsActive()).Select(tr => tr.WorkflowId));
-            // return WorkflowCollection.Workflows.Select(wfl => wfl.Id).Intersect(TestRunQueue.TestRuns.Where(IsActive).Select(tr => tr.WorkflowId));
-        }
+        // 20141211
+        // since this is not used
+//        public static IEnumerable<Guid> ActiveWorkflowIds(this List<ITestWorkflow> list)
+//        {
+//            // return WorkflowCollection.Workflows.Select(wfl => wfl.Id).Intersect(TestRunQueue.TestRuns.Where(tr => tr.Status == TestRunStatuses.Running).Select(tr => tr.WorkflowId));
+//            return WorkflowCollection.Workflows.Select(wfl => wfl.Id).Intersect(TestRunQueue.TestRuns.Where(tr => tr.IsActive()).Select(tr => tr.WorkflowId));
+//            // return WorkflowCollection.Workflows.Select(wfl => wfl.Id).Intersect(TestRunQueue.TestRuns.Where(IsActive).Select(tr => tr.WorkflowId));
+//        }
         
         public static bool IsLastTaskInTestRun(this ITestTask task)
         {

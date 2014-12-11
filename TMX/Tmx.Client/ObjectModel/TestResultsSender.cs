@@ -52,9 +52,16 @@ namespace Tmx.Client
             };
             
             try {
-            	var urn = UrlList.TestResults_Root + "/" + ClientSettings.Instance.CurrentClient.TestRunId + UrlList.TestResultsPostingPoint_forClient_relPath;
-            	var sendingResultsResponse = _restTemplate.PostForMessage(urn, dataObject);
-            	return HttpStatusCode.Created == sendingResultsResponse.StatusCode;
+                var url = UrlList.TestResults_Root + "/" + ClientSettings.Instance.CurrentClient.TestRunId + UrlList.TestResultsPostingPoint_forClient_relPath;
+                
+                
+                // 20141211
+                // TODO: AOP
+                Trace.TraceInformation("SendTestResults(): testRun id = {0}, url = {1}", ClientSettings.Instance.CurrentClient.TestRunId, url);
+                
+                
+                var sendingResultsResponse = _restTemplate.PostForMessage(url, dataObject);
+                return HttpStatusCode.Created == sendingResultsResponse.StatusCode;
             }
             catch (RestClientException eSendingTestResults) {
                 // TODO: AOP

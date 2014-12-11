@@ -11,6 +11,7 @@ namespace Tmx.Client
 {
     using System;
 	using System.Collections.Generic;
+    using System.Diagnostics;
 	using System.Net;
 	using Spring.Rest.Client;
 	using Tmx.Interfaces.Server;
@@ -30,6 +31,11 @@ namespace Tmx.Client
         public virtual Dictionary<string, string> Load()
         {
             var url = UrlList.TestData_Root + "/" + ClientSettings.Instance.CurrentClient.TestRunId + UrlList.TestData_CommonData_forClient_relPath;
+            
+            // 20141211
+            // TODO: AOP
+            Trace.TraceInformation("Load(): testRun id = {0}, url = {1}", ClientSettings.Instance.CurrentClient.TestRunId, url);
+            
             var commonDataResponse = _restTemplate.GetForMessage<Dictionary<string, string>>(url);
             var commonData = commonDataResponse.Body;
             return HttpStatusCode.NotFound == commonDataResponse.StatusCode ? new Dictionary<string, string>() : commonData;

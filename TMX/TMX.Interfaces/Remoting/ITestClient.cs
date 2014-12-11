@@ -9,14 +9,14 @@
 
 namespace Tmx.Interfaces.Remoting
 {
-	using Tmx.Interfaces.Internal;
-	
-	/// <summary>
-	/// Description of ITestClient.
-	/// </summary>
-	public interface ITestClient : ISystemInfo, ITestClientProxy
-	{
-		TestClientStatuses Status { get; set; }
-		string DetailedStatus { get; set; } //?
-	}
+    using Tmx.Interfaces.Internal;
+    
+    /// <summary>
+    /// Description of ITestClient.
+    /// </summary>
+    public interface ITestClient : ISystemInfo, ITestClientProxy
+    {
+        TestClientStatuses Status { get; set; }
+        string DetailedStatus { get; set; } //?
+    }
 }

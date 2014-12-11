@@ -59,6 +59,11 @@ namespace Tmx.Client
         {
             closeCurrentTaskIfAny();
             try {
+                
+                // 20141211
+                // TODO: AOP
+                Trace.TraceInformation("UnregisterClient(): client id = {0}, url = {1}", ClientSettings.Instance.ClientId, UrlList.TestClients_Root + "/" + ClientSettings.Instance.ClientId);
+                
                 _restTemplate.Delete(UrlList.TestClients_Root + "/" + ClientSettings.Instance.ClientId);
                 ClientSettings.Instance.ResetData();
             }

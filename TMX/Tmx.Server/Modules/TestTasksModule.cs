@@ -57,7 +57,12 @@ namespace Tmx.Server.Modules
         
         Negotiator returnNoTask_StatusNotFound(ITestClient testClient)
         {
-            testClient.Status = TestClientStatuses.NoTasks;
+//            testClient.Status = TestClientStatuses.NoTasks;
+//            // 20141211
+//            // set no active task everywhere
+//            testClient.TaskId = 0;
+//            testClient.TaskName = string.Empty;
+            testClient.SetNoTasksStatus();
             return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
         }
         

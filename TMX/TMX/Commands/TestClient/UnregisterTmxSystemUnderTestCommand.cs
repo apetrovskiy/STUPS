@@ -9,20 +9,20 @@
 
 namespace Tmx.Commands
 {
-	using System;
-	using System.Management.Automation;
-	using Tmx;
-	
+    using System;
+    using System.Management.Automation;
+    using Tmx;
+    
     /// <summary>
     /// Description of UnregisterTmxSystemUnderTestCommand.
     /// </summary>
     [Cmdlet(VerbsLifecycle.Unregister, "TmxSystemUnderTest")]
     public class UnregisterTmxSystemUnderTestCommand : ClientCmdletBase
     {
-		protected override void BeginProcessing()
-		{
-			var command = new UnregisterSystemUnderTestCommand(this);
-			command.Execute();
-		}
+        protected override void BeginProcessing()
+        {
+            var command = new UnregisterSystemUnderTestCommand(this);
+            command.Execute();
+        }
     }
 }

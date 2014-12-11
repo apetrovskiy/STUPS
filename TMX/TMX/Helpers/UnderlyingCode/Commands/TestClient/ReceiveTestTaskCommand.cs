@@ -9,16 +9,17 @@
 
 namespace Tmx
 {
-	using System;
+    using System;
+    using System.Diagnostics;
     using Tmx.Interfaces.Exceptions;
-	using Tmx;
-	using Tmx.Client;
-	using Tmx.Interfaces.Remoting;
-	using Tmx.Commands;
-	
-	/// <summary>
-	/// Description of ReceiveTestTaskCommand.
-	/// </summary>
+    using Tmx;
+    using Tmx.Client;
+    using Tmx.Interfaces.Remoting;
+    using Tmx.Commands;
+    
+    /// <summary>
+    /// Description of ReceiveTestTaskCommand.
+    /// </summary>
     class ReceiveTestTaskCommand : TmxCommand
     {
         internal ReceiveTestTaskCommand(CommonCmdletBase cmdlet) : base (cmdlet)
@@ -51,16 +52,27 @@ namespace Tmx
                         var registration = new Registration(new RestRequestCreator());
                         ClientSettings.Instance.ClientId = registration.SendRegistrationInfoAndGetClientId(ClientSettings.Instance.CurrentClient.CustomString);
                     }
+                    
+                    // TODO: AOP
+                    Trace.TraceWarning("ReceiveTestTaskCommand.1");
+                    // temporary
+                    Trace.TraceWarning("ClientNotRegisteredException");
+                    
                     throw;
                 }
                 catch (Exception e) {
                     // NullreferenceException
+                    
+                    // TODO: AOP
+                    Trace.TraceWarning("ReceiveTestTaskCommand.2");
+                    // temporary
+                    Trace.TraceWarning(e.Message);
                 }
                 
-				if (null != task)
+                if (null != task)
                     break;
                 
-				if (!cmdlet.Continuous)
+                if (!cmdlet.Continuous)
                     if ((DateTime.Now - startTime).TotalSeconds >= cmdlet.Seconds)
                         throw new Exception("Failed to receive a task in " + cmdlet.Seconds + " seconds");
                 

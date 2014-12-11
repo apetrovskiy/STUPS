@@ -64,6 +64,9 @@ namespace Tmx.Client
             if (HttpStatusCode.ExpectationFailed == gettingTaskResponse.StatusCode)
                 throw new ClientNotRegisteredException("Client is not registered. Run the Register-TmxSystemUnderTest cmdlet first");
             if (HttpStatusCode.OK == gettingTaskResponse.StatusCode) return acceptCurrentTask(task);
+            
+            // TODO: AOP
+            Trace.TraceError("GetCurrentTask().2");
             throw new LoadTaskException("Failed to load task. " + gettingTaskResponse.StatusCode);
         }
         

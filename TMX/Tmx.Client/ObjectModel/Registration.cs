@@ -34,6 +34,8 @@ namespace Tmx.Client
             _restTemplate = requestCreator.GetRestTemplate();
             
             // 20141211
+            // temporary
+            // TODO: think about where to move it
             var tracingControl = new TracingControl("TmxClient_");
         }
         
@@ -45,7 +47,11 @@ namespace Tmx.Client
                 ClientSettings.Instance.CurrentClient = registrationResponse.Body;
             
             if (HttpStatusCode.Created == registrationResponse.StatusCode)
-            	return registrationResponse.Body.Id;
+                return registrationResponse.Body.Id;
+            
+            // TODO: AOP
+            Trace.TraceWarning("SendRegistrationInfoAndGetClientId(string customClientString)");
+            Trace.TraceWarning("Failed to register a client. "+ registrationResponse.StatusCode);
             throw new Exception("Failed to register a client. "+ registrationResponse.StatusCode); // TODO: new type!
         }
         

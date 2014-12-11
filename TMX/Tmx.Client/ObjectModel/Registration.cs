@@ -12,6 +12,7 @@ namespace Tmx.Client
     using System;
     using System.Diagnostics;
 	using System.Net;
+    using PSTestLib.Helpers;
 	using Spring.Http;
 	using Spring.Rest.Client;
     using Tmx.Core.Types.Remoting;
@@ -30,7 +31,10 @@ namespace Tmx.Client
         
         public Registration(RestRequestCreator requestCreator)
         {
-        	_restTemplate = requestCreator.GetRestTemplate();
+            _restTemplate = requestCreator.GetRestTemplate();
+            
+            // 20141211
+            var tracingControl = new TracingControl("TmxClient_");
         }
         
         public virtual Guid SendRegistrationInfoAndGetClientId(string customClientString)
@@ -53,6 +57,8 @@ namespace Tmx.Client
                 ClientSettings.Instance.ResetData();
             }
             catch (RestClientException eUnregisteringClient) {
+                // TODO: AOP
+                Trace.TraceError("UnregisterClient()");
                 Trace.TraceError(eUnregisteringClient.Message);
                 throw new ClientDeregistrationException("Failed to unregister the client. " + eUnregisteringClient.Message);
             }

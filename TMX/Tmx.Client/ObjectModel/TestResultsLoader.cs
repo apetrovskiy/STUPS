@@ -29,27 +29,29 @@ namespace Tmx.Client
     public class TestResultsLoader
     {
         readonly IRestOperations _restTemplate;
-	    
-	    public TestResultsLoader(RestRequestCreator requestCreator)
-	    {
-	    	_restTemplate = requestCreator.GetRestTemplate();
-	    }
-	    
-	    public virtual bool LoadTestResults()
-	    {
-	        try {
-				var urn = UrlList.TestResults_Root + "/" + ClientSettings.Instance.CurrentClient.TestRunId + UrlList.TestResultsPostingPoint_forClient_relPath;
-				var loadingResultsResponse = _restTemplate.GetForMessage<TestResultsDataObject>(urn);
-				var testResultsImporter = new TestResultsImporter();
-				var xDoc = XDocument.Parse(loadingResultsResponse.Body.Data);
-				testResultsImporter.MergeTestPlatforms(TestData.TestPlatforms, testResultsImporter.ImportTestPlatformFromXdocument(xDoc));
-				testResultsImporter.MergeTestSuites(TestData.TestSuites, testResultsImporter.ImportTestResultsFromXdocument(xDoc));
-	            return HttpStatusCode.OK == loadingResultsResponse.StatusCode;
+        
+        public TestResultsLoader(RestRequestCreator requestCreator)
+        {
+        	_restTemplate = requestCreator.GetRestTemplate();
+        }
+        
+        public virtual bool LoadTestResults()
+        {
+            try {
+                var urn = UrlList.TestResults_Root + "/" + ClientSettings.Instance.CurrentClient.TestRunId + UrlList.TestResultsPostingPoint_forClient_relPath;
+                var loadingResultsResponse = _restTemplate.GetForMessage<TestResultsDataObject>(urn);
+                var testResultsImporter = new TestResultsImporter();
+                var xDoc = XDocument.Parse(loadingResultsResponse.Body.Data);
+                testResultsImporter.MergeTestPlatforms(TestData.TestPlatforms, testResultsImporter.ImportTestPlatformFromXdocument(xDoc));
+                testResultsImporter.MergeTestSuites(TestData.TestSuites, testResultsImporter.ImportTestResultsFromXdocument(xDoc));
+                return HttpStatusCode.OK == loadingResultsResponse.StatusCode;
 	        }
 	        catch (RestClientException eLoadingTestResults) {
-	            Trace.TraceError(eLoadingTestResults.Message);
-	            throw new LoadingTestResultsException("Failed to receive test results. " + eLoadingTestResults.Message);
-	        }
-	    }
+                // TODO: AOP
+                Trace.TraceError("LoadTestResults()");
+                Trace.TraceError(eLoadingTestResults.Message);
+                throw new LoadingTestResultsException("Failed to receive test results. " + eLoadingTestResults.Message);
+            }
+        }
     }
 }

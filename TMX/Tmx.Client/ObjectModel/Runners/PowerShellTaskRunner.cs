@@ -74,7 +74,13 @@ namespace Tmx.Client.ObjectModel.Runners
                 runnerWithParams(ScriptBlock.Create(code), scriptblockParameters);
                 return true;
             }
-            catch {
+            // 20141211
+            // catch {
+            catch (Exception eOnRunningScriptblock) {
+                // TODO: AOP
+                Trace.TraceError("runScriptblockWithParameters");
+                // 20141211
+                Trace.TraceError(eOnRunningScriptblock.Message);
                 return false;
             }
         }
@@ -88,6 +94,8 @@ namespace Tmx.Client.ObjectModel.Runners
                 else
                     psObjects = sb.Invoke(parameters);
             } catch (Exception eOuter) {
+                // TODO: AOP
+                Trace.TraceError("runSBActionWithParams(ScriptBlock sb, object[] parameters)");
                 Trace.TraceError(eOuter.Message);
                 throw new Exception(
                     "Unable to issue the following command:\r\n" +

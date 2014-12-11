@@ -10,6 +10,7 @@
 namespace Tmx.Client
 {
     using System;
+    using System.Diagnostics;
     using Spring.Rest.Client;
     using Tmx.Interfaces.Exceptions;
     using Tmx.Interfaces.Server;
@@ -37,7 +38,13 @@ namespace Tmx.Client
                 _restTemplate.Put(UrlList.TestTasks_Root + "/" + task.Id, task);
                 return true;
             }
-            catch {
+            // 20141211
+            // catch {
+            catch (Exception eOnUpdatingTask) {
+                // TODO: AOP
+                Trace.TraceError("UpdateTask(ITestTask task)");
+                // 20141211
+                Trace.TraceError(eOnUpdatingTask.Message);
                 throw new UpdateTaskException("Failed to update task '" + task.Name + "'");
             }
         }
@@ -48,7 +55,13 @@ namespace Tmx.Client
                 _restTemplate.Put(UrlList.CurrentTaskForClientById + "/" + clientId, task);
                 return true;
             }
-            catch {
+            // 20141211
+            // catch {
+            catch (Exception eOnSendingTaskResults) {
+                // TODO: AOP
+                Trace.TraceError("SendTaskResult(ITestTask task, Guid clientId)");
+                // 20141211
+                Trace.TraceError(eOnSendingTaskResults.Message);
                 throw new UpdateTaskException("Failed to send results to task");
             }
         }

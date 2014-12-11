@@ -128,6 +128,8 @@ namespace Tmx.Server.Modules
             try {
                 nextTask = taskSorter.GetNextLegibleTask(storedTask.ClientId, storedTask.Id);
             } catch (Exception eFailedToGetNextTask) {
+                // TODO: AOP
+                Trace.TraceError("updateNextTaskAndReturnOk(TaskSelector taskSorter, ITestTask storedTask)");
                 Trace.TraceError(eFailedToGetNextTask.Message);
                 throw new FailedToGetNextTaskException(eFailedToGetNextTask.Message);
             }

@@ -76,6 +76,8 @@ namespace Tmx.Server.Modules
                 // maybe, there's no such need? // TODO: set current test suite, test scenario, test result?
                 return HttpStatusCode.Created;
             } catch (Exception eFailedToImportTestResults) {
+                // TODO: AOP
+                Trace.TraceError("importTestResultsToTestRun(Guid testRunId)");
                 Trace.TraceError(eFailedToImportTestResults.Message);
                 return HttpStatusCode.ExpectationFailed;
             }

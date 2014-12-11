@@ -73,7 +73,8 @@ namespace Tmx.Server.Helpers
                 xDoc.Save(dateTimeString);
             }
             catch (Exception ex) {
-// Console.WriteLine(ee.Message);
+                // TODO: AOP
+                Trace.TraceError("temp_dumpTestTasks()");
                 Trace.TraceError(ex.Message);
             }
         }

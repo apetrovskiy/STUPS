@@ -48,6 +48,8 @@ namespace Tmx.Client
                 // gettingTaskResponse = _restTemplate.GetForMessage<TestTaskCodeProxy>(UrnList.TestTasks_Root + "/" + ClientSettings.Instance.ClientId);
             }
             catch (RestClientException eHttpClientErrorException) {
+                // TODO: AOP
+                Trace.TraceError("GetCurrentTask()");
                 Trace.TraceError(eHttpClientErrorException.Message);
                 if (string.Empty != eHttpClientErrorException.Message)
                     if (Regex.IsMatch(eHttpClientErrorException.Message, "resulted in 417"))
@@ -78,6 +80,8 @@ namespace Tmx.Client
             	return task;
             }
             catch (RestClientException eAcceptingTask) {
+                // TODO: AOP
+                Trace.TraceError("acceptCurrentTask(ITestTask task)");
                 Trace.TraceError(eAcceptingTask.Message);
                 throw new AcceptTaskException("Failed to accept task '" + task.Name + "'. " + eAcceptingTask.Message);
             }

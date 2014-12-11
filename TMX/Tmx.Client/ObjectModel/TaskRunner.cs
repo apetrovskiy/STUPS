@@ -11,6 +11,7 @@
 namespace Tmx.Client
 {
     using System;
+    using System.Diagnostics;
     using Tmx.Interfaces.Remoting;
     using Tmx.Client.ObjectModel.Runners;
     
@@ -31,7 +32,13 @@ namespace Tmx.Client
                 result = runner.RunMainAction(task.Action, task.ActionParameters, task.PreviousTaskResult);
                 return !result ? result : runner.RunAfterAction(task.AfterAction, task.AfterActionParameters, task.PreviousTaskResult);
             }
-            catch {
+            // 20141211
+            // catch {
+            catch (Exception eOnRunningTaskCode) {
+                // TODO: AOP
+                Trace.TraceError("Run(ITestTask task)");
+                // 20141211
+                Trace.TraceError(eOnRunningTaskCode.Message);
                 return false;
             }
         }

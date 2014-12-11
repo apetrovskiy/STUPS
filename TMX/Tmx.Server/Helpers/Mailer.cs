@@ -48,6 +48,8 @@ namespace Tmx.Server.Helpers
                     client.Send(message);
                 }
                 catch (Exception ex) {
+                    // TODO: AOP
+                    Trace.TraceError("SendMessage(IMailSettings settings)");
                     // ??
                     Trace.TraceError(ex.Message);
                 }
@@ -72,6 +74,8 @@ namespace Tmx.Server.Helpers
                 client.Send(message);
             }
             catch (Exception ex) {
+                // TODO: AOP
+                Trace.TraceError("CreateTestMessage2(string server)");
                 Console.WriteLine("Exception caught in CreateTestMessage2(): {0}", ex);
                 Trace.TraceError(ex.Message);
             }
@@ -109,6 +113,8 @@ namespace Tmx.Server.Helpers
                 client.Send(message);
             }
             catch (Exception ex) {
+                // TODO: AOP
+                Trace.TraceError("CreateMessageWithAttachment(string server)");
                 Console.WriteLine("Exception caught in CreateMessageWithAttachment(): {0}", ex);
                 Trace.TraceError(ex.Message);
             }

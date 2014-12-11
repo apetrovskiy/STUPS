@@ -24,6 +24,7 @@ namespace Tmx.Server //.ObjectModel.ServerControl
     using Nancy.Json;
     using Nancy.TinyIoc;
     using Nancy.ViewEngines.DotLiquid;
+    using PSTestLib.Helpers;
     using Tmx.Core;
     using Tmx.Core.Types.Remoting;
     using Tmx.Interfaces;
@@ -44,7 +45,8 @@ namespace Tmx.Server //.ObjectModel.ServerControl
         public static void Start(string url)
         {
             // TODO: rewrite it
-            setTracing();
+            // setTracing();
+            var tracingControl = new TracingControl("TmxServer_");
             Url = url;
             prepareComponents();
             loadModules();
@@ -56,29 +58,29 @@ namespace Tmx.Server //.ObjectModel.ServerControl
             _nancyHost.Start();
         }
         
-        static void setTracing()
-        {
-            if (_tracingAlreadyInitialized) return;
-            var fileStream = getFileStream("TmxServer_");
-            var listener = new TextWriterTraceListener(fileStream);
-            listener.TraceOutputOptions = TraceOptions.DateTime;
-            Trace.Listeners.Add(listener);
-            Trace.AutoFlush = true;
-            _tracingAlreadyInitialized = true;
-        }
-        
-        static FileStream getFileStream(string fileName)
-        {
-            string filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\" + fileName + getCurrentDateTime() + ".log";
-            var fileStream = new FileStream(filePath, FileMode.Append);
-            return fileStream;
-        }
-
-        static string getCurrentDateTime()
-        {
-            var now = DateTime.Now;
-            return (string.Format("{0}{1}{2}{3}{4}{5}", now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second));
-        }
+//        static void setTracing()
+//        {
+//            if (_tracingAlreadyInitialized) return;
+//            var fileStream = getFileStream("TmxServer_");
+//            var listener = new TextWriterTraceListener(fileStream);
+//            listener.TraceOutputOptions = TraceOptions.DateTime;
+//            Trace.Listeners.Add(listener);
+//            Trace.AutoFlush = true;
+//            _tracingAlreadyInitialized = true;
+//        }
+//        
+//        static FileStream getFileStream(string fileName)
+//        {
+//            string filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\" + fileName + getCurrentDateTime() + ".log";
+//            var fileStream = new FileStream(filePath, FileMode.Append);
+//            return fileStream;
+//        }
+//
+//        static string getCurrentDateTime()
+//        {
+//            var now = DateTime.Now;
+//            return (string.Format("{0}{1}{2}{3}{4}{5}", now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second));
+//        }
         
         public static void Stop()
         {

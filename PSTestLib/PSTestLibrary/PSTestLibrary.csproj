@@ -145,6 +145,7 @@
     <Compile Include="Commands\C#\NewPSClassCommand.cs" />
     <Compile Include="Commands\C#\NewPSEnumCommand.cs" />
     <Compile Include="Helpers\Inheritance\PSCmdletBase.cs" />
+    <Compile Include="Helpers\TracingControl.cs" />
     <Compile Include="Helpers\UnderlyingCode\ExtensionMethods\ExtensionMethods.cs" />
     <Compile Include="Helpers\UnderlyingCode\Types\UnitTestOutput.cs" />
     <Compile Include="Helpers\UnderlyingCode\Util.cs" />

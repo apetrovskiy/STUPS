@@ -39,6 +39,8 @@ namespace Tmx.Client
                 _restTemplate.Put(UrlList.TestClients_Root + "/" + ClientSettings.Instance.ClientId + "/status", new DetailedStatus(status));
             }
             catch (RestClientException eSendingDetialedStatus) {
+                // TODO: AOP
+                Trace.TraceError("Send(string status)");
                 Trace.TraceError(eSendingDetialedStatus.Message);
                 throw new SendingDetailedStatusException("Failed to send detailed status. " + eSendingDetialedStatus.Message);
             }

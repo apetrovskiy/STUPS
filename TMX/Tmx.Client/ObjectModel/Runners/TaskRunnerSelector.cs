@@ -11,7 +11,6 @@ namespace Tmx.Client.ObjectModel.Runners
 {
     using System;
     using Tmx.Interfaces.Remoting;
-    using Tmx.Client.ObjectModel;
     using Tmx.Client.ObjectModel.Runners;
     
     /// <summary>
@@ -19,7 +18,7 @@ namespace Tmx.Client.ObjectModel.Runners
     /// </summary>
     public class TaskRunnerSelector
     {
-        public IRunnableClient GetRunnableClient(TestTaskRuntimeTypes runtimeType)
+        public virtual IRunnableClient GetRunnableClient(TestTaskRuntimeTypes runtimeType)
         {
             switch (runtimeType) {
                 case TestTaskRuntimeTypes.Powershell:
@@ -33,9 +32,9 @@ namespace Tmx.Client.ObjectModel.Runners
                 default:
                     // return null; // ??
                     // 20141211
-	               // temporary
-	               // TODO: change the behavior
-	               return new PowerShellTaskRunner();
+                    // temporary
+                    // TODO: change the behavior
+                    return new PowerShellTaskRunner();
             }
         }
     }

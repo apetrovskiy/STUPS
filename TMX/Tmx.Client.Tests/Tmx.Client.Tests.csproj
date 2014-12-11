@@ -1,9 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
   <PropertyGroup>
     <ProjectGuid>{21547D97-04F5-45DB-99F7-14C4203AF999}</ProjectGuid>
-    <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <Configuration Condition=" '$(Configuration)' == '' ">Release35</Configuration>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">Release35</Platform>
     <OutputType>Library</OutputType>
     <RootNamespace>Tmx.Client.Tests</RootNamespace>
@@ -19,6 +18,8 @@
     <DebugType>Full</DebugType>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
     <WarningLevel>4</WarningLevel>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'Release35' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -70,13 +71,9 @@
       <HintPath>..\..\packages\Spring.Rest.Testing.1.1.1\lib\net35\Spring.Rest.Testing.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
+    <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="xunit">
       <HintPath>..\..\packages\xunit.1.9.2\lib\net20\xunit.dll</HintPath>
     </Reference>
@@ -86,22 +83,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Tmx.Client\Tmx.Client.csproj">
-      <Project>{6943EC2F-CB75-4F9B-B83C-A664400052A7}</Project>
+    <ProjectReference Include="..\..\..\..\probe\testTmxServer\Tmx.Client\Tmx.Client.csproj">
+      <Project>{9CB1C211-9C21-48E0-B06A-4205CC269D3B}</Project>
       <Name>Tmx.Client</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tmx.Core\Tmx.Core.csproj">
-      <Project>{069651A0-FE15-42E2-89D5-9A761A47B143}</Project>
+    <ProjectReference Include="..\..\..\..\probe\testTmxServer\Tmx.Core\Tmx.Core.csproj">
+      <Project>{5C749900-0F40-49D6-987B-ABFCCB062FC3}</Project>
       <Name>Tmx.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tmx.Interfaces\Tmx.Interfaces.csproj">
-      <Project>{9C5DA25F-6A59-4F97-B107-64DD549CB800}</Project>
-      <Name>Tmx.Interfaces</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Readme" />
-    <Folder Include="Helpers" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Readme\Spring.Rest.txt" />

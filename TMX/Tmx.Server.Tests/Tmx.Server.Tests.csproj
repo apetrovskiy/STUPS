@@ -2,8 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
   <PropertyGroup>
     <ProjectGuid>{F0E8BF88-2F3A-4A92-99AA-F65E16A410B7}</ProjectGuid>
-    <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <Configuration Condition=" '$(Configuration)' == '' ">Release35</Configuration>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">Release35</Platform>
     <OutputType>Library</OutputType>
     <RootNamespace>Tmx.Server.Tests</RootNamespace>
@@ -18,6 +17,8 @@
     <DebugType>Full</DebugType>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
     <WarningLevel>4</WarningLevel>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'Release35' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -101,37 +102,18 @@
     <Compile Include="UnitTestingHelpers\TestSettings.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
-      <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
-      <Name>PSTestLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Tmx.Client\Tmx.Client.csproj">
-      <Project>{6943EC2F-CB75-4F9B-B83C-A664400052A7}</Project>
+    <ProjectReference Include="..\..\..\..\probe\testTmxServer\Tmx.Client\Tmx.Client.csproj">
+      <Project>{9CB1C211-9C21-48E0-B06A-4205CC269D3B}</Project>
       <Name>Tmx.Client</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tmx.Core\Tmx.Core.csproj">
-      <Project>{069651A0-FE15-42E2-89D5-9A761A47B143}</Project>
+    <ProjectReference Include="..\..\..\..\probe\testTmxServer\Tmx.Core\Tmx.Core.csproj">
+      <Project>{5C749900-0F40-49D6-987B-ABFCCB062FC3}</Project>
       <Name>Tmx.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TMX.Interfaces\TMX.Interfaces.csproj">
-      <Project>{9C5DA25F-6A59-4F97-B107-64DD549CB800}</Project>
-      <Name>TMX.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Tmx.Server\Tmx.Server.csproj">
-      <Project>{A80B14D0-C8DB-4F70-B18E-4FD1C16E0AEC}</Project>
+    <ProjectReference Include="..\..\..\..\probe\testTmxServer\Tmx.Server\Tmx.Server.csproj">
+      <Project>{3E575B6F-BA0A-4169-A94B-58DFC26767E8}</Project>
       <Name>Tmx.Server</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TMX\TMX.csproj">
-      <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>
-      <Name>TMX</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Modules" />
-    <Folder Include="Helpers" />
-    <Folder Include="UnitTestingHelpers" />
-    <Folder Include="Properties" />
-    <Folder Include="Properties" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Modules\-1.xml" />

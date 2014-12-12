@@ -47,22 +47,37 @@ namespace Tmx.Server.Modules
         
         Negotiator returnTaskByClientId(Guid clientId)
         {
+            Trace.TraceInformation("returnTaskByClientId(Guid clientId).1");
+            
             if (ClientsCollection.Clients.All(client => client.Id != clientId))
                 return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed);
+            
+            Trace.TraceInformation("returnTaskByClientId(Guid clientId).2");
+            
             var taskSorter = TinyIoCContainer.Current.Resolve<TaskSelector>();
+            
+            Trace.TraceInformation("returnTaskByClientId(Guid clientId).3");
+            
             ITestTask actualTask = taskSorter.GetFirstLegibleTask(clientId);
+            
+            Trace.TraceInformation("returnTaskByClientId(Guid clientId).4 actualTask is null? {0}", null == actualTask);
+            
             var clientInQuestion = ClientsCollection.Clients.First(client => client.Id == clientId);
+            
+            Trace.TraceInformation("returnTaskByClientId(Guid clientId).5 clientInQuestion is null? {0}", null == clientInQuestion);
+            Trace.TraceInformation("returnTaskByClientId(Guid clientId).6 clientInQuestion.Id = {0}, hostname = {1}", clientInQuestion.Id, clientInQuestion.Hostname);
+            
             return null == actualTask ? returnNoTask_StatusNotFound(clientInQuestion) : returnTaskToClient_StatusOk(clientInQuestion, actualTask);
         }
         
         Negotiator returnNoTask_StatusNotFound(ITestClient testClient)
         {
-//            testClient.Status = TestClientStatuses.NoTasks;
-//            // 20141211
-//            // set no active task everywhere
-//            testClient.TaskId = 0;
-//            testClient.TaskName = string.Empty;
+            Trace.TraceInformation("returnNoTask_StatusNotFound(ITestClient testClient).1");
+            
             testClient.SetNoTasksStatus();
+            
+            Trace.TraceInformation("returnNoTask_StatusNotFound(ITestClient testClient).2");
+            
             return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
         }
         

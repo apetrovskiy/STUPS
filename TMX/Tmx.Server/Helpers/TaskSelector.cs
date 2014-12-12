@@ -11,8 +11,8 @@ namespace Tmx.Server
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
-    using System.Security.Cryptography;
     using System.Text.RegularExpressions;
     using Nancy.TinyIoc;
     using Tmx.Core;
@@ -33,8 +33,12 @@ namespace Tmx.Server
             
             if (null == client) return resultTaskScope;
             
+            Trace.TraceInformation("SelectTasksForClient(Guid clientId, List<ITestTask> tasks).1");
+            
             // TODO: add IsAdmin and IsInteractive to the checking
             var workflowId = TestRunQueue.TestRuns.First(testRun => testRun.Id == client.TestRunId).WorkflowId;
+            
+            Trace.TraceInformation("SelectTasksForClient(Guid clientId, List<ITestTask> tasks).2 workflow.Id = {0}", workflowId);
             
             resultTaskScope =
                 tasks.Where(task => task.WorkflowId == workflowId)
@@ -59,14 +63,28 @@ namespace Tmx.Server
                 return newTask;
             }).ToList<ITestTask>();
             
+            Trace.TraceInformation("SelectTasksForClient(Guid clientId, List<ITestTask> tasks).3 resultTaskScope is null? {0}", null == resultTaskScope);
+            Trace.TraceInformation("SelectTasksForClient(Guid clientId, List<ITestTask> tasks).4 there are {0} tasks", resultTaskScope.Count);
+            
             return resultTaskScope;
         }
         
         public virtual ITestTask GetFirstLegibleTask(Guid clientId)
         {
+            Trace.TraceInformation("GetFirstLegibleTask(Guid clientId).1");
+            
             var taskListForClient = getOnlyNewTestTasksForClient(clientId);
+            
+            Trace.TraceInformation("GetFirstLegibleTask(Guid clientId).2 taskListForClient is null? {0} or empty {1}", null == taskListForClient, !taskListForClient.Any());
+            
             if (null == taskListForClient || !taskListForClient.Any()) return null;
+            
+            Trace.TraceInformation("GetFirstLegibleTask(Guid clientId).3");
+            
             var taskCandidate = taskListForClient.First(task => task.Id == taskListForClient.Min(tsk => tsk.Id));
+            
+            Trace.TraceInformation("GetFirstLegibleTask(Guid clientId).4 taskCandidate is null? {0}", null == taskCandidate);
+            
             return isItTimeToPublishTask(taskCandidate) ? taskCandidate : null;
         }
         
@@ -98,6 +116,13 @@ namespace Tmx.Server
         
         internal virtual IEnumerable<ITestTask> getOnlyNewTestTasksForClient(Guid clientId)
         {
+            Trace.TraceInformation("getOnlyNewTestTasksForClient(Guid clientId).1 client id = {0}", clientId);
+            var taskSelection = TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.IsActive);
+            Trace.TraceInformation("getOnlyNewTestTasksForClient(Guid clientId).2 there are no tasks for client? {0}", null == taskSelection);
+            Trace.TraceInformation("getOnlyNewTestTasksForClient(Guid clientId).3 number of tasks for client = {0}", taskSelection.Count());
+            Trace.TraceInformation("getOnlyNewTestTasksForClient(Guid clientId).4 number of new tasks for client = {0}", taskSelection.Count(task => task.TaskStatus == TestTaskStatuses.New));
+            
+            // return TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.IsActive && task.TaskStatus == TestTaskStatuses.New);
             return TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.IsActive && task.TaskStatus == TestTaskStatuses.New);
         }
         

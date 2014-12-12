@@ -54,7 +54,6 @@ namespace Tmx.Core
                 WorkflowId = task.WorkflowId,
                 TestRunId = task.TestRunId,
                 TaskType = task.TaskType,
-                // 20141211
                 TaskRuntimeType = task.TaskRuntimeType,
                 StartTime = task.StartTime
             };
@@ -77,7 +76,6 @@ namespace Tmx.Core
                 TimeLimit = task.TimeLimit,
                 StartTime = task.StartTime,
                 TaskStatus = task.TaskStatus,
-                // 20141211
                 TaskType = task.TaskType,
                 TaskRuntimeType = task.TaskRuntimeType
             };

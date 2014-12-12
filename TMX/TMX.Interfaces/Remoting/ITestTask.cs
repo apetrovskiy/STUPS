@@ -20,38 +20,13 @@ namespace Tmx.Interfaces.Remoting
         int PreviousTaskId { get; set; }
         int AfterTask { get; set; }
         bool IsActive { get; set; }
-        // bool TaskFinished { get; set; }
-        // int TimeLimit { get; set; }
-        // DateTime StartTime { get; set; }
         int RetryCount { get; set; }
         bool IsCritical { get; set; }
-        
-        // 20141211
-//		TestTaskExecutionTypes TaskType { get; set; }
-//		// 20141211
-//		TestTaskRuntimeTypes TaskRuntimeType { get; set; }
         string Rule { get; set; }
-        
-        // string Name { get; set; }
         string StoryId { get; set; }
-//		string Action { get; set; }
-//		IDictionary<string, string> ActionParameters { get; set; }
-//		string BeforeAction { get; set; }
-//		IDictionary<string, string> BeforeActionParameters { get; set; }
-//		string AfterAction { get; set; }
-//		IDictionary<string, string> AfterActionParameters { get; set; }
-		string[] ExpectedResult { get; set; }
-		
-		// string TaskBanner { get; set; }
-//		TestTaskStatuses TaskStatus { get; set; }
-        // IDictionary<string, string> PreviousTaskResult { get; set; }
-        // IDictionary<string, string> TaskResult { get; set; }
-        // int ClientId { get; set; }
-        // int WorkflowId { get; set; }
+        string[] ExpectedResult { get; set; }
         Guid WorkflowId { get; set; }
-        // int TestRunId { get; set; }
         Guid TestRunId { get; set; }
-        // TimeSpan TimeTaken { get; set; }
         TimeSpan GetTimeTaken();
         void SetTimeTaken();
     }

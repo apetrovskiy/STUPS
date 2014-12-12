@@ -37,6 +37,8 @@ namespace Tmx.Client
         public virtual ITestTask GetCurrentTask()
         // public virtual ITestTaskCodeProxy GetCurrentTask()
         {
+            Trace.TraceInformation("GetCurrentTask().1");
+            
             if (Guid.Empty == ClientSettings.Instance.ClientId)
                 throw new ClientNotRegisteredException("Client is not registered. Run the Register-TmxSystemUnderTest cmdlet first");
             // 20141020 squeezing a task to its proxy
@@ -46,11 +48,13 @@ namespace Tmx.Client
                 
                 // 20141211
                 // TODO: AOP
-                Trace.TraceInformation("GetCurrentTask(): client id = {0}, url = {1}", ClientSettings.Instance.ClientId, UrlList.TestTasks_Root + "/" + ClientSettings.Instance.ClientId);
+                Trace.TraceInformation("GetCurrentTask().2: client id = {0}, url = {1}", ClientSettings.Instance.ClientId, UrlList.TestTasks_Root + "/" + ClientSettings.Instance.ClientId);
                 
                 // 20141020 squeezing a task to its proxy
                 gettingTaskResponse = _restTemplate.GetForMessage<TestTask>(UrlList.TestTasks_Root + "/" + ClientSettings.Instance.ClientId);
                 // gettingTaskResponse = _restTemplate.GetForMessage<TestTaskCodeProxy>(UrnList.TestTasks_Root + "/" + ClientSettings.Instance.ClientId);
+                
+                Trace.TraceInformation("GetCurrentTask().3 gettingTaskResponse is null? {0}", null == gettingTaskResponse);
             }
             catch (RestClientException eHttpClientErrorException) {
                 // TODO: AOP
@@ -62,16 +66,32 @@ namespace Tmx.Client
                         throw new ClientNotRegisteredException("Client is not registered. Run the Register-TmxSystemUnderTest cmdlet first");
             }
             
+            Trace.TraceInformation("GetCurrentTask().4");
+            
             if (null == gettingTaskResponse)
                 throw new LoadTaskException("Failed to load task. " + gettingTaskResponse.StatusCode);
+            
+            Trace.TraceInformation("GetCurrentTask().5");
+            
             var task = gettingTaskResponse.Body;
+            
+            Trace.TraceInformation("GetCurrentTask().6 task is null? {0}", null == task);
+            
             if (HttpStatusCode.NotFound == gettingTaskResponse.StatusCode) return null; // a waiting task?
+            
+            Trace.TraceInformation("GetCurrentTask().7");
+            
             if (HttpStatusCode.ExpectationFailed == gettingTaskResponse.StatusCode)
                 throw new ClientNotRegisteredException("Client is not registered. Run the Register-TmxSystemUnderTest cmdlet first");
+            
+            Trace.TraceInformation("GetCurrentTask().8 client is registered");
+            
             if (HttpStatusCode.OK == gettingTaskResponse.StatusCode) return acceptCurrentTask(task);
             
+            Trace.TraceInformation("GetCurrentTask().9");
+            
             // TODO: AOP
-            Trace.TraceError("GetCurrentTask().2");
+            Trace.TraceError("GetCurrentTask().10");
             throw new LoadTaskException("Failed to load task. " + gettingTaskResponse.StatusCode);
         }
         
@@ -79,12 +99,14 @@ namespace Tmx.Client
         ITestTask acceptCurrentTask(ITestTask task)
         // ITestTaskProxy acceptCurrentTask(ITestTaskCodeProxy task)
         {
+            Trace.TraceInformation("acceptCurrentTask(ITestTask task).1");
+            
             if (null == task)
                 throw new AcceptTaskException("Failed to accept task.");
             
             // 20141211
             // TODO: AOP
-            Trace.TraceInformation("acceptCurrentTask(ITestTask task).1: task id = {0}", task.Id);
+            Trace.TraceInformation("acceptCurrentTask(ITestTask task).2: task id = {0}", task.Id);
             
             task.TaskStatus = TestTaskStatuses.Running;
             task.StartTimer();
@@ -92,10 +114,13 @@ namespace Tmx.Client
                 
                 // 20141211
                 // TODO: AOP
-                Trace.TraceInformation("acceptCurrentTask(ITestTask task).2: task id = {0}, url = {1}", task.Id, UrlList.TestTasks_Root + "/" + task.Id);
+                Trace.TraceInformation("acceptCurrentTask(ITestTask task).3: task id = {0}, url = {1}", task.Id, UrlList.TestTasks_Root + "/" + task.Id);
                 
                 _restTemplate.Put(UrlList.TestTasks_Root + "/" + task.Id, task);
-            	return task;
+                
+                Trace.TraceInformation("acceptCurrentTask(ITestTask task).4");
+                
+                return task;
             }
             catch (RestClientException eAcceptingTask) {
                 // TODO: AOP

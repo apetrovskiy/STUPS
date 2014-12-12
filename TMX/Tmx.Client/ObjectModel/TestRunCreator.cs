@@ -10,6 +10,7 @@
 namespace Tmx.Client
 {
     using System;
+    using System.Diagnostics;
     using System.Net;
     using Spring.Rest.Client;
     using Tmx.Core.Types.Remoting;
@@ -30,12 +31,20 @@ namespace Tmx.Client
         
         public bool CreateTestRun(string workflowName, TestRunStatuses status, string name)
         {
+            Trace.TraceInformation("CreateTestRun(string workflowName, TestRunStatuses status, string name).1");
+            
             var testRunCommand = new TestRunCommand {
                 Name = name,
                 Status = status,
                 WorkflowName = workflowName
             };
+            
+            Trace.TraceInformation("CreateTestRun(string workflowName, TestRunStatuses status, string name).2");
+            
             var creatingTestRunResponse = _restTemplate.PostForMessage(UrlList.TestRunsControlPoint_absPath, testRunCommand);
+            
+            Trace.TraceInformation("CreateTestRun(string workflowName, TestRunStatuses status, string name).3 creatingTestRunResponse is null? {0}", null == creatingTestRunResponse);
+            
             return HttpStatusCode.Created == creatingTestRunResponse.StatusCode;
         }
     }

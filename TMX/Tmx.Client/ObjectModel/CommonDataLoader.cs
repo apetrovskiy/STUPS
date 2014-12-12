@@ -37,7 +37,13 @@ namespace Tmx.Client
             Trace.TraceInformation("Load(): testRun id = {0}, url = {1}", ClientSettings.Instance.CurrentClient.TestRunId, url);
             
             var commonDataResponse = _restTemplate.GetForMessage<Dictionary<string, string>>(url);
+            
+            Trace.TraceInformation("commonDataResponse is null? {0}", null == commonDataResponse);
+            
             var commonData = commonDataResponse.Body;
+            
+            Trace.TraceInformation("commonData is null? {0}", null == commonData);
+            
             return HttpStatusCode.NotFound == commonDataResponse.StatusCode ? new Dictionary<string, string>() : commonData;
         }
     }

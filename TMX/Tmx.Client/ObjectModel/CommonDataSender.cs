@@ -41,8 +41,14 @@ namespace Tmx.Client
             Trace.TraceInformation("Send(ICommonDataItem item): testRun id = {0}, url = {1}", ClientSettings.Instance.CurrentClient.TestRunId, url);
             
             var dataItemSendingResponse = _restTemplate.PostForMessage(url, item);
+            
+            Trace.TraceInformation("dataItemSendingResponse is null? {0}", null == dataItemSendingResponse);
+            
             if (HttpStatusCode.Created == dataItemSendingResponse.StatusCode)
                 return;
+            
+            Trace.TraceInformation("HttpStatusCode.Created != dataItemSendingResponse.StatusCode");
+            
             throw new SendingCommonDataItemException("Failed to send data item. "+ dataItemSendingResponse.StatusCode);
         }
     }

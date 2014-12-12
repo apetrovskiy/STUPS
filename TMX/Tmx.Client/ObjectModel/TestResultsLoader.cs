@@ -46,14 +46,28 @@ namespace Tmx.Client
                 
                 
                 var loadingResultsResponse = _restTemplate.GetForMessage<TestResultsDataObject>(url);
+                
+                Trace.TraceInformation("LoadTestResults().2: loadingResultsResponse is null?{0}", null == loadingResultsResponse);
+                
                 var testResultsImporter = new TestResultsImporter();
+                
+                Trace.TraceInformation("LoadTestResults().3");
+                
                 var xDoc = XDocument.Parse(loadingResultsResponse.Body.Data);
+                
+                Trace.TraceInformation("LoadTestResults().4");
+                
                 testResultsImporter.MergeTestPlatforms(TestData.TestPlatforms, testResultsImporter.ImportTestPlatformFromXdocument(xDoc));
+                
+                Trace.TraceInformation("LoadTestResults().5");
+                
                 testResultsImporter.MergeTestSuites(TestData.TestSuites, testResultsImporter.ImportTestResultsFromXdocument(xDoc));
+                
+                Trace.TraceInformation("LoadTestResults().6");
                 
                 // 20141211
                 // TODO: AOP
-                Trace.TraceInformation("LoadTestResults().2: still okay");
+                Trace.TraceInformation("LoadTestResults().7: still okay");
                 
                 
                 return HttpStatusCode.OK == loadingResultsResponse.StatusCode;

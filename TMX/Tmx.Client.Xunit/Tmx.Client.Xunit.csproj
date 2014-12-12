@@ -1,16 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
   <PropertyGroup>
-    <ProjectGuid>{21547D97-04F5-45DB-99F7-14C4203AF999}</ProjectGuid>
+    <ProjectGuid>{0BD9E2BF-96BD-400B-AC3D-CDB70B563ED5}</ProjectGuid>
     <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <Configuration Condition=" '$(Configuration)' == '' ">Release35</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">Release35</Platform>
     <OutputType>Library</OutputType>
-    <RootNamespace>Tmx.Client.Tests</RootNamespace>
-    <AssemblyName>Tmx.Client.Tests</AssemblyName>
+    <RootNamespace>Tmx.Client.Xunit</RootNamespace>
+    <AssemblyName>Tmx.Client.Xunit</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <TargetFrameworkProfile />
     <NoWin32Manifest>False</NoWin32Manifest>
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
     <NoStdLib>False</NoStdLib>
@@ -45,30 +44,6 @@
     <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Common.Logging">
-      <HintPath>..\..\packages\Common.Logging.2.0.0\lib\2.0\Common.Logging.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\packages\Newtonsoft.Json.4.5.10\lib\net35\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="NSubstitute">
-      <HintPath>..\..\packages\NSubstitute.1.7.2.0\lib\NET35\NSubstitute.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="Spring.Core">
-      <HintPath>..\..\packages\Spring.Core.2.0.0-RC1\lib\net35\Spring.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Spring.Http.Converters.NJson">
-      <HintPath>..\..\packages\Spring.Http.Converters.NJson.1.1.1\lib\net35-client\Spring.Http.Converters.NJson.dll</HintPath>
-    </Reference>
-    <Reference Include="Spring.Rest">
-      <HintPath>..\..\packages\Spring.Rest.1.1.1\lib\net35-client\Spring.Rest.dll</HintPath>
-    </Reference>
-    <Reference Include="Spring.Rest.Testing">
-      <HintPath>..\..\packages\Spring.Rest.Testing.1.1.1\lib\net35\Spring.Rest.Testing.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -85,30 +60,8 @@
     <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Helpers\FakeFactory.cs" />
-    <Compile Include="ObjectModel\CommonDataSenderTestFixture.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Tmx.Client\Tmx.Client.csproj">
-      <Project>{6943EC2F-CB75-4F9B-B83C-A664400052A7}</Project>
-      <Name>Tmx.Client</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Tmx.Core\Tmx.Core.csproj">
-      <Project>{069651A0-FE15-42E2-89D5-9A761A47B143}</Project>
-      <Name>Tmx.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Tmx.Interfaces\Tmx.Interfaces.csproj">
-      <Project>{9C5DA25F-6A59-4F97-B107-64DD549CB800}</Project>
-      <Name>Tmx.Interfaces</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Readme" />
-    <Folder Include="Helpers" />
-    <Folder Include="ObjectModel" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App_Readme\Spring.Rest.txt" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

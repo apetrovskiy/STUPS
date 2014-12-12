@@ -24,20 +24,33 @@ namespace Tmx.Client
         {
             // TODO: move to an aspect
             try {
+                Trace.TraceInformation("Run(ITestTask task).1");
+                
                 var runnerSelector = new TaskRunnerSelector();
+                
+                Trace.TraceInformation("Run(ITestTask task).2");
+                
                 var runner = runnerSelector.GetRunnableClient(task.TaskRuntimeType);
                 
+                Trace.TraceInformation("Run(ITestTask task).3");
+                
                 var result = runner.RunBeforeAction(task.BeforeAction, task.BeforeActionParameters, task.PreviousTaskResult);
+                
+                Trace.TraceInformation("Run(ITestTask task).4");
+                
                 if (!result) return result;
+                
+                Trace.TraceInformation("Run(ITestTask task).5");
+                
                 result = runner.RunMainAction(task.Action, task.ActionParameters, task.PreviousTaskResult);
+                
+                Trace.TraceInformation("Run(ITestTask task).6");
+                
                 return !result ? result : runner.RunAfterAction(task.AfterAction, task.AfterActionParameters, task.PreviousTaskResult);
             }
-            // 20141211
-            // catch {
             catch (Exception eOnRunningTaskCode) {
                 // TODO: AOP
                 Trace.TraceError("Run(ITestTask task)");
-                // 20141211
                 Trace.TraceError(eOnRunningTaskCode.Message);
                 return false;
             }

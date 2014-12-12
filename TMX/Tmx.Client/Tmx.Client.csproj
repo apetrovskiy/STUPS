@@ -81,6 +81,7 @@
     <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="ClientControl.cs" />
     <Compile Include="Helpers\RestRequestCreator.cs" />
     <Compile Include="ObjectModel\ClientSettings.cs" />
     <Compile Include="ObjectModel\CommonDataLoader.cs" />
@@ -107,6 +108,14 @@
       <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
       <Name>PSTestLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Tmx.Client.Powershell\Tmx.Client.Powershell.csproj">
+      <Project>{7387A702-B524-4B45-B98B-B7705A1EB116}</Project>
+      <Name>Tmx.Client.Powershell</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tmx.Client.Xunit\Tmx.Client.Xunit.csproj">
+      <Project>{0BD9E2BF-96BD-400B-AC3D-CDB70B563ED5}</Project>
+      <Name>Tmx.Client.Xunit</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Tmx.Core\Tmx.Core.csproj">
       <Project>{069651A0-FE15-42E2-89D5-9A761A47B143}</Project>
       <Name>Tmx.Core</Name>
@@ -118,6 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helpers" />
+    <Folder Include="Plugins" />
     <Folder Include="ObjectModel" />
     <Folder Include="ObjectModel\Runners" />
     <Folder Include="Properties" />

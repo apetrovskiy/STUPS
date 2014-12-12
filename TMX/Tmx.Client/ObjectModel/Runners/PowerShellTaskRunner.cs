@@ -26,6 +26,7 @@ namespace Tmx.Client.ObjectModel.Runners
             IDictionary<string, string> parameters,
             IDictionary<string, string> previousTaskResults)
         {
+            Trace.TraceInformation("RunBeforeAction");
             return runCode(code, parameters, previousTaskResults);
         }
         
@@ -34,7 +35,7 @@ namespace Tmx.Client.ObjectModel.Runners
             IDictionary<string, string> parameters,
             IDictionary<string, string> previousTaskResults)
         {
-            
+            Trace.TraceInformation("RunMainAction");
             return runCode(code, parameters, previousTaskResults);
         }
         
@@ -43,7 +44,7 @@ namespace Tmx.Client.ObjectModel.Runners
             IDictionary<string, string> parameters,
             IDictionary<string, string> previousTaskResults)
         {
-            
+            Trace.TraceInformation("RunAfterAction");
             return runCode(code, parameters, previousTaskResults);
         }
         
@@ -52,6 +53,7 @@ namespace Tmx.Client.ObjectModel.Runners
             IDictionary<string, string> parameters,
             IDictionary<string, string> previousTaskResults)
         {
+            Trace.TraceInformation("runCode");
             var runnerWithParams = new runScriptBlockWithParameters(runSBActionWithParams);
             return runScriptblockWithParameters(runnerWithParams, code, parameters, previousTaskResults);
         }
@@ -71,11 +73,11 @@ namespace Tmx.Client.ObjectModel.Runners
                 };
             
             try {
+                Trace.TraceInformation("runScriptblockWithParameters.1");
                 runnerWithParams(ScriptBlock.Create(code), scriptblockParameters);
+                Trace.TraceInformation("runScriptblockWithParameters.2");
                 return true;
             }
-            // 20141211
-            // catch {
             catch (Exception eOnRunningScriptblock) {
                 // TODO: AOP
                 Trace.TraceError("runScriptblockWithParameters");
@@ -89,10 +91,12 @@ namespace Tmx.Client.ObjectModel.Runners
         {
             Collection<PSObject> psObjects = null;
             try {
+                Trace.TraceInformation("runSBActionWithParams.1");
                 if (null == parameters || 0 == parameters.Length)
                     psObjects = sb.Invoke();
                 else
                     psObjects = sb.Invoke(parameters);
+                Trace.TraceInformation("runSBActionWithParams.2");
             } catch (Exception eOuter) {
                 // TODO: AOP
                 Trace.TraceError("runSBActionWithParams(ScriptBlock sb, object[] parameters)");

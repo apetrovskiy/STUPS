@@ -36,7 +36,12 @@ namespace Tmx.Client
         {
             // TODO: add an error handler (??)
             try {
+                
+                Trace.TraceInformation("Send(string status).1");
+                
                 _restTemplate.Put(UrlList.TestClients_Root + "/" + ClientSettings.Instance.ClientId + "/status", new DetailedStatus(status));
+                
+                Trace.TraceInformation("Send(string status).2");
             }
             catch (RestClientException eSendingDetialedStatus) {
                 // TODO: AOP

@@ -47,7 +47,6 @@ namespace Tmx.Server.Modules
                 return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed);
             testClient.TestRunId = TestRunQueue.TestRuns.ActiveTestRunIds().First();
             ClientsCollection.Clients.Add(testClient);
-            // TODO: DI
             var taskSorter = TinyIoCContainer.Current.Resolve<TaskSelector>();
             var tasksForClient = taskSorter.SelectTasksForClient(testClient.Id, TaskPool.Tasks);
             tasksForClient.ForEach(task => task.TestRunId = testClient.TestRunId);
@@ -57,11 +56,8 @@ namespace Tmx.Server.Modules
         
         HttpStatusCode deleteClientById(Guid clientId)
         {
-            // 20141210
             var testRunId = ClientsCollection.Clients.First(client => client.Id == clientId).TestRunId;
             ClientsCollection.Clients.RemoveAll(client => client.Id == clientId);
-            // 20141210
-            // TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.TaskStatus == TestTaskStatuses.New)
             TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.TestRunId == testRunId && task.TaskStatus == TestTaskStatuses.New)
                 .ToList()
                 .ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled);

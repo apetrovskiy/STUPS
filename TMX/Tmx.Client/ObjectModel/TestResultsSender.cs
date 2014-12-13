@@ -39,7 +39,12 @@ namespace Tmx.Client
         
         public virtual bool SendTestResults()
         {
+            Trace.TraceInformation("SendTestResults().1");
+            
             var testResultsExporter = new TestResultsExporter();
+            
+            Trace.TraceInformation("SendTestResults().2");
+            
             var xDoc = testResultsExporter.GetTestResultsAsXdocument(
                         new SearchCmdletBaseDataObject {
                             FilterAll = true
@@ -47,9 +52,13 @@ namespace Tmx.Client
                         TestData.TestSuites,
                         TestData.TestPlatforms);
             
+            Trace.TraceInformation("SendTestResults().3");
+            
             var dataObject = new TestResultsDataObject {
                 Data = xDoc.ToString()
             };
+            
+            Trace.TraceInformation("SendTestResults().4");
             
             try {
                 var url = UrlList.TestResults_Root + "/" + ClientSettings.Instance.CurrentClient.TestRunId + UrlList.TestResultsPostingPoint_forClient_relPath;
@@ -57,10 +66,13 @@ namespace Tmx.Client
                 
                 // 20141211
                 // TODO: AOP
-                Trace.TraceInformation("SendTestResults(): testRun id = {0}, url = {1}", ClientSettings.Instance.CurrentClient.TestRunId, url);
+                Trace.TraceInformation("SendTestResults().5: testRun id = {0}, url = {1}", ClientSettings.Instance.CurrentClient.TestRunId, url);
                 
                 
                 var sendingResultsResponse = _restTemplate.PostForMessage(url, dataObject);
+                
+                Trace.TraceInformation("SendTestResults().6 sendingResultsResponse is null? {0}", null == sendingResultsResponse);
+                
                 return HttpStatusCode.Created == sendingResultsResponse.StatusCode;
             }
             catch (RestClientException eSendingTestResults) {

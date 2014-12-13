@@ -11,6 +11,7 @@ namespace Tmx.Client
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
     using Tmx.Core.Types.Remoting;
     using Tmx.Interfaces.Remoting;
@@ -28,7 +29,6 @@ namespace Tmx.Client
         
         private ClientSettings()
         {
-            // 20141030
             CommonData = new CommonData();
         }
         
@@ -45,21 +45,22 @@ namespace Tmx.Client
         public ITestTask CurrentTask { get; set; }
         // public ITestTaskProxy CurrentTask { get; set; }
         // public ITestTaskCodeProxy CurrentTask { get; set; }
-        // 20141001
         public ITestClient CurrentClient { get; set; }
         
         public void ResetData()
         {
-			ClientId = Guid.Empty;
-			ServerUrl = string.Empty;
-			StopImmediately = false;
-			TaskResult = new string[] {};
-			CurrentTask = null;
-			CurrentClient = null;
+            ClientId = Guid.Empty;
+            ServerUrl = string.Empty;
+            StopImmediately = false;
+            TaskResult = new string[] {};
+            CurrentTask = null;
+            CurrentClient = null;
         }
         
         public void AddTaskResult(string[] results)
         {
+            Trace.TraceInformation("AddTaskResult(string[] results).1 __");
+            
             TaskResult = null == TaskResult ? results : TaskResult.Concat(results);
         }
         

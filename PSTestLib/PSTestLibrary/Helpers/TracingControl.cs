@@ -30,14 +30,12 @@ namespace PSTestLib.Helpers
         
         void setTracing()
         {
-            // if (_tracingAlreadyInitialized) return;
             if (_initializedLogs.Contains(_fileNamePrefix)) return;
             var fileStream = getFileStream(_fileNamePrefix);
             var listener = new TextWriterTraceListener(fileStream);
             listener.TraceOutputOptions = TraceOptions.DateTime;
             Trace.Listeners.Add(listener);
             Trace.AutoFlush = true;
-            // _tracingAlreadyInitialized = true;
             _initializedLogs.Add(_fileNamePrefix);
         }
         

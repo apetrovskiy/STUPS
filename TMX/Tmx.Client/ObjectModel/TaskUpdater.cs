@@ -38,17 +38,17 @@ namespace Tmx.Client
                 
                 // 20141211
                 // TODO: AOP
-                Trace.TraceInformation("UpdateTask(ITestTask task): task id = {0}, task name = {1}, url = {2}", task.Id, task.Name, UrlList.TestTasks_Root + "/" + task.Id);
+                Trace.TraceInformation("UpdateTask(ITestTask task).1: task id = {0}, task name = {1}, url = {2}", task.Id, task.Name, UrlList.TestTasks_Root + "/" + task.Id);
                 
                 _restTemplate.Put(UrlList.TestTasks_Root + "/" + task.Id, task);
+                
+                Trace.TraceInformation("UpdateTask(ITestTask task).2");
+                
                 return true;
             }
-            // 20141211
-            // catch {
             catch (Exception eOnUpdatingTask) {
                 // TODO: AOP
                 Trace.TraceError("UpdateTask(ITestTask task)");
-                // 20141211
                 Trace.TraceError(eOnUpdatingTask.Message);
                 throw new UpdateTaskException("Failed to update task '" + task.Name + "'");
             }
@@ -60,17 +60,17 @@ namespace Tmx.Client
                 
                 // 20141211
                 // TODO: AOP
-                Trace.TraceInformation("SendTaskResult(ITestTask task, Guid clientId): client id = {0}, task id = {1}, task name = {2}, url = {3}", clientId, task.Id, task.Name, UrlList.CurrentTaskForClientById + "/" + clientId);
+                Trace.TraceInformation("SendTaskResult(ITestTask task, Guid clientId).1: client id = {0}, task id = {1}, task name = {2}, url = {3}", clientId, task.Id, task.Name, UrlList.CurrentTaskForClientById + "/" + clientId);
                 
                 _restTemplate.Put(UrlList.CurrentTaskForClientById + "/" + clientId, task);
+                
+                Trace.TraceInformation("SendTaskResult(ITestTask task, Guid clientId).2");
+                
                 return true;
             }
-            // 20141211
-            // catch {
             catch (Exception eOnSendingTaskResults) {
                 // TODO: AOP
                 Trace.TraceError("SendTaskResult(ITestTask task, Guid clientId)");
-                // 20141211
                 Trace.TraceError(eOnSendingTaskResults.Message);
                 throw new UpdateTaskException("Failed to send results to task");
             }

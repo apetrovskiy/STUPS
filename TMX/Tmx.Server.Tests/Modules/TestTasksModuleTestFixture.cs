@@ -368,18 +368,18 @@ namespace Tmx.Server.Tests.Modules
         ITestTask GIVEN_Loaded_TestTask(int id, string taskName, bool finished, TestTaskStatuses status, bool isActive, string rule, int afterTask)
         {
             var task = new TestTask {
-            	Id = id,
-            	Name = taskName,
-            	TaskFinished = finished,
-            	IsActive = isActive,
-            	TaskStatus = status,
-            	Rule = rule,
-            	AfterTask = afterTask,
-            	WorkflowId = _workflow.Id,
-            	TestRunId = _testRun.Id
+                Id = id,
+                Name = taskName,
+                TaskFinished = finished,
+                IsActive = isActive,
+                TaskStatus = status,
+                Rule = rule,
+                AfterTask = afterTask,
+                WorkflowId = _workflow.Id,
+                TestRunId = _testRun.Id
             };
-			TaskPool.Tasks.Add(task);
-			return task;
+            TaskPool.Tasks.Add(task);
+            return task;
         }
         
         ITestTask GIVEN_Allocated_TestTask(int id, string taskName, bool finished, TestTaskStatuses status, bool isActive, string rule, int afterTask)

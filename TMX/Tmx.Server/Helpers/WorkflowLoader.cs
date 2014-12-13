@@ -32,7 +32,6 @@ namespace Tmx.Server
         const string taskElement_rule = "rule";
         const string taskElement_storyId = "storyId";
         const string taskElement_taskType = "taskType";
-        // 20141211
         const string taskElement_taskRuntimeType = "taskRuntimeType";
         const string taskElement_timeLimit = "timelimit";
         const string taskElement_retryCount = "retryCount";

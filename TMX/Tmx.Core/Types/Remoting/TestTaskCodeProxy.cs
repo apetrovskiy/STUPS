@@ -24,7 +24,6 @@ namespace Tmx.Core.Types.Remoting
         public int TimeLimit { get; set; }
         public DateTime StartTime { get; set; }
         
-        // 20141211
         public TestTaskExecutionTypes TaskType { get; set; }
         public TestTaskRuntimeTypes TaskRuntimeType { get; set; }
         

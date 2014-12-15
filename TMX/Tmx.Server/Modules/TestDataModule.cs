@@ -28,13 +28,13 @@ namespace Tmx.Server.Modules
         public TestDataModule() : base(UrlList.TestData_Root)
         {
             // TODO: fix it 20141030
-        	Get[UrlList.TestData_CommonData_relPath] = parameters => returnCommonData(parameters.id);
-        	
-        	Get[UrlList.TestData_CommonData_relPath + "{key}"] = parameters => {
-        	    var commonData = TestRunQueue.TestRuns.First(testRun => testRun.Id == parameters.id).Data.Data;
-        	    string key = parameters.key;
-        	    return (null == commonData[key]) ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(commonData[key]).WithStatusCode(HttpStatusCode.OK);
-        	};
+            Get[UrlList.TestData_CommonData_relPath] = parameters => returnCommonData(parameters.id);
+            
+            Get[UrlList.TestData_CommonData_relPath + "{key}"] = parameters => {
+                var commonData = TestRunQueue.TestRuns.First(testRun => testRun.Id == parameters.id).Data.Data;
+                string key = parameters.key;
+                return (null == commonData[key]) ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(commonData[key]).WithStatusCode(HttpStatusCode.OK);
+            };
             
             Post[UrlList.TestData_CommonData_relPath] = parameters => {
                 var commonDataItem = this.Bind<CommonDataItem>();

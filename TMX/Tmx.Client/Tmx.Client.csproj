@@ -127,6 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helpers" />
+    <Folder Include="ObjectModel\ExtensionMethods" />
     <Folder Include="Plugins" />
     <Folder Include="ObjectModel" />
     <Folder Include="ObjectModel\Runners" />

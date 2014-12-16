@@ -116,11 +116,17 @@ namespace Tmx.Client
                 // TODO: AOP
                 Trace.TraceInformation("acceptCurrentTask(ITestTask task).3: task id = {0}, url = {1}", task.Id, UrlList.TestTasks_Root + "/" + task.Id);
                 
-                _restTemplate.Put(UrlList.TestTasks_Root + "/" + task.Id, task);
+                // 20141215
+                // _restTemplate.Put(UrlList.TestTasks_Root + "/" + task.Id, task);
+                var acceptingTaskResponse = _restTemplate.Exchange(UrlList.TestTasks_Root + "/" + task.Id, HttpMethod.PUT, new HttpEntity(task));
                 
                 Trace.TraceInformation("acceptCurrentTask(ITestTask task).4");
                 
-                return task;
+                if (HttpStatusCode.OK == acceptingTaskResponse.StatusCode)
+                    return task;
+                throw new AcceptTaskException("Failed to accept task '" + task.Name + "'");
+                // 20141215
+                // return task;
             }
             catch (RestClientException eAcceptingTask) {
                 // TODO: AOP

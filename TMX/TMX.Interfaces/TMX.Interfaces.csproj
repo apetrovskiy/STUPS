@@ -105,8 +105,10 @@
     <Compile Include="IWorkflowStep.cs" />
     <Compile Include="IXMLElementsStruct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Remoting\Actions\IAction.cs" />
+    <Compile Include="Remoting\Actions\ITestRunAction.cs" />
+    <Compile Include="Remoting\Actions\ITestTaskAction.cs" />
     <Compile Include="Remoting\Enums.cs" />
-    <Compile Include="Remoting\IAction.cs" />
     <Compile Include="Remoting\ICommonData.cs" />
     <Compile Include="Remoting\ICommonDataItem.cs" />
     <Compile Include="Remoting\IRunnableClient.cs" />
@@ -117,12 +119,10 @@
     <Compile Include="Remoting\ITestResultsDataObject.cs" />
     <Compile Include="Remoting\ITestResultsHolder.cs" />
     <Compile Include="Remoting\ITestRun.cs" />
-    <Compile Include="Remoting\ITestRunAction.cs" />
     <Compile Include="Remoting\ITestRunCommand.cs" />
     <Compile Include="Remoting\ITestTask.cs" />
     <Compile Include="Remoting\ITestHost.cs" />
     <Compile Include="Remoting\ITestHostGroup.cs" />
-    <Compile Include="Remoting\ITestTaskAction.cs" />
     <Compile Include="Remoting\ITestTaskCodeProxy.cs" />
     <Compile Include="Remoting\ITestTaskProxy.cs" />
     <Compile Include="Remoting\ITestTaskResultProxy.cs" />
@@ -152,6 +152,7 @@
     <Folder Include="Delegates" />
     <Folder Include="Internal" />
     <Folder Include="Remoting" />
+    <Folder Include="Remoting\Actions" />
     <Folder Include="TestStructure" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

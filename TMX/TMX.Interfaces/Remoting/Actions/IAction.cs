@@ -2,24 +2,20 @@
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 12/7/2014
- * Time: 6:28 PM
+ * Time: 6:22 PM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Core.Types.Remoting
+namespace Tmx.Interfaces.Remoting.Actions
 {
     using System;
-    using Tmx.Interfaces.Remoting;
     
     /// <summary>
-    /// Description of TestRunAction.
+    /// Description of IAction.
     /// </summary>
-    public class TestRunAction : ITestRunAction
+    public interface IAction
     {
-        public bool Run()
-        {
-            return true;
-        }
+        bool Run();
     }
 }

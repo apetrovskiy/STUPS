@@ -105,6 +105,8 @@
     <Compile Include="TestData\TestData.cs" />
     <Compile Include="Types\ImportExport\XMLElementsJUnitStruct.cs" />
     <Compile Include="Types\ImportExport\XMLElementsNativeStruct.cs" />
+    <Compile Include="Types\Remoting\Actions\TestRunAction.cs" />
+    <Compile Include="Types\Remoting\Actions\TestTaskAction.cs" />
     <Compile Include="Types\Remoting\Binders\TestResultDetailSerializationBinder.cs" />
     <Compile Include="Types\Remoting\Binders\TestResultSerializationBinder.cs" />
     <Compile Include="Types\Remoting\Binders\TestScenarioSerializationBinder.cs" />
@@ -119,10 +121,8 @@
     <Compile Include="Types\Remoting\TestResultsDataObject.cs" />
     <Compile Include="Types\Remoting\TestResultsHolder.cs" />
     <Compile Include="Types\Remoting\TestRun.cs" />
-    <Compile Include="Types\Remoting\TestRunAction.cs" />
     <Compile Include="Types\Remoting\TestRunCommand.cs" />
     <Compile Include="Types\Remoting\TestTask.cs" />
-    <Compile Include="Types\Remoting\TestTaskAction.cs" />
     <Compile Include="Types\Remoting\TestTaskCodeProxy.cs" />
     <Compile Include="Types\Remoting\TestTaskProxy.cs" />
     <Compile Include="Types\Remoting\TestTaskResultProxy.cs" />
@@ -149,6 +149,7 @@
     <Folder Include="Properties" />
     <Folder Include="Types\ImportExport" />
     <Folder Include="Types\Remoting\Binders" />
+    <Folder Include="Types\Remoting\Actions" />
     <Folder Include="Types\TestStructure" />
     <Folder Include="Types\Remoting" />
   </ItemGroup>

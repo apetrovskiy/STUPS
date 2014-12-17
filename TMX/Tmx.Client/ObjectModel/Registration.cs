@@ -73,13 +73,14 @@ namespace Tmx.Client
                 // TODO: AOP
                 Trace.TraceInformation("UnregisterClient().1: client id = {0}, url = {1}", ClientSettings.Instance.ClientId, UrlList.TestClients_Root + "/" + ClientSettings.Instance.ClientId);
                 
-                _restTemplate.Delete(UrlList.TestClients_Root + "/" + ClientSettings.Instance.ClientId);
-                
-                Trace.TraceInformation("UnregisterClient().2");
-                
+                // 20141216
+                // _restTemplate.Delete(UrlList.TestClients_Root + "/" + ClientSettings.Instance.ClientId);
+                var unregisteringClientResponse = _restTemplate.Exchange(UrlList.TestClients_Root + "/" + ClientSettings.Instance.ClientId, HttpMethod.DELETE, null);
+                if (HttpStatusCode.NoContent != unregisteringClientResponse.StatusCode)
+                    throw new ClientDeregistrationException("Failed to unregister the client");
                 ClientSettings.Instance.ResetData();
                 
-                Trace.TraceInformation("UnregisterClient().3");
+                Trace.TraceInformation("UnregisterClient().2");
             }
             catch (RestClientException eUnregisteringClient) {
                 // TODO: AOP

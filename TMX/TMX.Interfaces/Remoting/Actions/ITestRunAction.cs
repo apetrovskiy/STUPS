@@ -2,19 +2,19 @@
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 12/8/2014
- * Time: 5:20 PM
+ * Time: 5:19 PM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Interfaces.Remoting
+namespace Tmx.Interfaces.Remoting.Actions
 {
     using System;
     
     /// <summary>
-    /// Description of ITestTaskAction.
+    /// Description of ITestRunAction.
     /// </summary>
-    public interface ITestTaskAction : IAction
+    public interface ITestRunAction : IAction
     {
         
     }

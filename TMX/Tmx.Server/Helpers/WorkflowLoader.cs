@@ -92,15 +92,7 @@ namespace Tmx.Server
         
         Guid addWorkflow(string name, XContainer xDocument)
         {
-            // 20141127
-            // var workflow = new TestWorkflow(TestLabCollection.TestLabs.First()) { Name = name };
-            // var testLabName = xDocument.Descendants("testLabName").FirstOrDefault().Value;
             var testLabName = xDocument.Descendants(WorkflowXmlConstants.TestLabNode).FirstOrDefault().Value;
-//            var testLab = TestLabCollection.TestLabs.First();
-//            if (!string.IsNullOrEmpty(testLabName))
-//                testLab = TestLabCollection.TestLabs.FirstOrDefault(tl => tl.Name.ToLower() == testLabName.ToLower());
-//            if (null == testLab)
-//                testLab = new TestLab { Name = testLabName };
             
             var testLab = string.IsNullOrEmpty(testLabName) ? 
                 getFirstTestLab() :
@@ -128,7 +120,6 @@ namespace Tmx.Server
         
         void setParametersPageName(Guid workflowId, XContainer xDocument)
         {
-            // WorkflowCollection.Workflows.FirstOrDefault(wfl => wfl.Id == workflowId).ParametersPageName = xDocument.Descendants("parametersPage").FirstOrDefault().Value;
             WorkflowCollection.Workflows.FirstOrDefault(wfl => wfl.Id == workflowId).ParametersPageName = xDocument.Descendants(WorkflowXmlConstants.ParametersPageNode).FirstOrDefault().Value;
         }
         
@@ -159,11 +150,7 @@ namespace Tmx.Server
                 TaskStatus = TestTaskStatuses.New,
                 StoryId = getTestTaskElementValue(taskNode, taskElement_storyId),
                 // TaskResult
-                // 20141211
-                // TaskType = getTestTaskType(taskNode.Element(taskElement_taskType).Value),
                 TaskType = getTestTaskType(getTestTaskElementValue(taskNode, taskElement_taskType)),
-                // 20141211
-                // TaskRuntimeType = getTaskRuntimeType(taskNode.Element(taskElement_taskRuntimeType).Value),
                 TaskRuntimeType = getTaskRuntimeType(getTestTaskElementValue(taskNode, taskElement_taskRuntimeType)),
                 TimeLimit = convertTestTaskElementValue(taskNode, taskElement_timeLimit),
                 WorkflowId = workflowId

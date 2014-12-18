@@ -30,20 +30,8 @@ namespace Tmx.Server
         
         public virtual string GetReportPage(Guid testRunId, string templateName)
         {
-            // dynamic model = TinyIoCContainer.Current.Resolve<ViewsTestRunsModule>().CreateTestRunReportsModel(testRunId);
             var model = TinyIoCContainer.Current.Resolve<ViewsTestRunsModule>().CreateTestRunReportsModel(testRunId);
-            
-Console.WriteLine("test run id = {0}", testRunId);
-            
-Console.WriteLine("is model null? {0}", null == model);
-            
             var template = getTemplate(templateName);
-            
-Console.WriteLine("is template null? {0}", null == template);
-foreach (ITestSuite suite in model.Suites) {
-    Console.WriteLine(suite.Name);
-}
-            
             return template.Render(Hash.FromAnonymousObject(new { @Model = model }));
         }
         

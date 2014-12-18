@@ -1,8 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|Release35" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Helpers/TestRunInitializer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Helpers/TaskSelector.cs">
     <Files>
       <File FileName="Helpers/TestRunInitializer.cs" Line="1" Column="1" />
+      <File FileName="Helpers/TestReportsExporter.cs" Line="1" Column="1" />
+      <File FileName="Modules/TestReportsModule.cs" Line="1" Column="1" />
+      <File FileName="Helpers/ServerWatcher.cs" Line="1" Column="1" />
+      <File FileName="Helpers/TaskSelector.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

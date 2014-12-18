@@ -31,11 +31,7 @@ namespace Tmx.Server.Modules
             var basePath = (new TmxServerRootPathProvider()).GetRootPath() + @"/Views/testRuns/";
             var testReportsExporter = TinyIoCContainer.Current.Resolve<TestReportsExporter>(new NamedParameterOverloads { { "basePath", basePath } });
             var reportPage = testReportsExporter.GetReportPage(testRunId, UrlList.ViewTestRuns_ResultsPageName);
-            
-Console.WriteLine(reportPage);
-            
             var dataObject = new TestResultsDataObject { Data = reportPage };
-            // return null == reportPage ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(reportPage).WithStatusCode(HttpStatusCode.OK).WithFullNegotiation();
             return null == dataObject ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(dataObject).WithStatusCode(HttpStatusCode.OK).WithFullNegotiation();
         }
     }

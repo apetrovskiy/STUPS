@@ -175,12 +175,6 @@
     <None Include="Views\testRuns\clients.liquid">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Views\testRuns\clients.liquid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Views\testRuns\tasks.liquid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="Views\testRuns\tasks.liquid">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -202,14 +196,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ObjectModel\" />
-    <Folder Include="ObjectModel\" />
-    <Folder Include="ObjectModel\" />
-    <Folder Include="ObjectModel\" />
-    <Folder Include="ObjectModel\" />
-    <Folder Include="Views\" />
-    <Folder Include="Views\" />
-    <Folder Include="Views\" />
-    <Folder Include="Views\" />
     <Folder Include="Views\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

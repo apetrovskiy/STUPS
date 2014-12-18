@@ -2,7 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
   <PropertyGroup>
     <ProjectGuid>{A80B14D0-C8DB-4F70-B18E-4FD1C16E0AEC}</ProjectGuid>
-    <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">Release35</Platform>
     <OutputType>Library</OutputType>
@@ -17,6 +16,8 @@
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
     <WarningLevel>4</WarningLevel>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'Release35' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -54,9 +55,7 @@
     <Reference Include="DotLiquid">
       <HintPath>..\..\packages\DotLiquid.1.7.0\lib\NET40\DotLiquid.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CSharp">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Nancy">
       <HintPath>..\..\packages\Nancy.0.23.2\lib\net40\Nancy.dll</HintPath>
     </Reference>
@@ -71,16 +70,13 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\packages\Newtonsoft.Json.6.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Package>monodevelop</Package>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
+    <Reference Include="System.Core" />
     <Reference Include="System.Linq" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
@@ -179,17 +175,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Views\testRuns\clients.liquid">
-      <Link>Views\status\clients.liquid</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Views\testRuns\newTestRun.liquid">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Views\testRuns\tasks.liquid">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Views\testRuns\tasks.liquid">
-      <Link>Views\status\tasks.liquid</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Views\testRuns\testParameters.liquid">
@@ -204,45 +195,21 @@
     <None Include="Workflows\without_parameters.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Views\testRuns\newtestRun.liquid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
-      <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
-      <Name>PSTestLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Tmx.Core\Tmx.Core.csproj">
-      <Project>{069651A0-FE15-42E2-89D5-9A761A47B143}</Project>
-      <Name>Tmx.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TMX.Interfaces\TMX.Interfaces.csproj">
-      <Project>{9C5DA25F-6A59-4F97-B107-64DD549CB800}</Project>
-      <Name>TMX.Interfaces</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces" />
-    <Folder Include="ObjectModel" />
-    <Folder Include="ObjectModel\Data" />
-    <Folder Include="Modules" />
-    <Folder Include="Modules" />
-    <Folder Include="Helpers" />
-    <Folder Include="Interfaces" />
-    <Folder Include="ObjectModel" />
-    <Folder Include="ObjectModel\ExtensionMethods" />
-    <Folder Include="ObjectModel\Objects" />
-    <Folder Include="ObjectModel\ServerControl" />
-    <Folder Include="ObjectModel\Settings" />
-    <Folder Include="ObjectModel\Settings" />
-    <Folder Include="Views\parts" />
-    <Folder Include="Workflows" />
-    <Folder Include="Views" />
-    <Folder Include="Views\testRuns" />
-    <Folder Include="Views\settings" />
-    <Folder Include="Views\status" />
-    <Folder Include="Views\results" />
-    <Folder Include="Plugins" />
-    <Folder Include="Properties" />
-    <Folder Include="Properties" />
+    <Folder Include="ObjectModel\" />
+    <Folder Include="ObjectModel\" />
+    <Folder Include="ObjectModel\" />
+    <Folder Include="ObjectModel\" />
+    <Folder Include="ObjectModel\" />
+    <Folder Include="Views\" />
+    <Folder Include="Views\" />
+    <Folder Include="Views\" />
+    <Folder Include="Views\" />
+    <Folder Include="Views\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

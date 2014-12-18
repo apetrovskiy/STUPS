@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmx.Server", "Tmx.Server.csproj", "{A80B14D0-C8DB-4F70-B18E-4FD1C16E0AEC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Release35 = Debug|Release35
+		Release|Release35 = Release|Release35
+		Release35|Release35 = Release35|Release35
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A80B14D0-C8DB-4F70-B18E-4FD1C16E0AEC}.Debug|Release35.ActiveCfg = Debug|Release35
+		{A80B14D0-C8DB-4F70-B18E-4FD1C16E0AEC}.Debug|Release35.Build.0 = Debug|Release35
+		{A80B14D0-C8DB-4F70-B18E-4FD1C16E0AEC}.Release|Release35.ActiveCfg = Release|Release35
+		{A80B14D0-C8DB-4F70-B18E-4FD1C16E0AEC}.Release|Release35.Build.0 = Release|Release35
+		{A80B14D0-C8DB-4F70-B18E-4FD1C16E0AEC}.Release35|Release35.ActiveCfg = Release35|Release35
+		{A80B14D0-C8DB-4F70-B18E-4FD1C16E0AEC}.Release35|Release35.Build.0 = Release35|Release35
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Tmx.Server.csproj
+	EndGlobalSection
+EndGlobal

@@ -40,37 +40,16 @@ namespace Tmx.Server.Modules
             
             Get[UrlList.TestResultsPostingPoint_relPath] = parameters => exportTestResultsFromTestRun(parameters.id);
         }
-
-//        HttpStatusCode importTestResultsToTestRun(Guid testRunId)
-//        {
-//            try {
-//                var actualBytes = new byte[Request.Body.Length];
-//                Request.Body.Read(actualBytes, 0, (int)Request.Body.Length);
-//                var actual = Encoding.UTF8.GetString(actualBytes);
-//                var xDoc = XDocument.Parse(actual);
-//                var currentTestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId);
-//                var testResultsImporter = new TestResultsImportExport();
-//                currentTestRun.TestSuites.AddRange(testResultsImporter.ImportTestResultsFromXdocument(xDoc));
-//                // maybe, there's no such need? // TODO: set current test suite, test scenario, test result?
-//                return HttpStatusCode.Created;
-//            } catch (Exception eFailedToImportTestResults) {
-//                return HttpStatusCode.ExpectationFailed;
-//            }
-//        }
         
         HttpStatusCode importTestResultsToTestRun(Guid testRunId)
         {
             try {
                 var dataObject = this.Bind<TestResultsDataObject>();
-                // 20141109
-                // experimental
                 if (string.IsNullOrEmpty(dataObject.Data))
                     return HttpStatusCode.Created;
                 var xDoc = XDocument.Parse(dataObject.Data);
                 var currentTestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId);
                 var testResultsImporter = TinyIoCContainer.Current.Resolve<TestResultsImporter>();
-                // 20141113
-                // currentTestRun.TestSuites.AddRange(testResultsImporter.ImportTestResultsFromXdocument(xDoc));
                 testResultsImporter.MergeTestPlatforms(currentTestRun.TestPlatforms, testResultsImporter.ImportTestPlatformFromXdocument(xDoc));
                 testResultsImporter.MergeTestSuites(currentTestRun.TestSuites, testResultsImporter.ImportTestResultsFromXdocument(xDoc));
                 // maybe, there's no such need? // TODO: set current test suite, test scenario, test result?

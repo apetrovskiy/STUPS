@@ -79,6 +79,10 @@ namespace Tmx.Interfaces.Server
         public const string TestRuns_ByName_absPath = TestRuns_Root + TestRuns_ByName_relPath;
         public const string TestRuns_One_Cancel = TestRuns_One_relPath + "/cancelTestRun";
         
+        // TestReportsModule
+        // public const string TestReports_Root = TestRuns_Root;
+        public const string TestReports_LoadingPoint = TestRuns_Root + "/{id:guid}/reports";
+        
         // ViewsTestRunsModule
         public const string ViewTestRuns_Root = "/testRuns";
         public const string ViewTestRuns_NewTestRunPage = "/newTestRun";

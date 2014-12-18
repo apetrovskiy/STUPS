@@ -11,6 +11,7 @@ namespace Tmx.Interfaces.Remoting
 {
 	using System;
     using System.Collections.Generic;
+    using Tmx.Interfaces.Remoting.Actions;
     using Tmx.Interfaces.TestStructure;
 	
 	/// <summary>
@@ -28,7 +29,6 @@ namespace Tmx.Interfaces.Remoting
         DateTime CreatedTime { get; set; }
         DateTime StartTime { get; set; }
         TimeSpan TimeTaken { get; set; }
-//        // 20141126
 //        string GetTestLabName();
         List<IAction> BeforeActions { get; set; }
         List<IAction> AfterActions { get; set; }

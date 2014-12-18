@@ -87,11 +87,13 @@
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Helpers\Mailer.cs" />
+    <Compile Include="Helpers\TestReportsExporter.cs" />
     <Compile Include="Helpers\TestRunLifecycle.cs" />
     <Compile Include="Helpers\WorkflowLifecycle.cs" />
     <Compile Include="Helpers\WorkflowXmlConstants.cs" />
     <Compile Include="Interfaces\IMailSettings.cs" />
     <Compile Include="Interfaces\ISettings.cs" />
+    <Compile Include="Modules\TestReportsModule.cs" />
     <Compile Include="ObjectModel\Data\MailSettings.cs" />
     <Compile Include="Helpers\ServerWatcher.cs" />
     <Compile Include="Helpers\TaskSelector.cs" />
@@ -106,7 +108,6 @@
     <Compile Include="Modules\TestClientsModule.cs" />
     <Compile Include="Modules\TestDataModule.cs" />
     <Compile Include="Modules\TestResultsModule.cs" />
-    <Compile Include="Modules\ViewsTestResultsModule.cs" />
     <Compile Include="Modules\TestTasksModule.cs" />
     <Compile Include="Modules\ViewsTestRunsModule.cs" />
     <Compile Include="Modules\ViewsTestStatusModule.cs" />

@@ -54,9 +54,6 @@ namespace Tmx.Server
                                         Regex.IsMatch(client.OsVersion ?? string.Empty, task.Rule) ||
                                         Regex.IsMatch(client.UserDomainName ?? string.Empty, task.Rule) ||
                                         Regex.IsMatch(client.Username ?? string.Empty, task.Rule))
-                            // 20141023
-                                    // ).Select(t => { var newTask = t.CloneTaskForNewTestClient(); newTask.ClientId = clientId; return newTask; }).ToList<ITestTask>();
-                                   // ).Select(t => { var newTask = t.CloneTaskForNewTestClient(); newTask.ClientId = clientId; newTask.WorkflowId = WorkflowCollection.ActiveWorkflow.Id; return newTask; }).ToList<ITestTask>();
             ).Select(t => {
                 var newTask = t.CloneTaskForNewTestClient();
                 newTask.ClientId = clientId;
@@ -122,7 +119,6 @@ namespace Tmx.Server
             Trace.TraceInformation("getOnlyNewTestTasksForClient(Guid clientId).3 number of tasks for client = {0}", taskSelection.Count());
             Trace.TraceInformation("getOnlyNewTestTasksForClient(Guid clientId).4 number of new tasks for client = {0}", taskSelection.Count(task => task.TaskStatus == TestTaskStatuses.New));
             
-            // return TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.IsActive && task.TaskStatus == TestTaskStatuses.New);
             return TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.IsActive && task.TaskStatus == TestTaskStatuses.New);
         }
         
@@ -136,7 +132,6 @@ namespace Tmx.Server
         internal virtual void AddTasksForEveryClient(IEnumerable<ITestTask> activeWorkflowsTasks, Guid testRunId)
         {
             if (0 == ClientsCollection.Clients.Count) return;
-            // var taskSorter = new TaskSelector();
             var taskSorter = TinyIoCContainer.Current.Resolve<TaskSelector>();
             foreach (var clientId in ClientsCollection.Clients.Where(client => client.IsInActiveTestRun()).Select(client => client.Id)) {
                 var tasksForClient = taskSorter.SelectTasksForClient(clientId, activeWorkflowsTasks.ToList());

@@ -56,15 +56,11 @@ namespace Tmx.Server.Modules
         
         HttpStatusCode deleteClientById(Guid clientId)
         {
-Console.WriteLine("delete 000001");
             var testRunId = ClientsCollection.Clients.First(client => client.Id == clientId).TestRunId;
-Console.WriteLine("delete 000002");
             ClientsCollection.Clients.RemoveAll(client => client.Id == clientId);
-Console.WriteLine("delete 000003");
             TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.TestRunId == testRunId && task.TaskStatus == TestTaskStatuses.New)
                 .ToList()
                 .ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled);
-Console.WriteLine("delete 000004");
             return HttpStatusCode.NoContent;
         }
 

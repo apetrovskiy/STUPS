@@ -28,6 +28,15 @@
                 ifrm.style.height = getDocHeight( doc ) + 4 + "px";
                 ifrm.style.visibility = 'visible';
             }
+            
+            // http://stackoverflow.com/questions/647282/is-there-an-onselect-event-or-equivalent-for-html-select
+/*
+            function copyValue()
+            {
+                var n1 = document.getElementById('workflow_id');
+                var n2 = document.getElementById('test_run_name');
+                n2.value = n1.value;
+            } */
         </script>
         <meta http-equiv="refresh" content="30">
     </head>
@@ -40,9 +49,10 @@
         
         <form method="POST">
            <label for="workflow_name">Select test workflow</label><br>
+           <!-- <select id="workflow_id" name="workflow_name" onchange="copyValue()"> -->
            <select id="workflow_id" name="workflow_name">
                {% for workflow in @Model.Workflows -%}
-                   <option{% if workflow.Name == @Model.Selected %} {{ 'selected' }}{% endif %}>{{ workflow.Name }}</option>
+                   <option{% if workflow.Name == @Model.Selected -%}{{ ' selected' }}{% endif -%}>{{ workflow.Name }}</option>
                {% endfor -%}
            </select>
            <input type="submit" value="Select" />

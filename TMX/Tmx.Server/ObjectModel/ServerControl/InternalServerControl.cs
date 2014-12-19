@@ -58,30 +58,6 @@ namespace Tmx.Server //.ObjectModel.ServerControl
             _nancyHost.Start();
         }
         
-//        static void setTracing()
-//        {
-//            if (_tracingAlreadyInitialized) return;
-//            var fileStream = getFileStream("TmxServer_");
-//            var listener = new TextWriterTraceListener(fileStream);
-//            listener.TraceOutputOptions = TraceOptions.DateTime;
-//            Trace.Listeners.Add(listener);
-//            Trace.AutoFlush = true;
-//            _tracingAlreadyInitialized = true;
-//        }
-//        
-//        static FileStream getFileStream(string fileName)
-//        {
-//            string filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\" + fileName + getCurrentDateTime() + ".log";
-//            var fileStream = new FileStream(filePath, FileMode.Append);
-//            return fileStream;
-//        }
-//
-//        static string getCurrentDateTime()
-//        {
-//            var now = DateTime.Now;
-//            return (string.Format("{0}{1}{2}{3}{4}{5}", now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second));
-//        }
-        
         public static void Stop()
         {
             Reset();
@@ -202,10 +178,7 @@ namespace Tmx.Server //.ObjectModel.ServerControl
         {
             var workflowsDirectoryPath = (new TmxServerRootPathProvider()).GetRootPath() + @"\Workflows";
             if (!Directory.Exists(workflowsDirectoryPath)) return;
-            // var workflowLoader = new WorkflowLoader();
             var workflowLoader = TinyIoCContainer.Current.Resolve<WorkflowLoader>();
-//            foreach (var fileName in Directory.GetFiles(workflowsDirectoryPath))
-//                workflowLoader.LoadWorkflow(fileName);
             foreach (var fileName in Directory.GetFiles(workflowsDirectoryPath)) {
                 try {
                     workflowLoader.Load(fileName);

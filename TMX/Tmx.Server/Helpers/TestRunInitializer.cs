@@ -24,9 +24,9 @@ namespace Tmx.Server
     {
         public ITestRun CreateTestRun(ITestRunCommand testRunCommand, DynamicDictionary formData)
         {
-            if (string.IsNullOrEmpty(testRunCommand.Name))
-                testRunCommand.Name = testRunCommand.WorkflowName + " " + DateTime.Now;
-            var testRun = new TestRun { Name = testRunCommand.Name, Status = testRunCommand.Status };
+            if (string.IsNullOrEmpty(testRunCommand.TestRunName))
+                testRunCommand.TestRunName = testRunCommand.WorkflowName + " " + DateTime.Now;
+            var testRun = new TestRun { Name = testRunCommand.TestRunName, Status = testRunCommand.Status };
             foreach (var key in formData) {
                 testRun.Data.AddOrUpdateDataItem(
                     new CommonDataItem {

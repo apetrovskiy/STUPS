@@ -1,6 +1,12 @@
 <html>
     <head>
         <title>Test parameters</title>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+        </style>
         <meta http-equiv="refresh" content="30">
     </head>
     <body>
@@ -12,9 +18,18 @@
         
         <h1>{{ @Model.TestRun.Name }} /{{ @Model.TestRun.Status }}/</h1>
 
-        {% for item in @Model.TestRun.Data.Data -%}
-            ['{{ item.Key }}'='{{ item.Value }}']<br>
-        {% endfor -%}
+        <table border="1">
+            <tr>
+                <th>Key</th>
+                <th>Value</th>
+            </tr>
+            {% for item in @Model.TestRun.Data.Data -%}
+            <tr>
+                <td>{{ item.Key }}</td>
+                <td>{{ item.Value }}</td>
+            </tr>
+            {% endfor -%}
+        </table>
         
     </body>
 </html>

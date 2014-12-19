@@ -16,7 +16,7 @@ namespace Tmx.Interfaces.Remoting
     /// </summary>
     public interface ITestRunCommand
     {
-        string Name { get; set; }
+        string TestRunName { get; set; }
         string WorkflowName { get; set; }
         TestRunStatuses Status { get; set; }
     }

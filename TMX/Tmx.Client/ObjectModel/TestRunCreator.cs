@@ -34,7 +34,7 @@ namespace Tmx.Client
             Trace.TraceInformation("CreateTestRun(string workflowName, TestRunStatuses status, string name).1");
             
             var testRunCommand = new TestRunCommand {
-                Name = name,
+                TestRunName = name,
                 Status = status,
                 WorkflowName = workflowName
             };

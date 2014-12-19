@@ -36,13 +36,13 @@ namespace Tmx.Server.Tests.Modules
             TestSettings.PrepareModuleTests();
         }
         
-    	[MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
-    	public void SetUp()
-    	{
-    	    TestSettings.PrepareModuleTests();
-    	}
-    	
-    	
-    	// ============================================================================================================================
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
+        public void SetUp()
+        {
+            TestSettings.PrepareModuleTests();
+        }
+        
+        
+        // ============================================================================================================================
     }
 }

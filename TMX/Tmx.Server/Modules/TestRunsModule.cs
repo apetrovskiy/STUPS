@@ -12,6 +12,7 @@ namespace Tmx.Server.Modules
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.Design;
+    using System.Diagnostics;
     using System.Dynamic;
     using System.Linq;
     using Nancy;
@@ -32,7 +33,6 @@ namespace Tmx.Server.Modules
         {
             Post[UrlList.TestRunsControlPoint_relPath] = _ => createNewTestRun(this.Bind<TestRunCommand>());
             Delete[UrlList.TestRuns_One_relPath] = parameters => deleteTestRun(parameters.id);
-            // Put[UrnList.TestRuns_One_relPath] = parameters => changeTestRun(parameters.id);
             
             // http://blog.nancyfx.org/x-http-method-override-with-nancyfx/
             Put[UrlList.TestRuns_One_Cancel] = parameters => cancelTestRun(parameters.id);
@@ -40,10 +40,22 @@ namespace Tmx.Server.Modules
         
         Negotiator createNewTestRun(ITestRunCommand testRunCommand)
         {
+            Trace.TraceInformation("dissecting testRunCommand");
+            Trace.TraceInformation("is testRunCommand null? {0}", null == testRunCommand);
+            if (null != testRunCommand) {
+                Trace.TraceInformation("workflow name = {0}, test run name = {1}", testRunCommand.WorkflowName, testRunCommand.TestRunName);
+            }
+            
             if (null == testRunCommand)
-                testRunCommand = new TestRunCommand { WorkflowName = Request.Form.workflow_name };
+                testRunCommand = new TestRunCommand { TestRunName = Request.Form.test_run_name, WorkflowName = Request.Form.workflow_name };
             if (string.IsNullOrEmpty(testRunCommand.WorkflowName))
                 testRunCommand.WorkflowName = Request.Form.workflow_name;
+            
+            if (string.IsNullOrEmpty(testRunCommand.TestRunName))
+                testRunCommand.TestRunName = Request.Form.test_run_name;
+            
+            Trace.TraceInformation("workflow name = {0}, test run name = {1}", testRunCommand.WorkflowName, testRunCommand.TestRunName);
+            
             return null == testRunCommand ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : setTestRun(testRunCommand);
         }
         
@@ -67,7 +79,6 @@ namespace Tmx.Server.Modules
             
             var data = createTestRunExpandoObject();
             
-            // return Negotiate.WithStatusCode(HttpStatusCode.OK).WithView(UrnList.ViewTestStatus_Root + "/" + UrnList.ViewTestStatus_TestRunsPage).WithModel((ExpandoObject)data);
             return Negotiate.WithStatusCode(HttpStatusCode.OK).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data);
         }
         
@@ -76,11 +87,6 @@ namespace Tmx.Server.Modules
             TestRunQueue.TestRuns.RemoveAll(tr => tr.Id == testRunId);
             return Negotiate.WithStatusCode(HttpStatusCode.OK);
         }
-        
-//        Negotiator changeTestRun(Guid testRunId)
-//        {
-//            throw new NotImplementedException ();
-//        }
         
         Negotiator cancelTestRun(Guid testRunId)
         {

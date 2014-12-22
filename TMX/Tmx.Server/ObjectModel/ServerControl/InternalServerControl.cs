@@ -196,6 +196,16 @@ namespace Tmx.Server //.ObjectModel.ServerControl
             // pipelines.BeforeRequest += ctx => { temporary_outputMethod(ctx, "BeforeRequest"); return null; };
             
             // pipelines.AfterRequest += ctx => { temporary_outputMethod(ctx, "AfterRequest"); return null; };
+
+            // http://www.codeproject.com/Articles/694907/Lift-your-Petticoats-with-Nancy
+            /*
+            base.ApplicationStartup(container, pipelines);
+            ConfigManager mgr;
+            mgr = new ConfigManager();
+            mgr.LoadConfig();
+            container.Register<configmanager>(mgr);
+            */
+            // container.Register<
         }
         
         void temporary_outputMethod(NancyContext ctx, string state)

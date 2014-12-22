@@ -133,11 +133,21 @@ namespace Tmx.Server
         internal virtual void AddTasksForEveryClient(IEnumerable<ITestTask> activeWorkflowsTasks, Guid testRunId)
         {
             if (0 == ClientsCollection.Clients.Count) return;
-            // 20141220
-            // var taskSorter = TinyIoCContainer.Current.Resolve<TaskSelector>();
-            var taskSorter = TinyIoCContainer.Current.Resolve<ITaskSelector>();
+            var taskSelector = TinyIoCContainer.Current.Resolve<TaskSelector>();
+            
+//try {
+//    var taskSel = TinyIoCContainer.Current.Resolve<ITaskSelector>();
+//    if (null == taskSel)
+//        Console.WriteLine("null == taskSel");
+//    else
+//        Console.WriteLine("type is {0}", taskSel.GetType().Name);
+//}
+//catch (Exception ee) {
+//    Console.WriteLine(ee.Message);
+//}
+            
             foreach (var clientId in ClientsCollection.Clients.Where(client => client.IsInActiveTestRun()).Select(client => client.Id)) {
-                var tasksForClient = taskSorter.SelectTasksForClient(clientId, activeWorkflowsTasks.ToList());
+                var tasksForClient = taskSelector.SelectTasksForClient(clientId, activeWorkflowsTasks.ToList());
                 tasksForClient.ForEach(task => task.TestRunId = testRunId);
                 TaskPool.TasksForClients.AddRange(tasksForClient);
             }

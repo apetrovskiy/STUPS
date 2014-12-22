@@ -31,6 +31,7 @@ namespace Tmx.Server //.ObjectModel.ServerControl
     using Tmx.Interfaces.Remoting;
     using Tmx.Interfaces.TestStructure;
     using DotLiquid;
+    using Tmx.Server.Interfaces;
     
     /// <summary>
     /// Description of Control.
@@ -193,6 +194,7 @@ namespace Tmx.Server //.ObjectModel.ServerControl
             StaticConfiguration.DisableErrorTraces = false;
             StaticConfiguration.EnableRequestTracing = true;
             JsonSettings.MaxJsonLength = int.MaxValue;
+            container.Register<ITaskSelector, TaskSelector>().UsingConstructor(() => new TaskSelector());
             // pipelines.BeforeRequest += ctx => { temporary_outputMethod(ctx, "BeforeRequest"); return null; };
             
             // pipelines.AfterRequest += ctx => { temporary_outputMethod(ctx, "AfterRequest"); return null; };
@@ -205,7 +207,6 @@ namespace Tmx.Server //.ObjectModel.ServerControl
             mgr.LoadConfig();
             container.Register<configmanager>(mgr);
             */
-            // container.Register<
         }
         
         void temporary_outputMethod(NancyContext ctx, string state)

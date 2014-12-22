@@ -10,9 +10,11 @@
 namespace Tmx.Server.Tests
 {
     using System;
+    using Nancy.TinyIoc;
 	using Tmx.Client;
 	using PSTestLib;
     using Tmx.Core;
+    using Tmx.Server.Interfaces;
     
     /// <summary>
     /// Description of TestSettings.
@@ -37,6 +39,8 @@ namespace Tmx.Server.Tests
             
             Preferences.ClientRegistrationSleepIntervalMilliseconds = 0;
             Preferences.ReceivingTaskSleepIntervalMilliseconds = 0;
+            
+            // TinyIoCContainer.Register<ITaskSelector, TaskSelector>();
         }
     }
 }

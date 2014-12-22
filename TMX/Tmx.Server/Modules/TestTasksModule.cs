@@ -55,13 +55,22 @@ namespace Tmx.Server.Modules
             
             Trace.TraceInformation("returnTaskByClientId(Guid clientId).2");
             
-            // 20141220
-            // var taskSorter = TinyIoCContainer.Current.Resolve<TaskSelector>();
-            var taskSorter = TinyIoCContainer.Current.Resolve<ITaskSelector>();
+            var taskSelector = TinyIoCContainer.Current.Resolve<TaskSelector>();
+            
+//try {
+//    var taskSel = TinyIoCContainer.Current.Resolve<ITaskSelector>();
+//    if (null == taskSel)
+//        Console.WriteLine("null == taskSel");
+//    else
+//        Console.WriteLine("type is {0}", taskSel.GetType().Name);
+//}
+//catch (Exception ee) {
+//    Console.WriteLine(ee.Message);
+//}
             
             Trace.TraceInformation("returnTaskByClientId(Guid clientId).3");
             
-            ITestTask actualTask = taskSorter.GetFirstLegibleTask(clientId);
+            ITestTask actualTask = taskSelector.GetFirstLegibleTask(clientId);
             
             Trace.TraceInformation("returnTaskByClientId(Guid clientId).4 actualTask is null? {0}", null == actualTask);
             
@@ -108,12 +117,21 @@ namespace Tmx.Server.Modules
             storedTask.TaskResult = loadedTask.TaskResult;
             storedTask.StartTime = loadedTask.StartTime;
             
-            // 20141220
-            // var taskSorter = TinyIoCContainer.Current.Resolve<TaskSelector>();
-            var taskSorter = TinyIoCContainer.Current.Resolve<ITaskSelector>();
+            var taskSelector = TinyIoCContainer.Current.Resolve<TaskSelector>();
+            
+//try {
+//    var taskSel = TinyIoCContainer.Current.Resolve<ITaskSelector>();
+//    if (null == taskSel)
+//        Console.WriteLine("null == taskSel");
+//    else
+//        Console.WriteLine("type is {0}", taskSel.GetType().Name);
+//}
+//catch (Exception ee) {
+//    Console.WriteLine(ee.Message);
+//}
             
             if (storedTask.IsFailed())
-                taskSorter.CancelFurtherTasksOfTestClient(storedTask.ClientId);
+                taskSelector.CancelFurtherTasksOfTestClient(storedTask.ClientId);
             if (storedTask.IsFinished())
                 cleanUpClientDetailedStatus(storedTask.ClientId);
             
@@ -123,7 +141,7 @@ namespace Tmx.Server.Modules
             if (storedTask.IsFinished())
                 storedTask.SetTimeTaken();
             
-            return storedTask.TaskFinished ? updateNextTaskAndReturnOk(taskSorter, storedTask) : HttpStatusCode.OK;
+            return storedTask.TaskFinished ? updateNextTaskAndReturnOk(taskSelector, storedTask) : HttpStatusCode.OK;
         }
 
         void completeTestRun(ITestTask task)

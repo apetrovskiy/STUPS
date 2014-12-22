@@ -17,11 +17,12 @@ namespace Tmx.Server
     using Nancy.TinyIoc;
     using Tmx.Core;
     using Tmx.Interfaces.Remoting;
+    using Tmx.Server.Interfaces;
     
     /// <summary>
     /// Description of TaskSelector.
     /// </summary>
-    public class TaskSelector
+    public class TaskSelector : ITaskSelector
     {
         public virtual List<ITestTask> SelectTasksForClient(Guid clientId, List<ITestTask> tasks)
         {
@@ -132,7 +133,9 @@ namespace Tmx.Server
         internal virtual void AddTasksForEveryClient(IEnumerable<ITestTask> activeWorkflowsTasks, Guid testRunId)
         {
             if (0 == ClientsCollection.Clients.Count) return;
-            var taskSorter = TinyIoCContainer.Current.Resolve<TaskSelector>();
+            // 20141220
+            // var taskSorter = TinyIoCContainer.Current.Resolve<TaskSelector>();
+            var taskSorter = TinyIoCContainer.Current.Resolve<ITaskSelector>();
             foreach (var clientId in ClientsCollection.Clients.Where(client => client.IsInActiveTestRun()).Select(client => client.Id)) {
                 var tasksForClient = taskSorter.SelectTasksForClient(clientId, activeWorkflowsTasks.ToList());
                 tasksForClient.ForEach(task => task.TestRunId = testRunId);

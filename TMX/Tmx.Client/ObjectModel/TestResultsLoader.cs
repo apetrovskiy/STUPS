@@ -32,7 +32,7 @@ namespace Tmx.Client
         
         public TestResultsLoader(RestRequestCreator requestCreator)
         {
-        	_restTemplate = requestCreator.GetRestTemplate();
+            _restTemplate = requestCreator.GetRestTemplate();
         }
         
         public virtual bool LoadTestResults()

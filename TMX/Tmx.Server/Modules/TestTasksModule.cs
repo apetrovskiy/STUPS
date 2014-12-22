@@ -22,6 +22,7 @@ namespace Tmx.Server.Modules
 	using Tmx.Core;
 	using Tmx.Core.Types.Remoting;
 	using Tmx.Interfaces.Remoting;
+    using Tmx.Server.Interfaces;
     
     /// <summary>
     /// Description of TestTasksModule.
@@ -54,7 +55,9 @@ namespace Tmx.Server.Modules
             
             Trace.TraceInformation("returnTaskByClientId(Guid clientId).2");
             
-            var taskSorter = TinyIoCContainer.Current.Resolve<TaskSelector>();
+            // 20141220
+            // var taskSorter = TinyIoCContainer.Current.Resolve<TaskSelector>();
+            var taskSorter = TinyIoCContainer.Current.Resolve<ITaskSelector>();
             
             Trace.TraceInformation("returnTaskByClientId(Guid clientId).3");
             
@@ -105,7 +108,10 @@ namespace Tmx.Server.Modules
             storedTask.TaskResult = loadedTask.TaskResult;
             storedTask.StartTime = loadedTask.StartTime;
             
-            var taskSorter = TinyIoCContainer.Current.Resolve<TaskSelector>();
+            // 20141220
+            // var taskSorter = TinyIoCContainer.Current.Resolve<TaskSelector>();
+            var taskSorter = TinyIoCContainer.Current.Resolve<ITaskSelector>();
+            
             if (storedTask.IsFailed())
                 taskSorter.CancelFurtherTasksOfTestClient(storedTask.ClientId);
             if (storedTask.IsFinished())
@@ -142,7 +148,9 @@ namespace Tmx.Server.Modules
             testRun.Status = TestRunStatuses.Running;
         }
         
-        HttpStatusCode updateNextTaskAndReturnOk(TaskSelector taskSorter, ITestTask storedTask)
+        // 20141220
+        // HttpStatusCode updateNextTaskAndReturnOk(TaskSelector taskSorter, ITestTask storedTask)
+        HttpStatusCode updateNextTaskAndReturnOk(ITaskSelector taskSorter, ITestTask storedTask)
         {
             ITestTask nextTask = null;
             try {

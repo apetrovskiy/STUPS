@@ -47,12 +47,18 @@ namespace Tmx.Server.Modules
             }
             
             if (null == testRunCommand)
-                testRunCommand = new TestRunCommand { TestRunName = Request.Form.test_run_name, WorkflowName = Request.Form.workflow_name };
+                // 20141219
+                // testRunCommand = new TestRunCommand { TestRunName = Request.Form.test_run_name, WorkflowName = Request.Form.workflow_name };
+                testRunCommand = new TestRunCommand { TestRunName = Request.Form.test_run_name ?? string.Empty, WorkflowName = Request.Form.workflow_name ?? string.Empty };
             if (string.IsNullOrEmpty(testRunCommand.WorkflowName))
-                testRunCommand.WorkflowName = Request.Form.workflow_name;
+                // 20141219
+                // testRunCommand.WorkflowName = Request.Form.workflow_name;
+                testRunCommand.WorkflowName = Request.Form.workflow_name ?? string.Empty;
             
             if (string.IsNullOrEmpty(testRunCommand.TestRunName))
-                testRunCommand.TestRunName = Request.Form.test_run_name;
+                // 20141219
+                // testRunCommand.TestRunName = Request.Form.test_run_name;
+                testRunCommand.TestRunName = Request.Form.test_run_name ?? string.Empty;
             
             Trace.TraceInformation("workflow name = {0}, test run name = {1}", testRunCommand.WorkflowName, testRunCommand.TestRunName);
             

@@ -209,6 +209,9 @@
     <Compile Include="..\TMX\Commands\TestClient\NewTmxTestRunCommand.cs">
       <Link>Commands\TestClient\NewTmxTestRunCommand.cs</Link>
     </Compile>
+    <Compile Include="..\TMX\Commands\TestClient\ReceiveTmxTestReportCommand.cs">
+      <Link>Commands\TestClient\ReceiveTmxTestReportCommand.cs</Link>
+    </Compile>
     <Compile Include="..\TMX\Commands\TestClient\ReceiveTmxTestResultsCommand.cs">
       <Link>Commands\TestClient\ReceiveTmxTestResultsCommand.cs</Link>
     </Compile>
@@ -229,6 +232,9 @@
     </Compile>
     <Compile Include="..\Tmx\Commands\TestClient\SendTmxTestTaskResultCommand.cs">
       <Link>Commands\TestClient\SendTmxTestTaskResultCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Commands\TestClient\SetTmxServerSettingsCommand.cs">
+      <Link>Commands\TestClient\SetTmxServerSettingsCommand.cs</Link>
     </Compile>
     <Compile Include="..\TMX\Commands\TestClient\UnregisterTmxSystemUnderTestCommand.cs">
       <Link>Commands\TestClient\UnregisterTmxSystemUnderTestCommand.cs</Link>
@@ -449,6 +455,9 @@
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestClient\NewTestRunCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\TestClient\NewTestRunCommand.cs</Link>
     </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestClient\ReceiveTestResportCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TestClient\ReceiveTestResportCommand.cs</Link>
+    </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestClient\ReceiveTestResultsCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\TestClient\ReceiveTestResultsCommand.cs</Link>
     </Compile>
@@ -469,6 +478,9 @@
     </Compile>
     <Compile Include="..\Tmx\Helpers\UnderlyingCode\Commands\TestClient\SendTestTaskResultCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\TestClient\SendTestTaskResultCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestClient\SetServerSettingsCommand.cs">
+      <Link>Helpers\UnderlyingCode\Commands\TestClient\SetServerSettingsCommand.cs</Link>
     </Compile>
     <Compile Include="..\TMX\Helpers\UnderlyingCode\Commands\TestClient\UnregisterSystemUnderTestCommand.cs">
       <Link>Helpers\UnderlyingCode\Commands\TestClient\UnregisterSystemUnderTestCommand.cs</Link>

@@ -13,6 +13,7 @@ namespace Tmx.Client
     using System.Diagnostics;
     using System.Net;
     using Spring.Rest.Client;
+    using Tmx.Core.Types.Remoting;
     using Tmx.Interfaces.Exceptions;
     using Tmx.Interfaces.Server;
     
@@ -38,7 +39,8 @@ namespace Tmx.Client
                 Trace.TraceInformation("LoadTestReport().1: testRun id = {0}, url = {1}", ClientSettings.Instance.CurrentClient.TestRunId, url);
                 
                 
-                var loadingReportResponse = _restTemplate.GetForMessage<string>(url);
+                // var loadingReportResponse = _restTemplate.GetForMessage<string>(url);
+                var loadingReportResponse = _restTemplate.GetForMessage<TestResultsDataObject>(url);
                 
                 Trace.TraceInformation("LoadTestReport).2: loadingResultsResponse is null?{0}", null == loadingReportResponse);
                 
@@ -46,7 +48,8 @@ namespace Tmx.Client
                     throw new LoadingTestReportException("Failed to receive test results. " + loadingReportResponse.StatusCode);
                 
                 // return HttpStatusCode.OK == loadingReportResponse.StatusCode;
-                return loadingReportResponse.Body;
+                // return loadingReportResponse.Body;
+                return loadingReportResponse.Body.Data;
 	        }
 	        catch (RestClientException eLoadingTestResults) {
                 // TODO: AOP

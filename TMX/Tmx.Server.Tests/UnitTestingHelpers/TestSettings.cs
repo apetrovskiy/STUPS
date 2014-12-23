@@ -39,8 +39,6 @@ namespace Tmx.Server.Tests
             
             Preferences.ClientRegistrationSleepIntervalMilliseconds = 0;
             Preferences.ReceivingTaskSleepIntervalMilliseconds = 0;
-            
-            // TinyIoCContainer.Register<ITaskSelector, TaskSelector>();
         }
     }
 }

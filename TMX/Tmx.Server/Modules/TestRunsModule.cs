@@ -74,9 +74,6 @@ namespace Tmx.Server.Modules
             if (Guid.Empty == testRun.WorkflowId) // ??
                 return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
             TestRunQueue.TestRuns.Add(testRun);
-            // there are no test clients on the new test run
-            // var taskSelector = new TaskSelector();
-            // taskSelector.AddTasksForEveryClient(TaskPool.Tasks.Where(task => WorkflowCollection.Workflows.ActiveWorkflowIds().Contains(task.WorkflowId)), testRun.Id);
             
             // 20141207
             foreach (var testRunAction in testRun.BeforeActions) {

@@ -33,7 +33,6 @@ namespace Tmx.Server.Modules
             var reportPage = testReportsExporter.GetReportPage(testRunId, UrlList.ViewTestRuns_ResultsPageName);
             var dataObject = new TestResultsDataObject { Data = reportPage };
             return null == dataObject ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(dataObject).WithStatusCode(HttpStatusCode.OK).WithFullNegotiation();
-            // return null == reportPage ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(reportPage).WithStatusCode(HttpStatusCode.OK).WithFullNegotiation();
         }
     }
 }

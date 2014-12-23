@@ -28,7 +28,6 @@
                 <th style="width:35%">Story</th>
                 <th style="width:10%">Platform</th>
                 <th style="width:50%">Results</th>
-                <!-- <th style="width:5%">Time spent</th> -->
             </tr>
             {% assign currentTestSuite = '' %}
             {% assign sortedTestSuites = @Model.Suites | sort:'id' %}
@@ -36,15 +35,14 @@
                 {% if suite.status != 'NOT TESTED' %}
                     {% if currentTestSuite != suite.Name %}
                         {% assign currentTestSuite = suite.Name %}
-                        <tr><td colspan=4 style="font-weight: bold; font-size: big">{{ suite.Name }}</td></tr> <!-- font-style: italic;  -->
+                        <tr><td colspan=4 style="font-weight: bold; font-size: big">{{ suite.Name }}</td></tr>
                     {% endif %}
                     {% assign sortedTestScenarios = suite.Test_Scenarios | sort:'platform_id' %}
                     {% for scenario in sortedTestScenarios %}
                         {% assign testresultsNumber = scenario.Test_Results | size %}
                         {% if testresultsNumber != 0 %}
                         <tr>
-                            <td style="width:35%"><a href="#{{ scenario.Id }} {{ scenario.Name }} {{ scenario.Platform_Id }}">{{ scenario.Name }}</a.</td>
-                            <!-- <td style="width:10%">{{ scenario.Platform_Id }}</td> -->
+                            <td style="width:35%"><a href="#{{ scenario.Id }} {{ scenario.Name }} {{ scenario.Platform_Id }}">{{ scenario.Name }}</a></td>
                             <td style="width:15%">{{ scenario.Platform_Id }}</td>
                             <td style="width:50%">
                                 <table>
@@ -73,7 +71,6 @@
                                     {% endif %}
                                 </table>
                             </td>
-                            <!-- <td style="width:5%; text-align:right">{{ scenario.time_spent }}</td> -->
                         </tr>
                         {% endif %}
                     {% endfor %}

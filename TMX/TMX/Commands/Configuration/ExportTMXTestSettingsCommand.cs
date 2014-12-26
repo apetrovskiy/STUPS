@@ -11,7 +11,7 @@ namespace Tmx.Commands
 {
     using System;
     using System.Management.Automation;
-	using Tmx.Helpers;
+    using Tmx.Helpers;
     
     /// <summary>
     /// Description of ExportTmxTestSettingsCommand.

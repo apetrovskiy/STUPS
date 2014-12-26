@@ -38,7 +38,7 @@ namespace UIAutomationTest.CheckCmdletParameters
 //        {
 //            //CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParameterMissing(
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParameterMissing(
-//        		"Get-UiaWindow;");
+//                "Get-UiaWindow;");
 //        }
 //        
 //        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -46,7 +46,7 @@ namespace UIAutomationTest.CheckCmdletParameters
 //        public void Get_UiaWindow_ProcessName()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_FailureOutput(
-//        		"Get-UiaWindow -ProcessName processName;");
+//                "Get-UiaWindow -ProcessName processName;");
 //        }
     }
 }

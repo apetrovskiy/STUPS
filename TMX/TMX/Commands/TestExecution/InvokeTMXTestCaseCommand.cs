@@ -12,12 +12,12 @@ namespace Tmx.Commands
     using System;
     using System.Management.Automation;
     
-	/// <summary>
-	/// Description of InvokeTmxTestCaseCommand.
-	/// </summary>
-	[Cmdlet(VerbsLifecycle.Invoke, "TmxTestCase")]
-	public class InvokeTmxTestCaseCommand : TestCaseExecCmdletBase
-	{
+    /// <summary>
+    /// Description of InvokeTmxTestCaseCommand.
+    /// </summary>
+    [Cmdlet(VerbsLifecycle.Invoke, "TmxTestCase")]
+    public class InvokeTmxTestCaseCommand : TestCaseExecCmdletBase
+    {
         protected override void BeginProcessing()
         {
             this.CheckCmdletParameters();
@@ -26,5 +26,5 @@ namespace Tmx.Commands
                 new TmxInvokeTestCaseCommand(this);
             command.Execute();
         }
-	}
+    }
 }

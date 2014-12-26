@@ -71,8 +71,8 @@ namespace Tmx.Client
                 
                 
                 return HttpStatusCode.OK == loadingResultsResponse.StatusCode;
-	        }
-	        catch (RestClientException eLoadingTestResults) {
+            }
+            catch (RestClientException eLoadingTestResults) {
                 // TODO: AOP
                 Trace.TraceError("LoadTestResults()");
                 Trace.TraceError(eLoadingTestResults.Message);

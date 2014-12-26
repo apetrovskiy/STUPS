@@ -57,6 +57,9 @@
     <Reference Include="Ionic.Zip">
       <HintPath>..\binaries\Ionic\zip-v1.9\Release\Ionic.Zip.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Win32.TaskScheduler">
+      <HintPath>..\packages\TaskScheduler.2.3.0\lib\2\Microsoft.Win32.TaskScheduler.dll</HintPath>
+    </Reference>
     <Reference Include="NUnrar.3.5">
       <HintPath>..\packages\nunrar.1.0.1\lib\net35\NUnrar.3.5.dll</HintPath>
     </Reference>
@@ -74,6 +77,7 @@
     <Compile Include="Commands\Archiving\ExpandTuRarArchiveCommand.cs" />
     <Compile Include="Commands\Archiving\ExpandTuZipArchiveCommand.cs" />
     <Compile Include="Commands\Archiving\NewTuZipArchiveCommand.cs" />
+    <Compile Include="Commands\ScheduledTasks\NewTuScheduledTaskCommand.cs" />
     <Compile Include="Commands\Security\GrantWin32LocalAccountPrivilegeCommand.cs" />
     <Compile Include="Helpers\ArchivingHelper.cs" />
     <Compile Include="Helpers\Inheritance\ArchivingCmdletBase.cs" />
@@ -81,27 +85,36 @@
     <Compile Include="Helpers\Inheritance\ExtractCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\PrivilegeCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\SecurityCmdletBase.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\Archiving\TuExpandRarArchiveCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\Archiving\TuExpandZipArchiveCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\Archiving\TuNewZipArchiveCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\Security\Win32GrantLocalAccountPrivilegeCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Archiving\ExpandTuRarArchiveCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Archiving\ExpandTuZipArchiveCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Archiving\NewTuZipArchiveCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\ScheduledTasks\NewScheduledTaskCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Security\GrantWin32LocalAccountPrivilegeCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Win32Command.cs" />
     <Compile Include="Helpers\UserSettings\Preferences.cs" />
     <Compile Include="Helpers\Win32Helper.cs" />
+    <Compile Include="Interfaces\IScheduledTaskData.cs" />
+    <Compile Include="ObjectModel\ScheduledTasks\TaskCreator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands" />
     <Folder Include="Commands\Archiving" />
     <Folder Include="Commands\CSV" />
+    <Folder Include="Commands\ScheduledTasks" />
     <Folder Include="Commands\Security" />
     <Folder Include="Helpers" />
     <Folder Include="Helpers\Inheritance" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\ScheduledTasks" />
     <Folder Include="Helpers\UserSettings" />
     <Folder Include="Helpers\UnderlyingCode" />
     <Folder Include="Helpers\UnderlyingCode\Commands" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Archiving" />
     <Folder Include="Helpers\UnderlyingCode\Commands\Security" />
+    <Folder Include="Interfaces" />
+    <Folder Include="Data" />
+    <Folder Include="ObjectModel" />
+    <Folder Include="ObjectModel\ScheduledTasks" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">

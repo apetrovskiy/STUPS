@@ -121,7 +121,7 @@ namespace SePSX.Commands
                         "DriverType",
                         ErrorCategory.InvalidArgument,
                         true);
-                	break;
+                    break;
             }
             
             SeStartWebDriverCommand command =

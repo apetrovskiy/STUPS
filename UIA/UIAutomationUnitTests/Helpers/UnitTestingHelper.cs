@@ -54,21 +54,21 @@ Console.WriteLine("CreateWizard 00004");
 Console.WriteLine("AddWizardStep 00001");
             CreateWizard("wizard", null);
 Console.WriteLine("AddWizardStep 00002");
-        	Wizard wizard =
-        	    (Wizard)UnitTestOutput.LastOutput[0];
+            Wizard wizard =
+                (Wizard)UnitTestOutput.LastOutput[0];
 Console.WriteLine("AddWizardStep 00003");
-        	AddUiaWizardStepCommand cmdlet =
-        	    new AddUiaWizardStepCommand();
+            AddUiaWizardStepCommand cmdlet =
+                new AddUiaWizardStepCommand();
 Console.WriteLine("AddWizardStep 00004");
-        	cmdlet.InputObject = wizard;
-        	cmdlet.Name = name;
-        	cmdlet.StepForwardAction = forwardAction;
-        	cmdlet.StepBackwardAction = backwardAction;
+            cmdlet.InputObject = wizard;
+            cmdlet.Name = name;
+            cmdlet.StepForwardAction = forwardAction;
+            cmdlet.StepBackwardAction = backwardAction;
 Console.WriteLine("AddWizardStep 00005");
-        	AddWizardStepCommand command =
-        	    new AddWizardStepCommand(cmdlet);
+            AddWizardStepCommand command =
+                new AddWizardStepCommand(cmdlet);
 Console.WriteLine("AddWizardStep 00006");
-        	command.Execute();
+            command.Execute();
 Console.WriteLine("AddWizardStep 00007");
         }
     }

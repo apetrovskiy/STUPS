@@ -9,10 +9,10 @@
 
 namespace Tmx.Commands
 {
-	using System;
-	using System.Management.Automation;
-	using Tmx;
-	
+    using System;
+    using System.Management.Automation;
+    using Tmx;
+    
     /// <summary>
     /// Description of SendTmxDetailedStatusCommand.
     /// </summary>
@@ -23,10 +23,10 @@ namespace Tmx.Commands
                    Position = 0)]
         public string Status { get; set; }
         
-		protected override void BeginProcessing()
-		{
-			var command = new SendDetailedStatusCommand(this);
-			command.Execute();
-		}
+        protected override void BeginProcessing()
+        {
+            var command = new SendDetailedStatusCommand(this);
+            command.Execute();
+        }
     }
 }

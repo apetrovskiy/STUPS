@@ -9,29 +9,29 @@
 
 namespace Tmx.Interfaces.Exceptions
 {
-	using System;
-	using System.Runtime.Serialization;
-	
-	/// <summary>
-	/// Desctiption of ClientRegistrationException.
-	/// </summary>
-	public class ClientRegistrationException : Exception, ISerializable
-	{
-		public ClientRegistrationException()
-		{
-		}
+    using System;
+    using System.Runtime.Serialization;
+    
+    /// <summary>
+    /// Desctiption of ClientRegistrationException.
+    /// </summary>
+    public class ClientRegistrationException : Exception, ISerializable
+    {
+        public ClientRegistrationException()
+        {
+        }
 
-	 	public ClientRegistrationException(string message) : base(message)
-		{
-		}
+         public ClientRegistrationException(string message) : base(message)
+        {
+        }
 
-		public ClientRegistrationException(string message, Exception innerException) : base(message, innerException)
-		{
-		}
+        public ClientRegistrationException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
 
-		// This constructor is needed for serialization.
-		protected ClientRegistrationException(SerializationInfo info, StreamingContext context) : base(info, context)
-		{
-		}
-	}
+        // This constructor is needed for serialization.
+        protected ClientRegistrationException(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
+        }
+    }
 }

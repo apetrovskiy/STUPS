@@ -24,11 +24,11 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
     [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class SearchByWildcardViaWin32TestFixture
     {
-    	public SearchByWildcardViaWin32TestFixture()
-    	{
-    		FakeFactory.Init();
-    	}
-    	
+        public SearchByWildcardViaWin32TestFixture()
+        {
+            FakeFactory.Init();
+        }
+        
         [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {

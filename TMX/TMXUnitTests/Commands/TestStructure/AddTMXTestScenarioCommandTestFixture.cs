@@ -13,7 +13,7 @@ namespace TmxUnitTests.Commands.TestStructure
     using MbUnit.Framework;using NUnit.Framework;
     using PSTestLib;
     using Tmx;
-	using Tmx.Interfaces.TestStructure;
+    using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of AddTmxTestScenarioCommandTestFixture.
@@ -137,7 +137,7 @@ namespace TmxUnitTests.Commands.TestStructure
             var testSuite =
                 // 20131127
                 //(ITestSuite)
-            	// 20140715
+                // 20140715
                 UnitTestingHelper.GetNewTestSuite("suite", "suite id", string.Empty) as ITestSuite;
             var testScenario =
                 UnitTestingHelper.AddTestScenario(testSuite, expectedResultName, string.Empty, string.Empty, string.Empty, string.Empty);
@@ -154,7 +154,7 @@ namespace TmxUnitTests.Commands.TestStructure
         {
             const string expectedResultId = "scenario id";
             var testSuite =
-            	// 20140715
+                // 20140715
                 UnitTestingHelper.GetNewTestSuite("suite", "suite id", string.Empty) as ITestSuite;
             var testScenario =
                 UnitTestingHelper.AddTestScenario(testSuite, string.Empty, expectedResultId, string.Empty, string.Empty, string.Empty);
@@ -171,7 +171,7 @@ namespace TmxUnitTests.Commands.TestStructure
         {
             const string expectedResultName = "scenario";
             var testSuite =
-            	// 20140715
+                // 20140715
                 UnitTestingHelper.GetNewTestSuite("suite", "suite id", string.Empty) as ITestSuite;
             var testScenario =
                 UnitTestingHelper.AddTestScenario(null, expectedResultName, string.Empty, string.Empty, testSuite.Name, string.Empty);
@@ -188,7 +188,7 @@ namespace TmxUnitTests.Commands.TestStructure
         {
             const string expectedResultId = "scenario id";
             var testSuite =
-            	// 20140715
+                // 20140715
                 UnitTestingHelper.GetNewTestSuite("suite", "suite id", string.Empty) as ITestSuite;
             var testScenario =
                 UnitTestingHelper.AddTestScenario(null, string.Empty, expectedResultId, string.Empty, testSuite.Name, string.Empty);
@@ -205,7 +205,7 @@ namespace TmxUnitTests.Commands.TestStructure
         {
             const string expectedResultName = "scenario";
             var testSuite =
-            	// 20140715
+                // 20140715
                 UnitTestingHelper.GetNewTestSuite("suite", "suite id", string.Empty) as ITestSuite;
             var testScenario =
                 UnitTestingHelper.AddTestScenario(null, expectedResultName, string.Empty, string.Empty, string.Empty, testSuite.Id);
@@ -222,7 +222,7 @@ namespace TmxUnitTests.Commands.TestStructure
         {
             const string expectedResultId = "scenario id";
             var testSuite =
-            	// 20140715
+                // 20140715
                 UnitTestingHelper.GetNewTestSuite("suite", "suite id", string.Empty) as ITestSuite;
             var testScenario =
                 UnitTestingHelper.AddTestScenario(null, string.Empty, expectedResultId, string.Empty, string.Empty, testSuite.Id);

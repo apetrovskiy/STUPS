@@ -39,7 +39,7 @@ namespace UIAutomationTest.CheckCmdletParameters
         public void AddWizardStep_Name()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		@"Add-UiaWizardStep -Name 'stepName' -InputObject (New-UiaWizard -Name wizardName -StartAction {});");
+                @"Add-UiaWizardStep -Name 'stepName' -InputObject (New-UiaWizard -Name wizardName -StartAction {});");
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -48,7 +48,7 @@ namespace UIAutomationTest.CheckCmdletParameters
         public void AddWizardStep_Name_StepForwardAction()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		@"Add-UiaWizardStep -Name 'stepName' -InputObject (New-UiaWizard -Name wizardName -StartAction {}) -StepForwardAction {};");
+                @"Add-UiaWizardStep -Name 'stepName' -InputObject (New-UiaWizard -Name wizardName -StartAction {}) -StepForwardAction {};");
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -57,7 +57,7 @@ namespace UIAutomationTest.CheckCmdletParameters
         public void AddWizardStep_Name_StepBackwardAction()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		@"Add-UiaWizardStep -Name 'stepName' -InputObject (New-UiaWizard -Name wizardName -StartAction {}) -StepBackwardAction {};");
+                @"Add-UiaWizardStep -Name 'stepName' -InputObject (New-UiaWizard -Name wizardName -StartAction {}) -StepBackwardAction {};");
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -66,7 +66,7 @@ namespace UIAutomationTest.CheckCmdletParameters
         public void AddWizardStep_Name_StepForwardAction_StepBackwardAction()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		@"Add-UiaWizardStep -Name 'stepName' -InputObject (New-UiaWizard -Name wizardName -StartAction {}) -StepForwardAction {} -StepBackwardAction {};");
+                @"Add-UiaWizardStep -Name 'stepName' -InputObject (New-UiaWizard -Name wizardName -StartAction {}) -StepForwardAction {} -StepBackwardAction {};");
         }
     }
 }

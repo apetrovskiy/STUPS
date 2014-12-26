@@ -12,7 +12,7 @@ namespace Tmx
     using System;
     using System.Linq;
     using System.Management.Automation;
-	using Tmx;
+    using Tmx;
     using Tmx.Core;
     using Tmx.Interfaces;
     

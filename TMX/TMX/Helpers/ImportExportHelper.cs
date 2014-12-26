@@ -10,11 +10,11 @@
 namespace Tmx.Helpers
 {
     using System;
-	using System.Collections.Generic;
-	using System.Management.Automation;
-	using System.Linq;
-	using System.Xml.Linq;
-	using Tmx.Interfaces;
+    using System.Collections.Generic;
+    using System.Management.Automation;
+    using System.Linq;
+    using System.Xml.Linq;
+    using Tmx.Interfaces;
     
     /// <summary>
     /// Description of ImportExportHelper.

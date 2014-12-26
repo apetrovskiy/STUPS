@@ -32,10 +32,10 @@ namespace Tmx.Commands
         [Parameter(Mandatory = false)]
         public SwitchParameter Force { get; set; }
         
-		protected override void BeginProcessing()
-		{
-			var command = new SendFileSystemItemCommand(this);
-			command.Execute();
-		}
+        protected override void BeginProcessing()
+        {
+            var command = new SendFileSystemItemCommand(this);
+            command.Execute();
+        }
     }
 }

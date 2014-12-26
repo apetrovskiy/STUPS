@@ -149,7 +149,7 @@ namespace UIAutomation
                     return result;
                 case "SwitchParameter":
                     bool tempBool = (SwitchParameter)tempResult;
-					result += tempBool ? "$true" : "$false";
+                    result += tempBool ? "$true" : "$false";
                     return result;
                 case "Hashtable":
                     result += ConvertHashtableToString((Hashtable)tempResult);

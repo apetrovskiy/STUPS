@@ -100,7 +100,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void SelectionItem_AddToSelection()
         {
             // Arrange
-			const bool expectedResult = true;
+            const bool expectedResult = true;
             bool result = false;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
@@ -123,7 +123,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void SelectionItem_RemoveFromSelection()
         {
             // Arrange
-			const bool expectedResult = true;
+            const bool expectedResult = true;
             bool result = false;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
@@ -146,7 +146,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void SelectionItem_Select()
         {
             // Arrange
-			const bool expectedResult = true;
+            const bool expectedResult = true;
             bool result = false;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
@@ -169,7 +169,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void SelectionItem_IsSelected()
         {
             // Arrange
-			const bool expectedValue = true;
+            const bool expectedValue = true;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetSelectionItemPattern(new PatternsData() { SelectionItemPattern_IsSelected = expectedValue }) }) as ISupportsSelectionItemPattern;

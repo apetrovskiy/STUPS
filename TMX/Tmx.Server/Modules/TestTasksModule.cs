@@ -13,15 +13,15 @@ namespace Tmx.Server.Modules
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
-	using Nancy;
-	using Nancy.ModelBinding;
+    using Nancy;
+    using Nancy.ModelBinding;
     using Nancy.Responses.Negotiation;
     using Nancy.TinyIoc;
-	using Tmx.Interfaces.Exceptions;
-	using Tmx.Interfaces.Server;
-	using Tmx.Core;
-	using Tmx.Core.Types.Remoting;
-	using Tmx.Interfaces.Remoting;
+    using Tmx.Interfaces.Exceptions;
+    using Tmx.Interfaces.Server;
+    using Tmx.Core;
+    using Tmx.Core.Types.Remoting;
+    using Tmx.Interfaces.Remoting;
     using Tmx.Server.Interfaces;
     
     /// <summary>

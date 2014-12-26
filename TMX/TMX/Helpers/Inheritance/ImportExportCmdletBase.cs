@@ -14,10 +14,10 @@ namespace Tmx
     using System.Linq;
     using System.Xml.Linq;
     using System.Text;
-	using Tmx;
+    using Tmx;
     using Tmx.Core;
-	using Tmx.Interfaces;
-	using Tmx.Interfaces.TestStructure;
+    using Tmx.Interfaces;
+    using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of ImportExportCmdletBase.
@@ -673,17 +673,17 @@ namespace Tmx
         
         protected internal void ExportResultsToCSV(string path)
         {
-			notImplementedCase();
+            notImplementedCase();
         }
         
         protected internal void ExportResultsToTEXT(string path)
         {
-			notImplementedCase();
+            notImplementedCase();
         }
         
         protected internal void ExportResultsToZIP(string path)
         {
-			notImplementedCase();
+            notImplementedCase();
         }
         
         protected internal void ExportSummaryToHTML(ImportExportCmdletBase cmdlet, string path)
@@ -695,37 +695,37 @@ namespace Tmx
         
         protected internal void ExportSummaryToCSV(string path)
         {
-			notImplementedCase();
+            notImplementedCase();
         }
         
         protected internal void ExportSummaryToTEXT(string path)
         {
-			notImplementedCase();
+            notImplementedCase();
         }
         
         protected internal void ExportSummaryToZIP(string path)
         {
-			notImplementedCase();
+            notImplementedCase();
         }
         
         protected internal void ExportLogToHTML(string path)
         {
-			notImplementedCase();
+            notImplementedCase();
         }
         
         protected internal void ExportLogToCSV(string path)
         {
-			notImplementedCase();
+            notImplementedCase();
         }
         
         protected internal void ExportLogToTEXT(string path)
         {
-			notImplementedCase();
+            notImplementedCase();
         }
         
         protected internal void ExportLogToZIP(string path)
         {
-			notImplementedCase();
+            notImplementedCase();
         }
         
         string generateDocumentStructureTop()

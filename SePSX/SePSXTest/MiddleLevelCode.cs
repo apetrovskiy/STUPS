@@ -39,20 +39,20 @@ namespace SePSXTest
         public static void DisposeRunspace()
         {
             CmdletUnitTest.TestRunspace.RunPSCode(
-        		//@"foreach ($driver  in  [SePSX.CurrentData]::Drivers.Keys) {[SePSX.CurrentData]::Drivers[$driver].Quit();}; " +
-				//@"[SePSX.CurrentData]::Drivers.Clear(); " + 
-				@"[SePSX.CurrentData]::ResetData();");
-			    //@"[SePSX.CurrentData]::CurrentWebDriver = $null; ");
+                //@"foreach ($driver  in  [SePSX.CurrentData]::Drivers.Keys) {[SePSX.CurrentData]::Drivers[$driver].Quit();}; " +
+                //@"[SePSX.CurrentData]::Drivers.Clear(); " + 
+                @"[SePSX.CurrentData]::ResetData();");
+                //@"[SePSX.CurrentData]::CurrentWebDriver = $null; ");
             CmdletUnitTest.TestRunspace.CloseRunspace();
         }
         
         public static string GetURLFromPath(string path)
         {
-        	string result = @"file:///" + path;
-        	
-        	result = result.Replace(@"\", @"/");
-        	
-        	return result;
+            string result = @"file:///" + path;
+            
+            result = result.Replace(@"\", @"/");
+            
+            return result;
         }
         
         

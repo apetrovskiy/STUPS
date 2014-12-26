@@ -39,6 +39,6 @@ namespace Tmx.Core.Types.Remoting
             _testLab = testLab;
         }
         
-		public string ParametersPageName { get; set; }
+        public string ParametersPageName { get; set; }
     }
 }

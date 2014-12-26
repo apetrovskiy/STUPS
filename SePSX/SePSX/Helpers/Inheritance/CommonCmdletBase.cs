@@ -519,26 +519,26 @@ Console.WriteLine("WriteSingleObject 00008");
         //protected override void WriteObjectMethod030RunScriptBlocks(PSCmdletBase cmdlet, object outputObject)
         protected void WriteObjectMethod030RunScriptBlocks(PSCmdletBase cmdlet, object outputObject)
         {
-			WriteVerbose(this, "is going to run scriptblocks");
+            WriteVerbose(this, "is going to run scriptblocks");
             if (cmdlet != null) {
                 // run scriptblocks
                 //if (cmdlet is HasScriptBlockCmdletBase) {
                 if (cmdlet is PSCmdletBase) {
-					WriteVerbose(this, "cmdlet is of the HasScriptBlockCmdletBase type");
+                    WriteVerbose(this, "cmdlet is of the HasScriptBlockCmdletBase type");
                     if (outputObject == null) {
-						WriteVerbose(this, "run OnError script blocks (null)");
+                        WriteVerbose(this, "run OnError script blocks (null)");
                         //RunOnErrorScriptBlocks(((HasScriptBlockCmdletBase)cmdlet));
                         // 20130318
                         //RunOnErrorScriptBlocks(cmdlet);
                         RunOnErrorScriptBlocks(cmdlet, null);
                     } else if (outputObject is bool && ((bool)outputObject) == false) {
-						WriteVerbose(this, "run OnError script blocks (false)");
+                        WriteVerbose(this, "run OnError script blocks (false)");
                         //RunOnErrorScriptBlocks(((HasScriptBlockCmdletBase)cmdlet));
                         // 20130318
                         //RunOnErrorScriptBlocks(cmdlet);
                         RunOnErrorScriptBlocks(cmdlet, null);
                     } else if (outputObject != null) {
-						WriteVerbose(this, "run OnSuccess script blocks");
+                        WriteVerbose(this, "run OnSuccess script blocks");
                         //RunOnSuccessScriptBlocks(((HasScriptBlockCmdletBase)cmdlet));
                         // 20130318
                         //RunOnSuccessScriptBlocks(cmdlet);
@@ -609,7 +609,7 @@ Console.WriteLine("WriteSingleObject 00008");
                     }
                 }
                 catch (Exception) {
-					WriteVerbose(this, "for working with test results you need to import the TMX module");
+                    WriteVerbose(this, "for working with test results you need to import the TMX module");
                 }
             }
         }

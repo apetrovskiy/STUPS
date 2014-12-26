@@ -38,7 +38,7 @@ namespace UIAutomationTest.CheckCmdletParameters
             // 20130918
             //CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Get-UiaControl;");
+                "Get-UiaControl;");
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -49,7 +49,7 @@ namespace UIAutomationTest.CheckCmdletParameters
             // 20130918
             //CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Get-UiaControl -ControlType Button;");
+                "Get-UiaControl -ControlType Button;");
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -60,7 +60,7 @@ namespace UIAutomationTest.CheckCmdletParameters
             // 20130918
             //CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Get-UiaControl -Name 'aaa';");
+                "Get-UiaControl -Name 'aaa';");
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -71,7 +71,7 @@ namespace UIAutomationTest.CheckCmdletParameters
             // 20130918
             //CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Get-UiaControl -ControlType Button -Name 'aaa';");
+                "Get-UiaControl -ControlType Button -Name 'aaa';");
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -82,7 +82,7 @@ namespace UIAutomationTest.CheckCmdletParameters
             // 20130918
             //CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Get-UiaControl -AutomationId '111';");
+                "Get-UiaControl -AutomationId '111';");
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -93,7 +93,7 @@ namespace UIAutomationTest.CheckCmdletParameters
             // 20130918
             //CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Get-UiaControl -ControlType Button -AutomationId '111';");
+                "Get-UiaControl -ControlType Button -AutomationId '111';");
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -104,7 +104,7 @@ namespace UIAutomationTest.CheckCmdletParameters
             // 20130918
             //CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Get-UiaControl -Class 'class';");
+                "Get-UiaControl -Class 'class';");
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -115,7 +115,7 @@ namespace UIAutomationTest.CheckCmdletParameters
             // 20130918
             //CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Get-UiaControl -ControlType Button -Class 'class';");
+                "Get-UiaControl -ControlType Button -Class 'class';");
         }
     }
 }

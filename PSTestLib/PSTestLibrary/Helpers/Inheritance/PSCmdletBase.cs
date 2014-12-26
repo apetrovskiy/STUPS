@@ -118,7 +118,7 @@ namespace PSTestLib
 
 //            cmdlet.WriteVerbose(cmdlet, "outputting the object");
             
-			writeSingleObject(cmdlet, outputObject);
+            writeSingleObject(cmdlet, outputObject);
 
         }
         
@@ -131,8 +131,8 @@ namespace PSTestLib
                 UnitTestOutput.StartAddingOutput();
             }
 
-			for (int i = 0; i < outputObjectCollection.Length; i++)
-				writeSingleObject(cmdlet, outputObjectCollection[i]);
+            for (int i = 0; i < outputObjectCollection.Length; i++)
+                writeSingleObject(cmdlet, outputObjectCollection[i]);
             
             AfterWriteCollection(cmdlet, outputObjectCollection);
         }
@@ -149,8 +149,8 @@ namespace PSTestLib
             }
             // 20121117
             //for (int i = 0; i < outputObjectCollection.Count; i++) {
-			foreach (var item in outputObjectCollection)
-				writeSingleObject(cmdlet, item);
+            foreach (var item in outputObjectCollection)
+                writeSingleObject(cmdlet, item);
             //}
             
             AfterWriteCollection(cmdlet, outputObjectCollection);
@@ -166,8 +166,8 @@ namespace PSTestLib
                 UnitTestOutput.StartAddingOutput();
             }
 
-			for (int i = 0; i < outputObjectCollection.Count; i++)
-				WriteObject(cmdlet, outputObjectCollection[i]);
+            for (int i = 0; i < outputObjectCollection.Count; i++)
+                WriteObject(cmdlet, outputObjectCollection[i]);
             
             AfterWriteCollection(cmdlet, outputObjectCollection);
         }
@@ -181,8 +181,8 @@ namespace PSTestLib
                 UnitTestOutput.StartAddingOutput();
             }
 
-			foreach (object item in outputObjectCollection)
-				writeSingleObject(cmdlet, item);
+            foreach (object item in outputObjectCollection)
+                writeSingleObject(cmdlet, item);
             
             AfterWriteCollection(cmdlet, outputObjectCollection);
         }
@@ -196,8 +196,8 @@ namespace PSTestLib
                 UnitTestOutput.StartAddingOutput();
             }
             IEnumerator en = outputObjectCollection.GetEnumerator();
-			while (en.MoveNext())
-				writeSingleObject(cmdlet, en.Current);
+            while (en.MoveNext())
+                writeSingleObject(cmdlet, en.Current);
             
             AfterWriteCollection(cmdlet, outputObjectCollection);
         }
@@ -209,7 +209,7 @@ namespace PSTestLib
                 UnitTestOutput.StartAddingOutput();
             }
             
-			writeSingleObject(cmdlet, outputObject);
+            writeSingleObject(cmdlet, outputObject);
         }
         
         public virtual void WriteObject(PSCmdletBase cmdlet, ICollection outputObjectCollection)
@@ -220,7 +220,7 @@ namespace PSTestLib
                 UnitTestOutput.CheckInitialized();
                 UnitTestOutput.StartAddingOutput();
             }
-			foreach (var outputObject in outputObjectCollection)
+            foreach (var outputObject in outputObjectCollection)
 // this.WriteVerbose(this, "something to output!!!!!!!!!!1");
                 //WriteObject(cmdlet, outputObject);
                 writeSingleObject(cmdlet, outputObject);
@@ -237,7 +237,7 @@ namespace PSTestLib
                 UnitTestOutput.StartAddingOutput();
             }
             
-			writeSingleObject(cmdlet, outputObjectCollection);
+            writeSingleObject(cmdlet, outputObjectCollection);
             
             AfterWriteCollection(cmdlet, outputObjectCollection);
         }
@@ -313,11 +313,11 @@ namespace PSTestLib
                 
                 try {
                     
-    				if (PSCmdletBase.UnitTestMode)
-    					UnitTestOutput.Add(errorRecord);
-    				else
+                    if (PSCmdletBase.UnitTestMode)
+                        UnitTestOutput.Add(errorRecord);
+                    else
     //                        WriteObjectMethod060OutputResult(cmdlet, outputObject);
-    					WriteSingleError(cmdlet, errorRecord, terminating);
+                        WriteSingleError(cmdlet, errorRecord, terminating);
                 }
                 catch {}
                 
@@ -406,7 +406,7 @@ namespace PSTestLib
                 new ErrorDetails(message);
             
             //WriteError(cmdlet, err, terminating);
-			writeSingleError(cmdlet, err, terminating);
+            writeSingleError(cmdlet, err, terminating);
         }
         
         // temporary
@@ -485,14 +485,14 @@ namespace PSTestLib
         
         public void WriteTrace(PSCmdletBase cmdlet, object obj)
         {
-			if (EnableTrace)
-				Console.WriteLine(obj);
+            if (EnableTrace)
+                Console.WriteLine(obj);
         }
         
         public static void WriteTraceTemp(object obj)
         {
-			if (EnableTrace)
-				Console.WriteLine(obj);
+            if (EnableTrace)
+                Console.WriteLine(obj);
         }
         
         protected string GetGeneratedTestResultNameByPosition(
@@ -523,20 +523,20 @@ namespace PSTestLib
             string result = String.Empty;
             if (null == cmdlet) return result;
             result = cmdlet.GetType().Name;
-			if (result.Contains("Uia"))
-				result = result.Replace("Uia", "-Uia");
-			else if (result.Contains("Tmx"))
-				result = result.Replace("Tmx", "-Tmx");
-			else if (result.Contains("ESXi"))
-				result = result.Replace("ESXi", "-ESXi");
-			else if (result.Contains("TAMS"))
-				result = result.Replace("TAMS", "-TAMS");
-			else if (result.Contains("Dt"))
-				result = result.Replace("Dt", "-Dt");
-			else if (result.Contains("Tu"))
-				result = result.Replace("Tu", "-Tu");
-			else if (result.Contains("Se"))
-				result = result.Replace("Se", "-Se");
+            if (result.Contains("Uia"))
+                result = result.Replace("Uia", "-Uia");
+            else if (result.Contains("Tmx"))
+                result = result.Replace("Tmx", "-Tmx");
+            else if (result.Contains("ESXi"))
+                result = result.Replace("ESXi", "-ESXi");
+            else if (result.Contains("TAMS"))
+                result = result.Replace("TAMS", "-TAMS");
+            else if (result.Contains("Dt"))
+                result = result.Replace("Dt", "-Dt");
+            else if (result.Contains("Tu"))
+                result = result.Replace("Tu", "-Tu");
+            else if (result.Contains("Se"))
+                result = result.Replace("Se", "-Se");
             result = result.Replace("Command", "");
             return result;
         }
@@ -576,8 +576,8 @@ namespace PSTestLib
             }
             
             result += "@{";
-			foreach (var key in hashtable.Keys)
-				result += key + "=" + hashtable[key] + ";";
+            foreach (var key in hashtable.Keys)
+                result += key + "=" + hashtable[key] + ";";
             result += "}";
             
             return result;
@@ -655,13 +655,13 @@ namespace PSTestLib
             var scriptblocks = new List<ScriptBlock>();
 
             try {
-				if (scriptblocksSet1 != null && scriptblocksSet1.Length > 0)
-					foreach (var sb in scriptblocksSet1)
-						scriptblocks.Add(sb);
+                if (scriptblocksSet1 != null && scriptblocksSet1.Length > 0)
+                    foreach (var sb in scriptblocksSet1)
+                        scriptblocks.Add(sb);
     
-				if (scriptblocksSet2 != null && scriptblocksSet2.Length > 0)
-					foreach (var sb in scriptblocksSet2)
-						scriptblocks.Add(sb);
+                if (scriptblocksSet2 != null && scriptblocksSet2.Length > 0)
+                    foreach (var sb in scriptblocksSet2)
+                        scriptblocks.Add(sb);
                 
 //                if (null == scriptblocks || 0 == scriptblocks.Count) {
 //                    
@@ -698,8 +698,8 @@ namespace PSTestLib
 //                cmdlet.WriteVerbose(cmdlet, "running scriptblocks");
                 
                 //runScriptBlocks(scriptblocks, cmdlet, false, parameters);
-				if (null != scriptblocks && 0 < scriptblocks.Count)
-					runScriptBlocks(scriptblocks, cmdlet, false, parameters);
+                if (null != scriptblocks && 0 < scriptblocks.Count)
+                    runScriptBlocks(scriptblocks, cmdlet, false, parameters);
                 
 //                cmdlet.WriteVerbose(cmdlet, "Scriptblocks finished successfully");
             }
@@ -757,11 +757,11 @@ namespace PSTestLib
                                     // 20130606
                                     try {
                                         cmdlet.WriteVerbose(cmdlet, "listing parameters");
-										if (null == parameters || 0 == parameters.Length)
-											cmdlet.WriteVerbose(cmdlet, "there are no parameters");
-										else
-											foreach (var singleParam in parameters)
-												cmdlet.WriteVerbose(cmdlet, singleParam);
+                                        if (null == parameters || 0 == parameters.Length)
+                                            cmdlet.WriteVerbose(cmdlet, "there are no parameters");
+                                        else
+                                            foreach (var singleParam in parameters)
+                                                cmdlet.WriteVerbose(cmdlet, singleParam);
                                     }
                                     catch (Exception eListParameters) {
                                         cmdlet.WriteVerbose(cmdlet, eListParameters.Message);
@@ -854,9 +854,9 @@ namespace PSTestLib
             
             // 20120206 Collection<PSObject> psObjects = null;
             try {
-				Runspace.DefaultRunspace = RunspaceFactory.CreateRunspace();
+                Runspace.DefaultRunspace = RunspaceFactory.CreateRunspace();
                 try {
-					Runspace.DefaultRunspace.Open();
+                    Runspace.DefaultRunspace.Open();
                 } catch (Exception e1) {
                     // 20130318
 //                    ErrorRecord err = 
@@ -870,17 +870,17 @@ namespace PSTestLib
 //                            sb.ToString());
 //                    WriteError(this, err, false);
                     
-					WriteError(
-						this,
-						"Unable to run a scriptblock:\r\n" +
-						sb +
-						"." +
-						e1.Message,
-						"ErrorOnOpeningRunspace",
-						ErrorCategory.InvalidOperation,
+                    WriteError(
+                        this,
+                        "Unable to run a scriptblock:\r\n" +
+                        sb +
+                        "." +
+                        e1.Message,
+                        "ErrorOnOpeningRunspace",
+                        ErrorCategory.InvalidOperation,
                         // 20130318
                         //false);
-						true);
+                        true);
                 }
                 try {
                     var inputParams = new List<object>();
@@ -902,13 +902,13 @@ namespace PSTestLib
 //                        new ErrorDetails("Unable to run a scriptblock");
 //                    WriteError(this, err, true);
                     
-					WriteError(
-						this,
-						"Unable to run a scriptblock." +
-						e2.Message,
-						"ErrorInOpenedRunspace",
-						ErrorCategory.InvalidOperation,
-						true);
+                    WriteError(
+                        this,
+                        "Unable to run a scriptblock." +
+                        e2.Message,
+                        "ErrorInOpenedRunspace",
+                        ErrorCategory.InvalidOperation,
+                        true);
                 }
 // psObjects =
 // sb.Invoke();
@@ -925,15 +925,15 @@ namespace PSTestLib
 //                                     "\r\nException raised is\r\n" +
 //                                     eOuter.Message);
                 
-				WriteError(
-					this,
-					"Unable to issue the following command:\r\n" +
-					"System.Management.Automation.Runspaces.Runspace.DefaultRunspace = RunspaceFactory.CreateRunspace();" +
-					"\r\nException raised is\r\n" +
-					eOuter.Message,
-					"ErrorInInvokingScriptBlock",
-					ErrorCategory.InvalidOperation,
-					true);
+                WriteError(
+                    this,
+                    "Unable to issue the following command:\r\n" +
+                    "System.Management.Automation.Runspaces.Runspace.DefaultRunspace = RunspaceFactory.CreateRunspace();" +
+                    "\r\nException raised is\r\n" +
+                    eOuter.Message,
+                    "ErrorInInvokingScriptBlock",
+                    ErrorCategory.InvalidOperation,
+                    true);
             }
         }
         #endregion Event delegate
@@ -975,17 +975,17 @@ namespace PSTestLib
 //                                     //"System.Management.Automation.Runspaces.Runspace.DefaultRunspace = RunspaceFactory.CreateRunspace();");
 //                WriteError(err);
                 
-				WriteError(
-					this,
-					"Unable to issue the following command:\r\n" +
-					sb +
-					"\r\nThe exception raised is\r\n" +
-					eOuter.Message,
-					"ErrorInInvokingScriptBlock",
-					ErrorCategory.InvalidOperation,
+                WriteError(
+                    this,
+                    "Unable to issue the following command:\r\n" +
+                    sb +
+                    "\r\nThe exception raised is\r\n" +
+                    eOuter.Message,
+                    "ErrorInInvokingScriptBlock",
+                    ErrorCategory.InvalidOperation,
                     // 20130318
                     //false);
-					true);
+                    true);
             }
         }
         #endregion Action delegate
@@ -998,26 +998,26 @@ namespace PSTestLib
             Collection<PSObject> psObjects = null;
             try {
                 
-//				WriteVerbose(
-//					this,
-//					"select whether a scriptblock has parameters or doesn't");
+//                WriteVerbose(
+//                    this,
+//                    "select whether a scriptblock has parameters or doesn't");
                 
-				if (null == parameters || 0 == parameters.Length)
-//					WriteVerbose(
-//						this,
-//						"without parameters");
+                if (null == parameters || 0 == parameters.Length)
+//                    WriteVerbose(
+//                        this,
+//                        "without parameters");
                     psObjects =
                         sb.Invoke();
-				else
-//					WriteVerbose(
-//						this,
-//						"with parameters");
-					psObjects =
+                else
+//                    WriteVerbose(
+//                        this,
+//                        "with parameters");
+                    psObjects =
                         sb.Invoke(parameters);
                 
-//				WriteVerbose(
-//					this,
-//					"scriptblock has been fired successfully");
+//                WriteVerbose(
+//                    this,
+//                    "scriptblock has been fired successfully");
 
             } catch (Exception eOuter) {
 
@@ -1041,17 +1041,17 @@ namespace PSTestLib
 //                    this,
 //                    eOuter.InnerException.Message);
                 
-				WriteError(
-					this,
-					"Unable to issue the following command:\r\n" +
-					sb +
-					"\r\nThe exception raised is\r\n" +
-					eOuter.Message,
-					"ErrorInInvokingScriptBlock",
-					ErrorCategory.InvalidOperation,
+                WriteError(
+                    this,
+                    "Unable to issue the following command:\r\n" +
+                    sb +
+                    "\r\nThe exception raised is\r\n" +
+                    eOuter.Message,
+                    "ErrorInInvokingScriptBlock",
+                    ErrorCategory.InvalidOperation,
                     // 20130318
                     //false);
-					true);
+                    true);
 
             }
         }

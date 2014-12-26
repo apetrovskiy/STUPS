@@ -689,7 +689,7 @@ namespace TLAddinUnitTests
 //        /// <summary>
 //        /// the version of the test case, starts with 1
 //        /// </summary>
-//        public readonly int version;		
+//        public readonly int version;        
 //        /// <summary>
 //        /// the internal id of this testcase version
 //        /// </summary>

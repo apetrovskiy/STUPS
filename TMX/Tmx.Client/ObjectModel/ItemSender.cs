@@ -9,36 +9,36 @@
 
 namespace Tmx.Client
 {
-	using System;
+    using System;
     using System.Diagnostics;
-	using System.IO;
+    using System.IO;
     using System.Collections.Generic;
     using System.Linq;
     using System.Net;
     using Spring.Http;
-	using Spring.Rest.Client;
+    using Spring.Rest.Client;
     using Tmx.Interfaces.Server;
-	
+    
     /// <summary>
     /// Description of ItemSender.
     /// </summary>
     public class ItemSender
     {
-	    // volatile RestTemplate _restTemplate;
-	    readonly IRestOperations _restTemplate;
-	    
-	    public ItemSender(RestRequestCreator requestCreator)
-	    {
-	    	_restTemplate = requestCreator.GetRestTemplate();
-	    }
-	    
-	    public virtual bool SendFileSystemHierarchy(string sourcePath, string destinationPath, bool recurse, bool force)
-	    {
+        // volatile RestTemplate _restTemplate;
+        readonly IRestOperations _restTemplate;
+        
+        public ItemSender(RestRequestCreator requestCreator)
+        {
+            _restTemplate = requestCreator.GetRestTemplate();
+        }
+        
+        public virtual bool SendFileSystemHierarchy(string sourcePath, string destinationPath, bool recurse, bool force)
+        {
             if (Directory.Exists(sourcePath))
                 return sendHierarchy(sourcePath, destinationPath, recurse, force);
             return File.Exists(sourcePath) && sendSingleFile(sourcePath.Substring(0, sourcePath.LastIndexOf('\\') + 1), sourcePath, destinationPath, force);
-	    }
-	    
+        }
+        
         bool sendHierarchy(string sourcePath, string destinationPath, bool recurse, bool force)
         {
             // http://msdn.microsoft.com/en-us/library/bb513869.aspx

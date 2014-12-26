@@ -78,7 +78,7 @@ namespace SePSXUnitTests.Recording
 
             // there should no codeSequence as there's nothing to put into
             Assert.AreEqual(
-            	0,
+                0,
                 Recorder.recordingCollection.Count);
         }
         

@@ -201,7 +201,7 @@ namespace UIAutomation
         //                                        break;
         //                                    default:
         //                                        // nothing to do
-        //                                    	break;
+        //                                        break;
         //                                }
         //                            }
         //                            catch (Exception eActionType) {
@@ -233,7 +233,7 @@ namespace UIAutomation
         //                                            break;
         //                                        default:
         //                                            // nothing to do
-        //                                        	break;
+        //                                            break;
         //                                    }
 //
         //                                } else {

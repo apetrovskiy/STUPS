@@ -11,8 +11,8 @@ namespace Tmx.Commands
 {
     using System;
     using System.Management.Automation;
-	using Tmx;
-	using Tmx.Interfaces.TestStructure;
+    using Tmx;
+    using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of GetTestResultsFromCollectionsCommand.
@@ -22,31 +22,31 @@ namespace Tmx.Commands
     {
         protected override void BeginProcessing()
         {
-			CheckCmdletParameters();
+            CheckCmdletParameters();
             
             // enumerate test suites
             foreach (var testSuite in TestData.TestSuites) {
                 
                 // add a test suite to your report
-				WriteObject(this, testSuite);
+                WriteObject(this, testSuite);
                 
                 // enumerate test scenarios
                 foreach (var testScenario in testSuite.TestScenarios) {
                     
                     // add a test scenario to your report
-					WriteObject(this, testScenario);
+                    WriteObject(this, testScenario);
                     
                     // enumerate test results
                     foreach (var testResult in testScenario.TestResults) {
                         
                         // add a test result to your report
-						WriteObject(this, testResult);
+                        WriteObject(this, testResult);
                         
                         // enumerate test result details
                         foreach (var testResultDetail in testResult.Details) {
                             
                             // add each test result detail to your report
-							WriteObject(this, testResultDetail);
+                            WriteObject(this, testResultDetail);
                             
                         }
                     }

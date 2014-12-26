@@ -24,7 +24,7 @@ namespace Tmx.Server.Helpers
     {
         public virtual bool IsWorkflowCompleted(string name)
         {
-			const int sleepInterval = 3000;
+            const int sleepInterval = 3000;
             
             // TODO: to a template method
             while (waitForWorkflow(name)) {

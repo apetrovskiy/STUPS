@@ -9,14 +9,14 @@
 
 namespace Tmx
 {
-	using System;
-	using Tmx.Interfaces;
+    using System;
+    using Tmx.Interfaces;
 
-	/// <summary>
-	/// Description of XMLElementsNativeStruct.
-	/// </summary>
-	public struct XMLElementsNativeStruct : IXMLElementsStruct
-	{
+    /// <summary>
+    /// Description of XMLElementsNativeStruct.
+    /// </summary>
+    public struct XMLElementsNativeStruct : IXMLElementsStruct
+    {
         const string suitesNode = "suites";
         const string suiteNode = "suite";
         const string scenariosNode = "scenarios";
@@ -44,5 +44,5 @@ namespace Tmx
         
         public string TimeSpentAttribute { get { return timeSpentAttribute; } }
         public string TimeStampAttribute { get { return timeStampAttribute; } }
-	}
+    }
 }

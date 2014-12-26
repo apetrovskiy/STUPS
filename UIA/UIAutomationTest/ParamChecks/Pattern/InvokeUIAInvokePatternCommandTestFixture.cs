@@ -37,7 +37,7 @@ namespace UIAutomationTest.CheckCmdletParameters
         public void Invoke_UiaInvokePattern_NoParameters()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Invoke-UiaInvokePattern;");
+                "Invoke-UiaInvokePattern;");
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -47,7 +47,7 @@ namespace UIAutomationTest.CheckCmdletParameters
         public void Invoke_UiaInvokePattern_PassThru()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Invoke-UiaInvokePattern -PassThru;");
+                "Invoke-UiaInvokePattern -PassThru;");
         }
         
 //        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -56,7 +56,7 @@ namespace UIAutomationTest.CheckCmdletParameters
 //        public void Invoke_UiaInvokePattern_ContainsText_Position0()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"Invoke-UiaInvokePattern 'text';");
+//                "Invoke-UiaInvokePattern 'text';");
 //        }
 //        
 //        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -65,7 +65,7 @@ namespace UIAutomationTest.CheckCmdletParameters
 //        public void Invoke_UiaInvokePattern_ContainsText()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"Invoke-UiaInvokePattern -ContainsText 'text';");
+//                "Invoke-UiaInvokePattern -ContainsText 'text';");
 //        }
 //        
 //        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -74,7 +74,7 @@ namespace UIAutomationTest.CheckCmdletParameters
 //        public void Invoke_UiaInvokePattern_ContainsText_PassThru()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"Invoke-UiaInvokePattern -ContainsText 'text' -PassThru;");
+//                "Invoke-UiaInvokePattern -ContainsText 'text' -PassThru;");
 //        }
 //        
 //        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -83,7 +83,7 @@ namespace UIAutomationTest.CheckCmdletParameters
 //        public void Invoke_UiaInvokePattern_Name()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"Invoke-UiaInvokePattern -Name 'text';");
+//                "Invoke-UiaInvokePattern -Name 'text';");
 //        }
 //        
 //        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -92,7 +92,7 @@ namespace UIAutomationTest.CheckCmdletParameters
 //        public void Invoke_UiaInvokePattern_Name_Win32()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"Invoke-UiaInvokePattern -Name 'text' -Win32;");
+//                "Invoke-UiaInvokePattern -Name 'text' -Win32;");
 //        }
 //        
 //        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -101,7 +101,7 @@ namespace UIAutomationTest.CheckCmdletParameters
 //        public void Invoke_UiaInvokePattern_AutomationId()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"Invoke-UiaInvokePattern -AutomationId 'text';");
+//                "Invoke-UiaInvokePattern -AutomationId 'text';");
 //        }
 //        
 //        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -110,7 +110,7 @@ namespace UIAutomationTest.CheckCmdletParameters
 //        public void Invoke_UiaInvokePattern_Class()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"Invoke-UiaInvokePattern -Class 'text';");
+//                "Invoke-UiaInvokePattern -Class 'text';");
 //        }
 //        
 //        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -119,7 +119,7 @@ namespace UIAutomationTest.CheckCmdletParameters
 //        public void Invoke_UiaInvokePattern_Value()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"Invoke-UiaInvokePattern -Value 'text';");
+//                "Invoke-UiaInvokePattern -Value 'text';");
 //        }
 //        
 //        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -128,7 +128,7 @@ namespace UIAutomationTest.CheckCmdletParameters
 //        public void Invoke_UiaInvokePattern_Name_AutomationId_Class_Value_PassThru()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"Invoke-UiaInvokePattern -Name 'text' -AutomationId 'text2' -Class 'text3' -Value 'text4' -PassThru;");
+//                "Invoke-UiaInvokePattern -Name 'text' -AutomationId 'text2' -Class 'text3' -Value 'text4' -PassThru;");
 //        }
     }
 }

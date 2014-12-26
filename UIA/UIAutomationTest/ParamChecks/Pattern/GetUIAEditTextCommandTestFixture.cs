@@ -37,7 +37,7 @@ namespace UIAutomationTest.CheckCmdletParameters
         public void Get_UiaEditText_NoParameters()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Get-UiaEditText;");
+                "Get-UiaEditText;");
         }
     }
 }

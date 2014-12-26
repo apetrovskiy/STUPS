@@ -9,15 +9,15 @@
 
 namespace Tmx.Server
 {
-	using System;
-	using System.Collections.Generic;
-	using Tmx.Interfaces.Remoting;
-	
-	/// <summary>
-	/// Description of ClientsCollection.
-	/// </summary>
-	public class ClientsCollection
-	{
-		public static List<ITestClient> Clients = new List<ITestClient>();
-	}
+    using System;
+    using System.Collections.Generic;
+    using Tmx.Interfaces.Remoting;
+    
+    /// <summary>
+    /// Description of ClientsCollection.
+    /// </summary>
+    public class ClientsCollection
+    {
+        public static List<ITestClient> Clients = new List<ITestClient>();
+    }
 }

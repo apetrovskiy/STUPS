@@ -11,8 +11,8 @@ namespace Tmx.Server.Tests
 {
     using System;
     using Nancy.TinyIoc;
-	using Tmx.Client;
-	using PSTestLib;
+    using Tmx.Client;
+    using PSTestLib;
     using Tmx.Core;
     using Tmx.Server.Interfaces;
     

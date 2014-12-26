@@ -18,13 +18,13 @@ namespace Tmx.Server.Tests.Modules
     using MbUnit.Framework;
     using NUnit.Framework;
     using Tmx.Core.Types.Remoting;
-	using Tmx.Interfaces.Internal;
-	using Tmx.Interfaces.Server;
-	using Tmx.Core;
-	using Tmx.Interfaces;
-	using Tmx.Interfaces.Remoting;
-	using Tmx.Interfaces.TestStructure;
-	using Tmx.Server.Modules;
+    using Tmx.Interfaces.Internal;
+    using Tmx.Interfaces.Server;
+    using Tmx.Core;
+    using Tmx.Interfaces;
+    using Tmx.Interfaces.Remoting;
+    using Tmx.Interfaces.TestStructure;
+    using Tmx.Server.Modules;
     using Xunit;
     using PSTestLib;
     
@@ -34,16 +34,16 @@ namespace Tmx.Server.Tests.Modules
     [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class TestClientsModuleTestFixture
     {
-	    const string _testClientHostnameExpected01 = "testhost_01";
-	    const string _testClientUsernameExpected01 = "aaa_01";
-	    const string _testClientHostnameExpected02 = "testhost_002";
-	    const string _testClientUsernameExpected02 = "aaa_002";
-	    const string _testClientHostnameExpected03 = "testhost_03";
-	    const string _testClientUsernameExpected03 = "aaa_03";
+        const string _testClientHostnameExpected01 = "testhost_01";
+        const string _testClientUsernameExpected01 = "aaa_01";
+        const string _testClientHostnameExpected02 = "testhost_002";
+        const string _testClientUsernameExpected02 = "aaa_002";
+        const string _testClientHostnameExpected03 = "testhost_03";
+        const string _testClientUsernameExpected03 = "aaa_03";
         const string _theCurrentDetailedStatus = "the current status";
         const string _theLastDetailedStatus = "the latest status";
-	    BrowserResponse _response;
-	    Browser _browser;
+        BrowserResponse _response;
+        Browser _browser;
         
         public TestClientsModuleTestFixture()
         {
@@ -51,12 +51,12 @@ namespace Tmx.Server.Tests.Modules
             _browser = TestFactory.GetBrowserForTestTasksModule();
         }
         
-    	[MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
-    	public void SetUp()
-    	{
-    	    TestSettings.PrepareModuleTests();
-    	    _browser = TestFactory.GetBrowserForTestTasksModule();
-    	}
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
+        public void SetUp()
+        {
+            TestSettings.PrepareModuleTests();
+            _browser = TestFactory.GetBrowserForTestTasksModule();
+        }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_register_the_first_test_client_as_json()

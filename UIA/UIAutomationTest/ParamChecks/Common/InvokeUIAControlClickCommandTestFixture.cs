@@ -37,7 +37,7 @@ namespace UIAutomationTest.CheckCmdletParameters
         public void Invoke_UiaControlClick_NoParameters()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Invoke-UiaControlClick;");
+                "Invoke-UiaControlClick;");
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -47,7 +47,7 @@ namespace UIAutomationTest.CheckCmdletParameters
         public void Invoke_UiaControlClick_PassThru()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Invoke-UiaControlClick -PassThru;");
+                "Invoke-UiaControlClick -PassThru;");
         }
         
 //        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -56,7 +56,7 @@ namespace UIAutomationTest.CheckCmdletParameters
 //        public void Invoke_UiaControlClick_ContainsText_Position0()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"Invoke-UiaControlClick 'text';");
+//                "Invoke-UiaControlClick 'text';");
 //        }
 //        
 //        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -65,7 +65,7 @@ namespace UIAutomationTest.CheckCmdletParameters
 //        public void Invoke_UiaControlClick_ContainsText()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"Invoke-UiaControlClick -ContainsText 'text';");
+//                "Invoke-UiaControlClick -ContainsText 'text';");
 //        }
 //        
 //        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -74,7 +74,7 @@ namespace UIAutomationTest.CheckCmdletParameters
 //        public void Invoke_UiaControlClick_ContainsText_PassThru()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"Invoke-UiaControlClick -ContainsText 'text' -PassThru;");
+//                "Invoke-UiaControlClick -ContainsText 'text' -PassThru;");
 //        }
 //        
 //        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -83,7 +83,7 @@ namespace UIAutomationTest.CheckCmdletParameters
 //        public void Invoke_UiaControlClick_Name()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"Invoke-UiaControlClick -Name 'text';");
+//                "Invoke-UiaControlClick -Name 'text';");
 //        }
 //        
 //        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -92,7 +92,7 @@ namespace UIAutomationTest.CheckCmdletParameters
 //        public void Invoke_UiaControlClick_Name_Win32()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"Invoke-UiaControlClick -Name 'text' -Win32;");
+//                "Invoke-UiaControlClick -Name 'text' -Win32;");
 //        }
 //        
 //        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -101,7 +101,7 @@ namespace UIAutomationTest.CheckCmdletParameters
 //        public void Invoke_UiaControlClick_AutomationId()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"Invoke-UiaControlClick -AutomationId 'text';");
+//                "Invoke-UiaControlClick -AutomationId 'text';");
 //        }
 //        
 //        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -110,7 +110,7 @@ namespace UIAutomationTest.CheckCmdletParameters
 //        public void Invoke_UiaControlClick_Class()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"Invoke-UiaControlClick -Class 'text';");
+//                "Invoke-UiaControlClick -Class 'text';");
 //        }
 //        
 //        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -119,7 +119,7 @@ namespace UIAutomationTest.CheckCmdletParameters
 //        public void Invoke_UiaControlClick_Value()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"Invoke-UiaControlClick -Value 'text';");
+//                "Invoke-UiaControlClick -Value 'text';");
 //        }
 //        
 //        [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -128,7 +128,7 @@ namespace UIAutomationTest.CheckCmdletParameters
 //        public void Invoke_UiaControlClick_Name_AutomationId_Class_Value_PassThru()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"Invoke-UiaControlClick -Name 'text' -AutomationId 'text2' -Class 'text3' -Value 'text4' -PassThru;");
+//                "Invoke-UiaControlClick -Name 'text' -AutomationId 'text2' -Class 'text3' -Value 'text4' -PassThru;");
 //        }
     }
 }

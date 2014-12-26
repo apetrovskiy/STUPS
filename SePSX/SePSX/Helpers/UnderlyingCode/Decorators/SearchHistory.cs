@@ -9,20 +9,20 @@
 
 namespace SePSX
 {
-	using System;
-	using OpenQA.Selenium;
+    using System;
+    using OpenQA.Selenium;
 
-	/// <summary>
-	/// Description of SearchHistory.
-	/// </summary>
-	public class SearchHistory : ISearchHistory
-	{
-		public SearchHistory()
-		{
-		}
+    /// <summary>
+    /// Description of SearchHistory.
+    /// </summary>
+    public class SearchHistory : ISearchHistory
+    {
+        public SearchHistory()
+        {
+        }
 
-		public By ByType { get; set; }
-		public string ByValue { get; set; }
-		public int PositionInResult { get; set; }
-	}
+        public By ByType { get; set; }
+        public string ByValue { get; set; }
+        public int PositionInResult { get; set; }
+    }
 }

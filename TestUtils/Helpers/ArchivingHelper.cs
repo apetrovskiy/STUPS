@@ -21,7 +21,7 @@ namespace TestUtils
     /// </summary>
     public static class ArchivingHelper
     {
-        public static void AddFilesToArchive(NewTuZipArchiveCommand cmdlet)
+        internal static void AddFilesToArchive(NewTuZipArchiveCommand cmdlet)
         {
             
             if (null == cmdlet.Filename || 0 == cmdlet.Filename.Length) {
@@ -34,10 +34,10 @@ namespace TestUtils
                     true);
             }
             
-			if (string.IsNullOrEmpty(cmdlet.ArchiveName)) {
+            if (string.IsNullOrEmpty(cmdlet.ArchiveName)) {
                 
-				cmdlet.ArchiveName = "NewArchive";
-			}
+                cmdlet.ArchiveName = "NewArchive";
+            }
             
             try {
                 using (ZipFile zipFile = new ZipFile()) {
@@ -90,7 +90,7 @@ namespace TestUtils
             }
         }
         
-        public static void ExtractFromZipArchive(ExpandTuZipArchiveCommand cmdlet)
+        internal static void ExtractFromZipArchive(ExpandTuZipArchiveCommand cmdlet)
         {
             string[] pathToArchive = cmdlet.ArchiveName;
             string pathToTargetDirectory = cmdlet.TargetFolder;
@@ -100,46 +100,46 @@ namespace TestUtils
             
             foreach (string path in pathToArchive) {
                 
-				if (!string.IsNullOrEmpty(path)) {
+                if (!string.IsNullOrEmpty(path)) {
                     
-					cmdlet.WriteVerbose(
-						cmdlet,
-						"extracting '" +
-						path +
-						"'");
+                    cmdlet.WriteVerbose(
+                        cmdlet,
+                        "extracting '" +
+                        path +
+                        "'");
                     
-					try {
+                    try {
                         
-						using (ZipFile zipARchive = ZipFile.Read(path)) {
+                        using (ZipFile zipARchive = ZipFile.Read(path)) {
                             
-							cmdlet.WriteVerbose(cmdlet, "opening the archive");
+                            cmdlet.WriteVerbose(cmdlet, "opening the archive");
                             
-							foreach (ZipEntry entry in zipARchive) {
+                            foreach (ZipEntry entry in zipARchive) {
                                 
-								entry.Extract(pathToTargetDirectory, fileAction);
-								cmdlet.WriteObject(
-									cmdlet,
-									pathToTargetDirectory +
-									@"\" +
-									entry.FileName);
-							}
-						}
-					} catch (Exception eExtract) {
-						cmdlet.WriteError(
-							cmdlet,
-							"Failed to extract archive '" +
-							path +
-							"'. " +
-							eExtract.Message,
-							"FailedToExtract",
-							ErrorCategory.InvalidOperation,
-							false);
-					}
-				}
+                                entry.Extract(pathToTargetDirectory, fileAction);
+                                cmdlet.WriteObject(
+                                    cmdlet,
+                                    pathToTargetDirectory +
+                                    @"\" +
+                                    entry.FileName);
+                            }
+                        }
+                    } catch (Exception eExtract) {
+                        cmdlet.WriteError(
+                            cmdlet,
+                            "Failed to extract archive '" +
+                            path +
+                            "'. " +
+                            eExtract.Message,
+                            "FailedToExtract",
+                            ErrorCategory.InvalidOperation,
+                            false);
+                    }
+                }
             }
         }
         
-        public static void ExtractFromRarArchive(ExpandTuRarArchiveCommand cmdlet)
+        internal static void ExtractFromRarArchive(ExpandTuRarArchiveCommand cmdlet)
         {
             string[] pathToArchive = cmdlet.ArchiveName;
             string pathToTargetDirectory = cmdlet.TargetFolder;
@@ -151,15 +151,15 @@ namespace TestUtils
             
             foreach (string path in pathToArchive) {
                 
-				if (!string.IsNullOrEmpty(path)) {
+                if (!string.IsNullOrEmpty(path)) {
                     
-					cmdlet.WriteVerbose(
-						cmdlet,
-						"extracting '" +
-						path +
-						"'");
+                    cmdlet.WriteVerbose(
+                        cmdlet,
+                        "extracting '" +
+                        path +
+                        "'");
                     
-					try {
+                    try {
                         
 //                        using (Ionic.zipARchive = ZipFile.Read(path)) {
 //                            
@@ -176,24 +176,24 @@ namespace TestUtils
 //                            }
 //                        }
                         
-						RarArchive.WriteToDirectory(
-							path,
-							pathToTargetDirectory,
-							options);
+                        RarArchive.WriteToDirectory(
+                            path,
+                            pathToTargetDirectory,
+                            options);
                             
-						// RarArchive.IsRarFile
-					} catch (Exception eExtract) {
-						cmdlet.WriteError(
-							cmdlet,
-							"Failed to extract archive '" +
-							path +
-							"'. " +
-							eExtract.Message,
-							"FailedToExtract",
-							ErrorCategory.InvalidOperation,
-							false);
-					}
-				}
+                        // RarArchive.IsRarFile
+                    } catch (Exception eExtract) {
+                        cmdlet.WriteError(
+                            cmdlet,
+                            "Failed to extract archive '" +
+                            path +
+                            "'. " +
+                            eExtract.Message,
+                            "FailedToExtract",
+                            ErrorCategory.InvalidOperation,
+                            false);
+                    }
+                }
             }
         }
     }

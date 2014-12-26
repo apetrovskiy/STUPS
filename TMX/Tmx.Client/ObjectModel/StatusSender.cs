@@ -13,13 +13,13 @@ namespace Tmx.Client
     using System.Diagnostics;
     using System.Net;
     using Spring.Http;
-	using Spring.Rest.Client;
+    using Spring.Rest.Client;
     using Tmx.Core.Types.Remoting;
     using Tmx.Interfaces.Exceptions;
     using Tmx.Interfaces.Remoting;
-	using Tmx.Interfaces.Server;
+    using Tmx.Interfaces.Server;
     using Tmx.Core;
-	using System.Collections.Generic;
+    using System.Collections.Generic;
     
     /// <summary>
     /// Description of StatusSender.

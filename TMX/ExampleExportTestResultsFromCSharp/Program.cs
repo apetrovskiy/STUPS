@@ -12,9 +12,9 @@ namespace ExampleExportTestResultsFromCSharp
     using System;
     using System.Linq;
     using Tmx.Core;
-	using Tmx.Interfaces;
+    using Tmx.Interfaces;
     using Tmx;
-	// using Tmx.Core;
+    // using Tmx.Core;
     using Tmx.Interfaces.TestStructure;
     
     class Program

@@ -11,15 +11,15 @@ namespace Tmx.Client
 {
     using System;
     using System.Diagnostics;
-	using System.Net;
+    using System.Net;
     using PSTestLib.Helpers;
-	using Spring.Http;
-	using Spring.Rest.Client;
+    using Spring.Http;
+    using Spring.Rest.Client;
     using Tmx.Core.Types.Remoting;
-	using Tmx.Interfaces.Exceptions;
-	using Tmx.Interfaces.Server;
-	using Tmx.Core;
-	using Tmx.Interfaces.Remoting;
+    using Tmx.Interfaces.Exceptions;
+    using Tmx.Interfaces.Server;
+    using Tmx.Core;
+    using Tmx.Interfaces.Remoting;
     
     /// <summary>
     /// Description of Registration.

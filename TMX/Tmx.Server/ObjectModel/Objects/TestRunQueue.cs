@@ -9,15 +9,15 @@
 
 namespace Tmx.Server
 {
-	using System;
-	using System.Collections.Generic;
-	using Tmx.Interfaces.Remoting;
-	
-	/// <summary>
-	/// Description of TestRunQueue.
-	/// </summary>
-	public class TestRunQueue
-	{
-		public static List<ITestRun> TestRuns = new List<ITestRun>();
-	}
+    using System;
+    using System.Collections.Generic;
+    using Tmx.Interfaces.Remoting;
+    
+    /// <summary>
+    /// Description of TestRunQueue.
+    /// </summary>
+    public class TestRunQueue
+    {
+        public static List<ITestRun> TestRuns = new List<ITestRun>();
+    }
 }

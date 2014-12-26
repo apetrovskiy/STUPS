@@ -70,7 +70,7 @@ namespace SePSXUnitTests.Recording
 //            Assert.AreEqual(
 //                expectedResult,
 //                ((RecordedData)Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items[
-//                	Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 1]).UserData["code"]);
+//                    Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 1]).UserData["code"]);
             Assert.Fail("not implemented");
         }
         
@@ -94,7 +94,7 @@ namespace SePSXUnitTests.Recording
 //            Assert.AreEqual(
 //                expectedResult,
 //                ((RecordedData)Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items[
-//                	Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 1]).UserData["code"]);
+//                    Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 1]).UserData["code"]);
             Assert.Fail("not implemented");
         }
         
@@ -119,7 +119,7 @@ namespace SePSXUnitTests.Recording
 //            Assert.AreEqual(
 //                expectedResult,
 //                ((RecordedData)Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items[
-//                	Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 1]).UserData["code"]);
+//                    Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 1]).UserData["code"]);
             Assert.Fail("not implemented");
         }
         

@@ -13,7 +13,7 @@ namespace UIAutomation.Helpers.Commands
     using System.Management.Automation;
     using System.Collections;
     using System.Collections.Generic;
-	using System.Windows.Media.Imaging;
+    using System.Windows.Media.Imaging;
     using UIAutomation.Commands;
     
     /// <summary>

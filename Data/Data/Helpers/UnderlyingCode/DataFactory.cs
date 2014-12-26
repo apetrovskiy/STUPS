@@ -9,20 +9,20 @@
 
 namespace Data
 {
-	using System;
-	//using Data.Commands;
+    using System;
+    //using Data.Commands;
 
-	using Autofac;
-	using Autofac.Builder;
-	using Autofac.Core;
+    using Autofac;
+    using Autofac.Builder;
+    using Autofac.Core;
 
-	using System.Reflection;
-	using Autofac.Core.Activators.Reflection;
-	
-	using System.Management.Automation;
-	
-	using System.Linq;
-	
+    using System.Reflection;
+    using Autofac.Core.Activators.Reflection;
+    
+    using System.Management.Automation;
+    
+    using System.Linq;
+    
     /// <summary>
     /// Description of DataFactory.
     /// </summary>
@@ -38,21 +38,21 @@ namespace Data
             }
         }
         
-		private static Autofac.Module autofacModule;
-		internal static Autofac.Module AutofacModule
-		{ 
-		    get { return autofacModule; }
-		    set{ autofacModule = value; initFlag = false; }
-		}
-		
-		private static ContainerBuilder builder;
-		internal static IContainer Container;
-		private static bool initFlag = false;
-		
-		internal static void Init()
-		{
-		    if (!initFlag) {
-    		    try {
+        private static Autofac.Module autofacModule;
+        internal static Autofac.Module AutofacModule
+        { 
+            get { return autofacModule; }
+            set{ autofacModule = value; initFlag = false; }
+        }
+        
+        private static ContainerBuilder builder;
+        internal static IContainer Container;
+        private static bool initFlag = false;
+        
+        internal static void Init()
+        {
+            if (!initFlag) {
+                try {
 
                     builder = new ContainerBuilder();
 
@@ -64,14 +64,14 @@ namespace Data
 
                     DataFactory.Container = container;
 
-    		    }
-    		    catch (Exception efgh) {
+                }
+                catch (Exception efgh) {
 
-    		        Console.WriteLine(efgh.Message);
-    		    }
+                    Console.WriteLine(efgh.Message);
+                }
 
-		        initFlag = true;
-		    }
-		}
+                initFlag = true;
+            }
+        }
     }
 }

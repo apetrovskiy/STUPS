@@ -40,7 +40,7 @@ namespace BDDAddinUnitTests.CheckCmdletParameters
         public static void DisposeRunspace()
         {
             CmdletUnitTest.TestRunspace.RunPSCode(
-				@"[Tmx.TestData]::ResetData();");
+                @"[Tmx.TestData]::ResetData();");
             CmdletUnitTest.TestRunspace.CloseRunspace();
         }
     }

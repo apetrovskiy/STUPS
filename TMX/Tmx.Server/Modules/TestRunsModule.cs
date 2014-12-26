@@ -111,5 +111,5 @@ namespace Tmx.Server.Modules
             data.TestLabs = TestLabCollection.TestLabs ?? new List<ITestLab>();
             return data;
         }
-	}
+    }
 }

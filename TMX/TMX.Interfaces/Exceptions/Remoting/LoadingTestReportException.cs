@@ -1,16 +1,17 @@
 ﻿/*
  * Created by SharpDevelop.
- * User: alexa_000
+ * User: Alexander Petrovskiy
  * Date: 12/20/2014
  * Time: 10:53 PM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-using System;
-using System.Runtime.Serialization;
 
 namespace Tmx.Interfaces.Exceptions
 {
+    using System;
+    using System.Runtime.Serialization;
+    
     /// <summary>
     /// Desctiption of LoadingTestReportException.
     /// </summary>

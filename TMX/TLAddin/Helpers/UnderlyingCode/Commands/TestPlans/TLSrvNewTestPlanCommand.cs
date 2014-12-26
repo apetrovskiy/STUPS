@@ -23,11 +23,11 @@ namespace Tmx
         
         internal override void Execute()
         {
-			TLHelper.NewTestPlan(
-				Cmdlet, 
-				((NewTLTestPlanCommand)Cmdlet).TestPlanName,
-				((NewTLTestPlanCommand)Cmdlet).Description, 
-				((NewTLTestPlanCommand)Cmdlet).Active);
+            TLHelper.NewTestPlan(
+                Cmdlet, 
+                ((NewTLTestPlanCommand)Cmdlet).TestPlanName,
+                ((NewTLTestPlanCommand)Cmdlet).Description, 
+                ((NewTLTestPlanCommand)Cmdlet).Active);
         }
     }
 }

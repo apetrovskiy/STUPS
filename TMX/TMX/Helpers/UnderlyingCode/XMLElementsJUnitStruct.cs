@@ -9,8 +9,8 @@
 
 //namespace Tmx
 //{
-//	using System;
-//	using Tmx.Interfaces;
+//    using System;
+//    using Tmx.Interfaces;
 //
 //    /// <summary>
 //    /// Description of XMLElementsJUnitStruct.
@@ -19,30 +19,30 @@
 //    {
 //        public XMLElementsJUnitStruct(SearchCmdletBase cmdlet)
 //        {
-//	        this.suitesNode = "testsuites";
-//	        this.suiteNode = "testsuite";
-//	        this.scenariosNode = "testsuites";
-//	        this.scenarioNode = "testsuite";
-//	        this.testResultsNode = "testcases";
-//	        this.testResultNode = "testcase";
-//	        
-//	        this.failedAttribute = "errors";
-//	        
-//	        
-//	        this.timeSpentAttribute = "time";
-//	        this.timeStampAttribute = "timestamp";
+//            this.suitesNode = "testsuites";
+//            this.suiteNode = "testsuite";
+//            this.scenariosNode = "testsuites";
+//            this.scenarioNode = "testsuite";
+//            this.testResultsNode = "testcases";
+//            this.testResultNode = "testcase";
+//            
+//            this.failedAttribute = "errors";
+//            
+//            
+//            this.timeSpentAttribute = "time";
+//            this.timeStampAttribute = "timestamp";
 //        }
 //        
-//		string suitesNode;
-//		string suiteNode;
-//		string scenariosNode;
-//		string scenarioNode;
-//		string testResultsNode;
-//		string testResultNode;
-//		string failedAttribute;
+//        string suitesNode;
+//        string suiteNode;
+//        string scenariosNode;
+//        string scenarioNode;
+//        string testResultsNode;
+//        string testResultNode;
+//        string failedAttribute;
 //
-//		string timeSpentAttribute;
-//		string timeStampAttribute;
+//        string timeSpentAttribute;
+//        string timeStampAttribute;
 //        
 ////        int member; // this is just an example member, replace it with your own struct members!
 ////        
@@ -81,26 +81,26 @@
 ////        }
 ////        #endregion
 //
-////		public string SuitesNode { get; internal set; }
-////		public string SuiteNode { get; internal set; }
-////		public string ScenariosNode { get; internal set; }
-////		public string ScenarioNode { get; internal set; }
-////		public string TestResultsNode { get; internal set; }
-////		public string TestResultNode { get; internal set; }
-////		public string FailedAttribute { get; internal set; }
+////        public string SuitesNode { get; internal set; }
+////        public string SuiteNode { get; internal set; }
+////        public string ScenariosNode { get; internal set; }
+////        public string ScenarioNode { get; internal set; }
+////        public string TestResultsNode { get; internal set; }
+////        public string TestResultNode { get; internal set; }
+////        public string FailedAttribute { get; internal set; }
 ////
-////		public string TimeSpentAttribute { get; internal set; }
-////		public string TimeStampAttribute { get; internal set; }
+////        public string TimeSpentAttribute { get; internal set; }
+////        public string TimeStampAttribute { get; internal set; }
 //
-//		public string SuitesNode { get { return this.suitesNode; } }
-//		public string SuiteNode { get { return this.suiteNode; } }
-//		public string ScenariosNode { get { return this.scenariosNode; } }
-//		public string ScenarioNode { get { return this.scenarioNode; } }
-//		public string TestResultsNode { get { return this.testResultsNode; } }
-//		public string TestResultNode { get { return this.testResultNode; } }
-//		public string FailedAttribute { get { return this.failedAttribute; } }
+//        public string SuitesNode { get { return this.suitesNode; } }
+//        public string SuiteNode { get { return this.suiteNode; } }
+//        public string ScenariosNode { get { return this.scenariosNode; } }
+//        public string ScenarioNode { get { return this.scenarioNode; } }
+//        public string TestResultsNode { get { return this.testResultsNode; } }
+//        public string TestResultNode { get { return this.testResultNode; } }
+//        public string FailedAttribute { get { return this.failedAttribute; } }
 //
-//		public string TimeSpentAttribute { get { return this.timeSpentAttribute; } }
-//		public string TimeStampAttribute { get { return this.timeStampAttribute; } }
+//        public string TimeSpentAttribute { get { return this.timeSpentAttribute; } }
+//        public string TimeStampAttribute { get { return this.timeStampAttribute; } }
 //    }
 //}

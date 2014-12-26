@@ -10,12 +10,12 @@
 namespace Tmx.Server.Tests.Modules
 {
     using System;
-	using System.Collections.Generic;
-	using System.Linq;
+    using System.Collections.Generic;
+    using System.Linq;
     // using System.Management.Automation;
     using System.Reflection;
-	using System.Xml.Linq;
-	using NSubstitute;
+    using System.Xml.Linq;
+    using NSubstitute;
     using Nancy;
     using Nancy.Json;
     using Nancy.Testing;
@@ -23,12 +23,12 @@ namespace Tmx.Server.Tests.Modules
     using Tmx.Core;
     using Tmx.Core.Types.Remoting;
     using Tmx.Interfaces.Remoting;
-	using Tmx.Interfaces.Server;
-	using Tmx.Server.Modules;
+    using Tmx.Interfaces.Server;
+    using Tmx.Server.Modules;
     // using MbUnit.Framework;
     using NUnit.Framework;
-	using Tmx;
-	using Tmx.Interfaces.TestStructure;
+    using Tmx;
+    using Tmx.Interfaces.TestStructure;
     using Xunit;
     using Tmx.Interfaces;
     using PSTestLib;
@@ -39,54 +39,54 @@ namespace Tmx.Server.Tests.Modules
     [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class TestResultsModuleTestFixture
     {
-	    ITestWorkflow _workflow;
-	    ITestRun _testRun;
-	    BrowserResponse _response;
-	    Browser _browser;
+        ITestWorkflow _workflow;
+        ITestRun _testRun;
+        BrowserResponse _response;
+        Browser _browser;
         
-    	public TestResultsModuleTestFixture()
-    	{
-    	    TestSettings.PrepareModuleTests();
-		    _browser = TestFactory.GetBrowserForTestResultsModule();
-		    TestFactory.GetTestRunWithStatus(TestRunStatuses.Running);
-		    _workflow = WorkflowCollection.Workflows.First();
-		    _testRun = TestRunQueue.TestRuns.First();
-    	}
-		
-    	[MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
-    	public void SetUp()
-    	{
-    	    TestSettings.PrepareModuleTests();
-		    _browser = TestFactory.GetBrowserForTestResultsModule();
-		    TestFactory.GetTestRunWithStatus(TestRunStatuses.Running);
-		    _workflow = WorkflowCollection.Workflows.First();
-		    _testRun = TestRunQueue.TestRuns.First();
-    	}
-    	
-//    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-//    	public void Should_ignore_empty_results_collection()
-//    	{
-//    	    Xunit.Assert.Equal(0, 1);
-//    	}
-//    	
-//    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-//    	public void Should_add_test_suites_from_results_collection()
-//    	{
-//    	    Xunit.Assert.Equal(0, 1);
-//    	}
-//    	
-//    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-//    	public void Should_add_test_suites_and_test_scenarios_from_results_collection()
-//    	{
-//    	    Xunit.Assert.Equal(0, 1);
-//    	}
-//    	
-//    	[MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-//    	public void Should_add_test_results_from_results_collection()
-//    	{
-//    	    Xunit.Assert.Equal(0, 1);
-//    	}
-    	
+        public TestResultsModuleTestFixture()
+        {
+            TestSettings.PrepareModuleTests();
+            _browser = TestFactory.GetBrowserForTestResultsModule();
+            TestFactory.GetTestRunWithStatus(TestRunStatuses.Running);
+            _workflow = WorkflowCollection.Workflows.First();
+            _testRun = TestRunQueue.TestRuns.First();
+        }
+        
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
+        public void SetUp()
+        {
+            TestSettings.PrepareModuleTests();
+            _browser = TestFactory.GetBrowserForTestResultsModule();
+            TestFactory.GetTestRunWithStatus(TestRunStatuses.Running);
+            _workflow = WorkflowCollection.Workflows.First();
+            _testRun = TestRunQueue.TestRuns.First();
+        }
+        
+//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        public void Should_ignore_empty_results_collection()
+//        {
+//            Xunit.Assert.Equal(0, 1);
+//        }
+//        
+//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        public void Should_add_test_suites_from_results_collection()
+//        {
+//            Xunit.Assert.Equal(0, 1);
+//        }
+//        
+//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        public void Should_add_test_suites_and_test_scenarios_from_results_collection()
+//        {
+//            Xunit.Assert.Equal(0, 1);
+//        }
+//        
+//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        public void Should_add_test_results_from_results_collection()
+//        {
+//            Xunit.Assert.Equal(0, 1);
+//        }
+        
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_accept_when_posting_no_data()
         {
@@ -105,8 +105,8 @@ namespace Tmx.Server.Tests.Modules
 //        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Should_react_on_posting_bunch_of_data()
 //        {
-////        	var xDoc = XDocument.Load(@"../../Modules/TMX_report.xml");
-//        	var xDoc = XDocument.Load(@"../../Modules/TMX_red_report.xml");
+////            var xDoc = XDocument.Load(@"../../Modules/TMX_report.xml");
+//            var xDoc = XDocument.Load(@"../../Modules/TMX_red_report.xml");
 //            
 //            var dataObject = new TestResultsDataObject {
 //                Data = xDoc.ToString()
@@ -323,29 +323,29 @@ namespace Tmx.Server.Tests.Modules
         
         void WHEN_Posting_TestResults<T>(T element)
         {
-			_response = _browser.Post(getPathToResourcesCollection(typeof(T)), (with) => {
-			                              with.JsonBody<T>(element);
-			                              with.Accept("application/json");
-			                          });
+            _response = _browser.Post(getPathToResourcesCollection(typeof(T)), (with) => {
+                                          with.JsonBody<T>(element);
+                                          with.Accept("application/json");
+                                      });
         }
         
         void WHEN_Getting_TestResults()
         {
-			_response = _browser.Get(getPathToResourcesCollection(typeof(List<ITestSuite>)), (with) => with.Accept("application/json"));
+            _response = _browser.Get(getPathToResourcesCollection(typeof(List<ITestSuite>)), (with) => with.Accept("application/json"));
         }
         
         string getPathToResourcesCollection(MemberInfo type)
         {
             string path = string.Empty;
-			switch (type.Name) {
-			    case "XElement":
+            switch (type.Name) {
+                case "XElement":
                 case "XDocument":
-			    case ".XDocument":
-			    case "String":
-			        return UrlList.TestResults_Root + "/" + _testRun.Id + UrlList.TestResultsPostingPoint_forClient_relPath;
-			    default:
-			        return UrlList.TestResults_Root + "/" + _testRun.Id + UrlList.TestResultsPostingPoint_forClient_relPath;
-			}
+                case ".XDocument":
+                case "String":
+                    return UrlList.TestResults_Root + "/" + _testRun.Id + UrlList.TestResultsPostingPoint_forClient_relPath;
+                default:
+                    return UrlList.TestResults_Root + "/" + _testRun.Id + UrlList.TestResultsPostingPoint_forClient_relPath;
+            }
         }
         
 //        ITestClient givenSendingRegistration(ITestClient testClient)

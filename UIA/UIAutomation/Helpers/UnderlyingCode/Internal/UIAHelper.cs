@@ -571,7 +571,7 @@ namespace UIAutomation
                     break;
                     //default:
                     //
-                    //	break;
+                    //    break;
             }
             
             
@@ -1092,7 +1092,7 @@ namespace UIAutomation
 //                        break;
 //                    default:
 //                        
-//                    	break;
+//                        break;
 //                }
 //            } catch {
 //                switch (propertyName) {
@@ -1125,7 +1125,7 @@ namespace UIAutomation
 //                        break;
 //                    default:
 //                        
-//                    	break;
+//                        break;
 //                }
 //            }
 //            if (string.IsNullOrEmpty(tempString)) {

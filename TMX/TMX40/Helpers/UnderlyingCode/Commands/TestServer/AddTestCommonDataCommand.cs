@@ -9,11 +9,11 @@
 
 namespace Tmx
 {
-	using System;
-	using Tmx.Core;
+    using System;
+    using Tmx.Core;
     using Tmx.Server;
-	using Tmx.Commands;
-	
+    using Tmx.Commands;
+    
     /// <summary>
     /// Description of AddTestCommonDataCommand.
     /// </summary>

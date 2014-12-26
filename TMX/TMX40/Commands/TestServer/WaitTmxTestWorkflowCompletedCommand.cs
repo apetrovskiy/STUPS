@@ -12,7 +12,7 @@ namespace Tmx.Commands
     using System;
     using System.Management.Automation;
     using Ninject.Parameters;
-	using PSTestLib;
+    using PSTestLib;
     
     /// <summary>
     /// Description of WaitTmxTestWorkflowCompletedCommand.
@@ -23,10 +23,10 @@ namespace Tmx.Commands
         [Parameter(Mandatory = false)]
         public string Name { get; set; }
         
-		protected override void BeginProcessing()
-		{
-			var command = new WaitTestWorkflowCompletedCommand(this);
-			command.Execute();
-		}
+        protected override void BeginProcessing()
+        {
+            var command = new WaitTestWorkflowCompletedCommand(this);
+            command.Execute();
+        }
     }
 }

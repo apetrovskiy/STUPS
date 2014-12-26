@@ -10,11 +10,11 @@
 namespace TmxUnitTests.Commands.TestStructure
 {
     using System;
-	using System.Management.Automation;
+    using System.Management.Automation;
     using MbUnit.Framework;using NUnit.Framework;
     using PSTestLib;
     using Tmx;
-	using Tmx.Interfaces.TestStructure;
+    using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of OpenTmxTestSuiteCommandTestFixture.

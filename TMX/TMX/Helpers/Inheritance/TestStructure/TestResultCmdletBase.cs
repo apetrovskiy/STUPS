@@ -11,7 +11,7 @@ namespace Tmx
 {
     using System;
     using System.Management.Automation;
-	using Tmx.Interfaces.TestStructure;
+    using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of TestResultCmdletBase.
@@ -56,24 +56,24 @@ namespace Tmx
         public void ConvertTestResultStatusToTraditionalTestResult()
         {
             if (TestResultStatuses.NotTested == TestResultStatus) return;
-			switch (TestResultStatus) {
-				case TestResultStatuses.Passed:
-					TestPassed = true;
-					break;
-				case TestResultStatuses.Failed:
-					TestPassed = false;
-					break;
-				case TestResultStatuses.NotTested:
+            switch (TestResultStatus) {
+                case TestResultStatuses.Passed:
+                    TestPassed = true;
+                    break;
+                case TestResultStatuses.Failed:
+                    TestPassed = false;
+                    break;
+                case TestResultStatuses.NotTested:
                     // nothing to do
                     // the impossible combination
-					break;
-				case TestResultStatuses.KnownIssue:
-					KnownIssue = true;
-					break;
-				default:
+                    break;
+                case TestResultStatuses.KnownIssue:
+                    KnownIssue = true;
+                    break;
+                default:
                     //throw new Exception("Invalid value for TestResultStatuses");
-					break;
-			}
+                    break;
+            }
         }
     }
 }

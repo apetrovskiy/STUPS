@@ -95,7 +95,7 @@ namespace UIAutomation
                 } // else{ // OK
                 // }
                     
-				Wait &= cmdlet.WaitNoWindow;
+                Wait &= cmdlet.WaitNoWindow;
                 /*
                 if (!cmdlet.WaitNoWindow) {
                     Wait = false;

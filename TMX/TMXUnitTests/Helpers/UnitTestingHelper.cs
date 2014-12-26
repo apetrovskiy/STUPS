@@ -14,9 +14,9 @@ namespace TmxUnitTests
     using Tmx;
     using Tmx.Commands;
     using PSTestLib;
-	// using Tmx.Core;
-	using Tmx.Interfaces;
-	using Tmx.Interfaces.TestStructure;
+    // using Tmx.Core;
+    using Tmx.Interfaces;
+    using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of UnitTestingHelper.
@@ -27,11 +27,11 @@ namespace TmxUnitTests
         {
             PSCmdletBase.UnitTestMode = true;
             if (0 < UnitTestOutput.Count)
-				UnitTestOutput.Clear();
-			TestData.ResetData();
-			// 20141117
-			TestData.AlreadyInitialized = false;
-			TestData.InitTestData();
+                UnitTestOutput.Clear();
+            TestData.ResetData();
+            // 20141117
+            TestData.AlreadyInitialized = false;
+            TestData.InitTestData();
         }
         
         #region TestSuite
@@ -44,12 +44,12 @@ namespace TmxUnitTests
 
             var cmdlet = new NewSuiteCmdletBase();
 
-			if (!string.IsNullOrEmpty(name))
-				cmdlet.Name = name;
-			if (!string.IsNullOrEmpty(id))
-				cmdlet.Id = id;
-			if (!string.IsNullOrEmpty(description))
-				cmdlet.Description = description;
+            if (!string.IsNullOrEmpty(name))
+                cmdlet.Name = name;
+            if (!string.IsNullOrEmpty(id))
+                cmdlet.Id = id;
+            if (!string.IsNullOrEmpty(description))
+                cmdlet.Description = description;
             
             var command = new TmxNewTestSuiteCommand(cmdlet);
             command.Execute();
@@ -58,9 +58,9 @@ namespace TmxUnitTests
             // return (ITestSuite)(object)UnitTestOutput.LastOutput[0];
             var returnValue = (object)UnitTestOutput.LastOutput[0];
             if (returnValue is ITestSuite)
-            	return returnValue as ITestSuite;
+                return returnValue as ITestSuite;
             if (returnValue is ErrorRecord)
-            	return returnValue as ErrorRecord;
+                return returnValue as ErrorRecord;
             return returnValue;
         }
         
@@ -72,10 +72,10 @@ namespace TmxUnitTests
 
             var cmdlet = new OpenSuiteCmdletBase();
 
-			if (!string.IsNullOrEmpty(name))
-				cmdlet.Name = name;
-			if (!string.IsNullOrEmpty(id))
-				cmdlet.Id = id;
+            if (!string.IsNullOrEmpty(name))
+                cmdlet.Name = name;
+            if (!string.IsNullOrEmpty(id))
+                cmdlet.Id = id;
             
             var command = new TmxOpenTestSuiteCommand(cmdlet);
             command.Execute();
@@ -84,9 +84,9 @@ namespace TmxUnitTests
             // return (ITestSuite)(object)UnitTestOutput.LastOutput[0];
             var returnValue = (object)UnitTestOutput.LastOutput[0];
             if (returnValue is ITestSuite)
-            	return returnValue as ITestSuite;
+                return returnValue as ITestSuite;
             if (returnValue is ErrorRecord)
-            	return returnValue as ErrorRecord;
+                return returnValue as ErrorRecord;
             return returnValue;
         }
         
@@ -113,18 +113,18 @@ namespace TmxUnitTests
         {
             var cmdlet = new AddTmxTestScenarioCommand();
 
-			if (!string.IsNullOrEmpty(name))
-				cmdlet.Name = name;
-			if (!string.IsNullOrEmpty(id))
-				cmdlet.Id = id;
-			if (!string.IsNullOrEmpty(description))
-				cmdlet.Description = description;
+            if (!string.IsNullOrEmpty(name))
+                cmdlet.Name = name;
+            if (!string.IsNullOrEmpty(id))
+                cmdlet.Id = id;
+            if (!string.IsNullOrEmpty(description))
+                cmdlet.Description = description;
             if (null == testSuite) {
 
-				if (!string.IsNullOrEmpty(testSuiteName))
-					cmdlet.TestSuiteName = testSuiteName;
-				if (!string.IsNullOrEmpty(testSuiteId))
-					cmdlet.TestSuiteId = testSuiteId;
+                if (!string.IsNullOrEmpty(testSuiteName))
+                    cmdlet.TestSuiteName = testSuiteName;
+                if (!string.IsNullOrEmpty(testSuiteId))
+                    cmdlet.TestSuiteId = testSuiteId;
                 if ((string.IsNullOrEmpty(testSuiteName)) && (string.IsNullOrEmpty(testSuiteId)))
                     cmdlet.InputObject = TestData.CurrentTestSuite;
                 
@@ -147,12 +147,12 @@ namespace TmxUnitTests
 
             var cmdlet = new AddScenarioCmdletBase();
 
-			if (!string.IsNullOrEmpty(name))
-				cmdlet.Name = name;
-			if (!string.IsNullOrEmpty(id))
-				cmdlet.Id = id;
-			if (!string.IsNullOrEmpty(description))
-				cmdlet.Description = description;
+            if (!string.IsNullOrEmpty(name))
+                cmdlet.Name = name;
+            if (!string.IsNullOrEmpty(id))
+                cmdlet.Id = id;
+            if (!string.IsNullOrEmpty(description))
+                cmdlet.Description = description;
             
             var command = new TmxAddTestScenarioCommand(cmdlet);
             command.Execute();
@@ -192,7 +192,7 @@ namespace TmxUnitTests
             cmdlet.KnownIssue = logicStatus;
             // 20140715
             // if (logicStatus)
-            // 	cmdlet.TestResultStatus = TestResultStatuses.KnownIssue;
+            //     cmdlet.TestResultStatus = TestResultStatuses.KnownIssue;
             
             var command = new TmxCloseTestResultCommand(cmdlet);
             command.Execute();
@@ -207,13 +207,13 @@ namespace TmxUnitTests
             var cmdlet = new SetTmxCurrentTestResultCommand();
 
             if (!string.IsNullOrEmpty(testResultName) &&
-			             0 < testResultName.Length) {
+                         0 < testResultName.Length) {
                 
                 cmdlet.TestResultName = testResultName;
             }
             
             if (!string.IsNullOrEmpty(testResultId) &&
-			             0 < testResultId.Length) {
+                         0 < testResultId.Length) {
                 
                 cmdlet.Id = testResultId;
             }

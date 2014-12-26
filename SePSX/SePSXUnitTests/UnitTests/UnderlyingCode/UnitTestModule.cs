@@ -53,10 +53,10 @@
 //                Console.WriteLine("Assembly registration failed");
 //                Console.WriteLine(eRegisterAssembly.Message);
 //            }
-//			    
-////			    .RegisterType<ChromeDriver>()
-////			    .As<IWebDriver>().UsingConstructor(new Type[]{} )
-////			    .Named<IWebDriver>("chrome_bare");
+//                
+////                .RegisterType<ChromeDriver>()
+////                .As<IWebDriver>().UsingConstructor(new Type[]{} )
+////                .Named<IWebDriver>("chrome_bare");
 //            
 //        }
 //    }

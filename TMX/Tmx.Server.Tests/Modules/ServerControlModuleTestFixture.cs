@@ -89,23 +89,23 @@ namespace Tmx.Server.Tests.Modules
         
         void WHEN_sending_server_command_as_json(ServerCommand serverCommand)
         {
-        	_browser.Put(UrlList.ServerControlPoint_absPath, with => {
+            _browser.Put(UrlList.ServerControlPoint_absPath, with => {
                 with.JsonBody<ServerCommand>(serverCommand);
                 with.Accept("application/json");
-        	});
+            });
         }
         
         void WHEN_sending_server_command_as_xml(ServerCommand serverCommand)
         {
-        	_browser.Put(UrlList.ServerControlPoint_absPath, with => {
+            _browser.Put(UrlList.ServerControlPoint_absPath, with => {
                 with.JsonBody<ServerCommand>(serverCommand);
                 with.Accept("application/xml");
-        	});
+            });
         }
         
         void THEN_there_should_be_the_following_number_of_workflow_objects(int number)
         {
             Xunit.Assert.Equal(number, WorkflowCollection.Workflows.Count);
         }
-	}
+    }
 }

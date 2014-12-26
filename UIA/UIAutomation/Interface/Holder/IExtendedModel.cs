@@ -9,9 +9,9 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
-	using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
-	
+    extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
+    
     /// <summary>
     /// Description of IExtendedModel.
     /// </summary>
@@ -23,12 +23,12 @@ namespace UIAutomation
         IUiEltCollection ComboBoxes { get; }
         IUiEltCollection Customs { get; }
         IUiEltCollection DataGrids { get; }
-	    IUiEltCollection DataItems { get; }
-	    IUiEltCollection Documents { get; }
+        IUiEltCollection DataItems { get; }
+        IUiEltCollection Documents { get; }
         IUiEltCollection Edits { get; }
         IUiEltCollection Groups { get; }
         IUiEltCollection Headers { get; }
-	    IUiEltCollection HeaderItems { get; }
+        IUiEltCollection HeaderItems { get; }
         IUiEltCollection Hyperlinks { get; }
         IUiEltCollection Images { get; }
         IUiEltCollection ListItems { get; }
@@ -45,16 +45,16 @@ namespace UIAutomation
         IUiEltCollection Spinners { get; }
         IUiEltCollection SplitButtons { get; }
         IUiEltCollection StatusBars { get; }
-	    IUiEltCollection Tabs { get; }
-	    IUiEltCollection TabItems { get; }
+        IUiEltCollection Tabs { get; }
+        IUiEltCollection TabItems { get; }
         IUiEltCollection Tables { get; }
-	    IUiEltCollection Texts { get; }
+        IUiEltCollection Texts { get; }
         IUiEltCollection Thumbs { get; }
-	    IUiEltCollection TitleBars { get; }
+        IUiEltCollection TitleBars { get; }
         IUiEltCollection ToolBars { get; }
-	    IUiEltCollection ToolTips { get; }
-	    IUiEltCollection Trees { get; }
-	    IUiEltCollection TreeItems { get; }
-	    IUiEltCollection Windows { get; }
+        IUiEltCollection ToolTips { get; }
+        IUiEltCollection Trees { get; }
+        IUiEltCollection TreeItems { get; }
+        IUiEltCollection Windows { get; }
     }
 }

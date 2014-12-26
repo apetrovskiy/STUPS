@@ -32,7 +32,7 @@ namespace Tmx.Interfaces.Remoting
     }
     
     /*
-    	<activity>
+        <activity>
             <section_name>MSI UPGRADE: gathering of the real-life data</section_name>
             *<test_name>MSI UPGRADE: gathering of the real-life data</test_name>
             *<active>1</active>
@@ -53,5 +53,5 @@ namespace Tmx.Interfaces.Remoting
                 <c>c:\tests</c>
             </parameters>
         </activity>
-	*/
+    */
 }

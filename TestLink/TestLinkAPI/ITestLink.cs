@@ -188,9 +188,9 @@ namespace Meyn.TestLink
         /// <param name="devKey"></param>
         /// <param name="executionid"></param>
         /// <returns> mixed $resultInfo 
-	    /// 				[status]	=> true/false of success
-	    /// 				[id]		  => result id or error code
-	    /// 				[message]	=> optional message for error message string</returns>
+        ///                 [status]    => true/false of success
+        ///                 [id]          => result id or error code
+        ///                 [message]    => optional message for error message string</returns>
         [XmlRpcMethod("tl.deleteExecution", StructParams = true)]
         object deleteExecution(string devKey, int executionid);
 
@@ -225,13 +225,13 @@ namespace Meyn.TestLink
         /// <param name="devKey"></param>
         /// <param name="testplanid"></param>
         /// <returns>map where every element has:
-        /// 	 *
-        /// 	 *	'type' => 'platform'
-        /// 	 *	'total_tc => ZZ
-        /// 	 *	'details' => array ( 'passed' => array( 'qty' => X)
-        /// 	 *	                     'failed' => array( 'qty' => Y)
-        /// 	 *	                     'blocked' => array( 'qty' => U)
-        /// 	 *                       ....)</returns>
+        ///      *
+        ///      *    'type' => 'platform'
+        ///      *    'total_tc => ZZ
+        ///      *    'details' => array ( 'passed' => array( 'qty' => X)
+        ///      *                         'failed' => array( 'qty' => Y)
+        ///      *                         'blocked' => array( 'qty' => U)
+        ///      *                       ....)</returns>
         [XmlRpcMethod("tl.getTotalsForTestPlan", StructParams = true)]
         object getTotalsForTestPlan(string devKey, int testplanid);
 

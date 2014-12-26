@@ -11,10 +11,10 @@ using System.Management.Automation;
 
 namespace Tmx
 {
-	/// <summary>
-	/// Description of SuiteCmdletBase.
-	/// </summary>
-	public class SuiteCmdletBase : CommonCmdletBase
-	{
-	}
+    /// <summary>
+    /// Description of SuiteCmdletBase.
+    /// </summary>
+    public class SuiteCmdletBase : CommonCmdletBase
+    {
+    }
 }

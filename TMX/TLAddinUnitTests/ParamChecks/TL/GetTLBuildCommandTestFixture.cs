@@ -36,7 +36,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void Get_TLBuild_NoParameters()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Get-TLBuild;");
+                "Get-TLBuild;");
         }
         
         [Test]
@@ -44,7 +44,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void Get_TLBuild_Name()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Get-TLBuild -Name '1.2.3.4';");
+                "Get-TLBuild -Name '1.2.3.4';");
         }
         
         [Test]
@@ -52,7 +52,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void Get_TLBuild_Id()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Get-TLBuild -Id 123;");
+                "Get-TLBuild -Id 123;");
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Tmx.Client
     using Tmx.Core;
     using Tmx.Core.Types.Remoting;
     using Tmx.Interfaces.TestStructure;
-//	using Spring.Http.Converters.Xml;
+//    using Spring.Http.Converters.Xml;
     using Spring.Rest.Client;
     using Tmx.Interfaces;
     using Tmx.Interfaces.Exceptions;
@@ -34,7 +34,7 @@ namespace Tmx.Client
         
         public TestResultsSender(RestRequestCreator requestCreator)
         {
-        	_restTemplate = requestCreator.GetRestTemplate();
+            _restTemplate = requestCreator.GetRestTemplate();
         }
         
         public virtual bool SendTestResults()
@@ -81,6 +81,6 @@ namespace Tmx.Client
                 Trace.TraceError(eSendingTestResults.Message);
                 throw new SendingTestResultsException("Failed to send test results. " + eSendingTestResults.Message);
             }
-	    }
+        }
     }
 }

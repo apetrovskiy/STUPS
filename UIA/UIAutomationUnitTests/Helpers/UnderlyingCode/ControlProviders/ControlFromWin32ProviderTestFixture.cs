@@ -9,7 +9,7 @@
 
 namespace UIAutomationUnitTests.Helpers.UnderlyingCode.ControlProviders
 {
-	using System;
+    using System;
     using System.Collections.Generic;
     using System.Windows.Automation;
     using System.Linq;

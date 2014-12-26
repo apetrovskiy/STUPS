@@ -51,11 +51,11 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             // 20140630
             // conditions = ((AndCondition)condition).GetConditions();
             if (null != condition as AndCondition) {
-            	conditions = ((AndCondition)condition).GetConditions();
+                conditions = ((AndCondition)condition).GetConditions();
             } else if (null != condition as OrCondition) {
-            	conditions = ((OrCondition)condition).GetConditions();
+                conditions = ((OrCondition)condition).GetConditions();
             } else {
-            	conditions = new[] { condition };
+                conditions = new[] { condition };
             }
             
             foreach (Condition cond in conditions) {

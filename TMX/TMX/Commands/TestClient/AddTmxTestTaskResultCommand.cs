@@ -9,24 +9,24 @@
 
 namespace Tmx.Commands
 {
-	using System;
+    using System;
     using System.Collections;
-	using System.Management.Automation;
-	using Tmx;
-	
+    using System.Management.Automation;
+    using Tmx;
+    
     /// <summary>
     /// Description of AddTmxTestTaskResultCommand.
     /// </summary>
     [Cmdlet(VerbsCommon.Add, "TmxTestTaskResult")]
     public class AddTmxTestTaskResultCommand : ClientCmdletBase
     {
-//		[Parameter(Mandatory = true,
-//		           Position = 0,
-//		           ValueFromPipeline = true)]
-//		[ValidateNotNull]
-//		// public string[] Result { get; set; }
-//		public Hashtable Result { get; set; }
-		
+//        [Parameter(Mandatory = true,
+//                   Position = 0,
+//                   ValueFromPipeline = true)]
+//        [ValidateNotNull]
+//        // public string[] Result { get; set; }
+//        public Hashtable Result { get; set; }
+        
         [Parameter(Mandatory = true,
                    Position = 0)]
         [ValidateNotNullOrEmpty]
@@ -36,11 +36,11 @@ namespace Tmx.Commands
                    Position = 1)]
         [ValidateNotNullOrEmpty]
         public string Value { get; set; }
-		
-		protected override void BeginProcessing()
-		{
-			var command = new AddTestTaskResultCommand(this);
-			command.Execute();
-		}
+        
+        protected override void BeginProcessing()
+        {
+            var command = new AddTestTaskResultCommand(this);
+            command.Execute();
+        }
     }
 }

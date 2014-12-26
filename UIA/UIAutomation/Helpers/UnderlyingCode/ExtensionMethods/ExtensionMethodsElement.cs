@@ -349,7 +349,7 @@ namespace UIAutomation
                         break;
                     default:
                         
-                    	break;
+                        break;
                 }
             } catch {
                 switch (propertyName) {
@@ -385,7 +385,7 @@ namespace UIAutomation
                         break;
                     default:
                         
-                    	break;
+                        break;
                 }
             }
             if (string.IsNullOrEmpty(tempString)) {
@@ -412,7 +412,7 @@ namespace UIAutomation
             
             // 20140314
             // was an experiment
-			// resultCollection = resultCollection ?? new List<IUiElement>();
+            // resultCollection = resultCollection ?? new List<IUiElement>();
             
             if (string.IsNullOrEmpty(dataToCheck)) {
                 return result;
@@ -463,7 +463,7 @@ namespace UIAutomation
                     contextMenuSearcherData,
                     Preferences.Timeout);
             
-			resultElement =
+            resultElement =
                 elementsMenuRoot.First(element => null != element);
             
             return resultElement;

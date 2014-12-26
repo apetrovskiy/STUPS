@@ -9,9 +9,9 @@
 
 namespace SePSXUnitTests
 {
-	#region using
-	using System;
-	using OpenQA.Selenium;
+    #region using
+    using System;
+    using OpenQA.Selenium;
 //    using OpenQA.Selenium.Firefox;
 //    using OpenQA.Selenium.Chrome;
 //    using OpenQA.Selenium.IE;
@@ -25,25 +25,25 @@ namespace SePSXUnitTests
 //    using OpenQA.Selenium.Remote;
 
 //    using System.Diagnostics;
-	using System.Collections.Generic;
-	using System.Collections.ObjectModel;
-	using System.Collections;
-	using System.Drawing;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Collections;
+    using System.Drawing;
 
-	//
-	//
+    //
+    //
 //    using System.Windows.Automation;
-	//
-	//
+    //
+    //
 
-	//using OpenQA.Selenium.Remote;
+    //using OpenQA.Selenium.Remote;
 
-	using PSTestLib;
-	using System.Management.Automation;
-	using SePSX;
+    using PSTestLib;
+    using System.Management.Automation;
+    using SePSX;
 
-	#endregion using
-	
+    #endregion using
+    
     /// <summary>
     /// Description of JSFakeGenerator.
     /// </summary>
@@ -60,47 +60,47 @@ namespace SePSXUnitTests
         
         private List<object> allTypesOfObjects;
         
-		public void CleanRecordedDuringSleep(TranscriptCmdletBase cmdlet)
-		{
-			cmdlet.WriteVerbose(cmdlet, "cleaning colelcted during the sleep");
-			SeHelper.ExecuteJavaScript(cmdlet, (new OpenQA.Selenium.IWebDriver[] { CurrentData.CurrentWebDriver }), JSRecorder.constRecorderCleanRecordings, (new string[] { string.Empty }), false);
-			cmdlet.WriteVerbose(cmdlet, "cleaned");
-		}
+        public void CleanRecordedDuringSleep(TranscriptCmdletBase cmdlet)
+        {
+            cmdlet.WriteVerbose(cmdlet, "cleaning colelcted during the sleep");
+            SeHelper.ExecuteJavaScript(cmdlet, (new OpenQA.Selenium.IWebDriver[] { CurrentData.CurrentWebDriver }), JSRecorder.constRecorderCleanRecordings, (new string[] { string.Empty }), false);
+            cmdlet.WriteVerbose(cmdlet, "cleaned");
+        }
 
-		public void StopRecording(TranscriptCmdletBase cmdlet)
-		{
-			cmdlet.WriteVerbose(cmdlet, "exit recording");
+        public void StopRecording(TranscriptCmdletBase cmdlet)
+        {
+            cmdlet.WriteVerbose(cmdlet, "exit recording");
 
-			SeHelper.ExecuteJavaScript(cmdlet, (new OpenQA.Selenium.IWebDriver[] { CurrentData.CurrentWebDriver }), JSRecorder.constRecorderExitRecording, (new string[] { string.Empty }), false);
-			cmdlet.WriteVerbose(cmdlet, "exited");
-		}
+            SeHelper.ExecuteJavaScript(cmdlet, (new OpenQA.Selenium.IWebDriver[] { CurrentData.CurrentWebDriver }), JSRecorder.constRecorderExitRecording, (new string[] { string.Empty }), false);
+            cmdlet.WriteVerbose(cmdlet, "exited");
+        }
 
-		public void MakeJSInjection(TranscriptCmdletBase cmdlet)
-		{
-			try {
-				cmdlet.WriteVerbose(cmdlet, "checking injection");
-				var result = SeHelper.ExecuteJavaScript(cmdlet, (new OpenQA.Selenium.IWebDriver[] { CurrentData.CurrentWebDriver }), JSRecorder.constRecorderCheckInjection, (new string[] { string.Empty }), false);
-				if (result) {
-					cmdlet.WriteVerbose(cmdlet, "inserting injection");
+        public void MakeJSInjection(TranscriptCmdletBase cmdlet)
+        {
+            try {
+                cmdlet.WriteVerbose(cmdlet, "checking injection");
+                var result = SeHelper.ExecuteJavaScript(cmdlet, (new OpenQA.Selenium.IWebDriver[] { CurrentData.CurrentWebDriver }), JSRecorder.constRecorderCheckInjection, (new string[] { string.Empty }), false);
+                if (result) {
+                    cmdlet.WriteVerbose(cmdlet, "inserting injection");
 
-					SeHelper.ExecuteJavaScript(cmdlet, (new OpenQA.Selenium.IWebDriver[] { CurrentData.CurrentWebDriver }), JSRecorder.constRecorderInjectScript, (new string[] { SePSX.Preferences.TranscriptExcludeList }), false);
-					cmdlet.WriteVerbose(cmdlet, "injection inserted");
-				}
-			} catch (Exception eGetInjectionCode) {
-				cmdlet.WriteVerbose(cmdlet, "test for existing injection: " + eGetInjectionCode.Message);
-			}
-		}
+                    SeHelper.ExecuteJavaScript(cmdlet, (new OpenQA.Selenium.IWebDriver[] { CurrentData.CurrentWebDriver }), JSRecorder.constRecorderInjectScript, (new string[] { SePSX.Preferences.TranscriptExcludeList }), false);
+                    cmdlet.WriteVerbose(cmdlet, "injection inserted");
+                }
+            } catch (Exception eGetInjectionCode) {
+                cmdlet.WriteVerbose(cmdlet, "test for existing injection: " + eGetInjectionCode.Message);
+            }
+        }
 
-		public IEnumerable GetRecordedResults()
-		{
-			if (null != this.allTypesOfObjects && 0 < this.allTypesOfObjects.Count) {
-		        
-			    return (new ReadOnlyCollection<object>(this.allTypesOfObjects));
-			} else {
-		        
-				List<object> listToReturn = new List<object>();
-				return (new ReadOnlyCollection<object>(listToReturn));
-			}
-		}
+        public IEnumerable GetRecordedResults()
+        {
+            if (null != this.allTypesOfObjects && 0 < this.allTypesOfObjects.Count) {
+                
+                return (new ReadOnlyCollection<object>(this.allTypesOfObjects));
+            } else {
+                
+                List<object> listToReturn = new List<object>();
+                return (new ReadOnlyCollection<object>(listToReturn));
+            }
+        }
     }
 }

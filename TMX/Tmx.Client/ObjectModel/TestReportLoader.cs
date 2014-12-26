@@ -47,8 +47,8 @@ namespace Tmx.Client
                     throw new LoadingTestReportException("Failed to receive test results. " + loadingReportResponse.StatusCode);
                 
                 return loadingReportResponse.Body.Data;
-	        }
-	        catch (RestClientException eLoadingTestResults) {
+            }
+            catch (RestClientException eLoadingTestResults) {
                 // TODO: AOP
                 Trace.TraceError("LoadTestReport()");
                 Trace.TraceError(eLoadingTestResults.Message);

@@ -22,7 +22,7 @@ namespace Tmx.Commands
     {
         public ReceiveTmxTestTaskCommand()
         {
-        	this.Seconds = Preferences.ReceivingTaskTimeoutSeconds;
+            this.Seconds = Preferences.ReceivingTaskTimeoutSeconds;
         }
         
         [Parameter(Mandatory = false,
@@ -43,5 +43,5 @@ namespace Tmx.Commands
         {
             ClientSettings.Instance.StopImmediately = true;
         }
-	}
+    }
 }

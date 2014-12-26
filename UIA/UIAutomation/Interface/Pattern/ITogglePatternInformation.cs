@@ -12,8 +12,8 @@ namespace UIAutomation
     extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
     
-	public interface ITogglePatternInformation
-	{
-		classic.ToggleState ToggleState { get; }
-	}
+    public interface ITogglePatternInformation
+    {
+        classic.ToggleState ToggleState { get; }
+    }
 }

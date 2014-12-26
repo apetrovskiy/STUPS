@@ -12,8 +12,8 @@ namespace Tmx
     using System;
     using System.Linq;
     using System.Management.Automation;
-	using Tmx.Interfaces;
-	using Tmx;
+    using Tmx.Interfaces;
+    using Tmx;
     using Tmx.Commands;
     
     /// <summary>

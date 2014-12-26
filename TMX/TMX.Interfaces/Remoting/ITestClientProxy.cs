@@ -10,16 +10,16 @@
 namespace Tmx.Interfaces.Remoting
 {
     using System;
-	using Tmx.Interfaces.Internal;
-	
+    using Tmx.Interfaces.Internal;
+    
     /// <summary>
     /// Description of ITestClientProxy.
     /// </summary>
     public interface ITestClientProxy
     {
-		Guid Id { get; set; }
-		int TaskId { get; set; }
-		string TaskName { get; set; }
-		Guid TestRunId { get; set; }
+        Guid Id { get; set; }
+        int TaskId { get; set; }
+        string TaskName { get; set; }
+        Guid TestRunId { get; set; }
     }
 }

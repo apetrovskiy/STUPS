@@ -139,7 +139,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Window_CanMaximize()
         {
             // Arrange
-			const bool expectedValue = true;
+            const bool expectedValue = true;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData() { WindowPattern_CanMaximize = expectedValue }) }) as ISupportsWindowPattern;
@@ -155,7 +155,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Window_CanMinimize()
         {
             // Arrange
-			const bool expectedValue = false;
+            const bool expectedValue = false;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData() { WindowPattern_CanMinimize = expectedValue }) }) as ISupportsWindowPattern;
@@ -171,7 +171,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Window_IsModal()
         {
             // Arrange
-			const bool expectedValue = true;
+            const bool expectedValue = true;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData() { WindowPattern_IsModal = expectedValue }) }) as ISupportsWindowPattern;
@@ -187,7 +187,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Window_IsTopmost()
         {
             // Arrange
-			const bool expectedValue = false;
+            const bool expectedValue = false;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData() { WindowPattern_IsTopmost = expectedValue }) }) as ISupportsWindowPattern;
@@ -235,7 +235,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Window_Close()
         {
             // Arrange
-			const bool expectedResult = true;
+            const bool expectedResult = true;
             bool result = false;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
@@ -281,7 +281,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Window_WaitForInputIdle()
         {
             // Arrange
-			const bool expectedResult = true;
+            const bool expectedResult = true;
             bool result = false;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(

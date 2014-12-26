@@ -38,16 +38,16 @@ namespace Tmx.Core
             }
         }
         
-		public XDocument GetTestResultsAsXdocument(ISearchCmdletBaseDataObject searchCriteria, List<ITestSuite> suites, List<ITestPlatform> platforms)
-		{
-		    var suitesElement = GetTestResultsAsXelement(searchCriteria, suites);
-		    var platformsElement = GetTestPlatformsAsXelement(new XMLElementsNativeStruct(), platforms);
-			var document = new XDocument(new XDeclaration("1.0", "utf-8", "yes"));
-			var rootElement = new XElement("results", platformsElement, suitesElement);
-			document.Add(rootElement);
-			return document;
-		}
-		
+        public XDocument GetTestResultsAsXdocument(ISearchCmdletBaseDataObject searchCriteria, List<ITestSuite> suites, List<ITestPlatform> platforms)
+        {
+            var suitesElement = GetTestResultsAsXelement(searchCriteria, suites);
+            var platformsElement = GetTestPlatformsAsXelement(new XMLElementsNativeStruct(), platforms);
+            var document = new XDocument(new XDeclaration("1.0", "utf-8", "yes"));
+            var rootElement = new XElement("results", platformsElement, suitesElement);
+            document.Add(rootElement);
+            return document;
+        }
+        
         XElement GetTestPlatformsAsXelement(IXMLElementsStruct xmlStruct, List<ITestPlatform> platforms)
         {
             var query = from platform in platforms
@@ -68,14 +68,14 @@ namespace Tmx.Core
             );
         }
         
-		public XElement GetTestResultsAsXelement(ISearchCmdletBaseDataObject searchCriteria, List<ITestSuite> suites)
-		{
-			var gathered = new GatherTestResultsCollections();
-			gathered.GatherCollections(searchCriteria, suites);
-			var suitesElement = CreateSuitesXElementWithParameters(gathered.TestSuites, gathered.TestScenarios, gathered.TestResults, (new XMLElementsNativeStruct()));
-			return suitesElement;
-		}
-		
+        public XElement GetTestResultsAsXelement(ISearchCmdletBaseDataObject searchCriteria, List<ITestSuite> suites)
+        {
+            var gathered = new GatherTestResultsCollections();
+            gathered.GatherCollections(searchCriteria, suites);
+            var suitesElement = CreateSuitesXElementWithParameters(gathered.TestSuites, gathered.TestScenarios, gathered.TestResults, (new XMLElementsNativeStruct()));
+            return suitesElement;
+        }
+        
         public XElement CreateSuitesXElementWithParameters(
                 IOrderedEnumerable<ITestSuite> suites,
                 IOrderedEnumerable<ITestScenario> scenarios,
@@ -260,15 +260,15 @@ namespace Tmx.Core
 
             return testResultDetailsElement;
         }
-		
+        
         XAttribute createXattribute(string name, object valueObject)
         {
-			return null == valueObject ? null : new XAttribute(name, valueObject);
+            return null == valueObject ? null : new XAttribute(name, valueObject);
         }
         
         XElement createXelement(string name, params object[] content)
         {
-			return null == content[0] ? null : new XElement(name, content);
+            return null == content[0] ? null : new XElement(name, content);
         }
     }
 }

@@ -11,11 +11,11 @@ namespace Tmx.Core.Types.Remoting
 {
     using System;
     using System.Collections.Generic;
-//	using System.Globalization;
-//	using System.Net;
-//	using System.Net.NetworkInformation;
-//	using System.Security.Principal;
-	using Tmx.Interfaces.Remoting;
+//    using System.Globalization;
+//    using System.Net;
+//    using System.Net.NetworkInformation;
+//    using System.Security.Principal;
+    using Tmx.Interfaces.Remoting;
     
     /// <summary>
     /// Description of TestClient.

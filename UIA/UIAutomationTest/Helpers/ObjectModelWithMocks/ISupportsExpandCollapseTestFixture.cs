@@ -177,7 +177,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
         public void ExpandCollapseState_Expanded()
         {
             // Arrange
-			const ExpandCollapseState expectedValue = ExpandCollapseState.Expanded;
+            const ExpandCollapseState expectedValue = ExpandCollapseState.Expanded;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetExpandCollapsePattern(new PatternsData() { ExpandCollapsePattern_ExpandCollapseState = expectedValue }) }) as ISupportsExpandCollapsePattern;

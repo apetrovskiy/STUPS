@@ -10,12 +10,12 @@
 namespace TmxUnitTests.Commands.TestStructure
 {
     using System;
-	using System.Management.Automation;
+    using System.Management.Automation;
     using MbUnit.Framework;using NUnit.Framework;
     using PSTestLib;
     using Tmx;
     // using Tmx.Core;
-	using Tmx.Interfaces.TestStructure;
+    using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of NewTmxTestSuiteCommandTestFixture.
@@ -134,7 +134,7 @@ namespace TmxUnitTests.Commands.TestStructure
             
             // checks the first test suite
             MbUnit.Framework.Assert.AreEqual(
-            	// 20140715
+                // 20140715
                 // expectedResultName,
                 @"Couldn't create a test suite",
                 //((ITestSuite)CommonCmdletBase.UnitTestOutput[CommonCmdletBase.UnitTestOutput.Count - 1]).Name);
@@ -145,14 +145,14 @@ namespace TmxUnitTests.Commands.TestStructure
             // checks how many test suites
             Console.WriteLine("Output in the UnitTestOutput object");
             MbUnit.Framework.Assert.AreEqual( // this is a technical solution
-				// 20140715
+                // 20140715
                 2,
-				UnitTestOutput.Count);
+                UnitTestOutput.Count);
             
             Console.WriteLine("Test Suites counter");
             MbUnit.Framework.Assert.AreEqual( // this is a logical solution
                 1,
-				TestData.TestSuites.Count);
+                TestData.TestSuites.Count);
         }
     }
 }

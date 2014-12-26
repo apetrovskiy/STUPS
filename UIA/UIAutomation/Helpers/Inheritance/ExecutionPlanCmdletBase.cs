@@ -9,10 +9,10 @@
 
 namespace UIAutomation
 {
-	/// <summary>
-	/// Description of ExecutionPlanCmdletBase.
-	/// </summary>
-	public class ExecutionPlanCmdletBase : CommonCmdletBase
-	{
-	}
+    /// <summary>
+    /// Description of ExecutionPlanCmdletBase.
+    /// </summary>
+    public class ExecutionPlanCmdletBase : CommonCmdletBase
+    {
+    }
 }

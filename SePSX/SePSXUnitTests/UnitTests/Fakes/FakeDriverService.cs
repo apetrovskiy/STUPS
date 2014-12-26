@@ -29,29 +29,29 @@ namespace SePSXUnitTests
             System.Uri u = new System.Uri("aaa");
         }
         
-		/// <summary>
-		///       Gets or sets the location of the log file written to by the ChromeDriver executable.
-		///       </summary>
-		public string LogPath { get; set; }
-//		{
-//			get
-//			{
-//				return this.logPath;
-//			}
-//			set
-//			{
-//				this.logPath = value;
-//			}
-//		}
+        /// <summary>
+        ///       Gets or sets the location of the log file written to by the ChromeDriver executable.
+        ///       </summary>
+        public string LogPath { get; set; }
+//        {
+//            get
+//            {
+//                return this.logPath;
+//            }
+//            set
+//            {
+//                this.logPath = value;
+//            }
+//        }
 
-		public static FakeDriverService CreateDefaultService()
-		{
-		    return new FakeDriverService(string.Empty, 0, string.Empty, new System.Uri("aaa"));
-		}
+        public static FakeDriverService CreateDefaultService()
+        {
+            return new FakeDriverService(string.Empty, 0, string.Empty, new System.Uri("aaa"));
+        }
 
-		public static FakeDriverService CreateDefaultService(string driverPath)
-		{
-		    return new FakeDriverService(string.Empty, 0, string.Empty, new System.Uri("aaa"));
-		}
+        public static FakeDriverService CreateDefaultService(string driverPath)
+        {
+            return new FakeDriverService(string.Empty, 0, string.Empty, new System.Uri("aaa"));
+        }
     }
 }

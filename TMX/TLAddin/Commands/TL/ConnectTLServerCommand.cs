@@ -20,7 +20,7 @@ namespace Tmx
     {
         protected override void BeginProcessing()
         {
-			CheckCmdletParameters();
+            CheckCmdletParameters();
             var command = new TLSrvConnectCommand(this);
             command.Execute();
         }

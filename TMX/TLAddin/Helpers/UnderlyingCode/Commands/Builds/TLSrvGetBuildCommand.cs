@@ -36,10 +36,10 @@ namespace Tmx
                 
             } else {
 
-				TLHelper.GetBuild(
-					Cmdlet, 
-					((GetTLBuildCommand)Cmdlet).InputObject,
-					((GetTLBuildCommand)Cmdlet).Name);
+                TLHelper.GetBuild(
+                    Cmdlet, 
+                    ((GetTLBuildCommand)Cmdlet).InputObject,
+                    ((GetTLBuildCommand)Cmdlet).Name);
                 
             }
         }

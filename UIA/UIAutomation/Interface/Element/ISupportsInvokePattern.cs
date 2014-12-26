@@ -9,8 +9,8 @@
 
 namespace UIAutomation
 {
-	public interface ISupportsInvokePattern
-	{
-	    IUiElement Invoke();
-	}
+    public interface ISupportsInvokePattern
+    {
+        IUiElement Invoke();
+    }
 }

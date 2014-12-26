@@ -101,7 +101,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Scroll_Scroll()
         {
             // Arrange
-			const bool expectedResult = true;
+            const bool expectedResult = true;
             bool result = false;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
@@ -124,7 +124,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Scroll_ScrollHorizontal()
         {
             // Arrange
-			const bool expectedResult = true;
+            const bool expectedResult = true;
             bool result = false;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
@@ -147,7 +147,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Scroll_ScrollVertical()
         {
             // Arrange
-			const bool expectedResult = true;
+            const bool expectedResult = true;
             bool result = false;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
@@ -170,7 +170,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Scroll_SetScrollPercent()
         {
             // Arrange
-			const bool expectedResult = true;
+            const bool expectedResult = true;
             bool result = false;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
@@ -194,7 +194,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Scroll_HorizontallyScrollable()
         {
             // Arrange
-			const bool expectedValue = true;
+            const bool expectedValue = true;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetScrollPattern(new PatternsData() { ScrollPattern_HorizontallyScrollable = expectedValue }) }) as ISupportsScrollPattern;
@@ -210,7 +210,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Scroll_HorizontalScrollPercent()
         {
             // Arrange
-			const double expectedValue = 12.1;
+            const double expectedValue = 12.1;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetScrollPattern(new PatternsData() { ScrollPattern_HorizontalScrollPercent = expectedValue }) }) as ISupportsScrollPattern;
@@ -226,7 +226,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Scroll_HorizontalViewSize()
         {
             // Arrange
-			const double expectedValue = 14.2;
+            const double expectedValue = 14.2;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetScrollPattern(new PatternsData() { ScrollPattern_HorizontalViewSize = expectedValue }) }) as ISupportsScrollPattern;
@@ -242,7 +242,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Scroll_VerticallyScrollable()
         {
             // Arrange
-			const bool expectedValue = false;
+            const bool expectedValue = false;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetScrollPattern(new PatternsData() { ScrollPattern_VerticallyScrollable = expectedValue }) }) as ISupportsScrollPattern;
@@ -258,7 +258,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Scroll_VerticalScrollPercent()
         {
             // Arrange
-			const double expectedValue = 16.3;
+            const double expectedValue = 16.3;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetScrollPattern(new PatternsData() { ScrollPattern_VerticalScrollPercent = expectedValue }) }) as ISupportsScrollPattern;
@@ -274,7 +274,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Scroll_VerticalViewSize()
         {
             // Arrange
-			const double expectedValue = 18.4;
+            const double expectedValue = 18.4;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetScrollPattern(new PatternsData() { ScrollPattern_VerticalViewSize = expectedValue }) }) as ISupportsScrollPattern;

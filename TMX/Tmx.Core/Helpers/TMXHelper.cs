@@ -18,9 +18,9 @@ namespace Tmx
     using System.Xml.Linq;
     using Tmx.Core;
 //    using System.Reflection;
-	using Tmx.Interfaces;
-	using Tmx.Interfaces.TestStructure;
-	// using Tmx.Core;
+    using Tmx.Interfaces;
+    using Tmx.Interfaces.TestStructure;
+    // using Tmx.Core;
     
     //using System.Data.SqlTypes;
     
@@ -89,27 +89,27 @@ namespace Tmx
                 
                 if (DateTime.MinValue != TestData.CurrentTestSuite.Timestamp) {
                     
-					TestData.CurrentTestSuite.SetTimeSpent(
-						TestData.CurrentTestSuite.TimeSpent +=
+                    TestData.CurrentTestSuite.SetTimeSpent(
+                        TestData.CurrentTestSuite.TimeSpent +=
                         (DateTime.Now - TestData.CurrentTestSuite.Timestamp).TotalSeconds);
-					TestData.CurrentTestSuite.Timestamp = DateTime.MinValue;
+                    TestData.CurrentTestSuite.Timestamp = DateTime.MinValue;
                 }
             }
             
             // 20141114
-			// TestData.CurrentTestSuite = TestData.GetTestSuite(testSuiteName, testSuiteId, testPlatformId);
-			TestData.CurrentTestSuite = TestData.GetTestSuite(testSuiteName, testSuiteId, testPlatformUniqueId);
-			// 20140714
-			// if (null != TestData.CurrentTestSuite.TestScenarios && 0 < TestData.CurrentTestSuite.TestScenarios.Count) {
-			if (null != TestData.CurrentTestSuite && null != TestData.CurrentTestSuite.TestScenarios && 0 < TestData.CurrentTestSuite.TestScenarios.Count)
-			    // 20140720
-				// TestData.CurrentTestScenario = (TestScenario)TestData.CurrentTestSuite.TestScenarios[TestData.CurrentTestSuite.TestScenarios.Count - 1];
-			    TestData.CurrentTestScenario = TestData.CurrentTestSuite.TestScenarios[TestData.CurrentTestSuite.TestScenarios.Count - 1];
-			if (null == TestData.CurrentTestSuite) return false;
+            // TestData.CurrentTestSuite = TestData.GetTestSuite(testSuiteName, testSuiteId, testPlatformId);
+            TestData.CurrentTestSuite = TestData.GetTestSuite(testSuiteName, testSuiteId, testPlatformUniqueId);
+            // 20140714
+            // if (null != TestData.CurrentTestSuite.TestScenarios && 0 < TestData.CurrentTestSuite.TestScenarios.Count) {
+            if (null != TestData.CurrentTestSuite && null != TestData.CurrentTestSuite.TestScenarios && 0 < TestData.CurrentTestSuite.TestScenarios.Count)
+                // 20140720
+                // TestData.CurrentTestScenario = (TestScenario)TestData.CurrentTestSuite.TestScenarios[TestData.CurrentTestSuite.TestScenarios.Count - 1];
+                TestData.CurrentTestScenario = TestData.CurrentTestSuite.TestScenarios[TestData.CurrentTestSuite.TestScenarios.Count - 1];
+            if (null == TestData.CurrentTestSuite) return false;
             // set the initial time for this suite's session
-			TestData.CurrentTestSuite.SetNow();
-			TestData.OnTmxTestSuiteOpened(TestData.CurrentTestSuite, null);
-			return true;
+            TestData.CurrentTestSuite.SetNow();
+            TestData.OnTmxTestSuiteOpened(TestData.CurrentTestSuite, null);
+            return true;
         }
         
         public static bool NewTestPlatform(
@@ -154,7 +154,7 @@ namespace Tmx
             bool result = false;
             
             if (TestData.CurrentTestResult.Details.Count > 0) {
-            	
+                
                 TestData.AddTestResult(
                     "autoclosed", 
                     TestData.GetTestResultId(), 
@@ -182,7 +182,7 @@ namespace Tmx
             
                 //true);
             //TestData.CurrentTestScenario =
-			TestData.GetTestScenario(cmdlet.InputObject,
+            TestData.GetTestScenario(cmdlet.InputObject,
                                      cmdlet.Name,
                                      cmdlet.Id,
                                      cmdlet.TestSuiteName,
@@ -254,7 +254,7 @@ namespace Tmx
         {
             bool result = false;
             
-			TestData.AddTestResultScreenshotDetail(testResultScreenshotDetail);
+            TestData.AddTestResultScreenshotDetail(testResultScreenshotDetail);
             
             return result;
         }
@@ -265,7 +265,7 @@ namespace Tmx
             
             // 20130702
             try {
-				TestData.AddTestResultErrorDetail(testResultErrorDetail);
+                TestData.AddTestResultErrorDetail(testResultErrorDetail);
             }
             catch {}
             
@@ -308,7 +308,7 @@ namespace Tmx
 //                TestData.InitTestData();
 //            }
 
-			TestData.AddTestResult(
+            TestData.AddTestResult(
                 testResultName, 
                 testResultId, 
                 testResult, 
@@ -551,21 +551,21 @@ namespace Tmx
 //            }
 //        }
 //
-//		public static XDocument GetTestResultsAsXdocument(ISearchCmdletBaseDataObject cmdlet)
-//		{
-//			var suitesElement = GetTestResultsAsXelement(cmdlet);
-//			var document = new XDocument();
-//			document.Add(suitesElement);
-//			return document;
-//		}
+//        public static XDocument GetTestResultsAsXdocument(ISearchCmdletBaseDataObject cmdlet)
+//        {
+//            var suitesElement = GetTestResultsAsXelement(cmdlet);
+//            var document = new XDocument();
+//            document.Add(suitesElement);
+//            return document;
+//        }
 //
-//		public static XElement GetTestResultsAsXelement(ISearchCmdletBaseDataObject cmdlet)
-//		{
-//			var gathered = new GatherTestResultsCollections();
-//			gathered.GatherCollections(cmdlet);
-//			var suitesElement = TmxHelper.CreateSuitesXElementWithParameters(gathered.TestSuites, gathered.TestScenarios, gathered.TestResults, (new XMLElementsNativeStruct()));
-//			return suitesElement;
-//		}
+//        public static XElement GetTestResultsAsXelement(ISearchCmdletBaseDataObject cmdlet)
+//        {
+//            var gathered = new GatherTestResultsCollections();
+//            gathered.GatherCollections(cmdlet);
+//            var suitesElement = TmxHelper.CreateSuitesXElementWithParameters(gathered.TestSuites, gathered.TestScenarios, gathered.TestResults, (new XMLElementsNativeStruct()));
+//            return suitesElement;
+//        }
 
             #endregion export to XML
         
@@ -668,24 +668,24 @@ namespace Tmx
             if (cmdlet.OrderById) {
                 ordering += suite => suite.Id;
             } 
-			if (cmdlet.OrderByPassRate) {
-				ordering += suite => {
-					//TestData.RefreshSuiteStatistics(suite);
-					// 20141107
-					// TestData.RefreshSuiteStatistics(suite, cmdlet.FilterOutAutomaticResults);
-					testStatistics.RefreshSuiteStatistics(suite, cmdlet.FilterOutAutomaticResults);
-					return (suite.Statistics.Passed / suite.Statistics.All);
-				};
-			} 
-			if (cmdlet.OrderByFailRate) {
-				ordering += suite => {
-					//TestData.RefreshSuiteStatistics(suite);
-					// 20141107
-					// TestData.RefreshSuiteStatistics(suite, cmdlet.FilterOutAutomaticResults);
-					testStatistics.RefreshSuiteStatistics(suite, cmdlet.FilterOutAutomaticResults);
-					return (suite.Statistics.Failed / suite.Statistics.All);
-				};
-			} 
+            if (cmdlet.OrderByPassRate) {
+                ordering += suite => {
+                    //TestData.RefreshSuiteStatistics(suite);
+                    // 20141107
+                    // TestData.RefreshSuiteStatistics(suite, cmdlet.FilterOutAutomaticResults);
+                    testStatistics.RefreshSuiteStatistics(suite, cmdlet.FilterOutAutomaticResults);
+                    return (suite.Statistics.Passed / suite.Statistics.All);
+                };
+            } 
+            if (cmdlet.OrderByFailRate) {
+                ordering += suite => {
+                    //TestData.RefreshSuiteStatistics(suite);
+                    // 20141107
+                    // TestData.RefreshSuiteStatistics(suite, cmdlet.FilterOutAutomaticResults);
+                    testStatistics.RefreshSuiteStatistics(suite, cmdlet.FilterOutAutomaticResults);
+                    return (suite.Statistics.Failed / suite.Statistics.All);
+                };
+            } 
 
 //            cmdlet.WriteVerbose(cmdlet, "query = " + query);
 //            cmdlet.WriteVerbose(cmdlet, "ordering = " + ordering);
@@ -703,7 +703,7 @@ namespace Tmx
         public static IOrderedEnumerable<ITestSuite> SearchForSuitesPS(ISearchCmdletBaseDataObject cmdlet)
         {
             IOrderedEnumerable<ITestSuite> suites = SearchForSuites(cmdlet);
-			return suites.Any() ? suites : null;
+            return suites.Any() ? suites : null;
         }
         
 //        public static Func<TInput, bool> Combine<TInput, Tout>
@@ -822,7 +822,7 @@ namespace Tmx
         public static IOrderedEnumerable<ITestScenario> SearchForScenariosPS(ISearchCmdletBaseDataObject cmdlet)
         {
             var scenarios = SearchForScenarios(cmdlet);
-			return scenarios.Any() ? scenarios : null;
+            return scenarios.Any() ? scenarios : null;
         }
         
         /// <summary>
@@ -841,7 +841,7 @@ namespace Tmx
             
             dataObject.FilterAll = false;
             
-			if (!string.IsNullOrEmpty(dataObject.FilterNameContains))
+            if (!string.IsNullOrEmpty(dataObject.FilterNameContains))
             // if (cmdlet.FilterNameContains != null && cmdlet.FilterNameContains.Length > 0) {
                 query = testResult => testResult.Name != null && testResult.Name.Contains(dataObject.FilterNameContains);
 
@@ -893,23 +893,23 @@ namespace Tmx
 
                 // dataObject.FilterAll = false;
             else if (dataObject.FilterPassed)
-				query = testResult => testResult.enStatus == TestResultStatuses.Passed;
+                query = testResult => testResult.enStatus == TestResultStatuses.Passed;
                 // dataObject.FilterAll = false;
             else if (dataObject.FilterFailed)
-				query = testResult => testResult.enStatus == TestResultStatuses.Failed;
+                query = testResult => testResult.enStatus == TestResultStatuses.Failed;
                 // dataObject.FilterAll = false;
             else if (dataObject.FilterNotTested)
-				query = testResult => testResult.enStatus == TestResultStatuses.NotTested;
+                query = testResult => testResult.enStatus == TestResultStatuses.NotTested;
                 // dataObject.FilterAll = false;
             else if (dataObject.FilterPassedWithBadSmell)
-				query = testResult => testResult.enStatus == TestResultStatuses.KnownIssue;
+                query = testResult => testResult.enStatus == TestResultStatuses.KnownIssue;
                 // dataObject.FilterAll = false;
             else if (dataObject.FilterOutAutomaticResults)
-				query = testResult => testResult.Origin != TestResultOrigins.Automatic;
+                query = testResult => testResult.Origin != TestResultOrigins.Automatic;
                 // dataObject.FilterAll = false;
             else if (dataObject.FilterOutAutomaticAndTechnicalResults)
-				query = testResult => testResult.Origin != TestResultOrigins.Automatic && testResult.Origin != TestResultOrigins.Technical;
-			// dataObject.FilterAll = false;
+                query = testResult => testResult.Origin != TestResultOrigins.Automatic && testResult.Origin != TestResultOrigins.Technical;
+            // dataObject.FilterAll = false;
             if (dataObject.FilterAll) {
                 query = testResult => true;
                 // 20140722
@@ -926,14 +926,14 @@ namespace Tmx
             // Func<TestResult, object> ordering = testResult => testResult.Id;
             Func<ITestResult, object> ordering = testResult => testResult.Id;
             
-			if (dataObject.OrderByTimeSpent)
-				ordering = testResult => testResult.TimeSpent;
-			else if (dataObject.OrderByDateTime)
-				ordering = testResult => testResult.Timestamp;
-			else if (dataObject.OrderByName)
-				ordering = testResult => testResult.Name;
-			else if (dataObject.OrderById)
-				ordering = testResult => testResult.Id;
+            if (dataObject.OrderByTimeSpent)
+                ordering = testResult => testResult.TimeSpent;
+            else if (dataObject.OrderByDateTime)
+                ordering = testResult => testResult.Timestamp;
+            else if (dataObject.OrderByName)
+                ordering = testResult => testResult.Name;
+            else if (dataObject.OrderById)
+                ordering = testResult => testResult.Id;
             
             testResults = 
                 TestData.SearchTestResult(
@@ -947,7 +947,7 @@ namespace Tmx
         public static IOrderedEnumerable<ITestResult> SearchForTestResultsPS(ISearchCmdletBaseDataObject dataObject)
         {
             var testResults = SearchForTestResults(dataObject);
-			return testResults.Any() ? testResults : null;
+            return testResults.Any() ? testResults : null;
         }
         #endregion Search
         
@@ -1043,18 +1043,18 @@ namespace Tmx
 
                 TestData.CurrentTestResult.Name = !string.IsNullOrEmpty(cmdlet.TestResultName) ? cmdlet.TestResultName : "this test result is not provided with name";
                 
-				if (!string.IsNullOrEmpty(cmdlet.Id))
-					TestData.CurrentTestResult.Id = cmdlet.Id;
-				else
-					TestData.GetTestResultId();
+                if (!string.IsNullOrEmpty(cmdlet.Id))
+                    TestData.CurrentTestResult.Id = cmdlet.Id;
+                else
+                    TestData.GetTestResultId();
                 
-				if (!string.IsNullOrEmpty(cmdlet.Description))
-					TestData.CurrentTestResult.Description = cmdlet.Description;
-				
+                if (!string.IsNullOrEmpty(cmdlet.Description))
+                    TestData.CurrentTestResult.Description = cmdlet.Description;
+                
                 TestData.CurrentTestResult.enStatus = TestResultStatuses.NotTested;
 
-				if (cmdlet.KnownIssue)
-					TestData.CurrentTestResult.enStatus = TestResultStatuses.KnownIssue;
+                if (cmdlet.KnownIssue)
+                    TestData.CurrentTestResult.enStatus = TestResultStatuses.KnownIssue;
                 
                 TestData.CurrentTestResult.SetOrigin(cmdlet.TestOrigin);
 
@@ -1142,7 +1142,7 @@ namespace Tmx
                 
                 // 20140720
                 // if (null == TestData.CurrentTestResult) return;
-				return null == TestData.CurrentTestResult ? string.Empty : TestData.CurrentTestResult.Status;
+                return null == TestData.CurrentTestResult ? string.Empty : TestData.CurrentTestResult.Status;
 //                cmdlet.WriteVerbose(cmdlet, "The current test result");
                 // 20140720
                 // cmdlet.WriteObject(cmdlet, TestData.CurrentTestResult.Status);
@@ -1168,8 +1168,8 @@ namespace Tmx
                         
                     try {
                         // if the result is null, there's the try-catch construction
-        				// 20140703
-        				// refactoring
+                        // 20140703
+                        // refactoring
                         // foreach (ITestResultDetail singleDetail in ((ITestResult)testResultWithId).ListDetailNames(cmdlet)) {
                         foreach (ITestResultDetail singleDetail in ((ITestResult)testResultWithId).ListDetailNames(cmdlet.TestResultStatus)) {
                             // 20140720
@@ -1210,9 +1210,9 @@ namespace Tmx
                 
                 // 20140720
                 // if (null == TestData.CurrentTestResult) return;
-				return null == TestData.CurrentTestResult ? new[] {
-					string.Empty
-				} : TestData.CurrentTestResult.ListDetailNames(cmdlet.TestResultStatus);
+                return null == TestData.CurrentTestResult ? new[] {
+                    string.Empty
+                } : TestData.CurrentTestResult.ListDetailNames(cmdlet.TestResultStatus);
 //                cmdlet.WriteVerbose(cmdlet, "The current test result");
                 // 20140720
                 // cmdlet.WriteObject(cmdlet, TestData.CurrentTestResult.ListDetailNames(cmdlet.TestResultStatus));

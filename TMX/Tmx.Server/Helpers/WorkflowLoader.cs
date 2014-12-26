@@ -125,7 +125,7 @@ namespace Tmx.Server
         
         internal virtual void addTasksToCommonPool(IEnumerable<ITestTask> importedTasks)
         {
-        	TaskPool.Tasks.AddRange(importedTasks);
+            TaskPool.Tasks.AddRange(importedTasks);
         }
         
         internal virtual ITestTask getNewTestTask(XContainer taskNode, Guid workflowId)
@@ -179,7 +179,7 @@ namespace Tmx.Server
         
         internal virtual int convertTestTaskElementValue(XContainer taskNode, string elementName)
         {
-        	return Convert.ToInt32(string.Empty == getTestTaskElementValue(taskNode, elementName) ? "0" : getTestTaskElementValue(taskNode, elementName));
+            return Convert.ToInt32(string.Empty == getTestTaskElementValue(taskNode, elementName) ? "0" : getTestTaskElementValue(taskNode, elementName));
         }
         
         internal virtual string getTestTaskElementValue(XContainer taskNode, string elementName)

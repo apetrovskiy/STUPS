@@ -30,7 +30,7 @@ namespace Tmx.Interfaces
             UniqueId = Guid.NewGuid();
         }
         
-		[XmlAttribute]
+        [XmlAttribute]
         public virtual Guid UniqueId { get; set; }
         [XmlAttribute]
         public virtual DateTime Timestamp { get; set; }

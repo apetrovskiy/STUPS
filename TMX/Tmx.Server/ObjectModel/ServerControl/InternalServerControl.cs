@@ -206,6 +206,7 @@ namespace Tmx.Server //.ObjectModel.ServerControl
             container.Register<configmanager>(mgr);
             */
             // container.Register<
+            container.Register<ITaskSelector, TaskSelector>();
         }
         
         void temporary_outputMethod(NancyContext ctx, string state)

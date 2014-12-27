@@ -17,8 +17,8 @@ namespace Tmx.Core
     using System.Xml;
     using System.Xml.Linq;
     using System.Xml.Serialization;
-	using Tmx.Interfaces.Remoting;
-	using Tmx.Core.Types.Remoting;
+    using Tmx.Interfaces.Remoting;
+    using Tmx.Core.Types.Remoting;
     
     /// <summary>
     /// Description of ExtensionMethods.
@@ -169,7 +169,7 @@ namespace Tmx.Core
         
         public static bool IsQueued(this ITestRun testRun)
         {
-        	return TestRunStatuses.Running == testRun.Status || TestRunStatuses.Pending == testRun.Status;
+            return TestRunStatuses.Running == testRun.Status || TestRunStatuses.Pending == testRun.Status;
         }
         
         public static void SetStartTime(this ITestRun testRun)
@@ -184,43 +184,43 @@ namespace Tmx.Core
         
 //        public static string SerializeToString<T>(this T testResultsCollection)
 //        {
-//			var serializer = new XmlSerializer(typeof(T));
+//            var serializer = new XmlSerializer(typeof(T));
 //            
-//			try {
-//	            using (var writer = new StringWriter())
-//	            {
-//	                serializer.Serialize(writer, testResultsCollection);
-//	                return writer.ToString();
-//	            }
-//			}
-////			catch {
-////				return string.Empty;
-////			}
-//			catch (Exception e) {
+//            try {
+//                using (var writer = new StringWriter())
+//                {
+//                    serializer.Serialize(writer, testResultsCollection);
+//                    return writer.ToString();
+//                }
+//            }
+////            catch {
+////                return string.Empty;
+////            }
+//            catch (Exception e) {
 //Console.WriteLine(e.GetType().Name);
 //Console.WriteLine(e.Message);
 //Console.WriteLine(e.InnerException.Message);
-//				return string.Empty;
-//			}
+//                return string.Empty;
+//            }
 //        }
-//		
+//        
 //        public static T DeserializeFromString<T>(this string testResultsCollection)
 //        {
-//			var serializer = new XmlSerializer(typeof(T));
-//			
-//			try {
-//				using (var stream = new MemoryStream()) {
-//					using (var writer = new StreamWriter(stream, Encoding.Unicode)) {
-//						writer.Write(testResultsCollection);
-//						writer.Flush();
-//						stream.Position = 0;
-//						return (T)serializer.Deserialize(stream);
-//					}
-//				}
-//			}
-//			catch {
-//				return default(T);
-//			}
+//            var serializer = new XmlSerializer(typeof(T));
+//            
+//            try {
+//                using (var stream = new MemoryStream()) {
+//                    using (var writer = new StreamWriter(stream, Encoding.Unicode)) {
+//                        writer.Write(testResultsCollection);
+//                        writer.Flush();
+//                        stream.Position = 0;
+//                        return (T)serializer.Deserialize(stream);
+//                    }
+//                }
+//            }
+//            catch {
+//                return default(T);
+//            }
 //        }
         
         public static string SerializeToString(this XDocument document)

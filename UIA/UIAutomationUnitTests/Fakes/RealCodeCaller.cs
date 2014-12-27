@@ -69,17 +69,17 @@ namespace UIAutomationUnitTests
         }
         
         public static List<IUiElement> SearchByContainsTextViaWin32(
-        	IUiElement inputObject,
+            IUiElement inputObject,
             string containsText,
             string[] controlTypeNames,
             IEnumerable<IUiElement> collection,
             IEnumerable<int> handles)
         {
-        	var singleControlSearcherData = new SingleControlSearcherData { Name = containsText, ControlType = controlTypeNames };
-        	var controlProvider = FakeFactory.GetControlFromWin32Provider_old(collection, singleControlSearcherData);
-        	
-        	controlProvider.HandleCollector = FakeFactory.GetHandleCollector(inputObject, new int[] {}, collection.ToArray());
-        	return ControlSearcher.SearchByContainsTextViaWin32(inputObject, controlProvider).ToList();
+            var singleControlSearcherData = new SingleControlSearcherData { Name = containsText, ControlType = controlTypeNames };
+            var controlProvider = FakeFactory.GetControlFromWin32Provider_old(collection, singleControlSearcherData);
+            
+            controlProvider.HandleCollector = FakeFactory.GetHandleCollector(inputObject, new int[] {}, collection.ToArray());
+            return ControlSearcher.SearchByContainsTextViaWin32(inputObject, controlProvider).ToList();
         }
         
         public static List<IUiElement> GetResultList_ReturnOnlyRightElements(IEnumerable<IUiElement> elements, ControlSearcherData data, bool useWildcardOrRegex)

@@ -16,14 +16,14 @@ namespace Tmx
     // blocked due to the need to remove dependency on SQLite
 //    using System.Data.Common;
 //    using System.Data.SQLite;
-	using Tmx.Interfaces;
+    using Tmx.Interfaces;
     
     /// <summary>
     /// Description of Database.
     /// </summary>
     public class Database : IDatabase
     {
-    	// blocked due to the need to remove dependency on SQLite
+        // blocked due to the need to remove dependency on SQLite
 //        public Database(
 //            string name, 
 //            string path, 

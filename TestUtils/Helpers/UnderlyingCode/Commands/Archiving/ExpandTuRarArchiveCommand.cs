@@ -1,8 +1,8 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
- * Date: 7/23/2013
- * Time: 3:47 PM
+ * Date: 1/23/2014
+ * Time: 6:42 PM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
@@ -14,19 +14,19 @@ namespace TestUtils
     using TestUtils.Commands;
     
     /// <summary>
-    /// Description of TuExpandZipArchiveCommand.
+    /// Description of ExpandTuRarArchiveCommand.
     /// </summary>
-    internal class TuExpandZipArchiveCommand : Win32Command
+    internal class ExpandTuRarArchiveCommand : Win32Command
     {
-        internal TuExpandZipArchiveCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        internal ExpandTuRarArchiveCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
         internal override void Execute()
         {
-            var cmdlet = (ExpandTuZipArchiveCommand)Cmdlet;
+            var cmdlet = (ExpandTuRarArchiveCommand)Cmdlet;
             
-            ArchivingHelper.ExtractFromZipArchive(cmdlet);
+            ArchivingHelper.ExtractFromRarArchive(cmdlet);
         }
     }
 }

@@ -30,7 +30,7 @@ namespace Tmx.Client
         
         public TaskLoader(RestRequestCreator requestCreator)
         {
-        	_restTemplate = requestCreator.GetRestTemplate();
+            _restTemplate = requestCreator.GetRestTemplate();
         }
         
         // 20141020 squeezing a task to its proxy

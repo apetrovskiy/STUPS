@@ -9,13 +9,13 @@
 
 namespace Tmx
 {
-	using System;
+    using System;
     using Tmx.Server;
-	using Tmx.Commands;
-	
-	/// <summary>
-	/// Description of StartServerCommand.
-	/// </summary>
+    using Tmx.Commands;
+    
+    /// <summary>
+    /// Description of StartServerCommand.
+    /// </summary>
     class StartServerCommand : TmxCommand
     {
         internal StartServerCommand(CommonCmdletBase cmdlet) : base (cmdlet)

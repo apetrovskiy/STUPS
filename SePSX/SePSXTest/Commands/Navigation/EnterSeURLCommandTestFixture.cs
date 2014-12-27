@@ -12,12 +12,12 @@ namespace SePSXTest.Commands.Navigation
     using System;
     using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
     
-	/// <summary>
-	/// Description of EnterSeURLCommandTestFixture.
-	/// </summary>
-	[TestFixture] // [TestFixture(Description=" test")]
-	public class EnterSeURLCommandTestFixture
-	{
+    /// <summary>
+    /// Description of EnterSeURLCommandTestFixture.
+    /// </summary>
+    [TestFixture] // [TestFixture(Description=" test")]
+    public class EnterSeURLCommandTestFixture
+    {
         [SetUp]
         public void PrepareRunspace()
         {
@@ -75,5 +75,5 @@ namespace SePSXTest.Commands.Navigation
         {
             MiddleLevelCode.DisposeRunspace();
         }
-	}
+    }
 }

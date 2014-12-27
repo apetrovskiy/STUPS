@@ -111,7 +111,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Table_GetColumnHeaders()
         {
             // Arrange
-			const bool expectedResult = true;
+            const bool expectedResult = true;
             bool result = false;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
@@ -134,7 +134,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Table_GetRowHeaders()
         {
             // Arrange
-			const bool expectedResult = true;
+            const bool expectedResult = true;
             bool result = false;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
@@ -157,7 +157,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Table_TableColumnCount()
         {
             // Arrange
-			const int expectedValue = 7;
+            const int expectedValue = 7;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTablePattern(new PatternsData() { TablePattern_ColumnCount = expectedValue }) }) as ISupportsTablePattern;
@@ -173,7 +173,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Table_TableRowCount()
         {
             // Arrange
-			const int expectedValue = 8;
+            const int expectedValue = 8;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTablePattern(new PatternsData() { TablePattern_RowCount = expectedValue }) }) as ISupportsTablePattern;

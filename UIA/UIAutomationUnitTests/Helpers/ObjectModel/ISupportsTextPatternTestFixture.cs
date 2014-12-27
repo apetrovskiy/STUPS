@@ -101,7 +101,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Text_GetTextSelection()
         {
             // Arrange
-			const bool expectedResult = true;
+            const bool expectedResult = true;
             bool result = false;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
@@ -124,7 +124,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Text_GetVisibleRanges()
         {
             // Arrange
-			const bool expectedResult = true;
+            const bool expectedResult = true;
             bool result = false;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
@@ -150,7 +150,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Text_RangeFromChild()
         {
             // Arrange
-			const bool expectedResult = true;
+            const bool expectedResult = true;
             bool result = false;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
@@ -176,7 +176,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Text_RangeFromPoint()
         {
             // Arrange
-			const bool expectedResult = true;
+            const bool expectedResult = true;
             bool result = false;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(

@@ -33,35 +33,35 @@ namespace SePSX
         
         internal IContainer container = null;
         
-		protected override void Load(ContainerBuilder builder)
-		{
-		    
+        protected override void Load(ContainerBuilder builder)
+        {
+            
 #region commented
-			//kernel = new StandardKernel(new NChromeDriverModule());
+            //kernel = new StandardKernel(new NChromeDriverModule());
 
-			//builder = new ContainerBuilder();
+            //builder = new ContainerBuilder();
 
-//		    ConstructorInfo[] cInfos;
-//		    foreach (Assembly assm in System.AppDomain.CurrentDomain.GetAssemblies()) {
-//		        if (assm.FullName.Contains("WebDriver")) {
-//		            System.Type chromeDriverType =
-//		                assm.GetType();
-//		            cInfos =
-//		                chromeDriverType.GetConstructors();
-//		            break;
-//		        }
-//		    }
-//		    
-//		    foreach (ConstructorInfo cInfo in cInfos) {
-//		        ConstructorParameterBinding paramBinding =
-//		            new ConstructorParameterBinding(
-//		                cInfo,
-//		        IConstructorSelector constrSelector =
-//		            new MostParametersConstructorSelector();
-//		        //constrSelector.
-//		    }
+//            ConstructorInfo[] cInfos;
+//            foreach (Assembly assm in System.AppDomain.CurrentDomain.GetAssemblies()) {
+//                if (assm.FullName.Contains("WebDriver")) {
+//                    System.Type chromeDriverType =
+//                        assm.GetType();
+//                    cInfos =
+//                        chromeDriverType.GetConstructors();
+//                    break;
+//                }
+//            }
+//            
+//            foreach (ConstructorInfo cInfo in cInfos) {
+//                ConstructorParameterBinding paramBinding =
+//                    new ConstructorParameterBinding(
+//                        cInfo,
+//                IConstructorSelector constrSelector =
+//                    new MostParametersConstructorSelector();
+//                //constrSelector.
+//            }
 
-//		    var builder = new ContainerBuilder();
+//            var builder = new ContainerBuilder();
 //            builder.Register((c, p) => new Person(p.Named<string>("name")));
 //            
 //            using (var container = builder.Build())
@@ -69,19 +69,19 @@ namespace SePSX
 //                var person = container.Resolve<Person>(new NamedParameter("name", "Fred"));    
 //            }
 
-//		    builder.RegisterType<IWebDriver>().As<ChromeDriver>();
-//		    builder.Register<IWebDriver>((с, paramPath) => 
-//		                                 new ChromeDriver(paramPath.Named<string>("chromeDriverDirectory")));
-//		    builder.Register<IWebDriver>((с, paramOpt) => 
-//		                                 new ChromeDriver(paramOpt.Named<ChromeOptions>("options")));
-			////		    builder.Register<IWebDriver>((IComponentContext с, string paramPath, ChromeOptions paramOpt) => 
-			////		                                 new ChromeDriver(
-			////		                                     paramPath.Named<string>("chromeDriverDirectory"),
-			////		                                     paramOpt.Named<ChromeOptions>("options")));
-//		    builder.Register<IWebDriver>((с, parameters) => 
-//		                                 new ChromeDriver(
-//		                                     parameters[0].Named<string>("chromeDriverDirectory"),
-//		                                     parameters[1].Named<ChromeOptions>("options")));
+//            builder.RegisterType<IWebDriver>().As<ChromeDriver>();
+//            builder.Register<IWebDriver>((с, paramPath) => 
+//                                         new ChromeDriver(paramPath.Named<string>("chromeDriverDirectory")));
+//            builder.Register<IWebDriver>((с, paramOpt) => 
+//                                         new ChromeDriver(paramOpt.Named<ChromeOptions>("options")));
+            ////            builder.Register<IWebDriver>((IComponentContext с, string paramPath, ChromeOptions paramOpt) => 
+            ////                                         new ChromeDriver(
+            ////                                             paramPath.Named<string>("chromeDriverDirectory"),
+            ////                                             paramOpt.Named<ChromeOptions>("options")));
+//            builder.Register<IWebDriver>((с, parameters) => 
+//                                         new ChromeDriver(
+//                                             parameters[0].Named<string>("chromeDriverDirectory"),
+//                                             parameters[1].Named<ChromeOptions>("options")));
 
 
 //            builder.RegisterType<DoesSomething>()
@@ -95,9 +95,9 @@ namespace SePSX
 
         #region SePSX
 
-		    Assembly[] assemblies =
+            Assembly[] assemblies =
                 System.AppDomain.CurrentDomain.GetAssemblies();
-		    Assembly sepsxAssembly = assemblies.FirstOrDefault(assm => assm.FullName.Contains("SePSX,"));
+            Assembly sepsxAssembly = assemblies.FirstOrDefault(assm => assm.FullName.Contains("SePSX,"));
             /*
             foreach (Assembly assm in assemblies)
             {
@@ -110,7 +110,7 @@ namespace SePSX
             }
             */
 
-		    try {
+            try {
                 //builder.RegisterAssemblyTypes(new Assembly[]{ sepsxAssembly });
             }
             catch (Exception eRegisterAssembly) {
@@ -146,56 +146,56 @@ namespace SePSX
                 #endregion ChromeDriverService
                 
 #region commented
-//			builder.RegisterType<ChromeDriver>()
-//			    .As<IWebDriver>().UsingConstructor(new Type[]{} )
-//			    .Named<IWebDriver>("chrome_bare");
+//            builder.RegisterType<ChromeDriver>()
+//                .As<IWebDriver>().UsingConstructor(new Type[]{} )
+//                .Named<IWebDriver>("chrome_bare");
 //
-//			builder.RegisterType<ChromeDriver>()
-//			    .As<IWebDriver>().UsingConstructor(new Type[] {
-//			                                           typeof(string)
-//			                                       })
-//			    .Named<IWebDriver>("chrome_with_path");
+//            builder.RegisterType<ChromeDriver>()
+//                .As<IWebDriver>().UsingConstructor(new Type[] {
+//                                                       typeof(string)
+//                                                   })
+//                .Named<IWebDriver>("chrome_with_path");
 //
-//			builder.RegisterType<ChromeDriver>()
-//			    .As<IWebDriver>().UsingConstructor(new Type[] {
-//			                                       typeof(ChromeOptions)
-//			                                       })
-//			    .Named<IWebDriver>("chrome_with_options");
+//            builder.RegisterType<ChromeDriver>()
+//                .As<IWebDriver>().UsingConstructor(new Type[] {
+//                                                   typeof(ChromeOptions)
+//                                                   })
+//                .Named<IWebDriver>("chrome_with_options");
 //
-//			builder.RegisterType<ChromeDriver>()
-//			    .As<IWebDriver>().UsingConstructor(new Type[] {
-//			                                           typeof(string),
-//			                                           typeof(ChromeOptions)
-//			                                       })
-//			    .Named<IWebDriver>("chrome_with_path_and_options");
+//            builder.RegisterType<ChromeDriver>()
+//                .As<IWebDriver>().UsingConstructor(new Type[] {
+//                                                       typeof(string),
+//                                                       typeof(ChromeOptions)
+//                                                   })
+//                .Named<IWebDriver>("chrome_with_path_and_options");
 //
-//			builder.RegisterType<ChromeDriver>()
-//			    .As<IWebDriver>().UsingConstructor(new Type[] {
-//			                                           typeof(string),
-//			                                           typeof(ChromeOptions),
-//			                                           typeof(TimeSpan)
-//			                                       })
-//			    .Named<IWebDriver>("chrome_with_path_and_options_and_timespan");
+//            builder.RegisterType<ChromeDriver>()
+//                .As<IWebDriver>().UsingConstructor(new Type[] {
+//                                                       typeof(string),
+//                                                       typeof(ChromeOptions),
+//                                                       typeof(TimeSpan)
+//                                                   })
+//                .Named<IWebDriver>("chrome_with_path_and_options_and_timespan");
 //
-//			builder.RegisterType<ChromeDriver>()
-//			    .As<IWebDriver>().UsingConstructor(new Type[] {
-//			                                           typeof(DriverService),
-//			                                           typeof(ChromeOptions),
-//			                                           typeof(TimeSpan)
-//			                                       })
-//			    .Named<IWebDriver>("chrome_with_service_and_options_and_timespan");
+//            builder.RegisterType<ChromeDriver>()
+//                .As<IWebDriver>().UsingConstructor(new Type[] {
+//                                                       typeof(DriverService),
+//                                                       typeof(ChromeOptions),
+//                                                       typeof(TimeSpan)
+//                                                   })
+//                .Named<IWebDriver>("chrome_with_service_and_options_and_timespan");
 #endregion commented
-			
-			builder.RegisterType<ChromeDriver>()
-			    .As<IWebDriver>().UsingConstructor(new Type[] {
-			                                           // 20130131
-			                                           // 2.29
-			                                           //typeof(DriverService),
-			                                           typeof(ChromeDriverService),
-			                                           typeof(ChromeOptions),
-			                                           typeof(TimeSpan)
-			                                       })
-			    .Named<IWebDriver>("chrome");
+            
+            builder.RegisterType<ChromeDriver>()
+                .As<IWebDriver>().UsingConstructor(new Type[] {
+                                                       // 20130131
+                                                       // 2.29
+                                                       //typeof(DriverService),
+                                                       typeof(ChromeDriverService),
+                                                       typeof(ChromeOptions),
+                                                       typeof(TimeSpan)
+                                                   })
+                .Named<IWebDriver>("chrome");
 
             #endregion ChromeDriver
             #region FirefoxDriver
@@ -217,37 +217,37 @@ namespace SePSX
                 #endregion Firefox profile
             
             builder.RegisterType<FirefoxDriver>()
-			    .As<IWebDriver>().UsingConstructor(new Type[]{} )
-			    .Named<IWebDriver>("ff_bare");
+                .As<IWebDriver>().UsingConstructor(new Type[]{} )
+                .Named<IWebDriver>("ff_bare");
             builder.RegisterType<FirefoxDriver>()
-			    .As<IWebDriver>().UsingConstructor(new Type[] {
+                .As<IWebDriver>().UsingConstructor(new Type[] {
                                                        typeof(FirefoxProfile)
                                                    })
-			    .Named<IWebDriver>("ff_with_profile");
+                .Named<IWebDriver>("ff_with_profile");
             builder.RegisterType<FirefoxDriver>()
-			    .As<IWebDriver>().UsingConstructor(new Type[] {
+                .As<IWebDriver>().UsingConstructor(new Type[] {
                                                        typeof(ICapabilities)
                                                    })
-			    .Named<IWebDriver>("ff_with_capabilities");
+                .Named<IWebDriver>("ff_with_capabilities");
             builder.RegisterType<FirefoxDriver>()
-			    .As<IWebDriver>().UsingConstructor(new Type[] {
+                .As<IWebDriver>().UsingConstructor(new Type[] {
                                                        typeof(FirefoxBinary),
                                                        typeof(FirefoxProfile)
                                                    })
-			    .Named<IWebDriver>("ff_with_binary_and_profile");
+                .Named<IWebDriver>("ff_with_binary_and_profile");
             builder.RegisterType<FirefoxDriver>()
-			    .As<IWebDriver>().UsingConstructor(new Type[] {
+                .As<IWebDriver>().UsingConstructor(new Type[] {
                                                        typeof(FirefoxBinary),
                                                        typeof(FirefoxProfile),
                                                        typeof(TimeSpan)
                                                    })
-			    .Named<IWebDriver>("ff_with_binary_and_profile_and_timeout");
+                .Named<IWebDriver>("ff_with_binary_and_profile_and_timeout");
             
-//		ff_bare,
-//		ff_with_profile,
-//		ff_with_capabilities,
-//		ff_with_binary_and_profile,
-//		ff_with_binary_and_profile_and_timeout
+//        ff_bare,
+//        ff_with_profile,
+//        ff_with_capabilities,
+//        ff_with_binary_and_profile,
+//        ff_with_binary_and_profile_and_timeout
                     
             //bare
             //FirefoxProfile profile
@@ -255,7 +255,7 @@ namespace SePSX
             //FirefoxBinary binary, FirefoxProfile profile
             //FirefoxBinary binary, FirefoxProfile profile, TimeSpan commandTimeout
 
-			
+            
             #endregion FirefoxDriver
             #region IEDriverServer
                 #region InternetExplorerOptions
@@ -268,65 +268,65 @@ namespace SePSX
                 #endregion InternetExplorerDriverService
             
 #region commented
-//			builder.RegisterType<InternetExplorerDriver>()
-//			    .As<IWebDriver>().UsingConstructor(new Type[]{} )
-//			    .Named<IWebDriver>("ie_bare");
+//            builder.RegisterType<InternetExplorerDriver>()
+//                .As<IWebDriver>().UsingConstructor(new Type[]{} )
+//                .Named<IWebDriver>("ie_bare");
 //
-//			builder.RegisterType<InternetExplorerDriver>()
-//			    .As<IWebDriver>().UsingConstructor(new Type[] {
-//			                                           typeof(string)
-//			                                       })
-//			    .Named<IWebDriver>("ie_with_path");
+//            builder.RegisterType<InternetExplorerDriver>()
+//                .As<IWebDriver>().UsingConstructor(new Type[] {
+//                                                       typeof(string)
+//                                                   })
+//                .Named<IWebDriver>("ie_with_path");
 //
-//			builder.RegisterType<InternetExplorerDriver>()
-//			    .As<IWebDriver>().UsingConstructor(new Type[] {
-//			                                       typeof(InternetExplorerOptions)
-//			                                       })
-//			    .Named<IWebDriver>("ie_with_options");
+//            builder.RegisterType<InternetExplorerDriver>()
+//                .As<IWebDriver>().UsingConstructor(new Type[] {
+//                                                   typeof(InternetExplorerOptions)
+//                                                   })
+//                .Named<IWebDriver>("ie_with_options");
 //
-//			builder.RegisterType<InternetExplorerDriver>()
-//			    .As<IWebDriver>().UsingConstructor(new Type[] {
-//			                                           typeof(string),
-//			                                           typeof(InternetExplorerOptions)
-//			                                       })
-//			    .Named<IWebDriver>("ie_with_path_and_options");
+//            builder.RegisterType<InternetExplorerDriver>()
+//                .As<IWebDriver>().UsingConstructor(new Type[] {
+//                                                       typeof(string),
+//                                                       typeof(InternetExplorerOptions)
+//                                                   })
+//                .Named<IWebDriver>("ie_with_path_and_options");
 //
-//			builder.RegisterType<InternetExplorerDriver>()
-//			    .As<IWebDriver>().UsingConstructor(new Type[] {
-//			                                           typeof(string),
-//			                                           typeof(InternetExplorerOptions),
-//			                                           typeof(TimeSpan)
-//			                                       })
-//			    .Named<IWebDriver>("ie_with_path_and_options_and_timespan");
+//            builder.RegisterType<InternetExplorerDriver>()
+//                .As<IWebDriver>().UsingConstructor(new Type[] {
+//                                                       typeof(string),
+//                                                       typeof(InternetExplorerOptions),
+//                                                       typeof(TimeSpan)
+//                                                   })
+//                .Named<IWebDriver>("ie_with_path_and_options_and_timespan");
 //
-//			builder.RegisterType<InternetExplorerDriver>()
-//			    .As<IWebDriver>().UsingConstructor(new Type[] {
-//			                                           typeof(DriverService),
-//			                                           typeof(InternetExplorerOptions),
-//			                                           typeof(TimeSpan)
-//			                                       })
-//			    .Named<IWebDriver>("ie_with_service_and_options_and_timespan");
+//            builder.RegisterType<InternetExplorerDriver>()
+//                .As<IWebDriver>().UsingConstructor(new Type[] {
+//                                                       typeof(DriverService),
+//                                                       typeof(InternetExplorerOptions),
+//                                                       typeof(TimeSpan)
+//                                                   })
+//                .Named<IWebDriver>("ie_with_service_and_options_and_timespan");
 #endregion commented
-			
-			builder.RegisterType<InternetExplorerDriver>()
-			    .As<IWebDriver>().UsingConstructor(new Type[] {
-			                                           // 20130131
-			                                           // 2.29
-			                                           //typeof(DriverService),
-			                                           typeof(InternetExplorerDriverService),
-			                                           typeof(InternetExplorerOptions),
-			                                           typeof(TimeSpan)
-			                                       })
-			    .Named<IWebDriver>("ie");
-			
-//		public InternetExplorerDriver() : this(new InternetExplorerOptions())
-//		public InternetExplorerDriver(InternetExplorerOptions options) : this(InternetExplorerDriverService.CreateDefaultService(), options, TimeSpan.FromSeconds(60.0))
-//		public InternetExplorerDriver(string internetExplorerDriverServerDirectory) : this(internetExplorerDriverServerDirectory, new InternetExplorerOptions())
-//		public InternetExplorerDriver(string internetExplorerDriverServerDirectory, InternetExplorerOptions options) : this(internetExplorerDriverServerDirectory, options, TimeSpan.FromSeconds(60.0))
-//		public InternetExplorerDriver(string internetExplorerDriverServerDirectory, InternetExplorerOptions options, TimeSpan commandTimeout) : this(InternetExplorerDriverService.CreateDefaultService(internetExplorerDriverServerDirectory), options, commandTimeout)
-//		public InternetExplorerDriver(DriverService service, InternetExplorerOptions options, TimeSpan commandTimeout) : base(new DriverServiceCommandExecutor(service, commandTimeout), options.ToCapabilities())
+            
+            builder.RegisterType<InternetExplorerDriver>()
+                .As<IWebDriver>().UsingConstructor(new Type[] {
+                                                       // 20130131
+                                                       // 2.29
+                                                       //typeof(DriverService),
+                                                       typeof(InternetExplorerDriverService),
+                                                       typeof(InternetExplorerOptions),
+                                                       typeof(TimeSpan)
+                                                   })
+                .Named<IWebDriver>("ie");
+            
+//        public InternetExplorerDriver() : this(new InternetExplorerOptions())
+//        public InternetExplorerDriver(InternetExplorerOptions options) : this(InternetExplorerDriverService.CreateDefaultService(), options, TimeSpan.FromSeconds(60.0))
+//        public InternetExplorerDriver(string internetExplorerDriverServerDirectory) : this(internetExplorerDriverServerDirectory, new InternetExplorerOptions())
+//        public InternetExplorerDriver(string internetExplorerDriverServerDirectory, InternetExplorerOptions options) : this(internetExplorerDriverServerDirectory, options, TimeSpan.FromSeconds(60.0))
+//        public InternetExplorerDriver(string internetExplorerDriverServerDirectory, InternetExplorerOptions options, TimeSpan commandTimeout) : this(InternetExplorerDriverService.CreateDefaultService(internetExplorerDriverServerDirectory), options, commandTimeout)
+//        public InternetExplorerDriver(DriverService service, InternetExplorerOptions options, TimeSpan commandTimeout) : base(new DriverServiceCommandExecutor(service, commandTimeout), options.ToCapabilities())
 //
-//			
+//            
                 
             #endregion IEDriverServer
         #endregion WebDriver
@@ -343,6 +343,6 @@ namespace SePSX
             builder.RegisterSource(new AnyConcreteTypeNotAlreadyRegisteredSource());
         
         
-		}
+        }
     }
 }

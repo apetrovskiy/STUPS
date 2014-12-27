@@ -19,6 +19,7 @@ namespace Tmx.Server.Modules
     using Tmx.Core.Types.Remoting;
     using Tmx.Interfaces.Server;
     using Tmx.Interfaces.Remoting;
+    using Tmx.Server.Interfaces;
     
     /// <summary>
     /// Description of TestClientsModule.
@@ -47,8 +48,21 @@ namespace Tmx.Server.Modules
                 return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed);
             testClient.TestRunId = TestRunQueue.TestRuns.ActiveTestRunIds().First();
             ClientsCollection.Clients.Add(testClient);
-            var taskSorter = TinyIoCContainer.Current.Resolve<TaskSelector>();
-            var tasksForClient = taskSorter.SelectTasksForClient(testClient.Id, TaskPool.Tasks);
+            
+            var taskSelector = TinyIoCContainer.Current.Resolve<TaskSelector>();
+            
+//try {
+//    var taskSel = TinyIoCContainer.Current.Resolve<ITaskSelector>();
+//    if (null == taskSel)
+//        Console.WriteLine("null == taskSel");
+//    else
+//        Console.WriteLine("type is {0}", taskSel.GetType().Name);
+//}
+//catch (Exception ee) {
+//    Console.WriteLine(ee.Message);
+//}
+            
+            var tasksForClient = taskSelector.SelectTasksForClient(testClient.Id, TaskPool.Tasks);
             tasksForClient.ForEach(task => task.TestRunId = testClient.TestRunId);
             TaskPool.TasksForClients.AddRange(tasksForClient);
             return Negotiate.WithModel(testClient).WithStatusCode(HttpStatusCode.Created);

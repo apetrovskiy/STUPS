@@ -13,9 +13,9 @@ namespace Tmx.Server.Modules
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.IO;
-	using System.Text;
+    using System.Text;
     using System.Linq;
-	using System.Xml.Linq;
+    using System.Xml.Linq;
     using Nancy;
     using Nancy.Json;
     using Nancy.ModelBinding;
@@ -24,10 +24,10 @@ namespace Tmx.Server.Modules
     using Newtonsoft.Json;
     using Tmx.Core;
     using Tmx.Core.Types.Remoting;
-	using Tmx.Interfaces;
-	using Tmx.Interfaces.Server;
-	using Tmx;
-	using Tmx.Interfaces.TestStructure;
+    using Tmx.Interfaces;
+    using Tmx.Interfaces.Server;
+    using Tmx;
+    using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of TestResultsModule.

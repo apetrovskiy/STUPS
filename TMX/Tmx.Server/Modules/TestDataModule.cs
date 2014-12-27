@@ -12,13 +12,13 @@ namespace Tmx.Server.Modules
     using System;
     using System.Collections.Generic;
     using System.Linq;
-	using Nancy;
-	using Nancy.ModelBinding;
+    using Nancy;
+    using Nancy.ModelBinding;
     using Nancy.Responses.Negotiation;
     using Tmx.Core.Types.Remoting;
-	using Tmx.Interfaces.Remoting;
-	using Tmx.Interfaces.Server;
-	using Tmx.Core;
+    using Tmx.Interfaces.Remoting;
+    using Tmx.Interfaces.Server;
+    using Tmx.Core;
     
     /// <summary>
     /// Description of TestDataModule.
@@ -46,14 +46,14 @@ namespace Tmx.Server.Modules
         // TODO: fix it 20141030
         Negotiator returnCommonData(Guid testRunId)
         {
-        	var commonData = TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId).Data.Data;
-        	return null != commonData ? Negotiate.WithModel(commonData) : Negotiate.WithStatusCode(HttpStatusCode.NotFound);
+            var commonData = TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId).Data.Data;
+            return null != commonData ? Negotiate.WithModel(commonData) : Negotiate.WithStatusCode(HttpStatusCode.NotFound);
         }
         
-		HttpStatusCode addCommonDataItem(ICommonDataItem commonDataItem, Guid testRunId)
-		{
+        HttpStatusCode addCommonDataItem(ICommonDataItem commonDataItem, Guid testRunId)
+        {
             TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId).Data.AddOrUpdateDataItem(commonDataItem);
             return HttpStatusCode.Created;
-		}
+        }
     }
 }

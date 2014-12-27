@@ -619,8 +619,8 @@ namespace UIAutomationSpy
         //                    //new System.Windows.Point(mouse.X, mouse.Y));
         //                    new System.Windows.Point(mousePoint.X, mousePoint.Y));
         //            //element =
-        //            //	//(UiaNET::System.Windows.Automation.AutomationElement)
-        //            //	UiaCOM3.UiaCOMHelper.GetAutomationElementFromPoint();
+        //            //    //(UiaNET::System.Windows.Automation.AutomationElement)
+        //            //    UiaCOM3.UiaCOMHelper.GetAutomationElementFromPoint();
 //
         //            return element;
         //        }
@@ -915,7 +915,7 @@ namespace UIAutomationSpy
             // 20131227
             // IUiElement element = null;
 
-//				UiaNET::System.Windows.Automation.AutomationElement rootElement =
+//                UiaNET::System.Windows.Automation.AutomationElement rootElement =
             //                    UiaNET::System.Windows.Automation.AutomationElement.RootElement;
 //
             //                UIAutomation.TranscriptCmdletBase cmdlet = null;
@@ -937,7 +937,7 @@ namespace UIAutomationSpy
                 UIAutomation.TranscriptCmdletBase cmdlet = null;
                 System.Windows.Automation.AutomationElement element = null;
 
-//				UiaNET::System.Windows.Automation.AutomationElement rootElement =
+//                UiaNET::System.Windows.Automation.AutomationElement rootElement =
 //                    UiaNET::System.Windows.Automation.AutomationElement.RootElement;
 //
 //                UIAutomation.TranscriptCmdletBase cmdlet = null;
@@ -959,8 +959,8 @@ namespace UIAutomationSpy
 //                            System.Windows.Automation.AutomationElement.FromPoint(
 //                                new System.Windows.Point(mouse.X, mouse.Y));
 //                        //element =
-//                        //	//(UiaNET::System.Windows.Automation.AutomationElement)
-//                        //	UiaCOM3.UiaCOMHelper.GetAutomationElementFromPoint();
+//                        //    //(UiaNET::System.Windows.Automation.AutomationElement)
+//                        //    UiaCOM3.UiaCOMHelper.GetAutomationElementFromPoint();
                         
                         // 20120618 UiaCOMWrapper
                         if (element != null && ((element as AutomationElement) != null)) { // && (int)element.Current.ProcessId > 0)
@@ -1097,8 +1097,8 @@ namespace UIAutomationSpy
         //                            System.Windows.Automation.AutomationElement.FromPoint(
         //                                new System.Windows.Point(mouse.X, mouse.Y));
         //                        //element =
-        //                        //	//(UiaNET::System.Windows.Automation.AutomationElement)
-        //                        //	UiaCOM3.UiaCOMHelper.GetAutomationElementFromPoint();
+        //                        //    //(UiaNET::System.Windows.Automation.AutomationElement)
+        //                        //    UiaCOM3.UiaCOMHelper.GetAutomationElementFromPoint();
 
         // 20120618 UiaCOMWrapper
         // && (int)element.Current.ProcessId > 0)

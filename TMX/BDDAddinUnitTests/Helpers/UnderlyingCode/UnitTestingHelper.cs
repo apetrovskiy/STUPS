@@ -13,7 +13,7 @@ namespace BDDAddinUnitTests
     using Tmx;
     using Tmx.Commands;
     using PSTestLib;
-	// using Tmx.Core;
+    // using Tmx.Core;
     
     //using NBehave.Fluent.Framework.MbUnit;
     using NBehave.Narrator.Framework;

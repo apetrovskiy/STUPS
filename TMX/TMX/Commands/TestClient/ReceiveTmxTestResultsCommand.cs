@@ -18,10 +18,10 @@ namespace Tmx.Commands
     [Cmdlet(VerbsCommunications.Receive, "TmxTestResults")]
     public class ReceiveTmxTestResultsCommand : ClientCmdletBase
     {
-		protected override void BeginProcessing()
-		{
-			var command = new ReceiveTestResultsCommand(this);
-			command.Execute();
-		}
+        protected override void BeginProcessing()
+        {
+            var command = new ReceiveTestResultsCommand(this);
+            command.Execute();
+        }
     }
 }

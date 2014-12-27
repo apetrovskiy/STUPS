@@ -9,42 +9,42 @@
 
 //namespace Tmx
 //{
-//	using System;
-//	using Tmx.Interfaces;
+//    using System;
+//    using Tmx.Interfaces;
 //
-//	/// <summary>
-//	/// Description of XMLElementsNativeStruct.
-//	/// </summary>
-//	public struct XMLElementsNativeStruct : IXMLElementsStruct
-//	{
-//	    public XMLElementsNativeStruct(SearchCmdletBase cmdlet)
-//	    {
-//	        this.suitesNode = "suites";
-//	        this.suiteNode = "suite";
-//	        this.scenariosNode = "scenarios";
-//	        this.scenarioNode = "scenario";
-//	        this.testResultsNode = "testResults";
-//	        this.testResultNode = "testResult";
-//	        
-//	        this.failedAttribute = "failed";
-//	        
-//	        
-//	        this.timeSpentAttribute = "timeSpent";
-//	        this.timeStampAttribute = "timestamp";
-//	    }
-//	    
-//		string suitesNode;
-//		string suiteNode;
-//		string scenariosNode;
-//		string scenarioNode;
-//		string testResultsNode;
-//		string testResultNode;
-//		string failedAttribute;
+//    /// <summary>
+//    /// Description of XMLElementsNativeStruct.
+//    /// </summary>
+//    public struct XMLElementsNativeStruct : IXMLElementsStruct
+//    {
+//        public XMLElementsNativeStruct(SearchCmdletBase cmdlet)
+//        {
+//            this.suitesNode = "suites";
+//            this.suiteNode = "suite";
+//            this.scenariosNode = "scenarios";
+//            this.scenarioNode = "scenario";
+//            this.testResultsNode = "testResults";
+//            this.testResultNode = "testResult";
+//            
+//            this.failedAttribute = "failed";
+//            
+//            
+//            this.timeSpentAttribute = "timeSpent";
+//            this.timeStampAttribute = "timestamp";
+//        }
+//        
+//        string suitesNode;
+//        string suiteNode;
+//        string scenariosNode;
+//        string scenarioNode;
+//        string testResultsNode;
+//        string testResultNode;
+//        string failedAttribute;
 //
-//		string timeSpentAttribute;
-//		string timeStampAttribute;
-//	    
-//		//: IEquatable<XMLElementsNativeStruct>
+//        string timeSpentAttribute;
+//        string timeStampAttribute;
+//        
+//        //: IEquatable<XMLElementsNativeStruct>
 ////        int member; // this is just an example member, replace it with your own struct members!
 ////        
 ////        #region Equals and GetHashCode implementation
@@ -82,15 +82,15 @@
 ////        }
 ////        #endregion
 //
-//		public string SuitesNode { get { return this.suitesNode; } }
-//		public string SuiteNode { get { return this.suiteNode; } }
-//		public string ScenariosNode { get { return this.scenariosNode; } }
-//		public string ScenarioNode { get { return this.scenarioNode; } }
-//		public string TestResultsNode { get { return this.testResultsNode; } }
-//		public string TestResultNode { get { return this.testResultNode; } }
-//		public string FailedAttribute { get { return this.failedAttribute; } }
+//        public string SuitesNode { get { return this.suitesNode; } }
+//        public string SuiteNode { get { return this.suiteNode; } }
+//        public string ScenariosNode { get { return this.scenariosNode; } }
+//        public string ScenarioNode { get { return this.scenarioNode; } }
+//        public string TestResultsNode { get { return this.testResultsNode; } }
+//        public string TestResultNode { get { return this.testResultNode; } }
+//        public string FailedAttribute { get { return this.failedAttribute; } }
 //
-//		public string TimeSpentAttribute { get { return this.timeSpentAttribute; } }
-//		public string TimeStampAttribute { get { return this.timeStampAttribute; } }
-//	}
+//        public string TimeSpentAttribute { get { return this.timeSpentAttribute; } }
+//        public string TimeStampAttribute { get { return this.timeStampAttribute; } }
+//    }
 //}

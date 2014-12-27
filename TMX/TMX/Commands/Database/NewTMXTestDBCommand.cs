@@ -11,7 +11,7 @@ namespace Tmx.Commands
 {
     using System;
     using System.Management.Automation;
-	using Tmx.Interfaces;
+    using Tmx.Interfaces;
     
     /// <summary>
     /// Description of NewTmxTestDBCommand.
@@ -22,17 +22,17 @@ namespace Tmx.Commands
     {
         protected override void BeginProcessing()
         {
-			CheckCmdletParameters();
+            CheckCmdletParameters();
             
             // check input
             if (!StructureDB && !RepositoryDB && !ResultsDB) {
-				StructureDB = true;
-				RepositoryDB = true;
-				ResultsDB = true;
+                StructureDB = true;
+                RepositoryDB = true;
+                ResultsDB = true;
             }
             
             // blocked due to the need to remove dependency on SQLite
-//			SQLiteHelper.CreateDatabase(this, FileName, StructureDB, RepositoryDB, ResultsDB);
+//            SQLiteHelper.CreateDatabase(this, FileName, StructureDB, RepositoryDB, ResultsDB);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Tmx.Commands
 {
     using System;
     using System.Management.Automation;
-	using Tmx.Interfaces;
+    using Tmx.Interfaces;
     
     /// <summary>
     /// Description of AddTmxTestBucketCommand.
@@ -22,10 +22,10 @@ namespace Tmx.Commands
     {
         protected override void ProcessRecord()
         {
-			checkDatabaseInput(InputObject);
+            checkDatabaseInput(InputObject);
             
-			// blocked due to the need to remove dependency on SQLite
-//			SQLiteHelper.CreateBucket(this, BucketName, Tag, Description);
+            // blocked due to the need to remove dependency on SQLite
+//            SQLiteHelper.CreateBucket(this, BucketName, Tag, Description);
         }
     }
 }

@@ -9,8 +9,8 @@
 
 namespace UIAutomation
 {
-	public interface ISupportsHighlighter
-	{
-		IUiElement Highlight();
-	}
+    public interface ISupportsHighlighter
+    {
+        IUiElement Highlight();
+    }
 }

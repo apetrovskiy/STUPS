@@ -42,9 +42,9 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void DoenNotImplementCommonPatterns()
         {
             // Arrange
-			Preferences.UseElementsPatternObjectModel = false;
-			Preferences.UseElementsCached = false;
-			Preferences.UseElementsCurrent = false;
+            Preferences.UseElementsPatternObjectModel = false;
+            Preferences.UseElementsCached = false;
+            Preferences.UseElementsCurrent = false;
             
             var invokableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
@@ -87,7 +87,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void NoExtension()
         {
             // Arrange
-			Preferences.UseElementsSearchObjectModel = false;
+            Preferences.UseElementsSearchObjectModel = false;
             
             // Act
             var elements = new IUiElement[] {};
@@ -108,7 +108,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Toggle_Toggle_Off_ExtendedObjectModel_Off()
         {
             // Arrange
-			Preferences.UseElementsSearchObjectModel = false;
+            Preferences.UseElementsSearchObjectModel = false;
             
             var expectedValue = ToggleState.Off;
             var element =
@@ -136,7 +136,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Toggle_Toggle_Off_ExtendedObjectModel_On()
         {
             // Arrange
-			Preferences.UseElementsSearchObjectModel = true;
+            Preferences.UseElementsSearchObjectModel = true;
             
             var expectedValue = ToggleState.Off;
             var element =

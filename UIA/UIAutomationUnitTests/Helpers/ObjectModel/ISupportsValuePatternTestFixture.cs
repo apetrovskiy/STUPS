@@ -118,7 +118,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Value_Value_Set()
         {
             // Arrange
-			const string expectedValue = "abc";
+            const string expectedValue = "abc";
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetValuePattern(new PatternsData()) }) as ISupportsValuePattern;

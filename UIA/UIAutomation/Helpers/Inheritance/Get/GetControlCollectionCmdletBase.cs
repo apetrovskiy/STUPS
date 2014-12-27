@@ -286,9 +286,9 @@ namespace UIAutomation
         {
             var resultCollection = new List<IUiElement>();
             
-			name = name ?? string.Empty;
-			automationId = automationId ?? string.Empty;
-			className = className ?? string.Empty;
+            name = name ?? string.Empty;
+            automationId = automationId ?? string.Empty;
+            className = className ?? string.Empty;
             
             if ((controlType != null && 
                 controlType.Length > 0 && 
@@ -335,13 +335,13 @@ namespace UIAutomation
                         matched = true;
                     } else if (automationId.Length > 0 &&
                         // 20140312
-					                          // wildcardAutomationId.IsMatch(element.Cached.AutomationId)) {
+                                              // wildcardAutomationId.IsMatch(element.Cached.AutomationId)) {
                         // wildcardAutomationId.IsMatch((element as ISupportsCached).Cached.AutomationId)) {
                         wildcardAutomationId.IsMatch(element.GetCached().AutomationId)) {
-						matched = true;
-					} else
+                        matched = true;
+                    } else
                         // 20140312
-						// matched |= className.Length > 0 && wildcardClass.IsMatch(element.Cached.ClassName);
+                        // matched |= className.Length > 0 && wildcardClass.IsMatch(element.Cached.ClassName);
                         // matched |= className.Length > 0 && wildcardClass.IsMatch((element as ISupportsCached).Cached.ClassName);
                         matched |= className.Length > 0 && wildcardClass.IsMatch(element.GetCached().ClassName);
                 } else {
@@ -351,12 +351,12 @@ namespace UIAutomation
                         matched = true;
                     } else if (automationId.Length > 0 &&
                         // 20140312
-					                          // wildcardAutomationId.IsMatch(element.Current.AutomationId)) {
+                                              // wildcardAutomationId.IsMatch(element.Current.AutomationId)) {
                         wildcardAutomationId.IsMatch(element.GetCurrent().AutomationId)) {
-						matched = true;
-					} else
+                        matched = true;
+                    } else
                         // 20140312
-						// matched |= className.Length > 0 && wildcardClass.IsMatch(element.Current.ClassName);
+                        // matched |= className.Length > 0 && wildcardClass.IsMatch(element.Current.ClassName);
                         matched |= className.Length > 0 && wildcardClass.IsMatch(element.GetCurrent().ClassName);
                 }
                 
@@ -418,8 +418,8 @@ namespace UIAutomation
             */
 
             if (tempString.Length == 0) {
-            	result = true;
-            	return result;
+                result = true;
+                return result;
             }
             elementControlType =
                 elementControlType.Substring(

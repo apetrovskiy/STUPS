@@ -127,7 +127,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                     .Cast<IUiElement>()
                     .ToList<IUiElement>(), x =>
                     {
-                    	// 20140218
+                        // 20140218
                         var valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
                         // IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
                         return valuePattern != null && txtValuePattern.IsMatch(valuePattern.Current.Value);
@@ -135,8 +135,8 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 
             resultList.All(
                 x => {
-            			
-						// 20140218
+                        
+                        // 20140218
                         var valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
                         // IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
                         return valuePattern != null && txtValuePattern.IsMatch(valuePattern.Current.Value);

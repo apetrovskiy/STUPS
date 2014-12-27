@@ -28,10 +28,10 @@ namespace Tmx.Commands
         [ValidateNotNullOrEmpty]
         public string Value { get; set; }
         
-		protected override void BeginProcessing()
-		{
-			var command = new SendCommonDataItemCommand(this);
-			command.Execute();
-		}
+        protected override void BeginProcessing()
+        {
+            var command = new SendCommonDataItemCommand(this);
+            command.Execute();
+        }
     }
 }

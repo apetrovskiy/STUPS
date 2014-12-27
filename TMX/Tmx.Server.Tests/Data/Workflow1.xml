@@ -14,7 +14,7 @@
             <storyId>1000103</storyId>
             <old_style_action></old_style_action>
             <action>
-        		<code>
+                <code>
                     param($a, $b)
                         
                         Write-Host "==========103==========";
@@ -26,12 +26,12 @@
                         
                         Write-Host "running script: $($TestHome)\tests\Common\ProductSettings.ps1";
                         try { . $TestHome\tests\Common\ProductSettings.ps1 $a $b; } catch { $Logger.Error($global:Error[0]); }
-            	</code>
-        		<parameters>
+                </code>
+                <parameters>
                     <productCode>CRsuite</productCode>
                     <testHome>C:\TESTHOME</testHome>
-            	</parameters>
-        	</action>
+                </parameters>
+            </action>
             <testcases></testcases>
             <expected_result></expected_result>
             <timelimit>600</timelimit>
@@ -52,7 +52,7 @@
             <storyId>1000105</storyId>
             <old_style_action></old_style_action>
             <action>
-        		<code>
+                <code>
                     param($a, $b)
                         Write-Host "==========105==========";
                         $Error.Clear();
@@ -61,21 +61,21 @@
                         
                         Write-Host "running script: $($TestHome)\tests\Common\RestoreSnapshots.ps1";
                         try { . $TestHome\tests\Common\RestoreSnapshots.ps1 $a $b; } catch { $Logger.Error($global:Error[0]); }
-            	</code>
-        		<parameters>
+                </code>
+                <parameters>
                     <a>njqcat1.nwx.local</a>
                     <b>nwx\at_nwx_user</b>
                     <c>Lock12Lock</c>
-            	</parameters>
-        	</action>
+                </parameters>
+            </action>
             <beforeAction>
-        		<code>
+                <code>
                     Write-Host "==========105B==========";
                     $Error.Clear();
                     Write-Host "running script: $($TestHome)\tests\Common\BeforeTask.ps1";
                     try { . $TestHome\tests\Common\BeforeTask.ps1 } catch { $Logger.Error($global:Error[0]); }
-        		</code>
-        	</beforeAction>
+                </code>
+            </beforeAction>
             <testcases></testcases>
             <expected_result></expected_result>
             <timelimit>600</timelimit>
@@ -92,17 +92,17 @@
             <isCritical>1</isCritical>
             <storyId>1000120</storyId>
             <old_style_action>1010</old_style_action>
-        	<action>
-        	    <code>
+            <action>
+                <code>
                     param($a, $b)
                     $Error.Clear();
                     try { . $TestHome\tests\CRsuite_tests\CRsuite_Req1010.ps1 $a $b; } catch { $global:Error[0] >> "c:\testhome\logs\1010-120.log"; $Logger.Error($global:Error[0]); }
                     Write-Host $Error[0];
-        	    </code>
-        	    <parameters>
+                </code>
+                <parameters>
                     <!--<a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.5\6.5.302</a>-->
-        	        <!--<a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.0\LatestVersion</a>-->
-        	        <a>\\spbfs01.nwx.local\Releases\Netwrix_Auditor\6.5\6.5.339</a>
+                    <!--<a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.0\LatestVersion</a>-->
+                    <a>\\spbfs01.nwx.local\Releases\Netwrix_Auditor\6.5\6.5.339</a>
                     <b>Netwrix_Auditor.exe</b>
                     <c>NWX\at_nwx_user</c>
                     <d>Lock12Lock</d>
@@ -115,26 +115,26 @@
                     <k>120</k>
                     <l></l>
                     <m>0</m>
-        	        <n></n>
-            		<o>Lock12Lock</o>
-        	    </parameters></action>
+                    <n></n>
+                    <o>Lock12Lock</o>
+                </parameters></action>
             <beforeAction>
-        		<code>
+                <code>
                     $Error.Clear();
                     Write-Host "test home: $($TestHome)";
                     Write-Host "running script: $($TestHome)\tests\Common\BeforeTask.ps1";
                     try { . $TestHome\tests\Common\BeforeTask.ps1 } catch { $global:Error[0] >> "c:\testhome\logs\before-01.log"; $Logger.Error($global:Error[0]); }
-        		</code>
-        	</beforeAction>
+                </code>
+            </beforeAction>
             <afterAction>
-        		<code>
+                <code>
                     $Error.Clear();
                     Write-Host "running script: $($TestHome)\tests\CRsuite_tests\CRsuite_Req1010-01.ps1";
                     try { . $TestHome\tests\CRsuite_tests\CRsuite_Req1010-01.ps1; } catch { $global:Error[0] >> "c:\testhome\logs\1010-01.log"; $Logger.Error($global:Error[0]); }
                     Write-Host "running script: $($TestHome)\tests\Common\AfterTask.ps1";
                     try { . $TestHome\tests\Common\AfterTask.ps1; } catch { $Logger.Error($global:Error[0]); }
-        		</code>
-        	</afterAction>
+                </code>
+            </afterAction>
             <console_pre_action></console_pre_action><console_post_action>1010-1</console_post_action>
             <testcases></testcases>
             <expected_result></expected_result>
@@ -142,13 +142,13 @@
             <timelimit>2400</timelimit>
             <parameters>
                 \\10.0.0.113\Builds_to_test\CRsuite\5.0.80 (Public Release V2 - Enterprise)\Full Version
-            	\\spbfs01\builds\Netwrix Auditor\5.0\5.0.97 (Public Release - Enterprise V2)
-            	\\10.0.0.18\builds\Netwrix Auditor\5.0\5.0.97 (Public Release - Enterprise V2)
+                \\spbfs01\builds\Netwrix Auditor\5.0\5.0.97 (Public Release - Enterprise V2)
+                \\10.0.0.18\builds\Netwrix Auditor\5.0\5.0.97 (Public Release - Enterprise V2)
                 Netwrix_Auditor_Enterprise_Edition.exe
-            	
-            	<!-- <a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.0\6.0.198</a> -->
-            	<!-- <a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.1\6.1.200</a> -->
-            	<!--<a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.1\6.1.201</a>-->
+                
+                <!-- <a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.0\6.0.198</a> -->
+                <!-- <a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.1\6.1.200</a> -->
+                <!--<a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.1\6.1.201</a>-->
                 <!--<a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.1\LatestVersion</a>-->
                 <!--<a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.5\6.5.302</a>-->
                 <!--<a>\\spbfs01.nwx.local\Releases\Netwrix_Auditor\6.0\6.0.205.private</a>-->
@@ -165,7 +165,7 @@
                 <k>120</k>
                 <l></l>
                 <m>0</m>
-        		<o>Lock12Lock</o>
+                <o>Lock12Lock</o>
             </parameters>
         </task>
         <task>
@@ -179,11 +179,11 @@
             <storyId>1000150</storyId>
             <old_style_action>1010</old_style_action>
             <action>
-        		<code>
+                <code>
                     param($a, $b)
                     $Error.Clear();
                     try { . $TestHome\tests\CRsuite_tests\CRsuite_Req1010.ps1 $a $b; } catch { $Logger.Error($global:Error[0]); }
-            	</code>
+                </code>
                 <parameters>
                     <!--<a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.5\LatestVersion</a>-->
                     <a>\\spbfs01.nwx.local\Builds\Netwrix Auditor\6.5\6.5.340</a>
@@ -200,26 +200,26 @@
                     <l>C:\new suite</l>
                     <m>0</m>
                     <n></n>
-            		<o>Lock12Lock</o>
+                    <o>Lock12Lock</o>
                 </parameters>
-        	</action>
+            </action>
             <beforeAction>
-        		<code>
+                <code>
                     $Error.Clear();
                     Write-Host "running script: $($TestHome)\tests\Common\BeforeTask.ps1";
                     try { . $TestHome\tests\Common\BeforeTask.ps1 } catch { $Logger.Error($global:Error[0]); }
-        		</code>
-        	</beforeAction>
+                </code>
+            </beforeAction>
             <afterAction>
-        		<code>
+                <code>
                     $Error.Clear();
                     Write-Host "running script: $($TestHome)\tests\CRsuite_tests\CRsuite_Req1010-02.ps1";
                     try { . $TestHome\tests\CRsuite_tests\CRsuite_Req1010-02.ps1; } catch { $Logger.Error($global:Error[0]); }
                     try { . $TestHome\tests\Common\AfterTask.ps1; } catch { $Logger.Error($global:Error[0]); }
-        		</code>
-        		<parameters>
-            	</parameters>
-        	</afterAction>
+                </code>
+                <parameters>
+                </parameters>
+            </afterAction>
             <console_pre_action></console_pre_action><console_post_action>1010-2</console_post_action>
             <testcases></testcases>
             <expected_result></expected_result>
@@ -231,18 +231,18 @@
                 \\10.0.0.113\Builds_to_test\CRsuite\6.0.99 (beta)
                 \\spbfs01\Builds\Netwrix Auditor\6.0\6.0.99 SPA Iteration 15
                 \\spbfs01\Builds\Netwrix Auditor\Altair\LatestVersion
-            	\\spbfs01\builds\Netwrix Auditor\6.0
-            	\\spbfs01\builds\Netwrix Auditor\6.0\LatestVersion this is for Code Escrow
+                \\spbfs01\builds\Netwrix Auditor\6.0
+                \\spbfs01\builds\Netwrix Auditor\6.0\LatestVersion this is for Code Escrow
                 \\10.0.2.183\C$\TESTHOME\files
                 \\10.0.0.113\Builds_to_test\CRsuite\6.0.101
                 Netwrix_Auditor_Enterprise_Edition.exe
-            	\\10.0.0.18\builds\Netwrix Auditor\6.1\LatestVersion
-            	\\spbfs01.nwx.local\builds\Netwrix Auditor\6.0
-            	\\spbfs01.nwx.local\builds\Netwrix Auditor\6.0\6.0.194
+                \\10.0.0.18\builds\Netwrix Auditor\6.1\LatestVersion
+                \\spbfs01.nwx.local\builds\Netwrix Auditor\6.0
+                \\spbfs01.nwx.local\builds\Netwrix Auditor\6.0\6.0.194
 
-            	<!-- <a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.0\6.0.199</a> -->
-            	<!-- <a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.1\6.1.201</a> -->
-            	<!--<a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.1\6.1.225</a>-->
+                <!-- <a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.0\6.0.199</a> -->
+                <!-- <a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.1\6.1.201</a> -->
+                <!--<a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.1\6.1.225</a>-->
                 <a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.5\LatestVersion</a>
                 <!--<a>\\spbfs01.nwx.local\Builds\Netwrix Auditor\6.0\6.0.207</a>-->
                 <!--<a>\\spbfs01.nwx.local\Builds\Netwrix Auditor\6.0\6.0.208</a>-->
@@ -258,7 +258,7 @@
                 <k>150</k>
                 <l>C:\new suite</l>
                 <m>0</m>
-        		<o>Lock12Lock</o>
+                <o>Lock12Lock</o>
             </parameters>
         </task>
         <task>
@@ -272,34 +272,34 @@
             <storyId>1000160</storyId>
             <old_style_action>1011</old_style_action>
             <action>
-        		<code>
+                <code>
                     param($a, $b)
                 # try { $global:Logger.Debug("160 ..."); } catch { $Logger.Error($global:Error[0]); }
                     try { . $TestHome\tests\CRsuite_tests\CRsuite_Req1011.ps1 $a $b; } catch { try { $global:Logger.Error($global:Error[0]); } catch { $Logger.Error($global:Error[0]); } }
                 # try { $global:Logger.Debug("160!"); } catch { $Logger.Error($global:Error[0]); }
-            	</code>
-        		<parameters>
+                </code>
+                <parameters>
                     <a>$true</a>
                     <b>FSCR0001.xml,ADCR0001.xml,VMCR0001.xml,SPCR0001.xml,IUT0001.xml</b>
                     <c>c:\tests</c>
-            	</parameters>
-        	</action>
+                </parameters>
+            </action>
             <beforeAction>
-        		<code>
+                <code>
                     Write-Host "running script: $($TestHome)\tests\Common\BeforeTask.ps1";
                     try { . $TestHome\tests\Common\BeforeTask.ps1 } catch { $Logger.Error($global:Error[0]); }
-        		</code>
-        	</beforeAction>
+                </code>
+            </beforeAction>
             <afterAction>
-        		<code>
+                <code>
                     Write-Host "running script: $($TestHome)\tests\CRsuite_tests\CRsuite_Req1011-01.ps1";
                     try { . $TestHome\tests\CRsuite_tests\CRsuite_Req1011-01.ps1; } catch { $Logger.Error($global:Error[0]); }
                     try { . $TestHome\tests\Common\AfterTask.ps1; } catch { $Logger.Error($global:Error[0]); }
-        		</code>
-        		<parameters>
-            	</parameters>
-        	</afterAction>
-        	<console_pre_action></console_pre_action><console_post_action></console_post_action>
+                </code>
+                <parameters>
+                </parameters>
+            </afterAction>
+            <console_pre_action></console_pre_action><console_post_action></console_post_action>
             <testcases></testcases>
             <expected_result></expected_result>
             <retryCount>0</retryCount>
@@ -321,31 +321,31 @@
             <storyId>1000170</storyId>
             <old_style_action>1011</old_style_action>
             <action>
-        		<code>
+                <code>
                     param($a, $b)
                     try { . $TestHome\tests\CRsuite_tests\CRsuite_Req1011.ps1 $a $b; } catch { $Logger.Error($global:Error[0]); }
-            	</code>
-        		<parameters>
+                </code>
+                <parameters>
                     <a>$true</a>
                     <b>FSCR0002.xml,ADCR0002.xml,VMCR0002.xml,SPCR0002.xml</b>
                     <c>c:\tests</c>
-            	</parameters>
-        	</action>
+                </parameters>
+            </action>
             <beforeAction>
-        		<code>
+                <code>
                     Write-Host "running script: $($TestHome)\tests\Common\BeforeTask.ps1";
                     try { . $TestHome\tests\Common\BeforeTask.ps1 } catch { $Logger.Error($global:Error[0]); }
-        		</code>
-        	</beforeAction>
+                </code>
+            </beforeAction>
             <afterAction>
-        		<code>
+                <code>
                     Write-Host "running script: $($TestHome)\tests\CRsuite_tests\CRsuite_Req1011-01.ps1";
                     try { . $TestHome\tests\CRsuite_tests\CRsuite_Req1011-01.ps1; } catch { $Logger.Error($global:Error[0]); }
                     try { . $TestHome\tests\Common\AfterTask.ps1; } catch { $Logger.Error($global:Error[0]); }
-        		</code>
-        		<parameters>
-            	</parameters>
-        	</afterAction>
+                </code>
+                <parameters>
+                </parameters>
+            </afterAction>
             <console_pre_action></console_pre_action><console_post_action></console_post_action>
             <testcases></testcases>
             <expected_result></expected_result>
@@ -357,17 +357,17 @@
                 <c>c:\tests</c>
             </parameters>
         </task>
-    	<task>
+        <task>
             <name>MSI UPGRADE: analysing products' letters</name>
             <test_name>MSI UPGRADE: analysing products' letters</test_name>
             <isActive>1</isActive>
             <taskType>psremoting</taskType>
             <rule>testConsole</rule>
             <id>180</id>
-    	    <afterTask>170</afterTask>
+            <afterTask>170</afterTask>
             <isCritical>1</isCritical>
             <storyId>1000180</storyId>
-    	    <old_style_action></old_style_action>
+            <old_style_action></old_style_action>
             <action>
                 <code>
                     param($a, $b)
@@ -378,20 +378,20 @@
                     <b>FSCR0001.xml,ADCR0001.xml,VMCR0001.xml,SPCR0001.xml,IUT0001.xml,FSCR0002.xml,ADCR0002.xml,VMCR0002.xml,SPCR0002.xml</b>
                     <c>c:\tests</c>
                 </parameters>
-    	    </action>
+            </action>
             <beforeAction>
-        		<code>
+                <code>
                     Write-Host "running script: $($TestHome)\tests\Common\BeforeTask.ps1";
                     try { . $TestHome\tests\Common\BeforeTask.ps1 } catch { $Logger.Error($global:Error[0]); }
-        		</code>
-        	</beforeAction>
+                </code>
+            </beforeAction>
             <afterAction>
-        		<code>
+                <code>
                     try { . $TestHome\tests\Common\AfterTask.ps1; } catch { $Logger.Error($global:Error[0]); }
-        		</code>
-        		<parameters>
-            	</parameters>
-        	</afterAction>
+                </code>
+                <parameters>
+                </parameters>
+            </afterAction>
             <console_pre_action></console_pre_action><console_post_action>1012-2</console_post_action>
             <testcases></testcases>
             <expected_result></expected_result>
@@ -404,7 +404,7 @@
             </parameters>
         </task>
         
-    	<task>
+        <task>
             <name>Exit the test</name>
             <test_name>Exit the test</test_name>
             <isActive>1</isActive>
@@ -417,23 +417,23 @@
                     Start-Process shutdown -Argumentlist "/s","/t","10";
                     Unregister-TmxSystemUnderTest;
                 </code>
-    	    </action>
+            </action>
             <timelimit>30</timelimit>
             <parameters>
             </parameters>
         </task>
-    	<task>
+        <task>
             <name>Preparing and sending reports</name>
             <test_name>Preparing and sending reports</test_name>
             <isActive>1</isActive>
             <taskType>rdp</taskType>
             <rule>testConsole</rule>
             <id>9998</id>
-    	    <afterTask>180</afterTask>
+            <afterTask>180</afterTask>
             <storyId>1111110</storyId>
-    	    <old_style_action></old_style_action>
+            <old_style_action></old_style_action>
             <action>
-        		<code>
+                <code>
                     param($a, $b)
                         Write-Host "==========9998==========";
                         $Error.Clear();
@@ -442,18 +442,18 @@
                         
                         Write-Host "running script: $($TestHome)\tests\Common\ReportProductTests.ps1";
                         try { . $TestHome\tests\Common\ReportProductTests.ps1 $a $b; } catch { $Logger.Error($global:Error[0]); }
-            	</code>
-        		<parameters>
+                </code>
+                <parameters>
                     <a>njqcat1.nwx.local</a>
                     <b>nwx\at_nwx_user</b>
                     <c>Lock12Lock</c>
-            	</parameters>
-        	</action>
+                </parameters>
+            </action>
             <timelimit>600</timelimit>
             <parameters>
             </parameters>
         </task>
-    	<task>
+        <task>
             <name>Exit the test</name>
             <test_name>Exit the test</test_name>
             <isActive>1</isActive>
@@ -461,19 +461,19 @@
             <rule>testConsole</rule>
             <id>9999</id>
             <storyId>1111111</storyId>
-    	    <old_style_action></old_style_action>
+            <old_style_action></old_style_action>
             <action>
                 <code>
                     Write-Host "==========9999==========";
                     Unregister-TmxSystemUnderTest;
                 </code>
-    	    </action>
+            </action>
             <timelimit>30</timelimit>
             <parameters>
             </parameters>
         </task>
         
-    	<!--<task>
+        <!--<task>
             <name>MSI UPGRADE: gathering products' data</name>
             <test_name>MSI UPGRADE: gathering products' data</test_name>
             <isActive>1</isActive>
@@ -491,7 +491,7 @@
             <parameters>
             </parameters>
         </task>-->
-    	
+        
         <!--CLEAN:
          - installing the suite under test (i.e., new)
          - creation of MOs, gathering data
@@ -510,8 +510,8 @@
             <expected_result></expected_result>
             <timelimit>600</timelimit>
             <parameters>
-            	<a>SPLab-2008R2</a>
-            	<b>SPLab-2008R2.SPALab.at.local</b>
+                <a>SPLab-2008R2</a>
+                <b>SPLab-2008R2.SPALab.at.local</b>
                 <c>njqcat1.nwx.local</c>
                 <d>nwx\at_nwx_user</d>
                 <e>Lock12Lock</e>
@@ -533,7 +533,7 @@
             <retryCount>3</retryCount>
             <timelimit>2400</timelimit>
             <parameters>
-            	<a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.0\6.0.198</a>
+                <a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.0\6.0.198</a>
                 <b>Netwrix_Auditor.exe</b>
                 <c>NWX\at_nwx_user</c>
                 <d>Lock12Lock</d>
@@ -546,7 +546,7 @@
                 <k>250</k>
                 <l>c:\1\2\3</l>
                 <m>0</m>
-				<o>Lock12Lock</o>
+                <o>Lock12Lock</o>
             </parameters>
         </task>
         <task>
@@ -559,7 +559,7 @@
             <isCritical>1</isCritical>
             <storyId>1000260</storyId>
             <action>1011</action>
-        	<console_pre_action></console_pre_action><console_post_action></console_post_action>
+            <console_pre_action></console_pre_action><console_post_action></console_post_action>
             <testcases></testcases>
             <expected_result></expected_result>
             <retryCount>0</retryCount>
@@ -632,8 +632,8 @@
             <expected_result></expected_result>
             <timelimit>600</timelimit>
             <parameters>
-            	<a>SPLab-2008R2</a>
-            	<b>SPLab-2008R2.SPALab.at.local</b>
+                <a>SPLab-2008R2</a>
+                <b>SPLab-2008R2.SPALab.at.local</b>
                 <c>njqcat1.nwx.local</c>
                 <d>nwx\at_nwx_user</d>
                 <e>Lock12Lock</e>
@@ -655,7 +655,7 @@
             <retryCount>3</retryCount>
             <timelimit>2400</timelimit>
             <parameters>
-            	<a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.0\6.0.194</a>
+                <a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.0\6.0.194</a>
                 <b>Netwrix_Auditor.exe</b>
                 <c>NWX\at_nwx_user</c>
                 <d>Lock12Lock</d>
@@ -668,7 +668,7 @@
                 <k>320</k>
                 <l></l>
                 <m>0</m>
-				<o>Lock12Lock</o>
+                <o>Lock12Lock</o>
             </parameters>
         </task>
         <task>
@@ -681,7 +681,7 @@
             <isCritical>1</isCritical>
             <storyId>1000330</storyId>
             <action>1011</action>
-        	<console_pre_action></console_pre_action><console_post_action></console_post_action>
+            <console_pre_action></console_pre_action><console_post_action></console_post_action>
             <testcases></testcases>
             <expected_result></expected_result>
             <retryCount>0</retryCount>
@@ -729,7 +729,7 @@
             <retryCount>3</retryCount>
             <timelimit>3000</timelimit>
             <parameters>
-            	<a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.0\6.0.198</a>
+                <a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.0\6.0.198</a>
                 <b>Netwrix_Auditor.exe</b>
                 <c>NWX\at_nwx_user</c>
                 <d>Lock12Lock</d>
@@ -743,7 +743,7 @@
                 <l>c:\5\6\7</l>
                 <m>1</m>
                 <n>FSCR0001.xml,ADCR0001.xml,VMCR0001.xml,SPCR0001.xml,IUT0001.xml,FSCR0002.xml,ADCR0002.xml,VMCR0002.xml,SPCR0002.xml</n>
-				<o>Lock12Lock</o>
+                <o>Lock12Lock</o>
             </parameters>
         </task>
         <task>

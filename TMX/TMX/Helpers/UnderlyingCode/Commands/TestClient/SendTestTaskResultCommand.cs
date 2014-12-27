@@ -9,17 +9,17 @@
 
 namespace Tmx
 {
-	using System;
+    using System;
     using System.Collections.Generic;
-	using System.Linq;
-	using Tmx;
-	using Tmx.Client;
-	using Tmx.Core.Types.Remoting;
-	using Tmx.Commands;
-	
-	/// <summary>
-	/// Description of SendTestTaskResultCommand.
-	/// </summary>
+    using System.Linq;
+    using Tmx;
+    using Tmx.Client;
+    using Tmx.Core.Types.Remoting;
+    using Tmx.Commands;
+    
+    /// <summary>
+    /// Description of SendTestTaskResultCommand.
+    /// </summary>
     class SendTestTaskResultCommand : TmxCommand
     {
         internal SendTestTaskResultCommand(CommonCmdletBase cmdlet) : base (cmdlet)

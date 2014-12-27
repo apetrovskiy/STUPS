@@ -10,7 +10,7 @@
 namespace Tmx
 {
     using System;
-	using System.Collections.Generic;
+    using System.Collections.Generic;
     using Tmx.Interfaces.Remoting;
     
     /// <summary>
@@ -19,6 +19,6 @@ namespace Tmx
 //    public class TestTaskAction : ITestTaskAction
 //    {
 //        public string Code { get; set; }
-//		public Dictionary<string, object> Parameters { get; set; }
+//        public Dictionary<string, object> Parameters { get; set; }
 //    }
 }

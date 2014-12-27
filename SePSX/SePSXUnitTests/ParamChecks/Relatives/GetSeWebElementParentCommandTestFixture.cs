@@ -13,16 +13,16 @@ namespace SePSXUnitTests.CheckCmdletParameters
     using SePSX; using MbUnit.Framework;
     using OpenQA.Selenium;
     
-	/// <summary>
-	/// Description of GetSeWebElementParentCommand.
-	/// </summary>
-	[TestFixture]
-	public class GetSeWebElementParentCommand_ParamCheck //  WebElementCmdletBase
-	{
-		public GetSeWebElementParentCommand_ParamCheck()
-		{
-		}
-		
+    /// <summary>
+    /// Description of GetSeWebElementParentCommand.
+    /// </summary>
+    [TestFixture]
+    public class GetSeWebElementParentCommand_ParamCheck //  WebElementCmdletBase
+    {
+        public GetSeWebElementParentCommand_ParamCheck()
+        {
+        }
+        
         [SetUp]
         public void PrepareRunspace()
         {
@@ -42,5 +42,5 @@ namespace SePSXUnitTests.CheckCmdletParameters
         {
             
         }
-	}
+    }
 }

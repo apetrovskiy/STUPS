@@ -15,7 +15,7 @@ namespace TestUtils
     /// <summary>
     /// Description of TmxCommand.
     /// </summary>
-    internal abstract class Win32Command
+    abstract class Win32Command
     {
         internal Win32Command(CommonCmdletBase cmdlet)
         {

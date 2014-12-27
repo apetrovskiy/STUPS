@@ -13,12 +13,12 @@ namespace SePSXTest.Commands.Driver
     using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
     using System.Management.Automation;
     
-	/// <summary>
-	/// Description of StopSeWebDriverCommandTestFixture.
-	/// </summary>
-	[TestFixture] // [TestFixture(Description=" test")]
-	public class StopSeWebDriverCommandTestFixture
-	{
+    /// <summary>
+    /// Description of StopSeWebDriverCommandTestFixture.
+    /// </summary>
+    [TestFixture] // [TestFixture(Description=" test")]
+    public class StopSeWebDriverCommandTestFixture
+    {
         [SetUp]
         public void PrepareRunspace()
         {
@@ -102,5 +102,5 @@ namespace SePSXTest.Commands.Driver
         {
             MiddleLevelCode.DisposeRunspace();
         }
-	}
+    }
 }

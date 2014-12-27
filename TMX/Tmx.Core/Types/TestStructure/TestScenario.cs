@@ -13,9 +13,9 @@ namespace Tmx.Interfaces
     using System.Collections.Generic;
     // using System.Management.Automation;
     using System.Xml.Serialization;
-	using Tmx.Interfaces;
-	using Tmx.Interfaces.TestStructure;
-	// using Tmx.Core;
+    using Tmx.Interfaces;
+    using Tmx.Interfaces.TestStructure;
+    // using Tmx.Core;
     
     /// <summary>
     /// Description of TestScenario.
@@ -35,7 +35,7 @@ namespace Tmx.Interfaces
 //            try{
 //                if (TestData.CurrentTestResult.Details.Count > 0) {
 //                    
-//					TestData.AddTestResult(
+//                    TestData.AddTestResult(
 //                        "autoclosed", 
 //                        TestData.GetTestResultId(), 
 //                        null, 
@@ -87,7 +87,7 @@ namespace Tmx.Interfaces
             
             try{
                 if (TestData.CurrentTestResult.Details.Count > 0) {
-					TestData.AddTestResult(
+                    TestData.AddTestResult(
                         "autoclosed", 
                         TestData.GetTestResultId(), 
                         null, 
@@ -146,25 +146,25 @@ namespace Tmx.Interfaces
         { 
             get { return _enStatus; }
             set{
-				_enStatus = value;
+                _enStatus = value;
 
                 switch (value) {
                     case TestScenarioStatuses.Passed:
-						_status = TestData.TestStatePassed;
+                        _status = TestData.TestStatePassed;
                         break;
                     case TestScenarioStatuses.Failed:
-						_status = TestData.TestStateFailed;
+                        _status = TestData.TestStateFailed;
                         break;
                     case TestScenarioStatuses.NotTested:
-						_status = TestData.TestStateNotTested;
+                        _status = TestData.TestStateNotTested;
                         break;
                     case TestScenarioStatuses.KnownIssue:
-						_status = TestData.TestStateKnownIssue;
+                        _status = TestData.TestStateKnownIssue;
                         break;
                     default:
                         // 20130428
                         //throw new Exception("Invalid value for TestScenarioStatuses");
-						_status = TestData.TestStateNotTested;
+                        _status = TestData.TestStateNotTested;
                         break;
                 }
             }
@@ -182,14 +182,14 @@ namespace Tmx.Interfaces
         public virtual DateTime Timestamp { get; set; }
         public void SetNow()
         {
-			Timestamp = DateTime.Now;
+            Timestamp = DateTime.Now;
         }
         
         [XmlAttribute]
         public virtual double TimeSpent { get; set; }
         public virtual void SetTimeSpent(double timeSpent)
         {
-			TimeSpent = timeSpent;
+            TimeSpent = timeSpent;
         }
         
         [XmlIgnore]

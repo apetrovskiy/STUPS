@@ -250,24 +250,24 @@ namespace Tmx.Core
             
             dataObject.FilterAll = false;
             
-			if (!string.IsNullOrEmpty(dataObject.FilterNameContains))
+            if (!string.IsNullOrEmpty(dataObject.FilterNameContains))
                 query = testResult => testResult.Name != null && testResult.Name.Contains(dataObject.FilterNameContains);
             else if (!string.IsNullOrEmpty(dataObject.FilterIdContains))
                 query = testResult => testResult.Id != null && testResult.Id.Contains(dataObject.FilterIdContains);
             else if (!string.IsNullOrEmpty(dataObject.FilterDescriptionContains))
                 query = testResult => testResult.Description != null && testResult.Description.Contains(dataObject.FilterDescriptionContains);
             else if (dataObject.FilterPassed)
-				query = testResult => testResult.enStatus == TestResultStatuses.Passed;
+                query = testResult => testResult.enStatus == TestResultStatuses.Passed;
             else if (dataObject.FilterFailed)
-				query = testResult => testResult.enStatus == TestResultStatuses.Failed;
+                query = testResult => testResult.enStatus == TestResultStatuses.Failed;
             else if (dataObject.FilterNotTested)
-				query = testResult => testResult.enStatus == TestResultStatuses.NotTested;
+                query = testResult => testResult.enStatus == TestResultStatuses.NotTested;
             else if (dataObject.FilterPassedWithBadSmell)
-				query = testResult => testResult.enStatus == TestResultStatuses.KnownIssue;
+                query = testResult => testResult.enStatus == TestResultStatuses.KnownIssue;
             else if (dataObject.FilterOutAutomaticResults)
-				query = testResult => testResult.Origin != TestResultOrigins.Automatic;
+                query = testResult => testResult.Origin != TestResultOrigins.Automatic;
             else if (dataObject.FilterOutAutomaticAndTechnicalResults)
-				query = testResult => testResult.Origin != TestResultOrigins.Automatic && testResult.Origin != TestResultOrigins.Technical;
+                query = testResult => testResult.Origin != TestResultOrigins.Automatic && testResult.Origin != TestResultOrigins.Technical;
             if (dataObject.FilterAll) {
                 query = testResult => true;
                 dataObject.FilterAll = true;
@@ -281,14 +281,14 @@ namespace Tmx.Core
             // default result
             Func<ITestResult, object> ordering = testResult => testResult.Id;
             
-			if (dataObject.OrderByTimeSpent)
-				ordering = testResult => testResult.TimeSpent;
-			else if (dataObject.OrderByDateTime)
-				ordering = testResult => testResult.Timestamp;
-			else if (dataObject.OrderByName)
-				ordering = testResult => testResult.Name;
-			else if (dataObject.OrderById)
-				ordering = testResult => testResult.Id;
+            if (dataObject.OrderByTimeSpent)
+                ordering = testResult => testResult.TimeSpent;
+            else if (dataObject.OrderByDateTime)
+                ordering = testResult => testResult.Timestamp;
+            else if (dataObject.OrderByName)
+                ordering = testResult => testResult.Name;
+            else if (dataObject.OrderById)
+                ordering = testResult => testResult.Id;
             
             testResults = 
                 SearchTestResult(

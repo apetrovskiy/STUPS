@@ -12,20 +12,20 @@ namespace UIAutomationUnitTests.Commands.Wizard
     using MbUnit.Framework;using Xunit;using NUnit.Framework;
     using UIAutomation;
     
-	/// <summary>
-	/// Description of AddUiaWizardStepCommandTestFixture.
-	/// </summary>
-	[MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
-	public class AddUiaWizardStepCommandTestFixture
-	{
-	    public AddUiaWizardStepCommandTestFixture()
-	    {
-	        UnitTestingHelper.PrepareUnitTestDataStore();
-	        // 20140130
-	        AutomationFactory.InitUnitTests();
-	    }
-	    
-	    [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
+    /// <summary>
+    /// Description of AddUiaWizardStepCommandTestFixture.
+    /// </summary>
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
+    public class AddUiaWizardStepCommandTestFixture
+    {
+        public AddUiaWizardStepCommandTestFixture()
+        {
+            UnitTestingHelper.PrepareUnitTestDataStore();
+            // 20140130
+            AutomationFactory.InitUnitTests();
+        }
+        
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             UnitTestingHelper.PrepareUnitTestDataStore();
@@ -67,5 +67,5 @@ namespace UIAutomationUnitTests.Commands.Wizard
                 expectedName,
                 ((Wizard)PSTestLib.UnitTestOutput.LastOutput[0]).Steps[0].Name);
         }
-	}
+    }
 }

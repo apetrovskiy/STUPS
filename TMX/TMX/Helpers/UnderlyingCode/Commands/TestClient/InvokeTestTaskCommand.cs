@@ -9,15 +9,15 @@
 
 namespace Tmx
 {
-	using System;
-	using System.Management.Automation;
-	using System.Linq;
-	using Tmx;
-	using Tmx.Client;
-	using Tmx.Core;
-	using Tmx.Interfaces.Remoting;
-	using Tmx.Commands;
-	
+    using System;
+    using System.Management.Automation;
+    using System.Linq;
+    using Tmx;
+    using Tmx.Client;
+    using Tmx.Core;
+    using Tmx.Interfaces.Remoting;
+    using Tmx.Commands;
+    
     /// <summary>
     /// Description of InvokeTestTaskCommand.
     /// </summary>
@@ -39,39 +39,39 @@ namespace Tmx
             
             loadCommonData();
             runTask(task);
-			updateTask(task);
-			sendTestResults();
-			ClientSettings.Instance.CurrentTask = null;
+            updateTask(task);
+            sendTestResults();
+            ClientSettings.Instance.CurrentTask = null;
         }
         
-		void loadCommonData()
-		{
-		    var commonDataLoader = new CommonDataLoader(new RestRequestCreator());
-		    // 20141030
-		    // CommonData.Data = commonDataLoader.Load();
-		    ClientSettings.Instance.CommonData.Data = commonDataLoader.Load();
-		}
-		
-		void runTask(ITestTask task)
-		{
-			var taskRunner = new TaskRunner();
-			var runResult = taskRunner.Run(task);
-			task.TaskFinished = true;
-			task.TaskStatus = runResult ? TestTaskStatuses.CompletedSuccessfully : TestTaskStatuses.Interrupted;
-		}
-		
-		void updateTask(ITestTask task)
-		{
-			var taskUpdater = new TaskUpdater(new RestRequestCreator());
-			taskUpdater.UpdateTask(task);
-		}
-		
-		void sendTestResults()
-		{
+        void loadCommonData()
+        {
+            var commonDataLoader = new CommonDataLoader(new RestRequestCreator());
+            // 20141030
+            // CommonData.Data = commonDataLoader.Load();
+            ClientSettings.Instance.CommonData.Data = commonDataLoader.Load();
+        }
+        
+        void runTask(ITestTask task)
+        {
+            var taskRunner = new TaskRunner();
+            var runResult = taskRunner.Run(task);
+            task.TaskFinished = true;
+            task.TaskStatus = runResult ? TestTaskStatuses.CompletedSuccessfully : TestTaskStatuses.Interrupted;
+        }
+        
+        void updateTask(ITestTask task)
+        {
+            var taskUpdater = new TaskUpdater(new RestRequestCreator());
+            taskUpdater.UpdateTask(task);
+        }
+        
+        void sendTestResults()
+        {
             var testResultsSender = new TestResultsSender(new RestRequestCreator());
             var result = testResultsSender.SendTestResults();
             if (result)
                 TestData.ResetData();
-		}
+        }
     }
 }

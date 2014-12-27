@@ -71,7 +71,7 @@ namespace Tmx.Core.Types.Remoting
         public DateTime StartTime { get; set; }
         public TimeSpan TimeTaken { get; set; }
         
-//		// 20141126
+//        // 20141126
 //        string GetTestLabName()
 //        {
 //            return testlabcollection

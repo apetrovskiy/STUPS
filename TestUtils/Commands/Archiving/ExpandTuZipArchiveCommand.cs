@@ -33,8 +33,7 @@ namespace TestUtils.Commands
         
         protected override void ProcessRecord()
         {
-            TuExpandZipArchiveCommand command =
-                new TuExpandZipArchiveCommand(this);
+            var command = new ExpandTuZipArchiveCommand(this);
             command.Execute();
         }
     }

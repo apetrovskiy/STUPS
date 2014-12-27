@@ -11,7 +11,7 @@ namespace Tmx
 {
     using System;
     using System.Collections.Generic;
-	using Tmx.Interfaces.TestStructure;
+    using Tmx.Interfaces.TestStructure;
 
     /// <summary>
     /// Description of IBDDFeature.

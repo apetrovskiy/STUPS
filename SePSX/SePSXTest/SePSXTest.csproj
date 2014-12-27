@@ -5,8 +5,8 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>Library</OutputType>
-    <RootNamespace>SePSXTest</RootNamespace>
-    <AssemblyName>SePSXTest</AssemblyName>
+    <RootNamespace>SePsxTest</RootNamespace>
+    <AssemblyName>SePsxTest</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -35,6 +35,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NoWin32Manifest>False</NoWin32Manifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -228,9 +229,13 @@
       <Project>{36F73FA0-C636-48CF-BB7A-FE10FE52C391}</Project>
       <Name>CmdletUnit</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SePsx.Core\SePsx.Core.csproj">
+      <Project>{32BE1DB4-E1CC-43EC-B356-1C3777A56CF8}</Project>
+      <Name>SePsx.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SePSX\SePSX.csproj">
       <Project>{A0B50771-4889-46F4-8999-D2830DC9E486}</Project>
-      <Name>SePSX</Name>
+      <Name>SePsx</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -22,7 +22,7 @@ namespace UIAutomation
     /// </summary>
     public static class ExtensionMethodsCollection
     {
-    	// 20140215
+        // 20140215
         // public static IEnumerable GetElementsByWildcard(this IUiEltCollection collection, string name, string automationId, string className, string txtValue, bool caseSensitive = false)
         public static IEnumerable GetElementsByWildcard(this IUiEltCollection collection, string name, string automationId, string className, string txtValue, bool caseSensitive)
         {

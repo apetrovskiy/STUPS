@@ -14,7 +14,7 @@ namespace Tmx
     using PSTestLib;
     using System.Collections.ObjectModel;
     using System.Collections;
-	using Tmx;
+    using Tmx;
     
     /// <summary>
     /// Description of CmdletBase.

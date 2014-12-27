@@ -10,11 +10,11 @@
 namespace Tmx.Client
 {
     using System;
-	using System.Collections.Generic;
+    using System.Collections.Generic;
     using System.Diagnostics;
-	using System.Net;
-	using Spring.Rest.Client;
-	using Tmx.Interfaces.Server;
+    using System.Net;
+    using Spring.Rest.Client;
+    using Tmx.Interfaces.Server;
     
     /// <summary>
     /// Description of CommonDataLoader.

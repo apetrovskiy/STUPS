@@ -42,7 +42,7 @@ namespace UIAutomationTest.CheckCmdletParameters
             // 20140128
             CmdletUnitTest.TestRunspace.RunPSCode("[PSTestLib.PSCmdletBase]::SetCmdletParametersCheckingOn($false);");
             CmdletUnitTest.TestRunspace.RunPSCode(
-				@"[UIAutomation.CurrentData]::ResetData();");
+                @"[UIAutomation.CurrentData]::ResetData();");
             CmdletUnitTest.TestRunspace.CloseRunspace();
         }
     }

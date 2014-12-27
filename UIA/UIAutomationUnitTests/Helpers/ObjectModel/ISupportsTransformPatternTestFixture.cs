@@ -139,7 +139,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Transform_CanMove()
         {
             // Arrange
-			const bool expectedValue = true;
+            const bool expectedValue = true;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTransformPattern(new PatternsData() { TransformPattern_CanMove = expectedValue }) }) as ISupportsTransformPattern;
@@ -155,7 +155,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Transform_CanResize()
         {
             // Arrange
-			const bool expectedValue = false;
+            const bool expectedValue = false;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTransformPattern(new PatternsData() { TransformPattern_CanResize = expectedValue }) }) as ISupportsTransformPattern;
@@ -171,7 +171,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Transform_CanRotate()
         {
             // Arrange
-			const bool expectedValue = true;
+            const bool expectedValue = true;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTransformPattern(new PatternsData() { TransformPattern_CanRotate = expectedValue }) }) as ISupportsTransformPattern;
@@ -187,7 +187,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Transform_Move()
         {
             // Arrange
-			const bool expectedResult = true;
+            const bool expectedResult = true;
             bool result = false;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
@@ -210,7 +210,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Transform_Resize()
         {
             // Arrange
-			const bool expectedResult = true;
+            const bool expectedResult = true;
             bool result = false;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
@@ -233,7 +233,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Transform_Rotate()
         {
             // Arrange
-			const bool expectedResult = true;
+            const bool expectedResult = true;
             bool result = false;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(

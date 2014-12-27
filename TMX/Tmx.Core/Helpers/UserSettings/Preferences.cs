@@ -10,7 +10,7 @@
 namespace Tmx
 {
     using System;
-	using NHibernate.Event.Default;
+    using NHibernate.Event.Default;
     
     /// <summary>
     /// Description of Preferences.

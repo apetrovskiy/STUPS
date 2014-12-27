@@ -9,8 +9,8 @@
 
 namespace Tmx
 {
-	using System;
-	using Tmx.Interfaces;
+    using System;
+    using Tmx.Interfaces;
 
     /// <summary>
     /// Description of XMLElementsJUnitStruct.

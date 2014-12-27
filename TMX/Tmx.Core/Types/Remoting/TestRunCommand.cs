@@ -17,7 +17,6 @@ namespace Tmx.Core.Types.Remoting
     /// </summary>
     public class TestRunCommand : ITestRunCommand
     {
-        // 20141219
         string _nameSuffix;
         string _testRunName;
         

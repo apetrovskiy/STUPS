@@ -12,12 +12,12 @@ namespace SePSXTest.Commands.Relatives
     using System;
     using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
     
-	/// <summary>
-	/// Description of GetSeWebElementParentCommandTestFixture.
-	/// </summary>
-	[TestFixture] // [TestFixture(Description=" test")]
-	public class GetSeWebElementParentCommandTestFixture
-	{
+    /// <summary>
+    /// Description of GetSeWebElementParentCommandTestFixture.
+    /// </summary>
+    [TestFixture] // [TestFixture(Description=" test")]
+    public class GetSeWebElementParentCommandTestFixture
+    {
         [SetUp]
         public void PrepareRunspace()
         {
@@ -69,5 +69,5 @@ namespace SePSXTest.Commands.Relatives
         {
             MiddleLevelCode.DisposeRunspace();
         }
-	}
+    }
 }

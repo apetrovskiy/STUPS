@@ -46,7 +46,7 @@ namespace SePSX.Commands
         
         protected override void ProcessRecord()
         {
-			checkInputWebDriver(true);
+            checkInputWebDriver(true);
             
             //SeHelper.SwitchToFrame(this, ((IWebDriver[])this.InputObject), this.FrameIndex);
             // if (null != this.FrameElement && null == this.FrameIndex && null == this.FrameName) {

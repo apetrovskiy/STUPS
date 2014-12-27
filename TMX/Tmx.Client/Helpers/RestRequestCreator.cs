@@ -11,9 +11,9 @@ namespace Tmx.Client
 {
     using System;
     using Spring.Http.Converters;
-	using Spring.Http.Converters.Json;
+    using Spring.Http.Converters.Json;
     using Spring.Http.Converters.Xml;
-	using Spring.Rest.Client;
+    using Spring.Rest.Client;
     
     /// <summary>
     /// Description of RestRequestCreator.

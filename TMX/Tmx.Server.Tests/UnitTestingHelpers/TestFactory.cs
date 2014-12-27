@@ -13,10 +13,10 @@ namespace Tmx.Server.Tests
     using System.Linq;
     using Nancy;
     using Nancy.Testing;
-	using Tmx.Core;
+    using Tmx.Core;
     using Tmx.Core.Types.Remoting;
-	using Tmx.Interfaces.Remoting;
-	using Tmx.Server.Modules;
+    using Tmx.Interfaces.Remoting;
+    using Tmx.Server.Modules;
     
     /// <summary>
     /// Description of TestFactory.
@@ -40,7 +40,7 @@ namespace Tmx.Server.Tests
         
         public static Browser GetBrowserForTestRunsModule()
         {
-        	return new Browser(with => with.Modules(typeof(TestRunsModule), typeof(ServerControlModule)));
+            return new Browser(with => with.Modules(typeof(TestRunsModule), typeof(ServerControlModule)));
         }
         
         public static Browser GetBrowserForTestResultsModule()

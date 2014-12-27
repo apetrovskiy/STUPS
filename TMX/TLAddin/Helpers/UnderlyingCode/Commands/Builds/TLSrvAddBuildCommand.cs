@@ -23,11 +23,11 @@ namespace Tmx
         
         internal override void Execute()
         {
-			TLHelper.AddBuild(
-				Cmdlet, 
-				((AddTLBuildCommand)Cmdlet).InputObject,
-				((AddTLBuildCommand)Cmdlet).Name,
-				((AddTLBuildCommand)Cmdlet).Description);
+            TLHelper.AddBuild(
+                Cmdlet, 
+                ((AddTLBuildCommand)Cmdlet).InputObject,
+                ((AddTLBuildCommand)Cmdlet).Name,
+                ((AddTLBuildCommand)Cmdlet).Description);
         }
     }
 }

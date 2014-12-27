@@ -99,6 +99,7 @@
     <Compile Include="ObjectModel\TaskRunnerLegacy.cs" />
     <Compile Include="ObjectModel\TaskRunner.cs" />
     <Compile Include="ObjectModel\TaskUpdater.cs" />
+    <Compile Include="ObjectModel\TestReportLoader.cs" />
     <Compile Include="ObjectModel\TestResultsLoader.cs" />
     <Compile Include="ObjectModel\TestResultsSender.cs" />
     <Compile Include="ObjectModel\TestRunCreator.cs" />

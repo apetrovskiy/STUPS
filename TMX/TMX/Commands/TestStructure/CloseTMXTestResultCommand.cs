@@ -11,8 +11,8 @@ namespace Tmx.Commands
 {
     using System;
     using System.Management.Automation;
-	using Tmx;
-	using Tmx.Interfaces.TestStructure;
+    using Tmx;
+    using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of CloseTmxTestResultCommand.
@@ -30,7 +30,7 @@ namespace Tmx.Commands
             this.Id = TestData.GetTestResultId();
             this.TestLog = Preferences.TestLog;
             this.KnownIssue = false;
-			this.Echo |= Preferences.AutoEcho;
+            this.Echo |= Preferences.AutoEcho;
             
             // 20130626
             //this.TestOrigin = TestResultOrigins.Logical;
@@ -49,7 +49,7 @@ namespace Tmx.Commands
         
         protected override void BeginProcessing()
         {
-			CheckCmdletParameters();
+            CheckCmdletParameters();
                 
             var command = new TmxCloseTestResultCommand(this);
             command.Execute();

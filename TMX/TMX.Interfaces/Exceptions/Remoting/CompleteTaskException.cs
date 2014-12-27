@@ -9,9 +9,9 @@
 
 namespace Tmx.Interfaces.Exceptions
 {
-	using System;
-	using System.Runtime.Serialization;
-	
+    using System;
+    using System.Runtime.Serialization;
+    
     /// <summary>
     /// Desctiption of CompleteTaskException.
     /// </summary>

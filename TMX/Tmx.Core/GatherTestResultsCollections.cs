@@ -14,8 +14,8 @@ namespace Tmx
     using System.Collections.Generic;
     using System.Xml.Linq;
     using System.Reflection;
-	using Tmx.Interfaces;
-	using Tmx.Interfaces.TestStructure;
+    using Tmx.Interfaces;
+    using Tmx.Interfaces.TestStructure;
     using Tmx.Core;
     
     /// <summary>

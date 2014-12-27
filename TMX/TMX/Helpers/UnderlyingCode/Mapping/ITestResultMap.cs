@@ -16,7 +16,7 @@
 //    using FluentNHibernate.Mapping;
 //    using NHibernate;
 //    using NHibernate.Mapping;
-//	using Tmx.Interfaces.TestStructure;
+//    using Tmx.Interfaces.TestStructure;
 //    
 //    /// <summary>
 //    /// Description of ITestResultMap.

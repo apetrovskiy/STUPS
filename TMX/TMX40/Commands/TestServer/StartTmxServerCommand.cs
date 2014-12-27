@@ -20,27 +20,27 @@ namespace Tmx.Commands
     [Cmdlet(VerbsLifecycle.Start, "TmxServer")]
     public class StartTmxServerCommand : ServerCmdletBase
     {
-    	public StartTmxServerCommand()
-    	{
+        public StartTmxServerCommand()
+        {
             Hostname = Dns.GetHostName();
             if (string.Empty != IPGlobalProperties.GetIPGlobalProperties().DomainName) {
                 Hostname += ".";
                 Hostname += IPGlobalProperties.GetIPGlobalProperties().DomainName;
             }
-    		this.Port = 12340;
-    	}
-    	
-    	[Parameter(Mandatory = false,
-    	           Position = 0)]
-    	public int Port { get; set; }
-    	
-    	[Parameter(Mandatory = false)]
-    	public string Hostname { get; set; }
-    	
+            this.Port = 12340;
+        }
+        
+        [Parameter(Mandatory = false,
+                   Position = 0)]
+        public int Port { get; set; }
+        
+        [Parameter(Mandatory = false)]
+        public string Hostname { get; set; }
+        
         protected override void BeginProcessing()
         {
-        	var command = new StartServerCommand(this);
-        	command.Execute();
+            var command = new StartServerCommand(this);
+            command.Execute();
         }
     }
 }

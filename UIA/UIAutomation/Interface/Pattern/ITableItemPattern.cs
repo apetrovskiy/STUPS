@@ -9,13 +9,13 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
-	using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
+    extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
 
-	public interface ITableItemPattern : IBasePattern
-	{
-		ITableItemPatternInformation Cached { get; }
-		ITableItemPatternInformation Current { get; }
-	}
+    public interface ITableItemPattern : IBasePattern
+    {
+        ITableItemPatternInformation Cached { get; }
+        ITableItemPatternInformation Current { get; }
+    }
 }
 

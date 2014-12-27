@@ -39,7 +39,7 @@ namespace UIAutomationTest.CheckCmdletParameters
         public void NewWizard_Name_StartAction()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
-        		@"New-UiaWizard -Name 'wizardName' -StartAction { 'var' };");
+                @"New-UiaWizard -Name 'wizardName' -StartAction { 'var' };");
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -48,7 +48,7 @@ namespace UIAutomationTest.CheckCmdletParameters
         public void NewWizard_Name_StartActionX3()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
-        		@"New-UiaWizard -Name 'wizardName' -StartAction { 'var1' },{ 'var2' },{ 'var3' };");
+                @"New-UiaWizard -Name 'wizardName' -StartAction { 'var1' },{ 'var2' },{ 'var3' };");
         }
     }
 }

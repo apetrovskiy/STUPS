@@ -11,7 +11,7 @@ namespace Tmx.Commands
 {
     using System;
     using System.Management.Automation;
-	using Tmx.Interfaces;
+    using Tmx.Interfaces;
     //using System.Linq;
     
     /// <summary>
@@ -27,9 +27,9 @@ namespace Tmx.Commands
         
         protected override void BeginProcessing()
         {
-			CheckCmdletParameters();
+            CheckCmdletParameters();
             
-			var dataObject = new SearchCmdletBaseDataObject {
+            var dataObject = new SearchCmdletBaseDataObject {
                 Descending = this.Descending,
                 FilterAll = this.FilterAll,
                 FilterDescriptionContains = this.FilterDescriptionContains,
@@ -50,8 +50,8 @@ namespace Tmx.Commands
                 OrderByName = this.OrderByName,
                 OrderByPassRate = this.OrderByPassRate,
                 OrderByTimeSpent = this.OrderByTimeSpent
-			};
-			
+            };
+            
             WriteObject(TmxHelper.SearchForScenariosPS(dataObject), true);
         }
     }

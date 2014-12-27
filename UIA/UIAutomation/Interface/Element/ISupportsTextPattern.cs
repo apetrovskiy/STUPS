@@ -9,17 +9,17 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
-	using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
-	// using System.Windows.Automation.Text;
-	using System.Windows;
-	public interface ISupportsTextPattern
-	{
-		classic.Text.TextPatternRange[] GetTextSelection();
-		classic.Text.TextPatternRange[] GetVisibleRanges();
-		classic.Text.TextPatternRange RangeFromChild(IUiElement childElement);
-		classic.Text.TextPatternRange RangeFromPoint(Point screenLocation);
-		classic.Text.TextPatternRange DocumentRange { get; }
-		classic.SupportedTextSelection SupportedTextSelection { get; }
-	}
+    extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
+    // using System.Windows.Automation.Text;
+    using System.Windows;
+    public interface ISupportsTextPattern
+    {
+        classic.Text.TextPatternRange[] GetTextSelection();
+        classic.Text.TextPatternRange[] GetVisibleRanges();
+        classic.Text.TextPatternRange RangeFromChild(IUiElement childElement);
+        classic.Text.TextPatternRange RangeFromPoint(Point screenLocation);
+        classic.Text.TextPatternRange DocumentRange { get; }
+        classic.SupportedTextSelection SupportedTextSelection { get; }
+    }
 }

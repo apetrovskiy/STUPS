@@ -12,12 +12,12 @@ namespace SePSXTest.Commands.Driver
     using System;
     using MbUnit.Framework;
     
-	/// <summary>
-	/// Description of StartSeWebDriverCommandTestFixture.
-	/// </summary>
-	[TestFixture] // [TestFixture(Description=" test")]
-	public class StartSeWebDriverCommandTestFixture
-	{
+    /// <summary>
+    /// Description of StartSeWebDriverCommandTestFixture.
+    /// </summary>
+    [TestFixture] // [TestFixture(Description=" test")]
+    public class StartSeWebDriverCommandTestFixture
+    {
         [SetUp]
         public void PrepareRunspace()
         {

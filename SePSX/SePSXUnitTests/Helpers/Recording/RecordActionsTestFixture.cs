@@ -62,7 +62,7 @@ namespace SePSXUnitTests.Recording
             Assert.AreEqual(
                 expectedResult,
                 ((RecordedWebElement)Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items[
-                	Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 1]).UserData["TagName"]);
+                    Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 1]).UserData["TagName"]);
         }
         
         [Test] //[Test(Description="The Recorder.RecordActions test")]
@@ -85,7 +85,7 @@ namespace SePSXUnitTests.Recording
             Assert.AreEqual(
                 expectedResult,
                 ((RecordedWebElement)Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items[
-                	Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 1]).UserData["TagName"]);
+                    Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 1]).UserData["TagName"]);
         }
         
         [Test] //[Test(Description="The Recorder.RecordActions test")]
@@ -131,7 +131,7 @@ namespace SePSXUnitTests.Recording
             Assert.AreEqual(
                 expectedResult,
                 ((RecordedAction)Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items[
-                	Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 1]).UserData["code"]);
+                    Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 1]).UserData["code"]);
         }
         
         [Test] //[Test(Description="The Recorder.RecordActions test")]
@@ -154,7 +154,7 @@ namespace SePSXUnitTests.Recording
             Assert.AreEqual(
                 expectedResult,
                 ((RecordedWebElement)Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items[
-                	Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 2]).UserData["code"]);
+                    Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 2]).UserData["code"]);
         }
         
         [Test] //[Test(Description="The Recorder.RecordActions test")]
@@ -200,7 +200,7 @@ namespace SePSXUnitTests.Recording
             Assert.AreEqual(
                 expectedResult,
                 ((RecordedData)Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items[
-                	Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 1]).UserData["code"]);
+                    Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 1]).UserData["code"]);
         }
         
         [Test] //[Test(Description="The Recorder.RecordActions test")]
@@ -233,7 +233,7 @@ namespace SePSXUnitTests.Recording
             Assert.AreEqual(
                 expectedResult,
                 ((RecordedWebElement)Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items[
-                	Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 2]).UserData["code"]);
+                    Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 2]).UserData["code"]);
         }
         
         [Test] //[Test(Description="The Recorder.RecordActions test")]
@@ -282,7 +282,7 @@ namespace SePSXUnitTests.Recording
             Assert.AreEqual(
                 expectedResult,
                 ((RecordedData)Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items[
-                	Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 1]).UserData["code"]);
+                    Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 1]).UserData["code"]);
         }
         
         [Test] //[Test(Description="The Recorder.RecordActions test")]
@@ -328,7 +328,7 @@ namespace SePSXUnitTests.Recording
             Assert.AreEqual(
                 expectedResult,
                 ((RecordedWebElement)Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items[
-                	Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 3]).UserData["code"]);
+                    Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 3]).UserData["code"]);
         }
         
         [TearDown]

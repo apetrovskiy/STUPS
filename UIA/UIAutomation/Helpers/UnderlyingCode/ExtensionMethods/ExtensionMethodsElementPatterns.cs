@@ -756,27 +756,27 @@ namespace UIAutomation
             return 0;
         }
         
-		public static int GetColumnCountTablePattern(this IUiElement element)
-		{
-		    try {
+        public static int GetColumnCountTablePattern(this IUiElement element)
+        {
+            try {
                 return element.GetCurrentPattern<ITablePattern>(classic.TablePattern.Pattern).Current.ColumnCount;
             } catch (Exception) {
                 // 
                 // throw;
             }
             return 0;
-		}
-		
-		public static classic.RowOrColumnMajor GetRowOrColumnMajor(this IUiElement element)
-		{
-		    try {
-		        return element.GetCurrentPattern<ITablePattern>(classic.TablePattern.Pattern).Current.RowOrColumnMajor;
-		    } catch (Exception) {
-		        // 
-		        // throw;
-		    }
-		    return classic.RowOrColumnMajor.Indeterminate;
-		}
+        }
+        
+        public static classic.RowOrColumnMajor GetRowOrColumnMajor(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<ITablePattern>(classic.TablePattern.Pattern).Current.RowOrColumnMajor;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return classic.RowOrColumnMajor.Indeterminate;
+        }
         #endregion TablePattern
         #region TextPattern
         public static classic.Text.TextPatternRange[] PerformGetSelectionTextPattern(this IUiElement element)
@@ -790,61 +790,61 @@ namespace UIAutomation
             return new classic.Text.TextPatternRange[] {};
         }
         
-		public static classic.Text.TextPatternRange[] PerformGetVisibleRanges(this IUiElement element)
-		{
-		    try {
-		        return element.GetCurrentPattern<ITextPattern>(classic.TextPattern.Pattern).GetVisibleRanges();
+        public static classic.Text.TextPatternRange[] PerformGetVisibleRanges(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<ITextPattern>(classic.TextPattern.Pattern).GetVisibleRanges();
             } catch (Exception) {
                 // 
                 // throw;
             }
             return new classic.Text.TextPatternRange[] {};
-		}
-		
-		public static classic.Text.TextPatternRange PerformRangeFromChild(this IUiElement element, IUiElement childElement)
-		{
-		    try {
-		        return element.GetCurrentPattern<ITextPattern>(classic.TextPattern.Pattern).RangeFromChild(childElement);
+        }
+        
+        public static classic.Text.TextPatternRange PerformRangeFromChild(this IUiElement element, IUiElement childElement)
+        {
+            try {
+                return element.GetCurrentPattern<ITextPattern>(classic.TextPattern.Pattern).RangeFromChild(childElement);
             } catch (Exception) {
                 // 
                 // throw;
                 // Console.WriteLine(eExtensionMethod.Message);
             }
-		    return null;
-		}
-		
-		public static classic.Text.TextPatternRange PerformRangeFromPoint(this IUiElement element, System.Windows.Point screenLocation)
-		{
-		    try {
-		        return element.GetCurrentPattern<ITextPattern>(classic.TextPattern.Pattern).RangeFromPoint(screenLocation);
+            return null;
+        }
+        
+        public static classic.Text.TextPatternRange PerformRangeFromPoint(this IUiElement element, System.Windows.Point screenLocation)
+        {
+            try {
+                return element.GetCurrentPattern<ITextPattern>(classic.TextPattern.Pattern).RangeFromPoint(screenLocation);
             } catch (Exception) {
                 // 
                 // throw;
             }
-		    return null;
-		}
-		
-		public static classic.Text.TextPatternRange GetDocumentRange(this IUiElement element)
-		{
-		    try {
-		        return element.GetCurrentPattern<ITextPattern>(classic.TextPattern.Pattern).DocumentRange;
+            return null;
+        }
+        
+        public static classic.Text.TextPatternRange GetDocumentRange(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<ITextPattern>(classic.TextPattern.Pattern).DocumentRange;
             } catch (Exception) {
                 // 
                 // throw;
             }
-		    return null;
-		}
-		
-		public static classic.SupportedTextSelection GetSupportedTextSelection(this IUiElement element)
-		{
-		    try {
-		        return element.GetCurrentPattern<ITextPattern>(classic.TextPattern.Pattern).SupportedTextSelection;
+            return null;
+        }
+        
+        public static classic.SupportedTextSelection GetSupportedTextSelection(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<ITextPattern>(classic.TextPattern.Pattern).SupportedTextSelection;
             } catch (Exception) {
                 // 
                 // throw;
             }
-		    return classic.SupportedTextSelection.None;
-		}
+            return classic.SupportedTextSelection.None;
+        }
         #endregion TextPattern
         #region TogglePattern
         public static IUiElement PerformToggle(this IUiElement element)
@@ -896,61 +896,61 @@ namespace UIAutomation
             }
             return element;
         }
-		
-		public static IUiElement PerformResize(this IUiElement element, double width, double height)
-		{
-		    try {
-		        element.GetCurrentPattern<ITransformPattern>(classic.TransformPattern.Pattern).Resize(width, height);
-		    } catch (Exception) {
-		        // 
-		        // throw;
-		    }
-		    return element;
-		}
-		
-		public static IUiElement PerformRotate(this IUiElement element, double degrees)
-		{
-		    try {
-		        element.GetCurrentPattern<ITransformPattern>(classic.TransformPattern.Pattern).Rotate(degrees);
-		    } catch (Exception) {
-		        // 
-		        // throw;
-		    }
-		    return element;
-		}
-		
-		public static bool GetCanMove(this IUiElement element)
-		{
-		    try {
-		        return element.GetCurrentPattern<ITransformPattern>(classic.TransformPattern.Pattern).Current.CanMove;
-		    } catch (Exception) {
-		        // 
-		        // throw;
-		    }
-		    return false;
-		}
-		
-		public static bool GetCanResize(this IUiElement element)
-		{
-		    try {
-		        return element.GetCurrentPattern<ITransformPattern>(classic.TransformPattern.Pattern).Current.CanResize;
-		    } catch (Exception) {
-		        // 
-		        // throw;
-		    }
-		    return false;
-		}
-		
-		public static bool GetCanRotate(this IUiElement element)
-		{
-		    try {
-		        return element.GetCurrentPattern<ITransformPattern>(classic.TransformPattern.Pattern).Current.CanRotate;
-		    } catch (Exception) {
-		        // 
-		        // throw;
-		    }
-		    return false;
-		}
+        
+        public static IUiElement PerformResize(this IUiElement element, double width, double height)
+        {
+            try {
+                element.GetCurrentPattern<ITransformPattern>(classic.TransformPattern.Pattern).Resize(width, height);
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return element;
+        }
+        
+        public static IUiElement PerformRotate(this IUiElement element, double degrees)
+        {
+            try {
+                element.GetCurrentPattern<ITransformPattern>(classic.TransformPattern.Pattern).Rotate(degrees);
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return element;
+        }
+        
+        public static bool GetCanMove(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<ITransformPattern>(classic.TransformPattern.Pattern).Current.CanMove;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return false;
+        }
+        
+        public static bool GetCanResize(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<ITransformPattern>(classic.TransformPattern.Pattern).Current.CanResize;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return false;
+        }
+        
+        public static bool GetCanRotate(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<ITransformPattern>(classic.TransformPattern.Pattern).Current.CanRotate;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return false;
+        }
         #endregion TransformPattern
         #region ValuePattern
         public static IUiElement PerformSetValueValuePattern(this IUiElement element, string value)
@@ -998,93 +998,93 @@ namespace UIAutomation
             return element;
         }
         
-		public static IUiElement PerformClose(this IUiElement element)
-		{
-		    try {
-		        element.GetCurrentPattern<IWindowPattern>(classic.WindowPattern.Pattern).Close();
-		    } catch (Exception) {
-		        // 
-		        // throw;
-		    }
-		    return element;
-		}
-		
-		public static bool PerformWaitForInputIdle(this IUiElement element, int milliseconds)
-		{
-		    try {
-		        return element.GetCurrentPattern<IWindowPattern>(classic.WindowPattern.Pattern).WaitForInputIdle(milliseconds);
-		    } catch (Exception) {
-		        // 
-		        // throw;
-		    }
-		    return false;
-		}
-		
-		public static bool GetCanMaximize(this IUiElement element)
-		{
-		    try {
-		        return element.GetCurrentPattern<IWindowPattern>(classic.WindowPattern.Pattern).Current.CanMaximize;
-		    } catch (Exception) {
-		        // 
-		        // throw;
-		    }
-		    return false;
-		}
-		
-		public static bool GetCanMinimize(this IUiElement element)
-		{
-		    try {
-		        return element.GetCurrentPattern<IWindowPattern>(classic.WindowPattern.Pattern).Current.CanMinimize;
-		    } catch (Exception) {
-		        // 
-		        // throw;
-		    }
-		    return false;
-		}
-		
-		public static bool GetIsModal(this IUiElement element)
-		{
-		    try {
-		        return element.GetCurrentPattern<IWindowPattern>(classic.WindowPattern.Pattern).Current.IsModal;
-		    } catch (Exception) {
-		        // 
-		        // throw;
-		    }
-		    return false;
-		}
-		
-		public static bool GetIsTopmost(this IUiElement element)
-		{
-		    try {
-		        return element.GetCurrentPattern<IWindowPattern>(classic.WindowPattern.Pattern).Current.IsTopmost;
-		    } catch (Exception) {
-		        // 
-		        // throw;
-		    }
-		    return false;
-		}
-		
-		public static classic.WindowInteractionState GetWindowInteractionState(this IUiElement element)
-		{
-		    try {
-		        return element.GetCurrentPattern<IWindowPattern>(classic.WindowPattern.Pattern).Current.WindowInteractionState;
-		    } catch (Exception) {
-		        // 
-		        // throw;
-		    }
-		    return classic.WindowInteractionState.NotResponding;
-		}
-		
-		public static classic.WindowVisualState GetWindowVisualState(this IUiElement element)
-		{
-		    try {
-		        return element.GetCurrentPattern<IWindowPattern>(classic.WindowPattern.Pattern).Current.WindowVisualState;
-		    } catch (Exception) {
-		        // 
-		        // throw;
-		    }
-		    return classic.WindowVisualState.Normal;
-		}
+        public static IUiElement PerformClose(this IUiElement element)
+        {
+            try {
+                element.GetCurrentPattern<IWindowPattern>(classic.WindowPattern.Pattern).Close();
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return element;
+        }
+        
+        public static bool PerformWaitForInputIdle(this IUiElement element, int milliseconds)
+        {
+            try {
+                return element.GetCurrentPattern<IWindowPattern>(classic.WindowPattern.Pattern).WaitForInputIdle(milliseconds);
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return false;
+        }
+        
+        public static bool GetCanMaximize(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IWindowPattern>(classic.WindowPattern.Pattern).Current.CanMaximize;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return false;
+        }
+        
+        public static bool GetCanMinimize(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IWindowPattern>(classic.WindowPattern.Pattern).Current.CanMinimize;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return false;
+        }
+        
+        public static bool GetIsModal(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IWindowPattern>(classic.WindowPattern.Pattern).Current.IsModal;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return false;
+        }
+        
+        public static bool GetIsTopmost(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IWindowPattern>(classic.WindowPattern.Pattern).Current.IsTopmost;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return false;
+        }
+        
+        public static classic.WindowInteractionState GetWindowInteractionState(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IWindowPattern>(classic.WindowPattern.Pattern).Current.WindowInteractionState;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return classic.WindowInteractionState.NotResponding;
+        }
+        
+        public static classic.WindowVisualState GetWindowVisualState(this IUiElement element)
+        {
+            try {
+                return element.GetCurrentPattern<IWindowPattern>(classic.WindowPattern.Pattern).Current.WindowVisualState;
+            } catch (Exception) {
+                // 
+                // throw;
+            }
+            return classic.WindowVisualState.Normal;
+        }
         #endregion WindowPattern
         #endregion Patterns
     }

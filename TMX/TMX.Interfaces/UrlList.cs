@@ -58,11 +58,15 @@ namespace Tmx.Interfaces.Server
         // TestDataModule
         public static string TestData_Root = TestRuns_Root;
         public const string TestData_CommonData_relPath = "/{id:guid}/data/";
-        public static string TestData_CommonData_forClient_relPath = "/data/";
+        // 20141219
+        // public static string TestData_CommonData_forClient_relPath = "/data/";
+        public const string TestData_CommonData_forClient_relPath = "/data/";
         
         // ExternalFilesModule
         public const string ExternalFiles_Root = "/api/files";
-        public static string ExternalFilesUploadPoint_relPath = "/";
+        // 20141219
+        // public static string ExternalFilesUploadPoint_relPath = "/";
+        public const string ExternalFilesUploadPoint_relPath = "/";
         
         // ServerControlModule
         public const string ServerControl_Root = "/api/serverControl";
@@ -81,7 +85,11 @@ namespace Tmx.Interfaces.Server
         
         // TestReportsModule
         // public const string TestReports_Root = TestRuns_Root;
-        public const string TestReports_LoadingPoint = TestRuns_Root + "/{id:guid}/reports";
+        public const string TestReports_Root = TestRuns_Root;
+        // 20141219
+        // public const string TestReports_LoadingPoint = TestRuns_Root + "/{id:guid}/reports";
+        public const string TestReports_LoadingPoint_relPath = "/reports";
+        public const string TestReports_LoadingPoint = TestReports_Root + "/{id:guid}" + TestReports_LoadingPoint_relPath;
         
         // ViewsTestRunsModule
         public const string ViewTestRuns_Root = "/testRuns";

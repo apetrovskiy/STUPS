@@ -15,8 +15,8 @@ namespace Tmx.Interfaces
     using System.Collections;
     using System.Linq;
     using System.Xml.Serialization;
-	using Tmx.Interfaces.TestStructure;
-	// using Tmx.Core;
+    using Tmx.Interfaces.TestStructure;
+    // using Tmx.Core;
     
     /// <summary>
     /// Description of TestResult.
@@ -72,13 +72,13 @@ namespace Tmx.Interfaces
         public virtual int Position { get; protected internal set; }
         public virtual void SetPosition(int position)
         {
-			Position = position;
+            Position = position;
         }
         [XmlIgnore]
         public virtual ErrorRecord Error { get; protected internal set; }
         public virtual void SetError(ErrorRecord error)
         {
-			Error = error;
+            Error = error;
         }
         [XmlAttribute]
         public virtual string Code { get; set; }
@@ -127,7 +127,7 @@ namespace Tmx.Interfaces
         public virtual DateTime Timestamp { get; protected internal set; }
         public virtual void SetNow()
         {
-			Timestamp = DateTime.Now;
+            Timestamp = DateTime.Now;
         }
         // TODO: DI
         public virtual void SetTimestamp(DateTime timestamp)
@@ -166,7 +166,7 @@ namespace Tmx.Interfaces
                 // don't change the origin - it already was logical
             } else {
                 
-				Origin = origin;
+                Origin = origin;
             }
         }
         

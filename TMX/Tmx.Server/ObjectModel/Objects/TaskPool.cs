@@ -9,16 +9,16 @@
 
 namespace Tmx.Server
 {
-	using System;
-	using System.Collections.Generic;
-	using Tmx.Interfaces.Remoting;
-	
-	/// <summary>
-	/// Description of TaskPool.
-	/// </summary>
-	public class TaskPool
-	{
-		public static List<ITestTask> Tasks = new List<ITestTask>();
-		public static List<ITestTask> TasksForClients = new List<ITestTask>();
-	}
+    using System;
+    using System.Collections.Generic;
+    using Tmx.Interfaces.Remoting;
+    
+    /// <summary>
+    /// Description of TaskPool.
+    /// </summary>
+    public class TaskPool
+    {
+        public static List<ITestTask> Tasks = new List<ITestTask>();
+        public static List<ITestTask> TasksForClients = new List<ITestTask>();
+    }
 }

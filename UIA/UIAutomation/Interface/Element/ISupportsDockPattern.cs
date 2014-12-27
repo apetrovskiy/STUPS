@@ -9,13 +9,13 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
-	using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
-	
-	public interface ISupportsDockPattern
-	{
-		void SetDockPosition(classic.DockPosition dockPosition);
-		classic.DockPosition DockPosition { get; }
-	}
+    extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
+    
+    public interface ISupportsDockPattern
+    {
+        void SetDockPosition(classic.DockPosition dockPosition);
+        classic.DockPosition DockPosition { get; }
+    }
 }
 

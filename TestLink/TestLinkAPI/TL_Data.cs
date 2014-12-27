@@ -408,7 +408,7 @@ namespace Meyn.TestLink
         /// <summary>
         /// the version of the test case, starts with 1
         /// </summary>
-        public readonly int version;		
+        public readonly int version;        
         /// <summary>
         /// the internal id of this testcase version
         /// </summary>
@@ -630,7 +630,7 @@ namespace Meyn.TestLink
         /// <summary>
         /// a status. True means good
         /// </summary>
-   		public bool status;
+           public bool status;
         /// <summary>
         /// id of an object involved in the operation. e.g. test case id
         /// </summary>
@@ -689,24 +689,24 @@ namespace Meyn.TestLink
         /// </summary>
         public readonly bool status_ok; 
         /// <summary>
-        /// extra message, e.g."Created new version 2"	
+        /// extra message, e.g."Created new version 2"    
         /// </summary>
         public readonly string msg; 
-	    /// <summary>
-	    /// external id if used
-	    /// </summary>
-        public readonly int external_id; //	"5"	
+        /// <summary>
+        /// external id if used
+        /// </summary>
+        public readonly int external_id; //    "5"    
         /// <summary>
         /// internal id
         /// </summary>
-        public readonly int id; //	1313	
+        public readonly int id; //    1313    
         /// <summary>
         /// version number in test cases
         /// </summary>
-        public readonly int version_number; //	
-	    /// <summary>
-	    /// true if a duplicate exists
-	    /// </summary>
+        public readonly int version_number; //    
+        /// <summary>
+        /// true if a duplicate exists
+        /// </summary>
         public readonly bool? has_duplicate; 
         /// <summary>
         /// constructor used by XMLRPC interface on decoding the function return

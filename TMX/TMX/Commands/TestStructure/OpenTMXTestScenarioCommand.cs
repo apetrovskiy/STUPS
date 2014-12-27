@@ -11,8 +11,8 @@ namespace Tmx.Commands
 {
     using System;
     using System.Management.Automation;
-	using Tmx.Interfaces;
-	using Tmx;
+    using Tmx.Interfaces;
+    using Tmx;
     
     /// <summary>
     /// Description of OpenTmxTestScenarioCommand.

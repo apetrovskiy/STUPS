@@ -31,7 +31,9 @@ namespace Tmx.Server
                 testRun.Data.AddOrUpdateDataItem(
                     new CommonDataItem {
                         Key = key,
-                        Value = formData[key]
+                        // 20141219
+                        // Value = formData[key]
+                        Value = formData[key] ?? string.Empty
                     });
             }
             setWorkflow(testRunCommand, testRun);
@@ -39,8 +41,8 @@ namespace Tmx.Server
             setCommonData(testRun, formData);
             setCreatedTime(testRun);
             return testRun;
-		}
-		
+        }
+        
         void setWorkflow(ITestRunCommand testRunCommand, TestRun testRun)
         {
             (testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testRunCommand.WorkflowName));
@@ -63,7 +65,9 @@ namespace Tmx.Server
                 testRun.Data.AddOrUpdateDataItem(
                     new CommonDataItem {
                         Key = key,
-                        Value = formData[key]
+                        // 20141219
+                        // Value = formData[key]
+                        Value = formData[key] ?? string.Empty
                     });
             }
         }

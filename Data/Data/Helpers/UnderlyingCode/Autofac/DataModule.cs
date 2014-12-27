@@ -29,29 +29,29 @@ namespace Data
         
         internal IContainer container = null;
         
-		protected override void Load(ContainerBuilder builder)
-		{
-		    
-		    
-		    builder.RegisterType<XMLDataEntry>()
-		        .As<IXMLDataEntry>()
-		        .UsingConstructor(
-		            new Type[] {
-		                typeof(string),
-		                typeof(string)
-		            })
-		        .Named<IXMLDataEntry>("full");
-		    
-		    builder.RegisterType<XMLComparer>()
-		        .As<IXMLComparer>()
-		        .UsingConstructor(
-		            new Type[] {
-		                typeof(List<IXMLDataEntry>)
-		            })
-		        .Named<IXMLComparer>("simple");
-		    
-		    builder.RegisterSource(new AnyConcreteTypeNotAlreadyRegisteredSource());
-		    
-		}
+        protected override void Load(ContainerBuilder builder)
+        {
+            
+            
+            builder.RegisterType<XMLDataEntry>()
+                .As<IXMLDataEntry>()
+                .UsingConstructor(
+                    new Type[] {
+                        typeof(string),
+                        typeof(string)
+                    })
+                .Named<IXMLDataEntry>("full");
+            
+            builder.RegisterType<XMLComparer>()
+                .As<IXMLComparer>()
+                .UsingConstructor(
+                    new Type[] {
+                        typeof(List<IXMLDataEntry>)
+                    })
+                .Named<IXMLComparer>("simple");
+            
+            builder.RegisterSource(new AnyConcreteTypeNotAlreadyRegisteredSource());
+            
+        }
     }
 }

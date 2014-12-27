@@ -11,8 +11,8 @@ namespace Tmx.Commands
 {
     using System;
     using System.Management.Automation;
-	using Tmx.Interfaces;
-	using Tmx.Helpers;
+    using Tmx.Interfaces;
+    using Tmx.Helpers;
     
     /// <summary>
     /// Description of ImportTmxTestSettingsCommand.
@@ -27,12 +27,12 @@ namespace Tmx.Commands
         
         protected override void BeginProcessing()
         {
-			CheckCmdletParameters();
+            CheckCmdletParameters();
             
-			CheckInputFile(Path);
+            CheckInputFile(Path);
             
             //TmxHelper.ImportTestSettings(this, this.Path, this.VariableName);
-			ImportExportHelper.ImportTestSettings(
+            ImportExportHelper.ImportTestSettings(
                 new SettingsCmdletBaseDataObject {
                     Path = this.Path,
                     VariableName = this.VariableName,

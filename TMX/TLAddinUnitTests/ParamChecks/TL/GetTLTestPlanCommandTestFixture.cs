@@ -37,7 +37,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void Get_TLTestPlan_NoParameters()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Get-TLTestPlan;");
+                "Get-TLTestPlan;");
         }
         
         [Test]
@@ -46,7 +46,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void Get_TLTestPlan_Name_Only()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Get-TLTestPlan -TestPlanName 'test plan 001';");
+                "Get-TLTestPlan -TestPlanName 'test plan 001';");
         }
         
         [Test]
@@ -54,7 +54,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void Get_TLTestPlan_Name_InputObject()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Get-TLTestPlan -TestPlanName 'test plan 001' -InputObject (Get-TLProject -Name prj);");
+                "Get-TLTestPlan -TestPlanName 'test plan 001' -InputObject (Get-TLProject -Name prj);");
         }
         
         [Test]
@@ -63,7 +63,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void Get_TLTestPlan_TestPlanName_Only()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Get-TLTestPlan -TestPlanName 'test plan 001';");
+                "Get-TLTestPlan -TestPlanName 'test plan 001';");
         }
         
         [Test]
@@ -71,7 +71,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void Get_TLTestPlan_TestPlanName_InputObject()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Get-TLTestPlan -TestPlanName 'test plan 001' -InputObject (Get-TLProject -Name prj);");
+                "Get-TLTestPlan -TestPlanName 'test plan 001' -InputObject (Get-TLProject -Name prj);");
         }
         
 //        [Test]
@@ -79,7 +79,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
 //        public void Get_TLTestPlan_Id_Only()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"Get-TLProject -Id 111;");
+//                "Get-TLProject -Id 111;");
 //        }
 //        
 //        [Test]
@@ -87,7 +87,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
 //        public void Get_TLTestPlan_Name_Id()
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"Get-TLProject -TestPlanName proj01 -Id 333;");
+//                "Get-TLProject -TestPlanName proj01 -Id 333;");
 //        }
         
         [Test]
@@ -96,7 +96,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void Get_TLTestPlan_NameArray_Only()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Get-TLTestPlan -TestPlanName plan01,plan02;");
+                "Get-TLTestPlan -TestPlanName plan01,plan02;");
         }
         
         [Test]
@@ -104,7 +104,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void Get_TLTestPlan_TestProjectName()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Get-TLTestPlan -TestProjectName prj01;");
+                "Get-TLTestPlan -TestProjectName prj01;");
         }
         
         [Test]
@@ -112,7 +112,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void Get_TLTestPlan_Name_TestProjectName()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Get-TLTestPlan -TestPlanName 'test plan 001' -TestProjectName prj01;");
+                "Get-TLTestPlan -TestPlanName 'test plan 001' -TestProjectName prj01;");
         }
         
         [Test]
@@ -120,7 +120,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void Get_TLTestPlan_Name_TestProjectNameArray()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Get-TLTestPlan -TestPlanName 'test plan 001' -TestProjectName prj01,prj02;");
+                "Get-TLTestPlan -TestPlanName 'test plan 001' -TestProjectName prj01,prj02;");
         }
     }
 }

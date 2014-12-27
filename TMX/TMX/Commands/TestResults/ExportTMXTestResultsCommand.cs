@@ -12,7 +12,7 @@ namespace Tmx.Commands
     using System;
     using System.Management.Automation;
     using Tmx.Core;
-	using Tmx.Interfaces;
+    using Tmx.Interfaces;
     
     /// <summary>
     /// Description of ExportTmxTestResultsCommand.
@@ -22,7 +22,7 @@ namespace Tmx.Commands
     {
         protected override void BeginProcessing()
         {
-			CheckCmdletParameters();
+            CheckCmdletParameters();
             
             var dataObject = new ImportExportCmdletBaseDataObject {
                 As = As,
@@ -54,25 +54,25 @@ namespace Tmx.Commands
             switch (reportFormat){
                 case "XML":
                     // 20141114
-					// TmxHelper.ExportResultsToXML(dataObject, Path);
-					var testResultsExporter = new TestResultsExporter();
-					testResultsExporter.ExportResultsToXml(dataObject, Path, TestData.TestSuites, TestData.TestPlatforms);
+                    // TmxHelper.ExportResultsToXML(dataObject, Path);
+                    var testResultsExporter = new TestResultsExporter();
+                    testResultsExporter.ExportResultsToXml(dataObject, Path, TestData.TestSuites, TestData.TestPlatforms);
                     break;
                 case "JUNIT":
                 case "JUNITXML":
-					TmxHelper.ExportResultsToJUnitXML(dataObject, Path);
+                    TmxHelper.ExportResultsToJUnitXML(dataObject, Path);
                     break;
                 case "HTML":
-					ExportResultsToHTML(this, Path);
+                    ExportResultsToHTML(this, Path);
                     break;
                 case "CSV":
-					ExportResultsToCSV(Path);
+                    ExportResultsToCSV(Path);
                     break;
                 case "TEXT":
-					ExportResultsToTEXT(Path);
+                    ExportResultsToTEXT(Path);
                     break;
                 case "ZIP":
-					ExportResultsToZIP(Path);
+                    ExportResultsToZIP(Path);
                     break;
                 default:
                     

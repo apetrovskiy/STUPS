@@ -9,17 +9,17 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
-	using System;
-	using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
-	
-	public interface IScrollPatternInformation
-	{
-		double HorizontalScrollPercent { get; }
-		double VerticalScrollPercent { get; }
-		double HorizontalViewSize { get; }
-		double VerticalViewSize { get; }
-		bool HorizontallyScrollable { get; }
-		bool VerticallyScrollable { get; }
-	}
+    extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
+    using System;
+    using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
+    
+    public interface IScrollPatternInformation
+    {
+        double HorizontalScrollPercent { get; }
+        double VerticalScrollPercent { get; }
+        double HorizontalViewSize { get; }
+        double VerticalViewSize { get; }
+        bool HorizontallyScrollable { get; }
+        bool VerticallyScrollable { get; }
+    }
 }

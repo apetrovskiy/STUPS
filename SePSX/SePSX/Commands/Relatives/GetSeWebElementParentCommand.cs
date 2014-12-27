@@ -13,21 +13,21 @@ namespace SePSX.Commands
     using System.Management.Automation;
     using OpenQA.Selenium;
     
-	/// <summary>
-	/// Description of GetSeWebElementParentCommand.
-	/// </summary>
-	[Cmdlet(VerbsCommon.Get, "SeWebElementParent")]
-	public class GetSeWebElementParentCommand :  WebElementCmdletBase
-	{
-		public GetSeWebElementParentCommand()
-		{
-		}
-		
+    /// <summary>
+    /// Description of GetSeWebElementParentCommand.
+    /// </summary>
+    [Cmdlet(VerbsCommon.Get, "SeWebElementParent")]
+    public class GetSeWebElementParentCommand :  WebElementCmdletBase
+    {
+        public GetSeWebElementParentCommand()
+        {
+        }
+        
         protected override void ProcessRecord()
         {
             this.checkInputWebElementOnly(this.InputObject);
             
             SeHelper.GetElementParent(this, ((IWebElement[])this.InputObject));
         }
-	}
+    }
 }

@@ -45,7 +45,7 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Release35' ">
     <OutputPath>bin\Release35\</OutputPath>
     <DebugSymbols>False</DebugSymbols>
-    <DebugType>None</DebugType>
+    <DebugType>PdbOnly</DebugType>
     <Optimize>True</Optimize>
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
     <DefineConstants>TRACE</DefineConstants>
@@ -89,6 +89,7 @@
     <Compile Include="Helpers\WorkflowXmlConstants.cs" />
     <Compile Include="Interfaces\IMailSettings.cs" />
     <Compile Include="Interfaces\ISettings.cs" />
+    <Compile Include="Interfaces\ITaskSelector.cs" />
     <Compile Include="Modules\TestReportsModule.cs" />
     <Compile Include="ObjectModel\Data\MailSettings.cs" />
     <Compile Include="Helpers\ServerWatcher.cs" />

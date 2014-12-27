@@ -11,7 +11,7 @@ namespace Tmx.Client
 {
     using System;
     using System.Diagnostics;
-	using Tmx.Interfaces;
+    using Tmx.Interfaces;
     
     /// <summary>
     /// Description of TaskResultLoader.

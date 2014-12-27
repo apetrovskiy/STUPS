@@ -11,7 +11,7 @@ namespace Tmx.Commands
 {
     using System;
     using System.Management.Automation;
-	using Tmx.Interfaces;
+    using Tmx.Interfaces;
     //using System.Linq;
     
     /// <summary>
@@ -30,7 +30,7 @@ namespace Tmx.Commands
         
         protected override void BeginProcessing()
         {
-			CheckCmdletParameters();
+            CheckCmdletParameters();
             
             var dataObject = new SearchTmxTestResultDataObject {
                 OrderByFailRate = this.OrderByFailRate,

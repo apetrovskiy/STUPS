@@ -12,11 +12,11 @@ namespace Tmx
     using System;
     using System.Linq;
     using System.Management.Automation;
-	using Tmx;
+    using Tmx;
     
-	/// <summary>
-	/// Description of TmxInvokeTestSuiteCommand.
-	/// </summary>
+    /// <summary>
+    /// Description of TmxInvokeTestSuiteCommand.
+    /// </summary>
     class TmxInvokeTestSuiteCommand : TmxCommand
     {
         internal TmxInvokeTestSuiteCommand(CommonCmdletBase cmdlet) : base (cmdlet)
@@ -28,12 +28,12 @@ namespace Tmx
             var cmdlet = (TestSuiteExecCmdletBase)Cmdlet;
             
             var testSuite =
-            	TestData.GetTestSuite(
-            		cmdlet.Name,
-            		cmdlet.Id,
-            		// 20141114
-            		// cmdlet.TestPlatformId);
-            		TestData.TestPlatforms.FirstOrDefault(tp => tp.Id == cmdlet.TestPlatformId).UniqueId);
+                TestData.GetTestSuite(
+                    cmdlet.Name,
+                    cmdlet.Id,
+                    // 20141114
+                    // cmdlet.TestPlatformId);
+                    TestData.TestPlatforms.FirstOrDefault(tp => tp.Id == cmdlet.TestPlatformId).UniqueId);
             
             if (null == testSuite)
                 cmdlet.WriteError(
@@ -52,8 +52,8 @@ namespace Tmx
             
             if (!cmdlet.OnlySetParameters)
                 cmdlet.RunTestSuite(
-                	cmdlet,
-                	testSuite);
+                    cmdlet,
+                    testSuite);
         }
     }
 }

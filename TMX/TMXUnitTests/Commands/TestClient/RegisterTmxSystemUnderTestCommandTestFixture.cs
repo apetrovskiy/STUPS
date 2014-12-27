@@ -10,7 +10,7 @@
 namespace TmxUnitTests.Commands.TestClient
 {
     using System;
-	using TmxUnitTests;
+    using TmxUnitTests;
     
     /// <summary>
     /// Description of RegisterTmxSystemUnderTestCommandTestFixture.

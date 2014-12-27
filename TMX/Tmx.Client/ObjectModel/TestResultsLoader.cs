@@ -32,7 +32,7 @@ namespace Tmx.Client
         
         public TestResultsLoader(RestRequestCreator requestCreator)
         {
-        	_restTemplate = requestCreator.GetRestTemplate();
+            _restTemplate = requestCreator.GetRestTemplate();
         }
         
         public virtual bool LoadTestResults()
@@ -71,8 +71,8 @@ namespace Tmx.Client
                 
                 
                 return HttpStatusCode.OK == loadingResultsResponse.StatusCode;
-	        }
-	        catch (RestClientException eLoadingTestResults) {
+            }
+            catch (RestClientException eLoadingTestResults) {
                 // TODO: AOP
                 Trace.TraceError("LoadTestResults()");
                 Trace.TraceError(eLoadingTestResults.Message);

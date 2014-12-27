@@ -649,10 +649,10 @@ namespace UIAutomation
         {
             if (cmdlet == null) return;
             // run scriptblocks
-			var hasScriptBlockCmdletBase = cmdlet as HasScriptBlockCmdletBase;
+            var hasScriptBlockCmdletBase = cmdlet as HasScriptBlockCmdletBase;
             if (hasScriptBlockCmdletBase != null) {
 
-				RunOnErrorScriptBlocks(hasScriptBlockCmdletBase, null);
+                RunOnErrorScriptBlocks(hasScriptBlockCmdletBase, null);
             }
             /*
             if (cmdlet is HasScriptBlockCmdletBase) {
@@ -883,15 +883,15 @@ namespace UIAutomation
         protected internal void RunWizardStopScriptBlocks(WizardCmdletBase cmdlet, Wizard wizard, object[] parameters, bool hereMustBeStopAction)
         {
             
-			if (hereMustBeStopAction && (null == wizard.StopAction || 0 == wizard.StopAction.Length))
+            if (hereMustBeStopAction && (null == wizard.StopAction || 0 == wizard.StopAction.Length))
 //                cmdlet.WriteVerbose(cmdlet, "there is no any StopAction scriptblock");
                 //throw new Exception("There are no StopAction scriptblocks, define at least one");
                 cmdlet.WriteError(
-					cmdlet,
-					"There are no StopAction scriptblocks, define at least one",
-					"NoStopActionScriptblocks",
-					ErrorCategory.InvalidArgument,
-					true);
+                    cmdlet,
+                    "There are no StopAction scriptblocks, define at least one",
+                    "NoStopActionScriptblocks",
+                    ErrorCategory.InvalidArgument,
+                    true);
             
             runTwoScriptBlockCollections(
                 null,
@@ -919,7 +919,7 @@ namespace UIAutomation
                     this,
                     parameters);
                     
-				result |= null != CurrentData.CurrentWindow;
+                result |= null != CurrentData.CurrentWindow;
                 /*
                 if (null != CurrentData.CurrentWindow) {
                     result = true;
@@ -932,7 +932,7 @@ namespace UIAutomation
             // temporary
             // profiling
             // 20140207
-			WriteInfo(this, "the result of the GetWindowAction scriptblock run is " + result.ToString());
+            WriteInfo(this, "the result of the GetWindowAction scriptblock run is " + result.ToString());
             
             return result;
         }

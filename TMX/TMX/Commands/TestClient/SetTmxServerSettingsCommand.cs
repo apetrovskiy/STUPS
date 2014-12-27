@@ -18,13 +18,13 @@ namespace Tmx.Commands
     [Cmdlet(VerbsCommon.Set, "TmxServerSettings")]
     public class SetTmxServerSettingsCommand : ClientCmdletBase
     {
-	    [Parameter(Mandatory = true)]
-	    public string ServerUrl { get; set; }
+        [Parameter(Mandatory = true)]
+        public string ServerUrl { get; set; }
         
-		protected override void BeginProcessing()
-		{
-			var command = new SetServerSettingsCommand(this);
-			command.Execute();
-		}
+        protected override void BeginProcessing()
+        {
+            var command = new SetServerSettingsCommand(this);
+            command.Execute();
+        }
     }
 }

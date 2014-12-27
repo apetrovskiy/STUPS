@@ -32,11 +32,11 @@ namespace Tmx.Interfaces
         // If you don't need it, you can just remove the region and the ": IEquatable<TestStat>" declaration.
         
         public override bool Equals(object obj)
-		{
-			if (obj is TestStat)
-				return Equals((TestStat)obj); // use Equals method below
-			return false;
-		}
+        {
+            if (obj is TestStat)
+                return Equals((TestStat)obj); // use Equals method below
+            return false;
+        }
         
         public bool Equals(TestStat other)
         {

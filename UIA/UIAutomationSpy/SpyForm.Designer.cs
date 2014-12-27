@@ -9,15 +9,15 @@
 
 namespace UIAutomationSpy
 {
-	//extern alias UiaCOM;
-	using System;
-	using System.Windows.Automation;
-	using System.Windows.Forms;
-	using System.Drawing;
-	//using UiaCOM3;
-	//using UIAutomationClient;
-	
-	using System.Management.Automation;
+    //extern alias UiaCOM;
+    using System;
+    using System.Windows.Automation;
+    using System.Windows.Forms;
+    using System.Drawing;
+    //using UiaCOM3;
+    //using UIAutomationClient;
+    
+    using System.Management.Automation;
     using System.Security.Cryptography;
 
     partial class SpyForm

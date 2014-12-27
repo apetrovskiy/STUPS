@@ -38,7 +38,7 @@ namespace UIAutomationTest.CheckCmdletParameters
         public void Set_UiaEditText_Text()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
-        		"Set-UiaEditText -Text 'text' -InputObject $obj;");
+                "Set-UiaEditText -Text 'text' -InputObject $obj;");
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
@@ -49,7 +49,7 @@ namespace UIAutomationTest.CheckCmdletParameters
         public void Set_UiaEditText_Text_Position0()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsAccepted(
-        		"Set-UiaEditText 'text' -InputObject $obj;");
+                "Set-UiaEditText 'text' -InputObject $obj;");
         }
     }
 }

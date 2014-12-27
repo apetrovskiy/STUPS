@@ -9,15 +9,15 @@
 
 namespace Tmx
 {
-	using System;
-	using System.Threading;
-	using Tmx;
-	using Tmx.Client;
-	using Tmx.Commands;
-	
-	/// <summary>
-	/// Description of RegisterSystemUnderTestCommand.
-	/// </summary>
+    using System;
+    using System.Threading;
+    using Tmx;
+    using Tmx.Client;
+    using Tmx.Commands;
+    
+    /// <summary>
+    /// Description of RegisterSystemUnderTestCommand.
+    /// </summary>
     class RegisterSystemUnderTestCommand : TmxCommand
     {
         internal RegisterSystemUnderTestCommand(CommonCmdletBase cmdlet) : base (cmdlet)

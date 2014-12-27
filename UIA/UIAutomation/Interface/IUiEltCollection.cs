@@ -16,9 +16,9 @@ namespace UIAutomation
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
     
     public interface IUiEltCollection : ICollection, IEnumerable, IDisposable
-	{
-		List<IUiElement> SourceCollection { get; }
-		IUiElement this[int index] { get; }
-		IUiEltCollection this[string infoString] { get; }
-	}
+    {
+        List<IUiElement> SourceCollection { get; }
+        IUiElement this[int index] { get; }
+        IUiEltCollection this[string infoString] { get; }
+    }
 }

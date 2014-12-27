@@ -14,11 +14,11 @@ namespace TestUtils
     using TestUtils.Commands;
     
     /// <summary>
-    /// Description of Win32GrantLocalAccountPrivilegeCommand.
+    /// Description of GrantWin32LocalAccountPrivilegeCommand.
     /// </summary>
-    internal class Win32GrantLocalAccountPrivilegeCommand : Win32Command
+    internal class GrantWin32LocalAccountPrivilegeCommand : Win32Command
     {
-        internal Win32GrantLocalAccountPrivilegeCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        internal GrantWin32LocalAccountPrivilegeCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         

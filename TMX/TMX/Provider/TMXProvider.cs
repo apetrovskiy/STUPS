@@ -110,12 +110,12 @@ namespace Tmx
             try{
                 var result = new Collection<PSDriveInfo>();
                 var drive =
-					new PSDriveInfo(
-						"TMX",
-						ProviderInfo,
-						@"TMX\TmxProvider::\",
-						"This is the TMX root drive",
-						null);
+                    new PSDriveInfo(
+                        "TMX",
+                        ProviderInfo,
+                        @"TMX\TmxProvider::\",
+                        "This is the TMX root drive",
+                        null);
                 rootDrive = new TmxDriveInfo(drive);
                 result.Add(rootDrive);
                 return result;

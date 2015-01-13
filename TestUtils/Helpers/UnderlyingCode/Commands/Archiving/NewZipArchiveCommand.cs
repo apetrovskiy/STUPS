@@ -1,8 +1,8 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
- * Date: 4/12/2013
- * Time: 8:29 PM
+ * Date: 4/23/2013
+ * Time: 5:59 PM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
@@ -14,19 +14,19 @@ namespace TestUtils
     using TestUtils.Commands;
     
     /// <summary>
-    /// Description of GrantWin32LocalAccountPrivilegeCommand.
+    /// Description of NewTuZipArchiveCommand.
     /// </summary>
-    internal class GrantWin32LocalAccountPrivilegeCommand : Win32Command
+    class NewZipArchiveCommand : Win32Command
     {
-        internal GrantWin32LocalAccountPrivilegeCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        internal NewZipArchiveCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
         internal override void Execute()
         {
-            var cmdlet = (GrantWin32LocalAccountPrivilegeCommand)Cmdlet;
+            var cmdlet = (NewTuZipArchiveCommand)Cmdlet;
             
-            Win32Helper.GrantAccountPrivilege(cmdlet);
+            ArchivingHelper.AddFilesToArchive(cmdlet);
         }
     }
 }

@@ -19,8 +19,7 @@ namespace TestUtils.Commands
     {
         protected override void BeginProcessing()
         {
-            GrantWin32LocalAccountPrivilegeCommand command =
-                new GrantWin32LocalAccountPrivilegeCommand(this);
+            var command = new GrantLocalAccountPrivilegeCommand(this);
             command.Execute();
         }
     }

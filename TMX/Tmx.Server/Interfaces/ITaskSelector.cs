@@ -19,8 +19,8 @@ namespace Tmx.Server.Interfaces
     public interface ITaskSelector
     {
         List<ITestTask> SelectTasksForClient(Guid clientId, List<ITestTask> tasks);
-        ITestTask GetFirstLegibleTask(Guid clientId);
-        ITestTask GetNextLegibleTask(Guid clientId, int currentTaskId);
+        ITestTask GetFirstLegitimateTask(Guid clientId);
+        ITestTask GetNextLegitimateTask(Guid clientId, int currentTaskId);
         void CancelFurtherTasksOfTestClient(Guid clientId);
         void CancelFurtherTasksOfTestRun(Guid testRunId);
 //        internal virtual IEnumerable<ITestTask> getOnlyNewTestTasksForClient(Guid clientId);

@@ -85,11 +85,11 @@
     <Compile Include="Helpers\Inheritance\ExtractCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\PrivilegeCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\SecurityCmdletBase.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\Archiving\ExpandTuRarArchiveCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\Archiving\ExpandTuZipArchiveCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\Archiving\NewTuZipArchiveCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Archiving\ExpandRarArchiveCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Archiving\ExpandZipArchiveCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Archiving\NewZipArchiveCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\ScheduledTasks\NewScheduledTaskCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\Security\GrantWin32LocalAccountPrivilegeCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Security\GrantLocalAccountPrivilegeCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Win32Command.cs" />
     <Compile Include="Helpers\UserSettings\Preferences.cs" />
     <Compile Include="Helpers\Win32Helper.cs" />

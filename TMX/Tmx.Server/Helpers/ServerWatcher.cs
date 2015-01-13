@@ -65,7 +65,8 @@ namespace Tmx.Server.Helpers
                         new XAttribute("id", testTask.Id),
                         new XAttribute("name", testTask.Name),
                         new XAttribute("status", testTask.TaskStatus),
-                        new XAttribute("finished", testTask.TaskFinished),
+                        // 20150112
+                        // new XAttribute("finished", testTask.TaskFinished),
                         new XAttribute("clientId", testTask.ClientId))); // ,
                         // new XAttribute("taskResult", testTask.TaskResult ?? new Dictionary<string, string>()),
                         // new XAttribute("previousTaskResult", testTask.PreviousTaskResult ?? new Dictionary<string, string>())));

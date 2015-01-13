@@ -121,6 +121,12 @@ namespace Tmx.Core
             return TestTaskStatuses.Canceled == task.TaskStatus;
         }
         
+        // 20150112
+        public static bool IsCompletedSuccessfully(this ITestTask task)
+        {
+            return TestTaskStatuses.CompletedSuccessfully == task.TaskStatus;
+        }
+        
         public static bool IsFailed(this ITestTask task)
         {
             return TestTaskStatuses.Interrupted == task.TaskStatus;

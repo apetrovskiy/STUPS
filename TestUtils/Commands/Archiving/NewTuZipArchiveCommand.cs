@@ -43,7 +43,7 @@ namespace TestUtils.Commands
         
         protected override void ProcessRecord()
         {
-            var command = new NewTuZipArchiveCommand(this);
+            var command = new NewZipArchiveCommand(this);
             command.Execute();
         }
     }

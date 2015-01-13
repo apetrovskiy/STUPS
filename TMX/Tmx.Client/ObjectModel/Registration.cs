@@ -112,7 +112,8 @@ namespace Tmx.Client
             
             Trace.TraceInformation("closeCurrentTaskIfAny().4");
             
-            task.TaskFinished = true;
+            // 20150112
+            // task.TaskFinished = true;
             
             Trace.TraceInformation("closeCurrentTaskIfAny().5");
             

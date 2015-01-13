@@ -489,7 +489,8 @@ namespace Tmx.Server.Tests.Modules
             Xunit.Assert.Equal(expectedTask.Id, actualTask.Id);
             Xunit.Assert.Equal(expectedTask.Name, actualTask.Name);
             Xunit.Assert.Equal(expectedTask.TaskStatus, actualTask.TaskStatus);
-            Xunit.Assert.Equal(expectedTask.TaskFinished, actualTask.TaskFinished);
+            // 20150112
+            // Xunit.Assert.Equal(expectedTask.TaskFinished, actualTask.TaskFinished);
             // 20141020 squeezing a task to its proxy
             Xunit.Assert.Equal(expectedTask.IsActive, actualTask.IsActive);
             // Xunit.Assert.Equal(_startTime, actualTask.StartTime);

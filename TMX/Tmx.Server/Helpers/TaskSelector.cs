@@ -67,26 +67,26 @@ namespace Tmx.Server
             return resultTaskScope;
         }
         
-        public virtual ITestTask GetFirstLegibleTask(Guid clientId)
+        public virtual ITestTask GetFirstLegitimateTask(Guid clientId)
         {
-            Trace.TraceInformation("GetFirstLegibleTask(Guid clientId).1");
+            Trace.TraceInformation("GetFirstLegitimateTask(Guid clientId).1");
             
             var taskListForClient = getOnlyNewTestTasksForClient(clientId);
             
-            Trace.TraceInformation("GetFirstLegibleTask(Guid clientId).2 taskListForClient is null? {0} or empty {1}", null == taskListForClient, !taskListForClient.Any());
+            Trace.TraceInformation("GetFirstLegitimateTask(Guid clientId).2 taskListForClient is null? {0} or empty {1}", null == taskListForClient, !taskListForClient.Any());
             
             if (null == taskListForClient || !taskListForClient.Any()) return null;
             
-            Trace.TraceInformation("GetFirstLegibleTask(Guid clientId).3");
+            Trace.TraceInformation("GetFirstLegitimateTask(Guid clientId).3");
             
             var taskCandidate = taskListForClient.First(task => task.Id == taskListForClient.Min(tsk => tsk.Id));
             
-            Trace.TraceInformation("GetFirstLegibleTask(Guid clientId).4 taskCandidate is null? {0}", null == taskCandidate);
+            Trace.TraceInformation("GetFirstLegitimateTask(Guid clientId).4 taskCandidate is null? {0}", null == taskCandidate);
             
             return isItTimeToPublishTask(taskCandidate) ? taskCandidate : null;
         }
         
-        public virtual ITestTask GetNextLegibleTask(Guid clientId, int currentTaskId)
+        public virtual ITestTask GetNextLegitimateTask(Guid clientId, int currentTaskId)
         {
             var taskListForClient = getOnlyNewTestTasksForClient(clientId);
             if (null == taskListForClient || !taskListForClient.Any()) return null;
@@ -127,7 +127,9 @@ namespace Tmx.Server
         {
             var numberOfMustDoneBeforeTask = task.AfterTask;
             if (0 == numberOfMustDoneBeforeTask) return true;
-            return TaskPool.TasksForClients.Any(t => t.Id == numberOfMustDoneBeforeTask) && !TaskPool.TasksForClients.Any(t => t.Id == numberOfMustDoneBeforeTask && !t.TaskFinished);
+            // 20150112
+            // return TaskPool.TasksForClients.Any(t => t.Id == numberOfMustDoneBeforeTask) && !TaskPool.TasksForClients.Any(t => t.Id == numberOfMustDoneBeforeTask && !t.TaskFinished);
+            return TaskPool.TasksForClients.Any(t => t.Id == numberOfMustDoneBeforeTask) && !TaskPool.TasksForClients.Any(t => t.Id == numberOfMustDoneBeforeTask && !t.IsFinished());
         }
         
         internal virtual void AddTasksForEveryClient(IEnumerable<ITestTask> activeWorkflowsTasks, Guid testRunId)

@@ -17,7 +17,8 @@ namespace Tmx.Interfaces.Remoting
     /// </summary>
     public interface ITestTaskStatusProxy : ITestTaskProxy
     {
-        bool TaskFinished { get; set; }
+        // 20150112
+        // bool TaskFinished { get; set; }
 //        int TimeLimit { get; set; }
 //        DateTime StartTime { get; set; }
         // int RetryCount { get; set; }

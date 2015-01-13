@@ -40,7 +40,7 @@ namespace TestUtils
             }
             
             try {
-                using (ZipFile zipFile = new ZipFile()) {
+                using (var zipFile = new ZipFile()) {
                     
                     foreach (string fileName in cmdlet.Filename) {
                         

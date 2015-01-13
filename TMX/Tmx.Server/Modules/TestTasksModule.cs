@@ -70,7 +70,7 @@ namespace Tmx.Server.Modules
             
             Trace.TraceInformation("returnTaskByClientId(Guid clientId).3");
             
-            ITestTask actualTask = taskSelector.GetFirstLegibleTask(clientId);
+            ITestTask actualTask = taskSelector.GetFirstLegitimateTask(clientId);
             
             Trace.TraceInformation("returnTaskByClientId(Guid clientId).4 actualTask is null? {0}", null == actualTask);
             
@@ -112,7 +112,8 @@ namespace Tmx.Server.Modules
             if (null == loadedTask)
                 throw new UpdateTaskException("Failed to update task with id = " + taskId);
             var storedTask = TaskPool.TasksForClients.First(task => task.Id == taskId && task.ClientId == loadedTask.ClientId);
-            storedTask.TaskFinished = loadedTask.TaskFinished;
+            // 20150112
+            // storedTask.TaskFinished = loadedTask.TaskFinished;
             storedTask.TaskStatus = loadedTask.TaskStatus;
             storedTask.TaskResult = loadedTask.TaskResult;
             storedTask.StartTime = loadedTask.StartTime;
@@ -141,7 +142,9 @@ namespace Tmx.Server.Modules
             if (storedTask.IsFinished())
                 storedTask.SetTimeTaken();
             
-            return storedTask.TaskFinished ? updateNextTaskAndReturnOk(taskSelector, storedTask) : HttpStatusCode.OK;
+            // 20150112
+            // return storedTask.TaskFinished ? updateNextTaskAndReturnOk(taskSelector, storedTask) : HttpStatusCode.OK;
+            return storedTask.IsCompletedSuccessfully() ? updateNextTaskAndReturnOk(taskSelector, storedTask) : HttpStatusCode.OK;
         }
 
         void completeTestRun(ITestTask task)
@@ -172,7 +175,7 @@ namespace Tmx.Server.Modules
         {
             ITestTask nextTask = null;
             try {
-                nextTask = taskSorter.GetNextLegibleTask(storedTask.ClientId, storedTask.Id);
+                nextTask = taskSorter.GetNextLegitimateTask(storedTask.ClientId, storedTask.Id);
             } catch (Exception eFailedToGetNextTask) {
                 // TODO: AOP
                 Trace.TraceError("updateNextTaskAndReturnOk(TaskSelector taskSorter, ITestTask storedTask)");

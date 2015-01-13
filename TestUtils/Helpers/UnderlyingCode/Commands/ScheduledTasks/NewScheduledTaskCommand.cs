@@ -10,6 +10,7 @@
 namespace TestUtils
 {
     using System;
+    using TestUtils.Commands;
     
     /// <summary>
     /// Description of NewScheduledTaskCommand.
@@ -22,7 +23,7 @@ namespace TestUtils
         
         internal override void Execute()
         {
-            var cmdlet = (NewScheduledTaskCommand)Cmdlet;
+            var cmdlet = (NewTuScheduledTaskCommand)Cmdlet;
             
             // ArchivingHelper.ExtractFromRarArchive(cmdlet);
         }

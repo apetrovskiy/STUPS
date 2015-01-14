@@ -909,9 +909,13 @@ namespace Tmx
             int suPassed = 0;
             int suFailed = 0;
             int suNotTested = 0;
+            // 20150114
+            int suKnownIssue = 0;
             int scPassed = 0;
             int scFailed = 0;
             int scNotTested = 0;
+            // 20150114
+            int scKnownIssue = 0;
             
             foreach (var tsuite in TestData.TestSuites) {
                 ts.All += tsuite.Statistics.All;
@@ -931,6 +935,10 @@ namespace Tmx
                     case TestSuiteStatuses.NotTested:
                         suNotTested++;
                         break;
+                    // 20150114
+                    case TestSuiteStatuses.KnownIssue:
+                        suKnownIssue++;
+                        break;
                     default:
                         throw new Exception("Invalid value for TestSuiteStatuses");
                 }
@@ -945,6 +953,10 @@ namespace Tmx
                             break;
                         case TestScenarioStatuses.NotTested:
                             scNotTested++;
+                            break;
+                        // 20150114
+                        case TestScenarioStatuses.KnownIssue:
+                            scKnownIssue++;
                             break;
                         default:
                             // 20130428

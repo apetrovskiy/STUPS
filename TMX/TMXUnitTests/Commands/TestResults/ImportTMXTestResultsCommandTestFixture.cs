@@ -10,12 +10,15 @@
 namespace TmxUnitTests.Commands.TestResults
 {
     using System;
+    using System.Collections.Generic;
     using System.Xml;
     using System.Xml.Linq;
     using System.Xml.Serialization.Configuration;
     using MbUnit.Framework;
+    // using NUnit.Framework;
     using Tmx;
     using Tmx.Core;
+    using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of ImportTmxTestResultsCommandTestFixture.
@@ -23,15 +26,19 @@ namespace TmxUnitTests.Commands.TestResults
     [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class ImportTmxTestResultsCommandTestFixture
     {
+        List<ITestSuite> _testSuites;
+        
         public ImportTmxTestResultsCommandTestFixture()
         {
             UnitTestingHelper.PrepareUnitTestDataStore();
+            _testSuites = new List<ITestSuite>();
         }
         
         [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             UnitTestingHelper.PrepareUnitTestDataStore();
+            _testSuites = new List<ITestSuite>();
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]
@@ -41,15 +48,13 @@ namespace TmxUnitTests.Commands.TestResults
             const string testSuiteName = "name";
             var rootNode =
                 GIVEN_root_node(
-                    // 20141114
-                    // GIVEN_testSuite(testSuiteId, testSuiteName, "pl001"));
                     GIVEN_testSuite(testSuiteId, testSuiteName, "pl001", Guid.NewGuid()));
             
             WHEN_importing_test_results(rootNode);
             
             THEN_there_are_number_of_test_suites(1);
-            Assert.AreEqual(testSuiteId, TestData.TestSuites[0].Id);
-            Assert.AreEqual(testSuiteName, TestData.TestSuites[0].Name);
+            Assert.AreEqual(testSuiteId, _testSuites[0].Id);
+            Assert.AreEqual(testSuiteName, _testSuites[0].Name);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]
@@ -61,19 +66,16 @@ namespace TmxUnitTests.Commands.TestResults
             const string testSuiteName02 = "name2";
             var rootNode =
                 GIVEN_root_node(
-                    // 20141114
-                    // GIVEN_testSuite(testSuiteId01, testSuiteName01, "pl001"),
                     GIVEN_testSuite(testSuiteId01, testSuiteName01, "pl001", Guid.NewGuid()),
-                    // GIVEN_testSuite(testSuiteId02, testSuiteName02, "pl001"));
                     GIVEN_testSuite(testSuiteId02, testSuiteName02, "pl001", Guid.NewGuid()));
             
             WHEN_importing_test_results(rootNode);
             
             THEN_there_are_number_of_test_suites(2);
-            Assert.AreEqual(testSuiteId01, TestData.TestSuites[0].Id);
-            Assert.AreEqual(testSuiteName01, TestData.TestSuites[0].Name);
-            Assert.AreEqual(testSuiteId02, TestData.TestSuites[1].Id);
-            Assert.AreEqual(testSuiteName02, TestData.TestSuites[1].Name);
+            Assert.AreEqual(testSuiteId01, _testSuites[0].Id);
+            Assert.AreEqual(testSuiteName01, _testSuites[0].Name);
+            Assert.AreEqual(testSuiteId02, _testSuites[1].Id);
+            Assert.AreEqual(testSuiteName02, _testSuites[1].Name);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]
@@ -83,17 +85,14 @@ namespace TmxUnitTests.Commands.TestResults
             const string testSuiteName = "name";
             var rootNode =
                 GIVEN_root_node(
-                    // 20141114
-                    // GIVEN_testSuite(testSuiteId, testSuiteName, "pl001"),
                     GIVEN_testSuite(testSuiteId, testSuiteName, "pl001", Guid.NewGuid()),
-                    // GIVEN_testSuite(testSuiteId, testSuiteName, "pl001"));
                     GIVEN_testSuite(testSuiteId, testSuiteName, "pl001", Guid.NewGuid()));
             
             WHEN_importing_test_results(rootNode);
             
             THEN_there_are_number_of_test_suites(1);
-            Assert.AreEqual(testSuiteId, TestData.TestSuites[0].Id);
-            Assert.AreEqual(testSuiteName, TestData.TestSuites[0].Name);
+            Assert.AreEqual(testSuiteId, _testSuites[0].Id);
+            Assert.AreEqual(testSuiteName, _testSuites[0].Name);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]
@@ -102,38 +101,25 @@ namespace TmxUnitTests.Commands.TestResults
             const string testSuiteId01 = "1";
             const string testSuiteName01 = "name";
             const string testSuitePlatform01 = "pl001";
-            // 20141114
             var guid01 = Guid.NewGuid();
             const string testSuiteId02 = "2";
             const string testSuiteName02 = "name2";
             const string testSuitePlatform02 = "pl002";
-            // 20141114
             var guid02 = Guid.NewGuid();
             var rootNode =
                 GIVEN_root_node(
-                    // 20141114
-                    // GIVEN_testSuite(testSuiteId01, testSuiteName01, testSuitePlatform01),
                     GIVEN_testSuite(testSuiteId01, testSuiteName01, testSuitePlatform01, guid01),
-                    // GIVEN_testSuite(testSuiteId02, testSuiteName02, testSuitePlatform02));
                     GIVEN_testSuite(testSuiteId02, testSuiteName02, testSuitePlatform02, guid02));
             
             WHEN_importing_test_results(rootNode);
             
             THEN_there_are_number_of_test_suites(2);
-            Assert.AreEqual(testSuiteId01, TestData.TestSuites[0].Id);
-            Assert.AreEqual(testSuiteName01, TestData.TestSuites[0].Name);
-            // 20141114
-            // Assert.AreEqual(testSuitePlatform01, TestData.TestSuites[0].PlatformId);
-            // 20141119
-            // Assert.AreEqual(guid01, TestData.TestSuites[0].PlatformId);
-            Assert.AreEqual(guid01, TestData.TestSuites[0].PlatformUniqueId);
-            Assert.AreEqual(testSuiteId02, TestData.TestSuites[1].Id);
-            Assert.AreEqual(testSuiteName02, TestData.TestSuites[1].Name);
-            // 20141114
-            // Assert.AreEqual(testSuitePlatform02, TestData.TestSuites[1].PlatformId);
-            // 20141119
-            // Assert.AreEqual(guid02, TestData.TestSuites[1].PlatformId);
-            Assert.AreEqual(guid02, TestData.TestSuites[1].PlatformUniqueId);
+            Assert.AreEqual(testSuiteId01, _testSuites[0].Id);
+            Assert.AreEqual(testSuiteName01, _testSuites[0].Name);
+            Assert.AreEqual(Guid.Empty, _testSuites[0].PlatformUniqueId);
+            Assert.AreEqual(testSuiteId02, _testSuites[1].Id);
+            Assert.AreEqual(testSuiteName02, _testSuites[1].Name);
+            Assert.AreEqual(Guid.Empty, _testSuites[1].PlatformUniqueId);
         }
         
         // ============================================================================================================================
@@ -144,13 +130,10 @@ namespace TmxUnitTests.Commands.TestResults
                 elements);
         }
         
-        // 20141114
-        // XElement GIVEN_testSuite(string id, string name, string platformId)
         XElement GIVEN_testSuite(string id, string name, string platformId, Guid guid)
         {
             return new XElement(
                 "suite",
-                // 20141114
                 new XAttribute("uniqueId", guid),
                 new XAttribute("id", id),
                 new XAttribute("name", name),
@@ -161,16 +144,14 @@ namespace TmxUnitTests.Commands.TestResults
         void WHEN_importing_test_results(object rootElement)
         {
             var xDoc = new XDocument(rootElement);
-            // 20141114
-            // TmxHelper.ImportTestResultsFromXdocumentAndStore(xDoc);
             var testResultsImporter = new TestResultsImporter();
             testResultsImporter.ImportTestPlatformFromXdocument(xDoc);
-            testResultsImporter.ImportTestResultsFromXdocument(xDoc);
+            _testSuites = testResultsImporter.ImportTestResultsFromXdocument(xDoc);
         }
         
         void THEN_there_are_number_of_test_suites(int number)
         {
-            Assert.AreEqual(number, TestData.TestSuites.Count);
+            Assert.AreEqual(number, _testSuites.Count);
         }
     }
 }

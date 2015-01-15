@@ -183,9 +183,15 @@ namespace Tmx.Core
             testRun.StartTime = DateTime.Now;
         }
         
+        // 20150115
+//        public static void SetTimeTaken(this ITestRun testRun)
+//        {
+//            testRun.TimeTaken = DateTime.Now - testRun.StartTime;
+//        }
         public static void SetTimeTaken(this ITestRun testRun)
         {
-            testRun.TimeTaken = DateTime.Now - testRun.StartTime;
+            // testRun.TimeTaken = DateTime.Now - testRun.StartTime;
+            (testRun as TestRun).SetFinishTime();
         }
         
 //        public static string SerializeToString<T>(this T testResultsCollection)

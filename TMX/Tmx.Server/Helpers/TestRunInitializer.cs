@@ -28,13 +28,12 @@ namespace Tmx.Server
                 testRunCommand.TestRunName = testRunCommand.WorkflowName + " " + DateTime.Now;
             var testRun = new TestRun { Name = testRunCommand.TestRunName, Status = testRunCommand.Status };
             foreach (var key in formData) {
-                testRun.Data.AddOrUpdateDataItem(
-                    new CommonDataItem {
-                        Key = key,
-                        // 20141219
-                        // Value = formData[key]
-                        Value = formData[key] ?? string.Empty
-                    });
+                addOrUpdateDataItem(testRun, formData, key);
+//                testRun.Data.AddOrUpdateDataItem(
+//                    new CommonDataItem {
+//                        Key = key,
+//                        Value = formData[key] ?? string.Empty
+//                    });
             }
             setWorkflow(testRunCommand, testRun);
             setStartUpParameters(testRun);
@@ -62,19 +61,27 @@ namespace Tmx.Server
             if (null == formData || 0 >= formData.Count)
                 return;
             foreach (var key in formData) {
-                testRun.Data.AddOrUpdateDataItem(
-                    new CommonDataItem {
-                        Key = key,
-                        // 20141219
-                        // Value = formData[key]
-                        Value = formData[key] ?? string.Empty
-                    });
+                addOrUpdateDataItem(testRun, formData, key);
+//                testRun.Data.AddOrUpdateDataItem(
+//                    new CommonDataItem {
+//                        Key = key,
+//                        Value = formData[key] ?? string.Empty
+//                    });
             }
         }
         
         void setCreatedTime(ITestRun testRun)
         {
             testRun.CreatedTime = DateTime.Now;
+        }
+        
+        void addOrUpdateDataItem(ITestRun testRun, DynamicDictionary formData, string key)
+        {
+            testRun.Data.AddOrUpdateDataItem(
+                new CommonDataItem {
+                    Key = key,
+                    Value = formData[key] ?? string.Empty
+                });
         }
     }
 }

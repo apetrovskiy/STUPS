@@ -21,6 +21,8 @@ namespace Tmx.Core.Types.Remoting
     public class TestRun : ITestRun
     {
         ITestWorkflow _workflow;
+        // 20150115
+        DateTime _finishTime;
         
         public TestRun()
         {
@@ -69,7 +71,18 @@ namespace Tmx.Core.Types.Remoting
         
         public DateTime CreatedTime { get; set; }
         public DateTime StartTime { get; set; }
-        public TimeSpan TimeTaken { get; set; }
+        // 20150115
+        // public TimeSpan TimeTaken { get; set; }
+        public TimeSpan GetTimeTaken()
+        {
+            if (DateTime.MinValue < _finishTime)
+                return _finishTime - StartTime;
+            return DateTime.Now - StartTime;
+        }
+        public void SetFinishTime()
+        {
+            _finishTime = DateTime.Now;
+        }
         
 //        // 20141126
 //        string GetTestLabName()

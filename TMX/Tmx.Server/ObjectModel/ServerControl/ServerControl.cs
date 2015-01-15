@@ -14,6 +14,8 @@ namespace Tmx.Server //.ObjectModel.ServerControl
     /// </summary>
     public class ServerControl
     {
+        public static int Port { get; set; }
+        
         public static void Start(string url)
         {
             InternalServerControl.Start(url);

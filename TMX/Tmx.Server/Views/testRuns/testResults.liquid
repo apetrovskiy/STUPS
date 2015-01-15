@@ -14,14 +14,14 @@
         <meta http-equiv="refresh" content="30">
     </head>
     <body>
-        <a href="/">Home</a>
+        <a href="{{ @Model.ServerUrl }}/">Home</a>
         <br>
-        <a href="/testRuns/testRuns">Test runs</a>
+        <a href="{{ @Model.ServerUrl }}/testRuns/testRuns">Test runs</a>
         <br>
         <br>
         
         <h1>{{ @Model.TestRun.Name }}</h1>
-        Time taken: {{ @Model.TestRun.time_taken }}
+        Time taken: {{ @Model.TestRun.get_time_taken }}
         <h2>Summary</h2>
         <table>
             <tr>
@@ -29,110 +29,110 @@
                 <th style="width:10%">Platform</th>
                 <th style="width:50%">Results</th>
             </tr>
-            {% assign currentTestSuite = '' %}
-            {% assign sortedTestSuites = @Model.Suites | sort:'id' %}
-            {% for suite in sortedTestSuites %}
-                {% if suite.status != 'NOT TESTED' %}
-                    {% if currentTestSuite != suite.Name %}
-                        {% assign currentTestSuite = suite.Name %}
+            {% assign currentTestSuite = '' -%}
+            {% assign sortedTestSuites = @Model.Suites | sort:'id' -%}
+            {% for suite in sortedTestSuites -%}
+                {% if suite.status != 'NOT TESTED' -%}
+                    {% if currentTestSuite != suite.Name -%}
+                        {% assign currentTestSuite = suite.Name -%}
                         <tr><td colspan=4 style="font-weight: bold; font-size: big">{{ suite.Name }}</td></tr>
-                    {% endif %}
-                    {% assign sortedTestScenarios = suite.Test_Scenarios | sort:'platform_id' %}
-                    {% for scenario in sortedTestScenarios %}
-                        {% assign testresultsNumber = scenario.Test_Results | size %}
-                        {% if testresultsNumber != 0 %}
+                    {% endif -%}
+                    {% assign sortedTestScenarios = suite.Test_Scenarios | sort:'platform_id' -%}
+                    {% for scenario in sortedTestScenarios -%}
+                        {% assign testresultsNumber = scenario.Test_Results | size -%}
+                        {% if testresultsNumber != 0 -%}
                         <tr>
-                            <td style="width:35%"><a href="#{{ scenario.Id }} {{ scenario.Name }} {{ scenario.Platform_Id }}">{{ scenario.Name }}</a></td>
+                            <td style="width:35%"><a href="{{ @Model.TestRunUrl }}#{{ scenario.Id }} {{ scenario.Name }} {{ scenario.Platform_Id }}">{{ scenario.Name }}</a></td>
                             <td style="width:15%">{{ scenario.Platform_Id }}</td>
                             <td style="width:50%">
                                 <table>
-                                    {% if scenario.get_passed > 0 %}
-                                        {% assign passedWidth = scenario.get_passed | times:100 | divided_by:scenario.get_all %}
-                                        {% if passedWidth == 0 %} {{ assign passedWidth = 1 }} {% endif %}
+                                    {% if scenario.get_passed > 0 -%}
+                                        {% assign passedWidth = scenario.get_passed | times:100 | divided_by:scenario.get_all -%}
+                                        {% if passedWidth == 0 -%} {{ assign passedWidth = 1 }} {% endif -%}
                                         <td style="width:{{ passedWidth }}%; background-color:green; text-align:center">{{ scenario.get_Passed }}</td>
-                                    {% endif %}
+                                    {% endif -%}
                                     
-                                    {% if scenario.get_Failed > 0 %}
-                                        {% assign failedWidth = scenario.get_Failed | times:100 | divided_by:scenario.get_all %}
-                                        {% if failedWidth == 0 %} {{ assign failedWidth = 1 }} {% endif %}
+                                    {% if scenario.get_Failed > 0 -%}
+                                        {% assign failedWidth = scenario.get_Failed | times:100 | divided_by:scenario.get_all -%}
+                                        {% if failedWidth == 0 -%} {{ assign failedWidth = 1 }} {% endif -%}
                                         <td style="width:{{ failedWidth }}%; background-color:red; text-align:center">{{ scenario.get_Failed }}</td> 
-                                    {% endif %}
+                                    {% endif -%}
                                     
-                                    {% if scenario.get_passed_but_with_bad_smell > 0 %}
-                                        {% assign smelledWidth = scenario.get_Passed_But_With_Bad_Smell | times:100 | divided_by:scenario.get_all %}
-                                        {% if smelledWidth == 0 %} {{ assign smelledWidth = 1 }} {% endif %}
+                                    {% if scenario.get_passed_but_with_bad_smell > 0 -%}
+                                        {% assign smelledWidth = scenario.get_Passed_But_With_Bad_Smell | times:100 | divided_by:scenario.get_all -%}
+                                        {% if smelledWidth == 0 -%} {{ assign smelledWidth = 1 }} {% endif -%}
                                         <td style="width:{{ smelledWidth }}%; background-color:olive; text-align:center">{{ scenario.get_Passed_But_With_Bad_Smell }}</td>
-                                    {% endif %}
+                                    {% endif -%}
                                     
-                                    {% if scenario.get_not_tested > 0 %}
-                                        {% assign notTestedWidth = scenario.get_Not_Tested | times:100 | divided_by:scenario.get_all %}
-                                        {% if notTestedWidth == 0 %} {{ assign notTestedWidth = 1 }} {% endif %}
+                                    {% if scenario.get_not_tested > 0 -%}
+                                        {% assign notTestedWidth = scenario.get_Not_Tested | times:100 | divided_by:scenario.get_all -%}
+                                        {% if notTestedWidth == 0 -%} {{ assign notTestedWidth = 1 }} {% endif -%}
                                         <td style="width:{{ notTestedWidth }}%; background-color:gray; text-align:center">{{ scenario.get_Not_Tested }}</td>
-                                    {% endif %}
+                                    {% endif -%}
                                 </table>
                             </td>
                         </tr>
-                        {% endif %}
-                    {% endfor %}
-                {% endif %}
-            {% endfor %}
+                        {% endif -%}
+                    {% endfor -%}
+                {% endif -%}
+            {% endfor -%}
         </table>
         <br>
         <br>
         
         <h2>Detailed report</h2>
         <ul>
-        {% for suite in @Model.TestRun.Test_Suites %}
-            {% if suite.Name != 'autogenerated' %}
-                {% case suite.Status %}
-                {% when 'PASSED' %}
-                    {% assign suiteColor = 'green' %}
-                {% when 'FAILED' %}
-                    {% assign suiteColor = 'red' %}
-                {% when 'NOT TESTED' %}
-                    {% assign suiteColor = 'gray' %}
-                {% endcase %}
+        {% for suite in @Model.TestRun.Test_Suites -%}
+            {% if suite.Name != 'autogenerated' -%}
+                {% case suite.Status -%}
+                {% when 'PASSED' -%}
+                    {% assign suiteColor = 'green' -%}
+                {% when 'FAILED' -%}
+                    {% assign suiteColor = 'red' -%}
+                {% when 'NOT TESTED' -%}
+                    {% assign suiteColor = 'gray' -%}
+                {% endcase -%}
                 <li><font style="color:{{ suiteColor }}"><a id="{{ suite.Id }} {{ suite.Name }} {{ suite.Platform_Id }}">{{ suite.Id }} {{ suite.Name }} {{ suite.Platform_Id }}</a></font></li>
-            {% endif %}
+            {% endif -%}
             <ul>
-            {% for scenario in suite.Test_Scenarios %}
-                {% if scenario.Name != 'autogenerated' %}
-                    {% case scenario.Status %}
-                    {% when 'PASSED' %}
-                        {% assign scenarioColor = 'green' %}
-                    {% when 'FAILED' %}
-                        {% assign scenarioColor = 'red' %}
-                    {% when 'NOT TESTED' %}
-                        {% assign scenarioColor = 'gray' %}
-                    {% endcase %}
+            {% for scenario in suite.Test_Scenarios -%}
+                {% if scenario.Name != 'autogenerated' -%}
+                    {% case scenario.Status -%}
+                    {% when 'PASSED' -%}
+                        {% assign scenarioColor = 'green' -%}
+                    {% when 'FAILED' -%}
+                        {% assign scenarioColor = 'red' -%}
+                    {% when 'NOT TESTED' -%}
+                        {% assign scenarioColor = 'gray' -%}
+                    {% endcase -%}
                     <li><font style="color:{{ scenarioColor }}"><a id="{{ scenario.Id }} {{ scenario.Name }} {{ scenario.Platform_Id }}">{{ scenario.Id }} {{ scenario.Name }} {{ scenario.Platform_Id }}</a></font></li>
-                {% endif %}
+                {% endif -%}
                 <ul>
-                {% assign sortedTestResults = scenario.Test_Results | sort: 'Id' %}
-                {% for result in sortedTestResults %}
-                    {% if result.Origin == 'Logical' %}
-                        {% case result.Status %}
-                        {% when 'PASSED' %}
-                            {% assign resultColor = 'green' %}
-                        {% when 'FAILED' %}
-                            {% assign resultColor = 'red' %}
-                        {% when 'NOT TESTED' %}
-                            {% assign resultColor = 'gray' %}
-                        {% when 'KNOWN ISSUE' %}
-                            {% assign resultColor = 'olive' %}
-                        {% endcase %}
+                {% assign sortedTestResults = scenario.Test_Results | sort: 'Id' -%}
+                {% for result in sortedTestResults -%}
+                    {% if result.Origin == 'Logical' -%}
+                        {% case result.Status -%}
+                        {% when 'PASSED' -%}
+                            {% assign resultColor = 'green' -%}
+                        {% when 'FAILED' -%}
+                            {% assign resultColor = 'red' -%}
+                        {% when 'NOT TESTED' -%}
+                            {% assign resultColor = 'gray' -%}
+                        {% when 'KNOWN ISSUE' -%}
+                            {% assign resultColor = 'olive' -%}
+                        {% endcase -%}
                         <li><font style="color:{{ resultColor }}">{{ result.Id }} {{ result.Name }}</font></li>
-                    {% endif %}
+                    {% endif -%}
                     <ul>
-                    {% for detail in result.Test_Result_Details %}
+                    {% for detail in result.Test_Result_Details -%}
                         <li><font style="color:{{ resultColor }}">{{ detail }}</font></li>
-                    {% endfor %}
+                    {% endfor -%}
                     </ul>
-                {% endfor %}
+                {% endfor -%}
                 </ul>
-            {% endfor %}
+            {% endfor -%}
             </ul>
-        {% endfor %}
+        {% endfor -%}
         </ul>
     </body>
 </html>

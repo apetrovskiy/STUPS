@@ -124,6 +124,23 @@
     <Compile Include="ObjectModel\Settings\TestRunSettings.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content\bootstrap-theme.css" />
+    <None Include="Content\bootstrap-theme.css.map" />
+    <None Include="Content\bootstrap-theme.min.css" />
+    <None Include="Content\bootstrap.css" />
+    <None Include="Content\bootstrap.css.map" />
+    <None Include="Content\bootstrap.min.css" />
+    <None Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="fonts\glyphicons-halflings-regular.svg" />
+    <None Include="fonts\glyphicons-halflings-regular.ttf" />
+    <None Include="fonts\glyphicons-halflings-regular.woff" />
+    <None Include="Scripts\bootstrap.js" />
+    <None Include="Scripts\bootstrap.min.js" />
+    <None Include="Scripts\jquery-1.9.0-vsdoc.js" />
+    <None Include="Scripts\jquery-1.9.0.js" />
+    <None Include="Scripts\jquery-1.9.0.min.js" />
+    <None Include="Scripts\jquery-1.9.0.min.map" />
+    <None Include="Scripts\npm.js" />
     <None Include="Views\index.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

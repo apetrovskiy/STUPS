@@ -13,6 +13,8 @@ namespace Tmx.Server.Modules
     using System.Collections.Generic;
     using System.Dynamic;
     using System.Linq;
+    using System.Net;
+    using System.Net.Sockets;
     using Nancy;
     using Nancy.Cookies;
     using Nancy.ModelBinding;
@@ -110,7 +112,9 @@ namespace Tmx.Server.Modules
             ITestRun currentTestRun = getCurrentTestRun(testRunId);
             var testStatistics = TinyIoCContainer.Current.Resolve<TestStatistics>();
             testStatistics.RefreshAllStatistics(currentTestRun.TestSuites, true);
-            return new { TestRun = currentTestRun, Suites = currentTestRun.TestSuites };
+            var serverUrl = getServerUrl();
+            var testRunUrl = getTestRunUrl(testRunId);
+            return new { TestRun = currentTestRun, Suites = currentTestRun.TestSuites.OrderBy(suite => suite.Id), ServerUrl = serverUrl, TestRunUrl = testRunUrl };
         }
         
         ITestRun getCurrentTestRun(Guid testRunId)
@@ -123,6 +127,17 @@ namespace Tmx.Server.Modules
             var cookieValue = Context.Request.Cookies[cookieName];
             cookieValue = cookieValue.Replace("+", " ");
             return cookieValue;
+        }
+        
+        string getServerUrl()
+        {
+            var ipAddress = Dns.GetHostAddresses(Dns.GetHostName()).First(address => address.AddressFamily == AddressFamily.InterNetwork && address.ToString().Substring(0, 7) != "169.254");
+            return "http://" + ipAddress + ":" + ServerControl.Port;
+        }
+        
+        string getTestRunUrl(Guid testRunId)
+        {
+            return getServerUrl() + "/testRuns/" + testRunId + "/testResults";
         }
     }
 }

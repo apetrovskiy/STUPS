@@ -142,6 +142,6 @@ namespace Tmx.Interfaces.Server
         
         public const string ViewTestWorkflowParameters_Root = "/workflows";
         public const string ViewTestWorkflowParameters_DefaultPage = "without_parameters";
-        public const string ViewTestWorkflowParameters_DefaultPageName = "without_parameters.html";
+        public const string ViewTestWorkflowParameters_DefaultPageName = ViewTestWorkflowParameters_DefaultPage + ".html";
     }
 }

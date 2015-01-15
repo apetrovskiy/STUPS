@@ -12,11 +12,13 @@ namespace Tmx.Server
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.IO;
     using System.Linq;
     using System.Xml.Linq;
     using Tmx.Interfaces.Exceptions;
     using Tmx.Core.Types.Remoting;
     using Tmx.Interfaces.Remoting;
+    using Tmx.Interfaces.Server;
     using Tmx.Server.Helpers;
     
     /// <summary>
@@ -120,7 +122,18 @@ namespace Tmx.Server
         
         void setParametersPageName(Guid workflowId, XContainer xDocument)
         {
-            WorkflowCollection.Workflows.FirstOrDefault(wfl => wfl.Id == workflowId).ParametersPageName = xDocument.Descendants(WorkflowXmlConstants.ParametersPageNode).FirstOrDefault().Value;
+            // 20150115
+            // WorkflowCollection.Workflows.FirstOrDefault(wfl => wfl.Id == workflowId).ParametersPageName = xDocument.Descendants(WorkflowXmlConstants.ParametersPageNode).FirstOrDefault().Value;
+            
+//            var parameterspageName = xDocument.Descendants(WorkflowXmlConstants.ParametersPageNode).FirstOrDefault().Value;
+//            Trace.TraceInformation("is null or empty? {0}", string.IsNullOrEmpty(parameterspageName));
+//            Trace.TraceInformation("does start with dot? {0}", parameterspageName.Substring(0, 1) == ".");
+//            Trace.TraceInformation("does file exist? {0}", File.Exists(new TmxServerRootPathProvider().GetRootPath() + "/workflows/" + parameterspageName + ".html"));
+            
+            var parameterspageName = xDocument.Descendants(WorkflowXmlConstants.ParametersPageNode).FirstOrDefault().Value;
+            if (string.IsNullOrEmpty(parameterspageName) || parameterspageName.Substring(0, 1) == "." || !File.Exists(new TmxServerRootPathProvider().GetRootPath() + "/workflows/" + parameterspageName + ".html"))
+                parameterspageName = UrlList.ViewTestWorkflowParameters_DefaultPage;
+            WorkflowCollection.Workflows.FirstOrDefault(wfl => wfl.Id == workflowId).ParametersPageName = parameterspageName;
         }
         
         internal virtual void addTasksToCommonPool(IEnumerable<ITestTask> importedTasks)

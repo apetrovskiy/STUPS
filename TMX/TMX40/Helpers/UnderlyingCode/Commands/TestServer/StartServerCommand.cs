@@ -27,6 +27,7 @@ namespace Tmx
             var cmdlet = (StartTmxServerCommand)Cmdlet;
             // 20141001
             try {
+                ServerControl.Port = cmdlet.Port;
                 ServerControl.Start(@"http://localhost:" + cmdlet.Port);
             }
             catch (Exception eStartingServer) {

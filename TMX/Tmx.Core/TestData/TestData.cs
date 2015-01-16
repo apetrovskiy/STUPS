@@ -11,7 +11,6 @@ namespace Tmx
 {
     using System;
     using System.Collections.Generic;
-    using System.Management.Automation;
     using Tmx.Core;
     using Tmx.Core.Types.Remoting;
 //    using System.ComponentModel;
@@ -263,13 +262,16 @@ namespace Tmx
             CurrentTestSuite = null;
         }
         
+        // 20160116
         internal static void AddTestResult(string closingTestResultName, // previousTestResultName
                                            string closingTestResultId, // previousTestResultId
                                            bool? passed,
                                            bool isKnownIssue,
                                            bool generateNextResult,
-                                           InvocationInfo myInvocation,
-                                           ErrorRecord error,
+                                           // 20160116
+                                           // InvocationInfo myInvocation,
+                                           // ErrorRecord error,
+                                           Exception error,
                                            string testResultDescription,
                                            TestResultOrigins origin,
                                            bool skipAutomatic)
@@ -430,6 +432,8 @@ namespace Tmx
                 TestData.CurrentTestResult;
             
             #region Test Result's PowerShell data
+            // 20160116
+            /*
             if (myInvocation != null) {
                 TestData.CurrentTestResult.SetScriptName(TmxHelper.GetScriptName(myInvocation));
                 TestData.CurrentTestResult.SetLineNumber(TmxHelper.GetScriptLineNumber(myInvocation));
@@ -471,10 +475,11 @@ namespace Tmx
             }
             
             if (error != null) {
-
-                TestData.CurrentTestResult.SetError(error);
-
+                // 20150116
+                // TestData.CurrentTestResult.SetError(error);
+                TestData.CurrentTestResult.SetError(error.Exception);
             }
+            */
             #endregion Test Result's PowerShell data
             
             var sourceTestResult = TestData.CurrentTestResult;
@@ -921,7 +926,9 @@ namespace Tmx
             }
         }
         
-        internal static void AddTestResultErrorDetail(ErrorRecord detail)
+        // 20160116
+        // internal static void AddTestResultErrorDetail(ErrorRecord detail)
+        internal static void AddTestResultErrorDetail(Exception detail)
         {
             var testResultDetail = new TestResultDetail();
             

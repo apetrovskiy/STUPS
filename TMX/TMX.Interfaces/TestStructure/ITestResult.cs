@@ -11,7 +11,6 @@ namespace Tmx.Interfaces.TestStructure
 {
     using System;
     using System.Collections.Generic;
-    using System.Management.Automation;
     using System.Xml.Serialization;
     
     /// <summary>
@@ -42,8 +41,11 @@ namespace Tmx.Interfaces.TestStructure
         int Position { get; }
         void SetPosition(int position);
         [XmlIgnore]
-        ErrorRecord Error { get; }
-        void SetError(ErrorRecord error);
+        // 20150116
+        // ErrorRecord Error { get; }
+        // void SetError(ErrorRecord error);
+        Exception Error { get; }
+        void SetError(Exception error);
         [XmlAttribute]
         string Code { get; set; }
         

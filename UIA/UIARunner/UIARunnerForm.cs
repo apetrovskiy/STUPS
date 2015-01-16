@@ -252,8 +252,12 @@ namespace UiaRunner
             string errorMessage = string.Empty;
             try {
                 if (((ITestResult)sender).Error != null) {
+                    // 20150116
+                    /*
                     errorMessage = 
                         ((ITestResult)sender).Error.ErrorDetails.Message;
+                    */
+                    errorMessage = ((ITestResult)sender).Error.Message;
                 }
             } 
             catch {}

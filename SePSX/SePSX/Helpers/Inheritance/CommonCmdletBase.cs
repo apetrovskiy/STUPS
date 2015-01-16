@@ -568,7 +568,8 @@ Console.WriteLine("WriteSingleObject 00008");
                                                       //((HasScriptBlockCmdletBase)cmdlet).TestPassed,
                                                       cmdlet.TestPassed,
                                                       false, // isKnownIssue
-                                                      this.MyInvocation,
+                                                      // 20160116
+                                                      // this.MyInvocation,
                                                       null, // Error
                                                       string.Empty,
                                                       // 20130322
@@ -596,7 +597,8 @@ Console.WriteLine("WriteSingleObject 00008");
                                                           //((HasScriptBlockCmdletBase)cmdlet).TestPassed,
                                                           cmdlet.TestPassed,
                                                           false, // isKnownIssue
-                                                          this.MyInvocation,
+                                                          // 20160116
+                                                          // this.MyInvocation,
                                                           null, // Error
                                                           string.Empty,
                                                           // 20130322
@@ -728,7 +730,9 @@ Console.WriteLine("WriteSingleObject 00008");
                 // write error to the test results collection
                 // CurrentData.TestResults[CurrentData.TestResults.Count - 1].Details.Add(err);
                 //TestData.AddTestResultDetail(err);
-                Tmx.TmxHelper.AddTestResultErrorDetail(errorRecord);
+                // 20160116
+                // Tmx.TmxHelper.AddTestResultErrorDetail(errorRecord);
+                Tmx.TmxHelper.AddTestResultErrorDetail(errorRecord.Exception);
                 
                 // write test result label
                 try {
@@ -754,8 +758,11 @@ Console.WriteLine("WriteSingleObject 00008");
                                                       cmdlet.TestPassed,
                                                       //((HasScriptBlockCmdletBase)cmdlet).KnownIssue,
                                                       cmdlet.KnownIssue,
-                                                      this.MyInvocation,
-                                                      errorRecord,
+                                                      // 20160116
+                                                      // this.MyInvocation,
+                                                      // 20160116
+                                                      // errorRecord,
+                                                      errorRecord.Exception,
                                                       string.Empty,
                                                       // 20130322
                                                       //true);
@@ -788,8 +795,11 @@ Console.WriteLine("WriteSingleObject 00008");
                                                               //((HasScriptBlockCmdletBase)cmdlet).TestPassed,
                                                               cmdlet.TestPassed,
                                                               false, // isKnownIssue
-                                                              this.MyInvocation,
-                                                              errorRecord,
+                                                              // 20160116
+                                                              // this.MyInvocation,
+                                                              // 20160116
+                                                              // errorRecord,
+                                                              errorRecord.Exception,
 //                                                              Tmx.TmxHelper.GetScriptLineNumber(this.MyInvocation),
 //                                                              Tmx.TmxHelper.GetPipelinePosition(this.MyInvocation),
 //                                                              iInfo,

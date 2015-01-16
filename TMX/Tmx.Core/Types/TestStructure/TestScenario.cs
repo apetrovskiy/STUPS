@@ -93,7 +93,8 @@ namespace Tmx.Interfaces
                         null, 
                         false, // isKnownIssue
                         false, // generateNextResult
-                        null, // MyInvocation
+                        // 20160116
+                        // null, // MyInvocation
                         null, // Error
                         string.Empty,
                         TestResultOrigins.Automatic,

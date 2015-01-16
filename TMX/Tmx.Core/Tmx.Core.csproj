@@ -76,7 +76,6 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Linq" />
-    <Reference Include="System.Management.Automation" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq">

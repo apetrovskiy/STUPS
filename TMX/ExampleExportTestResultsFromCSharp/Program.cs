@@ -98,7 +98,8 @@ namespace ExampleExportTestResultsFromCSharp
                             result.Id,
                             true, // Passed
                             false, // not a KnownIssue
-                            null,
+                            // 20160116
+                            // null,
                             null,
                             "description",
                             // 20130322

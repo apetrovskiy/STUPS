@@ -311,8 +311,12 @@ namespace PSTestRunner
                 string errorMessage = string.Empty;
                 try {
                     if (testResult.Error != null) {
+                        // 20150116
+                        /*
                         errorMessage = 
                             testResult.Error.ErrorDetails.Message;
+                        */
+                        errorMessage = testResult.Error.Message;
                     }
                 } 
                 catch {}

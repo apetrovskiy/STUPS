@@ -320,7 +320,8 @@ namespace UIAutomation
                         ((HasScriptBlockCmdletBase)cmdlet).TestResultId,
                         ((HasScriptBlockCmdletBase)cmdlet).TestPassed,
                         ((HasScriptBlockCmdletBase)cmdlet).KnownIssue, //false, // isKnownIssue
-                        MyInvocation,
+                        // 20160116
+                        // MyInvocation,
                         null, // Error
                         string.Empty,
                         TestResultOrigins.Logical,
@@ -339,7 +340,8 @@ namespace UIAutomation
                         string.Empty, //((HasScriptBlockCmdletBase)cmdlet).TestResultId, // empty, to be generated
                         ((HasScriptBlockCmdletBase)cmdlet).TestPassed,
                         ((HasScriptBlockCmdletBase)cmdlet).KnownIssue, //false, // isKnownIssue
-                        MyInvocation,
+                        // 20160116
+                        // MyInvocation,
                         null, // Error
                         string.Empty,
                         TestResultOrigins.Automatic,
@@ -661,12 +663,14 @@ namespace UIAutomation
             }
             */
         }
-
+        
         protected override void WriteErrorMethod020SetTestResult(PSCmdletBase cmdlet, ErrorRecord errorRecord)
         {
             if (cmdlet == null) return;
             // write error to the test results collection
-            TmxHelper.AddTestResultErrorDetail(errorRecord);
+            // 20160116
+            // TmxHelper.AddTestResultErrorDetail(errorRecord);
+            TmxHelper.AddTestResultErrorDetail(errorRecord.Exception);
                 
             // write test result label
             try {
@@ -680,8 +684,11 @@ namespace UIAutomation
                         ((HasScriptBlockCmdletBase)cmdlet).TestResultId,
                         false, // the only result: FAILED //((HasScriptBlockCmdletBase)cmdlet).TestPassed,
                         false, // because of failure //((HasScriptBlockCmdletBase)cmdlet).KnownIssue,
-                        MyInvocation,
-                        errorRecord,
+                        // 20160116
+                        // MyInvocation,
+                        // 20160116
+                        // errorRecord,
+                        errorRecord.Exception,
                         string.Empty,
                         TestResultOrigins.Automatic,
                         false);
@@ -700,8 +707,11 @@ namespace UIAutomation
                         string.Empty, //((HasScriptBlockCmdletBase)cmdlet).TestResultId, // empty, to be generated
                         ((HasScriptBlockCmdletBase)cmdlet).TestPassed,
                         false, // isKnownIssue
-                        MyInvocation,
-                        errorRecord,
+                        // 20160116
+                        // MyInvocation,
+                        // 20160116
+                        // errorRecord,
+                        errorRecord.Exception,
                         string.Empty,
                         TestResultOrigins.Automatic,
                         false);

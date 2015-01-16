@@ -35,8 +35,9 @@ namespace Tmx.Commands
             ImportExportHelper.ImportTestSettings(
                 new SettingsCmdletBaseDataObject {
                     Path = this.Path,
-                    VariableName = this.VariableName,
-                    SessionState = this.SessionState
+                    // 20160116
+                    VariableName = this.VariableName //,
+                    // SessionState = this.SessionState
                 },
                 Path,
                 VariableName);

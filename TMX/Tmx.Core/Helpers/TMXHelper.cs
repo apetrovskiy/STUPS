@@ -10,7 +10,6 @@
 namespace Tmx
 {
     using System;
-    using System.Management.Automation;
     
     using System.Linq;
     
@@ -44,40 +43,41 @@ namespace Tmx
         internal static DateTime TestCaseStarted { get; set; }
         public static System.Windows.Forms.Form BannerForm { get; set; }
         
-        public static string GetScriptName(InvocationInfo iInfo)
-        {
-            string result = string.Empty;
-            try{
-                result = iInfo.ScriptName;
-            }
-            catch {
-                return result;
-            }
-            return result;
-        }
-        
-        public static int GetScriptLineNumber(InvocationInfo iInfo)
-        {
-            int result = 0;
-            try{
-                result = iInfo.ScriptLineNumber;
-            }
-            catch {
-                return result;
-            }
-            return result;
-        }
-        
-        public static int GetPipelinePosition(InvocationInfo iInfo)
-        {
-            int result = 0;
-            try{
-                result = iInfo.PipelinePosition;
-            }
-            catch {
-            }
-            return result;
-        }
+        // 20160116
+//        public static string GetScriptName(InvocationInfo iInfo)
+//        {
+//            string result = string.Empty;
+//            try{
+//                result = iInfo.ScriptName;
+//            }
+//            catch {
+//                return result;
+//            }
+//            return result;
+//        }
+//        
+//        public static int GetScriptLineNumber(InvocationInfo iInfo)
+//        {
+//            int result = 0;
+//            try{
+//                result = iInfo.ScriptLineNumber;
+//            }
+//            catch {
+//                return result;
+//            }
+//            return result;
+//        }
+//        
+//        public static int GetPipelinePosition(InvocationInfo iInfo)
+//        {
+//            int result = 0;
+//            try{
+//                result = iInfo.PipelinePosition;
+//            }
+//            catch {
+//            }
+//            return result;
+//        }
         
         #region Actions
         // 20141114
@@ -163,7 +163,8 @@ namespace Tmx
                     false, // geenrateNextResult
                     // 20140720
                     // cmdlet.MyInvocation,
-                    null,
+                    // 20160116
+                    // null,
                     null, // Error
                     string.Empty,
                     TestResultOrigins.Automatic,
@@ -259,7 +260,9 @@ namespace Tmx
             return result;
         }
         
-        public static bool AddTestResultErrorDetail(ErrorRecord testResultErrorDetail)
+        // 20160116
+        // public static bool AddTestResultErrorDetail(ErrorRecord testResultErrorDetail)
+        public static bool AddTestResultErrorDetail(Exception testResultErrorDetail)
         {
             bool result = false;
             
@@ -295,8 +298,11 @@ namespace Tmx
             string testResultId, 
             bool testResult,
             bool isKnownIssue,
-            InvocationInfo myInvocation,
-            ErrorRecord error,
+            // 20160116
+            // InvocationInfo myInvocation,
+            // 20160116
+            // ErrorRecord error,
+            Exception error,
             string description,
             TestResultOrigins origin,
             bool skipAutomatic)
@@ -314,7 +320,8 @@ namespace Tmx
                 testResult, 
                 isKnownIssue,
                 true,
-                myInvocation,
+                // 20160116
+                // myInvocation,
                 error,
                 description,
                 origin,

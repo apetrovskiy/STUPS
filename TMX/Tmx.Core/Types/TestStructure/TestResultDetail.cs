@@ -11,7 +11,6 @@ namespace Tmx.Interfaces
 {
     using System;
     using System.Collections.Generic;
-    using System.Management.Automation;
     using System.ComponentModel;
     using System.Xml.Serialization;
     using Tmx.Interfaces.TestStructure;
@@ -39,7 +38,9 @@ namespace Tmx.Interfaces
         [XmlAttribute]
         public virtual string TextDetail { get; set; }
         [XmlIgnore]
-        public virtual ErrorRecord ErrorDetail { get; set; }
+        // 20160116
+        // public virtual ErrorRecord ErrorDetail { get; set; }
+        public virtual Exception ErrorDetail { get; set; }
         [XmlAttribute]
         public virtual string ScreenshotDetail { get; set; }
         [XmlAttribute]
@@ -54,7 +55,9 @@ namespace Tmx.Interfaces
                 if (!string.IsNullOrEmpty(TextDetail))
                     return TextDetail;
                 if (ErrorDetail != null)
-                    return ErrorDetail.Exception.Message;
+                    // 20160116
+                    // return ErrorDetail.Exception.Message;
+                    return ErrorDetail.Message;
                 return !string.IsNullOrEmpty(ScreenshotDetail) ? ScreenshotDetail : string.Empty;
             }
         }
@@ -89,7 +92,9 @@ namespace Tmx.Interfaces
         }
         public virtual void AddTestResultDetail(
            TestResultDetailTypes detailType,
-           ErrorRecord detail)
+           // 20160116
+           // ErrorRecord detail)
+           Exception detail)
         {
             if (TmxHelper.TestCaseStarted == DateTime.MinValue)
                 TmxHelper.TestCaseStarted = DateTime.Now;
@@ -99,7 +104,9 @@ namespace Tmx.Interfaces
         }
         public virtual object GetDetail()
         {
-            return null != ErrorDetail ? ErrorDetail.Exception.Message : ScreenshotDetail ?? TextDetail ?? null;
+            // 20160116
+            // return null != ErrorDetail ? ErrorDetail.Exception.Message : ScreenshotDetail ?? TextDetail ?? null;
+            return null != ErrorDetail ? ErrorDetail.Message : ScreenshotDetail ?? TextDetail ?? null;
         }
         
         [XmlAttribute]

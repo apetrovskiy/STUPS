@@ -474,12 +474,12 @@ namespace Tmx
                                 liOpen;
                             switch (td.DetailType) {
                                 case TestResultDetailTypes.Comment:
-                                    resultHTML +=
-                                        td.TextDetail;
+                                    resultHTML += td.TextDetail;
                                     break;
                                 case TestResultDetailTypes.ErrorRecord:
-                                    resultHTML +=
-                                        td.ErrorDetail.ErrorDetails;
+                                    // 20160116
+                                    // resultHTML += td.ErrorDetail.ErrorDetails;
+                                    resultHTML += td.ErrorDetail.Message;
                                     break;
                                 case TestResultDetailTypes.Screenshot:
                                     string fileName = 
@@ -494,12 +494,10 @@ namespace Tmx
                                         aClose;
                                     break;
                                 default:
-                                    resultHTML +=
-                                        td.Name;
+                                    resultHTML += td.Name;
                                     break;
                             }
-                            resultHTML +=
-                                liClose;
+                            resultHTML += liClose;
                         }
                         
                         // test result code

@@ -54,7 +54,8 @@ namespace Tmx
                 cmdlet.Id, 
                 cmdlet.TestPassed, 
                 cmdlet.KnownIssue,
-                cmdlet.MyInvocation,
+                // 20160116
+                // cmdlet.MyInvocation,
                 null,
                 cmdlet.Description,
                 cmdlet.TestOrigin,

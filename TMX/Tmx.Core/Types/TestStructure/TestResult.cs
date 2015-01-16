@@ -11,7 +11,6 @@ namespace Tmx.Interfaces
 {
     using System;
     using System.Collections.Generic;
-    using System.Management.Automation;
     using System.Collections;
     using System.Linq;
     using System.Xml.Serialization;
@@ -75,8 +74,11 @@ namespace Tmx.Interfaces
             Position = position;
         }
         [XmlIgnore]
-        public virtual ErrorRecord Error { get; protected internal set; }
-        public virtual void SetError(ErrorRecord error)
+        // 20150116
+        // public virtual ErrorRecord Error { get; protected internal set; }
+        // public virtual void SetError(ErrorRecord error)
+        public virtual Exception Error { get; protected internal set; }
+        public virtual void SetError(Exception error)
         {
             Error = error;
         }

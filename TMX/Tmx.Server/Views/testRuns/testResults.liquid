@@ -39,10 +39,10 @@
                     {% endif -%}
                     {% assign sortedTestScenarios = suite.Test_Scenarios | sort:'platform_id' -%}
                     {% for scenario in sortedTestScenarios -%}
-                        {% assign testresultsNumber = scenario.Test_Results | size -%}
-                        {% if testresultsNumber != 0 -%}
+                        {% assign testResultsNumber = scenario.Test_Results | size -%}
+                        {% if testResultsNumber != 0 -%}
                         <tr>
-                            <td style="width:35%"><a href="{{ @Model.TestRunUrl }}#{{ scenario.Id }} {{ scenario.Name }} {{ scenario.Platform_Id }}">{{ scenario.Name }}</a></td>
+                            <td style="width:35%" title="{{ scenario.Test_Results | map: 'Name' | join: ' ' }}"><a href="{{ @Model.TestRunUrl }}#{{ scenario.Id }} {{ scenario.Name }} {{ scenario.Platform_Id }}">{{ scenario.Name }}</a></td>
                             <td style="width:15%">{{ scenario.Platform_Id }}</td>
                             <td style="width:50%">
                                 <table>

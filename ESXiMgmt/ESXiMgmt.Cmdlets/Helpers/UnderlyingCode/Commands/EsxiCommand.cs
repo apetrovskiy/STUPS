@@ -1,23 +1,23 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
- * Date: 12/18/2012
- * Time: 2:12 PM
+ * Date: 1/23/2015
+ * Time: 8:00 PM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx
+namespace EsxiMgmt.Cmdlets.Helpers.UnderlyingCode.Commands
 {
     using System;
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of TmxCommand.
+    /// Description of EsxiCommand.
     /// </summary>
-    abstract class TmxCommand
+    abstract class EsxiCommand
     {
-        internal TmxCommand(CommonCmdletBase cmdlet)
+        internal EsxiCommand(CommonCmdletBase cmdlet)
         {
             this.Cmdlet = cmdlet;
         }

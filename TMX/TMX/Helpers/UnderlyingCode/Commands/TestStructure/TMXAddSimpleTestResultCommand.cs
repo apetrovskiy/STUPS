@@ -28,7 +28,6 @@ namespace Tmx
         
         internal override void Execute()
         {
-           
             var cmdlet = (AddTmxSimpleTestResultCommand)Cmdlet;
             
             cmdlet.ConvertTestResultStatusToTraditionalTestResult();

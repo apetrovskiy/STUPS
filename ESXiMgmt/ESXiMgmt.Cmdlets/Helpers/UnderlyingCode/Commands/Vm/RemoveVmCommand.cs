@@ -28,18 +28,16 @@ namespace EsxiMgmt.Cmdlets.Helpers.UnderlyingCode.Commands.Vm
         
         internal override void Execute()
         {
+            Cmdlet.WriteObject(RemoveVirtualMachines());
+        }
+        
+        internal bool RemoveVirtualMachines()
+        {
             var cmdlet = (RemoveEsxiVmCommand)Cmdlet;
-            
-            // TODO: support for wildcards
-            var connectionInfosApplicable = ConnectionData.Entries.Where(connInfo => connInfo.Host == cmdlet.Hostname).ToList();
-            
-            var vms = new List<IEsxiVirtualMachine>();
-            
-            var codeRunner = new CrossHostCodeRunner();
-            Func<PlainTextDataConverter, string, bool> runnerFunc = (runner, textData) => runner.RemoveMachine(textData);
-            foreach (var connInfo in connectionInfosApplicable)
-                // TODO: error handling
-                cmdlet.WriteObject(codeRunner.Run<PlainTextDataConverter, bool>(connInfo, "vim-cmd vmsvc/destroy " + cmdlet.Id, runnerFunc));
+            var virtualMachinesSelector = new VirtualMachinesSelector();
+            var virtualMachines = virtualMachinesSelector.GetMachines(cmdlet.Server, cmdlet.Id, cmdlet.Name, cmdlet.Path);
+            var virtualMachinesProcessor = new VirtualMachinesProcessor();
+            return virtualMachinesProcessor.RemoveMachines(virtualMachines);
         }
     }
 }

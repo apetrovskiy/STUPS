@@ -11,15 +11,27 @@ namespace EsxiMgmt.Cmdlets.Commands
 {
     using System;
     using System.Management.Automation;
+    using EsxiMgmt.Cmdlets.Helpers.UnderlyingCode.Commands.Vm;
         
     /// <summary>
-    /// Description of NewESXiVMCommand.
+    /// Description of NewEsxiVmCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.New, "ESXiVM")]
-    public class NewESXiVMCommand : VMCmdletBase
+    [Cmdlet(VerbsCommon.New, "EsxiVm")]
+    public class NewEsxiVmCommand : CommonCmdletBase
     {
-        public NewESXiVMCommand()
+        [Parameter(Mandatory = true)]
+        public string Name { get; set; }
+        
+        [Parameter(Mandatory = true)]
+        public string Path { get; set; }
+        
+        [Parameter(Mandatory = true)]
+        public string Server { get; set; }
+        
+        protected override void BeginProcessing()
         {
+            var command = new NewVmCommand(this);
+            command.Execute();
         }
     }
 }

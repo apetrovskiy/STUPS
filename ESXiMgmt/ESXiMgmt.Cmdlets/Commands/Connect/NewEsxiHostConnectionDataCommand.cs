@@ -21,7 +21,7 @@ namespace EsxiMgmt.Cmdlets.Commands.Connect
     {
         [Parameter(Mandatory = true)]
         [ValidateNotNullOrEmpty]
-        public string Hostname { get; set; }
+        public string Server { get; set; }
         
         [Parameter(Mandatory = true)]
         [ValidateNotNullOrEmpty]

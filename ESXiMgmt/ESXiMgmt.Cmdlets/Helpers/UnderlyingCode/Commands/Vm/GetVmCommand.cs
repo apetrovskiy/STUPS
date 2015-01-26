@@ -16,7 +16,6 @@ namespace EsxiMgmt.Cmdlets.Helpers.UnderlyingCode.Commands.Vm
     using EsxiMgmt.Core.Data;
     using EsxiMgmt.Core.Interfaces;
     using EsxiMgmt.Core.ObjectModel;
-    using Renci.SshNet;
     using EsxiMgmt.Cmdlets.Commands;
     
     /// <summary>
@@ -30,18 +29,14 @@ namespace EsxiMgmt.Cmdlets.Helpers.UnderlyingCode.Commands.Vm
         
         internal override void Execute()
         {
+            Cmdlet.WriteObject(GetVirtualMachines());
+        }
+        
+        internal IEnumerable<IEsxiVirtualMachine> GetVirtualMachines()
+        {
             var cmdlet = (GetEsxiVmCommand)Cmdlet;
-            
-            // TODO: support for wildcards
-            var connectionInfosApplicable = ConnectionData.Entries.Where(connInfo => connInfo.Host == cmdlet.Hostname).ToList();
-            
-            var vms = new List<IEsxiVirtualMachine>();
-            
-            var codeRunner = new CrossHostCodeRunner();
-            Func<PlainTextDataConverter, string, List<IEsxiVirtualMachine>> runnerFunc = (runner, textData) => runner.GetMachines(textData);
-            foreach (var connInfo in connectionInfosApplicable)
-                // TODO: error handling
-                cmdlet.WriteObject(codeRunner.Run<PlainTextDataConverter, List<IEsxiVirtualMachine>>(connInfo, "vim-cmd vmsvc/getallvms", runnerFunc));
+            var virtualMachinesSelector = new VirtualMachinesSelector();
+            return virtualMachinesSelector.GetMachines(cmdlet.Server, cmdlet.Id, cmdlet.Name, cmdlet.Path);
         }
     }
 }

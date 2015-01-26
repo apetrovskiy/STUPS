@@ -22,5 +22,6 @@ namespace EsxiMgmt.Core.Interfaces
         string GuestOperatingSystem { get; set; }
         string Version { get; set; }
         string Annotation { get; set; }
+        string Server { get; set; }
     }
 }

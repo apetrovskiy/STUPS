@@ -7,19 +7,19 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace EsxiMgmt.Cmdlets.Commands
-{
-    using System;
-    using System.Management.Automation;
-        
-    /// <summary>
-    /// Description of DisconnectESXiHostCommand.
-    /// </summary>
-    [Cmdlet(VerbsCommunications.Disconnect, "ESXiHost")]
-    public class DisconnectESXiHostCommand : ConnectCmdletBase
-    {
-        public DisconnectESXiHostCommand()
-        {
-        }
-    }
-}
+//namespace EsxiMgmt.Cmdlets.Commands
+//{
+//    using System;
+//    using System.Management.Automation;
+//        
+//    /// <summary>
+//    /// Description of DisconnectESXiHostCommand.
+//    /// </summary>
+//    [Cmdlet(VerbsCommunications.Disconnect, "ESXiHost")]
+//    public class DisconnectESXiHostCommand : ConnectCmdletBase
+//    {
+//        public DisconnectESXiHostCommand()
+//        {
+//        }
+//    }
+//}

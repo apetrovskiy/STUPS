@@ -18,14 +18,21 @@ namespace EsxiMgmt.Core.Data
     /// </summary>
     public class ConnectionData
     {
-        /*
-        public ConnectionData()
-        {
-            Entries = new List<ConnectionInfo>();
-        }
-        
-        public static List<ConnectionInfo> Entries { get; set; }
-        */
         public static List<ConnectionInfo> Entries = new List<ConnectionInfo>();
+        
+        public static void Add(string hostname, string username, string password, string keyFilePath)
+        {
+            var connInfo = new ConnectionInfo(
+                               hostname,
+                               username,
+                               new AuthenticationMethod[] {
+                    new PasswordAuthenticationMethod(username, password),
+                    new PrivateKeyAuthenticationMethod(
+                        username,
+                        new [] { new PrivateKeyFile(keyFilePath, password) }),
+                });
+            
+            ConnectionData.Entries.Add(connInfo);
+        }
     }
 }

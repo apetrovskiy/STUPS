@@ -16,20 +16,9 @@ namespace EsxiMgmt.Cmdlets.Commands.Vm
     /// <summary>
     /// Description of RemoveEsxiVmCommand.
     /// </summary>
-    public class RemoveEsxiVmCommand : CommonCmdletBase
+    [Cmdlet(VerbsCommon.Remove, "EsxiVm")]
+    public class RemoveEsxiVmCommand : VmListCmdletBase
     {
-        [Parameter(Mandatory = true, ParameterSetName = "ById")]
-        public int Id { get; set; }
-        
-        [Parameter(Mandatory = true, ParameterSetName = "ByName")]
-        public string Name { get; set; }
-        
-        [Parameter(Mandatory = true, ParameterSetName = "ByPath")]
-        public string Path { get; set; }
-        
-        [Parameter(Mandatory = false)]
-        public string Hostname { get; set; }
-        
         protected override void BeginProcessing()
         {
             var command = new RemoveVmCommand(this);

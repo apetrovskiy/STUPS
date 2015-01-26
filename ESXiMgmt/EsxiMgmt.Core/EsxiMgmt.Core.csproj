@@ -62,9 +62,15 @@
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Data\ConnectionData.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="Interfaces\IEsxiVirtualMachine.cs" />
+    <Compile Include="ObjectModel\Commands.cs" />
     <Compile Include="ObjectModel\CrossHostCodeRunner.cs" />
     <Compile Include="ObjectModel\PlainTextDataConverter.cs" />
+    <Compile Include="ObjectModel\VirtualMachineCreator.cs" />
+    <Compile Include="ObjectModel\VirtualMachineRemover.cs" />
+    <Compile Include="ObjectModel\VirtualMachinesProcessor.cs" />
+    <Compile Include="ObjectModel\VirtualMachinesSelector.cs" />
     <Compile Include="Types\VirtualMachine.cs" />
   </ItemGroup>
   <ItemGroup>

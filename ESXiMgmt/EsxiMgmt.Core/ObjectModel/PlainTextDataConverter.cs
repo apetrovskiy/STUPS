@@ -28,8 +28,14 @@ namespace EsxiMgmt.Core.ObjectModel
         const string vmGuestOs = @"";
         const string vmVersion = @"";
         const string vmAnnotation = @"";
+//        string _esxiHostname;
+//        
+//        public PlainTextDataConverter(string esxiHostname)
+//        {
+//            _esxiHostname = esxiHostname;
+//        }
         
-        public List<IEsxiVirtualMachine> GetMachines(string plainTextData)
+        public List<IEsxiVirtualMachine> GetMachines(string plainTextData, string server)
         {
             var resultList = new List<IEsxiVirtualMachine>();
             
@@ -42,7 +48,8 @@ namespace EsxiMgmt.Core.ObjectModel
                         new VirtualMachine {
                             Id = getVirtualMachineId(line),
                             Name = getVirtualMachineName(line),
-                            Path = getVirtualMachinePath(line)
+                            Path = getVirtualMachinePath(line),
+                            Server = server
                         });
                 }
                 stringReader.Close();
@@ -51,12 +58,12 @@ namespace EsxiMgmt.Core.ObjectModel
             return resultList;
         }
         
-        public bool RemoveMachine(string plainTextData)
-        {
-            
-            
-            return true;
-        }
+//        public bool RemoveMachine(string plainTextData, string esxiHostname)
+//        {
+//            
+//            
+//            return true;
+//        }
         
         int getVirtualMachineId(string line)
         {

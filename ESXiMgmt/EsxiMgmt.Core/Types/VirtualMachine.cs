@@ -23,5 +23,6 @@ namespace EsxiMgmt.Core.Types
         public string GuestOperatingSystem { get; set; }
         public string Version { get; set; }
         public string Annotation { get; set; }
+        public string Server { get; set; }
     }
 }

@@ -11,7 +11,6 @@ namespace EsxiMgmt.Cmdlets.Helpers.UnderlyingCode.Commands.Connect
 {
     using System;
     using EsxiMgmt.Core.Data;
-    using Renci.SshNet;
     using EsxiMgmt.Cmdlets.Commands.Connect;
     
     /// <summary>
@@ -25,21 +24,20 @@ namespace EsxiMgmt.Cmdlets.Helpers.UnderlyingCode.Commands.Connect
         
         internal override void Execute()
         {
+            Cmdlet.WriteObject(AddConnectionInfo());
+        }
+        
+        internal bool AddConnectionInfo()
+        {
             var cmdlet = (NewEsxiHostConnectionDataCommand)Cmdlet;
             
-            var connInfo = new ConnectionInfo(
-                               cmdlet.Hostname,
-                               cmdlet.Username,
-                               new AuthenticationMethod[] {
-                    new PasswordAuthenticationMethod(cmdlet.Username, cmdlet.Password),
-                    new PrivateKeyAuthenticationMethod(
-                        cmdlet.Username,
-                        new [] { new PrivateKeyFile(cmdlet.KeyFilePath, cmdlet.Password) }),
-                });
+            ConnectionData.Add(
+                cmdlet.Server,
+                cmdlet.Username,
+                cmdlet.Password,
+                cmdlet.KeyFilePath);
             
-            ConnectionData.Entries.Add(connInfo);
-            
-            cmdlet.WriteObject(true);
+            return true;
         }
     }
 }

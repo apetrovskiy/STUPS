@@ -7,36 +7,36 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace EsxiMgmt.Cmdlets.Commands
-{
-    using System;
-    using System.Management.Automation;
-        
-    /// <summary>
-    /// Description of ConnectESXiHostCommand.
-    /// </summary>
-    [Cmdlet(VerbsCommunications.Connect, "ESXiHost")]
-    public class ConnectESXiHostCommand : ConnectCmdletBase
-    {
-        public ConnectESXiHostCommand()
-        {
-        }
-        
-        #region Parameters
-        #endregion Parameters
-        
-        protected override void BeginProcessing()
-        {
-            ESXiConnection result = 
-                VMwareHelper.ConnectToServer(
-                    null,
-                    this.Server,
-                    this.Port,
-                    this.Username,
-                    this.Password,
-                    this.DatastoreName);
-            WriteObject(result);
-        }
-        
-    }
-}
+//namespace EsxiMgmt.Cmdlets.Commands
+//{
+//    using System;
+//    using System.Management.Automation;
+//        
+//    /// <summary>
+//    /// Description of ConnectESXiHostCommand.
+//    /// </summary>
+//    [Cmdlet(VerbsCommunications.Connect, "ESXiHost")]
+//    public class ConnectESXiHostCommand : ConnectCmdletBase
+//    {
+//        public ConnectESXiHostCommand()
+//        {
+//        }
+//        
+//        #region Parameters
+//        #endregion Parameters
+//        
+//        protected override void BeginProcessing()
+//        {
+//            ESXiConnection result = 
+//                VMwareHelper.ConnectToServer(
+//                    null,
+//                    this.Server,
+//                    this.Port,
+//                    this.Username,
+//                    this.Password,
+//                    this.DatastoreName);
+//            WriteObject(result);
+//        }
+//        
+//    }
+//}

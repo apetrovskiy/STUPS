@@ -17,7 +17,7 @@ namespace EsxiMgmt.Core.ObjectModel
     /// </summary>
     public class CrossHostCodeRunner
     {
-        public TResult Run<TRunner, TResult>(ConnectionInfo connectionInfo, string commandText, Func<TRunner, string, TResult> runnerFunc)
+        public TResult Run<TRunner, TResult>(ConnectionInfo connectionInfo, string commandText, Func<TRunner, string, string, TResult> runnerFunc)
             where TRunner : new()
             where TResult : new()
         {
@@ -28,7 +28,7 @@ namespace EsxiMgmt.Core.ObjectModel
                 
                 using (var cmd = client.CreateCommand(commandText)) {
                     var executionResult = cmd.Execute();
-                    result = runnerFunc.Invoke(new TRunner(), executionResult);
+                    result = runnerFunc.Invoke(new TRunner(), executionResult, connectionInfo.Host);
                 }
                 
                client.Disconnect();

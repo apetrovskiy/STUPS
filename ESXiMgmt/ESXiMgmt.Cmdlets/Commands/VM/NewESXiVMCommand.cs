@@ -22,7 +22,7 @@ namespace EsxiMgmt.Cmdlets.Commands
         [Parameter(Mandatory = true)]
         public string Name { get; set; }
         
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = false)]
         public string Path { get; set; }
         
         [Parameter(Mandatory = true)]

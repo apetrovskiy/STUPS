@@ -26,20 +26,18 @@ namespace EsxiMgmt.Core.ObjectModel
             foreach (var machineGroup in groupedByServerVirtualMachines) {
                 removeMachinesOnServer(machineGroup.First().Server, machineGroup);
             }
-            
             return true;
         }
         
         void removeMachinesOnServer(string serverName, IGrouping<string, IEsxiVirtualMachine> machineGroup)
         {
             var codeRunner = new CrossHostCodeRunner();
-            Func<VirtualMachineRemover, string, string, bool> runnerFunc = (runner, textData, server) => runner.RemoveVirtualMachines(textData, server);
                 // TODO: error handling
             foreach (var virtualMachine in machineGroup) {
-                codeRunner.Run<VirtualMachineRemover, bool>(
+                codeRunner.Run(
                     ConnectionData.Entries.First(info => info.Host == serverName),
-                    string.Format(Commands.RemoveVirtualMachine, virtualMachine.Id),
-                    runnerFunc);
+                    string.Format(Commands.RemoveVirtualMachine, virtualMachine.Id)
+                );
             }
         }
     }

@@ -12,8 +12,6 @@ namespace EsxiMgmt.Cmdlets.Helpers.UnderlyingCode.Commands.Vm
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using EsxiMgmt.Core.Data;
-    using EsxiMgmt.Core.Interfaces;
     using EsxiMgmt.Core.ObjectModel;
     using EsxiMgmt.Cmdlets.Commands.Vm;
     

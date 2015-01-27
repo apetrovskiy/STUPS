@@ -24,17 +24,10 @@ namespace EsxiMgmt.Core.ObjectModel
     {
         public IEnumerable<IEsxiVirtualMachine> GetMachines(string[] hostnames, int id, string name, string path)
         {
-            // TODO: support for wildcards
-            var connectionInfosApplicable = new List<ConnectionInfo>();
-            if (hostnames.Any())
-                connectionInfosApplicable.AddRange(
-                    hostnames.SelectMany(hostname => ConnectionData.Entries.Where(connData => 0 == string.Compare(connData.Host, hostname, StringComparison.OrdinalIgnoreCase)))
-                );
-            else
-                connectionInfosApplicable = ConnectionData.Entries;
+            var connectionInfosApplicable = getConnectionInfosForSelectedServers(hostnames);
             
             // TODO: use wildcards
-            var allVirtualMachinesFromHosts = getMachinesFromHost(connectionInfosApplicable);
+            var allVirtualMachinesFromHosts = getMachinesFromServer(connectionInfosApplicable);
             if ("*" == name || "*" == path) return allVirtualMachinesFromHosts;
             return 0 < id ? 
                 allVirtualMachinesFromHosts.Where(virtualMachine => virtualMachine.Id == id) : 
@@ -44,7 +37,18 @@ namespace EsxiMgmt.Core.ObjectModel
                 allVirtualMachinesFromHosts;
         }
         
-        IEnumerable<IEsxiVirtualMachine> getMachinesFromHost(List<ConnectionInfo> connectionInfos)
+        List<ConnectionInfo> getConnectionInfosForSelectedServers(string[] hostnames)
+        {
+            // TODO: support for wildcards
+            var connectionInfosApplicable = new List<ConnectionInfo>();
+            if (hostnames.Any())
+                connectionInfosApplicable.AddRange(hostnames.SelectMany(hostname => ConnectionData.Entries.Where(connData => 0 == string.Compare(connData.Host, hostname, StringComparison.OrdinalIgnoreCase))));
+            else
+                connectionInfosApplicable = ConnectionData.Entries;
+            return connectionInfosApplicable;
+        }
+        
+        IEnumerable<IEsxiVirtualMachine> getMachinesFromServer(List<ConnectionInfo> connectionInfos)
         {
             var vms = new List<IEsxiVirtualMachine>();
             

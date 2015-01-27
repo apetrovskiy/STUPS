@@ -12,9 +12,7 @@ namespace EsxiMgmt.Cmdlets.Helpers.UnderlyingCode.Commands.Vm
     using System;
     using System.Linq;
     using EsxiMgmt.Core.Data;
-    using EsxiMgmt.Core.Interfaces;
     using EsxiMgmt.Core.ObjectModel;
-    using EsxiMgmt.Core.Types;
     using EsxiMgmt.Cmdlets.Commands;
     
     /// <summary>
@@ -31,27 +29,14 @@ namespace EsxiMgmt.Cmdlets.Helpers.UnderlyingCode.Commands.Vm
             Cmdlet.WriteObject(NewVirtualMachine());
         }
         
-        internal IEsxiVirtualMachine NewVirtualMachine()
+        internal bool NewVirtualMachine()
         {
             var cmdlet = (NewEsxiVmCommand)Cmdlet;
-//            var virtualMachinesSelector = new VirtualMachinesSelector();
-//            var virtualMachines = virtualMachinesSelector.GetMachines(cmdlet.Server, cmdlet.Id, cmdlet.Name, cmdlet.Path);
-//            var virtualMachinesProcessor = new VirtualMachinesProcessor();
-//            return virtualMachinesProcessor.RemoveMachines(virtualMachines);
-            
-            // var vms = new List<IEsxiVirtualMachine>();
-            
             var codeRunner = new CrossHostCodeRunner();
-            Func<VirtualMachineCreator, string, string, VirtualMachine> runnerFunc = (runner, textData, server) => runner.Create(cmdlet.Name, cmdlet.Path);
-            return codeRunner.Run<VirtualMachineCreator, VirtualMachine>(
+            return codeRunner.Run(
                 ConnectionData.Entries.First(cInfo => cInfo.Host == cmdlet.Server),
-                // Commands.CreateVirtualMachine,
-                string.Format(Commands.CreateVirtualMachine, cmdlet.Name, cmdlet.Path),
-                runnerFunc);
-            // foreach (var connInfo in connectionInfos)
-                // TODO: error handling
-                // vms.AddRange(codeRunner.Run<PlainTextDataConverter, List<IEsxiVirtualMachine>>(connInfo, Commands.GetVirtualMachines, runnerFunc));
-            // return vms;
+                string.Format(Commands.CreateVirtualMachine, cmdlet.Name, cmdlet.Path)
+            );
         }
     }
 }

@@ -22,18 +22,28 @@ namespace EsxiMgmt.Core.ObjectModel
             where TResult : new()
         {
             var result = new TResult();
-            
             using (var client = new SshClient(connectionInfo)) {
                 client.Connect();
-                
                 using (var cmd = client.CreateCommand(commandText)) {
                     var executionResult = cmd.Execute();
-                    result = runnerFunc.Invoke(new TRunner(), executionResult, connectionInfo.Host);
+                    result = null != runnerFunc ? runnerFunc.Invoke(new TRunner(), executionResult, connectionInfo.Host) : result;
                 }
-                
                client.Disconnect();
             }
-            
+            return result;
+        }
+        
+        public bool Run(ConnectionInfo connectionInfo, string commandText)
+        {
+            var result = false;
+            using (var client = new SshClient(connectionInfo)) {
+                client.Connect();
+                using (var cmd = client.CreateCommand(commandText)) {
+                    var executionResult = cmd.Execute();
+                }
+                client.Disconnect();
+            }
+            result = true;
             return result;
         }
     }

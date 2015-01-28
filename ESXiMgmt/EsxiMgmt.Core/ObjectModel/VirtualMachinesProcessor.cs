@@ -32,10 +32,11 @@ namespace EsxiMgmt.Core.ObjectModel
         void removeMachinesOnServer(string serverName, IGrouping<string, IEsxiVirtualMachine> machineGroup)
         {
             var codeRunner = new CrossHostCodeRunner();
-                // TODO: error handling
+            // TODO: error handling
             foreach (var virtualMachine in machineGroup) {
                 codeRunner.Run(
-                    ConnectionData.Entries.First(info => info.Host == serverName),
+                    // ConnectionData.Entries.First(info => info.Host == serverName),
+                    ConnectionData.Entries.First(info => 0 == string.Compare(info.Host, serverName, StringComparison.OrdinalIgnoreCase)),
                     string.Format(Commands.RemoveVirtualMachine, virtualMachine.Id)
                 );
             }

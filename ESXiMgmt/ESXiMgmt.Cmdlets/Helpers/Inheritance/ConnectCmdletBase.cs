@@ -50,9 +50,10 @@ namespace EsxiMgmt.Cmdlets
 //        [Parameter(Mandatory=$true)]
 //        [ValidateNotNullOrEmpty()]
 //        public string Drive { get; set; }
-        [Parameter(Mandatory = true,
-                   ParameterSetName = "PipelineInput")]
-        public ESXiConnection InputObject { get; set; }
+        // 20150127
+//        [Parameter(Mandatory = true,
+//                   ParameterSetName = "PipelineInput")]
+//        public ESXiConnection InputObject { get; set; }
         #endregion Parameters
     }
 }

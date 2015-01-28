@@ -14,8 +14,11 @@ namespace EsxiMgmt.Core.ObjectModel
     using System.IO;
     using System.Text.RegularExpressions;
     using Renci.SshNet;
-    using EsxiMgmt.Core.Interfaces;
-    using EsxiMgmt.Core.Types;
+    // TODO: refactoring in SD
+    // using EsxiMgmt.Core.Interfaces;
+    using Interfaces;
+    // using EsxiMgmt.Core.Types;
+    using Types;
     
     /// <summary>
     /// Description of PlainTextDataConverter.
@@ -23,8 +26,8 @@ namespace EsxiMgmt.Core.ObjectModel
     public class PlainTextDataConverter
     {
         const string vmId = @"(?m)(?n)(?<=^)\d+(?=\s\s+)";
-        const string vmName = @"(?m)(?n)(?<=^[\d]+\s+)[^\s].*[^\s](?=\s+\[)";
-        const string vmFile = @"(?m)(?n)(?<=.*\s+)\[[^\]]+\].*\.vmx(?=\s\s+\w)";
+        const string vmName = @"(?m)(?n)(?i)(?<=^[\d]+\s+)[^\s].*[^\s](?=\s+\[)";
+        const string vmFile = @"(?m)(?n)(?i)(?<=.*\s+)\[[^\]]+\].*\.vmx(?=\s\s+\w)";
         const string vmGuestOs = @"";
         const string vmVersion = @"";
         const string vmAnnotation = @"";

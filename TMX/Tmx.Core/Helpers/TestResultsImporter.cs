@@ -234,17 +234,25 @@ namespace Tmx.Core
             if (null == testResultElements) return importedTestResults;
             
             foreach (var testResultElement in testResultElements) {
-                bool passedValue = false;
-                bool knownIssueValue = false;
-                passedValue |= "PASSED" == getStringAttribute(testResultElement, "status");
-                knownIssueValue |= "KNOWN ISSUE" == getStringAttribute(testResultElement, "status");
+                // 20150127
+                // bool passedValue = false;
+                // bool knownIssueValue = false;
+                // passedValue |= "PASSED" == getStringAttribute(testResultElement, "status");
+                // knownIssueValue |= "KNOWN ISSUE" == getStringAttribute(testResultElement, "status");
+//                var status = ("PASSED" == getStringAttribute(testResultElement, "status")) ? TestResultStatuses.Passed :
+//                    ("FAILED" == getStringAttribute(testResultElement, "status")) ? TestResultStatuses.Failed :
+//                    ("KNOWN ISSUE" == getStringAttribute(testResultElement, "status")) ? TestResultStatuses.KnownIssue : TestResultStatuses.NotTested;
+                // TestResultStatuses status;
+                // var testResultElement = gettestResultStatus(out status);
+                var status = gettestResultStatus(testResultElement);
                 TestResultOrigins origin = TestResultOrigins.Logical;
                 if ("TECHNICAL" == getStringAttribute(testResultElement, "origin").ToUpper())
                     origin = TestResultOrigins.Technical;
                 if ("AUTOMATIC" == getStringAttribute(testResultElement, "origin").ToUpper())
                     origin = TestResultOrigins.Automatic;
-                if ((TestResultOrigins.Technical == origin) &&
-                    passedValue) {
+                // if ((TestResultOrigins.Technical == origin) &&
+                //     passedValue) {
+                if ((TestResultOrigins.Technical == origin) && TestResultStatuses.Passed == status) {
                     continue;
                 }
                 string testResultDescription = string.Empty;
@@ -260,7 +268,9 @@ namespace Tmx.Core
                         Id = getStringAttribute(testResultElement, "id"),
                         Name = getStringAttribute(testResultElement, "name"),
                         Description = testResultDescription,
-                        enStatus = (!passedValue ? TestResultStatuses.Failed : knownIssueValue ? TestResultStatuses.KnownIssue : passedValue ? TestResultStatuses.Passed : TestResultStatuses.NotTested),
+                        // 20150127
+                        // enStatus = (!passedValue ? TestResultStatuses.Failed : knownIssueValue ? TestResultStatuses.KnownIssue : passedValue ? TestResultStatuses.Passed : TestResultStatuses.NotTested),
+                        enStatus = status,
                         SuiteId = suiteId,
                         ScenarioId = scenarioId,
                         SuiteUniqueId = suiteUniqueId,
@@ -286,7 +296,12 @@ namespace Tmx.Core
             }
             return importedTestResults;
         }
-
+        
+        TestResultStatuses gettestResultStatus(XElement testResultElement)
+        {
+            return ("PASSED" == getStringAttribute(testResultElement, "status")) ? TestResultStatuses.Passed : ("FAILED" == getStringAttribute(testResultElement, "status")) ? TestResultStatuses.Failed : ("KNOWN ISSUE" == getStringAttribute(testResultElement, "status")) ? TestResultStatuses.KnownIssue : TestResultStatuses.NotTested;
+        }
+        
         List<ITestResultDetail> importTestResultDetails(IEnumerable<XElement> testResultDetailElements)
         {
             var importedTestResultDetails = new List<ITestResultDetail>();

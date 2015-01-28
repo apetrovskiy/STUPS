@@ -53,6 +53,12 @@ namespace Tmx.Server.Tests.Helpers
             testResultsImporter.MergeTestSuites(sourceTestSuites, suites);
             THEN_there_are_N_platforms_in_xdocument(2, sourceTestPlatforms);
             THEN_there_are_N_suites_in_xdocument(2, sourceTestSuites);
+            
+            THEN_test_result_N_status_is(suites, "1", TestResultStatuses.Passed);
+            THEN_test_result_N_status_is(sourceTestSuites, "2", TestResultStatuses.Passed);
+            THEN_test_result_N_status_is(sourceTestSuites, "3", TestResultStatuses.Failed);
+            THEN_test_result_N_status_is(sourceTestSuites, "4", TestResultStatuses.KnownIssue);
+            THEN_test_result_N_status_is(sourceTestSuites, "5", TestResultStatuses.NotTested);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -206,31 +212,81 @@ namespace Tmx.Server.Tests.Helpers
 
         ITestSuite addTestSuiteWithOneScenario(ITestPlatform platform)
         {
+            const string suiteId = "1";
+            var suiteUniqueId = Guid.NewGuid();
+            const string scenarioId = "1";
+            var scenarioUniqueId = Guid.NewGuid();
+            
             return new Tmx.Interfaces.TestSuite {
-                Id = "1",
+                Id = suiteId,
                 Name = "s01",
                 PlatformId = platform.Id,
                 PlatformUniqueId = platform.UniqueId,
+                UniqueId = suiteUniqueId,
                 TestScenarios = new List<ITestScenario> {
                     new TestScenario {
-                        Id = "1",
+                        Id = scenarioId,
                         Name = "sc01",
                         PlatformId = platform.Id,
                         PlatformUniqueId = platform.UniqueId,
+                        SuiteId = suiteId,
+                        SuiteUniqueId = suiteUniqueId,
+                        UniqueId = scenarioUniqueId,
                         TestResults = new List<ITestResult> {
                             new TestResult {
                                 Id = "1",
                                 Name = "tr01",
                                 PlatformId = platform.Id,
                                 PlatformUniqueId = platform.UniqueId,
-                                enStatus = TestResultStatuses.Passed
+                                enStatus = TestResultStatuses.Passed,
+                                SuiteId = suiteId,
+                                SuiteUniqueId = suiteUniqueId,
+                                ScenarioId = scenarioId,
+                                ScenarioUniqueId = scenarioUniqueId
                             },
                             new TestResult {
                                 Id = "2",
                                 Name = "tr02",
                                 PlatformId = platform.Id,
                                 PlatformUniqueId = platform.UniqueId,
-                                enStatus = TestResultStatuses.Passed
+                                enStatus = TestResultStatuses.Passed,
+                                SuiteId = suiteId,
+                                SuiteUniqueId = suiteUniqueId,
+                                ScenarioId = scenarioId,
+                                ScenarioUniqueId = scenarioUniqueId
+                            },
+                            new TestResult {
+                                Id = "3",
+                                Name = "tr03",
+                                PlatformId = platform.Id,
+                                PlatformUniqueId = platform.UniqueId,
+                                enStatus = TestResultStatuses.Failed,
+                                SuiteId = suiteId,
+                                SuiteUniqueId = suiteUniqueId,
+                                ScenarioId = scenarioId,
+                                ScenarioUniqueId = scenarioUniqueId
+                            },
+                            new TestResult {
+                                Id = "4",
+                                Name = "tr04",
+                                PlatformId = platform.Id,
+                                PlatformUniqueId = platform.UniqueId,
+                                enStatus = TestResultStatuses.KnownIssue,
+                                SuiteId = suiteId,
+                                SuiteUniqueId = suiteUniqueId,
+                                ScenarioId = scenarioId,
+                                ScenarioUniqueId = scenarioUniqueId
+                            },
+                            new TestResult {
+                                Id = "5",
+                                Name = "tr05",
+                                PlatformId = platform.Id,
+                                PlatformUniqueId = platform.UniqueId,
+                                enStatus = TestResultStatuses.NotTested,
+                                SuiteId = suiteId,
+                                SuiteUniqueId = suiteUniqueId,
+                                ScenarioId = scenarioId,
+                                ScenarioUniqueId = scenarioUniqueId
                             }
                         }
                     }
@@ -292,6 +348,11 @@ namespace Tmx.Server.Tests.Helpers
                     }
                 }
             };
+        }
+        
+        void THEN_test_result_N_status_is(List<ITestSuite> suites, string id, TestResultStatuses status)
+        {
+            Xunit.Assert.Equal(status, suites[0].TestScenarios[0].TestResults.First(testResult => testResult.Id == id).enStatus);
         }
     }
 }

@@ -23,8 +23,8 @@ namespace EsxiMgmt.Core.ObjectModel
     public class PlainTextDataConverter
     {
         const string vmId = @"(?m)(?n)(?<=^)\d+(?=\s\s+)";
-        const string vmName = @"(?m)(?n)(?<=^[\d]+\s+)[^\s].*[^\s](?=\s+\[)";
-        const string vmFile = @"(?m)(?n)(?<=.*\s+)\[[^\]]+\].*\.vmx(?=\s\s+\w)";
+        const string vmName = @"(?m)(?n)(?i)(?<=^[\d]+\s+)[^\s].*[^\s](?=\s+\[)";
+        const string vmFile = @"(?m)(?n)(?i)(?<=.*\s+)\[[^\]]+\].*\.vmx(?=\s\s+\w)";
         const string vmGuestOs = @"";
         const string vmVersion = @"";
         const string vmAnnotation = @"";

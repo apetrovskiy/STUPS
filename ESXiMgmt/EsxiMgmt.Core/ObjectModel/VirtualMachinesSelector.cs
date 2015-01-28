@@ -28,12 +28,15 @@ namespace EsxiMgmt.Core.ObjectModel
             
             // TODO: use wildcards
             var allVirtualMachinesFromHosts = getMachinesFromServer(connectionInfosApplicable);
-            if ("*" == name || "*" == path) return allVirtualMachinesFromHosts;
+            if ("*" == name || "*" == path)
+                return allVirtualMachinesFromHosts;
             return 0 < id ? 
                 allVirtualMachinesFromHosts.Where(virtualMachine => virtualMachine.Id == id) : 
                 !string.IsNullOrEmpty(name) ? 
-                    allVirtualMachinesFromHosts.Where(virtualMachine => virtualMachine.Name == name) : 
-                    !string.IsNullOrEmpty(path) ? allVirtualMachinesFromHosts.Where(virtualMachine => virtualMachine.Path == path) : 
+            // allVirtualMachinesFromHosts.Where(virtualMachine => virtualMachine.Name == name) : 
+                allVirtualMachinesFromHosts.Where(virtualMachine => 0 == string.Compare(virtualMachine.Name, name, StringComparison.OrdinalIgnoreCase)) :
+            // !string.IsNullOrEmpty(path) ? allVirtualMachinesFromHosts.Where(virtualMachine => virtualMachine.Path == path) : 
+                !string.IsNullOrEmpty(path) ? allVirtualMachinesFromHosts.Where(virtualMachine => 0 == string.Compare(virtualMachine.Path, path, StringComparison.OrdinalIgnoreCase)) :
                 allVirtualMachinesFromHosts;
         }
         

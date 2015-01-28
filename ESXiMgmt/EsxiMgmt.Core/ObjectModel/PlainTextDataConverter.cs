@@ -14,8 +14,11 @@ namespace EsxiMgmt.Core.ObjectModel
     using System.IO;
     using System.Text.RegularExpressions;
     using Renci.SshNet;
-    using EsxiMgmt.Core.Interfaces;
-    using EsxiMgmt.Core.Types;
+    // TODO: refactoring in SD
+    // using EsxiMgmt.Core.Interfaces;
+    using Interfaces;
+    // using EsxiMgmt.Core.Types;
+    using Types;
     
     /// <summary>
     /// Description of PlainTextDataConverter.

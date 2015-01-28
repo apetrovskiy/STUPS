@@ -239,9 +239,12 @@ namespace Tmx.Core
                 // bool knownIssueValue = false;
                 // passedValue |= "PASSED" == getStringAttribute(testResultElement, "status");
                 // knownIssueValue |= "KNOWN ISSUE" == getStringAttribute(testResultElement, "status");
-                var status = ("PASSED" == getStringAttribute(testResultElement, "status")) ? TestResultStatuses.Passed :
-                    ("FAILED" == getStringAttribute(testResultElement, "status")) ? TestResultStatuses.Failed :
-                    ("KNOWN ISSUE" == getStringAttribute(testResultElement, "status")) ? TestResultStatuses.KnownIssue : TestResultStatuses.NotTested;
+//                var status = ("PASSED" == getStringAttribute(testResultElement, "status")) ? TestResultStatuses.Passed :
+//                    ("FAILED" == getStringAttribute(testResultElement, "status")) ? TestResultStatuses.Failed :
+//                    ("KNOWN ISSUE" == getStringAttribute(testResultElement, "status")) ? TestResultStatuses.KnownIssue : TestResultStatuses.NotTested;
+                // TestResultStatuses status;
+                // var testResultElement = gettestResultStatus(out status);
+                var status = gettestResultStatus(testResultElement);
                 TestResultOrigins origin = TestResultOrigins.Logical;
                 if ("TECHNICAL" == getStringAttribute(testResultElement, "origin").ToUpper())
                     origin = TestResultOrigins.Technical;
@@ -293,7 +296,12 @@ namespace Tmx.Core
             }
             return importedTestResults;
         }
-
+        
+        TestResultStatuses gettestResultStatus(XElement testResultElement)
+        {
+            return ("PASSED" == getStringAttribute(testResultElement, "status")) ? TestResultStatuses.Passed : ("FAILED" == getStringAttribute(testResultElement, "status")) ? TestResultStatuses.Failed : ("KNOWN ISSUE" == getStringAttribute(testResultElement, "status")) ? TestResultStatuses.KnownIssue : TestResultStatuses.NotTested;
+        }
+        
         List<ITestResultDetail> importTestResultDetails(IEnumerable<XElement> testResultDetailElements)
         {
             var importedTestResultDetails = new List<ITestResultDetail>();

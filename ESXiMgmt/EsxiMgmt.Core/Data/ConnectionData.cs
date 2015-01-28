@@ -32,7 +32,9 @@ namespace EsxiMgmt.Core.Data
                         new [] { new PrivateKeyFile(keyFilePath, password) }),
                 });
             
-            ConnectionData.Entries.Add(connInfo);
+            // TODO: refactoring in SD?
+            // ConnectionData.Entries.Add(connInfo);
+            Entries.Add(connInfo);
         }
     }
 }

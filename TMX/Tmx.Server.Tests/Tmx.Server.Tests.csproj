@@ -158,7 +158,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="Data\-1.xml" />
     <None Include="Data\-2.xml" />
     <None Include="Data\-3.xml" />

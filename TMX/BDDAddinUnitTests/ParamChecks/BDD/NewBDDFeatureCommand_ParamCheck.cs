@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace BDDAddinUnitTests.CheckCmdletParameters.BDD
+namespace BddAddinUnitTests.CheckCmdletParameters.Bdd
 {
     using System;
     using Tmx;
@@ -19,10 +19,6 @@ namespace BDDAddinUnitTests.CheckCmdletParameters.BDD
     [TestFixture]
     public class NewBDDFeatureCommand_ParamCheck
     {
-        public NewBDDFeatureCommand_ParamCheck()
-        {
-        }
-        
         [SetUp]
         public void PrepareRunspace()
         {

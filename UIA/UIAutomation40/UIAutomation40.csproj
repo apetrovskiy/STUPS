@@ -10,7 +10,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <OutputPath>bin\Release35\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <NoStdLib>False</NoStdLib>
     <DebugType>None</DebugType>
@@ -35,6 +35,8 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <NoWin32Manifest>False</NoWin32Manifest>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -85,9 +87,39 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|x86'">
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>Full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>None</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>None</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core">
-      <HintPath>..\..\packages\Castle.Core.3.3.1\lib\net40-client\Castle.Core.dll</HintPath>
+      <HintPath>..\..\packages\Castle.Core.3.3.3\lib\net40-client\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Interop.UIAutomationClient">
       <HintPath>..\..\packages\UIAComWrapper.1.1.0.13\lib\net40\Interop.UIAutomationClient.dll</HintPath>
@@ -105,7 +137,7 @@
       <HintPath>..\..\packages\Ninject.Extensions.NamedScope.3.2.0.0\lib\net40\Ninject.Extensions.NamedScope.dll</HintPath>
     </Reference>
     <Reference Include="NLog">
-      <HintPath>..\..\packages\NLog.3.1.0.0\lib\net40\NLog.dll</HintPath>
+      <HintPath>..\..\packages\NLog.3.2.0.0\lib\net40\NLog.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
@@ -181,13 +213,13 @@
       <Project>{069651A0-FE15-42E2-89D5-9A761A47B143}</Project>
       <Name>Tmx.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\TMX\TMX.Interfaces\TMX.Interfaces.csproj">
+    <ProjectReference Include="..\..\Tmx\Tmx.Interfaces\Tmx.Interfaces.csproj">
       <Project>{9C5DA25F-6A59-4F97-B107-64DD549CB800}</Project>
-      <Name>TMX.Interfaces</Name>
+      <Name>Tmx.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\TMX\TMX\TMX.csproj">
+    <ProjectReference Include="..\..\Tmx\Tmx\Tmx.csproj">
       <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>
-      <Name>TMX</Name>
+      <Name>Tmx</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -995,6 +1027,7 @@
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Internal\Highligher.cs">
       <Link>Helpers\UnderlyingCode\Internal\Highligher.cs</Link>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Internal\JavaHelper.cs">
       <Link>Helpers\UnderlyingCode\Internal\JavaHelper.cs</Link>
@@ -1323,6 +1356,9 @@
     <Compile Include="..\UIAutomation\Provider\UIAProvider.cs">
       <Link>Provider\UIAProvider.cs</Link>
     </Compile>
+    <Compile Include="..\UIAutomation\Resources\Resource.Designer.cs">
+      <Link>Resources\Resource.Designer.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Include="..\UIAutomation\Commands\Transcript\RecorderFrom.xaml">
@@ -1333,75 +1369,22 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Commands\ExecutionPlan" />
-    <Folder Include="Commands\Container" />
-    <Folder Include="Commands\Banner" />
-    <Folder Include="Commands\Relatives" />
-    <Folder Include="Commands\No" />
-    <Folder Include="Commands\No" />
-    <Folder Include="Commands\Win32" />
-    <Folder Include="Commands\RDP" />
-    <Folder Include="Commands\Sheridan" />
-    <Folder Include="Commands\Win32" />
-    <Folder Include="Helpers\Commands" />
-    <Folder Include="Helpers\Commands\Banner" />
-    <Folder Include="Helpers\Commands\Cache" />
-    <Folder Include="Helpers\Commands\Common" />
-    <Folder Include="Helpers\Commands\Container" />
-    <Folder Include="Helpers\Commands\Event" />
-    <Folder Include="Helpers\Commands\Get" />
-    <Folder Include="Helpers\Commands\Common" />
-    <Folder Include="Helpers\Commands\Get" />
-    <Folder Include="Helpers\Commands\Banner" />
-    <Folder Include="Helpers\Commands\Cache" />
-    <Folder Include="Helpers\Commands\Event" />
-    <Folder Include="Helpers\Commands\Convert" />
-    <Folder Include="Helpers\Commands\Pattern" />
-    <Folder Include="Helpers\Commands\Pattern" />
-    <Folder Include="Helpers\Commands\Wait" />
-    <Folder Include="Helpers\Commands\RDP" />
-    <Folder Include="Helpers\Commands\Wait" />
-    <Folder Include="Helpers\Commands\Wizard" />
-    <Folder Include="Helpers\UnderlyingCode\Aspects" />
-    <Folder Include="Helpers\Commands" />
-    <Folder Include="Helpers\Commands" />
-    <Folder Include="Helpers\Commands\Container" />
-    <Folder Include="Helpers\Commands\Container" />
-    <Folder Include="Helpers\Commands\Container" />
-    <Folder Include="Helpers\Commands\RDP" />
-    <Folder Include="Helpers\Commands\Wizard" />
-    <Folder Include="Helpers\Commands\RDP" />
-    <Folder Include="Helpers\Commands\Wizard" />
-    <Folder Include="Helpers\Commands\Wizard" />
-    <Folder Include="Helpers\UnderlyingCode\Adapters" />
-    <Folder Include="Helpers\UnderlyingCode\Attributes" />
-    <Folder Include="Helpers\UnderlyingCode\ExtensionMethods" />
-    <Folder Include="Helpers\UnderlyingCode\ExtensionMethods" />
-    <Folder Include="Helpers\UnderlyingCode\Aspects" />
-    <Folder Include="Helpers\UnderlyingCode\Internal" />
-    <Folder Include="Helpers\UnderlyingCode\Internal" />
-    <Folder Include="Helpers\UnderlyingCode\Attributes" />
-    <Folder Include="Helpers\UnderlyingCode\ControlProviders" />
-    <Folder Include="Helpers\UnderlyingCode\Converters" />
-    <Folder Include="Helpers\UnderlyingCode\Searchers" />
-    <Folder Include="Helpers\UnderlyingCode\NewModel" />
-    <Folder Include="Helpers\UnderlyingCode\NewModel" />
-    <Folder Include="Helpers\UnderlyingCode\Ninject" />
-    <Folder Include="Helpers\UnderlyingCode\RDP" />
-    <Folder Include="Helpers\UnderlyingCode\Types" />
-    <Folder Include="Helpers\UnderlyingCode\Types" />
-    <Folder Include="Helpers\UnderlyingCode\Types" />
-    <Folder Include="Interface" />
-    <Folder Include="Interface\Element" />
-    <Folder Include="Interface\Element" />
-    <Folder Include="Interface\Holder" />
-    <Folder Include="Interface\Holder" />
-    <Folder Include="Interface\Helper" />
-    <Folder Include="Interface\Pattern" />
-    <Folder Include="Interface\Pattern" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\UIAutomation\Resources\Resource.resx">
+      <Link>Resources\Resource.resx</Link>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
 </Project>

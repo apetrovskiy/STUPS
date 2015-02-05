@@ -44,11 +44,11 @@ namespace UIAutomation.Helpers.Commands
                         
                         cmdlet.WriteVerbose(
                             cmdlet, 
-                            "no processName, name, processid or process was supplied");
+                            Resource.GetWindowCommand_Verbose_no_processName__name__processid_or_process_was_supplied);
                         
                         cmdlet.WriteError(
                             cmdlet,
-                            "Neither ProcessName nor window Name are provided. Or ProcessId == 0",
+                            Resource.GetWindowCommand_Error_wrong_input,
                             "NoParametersInGetWindow",
                             ErrorCategory.InvalidArgument,
                             true);
@@ -61,7 +61,8 @@ namespace UIAutomation.Helpers.Commands
     
                     cmdlet.WriteError(
                         cmdlet,
-                        "Unknown error in '" + cmdlet.CmdletName(cmdlet) + "' ProcessRecord",
+                        // "Unknown error in '" + cmdlet.CmdletName(cmdlet) + "' ProcessRecord",
+                        string.Format(Resource.GetWindowCommand_Error_Unknown_error, cmdlet.CmdletName(cmdlet)),
                         "UnknownInGetWindow",
                         ErrorCategory.InvalidResult,
                         true);
@@ -169,20 +170,7 @@ namespace UIAutomation.Helpers.Commands
             
                             cmdlet.WriteError(
                                 cmdlet,
-                                "Failed to get window in " + 
-                                cmdlet.Timeout.ToString() +
-                                " milliseconds by:" +
-                                " process name: '" +
-                                procName +
-                                "', process Id: " + 
-                                procId + 
-                                ", window title: '" + 
-                                name +
-                                "', automationId: '" +
-                                cmdlet.AutomationId +
-                                "', className: '" +
-                                cmdlet.Class +
-                                "'.",
+                                string.Format(Resource.GetWindowCommand_Error_Timeout, cmdlet.Timeout, procName, procId, name, cmdlet.AutomationId, cmdlet.Class),
                                 "FailedToGetWindow",
                                 ErrorCategory.InvalidResult,
                                 true);

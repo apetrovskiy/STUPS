@@ -8,7 +8,7 @@
  */
 using System;
 
-namespace BDDAddinUnitTests.Commands.BDD
+namespace BddAddinUnitTests.Commands.Bdd
 {
     /// <summary>
     /// Description of GetBDDCurrentScenarioTitleCommandTestFixture.

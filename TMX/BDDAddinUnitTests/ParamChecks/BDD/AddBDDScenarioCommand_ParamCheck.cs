@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace BDDAddinUnitTests.CheckCmdletParameters.BDD
+namespace BddAddinUnitTests.CheckCmdletParameters.Bdd
 {
     using System;
     using Tmx;

@@ -32,7 +32,7 @@ namespace UIAutomation.Helpers.Commands
             var controlSearcher =
                 AutomationFactory.GetSearcherImpl<ControlSearcher>() as ControlSearcher;
             
-            List<IUiElement> returnCollection =
+            var returnCollection =
                 controlSearcher.GetElements(
                     controlSearcher.ConvertCmdletToControlSearcherData(cmdlet),
                     cmdlet.Timeout);

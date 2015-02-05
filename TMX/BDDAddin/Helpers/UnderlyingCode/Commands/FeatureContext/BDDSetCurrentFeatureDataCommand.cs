@@ -11,11 +11,11 @@ using System;
 namespace Tmx.Helpers.UnderlyingCode.Commands
 {
     /// <summary>
-    /// Description of BDDSetCurrentFeatureDataCommand.
+    /// Description of BddSetCurrentFeatureDataCommand.
     /// </summary>
-    public class BDDSetCurrentFeatureDataCommand
+    public class BddSetCurrentFeatureDataCommand
     {
-        public BDDSetCurrentFeatureDataCommand()
+        public BddSetCurrentFeatureDataCommand()
         {
         }
     }

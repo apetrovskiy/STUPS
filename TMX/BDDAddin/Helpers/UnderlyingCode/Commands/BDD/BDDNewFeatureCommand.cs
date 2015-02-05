@@ -13,17 +13,17 @@ namespace Tmx
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of BDDNewFeatureCommand.
+    /// Description of BddNewFeatureCommand.
     /// </summary>
-    internal class BDDNewFeatureCommand : BDDCommand
+    class BddNewFeatureCommand : BddCommand
     {
-        internal BDDNewFeatureCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        internal BddNewFeatureCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
         internal override void Execute()
         {
-            var cmdlet = (BDDFeatureCmdletBase)Cmdlet;
+            var cmdlet = (BddFeatureCmdletBase)Cmdlet;
             BDDHelper.CreateNewFeature(cmdlet);
         }
     }

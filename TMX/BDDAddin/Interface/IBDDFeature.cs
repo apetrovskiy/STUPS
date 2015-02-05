@@ -14,9 +14,9 @@ namespace Tmx
     using Tmx.Interfaces.TestStructure;
 
     /// <summary>
-    /// Description of IBDDFeature.
+    /// Description of IBddFeature.
     /// </summary>
-    public interface IBDDFeature : ITestSuite
+    public interface IBddFeature : ITestSuite
     {
         string FeatureName { get; }
         string Narrative { get; }

@@ -79,7 +79,7 @@ namespace Data
             }
         }
         
-        protected void WriteLog(LogLevels logLevel, System.Management.Automation.ErrorRecord errorRecord)
+        protected void WriteLog(LogLevels logLevel, ErrorRecord errorRecord)
         {
             if (!Preferences.AutoLog) return;
             this.WriteLog(logLevel, errorRecord.Exception.Message);

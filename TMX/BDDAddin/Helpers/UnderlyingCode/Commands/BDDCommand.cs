@@ -13,11 +13,11 @@ namespace Tmx
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of BDDCommand.
+    /// Description of BddCommand.
     /// </summary>
-    internal abstract class BDDCommand
+    abstract class BddCommand
     {
-        internal BDDCommand(CommonCmdletBase cmdlet)
+        internal BddCommand(CommonCmdletBase cmdlet)
         {
             this.Cmdlet = cmdlet;
         }

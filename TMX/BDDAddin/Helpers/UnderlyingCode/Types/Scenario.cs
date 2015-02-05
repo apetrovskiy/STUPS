@@ -17,7 +17,7 @@ namespace Tmx
     /// <summary>
     /// Description of Scenario.
     /// </summary>
-    public class Scenario : TestScenario, IBDDScenario
+    public class Scenario : TestScenario, IBddScenario
     {
         public Scenario() : base()
         {

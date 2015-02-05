@@ -17,7 +17,7 @@ namespace Tmx
     /// <summary>
     /// Description of Feature.
     /// </summary>
-    public class Feature : TestSuite, IBDDFeature
+    public class Feature : TestSuite, IBddFeature
     {
         public Feature() : base()
         {

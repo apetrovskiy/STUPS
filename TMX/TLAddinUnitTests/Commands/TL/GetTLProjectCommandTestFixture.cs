@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TLAddinUnitTests.Commands.TL
+namespace TlAddinUnitTests.Commands.TL
 {
     using System;
     using System.Collections.Generic;

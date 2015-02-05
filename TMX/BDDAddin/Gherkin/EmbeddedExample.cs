@@ -3,7 +3,7 @@
 ////using NUnit.Framework;
 //using MbUnit.Framework;
 //
-//namespace BDDAddin
+//namespace BddAddin
 //{
 //    [TestFixture]
 //    public class Embedded

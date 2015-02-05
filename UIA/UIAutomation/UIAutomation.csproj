@@ -10,7 +10,7 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <OutputPath>bin\Release35\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <SourceAnalysisOverrideSettingsFile>C:\Documents and Settings\Administrator\Application Data\ICSharpCode/SharpDevelop4\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <NoStdLib>False</NoStdLib>
@@ -48,6 +48,8 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
     <NoWin32Manifest>False</NoWin32Manifest>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
     <RegisterForComInterop>False</RegisterForComInterop>
@@ -119,14 +121,13 @@
       <HintPath>..\..\packages\Ninject.Extensions.NamedScope.3.2.0.0\lib\net35\Ninject.Extensions.NamedScope.dll</HintPath>
     </Reference>
     <Reference Include="NLog">
-      <HintPath>..\..\packages\NLog.3.1.0.0\lib\net35\NLog.dll</HintPath>
+      <HintPath>..\..\packages\NLog.3.2.0.0\lib\net35\NLog.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Linq" />
     <Reference Include="System.Management.Automation" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Presentation">
@@ -549,6 +550,11 @@
     <Compile Include="Provider\UIAProvider.cs" />
     <Compile Include="pull requests\NativeMethods.cs" />
     <Compile Include="pull requests\UIAutomation.cs" />
+    <Compile Include="Resources\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -591,20 +597,20 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
-      <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
+      <Project>{e4499004-dae5-4700-b212-4cdea3080bc5}</Project>
       <Name>PSTestLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Tmx\Tmx.Core\Tmx.Core.csproj">
-      <Project>{069651A0-FE15-42E2-89D5-9A761A47B143}</Project>
+      <Project>{069651a0-fe15-42e2-89d5-9a761a47b143}</Project>
       <Name>Tmx.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\TMX\TMX.Interfaces\TMX.Interfaces.csproj">
-      <Project>{9C5DA25F-6A59-4F97-B107-64DD549CB800}</Project>
-      <Name>TMX.Interfaces</Name>
+    <ProjectReference Include="..\..\Tmx\Tmx.Interfaces\Tmx.Interfaces.csproj">
+      <Project>{9c5da25f-6a59-4f97-b107-64dd549cb800}</Project>
+      <Name>Tmx.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\TMX\TMX\TMX.csproj">
-      <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>
-      <Name>TMX</Name>
+    <ProjectReference Include="..\..\Tmx\Tmx\Tmx.csproj">
+      <Project>{dfff7f28-cfa4-4ee5-84f0-4a12a415bc0c}</Project>
+      <Name>Tmx</Name>
     </ProjectReference>
     <ProjectReference Include="..\UiaComWrapper\UIAComWrapper.csproj">
       <Project>{1DD63894-DBB9-40EF-BFF2-55624CB285AF}</Project>
@@ -613,49 +619,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Commands\ExecutionPlan" />
-    <Folder Include="Commands\Container" />
-    <Folder Include="Commands\Banner" />
-    <Folder Include="Commands\Relatives" />
-    <Folder Include="Commands\No" />
-    <Folder Include="Commands\Win32" />
-    <Folder Include="Commands\RDP" />
-    <Folder Include="Commands\Sheridan" />
-    <Folder Include="Helpers\Commands\Convert" />
-    <Folder Include="Helpers\Commands\Get" />
-    <Folder Include="Helpers\Commands\Common" />
-    <Folder Include="Helpers\Commands\Banner" />
-    <Folder Include="Helpers\Commands\Cache" />
-    <Folder Include="Helpers\Commands\Event" />
-    <Folder Include="Helpers\Commands\Convert" />
-    <Folder Include="Helpers\Commands\Pattern" />
-    <Folder Include="Helpers\Commands\Wait" />
-    <Folder Include="Helpers\Commands\RDP" />
-    <Folder Include="Helpers\UnderlyingCode\Adapters" />
-    <Folder Include="Helpers\UnderlyingCode\ExtensionMethods" />
-    <Folder Include="Helpers\UnderlyingCode\Aspects" />
-    <Folder Include="Helpers\UnderlyingCode\Internal" />
-    <Folder Include="Helpers\UnderlyingCode\Attributes" />
-    <Folder Include="Helpers\UnderlyingCode\ControlProviders" />
-    <Folder Include="Helpers\UnderlyingCode\Converters" />
-    <Folder Include="Helpers\UnderlyingCode\Searchers" />
-    <Folder Include="Helpers\UnderlyingCode\NewModel" />
-    <Folder Include="Helpers\UnderlyingCode\Ninject" />
-    <Folder Include="Helpers\UnderlyingCode\RDP" />
-    <Folder Include="Helpers\UnderlyingCode\Types" />
-    <Folder Include="Helpers\Commands" />
-    <Folder Include="Helpers\Commands\Container" />
-    <Folder Include="Helpers\Commands\Wizard" />
-    <Folder Include="Helpers\Commands\RDP" />
-    <Folder Include="Interface" />
-    <Folder Include="Interface\Holder" />
-    <Folder Include="Interface\Element" />
-    <Folder Include="Interface\Helper" />
-    <Folder Include="Interface\Pattern" />
-    <Folder Include="pull requests" />
+    <EmbeddedResource Include="Resources\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <PropertyGroup>
@@ -677,7 +651,7 @@ rem C:\Distrib\UIAutomation\UIAutomation\copyDebugLibrary.cmd</PostBuildEvent>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>True</Optimize>
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
-    <OutputPath>bin\Release35\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <StartArguments>-sta -executionpolicy unrestricted -command "&amp; { C:\Projects\PS\STUPS\pre-samples\UIA-tests\QuickTestReadCmdlets.ps1 }"</StartArguments>
     <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
   </PropertyGroup>
@@ -724,4 +698,11 @@ rem C:\Distrib\UIAutomation\UIAutomation\copyDebugLibrary.cmd</PostBuildEvent>
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
     <OutputPath>bin\Release40\</OutputPath>
   </PropertyGroup>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
 </Project>

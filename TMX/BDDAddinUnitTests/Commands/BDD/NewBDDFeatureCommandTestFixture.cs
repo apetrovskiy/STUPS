@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace BDDAddinUnitTests.Commands.BDD
+namespace BddAddinUnitTests.Commands.Bdd
 {
     using System;
     using System.Text.RegularExpressions;
@@ -19,11 +19,11 @@ namespace BDDAddinUnitTests.Commands.BDD
     using Tmx;
     
     /// <summary>
-    /// Description of NewBDDFeatureCommandTestFixture.
+    /// Description of NewBddFeatureCommandTestFixture.
     /// </summary>
-    public class NewBDDFeatureCommandTestFixture
+    public class NewBddFeatureCommandTestFixture
     {
-        public NewBDDFeatureCommandTestFixture()
+        public NewBddFeatureCommandTestFixture()
         {
         }
         

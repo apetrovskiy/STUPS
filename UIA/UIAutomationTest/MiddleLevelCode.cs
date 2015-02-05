@@ -26,7 +26,9 @@ namespace UIAutomationTest
 #if DEBUG
                 return @"..\..\..\UIAutomationTestForms\bin\Debug\UIAutomationTestForms.exe";
 #else
-                return @"..\..\..\UIAutomationTestForms\bin\Release35\UIAutomationTestForms.exe";
+                // 20150205
+                // return @"..\..\..\UIAutomationTestForms\bin\Release35\UIAutomationTestForms.exe";
+                return @"..\..\..\UIAutomationTestForms\bin\Release\UIAutomationTestForms.exe";
 #endif
             }
         }

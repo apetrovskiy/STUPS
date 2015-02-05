@@ -1,7 +1,7 @@
 //using System.Collections.Generic;
 //using NBehave.Narrator.Framework;
 //
-//namespace BDDAddin
+//namespace BddAddin
 //{
 //    [ActionSteps]
 //    public class SimpleSteps

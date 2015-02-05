@@ -15,7 +15,7 @@
     <SignAssembly>False</SignAssembly>
     <DelaySign>False</DelaySign>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <OutputPath>bin\Release35\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
     <NoStdLib>False</NoStdLib>
     <DebugType>None</DebugType>
@@ -38,6 +38,8 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <NoWin32Manifest>False</NoWin32Manifest>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -85,6 +87,32 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>Full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>None</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>None</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
@@ -639,40 +667,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Commands\Database" />
-    <Folder Include="Commands\Configuration" />
-    <Folder Include="Commands\Logging" />
-    <Folder Include="Commands\Logging" />
-    <Folder Include="Commands\TestClient" />
-    <Folder Include="Commands\TestServer" />
-    <Folder Include="Commands\TestClient" />
-    <Folder Include="Commands\TestExecution" />
-    <Folder Include="Commands\Status" />
-    <Folder Include="Commands\TestExecution" />
-    <Folder Include="Commands\TestStructure" />
-    <Folder Include="Commands\TestResults" />
-    <Folder Include="Commands\Repository" />
-    <Folder Include="Helpers\Inheritance\Database" />
-    <Folder Include="ExternalUse" />
-    <Folder Include="Helpers\Inheritance\TestStructure" />
-    <Folder Include="Helpers\Inheritance\TestExecution" />
-    <Folder Include="Helpers\UnderlyingCode" />
-    <Folder Include="Helpers\UnderlyingCode\Commands" />
-    <Folder Include="Helpers\UnderlyingCode\Commands\Logging" />
-    <Folder Include="Helpers\UnderlyingCode\Commands\Logging" />
-    <Folder Include="Helpers\UnderlyingCode\Commands\TestClient" />
-    <Folder Include="Helpers\UnderlyingCode\Commands\TestServer" />
-    <Folder Include="Helpers\UnderlyingCode\Commands\TestClient" />
-    <Folder Include="Helpers\UnderlyingCode\Commands\TestExecution" />
-    <Folder Include="Helpers\UnderlyingCode\Commands\TestExecution" />
-    <Folder Include="Helpers\UnderlyingCode\Commands\TestStructure" />
-    <Folder Include="Helpers\UnderlyingCode\Commands\Status" />
-    <Folder Include="Helpers\UnderlyingCode\Mapping" />
-    <Folder Include="Helpers\UnderlyingCode\Mapping" />
-    <Folder Include="Helpers\UnderlyingCode\Ninject" />
-    <Folder Include="Helpers\UnderlyingCode\Ninject" />
-    <Folder Include="Helpers\UnderlyingCode\Types" />
-    <Folder Include="SQLiteData" />
+    <Folder Include="ExternalUse\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\TMX\Helpers\UnderlyingCode\NLog.config">
@@ -682,4 +677,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
 </Project>

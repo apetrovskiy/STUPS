@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
   <PropertyGroup>
     <ProjectGuid>{4270678E-76B2-4B90-8D00-ABE4726B4589}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -10,13 +10,20 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <OutputPath>bin\Release35\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
     <NoStdLib>False</NoStdLib>
     <DebugType>None</DebugType>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <DebugSymbols>false</DebugSymbols>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -48,6 +55,32 @@
   <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>Full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>None</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>None</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Gallio">
       <HintPath>..\..\..\..\..\Program Files\Gallio\bin\Gallio.dll</HintPath>
@@ -65,19 +98,19 @@
       <HintPath>..\..\packages\Ninject.Extensions.NamedScope.3.2.0.0\lib\net35\Ninject.Extensions.NamedScope.dll</HintPath>
     </Reference>
     <Reference Include="Ninject.MockingKernel">
-      <HintPath>..\..\packages\Ninject.MockingKernel.3.2.0.0\lib\net35-full\Ninject.MockingKernel.dll</HintPath>
+      <HintPath>..\..\packages\Ninject.MockingKernel.3.2.1.0\lib\net35-full\Ninject.MockingKernel.dll</HintPath>
     </Reference>
     <Reference Include="Ninject.MockingKernel.Moq">
-      <HintPath>..\..\packages\Ninject.MockingKernel.Moq.3.2.0.0\lib\net35-full\Ninject.MockingKernel.Moq.dll</HintPath>
+      <HintPath>..\..\packages\Ninject.MockingKernel.Moq.3.2.1.0\lib\net35-full\Ninject.MockingKernel.Moq.dll</HintPath>
     </Reference>
     <Reference Include="Ninject.MockingKernel.NSubstitute">
-      <HintPath>..\..\packages\Ninject.MockingKernel.NSubstitute.3.2.0.0\lib\net35-full\Ninject.MockingKernel.NSubstitute.dll</HintPath>
+      <HintPath>..\..\packages\Ninject.MockingKernel.NSubstitute.3.2.1.0\lib\net35-full\Ninject.MockingKernel.NSubstitute.dll</HintPath>
     </Reference>
     <Reference Include="NSubstitute">
-      <HintPath>..\..\packages\NSubstitute.1.7.2.0\lib\NET35\NSubstitute.dll</HintPath>
+      <HintPath>..\..\packages\NSubstitute.1.8.1.0\lib\net35\NSubstitute.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>..\..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+      <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
@@ -213,38 +246,23 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Commands" />
-    <Folder Include="Commands\Cache" />
-    <Folder Include="Commands\Common" />
-    <Folder Include="Commands\Convert" />
-    <Folder Include="Commands\Discovery" />
-    <Folder Include="Commands\Event" />
-    <Folder Include="Commands\ExecutionPlan" />
-    <Folder Include="Commands\Get" />
-    <Folder Include="Commands\Hotkey" />
-    <Folder Include="Commands\Container" />
-    <Folder Include="Commands\No" />
-    <Folder Include="Commands\Wizard" />
-    <Folder Include="Commands\Wait" />
-    <Folder Include="Commands\Pattern" />
-    <Folder Include="Helpers" />
-    <Folder Include="Helpers\Inheritance" />
-    <Folder Include="Helpers\Inheritance\Legacy" />
-    <Folder Include="Helpers\Inheritance\new_code" />
-    <Folder Include="Helpers\ObjectModelViaPS" />
-    <Folder Include="Helpers\ObjectModel" />
-    <Folder Include="Helpers\UnderlyingCode" />
-    <Folder Include="Fakes" />
-    <Folder Include="Helpers\UnderlyingCode\Adapter" />
-    <Folder Include="Helpers\UnderlyingCode\ControlProviders" />
-    <Folder Include="Helpers\UnderlyingCode\Searchers" />
-    <Folder Include="Helpers\UnderlyingCode\Types" />
-    <Folder Include="Helpers\UnderlyingCode\NewModel" />
-    <Folder Include="Ninject" />
-    <Folder Include="Ninject" />
+    <Folder Include="Commands\Cache\" />
+    <Folder Include="Commands\Convert\" />
+    <Folder Include="Commands\Discovery\" />
+    <Folder Include="Commands\ExecutionPlan\" />
+    <Folder Include="Commands\Hotkey\" />
+    <Folder Include="Ninject\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
 </Project>

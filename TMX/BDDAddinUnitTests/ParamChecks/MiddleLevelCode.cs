@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace BDDAddinUnitTests.CheckCmdletParameters
+namespace BddAddinUnitTests.CheckCmdletParameters
 {
     using System;
     using PSTestLib;

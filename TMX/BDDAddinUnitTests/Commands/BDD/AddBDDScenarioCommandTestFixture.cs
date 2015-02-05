@@ -8,14 +8,14 @@
  */
 using System;
 
-namespace BDDAddinUnitTests.Commands.BDD
+namespace BddAddinUnitTests.Commands.Bdd
 {
     /// <summary>
-    /// Description of AddBDDScenarioCommandTestFixture.
+    /// Description of AddBddScenarioCommandTestFixture.
     /// </summary>
-    public class AddBDDScenarioCommandTestFixture
+    public class AddBddScenarioCommandTestFixture
     {
-        public AddBDDScenarioCommandTestFixture()
+        public AddBddScenarioCommandTestFixture()
         {
         }
     }

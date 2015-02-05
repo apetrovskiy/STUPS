@@ -13,14 +13,10 @@ namespace Tmx
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of BDDScenarioCmdletBase.
+    /// Description of BddScenarioCmdletBase.
     /// </summary>
-    public class BDDScenarioCmdletBase : BDDCmdletBase
+    public class BddScenarioCmdletBase : BddCmdletBase
     {
-        public BDDScenarioCmdletBase()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = true,
                    ValueFromPipeline = true)]

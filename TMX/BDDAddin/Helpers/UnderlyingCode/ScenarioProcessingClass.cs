@@ -79,7 +79,7 @@ namespace Tmx
         }
         
         public NBehave.Narrator.Framework.Scenario AddScenario(
-           BDDScenarioCmdletBase cmdlet)
+           BddScenarioCmdletBase cmdlet)
         {
             IScenarioBuilderStartWithHelperObject scenarioObject =
                 Feature.AddScenario();

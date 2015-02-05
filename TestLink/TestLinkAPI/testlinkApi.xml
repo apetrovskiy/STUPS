@@ -35,9 +35,9 @@
             <param name="devKey"></param>
             <param name="executionid"></param>
             <returns> mixed $resultInfo 
-            				[status]	=> true/false of success
-            				[id]		  => result id or error code
-            				[message]	=> optional message for error message string</returns>
+                            [status]    => true/false of success
+                            [id]          => result id or error code
+                            [message]    => optional message for error message string</returns>
         </member>
         <member name="M:Meyn.TestLink.ITestLink.getTestPlanPlatforms(System.String,System.Int32)">
             <summary>
@@ -54,13 +54,13 @@
             <param name="devKey"></param>
             <param name="testplanid"></param>
             <returns>map where every element has:
-            	 *
-            	 *	'type' => 'platform'
-            	 *	'total_tc => ZZ
-            	 *	'details' => array ( 'passed' => array( 'qty' => X)
-            	 *	                     'failed' => array( 'qty' => Y)
-            	 *	                     'blocked' => array( 'qty' => U)
-            	 *                       ....)</returns>
+                 *
+                 *    'type' => 'platform'
+                 *    'total_tc => ZZ
+                 *    'details' => array ( 'passed' => array( 'qty' => X)
+                 *                         'failed' => array( 'qty' => Y)
+                 *                         'blocked' => array( 'qty' => U)
+                 *                       ....)</returns>
         </member>
         <member name="M:Meyn.TestLink.ITestLink.sayHello">
             <summary>
@@ -1078,7 +1078,7 @@
         </member>
         <member name="F:Meyn.TestLink.AdditionalInfo.msg">
             <summary>
-            extra message, e.g."Created new version 2"	
+            extra message, e.g."Created new version 2"    
             </summary>
         </member>
         <member name="F:Meyn.TestLink.AdditionalInfo.external_id">

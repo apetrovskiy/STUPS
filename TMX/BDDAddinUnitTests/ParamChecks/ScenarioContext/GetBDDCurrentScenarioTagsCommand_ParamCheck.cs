@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace BDDAddinUnitTests.CheckCmdletParameters.ScenarioContext
+namespace BddAddinUnitTests.CheckCmdletParameters.ScenarioContext
 {
     using System;
     using Tmx;

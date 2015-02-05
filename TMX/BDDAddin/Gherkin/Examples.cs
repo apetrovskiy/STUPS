@@ -1,7 +1,7 @@
 //using NBehave.Narrator.Framework;
 //using NBehave.Spec.NUnit;
 //
-//namespace BDDAddin
+//namespace BddAddin
 //{
 //    [ActionSteps]
 //    public class ExamplesSteps

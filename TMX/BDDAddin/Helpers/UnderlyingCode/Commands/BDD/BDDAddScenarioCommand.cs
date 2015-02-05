@@ -13,17 +13,17 @@ namespace Tmx
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of BDDAddScenarioCommand.
+    /// Description of BddAddScenarioCommand.
     /// </summary>
-    internal class BDDAddScenarioCommand : BDDCommand
+    class BddAddScenarioCommand : BddCommand
     {
-        internal BDDAddScenarioCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        internal BddAddScenarioCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
         internal override void Execute()
         {
-            var cmdlet = (BDDScenarioCmdletBase)Cmdlet;
+            var cmdlet = (BddScenarioCmdletBase)Cmdlet;
             
             BDDHelper.AddScenario(cmdlet);
         }

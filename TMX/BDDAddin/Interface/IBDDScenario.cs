@@ -14,9 +14,9 @@ namespace Tmx
     using Tmx.Interfaces.TestStructure;
 
     /// <summary>
-    /// Description of IBDDScenario.
+    /// Description of IBddScenario.
     /// </summary>
-    public interface IBDDScenario : ITestScenario
+    public interface IBddScenario : ITestScenario
     {
         
     }

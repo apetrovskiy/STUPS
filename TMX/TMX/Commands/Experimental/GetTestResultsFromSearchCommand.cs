@@ -26,10 +26,9 @@ namespace Tmx.Commands
         protected override void BeginProcessing()
         {
             CheckCmdletParameters();
-            
-            var cmdlet = new SearchCmdletBase();
-            cmdlet.FilterAll = true;
-            
+
+            var cmdlet = new SearchCmdletBase {FilterAll = true};
+
             // 20140720
 //            var dataObject = new SearchCmdletBaseDataObject {
 //                FilterAll = true

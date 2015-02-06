@@ -7,12 +7,11 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Management.Automation;
+using Tmx.Helpers;
+
 namespace Tmx.Commands
 {
-    using System;
-    using System.Management.Automation;
-    using Tmx.Helpers;
-    
     /// <summary>
     /// Description of ExportTmxTestSettingsCommand.
     /// </summary>
@@ -22,7 +21,7 @@ namespace Tmx.Commands
         protected override void ProcessRecord()
         {
             // TmxHelper.ExportTestSettings(this, this.Path, this.VariableName);
-            ImportExportHelper.ExportTestSettings(this, this.Path, this.VariableName);
+            ImportExportHelper.ExportTestSettings(this, Path, VariableName);
         }
     }
 }

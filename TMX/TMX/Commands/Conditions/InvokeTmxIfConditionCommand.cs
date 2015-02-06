@@ -29,7 +29,7 @@ namespace Tmx.Commands
         
         protected override void BeginProcessing()
         {
-            this.CheckCmdletParameters();
+            CheckCmdletParameters();
             
             
         }

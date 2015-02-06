@@ -181,10 +181,11 @@ namespace Tmx
                             new ArgumentNullException("drive"),
                             "NullDrive",
                             ErrorCategory.InvalidArgument,
-                            null);
-                    err.ErrorDetails = 
-                        new ErrorDetails(
-                            "The PSDriveInfo argument is null");
+                            null)
+                        {
+                            ErrorDetails = new ErrorDetails(
+                                "The PSDriveInfo argument is null")
+                        };
                     ThrowTerminatingError(err);
                 }
         

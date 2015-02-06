@@ -72,14 +72,15 @@ namespace Tmx.Server
             Trace.TraceInformation("GetFirstLegitimateTask(Guid clientId).1");
             
             var taskListForClient = getOnlyNewTestTasksForClient(clientId);
+
+            var taskArrayForClient = taskListForClient as ITestTask[] ?? taskListForClient.ToArray();
+            Trace.TraceInformation("GetFirstLegitimateTask(Guid clientId).2 taskListForClient is null? {0} or empty {1}", null == taskListForClient, !taskArrayForClient.Any());
             
-            Trace.TraceInformation("GetFirstLegitimateTask(Guid clientId).2 taskListForClient is null? {0} or empty {1}", null == taskListForClient, !taskListForClient.Any());
-            
-            if (null == taskListForClient || !taskListForClient.Any()) return null;
+            if (null == taskListForClient || !taskArrayForClient.Any()) return null;
             
             Trace.TraceInformation("GetFirstLegitimateTask(Guid clientId).3");
             
-            var taskCandidate = taskListForClient.First(task => task.Id == taskListForClient.Min(tsk => tsk.Id));
+            var taskCandidate = taskArrayForClient.First(task => task.Id == taskArrayForClient.Min(tsk => tsk.Id));
             
             Trace.TraceInformation("GetFirstLegitimateTask(Guid clientId).4 taskCandidate is null? {0}", null == taskCandidate);
             
@@ -89,11 +90,12 @@ namespace Tmx.Server
         public virtual ITestTask GetNextLegitimateTask(Guid clientId, int currentTaskId)
         {
             var taskListForClient = getOnlyNewTestTasksForClient(clientId);
-            if (null == taskListForClient || !taskListForClient.Any()) return null;
-            var tasksToBeNextOne = taskListForClient.Where(t => t.Id > currentTaskId);
+            var taskArrayForClient = taskListForClient as ITestTask[] ?? taskListForClient.ToArray();
+            if (null == taskListForClient || !taskArrayForClient.Any()) return null;
+            var tasksToBeNextOne = taskArrayForClient.Where(t => t.Id > currentTaskId);
             if (null == tasksToBeNextOne || !tasksToBeNextOne.Any()) return null;
             
-            return taskListForClient.First(task => task.Id == tasksToBeNextOne.Min(tsk => tsk.Id));
+            return taskArrayForClient.First(task => task.Id == tasksToBeNextOne.Min(tsk => tsk.Id));
         }
         
         public virtual void CancelFurtherTasksOfTestClient(Guid clientId)
@@ -117,8 +119,9 @@ namespace Tmx.Server
             Trace.TraceInformation("getOnlyNewTestTasksForClient(Guid clientId).1 client id = {0}", clientId);
             var taskSelection = TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.IsActive);
             Trace.TraceInformation("getOnlyNewTestTasksForClient(Guid clientId).2 there are no tasks for client? {0}", null == taskSelection);
-            Trace.TraceInformation("getOnlyNewTestTasksForClient(Guid clientId).3 number of tasks for client = {0}", taskSelection.Count());
-            Trace.TraceInformation("getOnlyNewTestTasksForClient(Guid clientId).4 number of new tasks for client = {0}", taskSelection.Count(task => task.TaskStatus == TestTaskStatuses.New));
+            var taskSelectionArray = taskSelection as ITestTask[] ?? taskSelection.ToArray();
+            Trace.TraceInformation("getOnlyNewTestTasksForClient(Guid clientId).3 number of tasks for client = {0}", taskSelectionArray.Count());
+            Trace.TraceInformation("getOnlyNewTestTasksForClient(Guid clientId).4 number of new tasks for client = {0}", taskSelectionArray.Count(task => task.TaskStatus == TestTaskStatuses.New));
             
             return TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.IsActive && task.TaskStatus == TestTaskStatuses.New);
         }

@@ -27,7 +27,8 @@ namespace Tmx.Server
         {
             _basePath = basePath;
         }
-        
+
+        /// <exception cref="TinyIoCResolutionException">Unable to resolve the type.</exception>
         public virtual string GetReportPage(Guid testRunId, string templateName)
         {
             var model = TinyIoCContainer.Current.Resolve<ViewsTestRunsModule>().CreateTestRunReportsModel(testRunId);

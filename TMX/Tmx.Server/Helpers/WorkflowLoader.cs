@@ -43,7 +43,8 @@ namespace Tmx.Server
         const string taskElement_afterAction = "afterAction";
         const string taskElement_code = "code";
         const string taskElement_parameters = "parameters";
-        
+
+        /// <exception cref="WorkflowLoadingException">Server failed to load the workflow. </exception>
         public virtual bool Load(string pathToWorkflowFile)
         {
             try {
@@ -58,7 +59,7 @@ namespace Tmx.Server
                     "Unable to load an XML workflow from the file '" +
                     pathToWorkflowFile +
                     "'. " + 
-                    eImportDocument.Message);
+                    eImportDocument.Message, eImportDocument);
             }
             return true;
         }
@@ -207,7 +208,8 @@ namespace Tmx.Server
                 return string.Empty;
             }
         }
-        
+
+        /// <exception cref="WrongTaskDataException">Failed to read the taskType element</exception>
         internal virtual TestTaskExecutionTypes getTestTaskType(string taskTypeStringValue)
         {
             switch (taskTypeStringValue.ToUpper()) {

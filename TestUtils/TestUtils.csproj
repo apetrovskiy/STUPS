@@ -135,7 +135,6 @@
     <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Scripts\angular-animate.js" />
     <None Include="Scripts\angular-animate.min.js" />

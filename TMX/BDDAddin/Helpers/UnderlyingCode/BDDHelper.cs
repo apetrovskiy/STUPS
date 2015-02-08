@@ -78,7 +78,7 @@ namespace Tmx
             
         }
         
-        public static void CreateNewFeature(BDDFeatureCmdletBase cmdlet)
+        public static void CreateNewFeature(BddFeatureCmdletBase cmdlet)
         {
             var scenarioClass = new ScenarioProcessingClass();
 
@@ -95,7 +95,7 @@ namespace Tmx
             cmdlet.WriteObject(cmdlet, scenarioClass.FeatureCreated);
         }
         
-        public static void AddScenario(BDDScenarioCmdletBase cmdlet)
+        public static void AddScenario(BddScenarioCmdletBase cmdlet)
         {
             ScenarioProcessingClass scenarioClass =
                 BDDAddinData.GetFeature(

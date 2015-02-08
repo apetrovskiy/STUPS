@@ -17,7 +17,28 @@ namespace Tmx.Core.Types.Remoting
     /// </summary>
     public class TestRunCommand : ITestRunCommand
     {
-        public string Name { get; set; }
+        string _nameSuffix;
+        string _testRunName;
+        
+        public TestRunCommand()
+        {
+            Status = TestRunStatuses.Pending; // ??
+            _nameSuffix = " " + DateTime.Now;
+        }
+        
+        
+        public string TestRunName
+        {
+            get
+            {
+                return _testRunName == string.Empty ? WorkflowName + _nameSuffix : _testRunName;
+            }
+            set
+            {
+                _nameSuffix = string.Empty;
+                _testRunName = value;
+            }
+        }
         public string WorkflowName { get; set; }
         public TestRunStatuses Status { get; set; }
     }

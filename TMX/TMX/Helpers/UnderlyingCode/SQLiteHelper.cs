@@ -19,8 +19,8 @@ namespace Tmx
     using System.IO;
     using System.Management.Automation;
     using PSTestLib;
-	using Tmx.Interfaces;
-	using Tmx.Interfaces.TestStructure;
+    using Tmx.Interfaces;
+    using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of SQLiteHelper.

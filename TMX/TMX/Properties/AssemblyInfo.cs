@@ -12,12 +12,12 @@ using System.Runtime.CompilerServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TMX")]
+[assembly: AssemblyTitle("Tmx")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Alexander Petrovskiy")]
 [assembly: AssemblyProduct("TMX")]
-[assembly: AssemblyCopyright("Copyright 2012-2014")]
+[assembly: AssemblyCopyright("Copyright 2012-2015")]
 [assembly: AssemblyTrademark("SoftwareTestingUsingPowerShell.com")]
 [assembly: AssemblyCulture("")]
 
@@ -32,11 +32,11 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("Tmx.Server.Tests")]
 [assembly: InternalsVisibleTo("Tmx.Client")]
 [assembly: InternalsVisibleTo("Tmx.Client.Tests")]
-[assembly: InternalsVisibleTo("TLAddinUnitTests")]
+[assembly: InternalsVisibleTo("TlAddinUnitTests")]
 [assembly: InternalsVisibleTo("TFAddinUnitTests")]
-[assembly: InternalsVisibleTo("BDDAddinUnitTests")]
-[assembly: InternalsVisibleTo("BZAddinUnitTests")]
-[assembly: InternalsVisibleTo("RMAddinUnitTests")]
+[assembly: InternalsVisibleTo("BddAddinUnitTests")]
+[assembly: InternalsVisibleTo("BzAddinUnitTests")]
+[assembly: InternalsVisibleTo("RmAddinUnitTests")]
 [assembly: InternalsVisibleTo("RallyUnitTests")]
 
 // 20130111

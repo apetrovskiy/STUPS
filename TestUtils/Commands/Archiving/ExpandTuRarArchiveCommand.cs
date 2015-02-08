@@ -20,8 +20,7 @@ namespace TestUtils.Commands
     {
         protected override void ProcessRecord()
         {
-            TuExpandRarArchiveCommand command =
-                new TuExpandRarArchiveCommand(this);
+            var command = new ExpandRarArchiveCommand(this);
             command.Execute();
         }
     }

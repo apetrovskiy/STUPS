@@ -15,7 +15,7 @@ namespace Tmx
     /// <summary>
     /// Description of TmxCommand.
     /// </summary>
-    internal abstract class TmxCommand
+    abstract class TmxCommand
     {
         internal TmxCommand(CommonCmdletBase cmdlet)
         {

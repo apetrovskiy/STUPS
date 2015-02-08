@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
   <PropertyGroup>
     <ProjectGuid>{FFD78ABA-4388-421F-85CA-69D68FBC982C}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -14,10 +14,17 @@
     <NoStdLib>False</NoStdLib>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <OutputPath>bin\Release35\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DebugType>None</DebugType>
     <DebugSymbols>false</DebugSymbols>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
     <RegisterForComInterop>False</RegisterForComInterop>
@@ -53,9 +60,38 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <FileAlignment>4096</FileAlignment>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>Full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>None</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>None</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ionic.Zip">
-      <HintPath>..\binaries\Ionic\zip-v1.9\Release\Ionic.Zip.dll</HintPath>
+      <HintPath>..\packages\DotNetZip.1.9.3\lib\net20\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Win32.TaskScheduler">
+      <HintPath>..\packages\TaskScheduler.2.3.0\lib\2\Microsoft.Win32.TaskScheduler.dll</HintPath>
     </Reference>
     <Reference Include="NUnrar.3.5">
       <HintPath>..\packages\nunrar.1.0.1\lib\net35\NUnrar.3.5.dll</HintPath>
@@ -74,6 +110,7 @@
     <Compile Include="Commands\Archiving\ExpandTuRarArchiveCommand.cs" />
     <Compile Include="Commands\Archiving\ExpandTuZipArchiveCommand.cs" />
     <Compile Include="Commands\Archiving\NewTuZipArchiveCommand.cs" />
+    <Compile Include="Commands\ScheduledTasks\NewTuScheduledTaskCommand.cs" />
     <Compile Include="Commands\Security\GrantWin32LocalAccountPrivilegeCommand.cs" />
     <Compile Include="Helpers\ArchivingHelper.cs" />
     <Compile Include="Helpers\Inheritance\ArchivingCmdletBase.cs" />
@@ -81,39 +118,24 @@
     <Compile Include="Helpers\Inheritance\ExtractCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\PrivilegeCmdletBase.cs" />
     <Compile Include="Helpers\Inheritance\SecurityCmdletBase.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\Archiving\TuExpandRarArchiveCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\Archiving\TuExpandZipArchiveCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\Archiving\TuNewZipArchiveCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\Security\Win32GrantLocalAccountPrivilegeCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Archiving\ExpandRarArchiveCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Archiving\ExpandZipArchiveCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Archiving\NewZipArchiveCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\ScheduledTasks\NewScheduledTaskCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Security\GrantLocalAccountPrivilegeCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Win32Command.cs" />
     <Compile Include="Helpers\UserSettings\Preferences.cs" />
     <Compile Include="Helpers\Win32Helper.cs" />
+    <Compile Include="Interfaces\IScheduledTaskData.cs" />
+    <Compile Include="ObjectModel\ScheduledTasks\TaskCreator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Commands" />
-    <Folder Include="Commands\Archiving" />
-    <Folder Include="Commands\CSV" />
-    <Folder Include="Commands\Security" />
-    <Folder Include="Helpers" />
-    <Folder Include="Helpers\Inheritance" />
-    <Folder Include="Helpers\UserSettings" />
-    <Folder Include="Helpers\UnderlyingCode" />
-    <Folder Include="Helpers\UnderlyingCode\Commands" />
-    <Folder Include="Helpers\UnderlyingCode\Commands\Archiving" />
-    <Folder Include="Helpers\UnderlyingCode\Commands\Security" />
+    <Folder Include="Commands\CSV\" />
+    <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
-      <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
-      <Name>PSTestLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TMX\TMX\TMX.csproj">
-      <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>
-      <Name>TMX</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Scripts\angular-animate.js" />
     <None Include="Scripts\angular-animate.min.js" />
@@ -873,5 +895,22 @@
     <None Include="Scripts\i18n\angular-locale_zu.js" />
     <None Include="Scripts\version.json" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
+      <Project>{e4499004-dae5-4700-b212-4cdea3080bc5}</Project>
+      <Name>PSTestLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tmx\Tmx\Tmx.csproj">
+      <Project>{dfff7f28-cfa4-4ee5-84f0-4a12a415bc0c}</Project>
+      <Name>Tmx</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
 </Project>

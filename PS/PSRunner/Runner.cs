@@ -65,20 +65,20 @@ namespace PSRunner
         
         internal static void OnPSCodeRunning(string msg) //object sender, EventArgs e)
         {
-			if (PSCodeRunning != null)
-				PSCodeRunning(msg);
+            if (PSCodeRunning != null)
+                PSCodeRunning(msg);
         }
         
         internal static void OnPSCodeCompleted(string msg)
         {
-			if (PSCodeCompleted != null)
-				PSCodeCompleted(msg);
+            if (PSCodeCompleted != null)
+                PSCodeCompleted(msg);
         }
         
         internal static void OnPSErrorThrown(string msg)
         {
-			if (PSErrorThrown != null)
-				PSErrorThrown(msg);
+            if (PSErrorThrown != null)
+                PSErrorThrown(msg);
         }
         
 //        internal static void OnPSDisconnected(string msg)
@@ -90,32 +90,32 @@ namespace PSRunner
         
         internal static void OnPSCodeStopping(string msg)
         {
-			if (PSCodeStopping != null)
-				PSCodeStopping(msg);
+            if (PSCodeStopping != null)
+                PSCodeStopping(msg);
         }
         
         internal static void OnPSCodeStopped(string msg)
         {
-			if (PSCodeStopped != null)
-				PSCodeStopped(msg);
+            if (PSCodeStopped != null)
+                PSCodeStopped(msg);
         }
         
         internal static void OnPSCodeNotStarted(string msg)
         {
-			if (PSCodeNotStarted != null)
-				PSCodeNotStarted(msg);
+            if (PSCodeNotStarted != null)
+                PSCodeNotStarted(msg);
         }
         
         internal static void OnPSOutputArrived(object data)
         {
-			if (PSOutputArrived != null)
-				PSOutputArrived(data);
+            if (PSOutputArrived != null)
+                PSOutputArrived(data);
         }
         
         internal static void OnPSErrorArrived(object data)
         {
-			if (PSErrorArrived != null)
-				PSErrorArrived(data);
+            if (PSErrorArrived != null)
+                PSErrorArrived(data);
         }
         
         // ------------------ Methods ----------------------------
@@ -249,7 +249,7 @@ namespace PSRunner
                             break;
                         default:
                             
-                        	break;
+                            break;
                     }
                 }
                     //pipeline.InvokeAsync();
@@ -333,7 +333,7 @@ namespace PSRunner
                             break;
                         default:
                             
-                        	break;
+                            break;
                     }
                 }
                     //pipeline.InvokeAsync();

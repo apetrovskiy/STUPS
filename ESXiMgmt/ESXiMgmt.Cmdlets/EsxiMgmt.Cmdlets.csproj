@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{691E0668-733C-4A7A-8C8B-5A5F29021417}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>EsxiMgmt.Cmdlets</RootNamespace>
+    <AssemblyName>EsxiMgmt.Cmdlets</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugType>None</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>None</DebugType>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release35' ">
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Release35' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>Full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>None</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>None</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Renci.SshNet">
+      <HintPath>..\..\packages\SSH.NET.2013.4.7\lib\net35\Renci.SshNet.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Management.Automation" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\Connect\ConnectESXiHostCommand.cs" />
+    <Compile Include="Commands\Connect\DisconnectESXiHostCommand.cs" />
+    <Compile Include="Commands\Connect\NewEsxiHostConnectionDataCommand.cs" />
+    <Compile Include="Commands\FileSystem\NewESXiFSDirectoryCommand.cs" />
+    <Compile Include="Commands\Read\ReadESXiVMIdCommand.cs" />
+    <Compile Include="Commands\Read\ReadESXiVMNameCommand.cs" />
+    <Compile Include="Commands\Register\RegisterESXiVMCommand.cs" />
+    <Compile Include="Commands\Register\UnregisterESXiVMCommand.cs" />
+    <Compile Include="Commands\Power\StartESXiVMCommand.cs" />
+    <Compile Include="Commands\Power\StopESXiVMCommand.cs" />
+    <Compile Include="Commands\Power\SuspendESXiVMCommand.cs" />
+    <Compile Include="Commands\Underlying\InvokeESXiCommandCommand.cs" />
+    <Compile Include="Commands\Vm\GetEsxiVmCommand.cs" />
+    <Compile Include="Commands\Vm\NewESXiVMCommand.cs" />
+    <Compile Include="Commands\Vm\RemoveEsxiVmCommand.cs" />
+    <Compile Include="Commands\Vm\StartEsxiVmCommand.cs" />
+    <Compile Include="Helpers\Inheritance\CommonCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\ConnectCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\FileSystemCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\PowerCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\ReadCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\VmListCmdletBase.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Connect\NewHostConnectionDataCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\EsxiCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Vm\GetVmCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Vm\NewVmCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Vm\RemoveVmCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Vm\StartVmCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Connections.cs" />
+    <Compile Include="Helpers\UnderlyingCode\ESXiConnection.cs" />
+    <Compile Include="Helpers\UnderlyingCode\VMwareHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
+      <Project>{e4499004-dae5-4700-b212-4cdea3080bc5}</Project>
+      <Name>PSTestLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EsxiMgmt.Core\EsxiMgmt.Core.csproj">
+      <Project>{f2d74807-3b51-4fb1-8d47-7ed6f2924a1e}</Project>
+      <Name>EsxiMgmt.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+</Project>

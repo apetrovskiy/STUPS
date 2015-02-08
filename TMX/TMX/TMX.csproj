@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
   <PropertyGroup>
     <ProjectGuid>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,7 +9,7 @@
     <AssemblyName>TMX</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <OutputPath>bin\Release35\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
@@ -48,6 +48,8 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <NoWin32Manifest>False</NoWin32Manifest>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -132,6 +134,25 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release40|Release40'">
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release35|AnyCPU' ">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release40|AnyCPU' ">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ninject">
       <HintPath>..\..\packages\Ninject.3.2.2.0\lib\net35\Ninject.dll</HintPath>
@@ -178,6 +199,7 @@
     <Compile Include="Commands\Status\GetTMXTestSuiteStatusCommand.cs" />
     <Compile Include="Commands\Status\UpdateTMXTestStatisticsCommand.cs" />
     <Compile Include="Commands\TestClient\AddTmxTestTaskResultCommand.cs" />
+    <Compile Include="Commands\TestClient\ReceiveTmxTestReportCommand.cs" />
     <Compile Include="Commands\TestClient\SetTmxServerSettingsCommand.cs" />
     <Compile Include="Commands\TestClient\GetTmxCurrentTestTaskCommand.cs" />
     <Compile Include="Commands\TestClient\GetTmxCommonDataItemCommand.cs" />
@@ -265,6 +287,7 @@
     <Compile Include="Helpers\UnderlyingCode\Commands\Status\TMXGetTestScenarioStatusCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Status\TMXGetTestSuiteStatusCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestClient\AddTestTaskResultCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestClient\ReceiveTestResportCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestClient\SetServerSettingsCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestClient\GetCurrentTestTaskCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestClient\GetCommonDataItemCommand.cs" />
@@ -283,20 +306,20 @@
     <Compile Include="Helpers\UnderlyingCode\Commands\TestExecution\TMXInvokeTestSuiteCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestServer\StartServerCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestServer\StopTmxServerCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TMXAddSimpleTestResultCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TMXAddTestCaseCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TMXAddTestResultDetailCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TMXAddTestScenarioCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TMXCloseTestResultCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TMXGetTestCaseCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TMXNewTestPlatformCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TMXNewTestSuiteCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TMXOpenTestScenarioCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TMXOpenTestSuiteCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TMXRemoveTestCaseCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TMXSetCurrentTestResultCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TMXSetTestCaseCommand.cs" />
-    <Compile Include="Helpers\UnderlyingCode\Commands\TMXCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TmxAddSimpleTestResultCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TmxAddTestCaseCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TmxAddTestResultDetailCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TmxAddTestScenarioCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TmxCloseTestResultCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TmxGetTestCaseCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TmxNewTestPlatformCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TmxNewTestSuiteCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TmxOpenTestScenarioCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TmxOpenTestSuiteCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TmxRemoveTestCaseCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TmxSetCurrentTestResultCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestStructure\TmxSetTestCaseCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TmxCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\GatherTestResultsCollections.cs" />
     <Compile Include="Helpers\UnderlyingCode\IXMLElementsStruct.cs" />
     <Compile Include="Helpers\UnderlyingCode\Mapping\ITestResultMap.cs" />
@@ -340,59 +363,36 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Commands\Database" />
-    <Folder Include="Commands\Experimental" />
-    <Folder Include="Commands\Configuration" />
-    <Folder Include="Commands\Logging" />
-    <Folder Include="Commands\TestServer" />
-    <Folder Include="Commands\TestClient" />
-    <Folder Include="Commands\TestExecution" />
-    <Folder Include="Commands\Status" />
-    <Folder Include="Commands\TestResults" />
-    <Folder Include="Commands\Repository" />
-    <Folder Include="Helpers\Inheritance\Database" />
-    <Folder Include="ExternalUse" />
-    <Folder Include="Helpers\Inheritance\TestStructure" />
-    <Folder Include="Helpers\Inheritance\TestExecution" />
-    <Folder Include="Helpers\UnderlyingCode" />
-    <Folder Include="Helpers\UnderlyingCode\Commands" />
-    <Folder Include="Helpers\UnderlyingCode\Commands\Logging" />
-    <Folder Include="Helpers\UnderlyingCode\Commands\TestServer" />
-    <Folder Include="Helpers\UnderlyingCode\Commands\TestClient" />
-    <Folder Include="Helpers\UnderlyingCode\Commands\TestExecution" />
-    <Folder Include="Helpers\UnderlyingCode\Commands\TestExecution" />
-    <Folder Include="Helpers\UnderlyingCode\Commands\TestStructure" />
-    <Folder Include="Helpers\UnderlyingCode\Commands\Status" />
-    <Folder Include="Helpers\UnderlyingCode\Mapping" />
-    <Folder Include="Helpers\UnderlyingCode\Ninject" />
-    <Folder Include="Helpers\UnderlyingCode\Types" />
-    <Folder Include="SQLiteData" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
-      <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
-      <Name>PSTestLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Tmx.Client\Tmx.Client.csproj">
-      <Project>{6943EC2F-CB75-4F9B-B83C-A664400052A7}</Project>
-      <Name>Tmx.Client</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Tmx.Core\Tmx.Core.csproj">
-      <Project>{069651A0-FE15-42E2-89D5-9A761A47B143}</Project>
-      <Name>Tmx.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Tmx.Interfaces\Tmx.Interfaces.csproj">
-      <Project>{9C5DA25F-6A59-4F97-B107-64DD549CB800}</Project>
-      <Name>Tmx.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Tmx.Server\Tmx.Server.csproj">
-      <Project>{A80B14D0-C8DB-4F70-B18E-4FD1C16E0AEC}</Project>
-      <Name>Tmx.Server</Name>
-    </ProjectReference>
+    <Folder Include="Commands\TestServer\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
+      <Project>{e4499004-dae5-4700-b212-4cdea3080bc5}</Project>
+      <Name>PSTestLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tmx.Client\Tmx.Client.csproj">
+      <Project>{6943ec2f-cb75-4f9b-b83c-a664400052a7}</Project>
+      <Name>Tmx.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tmx.Core\Tmx.Core.csproj">
+      <Project>{069651a0-fe15-42e2-89d5-9a761a47b143}</Project>
+      <Name>Tmx.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tmx.Interfaces\Tmx.Interfaces.csproj">
+      <Project>{9c5da25f-6a59-4f97-b107-64dd549cb800}</Project>
+      <Name>Tmx.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
 </Project>

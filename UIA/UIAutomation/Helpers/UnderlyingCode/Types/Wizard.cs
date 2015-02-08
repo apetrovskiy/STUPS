@@ -80,45 +80,45 @@ namespace UIAutomation
         {
             StopImmediately = false;
             
-        	WizardStep resultStep = null;
-        	
-        	// load controls from the wizard's window
-        	var allWizardControls =
-        	    (CurrentData.CurrentWindow as ISupportsExtendedModel).Descendants.PerformFindAll();
+            WizardStep resultStep = null;
+            
+            // load controls from the wizard's window
+            var allWizardControls =
+                (CurrentData.CurrentWindow as ISupportsExtendedModel).Descendants.PerformFindAll();
             
             foreach (WizardStep step in Steps) {
 
-        	    if (StopImmediately) {
-        	        resultStep = step;
-        	        break;
-        	    }
-        		
-        		if (IsStepActive(step, allWizardControls)) {
-        		    resultStep = step;
-        		    ActiveStep = step;
-        		    break;
-        		}
+                if (StopImmediately) {
+                    resultStep = step;
+                    break;
+                }
+                
+                if (IsStepActive(step, allWizardControls)) {
+                    resultStep = step;
+                    ActiveStep = step;
+                    break;
+                }
             }
-        	
-        	// 20130515
-        	// moving the current step to the end of the step collection
-        	try {
-        	   int currentIndex = Steps.IndexOf(resultStep);
-        	   
-        	   if (0 <= currentIndex && (Steps.Count - 1) != currentIndex) {
-            	   Steps.Insert(Steps.Count, resultStep);
-            	   // cmdletCtrl.WriteInfo(cmdletCtrl, "inserted after the last step");
-            	   Steps.RemoveAt(currentIndex);
-            	   // cmdletCtrl.WriteInfo(cmdletCtrl, "deleted from the previous position");
-        	   } else {
-        	       // cmdletCtrl.WriteInfo(cmdletCtrl, "there was no manipulation with wizard steps' order");
-        	   }
-        	}
-        	catch (Exception) {
-        	    // cmdletCtrl.WriteInfo(cmdletCtrl, eMovingToTheEnd.Message);
-        	}
-        	
-        	return resultStep;
+            
+            // 20130515
+            // moving the current step to the end of the step collection
+            try {
+               int currentIndex = Steps.IndexOf(resultStep);
+               
+               if (0 <= currentIndex && (Steps.Count - 1) != currentIndex) {
+                   Steps.Insert(Steps.Count, resultStep);
+                   // cmdletCtrl.WriteInfo(cmdletCtrl, "inserted after the last step");
+                   Steps.RemoveAt(currentIndex);
+                   // cmdletCtrl.WriteInfo(cmdletCtrl, "deleted from the previous position");
+               } else {
+                   // cmdletCtrl.WriteInfo(cmdletCtrl, "there was no manipulation with wizard steps' order");
+               }
+            }
+            catch (Exception) {
+                // cmdletCtrl.WriteInfo(cmdletCtrl, eMovingToTheEnd.Message);
+            }
+            
+            return resultStep;
         }
         
         internal bool IsStepActive(WizardStep step, IUiEltCollection elements)
@@ -147,121 +147,121 @@ namespace UIAutomation
         {
             StopImmediately = false;
             
-        	WizardStep resultStep = null;
-        	
-        	//GetControlCmdletBase cmdletCtrl =
-        	//	new GetControlCmdletBase();
-        	// 20140127
-        	// GetUiaControlCommand cmdletCtrl =
-        	//     new GetUiaControlCommand
-        	//     {
-        	//         InputObject = new UiElement[] {(UiElement) CurrentData.CurrentWindow},
-        	//         Timeout = 0
-        	//     };
-        	var ControlSearcherData =
-        	    new ControlSearcherData {
-        	    InputObject = new IUiElement[] { CurrentData.CurrentWindow }
-        	};
+            WizardStep resultStep = null;
+            
+            //GetControlCmdletBase cmdletCtrl =
+            //    new GetControlCmdletBase();
+            // 20140127
+            // GetUiaControlCommand cmdletCtrl =
+            //     new GetUiaControlCommand
+            //     {
+            //         InputObject = new UiElement[] {(UiElement) CurrentData.CurrentWindow},
+            //         Timeout = 0
+            //     };
+            var ControlSearcherData =
+                new ControlSearcherData {
+                InputObject = new IUiElement[] { CurrentData.CurrentWindow }
+            };
             
             foreach (WizardStep step in Steps) {
 
-        	    if (StopImmediately) {
-        	        resultStep = step;
-        	        break;
-        	    }
-        	    
-        	    // 20130320
-			    // sleep interval
-			    Thread.Sleep(Preferences.OnSelectWizardStepDelay);
-        	    
-			    // 20140127
-        		// cmdletCtrl.SearchCriteria = step.SearchCriteria;
-        		ControlSearcherData.SearchCriteria = step.SearchCriteria;
+                if (StopImmediately) {
+                    resultStep = step;
+                    break;
+                }
                 
-	        	List<IUiElement> controlsList = new List<IUiElement>();
-	        	
-	        	try {
+                // 20130320
+                // sleep interval
+                Thread.Sleep(Preferences.OnSelectWizardStepDelay);
+                
+                // 20140127
+                // cmdletCtrl.SearchCriteria = step.SearchCriteria;
+                ControlSearcherData.SearchCriteria = step.SearchCriteria;
+                
+                List<IUiElement> controlsList = new List<IUiElement>();
+                
+                try {
                     // 20140116
-	        		// controlsList =
-	        		// 	cmdletCtrl.GetControl(cmdletCtrl);
-	        		
-	        		var controlSearch =
-	        		    AutomationFactory.GetSearchImpl<ControlSearch>() as ControlSearch;
-	        		
-	        		controlsList =
-	        		    controlSearch.GetElements(
-//	        		        new ControlSearcherData {
-//	        		            InputObject = cmdletCtrl.InputObject,
-//	        		            ContainsText = cmdletCtrl.ContainsText,
-//	        		            Name = cmdletCtrl.Name,
-//	        		            AutomationId = cmdletCtrl.AutomationId,
-//	        		            Class = cmdletCtrl.Class,
-//	        		            Value = cmdletCtrl.Value,
-//	        		            ControlType = cmdletCtrl.ControlType,
-//	        		            SearchCriteria = cmdletCtrl.SearchCriteria,
-//	        		            Win32 = cmdletCtrl.Win32
-//	        		        },
-	        		        // 20140127
-	        		        // controlSearch.ConvertCmdletToControlSearcherData(cmdletCtrl),
-	        		        ControlSearcherData,
-	        		        // 20140127
-	        		        // cmdletCtrl.Timeout);
-	        		        0);
-	        		
-	        	}
-	        	catch {}
+                    // controlsList =
+                    //     cmdletCtrl.GetControl(cmdletCtrl);
+                    
+                    var controlSearch =
+                        AutomationFactory.GetSearchImpl<ControlSearch>() as ControlSearch;
+                    
+                    controlsList =
+                        controlSearch.GetElements(
+//                            new ControlSearcherData {
+//                                InputObject = cmdletCtrl.InputObject,
+//                                ContainsText = cmdletCtrl.ContainsText,
+//                                Name = cmdletCtrl.Name,
+//                                AutomationId = cmdletCtrl.AutomationId,
+//                                Class = cmdletCtrl.Class,
+//                                Value = cmdletCtrl.Value,
+//                                ControlType = cmdletCtrl.ControlType,
+//                                SearchCriteria = cmdletCtrl.SearchCriteria,
+//                                Win32 = cmdletCtrl.Win32
+//                            },
+                            // 20140127
+                            // controlSearch.ConvertCmdletToControlSearcherData(cmdletCtrl),
+                            ControlSearcherData,
+                            // 20140127
+                            // cmdletCtrl.Timeout);
+                            0);
+                    
+                }
+                catch {}
 
-        	    if (null == controlsList || 0 >= controlsList.Count) continue;
-        	    if (step == ActiveStep) {
-	        	        
-        	        // 20130423
-        	        if (Preferences.HighlightCheckedControl) {
-        	            
-        	            foreach (IUiElement elementChecked in controlsList) {
-        	                UiaHelper.HighlightCheckedControl(elementChecked);
-        	            }
-        	        }
-	        	        
-        	        continue;
-        	    }
-        	    
-        	    // 20140121
-        	    if (null != controlsList) {
-        	        controlsList.Clear();
-        	        controlsList = null;
-        	    }
-	        	    
-        	    resultStep = step;
-        	    ActiveStep = step;
-        	    break;
+                if (null == controlsList || 0 >= controlsList.Count) continue;
+                if (step == ActiveStep) {
+                        
+                    // 20130423
+                    if (Preferences.HighlightCheckedControl) {
+                        
+                        foreach (IUiElement elementChecked in controlsList) {
+                            UiaHelper.HighlightCheckedControl(elementChecked);
+                        }
+                    }
+                        
+                    continue;
+                }
+                
+                // 20140121
+                if (null != controlsList) {
+                    controlsList.Clear();
+                    controlsList = null;
+                }
+                    
+                resultStep = step;
+                ActiveStep = step;
+                break;
             }
-        	
-        	// 20130515
-        	// moving the current step to the end of the step collection
-        	try {
-        	   int currentIndex = Steps.IndexOf(resultStep);
-        	   // 20140127
-        	   // try {
-        	   //     cmdletCtrl.WriteInfo(cmdletCtrl, "current index = " + currentIndex.ToString());
-        	   // }
-        	   // catch {
-        	   //     cmdletCtrl.WriteInfo(cmdletCtrl, "failed to show the current index");
-        	   // }
-        	   // 20130712
-        	   if (0 <= currentIndex && (Steps.Count - 1) != currentIndex) {
-            	   Steps.Insert(Steps.Count, resultStep);
-            	   // cmdletCtrl.WriteInfo(cmdletCtrl, "inserted after the last step");
-            	   Steps.RemoveAt(currentIndex);
-            	   // cmdletCtrl.WriteInfo(cmdletCtrl, "deleted from the previous position");
-        	   } else {
-        	       // cmdletCtrl.WriteInfo(cmdletCtrl, "there was no manipulation with wizard steps' order");
-        	   }
-        	}
-        	catch (Exception eMovingToTheEnd) {
-        	    // cmdletCtrl.WriteInfo(cmdletCtrl, eMovingToTheEnd.Message);
-        	}
-        	
-        	return resultStep;
+            
+            // 20130515
+            // moving the current step to the end of the step collection
+            try {
+               int currentIndex = Steps.IndexOf(resultStep);
+               // 20140127
+               // try {
+               //     cmdletCtrl.WriteInfo(cmdletCtrl, "current index = " + currentIndex.ToString());
+               // }
+               // catch {
+               //     cmdletCtrl.WriteInfo(cmdletCtrl, "failed to show the current index");
+               // }
+               // 20130712
+               if (0 <= currentIndex && (Steps.Count - 1) != currentIndex) {
+                   Steps.Insert(Steps.Count, resultStep);
+                   // cmdletCtrl.WriteInfo(cmdletCtrl, "inserted after the last step");
+                   Steps.RemoveAt(currentIndex);
+                   // cmdletCtrl.WriteInfo(cmdletCtrl, "deleted from the previous position");
+               } else {
+                   // cmdletCtrl.WriteInfo(cmdletCtrl, "there was no manipulation with wizard steps' order");
+               }
+            }
+            catch (Exception eMovingToTheEnd) {
+                // cmdletCtrl.WriteInfo(cmdletCtrl, eMovingToTheEnd.Message);
+            }
+            
+            return resultStep;
         }
         */
         #endregion commented

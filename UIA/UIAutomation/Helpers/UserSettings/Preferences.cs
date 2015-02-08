@@ -39,8 +39,8 @@ namespace UIAutomation
             HighlighterColorCheckedControl = Color.Blue;
             HighlighterBorderCheckedControl = 3;
             
-			ShowExecutionPlan = false;
-			ShowInfoToolTip = true;
+            ShowExecutionPlan = false;
+            ShowInfoToolTip = true;
             
             Timeout = 5000;
             AfterFailTurboTimeout = 2000;
@@ -180,14 +180,14 @@ namespace UIAutomation
         /// Thikness of Highlighter's border.
         /// </summary>
         public static int HighlighterBorderCheckedControl { get; set; }
-		/// <summary>
-		/// 
-		/// </summary>
-		public static bool ShowExecutionPlan { get; set; }
-		/// <summary>
-		/// 
-		/// </summary>
-		public static bool ShowInfoToolTip { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public static bool ShowExecutionPlan { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public static bool ShowInfoToolTip { get; set; }
         
         /// <summary>
         /// The timeout in Get- and Wait- cmdlets that abrupts

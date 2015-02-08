@@ -11,7 +11,6 @@ namespace Tmx.Interfaces.TestStructure
 {
     using System;
     using System.Collections.Generic;
-    using System.Management.Automation;
     using System.Xml.Serialization;
     
     /// <summary>
@@ -21,16 +20,12 @@ namespace Tmx.Interfaces.TestStructure
     {
         [XmlAttribute]
         Guid UniqueId { get; set; }
-//        [XmlIgnore]
-//        int DbId { get; set; }
         [XmlAttribute]
         string Name { get; set; }
         [XmlAttribute]
         string Id { get; set; }
-        // [XmlInclude(typeof(List<ITestResultDetail>))]
         [XmlElement("TestResultDetails", typeof(ITestResultDetail))]
         List<ITestResultDetail> Details { get; }
-        // List<ITestResultDetail> Details { get; set; }
         [XmlAttribute]
         string Status { get; }
         [XmlAttribute]
@@ -46,8 +41,11 @@ namespace Tmx.Interfaces.TestStructure
         int Position { get; }
         void SetPosition(int position);
         [XmlIgnore]
-        ErrorRecord Error { get; }
-        void SetError(ErrorRecord error);
+        // 20150116
+        // ErrorRecord Error { get; }
+        // void SetError(ErrorRecord error);
+        Exception Error { get; }
+        void SetError(Exception error);
         [XmlAttribute]
         string Code { get; set; }
         
@@ -56,14 +54,10 @@ namespace Tmx.Interfaces.TestStructure
         [XmlIgnore]
         List<object> Parameters { get; }
         
-        // 20141102
-        // string ScenarioId { get; }
         [XmlIgnore]
         string ScenarioId { get; set; }
-        // string SuiteId { get; }
         [XmlIgnore]
         string SuiteId { get; set; }
-        // 20141122
         [XmlIgnore]
         Guid SuiteUniqueId { get; set; }
         [XmlIgnore]
@@ -85,17 +79,13 @@ namespace Tmx.Interfaces.TestStructure
         string Screenshot { get; }
         void SetScreenshot(string path);
         
-        // 20141022
         [XmlAttribute]
         TestResultOrigins Origin { get; }
         void SetOrigin(TestResultOrigins origin);
-        // TestResultOrigins Origin { get; set; }
         
         object[] ListDetailNames(TestResultStatuses status);
         
-        //List<string> PlatformIds { get; set; }
         [XmlAttribute]
-        // 20141119
         string PlatformId { get; set; }
         [XmlAttribute]
         Guid PlatformUniqueId { get; set; }

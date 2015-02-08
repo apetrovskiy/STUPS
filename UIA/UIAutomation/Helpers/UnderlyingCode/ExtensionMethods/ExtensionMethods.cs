@@ -23,7 +23,7 @@ namespace UIAutomation
     /// </summary>
     public static class ExtensionsMethods
     {
-    	// not used
+        // not used
 //        public static IUiEltCollection ConvertCmdletInputToCollectionAdapter(this ICollection inputArray)
 //        {
 //            IUiEltCollection resultCollection =
@@ -92,7 +92,7 @@ namespace UIAutomation
                             break;
                         // default:
                         //     
-                        // 	break;
+                        //     break;
                     }
                 }
                 catch {
@@ -308,11 +308,11 @@ namespace UIAutomation
         
         internal static string[] ConvertControlTypeToStringArray(this classic.ControlType controlType)
         {
-			return null == controlType ? new string[] {
+            return null == controlType ? new string[] {
 
-			} : new string[] {
-				controlType.ProgrammaticName.Substring(12)
-			};
+            } : new string[] {
+                controlType.ProgrammaticName.Substring(12)
+            };
         }
         
         // not used

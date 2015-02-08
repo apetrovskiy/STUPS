@@ -10,7 +10,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <OutputPath>bin\Release35\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
     <NoStdLib>False</NoStdLib>
     <DebugType>None</DebugType>
@@ -82,6 +82,32 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|x86'">
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>Full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>None</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>None</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -137,13 +163,13 @@
       <Project>{069651A0-FE15-42E2-89D5-9A761A47B143}</Project>
       <Name>Tmx.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\TMX\TMX.Interfaces\TMX.Interfaces.csproj">
+    <ProjectReference Include="..\..\Tmx\Tmx.Interfaces\Tmx.Interfaces.csproj">
       <Project>{9C5DA25F-6A59-4F97-B107-64DD549CB800}</Project>
-      <Name>TMX.Interfaces</Name>
+      <Name>Tmx.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\TMX\TMX\TMX.csproj">
+    <ProjectReference Include="..\..\Tmx\Tmx\Tmx.csproj">
       <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>
-      <Name>TMX</Name>
+      <Name>Tmx</Name>
     </ProjectReference>
     <ProjectReference Include="..\UIAutomation\UIAutomation.csproj">
       <Project>{BF63F595-4A58-49E8-97F2-7701F51F0CD1}</Project>

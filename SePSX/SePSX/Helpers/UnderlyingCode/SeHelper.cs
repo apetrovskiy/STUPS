@@ -1440,15 +1440,15 @@ Console.WriteLine("Highlight 00000000000015");
 //Console.WriteLine("GetWebElement: 00023 JS");
                     }
                     
-                    //            	else {
-                    //            		errorReport = "All = \"\"";
+                    //                else {
+                    //                    errorReport = "All = \"\"";
                     //                    result =
-                    //                    	getWebElement(
+                    //                        getWebElement(
                     //                            cmdletGet.InputObject,
                     //                            FindElementParameters.All,
                     //                            cmdletGet.XPath,
                     //                            true);
-                    //            	}
+                    //                }
                     
                     cmdletGet.WriteVerbose(cmdletGet, "returning results");
                     try { cmdletGet.WriteVerbose(cmdletGet, result.Count.ToString()); } catch {}
@@ -3323,43 +3323,43 @@ Console.WriteLine("NavigatoTo: 00003");
 
             string script =
                 @"function getSeElements(tagName, id, name, className, partialtext) {
-                	var elements = document.getElementsByTagName(tagName);
-                	var resultCollection = [];
-                	for (var i = 0; i < elements.length; i++) {
-                		if (null != id && '' != id) {
-                			try {
-                				if (elements[i].id == id) {
-                					resultCollection.push(elements[i]);
-                					continue;
-                				}
-                			} catch (err1) {}
-                		}
-                		if (null != name && '' != name) {
-                			try {
-                				if (elements[i].name == name) {
-                					resultCollection.push(elements[i]);
-                					continue;
-                				}
-                			} catch (err2) {}
-                		}
-                		if (null != className && '' != className) {
-                			try {
-                				if (elements[i].className == className) {
-                					resultCollection.push(elements[i]);
-                					continue;
-                				}
-                			} catch (err3) {}
-                		}
-                		if (null != partialtext && '' != partialtext) {
-                			try {
-                				if (0 < elements[i].innerHTML.indexOf(partialtext)) {
-                					resultCollection.push(elements[i]);
-                					continue;
-                				}
-                			} catch (err4) {}
-                		}
-                	}
-                	return resultCollection;
+                    var elements = document.getElementsByTagName(tagName);
+                    var resultCollection = [];
+                    for (var i = 0; i < elements.length; i++) {
+                        if (null != id && '' != id) {
+                            try {
+                                if (elements[i].id == id) {
+                                    resultCollection.push(elements[i]);
+                                    continue;
+                                }
+                            } catch (err1) {}
+                        }
+                        if (null != name && '' != name) {
+                            try {
+                                if (elements[i].name == name) {
+                                    resultCollection.push(elements[i]);
+                                    continue;
+                                }
+                            } catch (err2) {}
+                        }
+                        if (null != className && '' != className) {
+                            try {
+                                if (elements[i].className == className) {
+                                    resultCollection.push(elements[i]);
+                                    continue;
+                                }
+                            } catch (err3) {}
+                        }
+                        if (null != partialtext && '' != partialtext) {
+                            try {
+                                if (0 < elements[i].innerHTML.indexOf(partialtext)) {
+                                    resultCollection.push(elements[i]);
+                                    continue;
+                                }
+                            } catch (err4) {}
+                        }
+                    }
+                    return resultCollection;
                 }
                 return getSeElements(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4]);";
             

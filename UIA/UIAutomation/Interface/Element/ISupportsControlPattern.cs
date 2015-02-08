@@ -15,6 +15,6 @@ namespace UIAutomation
     public interface ISupportsControlPattern
     {
         // this is legacy
-		IUiElement Click();
+        IUiElement Click();
     }
 }

@@ -11,7 +11,7 @@ namespace Tmx
 {
     using System;
     using System.Management.Automation;
-	using Tmx.Commands;
+    using Tmx.Commands;
     
     /// <summary>
     /// Description of TmxCloseTestResultCommand.
@@ -54,7 +54,8 @@ namespace Tmx
                 cmdlet.Id, 
                 cmdlet.TestPassed, 
                 cmdlet.KnownIssue,
-                cmdlet.MyInvocation,
+                // 20160116
+                // cmdlet.MyInvocation,
                 null,
                 cmdlet.Description,
                 cmdlet.TestOrigin,

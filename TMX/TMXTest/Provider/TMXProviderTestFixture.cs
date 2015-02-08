@@ -61,7 +61,7 @@ namespace TmxTest.Provider
             const string rootpath = @"TMX\TmxProvider::suite1";
             const string windowName = "suite1";
             const string processName = @"""""";
-			const int processId = 0;
+            const int processId = 0;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-PSDrive -Name  " + 
                 driveName +
@@ -91,7 +91,7 @@ namespace TmxTest.Provider
             const string rootpath = @"TMX\TmxProvider::suite2";
             const string windowName = @"""""";
             const string processName = "mmc";
-			const int processId = 0;
+            const int processId = 0;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-PSDrive -Name  " + 
                 driveName +
@@ -121,7 +121,7 @@ namespace TmxTest.Provider
             const string rootpath = @"TMX\TmxProvider::suite3";
             const string windowName = @"""""";
             const string processName = @"""""";
-			const int processId = 1024;
+            const int processId = 1024;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"$null = New-PSDrive -Name  " + 
                 driveName +

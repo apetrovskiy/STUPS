@@ -14,10 +14,10 @@ namespace Tmx
     using System.Linq;
     using System.Xml.Linq;
     using System.Text;
-	using Tmx;
+    using Tmx;
     using Tmx.Core;
-	using Tmx.Interfaces;
-	using Tmx.Interfaces.TestStructure;
+    using Tmx.Interfaces;
+    using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of ImportExportCmdletBase.
@@ -474,12 +474,12 @@ namespace Tmx
                                 liOpen;
                             switch (td.DetailType) {
                                 case TestResultDetailTypes.Comment:
-                                    resultHTML +=
-                                        td.TextDetail;
+                                    resultHTML += td.TextDetail;
                                     break;
                                 case TestResultDetailTypes.ErrorRecord:
-                                    resultHTML +=
-                                        td.ErrorDetail.ErrorDetails;
+                                    // 20160116
+                                    // resultHTML += td.ErrorDetail.ErrorDetails;
+                                    resultHTML += td.ErrorDetail.Message;
                                     break;
                                 case TestResultDetailTypes.Screenshot:
                                     string fileName = 
@@ -494,12 +494,10 @@ namespace Tmx
                                         aClose;
                                     break;
                                 default:
-                                    resultHTML +=
-                                        td.Name;
+                                    resultHTML += td.Name;
                                     break;
                             }
-                            resultHTML +=
-                                liClose;
+                            resultHTML += liClose;
                         }
                         
                         // test result code
@@ -673,17 +671,17 @@ namespace Tmx
         
         protected internal void ExportResultsToCSV(string path)
         {
-			notImplementedCase();
+            notImplementedCase();
         }
         
         protected internal void ExportResultsToTEXT(string path)
         {
-			notImplementedCase();
+            notImplementedCase();
         }
         
         protected internal void ExportResultsToZIP(string path)
         {
-			notImplementedCase();
+            notImplementedCase();
         }
         
         protected internal void ExportSummaryToHTML(ImportExportCmdletBase cmdlet, string path)
@@ -695,37 +693,37 @@ namespace Tmx
         
         protected internal void ExportSummaryToCSV(string path)
         {
-			notImplementedCase();
+            notImplementedCase();
         }
         
         protected internal void ExportSummaryToTEXT(string path)
         {
-			notImplementedCase();
+            notImplementedCase();
         }
         
         protected internal void ExportSummaryToZIP(string path)
         {
-			notImplementedCase();
+            notImplementedCase();
         }
         
         protected internal void ExportLogToHTML(string path)
         {
-			notImplementedCase();
+            notImplementedCase();
         }
         
         protected internal void ExportLogToCSV(string path)
         {
-			notImplementedCase();
+            notImplementedCase();
         }
         
         protected internal void ExportLogToTEXT(string path)
         {
-			notImplementedCase();
+            notImplementedCase();
         }
         
         protected internal void ExportLogToZIP(string path)
         {
-			notImplementedCase();
+            notImplementedCase();
         }
         
         string generateDocumentStructureTop()
@@ -909,9 +907,13 @@ namespace Tmx
             int suPassed = 0;
             int suFailed = 0;
             int suNotTested = 0;
+            // 20150114
+            int suKnownIssue = 0;
             int scPassed = 0;
             int scFailed = 0;
             int scNotTested = 0;
+            // 20150114
+            int scKnownIssue = 0;
             
             foreach (var tsuite in TestData.TestSuites) {
                 ts.All += tsuite.Statistics.All;
@@ -931,6 +933,10 @@ namespace Tmx
                     case TestSuiteStatuses.NotTested:
                         suNotTested++;
                         break;
+                    // 20150114
+                    case TestSuiteStatuses.KnownIssue:
+                        suKnownIssue++;
+                        break;
                     default:
                         throw new Exception("Invalid value for TestSuiteStatuses");
                 }
@@ -945,6 +951,10 @@ namespace Tmx
                             break;
                         case TestScenarioStatuses.NotTested:
                             scNotTested++;
+                            break;
+                        // 20150114
+                        case TestScenarioStatuses.KnownIssue:
+                            scKnownIssue++;
                             break;
                         default:
                             // 20130428

@@ -9,12 +9,12 @@
 
 namespace Tmx
 {
-	using System;
-    using Tmx.Server.ObjectModel.ServerControl;
-	
-	/// <summary>
-	/// Description of StopTmxServerCommand.
-	/// </summary>
+    using System;
+    using Tmx.Server;
+    
+    /// <summary>
+    /// Description of StopTmxServerCommand.
+    /// </summary>
     class StopServerCommand : TmxCommand
     {
         internal StopServerCommand(CommonCmdletBase cmdlet) : base (cmdlet)

@@ -35,10 +35,10 @@ namespace Tmx.Commands
         [ValidateSet("Running", "Scheduled")]
         public TestRunStatuses Status { get; set; }
         
-		protected override void BeginProcessing()
-		{
-			var command = new NewTestRunCommand(this);
-			command.Execute();
-		}
+        protected override void BeginProcessing()
+        {
+            var command = new NewTestRunCommand(this);
+            command.Execute();
+        }
     }
 }

@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TLAddinUnitTests.CheckCmdletParameters
+namespace TlAddinUnitTests.CheckCmdletParameters
 {
     using System;
     

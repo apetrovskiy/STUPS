@@ -12,12 +12,12 @@ namespace SePSXTest.Commands.Element
     using System;
     using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
     
-	/// <summary>
-	/// Description of ClearSeWebElementCommandTestFixture.
-	/// </summary>
-	[TestFixture] // [TestFixture(Description=" test")]
-	public class ClearSeWebElementCommandTestFixture
-	{
+    /// <summary>
+    /// Description of ClearSeWebElementCommandTestFixture.
+    /// </summary>
+    [TestFixture] // [TestFixture(Description=" test")]
+    public class ClearSeWebElementCommandTestFixture
+    {
         [SetUp]
         public void PrepareRunspace()
         {
@@ -73,5 +73,5 @@ namespace SePSXTest.Commands.Element
         {
             MiddleLevelCode.DisposeRunspace();
         }
-	}
+    }
 }

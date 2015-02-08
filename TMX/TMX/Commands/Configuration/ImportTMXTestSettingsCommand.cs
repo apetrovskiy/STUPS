@@ -7,13 +7,12 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using System.Management.Automation;
+using Tmx.Helpers;
+using Tmx.Interfaces;
+
 namespace Tmx.Commands
 {
-    using System;
-    using System.Management.Automation;
-	using Tmx.Interfaces;
-	using Tmx.Helpers;
-    
     /// <summary>
     /// Description of ImportTmxTestSettingsCommand.
     /// </summary>
@@ -27,16 +26,17 @@ namespace Tmx.Commands
         
         protected override void BeginProcessing()
         {
-			CheckCmdletParameters();
+            CheckCmdletParameters();
             
-			CheckInputFile(Path);
+            CheckInputFile(Path);
             
             //TmxHelper.ImportTestSettings(this, this.Path, this.VariableName);
-			ImportExportHelper.ImportTestSettings(
+            ImportExportHelper.ImportTestSettings(
                 new SettingsCmdletBaseDataObject {
-                    Path = this.Path,
-                    VariableName = this.VariableName,
-                    SessionState = this.SessionState
+                    Path = Path,
+                    // 20160116
+                    VariableName = VariableName //,
+                    // SessionState = this.SessionState
                 },
                 Path,
                 VariableName);

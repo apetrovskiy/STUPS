@@ -9,24 +9,24 @@
 
 namespace Tmx.Interfaces
 {
-	using System;
-	
-	public interface IXMLElementsStruct
-	{
-		string SuitesNode { get; }
-		string SuiteNode { get; }
-		string ScenariosNode { get; }
-		string ScenarioNode { get; }
-		string TestResultsNode { get; }
-		string TestResultNode { get; }
-		
-		// 20141120
-		string PlatformsNode { get; }
-		string PlatformNode { get; }
-		
-		string FailedAttribute { get; }
-		
-		string TimeSpentAttribute { get; }
-		string TimeStampAttribute { get; }
-	}
+    using System;
+    
+    public interface IXMLElementsStruct
+    {
+        string SuitesNode { get; }
+        string SuiteNode { get; }
+        string ScenariosNode { get; }
+        string ScenarioNode { get; }
+        string TestResultsNode { get; }
+        string TestResultNode { get; }
+        
+        // 20141120
+        string PlatformsNode { get; }
+        string PlatformNode { get; }
+        
+        string FailedAttribute { get; }
+        
+        string TimeSpentAttribute { get; }
+        string TimeStampAttribute { get; }
+    }
 }

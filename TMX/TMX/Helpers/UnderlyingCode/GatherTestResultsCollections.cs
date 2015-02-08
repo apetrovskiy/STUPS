@@ -14,7 +14,7 @@
 //    using System.Collections.Generic;
 //    using System.Xml.Linq;
 //    using System.Reflection;
-//	using Tmx.Interfaces.TestStructure;
+//    using Tmx.Interfaces.TestStructure;
 //    
 //    /// <summary>
 //    /// Description of GatherTestResultsCollections.

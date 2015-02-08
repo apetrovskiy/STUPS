@@ -21,11 +21,11 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
     [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class SearchByContainsTextViaWin32TestFixture_less_useful
     {
-    	public SearchByContainsTextViaWin32TestFixture_less_useful()
-    	{
-    		FakeFactory.Init();
-    	}
-    	
+        public SearchByContainsTextViaWin32TestFixture_less_useful()
+        {
+            FakeFactory.Init();
+        }
+        
         [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {

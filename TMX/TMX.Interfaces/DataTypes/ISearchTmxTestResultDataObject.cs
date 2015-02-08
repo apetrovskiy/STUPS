@@ -9,7 +9,7 @@
 
 namespace Tmx.Interfaces
 {
-    using System.Management.Automation;
+    // using System.Management.Automation;
     
     /// <summary>
     /// Description of ISearchTmxTestResultDataObject.

@@ -15,7 +15,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Alexander Petrovskiy")]
 [assembly: AssemblyProduct("SePSX")]
-[assembly: AssemblyCopyright("Copyright 2012-2014")]
+[assembly: AssemblyCopyright("Copyright 2012-2015")]
 [assembly: AssemblyTrademark("SoftwareTestingUsingPowerShell.com")]
 [assembly: AssemblyCulture("")]
 

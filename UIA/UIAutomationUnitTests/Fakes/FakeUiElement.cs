@@ -31,9 +31,9 @@ namespace UIAutomationUnitTests
             Patterns.AddRange(patterns);
         }
         
-		public override N GetCurrentPattern<N>(AutomationPattern pattern)
-		{
-		    return AutomationFactory.GetPatternAdapter<N>(null);
-		}
+        public override N GetCurrentPattern<N>(AutomationPattern pattern)
+        {
+            return AutomationFactory.GetPatternAdapter<N>(null);
+        }
     }
 }

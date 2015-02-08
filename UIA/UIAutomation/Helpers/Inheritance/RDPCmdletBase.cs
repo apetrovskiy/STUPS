@@ -204,9 +204,9 @@ namespace UIAutomation
         // http://www.obviex.com/samples/dpapi.aspx
         // !!
 
-	// http://social.msdn.microsoft.com/Forums/en-US/searchserverfaq/thread/bff6522e-c820-411a-82cf-6da9b7e646a8
-	// http://www.go4answers.com/Example/disable-warnig-unknown-publisher-147063.aspx
-	// http://www.remkoweijnen.nl/blog/2007/10/18/how-rdp-passwords-are-encrypted/
+    // http://social.msdn.microsoft.com/Forums/en-US/searchserverfaq/thread/bff6522e-c820-411a-82cf-6da9b7e646a8
+    // http://www.go4answers.com/Example/disable-warnig-unknown-publisher-147063.aspx
+    // http://www.remkoweijnen.nl/blog/2007/10/18/how-rdp-passwords-are-encrypted/
         
         protected string EncryptPassword(string password)
         {

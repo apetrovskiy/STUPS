@@ -10,9 +10,10 @@
 namespace Tmx
 {
     using System;
-    using System.Management.Automation;
+    using Tmx.Interfaces;
+    // using System.Management.Automation;
     using System.Collections.Generic;
-	using Tmx.Interfaces.TestStructure;
+    using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of TestCase.
@@ -32,9 +33,13 @@ namespace Tmx
             // 20130617
             //string testCaseNumber,
             string testCaseId,
-            ScriptBlock[] beforeCode,
-            ScriptBlock[] mainCode,
-            ScriptBlock[] afterCode)
+            // 20141211
+//            ScriptBlock[] beforeCode,
+//            ScriptBlock[] mainCode,
+//            ScriptBlock[] afterCode)
+            ICodeBlock[] beforeCode,
+            ICodeBlock[] mainCode,
+            ICodeBlock[] afterCode)
         {
             this.TestCaseName = testCaseName;
             // 20130617
@@ -52,7 +57,9 @@ namespace Tmx
         // 20130617
         //public string TestCaseNumber { get; set; }
         //public ScriptBlock[] AlternateBeforeTest { get; set; }
-        public ScriptBlock[] TestCode { get; set; }
+        // 20141211
+        // public ScriptBlock[] TestCode { get; set; }
+        public ICodeBlock[] TestCode { get; set; }
         //public ScriptBlock[] AlternateAfterTest { get; set; }
         public string TestCaseTag { get; set; }
         public string Description { get; set; }

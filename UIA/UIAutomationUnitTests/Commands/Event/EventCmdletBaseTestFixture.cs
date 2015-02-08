@@ -178,7 +178,7 @@ namespace UIAutomationUnitTests.Commands.Event
                             cmdlet.AutomationProperty);
                         MbUnit.Framework.Assert.AreEqual<AutomationProperty[]>(properties, cmdlet.AutomationProperty);
                         Xunit.Assert.Equal<AutomationProperty[]>(properties, cmdlet.AutomationProperty);
-                    	break;
+                        break;
                 }
             }
         }

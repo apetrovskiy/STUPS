@@ -11,13 +11,13 @@ namespace Tmx
 {
     using System;
     using System.Collections.Generic;
-	using Tmx.Interfaces;
-	using Tmx.Interfaces.TestStructure;
+    using Tmx.Interfaces;
+    using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of Feature.
     /// </summary>
-    public class Feature : TestSuite, IBDDFeature
+    public class Feature : TestSuite, IBddFeature
     {
         public Feature() : base()
         {

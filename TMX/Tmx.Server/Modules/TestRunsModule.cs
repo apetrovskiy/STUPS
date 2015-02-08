@@ -11,11 +11,14 @@ namespace Tmx.Server.Modules
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.Design;
+    using System.Diagnostics;
     using System.Dynamic;
     using System.Linq;
     using Nancy;
     using Nancy.ModelBinding;
     using Nancy.Responses.Negotiation;
+    using Nancy.TinyIoc;
     using Tmx.Core;
     using Tmx.Core.Types.Remoting;
     using Tmx.Interfaces.Remoting;
@@ -30,19 +33,35 @@ namespace Tmx.Server.Modules
         {
             Post[UrlList.TestRunsControlPoint_relPath] = _ => createNewTestRun(this.Bind<TestRunCommand>());
             Delete[UrlList.TestRuns_One_relPath] = parameters => deleteTestRun(parameters.id);
-            // Put[UrnList.TestRuns_One_relPath] = parameters => changeTestRun(parameters.id);
             
             // http://blog.nancyfx.org/x-http-method-override-with-nancyfx/
             Put[UrlList.TestRuns_One_Cancel] = parameters => cancelTestRun(parameters.id);
         }
         
-        // Negotiator createNewTestRun()
         Negotiator createNewTestRun(ITestRunCommand testRunCommand)
         {
+            Trace.TraceInformation("dissecting testRunCommand");
+            Trace.TraceInformation("is testRunCommand null? {0}", null == testRunCommand);
+            if (null != testRunCommand) {
+                Trace.TraceInformation("workflow name = {0}, test run name = {1}", testRunCommand.WorkflowName, testRunCommand.TestRunName);
+            }
+            
             if (null == testRunCommand)
-                testRunCommand = new TestRunCommand { WorkflowName = Request.Form.workflow_name };
+                // 20141219
+                // testRunCommand = new TestRunCommand { TestRunName = Request.Form.test_run_name, WorkflowName = Request.Form.workflow_name };
+                testRunCommand = new TestRunCommand { TestRunName = Request.Form.test_run_name ?? string.Empty, WorkflowName = Request.Form.workflow_name ?? string.Empty };
             if (string.IsNullOrEmpty(testRunCommand.WorkflowName))
-                testRunCommand.WorkflowName = Request.Form.workflow_name;
+                // 20141219
+                // testRunCommand.WorkflowName = Request.Form.workflow_name;
+                testRunCommand.WorkflowName = Request.Form.workflow_name ?? string.Empty;
+            
+            if (string.IsNullOrEmpty(testRunCommand.TestRunName))
+                // 20141219
+                // testRunCommand.TestRunName = Request.Form.test_run_name;
+                testRunCommand.TestRunName = Request.Form.test_run_name ?? string.Empty;
+            
+            Trace.TraceInformation("workflow name = {0}, test run name = {1}", testRunCommand.WorkflowName, testRunCommand.TestRunName);
+            
             return null == testRunCommand ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : setTestRun(testRunCommand);
         }
         
@@ -50,38 +69,27 @@ namespace Tmx.Server.Modules
         {
             if (string.IsNullOrEmpty(testRunCommand.WorkflowName))
                 return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
-            var testRunInitializer = new TestRunInitializer();
+            var testRunInitializer = TinyIoCContainer.Current.Resolve<TestRunInitializer>();
             var testRun = testRunInitializer.CreateTestRun(testRunCommand, Request.Form);
             if (Guid.Empty == testRun.WorkflowId) // ??
                 return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
             TestRunQueue.TestRuns.Add(testRun);
-            // there are no test clients on the new test run
-            // var taskSelector = new TaskSelector();
-            // taskSelector.AddTasksForEveryClient(TaskPool.Tasks.Where(task => WorkflowCollection.Workflows.ActiveWorkflowIds().Contains(task.WorkflowId)), testRun.Id);
             
-            // TODO: trySet InProgress
-            // 20141128
-            // return Negotiate.WithStatusCode(HttpStatusCode.Created);
-            // TODO: fix code duplication
-//            dynamic data = new ExpandoObject();
-//            data.TestRuns = TestRunQueue.TestRuns ?? new List<ITestRun>();
-//            data.TestLabs = TestLabCollection.TestLabs ?? new List<ITestLab>();
+            // 20141207
+            foreach (var testRunAction in testRun.BeforeActions) {
+                testRunAction.Run();
+            }
+            
             var data = createTestRunExpandoObject();
             
-            // return Negotiate.WithStatusCode(HttpStatusCode.OK).WithView(UrnList.ViewTestStatus_Root + "/" + UrnList.ViewTestStatus_TestRunsPage).WithModel((ExpandoObject)data);
             return Negotiate.WithStatusCode(HttpStatusCode.OK).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data);
         }
         
-		Negotiator deleteTestRun(Guid testRunId)
-		{
-			TestRunQueue.TestRuns.RemoveAll(tr => tr.Id == testRunId);
-			return Negotiate.WithStatusCode(HttpStatusCode.OK);
-		}
-
-//        Negotiator changeTestRun(Guid testRunId)
-//        {
-//            throw new NotImplementedException ();
-//        }
+        Negotiator deleteTestRun(Guid testRunId)
+        {
+            TestRunQueue.TestRuns.RemoveAll(tr => tr.Id == testRunId);
+            return Negotiate.WithStatusCode(HttpStatusCode.OK);
+        }
         
         Negotiator cancelTestRun(Guid testRunId)
         {
@@ -91,16 +99,8 @@ namespace Tmx.Server.Modules
                 return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data); // ??
             if (testRun.IsCompleted())
                 return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data); // ??
-            var testRunSelector = new TestRunSelector();
+            var testRunSelector = TinyIoCContainer.Current.Resolve<TestRunSelector>();
             testRunSelector.CancelTestRun(testRun);
-            
-            // TODO: fix code duplication
-//            dynamic data = new ExpandoObject();
-//            data.TestRuns = TestRunQueue.TestRuns ?? new List<ITestRun>();
-//            data.TestLabs = TestLabCollection.TestLabs ?? new List<ITestLab>();
-            // var data = createTestRunExpandoObject();
-            
-            // return Negotiate.WithStatusCode(HttpStatusCode.OK).WithView(UrnList.ViewTestStatus_Root + "/" + UrnList.ViewTestStatus_TestRunsPage).WithModel((ExpandoObject)data);
             return Negotiate.WithStatusCode(HttpStatusCode.OK).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data);
         }
 
@@ -111,5 +111,5 @@ namespace Tmx.Server.Modules
             data.TestLabs = TestLabCollection.TestLabs ?? new List<ITestLab>();
             return data;
         }
-	}
+    }
 }

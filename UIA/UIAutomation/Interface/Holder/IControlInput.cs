@@ -14,15 +14,15 @@ namespace UIAutomation
     /// </summary>
     public interface IControlInput
     {
-		IUiElement Click();
-		IUiElement DoubleClick();
-		IUiElement DoubleClick(int X, int Y);
-		IUiElement RightClick();
-		IUiElement CtrlClick();
-		IUiElement AltClick();
-		IUiElement ShiftClick();
-		IUiElement Click(int X, int Y);
-		IUiElement InvokeContextMenu();
-		IUiElement InvokeContextMenu(int X, int Y);
+        IUiElement Click();
+        IUiElement DoubleClick();
+        IUiElement DoubleClick(int X, int Y);
+        IUiElement RightClick();
+        IUiElement CtrlClick();
+        IUiElement AltClick();
+        IUiElement ShiftClick();
+        IUiElement Click(int X, int Y);
+        IUiElement InvokeContextMenu();
+        IUiElement InvokeContextMenu(int X, int Y);
     }
 }

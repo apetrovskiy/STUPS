@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
   <PropertyGroup>
     <ProjectGuid>{9C5DA25F-6A59-4F97-B107-64DD549CB800}</ProjectGuid>
     <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -14,11 +14,16 @@
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
     <NoStdLib>False</NoStdLib>
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
-    <OutputPath>bin\Release35\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DebugType>Full</DebugType>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
     <WarningLevel>4</WarningLevel>
     <TargetFrameworkProfile />
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'Release35' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -44,13 +49,38 @@
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
     <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>Full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>Full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>Full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
-    <Reference Include="System.Management.Automation" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -84,29 +114,35 @@
     <Compile Include="DataTypes\Types\TestResultDetailCmdletBaseDataObject.cs" />
     <Compile Include="DataTypes\Types\TestResultStatusCmdletBaseDataObject.cs" />
     <Compile Include="Delegates\Delegates.cs" />
-    <Compile Include="Exceptions\ClientDeregistrationException.cs" />
-    <Compile Include="Exceptions\ClientNotRegisteredException.cs" />
-    <Compile Include="Exceptions\ClientRegistrationException.cs" />
-    <Compile Include="Exceptions\AcceptTaskException.cs" />
-    <Compile Include="Exceptions\CompleteTaskException.cs" />
-    <Compile Include="Exceptions\FailedToGetNextTaskException.cs" />
-    <Compile Include="Exceptions\LoadingTestResultsException.cs" />
-    <Compile Include="Exceptions\LoadTaskException.cs" />
-    <Compile Include="Exceptions\SendingCommonDataItemException.cs" />
-    <Compile Include="Exceptions\SendingDetailedStatusException.cs" />
-    <Compile Include="Exceptions\SendingTestResultsException.cs" />
-    <Compile Include="Exceptions\UpdateTaskException.cs" />
-    <Compile Include="Exceptions\WorkflowLoadingException.cs" />
-    <Compile Include="Exceptions\WrongTaskDataException.cs" />
+    <Compile Include="Exceptions\Remoting\AcceptTaskException.cs" />
+    <Compile Include="Exceptions\Remoting\ClientDeregistrationException.cs" />
+    <Compile Include="Exceptions\Remoting\ClientNotRegisteredException.cs" />
+    <Compile Include="Exceptions\Remoting\ClientRegistrationException.cs" />
+    <Compile Include="Exceptions\Remoting\CompleteTaskException.cs" />
+    <Compile Include="Exceptions\Remoting\FailedToGetNextTaskException.cs" />
+    <Compile Include="Exceptions\Remoting\LoadingTestReportException.cs" />
+    <Compile Include="Exceptions\Remoting\LoadingTestResultsException.cs" />
+    <Compile Include="Exceptions\Remoting\LoadTaskException.cs" />
+    <Compile Include="Exceptions\Remoting\SendingCommonDataItemException.cs" />
+    <Compile Include="Exceptions\Remoting\SendingDetailedStatusException.cs" />
+    <Compile Include="Exceptions\Remoting\SendingTestResultsException.cs" />
+    <Compile Include="Exceptions\Remoting\UpdateTaskException.cs" />
+    <Compile Include="Exceptions\Remoting\WorkflowLoadingException.cs" />
+    <Compile Include="Exceptions\Remoting\WrongTaskDataException.cs" />
+    <Compile Include="ICodeBlock.cs" />
     <Compile Include="IDatabase.cs" />
     <Compile Include="Internal\ISystemInfo.cs" />
     <Compile Include="ITestSuitesCollection.cs" />
     <Compile Include="IWorkflowStep.cs" />
     <Compile Include="IXMLElementsStruct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Remoting\Actions\IAction.cs" />
+    <Compile Include="Remoting\Actions\ITestRunAction.cs" />
+    <Compile Include="Remoting\Actions\ITestTaskAction.cs" />
     <Compile Include="Remoting\Enums.cs" />
     <Compile Include="Remoting\ICommonData.cs" />
     <Compile Include="Remoting\ICommonDataItem.cs" />
+    <Compile Include="Remoting\IRunnableClient.cs" />
     <Compile Include="Remoting\IServerCommand.cs" />
     <Compile Include="Remoting\ITestClient.cs" />
     <Compile Include="Remoting\ITestClientProxy.cs" />
@@ -134,22 +170,12 @@
     <Compile Include="TestStructure\ITestResultDetail.cs" />
     <Compile Include="TestStructure\ITestScenario.cs" />
     <Compile Include="TestStructure\ITestSuite.cs" />
-    <Compile Include="Types\TestStructure\TestStat.cs" />
+    <Compile Include="TestStructure\TestStat.cs" />
     <Compile Include="UrlList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DataTypes" />
-    <Folder Include="DataTypes\Types" />
-    <Folder Include="Exceptions" />
-    <Folder Include="Delegates" />
-    <Folder Include="Internal" />
-    <Folder Include="Types" />
-    <Folder Include="Remoting" />
-    <Folder Include="TestStructure" />
-    <Folder Include="Types\TestStructure" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -9,17 +9,17 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
-	using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
-	
-	public interface IRangeValuePatternInformation
-	{
-		double Value { get; }
-		bool IsReadOnly { get; }
-		double Maximum { get; }
-		double Minimum { get; }
-		double LargeChange { get; }
-		double SmallChange { get; }
-	}
+    extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
+    
+    public interface IRangeValuePatternInformation
+    {
+        double Value { get; }
+        bool IsReadOnly { get; }
+        double Maximum { get; }
+        double Minimum { get; }
+        double LargeChange { get; }
+        double SmallChange { get; }
+    }
 }
 

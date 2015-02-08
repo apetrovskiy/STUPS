@@ -100,7 +100,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Selection_GetSelection()
         {
             // Arrange
-			const bool expectedResult = true;
+            const bool expectedResult = true;
             bool result = false;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
@@ -123,7 +123,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Selection_CanSelectMultiple()
         {
             // Arrange
-			const bool expectedValue = true;
+            const bool expectedValue = true;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetSelectionPattern(new PatternsData() { SelectionPattern_CanSelectMultiple = expectedValue }) }) as ISupportsSelectionPattern;
@@ -139,7 +139,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         public void Selection_IsSelectionRequired()
         {
             // Arrange
-			const bool expectedValue = false;
+            const bool expectedValue = false;
             var element =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetSelectionPattern(new PatternsData() { SelectionPattern_IsSelectionRequired = expectedValue }) }) as ISupportsSelectionPattern;

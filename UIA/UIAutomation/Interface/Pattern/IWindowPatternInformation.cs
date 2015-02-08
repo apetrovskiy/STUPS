@@ -9,17 +9,17 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
-	using System;
-	using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
-	
-	public interface IWindowPatternInformation
-	{
-		bool CanMaximize { get; }
-		bool CanMinimize { get; }
-		bool IsModal { get; }
-		classic.WindowVisualState WindowVisualState { get; }
-		classic.WindowInteractionState WindowInteractionState { get; }
-		bool IsTopmost { get; }
-	}
+    extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
+    using System;
+    using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
+    
+    public interface IWindowPatternInformation
+    {
+        bool CanMaximize { get; }
+        bool CanMinimize { get; }
+        bool IsModal { get; }
+        classic.WindowVisualState WindowVisualState { get; }
+        classic.WindowInteractionState WindowInteractionState { get; }
+        bool IsTopmost { get; }
+    }
 }

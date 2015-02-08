@@ -10,40 +10,35 @@
 namespace Tmx.Server.Tests
 {
     using System;
-	using Tmx.Client;
-	using PSTestLib;
+    using Nancy.TinyIoc;
+    using Tmx.Client;
+    using PSTestLib;
     using Tmx.Core;
+    using Tmx.Server.Interfaces;
     
     /// <summary>
     /// Description of TestSettings.
     /// </summary>
     public static class TestSettings
     {
-		public static void PrepareModuleTests()
-		{
-			PSCmdletBase.UnitTestMode = true;
-			if (0 < UnitTestOutput.Count)
-				UnitTestOutput.Clear();
-			TestData.ResetData();
-			ClientsCollection.Clients.Clear();
-			// 20141015
-//			ClientsCollection.MaxUsedClientId = 0;
-			TaskPool.Tasks.Clear();
-			TaskPool.TasksForClients.Clear();
-			// ClientSettings.ResetData();
-			var clientSettings = ClientSettings.Instance;
-			clientSettings.ResetData();
-			// 20141030
-			// CommonData.Data.Clear();
-			// 20141023
-			WorkflowCollection.Workflows.Clear();
-			// 20141026
-			TestRunQueue.TestRuns.Clear();
-			TestLabCollection.TestLabs.Clear();
-			var testLabCollection = new TestLabCollection();
-			
-			Preferences.ClientRegistrationSleepIntervalMilliseconds = 0;
-			Preferences.ReceivingTaskSleepIntervalMilliseconds = 0;
-		}
+        public static void PrepareModuleTests()
+        {
+            PSCmdletBase.UnitTestMode = true;
+            if (0 < UnitTestOutput.Count)
+                UnitTestOutput.Clear();
+            TestData.ResetData();
+            ClientsCollection.Clients.Clear();
+            TaskPool.Tasks.Clear();
+            TaskPool.TasksForClients.Clear();
+            var clientSettings = ClientSettings.Instance;
+            clientSettings.ResetData();
+            WorkflowCollection.Workflows.Clear();
+            TestRunQueue.TestRuns.Clear();
+            TestLabCollection.TestLabs.Clear();
+            var testLabCollection = new TestLabCollection();
+            
+            Preferences.ClientRegistrationSleepIntervalMilliseconds = 0;
+            Preferences.ReceivingTaskSleepIntervalMilliseconds = 0;
+        }
     }
 }

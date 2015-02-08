@@ -36,14 +36,14 @@ namespace UIAutomation
                 topSide.Dispose();
                 bottomSide.Dispose();
             }
-        	catch { //(Exception eSides) {
+            catch { //(Exception eSides) {
             }
-        	
-        	try {
-        		labelForm.Dispose();
-        	}
-        	catch { //(Exception eLabelForm) {
-        	}
+            
+            try {
+                labelForm.Dispose();
+            }
+            catch { //(Exception eLabelForm) {
+            }
         }
         
         public Highlighter(
@@ -55,38 +55,38 @@ namespace UIAutomation
             Highlighters control,
             Color? color)
         {
-			disposeSides();
-			
-        	createHighlighter(
-        		height,
-        		width,
-        		X,
-        		Y,
-        		intHandle,
-        		control,
-        	    color);
+            disposeSides();
+            
+            createHighlighter(
+                height,
+                width,
+                X,
+                Y,
+                intHandle,
+                control,
+                color);
         }
         
         public Highlighter(
-        	double height,
-        	double width,
-        	double X,
-        	double Y,
-        	int intHandle,
-        	Highlighters control,
-        	int highlighterNumber,
+            double height,
+            double width,
+            double X,
+            double Y,
+            int intHandle,
+            Highlighters control,
+            int highlighterNumber,
             string highlighterData)
         {
-        	createHighlighter(
-        		height,
-        		width,
-        		X,
-        		Y,
-        		intHandle,
-        		control,
-        	    null);
-        	
-        	PaintLabel(highlighterNumber, highlighterData);
+            createHighlighter(
+                height,
+                width,
+                X,
+                Y,
+                intHandle,
+                control,
+                null);
+            
+            PaintLabel(highlighterNumber, highlighterData);
         }
         
 //        ~Highlighter()
@@ -97,13 +97,13 @@ namespace UIAutomation
         [STAThread]
         public void Dispose()
         {
-        	disposeSides();
-        	//GC.SuppressFinalize(this);
+            disposeSides();
+            //GC.SuppressFinalize(this);
         }
         
         [STAThread]
         private void createHighlighter(
-        	double height,
+            double height,
             double width,
             double X,
             double Y,
@@ -149,48 +149,48 @@ namespace UIAutomation
         [STAThread]
         internal void PaintLabel(int highlighterNumber, string highlighterData)
         {
-        	// painting a new form
-        	int left =
-        		rightSide.Left - 20;
-        	int top =
-        		bottomSide.Top - 15;
-        	int height =
-        		bottomSide.Top - top;
-        	int width =
-        		rightSide.Left - left;
+            // painting a new form
+            int left =
+                rightSide.Left - 20;
+            int top =
+                bottomSide.Top - 15;
+            int height =
+                bottomSide.Top - top;
+            int width =
+                rightSide.Left - left;
 
-        	labelForm =
-        		new LabelForm(
-        			left,
-        			top,
-        			width,
-        			height, 
-        			highlighterNumber,
-        			bottomSide.BackColor,
-        		    highlighterData);
+            labelForm =
+                new LabelForm(
+                    left,
+                    top,
+                    width,
+                    height, 
+                    highlighterNumber,
+                    bottomSide.BackColor,
+                    highlighterData);
         }
         
 //        [STAThread]
 //        internal void CreateToolTip(string highlighterData)
 //        {
-//        	// painting a new form
-//        	int left =
-//        		this.rightSide.Left - 20;
-//        	int top =
-//        		this.bottomSide.Top - 15;
-//        	int height =
-//        		this.bottomSide.Top - top;
-//        	int width =
-//        		this.rightSide.Left - left;
+//            // painting a new form
+//            int left =
+//                this.rightSide.Left - 20;
+//            int top =
+//                this.bottomSide.Top - 15;
+//            int height =
+//                this.bottomSide.Top - top;
+//            int width =
+//                this.rightSide.Left - left;
 //
-//        	labelForm =
-//        		new LabelForm(
-//        			left,
-//        			top,
-//        			width,
-//        			height, 
-//        			highlighterNumber,
-//        			this.bottomSide.BackColor);
+//            labelForm =
+//                new LabelForm(
+//                    left,
+//                    top,
+//                    width,
+//                    height, 
+//                    highlighterNumber,
+//                    this.bottomSide.BackColor);
 //        }
         
         private  NativeMethods.CursorPoint getPoint(
@@ -228,7 +228,7 @@ namespace UIAutomation
                      NativeMethods.PhysicalToLogicalPoint(handle, ref p);
                 } 
                 catch {
-            	}
+                }
             }
             */
             return p;
@@ -500,8 +500,8 @@ namespace UIAutomation
                     this.BackColor = Preferences.HighlighterColor;
                     this.ForeColor = Preferences.HighlighterColor;
                 } else {
-                	this.BackColor = Color.FromKnownColor(ExecutionPlan.colorTable[(int)control]);
-                	this.ForeColor = Color.FromKnownColor(ExecutionPlan.colorTable[(int)control]);
+                    this.BackColor = Color.FromKnownColor(ExecutionPlan.colorTable[(int)control]);
+                    this.ForeColor = Color.FromKnownColor(ExecutionPlan.colorTable[(int)control]);
                 }
                 */
             }
@@ -572,21 +572,21 @@ namespace UIAutomation
             AutoSize = true;
             Enabled = false;
             var labelNumber =
-        		new Label {AutoSize = true};
+                new Label {AutoSize = true};
             /*
             Label labelNumber =
-        		new Label {AutoSize = true};
+                new Label {AutoSize = true};
             */
             if (null == highlighterNumber || 0 == highlighterNumber) {
                 highlighterNumber = 1;
             }
-        	labelNumber.Text = highlighterNumber.ToString();
-        	labelNumber.BackColor = Color.FromKnownColor(KnownColor.DarkGray);
-        	labelNumber.ForeColor = foreColor;
-        	labelNumber.Dock = DockStyle.Fill;
-        	labelNumber.MouseMove += 
-        		new MouseEventHandler(labelNumberMouseMove);
-        	Controls.Add(labelNumber);
+            labelNumber.Text = highlighterNumber.ToString();
+            labelNumber.BackColor = Color.FromKnownColor(KnownColor.DarkGray);
+            labelNumber.ForeColor = foreColor;
+            labelNumber.Dock = DockStyle.Fill;
+            labelNumber.MouseMove += 
+                new MouseEventHandler(labelNumberMouseMove);
+            Controls.Add(labelNumber);
             FormBorderStyle = FormBorderStyle.None;
             ShowInTaskbar = false;
             UseWaitCursor = false;
@@ -600,14 +600,14 @@ namespace UIAutomation
             
             Show();
         }
-    	
-		void labelNumberMouseMove(object sender, MouseEventArgs e)
-		{
-		    try {
-			 Application.DoEvents();
-		    }
-		    catch {}
-		}
+        
+        void labelNumberMouseMove(object sender, MouseEventArgs e)
+        {
+            try {
+             Application.DoEvents();
+            }
+            catch {}
+        }
         
         public new void Dispose()
         {

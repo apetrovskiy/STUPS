@@ -99,8 +99,8 @@ namespace UIAutomation
                 UiElement.FromPoint(
                     new System.Windows.Point(mousePoint.X, mousePoint.Y));
             //element = 
-            //	//(UiaNET::System.Windows.Automation.AutomationElement)
-            //	UiaCOM3.UiaCOMHelper.GetAutomationElementFromPoint();
+            //    //(UiaNET::System.Windows.Automation.AutomationElement)
+            //    UiaCOM3.UiaCOMHelper.GetAutomationElementFromPoint();
             
             return element;
         }

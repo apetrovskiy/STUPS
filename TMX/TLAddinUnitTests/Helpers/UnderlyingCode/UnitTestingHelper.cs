@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TLAddinUnitTests
+namespace TlAddinUnitTests
 {
     using System;
     using Tmx;

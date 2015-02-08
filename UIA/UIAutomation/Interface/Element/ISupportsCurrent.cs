@@ -9,15 +9,15 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
-	using System;
-	using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
+    extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
+    using System;
+    using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
     
     /// <summary>
     /// Description of ISupportsCurrent.
     /// </summary>
     public interface ISupportsCurrent
     {
-		IUiElementInformation Current { get; }
+        IUiElementInformation Current { get; }
     }
 }

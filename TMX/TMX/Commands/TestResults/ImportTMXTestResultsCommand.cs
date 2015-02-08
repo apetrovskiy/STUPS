@@ -12,7 +12,7 @@ namespace Tmx.Commands
     using System;
     using System.Management.Automation;
     using Tmx.Core;
-	using Tmx.Interfaces;
+    using Tmx.Interfaces;
     
     /// <summary>
     /// Description of ImportTmxTestResultsCommand.
@@ -22,7 +22,7 @@ namespace Tmx.Commands
     {
         protected override void BeginProcessing()
         {
-			CheckCmdletParameters();
+            CheckCmdletParameters();
             
             var dataObject = new ImportExportCmdletBaseDataObject {
                 As = this.As,
@@ -56,33 +56,33 @@ namespace Tmx.Commands
                     // 20141112
                     // still the old way
                     // 20141114
-					// TmxHelper.ImportResultsFromXML(dataObject, Path);
-					var testResultsImporter = new TestResultsImporter();
-					// TestData.TestSuites.AddRange(testResultsImporter.ImportResultsFromXML(dataObject, Path));
-					if (testResultsImporter.LoadDocument(dataObject, Path)) {
-					    testResultsImporter.MergeTestPlatforms(TestData.TestPlatforms, testResultsImporter.ImportTestPlatformFromXdocument(testResultsImporter.ImportedDocument));
-					    testResultsImporter.MergeTestSuites(TestData.TestSuites, testResultsImporter.ImportTestResultsFromXdocument(testResultsImporter.ImportedDocument));
-					}
-//					testResultsImporter.MergeTestPlatforms(TestData.TestPlatforms, testResultsImporter.ImportPlatformsFromXML(dataObject, Path));
-//					testResultsImporter.MergeTestSuites(TestData.TestSuites, testResultsImporter.ImportResultsFromXML(dataObject, Path));
-					
+                    // TmxHelper.ImportResultsFromXML(dataObject, Path);
+                    var testResultsImporter = new TestResultsImporter();
+                    // TestData.TestSuites.AddRange(testResultsImporter.ImportResultsFromXML(dataObject, Path));
+                    if (testResultsImporter.LoadDocument(dataObject, Path)) {
+                        testResultsImporter.MergeTestPlatforms(TestData.TestPlatforms, testResultsImporter.ImportTestPlatformFromXdocument(testResultsImporter.ImportedDocument));
+                        testResultsImporter.MergeTestSuites(TestData.TestSuites, testResultsImporter.ImportTestResultsFromXdocument(testResultsImporter.ImportedDocument));
+                    }
+//                    testResultsImporter.MergeTestPlatforms(TestData.TestPlatforms, testResultsImporter.ImportPlatformsFromXML(dataObject, Path));
+//                    testResultsImporter.MergeTestSuites(TestData.TestSuites, testResultsImporter.ImportResultsFromXML(dataObject, Path));
+                    
                     break;
                 case "JUNIT":
                 case "JUNITXML":
-					TmxHelper.ImportResultsFromJUnitXML(dataObject, Path);
+                    TmxHelper.ImportResultsFromJUnitXML(dataObject, Path);
                     break;
                 case "HTML":
                     
-					ImportResultsFromHTML(this, Path);
+                    ImportResultsFromHTML(this, Path);
                     break;
                 case "CSV":
-					ImportResultsFromCSV(Path);
+                    ImportResultsFromCSV(Path);
                     break;
                 case "TEXT":
-					ImportResultsFromTEXT(Path);
+                    ImportResultsFromTEXT(Path);
                     break;
                 case "ZIP":
-					ImportResultsFromZIP(Path);
+                    ImportResultsFromZIP(Path);
                     break;
                 default:
                     

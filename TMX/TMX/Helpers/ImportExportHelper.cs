@@ -10,11 +10,11 @@
 namespace Tmx.Helpers
 {
     using System;
-	using System.Collections.Generic;
-	using System.Management.Automation;
-	using System.Linq;
-	using System.Xml.Linq;
-	using Tmx.Interfaces;
+    using System.Collections.Generic;
+    using System.Management.Automation;
+    using System.Linq;
+    using System.Xml.Linq;
+    using Tmx.Interfaces;
     
     /// <summary>
     /// Description of ImportExportHelper.
@@ -128,9 +128,12 @@ namespace Tmx.Helpers
             
             // 20140721
             // TmxHelper.ImportVariables(cmdlet, variablesCollection);
-            ImportExportHelper.ImportVariables(cmdlet, variablesCollection);
+            // 20160116
+            // ImportExportHelper.ImportVariables(cmdlet, variablesCollection);
         }
         
+        // 20160116
+        /*
         public static bool ImportVariables(
             // 20140720
             // SettingsCmdletBase cmdlet,
@@ -194,6 +197,7 @@ namespace Tmx.Helpers
 
             return result;
         }
+        */
         #endregion Test settings
     }
 }

@@ -12,7 +12,7 @@ namespace PSTestRunner
     using System;
     using PSRunner;
     using System.Management.Automation;
-	using Tmx.Interfaces.TestStructure;
+    using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of TestRunner.
@@ -311,8 +311,12 @@ namespace PSTestRunner
                 string errorMessage = string.Empty;
                 try {
                     if (testResult.Error != null) {
+                        // 20150116
+                        /*
                         errorMessage = 
                             testResult.Error.ErrorDetails.Message;
+                        */
+                        errorMessage = testResult.Error.Message;
                     }
                 } 
                 catch {}

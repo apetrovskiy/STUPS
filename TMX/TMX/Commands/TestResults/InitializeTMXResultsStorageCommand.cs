@@ -49,14 +49,14 @@ namespace Tmx.Commands
         
         protected override void BeginProcessing()
         {
-			Preferences.Storage = true;
-			Preferences.StorageServer = Server;
-			Preferences.StorageDatabase = Database;
+            Preferences.Storage = true;
+            Preferences.StorageServer = Server;
+            Preferences.StorageDatabase = Database;
             if (!string.IsNullOrEmpty(Username)) {
-				Preferences.StorageUsername = Username;
-				Preferences.StoragePassword = Password;
+                Preferences.StorageUsername = Username;
+                Preferences.StoragePassword = Password;
             } else {
-				Preferences.StorageIntegratedSecurity = true;
+                Preferences.StorageIntegratedSecurity = true;
             }
             
             StorageHelper.InitializeStorage();

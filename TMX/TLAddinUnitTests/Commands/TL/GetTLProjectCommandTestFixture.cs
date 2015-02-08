@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TLAddinUnitTests.Commands.TL
+namespace TlAddinUnitTests.Commands.TL
 {
     using System;
     using System.Collections.Generic;
@@ -76,7 +76,7 @@ namespace TLAddinUnitTests.Commands.TL
             
             Assert.AreEqual(
                 0,
-				UnitTestOutput.LastOutput.Count);
+                UnitTestOutput.LastOutput.Count);
         }
         
         [Test] //, Parallelizable]
@@ -90,7 +90,7 @@ namespace TLAddinUnitTests.Commands.TL
             
             Assert.AreEqual(
                 0,
-				UnitTestOutput.LastOutput.Count);
+                UnitTestOutput.LastOutput.Count);
         }
         
         [Test] //, Parallelizable]
@@ -109,7 +109,7 @@ namespace TLAddinUnitTests.Commands.TL
             
             Assert.AreEqual(
                 list,
-				UnitTestOutput.LastOutput.AsList<Meyn.TestLink.TestProject>());
+                UnitTestOutput.LastOutput.AsList<Meyn.TestLink.TestProject>());
         }
         
         [Test] //, Parallelizable]
@@ -138,7 +138,7 @@ namespace TLAddinUnitTests.Commands.TL
             
             Assert.AreEqual(
                 list,
-				UnitTestOutput.LastOutput.AsList<Meyn.TestLink.TestProject>());
+                UnitTestOutput.LastOutput.AsList<Meyn.TestLink.TestProject>());
         }
         
         [Test] //, Parallelizable]
@@ -159,7 +159,7 @@ namespace TLAddinUnitTests.Commands.TL
             
             Assert.AreEqual(
                 list,
-				UnitTestOutput.LastOutput.AsList<Meyn.TestLink.TestProject>());
+                UnitTestOutput.LastOutput.AsList<Meyn.TestLink.TestProject>());
         }
         
         [Test] //, Parallelizable]
@@ -190,7 +190,7 @@ namespace TLAddinUnitTests.Commands.TL
             
             Assert.AreEqual(
                 list,
-				UnitTestOutput.LastOutput.AsList<Meyn.TestLink.TestProject>());
+                UnitTestOutput.LastOutput.AsList<Meyn.TestLink.TestProject>());
         }
         
         [Test] //, Parallelizable]
@@ -212,7 +212,7 @@ namespace TLAddinUnitTests.Commands.TL
             
             Assert.AreEqual(
                 list,
-				UnitTestOutput.LastOutput.AsList<Meyn.TestLink.TestProject>());
+                UnitTestOutput.LastOutput.AsList<Meyn.TestLink.TestProject>());
         }
         
         [Test] //, Parallelizable]
@@ -244,7 +244,7 @@ namespace TLAddinUnitTests.Commands.TL
             
             Assert.AreEqual(
                 list,
-				UnitTestOutput.LastOutput.AsList<Meyn.TestLink.TestProject>());
+                UnitTestOutput.LastOutput.AsList<Meyn.TestLink.TestProject>());
         }
     }
 }

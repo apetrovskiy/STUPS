@@ -39,7 +39,7 @@ namespace UIAutomationSpy
                         break;
 //                    default:
 //                        
-//                    	break;
+//                        break;
                 }
             }
             

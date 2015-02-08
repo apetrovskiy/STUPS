@@ -9,12 +9,12 @@
 
 namespace UIAutomation
 {
-	public interface ISupportsNavigation
-	{
-		IUiElement NavigateToParent();
-		IUiElement NavigateToFirstChild();
-		IUiElement NavigateToLastChild();
-		IUiElement NavigateToNextSibling();
-		IUiElement NavigateToPreviousSibling();
-	}
+    public interface ISupportsNavigation
+    {
+        IUiElement NavigateToParent();
+        IUiElement NavigateToFirstChild();
+        IUiElement NavigateToLastChild();
+        IUiElement NavigateToNextSibling();
+        IUiElement NavigateToPreviousSibling();
+    }
 }

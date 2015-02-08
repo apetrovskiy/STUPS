@@ -12,7 +12,7 @@ namespace Tmx
     using System;
     using System.Linq;
     using System.Management.Automation;
-	using Tmx;
+    using Tmx;
     
     /// <summary>
     /// Description of TmxInvokeTestCaseCommand.
@@ -28,17 +28,17 @@ namespace Tmx
             var cmdlet = (TestCaseExecCmdletBase)Cmdlet;
             
             var testCase =
-            	TestData.GetTestCase(
-            		TestData.CurrentTestSuite,
-            		cmdlet.Name,
-            		cmdlet.Id,
-            		TestData.CurrentTestScenario.Name,
-            		TestData.CurrentTestScenario.Id,
-            		TestData.CurrentTestSuite.Name,
-            		TestData.CurrentTestSuite.Id,
-            		// 20141114
-            		// cmdlet.TestPlatformId);
-            		TestData.TestPlatforms.FirstOrDefault(tp => tp.Id == cmdlet.TestPlatformId).UniqueId);
+                TestData.GetTestCase(
+                    TestData.CurrentTestSuite,
+                    cmdlet.Name,
+                    cmdlet.Id,
+                    TestData.CurrentTestScenario.Name,
+                    TestData.CurrentTestScenario.Id,
+                    TestData.CurrentTestSuite.Name,
+                    TestData.CurrentTestSuite.Id,
+                    // 20141114
+                    // cmdlet.TestPlatformId);
+                    TestData.TestPlatforms.FirstOrDefault(tp => tp.Id == cmdlet.TestPlatformId).UniqueId);
             
             if (null == testCase)
                 cmdlet.WriteError(
@@ -56,9 +56,9 @@ namespace Tmx
             
             if (!cmdlet.OnlySetParameters)
                 cmdlet.RunTestCase(
-                	cmdlet,
-                	TestData.CurrentTestSuite, // temporary, add selection from cmdlet's parameters
-                	TestData.CurrentTestScenario);
+                    cmdlet,
+                    TestData.CurrentTestSuite, // temporary, add selection from cmdlet's parameters
+                    TestData.CurrentTestScenario);
         }
     }
 }

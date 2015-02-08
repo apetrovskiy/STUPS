@@ -10,10 +10,11 @@
 namespace Tmx.Client
 {
     using System;
-	using System.Collections.Generic;
-	using System.Net;
-	using Spring.Rest.Client;
-	using Tmx.Interfaces.Server;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Net;
+    using Spring.Rest.Client;
+    using Tmx.Interfaces.Server;
     
     /// <summary>
     /// Description of CommonDataLoader.
@@ -29,10 +30,21 @@ namespace Tmx.Client
         
         public virtual Dictionary<string, string> Load()
         {
-            var urn = UrlList.TestData_Root + "/" + ClientSettings.Instance.CurrentClient.TestRunId + UrlList.TestData_CommonData_forClient_relPath;
-			var commonDataResponse = _restTemplate.GetForMessage<Dictionary<string, string>>(urn);
-			var commonData = commonDataResponse.Body;
-			return HttpStatusCode.NotFound == commonDataResponse.StatusCode ? new Dictionary<string, string>() : commonData;
+            var url = UrlList.TestData_Root + "/" + ClientSettings.Instance.CurrentClient.TestRunId + UrlList.TestData_CommonData_forClient_relPath;
+            
+            // 20141211
+            // TODO: AOP
+            Trace.TraceInformation("Load(): testRun id = {0}, url = {1}", ClientSettings.Instance.CurrentClient.TestRunId, url);
+            
+            var commonDataResponse = _restTemplate.GetForMessage<Dictionary<string, string>>(url);
+            
+            Trace.TraceInformation("commonDataResponse is null? {0}", null == commonDataResponse);
+            
+            var commonData = commonDataResponse.Body;
+            
+            Trace.TraceInformation("commonData is null? {0}", null == commonData);
+            
+            return HttpStatusCode.NotFound == commonDataResponse.StatusCode ? new Dictionary<string, string>() : commonData;
         }
     }
 }

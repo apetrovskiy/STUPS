@@ -194,7 +194,7 @@ namespace UIAutomationUnitTests.Commands.Wait
             string txtValue = string.Empty;
             ControlType controlType = ControlType.Button;
             
-			var ht = new Hashtable();
+            var ht = new Hashtable();
             ht.Add("controlType", "button");
             ht.Add("class", className);
             var inputData = new[] { ht };

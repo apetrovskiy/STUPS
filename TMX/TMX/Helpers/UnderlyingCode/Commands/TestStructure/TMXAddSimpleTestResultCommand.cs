@@ -12,14 +12,14 @@ namespace Tmx
     using System;
     using System.Linq;
     using System.Management.Automation;
-	using Tmx;
-	using Tmx.Interfaces;
-	using Tmx.Interfaces.TestStructure;
+    using Tmx;
+    using Tmx.Interfaces;
+    using Tmx.Interfaces.TestStructure;
     using Tmx.Commands;
     
-	/// <summary>
-	/// Description of TmxAddSimpleTestResultCommand.
-	/// </summary>
+    /// <summary>
+    /// Description of TmxAddSimpleTestResultCommand.
+    /// </summary>
     class TmxAddSimpleTestResultCommand : TmxCommand
     {
         internal TmxAddSimpleTestResultCommand(CommonCmdletBase cmdlet) : base (cmdlet)
@@ -28,7 +28,6 @@ namespace Tmx
         
         internal override void Execute()
         {
-           
             var cmdlet = (AddTmxSimpleTestResultCommand)Cmdlet;
             
             cmdlet.ConvertTestResultStatusToTraditionalTestResult();

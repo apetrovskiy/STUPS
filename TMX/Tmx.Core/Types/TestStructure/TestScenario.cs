@@ -11,11 +11,11 @@ namespace Tmx.Interfaces
 {
     using System;
     using System.Collections.Generic;
-    using System.Management.Automation;
+    // using System.Management.Automation;
     using System.Xml.Serialization;
-	using Tmx.Interfaces;
-	using Tmx.Interfaces.TestStructure;
-	// using Tmx.Core;
+    using Tmx.Interfaces;
+    using Tmx.Interfaces.TestStructure;
+    // using Tmx.Core;
     
     /// <summary>
     /// Description of TestScenario.
@@ -35,7 +35,7 @@ namespace Tmx.Interfaces
 //            try{
 //                if (TestData.CurrentTestResult.Details.Count > 0) {
 //                    
-//					TestData.AddTestResult(
+//                    TestData.AddTestResult(
 //                        "autoclosed", 
 //                        TestData.GetTestResultId(), 
 //                        null, 
@@ -87,13 +87,14 @@ namespace Tmx.Interfaces
             
             try{
                 if (TestData.CurrentTestResult.Details.Count > 0) {
-					TestData.AddTestResult(
+                    TestData.AddTestResult(
                         "autoclosed", 
                         TestData.GetTestResultId(), 
                         null, 
                         false, // isKnownIssue
                         false, // generateNextResult
-                        null, // MyInvocation
+                        // 20160116
+                        // null, // MyInvocation
                         null, // Error
                         string.Empty,
                         TestResultOrigins.Automatic,
@@ -132,7 +133,6 @@ namespace Tmx.Interfaces
         public string Name { get; set; }
         [XmlAttribute]
         public string Id { get; set; }
-        // [XmlInclude(typeof(List<ITestResult>))]
         [XmlElement("TestResults", typeof(ITestResult))]
         public List<ITestResult> TestResults {get; protected internal set; }
         [XmlAttribute]
@@ -147,25 +147,25 @@ namespace Tmx.Interfaces
         { 
             get { return _enStatus; }
             set{
-				_enStatus = value;
+                _enStatus = value;
 
                 switch (value) {
                     case TestScenarioStatuses.Passed:
-						_status = TestData.TestStatePassed;
+                        _status = TestData.TestStatePassed;
                         break;
                     case TestScenarioStatuses.Failed:
-						_status = TestData.TestStateFailed;
+                        _status = TestData.TestStateFailed;
                         break;
                     case TestScenarioStatuses.NotTested:
-						_status = TestData.TestStateNotTested;
+                        _status = TestData.TestStateNotTested;
                         break;
                     case TestScenarioStatuses.KnownIssue:
-						_status = TestData.TestStateKnownIssue;
+                        _status = TestData.TestStateKnownIssue;
                         break;
                     default:
                         // 20130428
                         //throw new Exception("Invalid value for TestScenarioStatuses");
-						_status = TestData.TestStateNotTested;
+                        _status = TestData.TestStateNotTested;
                         break;
                 }
             }
@@ -176,7 +176,6 @@ namespace Tmx.Interfaces
         
         [XmlIgnore]
         public string SuiteId { get; set; }
-        // 20141122
         [XmlIgnore]
         public Guid SuiteUniqueId { get; set; }
         
@@ -184,14 +183,14 @@ namespace Tmx.Interfaces
         public virtual DateTime Timestamp { get; set; }
         public void SetNow()
         {
-			Timestamp = DateTime.Now;
+            Timestamp = DateTime.Now;
         }
         
         [XmlAttribute]
         public virtual double TimeSpent { get; set; }
         public virtual void SetTimeSpent(double timeSpent)
         {
-			TimeSpent = timeSpent;
+            TimeSpent = timeSpent;
         }
         
         [XmlIgnore]
@@ -202,9 +201,13 @@ namespace Tmx.Interfaces
         public virtual Guid PlatformUniqueId { get; set; }
         
         [XmlIgnore]
-        public virtual ScriptBlock[] BeforeTest { get; set; }
+        // 20141211
+        // public virtual ScriptBlock[] BeforeTest { get; set; }
+        public virtual ICodeBlock[] BeforeTest { get; set; }
         [XmlIgnore]
-        public virtual ScriptBlock[] AfterTest { get; set; }
+        // 20141211
+        // public virtual ScriptBlock[] AfterTest { get; set; }
+        public virtual ICodeBlock[] AfterTest { get; set; }
         [XmlIgnore]
         public virtual object[] BeforeTestParameters { get; set; }
         [XmlIgnore]
@@ -212,7 +215,6 @@ namespace Tmx.Interfaces
         [XmlIgnore]
         public List<ITestCase> TestCases { get; set; }
         
-        // 20141203
         public virtual int GetAll()
         {
             return Statistics.All;

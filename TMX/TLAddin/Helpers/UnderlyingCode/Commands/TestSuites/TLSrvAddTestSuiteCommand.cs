@@ -23,9 +23,9 @@ namespace Tmx
         
         internal override void Execute()
         {
-			TLHelper.AddTestSuite(
-				Cmdlet,
-				((AddTLTestSuiteCommand)Cmdlet).Name);
+            TLHelper.AddTestSuite(
+                Cmdlet,
+                ((AddTLTestSuiteCommand)Cmdlet).Name);
         }
     }
 }

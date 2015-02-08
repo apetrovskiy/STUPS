@@ -9,39 +9,39 @@
 
 namespace Tmx.Commands
 {
-	using System;
-	using System.Management.Automation;
-	using Tmx.Interfaces.TestStructure;
+    using System;
+    using System.Management.Automation;
+    using Tmx.Interfaces.TestStructure;
 
-	/// <summary>
-	/// Description of AddTmxSimpleTestResultCommand.
-	/// </summary>
-	[Cmdlet(VerbsCommon.Add, "TmxSimpleTestResult")]
-	public class AddTmxSimpleTestResultCommand : TestResultCmdletBase
-	{
-		public AddTmxSimpleTestResultCommand()
-		{
+    /// <summary>
+    /// Description of AddTmxSimpleTestResultCommand.
+    /// </summary>
+    [Cmdlet(VerbsCommon.Add, "TmxSimpleTestResult")]
+    public class AddTmxSimpleTestResultCommand : TestResultCmdletBase
+    {
+        public AddTmxSimpleTestResultCommand()
+        {
             this.TestOrigin = TestResultOrigins.Logical;
-		}
-		
-		#region Parameters
-		[Parameter(Mandatory = false)]
-		public string TestSuiteName { get; set; }
-		
-		[Parameter(Mandatory = false)]
-		public string TestSuiteId { get; set; }
-		
-		[Parameter(Mandatory = false)]
-		public string TestScenarioName { get; set; }
-		
-		[Parameter(Mandatory = false)]
-		public string TestScenarioId { get; set; }
-		#endregion Parameters
-		
-		protected override void BeginProcessing()
-		{
-			var command = new TmxAddSimpleTestResultCommand(this);
-			command.Execute();
-		}
-	}
+        }
+        
+        #region Parameters
+        [Parameter(Mandatory = false)]
+        public string TestSuiteName { get; set; }
+        
+        [Parameter(Mandatory = false)]
+        public string TestSuiteId { get; set; }
+        
+        [Parameter(Mandatory = false)]
+        public string TestScenarioName { get; set; }
+        
+        [Parameter(Mandatory = false)]
+        public string TestScenarioId { get; set; }
+        #endregion Parameters
+        
+        protected override void BeginProcessing()
+        {
+            var command = new TmxAddSimpleTestResultCommand(this);
+            command.Execute();
+        }
+    }
 }

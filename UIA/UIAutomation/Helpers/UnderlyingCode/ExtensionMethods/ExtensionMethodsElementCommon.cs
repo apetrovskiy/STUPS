@@ -22,82 +22,82 @@ namespace UIAutomation
     {
         #region Navigation
         public static IUiElement PerformNavigateToParent(this IUiElement element)
-		{
-			IUiElement result = null;
+        {
+            IUiElement result = null;
 
-			var walker = new classic.TreeWalker(classic.Condition.TrueCondition);
+            var walker = new classic.TreeWalker(classic.Condition.TrueCondition);
 
-			try {
-				result = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement() as classic.AutomationElement));
-			} catch {
-			}
+            try {
+                result = AutomationFactory.GetUiElement(walker.GetParent(element.GetSourceElement() as classic.AutomationElement));
+            } catch {
+            }
 
-			return result;
-		}
+            return result;
+        }
 
-		public static IUiElement PerformNavigateToFirstChild(this IUiElement element)
-		{
-			IUiElement result = null;
+        public static IUiElement PerformNavigateToFirstChild(this IUiElement element)
+        {
+            IUiElement result = null;
 
-			var walker = new classic.TreeWalker(classic.Condition.TrueCondition);
+            var walker = new classic.TreeWalker(classic.Condition.TrueCondition);
 
-			try {
-				result = AutomationFactory.GetUiElement(walker.GetFirstChild(element.GetSourceElement() as classic.AutomationElement));
-			} catch {
-			}
+            try {
+                result = AutomationFactory.GetUiElement(walker.GetFirstChild(element.GetSourceElement() as classic.AutomationElement));
+            } catch {
+            }
 
-			return result;
-		}
+            return result;
+        }
 
-		public static IUiElement PerformNavigateToLastChild(this IUiElement element)
-		{
-			IUiElement result = null;
+        public static IUiElement PerformNavigateToLastChild(this IUiElement element)
+        {
+            IUiElement result = null;
 
-			classic.TreeWalker walker = new classic.TreeWalker(classic.Condition.TrueCondition);
+            classic.TreeWalker walker = new classic.TreeWalker(classic.Condition.TrueCondition);
 
-			try {
-				result = AutomationFactory.GetUiElement(walker.GetLastChild(element.GetSourceElement() as classic.AutomationElement));
-			} catch {
-			}
+            try {
+                result = AutomationFactory.GetUiElement(walker.GetLastChild(element.GetSourceElement() as classic.AutomationElement));
+            } catch {
+            }
 
-			return result;
-		}
+            return result;
+        }
 
-		public static IUiElement PerformNavigateToNextSibling(this IUiElement element)
-		{
-			IUiElement result = null;
+        public static IUiElement PerformNavigateToNextSibling(this IUiElement element)
+        {
+            IUiElement result = null;
 
-			var walker = new classic.TreeWalker(classic.Condition.TrueCondition);
+            var walker = new classic.TreeWalker(classic.Condition.TrueCondition);
 
-			try {
-				result = AutomationFactory.GetUiElement(walker.GetNextSibling(element.GetSourceElement() as classic.AutomationElement));
-			} catch {
-			}
+            try {
+                result = AutomationFactory.GetUiElement(walker.GetNextSibling(element.GetSourceElement() as classic.AutomationElement));
+            } catch {
+            }
 
-			return result;
-		}
+            return result;
+        }
 
-		public static IUiElement PerformNavigateToPreviousSibling(this IUiElement element)
-		{
-			IUiElement result = null;
+        public static IUiElement PerformNavigateToPreviousSibling(this IUiElement element)
+        {
+            IUiElement result = null;
 
-			var walker = new classic.TreeWalker(classic.Condition.TrueCondition);
+            var walker = new classic.TreeWalker(classic.Condition.TrueCondition);
             
-			try {
+            try {
                 
-				result = AutomationFactory.GetUiElement(walker.GetPreviousSibling(element.GetSourceElement() as classic.AutomationElement));
-			} catch {
-			}
+                result = AutomationFactory.GetUiElement(walker.GetPreviousSibling(element.GetSourceElement() as classic.AutomationElement));
+            } catch {
+            }
 
-			return result;
-		}
+            return result;
+        }
         #endregion Navigation
         #region Highlighter
         public static IUiElement PerformHighlight(this IUiElement element)
-		{
-			UiaHelper.Highlight(element);
-			return element;
-		}
+        {
+            UiaHelper.Highlight(element);
+            return element;
+        }
         #endregion Highlighter
         #region Export
         #endregion Export

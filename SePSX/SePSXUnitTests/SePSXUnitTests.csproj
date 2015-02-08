@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
   <PropertyGroup>
     <ProjectGuid>{EFA4EAD8-8135-48D4-8576-3C4D67E80695}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>Library</OutputType>
-    <RootNamespace>SePSXUnitTests</RootNamespace>
-    <AssemblyName>SePSXUnitTests</AssemblyName>
+    <RootNamespace>SePsxUnitTests</RootNamespace>
+    <AssemblyName>SePsxUnitTests</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -14,9 +14,17 @@
     <NoStdLib>False</NoStdLib>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <OutputPath>bin\Release35</OutputPath>
+    <OutputPath>bin\Release</OutputPath>
     <DebugType>None</DebugType>
     <DebugSymbols>false</DebugSymbols>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
     <RegisterForComInterop>False</RegisterForComInterop>
@@ -26,7 +34,7 @@
     <FileAlignment>4096</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <OutputPath>bin\Release35\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>Full</DebugType>
     <Optimize>False</Optimize>
@@ -34,7 +42,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <OutputPath>bin\Release35\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DebugSymbols>false</DebugSymbols>
     <DebugType>None</DebugType>
     <Optimize>True</Optimize>
@@ -52,6 +60,32 @@
     <BaseAddress>4194304</BaseAddress>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>Full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>None</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>None</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Autofac">
@@ -300,21 +334,36 @@
       <Project>{36F73FA0-C636-48CF-BB7A-FE10FE52C391}</Project>
       <Name>CmdletUnit</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SePSX\SePSX.csproj">
-      <Project>{A0B50771-4889-46F4-8999-D2830DC9E486}</Project>
-      <Name>SePSX</Name>
+    <ProjectReference Include="..\..\Tmx\Tmx.Core\Tmx.Core.csproj">
+      <Project>{069651A0-FE15-42E2-89D5-9A761A47B143}</Project>
+      <Name>Tmx.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\TMX\TMX\TMX.csproj">
-      <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>
-      <Name>TMX</Name>
+    <ProjectReference Include="..\..\Tmx\Tmx.Interfaces\Tmx.Interfaces.csproj">
+      <Project>{9C5DA25F-6A59-4F97-B107-64DD549CB800}</Project>
+      <Name>Tmx.Interfaces</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\UIA\UIAutomation\UIAutomation.csproj">
       <Project>{BF63F595-4A58-49E8-97F2-7701F51F0CD1}</Project>
       <Name>UIAutomation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SePsx.Core\SePsx.Core.csproj">
+      <Project>{32BE1DB4-E1CC-43EC-B356-1C3777A56CF8}</Project>
+      <Name>SePsx.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SePSX\SePSX.csproj">
+      <Project>{A0B50771-4889-46F4-8999-D2830DC9E486}</Project>
+      <Name>SePsx</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
 </Project>

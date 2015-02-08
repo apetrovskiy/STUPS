@@ -11,12 +11,11 @@ namespace Tmx.Interfaces
 {
     using System;
     using System.Collections.Generic;
-    using System.Management.Automation;
     using System.Collections;
     using System.Linq;
     using System.Xml.Serialization;
-	using Tmx.Interfaces.TestStructure;
-	// using Tmx.Core;
+    using Tmx.Interfaces.TestStructure;
+    // using Tmx.Core;
     
     /// <summary>
     /// Description of TestResult.
@@ -72,13 +71,16 @@ namespace Tmx.Interfaces
         public virtual int Position { get; protected internal set; }
         public virtual void SetPosition(int position)
         {
-			Position = position;
+            Position = position;
         }
         [XmlIgnore]
-        public virtual ErrorRecord Error { get; protected internal set; }
-        public virtual void SetError(ErrorRecord error)
+        // 20150116
+        // public virtual ErrorRecord Error { get; protected internal set; }
+        // public virtual void SetError(ErrorRecord error)
+        public virtual Exception Error { get; protected internal set; }
+        public virtual void SetError(Exception error)
         {
-			Error = error;
+            Error = error;
         }
         [XmlAttribute]
         public virtual string Code { get; set; }
@@ -127,7 +129,7 @@ namespace Tmx.Interfaces
         public virtual DateTime Timestamp { get; protected internal set; }
         public virtual void SetNow()
         {
-			Timestamp = DateTime.Now;
+            Timestamp = DateTime.Now;
         }
         // TODO: DI
         public virtual void SetTimestamp(DateTime timestamp)
@@ -135,33 +137,27 @@ namespace Tmx.Interfaces
             Timestamp = timestamp;
         }
         
-        // 20141102
-        // public virtual string SuiteId { get; protected internal set; }
         [XmlIgnore]
         public virtual string SuiteId { get; set; }
-        // 20141122
         [XmlIgnore]
         public virtual Guid SuiteUniqueId { get; set; }
-        // public virtual string ScenarioId { get; protected internal set; }
         [XmlIgnore]
         public virtual string ScenarioId { get; set; }
-        // 20141122
         [XmlIgnore]
         public virtual Guid ScenarioUniqueId { get; set; }
         [XmlAttribute] // ??
         public virtual bool Generated { get; protected internal set; }
         public virtual void SetGenerated()
         {
-			Generated = true;
+            Generated = true;
         }
         
         [XmlAttribute]
         public virtual string Screenshot { get; protected internal set; }
         public virtual void SetScreenshot(string path)
         {
-			Screenshot = path;
+            Screenshot = path;
         }
-        // 20141022
         
         [XmlAttribute]
         public virtual TestResultOrigins Origin { get; protected internal set; }
@@ -172,7 +168,7 @@ namespace Tmx.Interfaces
                 // don't change the origin - it already was logical
             } else {
                 
-				Origin = origin;
+                Origin = origin;
             }
         }
         
@@ -239,19 +235,10 @@ namespace Tmx.Interfaces
         
         public virtual object[] ListDetailNames(TestResultStatuses status)
         {
-            //ArrayList detailsList =
-            //    new ArrayList();
-            
-            // 20130402
             ITestResultDetail[] detailsList = null;
             
-            // 20140208
-            // if (null == this.Details || 0 >= this.Details.Count) return detailsList;
             if (null == this.Details || 0 == this.Details.Count) return detailsList;
-            // if (null != this.Details && 0 < this.Details.Count) {
-
-            // 20130402
-            //if (null == cmdlet.TestResultStatus) {
+            
             if (TestResultStatuses.NotTested == status) {
                     
                 var testResultDetailsNonFiltered = 
@@ -286,7 +273,6 @@ namespace Tmx.Interfaces
         }
         
         [XmlAttribute]
-        // 20141119
         public virtual string PlatformId { get; set; }
         [XmlAttribute]
         public virtual Guid PlatformUniqueId { get; set; }

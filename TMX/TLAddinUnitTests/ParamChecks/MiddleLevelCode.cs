@@ -7,20 +7,20 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TLAddinUnitTests.CheckCmdletParameters
+namespace TlAddinUnitTests.CheckCmdletParameters
 {
     using System;
     using PSTestLib;
     
-	/// <summary>
-	/// Description of MiddleLevelCode.
-	/// </summary>
+    /// <summary>
+    /// Description of MiddleLevelCode.
+    /// </summary>
     public static class MiddleLevelCode
     {
         static MiddleLevelCode()
         {
         }
-		
+        
         public static void PrepareRunspace()
         {
             CmdletUnitTest.TestRunspace.InitializeRunspace(Settings.RunspaceCommand);
@@ -38,8 +38,8 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public static void DisposeRunspace()
         {
             CmdletUnitTest.TestRunspace.RunPSCode(
-				@"[Tmx.TestData]::ResetData();");
+                @"[Tmx.TestData]::ResetData();");
             CmdletUnitTest.TestRunspace.CloseRunspace();
         }
-	}
+    }
 }

@@ -9,9 +9,9 @@
 
 namespace UIAutomation
 {
-	public interface ISupportsValuePattern
-	{
-		bool IsReadOnly { get; }
-		string Value { get; set; }
-	}
+    public interface ISupportsValuePattern
+    {
+        bool IsReadOnly { get; }
+        string Value { get; set; }
+    }
 }

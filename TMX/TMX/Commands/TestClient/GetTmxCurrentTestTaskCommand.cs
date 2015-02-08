@@ -18,10 +18,10 @@ namespace Tmx.Commands.TestClient
     [Cmdlet(VerbsCommon.Get, "TmxCurrentTestTask")]
     public class GetTmxCurrentTestTaskCommand : CommonCmdletBase
     {
-		protected override void BeginProcessing()
-		{
-			var command = new GetCurrentTestTaskCommand(this);
-			command.Execute();
-		}
+        protected override void BeginProcessing()
+        {
+            var command = new GetCurrentTestTaskCommand(this);
+            command.Execute();
+        }
     }
 }

@@ -9,7 +9,7 @@
 
 namespace Tmx.Interfaces
 {
-    using System.Management.Automation;
+    // using System.Management.Automation;
     
     /// <summary>
     /// Description of IAddTestCaseCmdletBaseDataObject.
@@ -25,7 +25,9 @@ namespace Tmx.Interfaces
 //        string TestSuiteId { get; set; }
         string TestPlatformId { get; set; }
         
-        ScriptBlock[] TestCode { get; set; }
+        // 20141211
+        // ScriptBlock[] TestCode { get; set; }
+        ICodeBlock[] TestCode { get; set; }
         
 //        ScriptBlock[] BeforeTest { get; set; }
 //        ScriptBlock[] AfterTest { get; set; }

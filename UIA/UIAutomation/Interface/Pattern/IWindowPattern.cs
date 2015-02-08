@@ -9,15 +9,15 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
-	using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
+    extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
 
-	public interface IWindowPattern : IBasePattern
-	{
-		void SetWindowVisualState(classic.WindowVisualState state);
-		void Close();
-		bool WaitForInputIdle(int milliseconds);
-		IWindowPatternInformation Cached { get; }
-		IWindowPatternInformation Current { get; }
-	}
+    public interface IWindowPattern : IBasePattern
+    {
+        void SetWindowVisualState(classic.WindowVisualState state);
+        void Close();
+        bool WaitForInputIdle(int milliseconds);
+        IWindowPatternInformation Cached { get; }
+        IWindowPatternInformation Current { get; }
+    }
 }

@@ -9,16 +9,16 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
-	using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
-	
-	public interface ISupportsTablePattern
-	{
-		IUiElement[] GetRowHeaders();
-		IUiElement[] GetColumnHeaders();
-		int TableRowCount { get; }
-		int TableColumnCount { get; }
-		classic.RowOrColumnMajor RowOrColumnMajor { get; }
-	}
+    extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
+    
+    public interface ISupportsTablePattern
+    {
+        IUiElement[] GetRowHeaders();
+        IUiElement[] GetColumnHeaders();
+        int TableRowCount { get; }
+        int TableColumnCount { get; }
+        classic.RowOrColumnMajor RowOrColumnMajor { get; }
+    }
 }
 

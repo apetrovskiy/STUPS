@@ -10,18 +10,18 @@
 namespace Tmx.Server.Tests.Modules
 {
     using System;
-    using System.Management.Automation;
+    // using System.Management.Automation;
     using Nancy;
     using Nancy.Testing;
     using MbUnit.Framework;
     using NUnit.Framework;
-	using Tmx.Interfaces.Internal;
-	using Tmx.Interfaces.Server;
-	using Tmx.Core;
-	using Tmx.Interfaces;
-	using Tmx.Interfaces.Remoting;
-	using Tmx.Interfaces.TestStructure;
-	using Tmx.Server.Modules;
+    using Tmx.Interfaces.Internal;
+    using Tmx.Interfaces.Server;
+    using Tmx.Core;
+    using Tmx.Interfaces;
+    using Tmx.Interfaces.Remoting;
+    using Tmx.Interfaces.TestStructure;
+    using Tmx.Server.Modules;
     using Xunit;
     using PSTestLib;
     
@@ -36,13 +36,13 @@ namespace Tmx.Server.Tests.Modules
             TestSettings.PrepareModuleTests();
         }
         
-    	[MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
-    	public void SetUp()
-    	{
-    	    TestSettings.PrepareModuleTests();
-    	}
-    	
-    	
-    	// ============================================================================================================================
+        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
+        public void SetUp()
+        {
+            TestSettings.PrepareModuleTests();
+        }
+        
+        
+        // ============================================================================================================================
     }
 }

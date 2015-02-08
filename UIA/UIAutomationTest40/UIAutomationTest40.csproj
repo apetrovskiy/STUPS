@@ -10,7 +10,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <OutputPath>bin\Release35\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
     <NoStdLib>False</NoStdLib>
     <DebugType>None</DebugType>
@@ -32,6 +32,8 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -81,6 +83,32 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|x86'">
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>Full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>None</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>None</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Gallio">
       <HintPath>..\..\..\..\Program Files\Gallio\bin\Gallio.dll</HintPath>
@@ -89,7 +117,7 @@
       <HintPath>..\..\..\..\Program Files\Gallio\bin\MbUnit.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>..\..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+      <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -569,64 +597,27 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Commands\ExecutionPlan" />
-    <Folder Include="Commands\Container" />
-    <Folder Include="Commands\Get\Win32" />
-    <Folder Include="Commands\Get\Parameterless" />
-    <Folder Include="Commands\No" />
-    <Folder Include="Commands\Sheridan" />
-    <Folder Include="Helpers\ObjectModelWithMocks" />
-    <Folder Include="Helpers\ObjectModel" />
-    <Folder Include="Helpers\ObjectModel" />
-    <Folder Include="ParamChecks" />
-    <Folder Include="ParamChecks" />
-    <Folder Include="ParamChecks\Cache" />
-    <Folder Include="ParamChecks\Cache" />
-    <Folder Include="ParamChecks\Cache" />
-    <Folder Include="ParamChecks\Common" />
-    <Folder Include="ParamChecks\Common" />
-    <Folder Include="ParamChecks\Container" />
-    <Folder Include="ParamChecks\Container" />
-    <Folder Include="ParamChecks\Convert" />
-    <Folder Include="ParamChecks\Convert" />
-    <Folder Include="ParamChecks\Convert" />
-    <Folder Include="ParamChecks\Discovery" />
-    <Folder Include="ParamChecks\Discovery" />
-    <Folder Include="ParamChecks\Discovery" />
-    <Folder Include="ParamChecks\Event" />
-    <Folder Include="ParamChecks\Event" />
-    <Folder Include="ParamChecks\Event" />
-    <Folder Include="ParamChecks\ExecutionPlan" />
-    <Folder Include="ParamChecks\ExecutionPlan" />
-    <Folder Include="ParamChecks\ExecutionPlan" />
-    <Folder Include="ParamChecks\Get" />
-    <Folder Include="ParamChecks\Get" />
-    <Folder Include="ParamChecks\Hotkey" />
-    <Folder Include="ParamChecks\Hotkey" />
-    <Folder Include="ParamChecks\Hotkey" />
-    <Folder Include="ParamChecks\No" />
-    <Folder Include="ParamChecks\No" />
-    <Folder Include="ParamChecks\Pattern" />
-    <Folder Include="ParamChecks\Pattern" />
-    <Folder Include="ParamChecks\Profile" />
-    <Folder Include="ParamChecks\Profile" />
-    <Folder Include="ParamChecks\Profile" />
-    <Folder Include="ParamChecks\Search" />
-    <Folder Include="ParamChecks\Search" />
-    <Folder Include="ParamChecks\Search" />
-    <Folder Include="ParamChecks\Transcript" />
-    <Folder Include="ParamChecks\Transcript" />
-    <Folder Include="ParamChecks\Transcript" />
-    <Folder Include="ParamChecks\UltraGrid" />
-    <Folder Include="ParamChecks\UltraGrid" />
-    <Folder Include="ParamChecks\UltraGrid" />
-    <Folder Include="ParamChecks\Wait" />
-    <Folder Include="ParamChecks\Wait" />
-    <Folder Include="ParamChecks\Wizard" />
-    <Folder Include="ParamChecks\Wizard" />
+    <Folder Include="Commands\Get\Win32\" />
+    <Folder Include="ParamChecks\Cache\" />
+    <Folder Include="ParamChecks\Convert\" />
+    <Folder Include="ParamChecks\Discovery\" />
+    <Folder Include="ParamChecks\Event\" />
+    <Folder Include="ParamChecks\ExecutionPlan\" />
+    <Folder Include="ParamChecks\Hotkey\" />
+    <Folder Include="ParamChecks\Profile\" />
+    <Folder Include="ParamChecks\Search\" />
+    <Folder Include="ParamChecks\Transcript\" />
+    <Folder Include="ParamChecks\UltraGrid\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
 </Project>

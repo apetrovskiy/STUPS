@@ -9,14 +9,14 @@
 
 namespace Tmx.Interfaces.Remoting
 {
-	using System;
-	
-	/// <summary>
-	/// Description of ITestWorkflow.
-	/// </summary>
-	public interface ITestWorkflow : IWorkflow
-	{
-		void SetTestLab(ITestLab testLab);
-		string ParametersPageName { get; set; }
-	}
+    using System;
+    
+    /// <summary>
+    /// Description of ITestWorkflow.
+    /// </summary>
+    public interface ITestWorkflow : IWorkflow
+    {
+        void SetTestLab(ITestLab testLab);
+        string ParametersPageName { get; set; }
+    }
 }

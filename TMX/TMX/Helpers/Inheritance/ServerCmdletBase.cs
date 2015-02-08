@@ -9,14 +9,14 @@
 
 namespace Tmx
 {
-	using System;
-	using System.Management.Automation;
-	
-	/// <summary>
-	/// Description of ServerCmdletBase.
-	/// </summary>
-	public class ServerCmdletBase : CommonCmdletBase
-	{
+    using System;
+    using System.Management.Automation;
+    
+    /// <summary>
+    /// Description of ServerCmdletBase.
+    /// </summary>
+    public class ServerCmdletBase : CommonCmdletBase
+    {
         #region Parameters
         [Parameter(Mandatory = false)]
         // [ValidateNotNullOrEmpty()]
@@ -45,5 +45,5 @@ namespace Tmx
 //        [Parameter(Mandatory = false)]
 //        internal new string TestResultId { get; set; }
         #endregion Parameters
-	}
+    }
 }

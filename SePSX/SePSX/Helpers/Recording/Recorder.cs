@@ -229,7 +229,7 @@ Console.WriteLine(codeString);
 #endregion commented 20101031
                             else {
 
-								cmdlet.WriteObject(cmdlet, "singleResult is not IWebElement");
+                                cmdlet.WriteObject(cmdlet, "singleResult is not IWebElement");
                                 cmdlet.WriteObject(cmdlet, "else: " + singleResult);
                                 //cmdlet.WriteObject(cmdlet, singleResult);
                                 
@@ -339,9 +339,9 @@ Console.WriteLine(codeString);
             
             // store the last code sequence
             Recorder.StoreCodeSequenceInCollection(
-            	cmdlet,
-            	Recorder.recordingCollection,
-            	codeSequence);
+                cmdlet,
+                Recorder.recordingCollection,
+                codeSequence);
             
         }
         
@@ -511,7 +511,7 @@ Console.WriteLine(codeString);
                                 break;
                             default:
                                 
-                            	break;
+                                break;
                         }
 
 #region commented 20121031
@@ -581,7 +581,7 @@ Console.WriteLine(codeString);
             
             if (null == resultElement) {
                 
-            	return codeSequence;
+                return codeSequence;
             }
 //Console.WriteLine(@"\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ resultElement.GetType().Name = " + resultElement.GetType().Name);
             if (null != resultWebElement) {
@@ -1059,45 +1059,45 @@ Console.WriteLine("FINISHED!!!!!!!!");
                     //foreach (string key in (recordedItem as RecordedData).UserData.Keys) {
                     foreach (string key in dataElement.UserData.Keys) {
 //Console.WriteLine("dataItem's key = " + key);
-                    	if ("XPath" == key) {
+                        if ("XPath" == key) {
 //Console.WriteLine("XPath = ");
-                    		additionalData +=
-                    			"XPath = ";
+                            additionalData +=
+                                "XPath = ";
 string sTemp = "XPath = ";
 //Console.WriteLine("dataElement.UserData[key].GetType().Name = " + dataElement.UserData[key].GetType().Name);
-                    		//foreach (var xpathPart in ((ReadOnlyCollection<object>)((RecordedData)recordedItem).UserData[key])) {
-                    		foreach (var xpathPart in ((ReadOnlyCollection<object>)dataElement.UserData[key])) {
-                    			additionalData +=
-                    				"/";
+                            //foreach (var xpathPart in ((ReadOnlyCollection<object>)((RecordedData)recordedItem).UserData[key])) {
+                            foreach (var xpathPart in ((ReadOnlyCollection<object>)dataElement.UserData[key])) {
+                                additionalData +=
+                                    "/";
 sTemp += "/";
-                    			additionalData +=
-                    				xpathPart;
+                                additionalData +=
+                                    xpathPart;
 sTemp += xpathPart;
-							}
-                    		
+                            }
+                            
                             codeSequence.Code.Add("\"" + additionalData + "\"");
-                    		
-	                        additionalData +=
-	                            ";";
+                            
+                            additionalData +=
+                                ";";
 Console.WriteLine(sTemp);
-                    	} else {
+                        } else {
 string sTemp2 = string.Empty;
-	                        additionalData +=
-	                            " ";
-	                        additionalData +=
-	                            key;
+                            additionalData +=
+                                " ";
+                            additionalData +=
+                                key;
 sTemp2 += key;
-	                        additionalData +=
-	                            " = ";
+                            additionalData +=
+                                " = ";
 sTemp2 += " = ";
-	                        additionalData +=
-	                            //(recordedItem as RecordedData).UserData[key];
-	                            dataElement.UserData[key];
+                            additionalData +=
+                                //(recordedItem as RecordedData).UserData[key];
+                                dataElement.UserData[key];
 sTemp2 += dataElement.UserData[key];
 Console.WriteLine(sTemp2);
-	                        additionalData +=
-	                            ";";
-                    	}
+                            additionalData +=
+                                ";";
+                        }
                     }
                     
                     additionalData +=

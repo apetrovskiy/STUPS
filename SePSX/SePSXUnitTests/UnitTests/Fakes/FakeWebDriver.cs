@@ -171,41 +171,41 @@ internal void PrintOutCollection()
         
         internal Response InternalExecute(string driverCommandToExecute, Dictionary<string, object> parameters)
         {
-        	//return this.Execute(driverCommandToExecute, parameters);
-        	
-        	Response resp =
-        	    new Response();
-        	
-        	if ("getElementTagName" == driverCommandToExecute) {
-        	    resp.Value = this.TagNameResponse;
-        	}
-        	if ("getElementText" == driverCommandToExecute) {
-        	    resp.Value = this.TextResponse;
-        	}
-        	if ("isElementEnabled" == driverCommandToExecute) {
-        	    resp.Value = this.EnabledResponse;
-        	}
-        	if ("isElementSelected" == driverCommandToExecute) {
-        	    resp.Value = this.SelectedResponse;
-        	}
-        	if ("isElementDisplayed" == driverCommandToExecute) {
-        	    resp.Value = this.DisplayedResponse;
-        	}
-//        	if ("" == driverCommandToExecute) {
-//        	    
-//        	}
-//        	if ("" == driverCommandToExecute) {
-//        	    
-//        	}
-//        	if ("" == driverCommandToExecute) {
-//        	    
-//        	}
-//        	if ("" == driverCommandToExecute) {
-//        	    
-//        	}
-//        	if ("" == driverCommandToExecute) {
-//        	    
-//        	}
+            //return this.Execute(driverCommandToExecute, parameters);
+            
+            Response resp =
+                new Response();
+            
+            if ("getElementTagName" == driverCommandToExecute) {
+                resp.Value = this.TagNameResponse;
+            }
+            if ("getElementText" == driverCommandToExecute) {
+                resp.Value = this.TextResponse;
+            }
+            if ("isElementEnabled" == driverCommandToExecute) {
+                resp.Value = this.EnabledResponse;
+            }
+            if ("isElementSelected" == driverCommandToExecute) {
+                resp.Value = this.SelectedResponse;
+            }
+            if ("isElementDisplayed" == driverCommandToExecute) {
+                resp.Value = this.DisplayedResponse;
+            }
+//            if ("" == driverCommandToExecute) {
+//                
+//            }
+//            if ("" == driverCommandToExecute) {
+//                
+//            }
+//            if ("" == driverCommandToExecute) {
+//                
+//            }
+//            if ("" == driverCommandToExecute) {
+//                
+//            }
+//            if ("" == driverCommandToExecute) {
+//                
+//            }
 
             return resp;
         }

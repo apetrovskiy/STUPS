@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TLAddinUnitTests.CheckCmdletParameters
+namespace TlAddinUnitTests.CheckCmdletParameters
 {
     using System;
     using Tmx;
@@ -37,7 +37,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void New_TLTestPlan_NoParameters()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"New-TLTestPlan;");
+                "New-TLTestPlan;");
         }
         
         [Test]
@@ -46,7 +46,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void New_TLTestPlan_Name_Only()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"New-TLTestPlan -TestPlanName plan01;");
+                "New-TLTestPlan -TestPlanName plan01;");
         }
         
         [Test]
@@ -55,7 +55,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void New_TLTestPlan_Name_Description()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"New-TLTestPlan -TestPlanName testplan20121119 -Description descr;");
+                "New-TLTestPlan -TestPlanName testplan20121119 -Description descr;");
         }
         
         [Test]
@@ -64,7 +64,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void New_TLTestPlan_Name_Active()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"New-TLTestPlan -TestPlanName testplan20121119 -Active;");
+                "New-TLTestPlan -TestPlanName testplan20121119 -Active;");
         }
         
         [Test]
@@ -73,7 +73,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void New_TLTestPlan_Name_Active_Description()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"New-TLTestPlan -TestPlanName testplan20121119 -Description descr -Active;");
+                "New-TLTestPlan -TestPlanName testplan20121119 -Description descr -Active;");
         }
         
         [Test]
@@ -81,7 +81,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void New_TLTestPlan_Name_Description_TestProjectName()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"New-TLTestPlan -TestPlanName testplan20121119 -Description descr -TestProjectName proj;");
+                "New-TLTestPlan -TestPlanName testplan20121119 -Description descr -TestProjectName proj;");
         }
         
         [Test]
@@ -89,7 +89,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void New_TLTestPlan_Name_Active_TestProjectName()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"New-TLTestPlan -TestPlanName testplan20121119 -Active -TestProjectName proj;");
+                "New-TLTestPlan -TestPlanName testplan20121119 -Active -TestProjectName proj;");
         }
         
         [Test]
@@ -97,7 +97,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void New_TLTestPlan_Name_Active_Description_TestProjectName()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"New-TLTestPlan -TestPlanName testplan20121119 -Description descr -Active -TestProjectName proj;");
+                "New-TLTestPlan -TestPlanName testplan20121119 -Description descr -Active -TestProjectName proj;");
         }
         
         
@@ -121,7 +121,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void New_TLTestPlan_InputObject()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"New-TLTestPlan -InputObject (Get-TLProject -Name prj);");
+                "New-TLTestPlan -InputObject (Get-TLProject -Name prj);");
         }
         
         [Test]
@@ -129,7 +129,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void New_TLTestPlan_Name_InputObject()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"New-TLTestPlan -TestPlanName plan01 -InputObject (Get-TLProject -Name prj);");
+                "New-TLTestPlan -TestPlanName plan01 -InputObject (Get-TLProject -Name prj);");
         }
         
         [Test]
@@ -137,7 +137,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void New_TLTestPlan_Name_Description_InputObject()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"New-TLTestPlan -TestPlanName testplan20121119 -Description descr -InputObject (Get-TLProject -Name prj);");
+                "New-TLTestPlan -TestPlanName testplan20121119 -Description descr -InputObject (Get-TLProject -Name prj);");
         }
         
         [Test]
@@ -145,7 +145,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void New_TLTestPlan_Name_Active_InputObject()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"New-TLTestPlan -TestPlanName testplan20121119 -Active -InputObject (Get-TLProject -Name prj);");
+                "New-TLTestPlan -TestPlanName testplan20121119 -Active -InputObject (Get-TLProject -Name prj);");
         }
         
         [Test]
@@ -153,7 +153,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void New_TLTestPlan_Name_Active_Description_InputObject()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"New-TLTestPlan -TestPlanName testplan20121119 -Description descr -Active -InputObject (Get-TLProject -Name prj);");
+                "New-TLTestPlan -TestPlanName testplan20121119 -Description descr -Active -InputObject (Get-TLProject -Name prj);");
         }
         
 //        [Test]
@@ -161,7 +161,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
 //        public void New_TLTestPlan_Name_Description_TestProjectName_InputObject() // this should not work
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"New-TLTestPlan -TestPlanName testplan20121119 -Description descr -TestProjectName proj -InputObject $null;");
+//                "New-TLTestPlan -TestPlanName testplan20121119 -Description descr -TestProjectName proj -InputObject $null;");
 //        }
         
 //        [Test]
@@ -169,7 +169,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
 //        public void New_TLTestPlan_Name_Active_TestProjectName_InputObject() // this should not work
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"New-TLTestPlan -TestPlanName testplan20121119 -Active -TestProjectName proj -InputObject $null;");
+//                "New-TLTestPlan -TestPlanName testplan20121119 -Active -TestProjectName proj -InputObject $null;");
 //        }
         
 //        [Test]
@@ -177,7 +177,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
 //        public void New_TLTestPlan_Name_Active_Description_TestProjectName_InputObject() // this should not work
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"New-TLTestPlan -TestPlanName testplan20121119 -Description descr -Active -TestProjectName proj -InputObject $null;");
+//                "New-TLTestPlan -TestPlanName testplan20121119 -Description descr -Active -TestProjectName proj -InputObject $null;");
 //        }
     }
 }

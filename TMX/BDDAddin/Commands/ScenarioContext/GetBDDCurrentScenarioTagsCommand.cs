@@ -8,7 +8,7 @@
  */
 using System;
 
-namespace Tmx.Commands.BDD
+namespace Tmx.Commands.Bdd
 {
     /// <summary>
     /// Description of GetBDDCurrentScenarioTagsCommand.

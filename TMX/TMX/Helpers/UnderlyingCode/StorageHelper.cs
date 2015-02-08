@@ -69,33 +69,33 @@
 //    Console.WriteLine("Fluently == null");
 //}
 //Console.WriteLine("Fluently != null");
-//    			Fluently.Configure();
-////    			    .Database(MsSqlConfiguration
-////    			              .MsSql2008
-////    			              //.ConnectionString(Preferences.StorageConnectionString))
-////    			              //.ConnectionString(x => x.Is(connString)))
-////    			              .ConnectionString(x => x.Is(Preferences.StorageConnectionString)))
-////    			    //.Mappings(m => m.FluentMappings.AddFromAssemblyOf<ProductMap>())
-////    			    .Mappings(m => m.FluentMappings
-////    			              .AddFromAssemblyOf<TestSuiteMap>())
-////    			              //.AddFromAssemblyOf<System.Object>())
-////    			    .ExposeConfiguration(CreateSchema)
-////    			    .BuildConfiguration();
-//    			
-//    			cmdlet.WriteVerbose("creating session factory...");
-//    			
-//    			SessionFactory = Fluently.Configure()
-//    			    .Database(MsSqlConfiguration
-//    			              .MsSql2008
-//    			              .ConnectionString(Preferences.StorageConnectionString))
-//    			    .Mappings(m =>m.FluentMappings
-//    			              //.AddFromAssembly(Assembly.GetExecutingAssembly()))
-//    			              .AddFromAssemblyOf<TestSuiteMap>())
-//    			              //.AddFromAssemblyOf<System.Object>())
-//    			    .BuildSessionFactory();
-//    			
-//    			cmdlet.WriteVerbose("session factory has been created...");
-//    			
+//                Fluently.Configure();
+////                    .Database(MsSqlConfiguration
+////                              .MsSql2008
+////                              //.ConnectionString(Preferences.StorageConnectionString))
+////                              //.ConnectionString(x => x.Is(connString)))
+////                              .ConnectionString(x => x.Is(Preferences.StorageConnectionString)))
+////                    //.Mappings(m => m.FluentMappings.AddFromAssemblyOf<ProductMap>())
+////                    .Mappings(m => m.FluentMappings
+////                              .AddFromAssemblyOf<TestSuiteMap>())
+////                              //.AddFromAssemblyOf<System.Object>())
+////                    .ExposeConfiguration(CreateSchema)
+////                    .BuildConfiguration();
+//                
+//                cmdlet.WriteVerbose("creating session factory...");
+//                
+//                SessionFactory = Fluently.Configure()
+//                    .Database(MsSqlConfiguration
+//                              .MsSql2008
+//                              .ConnectionString(Preferences.StorageConnectionString))
+//                    .Mappings(m =>m.FluentMappings
+//                              //.AddFromAssembly(Assembly.GetExecutingAssembly()))
+//                              .AddFromAssemblyOf<TestSuiteMap>())
+//                              //.AddFromAssemblyOf<System.Object>())
+//                    .BuildSessionFactory();
+//                
+//                cmdlet.WriteVerbose("session factory has been created...");
+//                
 //            }
 //            catch (Exception eSession) {
 //                cmdlet.WriteError(
@@ -107,11 +107,11 @@
 //            }
 //        }
 //        
-//		private static void CreateSchema(Configuration cfg)
-//		{
+//        private static void CreateSchema(Configuration cfg)
+//        {
 //Console.WriteLine("creating schema export object...");
 //            //cmdlet.WriteVerbose("creating schema export object...");
-//		    var schemaExport = new SchemaExport(cfg);
+//            var schemaExport = new SchemaExport(cfg);
 //Console.WriteLine("dropping the previous schema object...");
 //            //cmdlet.WriteVerbose("dropping the previous schema object...");
 //            try {
@@ -122,9 +122,9 @@
 //Console.WriteLine(eDroppingSchema.InnerException.Message);
 //            }
 //Console.WriteLine("drocreating a new schema object...");
-//		    //cmdlet.WriteVerbose("drocreating a new schema object...");
+//            //cmdlet.WriteVerbose("drocreating a new schema object...");
 //            schemaExport.Create(false, true);
 //Console.WriteLine("schema has been created");
-//		}
+//        }
 //    }
 //}

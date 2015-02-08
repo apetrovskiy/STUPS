@@ -1,0 +1,17 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|Release35" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ObjectModel/ServerControl/InternalServerControl.cs">
+    <Files>
+      <File FileName="Helpers/TestRunInitializer.cs" Line="1" Column="1" />
+      <File FileName="Helpers/TestReportsExporter.cs" Line="1" Column="1" />
+      <File FileName="Modules/TestReportsModule.cs" Line="1" Column="1" />
+      <File FileName="Helpers/ServerWatcher.cs" Line="1" Column="1" />
+      <File FileName="Helpers/TaskSelector.cs" Line="1" Column="1" />
+      <File FileName="ObjectModel/ServerControl/InternalServerControl.cs" Line="73" Column="73" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

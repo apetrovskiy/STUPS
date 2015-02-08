@@ -9,8 +9,8 @@
 
 namespace UIAutomation
 {
-	public interface IInvokePattern : IBasePattern
-	{
-		void Invoke();
-	}
+    public interface IInvokePattern : IBasePattern
+    {
+        void Invoke();
+    }
 }

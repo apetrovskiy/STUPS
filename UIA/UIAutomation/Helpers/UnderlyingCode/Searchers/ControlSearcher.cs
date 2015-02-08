@@ -391,7 +391,7 @@ namespace UIAutomation
                 if (null != data.ControlType && 0 < data.ControlType.Length) {
                     
                     // 20140312
-					// goFurther &= !data.ControlType.Any(controlTypeName => String.Equals(tempElement3.Current.ControlType.ProgrammaticName.Substring(12), controlTypeName, StringComparison.CurrentCultureIgnoreCase));
+                    // goFurther &= !data.ControlType.Any(controlTypeName => String.Equals(tempElement3.Current.ControlType.ProgrammaticName.Substring(12), controlTypeName, StringComparison.CurrentCultureIgnoreCase));
                     goFurther &= !data.ControlType.Any(controlTypeName => String.Equals(tempElement3.GetCurrent().ControlType.ProgrammaticName.Substring(12), controlTypeName, StringComparison.CurrentCultureIgnoreCase));
                     
                 } else {
@@ -484,7 +484,7 @@ namespace UIAutomation
                 // controlTypeNames.Select(controlTypeName => new PropertyCondition(AutomationElement.ControlTypeProperty, UiaHelper.GetControlTypeByTypeName(controlTypeName))).ToList();
                 controlTypeNames.Select(controlTypeName => new classic.PropertyCondition(classic.AutomationElement.ControlTypeProperty, UiaHelper.GetControlTypeByTypeName(controlTypeName))).ToList<classic.PropertyCondition>();
             
-			return 1 == controlTypeCollection.Count ? (classic.Condition)controlTypeCollection[0] : (classic.Condition)GetOrCondition(controlTypeCollection);
+            return 1 == controlTypeCollection.Count ? (classic.Condition)controlTypeCollection[0] : (classic.Condition)GetOrCondition(controlTypeCollection);
         }
         
         internal static classic.Condition GetTextSearchCondition(string searchString, string[] controlTypeNames, bool caseSensitive1)

@@ -13,9 +13,9 @@ namespace UiaRunner
     using System.Collections.Generic;
     using System.Drawing;
     using System.Windows.Forms;
-	// using Tmx.Core;
-	using Tmx;
-	using Tmx.Interfaces.TestStructure;
+    // using Tmx.Core;
+    using Tmx;
+    using Tmx.Interfaces.TestStructure;
     using System.Threading;
     using PSTestRunner;
     
@@ -252,14 +252,18 @@ namespace UiaRunner
             string errorMessage = string.Empty;
             try {
                 if (((ITestResult)sender).Error != null) {
+                    // 20150116
+                    /*
                     errorMessage = 
                         ((ITestResult)sender).Error.ErrorDetails.Message;
+                    */
+                    errorMessage = ((ITestResult)sender).Error.Message;
                 }
             } 
             catch {}
             
             int index = 
-				dgvTestResults.Rows.Add(
+                dgvTestResults.Rows.Add(
                     ((ITestResult)sender).Timestamp,
                     ((ITestResult)sender).Status,
                     ((ITestResult)sender).Name,
@@ -270,50 +274,50 @@ namespace UiaRunner
                     screenShotPath);
             setRowStatus(index, ((ITestResult)sender).Status);
             
-			TestRunner.WriteTestResultToLog(((ITestResult)sender));
+            TestRunner.WriteTestResultToLog(((ITestResult)sender));
             
             Application.DoEvents();
         }
         
         void PSStateRunning(string msg)
         {
-			toolStripStatusLabelState.Text = "Running...";
+            toolStripStatusLabelState.Text = "Running...";
         }
         
         void PSStateCodeCompleted(string msg)
         {
-			toolStripStatusLabelState.Text = "Completed";
+            toolStripStatusLabelState.Text = "Completed";
         }
         
         void PSStateNotStarted(string msg)
         {
-			toolStripStatusLabelState.Text = "Not started";
+            toolStripStatusLabelState.Text = "Not started";
         }
         
         void PSStateCodeStopped(string msg)
         {
-			toolStripStatusLabelState.Text = "Stopped";
+            toolStripStatusLabelState.Text = "Stopped";
         }
         
         void PSStateCodeStopping(string msg)
         {
-			toolStripStatusLabelState.Text = "Stopping...";
+            toolStripStatusLabelState.Text = "Stopping...";
         }
         
         public void PSStateErrorThrown(string msg)
         {
-			toolStripStatusLabelState.Text = "Error thrown";
+            toolStripStatusLabelState.Text = "Error thrown";
             
             string timestamp = DateTime.Now.ToString();
             
             int index = 
-				dgvTestResults.Rows.Add(
+                dgvTestResults.Rows.Add(
                     timestamp,
                     TestData.TestStateFailed,
                     msg,
                     string.Empty,
                     string.Empty,
-					TestRunner.ScriptPath,
+                    TestRunner.ScriptPath,
                     msg,
                     string.Empty);
             
@@ -351,7 +355,7 @@ namespace UiaRunner
             
             setRowStatus(index, rowStateOutput);
             
-			dgvTestResults.AutoResizeColumns();
+            dgvTestResults.AutoResizeColumns();
             
             TestRunner.WriteTestResultToLog(
                 timestamp,
@@ -368,7 +372,7 @@ namespace UiaRunner
         
         void PSErrorArrived(object data)
         {
-			dgvTestResults.AutoResizeColumns();
+            dgvTestResults.AutoResizeColumns();
             Application.DoEvents();
         }
         
@@ -379,14 +383,14 @@ namespace UiaRunner
                     NewTestResultClosed);
             
             // Runspace and Pipeline events
-			PSRunner.Runner.PSCodeRunning += PSStateRunning;
-			PSRunner.Runner.PSCodeCompleted += PSStateCodeCompleted;
-			PSRunner.Runner.PSCodeNotStarted += PSStateNotStarted;
-			PSRunner.Runner.PSCodeStopped += PSStateCodeStopped;
-			PSRunner.Runner.PSCodeStopping += PSStateCodeStopping;
-			PSRunner.Runner.PSErrorThrown += PSStateErrorThrown;
-			PSRunner.Runner.PSOutputArrived += PSOutputArrived;
-			PSRunner.Runner.PSErrorArrived += PSErrorArrived;
+            PSRunner.Runner.PSCodeRunning += PSStateRunning;
+            PSRunner.Runner.PSCodeCompleted += PSStateCodeCompleted;
+            PSRunner.Runner.PSCodeNotStarted += PSStateNotStarted;
+            PSRunner.Runner.PSCodeStopped += PSStateCodeStopped;
+            PSRunner.Runner.PSCodeStopping += PSStateCodeStopping;
+            PSRunner.Runner.PSErrorThrown += PSStateErrorThrown;
+            PSRunner.Runner.PSOutputArrived += PSOutputArrived;
+            PSRunner.Runner.PSErrorArrived += PSErrorArrived;
             
             /*
             PSRunner.Runner.PSCodeRunning +=
@@ -424,14 +428,14 @@ namespace UiaRunner
             
             
             // Runspace and Pipeline events
-			PSRunner.Runner.PSCodeRunning -= PSStateRunning;
-			PSRunner.Runner.PSCodeCompleted -= PSStateCodeCompleted;
-			PSRunner.Runner.PSCodeNotStarted -= PSStateNotStarted;
-			PSRunner.Runner.PSCodeStopped -= PSStateCodeStopped;
-			PSRunner.Runner.PSCodeStopping -= PSStateCodeStopping;
-			PSRunner.Runner.PSErrorThrown -= PSStateErrorThrown;
-			PSRunner.Runner.PSOutputArrived -= PSOutputArrived;
-			PSRunner.Runner.PSErrorArrived -= PSErrorArrived;
+            PSRunner.Runner.PSCodeRunning -= PSStateRunning;
+            PSRunner.Runner.PSCodeCompleted -= PSStateCodeCompleted;
+            PSRunner.Runner.PSCodeNotStarted -= PSStateNotStarted;
+            PSRunner.Runner.PSCodeStopped -= PSStateCodeStopped;
+            PSRunner.Runner.PSCodeStopping -= PSStateCodeStopping;
+            PSRunner.Runner.PSErrorThrown -= PSStateErrorThrown;
+            PSRunner.Runner.PSOutputArrived -= PSOutputArrived;
+            PSRunner.Runner.PSErrorArrived -= PSErrorArrived;
             
             /*
             PSRunner.Runner.PSCodeRunning -=
@@ -462,9 +466,9 @@ namespace UiaRunner
         
         void autoresizeColumns()
         {
-			dgvTestResults.AutoResizeColumn(0);
-			dgvTestResults.AutoResizeColumn(1);
-			dgvTestResults.AutoResizeColumn(2);
+            dgvTestResults.AutoResizeColumn(0);
+            dgvTestResults.AutoResizeColumn(1);
+            dgvTestResults.AutoResizeColumn(2);
         }
         
         void setRowStatus(int index, string status)
@@ -503,16 +507,16 @@ namespace UiaRunner
                     break;
             }
             
-			TestRunner.SetTestResultsCounters(
-				tsType,
-				count,
-				ref testResultsPassed,
-				ref testResultsFailed,
-				ref testResultsAll,
-				toolStripStatusLabelPassedCount,
-				toolStripStatusLabelFailedCount,
-				toolStripStatusLabelAverageCount,
-				startTime);
+            TestRunner.SetTestResultsCounters(
+                tsType,
+                count,
+                ref testResultsPassed,
+                ref testResultsFailed,
+                ref testResultsAll,
+                toolStripStatusLabelPassedCount,
+                toolStripStatusLabelFailedCount,
+                toolStripStatusLabelAverageCount,
+                startTime);
         }
         
         void setToReadyToRunState()
@@ -561,7 +565,7 @@ namespace UiaRunner
         
         void resetCaption()
         {
-			Text = 
+            Text = 
                 "UiaRunner";
         }
         
@@ -572,22 +576,22 @@ namespace UiaRunner
         
         void ToolStripButtonOpenClick(object sender, EventArgs e)
         {
-			openToolStripMenuItem.PerformClick();
+            openToolStripMenuItem.PerformClick();
         }
         
         void ToolStripButtonRunClick(object sender, EventArgs e)
         {
-			runToolStripMenuItem.PerformClick();
+            runToolStripMenuItem.PerformClick();
         }
         
         void ToolStripButtonBreakClick(object sender, EventArgs e)
         {
-			breakToolStripMenuItem.PerformClick();
+            breakToolStripMenuItem.PerformClick();
         }
         
         void BreakToolStripMenuItemClick(object sender, EventArgs e)
         {
-			TestRunner.BreakScript();
+            TestRunner.BreakScript();
         }
         
         void ExitToolStripMenuItemClick(object sender, EventArgs e)
@@ -608,12 +612,12 @@ namespace UiaRunner
         
         void ToolStripTextBoxInputParametersModifiedChanged(object sender, EventArgs e)
         {
-			toolStripTextBoxInput.Text = inputToolStripTextBox.Text;
+            toolStripTextBoxInput.Text = inputToolStripTextBox.Text;
         }
         
         void ToolStripTextBoxInputModifiedChanged(object sender, EventArgs e)
         {
-			inputToolStripTextBox.Text = toolStripTextBoxInput.Text;
+            inputToolStripTextBox.Text = toolStripTextBoxInput.Text;
         }
     }
     

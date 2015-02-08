@@ -9,15 +9,15 @@
 
 namespace Tmx
 {
-	using System;
-	using System.Threading;
-	using Tmx;
-	using Tmx.Client;
-	using Tmx.Commands;
-	
-	/// <summary>
-	/// Description of RegisterSystemUnderTestCommand.
-	/// </summary>
+    using System;
+    using System.Threading;
+    using Tmx;
+    using Tmx.Client;
+    using Tmx.Commands;
+    
+    /// <summary>
+    /// Description of RegisterSystemUnderTestCommand.
+    /// </summary>
     class RegisterSystemUnderTestCommand : TmxCommand
     {
         internal RegisterSystemUnderTestCommand(CommonCmdletBase cmdlet) : base (cmdlet)
@@ -45,10 +45,10 @@ namespace Tmx
                     // cmdlet.WriteProgress(new System.Management.Automation.ProgressRecord(
                 }
                 
-				if (Guid.Empty != clientSettings.ClientId)
-					break;
+                if (Guid.Empty != clientSettings.ClientId)
+                    break;
                 
-				if (!cmdlet.Continuous)
+                if (!cmdlet.Continuous)
                     if ((DateTime.Now - startTime).TotalSeconds >= cmdlet.Seconds)
                         throw new Exception("Failed to register client in " + cmdlet.Seconds + " seconds");
                 

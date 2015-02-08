@@ -9,14 +9,14 @@
 
 namespace Tmx
 {
-	using System;
-	using System.Management.Automation;
-	
-	/// <summary>
-	/// Description of ClientCmdletBase.
-	/// </summary>
-	public class ClientCmdletBase : CommonCmdletBase
-	{
+    using System;
+    using System.Management.Automation;
+    
+    /// <summary>
+    /// Description of ClientCmdletBase.
+    /// </summary>
+    public class ClientCmdletBase : CommonCmdletBase
+    {
         #region Parameters
         [Parameter(Mandatory = false)]
         internal new string Name { get; set; }
@@ -27,5 +27,5 @@ namespace Tmx
         [Parameter(Mandatory = false)]
         internal new string TestPlatformId { get; set; }
         #endregion Parameters
-	}
+    }
 }

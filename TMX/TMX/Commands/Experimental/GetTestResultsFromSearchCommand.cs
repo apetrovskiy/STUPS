@@ -14,8 +14,8 @@ namespace Tmx.Commands
     using System.Linq;
     using System.Xml.Linq;
     using Tmx.Core;
-	using Tmx.Interfaces;
-	using Tmx.Interfaces.TestStructure;
+    using Tmx.Interfaces;
+    using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of GetTestResultsFromSearchCommand.
@@ -25,17 +25,16 @@ namespace Tmx.Commands
     {
         protected override void BeginProcessing()
         {
-			CheckCmdletParameters();
-            
-            var cmdlet = new SearchCmdletBase();
-            cmdlet.FilterAll = true;
-            
+            CheckCmdletParameters();
+
+            var cmdlet = new SearchCmdletBase {FilterAll = true};
+
             // 20140720
 //            var dataObject = new SearchCmdletBaseDataObject {
 //                FilterAll = true
 //            };
             // 20140721
-			var dataObject = new SearchCmdletBaseDataObject {
+            var dataObject = new SearchCmdletBaseDataObject {
                 Descending = cmdlet.Descending,
                 FilterAll = cmdlet.FilterAll,
                 FilterDescriptionContains = cmdlet.FilterDescriptionContains,
@@ -56,7 +55,7 @@ namespace Tmx.Commands
                 OrderByName = cmdlet.OrderByName,
                 OrderByPassRate = cmdlet.OrderByPassRate,
                 OrderByTimeSpent = cmdlet.OrderByTimeSpent
-			};
+            };
             // IOrderedEnumerable<TestSuite> suites =
             IOrderedEnumerable<ITestSuite> suites = TmxHelper.SearchForSuites(dataObject);
             
@@ -85,7 +84,7 @@ cmdlet.FilterNone = true;
                 testResults,
                 (new XMLElementsNativeStruct()));
             
-			WriteObject(this, suitesElement);
+            WriteObject(this, suitesElement);
 
         }
     }

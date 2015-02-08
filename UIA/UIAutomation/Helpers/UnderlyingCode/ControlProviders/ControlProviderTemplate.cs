@@ -16,7 +16,7 @@ namespace UIAutomation
     /// </summary>
     public abstract class ControlProviderTemplate
     {
-    	public virtual ControlSearcherTemplateData SearchData { get; set; }
+        public virtual ControlSearcherTemplateData SearchData { get; set; }
         internal virtual SearcherTemplateData SearcherData { get; set; }
         internal virtual List<IUiElement> ResultCollection { get; set; }
         internal abstract List<IUiElement> FilterElements(SingleControlSearcherData controlSearcherData, List<IUiElement> initialCollection);

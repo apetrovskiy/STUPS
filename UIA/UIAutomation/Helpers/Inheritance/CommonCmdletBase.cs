@@ -320,7 +320,8 @@ namespace UIAutomation
                         ((HasScriptBlockCmdletBase)cmdlet).TestResultId,
                         ((HasScriptBlockCmdletBase)cmdlet).TestPassed,
                         ((HasScriptBlockCmdletBase)cmdlet).KnownIssue, //false, // isKnownIssue
-                        MyInvocation,
+                        // 20160116
+                        // MyInvocation,
                         null, // Error
                         string.Empty,
                         TestResultOrigins.Logical,
@@ -339,7 +340,8 @@ namespace UIAutomation
                         string.Empty, //((HasScriptBlockCmdletBase)cmdlet).TestResultId, // empty, to be generated
                         ((HasScriptBlockCmdletBase)cmdlet).TestPassed,
                         ((HasScriptBlockCmdletBase)cmdlet).KnownIssue, //false, // isKnownIssue
-                        MyInvocation,
+                        // 20160116
+                        // MyInvocation,
                         null, // Error
                         string.Empty,
                         TestResultOrigins.Automatic,
@@ -649,10 +651,10 @@ namespace UIAutomation
         {
             if (cmdlet == null) return;
             // run scriptblocks
-			var hasScriptBlockCmdletBase = cmdlet as HasScriptBlockCmdletBase;
+            var hasScriptBlockCmdletBase = cmdlet as HasScriptBlockCmdletBase;
             if (hasScriptBlockCmdletBase != null) {
 
-				RunOnErrorScriptBlocks(hasScriptBlockCmdletBase, null);
+                RunOnErrorScriptBlocks(hasScriptBlockCmdletBase, null);
             }
             /*
             if (cmdlet is HasScriptBlockCmdletBase) {
@@ -661,12 +663,14 @@ namespace UIAutomation
             }
             */
         }
-
+        
         protected override void WriteErrorMethod020SetTestResult(PSCmdletBase cmdlet, ErrorRecord errorRecord)
         {
             if (cmdlet == null) return;
             // write error to the test results collection
-            TmxHelper.AddTestResultErrorDetail(errorRecord);
+            // 20160116
+            // TmxHelper.AddTestResultErrorDetail(errorRecord);
+            TmxHelper.AddTestResultErrorDetail(errorRecord.Exception);
                 
             // write test result label
             try {
@@ -680,8 +684,11 @@ namespace UIAutomation
                         ((HasScriptBlockCmdletBase)cmdlet).TestResultId,
                         false, // the only result: FAILED //((HasScriptBlockCmdletBase)cmdlet).TestPassed,
                         false, // because of failure //((HasScriptBlockCmdletBase)cmdlet).KnownIssue,
-                        MyInvocation,
-                        errorRecord,
+                        // 20160116
+                        // MyInvocation,
+                        // 20160116
+                        // errorRecord,
+                        errorRecord.Exception,
                         string.Empty,
                         TestResultOrigins.Automatic,
                         false);
@@ -700,8 +707,11 @@ namespace UIAutomation
                         string.Empty, //((HasScriptBlockCmdletBase)cmdlet).TestResultId, // empty, to be generated
                         ((HasScriptBlockCmdletBase)cmdlet).TestPassed,
                         false, // isKnownIssue
-                        MyInvocation,
-                        errorRecord,
+                        // 20160116
+                        // MyInvocation,
+                        // 20160116
+                        // errorRecord,
+                        errorRecord.Exception,
                         string.Empty,
                         TestResultOrigins.Automatic,
                         false);
@@ -883,15 +893,15 @@ namespace UIAutomation
         protected internal void RunWizardStopScriptBlocks(WizardCmdletBase cmdlet, Wizard wizard, object[] parameters, bool hereMustBeStopAction)
         {
             
-			if (hereMustBeStopAction && (null == wizard.StopAction || 0 == wizard.StopAction.Length))
+            if (hereMustBeStopAction && (null == wizard.StopAction || 0 == wizard.StopAction.Length))
 //                cmdlet.WriteVerbose(cmdlet, "there is no any StopAction scriptblock");
                 //throw new Exception("There are no StopAction scriptblocks, define at least one");
                 cmdlet.WriteError(
-					cmdlet,
-					"There are no StopAction scriptblocks, define at least one",
-					"NoStopActionScriptblocks",
-					ErrorCategory.InvalidArgument,
-					true);
+                    cmdlet,
+                    "There are no StopAction scriptblocks, define at least one",
+                    "NoStopActionScriptblocks",
+                    ErrorCategory.InvalidArgument,
+                    true);
             
             runTwoScriptBlockCollections(
                 null,
@@ -919,7 +929,7 @@ namespace UIAutomation
                     this,
                     parameters);
                     
-				result |= null != CurrentData.CurrentWindow;
+                result |= null != CurrentData.CurrentWindow;
                 /*
                 if (null != CurrentData.CurrentWindow) {
                     result = true;
@@ -932,7 +942,7 @@ namespace UIAutomation
             // temporary
             // profiling
             // 20140207
-			WriteInfo(this, "the result of the GetWindowAction scriptblock run is " + result.ToString());
+            WriteInfo(this, "the result of the GetWindowAction scriptblock run is " + result.ToString());
             
             return result;
         }

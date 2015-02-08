@@ -12,6 +12,7 @@ namespace Tmx.Server
     using System;
     using System.Linq;
     using Nancy;
+    using Nancy.TinyIoc;
     using Tmx.Core;
     using Tmx.Core.Types.Remoting;
     using Tmx.Interfaces.Remoting;
@@ -23,27 +24,27 @@ namespace Tmx.Server
     {
         public ITestRun CreateTestRun(ITestRunCommand testRunCommand, DynamicDictionary formData)
         {
-            if (string.IsNullOrEmpty(testRunCommand.Name))
-                testRunCommand.Name = testRunCommand.WorkflowName + " " + DateTime.Now;
-            var testRun = new TestRun { Name = testRunCommand.Name, Status = testRunCommand.Status };
+            if (string.IsNullOrEmpty(testRunCommand.TestRunName))
+                testRunCommand.TestRunName = testRunCommand.WorkflowName + " " + DateTime.Now;
+            var testRun = new TestRun { Name = testRunCommand.TestRunName, Status = testRunCommand.Status };
             foreach (var key in formData) {
-                testRun.Data.AddOrUpdateDataItem(
-                    new CommonDataItem {
-                        Key = key,
-                        Value = formData[key]
-                    });
+                addOrUpdateDataItem(testRun, formData, key);
+//                testRun.Data.AddOrUpdateDataItem(
+//                    new CommonDataItem {
+//                        Key = key,
+//                        Value = formData[key] ?? string.Empty
+//                    });
             }
             setWorkflow(testRunCommand, testRun);
             setStartUpParameters(testRun);
             setCommonData(testRun, formData);
             setCreatedTime(testRun);
             return testRun;
-		}
-		
+        }
+        
         void setWorkflow(ITestRunCommand testRunCommand, TestRun testRun)
         {
             (testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testRunCommand.WorkflowName));
-            // 20141128
             TestLabCollection.TestLabs.First(testLab => testLab.Id == testRun.TestLabId).Status = TestLabStatuses.Busy;
         }
         
@@ -60,17 +61,27 @@ namespace Tmx.Server
             if (null == formData || 0 >= formData.Count)
                 return;
             foreach (var key in formData) {
-                testRun.Data.AddOrUpdateDataItem(
-                    new CommonDataItem {
-                        Key = key,
-                        Value = formData[key]
-                    });
+                addOrUpdateDataItem(testRun, formData, key);
+//                testRun.Data.AddOrUpdateDataItem(
+//                    new CommonDataItem {
+//                        Key = key,
+//                        Value = formData[key] ?? string.Empty
+//                    });
             }
         }
         
         void setCreatedTime(ITestRun testRun)
         {
             testRun.CreatedTime = DateTime.Now;
+        }
+        
+        void addOrUpdateDataItem(ITestRun testRun, DynamicDictionary formData, string key)
+        {
+            testRun.Data.AddOrUpdateDataItem(
+                new CommonDataItem {
+                    Key = key,
+                    Value = formData[key] ?? string.Empty
+                });
         }
     }
 }

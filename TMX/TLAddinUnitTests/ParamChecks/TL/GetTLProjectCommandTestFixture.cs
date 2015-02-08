@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TLAddinUnitTests.CheckCmdletParameters
+namespace TlAddinUnitTests.CheckCmdletParameters
 {
     using System;
     using Tmx;
@@ -36,7 +36,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void Get_TLProject_NoParameters()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Get-TLProject;");
+                "Get-TLProject;");
         }
         
         [Test]
@@ -44,7 +44,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void Get_TLProject_Name_Implicitly()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Get-TLProject project;");
+                "Get-TLProject project;");
         }
         
         [Test]
@@ -52,7 +52,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void Get_TLProject_Name_Only()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Get-TLProject -Name project;");
+                "Get-TLProject -Name project;");
         }
         
         [Test]
@@ -60,7 +60,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void Get_TLProject_Id_Only()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Get-TLProject -Id 111;");
+                "Get-TLProject -Id 111;");
         }
         
 //        [Test]
@@ -68,7 +68,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
 //        public void Get_TLProject_Name_Id() // this should not work
 //        {
 //            CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters(
-//        		"Get-TLProject -Name proj01 -Id 333;");
+//                "Get-TLProject -Name proj01 -Id 333;");
 //        }
         
         [Test]
@@ -76,7 +76,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void Get_TLProject_NameArray_Only()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Get-TLProject -Name project01,project02;");
+                "Get-TLProject -Name project01,project02;");
         }
     }
 }

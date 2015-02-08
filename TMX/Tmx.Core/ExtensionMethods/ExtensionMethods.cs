@@ -17,8 +17,8 @@ namespace Tmx.Core
     using System.Xml;
     using System.Xml.Linq;
     using System.Xml.Serialization;
-	using Tmx.Interfaces.Remoting;
-	using Tmx.Core.Types.Remoting;
+    using Tmx.Interfaces.Remoting;
+    using Tmx.Core.Types.Remoting;
     
     /// <summary>
     /// Description of ExtensionMethods.
@@ -54,6 +54,7 @@ namespace Tmx.Core
                 WorkflowId = task.WorkflowId,
                 TestRunId = task.TestRunId,
                 TaskType = task.TaskType,
+                TaskRuntimeType = task.TaskRuntimeType,
                 StartTime = task.StartTime
             };
         }
@@ -74,7 +75,9 @@ namespace Tmx.Core
                 TaskBanner = task.TaskBanner,
                 TimeLimit = task.TimeLimit,
                 StartTime = task.StartTime,
-                TaskStatus = task.TaskStatus
+                TaskStatus = task.TaskStatus,
+                TaskType = task.TaskType,
+                TaskRuntimeType = task.TaskRuntimeType
             };
         }
         
@@ -118,6 +121,12 @@ namespace Tmx.Core
             return TestTaskStatuses.Canceled == task.TaskStatus;
         }
         
+        // 20150112
+        public static bool IsCompletedSuccessfully(this ITestTask task)
+        {
+            return TestTaskStatuses.CompletedSuccessfully == task.TaskStatus;
+        }
+        
         public static bool IsFailed(this ITestTask task)
         {
             return TestTaskStatuses.Interrupted == task.TaskStatus;
@@ -130,11 +139,22 @@ namespace Tmx.Core
         
         public static bool IsActive(this ITestRun testRun)
         {
-            // 20141127
-            // return TestRunStatuses.Running == testRun.Status;
+            // 20141211
+            // return TestRunStatuses.Running == testRun.Status
+            // || TestRunStatuses.Cancelling == testRun.Status;
+            return TestRunStatuses.Running == testRun.Status;
+        }
+        
+        public static bool IsNotQuiet(this ITestRun testRun)
+        {
             return TestRunStatuses.Running == testRun.Status
             || TestRunStatuses.Cancelling == testRun.Status;
         }
+        
+//        public static bool IsAcceptingClients(this ITestRun testRun)
+//        {
+//            return TestRunStatuses.Running == testRun.Status;
+//        }
         
         public static bool IsPending(this ITestRun testRun)
         {
@@ -148,10 +168,6 @@ namespace Tmx.Core
         
         public static bool IsCompleted(this ITestRun testRun)
         {
-            // 20141118
-            // return TestRunStatuses.CompletedSuccessfully == testRun.Status;
-            // 20141127
-            // return TestRunStatuses.CompletedSuccessfully == testRun.Status || TestRunStatuses.Interrupted == testRun.Status;
             return TestRunStatuses.CompletedSuccessfully == testRun.Status
             || TestRunStatuses.Interrupted == testRun.Status
             || TestRunStatuses.Cancelled == testRun.Status;
@@ -159,7 +175,7 @@ namespace Tmx.Core
         
         public static bool IsQueued(this ITestRun testRun)
         {
-        	return TestRunStatuses.Running == testRun.Status || TestRunStatuses.Pending == testRun.Status;
+            return TestRunStatuses.Running == testRun.Status || TestRunStatuses.Pending == testRun.Status;
         }
         
         public static void SetStartTime(this ITestRun testRun)
@@ -167,50 +183,56 @@ namespace Tmx.Core
             testRun.StartTime = DateTime.Now;
         }
         
+        // 20150115
+//        public static void SetTimeTaken(this ITestRun testRun)
+//        {
+//            testRun.TimeTaken = DateTime.Now - testRun.StartTime;
+//        }
         public static void SetTimeTaken(this ITestRun testRun)
         {
-            testRun.TimeTaken = DateTime.Now - testRun.StartTime;
+            // testRun.TimeTaken = DateTime.Now - testRun.StartTime;
+            (testRun as TestRun).SetFinishTime();
         }
         
 //        public static string SerializeToString<T>(this T testResultsCollection)
 //        {
-//			var serializer = new XmlSerializer(typeof(T));
+//            var serializer = new XmlSerializer(typeof(T));
 //            
-//			try {
-//	            using (var writer = new StringWriter())
-//	            {
-//	                serializer.Serialize(writer, testResultsCollection);
-//	                return writer.ToString();
-//	            }
-//			}
-////			catch {
-////				return string.Empty;
-////			}
-//			catch (Exception e) {
+//            try {
+//                using (var writer = new StringWriter())
+//                {
+//                    serializer.Serialize(writer, testResultsCollection);
+//                    return writer.ToString();
+//                }
+//            }
+////            catch {
+////                return string.Empty;
+////            }
+//            catch (Exception e) {
 //Console.WriteLine(e.GetType().Name);
 //Console.WriteLine(e.Message);
 //Console.WriteLine(e.InnerException.Message);
-//				return string.Empty;
-//			}
+//                return string.Empty;
+//            }
 //        }
-//		
+//        
 //        public static T DeserializeFromString<T>(this string testResultsCollection)
 //        {
-//			var serializer = new XmlSerializer(typeof(T));
-//			
-//			try {
-//				using (var stream = new MemoryStream()) {
-//					using (var writer = new StreamWriter(stream, Encoding.Unicode)) {
-//						writer.Write(testResultsCollection);
-//						writer.Flush();
-//						stream.Position = 0;
-//						return (T)serializer.Deserialize(stream);
-//					}
-//				}
-//			}
-//			catch {
-//				return default(T);
-//			}
+//            var serializer = new XmlSerializer(typeof(T));
+//            
+//            try {
+//                using (var stream = new MemoryStream()) {
+//                    using (var writer = new StreamWriter(stream, Encoding.Unicode)) {
+//                        writer.Write(testResultsCollection);
+//                        writer.Flush();
+//                        stream.Position = 0;
+//                        return (T)serializer.Deserialize(stream);
+//                    }
+//                }
+//            }
+//            catch {
+//                return default(T);
+//            }
 //        }
         
         public static string SerializeToString(this XDocument document)
@@ -233,6 +255,13 @@ namespace Tmx.Core
                     return XDocument.Parse(Encoding.ASCII.GetString(memoryStream.ToArray()));
                 }
             }
+        }
+        
+        public static void SetNoTasksStatus(this ITestClient testClient)
+        {
+            testClient.Status = TestClientStatuses.NoTasks;
+            testClient.TaskId = 0;
+            testClient.TaskName = string.Empty;
         }
     }
 }

@@ -10,7 +10,7 @@
 namespace Tmx.Interfaces
 {
     using System;
-	using System.Management.Automation;
+    // using System.Management.Automation;
     using Tmx.Interfaces.TestStructure;
     
     /// <summary>
@@ -21,8 +21,11 @@ namespace Tmx.Interfaces
         // 20141117
         public AddScenarioCmdletBaseDataObject()
         {
-            BeforeTest = new ScriptBlock[] {};
-            AfterTest = new ScriptBlock[] {};
+            // 20141211
+            // BeforeTest = new ScriptBlock[] {};
+            // AfterTest = new ScriptBlock[] {};
+            BeforeTest = new ICodeBlock[] {};
+            AfterTest = new ICodeBlock[] {};
         }
         
         public ITestSuite InputObject { get; set; }
@@ -39,7 +42,10 @@ namespace Tmx.Interfaces
         public Guid TestPlatformUniqueId { get; set; }
         // public Guid TestPlatformId { get; set; }
         
-        public ScriptBlock[] BeforeTest { get; set; }
-        public ScriptBlock[] AfterTest { get; set; }
+        // 20141211
+        // public ScriptBlock[] BeforeTest { get; set; }
+        // public ScriptBlock[] AfterTest { get; set; }
+        public ICodeBlock[] BeforeTest { get; set; }
+        public ICodeBlock[] AfterTest { get; set; }
     }
 }

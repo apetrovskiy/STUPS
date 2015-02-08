@@ -10,13 +10,16 @@
 namespace Tmx.Client
 {
     using System;
-	using System.Net;
-	using Spring.Http;
-	using Spring.Rest.Client;
-	using Tmx.Interfaces.Exceptions;
-	using Tmx.Interfaces.Server;
-	using Tmx.Core;
-	using Tmx.Interfaces.Remoting;
+    using System.Diagnostics;
+    using System.Net;
+    using PSTestLib.Helpers;
+    using Spring.Http;
+    using Spring.Rest.Client;
+    using Tmx.Core.Types.Remoting;
+    using Tmx.Interfaces.Exceptions;
+    using Tmx.Interfaces.Server;
+    using Tmx.Core;
+    using Tmx.Interfaces.Remoting;
     
     /// <summary>
     /// Description of Registration.
@@ -25,34 +28,66 @@ namespace Tmx.Client
     {
         // volatile RestTemplate _restTemplate;
         RestTemplate _restTemplate;
-	    
-	    public Registration(RestRequestCreator requestCreator)
-	    {
-	    	_restTemplate = requestCreator.GetRestTemplate();
-	    }
+        
+        public Registration(RestRequestCreator requestCreator)
+        {
+            _restTemplate = requestCreator.GetRestTemplate();
+            
+//            // 20141211
+//            // temporary
+//            // TODO: think about where to move it
+//            var tracingControl = new TracingControl("TmxClient_");
+        }
         
         public virtual Guid SendRegistrationInfoAndGetClientId(string customClientString)
-		{
-			var registrationResponse = _restTemplate.PostForMessage<TestClient>(UrlList.TestClientRegistrationPoint_absPath, getNewTestClient(customClientString));
-			
-			if (HttpStatusCode.Created == registrationResponse.StatusCode)
-			    ClientSettings.Instance.CurrentClient = registrationResponse.Body;
-			
-			if (HttpStatusCode.Created == registrationResponse.StatusCode)
-				return registrationResponse.Body.Id;
-			throw new Exception("Failed to register a client. "+ registrationResponse.StatusCode); // TODO: new type!
-		}
+        {
+            Trace.TraceInformation("SendRegistrationInfoAndGetClientId(string customClientString).1");
+            
+            var registrationResponse = _restTemplate.PostForMessage<TestClient>(UrlList.TestClientRegistrationPoint_absPath, getNewTestClient(customClientString));
+            
+            Trace.TraceInformation("registrationResponse is null {0}", null == registrationResponse);
+            Trace.TraceInformation("registrationResponse.Body is null {0}", null == registrationResponse.Body);
+            
+            if (HttpStatusCode.Created == registrationResponse.StatusCode)
+                ClientSettings.Instance.CurrentClient = registrationResponse.Body;
+            
+            Trace.TraceInformation("ClientSettings.Instance.CurrentClient = registrationResponse.Body");
+            
+            if (HttpStatusCode.Created == registrationResponse.StatusCode)
+                return registrationResponse.Body.Id;
+            
+            Trace.TraceInformation("registrationResponse.Body.Id = {0}", registrationResponse.Body.Id);
+            
+            // TODO: AOP
+            Trace.TraceWarning("SendRegistrationInfoAndGetClientId(string customClientString).2");
+            Trace.TraceWarning("Failed to register a client. "+ registrationResponse.StatusCode);
+            throw new Exception("Failed to register a client. "+ registrationResponse.StatusCode); // TODO: new type!
+        }
         
         public virtual void UnregisterClient()
         {
             closeCurrentTaskIfAny();
-			try {
-			    _restTemplate.Delete(UrlList.TestClients_Root + "/" + ClientSettings.Instance.ClientId);
+            try {
+                
+                // 20141211
+                // TODO: AOP
+                Trace.TraceInformation("UnregisterClient().1: client id = {0}, url = {1}", ClientSettings.Instance.ClientId, UrlList.TestClients_Root + "/" + ClientSettings.Instance.ClientId);
+                
+                // 20141216
+                // _restTemplate.Delete(UrlList.TestClients_Root + "/" + ClientSettings.Instance.ClientId);
+                var unregisteringClientResponse = _restTemplate.Exchange(UrlList.TestClients_Root + "/" + ClientSettings.Instance.ClientId, HttpMethod.DELETE, null);
+                if (HttpStatusCode.NoContent != unregisteringClientResponse.StatusCode)
+                    throw new ClientDeregistrationException("Failed to unregister the client");
                 ClientSettings.Instance.ResetData();
-			}
+                
+                Trace.TraceInformation("UnregisterClient().2");
+            }
             catch (RestClientException eUnregisteringClient) {
-			    throw new ClientDeregistrationException("Failed to unregister the client. " + eUnregisteringClient.Message);
-			}
+                // TODO: AOP
+                Trace.TraceError("UnregisterClient()");
+                Trace.TraceError(eUnregisteringClient.Message);
+                throw new ClientDeregistrationException("Failed to unregister the client. " + eUnregisteringClient.Message);
+            }
         }
         
         ITestClient getNewTestClient(string customClientString)
@@ -62,12 +97,33 @@ namespace Tmx.Client
         
         void closeCurrentTaskIfAny()
         {
+            
+            Trace.TraceInformation("closeCurrentTaskIfAny().1");
+            
             var task = ClientSettings.Instance.CurrentTask;
+            
+            Trace.TraceInformation("closeCurrentTaskIfAny().2");
+            
             if (null == task) return;
+            
+            Trace.TraceInformation("closeCurrentTaskIfAny().3");
+            
             var taskUpdater = new TaskUpdater(new RestRequestCreator());
-            task.TaskFinished = true;
+            
+            Trace.TraceInformation("closeCurrentTaskIfAny().4");
+            
+            // 20150112
+            // task.TaskFinished = true;
+            
+            Trace.TraceInformation("closeCurrentTaskIfAny().5");
+            
             task.TaskStatus = TestTaskStatuses.CompletedSuccessfully;
+            
+            Trace.TraceInformation("closeCurrentTaskIfAny().6");
+            
             taskUpdater.UpdateTask(task);
+            
+            Trace.TraceInformation("closeCurrentTaskIfAny().7");
         }
     }
 }

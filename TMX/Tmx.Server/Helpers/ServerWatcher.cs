@@ -11,6 +11,7 @@ namespace Tmx.Server.Helpers
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
     using System.Xml.Linq;
     using Tmx.Core;
@@ -23,7 +24,7 @@ namespace Tmx.Server.Helpers
     {
         public virtual bool IsWorkflowCompleted(string name)
         {
-			const int sleepInterval = 3000;
+            const int sleepInterval = 3000;
             
             // TODO: to a template method
             while (waitForWorkflow(name)) {
@@ -64,15 +65,18 @@ namespace Tmx.Server.Helpers
                         new XAttribute("id", testTask.Id),
                         new XAttribute("name", testTask.Name),
                         new XAttribute("status", testTask.TaskStatus),
-                        new XAttribute("finished", testTask.TaskFinished),
+                        // 20150112
+                        // new XAttribute("finished", testTask.TaskFinished),
                         new XAttribute("clientId", testTask.ClientId))); // ,
                         // new XAttribute("taskResult", testTask.TaskResult ?? new Dictionary<string, string>()),
                         // new XAttribute("previousTaskResult", testTask.PreviousTaskResult ?? new Dictionary<string, string>())));
                 var xDoc = new XDocument(rootNode);
                 xDoc.Save(dateTimeString);
             }
-            catch (Exception) {
-// Console.WriteLine(ee.Message);
+            catch (Exception ex) {
+                // TODO: AOP
+                Trace.TraceError("temp_dumpTestTasks()");
+                Trace.TraceError(ex.Message);
             }
         }
 

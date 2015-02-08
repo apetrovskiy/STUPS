@@ -10,7 +10,7 @@
 namespace Tmx.Core.Types.Remoting
 {
     using System;
-	using Tmx.Interfaces.Remoting;
+    using Tmx.Interfaces.Remoting;
     
     /// <summary>
     /// Description of TestTaskStatusProxy.

@@ -14,7 +14,7 @@ namespace Tmx.Commands
     using System.Data;
     using System.Data.OleDb;
     using System.Linq;
-	using Tmx.Interfaces;
+    using Tmx.Interfaces;
     
     /// <summary>
     /// Description of GetTestResultsViaDataSetCommand.
@@ -25,10 +25,9 @@ namespace Tmx.Commands
         protected override void BeginProcessing()
         {
             this.CheckCmdletParameters();
-            
-            var cmdlet = new SearchCmdletBase();
-            cmdlet.FilterAll = true;
-            
+
+            var cmdlet = new SearchCmdletBase {FilterAll = true};
+
 //            System.Data.DataSet dataSet = 
 //                new System.Data.DataSet();
 //            System.Data.DataTable tableSuites = 
@@ -62,7 +61,7 @@ namespace Tmx.Commands
             // 20140720
             // var dataObject = new SearchCmdletBaseDataObject { FilterAll = true };
             // 20140721
-			var dataObject = new SearchCmdletBaseDataObject {
+            var dataObject = new SearchCmdletBaseDataObject {
                 Descending = cmdlet.Descending,
                 FilterAll = cmdlet.FilterAll,
                 FilterDescriptionContains = cmdlet.FilterDescriptionContains,
@@ -83,7 +82,7 @@ namespace Tmx.Commands
                 OrderByName = cmdlet.OrderByName,
                 OrderByPassRate = cmdlet.OrderByPassRate,
                 OrderByTimeSpent = cmdlet.OrderByTimeSpent
-			};
+            };
 //            TmxHelper.SearchForScenarios(cmdlet);
 //            TmxHelper.SearchForTestResults(cmdlet);
             TmxHelper.SearchForScenarios(dataObject);

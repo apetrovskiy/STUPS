@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TLAddinUnitTests.TestCases
+namespace TlAddinUnitTests.TestCases
 {
     using System;
     using MbUnit.Framework;

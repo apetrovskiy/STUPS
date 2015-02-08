@@ -55,9 +55,9 @@ namespace UIAutomation.Commands
 
             WriteInfo(this, "accepted " + DirectionsDictionaries.Count.ToString() + " step directions");
 
-        	InvokeWizardCommand command =
-        		new InvokeWizardCommand(this);
-        	command.Execute();
+            InvokeWizardCommand command =
+                new InvokeWizardCommand(this);
+            command.Execute();
         }
     }
 }

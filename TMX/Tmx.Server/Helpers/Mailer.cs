@@ -12,6 +12,7 @@ namespace Tmx.Server.Helpers
 {
     using System;
     using System.Collections;
+    using System.Diagnostics;
     using System.Net;
     using System.Net.Mail;
     using System.Net.Mime;
@@ -47,7 +48,10 @@ namespace Tmx.Server.Helpers
                     client.Send(message);
                 }
                 catch (Exception ex) {
+                    // TODO: AOP
+                    Trace.TraceError("SendMessage(IMailSettings settings)");
                     // ??
+                    Trace.TraceError(ex.Message);
                 }
             }
         }
@@ -56,8 +60,8 @@ namespace Tmx.Server.Helpers
         
         public void CreateTestMessage2(string server)
         {
-            string to = "jane@contoso.com";
-            string from = "ben@contoso.com";
+            const string to = "jane@contoso.com";
+            const string @from = "ben@contoso.com";
             MailMessage message = new MailMessage(from, to);
             message.Subject = "Using the new SMTP client.";
             message.Body = @"Using this new feature, you can send an e-mail message from an application very easily.";
@@ -70,16 +74,21 @@ namespace Tmx.Server.Helpers
                 client.Send(message);
             }
             catch (Exception ex) {
-                Console.WriteLine("Exception caught in CreateTestMessage2(): {0}", ex);			  
+                // TODO: AOP
+                Trace.TraceError("CreateTestMessage2(string server)");
+                Console.WriteLine("Exception caught in CreateTestMessage2(): {0}", ex);
+                Trace.TraceError(ex.Message);
             }
         }
-        
+
+        /// <exception cref="UnauthorizedAccessException">The caller does not have the required permission. </exception>
+        /// <exception cref="PathTooLongException">The specified path, file name, or both exceed the system-defined maximum length. For example, on Windows-based platforms, paths must be less than 248 characters, and file names must be less than 260 characters. </exception>
         public static void CreateMessageWithAttachment(string server)
         {
             // Specify the file to be attached and sent. 
             // This example assumes that a file named Data.xls exists in the 
             // current working directory.
-            string file = "data.xls";
+            const string file = "data.xls";
             // Create a message and set up the recipients.
             MailMessage message = new MailMessage(
                                       "jane@contoso.com",
@@ -106,7 +115,10 @@ namespace Tmx.Server.Helpers
                 client.Send(message);
             }
             catch (Exception ex) {
-                Console.WriteLine("Exception caught in CreateMessageWithAttachment(): {0}", ex);			  
+                // TODO: AOP
+                Trace.TraceError("CreateMessageWithAttachment(string server)");
+                Console.WriteLine("Exception caught in CreateMessageWithAttachment(): {0}", ex);
+                Trace.TraceError(ex.Message);
             }
             // Display the values in the ContentDisposition for the attachment.
             ContentDisposition cd = data.ContentDisposition;
@@ -122,6 +134,6 @@ namespace Tmx.Server.Helpers
             foreach (DictionaryEntry d in cd.Parameters)
                 Console.WriteLine("{0} = {1}", d.Key, d.Value);
             data.Dispose();
-		}
+        }
     }
 }

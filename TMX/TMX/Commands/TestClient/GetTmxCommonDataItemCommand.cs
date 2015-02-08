@@ -24,10 +24,10 @@ namespace Tmx.Commands
         [ValidateNotNullOrEmpty]
         public string Key { get; set; }
         
-		protected override void BeginProcessing()
-		{
-			var command = new GetCommonDataItemCommand(this);
-			command.Execute();
-		}
+        protected override void BeginProcessing()
+        {
+            var command = new GetCommonDataItemCommand(this);
+            command.Execute();
+        }
     }
 }

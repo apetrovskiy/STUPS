@@ -8,7 +8,7 @@
  */
 using System;
 
-namespace BDDAddinUnitTests
+namespace BddAddinUnitTests
 {
     /// <summary>
     /// Description of Settings.

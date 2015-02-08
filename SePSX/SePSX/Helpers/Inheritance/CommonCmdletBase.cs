@@ -519,26 +519,26 @@ Console.WriteLine("WriteSingleObject 00008");
         //protected override void WriteObjectMethod030RunScriptBlocks(PSCmdletBase cmdlet, object outputObject)
         protected void WriteObjectMethod030RunScriptBlocks(PSCmdletBase cmdlet, object outputObject)
         {
-			WriteVerbose(this, "is going to run scriptblocks");
+            WriteVerbose(this, "is going to run scriptblocks");
             if (cmdlet != null) {
                 // run scriptblocks
                 //if (cmdlet is HasScriptBlockCmdletBase) {
                 if (cmdlet is PSCmdletBase) {
-					WriteVerbose(this, "cmdlet is of the HasScriptBlockCmdletBase type");
+                    WriteVerbose(this, "cmdlet is of the HasScriptBlockCmdletBase type");
                     if (outputObject == null) {
-						WriteVerbose(this, "run OnError script blocks (null)");
+                        WriteVerbose(this, "run OnError script blocks (null)");
                         //RunOnErrorScriptBlocks(((HasScriptBlockCmdletBase)cmdlet));
                         // 20130318
                         //RunOnErrorScriptBlocks(cmdlet);
                         RunOnErrorScriptBlocks(cmdlet, null);
                     } else if (outputObject is bool && ((bool)outputObject) == false) {
-						WriteVerbose(this, "run OnError script blocks (false)");
+                        WriteVerbose(this, "run OnError script blocks (false)");
                         //RunOnErrorScriptBlocks(((HasScriptBlockCmdletBase)cmdlet));
                         // 20130318
                         //RunOnErrorScriptBlocks(cmdlet);
                         RunOnErrorScriptBlocks(cmdlet, null);
                     } else if (outputObject != null) {
-						WriteVerbose(this, "run OnSuccess script blocks");
+                        WriteVerbose(this, "run OnSuccess script blocks");
                         //RunOnSuccessScriptBlocks(((HasScriptBlockCmdletBase)cmdlet));
                         // 20130318
                         //RunOnSuccessScriptBlocks(cmdlet);
@@ -568,7 +568,8 @@ Console.WriteLine("WriteSingleObject 00008");
                                                       //((HasScriptBlockCmdletBase)cmdlet).TestPassed,
                                                       cmdlet.TestPassed,
                                                       false, // isKnownIssue
-                                                      this.MyInvocation,
+                                                      // 20160116
+                                                      // this.MyInvocation,
                                                       null, // Error
                                                       string.Empty,
                                                       // 20130322
@@ -596,7 +597,8 @@ Console.WriteLine("WriteSingleObject 00008");
                                                           //((HasScriptBlockCmdletBase)cmdlet).TestPassed,
                                                           cmdlet.TestPassed,
                                                           false, // isKnownIssue
-                                                          this.MyInvocation,
+                                                          // 20160116
+                                                          // this.MyInvocation,
                                                           null, // Error
                                                           string.Empty,
                                                           // 20130322
@@ -609,7 +611,7 @@ Console.WriteLine("WriteSingleObject 00008");
                     }
                 }
                 catch (Exception) {
-					WriteVerbose(this, "for working with test results you need to import the TMX module");
+                    WriteVerbose(this, "for working with test results you need to import the TMX module");
                 }
             }
         }
@@ -728,7 +730,9 @@ Console.WriteLine("WriteSingleObject 00008");
                 // write error to the test results collection
                 // CurrentData.TestResults[CurrentData.TestResults.Count - 1].Details.Add(err);
                 //TestData.AddTestResultDetail(err);
-                Tmx.TmxHelper.AddTestResultErrorDetail(errorRecord);
+                // 20160116
+                // Tmx.TmxHelper.AddTestResultErrorDetail(errorRecord);
+                Tmx.TmxHelper.AddTestResultErrorDetail(errorRecord.Exception);
                 
                 // write test result label
                 try {
@@ -754,8 +758,11 @@ Console.WriteLine("WriteSingleObject 00008");
                                                       cmdlet.TestPassed,
                                                       //((HasScriptBlockCmdletBase)cmdlet).KnownIssue,
                                                       cmdlet.KnownIssue,
-                                                      this.MyInvocation,
-                                                      errorRecord,
+                                                      // 20160116
+                                                      // this.MyInvocation,
+                                                      // 20160116
+                                                      // errorRecord,
+                                                      errorRecord.Exception,
                                                       string.Empty,
                                                       // 20130322
                                                       //true);
@@ -788,8 +795,11 @@ Console.WriteLine("WriteSingleObject 00008");
                                                               //((HasScriptBlockCmdletBase)cmdlet).TestPassed,
                                                               cmdlet.TestPassed,
                                                               false, // isKnownIssue
-                                                              this.MyInvocation,
-                                                              errorRecord,
+                                                              // 20160116
+                                                              // this.MyInvocation,
+                                                              // 20160116
+                                                              // errorRecord,
+                                                              errorRecord.Exception,
 //                                                              Tmx.TmxHelper.GetScriptLineNumber(this.MyInvocation),
 //                                                              Tmx.TmxHelper.GetPipelinePosition(this.MyInvocation),
 //                                                              iInfo,
@@ -928,7 +938,9 @@ Console.WriteLine("WriteSingleObject 00008");
         protected internal void RunOnSuccessScriptBlocks(PSCmdletBase cmdlet, object[] parameters)
         {
             runTwoScriptBlockCollections(
+                // 20141211
                 Preferences.OnSuccessAction,
+                // Preferences.OnSuccessAction.ToString(),
                 cmdlet.OnSuccessAction,
                 // 20130318
                 //cmdlet);

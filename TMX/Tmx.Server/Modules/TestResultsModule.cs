@@ -11,21 +11,23 @@ namespace Tmx.Server.Modules
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.IO;
-	using System.Text;
+    using System.Text;
     using System.Linq;
-	using System.Xml.Linq;
+    using System.Xml.Linq;
     using Nancy;
     using Nancy.Json;
     using Nancy.ModelBinding;
     using Nancy.Responses.Negotiation;
+    using Nancy.TinyIoc;
     using Newtonsoft.Json;
     using Tmx.Core;
     using Tmx.Core.Types.Remoting;
-	using Tmx.Interfaces;
-	using Tmx.Interfaces.Server;
-	using Tmx;
-	using Tmx.Interfaces.TestStructure;
+    using Tmx.Interfaces;
+    using Tmx.Interfaces.Server;
+    using Tmx;
+    using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of TestResultsModule.
@@ -38,49 +40,31 @@ namespace Tmx.Server.Modules
             
             Get[UrlList.TestResultsPostingPoint_relPath] = parameters => exportTestResultsFromTestRun(parameters.id);
         }
-
-//        HttpStatusCode importTestResultsToTestRun(Guid testRunId)
-//        {
-//            try {
-//                var actualBytes = new byte[Request.Body.Length];
-//                Request.Body.Read(actualBytes, 0, (int)Request.Body.Length);
-//                var actual = Encoding.UTF8.GetString(actualBytes);
-//                var xDoc = XDocument.Parse(actual);
-//                var currentTestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId);
-//                var testResultsImporter = new TestResultsImportExport();
-//                currentTestRun.TestSuites.AddRange(testResultsImporter.ImportTestResultsFromXdocument(xDoc));
-//                // maybe, there's no such need? // TODO: set current test suite, test scenario, test result?
-//                return HttpStatusCode.Created;
-//            } catch (Exception eFailedToImportTestResults) {
-//                return HttpStatusCode.ExpectationFailed;
-//            }
-//        }
         
         HttpStatusCode importTestResultsToTestRun(Guid testRunId)
         {
             try {
                 var dataObject = this.Bind<TestResultsDataObject>();
-                // 20141109
-                // experimental
                 if (string.IsNullOrEmpty(dataObject.Data))
                     return HttpStatusCode.Created;
                 var xDoc = XDocument.Parse(dataObject.Data);
                 var currentTestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId);
-                var testResultsImporter = new TestResultsImporter();
-                // 20141113
-                // currentTestRun.TestSuites.AddRange(testResultsImporter.ImportTestResultsFromXdocument(xDoc));
+                var testResultsImporter = TinyIoCContainer.Current.Resolve<TestResultsImporter>();
                 testResultsImporter.MergeTestPlatforms(currentTestRun.TestPlatforms, testResultsImporter.ImportTestPlatformFromXdocument(xDoc));
                 testResultsImporter.MergeTestSuites(currentTestRun.TestSuites, testResultsImporter.ImportTestResultsFromXdocument(xDoc));
                 // maybe, there's no such need? // TODO: set current test suite, test scenario, test result?
                 return HttpStatusCode.Created;
             } catch (Exception eFailedToImportTestResults) {
+                // TODO: AOP
+                Trace.TraceError("importTestResultsToTestRun(Guid testRunId)");
+                Trace.TraceError(eFailedToImportTestResults.Message);
                 return HttpStatusCode.ExpectationFailed;
             }
         }
         
         Negotiator exportTestResultsFromTestRun(Guid testRunId)
         {
-            var testResultsExporter = new TestResultsExporter();
+            var testResultsExporter = TinyIoCContainer.Current.Resolve<TestResultsExporter>();
             var xDoc = testResultsExporter.GetTestResultsAsXdocument(
                            new SearchCmdletBaseDataObject {
                                 Descending = false,

@@ -269,7 +269,7 @@ namespace UIAutomationTestForms
                 (control as Control).GetType()
                     .GetProperty("Name")
                     .SetValue(control,
-					ControlAutomationId != string.Empty ? this.ControlAutomationId : _controlType, null);
+                    ControlAutomationId != string.Empty ? this.ControlAutomationId : _controlType, null);
 
                 /*
                 if (this.ControlAutomationId != string.Empty){
@@ -284,7 +284,7 @@ namespace UIAutomationTestForms
                     r.Next(0, this.Width - 20);
                 (control as Control).Top = 
                     r.Next(0, this.Height - 20);
-				ChildForm.Controls.Add(control as Control);
+                ChildForm.Controls.Add(control as Control);
                 
                 var showControlDelegate = new ShowControl(runTimeout);
                 showControlDelegate(this.ControlDelay, control as Control);

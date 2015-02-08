@@ -234,11 +234,11 @@ drivestoredirect:s:
             }
             
             try {
-				using (var writer = new StreamWriter(((NewUiaRemoteDesktopProtocolFileCommand)cmdlet).Path)) {
-					writer.Write(RdpFileTemplate);
-					writer.Flush();
-					writer.Close();
-				}
+                using (var writer = new StreamWriter(((NewUiaRemoteDesktopProtocolFileCommand)cmdlet).Path)) {
+                    writer.Write(RdpFileTemplate);
+                    writer.Flush();
+                    writer.Close();
+                }
                 
                 cmdlet.WriteObject(cmdlet, ((NewUiaRemoteDesktopProtocolFileCommand)cmdlet).Path);
             }

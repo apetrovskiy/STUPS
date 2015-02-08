@@ -9,17 +9,18 @@
 
 namespace Tmx.Interfaces.Remoting
 {
-	using System;
+    using System;
     using System.Collections.Generic;
+    using Tmx.Interfaces.Remoting.Actions;
     using Tmx.Interfaces.TestStructure;
-	
-	/// <summary>
-	/// Description of ITestRun.
-	/// </summary>
-	public interface ITestRun : IWorkflow
-	{
-		TestRunStatuses Status { get; set; }
-		TestRunStartTypes StartType { get; set; }
+    
+    /// <summary>
+    /// Description of ITestRun.
+    /// </summary>
+    public interface ITestRun : IWorkflow
+    {
+        TestRunStatuses Status { get; set; }
+        TestRunStartTypes StartType { get; set; }
         ICommonData Data { get; set; }
         List<ITestSuite> TestSuites { get; set; }
         List<ITestPlatform> TestPlatforms { get; set; }
@@ -27,8 +28,13 @@ namespace Tmx.Interfaces.Remoting
         Guid WorkflowId { get; }
         DateTime CreatedTime { get; set; }
         DateTime StartTime { get; set; }
-        TimeSpan TimeTaken { get; set; }
-//        // 20141126
+        // 20150115
+        // TimeSpan TimeTaken { get; set; }
+        TimeSpan GetTimeTaken();
 //        string GetTestLabName();
-	}
+        List<IAction> BeforeActions { get; set; }
+        List<IAction> AfterActions { get; set; }
+        List<IAction> CancelActions { get; set; }
+        List<IAction> FailureActions { get; set; }
+    }
 }

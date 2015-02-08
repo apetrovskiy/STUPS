@@ -10,9 +10,11 @@
 namespace ExampleExportTestResultsFromCSharp
 {
     using System;
-	using Tmx.Interfaces;
+    using System.Linq;
+    using Tmx.Core;
+    using Tmx.Interfaces;
     using Tmx;
-	// using Tmx.Core;
+    // using Tmx.Core;
     using Tmx.Interfaces.TestStructure;
     
     class Program
@@ -73,8 +75,11 @@ namespace ExampleExportTestResultsFromCSharp
                         // test scenario == name and id of th corresponding test result
                         // 20140721
                         var dataObject = new AddScenarioCmdletBaseDataObject {
-                            AfterTest = cmdlet.AfterTest,
-                            BeforeTest = cmdlet.BeforeTest,
+                            // 20141211
+                            // AfterTest = cmdlet.AfterTest,
+                            // BeforeTest = cmdlet.BeforeTest,
+                            AfterTest = cmdlet.AfterTest.Select(scriptblock => new CodeBlock { Code = scriptblock.ToString() }).ToArray(),
+                            BeforeTest = cmdlet.BeforeTest.Select(scriptblock => new CodeBlock { Code = scriptblock.ToString() }).ToArray(),
                             Description = cmdlet.Description,
                             Id = cmdlet.Id,
                             InputObject = cmdlet.InputObject,
@@ -93,7 +98,8 @@ namespace ExampleExportTestResultsFromCSharp
                             result.Id,
                             true, // Passed
                             false, // not a KnownIssue
-                            null,
+                            // 20160116
+                            // null,
                             null,
                             "description",
                             // 20130322

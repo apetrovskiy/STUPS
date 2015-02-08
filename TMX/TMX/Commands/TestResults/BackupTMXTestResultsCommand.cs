@@ -13,7 +13,7 @@ namespace Tmx.Commands
     using System.Management.Automation;
     // blocked due to the need to remove dependency on SQLite
 //    using System.Data.SQLite;
-	using Tmx;
+    using Tmx;
     
     /// <summary>
     /// Description of BackupTmxTestResultsCommand.
@@ -24,9 +24,9 @@ namespace Tmx.Commands
     {
         protected override void BeginProcessing()
         {
-			CheckCmdletParameters();
+            CheckCmdletParameters();
             
-			// blocked due to the need to remove dependency on SQLite
+            // blocked due to the need to remove dependency on SQLite
 ////            this.WriteVerbose(this, "creating a new connection object");
 //            var connection = new SQLiteConnection();
 ////            this.WriteVerbose(this, "setting the connection string");

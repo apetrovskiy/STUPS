@@ -9,13 +9,13 @@
 
 namespace SePSX
 {
-	using System;
-	using OpenQA.Selenium;
-	
-	public interface ISearchHistory
-	{
-		By ByType { get; set; }
-		string ByValue { get; set; }
-		int PositionInResult { get; set; }
-	}
+    using System;
+    using OpenQA.Selenium;
+    
+    public interface ISearchHistory
+    {
+        By ByType { get; set; }
+        string ByValue { get; set; }
+        int PositionInResult { get; set; }
+    }
 }

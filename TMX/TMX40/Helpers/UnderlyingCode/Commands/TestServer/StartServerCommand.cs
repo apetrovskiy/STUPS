@@ -9,15 +9,13 @@
 
 namespace Tmx
 {
-	using System;
-//    using System.Net;
-//    using System.Net.NetworkInformation;
-    using Tmx.Server.ObjectModel.ServerControl;
-	using Tmx.Commands;
-	
-	/// <summary>
-	/// Description of StartServerCommand.
-	/// </summary>
+    using System;
+    using Tmx.Server;
+    using Tmx.Commands;
+    
+    /// <summary>
+    /// Description of StartServerCommand.
+    /// </summary>
     class StartServerCommand : TmxCommand
     {
         internal StartServerCommand(CommonCmdletBase cmdlet) : base (cmdlet)
@@ -29,6 +27,7 @@ namespace Tmx
             var cmdlet = (StartTmxServerCommand)Cmdlet;
             // 20141001
             try {
+                ServerControl.Port = cmdlet.Port;
                 ServerControl.Start(@"http://localhost:" + cmdlet.Port);
             }
             catch (Exception eStartingServer) {

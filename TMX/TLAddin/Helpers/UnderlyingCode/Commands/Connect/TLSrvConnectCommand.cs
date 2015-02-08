@@ -25,7 +25,7 @@ namespace Tmx
         internal override void Execute()
         {
             TLHelper.ConnectTLServer(
-				(TLSConnectCmdletBase)Cmdlet);
+                (TLSConnectCmdletBase)Cmdlet);
         }
     }
 }

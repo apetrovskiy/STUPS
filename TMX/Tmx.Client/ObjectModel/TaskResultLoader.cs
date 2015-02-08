@@ -10,7 +10,8 @@
 namespace Tmx.Client
 {
     using System;
-	using Tmx.Interfaces;
+    using System.Diagnostics;
+    using Tmx.Interfaces;
     
     /// <summary>
     /// Description of TaskResultLoader.
@@ -19,9 +20,19 @@ namespace Tmx.Client
     {
         public virtual void AddTaskResults(string[] results)
         {
+            Trace.TraceInformation("AddTaskResults(string[] results).1");
+            
             var clientSettings = ClientSettings.Instance;
+            
+            Trace.TraceInformation("AddTaskResults(string[] results).2");
+            
             var addTaskResultsDelegate = new AddTaskResults(clientSettings.AddTaskResult);
+            
+            Trace.TraceInformation("AddTaskResults(string[] results).3");
+            
             addTaskResultsDelegate(results);
+            
+            Trace.TraceInformation("AddTaskResults(string[] results).4");
         }
     }
 }

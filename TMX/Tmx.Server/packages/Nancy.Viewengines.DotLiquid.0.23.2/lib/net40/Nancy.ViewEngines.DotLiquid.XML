@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Nancy.ViewEngines.DotLiquid</name>
+    </assembly>
+    <members>
+        <member name="T:Nancy.ViewEngines.DotLiquid.DefaultFileSystemFactory">
+            <summary>
+            Default implementation of the <see cref="T:Nancy.ViewEngines.DotLiquid.IFileSystemFactory"/> interface.
+            </summary>
+            <remarks>This implementation always returns instances of the <see cref="T:Nancy.ViewEngines.DotLiquid.LiquidNancyFileSystem"/> type.</remarks>
+        </member>
+        <member name="T:Nancy.ViewEngines.DotLiquid.IFileSystemFactory">
+            <summary>
+            Factory for creating a <see cref="T:DotLiquid.FileSystems.IFileSystem"/> instance.
+            </summary>
+        </member>
+        <member name="M:Nancy.ViewEngines.DotLiquid.IFileSystemFactory.GetFileSystem(Nancy.ViewEngines.ViewEngineStartupContext,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Gets a <see cref="T:DotLiquid.FileSystems.IFileSystem"/> instance for the provided <paramref name="context"/>.
+            </summary>
+            <param name="context">The context that the filesystem should be created for.</param>
+            <param name="extensions">View extensions to search for</param>
+            <returns>An <see cref="T:DotLiquid.FileSystems.IFileSystem"/> instance.</returns>
+        </member>
+        <member name="M:Nancy.ViewEngines.DotLiquid.DefaultFileSystemFactory.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nancy.ViewEngines.DotLiquid.DefaultFileSystemFactory"/> class
+            </summary>
+        </member>
+        <member name="M:Nancy.ViewEngines.DotLiquid.DefaultFileSystemFactory.GetFileSystem(Nancy.ViewEngines.ViewEngineStartupContext,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Gets a <see cref="T:DotLiquid.FileSystems.IFileSystem"/> instance for the provided <paramref name="context"/>.
+            </summary>
+            <param name="context">The context that the filesystem should be created for.</param>
+            <param name="extensions"></param>
+            <returns>An <see cref="T:DotLiquid.FileSystems.IFileSystem"/> instance.</returns>
+        </member>
+        <member name="T:Nancy.ViewEngines.DotLiquid.DotLiquidRegistrations">
+             <summary>
+             Used to register the default naming conventions for the ViewEngine. The naming convention affects DotLiquid Drops and filters.
+             See <a href="https://github.com/formosatek/dotliquid/wiki/DotLiquid-Drops#tips">DotLiquid's documentation</a> on the subject for more information.
+            
+             This can be overridden in a bootstrapper.
+             </summary>
+        </member>
+        <member name="M:Nancy.ViewEngines.DotLiquid.DotLiquidRegistrations.#ctor">
+            <summary>
+            Register the <c>RubyNamingConvention</c> as the default.
+            </summary>
+        </member>
+        <member name="T:Nancy.ViewEngines.DotLiquid.DotLiquidViewEngine">
+            <summary>
+            View engine for rendering dotLiquid views.
+            </summary>
+        </member>
+        <member name="M:Nancy.ViewEngines.DotLiquid.DotLiquidViewEngine.#ctor(DotLiquid.NamingConventions.INamingConvention)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nancy.ViewEngines.DotLiquid.DotLiquidViewEngine"/> class.
+            </summary>
+            <param name="namingConvention">Determines the DotLiquid naming convention that will be used for filters and Drops. This will default to the <c>RubyNamingConvention</c>.</param>
+            <remarks>The instance will use the <see cref="T:Nancy.ViewEngines.DotLiquid.DefaultFileSystemFactory"/> internally.</remarks>
+        </member>
+        <member name="M:Nancy.ViewEngines.DotLiquid.DotLiquidViewEngine.#ctor(Nancy.ViewEngines.DotLiquid.IFileSystemFactory,DotLiquid.NamingConventions.INamingConvention)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nancy.ViewEngines.DotLiquid.DotLiquidViewEngine"/> class.
+            </summary>
+            <param name="fileSystemFactory">Factory used to retrieve the <see cref="T:DotLiquid.FileSystems.IFileSystem"/> instance that should be used by the engine.</param>
+            <param name="namingConvention">The naming convention used by filters and DotLiquid's <c>Drop</c>s</param>
+        </member>
+        <member name="M:Nancy.ViewEngines.DotLiquid.DotLiquidViewEngine.Initialize(Nancy.ViewEngines.ViewEngineStartupContext)">
+            <summary>
+            Initialise the view engine (if necessary)
+            </summary>
+            <param name="viewEngineStartupContext">Startup context</param>
+        </member>
+        <member name="M:Nancy.ViewEngines.DotLiquid.DotLiquidViewEngine.RenderView(Nancy.ViewEngines.ViewLocationResult,System.Object,Nancy.ViewEngines.IRenderContext)">
+            <summary>
+            Renders the view.
+            </summary>
+            <param name="viewLocationResult">A <see cref="T:Nancy.ViewEngines.ViewLocationResult"/> instance, containing information on how to get the view template.</param>
+            <param name="model">The model that should be passed into the view</param>
+            <param name="renderContext"></param>
+            <returns>A response</returns>
+        </member>
+        <member name="P:Nancy.ViewEngines.DotLiquid.DotLiquidViewEngine.Extensions">
+            <summary>
+            Gets the extensions file extensions that are supported by the view engine.
+            </summary>
+            <value>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> instance containing the extensions.</value>
+            <remarks>The extensions should not have a leading dot in the name.</remarks>
+        </member>
+        <member name="M:Nancy.ViewEngines.DotLiquid.DynamicDrop.#ctor(System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nancy.ViewEngines.DotLiquid.DynamicDrop"/> class.
+            </summary>
+            <param name="model">The view model.</param>
+        </member>
+        <member name="T:Nancy.ViewEngines.DotLiquid.LiquidNancyFileSystem">
+            <summary>
+            <see cref="T:DotLiquid.FileSystems.IFileSystem"/> implementation around the Nancy templates.
+            </summary>
+        </member>
+        <member name="M:Nancy.ViewEngines.DotLiquid.LiquidNancyFileSystem.#ctor(Nancy.ViewEngines.ViewEngineStartupContext,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nancy.ViewEngines.DotLiquid.LiquidNancyFileSystem"/> class,
+            with the provided <paramref name="context"/>.
+            </summary>
+            <param name="context">The context that the engine can operate in.</param>
+            <param name="extensions"></param>
+        </member>
+        <member name="M:Nancy.ViewEngines.DotLiquid.LiquidNancyFileSystem.ReadTemplateFile(DotLiquid.Context,System.String)">
+            <summary>
+            Reads the content of the template specified by the <paramref name="templateName"/> parameter.
+            </summary>
+            <param name="context">The <see cref="T:DotLiquid.Context"/> of the call.</param>
+            <param name="templateName">The name of the template to read.</param>
+            <exception cref="T:DotLiquid.Exceptions.FileSystemException">The specified template could not be located.</exception>
+            <returns>The content of the template.</returns>
+        </member>
+    </members>
+</doc>

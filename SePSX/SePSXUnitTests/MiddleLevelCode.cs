@@ -51,31 +51,31 @@ namespace SePSXUnitTests
         {
             try {
                 CmdletUnitTest.TestRunspace.RunPSCode(
-            		//@"foreach ($driver  in  [SePSX.CurrentData]::Drivers.Keys) {[SePSX.CurrentData]::Drivers[$driver].Quit();}; " +
-    				//@"[SePSX.CurrentData]::Drivers.Clear(); " + 
-    				@"[SePSX.CurrentData]::ResetData();");
+                    //@"foreach ($driver  in  [SePSX.CurrentData]::Drivers.Keys) {[SePSX.CurrentData]::Drivers[$driver].Quit();}; " +
+                    //@"[SePSX.CurrentData]::Drivers.Clear(); " + 
+                    @"[SePSX.CurrentData]::ResetData();");
                 
             }
             catch (Exception eOnReset) {
                 Console.WriteLine(eOnReset.Message);
             }
                 
-			    //@"[SePSX.CurrentData]::CurrentWebDriver = $null; ");
-			try {
+                //@"[SePSX.CurrentData]::CurrentWebDriver = $null; ");
+            try {
                 CmdletUnitTest.TestRunspace.CloseRunspace();
-		    }
-		    catch (Exception eOnClose) {
-		        Console.WriteLine(eOnClose.Message);
-		    }
+            }
+            catch (Exception eOnClose) {
+                Console.WriteLine(eOnClose.Message);
+            }
         }
         
         public static string GetURLFromPath(string path)
         {
-        	string result = @"file:///" + path;
-        	
-        	result = result.Replace(@"\", @"/");
-        	
-        	return result;
+            string result = @"file:///" + path;
+            
+            result = result.Replace(@"\", @"/");
+            
+            return result;
         }
         
         

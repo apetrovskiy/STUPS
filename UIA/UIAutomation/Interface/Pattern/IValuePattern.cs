@@ -9,10 +9,10 @@
 
 namespace UIAutomation
 {
-	public interface IValuePattern : IBasePattern
-	{
-		void SetValue(string value);
-		IValuePatternInformation Cached { get; }
-		IValuePatternInformation Current { get; }
-	}
+    public interface IValuePattern : IBasePattern
+    {
+        void SetValue(string value);
+        IValuePatternInformation Cached { get; }
+        IValuePatternInformation Current { get; }
+    }
 }

@@ -13,26 +13,21 @@ namespace Tmx.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of AddBDDScenarioCommand.
+    /// Description of AddBddScenarioCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.Add, "BDDScenario")]
-    public class AddBDDScenarioCommand : BDDScenarioCmdletBase
+    [Cmdlet(VerbsCommon.Add, "BddScenario")]
+    public class AddBddScenarioCommand : BddScenarioCmdletBase
     {
-        public AddBDDScenarioCommand()
-        {
-        }
-        
         protected override void ProcessRecord()
         {
-            if (!this.CheckInputFeature(this.InputObject)) {
+            if (!CheckInputFeature(InputObject)) {
                 return;
                 
                 // error !!!!!!!!
                 
             }
             
-            BDDAddScenarioCommand command =
-                new BDDAddScenarioCommand(this);
+            var command = new BddAddScenarioCommand(this);
             command.Execute();
         }
     }

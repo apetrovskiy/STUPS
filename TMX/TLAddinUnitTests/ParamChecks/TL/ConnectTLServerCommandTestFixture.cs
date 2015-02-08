@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace TLAddinUnitTests.CheckCmdletParameters
+namespace TlAddinUnitTests.CheckCmdletParameters
 {
     using System;
     using System.Management.Automation;
@@ -36,7 +36,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void Connect_TLServer_Server_Only()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParameterMissing(
-        		"Connect-TLServer -Server 1.2.3.4;");
+                "Connect-TLServer -Server 1.2.3.4;");
         }
         
         [Test]
@@ -44,7 +44,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void Connect_TLServer_Apikey_Only()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParameterMissing(
-        		"Connect-TLServer -Apikey '0123456789';");
+                "Connect-TLServer -Apikey '0123456789';");
         }
         
         [Test]
@@ -52,7 +52,7 @@ namespace TLAddinUnitTests.CheckCmdletParameters
         public void Connect_TLServer_Server_Apikey()
         {
             CmdletUnitTest.TestRunspace.RunAndCheckCmdletParameters_ParamsOK_CmdletException(
-        		"Connect-TLServer -Server 1.2.3.4 -Apikey '0123456789';");
+                "Connect-TLServer -Server 1.2.3.4 -Apikey '0123456789';");
         }
     }
 }

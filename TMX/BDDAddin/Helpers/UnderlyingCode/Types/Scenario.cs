@@ -11,13 +11,13 @@ namespace Tmx
 {
     using System;
     using System.Collections.Generic;
-	using Tmx.Interfaces;
-	using Tmx.Interfaces.TestStructure;
+    using Tmx.Interfaces;
+    using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of Scenario.
     /// </summary>
-    public class Scenario : TestScenario, IBDDScenario
+    public class Scenario : TestScenario, IBddScenario
     {
         public Scenario() : base()
         {

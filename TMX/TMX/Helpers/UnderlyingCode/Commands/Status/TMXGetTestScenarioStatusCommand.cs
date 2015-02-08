@@ -11,7 +11,7 @@ namespace Tmx
 {
     using System;
     using System.Management.Automation;
-	using Tmx.Interfaces;
+    using Tmx.Interfaces;
     using Tmx.Commands;
     
     /// <summary>
@@ -39,27 +39,27 @@ namespace Tmx
             };
             
             // 20140722
-//			if (!string.IsNullOrEmpty(cmdlet.Name))
-//			    // 20140721
-//				// TmxHelper.GetTestScenarioStatus(cmdlet, cmdlet.FilterOutAutomaticResults);
-//			    TmxHelper.GetTestScenarioStatus(dataObject, cmdlet.FilterOutAutomaticResults);
-//			else if (!string.IsNullOrEmpty(cmdlet.Id))
-//			    // 20140721
-//				// TmxHelper.GetTestScenarioStatus(cmdlet, cmdlet.FilterOutAutomaticResults);
-//			    TmxHelper.GetTestScenarioStatus(dataObject, cmdlet.FilterOutAutomaticResults);
+//            if (!string.IsNullOrEmpty(cmdlet.Name))
+//                // 20140721
+//                // TmxHelper.GetTestScenarioStatus(cmdlet, cmdlet.FilterOutAutomaticResults);
+//                TmxHelper.GetTestScenarioStatus(dataObject, cmdlet.FilterOutAutomaticResults);
+//            else if (!string.IsNullOrEmpty(cmdlet.Id))
+//                // 20140721
+//                // TmxHelper.GetTestScenarioStatus(cmdlet, cmdlet.FilterOutAutomaticResults);
+//                TmxHelper.GetTestScenarioStatus(dataObject, cmdlet.FilterOutAutomaticResults);
             if (!string.IsNullOrEmpty(cmdlet.Name) || !string.IsNullOrEmpty(cmdlet.Id))
                 cmdlet.WriteObject(TmxHelper.GetTestScenarioStatus(dataObject, cmdlet.FilterOutAutomaticResults));
-			else
-				cmdlet.WriteError(
-					cmdlet,
-					"Failed to find test scenario with name = '" +
-					cmdlet.Name +
-					"' and id = '" +
-					cmdlet.Id +
-					"'",
-					"FailedToFindTestScenario",
-					ErrorCategory.InvalidArgument,
-					true);
+            else
+                cmdlet.WriteError(
+                    cmdlet,
+                    "Failed to find test scenario with name = '" +
+                    cmdlet.Name +
+                    "' and id = '" +
+                    cmdlet.Id +
+                    "'",
+                    "FailedToFindTestScenario",
+                    ErrorCategory.InvalidArgument,
+                    true);
         }
     }
 }

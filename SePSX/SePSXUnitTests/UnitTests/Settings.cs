@@ -18,22 +18,22 @@ namespace SePSXUnitTests
 //    using System.Drawing;
 //    using System.Collections.ObjectModel;
     
-	/// <summary>
-	/// Description of Settings.
-	/// </summary>
-	public static class Settings
-	{
-		static Settings()
-		{
-		}
-		
-		public static void CleanUpRecordingCollection()
-		{
-			if (null != Recorder.recordingCollection) {
-				Recorder.recordingCollection.Clear();
-			}
-		}
-		
+    /// <summary>
+    /// Description of Settings.
+    /// </summary>
+    public static class Settings
+    {
+        static Settings()
+        {
+        }
+        
+        public static void CleanUpRecordingCollection()
+        {
+            if (null != Recorder.recordingCollection) {
+                Recorder.recordingCollection.Clear();
+            }
+        }
+        
         public static string RunspaceCommand = 
 //#if DEBUG
 //                        @"Import-Module '..\..\..\TMX\bin\Debug\Tmx.dll' -Force;" + //);
@@ -42,7 +42,7 @@ namespace SePSXUnitTests
 //#endif
 //                        @"";
         
-        				@"Import-Module '.\SePSX.dll' -Force;" +
+                        @"Import-Module '.\SePSX.dll' -Force;" +
                         //@"Import-Module '.\UIAutomation.dll' -Force;" + 
                         //@"Import-Module '.\Tmx.dll' -Force;";
         
@@ -62,5 +62,5 @@ namespace SePSXUnitTests
                         @"[SePSX.Preferences]::Timeout = 3000; " + 
                         @"[SePSX.Preferences]::OnErrorScreenShot = $false; " + 
                         @"[SePSX.Preferences]::Log = $false; ";
-	}
+    }
 }

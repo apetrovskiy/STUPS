@@ -13,11 +13,11 @@ namespace Tmx
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of BDDStepCmdletBase.
+    /// Description of BddStepCmdletBase.
     /// </summary>
-    public class BDDStepCmdletBase : BDDCmdletBase
+    public class BddStepCmdletBase : BddCmdletBase
     {
-        public BDDStepCmdletBase()
+        public BddStepCmdletBase()
         {
         }
     }

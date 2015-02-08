@@ -9,13 +9,13 @@
 
 namespace Tmx
 {
-	using System;
-	using Tmx.Server;
-	using Tmx.Commands;
-	
-	/// <summary>
-	/// Description of ImportTestWorkflowCommand.
-	/// </summary>
+    using System;
+    using Tmx.Server;
+    using Tmx.Commands;
+    
+    /// <summary>
+    /// Description of ImportTestWorkflowCommand.
+    /// </summary>
     class ImportTestWorkflowCommand : TmxCommand
     {
         internal ImportTestWorkflowCommand(CommonCmdletBase cmdlet) : base (cmdlet)
@@ -26,7 +26,7 @@ namespace Tmx
         {
             var cmdlet = (ImportTmxTestWorkflowCommand)Cmdlet;
             var workflowLoader = new WorkflowLoader();
-            cmdlet.WriteObject(workflowLoader.LoadWorkflow(cmdlet.Path));
+            cmdlet.WriteObject(workflowLoader.Load(cmdlet.Path));
         }
     }
 }

@@ -10,14 +10,16 @@
 namespace Tmx.Client
 {
     using System;
+    using System.Diagnostics;
     using System.Net;
-	using Spring.Rest.Client;
+    using Spring.Http;
+    using Spring.Rest.Client;
     using Tmx.Core.Types.Remoting;
     using Tmx.Interfaces.Exceptions;
     using Tmx.Interfaces.Remoting;
-	using Tmx.Interfaces.Server;
+    using Tmx.Interfaces.Server;
     using Tmx.Core;
-	using System.Collections.Generic;
+    using System.Collections.Generic;
     
     /// <summary>
     /// Description of StatusSender.
@@ -35,9 +37,25 @@ namespace Tmx.Client
         {
             // TODO: add an error handler (??)
             try {
-                _restTemplate.Put(UrlList.TestClients_Root + "/" + ClientSettings.Instance.ClientId + "/status", new DetailedStatus(status));
+                
+                Trace.TraceInformation("Send(string status).1");
+                
+                // 20141215
+                // _restTemplate.Put(UrlList.TestClients_Root + "/" + ClientSettings.Instance.ClientId + "/status", new DetailedStatus(status));
+                var detailedStatusSendingResponse = _restTemplate.Exchange(UrlList.TestClients_Root + "/" + ClientSettings.Instance.ClientId + "/status", HttpMethod.PUT, new HttpEntity(new DetailedStatus(status)));
+                
+                if (HttpStatusCode.OK == detailedStatusSendingResponse.StatusCode)
+                    return;
+                
+                Trace.TraceInformation("Send(string status).2 HttpStatusCode.Created != detailedStatusSendingResponse.StatusCode");
+                
+                throw new SendingDetailedStatusException("Failed to send detailed status. " + detailedStatusSendingResponse.StatusCode);
+                
             }
             catch (RestClientException eSendingDetialedStatus) {
+                // TODO: AOP
+                Trace.TraceError("Send(string status)");
+                Trace.TraceError(eSendingDetialedStatus.Message);
                 throw new SendingDetailedStatusException("Failed to send detailed status. " + eSendingDetialedStatus.Message);
             }
         }

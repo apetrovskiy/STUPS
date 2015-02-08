@@ -7,10 +7,10 @@
 ////using NUnit.Framework;
 //using MbUnit.Framework;
 //
-//namespace BDDAddin
+//namespace BddAddin
 //{
-//	public class FluentExample : ScenarioDrivenSpecBase
-//	{
+//    public class FluentExample : ScenarioDrivenSpecBase
+//    {
 //        protected override Feature CreateFeature()
 //        {
 //            return new Feature("addition of two numbers")
@@ -31,8 +31,8 @@
 //                .Then("the sum should be 2");
 //        }
 //    }
-//	
-//	[ActionSteps]
+//    
+//    [ActionSteps]
 //    public class AddNumbers
 //    {
 //        private Calculator _calculator;
@@ -61,8 +61,8 @@
 //            _calculator.Value().ShouldEqual(result);
 //        }
 //    }
-//	
-//	public class Calculator
+//    
+//    public class Calculator
 //    {
 //        private readonly Queue<int> _buffer = new Queue<int>();
 //

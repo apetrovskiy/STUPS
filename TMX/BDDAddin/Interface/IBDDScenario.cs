@@ -11,12 +11,12 @@ namespace Tmx
 {
     using System;
     using System.Collections.Generic;
-	using Tmx.Interfaces.TestStructure;
+    using Tmx.Interfaces.TestStructure;
 
     /// <summary>
-    /// Description of IBDDScenario.
+    /// Description of IBddScenario.
     /// </summary>
-    public interface IBDDScenario : ITestScenario
+    public interface IBddScenario : ITestScenario
     {
         
     }

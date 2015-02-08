@@ -174,7 +174,7 @@ namespace CmdletUnitTest
         {
             //reportRunningCode(codeSnippet);
             Collection<PSObject> coll;
-			coll = null == inputData ? PSRunner.Runner.RunPSCode(codeSnippet, showCode) : PSRunner.Runner.RunPSCode(codeSnippet, showCode, inputData);
+            coll = null == inputData ? PSRunner.Runner.RunPSCode(codeSnippet, showCode) : PSRunner.Runner.RunPSCode(codeSnippet, showCode, inputData);
             /*
             if (null == inputData) {
                 coll = PSRunner.Runner.RunPSCode(codeSnippet, showCode);
@@ -183,10 +183,10 @@ namespace CmdletUnitTest
             }
             */
             
-			if (null != coll && 0 < coll.Count)
-				Assert.AreEqual(strValue, coll[0].ToString());
-			else
-				Assert.Fail();
+            if (null != coll && 0 < coll.Count)
+                Assert.AreEqual(strValue, coll[0].ToString());
+            else
+                Assert.Fail();
             
             PSRunner.Runner.FinishRunningCode();
         }
@@ -209,11 +209,11 @@ namespace CmdletUnitTest
             //reportRunningCode(codeSnippet);
             var coll = PSRunner.Runner.RunPSCode(codeSnippet, showCode);
             var sourceList = new List<object>();
-			foreach (int i in sourceIndices)
-				sourceList.Add(coll[i]);
+            foreach (int i in sourceIndices)
+                sourceList.Add(coll[i]);
             var targetList = new List<object>();
-			foreach (int i in targetIndices)
-				targetList.Add(coll[i]);
+            foreach (int i in targetIndices)
+                targetList.Add(coll[i]);
             Assert.AreEqual(sourceList, targetList);
             PSRunner.Runner.FinishRunningCode();
         }

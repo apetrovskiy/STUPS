@@ -14,36 +14,36 @@ namespace Tmx
     using System.Management.Automation;
     //using System.ComponentModel;
     //using System.Linq;
-	
-	/// <summary>
-	/// Description of TestExecHelper.
-	/// </summary>
-	public static class TestExecHelper
-	{
-		static TestExecHelper()
-		{
-		}
-		
-//		public static void RunTestCase(
-//			TestCaseExecCmdletBase cmdlet,
-//			TestSuite testSuite,
-//			TestScenario testScenario)
-//		{
-//			// run BeforeScenario scriptblocks
-//			
-//			
-//			// run BeforeTest scriptblocks
-//			
-//			
-//			// run TestCode scriptblocks
-//			cmdlet.run
-//			
-//			// run AfterTest scriptblocks
-//			
-//			
-//			// run AfterScenario scriptblocks
-//			
-//			
-//		}
-	}
+    
+    /// <summary>
+    /// Description of TestExecHelper.
+    /// </summary>
+    public static class TestExecHelper
+    {
+        static TestExecHelper()
+        {
+        }
+        
+//        public static void RunTestCase(
+//            TestCaseExecCmdletBase cmdlet,
+//            TestSuite testSuite,
+//            TestScenario testScenario)
+//        {
+//            // run BeforeScenario scriptblocks
+//            
+//            
+//            // run BeforeTest scriptblocks
+//            
+//            
+//            // run TestCode scriptblocks
+//            cmdlet.run
+//            
+//            // run AfterTest scriptblocks
+//            
+//            
+//            // run AfterScenario scriptblocks
+//            
+//            
+//        }
+    }
 }

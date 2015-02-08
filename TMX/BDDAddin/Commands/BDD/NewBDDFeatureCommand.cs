@@ -13,19 +13,14 @@ namespace Tmx.Commands
     using System.Management.Automation;
     
     /// <summary>
-    /// Description of NewBDDFeatureCommand.
+    /// Description of NewBddFeatureCommand.
     /// </summary>
-    [Cmdlet(VerbsCommon.New, "BDDFeature")]
-    public class NewBDDFeatureCommand : BDDFeatureCmdletBase
+    [Cmdlet(VerbsCommon.New, "BddFeature")]
+    public class NewBddFeatureCommand : BddFeatureCmdletBase
     {
-        public NewBDDFeatureCommand()
-        {
-        }
-        
         protected override void BeginProcessing()
         {
-            BDDNewFeatureCommand command =
-                new BDDNewFeatureCommand(this);
+            var command = new BddNewFeatureCommand(this);
             command.Execute();
         }
     }

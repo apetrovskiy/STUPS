@@ -9,20 +9,23 @@
 
 namespace Tmx.Core.Types.Remoting
 {
-	using System;
+    using System;
     using System.Collections.Generic;
-	using Tmx.Interfaces.Remoting;
+    using Tmx.Interfaces.Remoting;
+    using Tmx.Interfaces.Remoting.Actions;
     using Tmx.Interfaces.TestStructure;
-	
-	/// <summary>
-	/// Description of TestRun.
-	/// </summary>
-	public class TestRun : ITestRun
-	{
-		ITestWorkflow _workflow;
-		
-		public TestRun()
-		{
+    
+    /// <summary>
+    /// Description of TestRun.
+    /// </summary>
+    public class TestRun : ITestRun
+    {
+        ITestWorkflow _workflow;
+        // 20150115
+        DateTime _finishTime;
+        
+        public TestRun()
+        {
             Data = new CommonData();
             TestSuites = new List<ITestSuite>();
             TestPlatforms = new List<ITestPlatform> {
@@ -32,11 +35,17 @@ namespace Tmx.Core.Types.Remoting
                     Description = "This platform has been created automatically"
                 }
             };
+            
+            BeforeActions = new List<IAction>();
+            AfterActions = new List<IAction>();
+            CancelActions = new List<IAction>();
+            FailureActions = new List<IAction>();
+            
             // TestSuites = new ListOfTestSuites();
             Status = TestRunStatuses.Pending;
             Id = Guid.NewGuid();
-		}
-		
+        }
+        
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -62,12 +71,28 @@ namespace Tmx.Core.Types.Remoting
         
         public DateTime CreatedTime { get; set; }
         public DateTime StartTime { get; set; }
-        public TimeSpan TimeTaken { get; set; }
-
-//		// 20141126
+        // 20150115
+        // public TimeSpan TimeTaken { get; set; }
+        public TimeSpan GetTimeTaken()
+        {
+            if (DateTime.MinValue < _finishTime)
+                return _finishTime - StartTime;
+            return DateTime.Now - StartTime;
+        }
+        public void SetFinishTime()
+        {
+            _finishTime = DateTime.Now;
+        }
+        
+//        // 20141126
 //        string GetTestLabName()
 //        {
 //            return testlabcollection
 //        }
-	}
+        
+        public List<IAction> BeforeActions { get; set; }
+        public List<IAction> AfterActions { get; set; }
+        public List<IAction> CancelActions { get; set; }
+        public List<IAction> FailureActions { get; set; }
+    }
 }

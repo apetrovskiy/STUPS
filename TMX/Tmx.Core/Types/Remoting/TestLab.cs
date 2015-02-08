@@ -9,12 +9,12 @@
 
 namespace Tmx.Core.Types.Remoting
 {
-	using System;
-	using Tmx.Interfaces.Remoting;
-	
-	/// <summary>
-	/// Description of TestLab.
-	/// </summary>
+    using System;
+    using Tmx.Interfaces.Remoting;
+    
+    /// <summary>
+    /// Description of TestLab.
+    /// </summary>
     public class TestLab : ITestLab
     {
         public TestLab()

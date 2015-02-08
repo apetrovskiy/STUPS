@@ -9,7 +9,8 @@
 
 namespace Tmx.Interfaces
 {
-    using System.Management.Automation;
+    // 20160116
+    // using System.Management.Automation;
     
     /// <summary>
     /// Description of SettingsCmdletBaseDataObject.
@@ -18,6 +19,6 @@ namespace Tmx.Interfaces
     {
         public string Path { get; set; }
         public string[] VariableName { get; set; }
-        public SessionState SessionState { get; set; }
+        // public SessionState SessionState { get; set; }
     }
 }

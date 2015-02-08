@@ -41,7 +41,7 @@ namespace UIAutomation
 //            } else {
 //                Wait = (_control.Current).IsOffscreen;
 //            }
-			Wait = isEnabledOrIsVisible ? !(_control.GetCurrent()).IsEnabled : (_control.GetCurrent()).IsOffscreen;
+            Wait = isEnabledOrIsVisible ? !(_control.GetCurrent()).IsEnabled : (_control.GetCurrent()).IsOffscreen;
             do
             {
                 SleepAndRunScriptBlocks(this);
@@ -74,7 +74,7 @@ namespace UIAutomation
 //                } else {
 //                    Wait = (_control.Current).IsOffscreen;
 //                }
-				Wait = isEnabledOrIsVisible ? !(_control.GetCurrent()).IsEnabled : (_control.GetCurrent()).IsOffscreen;
+                Wait = isEnabledOrIsVisible ? !(_control.GetCurrent()).IsEnabled : (_control.GetCurrent()).IsOffscreen;
                 if ((nowDate - StartDate).TotalSeconds > Timeout / 1000)
                 {
                     // 20140312

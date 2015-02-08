@@ -9,14 +9,14 @@
 
 namespace UIAutomation
 {
-	extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
-	using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
+    extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
+    using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
 
-	public interface IGridPattern : IBasePattern
-	{
-		IUiElement GetItem(int row, int column);
-		IGridPatternInformation Cached { get; }
-		IGridPatternInformation Current { get; }
-	}
+    public interface IGridPattern : IBasePattern
+    {
+        IUiElement GetItem(int row, int column);
+        IGridPatternInformation Cached { get; }
+        IGridPatternInformation Current { get; }
+    }
 }
 

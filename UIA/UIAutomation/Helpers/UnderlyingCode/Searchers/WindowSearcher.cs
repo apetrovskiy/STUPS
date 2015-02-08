@@ -111,31 +111,31 @@ namespace UIAutomation
         }
         
         public override void AfterSearchHook()
-		{
-			// filtering result window collection by SearchCriteria
-			if (null != ResultCollection && 0 < ResultCollection.Count) {
+        {
+            // filtering result window collection by SearchCriteria
+            if (null != ResultCollection && 0 < ResultCollection.Count) {
                 
-				if (null != (SearcherData as WindowSearcherData).SearchCriteria && 0 < (SearcherData as WindowSearcherData).SearchCriteria.Length) {
+                if (null != (SearcherData as WindowSearcherData).SearchCriteria && 0 < (SearcherData as WindowSearcherData).SearchCriteria.Length) {
                     
-					ResultCollection =
+                    ResultCollection =
                         ResultCollection.GetFilteredElementsCollection();
-				}
-			}
+                }
+            }
             
-			// filtering result window collection by having a control(s) with properties as from WithControl
-			if (null != ResultCollection && 0 < ResultCollection.Count) {
+            // filtering result window collection by having a control(s) with properties as from WithControl
+            if (null != ResultCollection && 0 < ResultCollection.Count) {
                 
-				if (null != (SearcherData as WindowSearcherData).WithControl && 0 < (SearcherData as WindowSearcherData).WithControl.Length) {
+                if (null != (SearcherData as WindowSearcherData).WithControl && 0 < (SearcherData as WindowSearcherData).WithControl.Length) {
                     
-					FilterResultCollectionByWithControlParameter();
-				}
-			}
+                    FilterResultCollectionByWithControlParameter();
+                }
+            }
             
-			Wait &= !(SearcherData as WindowSearcherData).WaitNoWindow || !wasFound || (null != ResultCollection && 0 != ResultCollection.Count);
+            Wait &= !(SearcherData as WindowSearcherData).WaitNoWindow || !wasFound || (null != ResultCollection && 0 != ResultCollection.Count);
             
-//			wasFound = true;
-//			ResultCollection.Clear();
-//			ResultCollection = null;
+//            wasFound = true;
+//            ResultCollection.Clear();
+//            ResultCollection = null;
             
             if ((SearcherData as WindowSearcherData).WaitNoWindow && !wasFound && null != ResultCollection && 0 != ResultCollection.Count) {
 
@@ -145,26 +145,26 @@ namespace UIAutomation
                 ResultCollection = null;
             }
             
-			if (null != ResultCollection && 0 < ResultCollection.Count) {
-				if (Preferences.CacheRequestCalled && null != CurrentData.CacheRequest) {
-					try {
-						// CurrentData.CacheRequest.Push();
-						// var cacheRequest = CurrentData.CacheRequest.Clone();
-						ClonedCacheRequest = CurrentData.CacheRequest.Clone();
-						ClonedCacheRequest.Push();
-						Preferences.FromCache = true;
-					} catch (Exception) {
-						Preferences.FromCache = false;
+            if (null != ResultCollection && 0 < ResultCollection.Count) {
+                if (Preferences.CacheRequestCalled && null != CurrentData.CacheRequest) {
+                    try {
+                        // CurrentData.CacheRequest.Push();
+                        // var cacheRequest = CurrentData.CacheRequest.Clone();
+                        ClonedCacheRequest = CurrentData.CacheRequest.Clone();
+                        ClonedCacheRequest.Push();
+                        Preferences.FromCache = true;
+                    } catch (Exception) {
+                        Preferences.FromCache = false;
 //Console.WriteLine("failed to start cache request");
 //Console.WriteLine(eeee.Message);
-					}
-				}
-			} else {
-				if (null == CurrentData.CacheRequest) {
+                    }
+                }
+            } else {
+                if (null == CurrentData.CacheRequest) {
 //Console.WriteLine("cache request is null");
-				}
-			}
-		}
+                }
+            }
+        }
 
         internal void FilterResultCollectionByWithControlParameter()
         {
@@ -189,14 +189,14 @@ namespace UIAutomation
 
                         List<IUiElement> controlsList = controlSearch.GetElements(ControlSearcherData, 0);
 
-						if (null == controlsList || 0 == controlsList.Count) {
-							exitInnerCycle = true;
-							addToResultCollection = false;
-							continue;
-						} else {
-							addToResultCollection = true;
-							break;
-						}
+                        if (null == controlsList || 0 == controlsList.Count) {
+                            exitInnerCycle = true;
+                            addToResultCollection = false;
+                            continue;
+                        } else {
+                            addToResultCollection = true;
+                            break;
+                        }
                         
                     } catch (Exception) {
 

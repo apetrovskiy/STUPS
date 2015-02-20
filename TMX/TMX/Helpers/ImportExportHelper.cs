@@ -95,8 +95,6 @@ namespace Tmx.Helpers
         }
         
         public static void ImportTestSettings(
-            // 20140720
-            // SettingsCmdletBase cmdlet,
             ISettingsCmdletBaseDataObject cmdlet,
             string path,
             string[] variableNames)

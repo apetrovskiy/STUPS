@@ -25,34 +25,36 @@ namespace Tmx.Core
         
         public void MergeTestSuites(List<ITestSuite> sourceTestSuites, List<ITestSuite> testSuitesToAdd)
         {
-            // 20150113
             var testStatistics = new TestStatistics();
             
             foreach (var testSuite in testSuitesToAdd) {
                 if (sourceTestSuites.All(ts => ts.UniqueId != testSuite.UniqueId)) {
+                    // 20150219
+                    // TODO: move it to another place
+                    testStatistics.RefreshSuiteStatistics(testSuite, false);
                     sourceTestSuites.Add(testSuite);
                     continue;
                 }
                 var existingTestSuite = sourceTestSuites.First(ts => ts.UniqueId == testSuite.UniqueId);
                 MergeTestScenarios(existingTestSuite.TestScenarios, testSuite.TestScenarios);
-                // 20150113
                 testStatistics.RefreshSuiteStatistics(existingTestSuite, false);
             }
         }
         
         void MergeTestScenarios(List<ITestScenario> sourceTestScenarios, List<ITestScenario> testScenariosToAdd)
         {
-            // 20150113
             var testStatistics = new TestStatistics();
             
             foreach (var testScenario in testScenariosToAdd) {
                 if (sourceTestScenarios.All(tsc => tsc.UniqueId != testScenario.UniqueId)) {
+                    // 20150219
+                    // TODO: move it to another place
+                    testStatistics.RefreshScenarioStatistics(testScenario, false);
                     sourceTestScenarios.Add(testScenario);
                     continue;
                 }
                 var existingTestScenario = sourceTestScenarios.First(tsc => tsc.UniqueId == testScenario.UniqueId);
                 MergeTestResults(existingTestScenario.TestResults, testScenario.TestResults);
-                // 20150113
                 testStatistics.RefreshScenarioStatistics(existingTestScenario, false);
             }
         }
@@ -62,7 +64,6 @@ namespace Tmx.Core
             foreach (var testResult in testResultsToAdd)
                 if (sourceTestResults.All(tr => tr.UniqueId != testResult.UniqueId))
                     sourceTestResults.Add(testResult);
-
         }
         
         public void MergeTestPlatforms(List<ITestPlatform> sourceTestPlatforms, List<ITestPlatform> testPlatformsToAdd)

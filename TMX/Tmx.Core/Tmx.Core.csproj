@@ -116,7 +116,7 @@
     <Compile Include="Helpers\TestResultsExporter.cs" />
     <Compile Include="Helpers\TestResultsImporter.cs" />
     <Compile Include="Helpers\TestResultsSearcher.cs" />
-    <Compile Include="Helpers\TMXHelper.cs" />
+    <Compile Include="Helpers\TmxHelper.cs" />
     <Compile Include="Helpers\UserSettings\Preferences.cs" />
     <Compile Include="TestData\TestData.cs" />
     <Compile Include="Types\ImportExport\XMLElementsJUnitStruct.cs" />

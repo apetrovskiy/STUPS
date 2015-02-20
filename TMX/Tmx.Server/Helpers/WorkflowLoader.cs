@@ -44,17 +44,17 @@ namespace Tmx.Server
         const string taskElement_code = "code";
         const string taskElement_parameters = "parameters";
 
-        /// <exception cref="WorkflowLoadingException">Server failed to load the workflow. </exception>
+        // /// <exception cref="WorkflowLoadingException">Server failed to load the workflow. </exception>
         public virtual bool Load(string pathToWorkflowFile)
         {
             try {
-                if (!System.IO.File.Exists(pathToWorkflowFile))
+                if (!File.Exists(pathToWorkflowFile))
                     throw new WorkflowLoadingException("There is no such file '" + pathToWorkflowFile + "'.");
                 ImportXdocument(XDocument.Load(pathToWorkflowFile));
             }
             catch (Exception eImportDocument) {
                 // TODO: AOP
-                Trace.TraceError("Load(string pathToWorkflowFile)");
+                // Trace.TraceError("Load(string pathToWorkflowFile)");
                 throw new WorkflowLoadingException(
                     "Unable to load an XML workflow from the file '" +
                     pathToWorkflowFile +
@@ -72,7 +72,6 @@ namespace Tmx.Server
         public virtual Guid ImportXdocument(XContainer xDocument)
         {
             var workflowId = getWorkflowId(xDocument);
-            
             setParametersPageName(workflowId, xDocument);
             
             var tasks = from task in xDocument.Descendants(WorkflowXmlConstants.TaskNode)

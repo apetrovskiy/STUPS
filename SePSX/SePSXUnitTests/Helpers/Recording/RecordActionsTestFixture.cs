@@ -289,42 +289,33 @@ namespace SePSXUnitTests.Recording
         [Category("Fast")]
         public void WebElement_and_action_and_data_the_First()
         {
-            string expectedResult = Recorder.codeGenGetElement;
-            IWebElement webElement = 
-                new FakeWebElement("a", "text");
-            System.Collections.Generic.List<object> list =
-                 new System.Collections.Generic.List<object>();
+            const string expectedResult = Recorder.codeGenGetElement;
+            IWebElement webElement = new FakeWebElement("a", "text");
+            var list = new List<object>();
             list.Add(webElement);
             
             webElement = 
                 new FakeWebElement("recclicked", "");
             list.Add(webElement);
 
-            System.Collections.Generic.List<object> list1 =
-                new System.Collections.Generic.List<object>();
-            Dictionary<string, object> dict1 =
-                new Dictionary<string, object>();
+            var list1 = new List<object>();
+            var dict1 = new Dictionary<string, object>();
             //dict1.Add("code", expectedResult);
             dict1.Add("key", "code");
             list1.Add(dict1);
-            Dictionary<string, object> dict2 =
-                new Dictionary<string, object>();
+            var dict2 = new Dictionary<string, object>();
             dict2.Add("value", expectedResult);
             list1.Add(dict2);
-            ReadOnlyCollection<object> dataItem =
-                new ReadOnlyCollection<object>(list1);
+            var dataItem = new ReadOnlyCollection<object>(list1);
             
             list.Add(dataItem);
-//Console.WriteLine("00005");
             runRecordActions(list);
-//Console.WriteLine("00006");
             
 //            foreach (var aaaa in ((RecordedData)Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items[
 //                Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 1]).UserData.Keys) {
 //                Console.WriteLine(aaaa);
 //            }
             
-
             Assert.AreEqual(
                 expectedResult,
                 ((RecordedWebElement)Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items[

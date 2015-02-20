@@ -79,12 +79,37 @@ namespace Tmx.Server.Tests.Helpers
             THEN_there_are_number_of_tasks_for_selected_workflow(10, workflowId);
         }
         
+//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        public void Should_replace_workflow_on_adding_one_with_the_same_name()
+//        {
+//            // GIVEN_ThereAreTasksInCommonPool();
+//            GIVEN_ThereIsWorkflow();
+//            var workflowId = WHEN_ImportingTasks(TestConstants.Workflow01);
+//            THEN_NumberOfCommonTasksIncreasedBy(10);
+//            THEN_workflow_has_been_added(workflowId);
+//            THEN_there_are_number_of_tasks_for_selected_workflow(10, workflowId);
+//        }
+        
+//        [NUnit.Framework.Test]
+//        public void test_loading_real_workflow_file()
+//        {
+//            // var pathToFile = @"\\172.28.1.111\C$\TestHome\Modules\Tmx40\workflows\Setup.xml";
+//            var pathToFile = @"E:\20150617\Setup.xml";
+//            var workflowLoader = new WorkflowLoader();
+//            workflowLoader.Load(pathToFile);
+//        }
+        
         // ==========================================================================================
         void GIVEN_ThereAreTasksInCommonPool()
         {
             TaskPool.Tasks.Add(new TestTask { Name = "task001", Id = 10, WorkflowId = new Guid() });
             TaskPool.Tasks.Add(new TestTask { Name = "task002", Id = 20, WorkflowId = new Guid() });
         }
+        
+//        void GIVEN_ThereIsWorkflow()
+//        {
+//            WorkflowCollection
+//        }
         
         void WHEN_AddedFakeImportedTasks(params ITestTask[] tasks)
         {

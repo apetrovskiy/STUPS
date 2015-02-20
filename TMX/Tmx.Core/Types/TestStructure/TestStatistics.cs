@@ -14,6 +14,7 @@ namespace Tmx.Core
     using System.Linq;
     using Tmx.Interfaces;
     using Tmx.Interfaces.TestStructure;
+    using Tmx.Core.Types.Remoting;
     
     /// <summary>
     /// Description of TestStatistics.
@@ -60,22 +61,50 @@ namespace Tmx.Core
                 
                 testScenarioStatistics.All = scenario.TestResults.Count;
                 foreach (var testResult in scenario.TestResults) {
+//                    if (skipAutomatic)
+//                        if (TestResultOrigins.Automatic == testResult.Origin)
+//                            continue;
+                    if (skipAutomatic && TestResultOrigins.Automatic == testResult.Origin)
+                        continue;
                     
-                    if (skipAutomatic)
-                        if (TestResultOrigins.Automatic == testResult.Origin)
-                            continue;
+//                    if (testResult.enStatus == TestResultStatuses.Passed || testResult.enStatus == TestResultStatuses.KnownIssue) {
+//                        testScenarioStatistics.Passed++;
+//                        if (testResult.enStatus == TestResultStatuses.KnownIssue)
+//                            testScenarioStatistics.PassedButWithBadSmell++;
+//                    }
+//                    switch (testResult.enStatus) {
+//                        case TestResultStatuses.Passed:
+//                        case TestResultStatuses.KnownIssue:
+//                            testScenarioStatistics.Passed++;
+//                            if (testResult.enStatus == TestResultStatuses.KnownIssue)
+//                                testScenarioStatistics.PassedButWithBadSmell++;
+//                            break;
+//                    }
+//                    if (testResult.enStatus == TestResultStatuses.Failed)
+//                        testScenarioStatistics.Failed++;
                     
-                    if (testResult.enStatus == TestResultStatuses.Passed || testResult.enStatus == TestResultStatuses.KnownIssue) {
-                        testScenarioStatistics.Passed++;
-                        if (testResult.enStatus == TestResultStatuses.KnownIssue)
+                    // 20150219
+                    switch (testResult.enStatus) {
+                        case TestResultStatuses.Passed:
+                            testScenarioStatistics.Passed++;
+                            break;
+                        case TestResultStatuses.Failed:
+                            testScenarioStatistics.Failed++;
+                            break;
+                        case TestResultStatuses.KnownIssue:
                             testScenarioStatistics.PassedButWithBadSmell++;
+                            break;
+//                        case TestResultStatuses.NotTested:
+//                            testScenarioStatistics.NotTested++;
+//                            break;
                     }
-                    if (testResult.enStatus == TestResultStatuses.Failed)
-                        testScenarioStatistics.Failed++;
+                    
                     testScenarioStatistics.TimeSpent += testResult.TimeSpent;
                 }
             }
-            testScenarioStatistics.NotTested = testScenarioStatistics.All - testScenarioStatistics.Passed - testScenarioStatistics.Failed;
+            // 20150219
+            // testScenarioStatistics.NotTested = testScenarioStatistics.All - testScenarioStatistics.Passed - testScenarioStatistics.Failed;
+            testScenarioStatistics.NotTested = testScenarioStatistics.All - testScenarioStatistics.Passed - testScenarioStatistics.Failed -testScenarioStatistics.PassedButWithBadSmell;
             scenario.Statistics = testScenarioStatistics;
             setTestScenarioStatus(scenario);
             return testScenarioStatistics;

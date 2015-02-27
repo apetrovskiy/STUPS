@@ -46,24 +46,24 @@ namespace TestUtils
                             fileName +
                             "' to the archive");
                         
-//                        if (System.IO.Directory.Exists(fileName)) {
-//                            if (null == cmdlet.PathInArchive) {
-//                                zipFile.AddDirectory(fileName);
-//                            } else {
-//                                zipFile.AddDirectory(fileName, cmdlet.PathInArchive);
-//                            }
-//                        }
-//                        if (System.IO.File.Exists(fileName)) {
-//                            if (null == cmdlet.PathInArchive) {
-//                                zipFile.AddFile(fileName);
-//                            } else {
-//                                zipFile.AddFile(fileName, cmdlet.PathInArchive);
-//                            }
-//                        }
-                        if (System.IO.Directory.Exists(fileName))
-                            string.IsNullOrEmpty(cmdlet.PathInArchive) ? zipFile.AddDirectory(fileName) : zipFile.AddDirectory(fileName, cmdlet.PathInArchive);
-                        if (System.IO.File.Exists(fileName))
-                            string.IsNullOrEmpty(cmdlet.PathInArchive) ? zipFile.AddFile(fileName) : zipFile.AddFile(file, cmdlet.PathInArchive);
+                        if (System.IO.Directory.Exists(fileName)) {
+                            if (null == cmdlet.PathInArchive) {
+                                zipFile.AddDirectory(fileName);
+                            } else {
+                                zipFile.AddDirectory(fileName, cmdlet.PathInArchive);
+                            }
+                        }
+                        if (System.IO.File.Exists(fileName)) {
+                            if (null == cmdlet.PathInArchive) {
+                                zipFile.AddFile(fileName);
+                            } else {
+                                zipFile.AddFile(fileName, cmdlet.PathInArchive);
+                            }
+                        }
+//                        if (System.IO.Directory.Exists(fileName))
+//                            string.IsNullOrEmpty(cmdlet.PathInArchive) ? zipFile.AddDirectory(fileName) : zipFile.AddDirectory(fileName, cmdlet.PathInArchive);
+//                        if (System.IO.File.Exists(fileName))
+//                            string.IsNullOrEmpty(cmdlet.PathInArchive) ? zipFile.AddFile(fileName) : zipFile.AddFile(file, cmdlet.PathInArchive);
                     }
                     
                     zipFile.Comment = cmdlet.Comment;

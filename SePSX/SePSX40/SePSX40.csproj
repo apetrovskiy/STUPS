@@ -163,10 +163,10 @@
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="WebDriver">
-      <HintPath>..\..\packages\Selenium.WebDriver.2.43.1\lib\net40\WebDriver.dll</HintPath>
+      <HintPath>..\..\packages\Selenium.WebDriver.2.44.0\lib\net40\WebDriver.dll</HintPath>
     </Reference>
     <Reference Include="WebDriver.Support">
-      <HintPath>..\..\packages\Selenium.Support.2.43.1\lib\net40\WebDriver.Support.dll</HintPath>
+      <HintPath>..\..\packages\Selenium.Support.2.44.0\lib\net40\WebDriver.Support.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
@@ -680,6 +680,10 @@
     <ProjectReference Include="..\..\UIA\UIAutomation\UIAutomation.csproj">
       <Project>{BF63F595-4A58-49E8-97F2-7701F51F0CD1}</Project>
       <Name>UIAutomation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SePsx.Core\SePsx.Core.csproj">
+      <Project>{32BE1DB4-E1CC-43EC-B356-1C3777A56CF8}</Project>
+      <Name>SePsx.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -197,8 +197,8 @@ testtl
 #TFAddinUnitTests
 tl2
 tltest
-UIACOM3
-UiaComWrapper
+#UIACOM3
+#UiaComWrapper
 UpgradeLog.XML
 RallyAddin
 RallyAddinUnitTests

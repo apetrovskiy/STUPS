@@ -134,6 +134,9 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Xml" />
+    <Reference Include="UIAComWrapper">
+      <HintPath>..\..\binaries\UiaComWrapper\UIAComWrapper.dll</HintPath>
+    </Reference>
     <Reference Include="UIAutomationClient">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
       <Aliases>UIANET,UIACOM</Aliases>
@@ -611,11 +614,6 @@
     <ProjectReference Include="..\..\Tmx\Tmx\Tmx.csproj">
       <Project>{dfff7f28-cfa4-4ee5-84f0-4a12a415bc0c}</Project>
       <Name>Tmx</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UiaComWrapper\UIAComWrapper.csproj">
-      <Project>{1DD63894-DBB9-40EF-BFF2-55624CB285AF}</Project>
-      <Name>UIAComWrapper</Name>
-      <Aliases>global,UIACOM</Aliases>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

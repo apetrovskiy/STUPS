@@ -38,7 +38,7 @@ namespace SePSXUnitTests.Recording
             IWebDriver webDriver = new FakeWebDriver();
             CurrentData.CurrentWebDriver = webDriver;
             
-            TranscriptCmdletBase cmdlet = new TranscriptCmdletBase();
+            var cmdlet = new TranscriptCmdletBase();
             cmdlet.Timeout = 10;
 
             IJSRecorder recorder = new FakeJSGenerator(listOfItems);
@@ -50,11 +50,10 @@ namespace SePSXUnitTests.Recording
         [Category("Fast")]
         public void One_WebElement()
         {
-            string expectedResult = "a";
+            const string expectedResult = "a";
             IWebElement webElement = 
                 new FakeWebElement(expectedResult, "text");
-            System.Collections.Generic.List<object> list =
-                 new System.Collections.Generic.List<object>();
+            var list = new List<object>();
             list.Add(webElement);
 
             runRecordActions(list);
@@ -69,11 +68,10 @@ namespace SePSXUnitTests.Recording
         [Category("Fast")]
         public void Two_WebElements_the_Last()
         {
-            string expectedResult = "a";
+            const string expectedResult = "a";
             IWebElement webElement = 
                 new FakeWebElement("button", "OK");
-            System.Collections.Generic.List<object> list =
-                 new System.Collections.Generic.List<object>();
+            var list = new List<object>();
             list.Add(webElement);
             
             webElement = 
@@ -92,11 +90,10 @@ namespace SePSXUnitTests.Recording
         [Category("Fast")]
         public void Two_WebElements_the_First()
         {
-            string expectedResult = "a";
+            const string expectedResult = "a";
             IWebElement webElement = 
                 new FakeWebElement(expectedResult, "text");
-            System.Collections.Generic.List<object> list =
-                 new System.Collections.Generic.List<object>();
+            var list = new List<object>();
             list.Add(webElement);
             
             webElement = 
@@ -115,11 +112,10 @@ namespace SePSXUnitTests.Recording
         [Category("Fast")]
         public void WebElement_and_action_the_Last()
         {
-            string expectedResult = Recorder.codeGenElementClick;
+            const string expectedResult = Recorder.codeGenElementClick;
             IWebElement webElement = 
                 new FakeWebElement("button", "OK");
-            System.Collections.Generic.List<object> list =
-                 new System.Collections.Generic.List<object>();
+            var list = new List<object>();
             list.Add(webElement);
             
             webElement = 
@@ -138,11 +134,10 @@ namespace SePSXUnitTests.Recording
         [Category("Fast")]
         public void WebElement_and_action_the_First()
         {
-            string expectedResult = Recorder.codeGenGetElement;
+            const string expectedResult = Recorder.codeGenGetElement;
             IWebElement webElement = 
                 new FakeWebElement("a", "text");
-            System.Collections.Generic.List<object> list =
-                 new System.Collections.Generic.List<object>();
+            var list = new List<object>();
             list.Add(webElement);
             
             webElement = 
@@ -161,11 +156,10 @@ namespace SePSXUnitTests.Recording
         [Category("Fast")]
         public void WebElement_and_data_the_Last()
         {
-            string expectedResult = "textData";
+            const string expectedResult = "textData";
             IWebElement webElement = 
                 new FakeWebElement("button", "OK");
-            System.Collections.Generic.List<object> list =
-                 new System.Collections.Generic.List<object>();
+            var list = new List<object>();
             list.Add(webElement);
             
 //            System.Collections.Generic.List<object> list1 =
@@ -179,19 +173,15 @@ namespace SePSXUnitTests.Recording
             
             
             
-            System.Collections.Generic.List<object> list1 =
-                new System.Collections.Generic.List<object>();
-            Dictionary<string, object> dict1 =
-                new Dictionary<string, object>();
+            var list1 = new List<object>();
+            var dict1 = new Dictionary<string, object>();
             //dict1.Add("code", expectedResult);
             dict1.Add("key", "code");
             list1.Add(dict1);
-            Dictionary<string, object> dict2 =
-                new Dictionary<string, object>();
+            var dict2 = new Dictionary<string, object>();
             dict2.Add("value", expectedResult);
             list1.Add(dict2);
-            ReadOnlyCollection<object> dataItem =
-                new ReadOnlyCollection<object>(list1);
+            var dataItem = new ReadOnlyCollection<object>(list1);
             
             list.Add(dataItem);
             
@@ -207,23 +197,20 @@ namespace SePSXUnitTests.Recording
         [Category("Fast")]
         public void WebElement_and_data_the_First()
         {
-            string expectedResult = Recorder.codeGenGetElement;
+            const string expectedResult = Recorder.codeGenGetElement;
             IWebElement webElement = 
                 new FakeWebElement("a", "text");
-            System.Collections.Generic.List<object> list =
-                 new System.Collections.Generic.List<object>();
+            var list = new List<object>();
             list.Add(webElement);
             
-            System.Collections.Generic.List<object> list1 = 
-                new System.Collections.Generic.List<object>();
-            Dictionary<string, object> dict1 = new Dictionary<string, object>();
+            var list1 = new List<object>();
+            var dict1 = new Dictionary<string, object>();
             dict1.Add("key1", "data1");
             list1.Add(dict1);
-            Dictionary<string, object> dict2 = new Dictionary<string, object>();
+            var dict2 = new Dictionary<string, object>();
             dict2.Add("key2", "data2");
             list.Add(dict2);
-            ReadOnlyCollection<object> dataItem =
-                new ReadOnlyCollection<object>(list1);
+            var dataItem = new ReadOnlyCollection<object>(list1);
             
             
             list.Add(dataItem);
@@ -240,15 +227,13 @@ namespace SePSXUnitTests.Recording
         [Category("Fast")]
         public void WebElement_and_action_and_data_the_Last()
         {
-            string expectedResult = "textData";
+            const string expectedResult = "textData";
             IWebElement webElement = 
                 new FakeWebElement("button", "OK");
-            System.Collections.Generic.List<object> list =
-                 new System.Collections.Generic.List<object>();
+            var list = new List<object>();
             list.Add(webElement);
             
-            webElement = 
-                new FakeWebElement(Recorder.constAuxElementClicked, "");
+            webElement = new FakeWebElement(Recorder.constAuxElementClicked, "");
             list.Add(webElement);
             
 //            System.Collections.Generic.List<object> list1 =
@@ -261,19 +246,15 @@ namespace SePSXUnitTests.Recording
 //                new ReadOnlyCollection<object>(list1);
             
             
-            System.Collections.Generic.List<object> list1 =
-                new System.Collections.Generic.List<object>();
-            Dictionary<string, object> dict1 =
-                new Dictionary<string, object>();
+            var list1 = new List<object>();
+            var dict1 = new Dictionary<string, object>();
             //dict1.Add("code", expectedResult);
             dict1.Add("key", "code");
             list1.Add(dict1);
-            Dictionary<string, object> dict2 =
-                new Dictionary<string, object>();
+            var dict2 = new Dictionary<string, object>();
             dict2.Add("value", expectedResult);
             list1.Add(dict2);
-            ReadOnlyCollection<object> dataItem =
-                new ReadOnlyCollection<object>(list1);
+            var dataItem = new ReadOnlyCollection<object>(list1);
             
             list.Add(dataItem);
             
@@ -294,8 +275,7 @@ namespace SePSXUnitTests.Recording
             var list = new List<object>();
             list.Add(webElement);
             
-            webElement = 
-                new FakeWebElement("recclicked", "");
+            webElement = new FakeWebElement("recclicked", "");
             list.Add(webElement);
 
             var list1 = new List<object>();

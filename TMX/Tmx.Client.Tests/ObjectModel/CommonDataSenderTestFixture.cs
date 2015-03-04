@@ -113,7 +113,6 @@ Call MockRestServiceServer.Verify() method.
             _mockRestServer.ExpectNewRequest()
                 .AndExpectUri(_baseUrl + url)
                 .AndExpectMethod(HttpMethod.GET)
-                // .AndRespondWith("{'key':'aaa','value':'bbb'}", _responseHeaders, HttpStatusCode.OK, "");
                 .AndRespondWith("{ \"Key\":\"aaa\",\"Value\":\"bbb\" }", _responseHeaders, HttpStatusCode.OK, "");
             
             var commonDataLoader = new CommonDataLoader(_restRequestCreator);

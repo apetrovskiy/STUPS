@@ -198,11 +198,9 @@
       <Name>UIAutomation</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Commands\Get" />
-    <Folder Include="Helpers" />
-    <Folder Include="Helpers\LanguagePacks" />
-    <Folder Include="Helpers\UserData" />
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

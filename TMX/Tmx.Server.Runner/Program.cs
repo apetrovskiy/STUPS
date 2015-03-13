@@ -19,7 +19,7 @@ namespace Tmx.Server.Runner
         {
             try {
                 ServerControl.Port = 12340;
-            ServerControl.Start(@"http://localhost:" + 12340);
+                ServerControl.Start(@"http://localhost:" + 12340);
             }
             catch (Exception ex) {
                 Console.WriteLine(ex.Message);

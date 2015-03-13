@@ -54,8 +54,8 @@ namespace Tmx.Server //.ObjectModel.ServerControl
             _nancyHost = new NancyHost(new Uri(url));
             setDotLiquidNamingConventions();
             registerTypes();
-            loadPlugins();
-            loadWorkflows();
+            LoadPlugins();
+            LoadWorkflows();
             _nancyHost.Start();
         }
         
@@ -171,13 +171,13 @@ namespace Tmx.Server //.ObjectModel.ServerControl
             Template.RegisterSafeType(typeof(TestLabStatuses), member => member.ToString());
         }
         
-        static void loadPlugins()
+        static void LoadPlugins()
         {
             var pluginsLoader = new PluginsLoader((new TmxServerRootPathProvider()).GetRootPath() + @"\Plugins");
             pluginsLoader.Load();
         }
         
-        static void loadWorkflows()
+        static void LoadWorkflows()
         {
             var workflowsDirectoryPath = (new TmxServerRootPathProvider()).GetRootPath() + @"\Workflows";
             if (!Directory.Exists(workflowsDirectoryPath)) return;

@@ -34,6 +34,7 @@ namespace Tmx.Client
             
             // to make reference to Commnon.Logging
             var log = LogManager.GetLogger(typeof(RestTemplate));
+            log = null;
             
             _alreadyInitialized = true;
         }

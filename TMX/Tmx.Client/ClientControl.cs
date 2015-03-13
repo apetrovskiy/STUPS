@@ -12,6 +12,8 @@ namespace Tmx.Client
     using System;
     using System.Linq;
     using PSTestLib.Helpers;
+    using Common.Logging;
+    using Spring.Rest.Client;
     
     /// <summary>
     /// Description of ClientControl.
@@ -28,13 +30,15 @@ namespace Tmx.Client
             // TODO: think about where to move it
             var tracingControl = new TracingControl("TmxClient_");
             
-            loadPlugins();
+            LoadPlugins();
             
+            // to make reference to Commnon.Logging
+            var log = LogManager.GetLogger(typeof(RestTemplate));
             
             _alreadyInitialized = true;
         }
 
-        static void loadPlugins()
+        static void LoadPlugins()
         {
             var clientAssembly = (AppDomain.CurrentDomain.GetAssemblies().First(asm => asm.FullName.Contains("Tmx.Client")));
             var clientFolderPath = clientAssembly.Location.Substring(0, clientAssembly.Location.LastIndexOf('\\'));

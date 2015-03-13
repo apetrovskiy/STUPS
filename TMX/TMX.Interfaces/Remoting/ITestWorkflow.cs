@@ -18,5 +18,7 @@ namespace Tmx.Interfaces.Remoting
     {
         void SetTestLab(ITestLab testLab);
         string ParametersPageName { get; set; }
+        // 20150312
+        string Path { get; set; }
     }
 }

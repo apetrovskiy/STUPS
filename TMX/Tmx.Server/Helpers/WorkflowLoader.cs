@@ -44,13 +44,20 @@ namespace Tmx.Server
         const string taskElement_code = "code";
         const string taskElement_parameters = "parameters";
 
+        // 20150312
+        ITestWorkflow _workflow;
+
         // /// <exception cref="WorkflowLoadingException">Server failed to load the workflow. </exception>
         public virtual bool Load(string pathToWorkflowFile)
         {
             try {
                 if (!File.Exists(pathToWorkflowFile))
                     throw new WorkflowLoadingException("There is no such file '" + pathToWorkflowFile + "'.");
-                ImportXdocument(XDocument.Load(pathToWorkflowFile));
+                // 20150312
+                // ImportXdocument(XDocument.Load(pathToWorkflowFile));
+                // ImportXdocument(XDocument.Load(pathToWorkflowFile), pathToWorkflowFile);
+                var pathToCopiedWorkflowFile = CopyWorkflowFileToStorage(pathToWorkflowFile);
+                ImportXdocument(XDocument.Load(pathToCopiedWorkflowFile));
             }
             catch (Exception eImportDocument) {
                 // TODO: AOP
@@ -63,16 +70,52 @@ namespace Tmx.Server
             }
             return true;
         }
-        
+
+        string CopyWorkflowFileToStorage(string pathToWorkflowFile)
+        {
+            var workflowFileName = pathToWorkflowFile.Substring(pathToWorkflowFile.LastIndexOf(@"\", System.StringComparison.Ordinal) + 1);
+            var workflowsDirectoryPath = (new TmxServerRootPathProvider()).GetRootPath() + @"\Workflows";
+            var workflowCopiedPath = workflowsDirectoryPath + @"\" + workflowFileName;
+            try
+            {
+                if (!Directory.Exists(workflowsDirectoryPath)) return pathToWorkflowFile;
+                File.Copy(pathToWorkflowFile, workflowCopiedPath, true);
+            }
+            catch
+            {
+                return pathToWorkflowFile;
+            }
+            try
+            {
+                File.Copy(pathToWorkflowFile.ToLower().Replace("xml", "html"),
+                    workflowsDirectoryPath + @"\" + workflowFileName.ToLower().Replace("xml", "html"), true);
+            }
+            catch
+            {
+            }
+            try { File.Copy(pathToWorkflowFile.ToLower().Replace("xml", "htm"), workflowsDirectoryPath + @"\" + workflowFileName.ToLower().Replace("xml", "htm"), true); }
+            catch
+            {
+            }
+            return workflowCopiedPath;
+        }
+
         public virtual void Reload(string pathToWorkflowFile)
         {
             // TODO: write code
         }
         
+        // 20150312
         public virtual Guid ImportXdocument(XContainer xDocument)
+        // public virtual Guid ImportXdocument(XContainer xDocument, string pathToWorkflowFile)
         {
-            var workflowId = getWorkflowId(xDocument);
-            setParametersPageName(workflowId, xDocument);
+            // 20150312
+            var workflowId = GetWorkflowId(xDocument);
+            // pathToWorkflowFile = pathToWorkflowFile.Substring(0, pathToWorkflowFile.LastIndexOf(@"\", StringComparison.Ordinal));
+            // var workflowId = GetWorkflowId(xDocument, pathToWorkflowFile);
+            // 20150312
+            // setParametersPageName(workflowId, xDocument);
+            setParametersPageName(xDocument);
             
             var tasks = from task in xDocument.Descendants(WorkflowXmlConstants.TaskNode)
                         where task.Element(taskElement_isActive).Value == "1"
@@ -81,28 +124,46 @@ namespace Tmx.Server
             addTasksToCommonPool(importedTasks);
             return workflowId;
         }
-        
-        Guid getWorkflowId(XContainer xDocument)
+
+        // 20150312
+        Guid GetWorkflowId(XContainer xDocument)
+        // Guid GetWorkflowId(XContainer xDocument, string pathToWorkflowFile)
         {
-            var workflow = xDocument.Descendants(WorkflowXmlConstants.WorkflowNode).FirstOrDefault();
-            if (null == workflow)
+            var workflowElement = xDocument.Descendants(WorkflowXmlConstants.WorkflowNode).FirstOrDefault();
+            if (null == workflowElement)
                 throw new WorkflowLoadingException("There's no workflow element in the document");
-            var nameAttribute = workflow.Attribute(WorkflowXmlConstants.NameAttribute);
+            var nameAttribute = workflowElement.Attribute(WorkflowXmlConstants.NameAttribute);
             var workflowName = null != nameAttribute ? nameAttribute.Value : "unnamed workflow";
-            return addWorkflow(workflowName, xDocument);
+
+            // 20150312
+            // rejected
+            // workflowElement.SetAttributeValue("path", pathToWorkflowFile);
+
+            // 20150312
+            return AddWorkflow(workflowName, xDocument);
+            // return AddWorkflow(workflowName, xDocument, pathToWorkflowFile);
         }
-        
-        Guid addWorkflow(string name, XContainer xDocument)
+
+        // 20150312
+        Guid AddWorkflow(string name, XContainer xDocument)
+        // Guid AddWorkflow(string name, XContainer xDocument, string pathToWorkflowFile)
         {
             var testLabName = xDocument.Descendants(WorkflowXmlConstants.TestLabNode).FirstOrDefault().Value;
-            
+
             var testLab = string.IsNullOrEmpty(testLabName) ? 
                 getFirstTestLab() :
                 getOrCreateTestLab(testLabName);
-            
-            var workflow = new TestWorkflow(testLab) { Name = name };
-            WorkflowCollection.AddWorkflow(workflow);
-            return workflow.Id;
+
+            // 20150312
+            // var workflow = new TestWorkflow(testLab) { Name = name };
+            // _workflow = new TestWorkflow(testLab) { Name = name, Path = pathToWorkflowFile };
+            _workflow = new TestWorkflow(testLab) { Name = name };
+            // 20150312
+            // WorkflowCollection.AddWorkflow(workflow);
+            WorkflowCollection.AddWorkflow(_workflow);
+            // 20150312
+            // return workflow.Id;
+            return _workflow.Id;
         }
         
         ITestLab getFirstTestLab()
@@ -120,7 +181,9 @@ namespace Tmx.Server
             return testLab;
         }
         
-        void setParametersPageName(Guid workflowId, XContainer xDocument)
+        // 20150312
+        // void setParametersPageName(Guid workflowId, XContainer xDocument)
+        void setParametersPageName(XContainer xDocument)
         {
             // 20150115
             // WorkflowCollection.Workflows.FirstOrDefault(wfl => wfl.Id == workflowId).ParametersPageName = xDocument.Descendants(WorkflowXmlConstants.ParametersPageNode).FirstOrDefault().Value;
@@ -130,10 +193,12 @@ namespace Tmx.Server
 //            Trace.TraceInformation("does start with dot? {0}", parameterspageName.Substring(0, 1) == ".");
 //            Trace.TraceInformation("does file exist? {0}", File.Exists(new TmxServerRootPathProvider().GetRootPath() + "/workflows/" + parameterspageName + ".html"));
             
-            var parameterspageName = xDocument.Descendants(WorkflowXmlConstants.ParametersPageNode).FirstOrDefault().Value;
-            if (string.IsNullOrEmpty(parameterspageName) || parameterspageName.Substring(0, 1) == "." || !File.Exists(new TmxServerRootPathProvider().GetRootPath() + "/workflows/" + parameterspageName + ".html"))
-                parameterspageName = UrlList.ViewTestWorkflowParameters_DefaultPage;
-            WorkflowCollection.Workflows.FirstOrDefault(wfl => wfl.Id == workflowId).ParametersPageName = parameterspageName;
+            var parametersPageName = xDocument.Descendants(WorkflowXmlConstants.ParametersPageNode).FirstOrDefault().Value;
+            if (string.IsNullOrEmpty(parametersPageName) || parametersPageName.Substring(0, 1) == "." || !File.Exists(new TmxServerRootPathProvider().GetRootPath() + "/workflows/" + parametersPageName + ".html"))
+                parametersPageName = UrlList.ViewTestWorkflowParameters_DefaultPage;
+            // 20150312
+            // WorkflowCollection.Workflows.FirstOrDefault(wfl => wfl.Id == workflowId).ParametersPageName = parameterspageName;
+            _workflow.ParametersPageName = parametersPageName;
         }
         
         internal virtual void addTasksToCommonPool(IEnumerable<ITestTask> importedTasks)

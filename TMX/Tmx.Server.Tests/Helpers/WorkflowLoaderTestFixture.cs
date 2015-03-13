@@ -122,7 +122,9 @@ namespace Tmx.Server.Tests.Helpers
             workflowElement.Add(testLabElement);
             var parametersPageElement = new XElement("parametersPage", "page");
             workflowElement.Add(parametersPageElement);
+            // 20150312
             workflowLoader.ImportXdocument(xDoc);
+            // workflowLoader.ImportXdocument(xDoc, string.Empty);
         }
         
         Guid WHEN_ImportingTasks(string path)

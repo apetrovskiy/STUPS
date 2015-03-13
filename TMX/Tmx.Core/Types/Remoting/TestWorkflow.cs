@@ -40,5 +40,8 @@ namespace Tmx.Core.Types.Remoting
         }
         
         public string ParametersPageName { get; set; }
+
+        // 20150312
+        public string Path { get; set; }
     }
 }

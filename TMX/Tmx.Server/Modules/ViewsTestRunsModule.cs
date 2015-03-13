@@ -49,7 +49,10 @@ namespace Tmx.Server.Modules
             
             Post[UrlList.ViewTestRuns_NewTestRunPage] = _ => {
                 string workflowName = Request.Form.workflow_name;
+                // 20150312
                 var data = CreateNewTestRunModel("/workflows/" + WorkflowCollection.Workflows.FirstOrDefault(wfl => wfl.Name == workflowName).ParametersPageName, workflowName);
+                // var workflowForTestRun = WorkflowCollection.Workflows.FirstOrDefault(wfl => wfl.Name == workflowName);
+                // var data = CreateNewTestRunModel(workflowForTestRun.Path + @"\" + workflowForTestRun.ParametersPageName, workflowName);
                 data.Selected = workflowName;
                 // string testRunName = Request.Form.test_run_name;
                 // data.TestRunName = testRunName;

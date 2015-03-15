@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<suites>
-  <suite id="1" name="Restoring the test lab" status="FAILED" timeSpent="1" all="196" passed="189" failed="6" notTested="1" knownIssue="0" platformId="SPALab-TestRoot">
-    <scenarios>
-    </scenarios>
-  </suite>
-</suites>

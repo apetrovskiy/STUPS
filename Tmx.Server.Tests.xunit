@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xunit>
   <assemblies>
-    <assembly filename="TMX\Tmx.Server.Tests\bin\Release\Tmx.Server.Tests.dll" shadow-copy="true" />
+    <assembly filename="TMX\Tests\Tmx.Server.Tests\bin\Release\Tmx.Server.Tests.dll" shadow-copy="true" />
   </assemblies>
 </xunit>

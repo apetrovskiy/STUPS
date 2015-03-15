@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<suites>
-  <suite id="1" name="Restoring the test lab" status="FAILED" timeSpent="1" all="196" passed="189" failed="6" notTested="1" knownIssue="0" platformId="SPALab-TestRoot">
-    <scenarios>
-      <scenario id="1000180" name="MSI UPGRADE: analysing products' letters" status="FAILED" timeSpent="1" all="195" passed="189" failed="6" notTested="0" knownIssue="0" platformId="SPALab-TestRoot">
-      </scenario>
-    </scenarios>
-  </suite>
-</suites>

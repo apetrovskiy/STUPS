@@ -191,7 +191,7 @@ TestCaseBrowser
 TestCaseBrowser40
 testlib
 testninject
-tests
+#tests
 testtl
 #TFAddin
 #TFAddinUnitTests

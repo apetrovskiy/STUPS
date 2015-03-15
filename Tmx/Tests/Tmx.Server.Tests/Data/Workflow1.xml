@@ -1,0 +1,811 @@
+﻿<?xml version="1.0"?>
+<workflow name="CRsuite">
+    <parametersPage>crsuite_upgrade</parametersPage>
+    <testLabName>njqcat1</testLabName>
+    <tasks>
+        <task>
+            <name>Preparing initial data for test</name>
+            <test_name>Preparing initial data for test</test_name>
+            <isActive>1</isActive>
+            <taskType>psremoting</taskType>
+            <rule>testConsole</rule>
+            <id>103</id>
+            <isCritical>1</isCritical>
+            <storyId>1000103</storyId>
+            <old_style_action></old_style_action>
+            <action>
+                <code>
+                    param($a, $b)
+                        
+                        Write-Host "==========103==========";
+                        Send-TmxCommonDataItem -Key "pathToDistributive01" -Value "\\spbfs01.nwx.local\Releases\Netwrix_Auditor\6.5\6.5.339\Netwrix_Auditor.exe";
+                        Send-TmxCommonDataItem -Key "pathToDistributive02" -Value "\\spbfs01.nwx.local\Builds\Netwrix Auditor\6.5\6.5.340\Netwrix_Auditor.exe";
+                        Send-TmxCommonDataItem -Key "mailRecipients" -Value "Alexander.Petrovsky@netwrix.com";
+                        
+                        $Error.Clear();
+                        
+                        Write-Host "running script: $($TestHome)\tests\Common\ProductSettings.ps1";
+                        try { . $TestHome\tests\Common\ProductSettings.ps1 $a $b; } catch { $Logger.Error($global:Error[0]); }
+                </code>
+                <parameters>
+                    <productCode>CRsuite</productCode>
+                    <testHome>C:\TESTHOME</testHome>
+                </parameters>
+            </action>
+            <testcases></testcases>
+            <expected_result></expected_result>
+            <timelimit>600</timelimit>
+        </task>
+        
+        MSI UPGRADE:
+         - installing an old suite
+         - installing the suite under test (i.e., new)
+         - creation of MOs, gathering data
+        <task>
+            <name>Restoring the test lab</name>
+            <test_name>Restoring the test lab</test_name>
+            <isActive>1</isActive>
+            <taskType>psremoting</taskType>
+            <rule>testConsole</rule>
+            <id>105</id>
+            <isCritical>1</isCritical>
+            <storyId>1000105</storyId>
+            <old_style_action></old_style_action>
+            <action>
+                <code>
+                    param($a, $b)
+                        Write-Host "==========105==========";
+                        $Error.Clear();
+                        Write-Host "action: previous results: $($a)";
+                        Write-Host "action: parameters: $($b)";
+                        
+                        Write-Host "running script: $($TestHome)\tests\Common\RestoreSnapshots.ps1";
+                        try { . $TestHome\tests\Common\RestoreSnapshots.ps1 $a $b; } catch { $Logger.Error($global:Error[0]); }
+                </code>
+                <parameters>
+                    <a>njqcat1.nwx.local</a>
+                    <b>nwx\at_nwx_user</b>
+                    <c>Lock12Lock</c>
+                </parameters>
+            </action>
+            <beforeAction>
+                <code>
+                    Write-Host "==========105B==========";
+                    $Error.Clear();
+                    Write-Host "running script: $($TestHome)\tests\Common\BeforeTask.ps1";
+                    try { . $TestHome\tests\Common\BeforeTask.ps1 } catch { $Logger.Error($global:Error[0]); }
+                </code>
+            </beforeAction>
+            <testcases></testcases>
+            <expected_result></expected_result>
+            <timelimit>600</timelimit>
+        </task>
+        
+        <task>
+            <name>MSI UPGRADE: installation of the previous suite</name>
+            <test_name>MSI UPGRADE: installation of the previous suite</test_name>
+            <isActive>1</isActive>
+            <taskType>rdp</taskType>
+            <rule>console</rule>
+            <id>120</id>
+            <afterTask>105</afterTask>
+            <isCritical>1</isCritical>
+            <storyId>1000120</storyId>
+            <old_style_action>1010</old_style_action>
+            <action>
+                <code>
+                    param($a, $b)
+                    $Error.Clear();
+                    try { . $TestHome\tests\CRsuite_tests\CRsuite_Req1010.ps1 $a $b; } catch { $global:Error[0] >> "c:\testhome\logs\1010-120.log"; $Logger.Error($global:Error[0]); }
+                    Write-Host $Error[0];
+                </code>
+                <parameters>
+                    <!--<a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.5\6.5.302</a>-->
+                    <!--<a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.0\LatestVersion</a>-->
+                    <a>\\spbfs01.nwx.local\Releases\Netwrix_Auditor\6.5\6.5.339</a>
+                    <b>Netwrix_Auditor.exe</b>
+                    <c>NWX\at_nwx_user</c>
+                    <d>Lock12Lock</d>
+                    <e></e>
+                    <f>SPLab-Exchange.SPALab.at.local</f>
+                    <g>25</g>
+                    <h>report_reader@SPALab.at.local</h>
+                    <i>0</i> new suite = 1, old suite = 0
+                    <j></j>
+                    <k>120</k>
+                    <l></l>
+                    <m>0</m>
+                    <n></n>
+                    <o>Lock12Lock</o>
+                </parameters></action>
+            <beforeAction>
+                <code>
+                    $Error.Clear();
+                    Write-Host "test home: $($TestHome)";
+                    Write-Host "running script: $($TestHome)\tests\Common\BeforeTask.ps1";
+                    try { . $TestHome\tests\Common\BeforeTask.ps1 } catch { $global:Error[0] >> "c:\testhome\logs\before-01.log"; $Logger.Error($global:Error[0]); }
+                </code>
+            </beforeAction>
+            <afterAction>
+                <code>
+                    $Error.Clear();
+                    Write-Host "running script: $($TestHome)\tests\CRsuite_tests\CRsuite_Req1010-01.ps1";
+                    try { . $TestHome\tests\CRsuite_tests\CRsuite_Req1010-01.ps1; } catch { $global:Error[0] >> "c:\testhome\logs\1010-01.log"; $Logger.Error($global:Error[0]); }
+                    Write-Host "running script: $($TestHome)\tests\Common\AfterTask.ps1";
+                    try { . $TestHome\tests\Common\AfterTask.ps1; } catch { $Logger.Error($global:Error[0]); }
+                </code>
+            </afterAction>
+            <console_pre_action></console_pre_action><console_post_action>1010-1</console_post_action>
+            <testcases></testcases>
+            <expected_result></expected_result>
+            <retryCount>3</retryCount>
+            <timelimit>2400</timelimit>
+            <parameters>
+                \\10.0.0.113\Builds_to_test\CRsuite\5.0.80 (Public Release V2 - Enterprise)\Full Version
+                \\spbfs01\builds\Netwrix Auditor\5.0\5.0.97 (Public Release - Enterprise V2)
+                \\10.0.0.18\builds\Netwrix Auditor\5.0\5.0.97 (Public Release - Enterprise V2)
+                Netwrix_Auditor_Enterprise_Edition.exe
+                
+                <!-- <a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.0\6.0.198</a> -->
+                <!-- <a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.1\6.1.200</a> -->
+                <!--<a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.1\6.1.201</a>-->
+                <!--<a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.1\LatestVersion</a>-->
+                <!--<a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.5\6.5.302</a>-->
+                <!--<a>\\spbfs01.nwx.local\Releases\Netwrix_Auditor\6.0\6.0.205.private</a>-->
+                <a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.0\LatestVersion</a>
+                <b>Netwrix_Auditor.exe</b>
+                <c>NWX\at_nwx_user</c>
+                <d>Lock12Lock</d>
+                <e></e>
+                <f>SPLab-Exchange.SPALab.at.local</f>
+                <g>25</g>
+                <h>report_reader@SPALab.at.local</h>
+                <i>0</i> new suite = 1, old suite = 0
+                <j></j>
+                <k>120</k>
+                <l></l>
+                <m>0</m>
+                <o>Lock12Lock</o>
+            </parameters>
+        </task>
+        <task>
+            <name>MSI UPGRADE: installation of the new suite</name>
+            <test_name>MSI UPGRADE: installation of the new suite</test_name>
+            <isActive>1</isActive>
+            <taskType>rdp</taskType>
+            <rule>console</rule>
+            <id>150</id>
+            <isCritical>1</isCritical>
+            <storyId>1000150</storyId>
+            <old_style_action>1010</old_style_action>
+            <action>
+                <code>
+                    param($a, $b)
+                    $Error.Clear();
+                    try { . $TestHome\tests\CRsuite_tests\CRsuite_Req1010.ps1 $a $b; } catch { $Logger.Error($global:Error[0]); }
+                </code>
+                <parameters>
+                    <!--<a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.5\LatestVersion</a>-->
+                    <a>\\spbfs01.nwx.local\Builds\Netwrix Auditor\6.5\6.5.340</a>
+                    <b>Netwrix_Auditor.exe</b>
+                    <c>NWX\at_nwx_user</c>
+                    <d>Lock12Lock</d>
+                    <e></e>
+                    <f>SPLab-Exchange.SPALab.at.local</f>
+                    <g>25</g>
+                    <h>report_reader@SPALab.at.local</h>
+                    <i>1</i> new suite = 1, old suite = 0
+                    <j>120</j>
+                    <k>150</k>
+                    <l>C:\new suite</l>
+                    <m>0</m>
+                    <n></n>
+                    <o>Lock12Lock</o>
+                </parameters>
+            </action>
+            <beforeAction>
+                <code>
+                    $Error.Clear();
+                    Write-Host "running script: $($TestHome)\tests\Common\BeforeTask.ps1";
+                    try { . $TestHome\tests\Common\BeforeTask.ps1 } catch { $Logger.Error($global:Error[0]); }
+                </code>
+            </beforeAction>
+            <afterAction>
+                <code>
+                    $Error.Clear();
+                    Write-Host "running script: $($TestHome)\tests\CRsuite_tests\CRsuite_Req1010-02.ps1";
+                    try { . $TestHome\tests\CRsuite_tests\CRsuite_Req1010-02.ps1; } catch { $Logger.Error($global:Error[0]); }
+                    try { . $TestHome\tests\Common\AfterTask.ps1; } catch { $Logger.Error($global:Error[0]); }
+                </code>
+                <parameters>
+                </parameters>
+            </afterAction>
+            <console_pre_action></console_pre_action><console_post_action>1010-2</console_post_action>
+            <testcases></testcases>
+            <expected_result></expected_result>
+            <retryCount>3</retryCount>
+            <timelimit>2400</timelimit>
+            <parameters>
+                \\njvms42\Builds_to_test\CRsuite\5.0.95 (Public Release - Enterprise)
+                \\10.0.0.113\Builds_to_test\CRsuite\5.0.97
+                \\10.0.0.113\Builds_to_test\CRsuite\6.0.99 (beta)
+                \\spbfs01\Builds\Netwrix Auditor\6.0\6.0.99 SPA Iteration 15
+                \\spbfs01\Builds\Netwrix Auditor\Altair\LatestVersion
+                \\spbfs01\builds\Netwrix Auditor\6.0
+                \\spbfs01\builds\Netwrix Auditor\6.0\LatestVersion this is for Code Escrow
+                \\10.0.2.183\C$\TESTHOME\files
+                \\10.0.0.113\Builds_to_test\CRsuite\6.0.101
+                Netwrix_Auditor_Enterprise_Edition.exe
+                \\10.0.0.18\builds\Netwrix Auditor\6.1\LatestVersion
+                \\spbfs01.nwx.local\builds\Netwrix Auditor\6.0
+                \\spbfs01.nwx.local\builds\Netwrix Auditor\6.0\6.0.194
+
+                <!-- <a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.0\6.0.199</a> -->
+                <!-- <a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.1\6.1.201</a> -->
+                <!--<a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.1\6.1.225</a>-->
+                <a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.5\LatestVersion</a>
+                <!--<a>\\spbfs01.nwx.local\Builds\Netwrix Auditor\6.0\6.0.207</a>-->
+                <!--<a>\\spbfs01.nwx.local\Builds\Netwrix Auditor\6.0\6.0.208</a>-->
+                <b>Netwrix_Auditor.exe</b>
+                <c>NWX\at_nwx_user</c>
+                <d>Lock12Lock</d>
+                <e></e>
+                <f>SPLab-Exchange.SPALab.at.local</f>
+                <g>25</g>
+                <h>report_reader@SPALab.at.local</h>
+                <i>1</i> new suite = 1, old suite = 0
+                <j>120</j>
+                <k>150</k>
+                <l>C:\new suite</l>
+                <m>0</m>
+                <o>Lock12Lock</o>
+            </parameters>
+        </task>
+        <task>
+            <name>MSI UPGRADE: MO creation (Computer collection, Domain, VMware, Organizational Unit, Sharepoint)</name>
+            <test_name>MSI UPGRADE: MO creation (Computer collection, Domain, VMware, Organizational Unit, Sharepoint)</test_name>
+            <isActive>1</isActive>
+            <taskType>rdp</taskType>
+            <rule>console</rule>
+            <id>160</id>
+            <isCritical>1</isCritical>
+            <storyId>1000160</storyId>
+            <old_style_action>1011</old_style_action>
+            <action>
+                <code>
+                    param($a, $b)
+                # try { $global:Logger.Debug("160 ..."); } catch { $Logger.Error($global:Error[0]); }
+                    try { . $TestHome\tests\CRsuite_tests\CRsuite_Req1011.ps1 $a $b; } catch { try { $global:Logger.Error($global:Error[0]); } catch { $Logger.Error($global:Error[0]); } }
+                # try { $global:Logger.Debug("160!"); } catch { $Logger.Error($global:Error[0]); }
+                </code>
+                <parameters>
+                    <a>$true</a>
+                    <b>FSCR0001.xml,ADCR0001.xml,VMCR0001.xml,SPCR0001.xml,IUT0001.xml</b>
+                    <c>c:\tests</c>
+                </parameters>
+            </action>
+            <beforeAction>
+                <code>
+                    Write-Host "running script: $($TestHome)\tests\Common\BeforeTask.ps1";
+                    try { . $TestHome\tests\Common\BeforeTask.ps1 } catch { $Logger.Error($global:Error[0]); }
+                </code>
+            </beforeAction>
+            <afterAction>
+                <code>
+                    Write-Host "running script: $($TestHome)\tests\CRsuite_tests\CRsuite_Req1011-01.ps1";
+                    try { . $TestHome\tests\CRsuite_tests\CRsuite_Req1011-01.ps1; } catch { $Logger.Error($global:Error[0]); }
+                    try { . $TestHome\tests\Common\AfterTask.ps1; } catch { $Logger.Error($global:Error[0]); }
+                </code>
+                <parameters>
+                </parameters>
+            </afterAction>
+            <console_pre_action></console_pre_action><console_post_action></console_post_action>
+            <testcases></testcases>
+            <expected_result></expected_result>
+            <retryCount>0</retryCount>
+            <timelimit>3600</timelimit>
+            <parameters>
+                <a>$true</a>
+                <b>FSCR0001.xml,ADCR0001.xml,VMCR0001.xml,SPCR0001.xml,IUT0001.xml</b>
+                <c>c:\tests</c>
+            </parameters>
+        </task>
+        <task>
+            <name>MSI UPGRADE: MO creation (Computer collection, Domain, VMware, Sharepoint Farm - part 2)</name>
+            <test_name>MSI UPGRADE: MO creation (Computer collection, Domain, VMware, Sharepoint Farm - part 2)</test_name>
+            <isActive>1</isActive>
+            <taskType>rdp</taskType>
+            <rule>console</rule>
+            <id>170</id>
+            <isCritical>1</isCritical>
+            <storyId>1000170</storyId>
+            <old_style_action>1011</old_style_action>
+            <action>
+                <code>
+                    param($a, $b)
+                    try { . $TestHome\tests\CRsuite_tests\CRsuite_Req1011.ps1 $a $b; } catch { $Logger.Error($global:Error[0]); }
+                </code>
+                <parameters>
+                    <a>$true</a>
+                    <b>FSCR0002.xml,ADCR0002.xml,VMCR0002.xml,SPCR0002.xml</b>
+                    <c>c:\tests</c>
+                </parameters>
+            </action>
+            <beforeAction>
+                <code>
+                    Write-Host "running script: $($TestHome)\tests\Common\BeforeTask.ps1";
+                    try { . $TestHome\tests\Common\BeforeTask.ps1 } catch { $Logger.Error($global:Error[0]); }
+                </code>
+            </beforeAction>
+            <afterAction>
+                <code>
+                    Write-Host "running script: $($TestHome)\tests\CRsuite_tests\CRsuite_Req1011-01.ps1";
+                    try { . $TestHome\tests\CRsuite_tests\CRsuite_Req1011-01.ps1; } catch { $Logger.Error($global:Error[0]); }
+                    try { . $TestHome\tests\Common\AfterTask.ps1; } catch { $Logger.Error($global:Error[0]); }
+                </code>
+                <parameters>
+                </parameters>
+            </afterAction>
+            <console_pre_action></console_pre_action><console_post_action></console_post_action>
+            <testcases></testcases>
+            <expected_result></expected_result>
+            <retryCount>0</retryCount>
+            <timelimit>3600</timelimit>
+            <parameters>
+                <a>$true</a>
+                <b>FSCR0002.xml,ADCR0002.xml,VMCR0002.xml,SPCR0002.xml</b>
+                <c>c:\tests</c>
+            </parameters>
+        </task>
+        <task>
+            <name>MSI UPGRADE: analysing products' letters</name>
+            <test_name>MSI UPGRADE: analysing products' letters</test_name>
+            <isActive>1</isActive>
+            <taskType>psremoting</taskType>
+            <rule>testConsole</rule>
+            <id>180</id>
+            <afterTask>170</afterTask>
+            <isCritical>1</isCritical>
+            <storyId>1000180</storyId>
+            <old_style_action></old_style_action>
+            <action>
+                <code>
+                    param($a, $b)
+                    try { . $TestHome\tests\CRsuite_tests\CRsuite_Req1012-02.ps1 $a $b; } catch { $Logger.Error($global:Error[0]); }
+                </code>
+                <parameters>
+                    <a>$true</a>
+                    <b>FSCR0001.xml,ADCR0001.xml,VMCR0001.xml,SPCR0001.xml,IUT0001.xml,FSCR0002.xml,ADCR0002.xml,VMCR0002.xml,SPCR0002.xml</b>
+                    <c>c:\tests</c>
+                </parameters>
+            </action>
+            <beforeAction>
+                <code>
+                    Write-Host "running script: $($TestHome)\tests\Common\BeforeTask.ps1";
+                    try { . $TestHome\tests\Common\BeforeTask.ps1 } catch { $Logger.Error($global:Error[0]); }
+                </code>
+            </beforeAction>
+            <afterAction>
+                <code>
+                    try { . $TestHome\tests\Common\AfterTask.ps1; } catch { $Logger.Error($global:Error[0]); }
+                </code>
+                <parameters>
+                </parameters>
+            </afterAction>
+            <console_pre_action></console_pre_action><console_post_action>1012-2</console_post_action>
+            <testcases></testcases>
+            <expected_result></expected_result>
+            <retryCount>0</retryCount>
+            <timelimit>3600</timelimit>
+            <parameters>
+                <a>$true</a>
+                <b>FSCR0001.xml,ADCR0001.xml,VMCR0001.xml,SPCR0001.xml,IUT0001.xml,FSCR0002.xml,ADCR0002.xml,VMCR0002.xml,SPCR0002.xml</b>
+                <c>c:\tests</c>
+            </parameters>
+        </task>
+        
+        <task>
+            <name>Exit the test</name>
+            <test_name>Exit the test</test_name>
+            <isActive>1</isActive>
+            <taskType>rdp</taskType>
+            <rule>console</rule>
+            <id>8999</id>
+            <storyId>1111100</storyId>
+            <action>
+                <code>
+                    Start-Process shutdown -Argumentlist "/s","/t","10";
+                    Unregister-TmxSystemUnderTest;
+                </code>
+            </action>
+            <timelimit>30</timelimit>
+            <parameters>
+            </parameters>
+        </task>
+        <task>
+            <name>Preparing and sending reports</name>
+            <test_name>Preparing and sending reports</test_name>
+            <isActive>1</isActive>
+            <taskType>rdp</taskType>
+            <rule>testConsole</rule>
+            <id>9998</id>
+            <afterTask>180</afterTask>
+            <storyId>1111110</storyId>
+            <old_style_action></old_style_action>
+            <action>
+                <code>
+                    param($a, $b)
+                        Write-Host "==========9998==========";
+                        $Error.Clear();
+                        Write-Host "action: previous results: $($a)";
+                        Write-Host "action: parameters: $($b)";
+                        
+                        Write-Host "running script: $($TestHome)\tests\Common\ReportProductTests.ps1";
+                        try { . $TestHome\tests\Common\ReportProductTests.ps1 $a $b; } catch { $Logger.Error($global:Error[0]); }
+                </code>
+                <parameters>
+                    <a>njqcat1.nwx.local</a>
+                    <b>nwx\at_nwx_user</b>
+                    <c>Lock12Lock</c>
+                </parameters>
+            </action>
+            <timelimit>600</timelimit>
+            <parameters>
+            </parameters>
+        </task>
+        <task>
+            <name>Exit the test</name>
+            <test_name>Exit the test</test_name>
+            <isActive>1</isActive>
+            <taskType>rdp</taskType>
+            <rule>testConsole</rule>
+            <id>9999</id>
+            <storyId>1111111</storyId>
+            <old_style_action></old_style_action>
+            <action>
+                <code>
+                    Write-Host "==========9999==========";
+                    Unregister-TmxSystemUnderTest;
+                </code>
+            </action>
+            <timelimit>30</timelimit>
+            <parameters>
+            </parameters>
+        </task>
+        
+        <!--<task>
+            <name>MSI UPGRADE: gathering products' data</name>
+            <test_name>MSI UPGRADE: gathering products' data</test_name>
+            <isActive>1</isActive>
+            <taskType>psremoting</taskType>
+            <rule>console</rule>
+            <id>190</id>
+            <isCritical>1</isCritical>
+            <storyId>1000190</storyId>
+            <action>1013</action>
+            <console_pre_action></console_pre_action><console_post_action></console_post_action>
+            <testcases></testcases>
+            <expected_result></expected_result>
+            <retryCount>0</retryCount>
+            <timelimit>600</timelimit>
+            <parameters>
+            </parameters>
+        </task>-->
+        
+        <!--CLEAN:
+         - installing the suite under test (i.e., new)
+         - creation of MOs, gathering data
+        <task>
+            <name>CLEAN: restoring the test lab</name>
+            <test_name>CLEAN: restoring the test lab</test_name>
+            <isActive>1</isActive>
+            <taskType>psremoting</taskType>
+            <rule></rule>
+            <id>210</id>
+            <isCritical>1</isCritical>
+            <storyId>1000210</storyId>
+            <action></action>
+            <console_pre_action></console_pre_action><console_post_action>1005-2</console_post_action>
+            <testcases></testcases>
+            <expected_result></expected_result>
+            <timelimit>600</timelimit>
+            <parameters>
+                <a>SPLab-2008R2</a>
+                <b>SPLab-2008R2.SPALab.at.local</b>
+                <c>njqcat1.nwx.local</c>
+                <d>nwx\at_nwx_user</d>
+                <e>Lock12Lock</e>
+            </parameters>
+        </task>
+        <task>
+            <name>CLEAN: installation of the new suite</name>
+            <test_name>CLEAN: installation of the new suite</test_name>
+            <isActive>1</isActive>
+            <taskType>rdp</taskType>
+            <rule>console</rule>
+            <id>250</id>
+            <isCritical>1</isCritical>
+            <storyId>1000250</storyId>
+            <action>1010</action>
+            <console_pre_action></console_pre_action><console_post_action>1010-2</console_post_action>
+            <testcases></testcases>
+            <expected_result></expected_result>
+            <retryCount>3</retryCount>
+            <timelimit>2400</timelimit>
+            <parameters>
+                <a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.0\6.0.198</a>
+                <b>Netwrix_Auditor.exe</b>
+                <c>NWX\at_nwx_user</c>
+                <d>Lock12Lock</d>
+                <e></e>
+                <f>SPLab-Exchange.SPALab.at.local</f>
+                <g>25</g>
+                <h>report_reader@SPALab.at.local</h>
+                <i>1</i> new suite = 1, old suite = 0
+                <j>120</j>
+                <k>250</k>
+                <l>c:\1\2\3</l>
+                <m>0</m>
+                <o>Lock12Lock</o>
+            </parameters>
+        </task>
+        <task>
+            <name>CLEAN: MO creation (Computer collection, Domain, VMware, Organizational Unit, Sharepoint)</name>
+            <test_name>CLEAN: MO creation (Computer collection, Domain, VMware, Organizational Unit, Sharepoint)</test_name>
+            <isActive>1</isActive>
+            <taskType>rdp</taskType>
+            <rule>console</rule>
+            <id>260</id>
+            <isCritical>1</isCritical>
+            <storyId>1000260</storyId>
+            <action>1011</action>
+            <console_pre_action></console_pre_action><console_post_action></console_post_action>
+            <testcases></testcases>
+            <expected_result></expected_result>
+            <retryCount>0</retryCount>
+            <timelimit>3600</timelimit>
+            <parameters>
+                <a>$true</a>
+                <b>FSCR0001.xml,ADCR0001.xml,VMCR0001.xml,SPCR0001.xml,IUT0001.xml</b>
+                <c>c:\tests</c>
+            </parameters>
+        </task>
+        <task>
+            <name>CLEAN: MO creation (Computer collection, Domain, VMware, Sharepoint Farm - part 2)</name>
+            <test_name>CLEAN: MO creation (Computer collection, Domain, VMware, Sharepoint Farm - part 2)</test_name>
+            <isActive>1</isActive>
+            <taskType>rdp</taskType>
+            <rule>console</rule>
+            <id>270</id>
+            <isCritical>1</isCritical>
+            <storyId>1000270</storyId>
+            <action>1011</action>
+            <console_pre_action></console_pre_action><console_post_action></console_post_action>
+            <testcases></testcases>
+            <expected_result></expected_result>
+            <retryCount>0</retryCount>
+            <timelimit>3600</timelimit>
+            <parameters>
+                <a>$true</a>
+                <b>FSCR0002.xml,ADCR0002.xml,VMCR0002.xml,SPCR0002.xml</b>
+                <c>c:\tests</c>
+            </parameters>
+        </task>
+        <task>
+            <name>CLEAN: gathering of the real-life data</name>
+            <test_name>CLEAN: gathering of the real-life data</test_name>
+            <isActive>1</isActive>
+            <taskType>psremoting</taskType>
+            <rule>console</rule>
+            <id>280</id>
+            <isCritical>1</isCritical>
+            <storyId>1000280</storyId>
+            <action></action>
+            <console_pre_action></console_pre_action><console_post_action>1012-2</console_post_action>
+            <testcases></testcases>
+            <expected_result></expected_result>
+            <retryCount>0</retryCount>
+            <timelimit>3600</timelimit>
+            <parameters>
+                <a>$true</a>
+                <b>FSCR0001.xml,ADCR0001.xml,VMCR0001.xml,SPCR0001.xml,IUT0001.xml,FSCR0002.xml,ADCR0002.xml,VMCR0002.xml,SPCR0002.xml</b>
+                <c>c:\tests</c>
+            </parameters>
+        </task>-->
+        
+        <!--FULL UPGRADE:
+         - installing an old suite
+         - creation of MOs, gathering data
+         - installing the suite under test (i.e., new)
+        <task>
+            <name>FULL UPGRADE: restoring the test lab</name>
+            <test_name>FULL UPGRADE: restoring the test lab</test_name>
+            <isActive>1</isActive>
+            <taskType>psremoting</taskType>
+            <rule></rule>
+            <id>310</id>
+            <isCritical>1</isCritical>
+            <storyId>1000310</storyId>
+            <action></action>
+            <console_pre_action></console_pre_action><console_post_action>1005-2</console_post_action>
+            <testcases></testcases>
+            <expected_result></expected_result>
+            <timelimit>600</timelimit>
+            <parameters>
+                <a>SPLab-2008R2</a>
+                <b>SPLab-2008R2.SPALab.at.local</b>
+                <c>njqcat1.nwx.local</c>
+                <d>nwx\at_nwx_user</d>
+                <e>Lock12Lock</e>
+            </parameters>
+        </task>
+        <task>
+            <name>FULL UPGRADE: installation of the previous suite</name>
+            <test_name>FULL UPGRADE: installation of the previous suite</test_name>
+            <isActive>1</isActive>
+            <taskType>rdp</taskType>
+            <rule>console</rule>
+            <id>320</id>
+            <isCritical>1</isCritical>
+            <storyId>1000320</storyId>
+            <action>1010</action>
+            <console_pre_action></console_pre_action><console_post_action>1010-1</console_post_action>
+            <testcases></testcases>
+            <expected_result></expected_result>
+            <retryCount>3</retryCount>
+            <timelimit>2400</timelimit>
+            <parameters>
+                <a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.0\6.0.194</a>
+                <b>Netwrix_Auditor.exe</b>
+                <c>NWX\at_nwx_user</c>
+                <d>Lock12Lock</d>
+                <e></e>
+                <f>SPLab-Exchange.SPALab.at.local</f>
+                <g>25</g>
+                <h>report_reader@SPALab.at.local</h>
+                <i>0</i> new suite = 1, old suite = 0
+                <j></j>
+                <k>320</k>
+                <l></l>
+                <m>0</m>
+                <o>Lock12Lock</o>
+            </parameters>
+        </task>
+        <task>
+            <name>FULL UPGRADE: pre-creation of MO (Computer collection, Domain, VMware, Organizational Unit, Sharepoint)</name>
+            <test_name>FULL UPGRADE: pre-creation of MO (Computer collection, Domain, VMware, Organizational Unit, Sharepoint)</test_name>
+            <isActive>1</isActive>
+            <taskType>rdp</taskType>
+            <rule>console</rule>
+            <id>330</id>
+            <isCritical>1</isCritical>
+            <storyId>1000330</storyId>
+            <action>1011</action>
+            <console_pre_action></console_pre_action><console_post_action></console_post_action>
+            <testcases></testcases>
+            <expected_result></expected_result>
+            <retryCount>0</retryCount>
+            <timelimit>3600</timelimit>
+            <parameters>
+                <a>$true</a>
+                <b>FSCR0001.xml,ADCR0001.xml,VMCR0001.xml,SPCR0001.xml,IUT0001.xml</b>
+                <c>c:\tests</c>
+            </parameters>
+        </task>
+        <task>
+            <name>FULL UPGRADE: pre-creation of MO (Computer collection, Domain, VMware, Sharepoint Farm - part 2)</name>
+            <test_name>FULL UPGRADE: pre-creation of MO (Computer collection, Domain, VMware, Sharepoint Farm - part 2)</test_name>
+            <isActive>1</isActive>
+            <taskType>rdp</taskType>
+            <rule>console</rule>
+            <id>340</id>
+            <isCritical>1</isCritical>
+            <storyId>1000340</storyId>
+            <action>1011</action>
+            <console_pre_action></console_pre_action><console_post_action></console_post_action>
+            <testcases></testcases>
+            <expected_result></expected_result>
+            <retryCount>0</retryCount>
+            <timelimit>3600</timelimit>
+            <parameters>
+                <a>$true</a>
+                <b>FSCR0002.xml,ADCR0002.xml,VMCR0002.xml,SPCR0002.xml</b>
+                <c>c:\tests</c>
+            </parameters>
+        </task>
+        <task>
+            <name>FULL UPGRADE: to the new suite</name>
+            <test_name>FULL UPGRADE: to the new suite</test_name>
+            <isActive>1</isActive>
+            <taskType>rdp</taskType>
+            <rule>console</rule>
+            <id>350</id>
+            <isCritical>1</isCritical>
+            <storyId>1000350</storyId>
+            <action>1010</action>
+            <console_pre_action></console_pre_action><console_post_action>1010-2</console_post_action>
+            <testcases></testcases>
+            <expected_result></expected_result>
+            <retryCount>3</retryCount>
+            <timelimit>3000</timelimit>
+            <parameters>
+                <a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.0\6.0.198</a>
+                <b>Netwrix_Auditor.exe</b>
+                <c>NWX\at_nwx_user</c>
+                <d>Lock12Lock</d>
+                <e></e>
+                <f>SPLab-Exchange.SPALab.at.local</f>
+                <g>25</g>
+                <h>report_reader@SPALab.at.local</h>
+                <i>1</i> new suite = 1, old suite = 0
+                <j>320</j>
+                <k>350</k>
+                <l>c:\5\6\7</l>
+                <m>1</m>
+                <n>FSCR0001.xml,ADCR0001.xml,VMCR0001.xml,SPCR0001.xml,IUT0001.xml,FSCR0002.xml,ADCR0002.xml,VMCR0002.xml,SPCR0002.xml</n>
+                <o>Lock12Lock</o>
+            </parameters>
+        </task>
+        <task>
+            <name>FULL UPGRADE: gathering of the real-life data</name>
+            <test_name>FULL UPGRADE: gathering of the real-life data</test_name>
+            <isActive>1</isActive>
+            <taskType>rdp</taskType>
+            <rule>console</rule>
+            <id>380</id>
+            <isCritical>1</isCritical>
+            <storyId>1000380</storyId>
+            <action></action>
+            <console_pre_action></console_pre_action><console_post_action>1012-2</console_post_action>
+            <testcases></testcases>
+            <expected_result></expected_result>
+            <retryCount>0</retryCount>
+            <timelimit>3600</timelimit>
+            <parameters>
+                <a>$true</a>
+                <b>FSCR0001.xml,ADCR0001.xml,VMCR0001.xml,SPCR0001.xml,IUT0001.xml,FSCR0002.xml,ADCR0002.xml,VMCR0002.xml,SPCR0002.xml</b>
+                <c>c:\tests</c>
+            </parameters>
+        </task>-->
+        
+        <!--<task>
+            <name>Iteration 10</name>
+            <test_name>Story 555555</test_name>
+            <isActive>1</isActive>
+            <rule></rule>
+            <id>5</id>
+            <isCritical>0</isCritical>
+            <storyId>55</storyId>
+            <action>555555</action>
+            <console_pre_action></console_pre_action><console_post_action></console_post_action>
+            <testcases></testcases>
+            <timelimit>120</timelimit>
+        </task>
+        <task>
+            <name>Iteration 10</name>
+            <test_name>Story 555556</test_name>
+            <isActive>1</isActive>
+            <rule></rule>
+            <id>6</id>
+            <isCritical>0</isCritical>
+            <storyId>56</storyId>
+            <action>555556</action>            
+            <console_pre_action></console_pre_action><console_post_action></console_post_action>
+            <testcases></testcases>
+            <timelimit>120</timelimit>
+        </task>
+        <task>
+            <name>Iteration 10</name>
+            <test_name>Stories 555557, 555558, 555559</test_name>
+            <isActive>1</isActive>
+            <rule></rule>
+            <id>7</id>
+            <isCritical>0</isCritical>
+            <storyId>57,58,59</storyId>
+            <action>555557,555558,555559</action>
+            <console_pre_action></console_pre_action><console_post_action></console_post_action>
+            <testcases></testcases>
+            <timelimit>120</timelimit>
+        </task>-->
+    </tasks>
+</workflow>

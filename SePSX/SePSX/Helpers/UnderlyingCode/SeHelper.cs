@@ -30,7 +30,8 @@ namespace SePSX
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Collections;
-    using System.Drawing;
+    // 20150314
+    // using System.Drawing;
     
     //
     //
@@ -49,11 +50,11 @@ namespace SePSX
     using OpenQA.Selenium.Support.UI;
     
     using System.Windows.Forms;
+    // 20150314
+    // using System.Management.Automation.Runspaces;
     
-    using System.Management.Automation.Runspaces;
     
-    
-    using SePSX.Commands;
+    using Commands;
     
     using Autofac;
 

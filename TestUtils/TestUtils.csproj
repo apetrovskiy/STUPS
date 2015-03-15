@@ -140,6 +140,7 @@
     <None Include="Scripts\angular-animate.js" />
     <None Include="Scripts\angular-animate.min.js" />
     <None Include="Scripts\angular-animate.min.js.map" />
+    <None Include="Scripts\angular-aria.min.js.map" />
     <None Include="Scripts\angular-cookies.js" />
     <None Include="Scripts\angular-cookies.min.js" />
     <None Include="Scripts\angular-cookies.min.js.map" />
@@ -147,6 +148,7 @@
     <None Include="Scripts\angular-loader.js" />
     <None Include="Scripts\angular-loader.min.js" />
     <None Include="Scripts\angular-loader.min.js.map" />
+    <None Include="Scripts\angular-messages.min.js.map" />
     <None Include="Scripts\angular-mocks.js" />
     <None Include="Scripts\angular-resource.js" />
     <None Include="Scripts\angular-resource.min.js" />
@@ -904,6 +906,31 @@
       <Project>{dfff7f28-cfa4-4ee5-84f0-4a12a415bc0c}</Project>
       <Name>Tmx</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\angular-aria.js" />
+    <Content Include="Scripts\angular-aria.min.js" />
+    <Content Include="Scripts\angular-messages.js" />
+    <Content Include="Scripts\angular-messages.min.js" />
+    <Content Include="Scripts\i18n\angular-locale_bm-latn-ml.js" />
+    <Content Include="Scripts\i18n\angular-locale_bm-latn.js" />
+    <Content Include="Scripts\i18n\angular-locale_dsb-de.js" />
+    <Content Include="Scripts\i18n\angular-locale_dsb.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-my.js" />
+    <Content Include="Scripts\i18n\angular-locale_gsw-fr.js" />
+    <Content Include="Scripts\i18n\angular-locale_hsb-de.js" />
+    <Content Include="Scripts\i18n\angular-locale_hsb.js" />
+    <Content Include="Scripts\i18n\angular-locale_lb-lu.js" />
+    <Content Include="Scripts\i18n\angular-locale_lb.js" />
+    <Content Include="Scripts\i18n\angular-locale_qu-bo.js" />
+    <Content Include="Scripts\i18n\angular-locale_qu-ec.js" />
+    <Content Include="Scripts\i18n\angular-locale_qu-pe.js" />
+    <Content Include="Scripts\i18n\angular-locale_qu.js" />
+    <Content Include="Scripts\i18n\angular-locale_se-se.js" />
+    <Content Include="Scripts\i18n\angular-locale_smn-fi.js" />
+    <Content Include="Scripts\i18n\angular-locale_smn.js" />
+    <Content Include="Scripts\i18n\angular-locale_yi-001.js" />
+    <Content Include="Scripts\i18n\angular-locale_yi.js" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

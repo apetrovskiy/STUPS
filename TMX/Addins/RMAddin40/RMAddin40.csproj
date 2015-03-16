@@ -80,7 +80,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Redmine.Net.Api">
-      <HintPath>..\..\packages\redmine-net-api.0.10\lib\net\Redmine.Net.Api.dll</HintPath>
+      <HintPath>..\..\..\packages\redmine-net-api.0.10\lib\net\Redmine.Net.Api.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">

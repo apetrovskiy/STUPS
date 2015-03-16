@@ -97,7 +97,7 @@
     </Reference>
     <Reference Include="GurkBurk, Version=0.1.0.15, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\nbehave.0.6.2\lib\net35\GurkBurk.dll</HintPath>
+      <HintPath>..\..\..\packages\nbehave.0.6.2\lib\net35\GurkBurk.dll</HintPath>
     </Reference>
     <Reference Include="MbUnit">
       <HintPath>..\..\packages\mbunit.3.3.454.0\lib\net35\MbUnit.dll</HintPath>
@@ -108,16 +108,17 @@
       <HintPath>..\..\packages\mbunit.3.3.454.0\lib\net35\MbUnit35.dll</HintPath>
     </Reference>
     <Reference Include="NBehave.Fluent.Framework">
-      <HintPath>..\..\packages\nbehave.fluent.mbunit.0.6.2\lib\net35\NBehave.Fluent.Framework.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\..\packages\nbehave.fluent.mbunit.0.6.2\lib\net35\NBehave.Fluent.Framework.dll</HintPath>
     </Reference>
     <Reference Include="NBehave.Gherkin">
-      <HintPath>..\..\packages\nbehave.0.6.2\lib\net35\NBehave.Gherkin.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\..\packages\nbehave.0.6.2\lib\net35\NBehave.Gherkin.dll</HintPath>
     </Reference>
     <Reference Include="NBehave.Narrator.Framework, Version=0.6.2.337, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\nbehave.0.6.2\lib\net35\NBehave.Narrator.Framework.dll</HintPath>
+      <HintPath>..\..\..\packages\nbehave.0.6.2\lib\net35\NBehave.Narrator.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhino.Mocks">
+      <HintPath>..\..\..\packages\RhinoMocks.3.6.1\lib\net\Rhino.Mocks.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">

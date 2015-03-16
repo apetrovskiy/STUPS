@@ -8,7 +8,8 @@
     <RootNamespace>TlAddinUnitTests</RootNamespace>
     <AssemblyName>TlAddinUnitTests</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <OutputPath>bin\Release\</OutputPath>
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
@@ -79,10 +80,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Autofac">
-      <HintPath>..\..\binaries\autofac\35\Autofac.dll</HintPath>
+      <HintPath>..\..\..\binaries\autofac\35\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="CookComputing.XmlRpcV2">
-      <HintPath>..\..\binaries\TestLink\CookComputing.XmlRpcV2.dll</HintPath>
+      <HintPath>..\..\..\binaries\TestLink\CookComputing.XmlRpcV2.dll</HintPath>
     </Reference>
     <Reference Include="Gallio">
       <HintPath>..\..\..\..\..\Program Files\Gallio\bin\Gallio.dll</HintPath>

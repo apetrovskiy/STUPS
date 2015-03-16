@@ -81,25 +81,23 @@
       <HintPath>..\..\packages\NSubstitute.1.8.1.0\lib\net35\NSubstitute.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <HintPath>..\..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Spring.Http.Converters.NJson">
       <HintPath>..\..\..\packages\Spring.Http.Converters.NJson.1.1.1\lib\net35-client\Spring.Http.Converters.NJson.dll</HintPath>
     </Reference>
-    <Reference Include="Spring.Rest, Version=1.1.1.35035, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Spring.Rest.1.1.1\lib\net35-client\Spring.Rest.dll</HintPath>
+    <Reference Include="Spring.Rest">
+      <HintPath>..\..\..\packages\Spring.Rest.1.1.1\lib\net35-client\Spring.Rest.dll</HintPath>
     </Reference>
-    <Reference Include="Spring.Rest.Testing, Version=1.1.1.35035, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Spring.Rest.Testing.1.1.1\lib\net35\Spring.Rest.Testing.dll</HintPath>
+    <Reference Include="Spring.Rest.Testing">
+      <HintPath>..\..\..\packages\Spring.Rest.Testing.1.1.1\lib\net35\Spring.Rest.Testing.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="xunit">
-      <HintPath>..\..\packages\xunit.1.9.2\lib\net20\xunit.dll</HintPath>
+      <HintPath>..\..\..\packages\xunit.1.9.2\lib\net20\xunit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

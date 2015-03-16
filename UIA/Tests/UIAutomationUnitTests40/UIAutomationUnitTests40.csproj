@@ -123,7 +123,6 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Linq" />
     <Reference Include="System.Management.Automation" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq">

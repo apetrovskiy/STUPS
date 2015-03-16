@@ -106,7 +106,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">

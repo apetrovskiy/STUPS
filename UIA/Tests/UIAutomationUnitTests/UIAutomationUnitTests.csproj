@@ -104,11 +104,8 @@
     <Reference Include="Ninject.MockingKernel.Moq">
       <HintPath>..\..\..\packages\Ninject.MockingKernel.Moq.3.2.1.0\lib\net35-full\Ninject.MockingKernel.Moq.dll</HintPath>
     </Reference>
-    <Reference Include="Ninject.MockingKernel.NSubstitute">
-      <HintPath>..\..\..\packages\Ninject.MockingKernel.NSubstitute.3.2.1.0\lib\net35-full\Ninject.MockingKernel.NSubstitute.dll</HintPath>
-    </Reference>
     <Reference Include="NSubstitute">
-      <HintPath>..\..\..\packages\NSubstitute.1.5.0.0\lib\NET35\NSubstitute.dll</HintPath>
+      <HintPath>..\..\..\packages\NSubstitute.1.8.1.0\lib\net35\NSubstitute.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>

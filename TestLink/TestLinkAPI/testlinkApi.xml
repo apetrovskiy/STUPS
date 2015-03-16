@@ -123,16 +123,6 @@
             <param name="url">url of testlink API. Something like http://localhost/testlink/lib/api/xmlrpc.php </param>
             <param name="log">enable capture of lastRequest and lastResponse for debugging</param>
         </member>
-        <member name="P:Meyn.TestLink.TestLink.LastRequest">
-            <summary>
-            last xmlrpc request sent to testlink. only works if constructor was called with argument log set to true
-            </summary>
-        </member>
-        <member name="P:Meyn.TestLink.TestLink.LastResponse">
-            <summary>
-            debug last response reseved from testlink xmlrpc call. Only works if constructor was called with argument log set to true
-            </summary>
-        </member>
         <member name="M:Meyn.TestLink.TestLink.handleErrorMessage(System.Object)">
             <summary>
              process the response object returned by the Tstlink API for error messages. 
@@ -581,6 +571,16 @@
             <param name="username"></param>
             <returns></returns>
         </member>
+        <member name="P:Meyn.TestLink.TestLink.LastRequest">
+            <summary>
+            last xmlrpc request sent to testlink. only works if constructor was called with argument log set to true
+            </summary>
+        </member>
+        <member name="P:Meyn.TestLink.TestLink.LastResponse">
+            <summary>
+            debug last response reseved from testlink xmlrpc call. Only works if constructor was called with argument log set to true
+            </summary>
+        </member>
         <member name="T:Meyn.TestLink.TestLinkAdaptor">
             <summary>
             encapsulates the basic comms to the TestLink API 
@@ -599,19 +599,9 @@
             do we have project plan, project id and test suite correct?
             </summary>
         </member>
-        <member name="P:Meyn.TestLink.TestLinkAdaptor.ConnectionValid">
-            <summary>
-            can we record test results
-            </summary>
-        </member>
         <member name="F:Meyn.TestLink.TestLinkAdaptor.proxy">
             <summary>
             the proxy to the current server
-            </summary>
-        </member>
-        <member name="P:Meyn.TestLink.TestLinkAdaptor.ConnectionData">
-            <summary>
-            sets up connection and retrieves basic data
             </summary>
         </member>
         <member name="M:Meyn.TestLink.TestLinkAdaptor.RecordTheResult(System.Int32,Meyn.TestLink.TestCaseResultStatus,System.String)">
@@ -666,6 +656,16 @@
             retrieve the testsuite id 
             </summary>
             <returns>0 or a valid test suite Id</returns>
+        </member>
+        <member name="P:Meyn.TestLink.TestLinkAdaptor.ConnectionValid">
+            <summary>
+            can we record test results
+            </summary>
+        </member>
+        <member name="P:Meyn.TestLink.TestLinkAdaptor.ConnectionData">
+            <summary>
+            sets up connection and retrieves basic data
+            </summary>
         </member>
         <member name="T:Meyn.TestLink.TestLinkException">
             <summary>

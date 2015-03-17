@@ -23,10 +23,10 @@ namespace Tmx.Server.Modules
     {
         public TestReportsModule()
         {
-            Get[UrlList.TestReports_LoadingPoint] = parameters => exportTestResultsFromTestRunAsHtmlPage(parameters.id);
+            Get[UrlList.TestReports_LoadingPoint] = parameters => ExportTestResultsFromTestRunAsHtmlPage(parameters.id);
         }
         
-        Negotiator exportTestResultsFromTestRunAsHtmlPage(Guid testRunId)
+        Negotiator ExportTestResultsFromTestRunAsHtmlPage(Guid testRunId)
         {
             var basePath = (new TmxServerRootPathProvider()).GetRootPath() + @"/Views/testRuns/";
             var testReportsExporter = TinyIoCContainer.Current.Resolve<TestReportsExporter>(new NamedParameterOverloads { { "basePath", basePath } });

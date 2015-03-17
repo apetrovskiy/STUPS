@@ -27,7 +27,7 @@ namespace Tmx.Server.Helpers
             const int sleepInterval = 3000;
             
             // TODO: to a template method
-            while (waitForWorkflow(name)) {
+            while (WaitForWorkflow(name)) {
                 System.Threading.Thread.Sleep(sleepInterval);
             }
             // 20140921
@@ -35,12 +35,12 @@ namespace Tmx.Server.Helpers
             return true;
         }
 
-        internal virtual bool waitForWorkflow(string name)
+        internal virtual bool WaitForWorkflow(string name)
         {
             var workflowId = Guid.Empty;
             if (!string.IsNullOrEmpty(name))
                 workflowId = WorkflowCollection.Workflows.First(wfl => wfl.Name == name).Id;
-            return thereHaveNotBeenTasksAllocated(workflowId) || allTasksAreComplete(workflowId);
+            return ThereHaveNotBeenTasksAllocated(workflowId) || AllTasksAreComplete(workflowId);
         }
         
         void temp_dumpTestTasks()
@@ -80,12 +80,12 @@ namespace Tmx.Server.Helpers
             }
         }
 
-        bool thereHaveNotBeenTasksAllocated(Guid workflowId)
+        bool ThereHaveNotBeenTasksAllocated(Guid workflowId)
         {
             return Guid.Empty == workflowId ? !TaskPool.TasksForClients.Any() : TaskPool.TasksForClients.All(task => task.WorkflowId != workflowId);
         }
         
-        bool allTasksAreComplete(Guid workflowId)
+        bool AllTasksAreComplete(Guid workflowId)
         {
             return Guid.Empty == workflowId ?
                 TaskPool.TasksForClients.Any(task => !task.IsFinished()) :

@@ -32,11 +32,11 @@ namespace Tmx.Server
         public virtual string GetReportPage(Guid testRunId, string templateName)
         {
             var model = TinyIoCContainer.Current.Resolve<ViewsTestRunsModule>().CreateTestRunReportsModel(testRunId);
-            var template = getTemplate(templateName);
+            var template = GetTemplate(templateName);
             return template.Render(Hash.FromAnonymousObject(new { @Model = model }));
         }
         
-        Template getTemplate(string templateName)
+        Template GetTemplate(string templateName)
         {
             Template template;
             

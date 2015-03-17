@@ -31,22 +31,22 @@ namespace Tmx.Server.Modules
     {
         public TestTasksModule() : base(UrlList.TestTasks_Root)
         {
-            Get[UrlList.TestTasks_CurrentTaskForClientById_relPath] = parameters => returnTaskByClientId(parameters.id);
+            Get[UrlList.TestTasks_CurrentTaskForClientById_relPath] = parameters => ReturnTaskByClientId(parameters.id);
             
             Put[UrlList.TestTasks_Task] = parameters => {
                 // 20141020 squeezing a task to its proxy
                 ITestTask loadedTask = this.Bind<TestTask>();
                 // ITestTaskProxy loadedTask = this.Bind<TestTaskProxy>();
                 // ITestTaskResultProxy loadedTask = this.Bind<TestTaskResultProxy>();
-                return updateTask(loadedTask, parameters.id);
+                return UpdateTask(loadedTask, parameters.id);
             };
             
-            Delete[UrlList.TestTasks_Task] = parameters => deleteAllocatedTaskById(parameters.id);
+            Delete[UrlList.TestTasks_Task] = parameters => DeleteAllocatedTaskById(parameters.id);
             
-            Delete[UrlList.TestTasks_AllLoaded_relPath + UrlList.TestTasks_Task] = parameters => deleteLoadedTaskById(parameters).id;
+            Delete[UrlList.TestTasks_AllLoaded_relPath + UrlList.TestTasks_Task] = parameters => DeleteLoadedTaskById(parameters).id;
         }
         
-        Negotiator returnTaskByClientId(Guid clientId)
+        Negotiator ReturnTaskByClientId(Guid clientId)
         {
             Trace.TraceInformation("returnTaskByClientId(Guid clientId).1");
             
@@ -106,7 +106,7 @@ namespace Tmx.Server.Modules
         }
         
         // 20141020 squeezing a task to its proxy
-        HttpStatusCode updateTask(ITestTask loadedTask, int taskId)
+        HttpStatusCode UpdateTask(ITestTask loadedTask, int taskId)
         // HttpStatusCode updateTask(ITestTaskResultProxy loadedTask, int taskId)
         {
             if (null == loadedTask)
@@ -134,20 +134,20 @@ namespace Tmx.Server.Modules
             if (storedTask.IsFailed())
                 taskSelector.CancelFurtherTasksOfTestClient(storedTask.ClientId);
             if (storedTask.IsFinished())
-                cleanUpClientDetailedStatus(storedTask.ClientId);
+                CleanUpClientDetailedStatus(storedTask.ClientId);
             
             if (storedTask.IsLastTaskInTestRun())
-                completeTestRun(storedTask);
+                CompleteTestRun(storedTask);
             
             if (storedTask.IsFinished())
                 storedTask.SetTimeTaken();
             
             // 20150112
             // return storedTask.TaskFinished ? updateNextTaskAndReturnOk(taskSelector, storedTask) : HttpStatusCode.OK;
-            return storedTask.IsCompletedSuccessfully() ? updateNextTaskAndReturnOk(taskSelector, storedTask) : HttpStatusCode.OK;
+            return storedTask.IsCompletedSuccessfully() ? UpdateNextTaskAndReturnOk(taskSelector, storedTask) : HttpStatusCode.OK;
         }
 
-        void completeTestRun(ITestTask task)
+        void CompleteTestRun(ITestTask task)
         {
             var currentTestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == task.TestRunId);
             currentTestRun.Status = TaskPool.TasksForClients.Any (tsk => tsk.TestRunId == currentTestRun.Id && tsk.TaskStatus == TestTaskStatuses.Interrupted) ? TestRunStatuses.Interrupted : TestRunStatuses.CompletedSuccessfully;
@@ -156,10 +156,10 @@ namespace Tmx.Server.Modules
             if (!TestRunQueue.TestRuns.Any(testRun => testRun.TestLabId == currentTestRun.TestLabId && testRun.Id != currentTestRun.Id))
                 TestLabCollection.TestLabs.First(testLab => testLab.Id == currentTestRun.TestLabId).Status = TestLabStatuses.Free;
             
-            activateNextInRowTestRun();
+            ActivateNextInRowTestRun();
         }
         
-        void activateNextInRowTestRun()
+        void ActivateNextInRowTestRun()
         {
             var testRunSelector = TinyIoCContainer.Current.Resolve<TestRunSelector>();
             var testRun = testRunSelector.GetNextInRowTestRun();
@@ -171,7 +171,7 @@ namespace Tmx.Server.Modules
         
         // 20141220
         // HttpStatusCode updateNextTaskAndReturnOk(TaskSelector taskSorter, ITestTask storedTask)
-        HttpStatusCode updateNextTaskAndReturnOk(ITaskSelector taskSorter, ITestTask storedTask)
+        HttpStatusCode UpdateNextTaskAndReturnOk(ITaskSelector taskSorter, ITestTask storedTask)
         {
             ITestTask nextTask = null;
             try {
@@ -189,17 +189,18 @@ namespace Tmx.Server.Modules
             return HttpStatusCode.OK;
         }
         
-        void cleanUpClientDetailedStatus(Guid clientId)
+        void CleanUpClientDetailedStatus(Guid clientId)
         {
             ClientsCollection.Clients.First(client => client.Id == clientId).DetailedStatus = string.Empty;
         }
         
-        HttpStatusCode deleteAllocatedTaskById(int taskId)
+        HttpStatusCode DeleteAllocatedTaskById(int taskId)
         {
             TaskPool.TasksForClients.RemoveAll(task => task.Id == taskId);
             return HttpStatusCode.NoContent;
         }
-        HttpStatusCode deleteLoadedTaskById(int taskId)
+
+        HttpStatusCode DeleteLoadedTaskById(int taskId)
         {
             TaskPool.Tasks.RemoveAll(task => task.Id == taskId);
             return HttpStatusCode.NoContent;

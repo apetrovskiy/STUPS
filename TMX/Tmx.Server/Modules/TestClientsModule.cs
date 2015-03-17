@@ -28,21 +28,21 @@ namespace Tmx.Server.Modules
     {
         public TestClientsModule() : base(UrlList.TestClients_Root)
         {
-            Post[UrlList.TestClientRegistrationPoint_relPath] = _ => createNewClient(this.Bind<TestClient>());
+            Post[UrlList.TestClientRegistrationPoint_relPath] = _ => CreateNewClient(this.Bind<TestClient>());
             
-            Delete[UrlList.TestClientDeregistrationPoint_relPath] = parameters => deleteClientById(parameters.id);
+            Delete[UrlList.TestClientDeregistrationPoint_relPath] = parameters => DeleteClientById(parameters.id);
             
             Put[UrlList.TestClient_Status_relPath] = parameters => {
                 var detailedStatus = this.Bind<DetailedStatus>();
-                return updateStatus(parameters.id, detailedStatus);
+                return UpdateStatus(parameters.id, detailedStatus);
             };
             
-            Get[UrlList.TestClientRegistrationPoint_relPath] = _ => returnAllClients();
+            Get[UrlList.TestClientRegistrationPoint_relPath] = _ => ReturnAllClients();
             
-            Get[UrlList.TestClientQueryPoint_relPath] = parameters => returnClientById(parameters.id);
+            Get[UrlList.TestClientQueryPoint_relPath] = parameters => ReturnClientById(parameters.id);
         }
         
-        Negotiator createNewClient(TestClient testClient)
+        Negotiator CreateNewClient(TestClient testClient)
         {
             if (!TestRunQueue.TestRuns.HasActiveTestRuns())
                 return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed);
@@ -68,7 +68,7 @@ namespace Tmx.Server.Modules
             return Negotiate.WithModel(testClient).WithStatusCode(HttpStatusCode.Created);
         }
         
-        HttpStatusCode deleteClientById(Guid clientId)
+        HttpStatusCode DeleteClientById(Guid clientId)
         {
             var testRunId = ClientsCollection.Clients.First(client => client.Id == clientId).TestRunId;
             ClientsCollection.Clients.RemoveAll(client => client.Id == clientId);
@@ -78,7 +78,7 @@ namespace Tmx.Server.Modules
             return HttpStatusCode.NoContent;
         }
 
-        HttpStatusCode updateStatus(Guid clientId, DetailedStatus detailedStatus)
+        HttpStatusCode UpdateStatus(Guid clientId, DetailedStatus detailedStatus)
         {
             if (ClientsCollection.Clients.All(client => client.Id != clientId))
                 return HttpStatusCode.NotFound;
@@ -86,12 +86,12 @@ namespace Tmx.Server.Modules
             return HttpStatusCode.OK;
         }
         
-        Negotiator returnAllClients()
+        Negotiator ReturnAllClients()
         {
             return 0 == ClientsCollection.Clients.Count ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(ClientsCollection.Clients).WithStatusCode(HttpStatusCode.OK);
         }
         
-        Negotiator returnClientById(Guid clientId)
+        Negotiator ReturnClientById(Guid clientId)
         {
             // TODO: refactor this
             return ClientsCollection.Clients.Any(client => client.Id == clientId) ? Negotiate.WithModel(ClientsCollection.Clients.First(client => client.Id == clientId)).WithStatusCode(HttpStatusCode.OK) : Negotiate.WithStatusCode(HttpStatusCode.NotFound);

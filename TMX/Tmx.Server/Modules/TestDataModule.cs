@@ -28,7 +28,7 @@ namespace Tmx.Server.Modules
         public TestDataModule() : base(UrlList.TestData_Root)
         {
             // TODO: fix it 20141030
-            Get[UrlList.TestData_CommonData_relPath] = parameters => returnCommonData(parameters.id);
+            Get[UrlList.TestData_CommonData_relPath] = parameters => ReturnCommonData(parameters.id);
             
             Get[UrlList.TestData_CommonData_relPath + "{key}"] = parameters => {
                 var commonData = TestRunQueue.TestRuns.First(testRun => testRun.Id == parameters.id).Data.Data;
@@ -38,19 +38,19 @@ namespace Tmx.Server.Modules
             
             Post[UrlList.TestData_CommonData_relPath] = parameters => {
                 var commonDataItem = this.Bind<CommonDataItem>();
-                return addCommonDataItem(commonDataItem, parameters.id);
+                return AddCommonDataItem(commonDataItem, parameters.id);
             };
             
             // TODO: delete
         }
         // TODO: fix it 20141030
-        Negotiator returnCommonData(Guid testRunId)
+        Negotiator ReturnCommonData(Guid testRunId)
         {
             var commonData = TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId).Data.Data;
             return null != commonData ? Negotiate.WithModel(commonData) : Negotiate.WithStatusCode(HttpStatusCode.NotFound);
         }
         
-        HttpStatusCode addCommonDataItem(ICommonDataItem commonDataItem, Guid testRunId)
+        HttpStatusCode AddCommonDataItem(ICommonDataItem commonDataItem, Guid testRunId)
         {
             TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId).Data.AddOrUpdateDataItem(commonDataItem);
             return HttpStatusCode.Created;

@@ -22,7 +22,7 @@ namespace Tmx.Server //.ObjectModel.ServerControl
     // TODO: to template method
     public class ModulesLoader
     {
-        string _path;
+        readonly string _path;
         
         public ModulesLoader(string path)
         {

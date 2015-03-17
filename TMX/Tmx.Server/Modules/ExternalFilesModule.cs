@@ -35,12 +35,12 @@ namespace Tmx.Server.Modules
                 // var fileName = Request.Files.First().Name;
                 var actualBytes = new byte[fileValue.Length];
                 fileValue.Read(actualBytes, 0, (int)fileValue.Length);
-                writeFile(destinationPath, relativePath, actualBytes);
+                WriteFile(destinationPath, relativePath, actualBytes);
                 return HttpStatusCode.NoContent;
             };
         }
 
-        void writeFile(string destinationPath, string relativePath, byte[] actualBytes)
+        void WriteFile(string destinationPath, string relativePath, byte[] actualBytes)
         {
             var subDirPath = destinationPath + '\\' + relativePath;
             subDirPath = subDirPath.Substring(0, subDirPath.LastIndexOf('\\'));

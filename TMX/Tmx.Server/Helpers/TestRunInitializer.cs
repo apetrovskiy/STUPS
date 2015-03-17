@@ -28,27 +28,27 @@ namespace Tmx.Server
                 testRunCommand.TestRunName = testRunCommand.WorkflowName + " " + DateTime.Now;
             var testRun = new TestRun { Name = testRunCommand.TestRunName, Status = testRunCommand.Status };
             foreach (var key in formData) {
-                addOrUpdateDataItem(testRun, formData, key);
+                AddOrUpdateDataItem(testRun, formData, key);
 //                testRun.Data.AddOrUpdateDataItem(
 //                    new CommonDataItem {
 //                        Key = key,
 //                        Value = formData[key] ?? string.Empty
 //                    });
             }
-            setWorkflow(testRunCommand, testRun);
-            setStartUpParameters(testRun);
-            setCommonData(testRun, formData);
-            setCreatedTime(testRun);
+            SetWorkflow(testRunCommand, testRun);
+            SetStartUpParameters(testRun);
+            SetCommonData(testRun, formData);
+            SetCreatedTime(testRun);
             return testRun;
         }
         
-        void setWorkflow(ITestRunCommand testRunCommand, TestRun testRun)
+        void SetWorkflow(ITestRunCommand testRunCommand, TestRun testRun)
         {
             (testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testRunCommand.WorkflowName));
             TestLabCollection.TestLabs.First(testLab => testLab.Id == testRun.TestLabId).Status = TestLabStatuses.Busy;
         }
         
-        void setStartUpParameters(ITestRun testRun)
+        void SetStartUpParameters(ITestRun testRun)
         {
             if (TestRunStartTypes.Immediately == testRun.StartType)
                 testRun.Status = TestRunQueue.TestRuns.Any(tr => tr.TestLabId == testRun.TestLabId && tr.IsQueued()) ? TestRunStatuses.Pending : TestRunStatuses.Running;
@@ -56,12 +56,12 @@ namespace Tmx.Server
                 testRun.SetStartTime();
         }
         
-        void setCommonData(ITestRun testRun, DynamicDictionary formData)
+        void SetCommonData(ITestRun testRun, DynamicDictionary formData)
         {
             if (null == formData || 0 >= formData.Count)
                 return;
             foreach (var key in formData) {
-                addOrUpdateDataItem(testRun, formData, key);
+                AddOrUpdateDataItem(testRun, formData, key);
 //                testRun.Data.AddOrUpdateDataItem(
 //                    new CommonDataItem {
 //                        Key = key,
@@ -70,12 +70,12 @@ namespace Tmx.Server
             }
         }
         
-        void setCreatedTime(ITestRun testRun)
+        void SetCreatedTime(ITestRun testRun)
         {
             testRun.CreatedTime = DateTime.Now;
         }
         
-        void addOrUpdateDataItem(ITestRun testRun, DynamicDictionary formData, string key)
+        void AddOrUpdateDataItem(ITestRun testRun, DynamicDictionary formData, string key)
         {
             testRun.Data.AddOrUpdateDataItem(
                 new CommonDataItem {

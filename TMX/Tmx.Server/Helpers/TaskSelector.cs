@@ -71,7 +71,7 @@ namespace Tmx.Server
         {
             Trace.TraceInformation("GetFirstLegitimateTask(Guid clientId).1");
             
-            var taskListForClient = getOnlyNewTestTasksForClient(clientId);
+            var taskListForClient = GetOnlyNewTestTasksForClient(clientId);
 
             var taskArrayForClient = taskListForClient as ITestTask[] ?? taskListForClient.ToArray();
             Trace.TraceInformation("GetFirstLegitimateTask(Guid clientId).2 taskListForClient is null? {0} or empty {1}", null == taskListForClient, !taskArrayForClient.Any());
@@ -84,12 +84,12 @@ namespace Tmx.Server
             
             Trace.TraceInformation("GetFirstLegitimateTask(Guid clientId).4 taskCandidate is null? {0}", null == taskCandidate);
             
-            return isItTimeToPublishTask(taskCandidate) ? taskCandidate : null;
+            return IsItTimeToPublishTask(taskCandidate) ? taskCandidate : null;
         }
         
         public virtual ITestTask GetNextLegitimateTask(Guid clientId, int currentTaskId)
         {
-            var taskListForClient = getOnlyNewTestTasksForClient(clientId);
+            var taskListForClient = GetOnlyNewTestTasksForClient(clientId);
             var taskArrayForClient = taskListForClient as ITestTask[] ?? taskListForClient.ToArray();
             if (null == taskListForClient || !taskArrayForClient.Any()) return null;
             var tasksToBeNextOne = taskArrayForClient.Where(t => t.Id > currentTaskId);
@@ -114,7 +114,7 @@ namespace Tmx.Server
                     .ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled);
         }
         
-        internal virtual IEnumerable<ITestTask> getOnlyNewTestTasksForClient(Guid clientId)
+        internal virtual IEnumerable<ITestTask> GetOnlyNewTestTasksForClient(Guid clientId)
         {
             Trace.TraceInformation("getOnlyNewTestTasksForClient(Guid clientId).1 client id = {0}", clientId);
             var taskSelection = TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.IsActive);
@@ -126,7 +126,7 @@ namespace Tmx.Server
             return TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.IsActive && task.TaskStatus == TestTaskStatuses.New);
         }
         
-        internal virtual bool isItTimeToPublishTask(ITestTask task)
+        internal virtual bool IsItTimeToPublishTask(ITestTask task)
         {
             var numberOfMustDoneBeforeTask = task.AfterTask;
             if (0 == numberOfMustDoneBeforeTask) return true;

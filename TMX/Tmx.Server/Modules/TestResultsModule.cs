@@ -36,12 +36,12 @@ namespace Tmx.Server.Modules
     {
         public TestResultsModule() : base(UrlList.TestResults_Root)
         {
-            Post[UrlList.TestResultsPostingPoint_relPath] = parameters => importTestResultsToTestRun(parameters.id);
+            Post[UrlList.TestResultsPostingPoint_relPath] = parameters => ImportTestResultsToTestRun(parameters.id);
             
-            Get[UrlList.TestResultsPostingPoint_relPath] = parameters => exportTestResultsFromTestRun(parameters.id);
+            Get[UrlList.TestResultsPostingPoint_relPath] = parameters => ExportTestResultsFromTestRun(parameters.id);
         }
         
-        HttpStatusCode importTestResultsToTestRun(Guid testRunId)
+        HttpStatusCode ImportTestResultsToTestRun(Guid testRunId)
         {
             try {
                 var dataObject = this.Bind<TestResultsDataObject>();
@@ -62,7 +62,7 @@ namespace Tmx.Server.Modules
             }
         }
         
-        Negotiator exportTestResultsFromTestRun(Guid testRunId)
+        Negotiator ExportTestResultsFromTestRun(Guid testRunId)
         {
             var testResultsExporter = TinyIoCContainer.Current.Resolve<TestResultsExporter>();
             var xDoc = testResultsExporter.GetTestResultsAsXdocument(

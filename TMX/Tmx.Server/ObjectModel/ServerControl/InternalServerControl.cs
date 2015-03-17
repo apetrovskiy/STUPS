@@ -39,7 +39,8 @@ namespace Tmx.Server //.ObjectModel.ServerControl
     public class InternalServerControl : DefaultNancyBootstrapper
     {
         static NancyHost _nancyHost;
-        static bool _tracingAlreadyInitialized;
+        // 20150316
+        //static bool _tracingAlreadyInitialized;
         
         public static string Url { get; set; }
         
@@ -49,11 +50,11 @@ namespace Tmx.Server //.ObjectModel.ServerControl
             // setTracing();
             var tracingControl = new TracingControl("TmxServer_");
             Url = url;
-            prepareComponents();
-            loadModules();
+            PrepareComponents();
+            LoadModules();
             _nancyHost = new NancyHost(new Uri(url));
-            setDotLiquidNamingConventions();
-            registerTypes();
+            SetDotLiquidNamingConventions();
+            RegisterTypes();
             LoadPlugins();
             LoadWorkflows();
             _nancyHost.Start();
@@ -112,12 +113,12 @@ namespace Tmx.Server //.ObjectModel.ServerControl
             get { return new TmxServerRootPathProvider(); }
         }
         
-        static void prepareComponents()
+        static void PrepareComponents()
         {
             var testLabCollection = new TestLabCollection();
         }
         
-        static void loadModules()
+        static void LoadModules()
         {
             var modulesLoader = new ModulesLoader((new TmxServerRootPathProvider()).GetRootPath());
             modulesLoader.Load();
@@ -126,12 +127,12 @@ namespace Tmx.Server //.ObjectModel.ServerControl
             var drop = new DynamicDrop(new ExpandoObject());
         }
         
-        static void setDotLiquidNamingConventions()
+        static void SetDotLiquidNamingConventions()
         {
             // Template.NamingConvention = new CSharpNamingConvention();
         }
         
-        static void registerTypes()
+        static void RegisterTypes()
         {
             // specific types
             Template.RegisterSafeType(typeof(TestSuite), new[] { "Id", "Name", "Status", "Description", "TestScenarios", "PlatformId", "Statistics", "TimeSpent", "Timestamp", "Tags", "Statistics.All", "Statistics.Passed", "GetAll", "GetPassed", "GetFailed", "GetPassedButWithBadSmell", "GetNotTested" });

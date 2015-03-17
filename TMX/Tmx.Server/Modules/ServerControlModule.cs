@@ -28,12 +28,12 @@ namespace Tmx.Server.Modules
         {
             Put[UrlList.ServerControlPoint_relPath] = parameters => {
                 IServerCommand serverCommand = this.Bind<ServerCommand>();
-                processServerCommand(serverCommand);
+                ProcessServerCommand(serverCommand);
                 return HttpStatusCode.OK;
             };
         }
         
-        void processServerCommand(IServerCommand serverCommand)
+        void ProcessServerCommand(IServerCommand serverCommand)
         {
             switch (serverCommand.Command) {
                 case ServerControlCommands.LoadConfiguraiton:

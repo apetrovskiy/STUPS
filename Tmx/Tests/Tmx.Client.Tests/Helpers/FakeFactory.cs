@@ -16,8 +16,5 @@ namespace Tmx.Client.Tests.Helpers
     /// </summary>
     public class FakeFactory
     {
-        public FakeFactory()
-        {
-        }
     }
 }

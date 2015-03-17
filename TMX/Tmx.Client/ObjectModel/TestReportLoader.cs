@@ -13,9 +13,9 @@ namespace Tmx.Client
     using System.Diagnostics;
     using System.Net;
     using Spring.Rest.Client;
-    using Tmx.Core.Types.Remoting;
-    using Tmx.Interfaces.Exceptions;
-    using Tmx.Interfaces.Server;
+    using Core.Types.Remoting;
+    using Interfaces.Exceptions;
+    using Interfaces.Server;
     
     /// <summary>
     /// Description of TestReportLoader.
@@ -43,7 +43,12 @@ namespace Tmx.Client
                 
                 Trace.TraceInformation("LoadTestReport).2: loadingResultsResponse is null?{0}", null == loadingReportResponse);
                 
-                if (null == loadingReportResponse || null == loadingReportResponse.Body || HttpStatusCode.OK != loadingReportResponse.StatusCode)
+                // 20150316
+                //if (null == loadingReportResponse || null == loadingReportResponse.Body || HttpStatusCode.OK != loadingReportResponse.StatusCode)
+                //    throw new LoadingTestReportException("Failed to receive test results. " + loadingReportResponse.StatusCode);
+                if (null == loadingReportResponse || null == loadingReportResponse.Body)
+                    throw new LoadingTestReportException("Failed to receive test results.");
+                if (HttpStatusCode.OK != loadingReportResponse.StatusCode)
                     throw new LoadingTestReportException("Failed to receive test results. " + loadingReportResponse.StatusCode);
                 
                 return loadingReportResponse.Body.Data;

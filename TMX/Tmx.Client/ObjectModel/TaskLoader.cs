@@ -15,10 +15,10 @@ namespace Tmx.Client
     using System.Text.RegularExpressions;
     using Spring.Http;
     using Spring.Rest.Client;
-    using Tmx.Interfaces.Exceptions;
-    using Tmx.Interfaces.Server;
-    using Tmx.Core.Types.Remoting;
-    using Tmx.Interfaces.Remoting;
+    using Interfaces.Exceptions;
+    using Interfaces.Server;
+    using Core.Types.Remoting;
+    using Interfaces.Remoting;
     
     /// <summary>
     /// Description of TaskLoader.
@@ -69,7 +69,9 @@ namespace Tmx.Client
             Trace.TraceInformation("GetCurrentTask().4");
             
             if (null == gettingTaskResponse)
-                throw new LoadTaskException("Failed to load task. " + gettingTaskResponse.StatusCode);
+                // 20150316
+                // throw new LoadTaskException("Failed to load task. " + gettingTaskResponse.StatusCode);
+                throw new LoadTaskException("Failed to load task.");
             
             Trace.TraceInformation("GetCurrentTask().5");
             
@@ -86,7 +88,7 @@ namespace Tmx.Client
             
             Trace.TraceInformation("GetCurrentTask().8 client is registered");
             
-            if (HttpStatusCode.OK == gettingTaskResponse.StatusCode) return acceptCurrentTask(task);
+            if (HttpStatusCode.OK == gettingTaskResponse.StatusCode) return AcceptCurrentTask(task);
             
             Trace.TraceInformation("GetCurrentTask().9");
             
@@ -96,7 +98,7 @@ namespace Tmx.Client
         }
         
         // 20141020 squeezing a task to its proxy
-        ITestTask acceptCurrentTask(ITestTask task)
+        ITestTask AcceptCurrentTask(ITestTask task)
         // ITestTaskProxy acceptCurrentTask(ITestTaskCodeProxy task)
         {
             Trace.TraceInformation("acceptCurrentTask(ITestTask task).1");

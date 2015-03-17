@@ -13,9 +13,9 @@ namespace Tmx.Client
     using System.Diagnostics;
     using System.Net;
     using Spring.Rest.Client;
-    using Tmx.Interfaces.Exceptions;
-    using Tmx.Interfaces.Remoting;
-    using Tmx.Interfaces.Server;
+    using Interfaces.Exceptions;
+    using Interfaces.Remoting;
+    using Interfaces.Server;
     using Tmx.Core;
     using System.Collections.Generic;
     
@@ -41,8 +41,12 @@ namespace Tmx.Client
             Trace.TraceInformation("Send(ICommonDataItem item): testRun id = {0}, url = {1}", ClientSettings.Instance.CurrentClient.TestRunId, url);
             
             var dataItemSendingResponse = _restTemplate.PostForMessage(url, item);
-            
+
             Trace.TraceInformation("dataItemSendingResponse is null? {0}", null == dataItemSendingResponse);
+
+            // 20150316
+            if (null == dataItemSendingResponse)
+                throw new SendingCommonDataItemException("Failed to send data item.");
             
             if (HttpStatusCode.Created == dataItemSendingResponse.StatusCode)
                 return;

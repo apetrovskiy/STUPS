@@ -13,15 +13,15 @@ namespace Tmx.Client
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
-    using Tmx.Core.Types.Remoting;
-    using Tmx.Interfaces.Remoting;
+    using Core.Types.Remoting;
+    using Interfaces.Remoting;
     
     /// <summary>
     /// Description of ClientSettings.
     /// </summary>
     public sealed class ClientSettings
     {
-        private static readonly ClientSettings instance = new ClientSettings();
+        static readonly ClientSettings _instance = new ClientSettings();
         
         static ClientSettings()
         {
@@ -34,7 +34,7 @@ namespace Tmx.Client
         
         public static ClientSettings Instance
         {
-            get { return instance; }
+            get { return _instance; }
         }
         
         public string ServerUrl { get; set; }

@@ -14,7 +14,7 @@ namespace Tmx.Client
     using System.Diagnostics;
     using System.Net;
     using Spring.Rest.Client;
-    using Tmx.Interfaces.Server;
+    using Interfaces.Server;
     
     /// <summary>
     /// Description of CommonDataLoader.
@@ -39,6 +39,9 @@ namespace Tmx.Client
             var commonDataResponse = _restTemplate.GetForMessage<Dictionary<string, string>>(url);
             
             Trace.TraceInformation("commonDataResponse is null? {0}", null == commonDataResponse);
+            // 20150316
+            if (null == commonDataResponse)
+                throw new Exception("Failed to load data item");
             
             var commonData = commonDataResponse.Body;
             

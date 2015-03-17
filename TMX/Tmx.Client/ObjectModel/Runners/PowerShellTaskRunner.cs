@@ -14,7 +14,7 @@ namespace Tmx.Client.ObjectModel.Runners
     using System.Collections.ObjectModel;
     using System.Diagnostics;
     using System.Management.Automation;
-    using Tmx.Interfaces.Remoting;
+    using Interfaces.Remoting;
     
     /// <summary>
     /// Description of PowerShellTaskRunner.
@@ -27,7 +27,7 @@ namespace Tmx.Client.ObjectModel.Runners
             IDictionary<string, string> previousTaskResults)
         {
             Trace.TraceInformation("RunBeforeAction");
-            return runCode(code, parameters, previousTaskResults);
+            return RunCode(code, parameters, previousTaskResults);
         }
         
         public bool RunMainAction(
@@ -36,7 +36,7 @@ namespace Tmx.Client.ObjectModel.Runners
             IDictionary<string, string> previousTaskResults)
         {
             Trace.TraceInformation("RunMainAction");
-            return runCode(code, parameters, previousTaskResults);
+            return RunCode(code, parameters, previousTaskResults);
         }
         
         public bool RunAfterAction(
@@ -45,21 +45,21 @@ namespace Tmx.Client.ObjectModel.Runners
             IDictionary<string, string> previousTaskResults)
         {
             Trace.TraceInformation("RunAfterAction");
-            return runCode(code, parameters, previousTaskResults);
+            return RunCode(code, parameters, previousTaskResults);
         }
         
-        bool runCode(
+        bool RunCode(
             string code,
             IDictionary<string, string> parameters,
             IDictionary<string, string> previousTaskResults)
         {
             Trace.TraceInformation("runCode");
-            var runnerWithParams = new runScriptBlockWithParameters(runSBActionWithParams);
-            return runScriptblockWithParameters(runnerWithParams, code, parameters, previousTaskResults);
+            var runnerWithParams = new RunScriptBlockWithParameters(RunSbActionWithParams);
+            return RunScriptblockWithParameters(runnerWithParams, code, parameters, previousTaskResults);
         }
         
-        bool runScriptblockWithParameters(
-            runScriptBlockWithParameters runnerWithParams,
+        bool RunScriptblockWithParameters(
+            RunScriptBlockWithParameters runnerWithParams,
             string code,
             IDictionary<string, string> parameters,
             IDictionary<string, string> previousTaskResults)
@@ -87,7 +87,7 @@ namespace Tmx.Client.ObjectModel.Runners
             }
         }
         
-        void runSBActionWithParams(ScriptBlock sb, object[] parameters)
+        void RunSbActionWithParams(ScriptBlock sb, object[] parameters)
         {
             Collection<PSObject> psObjects = null;
             try {
@@ -110,5 +110,5 @@ namespace Tmx.Client.ObjectModel.Runners
         }
     }
     
-    delegate void runScriptBlockWithParameters(ScriptBlock sb, object[] parameters);
+    delegate void RunScriptBlockWithParameters(ScriptBlock sb, object[] parameters);
 }

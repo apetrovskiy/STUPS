@@ -12,8 +12,8 @@ namespace Tmx.Client
 {
     using System;
     using System.Diagnostics;
-    using Tmx.Interfaces.Remoting;
-    using Tmx.Client.ObjectModel.Runners;
+    using Interfaces.Remoting;
+    using ObjectModel.Runners;
     
     /// <summary>
     /// Description of TaskRunnerNew.

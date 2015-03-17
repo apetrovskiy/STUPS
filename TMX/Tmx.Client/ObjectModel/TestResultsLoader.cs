@@ -16,12 +16,10 @@ namespace Tmx.Client
     using System.Net;
     using System.Xml.Linq;
     using Spring.Rest.Client;
-    using Tmx.Core;
-    using Tmx.Core.Types.Remoting;
-    using Tmx.Interfaces;
-    using Tmx.Interfaces.Exceptions;
-    using Tmx.Interfaces.Server;
-    using Tmx.Interfaces.TestStructure;
+    using Core;
+    using Core.Types.Remoting;
+    using Interfaces.Exceptions;
+    using Interfaces.Server;
     
     /// <summary>
     /// Description of TestResultsLoader.
@@ -48,6 +46,9 @@ namespace Tmx.Client
                 var loadingResultsResponse = _restTemplate.GetForMessage<TestResultsDataObject>(url);
                 
                 Trace.TraceInformation("LoadTestResults().2: loadingResultsResponse is null?{0}", null == loadingResultsResponse);
+                // 20150316
+                if (null == loadingResultsResponse)
+                    throw  new Exception("Failed to load test resuylts.");
                 
                 var testResultsImporter = new TestResultsImporter();
                 

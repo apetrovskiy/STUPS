@@ -10,8 +10,7 @@
 namespace Tmx.Client.ObjectModel.Runners
 {
     using System;
-    using Tmx.Interfaces.Remoting;
-    using Tmx.Client.ObjectModel.Runners;
+    using Interfaces.Remoting;
     
     /// <summary>
     /// Description of TaskRunnerSelector.

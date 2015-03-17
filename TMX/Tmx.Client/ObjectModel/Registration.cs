@@ -15,11 +15,11 @@ namespace Tmx.Client
     using PSTestLib.Helpers;
     using Spring.Http;
     using Spring.Rest.Client;
-    using Tmx.Core.Types.Remoting;
-    using Tmx.Interfaces.Exceptions;
-    using Tmx.Interfaces.Server;
+    using Core.Types.Remoting;
+    using Interfaces.Exceptions;
+    using Interfaces.Server;
     using Tmx.Core;
-    using Tmx.Interfaces.Remoting;
+    using Interfaces.Remoting;
     
     /// <summary>
     /// Description of Registration.
@@ -27,7 +27,7 @@ namespace Tmx.Client
     public class Registration
     {
         // volatile RestTemplate _restTemplate;
-        RestTemplate _restTemplate;
+        readonly RestTemplate _restTemplate;
         
         public Registration(RestRequestCreator requestCreator)
         {
@@ -43,10 +43,19 @@ namespace Tmx.Client
         {
             Trace.TraceInformation("SendRegistrationInfoAndGetClientId(string customClientString).1");
             
-            var registrationResponse = _restTemplate.PostForMessage<TestClient>(UrlList.TestClientRegistrationPoint_absPath, getNewTestClient(customClientString));
+            var registrationResponse = _restTemplate.PostForMessage<TestClient>(UrlList.TestClientRegistrationPoint_absPath, GetNewTestClient(customClientString));
             
             Trace.TraceInformation("registrationResponse is null {0}", null == registrationResponse);
+
+            // 20150316
+            if (null == registrationResponse)
+                throw new Exception("Failed to register a client.");
+
             Trace.TraceInformation("registrationResponse.Body is null {0}", null == registrationResponse.Body);
+
+            // 20150316
+            if (null == registrationResponse.Body)
+                throw new Exception("Failed to register a client.");
             
             if (HttpStatusCode.Created == registrationResponse.StatusCode)
                 ClientSettings.Instance.CurrentClient = registrationResponse.Body;
@@ -66,7 +75,7 @@ namespace Tmx.Client
         
         public virtual void UnregisterClient()
         {
-            closeCurrentTaskIfAny();
+            CloseCurrentTaskIfAny();
             try {
                 
                 // 20141211
@@ -90,12 +99,12 @@ namespace Tmx.Client
             }
         }
         
-        ITestClient getNewTestClient(string customClientString)
+        ITestClient GetNewTestClient(string customClientString)
         {
             return new TestClient { CustomString = customClientString };
         }
         
-        void closeCurrentTaskIfAny()
+        void CloseCurrentTaskIfAny()
         {
             
             Trace.TraceInformation("closeCurrentTaskIfAny().1");

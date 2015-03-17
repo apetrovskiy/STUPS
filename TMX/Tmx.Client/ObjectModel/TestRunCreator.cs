@@ -13,9 +13,9 @@ namespace Tmx.Client
     using System.Diagnostics;
     using System.Net;
     using Spring.Rest.Client;
-    using Tmx.Core.Types.Remoting;
-    using Tmx.Interfaces.Remoting;
-    using Tmx.Interfaces.Server;
+    using Core.Types.Remoting;
+    using Interfaces.Remoting;
+    using Interfaces.Server;
     
     /// <summary>
     /// Description of TestRunCreator.
@@ -44,6 +44,9 @@ namespace Tmx.Client
             var creatingTestRunResponse = _restTemplate.PostForMessage(UrlList.TestRunsControlPoint_absPath, testRunCommand);
             
             Trace.TraceInformation("CreateTestRun(string workflowName, TestRunStatuses status, string name).3 creatingTestRunResponse is null? {0}", null == creatingTestRunResponse);
+            // 20150316
+            if (null == creatingTestRunResponse)
+                throw  new Exception("Failed to create a test run.");
             
             return HttpStatusCode.Created == creatingTestRunResponse.StatusCode;
         }

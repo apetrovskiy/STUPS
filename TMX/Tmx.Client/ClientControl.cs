@@ -20,7 +20,9 @@ namespace Tmx.Client
     /// </summary>
     public class ClientControl
     {
-        static bool _alreadyInitialized = false;
+        // 20150316
+        // static bool _alreadyInitialized = false;
+        static bool _alreadyInitialized;
         
         public static void Init()
         {

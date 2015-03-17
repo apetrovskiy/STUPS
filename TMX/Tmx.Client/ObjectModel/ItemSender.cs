@@ -17,7 +17,7 @@ namespace Tmx.Client
     using System.Net;
     using Spring.Http;
     using Spring.Rest.Client;
-    using Tmx.Interfaces.Server;
+    using Interfaces.Server;
     
     /// <summary>
     /// Description of ItemSender.

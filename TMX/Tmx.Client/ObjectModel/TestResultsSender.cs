@@ -15,14 +15,12 @@ namespace Tmx.Client
     using System.Net;
     using System.Xml.Linq;
     using Spring.Http;
-    using Tmx.Core;
-    using Tmx.Core.Types.Remoting;
-    using Tmx.Interfaces.TestStructure;
-//    using Spring.Http.Converters.Xml;
+    using Core;
+    using Core.Types.Remoting;
     using Spring.Rest.Client;
-    using Tmx.Interfaces;
-    using Tmx.Interfaces.Exceptions;
-    using Tmx.Interfaces.Server;
+    using Interfaces;
+    using Interfaces.Exceptions;
+    using Interfaces.Server;
     
     /// <summary>
     /// Description of TestResultsSender.
@@ -72,6 +70,9 @@ namespace Tmx.Client
                 var sendingResultsResponse = _restTemplate.PostForMessage(url, dataObject);
                 
                 Trace.TraceInformation("SendTestResults().6 sendingResultsResponse is null? {0}", null == sendingResultsResponse);
+                // 20150316
+                if (null == sendingResultsResponse)
+                    throw  new Exception("Failed to send test results.");
                 
                 return HttpStatusCode.Created == sendingResultsResponse.StatusCode;
             }

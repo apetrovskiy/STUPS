@@ -29,6 +29,8 @@ namespace Tmx.Server.Modules
         Negotiator ExportTestResultsFromTestRunAsHtmlPage(Guid testRunId)
         {
             var basePath = (new TmxServerRootPathProvider()).GetRootPath() + @"/Views/testRuns/";
+            // 20150317
+            // TODO: proxify
             var testReportsExporter = TinyIoCContainer.Current.Resolve<TestReportsExporter>(new NamedParameterOverloads { { "basePath", basePath } });
             var reportPage = testReportsExporter.GetReportPage(testRunId, UrlList.ViewTestRuns_ResultsPageName);
             var dataObject = new TestResultsDataObject { Data = reportPage };

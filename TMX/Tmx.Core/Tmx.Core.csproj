@@ -153,7 +153,6 @@
     <Compile Include="Types\TestStructure\TestSuite.cs" />
     <Compile Include="Types\TestStructure\TestTaskAction.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Tmx.Interfaces\Tmx.Interfaces.csproj">
       <Project>{9C5DA25F-6A59-4F97-B107-64DD549CB800}</Project>

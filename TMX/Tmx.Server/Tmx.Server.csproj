@@ -119,6 +119,7 @@
     <Compile Include="Interfaces\IMailSettings.cs" />
     <Compile Include="Interfaces\ISettings.cs" />
     <Compile Include="Interfaces\ITaskSelector.cs" />
+    <Compile Include="Internal\ServerObjectFactory.cs" />
     <Compile Include="Modules\TestReportsModule.cs" />
     <Compile Include="ObjectModel\Data\MailSettings.cs" />
     <Compile Include="Helpers\ServerWatcher.cs" />

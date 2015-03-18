@@ -15,6 +15,7 @@ namespace Tmx.Server.Modules
     using System.Diagnostics;
     using System.Dynamic;
     using System.Linq;
+    using Internal;
     using Nancy;
     using Nancy.ModelBinding;
     using Nancy.Responses.Negotiation;
@@ -69,7 +70,9 @@ namespace Tmx.Server.Modules
         {
             if (string.IsNullOrEmpty(testRunCommand.WorkflowName))
                 return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
-            var testRunInitializer = TinyIoCContainer.Current.Resolve<TestRunInitializer>();
+            // 20150317
+            // var testRunInitializer = TinyIoCContainer.Current.Resolve<TestRunInitializer>();
+            var testRunInitializer = ServerObjectFactory.Resolve<TestRunInitializer>();
             var testRun = testRunInitializer.CreateTestRun(testRunCommand, Request.Form);
             if (Guid.Empty == testRun.WorkflowId) // ??
                 return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
@@ -99,7 +102,9 @@ namespace Tmx.Server.Modules
                 return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data); // ??
             if (testRun.IsCompleted())
                 return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data); // ??
-            var testRunSelector = TinyIoCContainer.Current.Resolve<TestRunSelector>();
+            // 20150317
+            // var testRunSelector = TinyIoCContainer.Current.Resolve<TestRunSelector>();
+            var testRunSelector = ServerObjectFactory.Resolve<TestRunSelector>();
             testRunSelector.CancelTestRun(testRun);
             return Negotiate.WithStatusCode(HttpStatusCode.OK).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data);
         }

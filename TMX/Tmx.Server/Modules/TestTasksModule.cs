@@ -13,6 +13,7 @@ namespace Tmx.Server.Modules
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
+    using Internal;
     using Nancy;
     using Nancy.ModelBinding;
     using Nancy.Responses.Negotiation;
@@ -54,8 +55,10 @@ namespace Tmx.Server.Modules
                 return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed);
             
             Trace.TraceInformation("returnTaskByClientId(Guid clientId).2");
-            
-            var taskSelector = TinyIoCContainer.Current.Resolve<TaskSelector>();
+
+            // 20150317
+            // var taskSelector = TinyIoCContainer.Current.Resolve<TaskSelector>();
+            var taskSelector = ServerObjectFactory.Resolve<TaskSelector>();
             
 //try {
 //    var taskSel = TinyIoCContainer.Current.Resolve<ITaskSelector>();
@@ -117,8 +120,10 @@ namespace Tmx.Server.Modules
             storedTask.TaskStatus = loadedTask.TaskStatus;
             storedTask.TaskResult = loadedTask.TaskResult;
             storedTask.StartTime = loadedTask.StartTime;
-            
-            var taskSelector = TinyIoCContainer.Current.Resolve<TaskSelector>();
+
+            // 20150317
+            // var taskSelector = TinyIoCContainer.Current.Resolve<TaskSelector>();
+            var taskSelector = ServerObjectFactory.Resolve<TaskSelector>();
             
 //try {
 //    var taskSel = TinyIoCContainer.Current.Resolve<ITaskSelector>();
@@ -161,7 +166,9 @@ namespace Tmx.Server.Modules
         
         void ActivateNextInRowTestRun()
         {
-            var testRunSelector = TinyIoCContainer.Current.Resolve<TestRunSelector>();
+            // 20150317
+            // var testRunSelector = TinyIoCContainer.Current.Resolve<TestRunSelector>();
+            var testRunSelector = ServerObjectFactory.Resolve<TestRunSelector>();
             var testRun = testRunSelector.GetNextInRowTestRun();
             if (null == testRun) return;
             if (TestRunQueue.TestRuns.Any(tr => tr.IsActive() && tr.TestLabId == testRun.TestLabId)) return;

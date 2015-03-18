@@ -15,9 +15,10 @@ namespace Tmx.Server
     using System.Linq;
     using System.Text.RegularExpressions;
     using Nancy.TinyIoc;
-    using Tmx.Core;
+    using Core;
     using Tmx.Interfaces.Remoting;
-    using Tmx.Server.Interfaces;
+    using Interfaces;
+    using Internal;
     
     /// <summary>
     /// Description of TaskSelector.
@@ -138,7 +139,9 @@ namespace Tmx.Server
         internal virtual void AddTasksForEveryClient(IEnumerable<ITestTask> activeWorkflowsTasks, Guid testRunId)
         {
             if (0 == ClientsCollection.Clients.Count) return;
-            var taskSelector = TinyIoCContainer.Current.Resolve<TaskSelector>();
+            // 20150317
+            // var taskSelector = TinyIoCContainer.Current.Resolve<TaskSelector>();
+            var taskSelector = ServerObjectFactory.Resolve<TaskSelector>();
             
 //try {
 //    var taskSel = TinyIoCContainer.Current.Resolve<ITaskSelector>();

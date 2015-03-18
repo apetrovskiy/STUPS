@@ -16,6 +16,7 @@ namespace Tmx.Server.Modules
     using System.Text;
     using System.Linq;
     using System.Xml.Linq;
+    using Internal;
     using Nancy;
     using Nancy.Json;
     using Nancy.ModelBinding;
@@ -49,7 +50,9 @@ namespace Tmx.Server.Modules
                     return HttpStatusCode.Created;
                 var xDoc = XDocument.Parse(dataObject.Data);
                 var currentTestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId);
-                var testResultsImporter = TinyIoCContainer.Current.Resolve<TestResultsImporter>();
+                // 20150317
+                // var testResultsImporter = TinyIoCContainer.Current.Resolve<TestResultsImporter>();
+                var testResultsImporter = ServerObjectFactory.Resolve<TestResultsImporter>();
                 testResultsImporter.MergeTestPlatforms(currentTestRun.TestPlatforms, testResultsImporter.ImportTestPlatformFromXdocument(xDoc));
                 testResultsImporter.MergeTestSuites(currentTestRun.TestSuites, testResultsImporter.ImportTestResultsFromXdocument(xDoc));
                 // maybe, there's no such need? // TODO: set current test suite, test scenario, test result?
@@ -64,7 +67,9 @@ namespace Tmx.Server.Modules
         
         Negotiator ExportTestResultsFromTestRun(Guid testRunId)
         {
-            var testResultsExporter = TinyIoCContainer.Current.Resolve<TestResultsExporter>();
+            // 20150317
+            // var testResultsExporter = TinyIoCContainer.Current.Resolve<TestResultsExporter>();
+            var testResultsExporter = ServerObjectFactory.Resolve<TestResultsExporter>();
             var xDoc = testResultsExporter.GetTestResultsAsXdocument(
                            new SearchCmdletBaseDataObject {
                                 Descending = false,

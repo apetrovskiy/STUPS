@@ -35,7 +35,9 @@ namespace Tmx.Server //.ObjectModel.ServerControl
             try {
                 var dir = new DirectoryInfo(_path);
                 var files = dir.GetFiles(@"Nancy.ViewEngines*.dll");
-                if (null == files || !files.Any()) return;
+                // 20150317
+                // if (null == files || !files.Any()) return;
+                if (!files.Any()) return;
                 foreach (var probablyAssembly in files) {
                     try {
                         var assembly = Assembly.LoadFrom(probablyAssembly.FullName);

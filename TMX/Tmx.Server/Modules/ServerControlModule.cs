@@ -11,6 +11,7 @@ namespace Tmx.Server.Modules
 {
     using System;
     using System.Collections.Generic;
+    using Internal;
     using Nancy;
     using Nancy.ModelBinding;
     using Nancy.TinyIoc;
@@ -37,7 +38,9 @@ namespace Tmx.Server.Modules
         {
             switch (serverCommand.Command) {
                 case ServerControlCommands.LoadConfiguraiton:
-                    var workflowLoader = TinyIoCContainer.Current.Resolve<WorkflowLoader>();
+                    // 20150317
+                    // var workflowLoader = TinyIoCContainer.Current.Resolve<WorkflowLoader>();
+                    var workflowLoader = ServerObjectFactory.Resolve<WorkflowLoader>();
                     workflowLoader.Load(serverCommand.Data);
                     break;
                 case ServerControlCommands.ResetFull:

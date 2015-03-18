@@ -11,6 +11,7 @@ namespace Tmx.Server.Modules
 {
     using System;
     using System.Linq;
+    using Internal;
     using Nancy;
     using Nancy.ModelBinding;
     using Nancy.Responses.Negotiation;
@@ -48,8 +49,10 @@ namespace Tmx.Server.Modules
                 return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed);
             testClient.TestRunId = TestRunQueue.TestRuns.ActiveTestRunIds().First();
             ClientsCollection.Clients.Add(testClient);
-            
-            var taskSelector = TinyIoCContainer.Current.Resolve<TaskSelector>();
+
+            // 20150317
+            // var taskSelector = TinyIoCContainer.Current.Resolve<TaskSelector>();
+            var taskSelector = ServerObjectFactory.Resolve<TaskSelector>();
             
 //try {
 //    var taskSel = TinyIoCContainer.Current.Resolve<ITaskSelector>();

@@ -15,6 +15,7 @@ namespace Tmx.Server.Modules
     using System.Linq;
     using System.Net;
     using System.Net.Sockets;
+    using Internal;
     using Nancy;
     using Nancy.Cookies;
     using Nancy.ModelBinding;
@@ -113,7 +114,9 @@ namespace Tmx.Server.Modules
         public virtual dynamic CreateTestRunReportsModel(Guid testRunId)
         {
             ITestRun currentTestRun = getCurrentTestRun(testRunId);
-            var testStatistics = TinyIoCContainer.Current.Resolve<TestStatistics>();
+            // 20150317
+            // var testStatistics = TinyIoCContainer.Current.Resolve<TestStatistics>();
+            var testStatistics = ServerObjectFactory.Resolve<TestStatistics>();
             testStatistics.RefreshAllStatistics(currentTestRun.TestSuites, true);
             var serverUrl = getServerUrl();
             var testRunUrl = getTestRunUrl(testRunId);

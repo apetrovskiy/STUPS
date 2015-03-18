@@ -25,14 +25,15 @@ namespace Tmx.Server //.ObjectModel.ServerControl
     using Nancy.TinyIoc;
     using Nancy.ViewEngines.DotLiquid;
     using PSTestLib.Helpers;
-    using Tmx.Core;
-    using Tmx.Core.Types.Remoting;
+    using Core;
+    using Core.Types.Remoting;
     using Tmx.Interfaces;
     using Tmx.Interfaces.Remoting;
     using Tmx.Interfaces.TestStructure;
     using DotLiquid;
-    using Tmx.Server.Interfaces;
-    
+    using Interfaces;
+    using Internal;
+
     /// <summary>
     /// Description of Control.
     /// </summary>
@@ -182,7 +183,9 @@ namespace Tmx.Server //.ObjectModel.ServerControl
         {
             var workflowsDirectoryPath = (new TmxServerRootPathProvider()).GetRootPath() + @"\Workflows";
             if (!Directory.Exists(workflowsDirectoryPath)) return;
-            var workflowLoader = TinyIoCContainer.Current.Resolve<WorkflowLoader>();
+            // 20150317
+            // var workflowLoader = TinyIoCContainer.Current.Resolve<WorkflowLoader>();
+            var workflowLoader = ServerObjectFactory.Resolve<WorkflowLoader>();
             foreach (var fileName in Directory.GetFiles(workflowsDirectoryPath)) {
                 try {
                     workflowLoader.Load(fileName);

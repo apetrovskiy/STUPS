@@ -116,7 +116,9 @@ namespace Tmx.Server //.ObjectModel.ServerControl
         
         static void PrepareComponents()
         {
-            var testLabCollection = new TestLabCollection();
+            // 20150319
+            // var testLabCollection = new TestLabCollection();
+            new TestLabCollection();
         }
         
         static void LoadModules()

@@ -20,10 +20,6 @@ namespace SePSX.Commands
     [OutputType(typeof(IWebElement))]
     public class InvokeSeWebElementClickCommand : ActionsCmdletBase
     {
-        public InvokeSeWebElementClickCommand()
-        {
-        }
-        
         #region Parameters
         [Parameter(Mandatory = false,
                    ParameterSetName = "Single")]

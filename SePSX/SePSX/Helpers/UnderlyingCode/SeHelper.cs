@@ -7,12 +7,11 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using System.Linq;
-
 namespace SePSX
 {
     #region using
     using System;
+    using System.Linq;
     using OpenQA.Selenium;
     using OpenQA.Selenium.Firefox;
     using OpenQA.Selenium.Chrome;

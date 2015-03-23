@@ -152,6 +152,11 @@
     <Compile Include="ObjectModel\ServerControl\ServerControl.cs" />
     <Compile Include="ObjectModel\ServerControl\TmxServerRootPathProvider.cs" />
     <Compile Include="ObjectModel\Settings\TestRunSettings.cs" />
+    <Compile Include="ServerConstants.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServerConstants.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\bootstrap-theme.css" />
@@ -243,7 +248,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="ServerConstants.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServerConstants.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
       <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>

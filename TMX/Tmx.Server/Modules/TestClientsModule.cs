@@ -15,12 +15,12 @@ namespace Tmx.Server.Modules
     using Nancy;
     using Nancy.ModelBinding;
     using Nancy.Responses.Negotiation;
-    using Nancy.TinyIoc;
-    using Tmx.Core;
-    using Tmx.Core.Types.Remoting;
+    //using Nancy.TinyIoc;
+    //using Tmx.Core;
+    using Core.Types.Remoting;
     using Tmx.Interfaces.Server;
     using Tmx.Interfaces.Remoting;
-    using Tmx.Server.Interfaces;
+    //using Tmx.Server.Interfaces;
     
     /// <summary>
     /// Description of TestClientsModule.
@@ -50,8 +50,6 @@ namespace Tmx.Server.Modules
             testClient.TestRunId = TestRunQueue.TestRuns.ActiveTestRunIds().First();
             ClientsCollection.Clients.Add(testClient);
 
-            // 20150317
-            // var taskSelector = TinyIoCContainer.Current.Resolve<TaskSelector>();
             var taskSelector = ServerObjectFactory.Resolve<TaskSelector>();
             
 //try {

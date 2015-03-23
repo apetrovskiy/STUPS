@@ -10,25 +10,25 @@
 namespace Tmx.Server.Modules
 {
     using System;
-    using System.Collections.Generic;
+    //using System.Collections.Generic;
     using System.Diagnostics;
-    using System.IO;
-    using System.Text;
+    //using System.IO;
+    //using System.Text;
     using System.Linq;
     using System.Xml.Linq;
     using Internal;
     using Nancy;
-    using Nancy.Json;
+    //using Nancy.Json;
     using Nancy.ModelBinding;
     using Nancy.Responses.Negotiation;
-    using Nancy.TinyIoc;
-    using Newtonsoft.Json;
-    using Tmx.Core;
-    using Tmx.Core.Types.Remoting;
+    //using Nancy.TinyIoc;
+    //using Newtonsoft.Json;
+    using Core;
+    using Core.Types.Remoting;
     using Tmx.Interfaces;
     using Tmx.Interfaces.Server;
-    using Tmx;
-    using Tmx.Interfaces.TestStructure;
+    //using Tmx;
+    //using Tmx.Interfaces.TestStructure;
     
     /// <summary>
     /// Description of TestResultsModule.
@@ -50,8 +50,6 @@ namespace Tmx.Server.Modules
                     return HttpStatusCode.Created;
                 var xDoc = XDocument.Parse(dataObject.Data);
                 var currentTestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId);
-                // 20150317
-                // var testResultsImporter = TinyIoCContainer.Current.Resolve<TestResultsImporter>();
                 var testResultsImporter = ServerObjectFactory.Resolve<TestResultsImporter>();
                 testResultsImporter.MergeTestPlatforms(currentTestRun.TestPlatforms, testResultsImporter.ImportTestPlatformFromXdocument(xDoc));
                 testResultsImporter.MergeTestSuites(currentTestRun.TestSuites, testResultsImporter.ImportTestResultsFromXdocument(xDoc));
@@ -67,8 +65,6 @@ namespace Tmx.Server.Modules
         
         Negotiator ExportTestResultsFromTestRun(Guid testRunId)
         {
-            // 20150317
-            // var testResultsExporter = TinyIoCContainer.Current.Resolve<TestResultsExporter>();
             var testResultsExporter = ServerObjectFactory.Resolve<TestResultsExporter>();
             var xDoc = testResultsExporter.GetTestResultsAsXdocument(
                            new SearchCmdletBaseDataObject {
@@ -81,7 +77,9 @@ namespace Tmx.Server.Modules
                            TestRunQueue.TestRuns.FirstOrDefault(testRun => testRun.Id == testRunId).TestPlatforms);
             
             var dataObject = new TestResultsDataObject { Data = xDoc.ToString() };
-            return null == dataObject ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(dataObject).WithStatusCode(HttpStatusCode.OK).WithFullNegotiation();
+            // 20150322
+            // return null == dataObject ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(dataObject).WithStatusCode(HttpStatusCode.OK).WithFullNegotiation();
+            return null == dataObject.Data ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(dataObject).WithStatusCode(HttpStatusCode.OK).WithFullNegotiation();
         }
     }
 }

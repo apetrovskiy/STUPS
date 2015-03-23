@@ -16,17 +16,13 @@ namespace Tmx.Server.Helpers
     using System.Net;
     using System.Net.Mail;
     using System.Net.Mime;
-    using Tmx.Server.Interfaces;
+    using Server.Interfaces;
     
     /// <summary>
     /// Description of Mailer.
     /// </summary>
     public class Mailer
     {
-        public Mailer()
-        {
-        }
-        
         /*
         System.Net.Mail.MailAddress NewMail = new MailAddress("netwrix.r" + (char)0x26 + "d.spb.qc.at.msi@netwrix.com", "netwrix.r" + (char)0x26 + "d.spb.qc.at.msi", System.Text.Encoding.UTF8); 
         */

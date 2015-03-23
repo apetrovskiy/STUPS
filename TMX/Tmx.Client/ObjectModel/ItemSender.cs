@@ -13,7 +13,7 @@ namespace Tmx.Client
     using System.Diagnostics;
     using System.IO;
     using System.Collections.Generic;
-    using System.Linq;
+    //using System.Linq;
     using System.Net;
     using Spring.Http;
     using Spring.Rest.Client;
@@ -24,7 +24,6 @@ namespace Tmx.Client
     /// </summary>
     public class ItemSender
     {
-        // volatile RestTemplate _restTemplate;
         readonly IRestOperations _restTemplate;
         
         public ItemSender(RestRequestCreator requestCreator)
@@ -35,33 +34,33 @@ namespace Tmx.Client
         public virtual bool SendFileSystemHierarchy(string sourcePath, string destinationPath, bool recurse, bool force)
         {
             if (Directory.Exists(sourcePath))
-                return sendHierarchy(sourcePath, destinationPath, recurse, force);
-            return File.Exists(sourcePath) && sendSingleFile(sourcePath.Substring(0, sourcePath.LastIndexOf('\\') + 1), sourcePath, destinationPath, force);
+                return SendHierarchy(sourcePath, destinationPath, recurse, force);
+            return File.Exists(sourcePath) && SendSingleFile(sourcePath.Substring(0, sourcePath.LastIndexOf('\\') + 1), sourcePath, destinationPath, force);
         }
         
-        bool sendHierarchy(string sourcePath, string destinationPath, bool recurse, bool force)
+        bool SendHierarchy(string sourcePath, string destinationPath, bool recurse, bool force)
         {
             // http://msdn.microsoft.com/en-us/library/bb513869.aspx
             var rootDirectory = new DirectoryInfo(sourcePath);
-            return walkIntoDirectory(rootDirectory, sourcePath, destinationPath, force);
+            return WalkIntoDirectory(rootDirectory, sourcePath, destinationPath, force);
         }
         
-        bool walkIntoDirectory(DirectoryInfo rootDirectory, string sourcePath, string destinationPath, bool force)
+        bool WalkIntoDirectory(DirectoryInfo rootDirectory, string sourcePath, string destinationPath, bool force)
         {
-            var files = getFiles(rootDirectory);
+            var files = GetFiles(rootDirectory);
             if (null != files)
                 foreach (var file in files)
-                    sendSingleFile(sourcePath, file.FullName, destinationPath, force);
+                    SendSingleFile(sourcePath, file.FullName, destinationPath, force);
             
-            var subDirs = getSubDirectories(rootDirectory);
+            var subDirs = GetSubDirectories(rootDirectory);
             if (null != subDirs)
                 foreach (var dir in subDirs)
-                    walkIntoDirectory(dir, sourcePath, destinationPath, force);
+                    WalkIntoDirectory(dir, sourcePath, destinationPath, force);
             
             return true;
         }
         
-        FileInfo[] getFiles(DirectoryInfo rootDirectory)
+        FileInfo[] GetFiles(DirectoryInfo rootDirectory)
         {
             try {
                 return rootDirectory.GetFiles("*.*");
@@ -78,7 +77,7 @@ namespace Tmx.Client
             }
         }
         
-        DirectoryInfo[] getSubDirectories(DirectoryInfo rootDirectory)
+        DirectoryInfo[] GetSubDirectories(DirectoryInfo rootDirectory)
         {
             try {
                 return rootDirectory.GetDirectories();
@@ -93,7 +92,7 @@ namespace Tmx.Client
             }
         }
         
-        bool sendSingleFile(string sourceFolderPath, string sourceFilePath, string destinationPath, bool force)
+        bool SendSingleFile(string sourceFolderPath, string sourceFilePath, string destinationPath, bool force)
         {
             var fileContentAndPaths = new Dictionary<string, object> {
                 { "file", new HttpEntity(new FileInfo(sourceFilePath)) },

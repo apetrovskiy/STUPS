@@ -10,15 +10,15 @@
 namespace Tmx.Server.Modules
 {
     using System;
-    using System.Collections.Generic;
+    //using System.Collections.Generic;
     using System.Linq;
     using Nancy;
     using Nancy.ModelBinding;
     using Nancy.Responses.Negotiation;
-    using Tmx.Core.Types.Remoting;
+    //using Tmx.Core.Types.Remoting;
     using Tmx.Interfaces.Remoting;
     using Tmx.Interfaces.Server;
-    using Tmx.Core;
+    using Core;
     
     /// <summary>
     /// Description of TestDataModule.

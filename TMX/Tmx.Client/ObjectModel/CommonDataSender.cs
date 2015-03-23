@@ -9,15 +9,15 @@
 
 namespace Tmx.Client
 {
-    using System;
+    //using System;
     using System.Diagnostics;
     using System.Net;
     using Spring.Rest.Client;
     using Interfaces.Exceptions;
     using Interfaces.Remoting;
     using Interfaces.Server;
-    using Tmx.Core;
-    using System.Collections.Generic;
+    //using Tmx.Core;
+    //using System.Collections.Generic;
     
     /// <summary>
     /// Description of CommonDataSender.

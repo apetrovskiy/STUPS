@@ -12,13 +12,13 @@ namespace Tmx.Client
     using System;
     using System.Diagnostics;
     using System.Net;
-    using PSTestLib.Helpers;
+    //using PSTestLib.Helpers;
     using Spring.Http;
     using Spring.Rest.Client;
     using Core.Types.Remoting;
     using Interfaces.Exceptions;
     using Interfaces.Server;
-    using Tmx.Core;
+    //using Tmx.Core;
     using Interfaces.Remoting;
     
     /// <summary>

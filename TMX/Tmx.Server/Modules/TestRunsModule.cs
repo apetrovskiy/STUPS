@@ -11,7 +11,7 @@ namespace Tmx.Server.Modules
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.Design;
+    //using System.ComponentModel.Design;
     using System.Diagnostics;
     using System.Dynamic;
     using System.Linq;
@@ -19,9 +19,9 @@ namespace Tmx.Server.Modules
     using Nancy;
     using Nancy.ModelBinding;
     using Nancy.Responses.Negotiation;
-    using Nancy.TinyIoc;
-    using Tmx.Core;
-    using Tmx.Core.Types.Remoting;
+    //using Nancy.TinyIoc;
+    using Core;
+    using Core.Types.Remoting;
     using Tmx.Interfaces.Remoting;
     using Tmx.Interfaces.Server;
     
@@ -70,15 +70,12 @@ namespace Tmx.Server.Modules
         {
             if (string.IsNullOrEmpty(testRunCommand.WorkflowName))
                 return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
-            // 20150317
-            // var testRunInitializer = TinyIoCContainer.Current.Resolve<TestRunInitializer>();
             var testRunInitializer = ServerObjectFactory.Resolve<TestRunInitializer>();
             var testRun = testRunInitializer.CreateTestRun(testRunCommand, Request.Form);
             if (Guid.Empty == testRun.WorkflowId) // ??
                 return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
             TestRunQueue.TestRuns.Add(testRun);
             
-            // 20141207
             foreach (var testRunAction in testRun.BeforeActions) {
                 testRunAction.Run();
             }
@@ -102,8 +99,6 @@ namespace Tmx.Server.Modules
                 return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data); // ??
             if (testRun.IsCompleted())
                 return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data); // ??
-            // 20150317
-            // var testRunSelector = TinyIoCContainer.Current.Resolve<TestRunSelector>();
             var testRunSelector = ServerObjectFactory.Resolve<TestRunSelector>();
             testRunSelector.CancelTestRun(testRun);
             return Negotiate.WithStatusCode(HttpStatusCode.OK).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data);

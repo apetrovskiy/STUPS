@@ -185,8 +185,6 @@ namespace Tmx.Server //.ObjectModel.ServerControl
         {
             var workflowsDirectoryPath = (new TmxServerRootPathProvider()).GetRootPath() + @"\Workflows";
             if (!Directory.Exists(workflowsDirectoryPath)) return;
-            // 20150317
-            // var workflowLoader = TinyIoCContainer.Current.Resolve<WorkflowLoader>();
             var workflowLoader = ServerObjectFactory.Resolve<WorkflowLoader>();
             foreach (var fileName in Directory.GetFiles(workflowsDirectoryPath)) {
                 try {

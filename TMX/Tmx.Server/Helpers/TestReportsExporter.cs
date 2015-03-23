@@ -31,8 +31,6 @@ namespace Tmx.Server
         /// <exception cref="TinyIoCResolutionException">Unable to resolve the type.</exception>
         public virtual string GetReportPage(Guid testRunId, string templateName)
         {
-            // 20150317
-            // var model = TinyIoCContainer.Current.Resolve<ViewsTestRunsModule>().CreateTestRunReportsModel(testRunId);
             var model = ServerObjectFactory.Resolve<ViewsTestRunsModule>().CreateTestRunReportsModel(testRunId);
             var template = GetTemplate(templateName);
             return template.Render(Hash.FromAnonymousObject(new { @Model = model }));

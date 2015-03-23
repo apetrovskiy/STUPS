@@ -10,11 +10,11 @@
 namespace Tmx.Client
 {
     using System;
-    using System.Collections.Generic;
+    //using System.Collections.Generic;
     using System.Diagnostics;
     using System.Net;
-    using System.Xml.Linq;
-    using Spring.Http;
+    //using System.Xml.Linq;
+    //using Spring.Http;
     using Core;
     using Core.Types.Remoting;
     using Spring.Rest.Client;

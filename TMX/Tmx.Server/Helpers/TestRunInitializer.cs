@@ -12,9 +12,9 @@ namespace Tmx.Server
     using System;
     using System.Linq;
     using Nancy;
-    using Nancy.TinyIoc;
-    using Tmx.Core;
-    using Tmx.Core.Types.Remoting;
+    //using Nancy.TinyIoc;
+    using Core;
+    using Core.Types.Remoting;
     using Tmx.Interfaces.Remoting;
     
     /// <summary>

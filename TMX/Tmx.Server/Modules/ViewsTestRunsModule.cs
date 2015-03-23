@@ -18,11 +18,11 @@ namespace Tmx.Server.Modules
     using Internal;
     using Nancy;
     using Nancy.Cookies;
-    using Nancy.ModelBinding;
-    using Nancy.Responses.Negotiation;
-    using Nancy.Extensions;
-    using Nancy.TinyIoc;
-    using Tmx.Core;
+    //using Nancy.ModelBinding;
+    //using Nancy.Responses.Negotiation;
+    //using Nancy.Extensions;
+    //using Nancy.TinyIoc;
+    using Core;
     using Tmx.Interfaces.Server;
     using Tmx.Interfaces.Remoting;
     
@@ -31,7 +31,7 @@ namespace Tmx.Server.Modules
     /// </summary>
     public class ViewsTestRunsModule : NancyModule
     {
-        const string _workflowCookieName = "workflow_name";
+        // const string WorkflowCookieName = "workflow_name";
         // const string _testRunCookieName = "test_run_name";
         
         public ViewsTestRunsModule() : base(UrlList.ViewTestRuns_Root)
@@ -41,7 +41,7 @@ namespace Tmx.Server.Modules
                 data.Selected = string.Empty;
                 // data.TestRunName = string.Empty;
                 try {
-                    data.Selected = getCookieValue(_workflowCookieName);
+                    data.Selected = GetCookieValue(ServerConstants.ViewsTestRunsModule_WorkflowCookieName);
                     // data.TestRunName = getCookieValue(_testRunCookieName);
                 }
                 catch {}
@@ -51,14 +51,14 @@ namespace Tmx.Server.Modules
             Post[UrlList.ViewTestRuns_NewTestRunPage] = _ => {
                 string workflowName = Request.Form.workflow_name;
                 // 20150312
-                var data = CreateNewTestRunModel("/workflows/" + WorkflowCollection.Workflows.FirstOrDefault(wfl => wfl.Name == workflowName).ParametersPageName, workflowName);
+                var data = CreateNewTestRunModel(ServerConstants.ViewsTestRunsModule_UrlPart_Workflows + WorkflowCollection.Workflows.FirstOrDefault(wfl => wfl.Name == workflowName).ParametersPageName, workflowName);
                 // var workflowForTestRun = WorkflowCollection.Workflows.FirstOrDefault(wfl => wfl.Name == workflowName);
                 // var data = CreateNewTestRunModel(workflowForTestRun.Path + @"\" + workflowForTestRun.ParametersPageName, workflowName);
                 data.Selected = workflowName;
                 // string testRunName = Request.Form.test_run_name;
                 // data.TestRunName = testRunName;
                 return Negotiate
-                    .WithCookie(new NancyCookie(_workflowCookieName, workflowName))
+                    .WithCookie(new NancyCookie(ServerConstants.ViewsTestRunsModule_WorkflowCookieName, workflowName))
                     .WithView(UrlList.ViewTestRuns_NewTestRunPageName)
                     .WithModel((ExpandoObject)data);
                     // .WithCookie(new NancyCookie(_testRunCookieName, testRunName))
@@ -77,13 +77,13 @@ namespace Tmx.Server.Modules
             
             Get [UrlList.ViewTestRuns_ClientsPage] = parameters => {
                 dynamic data = new ExpandoObject();
-                data.Clients = (ClientsCollection.Clients.Where(client => client.TestRunId == parameters.id).ToList() ?? new List<ITestClient>());
+                data.Clients = (ClientsCollection.Clients.Where(client => client.TestRunId == parameters.id).ToList());
                 return View[UrlList.ViewTestRuns_ClientsPageName, data];
             };
             
             Get [UrlList.ViewTestRuns_TasksPage] = parameters => {
                 dynamic data = new ExpandoObject();
-                data.TasksForClients = (TaskPool.TasksForClients.Where(task => task.TestRunId == parameters.id).ToList() ?? new List<ITestTask>());
+                data.TasksForClients = (TaskPool.TasksForClients.Where(task => task.TestRunId == parameters.id).ToList());
                 return View[UrlList.ViewTestRuns_TasksPageName, data];
             };
             
@@ -114,12 +114,10 @@ namespace Tmx.Server.Modules
         public virtual dynamic CreateTestRunReportsModel(Guid testRunId)
         {
             ITestRun currentTestRun = getCurrentTestRun(testRunId);
-            // 20150317
-            // var testStatistics = TinyIoCContainer.Current.Resolve<TestStatistics>();
             var testStatistics = ServerObjectFactory.Resolve<TestStatistics>();
             testStatistics.RefreshAllStatistics(currentTestRun.TestSuites, true);
-            var serverUrl = getServerUrl();
-            var testRunUrl = getTestRunUrl(testRunId);
+            var serverUrl = GetServerUrl();
+            var testRunUrl = GetTestRunUrl(testRunId);
             return new { TestRun = currentTestRun, Suites = currentTestRun.TestSuites.OrderBy(suite => suite.Id), ServerUrl = serverUrl, TestRunUrl = testRunUrl };
         }
         
@@ -128,22 +126,22 @@ namespace Tmx.Server.Modules
             return TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId);
         }
         
-        string getCookieValue(string cookieName)
+        string GetCookieValue(string cookieName)
         {
             var cookieValue = Context.Request.Cookies[cookieName];
             cookieValue = cookieValue.Replace("+", " ");
             return cookieValue;
         }
         
-        string getServerUrl()
+        string GetServerUrl()
         {
             var ipAddress = Dns.GetHostAddresses(Dns.GetHostName()).First(address => address.AddressFamily == AddressFamily.InterNetwork && address.ToString().Substring(0, 7) != "169.254");
-            return "http://" + ipAddress + ":" + ServerControl.Port;
+            return ServerConstants.ViewsTestRunsModule_UrlPart_Http + ipAddress + ":" + ServerControl.Port;
         }
         
-        string getTestRunUrl(Guid testRunId)
+        string GetTestRunUrl(Guid testRunId)
         {
-            return getServerUrl() + "/testRuns/" + testRunId + "/testResults";
+            return GetServerUrl() + ServerConstants.ViewsTestRunsModule_UrlPart_TestRuns + testRunId + ServerConstants.ViewsTestRunsModule_UrlPart_TestResults;
         }
     }
 }

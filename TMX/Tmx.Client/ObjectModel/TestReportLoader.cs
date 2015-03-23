@@ -9,7 +9,7 @@
 
 namespace Tmx.Client
 {
-    using System;
+    //using System;
     using System.Diagnostics;
     using System.Net;
     using Spring.Rest.Client;
@@ -43,9 +43,6 @@ namespace Tmx.Client
                 
                 Trace.TraceInformation("LoadTestReport).2: loadingResultsResponse is null?{0}", null == loadingReportResponse);
                 
-                // 20150316
-                //if (null == loadingReportResponse || null == loadingReportResponse.Body || HttpStatusCode.OK != loadingReportResponse.StatusCode)
-                //    throw new LoadingTestReportException("Failed to receive test results. " + loadingReportResponse.StatusCode);
                 if (null == loadingReportResponse || null == loadingReportResponse.Body)
                     throw new LoadingTestReportException("Failed to receive test results.");
                 if (HttpStatusCode.OK != loadingReportResponse.StatusCode)

@@ -9,7 +9,7 @@
 
 namespace Tmx.Client
 {
-    using System;
+    //using System;
     using System.Diagnostics;
     using System.Net;
     using Spring.Http;
@@ -17,8 +17,8 @@ namespace Tmx.Client
     using Core.Types.Remoting;
     using Interfaces.Exceptions;
     using Interfaces.Server;
-    using Tmx.Core;
-    using System.Collections.Generic;
+    //using Tmx.Core;
+    //using System.Collections.Generic;
     
     /// <summary>
     /// Description of StatusSender.

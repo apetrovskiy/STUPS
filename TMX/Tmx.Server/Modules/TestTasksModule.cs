@@ -10,20 +10,20 @@
 namespace Tmx.Server.Modules
 {
     using System;
-    using System.Collections.Generic;
+    //using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
     using Internal;
     using Nancy;
     using Nancy.ModelBinding;
     using Nancy.Responses.Negotiation;
-    using Nancy.TinyIoc;
+    //using Nancy.TinyIoc;
     using Tmx.Interfaces.Exceptions;
     using Tmx.Interfaces.Server;
-    using Tmx.Core;
-    using Tmx.Core.Types.Remoting;
+    using Core;
+    using Core.Types.Remoting;
     using Tmx.Interfaces.Remoting;
-    using Tmx.Server.Interfaces;
+    using Interfaces;
     
     /// <summary>
     /// Description of TestTasksModule.
@@ -56,8 +56,6 @@ namespace Tmx.Server.Modules
             
             Trace.TraceInformation("returnTaskByClientId(Guid clientId).2");
 
-            // 20150317
-            // var taskSelector = TinyIoCContainer.Current.Resolve<TaskSelector>();
             var taskSelector = ServerObjectFactory.Resolve<TaskSelector>();
             
 //try {
@@ -166,8 +164,6 @@ namespace Tmx.Server.Modules
         
         void ActivateNextInRowTestRun()
         {
-            // 20150317
-            // var testRunSelector = TinyIoCContainer.Current.Resolve<TestRunSelector>();
             var testRunSelector = ServerObjectFactory.Resolve<TestRunSelector>();
             var testRun = testRunSelector.GetNextInRowTestRun();
             if (null == testRun) return;
@@ -176,8 +172,6 @@ namespace Tmx.Server.Modules
             testRun.Status = TestRunStatuses.Running;
         }
         
-        // 20141220
-        // HttpStatusCode updateNextTaskAndReturnOk(TaskSelector taskSorter, ITestTask storedTask)
         HttpStatusCode UpdateNextTaskAndReturnOk(ITaskSelector taskSorter, ITestTask storedTask)
         {
             ITestTask nextTask = null;

@@ -14,7 +14,7 @@ namespace Tmx.Server
     using System.Diagnostics;
     using System.Linq;
     using System.Text.RegularExpressions;
-    using Nancy.TinyIoc;
+    //using Nancy.TinyIoc;
     using Core;
     using Tmx.Interfaces.Remoting;
     using Interfaces;
@@ -60,9 +60,8 @@ namespace Tmx.Server
                 var newTask = t.CloneTaskForNewTestClient();
                 newTask.ClientId = clientId;
                 return newTask;
-            }).ToList<ITestTask>();
+            }).ToList();
             
-            Trace.TraceInformation("SelectTasksForClient(Guid clientId, List<ITestTask> tasks).3 resultTaskScope is null? {0}", null == resultTaskScope);
             Trace.TraceInformation("SelectTasksForClient(Guid clientId, List<ITestTask> tasks).4 there are {0} tasks", resultTaskScope.Count);
             
             return resultTaskScope;
@@ -94,9 +93,8 @@ namespace Tmx.Server
             var taskArrayForClient = taskListForClient as ITestTask[] ?? taskListForClient.ToArray();
             if (null == taskListForClient || !taskArrayForClient.Any()) return null;
             var tasksToBeNextOne = taskArrayForClient.Where(t => t.Id > currentTaskId);
-            if (null == tasksToBeNextOne || !tasksToBeNextOne.Any()) return null;
-            
-            return taskArrayForClient.First(task => task.Id == tasksToBeNextOne.Min(tsk => tsk.Id));
+            var toBeNextOne = tasksToBeNextOne as ITestTask[] ?? tasksToBeNextOne.ToArray();
+            return !toBeNextOne.Any() ? null : taskArrayForClient.First(task => task.Id == toBeNextOne.Min(tsk => tsk.Id));
         }
         
         public virtual void CancelFurtherTasksOfTestClient(Guid clientId)
@@ -119,7 +117,6 @@ namespace Tmx.Server
         {
             Trace.TraceInformation("getOnlyNewTestTasksForClient(Guid clientId).1 client id = {0}", clientId);
             var taskSelection = TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.IsActive);
-            Trace.TraceInformation("getOnlyNewTestTasksForClient(Guid clientId).2 there are no tasks for client? {0}", null == taskSelection);
             var taskSelectionArray = taskSelection as ITestTask[] ?? taskSelection.ToArray();
             Trace.TraceInformation("getOnlyNewTestTasksForClient(Guid clientId).3 number of tasks for client = {0}", taskSelectionArray.Count());
             Trace.TraceInformation("getOnlyNewTestTasksForClient(Guid clientId).4 number of new tasks for client = {0}", taskSelectionArray.Count(task => task.TaskStatus == TestTaskStatuses.New));
@@ -139,8 +136,6 @@ namespace Tmx.Server
         internal virtual void AddTasksForEveryClient(IEnumerable<ITestTask> activeWorkflowsTasks, Guid testRunId)
         {
             if (0 == ClientsCollection.Clients.Count) return;
-            // 20150317
-            // var taskSelector = TinyIoCContainer.Current.Resolve<TaskSelector>();
             var taskSelector = ServerObjectFactory.Resolve<TaskSelector>();
             
 //try {
@@ -154,8 +149,18 @@ namespace Tmx.Server
 //    Console.WriteLine(ee.Message);
 //}
             
+            // 20150322
+            /*
             foreach (var clientId in ClientsCollection.Clients.Where(client => client.IsInActiveTestRun()).Select(client => client.Id)) {
                 var tasksForClient = taskSelector.SelectTasksForClient(clientId, activeWorkflowsTasks.ToList());
+                tasksForClient.ForEach(task => task.TestRunId = testRunId);
+                TaskPool.TasksForClients.AddRange(tasksForClient);
+            }
+            */
+            foreach (var tasksForClient in from clientId in ClientsCollection.Clients.Where(client => client.IsInActiveTestRun()).Select(client => client.Id)
+                                           let workflowsTasks = activeWorkflowsTasks as ITestTask[] ?? activeWorkflowsTasks.ToArray()
+                                           select taskSelector.SelectTasksForClient(clientId, workflowsTasks.ToList()))
+            {
                 tasksForClient.ForEach(task => task.TestRunId = testRunId);
                 TaskPool.TasksForClients.AddRange(tasksForClient);
             }

@@ -9,14 +9,14 @@
 
 namespace Tmx.Server.Modules
 {
-    using System;
+    //using System;
     using System.Collections.Generic;
     using Internal;
     using Nancy;
     using Nancy.ModelBinding;
-    using Nancy.TinyIoc;
-    using Tmx.Core.Types.Remoting;
-    using Tmx.Interfaces;
+    //using Nancy.TinyIoc;
+    using Core.Types.Remoting;
+    //using Tmx.Interfaces;
     using Tmx.Interfaces.Remoting;
     using Tmx.Interfaces.Server;
     
@@ -38,8 +38,6 @@ namespace Tmx.Server.Modules
         {
             switch (serverCommand.Command) {
                 case ServerControlCommands.LoadConfiguraiton:
-                    // 20150317
-                    // var workflowLoader = TinyIoCContainer.Current.Resolve<WorkflowLoader>();
                     var workflowLoader = ServerObjectFactory.Resolve<WorkflowLoader>();
                     workflowLoader.Load(serverCommand.Data);
                     break;

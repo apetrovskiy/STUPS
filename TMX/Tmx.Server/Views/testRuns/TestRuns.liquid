@@ -32,7 +32,7 @@
                 <td>{{ testRun.Name }}</td>
                 <td>{{ testRun.Get_Test_Lab_Name() }}</td>
                 <td>{{ testRun.Start_Time }}</td>
-                <td>{{ testRun.Time_Taken }}</td>
+                <td>{{ testRun.get_time_taken }}</td>
                 <td>{{ testRun.Status }}</td>
                 <td>{{ testRun.Description }}</td>
                 <td><a href="/testRuns/{{ testRun.Id }}/testResults">test results</a></td>

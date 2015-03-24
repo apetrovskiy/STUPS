@@ -9,10 +9,9 @@
 
 namespace Tmx.Server
 {
-    using System;
     using System.Collections.Generic;
     using Tmx.Interfaces.Remoting;
-    
+
     /// <summary>
     /// Description of TestRunQueue.
     /// </summary>

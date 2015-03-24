@@ -11,8 +11,8 @@ namespace Tmx.Interfaces.Remoting
 {
     using System;
     using System.Collections.Generic;
-    using Tmx.Interfaces.Remoting.Actions;
-    using Tmx.Interfaces.TestStructure;
+    using Actions;
+    using TestStructure;
     
     /// <summary>
     /// Description of ITestRun.
@@ -30,7 +30,8 @@ namespace Tmx.Interfaces.Remoting
         DateTime StartTime { get; set; }
         // 20150115
         // TimeSpan TimeTaken { get; set; }
-        TimeSpan GetTimeTaken();
+        // TimeSpan GetTimeTaken();
+        string GetTimeTaken();
 //        string GetTestLabName();
         List<IAction> BeforeActions { get; set; }
         List<IAction> AfterActions { get; set; }

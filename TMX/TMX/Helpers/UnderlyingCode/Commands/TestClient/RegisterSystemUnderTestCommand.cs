@@ -11,9 +11,8 @@ namespace Tmx
 {
     using System;
     using System.Threading;
-    using Tmx;
-    using Tmx.Client;
-    using Tmx.Commands;
+    using Client;
+    using Commands;
     
     /// <summary>
     /// Description of RegisterSystemUnderTestCommand.

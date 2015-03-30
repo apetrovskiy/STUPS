@@ -10,6 +10,7 @@
 namespace Tmx.Core
 {
     using System;
+    using Interfaces.Remoting;
     using Tmx.Interfaces;
     
     /// <summary>

@@ -67,5 +67,6 @@ namespace Tmx.Core.Types.Remoting
         public string TaskName { get; set; }
         public string DetailedStatus { get; set; }
         public Guid TestRunId { get; set; }
+        public Guid TestHostId { get; set; }
     }
 }

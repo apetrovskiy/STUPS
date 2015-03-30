@@ -71,22 +71,16 @@ namespace Tmx.Core.Types.Remoting
         
         public DateTime CreatedTime { get; set; }
         public DateTime StartTime { get; set; }
-        // 20150115
-        // public TimeSpan TimeTaken { get; set; }
-        // public TimeSpan GetTimeTaken()
+        
         public string GetTimeTaken()
         {
-            /*
-            if (DateTime.MinValue < _finishTime)
-                return _finishTime - StartTime;
-            return DateTime.Now - StartTime;
-            */
             TimeSpan resultSpan;
+            if (DateTime.MinValue == StartTime)
+                return string.Format("{0:00}:{1:00}:{2:00}", 0, 0, 0);
             if (DateTime.MinValue < _finishTime)
                 resultSpan = _finishTime - StartTime;
             else
                 resultSpan = DateTime.Now - StartTime;
-            // return (resultSpan + TimeSpan.FromMilliseconds(1000 - resultSpan.Milliseconds));
             return string.Format("{0:00}:{1:00}:{2:00}", resultSpan.TotalHours % 60, resultSpan.TotalMinutes % 60, resultSpan.TotalSeconds % 60);
         }
         public void SetFinishTime()

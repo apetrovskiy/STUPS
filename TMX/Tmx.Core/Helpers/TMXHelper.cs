@@ -15,6 +15,7 @@ namespace Tmx
     
     using System.Collections.Generic;
     using System.Xml.Linq;
+    using Interfaces.Remoting;
     using Tmx.Core;
 //    using System.Reflection;
     using Tmx.Interfaces;

@@ -9,6 +9,8 @@
 
 namespace Tmx.Interfaces
 {
+    using Remoting;
+
     // using System.Management.Automation;
     
     /// <summary>

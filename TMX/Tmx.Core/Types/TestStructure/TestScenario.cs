@@ -13,6 +13,7 @@ namespace Tmx.Interfaces
     using System.Collections.Generic;
     // using System.Management.Automation;
     using System.Xml.Serialization;
+    using Remoting;
     using Tmx.Interfaces;
     using Tmx.Interfaces.TestStructure;
     // using Tmx.Core;

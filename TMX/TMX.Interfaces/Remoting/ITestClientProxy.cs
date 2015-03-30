@@ -21,5 +21,6 @@ namespace Tmx.Interfaces.Remoting
         int TaskId { get; set; }
         string TaskName { get; set; }
         Guid TestRunId { get; set; }
+        Guid TestHostId { get; set; }
     }
 }

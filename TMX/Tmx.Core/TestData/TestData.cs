@@ -15,6 +15,7 @@ namespace Tmx
     using Tmx.Core.Types.Remoting;
 //    using System.ComponentModel;
     using System.Linq;
+    using Interfaces.Remoting;
     using Tmx.Interfaces;
     using Tmx.Interfaces.TestStructure;
     

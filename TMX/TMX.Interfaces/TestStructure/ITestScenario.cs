@@ -13,6 +13,7 @@ namespace Tmx.Interfaces.TestStructure
     using System.Collections.Generic;
     // using System.Management.Automation;
     using System.Xml.Serialization;
+    using Remoting;
 
     /// <summary>
     /// Description of ITestScenario.

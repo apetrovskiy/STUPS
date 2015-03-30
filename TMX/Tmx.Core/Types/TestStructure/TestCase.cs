@@ -13,6 +13,7 @@ namespace Tmx
     using Tmx.Interfaces;
     // using System.Management.Automation;
     using System.Collections.Generic;
+    using Interfaces.Remoting;
     using Tmx.Interfaces.TestStructure;
     
     /// <summary>

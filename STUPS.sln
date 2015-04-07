@@ -1,8 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-# SharpDevelop 5.1
-VisualStudioVersion = 14.0.22310.1
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestLink", "TestLink", "{9C089AB4-FE8E-4B62-84B1-31544BBE75C8}"
 EndProject
@@ -28,7 +27,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmx.Interfaces", "Tmx\Tmx.I
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmx.Server", "Tmx\Tmx.Server\Tmx.Server.csproj", "{A80B14D0-C8DB-4F70-B18E-4FD1C16E0AEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmx.Client", "Tmx\Tmx.Client\Tmx.Client.csproj", "{6943EC2F-CB75-4F9B-B83C-A664400052A7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmx.Client.Library", "Tmx\Tmx.Client.Library\Tmx.Client.Library.csproj", "{6943EC2F-CB75-4F9B-B83C-A664400052A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmx.Core", "Tmx\Tmx.Core\Tmx.Core.csproj", "{069651A0-FE15-42E2-89D5-9A761A47B143}"
 EndProject

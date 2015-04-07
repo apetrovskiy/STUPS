@@ -374,9 +374,9 @@
       <Project>{e4499004-dae5-4700-b212-4cdea3080bc5}</Project>
       <Name>PSTestLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tmx.Client\Tmx.Client.csproj">
+    <ProjectReference Include="..\Tmx.Client.Library\Tmx.Client.Library.csproj">
       <Project>{6943ec2f-cb75-4f9b-b83c-a664400052a7}</Project>
-      <Name>Tmx.Client</Name>
+      <Name>Tmx.Client.Library</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tmx.Core\Tmx.Core.csproj">
       <Project>{069651a0-fe15-42e2-89d5-9a761a47b143}</Project>

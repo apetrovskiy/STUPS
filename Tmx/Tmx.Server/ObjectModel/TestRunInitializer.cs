@@ -7,16 +7,16 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Server
+namespace Tmx.Server.ObjectModel
 {
     using System;
     using System.Linq;
-    using Nancy;
-    //using Nancy.TinyIoc;
     using Core;
     using Core.Types.Remoting;
+    using Nancy;
     using Tmx.Interfaces.Remoting;
-    
+//using Nancy.TinyIoc;
+
     /// <summary>
     /// Description of TestRunInitializer.
     /// </summary>

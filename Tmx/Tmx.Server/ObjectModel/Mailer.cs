@@ -7,17 +7,17 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-
-namespace Tmx.Server.Helpers
+namespace Tmx.Server.ObjectModel
 {
     using System;
     using System.Collections;
     using System.Diagnostics;
+    using System.IO;
     using System.Net;
     using System.Net.Mail;
     using System.Net.Mime;
-    using Server.Interfaces;
-    
+    using Interfaces;
+
     /// <summary>
     /// Description of Mailer.
     /// </summary>
@@ -38,8 +38,7 @@ namespace Tmx.Server.Helpers
             };
             
             foreach (var smtpServer in settings.SmtpServers) {
-                var client = new SmtpClient(smtpServer);
-                client.UseDefaultCredentials = true;
+                var client = new SmtpClient(smtpServer) {UseDefaultCredentials = true};
                 try {
                     client.Send(message);
                 }
@@ -58,13 +57,14 @@ namespace Tmx.Server.Helpers
         {
             const string to = "jane@contoso.com";
             const string @from = "ben@contoso.com";
-            MailMessage message = new MailMessage(from, to);
-            message.Subject = "Using the new SMTP client.";
-            message.Body = @"Using this new feature, you can send an e-mail message from an application very easily.";
-            SmtpClient client = new SmtpClient(server);
+            var message = new MailMessage(from, to)
+            {
+                Subject = "Using the new SMTP client.",
+                Body = @"Using this new feature, you can send an e-mail message from an application very easily."
+            };
+            var client = new SmtpClient(server) {UseDefaultCredentials = true};
             // Credentials are necessary if the server requires the client  
             // to authenticate before it will send e-mail on the client's behalf.
-            client.UseDefaultCredentials = true;
 
             try {
                 client.Send(message);
@@ -96,16 +96,15 @@ namespace Tmx.Server.Helpers
             Attachment data = new Attachment(file, MediaTypeNames.Application.Octet);
             // Add time stamp information for the file.
             ContentDisposition disposition = data.ContentDisposition;
-            disposition.CreationDate = System.IO.File.GetCreationTime(file);
-            disposition.ModificationDate = System.IO.File.GetLastWriteTime(file);
-            disposition.ReadDate = System.IO.File.GetLastAccessTime(file);
+            disposition.CreationDate = File.GetCreationTime(file);
+            disposition.ModificationDate = File.GetLastWriteTime(file);
+            disposition.ReadDate = File.GetLastAccessTime(file);
             // Add the file attachment to this e-mail message.
             message.Attachments.Add(data);
             
             //Send the message.
-            SmtpClient client = new SmtpClient(server);
+            var client = new SmtpClient(server) {Credentials = CredentialCache.DefaultNetworkCredentials};
             // Add credentials if the SMTP server requires them.
-            client.Credentials = CredentialCache.DefaultNetworkCredentials;
 
             try {
                 client.Send(message);

@@ -10,6 +10,7 @@
 namespace Tmx
 {
     using System;
+    using Server.ObjectModel;
     using Tmx.Server;
     using Tmx.Commands;
     

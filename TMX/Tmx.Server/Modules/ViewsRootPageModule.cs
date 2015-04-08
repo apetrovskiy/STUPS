@@ -9,10 +9,9 @@
 
 namespace Tmx.Server.Modules
 {
-    using System;
     using Nancy;
     using Tmx.Interfaces.Server;
-    
+
     /// <summary>
     /// Description of ViewsRootPageModule.
     /// </summary>

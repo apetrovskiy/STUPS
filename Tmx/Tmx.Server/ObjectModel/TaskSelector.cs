@@ -7,19 +7,20 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Server
+namespace Tmx.Server.ObjectModel
 {
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
     using System.Text.RegularExpressions;
-    //using Nancy.TinyIoc;
     using Core;
-    using Tmx.Interfaces.Remoting;
+    using ExtensionMethods;
     using Interfaces;
     using Internal;
-    
+    using Tmx.Interfaces.Remoting;
+//using Nancy.TinyIoc;
+
     /// <summary>
     /// Description of TaskSelector.
     /// </summary>

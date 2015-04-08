@@ -7,14 +7,15 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Server.Helpers
+namespace Tmx.Server.ObjectModel
 {
     using System;
-    //using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
     using System.Xml.Linq;
     using Core;
+//using System.Collections.Generic;
+
     //using Tmx.Interfaces.Remoting;
     
     /// <summary>

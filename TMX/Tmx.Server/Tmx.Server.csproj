@@ -111,22 +111,22 @@
     <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Helpers\Mailer.cs" />
-    <Compile Include="Helpers\TestReportsExporter.cs" />
-    <Compile Include="Helpers\TestRunLifecycle.cs" />
-    <Compile Include="Helpers\WorkflowLifecycle.cs" />
-    <Compile Include="Helpers\WorkflowXmlConstants.cs" />
+    <Compile Include="ObjectModel\Mailer.cs" />
+    <Compile Include="ObjectModel\TestReportsExporter.cs" />
+    <Compile Include="ObjectModel\TestRunLifecycle.cs" />
+    <Compile Include="ObjectModel\WorkflowLifecycle.cs" />
+    <Compile Include="ObjectModel\WorkflowXmlConstants.cs" />
     <Compile Include="Interfaces\IMailSettings.cs" />
     <Compile Include="Interfaces\ISettings.cs" />
     <Compile Include="Interfaces\ITaskSelector.cs" />
     <Compile Include="Internal\ServerObjectFactory.cs" />
     <Compile Include="Modules\TestReportsModule.cs" />
     <Compile Include="ObjectModel\Data\MailSettings.cs" />
-    <Compile Include="Helpers\ServerWatcher.cs" />
-    <Compile Include="Helpers\TaskSelector.cs" />
-    <Compile Include="Helpers\TestRunInitializer.cs" />
-    <Compile Include="Helpers\TestRunSelector.cs" />
-    <Compile Include="Helpers\WorkflowLoader.cs" />
+    <Compile Include="ObjectModel\ServerWatcher.cs" />
+    <Compile Include="ObjectModel\TaskSelector.cs" />
+    <Compile Include="ObjectModel\TestRunInitializer.cs" />
+    <Compile Include="ObjectModel\TestRunSelector.cs" />
+    <Compile Include="ObjectModel\WorkflowLoader.cs" />
     <Compile Include="Modules\ExternalFilesModule.cs" />
     <Compile Include="Modules\TestRunsModule.cs" />
     <Compile Include="Modules\ViewsGlobalSettingsModule.cs" />

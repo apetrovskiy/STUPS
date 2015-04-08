@@ -24,7 +24,9 @@ namespace Tmx.Server.Modules
     using Core.Types.Remoting;
     using Tmx.Interfaces.Remoting;
     using Interfaces;
-    
+    using ObjectModel;
+    using ObjectModel.ExtensionMethods;
+
     /// <summary>
     /// Description of TestTasksModule.
     /// </summary>

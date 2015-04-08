@@ -7,13 +7,12 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Server
+namespace Tmx.Server.ObjectModel
 {
-    using System;
     using System.Linq;
-    using Tmx.Core;
+    using Core;
     using Tmx.Interfaces.Remoting;
-    
+
     /// <summary>
     /// Description of TestRunSelector.
     /// </summary>

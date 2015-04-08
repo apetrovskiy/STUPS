@@ -11,7 +11,8 @@
             if (null == typeToReturn)
                 throw new Exception(string.Format("Unable to resolve type {0}", typeof(T).Name));
 
-            return Proxify<T>(typeToReturn);
+            // return Proxify<T>(typeToReturn);
+            return Proxify(typeToReturn);
         }
 
         static T Proxify<T>(T typeToProxify)

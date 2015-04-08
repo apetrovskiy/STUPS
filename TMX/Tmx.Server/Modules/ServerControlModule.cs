@@ -16,6 +16,7 @@ namespace Tmx.Server.Modules
     using Nancy.ModelBinding;
     //using Nancy.TinyIoc;
     using Core.Types.Remoting;
+    using ObjectModel;
     //using Tmx.Interfaces;
     using Tmx.Interfaces.Remoting;
     using Tmx.Interfaces.Server;

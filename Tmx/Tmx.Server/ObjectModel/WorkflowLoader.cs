@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Server
+namespace Tmx.Server.ObjectModel
 {
     using System;
     using System.Collections.Generic;
@@ -15,36 +15,34 @@ namespace Tmx.Server
     using System.IO;
     using System.Linq;
     using System.Xml.Linq;
-    using Tmx.Interfaces.Exceptions;
     using Core.Types.Remoting;
+    using Tmx.Interfaces.Exceptions;
     using Tmx.Interfaces.Remoting;
     using Tmx.Interfaces.Server;
-    using Helpers;
-    
+
     /// <summary>
     /// Description of WorkflowLoader.
     /// </summary>
     public class WorkflowLoader
     {
-        const string taskElement_id = "id";
-        const string taskElement_afterTask = "afterTask";
-        const string taskElement_isActive = "isActive";
-        const string taskElement_isCritical = "isCritical";
-        const string taskElement_name = "name";
-        const string taskElement_rule = "rule";
-        const string taskElement_storyId = "storyId";
-        const string taskElement_taskType = "taskType";
-        const string taskElement_taskRuntimeType = "taskRuntimeType";
-        const string taskElement_timeLimit = "timelimit";
-        const string taskElement_retryCount = "retryCount";
+        const string TaskElementId = "id";
+        const string TaskElementAfterTask = "afterTask";
+        const string TaskElementIsActive = "isActive";
+        const string TaskElementIsCritical = "isCritical";
+        const string TaskElementName = "name";
+        const string TaskElementRule = "rule";
+        const string TaskElementStoryId = "storyId";
+        const string TaskElementTaskType = "taskType";
+        const string TaskElementTaskRuntimeType = "taskRuntimeType";
+        const string TaskElementTimeLimit = "timelimit";
+        const string TaskElementRetryCount = "retryCount";
         
-        const string taskElement_action = "action";
-        const string taskElement_beforeAction = "beforeAction";
-        const string taskElement_afterAction = "afterAction";
-        const string taskElement_code = "code";
-        const string taskElement_parameters = "parameters";
+        const string TaskElementAction = "action";
+        const string TaskElementBeforeAction = "beforeAction";
+        const string TaskElementAfterAction = "afterAction";
+        const string TaskElementCode = "code";
+        const string TaskElementParameters = "parameters";
 
-        // 20150312
         ITestWorkflow _workflow;
 
         // /// <exception cref="WorkflowLoadingException">Server failed to load the workflow. </exception>
@@ -53,9 +51,6 @@ namespace Tmx.Server
             try {
                 if (!File.Exists(pathToWorkflowFile))
                     throw new WorkflowLoadingException("There is no such file '" + pathToWorkflowFile + "'.");
-                // 20150312
-                // ImportXdocument(XDocument.Load(pathToWorkflowFile));
-                // ImportXdocument(XDocument.Load(pathToWorkflowFile), pathToWorkflowFile);
                 var pathToCopiedWorkflowFile = CopyWorkflowFileToStorage(pathToWorkflowFile);
                 ImportXdocument(XDocument.Load(pathToCopiedWorkflowFile));
             }
@@ -108,29 +103,28 @@ namespace Tmx.Server
             // TODO: write code
         }
         
-        // 20150312
         public virtual Guid ImportXdocument(XContainer xDocument)
-        // public virtual Guid ImportXdocument(XContainer xDocument, string pathToWorkflowFile)
         {
-            // 20150312
             var workflowId = GetWorkflowId(xDocument);
-            // pathToWorkflowFile = pathToWorkflowFile.Substring(0, pathToWorkflowFile.LastIndexOf(@"\", StringComparison.Ordinal));
-            // var workflowId = GetWorkflowId(xDocument, pathToWorkflowFile);
-            // 20150312
-            // setParametersPageName(workflowId, xDocument);
             SetParametersPageName(xDocument);
-            
+            /*
             var tasks = from task in xDocument.Descendants(WorkflowXmlConstants.TaskNode)
                         where task.Element(taskElement_isActive).Value == "1"
                         select task;
             var importedTasks = tasks.Select(tsk => GetNewTestTask(tsk, workflowId));
             AddTasksToCommonPool(importedTasks);
             return workflowId;
+            */
+            var tasks = from task in xDocument.Descendants(WorkflowXmlConstants.TaskNode)
+                let element = task.Element(TaskElementIsActive)
+                where element != null && element.Value == "1"
+                        select task;
+            var importedTasks = tasks.Select(tsk => GetNewTestTask(tsk, workflowId));
+            AddTasksToCommonPool(importedTasks);
+            return workflowId;
         }
 
-        // 20150312
         Guid GetWorkflowId(XContainer xDocument)
-        // Guid GetWorkflowId(XContainer xDocument, string pathToWorkflowFile)
         {
             var workflowElement = xDocument.Descendants(WorkflowXmlConstants.WorkflowNode).FirstOrDefault();
             if (null == workflowElement)
@@ -142,39 +136,28 @@ namespace Tmx.Server
             // rejected
             // workflowElement.SetAttributeValue("path", pathToWorkflowFile);
 
-            // 20150312
             return AddWorkflow(workflowName, xDocument);
-            // return AddWorkflow(workflowName, xDocument, pathToWorkflowFile);
         }
 
-        // 20150312
         Guid AddWorkflow(string name, XContainer xDocument)
-        // Guid AddWorkflow(string name, XContainer xDocument, string pathToWorkflowFile)
         {
             var testLabName = xDocument.Descendants(WorkflowXmlConstants.TestLabNode).FirstOrDefault().Value;
 
             var testLab = string.IsNullOrEmpty(testLabName) ? 
-                getFirstTestLab() :
-                getOrCreateTestLab(testLabName);
+                GetFirstTestLab() :
+                GetOrCreateTestLab(testLabName);
 
-            // 20150312
-            // var workflow = new TestWorkflow(testLab) { Name = name };
-            // _workflow = new TestWorkflow(testLab) { Name = name, Path = pathToWorkflowFile };
             _workflow = new TestWorkflow(testLab) { Name = name };
-            // 20150312
-            // WorkflowCollection.AddWorkflow(workflow);
             WorkflowCollection.AddWorkflow(_workflow);
-            // 20150312
-            // return workflow.Id;
             return _workflow.Id;
         }
         
-        ITestLab getFirstTestLab()
+        ITestLab GetFirstTestLab()
         {
             return TestLabCollection.TestLabs.First();
         }
         
-        ITestLab getOrCreateTestLab(string testLabName)
+        ITestLab GetOrCreateTestLab(string testLabName)
         {
             var testLab = TestLabCollection.TestLabs.FirstOrDefault(tl => tl.Name.ToLower() == testLabName.ToLower());
             if (null != testLab)
@@ -184,23 +167,11 @@ namespace Tmx.Server
             return testLab;
         }
         
-        // 20150312
-        // void setParametersPageName(Guid workflowId, XContainer xDocument)
         void SetParametersPageName(XContainer xDocument)
         {
-            // 20150115
-            // WorkflowCollection.Workflows.FirstOrDefault(wfl => wfl.Id == workflowId).ParametersPageName = xDocument.Descendants(WorkflowXmlConstants.ParametersPageNode).FirstOrDefault().Value;
-            
-//            var parameterspageName = xDocument.Descendants(WorkflowXmlConstants.ParametersPageNode).FirstOrDefault().Value;
-//            Trace.TraceInformation("is null or empty? {0}", string.IsNullOrEmpty(parameterspageName));
-//            Trace.TraceInformation("does start with dot? {0}", parameterspageName.Substring(0, 1) == ".");
-//            Trace.TraceInformation("does file exist? {0}", File.Exists(new TmxServerRootPathProvider().GetRootPath() + "/workflows/" + parameterspageName + ".html"));
-            
             var parametersPageName = xDocument.Descendants(WorkflowXmlConstants.ParametersPageNode).FirstOrDefault().Value;
             if (string.IsNullOrEmpty(parametersPageName) || parametersPageName.Substring(0, 1) == "." || !File.Exists(new TmxServerRootPathProvider().GetRootPath() + "/workflows/" + parametersPageName + ".html"))
                 parametersPageName = UrlList.ViewTestWorkflowParameters_DefaultPage;
-            // 20150312
-            // WorkflowCollection.Workflows.FirstOrDefault(wfl => wfl.Id == workflowId).ParametersPageName = parameterspageName;
             _workflow.ParametersPageName = parametersPageName;
         }
         
@@ -212,28 +183,28 @@ namespace Tmx.Server
         internal virtual ITestTask GetNewTestTask(XContainer taskNode, Guid workflowId)
         {
             return new TestTask {
-                Action = GetActionCode(taskNode, taskElement_action),
-                ActionParameters = GetActionParameters(taskNode, taskElement_action),
-                AfterAction = GetActionCode(taskNode, taskElement_afterAction),
-                AfterActionParameters = GetActionParameters(taskNode, taskElement_afterAction),
-                BeforeAction = GetActionCode(taskNode, taskElement_beforeAction),
-                BeforeActionParameters = GetActionParameters(taskNode, taskElement_beforeAction),
+                Action = GetActionCode(taskNode, TaskElementAction),
+                ActionParameters = GetActionParameters(taskNode, TaskElementAction),
+                AfterAction = GetActionCode(taskNode, TaskElementAfterAction),
+                AfterActionParameters = GetActionParameters(taskNode, TaskElementAfterAction),
+                BeforeAction = GetActionCode(taskNode, TaskElementBeforeAction),
+                BeforeActionParameters = GetActionParameters(taskNode, TaskElementBeforeAction),
                 TaskFinished = false,
                 // ExpectedResult
-                Id = ConvertTestTaskElementValue(taskNode, taskElement_id),
-                AfterTask = ConvertTestTaskElementValue(taskNode, taskElement_afterTask),
-                IsActive = "1" == GetTestTaskElementValue(taskNode, taskElement_isActive),
-                IsCritical = "1" == GetTestTaskElementValue(taskNode, taskElement_isCritical),
-                Name = GetTestTaskElementValue(taskNode, taskElement_name),
+                Id = ConvertTestTaskElementValue(taskNode, TaskElementId),
+                AfterTask = ConvertTestTaskElementValue(taskNode, TaskElementAfterTask),
+                IsActive = "1" == GetTestTaskElementValue(taskNode, TaskElementIsActive),
+                IsCritical = "1" == GetTestTaskElementValue(taskNode, TaskElementIsCritical),
+                Name = GetTestTaskElementValue(taskNode, TaskElementName),
                 // PreviousTaskId
-                RetryCount = ConvertTestTaskElementValue(taskNode, taskElement_retryCount),
-                Rule = GetTestTaskElementValue(taskNode, taskElement_rule),
+                RetryCount = ConvertTestTaskElementValue(taskNode, TaskElementRetryCount),
+                Rule = GetTestTaskElementValue(taskNode, TaskElementRule),
                 TaskStatus = TestTaskStatuses.New,
-                StoryId = GetTestTaskElementValue(taskNode, taskElement_storyId),
+                StoryId = GetTestTaskElementValue(taskNode, TaskElementStoryId),
                 // TaskResult
-                TaskType = GetTestTaskType(GetTestTaskElementValue(taskNode, taskElement_taskType)),
-                TaskRuntimeType = GetTaskRuntimeType(GetTestTaskElementValue(taskNode, taskElement_taskRuntimeType)),
-                TimeLimit = ConvertTestTaskElementValue(taskNode, taskElement_timeLimit),
+                TaskType = GetTestTaskType(GetTestTaskElementValue(taskNode, TaskElementTaskType)),
+                TaskRuntimeType = GetTaskRuntimeType(GetTestTaskElementValue(taskNode, TaskElementTaskRuntimeType)),
+                TimeLimit = ConvertTestTaskElementValue(taskNode, TaskElementTimeLimit),
                 WorkflowId = workflowId
             };
         }
@@ -241,7 +212,7 @@ namespace Tmx.Server
         internal virtual string GetActionCode(XContainer taskNode, string elementName)
         {
             var actionNode = taskNode.Element(elementName);
-            return GetTestTaskElementValue(actionNode, taskElement_code);
+            return GetTestTaskElementValue(actionNode, TaskElementCode);
         }
         
         internal virtual IDictionary<string, string> GetActionParameters(XContainer taskNode, string elementName)
@@ -249,7 +220,7 @@ namespace Tmx.Server
             var resultDict = new Dictionary<string, string>();
             var nodeParameters = taskNode.Element(elementName);
             try {
-                nodeParameters = nodeParameters.Element(taskElement_parameters);
+                nodeParameters = nodeParameters.Element(TaskElementParameters);
                 if (null == nodeParameters) return resultDict;
                 foreach (var parameterNode in nodeParameters.Elements())
                     resultDict.Add(parameterNode.Name.LocalName, parameterNode.Value.ToString());

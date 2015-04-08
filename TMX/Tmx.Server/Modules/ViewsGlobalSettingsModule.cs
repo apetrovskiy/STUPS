@@ -9,11 +9,10 @@
 
 namespace Tmx.Server.Modules
 {
-    using System;
     using System.Collections.Generic;
     using Nancy;
     using Nancy.ModelBinding;
-    
+
     /// <summary>
     /// Description of ViewsGlobalSettingsModule.
     /// </summary>

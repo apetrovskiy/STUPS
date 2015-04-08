@@ -18,6 +18,8 @@ namespace Tmx.Server.Modules
     //using Nancy.TinyIoc;
     //using Tmx.Core;
     using Core.Types.Remoting;
+    using ObjectModel;
+    using ObjectModel.ExtensionMethods;
     using Tmx.Interfaces.Server;
     using Tmx.Interfaces.Remoting;
     //using Tmx.Server.Interfaces;

@@ -9,20 +9,14 @@
 
 namespace Tmx.Server.Modules
 {
-    using System;
     using System.Collections.Generic;
     using System.Dynamic;
-    using System.IO;
-    using System.Linq;
     using System.Net;
     using System.Net.NetworkInformation;
-    using System.Text.RegularExpressions;
     using Nancy;
-    using Nancy.ModelBinding;
-    using Tmx.Interfaces.Server;
     using Tmx.Interfaces.Remoting;
-    using Nancy.ViewEngines;
-    
+    using Tmx.Interfaces.Server;
+
     /// <summary>
     /// Description of ViewsTestStatusModule.
     /// </summary>
@@ -55,13 +49,19 @@ namespace Tmx.Server.Modules
         }
         
         // TODO: move to a separate class
-        string getHostname()
+        string GetHostname()
         {
             var hostname = Dns.GetHostName();
+            /*
             if (!string.IsNullOrEmpty(IPGlobalProperties.GetIPGlobalProperties().DomainName)) {
                 hostname += ".";
                 hostname += IPGlobalProperties.GetIPGlobalProperties().DomainName;
             }
+            return hostname;
+            */
+            if (string.IsNullOrEmpty(IPGlobalProperties.GetIPGlobalProperties().DomainName)) return hostname;
+            hostname += ".";
+            hostname += IPGlobalProperties.GetIPGlobalProperties().DomainName;
             return hostname;
         }
         

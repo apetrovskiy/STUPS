@@ -7,10 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Server
+namespace Tmx.Server.ObjectModel
 {
-    using System;
-    
     /// <summary>
     /// Description of WorkflowLifecycle.
     /// </summary>

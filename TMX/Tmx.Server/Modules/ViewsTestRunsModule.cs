@@ -71,7 +71,7 @@ namespace Tmx.Server.Modules
             
             Get [UrlList.ViewTestRuns_ParametersPage] = parameters => {
                 dynamic data = new ExpandoObject();
-                data.TestRun = getCurrentTestRun(parameters.id);
+                data.TestRun = GetCurrentTestRun(parameters.id);
                 return View[UrlList.ViewTestRuns_ParametersPageName, data];
             };
             
@@ -113,7 +113,7 @@ namespace Tmx.Server.Modules
         
         public virtual dynamic CreateTestRunReportsModel(Guid testRunId)
         {
-            ITestRun currentTestRun = getCurrentTestRun(testRunId);
+            ITestRun currentTestRun = GetCurrentTestRun(testRunId);
             var testStatistics = ServerObjectFactory.Resolve<TestStatistics>();
             testStatistics.RefreshAllStatistics(currentTestRun.TestSuites, true);
             var serverUrl = GetServerUrl();
@@ -121,7 +121,7 @@ namespace Tmx.Server.Modules
             return new { TestRun = currentTestRun, Suites = currentTestRun.TestSuites.OrderBy(suite => suite.Id), ServerUrl = serverUrl, TestRunUrl = testRunUrl };
         }
         
-        ITestRun getCurrentTestRun(Guid testRunId)
+        ITestRun GetCurrentTestRun(Guid testRunId)
         {
             return TestRunQueue.TestRuns.First(testRun => testRun.Id == testRunId);
         }

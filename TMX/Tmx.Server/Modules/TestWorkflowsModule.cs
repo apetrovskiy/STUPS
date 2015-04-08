@@ -12,12 +12,9 @@ namespace Tmx.Server.Modules
     using System;
     using System.Linq;
     using Nancy;
-    using Nancy.ModelBinding;
     using Nancy.Responses.Negotiation;
-    using Tmx.Core.Types.Remoting;
-    using Tmx.Interfaces.Remoting;
     using Tmx.Interfaces.Server;
-    
+
     /// <summary>
     /// Description of TestWorkflowsModule.
     /// </summary>
@@ -25,12 +22,12 @@ namespace Tmx.Server.Modules
     {
         public TestWorkflowsModule() : base(UrlList.TestWorkflows_Root)
         {
-            Get[UrlList.TestWorkflows_GetByWorkflowId_relPath] = parameters => returnWorkflowById(parameters.id);
-            Get[UrlList.TestWorkflows_All_relPath] = _ => returnAllWorkflows();
-            Delete[UrlList.TestWorkflows_GetByWorkflowId_relPath] = parameters => deleteWorkflowById(parameters.id);
+            Get[UrlList.TestWorkflows_GetByWorkflowId_relPath] = parameters => ReturnWorkflowById(parameters.id);
+            Get[UrlList.TestWorkflows_All_relPath] = _ => ReturnAllWorkflows();
+            Delete[UrlList.TestWorkflows_GetByWorkflowId_relPath] = parameters => DeleteWorkflowById(parameters.id);
         }
         
-        Negotiator returnWorkflowById(Guid workflowId)
+        Negotiator ReturnWorkflowById(Guid workflowId)
         {
             if (WorkflowCollection.Workflows.All(wfl => wfl.Id != workflowId))
                 return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed);
@@ -38,14 +35,14 @@ namespace Tmx.Server.Modules
             return Negotiate.WithModel(workflow).WithStatusCode(HttpStatusCode.OK);
         }
         
-        Negotiator returnAllWorkflows()
+        Negotiator ReturnAllWorkflows()
         {
             if (null == WorkflowCollection.Workflows || !WorkflowCollection.Workflows.Any())
                 return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
             return Negotiate.WithModel(WorkflowCollection.Workflows).WithStatusCode(HttpStatusCode.OK);
         }
         
-        Negotiator deleteWorkflowById(Guid workflowId)
+        Negotiator DeleteWorkflowById(Guid workflowId)
         {
             if (WorkflowCollection.Workflows.All(wfl => wfl.Id != workflowId))
                 return Negotiate.WithStatusCode(HttpStatusCode.OK);

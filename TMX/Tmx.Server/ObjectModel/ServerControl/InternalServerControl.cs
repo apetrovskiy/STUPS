@@ -33,6 +33,7 @@ namespace Tmx.Server
     using DotLiquid;
     using Interfaces;
     using Internal;
+    using ObjectModel;
 
     /// <summary>
     /// Description of Control.

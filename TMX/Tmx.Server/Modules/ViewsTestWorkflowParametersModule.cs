@@ -9,11 +9,9 @@
 
 namespace Tmx.Server.Modules
 {
-    using System;
     using Nancy;
-    using Nancy.ModelBinding;
     using Tmx.Interfaces.Server;
-    
+
     /// <summary>
     /// Description of ViewsTestWorkflowParametersModule.
     /// </summary>

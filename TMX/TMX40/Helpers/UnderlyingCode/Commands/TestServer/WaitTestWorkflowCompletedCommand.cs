@@ -10,8 +10,8 @@
 namespace Tmx
 {
     using System;
+    using Server.ObjectModel;
     using Tmx.Server;
-    using Tmx.Server.Helpers;
     using Tmx.Commands;
     
     /// <summary>

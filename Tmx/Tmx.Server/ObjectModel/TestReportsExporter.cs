@@ -7,15 +7,15 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Server
+namespace Tmx.Server.ObjectModel
 {
     using System;
     using System.IO;
     using DotLiquid;
     using Internal;
-    using Nancy.TinyIoc;
     using Modules;
-    
+    using Nancy.TinyIoc;
+
     /// <summary>
     /// Description of TestReportsExporter.
     /// </summary>

@@ -7,15 +7,14 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Server
+namespace Tmx.Server.ObjectModel.ExtensionMethods
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Tmx.Core;
+    using Core;
     using Tmx.Interfaces.Remoting;
-    using Tmx.Interfaces.TestStructure;
-    
+
     /// <summary>
     /// Description of ExtensionMethods.
     /// </summary>

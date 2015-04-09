@@ -25,7 +25,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmx40", "Tmx\Tmx40\Tmx40.cs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmx.Interfaces", "Tmx\Tmx.Interfaces\Tmx.Interfaces.csproj", "{9C5DA25F-6A59-4F97-B107-64DD549CB800}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmx.Server", "Tmx\Tmx.Server\Tmx.Server.csproj", "{A80B14D0-C8DB-4F70-B18E-4FD1C16E0AEC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmx.Server.Library", "Tmx\Tmx.Server.Library\Tmx.Server.Library.csproj", "{A80B14D0-C8DB-4F70-B18E-4FD1C16E0AEC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmx.Client.Library", "Tmx\Tmx.Client.Library\Tmx.Client.Library.csproj", "{6943EC2F-CB75-4F9B-B83C-A664400052A7}"
 EndProject

@@ -661,9 +661,9 @@
       <Project>{9C5DA25F-6A59-4F97-B107-64DD549CB800}</Project>
       <Name>Tmx.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tmx.Server\Tmx.Server.csproj">
+    <ProjectReference Include="..\Tmx.Server.Library\Tmx.Server.Library.csproj">
       <Project>{A80B14D0-C8DB-4F70-B18E-4FD1C16E0AEC}</Project>
-      <Name>Tmx.Server</Name>
+      <Name>Tmx.Server.Library</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

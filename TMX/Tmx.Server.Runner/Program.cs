@@ -12,9 +12,8 @@ namespace Tmx.Server.Runner
     using System;
     using System.ServiceProcess;
     using System.Threading;
-    //using Tmx.Interfaces;
-    //using Tmx.Interfaces.TestStructure;
-    
+    using Library.ObjectModel.ServerControl;
+
     class Program
     {
         public static void Main(string[] args)
@@ -30,7 +29,7 @@ namespace Tmx.Server.Runner
                 }
                 else
                 {
-                    var service = new ServiceControl();
+                    new ServiceControl();
                     Thread.Sleep(Timeout.Infinite);
                 }
             }

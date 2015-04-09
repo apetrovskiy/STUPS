@@ -6,8 +6,8 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">Release35</Platform>
     <OutputType>Library</OutputType>
-    <RootNamespace>Tmx.Client</RootNamespace>
-    <AssemblyName>Tmx.Client</AssemblyName>
+    <RootNamespace>Tmx.Client.Library</RootNamespace>
+    <AssemblyName>Tmx.Client.Library</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <OutputPath>bin\Release\</OutputPath>

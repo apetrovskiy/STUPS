@@ -21,7 +21,6 @@ namespace Tmx.Server.Tests.Modules
     using Tmx.Interfaces;
     using Tmx.Interfaces.Remoting;
     using Tmx.Interfaces.TestStructure;
-    using Tmx.Server.Modules;
     using Xunit;
     using PSTestLib;
     

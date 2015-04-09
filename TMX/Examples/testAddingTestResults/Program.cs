@@ -12,7 +12,8 @@ namespace testAddingTestResults
     using System;
     using Tmx;
     using Tmx.Server;
-    
+    using Tmx.Server.Library.ObjectModel.ServerControl;
+
     class Program
     {
         public static void Main(string[] args)

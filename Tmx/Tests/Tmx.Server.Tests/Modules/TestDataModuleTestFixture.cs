@@ -12,15 +12,16 @@ namespace Tmx.Server.Tests.Modules
     using System;
     // using System.Management.Automation;
     using System.Linq;
+    using Library.ObjectModel.Objects;
     using Nancy;
     using Nancy.Testing;
     using MbUnit.Framework;
     using NUnit.Framework;
-    using Tmx.Client;
-    using Tmx.Interfaces.Remoting;
-    using Tmx.Interfaces.Server;
-    using Tmx.Core;
-    using Tmx.Interfaces;
+    using Client;
+    using Interfaces.Remoting;
+    using Interfaces.Server;
+    using Core;
+    using Interfaces;
     using Xunit;
     using PSTestLib;
     

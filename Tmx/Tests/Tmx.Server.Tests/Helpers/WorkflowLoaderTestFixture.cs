@@ -12,7 +12,8 @@ namespace Tmx.Server.Tests.Helpers
     using System;
     using System.Linq;
     using System.Xml.Linq;
-    using ObjectModel;
+    using Library.ObjectModel;
+    using Library.ObjectModel.Objects;
     using Tmx.Core.Types.Remoting;
     using Tmx.Interfaces.Remoting;
     using Xunit;

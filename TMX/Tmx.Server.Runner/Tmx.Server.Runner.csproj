@@ -101,19 +101,18 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tmx.Core\Tmx.Core.csproj">
-      <Project>{069651A0-FE15-42E2-89D5-9A761A47B143}</Project>
+      <Project>{069651a0-fe15-42e2-89d5-9a761a47b143}</Project>
       <Name>Tmx.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tmx.Interfaces\Tmx.Interfaces.csproj">
-      <Project>{9C5DA25F-6A59-4F97-B107-64DD549CB800}</Project>
+      <Project>{9c5da25f-6a59-4f97-b107-64dd549cb800}</Project>
       <Name>Tmx.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tmx.Server\Tmx.Server.csproj">
-      <Project>{A80B14D0-C8DB-4F70-B18E-4FD1C16E0AEC}</Project>
-      <Name>Tmx.Server</Name>
+    <ProjectReference Include="..\Tmx.Server.Library\Tmx.Server.Library.csproj">
+      <Project>{a80b14d0-c8db-4f70-b18e-4fd1c16e0aec}</Project>
+      <Name>Tmx.Server.Library</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

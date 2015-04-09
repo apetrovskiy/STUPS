@@ -11,13 +11,14 @@ namespace Tmx.Server.Tests
 {
     using System;
     using System.Linq;
+    using Library.Modules;
+    using Library.ObjectModel.Objects;
     using Nancy;
     using Nancy.Testing;
     using Tmx.Core;
     using Tmx.Core.Types.Remoting;
     using Tmx.Interfaces.Remoting;
-    using Tmx.Server.Modules;
-    
+
     /// <summary>
     /// Description of TestFactory.
     /// </summary>

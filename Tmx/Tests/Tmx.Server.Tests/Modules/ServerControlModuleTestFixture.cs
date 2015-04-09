@@ -10,6 +10,7 @@
 namespace Tmx.Server.Tests.Modules
 {
     using System;
+    using Library.ObjectModel.Objects;
     using Nancy.Testing;
     using Tmx.Core.Types.Remoting;
     using Tmx.Interfaces.Server;

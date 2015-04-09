@@ -15,6 +15,7 @@ namespace Tmx.Server.Tests.Modules
     // using System.Management.Automation;
     using System.Reflection;
     using System.Xml.Linq;
+    using Library.ObjectModel.Objects;
     using NSubstitute;
     using Nancy;
     using Nancy.Json;
@@ -24,7 +25,6 @@ namespace Tmx.Server.Tests.Modules
     using Tmx.Core.Types.Remoting;
     using Tmx.Interfaces.Remoting;
     using Tmx.Interfaces.Server;
-    using Tmx.Server.Modules;
     // using MbUnit.Framework;
     using NUnit.Framework;
     using Tmx;

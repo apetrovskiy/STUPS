@@ -9,19 +9,21 @@
 
 namespace Tmx.Server.Tests.Modules
 {
-    using System;
     using System.Linq;
+    using Core;
+    using Core.Types.Remoting;
+    using Interfaces.Remoting;
+    using Interfaces.Server;
+    using Library.ObjectModel.Objects;
+    using MbUnit.Framework;
     using Nancy.Testing;
-    using Tmx.Core;
-    using Tmx.Core.Types.Remoting;
-    using Tmx.Interfaces.Remoting;
-    using Tmx.Interfaces.Server;
     using Xunit;
-    
+    using Assert = Xunit.Assert;
+
     /// <summary>
     /// Description of TestRunsModuleTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
+    [TestFixture][NUnit.Framework.TestFixture]
     public class TestRunsModuleTestFixture
     {
         BrowserResponse _response;
@@ -33,14 +35,14 @@ namespace Tmx.Server.Tests.Modules
             _browser = TestFactory.GetBrowserForTestRunsModule();
         }
         
-        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
+        [SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             TestSettings.PrepareModuleTests();
             _browser = TestFactory.GetBrowserForTestRunsModule();
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [Test][NUnit.Framework.Test][Fact]
         public void Should_create_first_testRun_Running_as_json()
         {
             GIVEN_first_testWorkflow();
@@ -51,7 +53,7 @@ namespace Tmx.Server.Tests.Modules
             THEN_testRun_is_running(TestRunQueue.TestRuns[0]);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [Test][NUnit.Framework.Test][Fact]
         public void Should_create_second_testRun_object_to_another_workflow_and_another_testLab_Running_as_json()
         {
             GIVEN_first_testWorkflow();
@@ -69,7 +71,7 @@ namespace Tmx.Server.Tests.Modules
             THEN_testRun_is_running(TestRunQueue.TestRuns[1]);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [Test][NUnit.Framework.Test][Fact]
         public void Should_create_second_testRun_object_to_the_same_testLab_and_another_workflow_Pending_as_json()
         {
             GIVEN_first_testWorkflow();
@@ -83,7 +85,7 @@ namespace Tmx.Server.Tests.Modules
             THEN_testRun_is_pending(TestRunQueue.TestRuns[1]);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [Test][NUnit.Framework.Test][Fact]
         public void Should_create_second_testRun_object_to_the_same_testLab_and_the_same_workflow_Pending_as_json()
         {
             GIVEN_first_testWorkflow();
@@ -96,7 +98,7 @@ namespace Tmx.Server.Tests.Modules
             THEN_testRun_is_pending(TestRunQueue.TestRuns[1]);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [Test][NUnit.Framework.Test][Fact]
         public void Should_create_second_testRun_object_to_the_same_testLab_and_the_same_workflow_as_completed_Running_as_json()
         {
             GIVEN_first_testWorkflow();
@@ -111,7 +113,7 @@ namespace Tmx.Server.Tests.Modules
             THEN_testRun_is_running(TestRunQueue.TestRuns[1]);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [Test][NUnit.Framework.Test][Fact]
         public void Should_run_only_one_testRun_after_completion_of_the_previous_one_as_json()
         {
             GIVEN_first_testWorkflow();
@@ -132,7 +134,7 @@ namespace Tmx.Server.Tests.Modules
             THEN_testRun_is_pending(TestRunQueue.TestRuns[4]);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [Test][NUnit.Framework.Test][Fact]
         public void Should_run_only_one_testRun_after_interruption_of_the_previous_one_as_json()
         {
             GIVEN_first_testWorkflow();
@@ -153,7 +155,7 @@ namespace Tmx.Server.Tests.Modules
             THEN_testRun_is_pending(TestRunQueue.TestRuns[4]);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [Test][NUnit.Framework.Test][Fact]
         public void Should_run_only_one_testRun_after_cancellation_of_the_previous_one_as_json()
         {
             GIVEN_first_testWorkflow();
@@ -269,22 +271,22 @@ namespace Tmx.Server.Tests.Modules
         
         void THEN_there_should_be_the_following_number_of_testRun_objects(int number)
         {
-            Xunit.Assert.Equal(number, TestRunQueue.TestRuns.Count);
+            Assert.Equal(number, TestRunQueue.TestRuns.Count);
         }
         
         void THEN_testRun_is_running(ITestRun testRun)
         {
-            Xunit.Assert.Equal(true, testRun.IsActive());
+            Assert.Equal(true, testRun.IsActive());
         }
         
         void THEN_testRun_is_pending(ITestRun testRun)
         {
-            Xunit.Assert.Equal(true, testRun.IsPending());
+            Assert.Equal(true, testRun.IsPending());
         }
         
         void THEN_testRun_is_completed(ITestRun testRun)
         {
-            Xunit.Assert.Equal(true, testRun.IsCompleted());
+            Assert.Equal(true, testRun.IsCompleted());
         }
     }
 }

@@ -10,12 +10,12 @@
 namespace Tmx.Server.Tests
 {
     using System;
+    using Library.ObjectModel.Objects;
     using Nancy.TinyIoc;
     using Tmx.Client;
     using PSTestLib;
     using Tmx.Core;
-    using Tmx.Server.Interfaces;
-    
+
     /// <summary>
     /// Description of TestSettings.
     /// </summary>

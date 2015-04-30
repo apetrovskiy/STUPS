@@ -9,7 +9,6 @@
 
 namespace Tmx.Server.Library.ObjectModel.Objects
 {
-    //using System;
     using System.Collections.Generic;
     using Core.Types.Remoting;
     using Tmx.Interfaces.Remoting;

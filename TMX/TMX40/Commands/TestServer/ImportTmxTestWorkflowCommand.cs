@@ -7,11 +7,11 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Commands
+namespace Tmx.Commands.TestServer
 {
-    using System;
     using System.Management.Automation;
-    
+    using Helpers.UnderlyingCode.Commands.TestServer;
+
     /// <summary>
     /// Description of ImportTmxTestWorkflowCommand.
     /// </summary>

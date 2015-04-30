@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Server.Library.ObjectModel.ServerControl //.ObjectModel.ServerControl
+namespace Tmx.Server.Library.ObjectModel.ServerControl
 {
     using System;
     using System.Linq;

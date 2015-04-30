@@ -9,12 +9,12 @@
 
 namespace Tmx.Server.Tests.Modules
 {
-    using System;
     using Library.ObjectModel.Objects;
     using Nancy.Testing;
-    using Tmx.Core.Types.Remoting;
-    using Tmx.Interfaces.Server;
-    using Tmx.Interfaces.Remoting;
+    using Core.Types.Remoting;
+    using Interfaces.Server;
+    using Interfaces.Remoting;
+    using UnitTestingHelpers;
     using Xunit;
     
     /// <summary>
@@ -106,7 +106,7 @@ namespace Tmx.Server.Tests.Modules
         
         void THEN_there_should_be_the_following_number_of_workflow_objects(int number)
         {
-            Xunit.Assert.Equal(number, WorkflowCollection.Workflows.Count);
+            Assert.Equal(number, WorkflowCollection.Workflows.Count);
         }
     }
 }

@@ -16,8 +16,8 @@ namespace Tmx.Server.Library.ObjectModel
     using System.Text.RegularExpressions;
     using Core;
     using ExtensionMethods;
-    using Library.Interfaces;
-    using Library.Internal;
+    using Interfaces;
+    using Internal;
     using Objects;
     using Tmx.Interfaces.Remoting;
 

@@ -7,13 +7,12 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx
+namespace Tmx.Helpers.UnderlyingCode.Commands.TestServer
 {
     using System;
     using Server.Library.ObjectModel.ServerControl;
-    using Tmx.Server;
-    using Tmx.Commands;
-    
+    using Tmx.Commands.TestServer;
+
     /// <summary>
     /// Description of StartServerCommand.
     /// </summary>

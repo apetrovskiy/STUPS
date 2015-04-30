@@ -10,7 +10,7 @@
 
 namespace Tmx.Server.Library.ObjectModel.Settings
 {
-    using Library.Interfaces;
+    using Interfaces;
 
     /// <summary>
     /// Description of TestRunSettings.

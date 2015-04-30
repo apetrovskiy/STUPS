@@ -10,7 +10,7 @@
 namespace Tmx.Server.Library.ObjectModel.Data
 {
     using System.Collections.Generic;
-    using Library.Interfaces;
+    using Interfaces;
 
     /// <summary>
     /// Description of MailSettings.

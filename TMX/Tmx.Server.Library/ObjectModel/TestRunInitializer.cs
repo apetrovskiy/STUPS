@@ -17,8 +17,6 @@ namespace Tmx.Server.Library.ObjectModel
     using Objects;
     using Tmx.Interfaces.Remoting;
 
-//using Nancy.TinyIoc;
-
     /// <summary>
     /// Description of TestRunInitializer.
     /// </summary>

@@ -7,17 +7,14 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Server.Tests
+namespace Tmx.Server.Tests.UnitTestingHelpers
 {
-    using System;
     using System.Linq;
+    using Core.Types.Remoting;
+    using Interfaces.Remoting;
     using Library.Modules;
     using Library.ObjectModel.Objects;
-    using Nancy;
     using Nancy.Testing;
-    using Tmx.Core;
-    using Tmx.Core.Types.Remoting;
-    using Tmx.Interfaces.Remoting;
 
     /// <summary>
     /// Description of TestFactory.

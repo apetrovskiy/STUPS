@@ -14,8 +14,8 @@ namespace Tmx.Server.Tests.Helpers
     using System.Xml.Linq;
     using Library.ObjectModel;
     using Library.ObjectModel.Objects;
-    using Tmx.Core.Types.Remoting;
-    using Tmx.Interfaces.Remoting;
+    using Core.Types.Remoting;
+    using Interfaces.Remoting;
     using Xunit;
     
     /// <summary>
@@ -138,17 +138,17 @@ namespace Tmx.Server.Tests.Helpers
         
         void THEN_NumberOfCommonTasksIncreasedBy(int number)
         {
-            Xunit.Assert.Equal(2 + number, TaskPool.Tasks.Count);
+            Assert.Equal(2 + number, TaskPool.Tasks.Count);
         }
         
         void THEN_workflow_has_been_added(Guid workflowId)
         {
-            Xunit.Assert.Equal(true, WorkflowCollection.Workflows.Any(wfl => wfl.Id == workflowId));
+            Assert.Equal(true, WorkflowCollection.Workflows.Any(wfl => wfl.Id == workflowId));
         }
         
         void THEN_there_are_number_of_tasks_for_selected_workflow(int numberOfTasks, Guid workflowId)
         {
-            Xunit.Assert.Equal(numberOfTasks, TaskPool.Tasks.Count(task => task.WorkflowId == workflowId));
+            Assert.Equal(numberOfTasks, TaskPool.Tasks.Count(task => task.WorkflowId == workflowId));
         }
     }
 }

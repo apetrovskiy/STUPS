@@ -15,7 +15,7 @@ namespace Tmx.Server.Library.Modules
     using Core;
     using Core.Types.Remoting;
     using Interfaces;
-    using Library.Internal;
+    using Internal;
     using Nancy;
     using Nancy.ModelBinding;
     using Nancy.Responses.Negotiation;
@@ -25,8 +25,6 @@ namespace Tmx.Server.Library.Modules
     using Tmx.Interfaces.Exceptions;
     using Tmx.Interfaces.Remoting;
     using Tmx.Interfaces.Server;
-//using System.Collections.Generic;
-    //using Nancy.TinyIoc;
 
     /// <summary>
     /// Description of TestTasksModule.

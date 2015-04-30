@@ -9,6 +9,7 @@
 
 namespace Tmx.Server.Library.ObjectModel
 {
+    using System.Collections.Generic;
     using System.Linq;
     using Core;
     using Objects;
@@ -22,8 +23,13 @@ namespace Tmx.Server.Library.ObjectModel
         public ITestRun GetNextInRowTestRun()
         {
             // var testRunsThatPending = TestRunQueue.TestRuns.Where(testRun => TestRunStatuses.Pending == testRun.Status);
+            /*
             var testRunsThatPending = TestRunQueue.TestRuns.Where(testRun => testRun.IsPending());
             return !testRunsThatPending.Any() ? null : testRunsThatPending.OrderBy(testRun => testRun.CreatedTime).First();
+            */
+            var testRunsThatPending = TestRunQueue.TestRuns.Where(testRun => testRun.IsPending());
+            var testRunsThatPendingArray = testRunsThatPending as ITestRun[] ?? testRunsThatPending.ToArray();
+            return !testRunsThatPendingArray.Any() ? null : testRunsThatPendingArray.OrderBy(testRun => testRun.CreatedTime).First();
         }
         
         public void CancelTestRun(ITestRun testRun)

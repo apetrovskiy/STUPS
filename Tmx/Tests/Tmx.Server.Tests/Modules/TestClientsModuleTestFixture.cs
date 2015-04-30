@@ -11,23 +11,19 @@ namespace Tmx.Server.Tests.Modules
 {
     using System;
     using System.Collections.Generic;
-    // using System.Management.Automation;
     using System.Linq;
     using Library.ObjectModel.Objects;
     using Nancy;
     using Nancy.Testing;
     using MbUnit.Framework;
     using NUnit.Framework;
-    using Tmx.Core.Types.Remoting;
-    using Tmx.Interfaces.Internal;
-    using Tmx.Interfaces.Server;
-    using Tmx.Core;
-    using Tmx.Interfaces;
-    using Tmx.Interfaces.Remoting;
-    using Tmx.Interfaces.TestStructure;
+    using Core.Types.Remoting;
+    using Interfaces.Internal;
+    using Interfaces.Server;
+    using Interfaces.Remoting;
     using Xunit;
-    using PSTestLib;
-    
+    using UnitTestingHelpers;
+
     /// <summary>
     /// Description of TestClientsModuleTestFixture.
     /// </summary>

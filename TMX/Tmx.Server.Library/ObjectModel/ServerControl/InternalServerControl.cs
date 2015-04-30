@@ -18,7 +18,7 @@ namespace Tmx.Server.Library.ObjectModel.ServerControl
     using Core.Types.Remoting;
     using DotLiquid;
     using Interfaces;
-    using Library.Internal;
+    using Internal;
     using Nancy;
     using Nancy.Bootstrapper;
     using Nancy.Conventions;
@@ -32,8 +32,6 @@ namespace Tmx.Server.Library.ObjectModel.ServerControl
     using Tmx.Interfaces;
     using Tmx.Interfaces.Remoting;
     using Tmx.Interfaces.TestStructure;
-// using System.Diagnostics;
-    // using DotLiquid.NamingConventions;
 
     /// <summary>
     /// Description of Control.

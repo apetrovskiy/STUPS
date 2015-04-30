@@ -9,21 +9,17 @@
 
 namespace Tmx.Server.Tests.Modules
 {
-    using System;
-    // using System.Management.Automation;
     using System.Linq;
     using Library.ObjectModel.Objects;
     using Nancy;
     using Nancy.Testing;
     using MbUnit.Framework;
     using NUnit.Framework;
-    using Client;
     using Interfaces.Remoting;
     using Interfaces.Server;
     using Core;
-    using Interfaces;
+    using UnitTestingHelpers;
     using Xunit;
-    using PSTestLib;
     
     /// <summary>
     /// Description of TestDataModuleTestFixture.
@@ -33,8 +29,8 @@ namespace Tmx.Server.Tests.Modules
     {
         ITestWorkflow _workflow;
         ITestRun _testRun;
-        const string _expectedKey = "a1";
-        const string _expectedValue = "b1";
+        const string ExpectedKey = "a1";
+        const string ExpectedValue = "b1";
         
         public TestDataModuleTestFixture()
         {
@@ -56,7 +52,7 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_accept_common_data_item_sent_to_empty_CommonData_as_json()
         {
-            var commonDataItem = GIVEN_CommonDataItem(_expectedKey, _expectedValue);
+            var commonDataItem = GIVEN_CommonDataItem(ExpectedKey, ExpectedValue);
             
             var response = WHEN_SendingCommonDataItem_as_Json(commonDataItem);
             
@@ -67,7 +63,7 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_accept_common_data_item_sent_to_empty_CommonData_as_xml()
         {
-            var commonDataItem = GIVEN_CommonDataItem(_expectedKey, _expectedValue) as CommonDataItem;
+            var commonDataItem = GIVEN_CommonDataItem(ExpectedKey, ExpectedValue) as CommonDataItem;
             
             var response = WHEN_SendingCommonDataItem_as_Xml(commonDataItem);
             
@@ -79,7 +75,7 @@ namespace Tmx.Server.Tests.Modules
         public void Should_accept_common_data_item_sent_to_non_empty_CommonData_as_json()
         {
             GIVEN_non_empty_CommonData();
-            var commonDataItem = GIVEN_CommonDataItem(_expectedKey, _expectedValue);
+            var commonDataItem = GIVEN_CommonDataItem(ExpectedKey, ExpectedValue);
             
             var response = WHEN_SendingCommonDataItem_as_Json(commonDataItem);
             
@@ -91,7 +87,7 @@ namespace Tmx.Server.Tests.Modules
         public void Should_accept_common_data_item_sent_to_non_empty_CommonData_as_xml()
         {
             GIVEN_non_empty_CommonData();
-            var commonDataItem = GIVEN_CommonDataItem(_expectedKey, _expectedValue) as CommonDataItem;
+            var commonDataItem = GIVEN_CommonDataItem(ExpectedKey, ExpectedValue) as CommonDataItem;
             
             var response = WHEN_SendingCommonDataItem_as_Xml(commonDataItem);
             
@@ -103,8 +99,8 @@ namespace Tmx.Server.Tests.Modules
         public void Should_accept_common_data_item_sent_for_replacement_as_json()
         {
             GIVEN_non_empty_CommonData();
-            GIVEN_dataItem_with_key(_expectedKey, _expectedValue);
-            var commonDataItem = GIVEN_CommonDataItem(_expectedKey, _expectedValue);
+            GIVEN_dataItem_with_key(ExpectedKey, ExpectedValue);
+            var commonDataItem = GIVEN_CommonDataItem(ExpectedKey, ExpectedValue);
             
             var response = WHEN_SendingCommonDataItem_as_Json(commonDataItem);
             
@@ -116,8 +112,8 @@ namespace Tmx.Server.Tests.Modules
         public void Should_accept_common_data_item_sent_for_replacement_as_xml()
         {
             GIVEN_non_empty_CommonData();
-            GIVEN_dataItem_with_key(_expectedKey, _expectedValue);
-            var commonDataItem = GIVEN_CommonDataItem(_expectedKey, _expectedValue) as CommonDataItem;
+            GIVEN_dataItem_with_key(ExpectedKey, ExpectedValue);
+            var commonDataItem = GIVEN_CommonDataItem(ExpectedKey, ExpectedValue) as CommonDataItem;
             
             var response = WHEN_SendingCommonDataItem_as_Xml(commonDataItem);
             

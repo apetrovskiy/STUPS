@@ -17,6 +17,7 @@ namespace Tmx.Server.Tests.Modules
     using Library.ObjectModel.Objects;
     using MbUnit.Framework;
     using Nancy.Testing;
+    using UnitTestingHelpers;
     using Xunit;
     using Assert = Xunit.Assert;
 

@@ -15,10 +15,6 @@ namespace Tmx.Server.Library.ObjectModel
     using System.Xml.Linq;
     using Core;
     using Objects;
-
-//using System.Collections.Generic;
-
-    //using Tmx.Interfaces.Remoting;
     
     /// <summary>
     /// Description of ServerWatcher.

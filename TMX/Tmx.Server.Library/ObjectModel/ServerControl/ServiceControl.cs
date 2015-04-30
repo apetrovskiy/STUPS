@@ -4,10 +4,6 @@
 
     public class ServiceControl : ServiceBase
     {
-        //public ServiceControl()
-        //{
-        //}
-        //
         protected override void OnStart(string[] args)
         {
             base.OnStart(args);

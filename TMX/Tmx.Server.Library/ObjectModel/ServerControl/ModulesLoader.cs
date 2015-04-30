@@ -9,12 +9,10 @@
 
 namespace Tmx.Server.Library.ObjectModel.ServerControl //.ObjectModel.ServerControl
 {
-    //using System;
     using System.IO;
     using System.Linq;
     using System.Reflection;
     using Nancy.Bootstrapper;
-//using System.Collections.Generic;
 
     /// <summary>
     /// Description of ModulesLoader.

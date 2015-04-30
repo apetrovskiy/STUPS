@@ -12,31 +12,28 @@ namespace Tmx.Server.Tests.Modules
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    // using System.Management.Automation;
     using System.Reflection;
     using System.Xml.Linq;
     using Library.ObjectModel.Objects;
     using NSubstitute;
     using Nancy;
-    using Nancy.Json;
     using Nancy.Testing;
-    using Nancy.Testing.Fakes;
-    using Tmx.Core;
-    using Tmx.Core.Types.Remoting;
-    using Tmx.Interfaces.Remoting;
-    using Tmx.Interfaces.Server;
+    using Core;
+    using Core.Types.Remoting;
+    using Interfaces.Remoting;
+    using Interfaces.Server;
     // using MbUnit.Framework;
     using NUnit.Framework;
     using Tmx;
-    using Tmx.Interfaces.TestStructure;
+    using Interfaces.TestStructure;
     using Xunit;
-    using Tmx.Interfaces;
-    using PSTestLib;
-    
+    using Interfaces;
+    using UnitTestingHelpers;
+
     /// <summary>
     /// Description of TestResultsModuleTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][TestFixture]
     public class TestResultsModuleTestFixture
     {
         ITestWorkflow _workflow;
@@ -53,7 +50,7 @@ namespace Tmx.Server.Tests.Modules
             _testRun = TestRunQueue.TestRuns.First();
         }
         
-        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
+        [MbUnit.Framework.SetUp][SetUp]
         public void SetUp()
         {
             TestSettings.PrepareModuleTests();
@@ -87,7 +84,7 @@ namespace Tmx.Server.Tests.Modules
 //            Xunit.Assert.Equal(0, 1);
 //        }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [MbUnit.Framework.Test][Test][Fact]
         public void Should_accept_when_posting_no_data()
         {
             var testResultsExporter = new TestResultsExporter();
@@ -117,7 +114,7 @@ namespace Tmx.Server.Tests.Modules
 //            THEN_HttpResponse_Is_Created();
 //        }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [MbUnit.Framework.Test][Test][Fact]
         public void Should_send_one_test_suite_with_inner_data()
         {
             var testPlatform = new TestPlatform();
@@ -141,7 +138,7 @@ namespace Tmx.Server.Tests.Modules
             Xunit.Assert.Equal(suites[0].TestScenarios[0].TestResults[0].Id, _testRun.TestSuites[0].TestScenarios[0].TestResults[0].Id);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [MbUnit.Framework.Test][Test][Fact]
         public void Should_send_three_test_suites_with_inner_data()
         {
             var guid = Guid.NewGuid();
@@ -177,7 +174,7 @@ namespace Tmx.Server.Tests.Modules
             Xunit.Assert.Equal(suites[2].TestScenarios[0].TestResults[0].Id, _testRun.TestSuites[2].TestScenarios[0].TestResults[0].Id);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [MbUnit.Framework.Test][Test][Fact]
         public void Should_receive_test_results_one_suite_from_test_run()
         {
             var suites = GIVEN_one_testSuite_with_inner_hierarchy("10", "11", "12", Guid.NewGuid());
@@ -192,7 +189,7 @@ namespace Tmx.Server.Tests.Modules
 //            Xunit.Assert.Equal(suites[0].Id, loadedSuites[0].Id);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [MbUnit.Framework.Test][Test][Fact]
         public void Should_receive_test_results_two_suites_from_test_run()
         {
             var suites = GIVEN_one_testSuite_with_inner_hierarchy("10", "11", "12", Guid.NewGuid());

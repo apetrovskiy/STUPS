@@ -16,7 +16,7 @@ namespace Tmx.Server.Library.ObjectModel
     using System.Net;
     using System.Net.Mail;
     using System.Net.Mime;
-    using Library.Interfaces;
+    using Interfaces;
 
     /// <summary>
     /// Description of Mailer.

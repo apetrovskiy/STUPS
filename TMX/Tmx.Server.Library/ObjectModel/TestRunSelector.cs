@@ -44,6 +44,17 @@ namespace Tmx.Server.Library.ObjectModel
             // disconnecting clients
             ClientsCollection.Clients.RemoveAll(client => client.TestRunId == testRun.Id);
             testRun.SetTimeTaken();
+            // 20150506
+            RunNextInRowTestRun();
+        }
+        
+        public void RunNextInRowTestRun()
+        {
+            var testRun = GetNextInRowTestRun();
+            if (null == testRun) return;
+            if (TestRunQueue.TestRuns.Any(tr => tr.IsActive() && tr.TestLabId == testRun.TestLabId)) return;
+            testRun.SetStartTime();
+            testRun.Status = TestRunStatuses.Running;
         }
     }
 }

@@ -163,6 +163,7 @@ namespace Tmx.Server.Library.Modules
             ActivateNextInRowTestRun();
         }
         
+        /*
         void ActivateNextInRowTestRun()
         {
             var testRunSelector = ServerObjectFactory.Resolve<TestRunSelector>();
@@ -171,6 +172,12 @@ namespace Tmx.Server.Library.Modules
             if (TestRunQueue.TestRuns.Any(tr => tr.IsActive() && tr.TestLabId == testRun.TestLabId)) return;
             testRun.SetStartTime();
             testRun.Status = TestRunStatuses.Running;
+        }
+        */
+        
+        void ActivateNextInRowTestRun()
+        {
+            ServerObjectFactory.Resolve<TestRunSelector>().RunNextInRowTestRun();
         }
         
         HttpStatusCode UpdateNextTaskAndReturnOk(ITaskSelector taskSorter, ITestTask storedTask)

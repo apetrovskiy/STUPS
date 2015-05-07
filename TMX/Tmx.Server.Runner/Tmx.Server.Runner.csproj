@@ -75,6 +75,9 @@
     <Reference Include="Microsoft.CSharp">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="Nancy">
+      <HintPath>..\..\packages\Nancy.1.2.0\lib\net40\Nancy.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -94,12 +97,20 @@
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Mono.Options\Options.cs" />
+    <Compile Include="ObjectModel\ServerControl\ServiceControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Tmx.Server.Logic\Tmx.Server.Logic.csproj">
+      <Project>{e24a3950-bc27-4fbc-b463-8aaf417939ce}</Project>
+      <Name>Tmx.Server.Logic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Tmx.Core\Tmx.Core.csproj">
       <Project>{069651a0-fe15-42e2-89d5-9a761a47b143}</Project>
       <Name>Tmx.Core</Name>

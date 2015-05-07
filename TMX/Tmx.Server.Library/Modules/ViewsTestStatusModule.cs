@@ -13,8 +13,8 @@ namespace Tmx.Server.Library.Modules
     using System.Dynamic;
     using System.Net;
     using System.Net.NetworkInformation;
+    using Logic.ObjectModel.Objects;
     using Nancy;
-    using ObjectModel.Objects;
     using Tmx.Interfaces.Remoting;
     using Tmx.Interfaces.Server;
 

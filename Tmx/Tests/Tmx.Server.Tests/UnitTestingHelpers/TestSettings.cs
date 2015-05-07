@@ -9,8 +9,8 @@
 
 namespace Tmx.Server.Tests
 {
-    using Library.ObjectModel.Objects;
     using Client;
+    using Logic.ObjectModel.Objects;
     using PSTestLib;
 
     /// <summary>

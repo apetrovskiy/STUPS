@@ -15,11 +15,11 @@ namespace Tmx.Server.Library.Modules
     using System.Xml.Linq;
     using Core;
     using Core.Types.Remoting;
-    using Internal;
+    using Logic.Internal;
+    using Logic.ObjectModel.Objects;
     using Nancy;
     using Nancy.ModelBinding;
     using Nancy.Responses.Negotiation;
-    using ObjectModel.Objects;
     using Tmx.Interfaces;
     using Tmx.Interfaces.Server;
 

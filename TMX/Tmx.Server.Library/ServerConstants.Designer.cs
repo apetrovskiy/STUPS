@@ -104,50 +104,5 @@ namespace Tmx.Server.Library {
                 return ResourceManager.GetString("ViewsTestRunsModule_WorkflowCookieName", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to \.
-        /// </summary>
-        internal static string WorkflowLoader_BackSlashe {
-            get {
-                return ResourceManager.GetString("WorkflowLoader_BackSlashe", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to htm.
-        /// </summary>
-        internal static string WorkflowLoader_FileExtension_Htm {
-            get {
-                return ResourceManager.GetString("WorkflowLoader_FileExtension_Htm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to html.
-        /// </summary>
-        internal static string WorkflowLoader_FileExtension_Html {
-            get {
-                return ResourceManager.GetString("WorkflowLoader_FileExtension_Html", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to xml.
-        /// </summary>
-        internal static string WorkflowLoader_FileExtension_Xml {
-            get {
-                return ResourceManager.GetString("WorkflowLoader_FileExtension_Xml", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to \Workflows.
-        /// </summary>
-        internal static string WorkflowLoader_FileSystemPath_Workflows {
-            get {
-                return ResourceManager.GetString("WorkflowLoader_FileSystemPath_Workflows", resourceCulture);
-            }
-        }
     }
 }

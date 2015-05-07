@@ -63,8 +63,8 @@ namespace Tmx.Core.Types.Remoting
         {
             get { return _workflow.Id; }
         }
-        
-        internal void SetWorkflow(ITestWorkflow testWorkflow)
+
+        public void SetWorkflow(ITestWorkflow testWorkflow)
         {
             _workflow = testWorkflow;
         }
@@ -81,7 +81,8 @@ namespace Tmx.Core.Types.Remoting
                 resultSpan = _finishTime - StartTime;
             else
                 resultSpan = DateTime.Now - StartTime;
-            return string.Format("{0:00}:{1:00}:{2:00}", resultSpan.TotalHours % 60, resultSpan.TotalMinutes % 60, resultSpan.TotalSeconds % 60);
+            // return string.Format("{0:00}:{1:00}:{2:00}", resultSpan.TotalHours % 60, resultSpan.TotalMinutes % 60, resultSpan.TotalSeconds % 60);
+            return string.Format("{0:00}:{1:00}:{2:00}", (int)resultSpan.TotalHours % 60, (int)resultSpan.TotalMinutes % 60, (int)resultSpan.TotalSeconds % 60);
         }
         public void SetFinishTime()
         {

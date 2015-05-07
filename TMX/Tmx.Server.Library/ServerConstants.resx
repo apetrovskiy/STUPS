@@ -132,19 +132,4 @@
   <data name="ViewsTestRunsModule_UrlPart_Http" xml:space="preserve">
     <value>http://</value>
   </data>
-  <data name="WorkflowLoader_FileSystemPath_Workflows" xml:space="preserve">
-    <value>\Workflows</value>
-  </data>
-  <data name="WorkflowLoader_BackSlashe" xml:space="preserve">
-    <value>\</value>
-  </data>
-  <data name="WorkflowLoader_FileExtension_Xml" xml:space="preserve">
-    <value>xml</value>
-  </data>
-  <data name="WorkflowLoader_FileExtension_Html" xml:space="preserve">
-    <value>html</value>
-  </data>
-  <data name="WorkflowLoader_FileExtension_Htm" xml:space="preserve">
-    <value>htm</value>
-  </data>
 </root>

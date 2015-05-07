@@ -18,7 +18,13 @@ namespace Tmx.Server.Library.ObjectModel.ServerControl
     using Core.Types.Remoting;
     using DotLiquid;
     using Interfaces;
-    using Internal;
+    using Interfaces.Remoting;
+    using Interfaces.TestStructure;
+    using Logic.Interfaces;
+    using Logic.Internal;
+    using Logic.ObjectModel;
+    using Logic.ObjectModel.Objects;
+    using Logic.ObjectModel.ServerControl;
     using Nancy;
     using Nancy.Bootstrapper;
     using Nancy.Conventions;
@@ -27,11 +33,7 @@ namespace Tmx.Server.Library.ObjectModel.ServerControl
     using Nancy.Json;
     using Nancy.TinyIoc;
     using Nancy.ViewEngines.DotLiquid;
-    using Objects;
     using PSTestLib.Helpers;
-    using Tmx.Interfaces;
-    using Tmx.Interfaces.Remoting;
-    using Tmx.Interfaces.TestStructure;
 
     /// <summary>
     /// Description of Control.
@@ -231,7 +233,7 @@ namespace Tmx.Server.Library.ObjectModel.ServerControl
             try { Console.WriteLine(state + " NegotiationContext.ViewName = " + ctx.NegotiationContext.ViewName); } catch {}
             try { Console.WriteLine(state + " NegotiationContext.ModuleName = " + ctx.NegotiationContext.ModuleName); } catch {}
             try { Console.WriteLine(state + " NegotiationContext.ModulePath = " + ctx.NegotiationContext.ModulePath); } catch {}
-            try { Console.WriteLine(state + " NegotiationContext.Headers = " + ctx.NegotiationContext.Headers.Select(hdr => hdr.Value)); } catch {}
+            try { Console.WriteLine(state + " NegotiationContext.Headers = " + Enumerable.Select<KeyValuePair<string, string>, string>(ctx.NegotiationContext.Headers, hdr => hdr.Value)); } catch {}
             try { Console.WriteLine(state + " NegotiationContext.StatusCode = " + ctx.NegotiationContext.StatusCode); } catch {}
             try { Console.WriteLine(state + " ResolvedRoute = " + ctx.ResolvedRoute); } catch {}
             try { Console.WriteLine(state + " Text = " + ctx.Text); } catch {}

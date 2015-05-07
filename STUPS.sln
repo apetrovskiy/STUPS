@@ -219,6 +219,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C9A9BF
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmx.Server.Logic", "Tmx\Tmx.Server.Logic\Tmx.Server.Logic.csproj", "{E24A3950-BC27-4FBC-B463-8AAF417939CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2729,6 +2731,26 @@ Global
 		{4C77B588-3CD6-4BE1-B39C-D08EAFBBF837}.Release40|Release35.Build.0 = Release35|Release35
 		{4C77B588-3CD6-4BE1-B39C-D08EAFBBF837}.Release40|Release40.ActiveCfg = Release35|Any CPU
 		{4C77B588-3CD6-4BE1-B39C-D08EAFBBF837}.Release40|x86.ActiveCfg = Release35|Any CPU
+		{E24A3950-BC27-4FBC-B463-8AAF417939CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E24A3950-BC27-4FBC-B463-8AAF417939CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E24A3950-BC27-4FBC-B463-8AAF417939CE}.Debug|Release35.ActiveCfg = Debug|Any CPU
+		{E24A3950-BC27-4FBC-B463-8AAF417939CE}.Debug|Release40.ActiveCfg = Debug|Any CPU
+		{E24A3950-BC27-4FBC-B463-8AAF417939CE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E24A3950-BC27-4FBC-B463-8AAF417939CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E24A3950-BC27-4FBC-B463-8AAF417939CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E24A3950-BC27-4FBC-B463-8AAF417939CE}.Release|Release35.ActiveCfg = Release|Any CPU
+		{E24A3950-BC27-4FBC-B463-8AAF417939CE}.Release|Release40.ActiveCfg = Release|Any CPU
+		{E24A3950-BC27-4FBC-B463-8AAF417939CE}.Release|x86.ActiveCfg = Release|Any CPU
+		{E24A3950-BC27-4FBC-B463-8AAF417939CE}.Release35|Any CPU.ActiveCfg = Release|Any CPU
+		{E24A3950-BC27-4FBC-B463-8AAF417939CE}.Release35|Any CPU.Build.0 = Release|Any CPU
+		{E24A3950-BC27-4FBC-B463-8AAF417939CE}.Release35|Release35.ActiveCfg = Release|Any CPU
+		{E24A3950-BC27-4FBC-B463-8AAF417939CE}.Release35|Release40.ActiveCfg = Release|Any CPU
+		{E24A3950-BC27-4FBC-B463-8AAF417939CE}.Release35|x86.ActiveCfg = Release|Any CPU
+		{E24A3950-BC27-4FBC-B463-8AAF417939CE}.Release40|Any CPU.ActiveCfg = Release|Any CPU
+		{E24A3950-BC27-4FBC-B463-8AAF417939CE}.Release40|Any CPU.Build.0 = Release|Any CPU
+		{E24A3950-BC27-4FBC-B463-8AAF417939CE}.Release40|Release35.ActiveCfg = Release|Any CPU
+		{E24A3950-BC27-4FBC-B463-8AAF417939CE}.Release40|Release40.ActiveCfg = Release|Any CPU
+		{E24A3950-BC27-4FBC-B463-8AAF417939CE}.Release40|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2825,5 +2847,6 @@ Global
 		{18BD8C1E-CEF4-429C-9EB9-5DCF124D0937} = {EA011CBD-B896-47C4-BF98-378F481CEC2B}
 		{E3ECC098-8DA7-449A-94BF-BA5487593550} = {EA011CBD-B896-47C4-BF98-378F481CEC2B}
 		{4C77B588-3CD6-4BE1-B39C-D08EAFBBF837} = {EA011CBD-B896-47C4-BF98-378F481CEC2B}
+		{E24A3950-BC27-4FBC-B463-8AAF417939CE} = {E4CADBD5-3FE7-4BD4-96B5-79727EFF89E6}
 	EndGlobalSection
 EndGlobal

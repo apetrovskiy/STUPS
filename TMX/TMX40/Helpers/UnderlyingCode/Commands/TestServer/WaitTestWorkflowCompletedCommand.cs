@@ -9,7 +9,7 @@
 
 namespace Tmx.Helpers.UnderlyingCode.Commands.TestServer
 {
-    using Server.Library.ObjectModel;
+    using Server.Logic.ObjectModel;
     using Tmx.Commands.TestServer;
 
     /// <summary>

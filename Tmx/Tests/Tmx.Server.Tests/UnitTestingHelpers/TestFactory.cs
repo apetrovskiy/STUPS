@@ -13,7 +13,7 @@ namespace Tmx.Server.Tests.UnitTestingHelpers
     using Core.Types.Remoting;
     using Interfaces.Remoting;
     using Library.Modules;
-    using Library.ObjectModel.Objects;
+    using Logic.ObjectModel.Objects;
     using Nancy.Testing;
 
     /// <summary>

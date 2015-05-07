@@ -11,9 +11,9 @@ namespace Tmx.Server.Library.Modules
 {
     using System;
     using System.Linq;
+    using Logic.ObjectModel.Objects;
     using Nancy;
     using Nancy.Responses.Negotiation;
-    using ObjectModel.Objects;
     using Tmx.Interfaces.Server;
 
     /// <summary>

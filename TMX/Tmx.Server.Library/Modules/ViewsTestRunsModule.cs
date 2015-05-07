@@ -16,11 +16,12 @@ namespace Tmx.Server.Library.Modules
     using System.Net;
     using System.Net.Sockets;
     using Core;
-    using Internal;
     using Library;
+    using Logic;
+    using Logic.Internal;
+    using Logic.ObjectModel.Objects;
     using Nancy;
     using Nancy.Cookies;
-    using ObjectModel.Objects;
     using ObjectModel.ServerControl;
     using Tmx.Interfaces.Remoting;
     using Tmx.Interfaces.Server;

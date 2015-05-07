@@ -649,6 +649,10 @@
       <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
       <Name>PSTestLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Tmx.Server.Logic\Tmx.Server.Logic.csproj">
+      <Project>{E24A3950-BC27-4FBC-B463-8AAF417939CE}</Project>
+      <Name>Tmx.Server.Logic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Tmx.Client.Library\Tmx.Client.Library.csproj">
       <Project>{6943EC2F-CB75-4F9B-B83C-A664400052A7}</Project>
       <Name>Tmx.Client.Library</Name>

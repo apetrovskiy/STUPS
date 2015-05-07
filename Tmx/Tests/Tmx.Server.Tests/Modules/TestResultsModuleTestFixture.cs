@@ -14,7 +14,6 @@ namespace Tmx.Server.Tests.Modules
     using System.Linq;
     using System.Reflection;
     using System.Xml.Linq;
-    using Library.ObjectModel.Objects;
     using NSubstitute;
     using Nancy;
     using Nancy.Testing;
@@ -28,6 +27,7 @@ namespace Tmx.Server.Tests.Modules
     using Interfaces.TestStructure;
     using Xunit;
     using Interfaces;
+    using Logic.ObjectModel.Objects;
     using UnitTestingHelpers;
 
     /// <summary>

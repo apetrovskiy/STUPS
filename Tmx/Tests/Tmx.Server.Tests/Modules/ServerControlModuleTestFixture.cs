@@ -9,11 +9,11 @@
 
 namespace Tmx.Server.Tests.Modules
 {
-    using Library.ObjectModel.Objects;
     using Nancy.Testing;
     using Core.Types.Remoting;
     using Interfaces.Server;
     using Interfaces.Remoting;
+    using Logic.ObjectModel.Objects;
     using UnitTestingHelpers;
     using Xunit;
     

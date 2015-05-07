@@ -109,9 +109,6 @@
       <HintPath>..\..\packages\Newtonsoft.Json.4.5.10\lib\net35\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Spring.Core">
-      <HintPath>..\..\packages\Spring.Core.2.0.0-RC2\lib\net35\Spring.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Spring.Http.Converters.NJson">
       <HintPath>..\..\packages\Spring.Http.Converters.NJson.1.1.1\lib\net35-client\Spring.Http.Converters.NJson.dll</HintPath>
     </Reference>

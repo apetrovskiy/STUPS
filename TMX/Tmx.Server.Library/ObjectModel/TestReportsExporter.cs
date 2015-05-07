@@ -12,9 +12,9 @@ namespace Tmx.Server.Library.ObjectModel
     using System;
     using System.IO;
     using DotLiquid;
-    using Internal;
+    using Logic.Internal;
     using Modules;
-    using Nancy.TinyIoc;
+    // using Hash = System.Security.Policy.Hash;
 
     /// <summary>
     /// Description of TestReportsExporter.
@@ -28,7 +28,7 @@ namespace Tmx.Server.Library.ObjectModel
             _basePath = basePath;
         }
 
-        /// <exception cref="TinyIoCResolutionException">Unable to resolve the type.</exception>
+        /// <exception cref="Nancy.TinyIoc.TinyIoCResolutionException">Unable to resolve the type.</exception>
         public virtual string GetReportPage(Guid testRunId, string templateName)
         {
             var model = ServerObjectFactory.Resolve<ViewsTestRunsModule>().CreateTestRunReportsModel(testRunId);

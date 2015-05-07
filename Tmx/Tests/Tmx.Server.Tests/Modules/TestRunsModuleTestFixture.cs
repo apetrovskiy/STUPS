@@ -14,7 +14,7 @@ namespace Tmx.Server.Tests.Modules
     using Core.Types.Remoting;
     using Interfaces.Remoting;
     using Interfaces.Server;
-    using Library.ObjectModel.Objects;
+    using Logic.ObjectModel.Objects;
     using MbUnit.Framework;
     using Nancy.Testing;
     using UnitTestingHelpers;

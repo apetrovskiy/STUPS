@@ -101,10 +101,10 @@
       <HintPath>..\..\..\packages\Ninject.Extensions.NamedScope.3.2.0.0\lib\net40\Ninject.Extensions.NamedScope.dll</HintPath>
     </Reference>
     <Reference Include="Ninject.MockingKernel">
-      <HintPath>..\..\..\packages\Ninject.MockingKernel.3.2.0.0\lib\net40-full\Ninject.MockingKernel.dll</HintPath>
+      <HintPath>..\..\..\packages\Ninject.MockingKernel.3.2.2.0\lib\net40-full\Ninject.MockingKernel.dll</HintPath>
     </Reference>
     <Reference Include="Ninject.MockingKernel.Moq">
-      <HintPath>..\..\..\packages\Ninject.MockingKernel.Moq.3.2.1.0\lib\net40-full\Ninject.MockingKernel.Moq.dll</HintPath>
+      <HintPath>..\..\..\packages\Ninject.MockingKernel.Moq.3.2.2.0\lib\net40-full\Ninject.MockingKernel.Moq.dll</HintPath>
     </Reference>
     <Reference Include="NSubstitute">
       <HintPath>..\..\..\packages\NSubstitute.1.8.1.0\lib\net40\NSubstitute.dll</HintPath>

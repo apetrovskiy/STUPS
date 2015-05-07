@@ -58,3 +58,7 @@
 //        }
 //    }
 //}
+
+namespace Tmx.Server.Library.ObjectModel.ServerControl
+{
+}

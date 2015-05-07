@@ -10,7 +10,6 @@
 namespace Tmx.Server.Tests.Modules
 {
     using System.Linq;
-    using Library.ObjectModel.Objects;
     using Nancy;
     using Nancy.Testing;
     using MbUnit.Framework;
@@ -18,6 +17,7 @@ namespace Tmx.Server.Tests.Modules
     using Interfaces.Remoting;
     using Interfaces.Server;
     using Core;
+    using Logic.ObjectModel.Objects;
     using UnitTestingHelpers;
     using Xunit;
     

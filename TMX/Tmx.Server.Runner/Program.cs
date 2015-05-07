@@ -13,6 +13,7 @@ namespace Tmx.Server.Runner
     using System.ServiceProcess;
     using System.Threading;
     using Library.ObjectModel.ServerControl;
+    using ObjectModel.ServerControl;
 
     class Program
     {

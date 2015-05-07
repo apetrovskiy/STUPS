@@ -11,11 +11,11 @@ namespace Tmx.Server.Library.Modules
 {
     using System.Collections.Generic;
     using Core.Types.Remoting;
-    using Internal;
+    using Logic.Internal;
+    using Logic.ObjectModel;
+    using Logic.ObjectModel.Objects;
     using Nancy;
     using Nancy.ModelBinding;
-    using ObjectModel;
-    using ObjectModel.Objects;
     using ObjectModel.ServerControl;
     using Tmx.Interfaces.Remoting;
     using Tmx.Interfaces.Server;

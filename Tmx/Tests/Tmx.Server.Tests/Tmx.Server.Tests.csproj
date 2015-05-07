@@ -86,10 +86,10 @@
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="Nancy">
-      <HintPath>..\..\..\packages\Nancy.1.1\lib\net40\Nancy.dll</HintPath>
+      <HintPath>..\..\..\packages\Nancy.1.2.0\lib\net40\Nancy.dll</HintPath>
     </Reference>
     <Reference Include="Nancy.Testing">
-      <HintPath>..\..\..\packages\Nancy.Testing.1.1\lib\net40\Nancy.Testing.dll</HintPath>
+      <HintPath>..\..\..\packages\Nancy.Testing.1.2.0\lib\net40\Nancy.Testing.dll</HintPath>
     </Reference>
     <Reference Include="NSubstitute">
       <HintPath>..\..\..\packages\NSubstitute.1.8.1.0\lib\net40\NSubstitute.dll</HintPath>
@@ -134,6 +134,10 @@
     <ProjectReference Include="..\..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
       <Project>{e4499004-dae5-4700-b212-4cdea3080bc5}</Project>
       <Name>PSTestLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tmx.Server.Logic\Tmx.Server.Logic.csproj">
+      <Project>{e24a3950-bc27-4fbc-b463-8aaf417939ce}</Project>
+      <Name>Tmx.Server.Logic</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Tmx.Client.Library\Tmx.Client.Library.csproj">
       <Project>{6943ec2f-cb75-4f9b-b83c-a664400052a7}</Project>

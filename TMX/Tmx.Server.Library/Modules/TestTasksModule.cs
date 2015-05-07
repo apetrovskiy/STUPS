@@ -14,17 +14,14 @@ namespace Tmx.Server.Library.Modules
     using System.Linq;
     using Core;
     using Core.Types.Remoting;
-    using Logic.Interfaces;
+    using Interfaces.Remoting;
+    using Interfaces.Server;
     using Logic.Internal;
     using Logic.ObjectModel;
-    using Logic.ObjectModel.ExtensionMethods;
     using Logic.ObjectModel.Objects;
     using Nancy;
     using Nancy.ModelBinding;
     using Nancy.Responses.Negotiation;
-    using Tmx.Interfaces.Exceptions;
-    using Tmx.Interfaces.Remoting;
-    using Tmx.Interfaces.Server;
 
     /// <summary>
     /// Description of TestTasksModule.
@@ -97,10 +94,8 @@ namespace Tmx.Server.Library.Modules
         
         Negotiator returnTaskToClient_StatusOk(ITestClient testClient, ITestTask actualTask)
         {
-            testClient.Status = TestClientStatuses.Running;
-            testClient.TaskId = actualTask.Id;
-            testClient.TaskName = actualTask.Name;
-            testClient.TestRunId = actualTask.TestRunId;
+            ServerObjectFactory.Resolve<TestTaskCollectionMethods>().UpdateTestClientWithActiveTask(testClient, actualTask);
+
             // 20141020 squeezing a task to its proxy
             return Negotiate.WithModel(actualTask).WithStatusCode(HttpStatusCode.OK);
             // return Negotiate.WithModel(actualTask.SqueezeTaskToTaskResultProxy()).WithStatusCode(HttpStatusCode.OK);
@@ -111,96 +106,8 @@ namespace Tmx.Server.Library.Modules
         HttpStatusCode UpdateTask(ITestTask loadedTask, int taskId)
         // HttpStatusCode updateTask(ITestTaskResultProxy loadedTask, int taskId)
         {
-            if (null == loadedTask)
-                throw new UpdateTaskException("Failed to update task with id = " + taskId);
-            var storedTask = TaskPool.TasksForClients.First(task => task.Id == taskId && task.ClientId == loadedTask.ClientId);
-            // 20150112
-            // storedTask.TaskFinished = loadedTask.TaskFinished;
-            storedTask.TaskStatus = loadedTask.TaskStatus;
-            storedTask.TaskResult = loadedTask.TaskResult;
-            storedTask.StartTime = loadedTask.StartTime;
-
-            // 20150317
-            // var taskSelector = TinyIoCContainer.Current.Resolve<TaskSelector>();
-            var taskSelector = ServerObjectFactory.Resolve<TaskSelector>();
-            
-//try {
-//    var taskSel = TinyIoCContainer.Current.Resolve<ITaskSelector>();
-//    if (null == taskSel)
-//        Console.WriteLine("null == taskSel");
-//    else
-//        Console.WriteLine("type is {0}", taskSel.GetType().Name);
-//}
-//catch (Exception ee) {
-//    Console.WriteLine(ee.Message);
-//}
-            
-            if (storedTask.IsFailed())
-                taskSelector.CancelFurtherTasksOfTestClient(storedTask.ClientId);
-            if (storedTask.IsFinished())
-                CleanUpClientDetailedStatus(storedTask.ClientId);
-            
-            if (storedTask.IsLastTaskInTestRun())
-                CompleteTestRun(storedTask);
-            
-            if (storedTask.IsFinished())
-                storedTask.SetTimeTaken();
-            
-            // 20150112
-            // return storedTask.TaskFinished ? updateNextTaskAndReturnOk(taskSelector, storedTask) : HttpStatusCode.OK;
-            return storedTask.IsCompletedSuccessfully() ? UpdateNextTaskAndReturnOk(taskSelector, storedTask) : HttpStatusCode.OK;
-        }
-
-        void CompleteTestRun(ITestTask task)
-        {
-            var currentTestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == task.TestRunId);
-            currentTestRun.Status = TaskPool.TasksForClients.Any (tsk => tsk.TestRunId == currentTestRun.Id && tsk.TaskStatus == TestTaskStatuses.Interrupted) ? TestRunStatuses.Interrupted : TestRunStatuses.CompletedSuccessfully;
-            currentTestRun.SetTimeTaken();
-            
-            if (!TestRunQueue.TestRuns.Any(testRun => testRun.TestLabId == currentTestRun.TestLabId && testRun.Id != currentTestRun.Id))
-                TestLabCollection.TestLabs.First(testLab => testLab.Id == currentTestRun.TestLabId).Status = TestLabStatuses.Free;
-            
-            ActivateNextInRowTestRun();
-        }
-        
-        /*
-        void ActivateNextInRowTestRun()
-        {
-            var testRunSelector = ServerObjectFactory.Resolve<TestRunSelector>();
-            var testRun = testRunSelector.GetNextInRowTestRun();
-            if (null == testRun) return;
-            if (TestRunQueue.TestRuns.Any(tr => tr.IsActive() && tr.TestLabId == testRun.TestLabId)) return;
-            testRun.SetStartTime();
-            testRun.Status = TestRunStatuses.Running;
-        }
-        */
-        
-        void ActivateNextInRowTestRun()
-        {
-            ServerObjectFactory.Resolve<TestRunSelector>().RunNextInRowTestRun();
-        }
-        
-        HttpStatusCode UpdateNextTaskAndReturnOk(ITaskSelector taskSorter, ITestTask storedTask)
-        {
-            ITestTask nextTask = null;
-            try {
-                nextTask = taskSorter.GetNextLegitimateTask(storedTask.ClientId, storedTask.Id);
-            } catch (Exception eFailedToGetNextTask) {
-                // TODO: AOP
-                Trace.TraceError("updateNextTaskAndReturnOk(TaskSelector taskSorter, ITestTask storedTask)");
-                Trace.TraceError(eFailedToGetNextTask.Message);
-                throw new FailedToGetNextTaskException(eFailedToGetNextTask.Message);
-            }
-            if (null == nextTask)
-                return HttpStatusCode.OK;
-            nextTask.PreviousTaskResult = storedTask.TaskResult;
-            nextTask.PreviousTaskId = storedTask.Id;
+            ServerObjectFactory.Resolve<TestTaskCollectionMethods>().UpdateTask(loadedTask, taskId);
             return HttpStatusCode.OK;
-        }
-        
-        void CleanUpClientDetailedStatus(Guid clientId)
-        {
-            ClientsCollection.Clients.First(client => client.Id == clientId).DetailedStatus = string.Empty;
         }
         
         HttpStatusCode DeleteAllocatedTaskById(int taskId)

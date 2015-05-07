@@ -139,7 +139,6 @@ namespace Tmx.Server.Logic.ObjectModel
             if (0 == ClientsCollection.Clients.Count) return;
             // 20150507
             // var taskSelector = ServerObjectFactory.Resolve<TaskSelector>();
-            var taskSelector = new TaskSelector();
             
 //try {
 //    var taskSel = TinyIoCContainer.Current.Resolve<ITaskSelector>();
@@ -162,7 +161,9 @@ namespace Tmx.Server.Logic.ObjectModel
             */
             foreach (var tasksForClient in from clientId in ClientsCollection.Clients.Where(client => ExtensionMethods.ExtensionMethods.IsInActiveTestRun(client)).Select(client => client.Id)
                                            let workflowsTasks = activeWorkflowsTasks as ITestTask[] ?? activeWorkflowsTasks.ToArray()
-                                           select taskSelector.SelectTasksForClient(clientId, workflowsTasks.ToList()))
+                                           // 20150507
+                                           // select taskSelector.SelectTasksForClient(clientId, workflowsTasks.ToList()))
+                                           select SelectTasksForClient(clientId, workflowsTasks.ToList()))
             {
                 tasksForClient.ForEach(task => task.TestRunId = testRunId);
                 TaskPool.TasksForClients.AddRange(tasksForClient);

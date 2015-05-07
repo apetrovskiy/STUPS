@@ -74,9 +74,11 @@
     <Compile Include="ObjectModel\ServerWatcher.cs" />
     <Compile Include="ObjectModel\Settings\TestRunSettings.cs" />
     <Compile Include="ObjectModel\TaskSelector.cs" />
+    <Compile Include="ObjectModel\TestClientCollectionMethods.cs" />
     <Compile Include="ObjectModel\TestRunInitializer.cs" />
     <Compile Include="ObjectModel\TestRunLifecycle.cs" />
     <Compile Include="ObjectModel\TestRunSelector.cs" />
+    <Compile Include="ObjectModel\TestTaskCollectionMethods.cs" />
     <Compile Include="ObjectModel\WorkflowLifecycle.cs" />
     <Compile Include="ObjectModel\WorkflowLoader.cs" />
     <Compile Include="ObjectModel\WorkflowXmlConstants.cs" />

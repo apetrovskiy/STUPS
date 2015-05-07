@@ -10,17 +10,17 @@
 namespace Tmx.Server.Library.Modules
 {
     using System;
-    using System.Linq;
+    //using System.Linq;
     using Core.Types.Remoting;
     using Logic.Internal;
     using Logic.ObjectModel;
-    using Logic.ObjectModel.ExtensionMethods;
-    using Logic.ObjectModel.Objects;
+    //using Logic.ObjectModel.ExtensionMethods;
+    //using Logic.ObjectModel.Objects;
     using Nancy;
     using Nancy.ModelBinding;
     using Nancy.Responses.Negotiation;
-    using Tmx.Interfaces.Remoting;
-    using Tmx.Interfaces.Server;
+    //using Interfaces.Remoting;
+    using Interfaces.Server;
     
     /// <summary>
     /// Description of TestClientsModule.
@@ -45,57 +45,34 @@ namespace Tmx.Server.Library.Modules
         
         Negotiator CreateNewClient(TestClient testClient)
         {
-            if (!TestRunQueue.TestRuns.HasActiveTestRuns())
-                return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed);
-            testClient.TestRunId = TestRunQueue.TestRuns.ActiveTestRunIds().First();
-            ClientsCollection.Clients.Add(testClient);
-
-            var taskSelector = ServerObjectFactory.Resolve<TaskSelector>();
-            
-//try {
-//    var taskSel = TinyIoCContainer.Current.Resolve<ITaskSelector>();
-//    if (null == taskSel)
-//        Console.WriteLine("null == taskSel");
-//    else
-//        Console.WriteLine("type is {0}", taskSel.GetType().Name);
-//}
-//catch (Exception ee) {
-//    Console.WriteLine(ee.Message);
-//}
-            
-            var tasksForClient = taskSelector.SelectTasksForClient(testClient.Id, TaskPool.Tasks);
-            tasksForClient.ForEach(task => task.TestRunId = testClient.TestRunId);
-            TaskPool.TasksForClients.AddRange(tasksForClient);
-            return Negotiate.WithModel(testClient).WithStatusCode(HttpStatusCode.Created);
+            return ServerObjectFactory.Resolve<TestClientCollectionMethods>().CreateNewClient(testClient)
+                ? Negotiate.WithModel(testClient).WithStatusCode(HttpStatusCode.Created)
+                : Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed);
         }
         
         HttpStatusCode DeleteClientById(Guid clientId)
         {
-            var testRunId = ClientsCollection.Clients.First(client => client.Id == clientId).TestRunId;
-            ClientsCollection.Clients.RemoveAll(client => client.Id == clientId);
-            TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.TestRunId == testRunId && task.TaskStatus == TestTaskStatuses.New)
-                .ToList()
-                .ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled);
+            ServerObjectFactory.Resolve<TestClientCollectionMethods>().DeleteClientById(clientId);
             return HttpStatusCode.NoContent;
         }
 
         HttpStatusCode UpdateStatus(Guid clientId, DetailedStatus detailedStatus)
         {
-            if (ClientsCollection.Clients.All(client => client.Id != clientId))
-                return HttpStatusCode.NotFound;
-            ClientsCollection.Clients.First(client => client.Id == clientId).DetailedStatus = detailedStatus.Status;
-            return HttpStatusCode.OK;
+            return ServerObjectFactory.Resolve<TestClientCollectionMethods>().UpdateStatus(clientId, detailedStatus)
+                ? HttpStatusCode.OK
+                : HttpStatusCode.NotFound;
         }
         
         Negotiator ReturnAllClients()
         {
-            return 0 == ClientsCollection.Clients.Count ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(ClientsCollection.Clients).WithStatusCode(HttpStatusCode.OK);
+            var clientCollection = ServerObjectFactory.Resolve<TestClientCollectionMethods>().ReturnAllClients();
+            return 0 == clientCollection.Count ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : Negotiate.WithModel(clientCollection).WithStatusCode(HttpStatusCode.OK);
         }
         
         Negotiator ReturnClientById(Guid clientId)
         {
-            // TODO: refactor this
-            return ClientsCollection.Clients.Any(client => client.Id == clientId) ? Negotiate.WithModel(ClientsCollection.Clients.First(client => client.Id == clientId)).WithStatusCode(HttpStatusCode.OK) : Negotiate.WithStatusCode(HttpStatusCode.NotFound);
+            var testClient = ServerObjectFactory.Resolve<TestClientCollectionMethods>().ReturnClientById(clientId);
+            return null != testClient ? Negotiate.WithModel(testClient).WithStatusCode(HttpStatusCode.OK) : Negotiate.WithStatusCode(HttpStatusCode.NotFound);
         }
     }
 }

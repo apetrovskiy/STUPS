@@ -10,20 +10,15 @@
 namespace Tmx.Server.Library.Modules
 {
     using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
     using System.Dynamic;
-    using System.Linq;
-    using Core;
     using Core.Types.Remoting;
+    using Interfaces.Remoting;
+    using Interfaces.Server;
     using Logic.Internal;
     using Logic.ObjectModel;
-    using Logic.ObjectModel.Objects;
     using Nancy;
     using Nancy.ModelBinding;
     using Nancy.Responses.Negotiation;
-    using Tmx.Interfaces.Remoting;
-    using Tmx.Interfaces.Server;
 
     /// <summary>
     /// Description of TestRunsModule.
@@ -41,75 +36,24 @@ namespace Tmx.Server.Library.Modules
         
         Negotiator CreateNewTestRun(ITestRunCommand testRunCommand)
         {
-            Trace.TraceInformation("dissecting testRunCommand");
-            Trace.TraceInformation("is testRunCommand null? {0}", null == testRunCommand);
-            if (null != testRunCommand) {
-                Trace.TraceInformation("workflow name = {0}, test run name = {1}", testRunCommand.WorkflowName, testRunCommand.TestRunName);
-            }
-            
-            if (null == testRunCommand)
-                // 20141219
-                // testRunCommand = new TestRunCommand { TestRunName = Request.Form.test_run_name, WorkflowName = Request.Form.workflow_name };
-                testRunCommand = new TestRunCommand { TestRunName = Request.Form.test_run_name ?? string.Empty, WorkflowName = Request.Form.workflow_name ?? string.Empty };
-            if (string.IsNullOrEmpty(testRunCommand.WorkflowName))
-                // 20141219
-                // testRunCommand.WorkflowName = Request.Form.workflow_name;
-                testRunCommand.WorkflowName = Request.Form.workflow_name ?? string.Empty;
-            
-            if (string.IsNullOrEmpty(testRunCommand.TestRunName))
-                // 20141219
-                // testRunCommand.TestRunName = Request.Form.test_run_name;
-                testRunCommand.TestRunName = Request.Form.test_run_name ?? string.Empty;
-            
-            Trace.TraceInformation("workflow name = {0}, test run name = {1}", testRunCommand.WorkflowName, testRunCommand.TestRunName);
-            
-            return null == testRunCommand ? Negotiate.WithStatusCode(HttpStatusCode.NotFound) : SetTestRun(testRunCommand);
-        }
-        
-        Negotiator SetTestRun(ITestRunCommand testRunCommand)
-        {
-            if (string.IsNullOrEmpty(testRunCommand.WorkflowName))
-                return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
-            var testRunInitializer = ServerObjectFactory.Resolve<TestRunInitializer>();
-            var testRun = testRunInitializer.CreateTestRun(testRunCommand, Request.Form);
-            if (Guid.Empty == testRun.WorkflowId) // ??
-                return Negotiate.WithStatusCode(HttpStatusCode.NotFound);
-            TestRunQueue.TestRuns.Add(testRun);
-            
-            foreach (var testRunAction in testRun.BeforeActions) {
-                testRunAction.Run();
-            }
-            
-            var data = CreateTestRunExpandoObject();
-            
+            var testRunCollectionMethods = ServerObjectFactory.Resolve<TestRunCollectionMethods>();
+            testRunCollectionMethods.SetTestRun(testRunCommand, Request.Form);
+            var data = testRunCollectionMethods.CreateTestRunExpandoObject();
             return Negotiate.WithStatusCode(HttpStatusCode.OK).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data);
         }
         
         Negotiator DeleteTestRun(Guid testRunId)
         {
-            TestRunQueue.TestRuns.RemoveAll(tr => tr.Id == testRunId);
+            ServerObjectFactory.Resolve<TestRunCollectionMethods>().DeleteTestRun(testRunId);
             return Negotiate.WithStatusCode(HttpStatusCode.OK);
         }
         
         Negotiator CancelTestRun(Guid testRunId)
         {
-            var testRun = TestRunQueue.TestRuns.First(tr => tr.Id == testRunId);
-            var data = CreateTestRunExpandoObject();
-            if (null == testRun)
-                return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data); // ??
-            if (testRun.IsCompleted())
-                return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data); // ??
-            var testRunSelector = ServerObjectFactory.Resolve<TestRunSelector>();
-            testRunSelector.CancelTestRun(testRun);
+            var testRunCollectionMethods = ServerObjectFactory.Resolve<TestRunCollectionMethods>();
+            testRunCollectionMethods.CancelTestRun(testRunId);
+            var data = testRunCollectionMethods.CreateTestRunExpandoObject();
             return Negotiate.WithStatusCode(HttpStatusCode.OK).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data);
-        }
-
-        dynamic CreateTestRunExpandoObject()
-        {
-            dynamic data = new ExpandoObject();
-            data.TestRuns = TestRunQueue.TestRuns ?? new List<ITestRun>();
-            data.TestLabs = TestLabCollection.TestLabs ?? new List<ITestLab>();
-            return data;
         }
     }
 }

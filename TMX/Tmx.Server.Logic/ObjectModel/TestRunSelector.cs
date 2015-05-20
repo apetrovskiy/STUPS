@@ -39,11 +39,10 @@ namespace Tmx.Server.Logic.ObjectModel
                 TaskPool.TasksForClients.Where(task => task.TestRunId == testRun.Id && task.IsActive()).ToList().ForEach(task => task.TaskStatus = TestTaskStatuses.Interrupted);
                 testRun.Status = TestRunStatuses.Cancelling;
             }
-            // 20141211
+            
             // disconnecting clients
             ClientsCollection.Clients.RemoveAll(client => client.TestRunId == testRun.Id);
             testRun.SetTimeTaken();
-            // 20150506
             RunNextInRowTestRun();
         }
         

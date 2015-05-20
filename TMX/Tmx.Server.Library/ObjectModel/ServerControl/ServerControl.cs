@@ -7,14 +7,14 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Server.Library.ObjectModel.ServerControl //.ObjectModel.ServerControl
+namespace Tmx.Server.Library.ObjectModel.ServerControl
 {
     /// <summary>
     /// Description of ServerControl.
     /// </summary>
     public class ServerControl
     {
-        public static int Port { get; set; }
+        //public static int Port { get; set; }
         
         public static void Start(string url)
         {

@@ -17,6 +17,7 @@ namespace Tmx.Server.Library.Modules
     using Nancy.TinyIoc;
     using ObjectModel;
     using Tmx.Interfaces.Server;
+    using Web.ObjectModel;
 
     /// <summary>
     /// Description of TestReportsModule.

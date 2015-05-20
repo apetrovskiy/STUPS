@@ -24,26 +24,11 @@
             if (null == loadedTask)
                 throw new UpdateTaskException("Failed to update task with id = " + taskId);
             var storedTask = TaskPool.TasksForClients.First(task => task.Id == taskId && task.ClientId == loadedTask.ClientId);
-            // 20150112
-            // storedTask.TaskFinished = loadedTask.TaskFinished;
             storedTask.TaskStatus = loadedTask.TaskStatus;
             storedTask.TaskResult = loadedTask.TaskResult;
             storedTask.StartTime = loadedTask.StartTime;
 
-            // 20150317
-            // var taskSelector = TinyIoCContainer.Current.Resolve<TaskSelector>();
             var taskSelector = ServerObjectFactory.Resolve<TaskSelector>();
-
-            //try {
-            //    var taskSel = TinyIoCContainer.Current.Resolve<ITaskSelector>();
-            //    if (null == taskSel)
-            //        Console.WriteLine("null == taskSel");
-            //    else
-            //        Console.WriteLine("type is {0}", taskSel.GetType().Name);
-            //}
-            //catch (Exception ee) {
-            //    Console.WriteLine(ee.Message);
-            //}
 
             if (storedTask.IsFailed())
                 taskSelector.CancelFurtherTasksOfTestClient(storedTask.ClientId);

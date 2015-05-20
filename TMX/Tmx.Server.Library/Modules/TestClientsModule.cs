@@ -10,16 +10,12 @@
 namespace Tmx.Server.Library.Modules
 {
     using System;
-    //using System.Linq;
     using Core.Types.Remoting;
     using Logic.Internal;
     using Logic.ObjectModel;
-    //using Logic.ObjectModel.ExtensionMethods;
-    //using Logic.ObjectModel.Objects;
     using Nancy;
     using Nancy.ModelBinding;
     using Nancy.Responses.Negotiation;
-    //using Interfaces.Remoting;
     using Interfaces.Server;
     
     /// <summary>

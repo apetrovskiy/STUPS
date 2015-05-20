@@ -19,8 +19,6 @@ namespace Tmx.Server.Logic.ObjectModel
     using Objects;
     using Tmx.Interfaces.Remoting;
 
-//using Nancy.TinyIoc;
-
     /// <summary>
     /// Description of TaskSelector.
     /// </summary>
@@ -129,36 +127,13 @@ namespace Tmx.Server.Logic.ObjectModel
         {
             var numberOfMustDoneBeforeTask = task.AfterTask;
             if (0 == numberOfMustDoneBeforeTask) return true;
-            // 20150112
-            // return TaskPool.TasksForClients.Any(t => t.Id == numberOfMustDoneBeforeTask) && !TaskPool.TasksForClients.Any(t => t.Id == numberOfMustDoneBeforeTask && !t.TaskFinished);
             return TaskPool.TasksForClients.Any(t => t.Id == numberOfMustDoneBeforeTask) && !TaskPool.TasksForClients.Any(t => t.Id == numberOfMustDoneBeforeTask && !t.IsFinished());
         }
         
         internal virtual void AddTasksForEveryClient(IEnumerable<ITestTask> activeWorkflowsTasks, Guid testRunId)
         {
             if (0 == ClientsCollection.Clients.Count) return;
-            // 20150507
-            // var taskSelector = ServerObjectFactory.Resolve<TaskSelector>();
             
-//try {
-//    var taskSel = TinyIoCContainer.Current.Resolve<ITaskSelector>();
-//    if (null == taskSel)
-//        Console.WriteLine("null == taskSel");
-//    else
-//        Console.WriteLine("type is {0}", taskSel.GetType().Name);
-//}
-//catch (Exception ee) {
-//    Console.WriteLine(ee.Message);
-//}
-            
-            // 20150322
-            /*
-            foreach (var clientId in ClientsCollection.Clients.Where(client => client.IsInActiveTestRun()).Select(client => client.Id)) {
-                var tasksForClient = taskSelector.SelectTasksForClient(clientId, activeWorkflowsTasks.ToList());
-                tasksForClient.ForEach(task => task.TestRunId = testRunId);
-                TaskPool.TasksForClients.AddRange(tasksForClient);
-            }
-            */
             foreach (var tasksForClient in from clientId in ClientsCollection.Clients.Where(client => ExtensionMethods.ExtensionMethods.IsInActiveTestRun(client)).Select(client => client.Id)
                                            let workflowsTasks = activeWorkflowsTasks as ITestTask[] ?? activeWorkflowsTasks.ToArray()
                                            // 20150507

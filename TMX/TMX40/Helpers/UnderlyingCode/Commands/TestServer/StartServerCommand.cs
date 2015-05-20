@@ -11,6 +11,7 @@ namespace Tmx.Helpers.UnderlyingCode.Commands.TestServer
 {
     using System;
     using Server.Library.ObjectModel.ServerControl;
+    using Server.Logic.ObjectModel.ServerControl;
     using Tmx.Commands.TestServer;
 
     /// <summary>
@@ -27,7 +28,8 @@ namespace Tmx.Helpers.UnderlyingCode.Commands.TestServer
             var cmdlet = (StartTmxServerCommand)Cmdlet;
             // 20141001
             try {
-                ServerControl.Port = cmdlet.Port;
+                // ServerControl.Port = cmdlet.Port;
+                Settings.Port = cmdlet.Port;
                 ServerControl.Start(@"http://localhost:" + cmdlet.Port);
             }
             catch (Exception eStartingServer) {

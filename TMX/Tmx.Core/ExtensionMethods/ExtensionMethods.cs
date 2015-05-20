@@ -10,16 +10,13 @@
 namespace Tmx.Core
 {
     using System;
-    using System.Collections.Generic;
     using System.IO;
-    using System.Linq;
     using System.Text;
-    using System.Xml;
     using System.Xml.Linq;
     using System.Xml.Serialization;
-    using Tmx.Interfaces.Remoting;
-    using Tmx.Core.Types.Remoting;
-    
+    using Interfaces.Remoting;
+    using Types.Remoting;
+
     /// <summary>
     /// Description of ExtensionMethods.
     /// </summary>

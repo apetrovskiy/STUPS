@@ -161,6 +161,7 @@
     <Compile Include="Remoting\ITestWorkflow.cs" />
     <Compile Include="Remoting\IWorkflow.cs" />
     <Compile Include="Remoting\ListOfTestSuites.cs" />
+    <Compile Include="Remoting\Web\IInitializer.cs" />
     <Compile Include="TestStructure\Enumerations.cs" />
     <Compile Include="TestStructure\ITestBucket.cs" />
     <Compile Include="TestStructure\ITestCase.cs" />

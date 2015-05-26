@@ -22,6 +22,9 @@ namespace Tmx.Interfaces.TestStructure
         Guid UniqueId { get; set; }
         [XmlAttribute]
         string Name { get; set; }
+        // 20150521
+        string MessageOnSuccess { get; set; }
+        string MessageOnFail { get; set; }
         [XmlAttribute]
         string Id { get; set; }
         [XmlElement("TestResultDetails", typeof(ITestResultDetail))]

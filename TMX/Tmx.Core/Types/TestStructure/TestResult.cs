@@ -11,11 +11,9 @@ namespace Tmx.Interfaces
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections;
     using System.Linq;
     using System.Xml.Serialization;
-    using Tmx.Interfaces.TestStructure;
-    // using Tmx.Core;
+    using TestStructure;
     
     /// <summary>
     /// Description of TestResult.
@@ -32,20 +30,34 @@ namespace Tmx.Interfaces
            string testSuiteId)
         {
             UniqueId = Guid.NewGuid();
-            this.Details = new List<ITestResultDetail>();
-            this.enStatus = TestResultStatuses.NotTested;
+            Details = new List<ITestResultDetail>();
+            enStatus = TestResultStatuses.NotTested;
             
             // scenarioId and suiteId
-            this.ScenarioId = testScenarioId;
-            this.SuiteId = testSuiteId;
+            ScenarioId = testScenarioId;
+            SuiteId = testSuiteId;
             
-            this.SetNow();
+            SetNow();
         }
         
         [XmlAttribute]
         public virtual Guid UniqueId { get; set; }
         [XmlAttribute]
         public virtual string Name { get; set; }
+
+        // 20150521
+        public virtual string MessageOnSuccess
+        {
+            get { return string.IsNullOrEmpty(_messageOnSuccess) ? Name : _messageOnSuccess; }
+            set { _messageOnSuccess = value; }
+        }
+
+        public virtual string MessageOnFail
+        {
+            get { return string.IsNullOrEmpty(_messageOnFail) ? Name : _messageOnFail; }
+            set { _messageOnFail = value; }
+        }
+
         [XmlAttribute]
         public virtual string Id { get; set; }
         [XmlAttribute]
@@ -92,6 +104,9 @@ namespace Tmx.Interfaces
         [XmlAttribute]
         public virtual string Status { get { return this.status; } }
         TestResultStatuses _enStatus;
+        private string _messageOnSuccess;
+        private string _messageOnFail;
+
         [XmlAttribute]
         public virtual TestResultStatuses enStatus
         { 

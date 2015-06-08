@@ -14,7 +14,7 @@ namespace Tmx.Server.Library.ObjectModel.ServerControl
     /// </summary>
     public class ServerControl
     {
-        //public static int Port { get; set; }
+        public static int Port { get; set; }
         
         public static void Start(string url)
         {
@@ -23,6 +23,7 @@ namespace Tmx.Server.Library.ObjectModel.ServerControl
         
         public static void Start(string hostname, int port)
         {
+            Port = port;
             InternalServerControl.Start(@"http://" + hostname + ":" + port);
         }
         

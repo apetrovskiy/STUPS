@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Server.Web.Module
+namespace Tmx.Server.Web.Modules
 {
     using System.Collections.Generic;
     using System.Dynamic;

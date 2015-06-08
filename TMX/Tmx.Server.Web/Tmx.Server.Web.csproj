@@ -50,6 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Helpers\Initializer.cs" />
     <Compile Include="Modules\ViewsGlobalSettingsModule.cs" />
     <Compile Include="Modules\ViewsRootPageModule.cs" />
@@ -57,7 +60,6 @@
     <Compile Include="Modules\ViewsTestStatusModule.cs" />
     <Compile Include="Modules\ViewsTestWorkflowParametersModule.cs" />
     <Compile Include="ObjectModel\TestReportsExporter.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tmx.Core\Tmx.Core.csproj">

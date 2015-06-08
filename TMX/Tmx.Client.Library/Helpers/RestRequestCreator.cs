@@ -10,6 +10,7 @@
 namespace Tmx.Client
 {
     using System;
+    using Spring.Http.Client;
     using Spring.Http.Converters;
     using Spring.Http.Converters.Json;
     using Spring.Http.Converters.Xml;
@@ -34,7 +35,11 @@ namespace Tmx.Client
             _restTemplate.MessageConverters.Add(new XmlSerializableHttpMessageConverter());
             _restTemplate.MessageConverters.Add(new ResourceHttpMessageConverter());
             _restTemplate.MessageConverters.Add(new StringHttpMessageConverter());
-            
+
+            // 20150604
+            var requestFactory = new WebClientHttpRequestFactory {Timeout = 600000};
+            _restTemplate.RequestFactory = requestFactory;
+
             return _restTemplate;
         }
         

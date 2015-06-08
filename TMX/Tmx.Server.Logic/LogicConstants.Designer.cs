@@ -22,7 +22,7 @@ namespace Tmx.Server.Logic {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class LogicConstants {
+    public class LogicConstants {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Tmx.Server.Logic {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Tmx.Server.Logic.LogicConstants", typeof(LogicConstants).Assembly);
@@ -51,7 +51,7 @@ namespace Tmx.Server.Logic {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace Tmx.Server.Logic {
         /// <summary>
         ///   Looks up a localized string similar to \.
         /// </summary>
-        internal static string WorkflowLoader_BackSlashe {
+        public static string WorkflowLoader_BackSlashe {
             get {
                 return ResourceManager.GetString("WorkflowLoader_BackSlashe", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace Tmx.Server.Logic {
         /// <summary>
         ///   Looks up a localized string similar to htm.
         /// </summary>
-        internal static string WorkflowLoader_FileExtension_Htm {
+        public static string WorkflowLoader_FileExtension_Htm {
             get {
                 return ResourceManager.GetString("WorkflowLoader_FileExtension_Htm", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace Tmx.Server.Logic {
         /// <summary>
         ///   Looks up a localized string similar to html.
         /// </summary>
-        internal static string WorkflowLoader_FileExtension_Html {
+        public static string WorkflowLoader_FileExtension_Html {
             get {
                 return ResourceManager.GetString("WorkflowLoader_FileExtension_Html", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace Tmx.Server.Logic {
         /// <summary>
         ///   Looks up a localized string similar to xml.
         /// </summary>
-        internal static string WorkflowLoader_FileExtension_Xml {
+        public static string WorkflowLoader_FileExtension_Xml {
             get {
                 return ResourceManager.GetString("WorkflowLoader_FileExtension_Xml", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace Tmx.Server.Logic {
         /// <summary>
         ///   Looks up a localized string similar to \Workflows.
         /// </summary>
-        internal static string WorkflowLoader_FileSystemPath_Workflows {
+        public static string WorkflowLoader_FileSystemPath_Workflows {
             get {
                 return ResourceManager.GetString("WorkflowLoader_FileSystemPath_Workflows", resourceCulture);
             }

@@ -29,6 +29,8 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("Tmx")]
 [assembly: InternalsVisibleTo("Tmx.Core")]
 [assembly: InternalsVisibleTo("Tmx.Server.Library")]
+[assembly: InternalsVisibleTo("Tmx.Server.Logic")]
+[assembly: InternalsVisibleTo("Tmx.Server.Web")]
 [assembly: InternalsVisibleTo("Tmx.Server.Tests")]
 [assembly: InternalsVisibleTo("Tmx.Client.Library")]
 [assembly: InternalsVisibleTo("Tmx.Client.Tests")]

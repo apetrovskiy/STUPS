@@ -9,6 +9,9 @@
 //------------------------------------------------------------------------------
 
 namespace Tmx.Server.Logic {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -19,7 +22,7 @@ namespace Tmx.Server.Logic {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ServerConstants {
+    public class ServerConstants {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -33,10 +36,10 @@ namespace Tmx.Server.Logic {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Tmx.Server.Library.ServerConstants", typeof(ServerConstants).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Tmx.Server.Logic.ServerConstants", typeof(ServerConstants).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -48,7 +51,7 @@ namespace Tmx.Server.Logic {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -60,7 +63,7 @@ namespace Tmx.Server.Logic {
         /// <summary>
         ///   Looks up a localized string similar to http://.
         /// </summary>
-        internal static string ViewsTestRunsModule_UrlPart_Http {
+        public static string ViewsTestRunsModule_UrlPart_Http {
             get {
                 return ResourceManager.GetString("ViewsTestRunsModule_UrlPart_Http", resourceCulture);
             }
@@ -69,7 +72,7 @@ namespace Tmx.Server.Logic {
         /// <summary>
         ///   Looks up a localized string similar to /testResults.
         /// </summary>
-        internal static string ViewsTestRunsModule_UrlPart_TestResults {
+        public static string ViewsTestRunsModule_UrlPart_TestResults {
             get {
                 return ResourceManager.GetString("ViewsTestRunsModule_UrlPart_TestResults", resourceCulture);
             }
@@ -78,7 +81,7 @@ namespace Tmx.Server.Logic {
         /// <summary>
         ///   Looks up a localized string similar to /testRuns/.
         /// </summary>
-        internal static string ViewsTestRunsModule_UrlPart_TestRuns {
+        public static string ViewsTestRunsModule_UrlPart_TestRuns {
             get {
                 return ResourceManager.GetString("ViewsTestRunsModule_UrlPart_TestRuns", resourceCulture);
             }
@@ -87,7 +90,7 @@ namespace Tmx.Server.Logic {
         /// <summary>
         ///   Looks up a localized string similar to /workflows/.
         /// </summary>
-        internal static string ViewsTestRunsModule_UrlPart_Workflows {
+        public static string ViewsTestRunsModule_UrlPart_Workflows {
             get {
                 return ResourceManager.GetString("ViewsTestRunsModule_UrlPart_Workflows", resourceCulture);
             }
@@ -96,7 +99,7 @@ namespace Tmx.Server.Logic {
         /// <summary>
         ///   Looks up a localized string similar to workflow_name.
         /// </summary>
-        internal static string ViewsTestRunsModule_WorkflowCookieName {
+        public static string ViewsTestRunsModule_WorkflowCookieName {
             get {
                 return ResourceManager.GetString("ViewsTestRunsModule_WorkflowCookieName", resourceCulture);
             }

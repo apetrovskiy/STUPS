@@ -7,7 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Server.Web.Module
+namespace Tmx.Server.Web.Modules
 {
     using System;
     using System.Collections.Generic;
@@ -18,9 +18,9 @@ namespace Tmx.Server.Web.Module
     using Core;
     using Interfaces.Remoting;
     using Interfaces.Server;
+    using Tmx.Server.Logic;
     using Logic;
     using Logic.Internal;
-    using Logic.ObjectModel;
     using Logic.ObjectModel.Objects;
     using Logic.ObjectModel.ServerControl;
     using Nancy;

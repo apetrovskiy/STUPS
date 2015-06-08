@@ -13,7 +13,7 @@ namespace Tmx.Server.Web.ObjectModel
     using System.IO;
     using Logic.Internal;
     using DotLiquid;
-    using Module;
+    using Modules;
 
     /// <summary>
     /// Description of TestReportsExporter.

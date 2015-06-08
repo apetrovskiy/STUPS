@@ -36,7 +36,9 @@ namespace Tmx
                 // throw new SendingDetailedStatusException("Failed to send detailed status");
                 // throw;
                 // cmdlet.WriteError(cmdlet, e.Message, "FailedToSendDetailedStatus", errorc
-                throw;
+                // throw;
+
+                // TODO: log only!
             }
         }
     }

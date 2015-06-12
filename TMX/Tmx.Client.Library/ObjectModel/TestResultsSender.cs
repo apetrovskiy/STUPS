@@ -7,21 +7,22 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Client
+namespace Tmx.Client.Library.ObjectModel
 {
     using System;
-    //using System.Collections.Generic;
     using System.Diagnostics;
     using System.Net;
-    //using System.Xml.Linq;
-    //using Spring.Http;
     using Core;
     using Core.Types.Remoting;
-    using Spring.Rest.Client;
     using Interfaces;
     using Interfaces.Exceptions;
     using Interfaces.Server;
-    
+    using Helpers;
+    using Spring.Rest.Client;
+//using System.Collections.Generic;
+    //using System.Xml.Linq;
+    //using Spring.Http;
+
     /// <summary>
     /// Description of TestResultsSender.
     /// </summary>

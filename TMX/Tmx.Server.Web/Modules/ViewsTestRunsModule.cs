@@ -18,7 +18,6 @@ namespace Tmx.Server.Web.Modules
     using Core;
     using Interfaces.Remoting;
     using Interfaces.Server;
-    using Tmx.Server.Logic;
     using Logic;
     using Logic.Internal;
     using Logic.ObjectModel.Objects;

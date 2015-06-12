@@ -14,9 +14,9 @@ namespace Tmx.Server.Logic.ObjectModel
     /// </summary>
     public class WorkflowLifecycle
     {
-        public WorkflowLifecycle()
-        {
-        }
+        //public WorkflowLifecycle()
+        //{
+        //}
         
         public virtual void Load()
         {

@@ -85,15 +85,18 @@ namespace Tmx.Server.Logic.ObjectModel
             }
             try
             {
-                File.Copy(pathToWorkflowFile.ToLower().Replace((string)LogicConstants.WorkflowLoader_FileExtension_Xml, LogicConstants.WorkflowLoader_FileExtension_Html),
-                    workflowsDirectoryPath + LogicConstants.WorkflowLoader_BackSlashe + workflowFileName.ToLower().Replace((string)LogicConstants.WorkflowLoader_FileExtension_Xml, LogicConstants.WorkflowLoader_FileExtension_Html), true);
+                // File.Copy(pathToWorkflowFile.ToLower().Replace((string)LogicConstants.WorkflowLoader_FileExtension_Xml, LogicConstants.WorkflowLoader_FileExtension_Html),
+                //     workflowsDirectoryPath + LogicConstants.WorkflowLoader_BackSlashe + workflowFileName.ToLower().Replace((string)LogicConstants.WorkflowLoader_FileExtension_Xml, LogicConstants.WorkflowLoader_FileExtension_Html), true);
+                File.Copy(pathToWorkflowFile.ToLower().Replace(LogicConstants.WorkflowLoader_FileExtension_Xml, LogicConstants.WorkflowLoader_FileExtension_Html),
+                    workflowsDirectoryPath + LogicConstants.WorkflowLoader_BackSlashe + workflowFileName.ToLower().Replace(LogicConstants.WorkflowLoader_FileExtension_Xml, LogicConstants.WorkflowLoader_FileExtension_Html), true);
             }
             catch
             {
             }
             try
             {
-                File.Copy(pathToWorkflowFile.ToLower().Replace((string)LogicConstants.WorkflowLoader_FileExtension_Xml, LogicConstants.WorkflowLoader_FileExtension_Htm), workflowsDirectoryPath + LogicConstants.WorkflowLoader_BackSlashe + workflowFileName.ToLower().Replace((string)LogicConstants.WorkflowLoader_FileExtension_Xml, LogicConstants.WorkflowLoader_FileExtension_Htm), true);
+                // File.Copy(pathToWorkflowFile.ToLower().Replace((string)LogicConstants.WorkflowLoader_FileExtension_Xml, LogicConstants.WorkflowLoader_FileExtension_Htm), workflowsDirectoryPath + LogicConstants.WorkflowLoader_BackSlashe + workflowFileName.ToLower().Replace((string)LogicConstants.WorkflowLoader_FileExtension_Xml, LogicConstants.WorkflowLoader_FileExtension_Htm), true);
+                File.Copy(pathToWorkflowFile.ToLower().Replace((string)LogicConstants.WorkflowLoader_FileExtension_Xml, LogicConstants.WorkflowLoader_FileExtension_Htm), workflowsDirectoryPath + LogicConstants.WorkflowLoader_BackSlashe + workflowFileName.ToLower().Replace(LogicConstants.WorkflowLoader_FileExtension_Xml, LogicConstants.WorkflowLoader_FileExtension_Htm), true);
             }
             catch
             {
@@ -226,7 +229,8 @@ namespace Tmx.Server.Logic.ObjectModel
                 nodeParameters = nodeParameters.Element(TaskElementParameters);
                 if (null == nodeParameters) return resultDict;
                 foreach (var parameterNode in nodeParameters.Elements())
-                    resultDict.Add(parameterNode.Name.LocalName, parameterNode.Value.ToString());
+                    // resultDict.Add(parameterNode.Name.LocalName, parameterNode.Value.ToString());
+                    resultDict.Add(parameterNode.Name.LocalName, parameterNode.Value);
             }
             catch {}
             return resultDict;

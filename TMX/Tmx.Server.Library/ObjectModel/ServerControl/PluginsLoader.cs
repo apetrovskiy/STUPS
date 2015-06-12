@@ -59,6 +59,6 @@
 //    }
 //}
 
-namespace Tmx.Server.Library.ObjectModel.ServerControl
-{
-}
+//namespace Tmx.Server.Library.ObjectModel.ServerControl
+//{
+//}

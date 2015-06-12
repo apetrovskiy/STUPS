@@ -17,8 +17,8 @@ namespace Tmx.Server.Library.Modules
     using Nancy;
     using Nancy.ModelBinding;
     using ObjectModel.ServerControl;
-    using Tmx.Interfaces.Remoting;
-    using Tmx.Interfaces.Server;
+    using Interfaces.Remoting;
+    using Interfaces.Server;
 
     /// <summary>
     /// Description of ServerControlModule.

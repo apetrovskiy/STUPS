@@ -11,6 +11,8 @@ namespace Tmx
 {
     using System;
     using System.Diagnostics;
+    using Client.Library.Helpers;
+    using Client.Library.ObjectModel;
     using Tmx.Interfaces.Exceptions;
     using Tmx;
     using Tmx.Client;

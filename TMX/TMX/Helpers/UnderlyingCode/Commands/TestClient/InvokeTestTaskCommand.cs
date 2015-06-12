@@ -9,15 +9,14 @@
 
 namespace Tmx
 {
-    using System;
     using System.Management.Automation;
-    using System.Linq;
-    using Tmx;
-    using Tmx.Client;
-    using Tmx.Core;
-    using Tmx.Interfaces.Remoting;
-    using Tmx.Commands;
-    
+    using Client;
+    using Client.Library.Helpers;
+    using Client.Library.ObjectModel;
+    using Commands;
+    using Core;
+    using Interfaces.Remoting;
+
     /// <summary>
     /// Description of InvokeTestTaskCommand.
     /// </summary>

@@ -9,12 +9,10 @@
 
 namespace Tmx
 {
-    using System;
-    using System.Management.Automation;
-    using Tmx;
-    using Tmx.Client;
-    using Tmx.Commands;
-    
+    using Client.Library.Helpers;
+    using Client.Library.ObjectModel;
+    using Commands;
+
     /// <summary>
     /// Description of UnregisterSystemUnderTestCommand.
     /// </summary>

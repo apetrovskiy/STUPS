@@ -44,17 +44,24 @@ namespace Tmx.Server.Logic.ObjectModel
             resultTaskScope =
                 tasks.Where(task => task.WorkflowId == workflowId)
                 .Where(task => // 0 == task.ClientId && 
-                                       (Regex.IsMatch((string) (client.CustomString ?? string.Empty), (string) task.Rule) ||
-                                        Regex.IsMatch((string) (client.EnvironmentVersion ?? string.Empty), (string) task.Rule) ||
-                                        Regex.IsMatch((string) (client.Fqdn ?? string.Empty), (string) task.Rule) ||
-                                        Regex.IsMatch((string) (client.Hostname ?? string.Empty), (string) task.Rule) ||
+                                       //(Regex.IsMatch((string) (client.CustomString ?? string.Empty), (string) task.Rule) ||
+                                       // Regex.IsMatch((string) (client.EnvironmentVersion ?? string.Empty), (string) task.Rule) ||
+                                       // Regex.IsMatch((string) (client.Fqdn ?? string.Empty), (string) task.Rule) ||
+                                       // Regex.IsMatch((string) (client.Hostname ?? string.Empty), (string) task.Rule) ||
+                                        (Regex.IsMatch(client.CustomString ?? string.Empty, (string)task.Rule) ||
+                                        Regex.IsMatch(client.EnvironmentVersion ?? string.Empty, (string)task.Rule) ||
+                                        Regex.IsMatch(client.Fqdn ?? string.Empty, (string)task.Rule) ||
+                                        Regex.IsMatch(client.Hostname ?? string.Empty, (string)task.Rule) ||
                                         // task.Rule == client.IsAdmin.ToString() ||
                                         // task.Rule == client.IsInteractive.ToString() ||
                                         // Regex.IsMatch(client.OsEdition ?? string.Empty, task.Rule) ||
                                         // Regex.IsMatch(client.OsName ?? string.Empty, task.Rule) ||
-                                        Regex.IsMatch((string) (client.OsVersion ?? string.Empty), (string) task.Rule) ||
-                                        Regex.IsMatch((string) (client.UserDomainName ?? string.Empty), (string) task.Rule) ||
-                                        Regex.IsMatch((string) (client.Username ?? string.Empty), (string) task.Rule))
+                                        //Regex.IsMatch((string) (client.OsVersion ?? string.Empty), (string) task.Rule) ||
+                                        //Regex.IsMatch((string) (client.UserDomainName ?? string.Empty), (string) task.Rule) ||
+                                        //Regex.IsMatch((string) (client.Username ?? string.Empty), (string) task.Rule))
+                                        Regex.IsMatch(client.OsVersion ?? string.Empty, (string) task.Rule) ||
+                                        Regex.IsMatch(client.UserDomainName ?? string.Empty, (string) task.Rule) ||
+                                        Regex.IsMatch(client.Username ?? string.Empty, (string) task.Rule))
             ).Select(t => {
                 var newTask = t.CloneTaskForNewTestClient();
                 newTask.ClientId = clientId;

@@ -9,14 +9,12 @@
 
 namespace Tmx
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using Tmx;
-    using Tmx.Client;
-    using Tmx.Core.Types.Remoting;
-    using Tmx.Commands;
-    
+    using Client;
+    using Client.Library.Helpers;
+    using Client.Library.ObjectModel;
+    using Commands;
+    using Core.Types.Remoting;
+
     /// <summary>
     /// Description of SendTestTaskResultCommand.
     /// </summary>

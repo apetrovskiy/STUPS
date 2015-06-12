@@ -9,10 +9,10 @@
 
 namespace Tmx
 {
-    using System;
-    using Tmx.Client;
-    using Tmx.Commands;
-    
+    using Client.Library.Helpers;
+    using Client.Library.ObjectModel;
+    using Commands;
+
     /// <summary>
     /// Description of NewTestRunCommand.
     /// </summary>

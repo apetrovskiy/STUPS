@@ -7,18 +7,18 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Client
+namespace Tmx.Client.Library.ObjectModel
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
     using System.IO;
-    using System.Collections.Generic;
-    //using System.Linq;
     using System.Net;
+    using Interfaces.Server;
+    using Helpers;
     using Spring.Http;
     using Spring.Rest.Client;
-    using Interfaces.Server;
-    
+
     /// <summary>
     /// Description of ItemSender.
     /// </summary>

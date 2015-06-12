@@ -20,8 +20,8 @@ namespace Tmx.Server.Library.Modules
     using Nancy;
     using Nancy.ModelBinding;
     using Nancy.Responses.Negotiation;
-    using Tmx.Interfaces;
-    using Tmx.Interfaces.Server;
+    using Interfaces;
+    using Interfaces.Server;
 
     /// <summary>
     /// Description of TestResultsModule.

@@ -7,19 +7,20 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Client
+namespace Tmx.Client.Library.ObjectModel
 {
     using System;
     using System.Diagnostics;
     using System.Net;
     using System.Text.RegularExpressions;
+    using Core.Types.Remoting;
+    using Interfaces.Exceptions;
+    using Interfaces.Remoting;
+    using Interfaces.Server;
+    using Helpers;
     using Spring.Http;
     using Spring.Rest.Client;
-    using Interfaces.Exceptions;
-    using Interfaces.Server;
-    using Core.Types.Remoting;
-    using Interfaces.Remoting;
-    
+
     /// <summary>
     /// Description of TaskLoader.
     /// </summary>

@@ -7,15 +7,16 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Client
+namespace Tmx.Client.Library.ObjectModel
 {
-    //using System;
     using System.Diagnostics;
     using System.Net;
-    using Spring.Rest.Client;
     using Interfaces.Exceptions;
     using Interfaces.Remoting;
     using Interfaces.Server;
+    using Helpers;
+    using Spring.Rest.Client;
+
     //using Tmx.Core;
     //using System.Collections.Generic;
     

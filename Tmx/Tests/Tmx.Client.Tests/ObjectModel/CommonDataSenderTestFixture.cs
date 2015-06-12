@@ -21,6 +21,8 @@ namespace Tmx.Client.Tests.ObjectModel
     using Interfaces.Server;
     using Xunit;
     using Client;
+    using Library.Helpers;
+    using Library.ObjectModel;
 
     /// <summary>
     /// Description of CommonDataSenderTestFixture.

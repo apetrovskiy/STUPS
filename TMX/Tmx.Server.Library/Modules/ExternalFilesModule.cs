@@ -13,7 +13,7 @@ namespace Tmx.Server.Library.Modules
     using System.IO;
     using System.Linq;
     using Nancy;
-    using Tmx.Interfaces.Server;
+    using Interfaces.Server;
 //using Nancy.ModelBinding;
 
     /// <summary>

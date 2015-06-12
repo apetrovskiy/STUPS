@@ -17,8 +17,8 @@ namespace Tmx.Server.Logic.ObjectModel.Settings
     /// </summary>
     public class TestRunSettings : ISettings
     {
-        public TestRunSettings()
-        {
-        }
+        //public TestRunSettings()
+        //{
+        //}
     }
 }

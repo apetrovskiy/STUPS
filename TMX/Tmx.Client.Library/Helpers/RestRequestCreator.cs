@@ -7,15 +7,14 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Client
+namespace Tmx.Client.Library.Helpers
 {
-    using System;
     using Spring.Http.Client;
     using Spring.Http.Converters;
     using Spring.Http.Converters.Json;
     using Spring.Http.Converters.Xml;
     using Spring.Rest.Client;
-    
+
     /// <summary>
     /// Description of RestRequestCreator.
     /// </summary>
@@ -29,7 +28,9 @@ namespace Tmx.Client
             _restTemplate = new RestTemplate(ClientSettings.Instance.ServerUrl);
             // 20150316
             // _restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
-            _restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter() as IHttpMessageConverter);
+            // 20150609
+            // _restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter() as IHttpMessageConverter);
+            _restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
             _restTemplate.MessageConverters.Add(new XElementHttpMessageConverter());
             
             _restTemplate.MessageConverters.Add(new XmlSerializableHttpMessageConverter());

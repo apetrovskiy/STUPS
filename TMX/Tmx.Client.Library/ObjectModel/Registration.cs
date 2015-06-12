@@ -7,20 +7,21 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Client
+namespace Tmx.Client.Library.ObjectModel
 {
     using System;
     using System.Diagnostics;
     using System.Net;
-    //using PSTestLib.Helpers;
-    using Spring.Http;
-    using Spring.Rest.Client;
     using Core.Types.Remoting;
     using Interfaces.Exceptions;
-    using Interfaces.Server;
-    //using Tmx.Core;
     using Interfaces.Remoting;
-    
+    using Interfaces.Server;
+    using Helpers;
+    using Spring.Http;
+    using Spring.Rest.Client;
+//using PSTestLib.Helpers;
+    //using Tmx.Core;
+
     /// <summary>
     /// Description of Registration.
     /// </summary>

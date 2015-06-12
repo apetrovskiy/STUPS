@@ -11,12 +11,11 @@ namespace Tmx.Server.Library.Modules
 {
     using System;
     using Core.Types.Remoting;
+    using Interfaces.Server;
     using Logic.ObjectModel.ServerControl;
     using Nancy;
     using Nancy.Responses.Negotiation;
     using Nancy.TinyIoc;
-    using ObjectModel;
-    using Tmx.Interfaces.Server;
     using Web.ObjectModel;
 
     /// <summary>

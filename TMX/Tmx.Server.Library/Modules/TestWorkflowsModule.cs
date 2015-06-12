@@ -14,7 +14,7 @@ namespace Tmx.Server.Library.Modules
     using Logic.ObjectModel.Objects;
     using Nancy;
     using Nancy.Responses.Negotiation;
-    using Tmx.Interfaces.Server;
+    using Interfaces.Server;
 
     /// <summary>
     /// Description of TestWorkflowsModule.

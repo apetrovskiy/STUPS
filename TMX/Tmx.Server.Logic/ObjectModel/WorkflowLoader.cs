@@ -15,8 +15,9 @@ namespace Tmx.Server.Logic.ObjectModel
     using System.IO;
     using System.Linq;
     using System.Xml.Linq;
+    using Core;
     using Core.Types.Remoting;
-    //using Exceptions;
+    using Internal;
     using Objects;
     using ServerControl;
     using Tmx.Interfaces.Exceptions;
@@ -28,24 +29,6 @@ namespace Tmx.Server.Logic.ObjectModel
     /// </summary>
     public class WorkflowLoader
     {
-        const string TaskElementId = "id";
-        const string TaskElementAfterTask = "afterTask";
-        const string TaskElementIsActive = "isActive";
-        const string TaskElementIsCritical = "isCritical";
-        const string TaskElementName = "name";
-        const string TaskElementRule = "rule";
-        const string TaskElementStoryId = "storyId";
-        const string TaskElementTaskType = "taskType";
-        const string TaskElementTaskRuntimeType = "taskRuntimeType";
-        const string TaskElementTimeLimit = "timelimit";
-        const string TaskElementRetryCount = "retryCount";
-        
-        const string TaskElementAction = "action";
-        const string TaskElementBeforeAction = "beforeAction";
-        const string TaskElementAfterAction = "afterAction";
-        const string TaskElementCode = "code";
-        const string TaskElementParameters = "parameters";
-
         ITestWorkflow _workflow;
 
         // /// <exception cref="WorkflowLoadingException">Server failed to load the workflow. </exception>
@@ -55,7 +38,9 @@ namespace Tmx.Server.Logic.ObjectModel
                 if (!File.Exists(pathToWorkflowFile))
                     throw new WorkflowLoadingException("There is no such file '" + pathToWorkflowFile + "'.");
                 var pathToCopiedWorkflowFile = CopyWorkflowFileToStorage(pathToWorkflowFile);
-                ImportXdocument(XDocument.Load(pathToCopiedWorkflowFile));
+                // ImportXdocument(XDocument.Load(pathToCopiedWorkflowFile));
+                // ImportXdocument(pathToCopiedWorkflowFile);
+                ImportXdocument(XDocument.Load(pathToCopiedWorkflowFile), pathToCopiedWorkflowFile);
             }
             catch (Exception eImportDocument) {
                 // TODO: AOP
@@ -96,7 +81,7 @@ namespace Tmx.Server.Logic.ObjectModel
             try
             {
                 // File.Copy(pathToWorkflowFile.ToLower().Replace((string)LogicConstants.WorkflowLoader_FileExtension_Xml, LogicConstants.WorkflowLoader_FileExtension_Htm), workflowsDirectoryPath + LogicConstants.WorkflowLoader_BackSlashe + workflowFileName.ToLower().Replace((string)LogicConstants.WorkflowLoader_FileExtension_Xml, LogicConstants.WorkflowLoader_FileExtension_Htm), true);
-                File.Copy(pathToWorkflowFile.ToLower().Replace((string)LogicConstants.WorkflowLoader_FileExtension_Xml, LogicConstants.WorkflowLoader_FileExtension_Htm), workflowsDirectoryPath + LogicConstants.WorkflowLoader_BackSlashe + workflowFileName.ToLower().Replace(LogicConstants.WorkflowLoader_FileExtension_Xml, LogicConstants.WorkflowLoader_FileExtension_Htm), true);
+                File.Copy(pathToWorkflowFile.ToLower().Replace(LogicConstants.WorkflowLoader_FileExtension_Xml, LogicConstants.WorkflowLoader_FileExtension_Htm), workflowsDirectoryPath + LogicConstants.WorkflowLoader_BackSlashe + workflowFileName.ToLower().Replace(LogicConstants.WorkflowLoader_FileExtension_Xml, LogicConstants.WorkflowLoader_FileExtension_Htm), true);
             }
             catch
             {
@@ -109,52 +94,49 @@ namespace Tmx.Server.Logic.ObjectModel
             // TODO: write code
         }
         
-        public virtual Guid ImportXdocument(XContainer xDocument)
+        // public virtual void ImportXdocument(XContainer xDocument)
+        public virtual void ImportXdocument(XContainer xDocument, string pathToWorkflowFile)
         {
-            var workflowId = GetWorkflowId(xDocument);
+            // var workflowId = GetWorkflowId(xDocument);
+            // var xDocument = XDocument.Parse(pathToWorkflowFile);
+            // var workflowId = GetWorkflowId(xDocument);
+            var workflowId = GetWorkflowId(xDocument, pathToWorkflowFile);
             SetParametersPageName(xDocument);
-            /*
-            var tasks = from task in xDocument.Descendants(WorkflowXmlConstants.TaskNode)
-                        where task.Element(taskElement_isActive).Value == "1"
-                        select task;
-            var importedTasks = tasks.Select(tsk => GetNewTestTask(tsk, workflowId));
-            AddTasksToCommonPool(importedTasks);
-            return workflowId;
-            */
-            var tasks = from task in xDocument.Descendants(WorkflowXmlConstants.TaskNode)
-                let element = task.Element(TaskElementIsActive)
+            var tasks = from task in xDocument.Descendants(LogicConstants.WorkflowLoader_TestWorkflow_TaskNode)
+                let element = task.Element(LogicConstants.WorkflowLoader_TaskElementIsActive)
                 where element != null && element.Value == "1"
                         select task;
             var importedTasks = tasks.Select(tsk => GetNewTestTask(tsk, workflowId));
             AddTasksToCommonPool(importedTasks);
-            return workflowId;
+            AddWorkflowDefaults(xDocument, workflowId);
         }
-
-        Guid GetWorkflowId(XContainer xDocument)
+        
+        // Guid GetWorkflowId(XContainer xDocument)
+        Guid GetWorkflowId(XContainer xDocument, string pathToWorkflowFile)
         {
-            var workflowElement = xDocument.Descendants(WorkflowXmlConstants.WorkflowNode).FirstOrDefault();
+            var workflowElement = xDocument.Descendants(LogicConstants.WorkflowLoader_TestWorkflow_WorkflowNode).FirstOrDefault();
             if (null == workflowElement)
                 throw new WorkflowLoadingException("There's no workflow element in the document");
-            var nameAttribute = workflowElement.Attribute(WorkflowXmlConstants.NameAttribute);
+            var nameAttribute = workflowElement.Attribute(LogicConstants.WorkflowLoader_TestWorkflow_NameAttribute);
             var workflowName = null != nameAttribute ? nameAttribute.Value : "unnamed workflow";
 
-            // 20150312
-            // rejected
-            // workflowElement.SetAttributeValue("path", pathToWorkflowFile);
-
-            return AddWorkflow(workflowName, xDocument);
+            // return AddWorkflow(workflowName, xDocument);
+            return AddWorkflow(workflowName, xDocument, pathToWorkflowFile);
         }
 
-        Guid AddWorkflow(string name, XContainer xDocument)
+        // Guid AddWorkflow(string name, XContainer xDocument)
+        Guid AddWorkflow(string name, XContainer xDocument, string pathToWorkflowFile)
         {
-            var testLabName = xDocument.Descendants(WorkflowXmlConstants.TestLabNode).FirstOrDefault().Value;
+            var testLabName = xDocument.Descendants(LogicConstants.WorkflowLoader_TestWorkflow_TestLabNode).FirstOrDefault().Value;
 
             var testLab = string.IsNullOrEmpty(testLabName) ? 
                 GetFirstTestLab() :
                 GetOrCreateTestLab(testLabName);
 
-            _workflow = new TestWorkflow(testLab) { Name = name };
+            // _workflow = new TestWorkflow(testLab) { Name = name };
+            _workflow = new TestWorkflow(testLab) { Name = name, Path = pathToWorkflowFile};
             WorkflowCollection.AddWorkflow(_workflow);
+            ServerObjectFactory.Resolve<TestWorkflowCollectionMethods>().SetDefaultWorkflow();
             return _workflow.Id;
         }
         
@@ -175,7 +157,7 @@ namespace Tmx.Server.Logic.ObjectModel
         
         void SetParametersPageName(XContainer xDocument)
         {
-            var parametersPageName = xDocument.Descendants(WorkflowXmlConstants.ParametersPageNode).FirstOrDefault().Value;
+            var parametersPageName = xDocument.Descendants(LogicConstants.WorkflowLoader_TestWorkflow_ParametersPageNode).FirstOrDefault().Value;
             if (string.IsNullOrEmpty(parametersPageName) || parametersPageName.Substring(0, 1) == "." || !File.Exists(new TmxServerRootPathProvider().GetRootPath() + "/workflows/" + parametersPageName + ".html"))
                 parametersPageName = UrlList.ViewTestWorkflowParameters_DefaultPage;
             _workflow.ParametersPageName = parametersPageName;
@@ -185,32 +167,38 @@ namespace Tmx.Server.Logic.ObjectModel
         {
             TaskPool.Tasks.AddRange(importedTasks);
         }
-        
+
+        void AddWorkflowDefaults(XContainer xDocument, Guid workflowId)
+        {
+            var currentWorkflow = WorkflowCollection.Workflows.First(wfl => workflowId == wfl.Id);
+            currentWorkflow.DefaultData = GetDefaultData(xDocument);
+        }
+
         internal virtual ITestTask GetNewTestTask(XContainer taskNode, Guid workflowId)
         {
             return new TestTask {
-                Action = GetActionCode(taskNode, TaskElementAction),
-                ActionParameters = GetActionParameters(taskNode, TaskElementAction),
-                AfterAction = GetActionCode(taskNode, TaskElementAfterAction),
-                AfterActionParameters = GetActionParameters(taskNode, TaskElementAfterAction),
-                BeforeAction = GetActionCode(taskNode, TaskElementBeforeAction),
-                BeforeActionParameters = GetActionParameters(taskNode, TaskElementBeforeAction),
+                Action = GetActionCode(taskNode, LogicConstants.WorkflowLoader_TaskElementAction),
+                ActionParameters = GetActionParameters(taskNode, LogicConstants.WorkflowLoader_TaskElementAction),
+                AfterAction = GetActionCode(taskNode, LogicConstants.WorkflowLoader_TaskElementAfterAction),
+                AfterActionParameters = GetActionParameters(taskNode, LogicConstants.WorkflowLoader_TaskElementAfterAction),
+                BeforeAction = GetActionCode(taskNode, LogicConstants.WorkflowLoader_TaskElementBeforeAction),
+                BeforeActionParameters = GetActionParameters(taskNode, LogicConstants.WorkflowLoader_TaskElementBeforeAction),
                 TaskFinished = false,
                 // ExpectedResult
-                Id = ConvertTestTaskElementValue(taskNode, TaskElementId),
-                AfterTask = ConvertTestTaskElementValue(taskNode, TaskElementAfterTask),
-                IsActive = "1" == GetTestTaskElementValue(taskNode, TaskElementIsActive),
-                IsCritical = "1" == GetTestTaskElementValue(taskNode, TaskElementIsCritical),
-                Name = GetTestTaskElementValue(taskNode, TaskElementName),
+                Id = ConvertTestTaskElementValue(taskNode, LogicConstants.WorkflowLoader_TaskElementId),
+                AfterTask = ConvertTestTaskElementValue(taskNode, LogicConstants.WorkflowLoader_TaskElementAfterTask),
+                IsActive = "1" == GetTestTaskElementValue(taskNode, LogicConstants.WorkflowLoader_TaskElementIsActive),
+                IsCritical = "1" == GetTestTaskElementValue(taskNode, LogicConstants.WorkflowLoader_TaskElementIsCritical),
+                Name = GetTestTaskElementValue(taskNode, LogicConstants.WorkflowLoader_TaskElementName),
                 // PreviousTaskId
-                RetryCount = ConvertTestTaskElementValue(taskNode, TaskElementRetryCount),
-                Rule = GetTestTaskElementValue(taskNode, TaskElementRule),
+                RetryCount = ConvertTestTaskElementValue(taskNode, LogicConstants.WorkflowLoader_TaskElementRetryCount),
+                Rule = GetTestTaskElementValue(taskNode, LogicConstants.WorkflowLoader_TaskElementRule),
                 TaskStatus = TestTaskStatuses.New,
-                StoryId = GetTestTaskElementValue(taskNode, TaskElementStoryId),
+                StoryId = GetTestTaskElementValue(taskNode, LogicConstants.WorkflowLoader_TaskElementStoryId),
                 // TaskResult
-                TaskType = GetTestTaskType(GetTestTaskElementValue(taskNode, TaskElementTaskType)),
-                TaskRuntimeType = GetTaskRuntimeType(GetTestTaskElementValue(taskNode, TaskElementTaskRuntimeType)),
-                TimeLimit = ConvertTestTaskElementValue(taskNode, TaskElementTimeLimit),
+                TaskType = GetTestTaskType(GetTestTaskElementValue(taskNode, LogicConstants.WorkflowLoader_TaskElementTaskType)),
+                TaskRuntimeType = GetTaskRuntimeType(GetTestTaskElementValue(taskNode, LogicConstants.WorkflowLoader_TaskElementTaskRuntimeType)),
+                TimeLimit = ConvertTestTaskElementValue(taskNode, LogicConstants.WorkflowLoader_TaskElementTimeLimit),
                 WorkflowId = workflowId
             };
         }
@@ -218,7 +206,7 @@ namespace Tmx.Server.Logic.ObjectModel
         internal virtual string GetActionCode(XContainer taskNode, string elementName)
         {
             var actionNode = taskNode.Element(elementName);
-            return GetTestTaskElementValue(actionNode, TaskElementCode);
+            return GetTestTaskElementValue(actionNode, LogicConstants.WorkflowLoader_TaskElementCode);
         }
         
         internal virtual IDictionary<string, string> GetActionParameters(XContainer taskNode, string elementName)
@@ -226,10 +214,9 @@ namespace Tmx.Server.Logic.ObjectModel
             var resultDict = new Dictionary<string, string>();
             var nodeParameters = taskNode.Element(elementName);
             try {
-                nodeParameters = nodeParameters.Element(TaskElementParameters);
+                nodeParameters = nodeParameters.Element(LogicConstants.WorkflowLoader_TaskElementParameters);
                 if (null == nodeParameters) return resultDict;
                 foreach (var parameterNode in nodeParameters.Elements())
-                    // resultDict.Add(parameterNode.Name.LocalName, parameterNode.Value.ToString());
                     resultDict.Add(parameterNode.Name.LocalName, parameterNode.Value);
             }
             catch {}
@@ -244,7 +231,8 @@ namespace Tmx.Server.Logic.ObjectModel
         internal virtual string GetTestTaskElementValue(XContainer taskNode, string elementName)
         {
             try {
-                return taskNode.Element(elementName).Value ?? string.Empty;
+                // return taskNode.Element(elementName).Value ?? string.Empty;
+                return taskNode.Element(elementName).Value;
             }
             catch {
                 // TODO: AOP
@@ -289,6 +277,34 @@ namespace Tmx.Server.Logic.ObjectModel
                     // TODO: change the behavior
                     return TestTaskRuntimeTypes.Powershell;
             }
+        }
+
+        ICommonData GetDefaultData(XContainer xDocument)
+        {
+            Trace.TraceInformation("loading default data");
+            // this is done before in this class
+            //if (null == workflowElement)
+            //    throw new WorkflowLoadingException("There's no workflow element in the document");
+            var defaultData =
+                from defaultDataItem in xDocument.Descendants(LogicConstants.WorkflowLoader_TestWorkflow_DefaultsDataNode)
+                select defaultDataItem;
+
+Trace.TraceInformation("00001");
+
+            var commonDataCollection = new CommonData();
+            var defaultParameterValue = new XAttribute(LogicConstants.WorkflowLoader_TestWorkflow_DefaultsDataParameterValue, string.Empty);
+            
+Trace.TraceInformation("00003");
+
+            foreach (var xElement in defaultData.Elements(LogicConstants.WorkflowLoader_TestWorkflow_DefaultsDataParameterNode))
+                commonDataCollection.AddOrUpdateDataItem(
+                    new CommonDataItem {
+                        Key = xElement.Attribute(LogicConstants.WorkflowLoader_TestWorkflow_DefaultsDataParameterName).Value,
+                        Value = (xElement.Attribute(LogicConstants.WorkflowLoader_TestWorkflow_DefaultsDataParameterValue) ?? defaultParameterValue).Value
+                    });
+
+Trace.TraceInformation("00010");
+            return commonDataCollection;
         }
     }
 }

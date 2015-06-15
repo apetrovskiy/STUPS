@@ -11,14 +11,10 @@ namespace Tmx.Server.Library.ObjectModel.ServerControl
 {
     using System;
     using System.Collections.Generic;
-    using System.Dynamic;
+    using System.Diagnostics;
     using System.IO;
     using System.Linq;
-    using Core;
-    using Core.Types.Remoting;
-    //using DotLiquid;
     using Interfaces.Remoting;
-    using Interfaces.TestStructure;
     using Logic.Interfaces;
     using Logic.Internal;
     using Logic.ObjectModel;
@@ -31,7 +27,6 @@ namespace Tmx.Server.Library.ObjectModel.ServerControl
     using Nancy.Hosting.Self;
     using Nancy.Json;
     using Nancy.TinyIoc;
-    //using Nancy.ViewEngines.DotLiquid;
     using PSTestLib.Helpers;
     using Web.Helpers;
 
@@ -58,10 +53,11 @@ namespace Tmx.Server.Library.ObjectModel.ServerControl
             SetDotLiquidNamingConventions();
             RegisterTypes();
             LoadPlugins();
+            LoadDefaults();
             LoadWorkflows();
             _nancyHost.Start();
         }
-        
+
         public static void Stop()
         {
             Reset();
@@ -119,7 +115,8 @@ namespace Tmx.Server.Library.ObjectModel.ServerControl
         {
             // 20150319
             // var testLabCollection = new TestLabCollection();
-            new TestLabCollection();
+            // new TestLabCollection();
+            ServerObjectFactory.Resolve<TestLabCollection>();
         }
         
         static void LoadModules()
@@ -134,54 +131,33 @@ namespace Tmx.Server.Library.ObjectModel.ServerControl
         static void SetDotLiquidNamingConventions()
         {
             // Template.NamingConvention = new CSharpNamingConvention();
+            ServerObjectFactory.Resolve<Initializer>().SetDotLiquidNamingConventions();
         }
         
         static void RegisterTypes()
         {
-            new Initializer().RegisterTypes();
-
-            //// specific types
-            //Template.RegisterSafeType(typeof(TestSuite), new[] { "Id", "Name", "Status", "Description", "TestScenarios", "PlatformId", "Statistics", "TimeSpent", "Timestamp", "Tags", "Statistics.All", "Statistics.Passed", "GetAll", "GetPassed", "GetFailed", "GetPassedButWithBadSmell", "GetNotTested" });
-            //Template.RegisterSafeType(typeof(TestScenario), new[] { "Id", "Name", "Status", "Description", "TestResults", "PlatformId", "Statistics", "TimeSpent", "Timestamp", "Tags", "TestCases", "Statistics.All", "Statistics.Passed", "GetAll", "GetPassed", "GetFailed", "GetPassedButWithBadSmell", "GetNotTested" });
-            //Template.RegisterSafeType(typeof(TestResult), new[] { "Id", "Name", "Status", "Description", "Origin", "PlatformId", "Timestamp", "Details", "ScriptName", "LineNumber", "Position", "Error", "Code", "Parameters", "TimeSpent", "Generated", "Screenshot", "ListDetailNames" });
-            //Template.RegisterSafeType(typeof(TestResultDetail), new[] { "Name", "Timestamp", "GetDetail", "DetailStatus", "DetailType", "TextDetail", "ErrorDetail", "ScreenshotDetail", "LogDetail", "ExternalData" });
-            //Template.RegisterSafeType(typeof(ITestSuite), new[] { "Id", "Name", "Status", "Description", "TestScenarios", "PlatformId", "Statistics", "TimeSpent", "Timestamp", "Tags", "Statistics.All", "Statistics.Passed", "GetAll", "GetPassed", "GetFailed", "GetPassedButWithBadSmell", "GetNotTested" });
-            //Template.RegisterSafeType(typeof(ITestScenario), new[] { "Id", "Name", "Status", "Description", "TestResults", "PlatformId", "Statistics", "TimeSpent", "Timestamp", "Tags", "TestCases", "Statistics.All", "Statistics.Passed", "GetAll", "GetPassed", "GetFailed", "GetPassedButWithBadSmell", "GetNotTested" });
-            //Template.RegisterSafeType(typeof(ITestResult), new[] { "Id", "Name", "Status", "Description", "Origin", "PlatformId", "Timestamp", "Details", "ScriptName", "LineNumber", "Position", "Error", "Code", "Parameters", "TimeSpent", "Generated", "Screenshot", "ListDetailNames" });
-            //Template.RegisterSafeType(typeof(ITestResultDetail), new[] { "Name", "Timestamp", "GetDetail", "DetailStatus", "DetailType", "TextDetail", "ErrorDetail", "ScreenshotDetail", "LogDetail", "ExternalData" });
-            //Template.RegisterSafeType(typeof(TestWorkflow), new[] { "Id", "Name", "TestLabId", "Description", "ParametersPageName" });
-            //// Template.RegisterSafeType(typeof(ITestRun), new[] { "Id", "Name", "WorkflowId", "TestLabId", "Description", "Status", "StartType", "Data", "TestSuites", "StartTime", "TimeTaken", "GetTestLabName" });
-            //// Template.RegisterSafeType(typeof(TestRun), new[] { "Id", "Name", "WorkflowId", "TestLabId", "Description", "Status", "StartType", "Data", "TestSuites", "StartTime", "TimeTaken", "GetTestLabName" });
-            //Template.RegisterSafeType(typeof(ITestRun), new[] { "Id", "Name", "WorkflowId", "TestLabId", "Description", "Status", "StartType", "Data", "TestSuites", "StartTime", "GetTimeTaken", "GetTestLabName" });
-            //Template.RegisterSafeType(typeof(TestRun), new[] { "Id", "Name", "WorkflowId", "TestLabId", "Description", "Status", "StartType", "Data", "TestSuites", "StartTime", "GetTimeTaken", "GetTestLabName" });
-            //Template.RegisterSafeType(typeof(CommonData), new[] { "Data" });
-            //Template.RegisterSafeType(typeof(ICodeBlock), new[] { "Code" });
-            //Template.RegisterSafeType(typeof(CodeBlock), new[] { "Code" });
-            //Template.RegisterSafeType(typeof(TestLab), new[] { "Id", "Name", "Description", "Status" });
-            //Template.RegisterSafeType(typeof(TestTask), new[] { "Id", "Name", "StartTime", "TaskStatus", "TaskFinished", "TaskResult", "TimeTaken", "ClientId", "GetTimeTaken" });
-            //Template.RegisterSafeType(typeof(TestClient), new[] { "Id", "Hostname", "Fqdn", "Username", "CustomString", "Status", "TaskId", "TaskName", "DetailedStatus" });
-            //Template.RegisterSafeType(typeof(CommonDataItem), new[] { "Key", "Value" });
-            //Template.RegisterSafeType(typeof(TestStat), new[] { "All", "Passed", "Failed", "PassedButWithBadSmell", "NotTested", "TimeSpent" });
-            //Template.RegisterSafeType(typeof(TestStat), member => member.ToString());
-            //// .NET types
-            //Template.RegisterSafeType(typeof(Guid), member => member.ToString());
-            //Template.RegisterSafeType(typeof(Dictionary<string, string>), member => member.ToString());
-            //Template.RegisterSafeType(typeof(KeyValuePair<string, string>), new[] { "Key", "Value" });
-            //// enumerations
-            //Template.RegisterSafeType(typeof(TestResultOrigins), member => member.ToString());
-            //Template.RegisterSafeType(typeof(TestRunStatuses), member => member.ToString());
-            //Template.RegisterSafeType(typeof(TestRunStartTypes), member => member.ToString());
-            //Template.RegisterSafeType(typeof(TestTaskStatuses), member => member.ToString());
-            //Template.RegisterSafeType(typeof(TestTaskExecutionTypes), member => member.ToString());
-            //Template.RegisterSafeType(typeof(TestClientStatuses), member => member.ToString());
-            //Template.RegisterSafeType(typeof(ServerControlCommands), member => member.ToString());
-            //Template.RegisterSafeType(typeof(TestLabStatuses), member => member.ToString());
+            // new Initializer().RegisterTypes();
+            ServerObjectFactory.Resolve<Initializer>().RegisterTypes();
         }
         
         static void LoadPlugins()
         {
             var pluginsLoader = new PluginsLoader((new TmxServerRootPathProvider()).GetRootPath() + @"\Plugins");
             pluginsLoader.Load();
+        }
+
+        static void LoadDefaults()
+        {
+            var workflowsDirectoryPath = (new TmxServerRootPathProvider()).GetRootPath() + @"\Workflows";
+            if (!Directory.Exists(workflowsDirectoryPath)) return;
+            var fileWithDefaults = workflowsDirectoryPath + @"\" + "defaults.xml";
+
+            Trace.TraceInformation("loading defaults...");
+
+            if (File.Exists(fileWithDefaults))
+                ServerObjectFactory.Resolve<DefaultsLoader>().Load(fileWithDefaults);
+
+            Trace.TraceInformation("done");
         }
         
         static void LoadWorkflows()
@@ -235,7 +211,8 @@ namespace Tmx.Server.Library.ObjectModel.ServerControl
             try { Console.WriteLine(state + " NegotiationContext.ViewName = " + ctx.NegotiationContext.ViewName); } catch {}
             try { Console.WriteLine(state + " NegotiationContext.ModuleName = " + ctx.NegotiationContext.ModuleName); } catch {}
             try { Console.WriteLine(state + " NegotiationContext.ModulePath = " + ctx.NegotiationContext.ModulePath); } catch {}
-            try { Console.WriteLine(state + " NegotiationContext.Headers = " + Enumerable.Select<KeyValuePair<string, string>, string>(ctx.NegotiationContext.Headers, hdr => hdr.Value)); } catch {}
+            // try { Console.WriteLine(state + " NegotiationContext.Headers = " + Enumerable.Select<KeyValuePair<string, string>, string>(ctx.NegotiationContext.Headers, hdr => hdr.Value)); } catch {}
+            try { Console.WriteLine(state + " NegotiationContext.Headers = " + ctx.NegotiationContext.Headers.Select(hdr => hdr.Value)); } catch { }
             try { Console.WriteLine(state + " NegotiationContext.StatusCode = " + ctx.NegotiationContext.StatusCode); } catch {}
             try { Console.WriteLine(state + " ResolvedRoute = " + ctx.ResolvedRoute); } catch {}
             try { Console.WriteLine(state + " Text = " + ctx.Text); } catch {}

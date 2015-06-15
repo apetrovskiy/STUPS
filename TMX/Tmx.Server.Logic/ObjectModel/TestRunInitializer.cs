@@ -27,14 +27,12 @@ namespace Tmx.Server.Logic.ObjectModel
             if (string.IsNullOrEmpty(testRunCommand.TestRunName))
                 testRunCommand.TestRunName = testRunCommand.WorkflowName + " " + DateTime.Now;
             var testRun = new TestRun { Name = testRunCommand.TestRunName, Status = testRunCommand.Status };
-            foreach (var key in formData) {
+
+            var currentWorkflow = WorkflowCollection.Workflows.First(wfl => testRunCommand.WorkflowName == wfl.Name);
+            testRun.Data = currentWorkflow.DefaultData;
+
+            foreach (var key in formData)
                 AddOrUpdateDataItem(testRun, formData, key);
-//                testRun.Data.AddOrUpdateDataItem(
-//                    new CommonDataItem {
-//                        Key = key,
-//                        Value = formData[key] ?? string.Empty
-//                    });
-            }
             SetWorkflow(testRunCommand, testRun);
             SetStartUpParameters(testRun);
             SetCommonData(testRun, formData);

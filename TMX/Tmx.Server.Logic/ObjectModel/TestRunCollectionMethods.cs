@@ -25,6 +25,14 @@
             PrepareTestRun(testRunCommand, formData);
         }
 
+        // public void SetTestRun(dynamic parameters)
+        //public void SetTestRun(DynamicDictionary parameters)
+        //{
+        //    var testRunCommand = new TestRunCommand { TestRunName = Defaults.Workflow ?? string.Empty, WorkflowName = Defaults.Workflow ?? string.Empty };
+        //    // PrepareTestRun(testRunCommand, new DynamicDictionary());
+        //    PrepareTestRun(testRunCommand, parameters);
+        //}
+
         void PrepareTestRun(ITestRunCommand testRunCommand, DynamicDictionary formData)
         {
             var testRunInitializer = ServerObjectFactory.Resolve<TestRunInitializer>();

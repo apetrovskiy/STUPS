@@ -7,14 +7,14 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx.Client
+namespace Tmx.Client.Library
 {
     using System;
     using System.Linq;
-    using PSTestLib.Helpers;
     using Common.Logging;
+    using PSTestLib.Helpers;
     using Spring.Rest.Client;
-    
+
     /// <summary>
     /// Description of ClientControl.
     /// </summary>

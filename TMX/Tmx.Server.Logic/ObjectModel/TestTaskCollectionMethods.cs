@@ -71,7 +71,8 @@
 
         public bool UpdateNextTask(ITestTask storedTask)
         {
-            ITestTask nextTask = null;
+            // ITestTask nextTask = null;
+            ITestTask nextTask;
             var taskSorter = ServerObjectFactory.Resolve<TaskSelector>();
             try
             {

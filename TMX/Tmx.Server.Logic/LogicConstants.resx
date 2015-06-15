@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DefaultsLoader_Workflow" xml:space="preserve">
+    <value>workflow</value>
+  </data>
+  <data name="DefaultsLoader_Workflow_Name" xml:space="preserve">
+    <value>name</value>
+  </data>
   <data name="WorkflowLoader_BackSlashe" xml:space="preserve">
     <value>\</value>
   </data>
@@ -131,5 +137,80 @@
   </data>
   <data name="WorkflowLoader_FileSystemPath_Workflows" xml:space="preserve">
     <value>\Workflows</value>
+  </data>
+  <data name="WorkflowLoader_TaskElementAction" xml:space="preserve">
+    <value>action</value>
+  </data>
+  <data name="WorkflowLoader_TaskElementAfterAction" xml:space="preserve">
+    <value>afterAction</value>
+  </data>
+  <data name="WorkflowLoader_TaskElementAfterTask" xml:space="preserve">
+    <value>afterTask</value>
+  </data>
+  <data name="WorkflowLoader_TaskElementBeforeAction" xml:space="preserve">
+    <value>beforeAction</value>
+  </data>
+  <data name="WorkflowLoader_TaskElementCode" xml:space="preserve">
+    <value>code</value>
+  </data>
+  <data name="WorkflowLoader_TaskElementId" xml:space="preserve">
+    <value>id</value>
+  </data>
+  <data name="WorkflowLoader_TaskElementIsActive" xml:space="preserve">
+    <value>isActive</value>
+  </data>
+  <data name="WorkflowLoader_TaskElementIsCritical" xml:space="preserve">
+    <value>isCritical</value>
+  </data>
+  <data name="WorkflowLoader_TaskElementName" xml:space="preserve">
+    <value>name</value>
+  </data>
+  <data name="WorkflowLoader_TaskElementParameters" xml:space="preserve">
+    <value>parameters</value>
+  </data>
+  <data name="WorkflowLoader_TaskElementRetryCount" xml:space="preserve">
+    <value>retryCount</value>
+  </data>
+  <data name="WorkflowLoader_TaskElementRule" xml:space="preserve">
+    <value>rule</value>
+  </data>
+  <data name="WorkflowLoader_TaskElementStoryId" xml:space="preserve">
+    <value>storyId</value>
+  </data>
+  <data name="WorkflowLoader_TaskElementTaskRuntimeType" xml:space="preserve">
+    <value>taskRuntimeType</value>
+  </data>
+  <data name="WorkflowLoader_TaskElementTaskType" xml:space="preserve">
+    <value>taskType</value>
+  </data>
+  <data name="WorkflowLoader_TaskElementTimeLimit" xml:space="preserve">
+    <value>timelimit</value>
+  </data>
+  <data name="WorkflowLoader_TestWorkflow_DefaultsDataNode" xml:space="preserve">
+    <value>defaults</value>
+  </data>
+  <data name="WorkflowLoader_TestWorkflow_DefaultsDataParameterName" xml:space="preserve">
+    <value>name</value>
+  </data>
+  <data name="WorkflowLoader_TestWorkflow_DefaultsDataParameterNode" xml:space="preserve">
+    <value>param</value>
+  </data>
+  <data name="WorkflowLoader_TestWorkflow_DefaultsDataParameterValue" xml:space="preserve">
+    <value>value</value>
+  </data>
+  <data name="WorkflowLoader_TestWorkflow_NameAttribute" xml:space="preserve">
+    <value>name</value>
+  </data>
+  <data name="WorkflowLoader_TestWorkflow_ParametersPageNode" xml:space="preserve">
+    <value>parametersPage</value>
+  </data>
+  <data name="WorkflowLoader_TestWorkflow_TaskNode" xml:space="preserve">
+    <value>task</value>
+  </data>
+  <data name="WorkflowLoader_TestWorkflow_TestLabNode" xml:space="preserve">
+    <value>testLabName</value>
+  </data>
+  <data name="WorkflowLoader_TestWorkflow_WorkflowNode" xml:space="preserve">
+    <value>workflow</value>
   </data>
 </root>

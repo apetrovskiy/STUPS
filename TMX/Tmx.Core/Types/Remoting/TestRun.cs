@@ -21,7 +21,6 @@ namespace Tmx.Core.Types.Remoting
     public class TestRun : ITestRun
     {
         ITestWorkflow _workflow;
-        // 20150115
         DateTime _finishTime;
         
         public TestRun()
@@ -41,7 +40,6 @@ namespace Tmx.Core.Types.Remoting
             CancelActions = new List<IAction>();
             FailureActions = new List<IAction>();
             
-            // TestSuites = new ListOfTestSuites();
             Status = TestRunStatuses.Pending;
             Id = Guid.NewGuid();
         }
@@ -52,7 +50,6 @@ namespace Tmx.Core.Types.Remoting
         public ICommonData Data { get; set; }
         public List<ITestSuite> TestSuites { get; set; }
         public List<ITestPlatform> TestPlatforms { get; set; }
-        // public ListOfTestSuites TestSuites { get; set; }
         public Guid TestLabId {
             get { return _workflow.TestLabId; }
         }
@@ -81,7 +78,6 @@ namespace Tmx.Core.Types.Remoting
                 resultSpan = _finishTime - StartTime;
             else
                 resultSpan = DateTime.Now - StartTime;
-            // return string.Format("{0:00}:{1:00}:{2:00}", resultSpan.TotalHours % 60, resultSpan.TotalMinutes % 60, resultSpan.TotalSeconds % 60);
             return string.Format("{0:00}:{1:00}:{2:00}", (int)resultSpan.TotalHours % 60, (int)resultSpan.TotalMinutes % 60, (int)resultSpan.TotalSeconds % 60);
         }
         public void SetFinishTime()

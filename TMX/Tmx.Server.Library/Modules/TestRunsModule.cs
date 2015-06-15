@@ -10,6 +10,7 @@
 namespace Tmx.Server.Library.Modules
 {
     using System;
+    using System.Diagnostics;
     using System.Dynamic;
     using Core.Types.Remoting;
     using Interfaces.Remoting;
@@ -28,6 +29,7 @@ namespace Tmx.Server.Library.Modules
         public TestRunsModule() : base(UrlList.TestRuns_Root)
         {
             Post[UrlList.TestRunsControlPoint_relPath] = _ => CreateNewTestRun(this.Bind<TestRunCommand>());
+            Post[UrlList.TestRunsControlPoint_newDefaultTestRun] = parameters => CreateNewDefaultTestRun(parameters);
             Delete[UrlList.TestRuns_One_relPath] = parameters => DeleteTestRun(parameters.id);
             
             // http://blog.nancyfx.org/x-http-method-override-with-nancyfx/
@@ -38,6 +40,22 @@ namespace Tmx.Server.Library.Modules
         {
             var testRunCollectionMethods = ServerObjectFactory.Resolve<TestRunCollectionMethods>();
             testRunCollectionMethods.SetTestRun(testRunCommand, Request.Form);
+            var data = testRunCollectionMethods.CreateTestRunExpandoObject();
+            return Negotiate.WithStatusCode(HttpStatusCode.OK).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data);
+        }
+
+        Negotiator CreateNewDefaultTestRun(DynamicDictionary parameters)
+        {
+Trace.TraceInformation("parameters:");
+if (null == parameters)
+    Trace.TraceInformation("null!!!!!!!!!!!!!!!!!");
+else
+    if (0 == parameters.Count)
+        Trace.TraceInformation("000000000000");
+
+            var testRunCollectionMethods = ServerObjectFactory.Resolve<TestRunCollectionMethods>();
+            // testRunCollectionMethods.SetTestRun(parameters);
+            testRunCollectionMethods.SetTestRun(new TestRunCommand { TestRunName = Defaults.Workflow, WorkflowName = Defaults.Workflow }, parameters);
             var data = testRunCollectionMethods.CreateTestRunExpandoObject();
             return Negotiate.WithStatusCode(HttpStatusCode.OK).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data);
         }

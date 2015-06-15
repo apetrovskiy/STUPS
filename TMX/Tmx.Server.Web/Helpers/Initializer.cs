@@ -56,5 +56,10 @@
             // just for copying the Nancy.ViewEngines.DotLiquid assembly to dependant projects
             var drop = new DynamicDrop(new ExpandoObject());
         }
+
+        public void SetDotLiquidNamingConventions()
+        {
+            // Template.NamingConvention = new CSharpNamingConvention();
+        }
     }
 }

@@ -68,6 +68,8 @@
       <DependentUpon>LogicConstants.resx</DependentUpon>
     </Compile>
     <Compile Include="ObjectModel\Data\MailSettings.cs" />
+    <Compile Include="ObjectModel\Defaults.cs" />
+    <Compile Include="ObjectModel\DefaultsLoader.cs" />
     <Compile Include="ObjectModel\ExtensionMethods\ExtensionMethods.cs" />
     <Compile Include="ObjectModel\Mailer.cs" />
     <Compile Include="ObjectModel\Objects\ClientsCollection.cs" />
@@ -86,9 +88,9 @@
     <Compile Include="ObjectModel\TestRunLifecycle.cs" />
     <Compile Include="ObjectModel\TestRunSelector.cs" />
     <Compile Include="ObjectModel\TestTaskCollectionMethods.cs" />
+    <Compile Include="ObjectModel\TestWorkflowCollectionMethods.cs" />
     <Compile Include="ObjectModel\WorkflowLifecycle.cs" />
     <Compile Include="ObjectModel\WorkflowLoader.cs" />
-    <Compile Include="ObjectModel\WorkflowXmlConstants.cs" />
     <Compile Include="ServerConstants.Designer.cs">
       <DependentUpon>ServerConstants.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -99,6 +101,7 @@
     <EmbeddedResource Include="LogicConstants.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>LogicConstants.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ServerConstants.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

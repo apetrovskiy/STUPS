@@ -61,6 +61,24 @@ namespace Tmx.Server.Logic {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to workflow.
+        /// </summary>
+        public static string DefaultsLoader_Workflow {
+            get {
+                return ResourceManager.GetString("DefaultsLoader_Workflow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to name.
+        /// </summary>
+        public static string DefaultsLoader_Workflow_Name {
+            get {
+                return ResourceManager.GetString("DefaultsLoader_Workflow_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to \.
         /// </summary>
         public static string WorkflowLoader_BackSlashe {
@@ -102,6 +120,231 @@ namespace Tmx.Server.Logic {
         public static string WorkflowLoader_FileSystemPath_Workflows {
             get {
                 return ResourceManager.GetString("WorkflowLoader_FileSystemPath_Workflows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to action.
+        /// </summary>
+        public static string WorkflowLoader_TaskElementAction {
+            get {
+                return ResourceManager.GetString("WorkflowLoader_TaskElementAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to afterAction.
+        /// </summary>
+        public static string WorkflowLoader_TaskElementAfterAction {
+            get {
+                return ResourceManager.GetString("WorkflowLoader_TaskElementAfterAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to afterTask.
+        /// </summary>
+        public static string WorkflowLoader_TaskElementAfterTask {
+            get {
+                return ResourceManager.GetString("WorkflowLoader_TaskElementAfterTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to beforeAction.
+        /// </summary>
+        public static string WorkflowLoader_TaskElementBeforeAction {
+            get {
+                return ResourceManager.GetString("WorkflowLoader_TaskElementBeforeAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to code.
+        /// </summary>
+        public static string WorkflowLoader_TaskElementCode {
+            get {
+                return ResourceManager.GetString("WorkflowLoader_TaskElementCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to id.
+        /// </summary>
+        public static string WorkflowLoader_TaskElementId {
+            get {
+                return ResourceManager.GetString("WorkflowLoader_TaskElementId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to isActive.
+        /// </summary>
+        public static string WorkflowLoader_TaskElementIsActive {
+            get {
+                return ResourceManager.GetString("WorkflowLoader_TaskElementIsActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to isCritical.
+        /// </summary>
+        public static string WorkflowLoader_TaskElementIsCritical {
+            get {
+                return ResourceManager.GetString("WorkflowLoader_TaskElementIsCritical", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to name.
+        /// </summary>
+        public static string WorkflowLoader_TaskElementName {
+            get {
+                return ResourceManager.GetString("WorkflowLoader_TaskElementName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to parameters.
+        /// </summary>
+        public static string WorkflowLoader_TaskElementParameters {
+            get {
+                return ResourceManager.GetString("WorkflowLoader_TaskElementParameters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to retryCount.
+        /// </summary>
+        public static string WorkflowLoader_TaskElementRetryCount {
+            get {
+                return ResourceManager.GetString("WorkflowLoader_TaskElementRetryCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to rule.
+        /// </summary>
+        public static string WorkflowLoader_TaskElementRule {
+            get {
+                return ResourceManager.GetString("WorkflowLoader_TaskElementRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to storyId.
+        /// </summary>
+        public static string WorkflowLoader_TaskElementStoryId {
+            get {
+                return ResourceManager.GetString("WorkflowLoader_TaskElementStoryId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to taskRuntimeType.
+        /// </summary>
+        public static string WorkflowLoader_TaskElementTaskRuntimeType {
+            get {
+                return ResourceManager.GetString("WorkflowLoader_TaskElementTaskRuntimeType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to taskType.
+        /// </summary>
+        public static string WorkflowLoader_TaskElementTaskType {
+            get {
+                return ResourceManager.GetString("WorkflowLoader_TaskElementTaskType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to timelimit.
+        /// </summary>
+        public static string WorkflowLoader_TaskElementTimeLimit {
+            get {
+                return ResourceManager.GetString("WorkflowLoader_TaskElementTimeLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to defaults.
+        /// </summary>
+        public static string WorkflowLoader_TestWorkflow_DefaultsDataNode {
+            get {
+                return ResourceManager.GetString("WorkflowLoader_TestWorkflow_DefaultsDataNode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to name.
+        /// </summary>
+        public static string WorkflowLoader_TestWorkflow_DefaultsDataParameterName {
+            get {
+                return ResourceManager.GetString("WorkflowLoader_TestWorkflow_DefaultsDataParameterName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to param.
+        /// </summary>
+        public static string WorkflowLoader_TestWorkflow_DefaultsDataParameterNode {
+            get {
+                return ResourceManager.GetString("WorkflowLoader_TestWorkflow_DefaultsDataParameterNode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to value.
+        /// </summary>
+        public static string WorkflowLoader_TestWorkflow_DefaultsDataParameterValue {
+            get {
+                return ResourceManager.GetString("WorkflowLoader_TestWorkflow_DefaultsDataParameterValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to name.
+        /// </summary>
+        public static string WorkflowLoader_TestWorkflow_NameAttribute {
+            get {
+                return ResourceManager.GetString("WorkflowLoader_TestWorkflow_NameAttribute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to parametersPage.
+        /// </summary>
+        public static string WorkflowLoader_TestWorkflow_ParametersPageNode {
+            get {
+                return ResourceManager.GetString("WorkflowLoader_TestWorkflow_ParametersPageNode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to task.
+        /// </summary>
+        public static string WorkflowLoader_TestWorkflow_TaskNode {
+            get {
+                return ResourceManager.GetString("WorkflowLoader_TestWorkflow_TaskNode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to testLabName.
+        /// </summary>
+        public static string WorkflowLoader_TestWorkflow_TestLabNode {
+            get {
+                return ResourceManager.GetString("WorkflowLoader_TestWorkflow_TestLabNode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to workflow.
+        /// </summary>
+        public static string WorkflowLoader_TestWorkflow_WorkflowNode {
+            get {
+                return ResourceManager.GetString("WorkflowLoader_TestWorkflow_WorkflowNode", resourceCulture);
             }
         }
     }

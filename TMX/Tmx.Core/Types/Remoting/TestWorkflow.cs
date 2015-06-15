@@ -25,6 +25,7 @@ namespace Tmx.Core.Types.Remoting
         {
             Id = Guid.NewGuid();
             _testLab = testLab;
+            DefaultData = new CommonData();
         }
         
         public Guid Id { get; set; }
@@ -40,8 +41,8 @@ namespace Tmx.Core.Types.Remoting
         }
         
         public string ParametersPageName { get; set; }
-
-        // 20150312
         public string Path { get; set; }
+        public ICommonData DefaultData { get; set; }
+        public bool IsDefault { get; set; }
     }
 }

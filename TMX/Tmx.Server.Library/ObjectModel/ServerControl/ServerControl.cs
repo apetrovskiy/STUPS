@@ -9,12 +9,18 @@
 
 namespace Tmx.Server.Library.ObjectModel.ServerControl
 {
+    using Logic.ObjectModel.ServerControl;
+    
     /// <summary>
     /// Description of ServerControl.
     /// </summary>
     public class ServerControl
     {
-        public static int Port { get; set; }
+        public static int Port
+        {
+            get { return Settings.Port; }
+            set { Settings.Port = value; }
+        }
         
         public static void Start(string url)
         {

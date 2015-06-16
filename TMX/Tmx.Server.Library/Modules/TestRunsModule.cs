@@ -30,6 +30,7 @@ namespace Tmx.Server.Library.Modules
         {
             Post[UrlList.TestRunsControlPoint_relPath] = _ => CreateNewTestRun(this.Bind<TestRunCommand>());
             Post[UrlList.TestRunsControlPoint_newDefaultTestRun] = parameters => CreateNewDefaultTestRun(parameters);
+            // Post[UrlList.TestRunsControlPoint_newDefaultTestRun] = _ => CreateNewDefaultTestRun();
             Delete[UrlList.TestRuns_One_relPath] = parameters => DeleteTestRun(parameters.id);
             
             // http://blog.nancyfx.org/x-http-method-override-with-nancyfx/
@@ -46,12 +47,12 @@ namespace Tmx.Server.Library.Modules
 
         Negotiator CreateNewDefaultTestRun(DynamicDictionary parameters)
         {
-Trace.TraceInformation("parameters:");
-if (null == parameters)
-    Trace.TraceInformation("null!!!!!!!!!!!!!!!!!");
-else
-    if (0 == parameters.Count)
-        Trace.TraceInformation("000000000000");
+//Trace.TraceInformation("parameters:");
+//if (null == parameters)
+//    Trace.TraceInformation("null!!!!!!!!!!!!!!!!!");
+//else
+//    if (0 == parameters.Count)
+//        Trace.TraceInformation("000000000000");
 
             var testRunCollectionMethods = ServerObjectFactory.Resolve<TestRunCollectionMethods>();
             // testRunCollectionMethods.SetTestRun(parameters);
@@ -59,6 +60,18 @@ else
             var data = testRunCollectionMethods.CreateTestRunExpandoObject();
             return Negotiate.WithStatusCode(HttpStatusCode.OK).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data);
         }
+        
+//        Negotiator CreateNewDefaultTestRun()
+//        {
+//            var testRunParameters = this.Bind<DefaultTestRunParameters>();
+//            var testRunCollectionMethods = ServerObjectFactory.Resolve<TestRunCollectionMethods>();
+//            // testRunCollectionMethods.SetTestRun(parameters);
+//            var dictionary = new DynamicDictionary();
+//            dictionary.Add("Default", testRunParameters.Default);
+//            testRunCollectionMethods.SetTestRun(new TestRunCommand { TestRunName = Defaults.Workflow, WorkflowName = Defaults.Workflow }, dictionary);
+//            var data = testRunCollectionMethods.CreateTestRunExpandoObject();
+//            return Negotiate.WithStatusCode(HttpStatusCode.OK).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data);
+//        }
         
         Negotiator DeleteTestRun(Guid testRunId)
         {
@@ -73,5 +86,10 @@ else
             var data = testRunCollectionMethods.CreateTestRunExpandoObject();
             return Negotiate.WithStatusCode(HttpStatusCode.OK).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data);
         }
+    }
+    
+    public class DefaultTestRunParameters : DynamicDictionary
+    {
+        public string Default { get; set; }
     }
 }

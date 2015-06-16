@@ -113,9 +113,6 @@ namespace Tmx.Server.Library.ObjectModel.ServerControl
         
         static void PrepareComponents()
         {
-            // 20150319
-            // var testLabCollection = new TestLabCollection();
-            // new TestLabCollection();
             ServerObjectFactory.Resolve<TestLabCollection>();
         }
         
@@ -130,13 +127,11 @@ namespace Tmx.Server.Library.ObjectModel.ServerControl
         
         static void SetDotLiquidNamingConventions()
         {
-            // Template.NamingConvention = new CSharpNamingConvention();
             ServerObjectFactory.Resolve<Initializer>().SetDotLiquidNamingConventions();
         }
         
         static void RegisterTypes()
         {
-            // new Initializer().RegisterTypes();
             ServerObjectFactory.Resolve<Initializer>().RegisterTypes();
         }
         

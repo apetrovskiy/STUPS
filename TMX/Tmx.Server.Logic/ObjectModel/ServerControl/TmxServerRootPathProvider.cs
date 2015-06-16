@@ -21,6 +21,7 @@ namespace Tmx.Server.Logic.ObjectModel.ServerControl
         public string GetRootPath()
         {
             var serverAssembly = (AppDomain.CurrentDomain.GetAssemblies().First(asm => asm.FullName.Contains("Tmx.Server")));
+            // var serverAssembly = (AppDomain.CurrentDomain.GetAssemblies().First(asm => asm.FullName.Contains("Tmx.Server.Library")));
             return serverAssembly.Location.Substring(0, serverAssembly.Location.LastIndexOf('\\'));
         }
     }

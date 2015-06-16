@@ -12,17 +12,15 @@ namespace Tmx.Server.Runner
     using System;
     using System.ServiceProcess;
     using System.Threading;
-    using Library.ObjectModel.ServerControl;
-    using Logic.ObjectModel.ServerControl;
     using ObjectModel.ServerControl;
-
+    using Library.ObjectModel.ServerControl;
+    
     class Program
     {
         public static void Main(string[] args)
         {
             try {
-                // ServerControl.Port = 12340;
-                Settings.Port = 12340;
+                ServerControl.Port = 12340;
                 ServerControl.Start(@"http://localhost:" + 12340);
 
                 if (!Environment.UserInteractive)

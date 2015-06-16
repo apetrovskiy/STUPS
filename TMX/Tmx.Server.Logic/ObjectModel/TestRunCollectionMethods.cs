@@ -13,7 +13,7 @@
 
     public class TestRunCollectionMethods
     {
-        public void SetTestRun(ITestRunCommand testRunCommand, DynamicDictionary formData)
+        public bool SetTestRunDataAndCreateTestRun(ITestRunCommand testRunCommand, DynamicDictionary formData)
         {
             if (null == testRunCommand)
                 testRunCommand = new TestRunCommand { TestRunName = formData["test_run_name"] ?? string.Empty, WorkflowName = formData["workflow_name"] ?? string.Empty };
@@ -21,32 +21,28 @@
                 testRunCommand.WorkflowName = formData["workflow_name"] ?? string.Empty;
             if (string.IsNullOrEmpty(testRunCommand.TestRunName))
                 testRunCommand.TestRunName = formData["test_run_name"] ?? string.Empty;
-
-            PrepareTestRun(testRunCommand, formData);
+            
+            return PrepareTestRun(testRunCommand, formData);
         }
-
-        // public void SetTestRun(dynamic parameters)
-        //public void SetTestRun(DynamicDictionary parameters)
-        //{
-        //    var testRunCommand = new TestRunCommand { TestRunName = Defaults.Workflow ?? string.Empty, WorkflowName = Defaults.Workflow ?? string.Empty };
-        //    // PrepareTestRun(testRunCommand, new DynamicDictionary());
-        //    PrepareTestRun(testRunCommand, parameters);
-        //}
-
-        void PrepareTestRun(ITestRunCommand testRunCommand, DynamicDictionary formData)
+        
+        bool PrepareTestRun(ITestRunCommand testRunCommand, DynamicDictionary formData)
         {
             var testRunInitializer = ServerObjectFactory.Resolve<TestRunInitializer>();
             var testRun = testRunInitializer.CreateTestRun(testRunCommand, formData);
+            
+            if (null == testRun)
+                return false;
             if (Guid.Empty == testRun.WorkflowId) // ??
-                return;
+                return false;
             TestRunQueue.TestRuns.Add(testRun);
-
+            
             foreach (var testRunAction in testRun.BeforeActions)
             {
                 testRunAction.Run();
             }
+            return true;
         }
-
+        
         public dynamic CreateTestRunExpandoObject()
         {
             dynamic data = new ExpandoObject();
@@ -54,12 +50,12 @@
             data.TestLabs = TestLabCollection.TestLabs ?? new List<ITestLab>();
             return data;
         }
-
+        
         public void DeleteTestRun(Guid testRunId)
         {
             TestRunQueue.TestRuns.RemoveAll(tr => tr.Id == testRunId);
         }
-
+        
         public bool CancelTestRun(Guid testRunId)
         {
             var testRun = TestRunQueue.TestRuns.First(tr => tr.Id == testRunId);

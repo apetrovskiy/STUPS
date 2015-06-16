@@ -241,7 +241,7 @@ namespace Tmx.Server.Logic.ObjectModel
                 return string.Empty;
             }
         }
-
+        
         /// <exception cref="Tmx.Interfaces.Exceptions.WrongTaskDataException">Failed to read the taskType element</exception>
         internal virtual TestTaskExecutionTypes GetTestTaskType(string taskTypeStringValue)
         {
@@ -278,7 +278,7 @@ namespace Tmx.Server.Logic.ObjectModel
                     return TestTaskRuntimeTypes.Powershell;
             }
         }
-
+        
         ICommonData GetDefaultData(XContainer xDocument)
         {
             Trace.TraceInformation("loading default data");
@@ -288,22 +288,17 @@ namespace Tmx.Server.Logic.ObjectModel
             var defaultData =
                 from defaultDataItem in xDocument.Descendants(LogicConstants.WorkflowLoader_TestWorkflow_DefaultsDataNode)
                 select defaultDataItem;
-
-Trace.TraceInformation("00001");
-
+            
             var commonDataCollection = new CommonData();
             var defaultParameterValue = new XAttribute(LogicConstants.WorkflowLoader_TestWorkflow_DefaultsDataParameterValue, string.Empty);
             
-Trace.TraceInformation("00003");
-
             foreach (var xElement in defaultData.Elements(LogicConstants.WorkflowLoader_TestWorkflow_DefaultsDataParameterNode))
                 commonDataCollection.AddOrUpdateDataItem(
                     new CommonDataItem {
                         Key = xElement.Attribute(LogicConstants.WorkflowLoader_TestWorkflow_DefaultsDataParameterName).Value,
                         Value = (xElement.Attribute(LogicConstants.WorkflowLoader_TestWorkflow_DefaultsDataParameterValue) ?? defaultParameterValue).Value
                     });
-
-Trace.TraceInformation("00010");
+            
             return commonDataCollection;
         }
     }

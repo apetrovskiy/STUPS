@@ -10,10 +10,12 @@
 namespace Tmx.Server.Logic.ObjectModel
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using Core;
     using Core.Types.Remoting;
     using Nancy;
+    using Tmx.Interfaces;
     using Objects;
     using Tmx.Interfaces.Remoting;
 
@@ -27,12 +29,10 @@ namespace Tmx.Server.Logic.ObjectModel
             if (string.IsNullOrEmpty(testRunCommand.TestRunName))
                 testRunCommand.TestRunName = testRunCommand.WorkflowName + " " + DateTime.Now;
             var testRun = new TestRun { Name = testRunCommand.TestRunName, Status = testRunCommand.Status };
-
-            var currentWorkflow = WorkflowCollection.Workflows.First(wfl => testRunCommand.WorkflowName == wfl.Name);
-            testRun.Data = currentWorkflow.DefaultData;
-
-            foreach (var key in formData)
-                AddOrUpdateDataItem(testRun, formData, key);
+            
+            var currentWorkflow = WorkflowCollection.Workflows.FirstOrDefault(wfl => testRunCommand.WorkflowName == wfl.Name);
+            SetCommonData(testRun, currentWorkflow.DefaultData);
+            
             SetWorkflow(testRunCommand, testRun);
             SetStartUpParameters(testRun);
             SetCommonData(testRun, formData);
@@ -42,7 +42,6 @@ namespace Tmx.Server.Logic.ObjectModel
         
         void SetWorkflow(ITestRunCommand testRunCommand, TestRun testRun)
         {
-            // (testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testRunCommand.WorkflowName));
             testRun.SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testRunCommand.WorkflowName));
             TestLabCollection.TestLabs.First(testLab => testLab.Id == testRun.TestLabId).Status = TestLabStatuses.Busy;
         }
@@ -59,14 +58,17 @@ namespace Tmx.Server.Logic.ObjectModel
         {
             if (null == formData || 0 >= formData.Count)
                 return;
-            foreach (var key in formData) {
+            foreach (var key in formData)
                 AddOrUpdateDataItem(testRun, formData, key);
-//                testRun.Data.AddOrUpdateDataItem(
-//                    new CommonDataItem {
-//                        Key = key,
-//                        Value = formData[key] ?? string.Empty
-//                    });
-            }
+        }
+        
+        // TODO: remove duplication
+        void SetCommonData(ITestRun testRun, ICommonData commonData)
+        {
+            if (null == commonData || 0 >= commonData.Data.Count)
+                return;
+            foreach (var pair in commonData.Data)
+                AddOrUpdateDataItem(testRun, commonData.Data, pair.Key);
         }
         
         void SetCreatedTime(ITestRun testRun)
@@ -80,6 +82,16 @@ namespace Tmx.Server.Logic.ObjectModel
                 new CommonDataItem {
                     Key = key,
                     Value = formData[key] ?? string.Empty
+                });
+        }
+        
+        // TODO: remove duplication
+        void AddOrUpdateDataItem(ITestRun testRun, Dictionary<string, string> commonData, string key)
+        {
+            testRun.Data.AddOrUpdateDataItem(
+                new CommonDataItem {
+                    Key = key,
+                    Value = commonData[key] ?? string.Empty
                 });
         }
     }

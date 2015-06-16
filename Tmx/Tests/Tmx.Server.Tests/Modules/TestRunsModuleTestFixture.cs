@@ -10,6 +10,7 @@
 namespace Tmx.Server.Tests.Modules
 {
     using System.Linq;
+    using Tmx.Server.Logic.ObjectModel;
     using Core;
     using Core.Types.Remoting;
     using Interfaces.Remoting;
@@ -41,6 +42,44 @@ namespace Tmx.Server.Tests.Modules
         {
             TestSettings.PrepareModuleTests();
             _browser = TestFactory.GetBrowserForTestRunsModule();
+        }
+        
+        [Test]
+        [NUnit.Framework.Test]
+        [Fact]
+        public void Should_create_first_testRun_of_default_workflow_Running_as_json()
+        {
+            GIVEN_first_testWorkflow(TestConstants.Workflow03);
+            WorkflowCollection.Workflows[0].IsDefault = true;
+            Defaults.Workflow = WorkflowCollection.Workflows[0].Name;
+            
+            WHEN_sending_testRun_as_json("def", TestRunStatuses.Running, UrlList.TestRunsControlPoint_absPath_for_newDefaultTestRun + "paramValue", null);
+            
+            THEN_there_should_be_the_following_number_of_testRun_objects(1);
+            THEN_testRun_is_running(TestRunQueue.TestRuns[0]);
+            
+            var w1 = WorkflowCollection.Workflows[0];
+            var t1 = TestRunQueue.TestRuns[0];
+        }
+        
+        [Test][NUnit.Framework.Test][Fact]
+        public void Should_create_second_testRun_of_default_workflow_object_to_another_workflow_and_another_testLab_Running_as_json()
+        {
+            GIVEN_first_testWorkflow(TestConstants.Workflow03);
+            WorkflowCollection.Workflows[0].IsDefault = true;
+            Defaults.Workflow = WorkflowCollection.Workflows[0].Name;
+            GIVEN_second_testWorkflow();
+            var secondTestWorkflow = WorkflowCollection.Workflows.Skip(1).First();
+            var secondTestLab = new TestLab();
+            TestLabCollection.TestLabs.Add(secondTestLab);
+            secondTestWorkflow.SetTestLab(secondTestLab);
+            
+            WHEN_sending_testRun_as_json("def", TestRunStatuses.Running);
+            WHEN_sending_testRun_as_json("NAC", TestRunStatuses.Running);
+            
+            THEN_there_should_be_the_following_number_of_testRun_objects(2);
+            THEN_testRun_is_running(TestRunQueue.TestRuns[0]);
+            THEN_testRun_is_running(TestRunQueue.TestRuns[1]);
         }
         
         [Test][NUnit.Framework.Test][Fact]
@@ -236,9 +275,22 @@ namespace Tmx.Server.Tests.Modules
         
         void GIVEN_first_testWorkflow()
         {
+//            var serverCommand = new ServerCommand {
+//                Command = ServerControlCommands.LoadConfiguraiton,
+//                Data = TestConstants.Workflow01
+//            };
+//            _browser.Put(UrlList.ServerControlPoint_absPath, with => {
+//                with.JsonBody<ServerCommand>(serverCommand);
+//                with.Accept("application/json");
+//            });
+            GIVEN_first_testWorkflow(TestConstants.Workflow01);
+        }
+        
+        void GIVEN_first_testWorkflow(string alternativeName)
+        {
             var serverCommand = new ServerCommand {
                 Command = ServerControlCommands.LoadConfiguraiton,
-                Data = TestConstants.Workflow01
+                Data = alternativeName
             };
             _browser.Put(UrlList.ServerControlPoint_absPath, with => {
                 with.JsonBody<ServerCommand>(serverCommand);
@@ -260,13 +312,34 @@ namespace Tmx.Server.Tests.Modules
         
         TestRunCommand WHEN_sending_testRun_as_json(string testWorkflowName, TestRunStatuses status)
         {
-            var testRun = new TestRun();
+//            var testRun = new TestRun();
+//            var testRunCommand = new TestRunCommand { WorkflowName = testWorkflowName, Status = status };
+//            (testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testWorkflowName));
+//            _response = _browser.Post(UrlList.TestRunsControlPoint_absPath, with => {
+//                with.JsonBody(testRunCommand);
+//                with.Accept("application/json");
+//            });
+//            return _response.Body.DeserializeJson<TestRunCommand>();
+            
             var testRunCommand = new TestRunCommand { WorkflowName = testWorkflowName, Status = status };
+            return WHEN_sending_testRun_as_json(testWorkflowName, status, UrlList.TestRunsControlPoint_absPath, testRunCommand);
+        }
+        
+        TestRunCommand WHEN_sending_testRun_as_json(string testWorkflowName, TestRunStatuses status, string alternativeUrl, ITestRunCommand testRunCommand)
+        {
+            var testRun = new TestRun();
+            // var testRunCommand = new TestRunCommand { WorkflowName = testWorkflowName, Status = status };
             (testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testWorkflowName));
-            _response = _browser.Post(UrlList.TestRunsControlPoint_absPath, with => {
-                with.JsonBody(testRunCommand);
-                with.Accept("application/json");
-            });
+            if (null == testRunCommand)
+                _response = _browser.Post(alternativeUrl, with => {
+                    // with.JsonBody(testRunCommand);
+                    with.Accept("application/json");
+                });
+            else
+                _response = _browser.Post(alternativeUrl, with => {
+                    with.JsonBody(testRunCommand);
+                    with.Accept("application/json");
+                });
             return _response.Body.DeserializeJson<TestRunCommand>();
         }
         

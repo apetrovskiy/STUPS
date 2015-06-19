@@ -45,8 +45,10 @@ namespace Tmx.Client.Library
         {
             var clientAssembly = (AppDomain.CurrentDomain.GetAssemblies().First(asm => asm.FullName.Contains("Tmx.Client")));
             var clientFolderPath = clientAssembly.Location.Substring(0, clientAssembly.Location.LastIndexOf('\\'));
-            
-            var pluginsLoader = new PluginsLoader(clientFolderPath + @"\Plugins");
+
+            // 20150617
+            var pluginsLoader = new AssembliesLoader(clientFolderPath + @"\Plugins", "*.dll", true);
+            // var pluginsLoader = new modulesloa(clientFolderPath + @"\Plugins", "*.dll");
             pluginsLoader.Load();
         }
     }

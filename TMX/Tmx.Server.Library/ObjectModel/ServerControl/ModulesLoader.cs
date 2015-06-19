@@ -21,18 +21,30 @@ namespace Tmx.Server.Library.ObjectModel.ServerControl //.ObjectModel.ServerCont
     public class ModulesLoader
     {
         readonly string _path;
+        readonly string _fileNameTemplate;
+        readonly bool _recurse;
         
-        public ModulesLoader(string path)
+        public ModulesLoader(string path, string fileNameTemplate, bool recurse)
         {
             _path = path;
+            _fileNameTemplate = fileNameTemplate;
+            _recurse = recurse;
         }
-        
+
         public void Load()
+        {
+            RecursivelyLoad(_path);
+            AppDomainAssemblyTypeScanner.UpdateTypes();
+        }
+
+        // public void Load()
+        void RecursivelyLoad(string path)
         {
             if (!Directory.Exists(_path)) return;
             try {
                 var dir = new DirectoryInfo(_path);
-                var files = dir.GetFiles(@"Nancy.ViewEngines*.dll");
+                // var files = dir.GetFiles(@"Nancy.ViewEngines*.dll");
+                var files = dir.GetFiles(_fileNameTemplate);
                 // 20150317
                 // if (null == files || !files.Any()) return;
                 if (!files.Any()) return;
@@ -43,7 +55,18 @@ namespace Tmx.Server.Library.ObjectModel.ServerControl //.ObjectModel.ServerCont
                     }
                     catch {}
                 }
-                AppDomainAssemblyTypeScanner.UpdateTypes();
+                
+                // 20150617
+                if (_recurse)
+                {
+                    var subDirs = dir.GetDirectories();
+                    // if (!subDirs.Any()) return;
+                    if (subDirs.Any())
+                        foreach (var subDir in subDirs)
+                            RecursivelyLoad(subDir.FullName);
+                }
+
+                // AppDomainAssemblyTypeScanner.UpdateTypes();
             }
             catch {}
         }

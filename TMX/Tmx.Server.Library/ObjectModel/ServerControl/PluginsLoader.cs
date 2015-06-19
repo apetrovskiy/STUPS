@@ -16,14 +16,14 @@
 //    using System.Reflection;
 //    
 //    /// <summary>
-//    /// Description of PluginsLoader.
+//    /// Description of AssembliesLoader.
 //    /// </summary>
 //    // TODO: to template method
-//    public class PluginsLoader
+//    public class AssembliesLoader
 //    {
 //        string _path;
 //        
-//        public PluginsLoader(string path)
+//        public AssembliesLoader(string path)
 //        {
 //            _path = path;
 //        }

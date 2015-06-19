@@ -12,6 +12,7 @@ namespace Tmx.Client.Library.ObjectModel
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.Linq;
     using System.Net;
     using Interfaces.Server;
     using Helpers;
@@ -29,7 +30,8 @@ namespace Tmx.Client.Library.ObjectModel
             _restTemplate = requestCreator.GetRestTemplate();
         }
         
-        public virtual Dictionary<string, string> Load()
+        // public virtual Dictionary<string, string> Load()
+        public virtual IDictionary<string, object> Load()
         {
             var url = UrlList.TestData_Root + "/" + ClientSettings.Instance.CurrentClient.TestRunId + UrlList.TestData_CommonData_forClient_relPath;
             
@@ -40,15 +42,20 @@ namespace Tmx.Client.Library.ObjectModel
             var commonDataResponse = _restTemplate.GetForMessage<Dictionary<string, string>>(url);
             
             Trace.TraceInformation("commonDataResponse is null? {0}", null == commonDataResponse);
-            // 20150316
+            
             if (null == commonDataResponse)
                 throw new Exception("Failed to load data item");
             
-            var commonData = commonDataResponse.Body;
+            // var commonData = commonDataResponse.Body;
+            if (null == commonDataResponse.Body)
+                throw new Exception("Failed to load data item");
+            var commonData = new Dictionary<string, object>();
+            commonDataResponse.Body.ToList().ForEach(pair => commonData.Add(pair.Key, pair.Value));
             
             Trace.TraceInformation("commonData is null? {0}", null == commonData);
             
-            return HttpStatusCode.NotFound == commonDataResponse.StatusCode ? new Dictionary<string, string>() : commonData;
+            // return HttpStatusCode.NotFound == commonDataResponse.StatusCode ? new Dictionary<string, string>() : commonData;
+            return HttpStatusCode.NotFound == commonDataResponse.StatusCode ? new Dictionary<string, object>() : commonData;
         }
     }
 }

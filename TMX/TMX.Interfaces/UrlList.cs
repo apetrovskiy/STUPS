@@ -129,7 +129,8 @@ namespace Tmx.Interfaces.Server
 //        public const string ViewTestStatus_TestRunsPage = "/TestRuns";
 //        public const string ViewTestStatus_TestRunsPageName = "TestRuns.liquid";
         public const string ViewTestStatus_WorkflowsPage = "/workflows";
-        public const string ViewTestStatus_WorkflowsPageName = "workflows.htm";
+        // public const string ViewTestStatus_WorkflowsPageName = "workflows.htm";
+        public const string ViewTestStatus_WorkflowsPageName = "workflows.liquid";
         public const string ViewTestStatus_TestLabsPage = "/testLabs";
         public const string ViewTestStatus_TestLabsPageName = "testLabs.liquid";
 //        public const string ViewTestStatus_TestRun_CancelPage = "/{id:guid}/cancelTestRun";

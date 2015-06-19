@@ -11,9 +11,9 @@ namespace Tmx
 {
     using System;
     using System.Linq;
+    using System.Management.Automation;
     using Tmx.Client;
     using Tmx.Core;
-//    using Tmx.Server;
     using Tmx.Commands;
     
     /// <summary>
@@ -30,9 +30,15 @@ namespace Tmx
         {
             var cmdlet = (GetTmxCommonDataItemCommand)Cmdlet;
             try {
-                // cmdlet.WriteObject(CommonData.Data[cmdlet.Key]);
-                // var commonData = TestRunQueue.TestRuns.First(testRun => testRun.Id == ClientsCollection
-                cmdlet.WriteObject(ClientSettings.Instance.CommonData.Data[cmdlet.Key]);
+                // cmdlet.WriteObject(ClientSettings.Instance.CommonData.Data[cmdlet.Key]);
+                const WildcardOptions options = WildcardOptions.IgnoreCase | WildcardOptions.Compiled;
+                var pattern = new WildcardPattern(cmdlet.Key, options);
+                
+                ClientSettings.Instance.CommonData.Data.Keys
+                    // .Where(key => pattern.IsMatch(key))
+                    .Where(pattern.IsMatch)
+                    .ToList()
+                    .ForEach(key => cmdlet.WriteObject(ClientSettings.Instance.CommonData.Data[key]));
             }
             catch (Exception e) {
                 throw new Exception("Failed to get value with key '" + cmdlet.Key + "'. " + e.Message);

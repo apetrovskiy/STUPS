@@ -17,7 +17,8 @@ namespace Tmx.Interfaces.Remoting
     /// </summary>
     public interface ICommonData
     {
-        Dictionary<string, string> Data { get; set; }
+        // Dictionary<string, string> Data { get; set; }
+        IDictionary<string, object> Data { get; set; }
         void AddOrUpdateDataItem(ICommonDataItem commonDataItem);
     }
 }

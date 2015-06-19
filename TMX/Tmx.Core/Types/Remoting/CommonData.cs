@@ -22,10 +22,12 @@ namespace Tmx.Core.Types.Remoting
     {
         public CommonData()
         {
-            Data = new Dictionary<string, string>();
+            // Data = new Dictionary<string, string>();
+            Data = new Dictionary<string, object>();
         }
         
-        public Dictionary<string, string> Data { get; set; }
+        // public Dictionary<string, string> Data { get; set; }
+        public IDictionary<string, object> Data { get; set; }
         
         public void AddOrUpdateDataItem(ICommonDataItem commonDataItem)
         {

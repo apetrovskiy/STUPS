@@ -38,7 +38,9 @@ namespace Tmx.Server.Web.Modules
             };
             
             Get[UrlList.ViewTestStatus_WorkflowsPage] = _ => {
-                var data = WorkflowCollection.Workflows ?? new List<ITestWorkflow>();
+                // var data = WorkflowCollection.Workflows ?? new List<ITestWorkflow>();
+                dynamic data = new ExpandoObject();
+                data.Workflows = WorkflowCollection.Workflows ?? new List<ITestWorkflow>();
                 return View[UrlList.ViewTestStatus_WorkflowsPageName, data];
             };
             

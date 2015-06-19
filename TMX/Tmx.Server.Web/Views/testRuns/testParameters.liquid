@@ -20,13 +20,16 @@
 
         <table border="1">
             <tr>
-                <th>Key</th>
-                <th>Value</th>
+                <!-- <th>Key</th>
+                <th>Value</th> -->
+                <th>Key | Value</th>
             </tr>
-            {% for item in @Model.TestRun.Data.Data -%}
+            {% assign testRunParameters = @Model.TestRun.Data.Data | sort:'Key' -%}
+            {% for dataItem in testRunParameters -%}
             <tr>
-                <td>{{ item.Key }}</td>
-                <td>{{ item.Value }}</td>
+ <td>{{ dataItem }}</td>
+                <!-- <td>{{ dataItem.key }}</td>
+                <td>{{ dataItem.Value }}</td> -->
             </tr>
             {% endfor -%}
         </table>

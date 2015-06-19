@@ -118,7 +118,8 @@ namespace Tmx.Server.Library.ObjectModel.ServerControl
         
         static void LoadModules()
         {
-            var modulesLoader = new ModulesLoader((new TmxServerRootPathProvider()).GetRootPath());
+            // var modulesLoader = new ModulesLoader((new TmxServerRootPathProvider()).GetRootPath());
+            var modulesLoader = new ModulesLoader((new TmxServerRootPathProvider()).GetRootPath(), @"Nancy.ViewEngines*.dll", false);
             modulesLoader.Load();
             
             //// just for copying the Nancy.ViewEngines.DotLiquid assembly to dependant projects
@@ -137,7 +138,10 @@ namespace Tmx.Server.Library.ObjectModel.ServerControl
         
         static void LoadPlugins()
         {
-            var pluginsLoader = new PluginsLoader((new TmxServerRootPathProvider()).GetRootPath() + @"\Plugins");
+            // 20150617
+            // var pluginsLoader = new AssembliesLoader((new TmxServerRootPathProvider()).GetRootPath() + @"\Plugins");
+            // var pluginsLoader = new ModulesLoader((new TmxServerRootPathProvider()).GetRootPath() + @"\Plugins", "*.dll", true);
+            var pluginsLoader = new AssembliesLoader((new TmxServerRootPathProvider()).GetRootPath() + @"\Plugins", "*.dll", true);
             pluginsLoader.Load();
         }
 

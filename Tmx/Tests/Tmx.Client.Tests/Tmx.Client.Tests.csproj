@@ -78,7 +78,7 @@
       <HintPath>..\..\..\packages\Newtonsoft.Json.4.5.10\lib\net35\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NSubstitute">
-      <HintPath>..\..\packages\NSubstitute.1.8.1.0\lib\net35\NSubstitute.dll</HintPath>
+      <HintPath>..\..\..\packages\NSubstitute.1.8.2.0\lib\net35\NSubstitute.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>

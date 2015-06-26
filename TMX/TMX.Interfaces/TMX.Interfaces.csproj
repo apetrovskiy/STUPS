@@ -129,6 +129,7 @@
     <Compile Include="Exceptions\Remoting\UpdateTaskException.cs" />
     <Compile Include="Exceptions\Remoting\WorkflowLoadingException.cs" />
     <Compile Include="Exceptions\Remoting\WrongTaskDataException.cs" />
+    <Compile Include="ExtensionMethods\ExtensionMethods.cs" />
     <Compile Include="Remoting\ICodeBlock.cs" />
     <Compile Include="IDatabase.cs" />
     <Compile Include="Internal\ISystemInfo.cs" />

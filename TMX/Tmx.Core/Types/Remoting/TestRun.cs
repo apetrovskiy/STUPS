@@ -11,6 +11,7 @@ namespace Tmx.Core.Types.Remoting
 {
     using System;
     using System.Collections.Generic;
+    using Interfaces.ExtensionMethods;
     using Interfaces.Remoting;
     using Interfaces.Remoting.Actions;
     using Interfaces.TestStructure;
@@ -71,6 +72,7 @@ namespace Tmx.Core.Types.Remoting
         
         public string GetTimeTaken()
         {
+            /*
             TimeSpan resultSpan;
             if (DateTime.MinValue == StartTime)
                 return string.Format("{0:00}:{1:00}:{2:00}", 0, 0, 0);
@@ -79,7 +81,23 @@ namespace Tmx.Core.Types.Remoting
             else
                 resultSpan = DateTime.Now - StartTime;
             return string.Format("{0:00}:{1:00}:{2:00}", (int)resultSpan.TotalHours % 60, (int)resultSpan.TotalMinutes % 60, (int)resultSpan.TotalSeconds % 60);
+            */
+            // return GetTimeTaken(StartTime, _finishTime);
+            return _finishTime.GetTimeTaken(StartTime);
         }
+
+        //string GetTimeTaken(DateTime startTime, DateTime finishTime)
+        //{
+        //    TimeSpan resultSpan;
+        //    if (DateTime.MinValue == startTime)
+        //        return string.Format("{0:00}:{1:00}:{2:00}", 0, 0, 0);
+        //    if (DateTime.MinValue < finishTime)
+        //        resultSpan = finishTime - startTime;
+        //    else
+        //        resultSpan = DateTime.Now - startTime;
+        //    return string.Format("{0:00}:{1:00}:{2:00}", (int)resultSpan.TotalHours % 60, (int)resultSpan.TotalMinutes % 60, (int)resultSpan.TotalSeconds % 60);
+        //}
+
         public void SetFinishTime()
         {
             _finishTime = DateTime.Now;

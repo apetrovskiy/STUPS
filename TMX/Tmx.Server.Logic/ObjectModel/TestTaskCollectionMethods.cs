@@ -39,7 +39,7 @@
                 CompleteTestRun(storedTask);
 
             if (storedTask.IsFinished())
-                storedTask.SetTimeTaken();
+                storedTask.SetFinishTime();
 
             if (storedTask.IsCompletedSuccessfully())
                 UpdateNextTask(storedTask);

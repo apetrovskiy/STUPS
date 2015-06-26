@@ -122,6 +122,7 @@
     <Compile Include="Helpers\WorkflowLoaderTestFixture.cs" />
     <Compile Include="Modules\ExternalFilesModuleTestFixture.cs" />
     <Compile Include="Modules\ServerControlModuleTestFixture.cs" />
+    <Compile Include="Modules\ShortcutModuleTestFixture.cs" />
     <Compile Include="Modules\TestClientsModuleTestFixture.cs" />
     <Compile Include="Modules\TestDataModuleTestFixture.cs" />
     <Compile Include="Modules\TestResultsModuleTestFixture.cs" />
@@ -135,6 +136,10 @@
     <ProjectReference Include="..\..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
       <Project>{e4499004-dae5-4700-b212-4cdea3080bc5}</Project>
       <Name>PSTestLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServerPlugins\Tmx.Server.SamplePlugin\Tmx.Server.SamplePlugin.csproj">
+      <Project>{07926E46-2694-4CF6-ABBA-1FAFF099D848}</Project>
+      <Name>Tmx.Server.SamplePlugin</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Tmx.Server.Logic\Tmx.Server.Logic.csproj">
       <Project>{e24a3950-bc27-4fbc-b463-8aaf417939ce}</Project>

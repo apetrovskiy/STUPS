@@ -11,6 +11,7 @@ namespace Tmx.Core.Types.Remoting
 {
     using System;
     using System.Collections.Generic;
+    using Interfaces.ExtensionMethods;
     using Tmx.Interfaces.Remoting;
     
     /// <summary>
@@ -18,7 +19,7 @@ namespace Tmx.Core.Types.Remoting
     /// </summary>
     public class TestTask : ITestTask
     {
-        TimeSpan _timeTaken;
+        DateTime _finishTime;
         
         public TestTask()
         {
@@ -66,16 +67,15 @@ namespace Tmx.Core.Types.Remoting
         public Guid ClientId { get; set; }
         public Guid WorkflowId { get; set; }
         public Guid TestRunId { get; set; }
-        // public TimeSpan TimeTaken { get; set; }
-        // internal TimeSpan TimeTaken { get; set; }
-        public TimeSpan GetTimeTaken()
-        {
-            return _timeTaken;
-        }
         
-        public void SetTimeTaken()
+        public string GetTimeTaken()
         {
-            _timeTaken = DateTime.Now - StartTime;
+            return _finishTime.GetTimeTaken(StartTime);
+        }
+
+        public void SetFinishTime()
+        {
+            _finishTime = DateTime.Now;
         }
         
         // 20141020 squeezing a task to its proxy

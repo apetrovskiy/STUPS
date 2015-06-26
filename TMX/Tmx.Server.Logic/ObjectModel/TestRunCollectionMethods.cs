@@ -4,12 +4,12 @@
     using System.Collections.Generic;
     using System.Dynamic;
     using System.Linq;
+    using Core;
     using Core.Types.Remoting;
     using Internal;
     using Nancy;
     using Objects;
     using Tmx.Interfaces.Remoting;
-    using Core;
 
     public class TestRunCollectionMethods
     {

@@ -31,6 +31,11 @@ namespace Tmx.Server.Logic.ObjectModel.ExtensionMethods
             return TestRunQueue.TestRuns.Any(tr => tr.IsActive());
             // return TestRunQueue.TestRuns.Any(IsActive);
         }
+
+        public static IEnumerable<ITestWorkflow> ActiveWorkflows(this List<ITestWorkflow> list)
+        {
+            return WorkflowCollection.Workflows.Where(wfl => TestRunQueue.TestRuns.Where(tr => tr.Status == TestRunStatuses.Running).Select(tr => tr.WorkflowId).Contains(wfl.Id));
+        }
         
         public static bool IsInActiveTestRun(this ITestClient testClient)
         {

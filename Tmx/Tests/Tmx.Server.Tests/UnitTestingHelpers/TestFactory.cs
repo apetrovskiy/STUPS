@@ -58,12 +58,21 @@ namespace Tmx.Server.Tests.UnitTestingHelpers
         
         public static ITestRun GetTestRunWithStatus(TestRunStatuses status)
         {
+            return GetTestRunWithStatus(status, "aaa_01");
+        }
+        
+        public static ITestRun GetTestRunWithStatus(TestRunStatuses status, params string[] rules)
+        {
             var workflow = new TestWorkflow(TestLabCollection.TestLabs.First()) { Name = "workflow 01" };
             workflow.SetTestLab(TestLabCollection.TestLabs.First());
             WorkflowCollection.Workflows.Add(workflow);
             var testRun = new TestRun { Name = "test run 03", Status = status };
             testRun.SetWorkflow(workflow);
             TestRunQueue.TestRuns.Add(testRun);
+            var taskId = 0;
+            if (null != rules)
+                rules.ToList().ForEach(rule => TaskPool.Tasks.Add(new TestTask { Id = ++taskId, Rule = rule, WorkflowId = workflow.Id, TestRunId = testRun.Id }));
+            
             return testRun;
         }
         

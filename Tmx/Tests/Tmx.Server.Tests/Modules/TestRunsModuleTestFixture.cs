@@ -44,9 +44,7 @@ namespace Tmx.Server.Tests.Modules
             _browser = TestFactory.GetBrowserForTestRunsModule();
         }
         
-        [Test]
-        [NUnit.Framework.Test]
-        [Fact]
+        [Test][NUnit.Framework.Test][Fact]
         public void Should_create_first_testRun_of_default_workflow_Running_as_json()
         {
             GIVEN_first_testWorkflow(TestConstants.Workflow03);
@@ -275,14 +273,6 @@ namespace Tmx.Server.Tests.Modules
         
         void GIVEN_first_testWorkflow()
         {
-//            var serverCommand = new ServerCommand {
-//                Command = ServerControlCommands.LoadConfiguraiton,
-//                Data = TestConstants.Workflow01
-//            };
-//            _browser.Put(UrlList.ServerControlPoint_absPath, with => {
-//                with.JsonBody<ServerCommand>(serverCommand);
-//                with.Accept("application/json");
-//            });
             GIVEN_first_testWorkflow(TestConstants.Workflow01);
         }
         
@@ -312,15 +302,6 @@ namespace Tmx.Server.Tests.Modules
         
         TestRunCommand WHEN_sending_testRun_as_json(string testWorkflowName, TestRunStatuses status)
         {
-//            var testRun = new TestRun();
-//            var testRunCommand = new TestRunCommand { WorkflowName = testWorkflowName, Status = status };
-//            (testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testWorkflowName));
-//            _response = _browser.Post(UrlList.TestRunsControlPoint_absPath, with => {
-//                with.JsonBody(testRunCommand);
-//                with.Accept("application/json");
-//            });
-//            return _response.Body.DeserializeJson<TestRunCommand>();
-            
             var testRunCommand = new TestRunCommand { WorkflowName = testWorkflowName, Status = status };
             return WHEN_sending_testRun_as_json(testWorkflowName, status, UrlList.TestRunsControlPoint_absPath, testRunCommand);
         }
@@ -328,7 +309,6 @@ namespace Tmx.Server.Tests.Modules
         TestRunCommand WHEN_sending_testRun_as_json(string testWorkflowName, TestRunStatuses status, string alternativeUrl, ITestRunCommand testRunCommand)
         {
             var testRun = new TestRun();
-            // var testRunCommand = new TestRunCommand { WorkflowName = testWorkflowName, Status = status };
             (testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testWorkflowName));
             if (null == testRunCommand)
                 _response = _browser.Post(alternativeUrl, with => {

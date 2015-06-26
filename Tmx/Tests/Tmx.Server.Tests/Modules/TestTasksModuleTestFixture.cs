@@ -74,15 +74,19 @@ namespace Tmx.Server.Tests.Modules
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_provide_no_task_to_test_client_if_the_client_does_not_match_the_rule()
+        // public void Should_provide_no_task_to_test_client_if_the_client_does_not_match_the_rule()
+        public void Should_not_register_test_client_if_the_client_does_not_match_the_rule()
         {
+            // TODO: rewrite as Given-When-Then
             var givenTask = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, "no matches", 0);
             var testClient = GIVEN_Registered_TestClient_as_json(_testClientHostnameExpected, _testClientUsernameExpected);
             
-            WHEN_Getting_task_as_json(testClient.Id);
+            Xunit.Assert.Null(testClient);
             
-            THEN_HttpResponse_Is_NotFound();
-            THEN_test_client_is_free(testClient);
+//            WHEN_Getting_task_as_json(testClient.Id);
+//            
+//            THEN_HttpResponse_Is_NotFound();
+//            THEN_test_client_is_free(testClient);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -347,6 +351,9 @@ namespace Tmx.Server.Tests.Modules
                                             with.Accept("application/json");
                                         });
             testClient = response.Body.DeserializeJson<TestClient>();
+            
+            if (null == testClient)
+                return null;
             
             var clientSettings = ClientSettings.Instance;
             clientSettings.ServerUrl = @"http://localhost:12340";

@@ -40,13 +40,17 @@ namespace Tmx.Server.Library.Modules
         {
             var testRunCollectionMethods = ServerObjectFactory.Resolve<TestRunCollectionMethods>();
             return !testRunCollectionMethods.SetTestRunDataAndCreateTestRun(testRunCommand, Request.Form) ? 
-                Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed).WithReasonPhrase("Failed to create a test run") : 
+                Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed).WithReasonPhrase("Failed to create a test run") :
                 GetTestRunCollectionExpandoObject();
         }
-        
-        Negotiator CreateNewDefaultTestRun(DynamicDictionary parameters)
+
+        protected Negotiator CreateNewDefaultTestRun(DynamicDictionary parameters)
         {
             var testRunCollectionMethods = ServerObjectFactory.Resolve<TestRunCollectionMethods>();
+            
+            if (string.IsNullOrEmpty(parameters[UrlList.TestRuns_DefaultParameterName]))
+                return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed).WithReasonPhrase("There's not been supplied the default parameter");
+
             if (string.IsNullOrEmpty(Defaults.Workflow))
                 return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed).WithReasonPhrase("There's no default workflow");
             return !testRunCollectionMethods.SetTestRunDataAndCreateTestRun(new TestRunCommand {
@@ -61,7 +65,7 @@ namespace Tmx.Server.Library.Modules
         {
             var testRunCollectionMethods = ServerObjectFactory.Resolve<TestRunCollectionMethods>();
             var data = testRunCollectionMethods.CreateTestRunExpandoObject();
-            return Negotiate.WithStatusCode(HttpStatusCode.OK).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data);
+            return Negotiate.WithStatusCode(HttpStatusCode.Created).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data);
         }
         
         Negotiator DeleteTestRun(Guid testRunId)

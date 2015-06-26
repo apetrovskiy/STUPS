@@ -141,7 +141,9 @@ namespace Tmx.Server.Library.ObjectModel.ServerControl
             // 20150617
             // var pluginsLoader = new AssembliesLoader((new TmxServerRootPathProvider()).GetRootPath() + @"\Plugins");
             // var pluginsLoader = new ModulesLoader((new TmxServerRootPathProvider()).GetRootPath() + @"\Plugins", "*.dll", true);
+            // 20150626
             var pluginsLoader = new AssembliesLoader((new TmxServerRootPathProvider()).GetRootPath() + @"\Plugins", "*.dll", true);
+            // var pluginsLoader = new AssembliesLoader((new TmxServerRootPathProvider()).GetRootPath(), "*.dll", true);
             pluginsLoader.Load();
         }
 

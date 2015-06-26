@@ -78,7 +78,9 @@ namespace Tmx.Interfaces.Server
         public const string TestRunsControlPoint_relPath = "/";
         public const string TestRunsControlPoint_absPath = TestRuns_Root + TestRunsControlPoint_relPath;
         public const string TestRunsControlPoint_newDefaultTestRun = TestRunsControlPoint_relPath + "default/";
-        public const string TestRunsControlPoint_newDefaultTestRunWithParam = TestRunsControlPoint_newDefaultTestRun + "{defaultParam}";
+        public const string TestRuns_DefaultParameterName = "defaultParam";
+        // public const string TestRunsControlPoint_newDefaultTestRunWithParam = TestRunsControlPoint_newDefaultTestRun + "{defaultParam}";
+        public const string TestRunsControlPoint_newDefaultTestRunWithParam = TestRunsControlPoint_newDefaultTestRun + "{" + TestRuns_DefaultParameterName + "}";
         public const string TestRunsControlPoint_absPath_for_newDefaultTestRun = TestRuns_Root + TestRunsControlPoint_newDefaultTestRun;
         // public const string TestRunsControlPoint_newDefaultTestRun = TestRunsControlPoint_relPath + "default";
         public const string TestRuns_One_relPath = "/{id:guid}";

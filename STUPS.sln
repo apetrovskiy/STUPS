@@ -87,7 +87,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmx.Server.Web", "TMX\Tmx.S
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServerPlugins", "ServerPlugins", "{20B7E58A-BFE9-44A6-8D81-9FC35ED6DB33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmx.Server.SamplePlugin", "Tmx.Server.SamplePlugin\Tmx.Server.SamplePlugin.csproj", "{07926E46-2694-4CF6-ABBA-1FAFF099D848}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmx.Server.SamplePlugin", "TMX\ServerPlugins\Tmx.Server.SamplePlugin\Tmx.Server.SamplePlugin.csproj", "{07926E46-2694-4CF6-ABBA-1FAFF099D848}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SePSX", "SePSX", "{57FA3E71-23AF-46C5-8CC6-A38883DC682A}"
 EndProject

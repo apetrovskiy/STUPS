@@ -27,8 +27,8 @@ namespace Tmx.Interfaces.Remoting
         string[] ExpectedResult { get; set; }
         Guid WorkflowId { get; set; }
         Guid TestRunId { get; set; }
-        TimeSpan GetTimeTaken();
-        void SetTimeTaken();
+        string GetTimeTaken();
+        void SetFinishTime();
     }
     
     /*

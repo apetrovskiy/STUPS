@@ -76,6 +76,7 @@ namespace Tmx.Core.Types.Remoting
         public void SetFinishTime()
         {
             _finishTime = DateTime.Now;
+            TaskFinished = true;
         }
         
         // 20141020 squeezing a task to its proxy

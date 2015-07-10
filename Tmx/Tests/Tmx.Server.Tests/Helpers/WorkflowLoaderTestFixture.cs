@@ -125,7 +125,7 @@ namespace Tmx.Server.Tests.Helpers
             var parametersPageElement = new XElement("parametersPage", "page");
             workflowElement.Add(parametersPageElement);
             // workflowLoader.ImportXdocument(xDoc);
-            workflowLoader.ImportXdocument(xDoc, string.Empty);
+            workflowLoader.ImportXdocumentAndCreateWorkflowAndTasks(xDoc, string.Empty);
         }
         
         Guid WHEN_ImportingTasks(string path)

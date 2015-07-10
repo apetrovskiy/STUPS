@@ -33,6 +33,7 @@ namespace Tmx.Server.Tests.Modules
     {
         const string _testClientHostnameExpected = "testhost";
         const string _testClientUsernameExpected = "aaa";
+        const string _testClientHostnameAlternateExpected = "client02";
         ITestWorkflow _workflow;
         ITestRun _testRun;
         BrowserResponse response;
@@ -268,7 +269,7 @@ namespace Tmx.Server.Tests.Modules
                 registeredClient = GIVEN_Registered_TestClient_as_json(_testClientHostnameExpected, _testClientUsernameExpected);
             var actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
             
-            THEN_HttpResponse_Is_Ok(); //response);
+            THEN_HttpResponse_Is_Ok();
             THEN_TestTask_Properties_Equal_To(givenTask01, actualTask, TestTaskStatuses.Running);
             Xunit.Assert.Equal(givenTask01.Id, TaskPool.TasksForClients.OrderBy(t => t.Id).Skip(1).First().Id);
             THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == registeredClient.Id));
@@ -341,6 +342,27 @@ namespace Tmx.Server.Tests.Modules
             THEN_HttpResponse_Is_Ok();
             THEN_TestTask_Properties_Equal_To(expectedTask, actualTask, TestTaskStatuses.Running);
             THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == testClient.Id));
+        }
+        // ============================================================================================================================
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        public void Should_provide_a_task_to_two_test_clients_if_they_match_the_rule()
+        {
+            var expectedTask = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, _testClientHostnameExpected + "|" + _testClientHostnameAlternateExpected, 0);
+            var testClient01 = GIVEN_Registered_TestClient_as_json(_testClientHostnameExpected, _testClientUsernameExpected);
+            var testClient02 = GIVEN_Registered_TestClient_as_json(_testClientHostnameAlternateExpected, _testClientUsernameExpected);
+            
+            var actualTask01 = WHEN_Getting_task_as_json(testClient01.Id);
+            
+            THEN_HttpResponse_Is_Ok();
+            THEN_TestTask_Properties_Equal_To(expectedTask, actualTask01, TestTaskStatuses.Running);
+            THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == testClient01.Id));
+            
+            // TODO: refactor this
+            var actualTask02 = WHEN_Getting_task_as_json(testClient02.Id);
+            
+            THEN_HttpResponse_Is_Ok();
+            THEN_TestTask_Properties_Equal_To(expectedTask, actualTask02, TestTaskStatuses.Running);
+            THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == testClient02.Id));
         }
         // ============================================================================================================================
         ITestClient GIVEN_Registered_TestClient_as_json(string hostname, string username)

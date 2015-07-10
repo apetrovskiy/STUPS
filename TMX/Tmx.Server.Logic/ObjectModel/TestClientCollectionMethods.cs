@@ -18,12 +18,7 @@
         {
             if (!TestRunQueue.TestRuns.HasActiveTestRuns())
                 return false;
-            // TODO: bug is here
-            // TODO: improve the seleciton of a test run by matching test client to task rules
-            // testClient.TestRunId = TestRunQueue.TestRuns.ActiveTestRunIds().First();
-            
-            
-            // var activeWorkflowIds = WorkflowCollection.Workflows.Where(wfl => TestRunQueue.TestRuns.Where(tr => tr.Status == TestRunStatuses.Running).Select(tr => tr.WorkflowId).Contains(wfl.Id)).Select(wfl => wfl.Id);
+            // TODO: improve the selection of a test run by matching test client to task rules
             var activeWorkflowIds = WorkflowCollection.Workflows.ActiveWorkflows().Select(wfl => wfl.Id);
             var legitimateWorkflowIds = TaskPool.Tasks
                 .Where(task => activeWorkflowIds.Contains(task.WorkflowId) && 
@@ -35,14 +30,22 @@
                            Regex.IsMatch(testClient.OsVersion ?? string.Empty, task.Rule) ||
                            Regex.IsMatch(testClient.UserDomainName ?? string.Empty, task.Rule) ||
                            Regex.IsMatch(testClient.Username ?? string.Empty, task.Rule)
+                           /*
+                           Regex.IsMatch(task.Rule, testClient.CustomString ?? string.Empty) ||
+                           Regex.IsMatch(task.Rule, testClient.EnvironmentVersion ?? string.Empty) ||
+                           Regex.IsMatch(task.Rule, testClient.Fqdn ?? string.Empty) ||
+                           Regex.IsMatch(task.Rule, testClient.Hostname ?? string.Empty) ||
+                           Regex.IsMatch(task.Rule, testClient.OsVersion ?? string.Empty) ||
+                           Regex.IsMatch(task.Rule, testClient.UserDomainName ?? string.Empty) ||
+                           Regex.IsMatch(task.Rule, testClient.Username ?? string.Empty)
+                           */
                        ))
                 .Select(task => task.WorkflowId);
-            //if (!legitimateWorkflowIds.Any())
-            //    return false;
+            
             var workflowIds = legitimateWorkflowIds as Guid[] ?? legitimateWorkflowIds.ToArray();
             if (!workflowIds.Any())
                 return false;
-            // testClient.TestRunId = TestRunQueue.TestRuns.First(testRun => workflowIds.Contains(testRun.WorkflowId)).Id;
+            
             testClient.TestRunId = TestRunQueue.TestRuns.First(testRun => testRun.IsActive() && workflowIds.Contains(testRun.WorkflowId)).Id;
             
             ClientsCollection.Clients.Add(testClient);

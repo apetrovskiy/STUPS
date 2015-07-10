@@ -10,6 +10,7 @@
 namespace Tmx.Server.Logic.ObjectModel.Objects
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Tmx.Interfaces.Remoting;
 
     /// <summary>
@@ -22,6 +23,20 @@ namespace Tmx.Server.Logic.ObjectModel.Objects
         public static void AddWorkflow(ITestWorkflow workflow)
         {
             Workflows.Add(workflow);
+        }
+        
+        public static void MergeWorkflow(ITestWorkflow workflow)
+        {
+            // Workflows.Add(workflow);
+            var existingWorkflow = Workflows.First(wfl => wfl.Name == workflow.Name && wfl.Path == workflow.Path);
+            existingWorkflow.DefaultData = workflow.DefaultData;
+            existingWorkflow.Description = workflow.Description;
+            // existingWorkflow.Id = workflow.Id;
+            // existingWorkflow.IsDefault = 
+            existingWorkflow.ParametersPageName = workflow.ParametersPageName;
+            // existingWorkflow.TestLabId
+            
+            TaskPool.Tasks.RemoveAll(task => task.WorkflowId == existingWorkflow.Id);
         }
     }
 }

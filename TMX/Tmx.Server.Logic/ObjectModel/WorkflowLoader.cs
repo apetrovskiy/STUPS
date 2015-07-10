@@ -40,7 +40,7 @@ namespace Tmx.Server.Logic.ObjectModel
                 var pathToCopiedWorkflowFile = CopyWorkflowFileToStorage(pathToWorkflowFile);
                 // ImportXdocument(XDocument.Load(pathToCopiedWorkflowFile));
                 // ImportXdocument(pathToCopiedWorkflowFile);
-                ImportXdocument(XDocument.Load(pathToCopiedWorkflowFile), pathToCopiedWorkflowFile);
+                ImportXdocumentAndCreateWorkflowAndTasks(XDocument.Load(pathToCopiedWorkflowFile), pathToCopiedWorkflowFile);
             }
             catch (Exception eImportDocument) {
                 // TODO: AOP
@@ -95,12 +95,12 @@ namespace Tmx.Server.Logic.ObjectModel
         }
         
         // public virtual void ImportXdocument(XContainer xDocument)
-        public virtual void ImportXdocument(XContainer xDocument, string pathToWorkflowFile)
+        public virtual void ImportXdocumentAndCreateWorkflowAndTasks(XContainer xDocument, string pathToWorkflowFile)
         {
             // var workflowId = GetWorkflowId(xDocument);
             // var xDocument = XDocument.Parse(pathToWorkflowFile);
             // var workflowId = GetWorkflowId(xDocument);
-            var workflowId = GetWorkflowId(xDocument, pathToWorkflowFile);
+            var workflowId = AddWorkflowAndReturnWorkflowId(xDocument, pathToWorkflowFile);
             SetParametersPageName(xDocument);
             var tasks = from task in xDocument.Descendants(LogicConstants.WorkflowLoader_TestWorkflow_TaskNode)
                 let element = task.Element(LogicConstants.WorkflowLoader_TaskElementIsActive)
@@ -112,7 +112,7 @@ namespace Tmx.Server.Logic.ObjectModel
         }
         
         // Guid GetWorkflowId(XContainer xDocument)
-        Guid GetWorkflowId(XContainer xDocument, string pathToWorkflowFile)
+        Guid AddWorkflowAndReturnWorkflowId(XContainer xDocument, string pathToWorkflowFile)
         {
             var workflowElement = xDocument.Descendants(LogicConstants.WorkflowLoader_TestWorkflow_WorkflowNode).FirstOrDefault();
             if (null == workflowElement)
@@ -135,7 +135,18 @@ namespace Tmx.Server.Logic.ObjectModel
 
             // _workflow = new TestWorkflow(testLab) { Name = name };
             _workflow = new TestWorkflow(testLab) { Name = name, Path = pathToWorkflowFile};
-            WorkflowCollection.AddWorkflow(_workflow);
+            // 20150708
+            // if there already is a workflow with the same name
+            // merge the new one with the existing
+            bool replace = false || WorkflowCollection.Workflows.Any(wfl => wfl.Name == _workflow.Name && wfl.Path == _workflow.Path);
+            
+            if (replace)
+                WorkflowCollection.MergeWorkflow(_workflow);
+            else
+                WorkflowCollection.AddWorkflow(_workflow);
+            
+            // 20150708
+            // WorkflowCollection.AddWorkflow(_workflow);
             ServerObjectFactory.Resolve<TestWorkflowCollectionMethods>().SetDefaultWorkflow();
             return _workflow.Id;
         }

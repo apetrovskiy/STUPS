@@ -55,6 +55,19 @@ namespace Tmx.Server.Logic.ObjectModel
                                         Regex.IsMatch(client.OsVersion ?? string.Empty, task.Rule) ||
                                         Regex.IsMatch(client.UserDomainName ?? string.Empty, task.Rule) ||
                                         Regex.IsMatch(client.Username ?? string.Empty, task.Rule))
+                                        /*
+                                        (Regex.IsMatch(task.Rule, client.CustomString ?? string.Empty) ||
+                                        Regex.IsMatch(task.Rule, client.EnvironmentVersion ?? string.Empty) ||
+                                        Regex.IsMatch(task.Rule, client.Fqdn ?? string.Empty) ||
+                                        Regex.IsMatch(task.Rule, client.Hostname ?? string.Empty) ||
+                                        // task.Rule == client.IsAdmin.ToString() ||
+                                        // task.Rule == client.IsInteractive.ToString() ||
+                                        // Regex.IsMatch(client.OsEdition ?? string.Empty, task.Rule) ||
+                                        // Regex.IsMatch(client.OsName ?? string.Empty, task.Rule) ||
+                                        Regex.IsMatch(task.Rule, client.OsVersion ?? string.Empty) ||
+                                        Regex.IsMatch(task.Rule, client.UserDomainName ?? string.Empty) ||
+                                        Regex.IsMatch(task.Rule, client.Username ?? string.Empty))
+                                        */
             ).Select(t => {
                 var newTask = t.CloneTaskForNewTestClient();
                 newTask.ClientId = clientId;

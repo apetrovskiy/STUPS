@@ -9,8 +9,8 @@
 
 namespace Tmx.Interfaces
 {
-    using Tmx.Interfaces.TestStructure;
-    
+    using TestStructure;
+
     /// <summary>
     /// Description of IOpenScenarioCmdletBaseDataObject.
     /// </summary>

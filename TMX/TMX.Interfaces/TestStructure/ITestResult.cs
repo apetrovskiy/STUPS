@@ -12,7 +12,7 @@ namespace Tmx.Interfaces.TestStructure
     using System;
     using System.Collections.Generic;
     using System.Xml.Serialization;
-    
+
     /// <summary>
     /// Description of ITestResult.
     /// </summary>
@@ -32,7 +32,9 @@ namespace Tmx.Interfaces.TestStructure
         [XmlAttribute]
         string Status { get; }
         [XmlAttribute]
-        TestResultStatuses enStatus { get; set; }
+        // 20150805
+        // TestResultStatuses enStatus { get; set; }
+        TestStatuses enStatus { get; set; }
         
         [XmlAttribute]
         string ScriptName { get; }
@@ -86,7 +88,9 @@ namespace Tmx.Interfaces.TestStructure
         TestResultOrigins Origin { get; }
         void SetOrigin(TestResultOrigins origin);
         
-        object[] ListDetailNames(TestResultStatuses status);
+        // 20150805
+        // object[] ListDetailNames(TestResultStatuses status);
+        object[] ListDetailNames(TestStatuses status);
         
         [XmlAttribute]
         string PlatformId { get; set; }

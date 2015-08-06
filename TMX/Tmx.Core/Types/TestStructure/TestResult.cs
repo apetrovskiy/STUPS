@@ -31,7 +31,9 @@ namespace Tmx.Interfaces
         {
             UniqueId = Guid.NewGuid();
             Details = new List<ITestResultDetail>();
-            enStatus = TestResultStatuses.NotTested;
+            // 20150805
+            // enStatus = TestResultStatuses.NotTested;
+            enStatus = TestStatuses.NotTested;
             
             // scenarioId and suiteId
             ScenarioId = testScenarioId;
@@ -102,29 +104,41 @@ namespace Tmx.Interfaces
 
         string status;
         [XmlAttribute]
-        public virtual string Status { get { return this.status; } }
-        TestResultStatuses _enStatus;
+        public virtual string Status { get { return status; } }
+        // 20150805
+        // TestResultStatuses _enStatus;
+        TestStatuses _enStatus;
         private string _messageOnSuccess;
         private string _messageOnFail;
 
         [XmlAttribute]
-        public virtual TestResultStatuses enStatus
+        // 20150805
+        // public virtual TestResultStatuses enStatus
+        public virtual TestStatuses enStatus
         { 
             get { return _enStatus; }
             set{
                 _enStatus = value;
                 
                 switch (value) {
-                    case TestResultStatuses.Passed:
+                    // 20150805
+                    // case TestResultStatuses.Passed:
+                    case TestStatuses.Passed:
                         status = TestData.TestStatePassed;
                         break;
-                    case TestResultStatuses.Failed:
+                    // 20150805
+                    // case TestResultStatuses.Failed:
+                    case TestStatuses.Failed:
                         status = TestData.TestStateFailed;
                         break;
-                    case TestResultStatuses.NotTested:
+                    // 20150805
+                    // case TestResultStatuses.NotTested:
+                    case TestStatuses.NotTested:
                         status = TestData.TestStateNotTested;
                         break;
-                    case TestResultStatuses.KnownIssue:
+                    // 20150805
+                    // case TestResultStatuses.KnownIssue:
+                    case TestStatuses.KnownIssue:
                         status = TestData.TestStateKnownIssue;
                         break;
                     default:
@@ -178,7 +192,7 @@ namespace Tmx.Interfaces
         public virtual TestResultOrigins Origin { get; protected internal set; }
         public virtual void SetOrigin(TestResultOrigins origin)
         {
-            if (TestResultOrigins.Logical == this.Origin) {
+            if (TestResultOrigins.Logical == Origin) {
                 
                 // don't change the origin - it already was logical
             } else {
@@ -247,17 +261,21 @@ namespace Tmx.Interfaces
 //            
 //            return detailsList;
 //        }
-        
-        public virtual object[] ListDetailNames(TestResultStatuses status)
+
+        // 20150805
+        // public virtual object[] ListDetailNames(TestResultStatuses status)
+        public virtual object[] ListDetailNames(TestStatuses status)
         {
             ITestResultDetail[] detailsList = null;
             
-            if (null == this.Details || 0 == this.Details.Count) return detailsList;
-            
-            if (TestResultStatuses.NotTested == status) {
+            if (null == Details || 0 == Details.Count) return detailsList;
+
+            // 20150805
+            // if (TestResultStatuses.NotTested == status) {
+            if (TestStatuses.NotTested == status) {
                     
                 var testResultDetailsNonFiltered = 
-                    from detail in this.Details
+                    from detail in Details
                     select detail;
                     
                 try {
@@ -268,8 +286,10 @@ namespace Tmx.Interfaces
             } else {
                     
                 var testResultDetailFiltered =
-                    from detail in this.Details
-                    where detail.DetailStatus == TestResultStatuses.Failed || detail.DetailStatus == TestResultStatuses.KnownIssue
+                    from detail in Details
+                    // 20150805
+                    // where detail.DetailStatus == TestResultStatuses.Failed || detail.DetailStatus == TestResultStatuses.KnownIssue
+                    where detail.DetailStatus == TestStatuses.Failed || detail.DetailStatus == TestStatuses.KnownIssue
                     select detail;
                     
                 try {

@@ -10,9 +10,7 @@
 namespace Tmx.Interfaces.Remoting
 {
     using System;
-    using System.Collections.Generic;
-    using Tmx.Interfaces.TestStructure;
-    
+
     /// <summary>
     /// Description of IWorkflow.
     /// </summary>

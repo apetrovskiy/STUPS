@@ -11,9 +11,9 @@ namespace Tmx.Interfaces
 {
     using System;
     using Remoting;
-    // using System.Management.Automation;
-    using Tmx.Interfaces.TestStructure;
-    
+    using TestStructure;
+// using System.Management.Automation;
+
     /// <summary>
     /// Description of AddScenarioCmdletBaseDataObject.
     /// </summary>

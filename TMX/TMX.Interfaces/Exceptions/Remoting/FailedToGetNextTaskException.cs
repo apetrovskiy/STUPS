@@ -6,11 +6,12 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-using System;
-using System.Runtime.Serialization;
 
 namespace Tmx.Interfaces.Exceptions
 {
+    using System;
+    using System.Runtime.Serialization;
+
     /// <summary>
     /// Desctiption of FailedToGetNextTaskException.
     /// </summary>

@@ -20,7 +20,7 @@ namespace Tmx
     using NHibernate.Dialect;
     using NHibernate.Driver;
     using System.Collections;
-    using Tmx.Interfaces;
+    using Interfaces;
     
     /// <summary>
     /// Description of StorageHelper.

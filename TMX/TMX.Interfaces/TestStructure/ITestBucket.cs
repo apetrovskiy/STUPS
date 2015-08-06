@@ -9,8 +9,6 @@
 
 namespace Tmx.Interfaces
 {
-    using System;
-    
     /// <summary>
     /// Description of ITestBucket.
     /// </summary>

@@ -13,7 +13,7 @@ namespace Tmx.Interfaces.Remoting
     using System.Collections.Generic;
     using Actions;
     using TestStructure;
-    
+
     /// <summary>
     /// Description of ITestRun.
     /// </summary>
@@ -37,5 +37,6 @@ namespace Tmx.Interfaces.Remoting
         List<IAction> AfterActions { get; set; }
         List<IAction> CancelActions { get; set; }
         List<IAction> FailureActions { get; set; }
+        TestStatuses TestStatus { get; }
     }
 }

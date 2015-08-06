@@ -11,7 +11,7 @@ namespace Tmx
 {
     using System;
     using System.Collections.Generic;
-    using Tmx.Interfaces.Remoting;
+    using Interfaces.Remoting;
     
     /// <summary>
     /// Description of TestTaskAction.

@@ -16,10 +16,10 @@ namespace Tmx
     using System.Collections.Generic;
     using System.Xml.Linq;
     using Interfaces.Remoting;
-    using Tmx.Core;
+    using Core;
 //    using System.Reflection;
-    using Tmx.Interfaces;
-    using Tmx.Interfaces.TestStructure;
+    using Interfaces;
+    using Interfaces.TestStructure;
     // using Tmx.Core;
     
     //using System.Data.SqlTypes;
@@ -395,19 +395,27 @@ namespace Tmx
 //                    }));
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterPassed) {
-                query = suite => suite.enStatus == TestSuiteStatuses.Passed;
+                // 20150805
+                // query = suite => suite.enStatus == TestSuiteStatuses.Passed;
+                query = suite => suite.enStatus == TestStatuses.Passed;
                 //queriesList.Add((suite => suite.enStatus == TestSuiteStatuses.Passed));
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterFailed) {
-                query = suite => suite.enStatus == TestSuiteStatuses.Failed;
+                // 20150805
+                // query = suite => suite.enStatus == TestSuiteStatuses.Failed;
+                query = suite => suite.enStatus == TestStatuses.Failed;
                 //queriesList.Add((suite => suite.enStatus == TestSuiteStatuses.Failed));
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterNotTested) {
-                query = suite => suite.enStatus == TestSuiteStatuses.NotTested;
+                // 20150805
+                // query = suite => suite.enStatus == TestSuiteStatuses.NotTested;
+                query = suite => suite.enStatus == TestStatuses.NotTested;
                 //queriesList.Add((suite => suite.enStatus == TestSuiteStatuses.NotTested));
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterPassedWithBadSmell) {
-                query = suite => suite.enStatus == TestSuiteStatuses.KnownIssue;
+                // 20150805
+                // query = suite => suite.enStatus == TestSuiteStatuses.KnownIssue;
+                query = suite => suite.enStatus == TestStatuses.KnownIssue;
                 //queriesList.Add((suite => suite.enStatus == TestSuiteStatuses.KnownIssue));
                 cmdlet.FilterAll = false;
             }
@@ -531,16 +539,24 @@ namespace Tmx
                 //};
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterPassed) {
-                query = scenario => scenario.enStatus == TestScenarioStatuses.Passed;
+                // 20150805
+                // query = scenario => scenario.enStatus == TestScenarioStatuses.Passed;
+                query = scenario => scenario.enStatus == TestStatuses.Passed;
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterFailed) {
-                query = scenario => scenario.enStatus == TestScenarioStatuses.Failed;
+                // 20150805
+                // query = scenario => scenario.enStatus == TestScenarioStatuses.Failed;
+                query = scenario => scenario.enStatus == TestStatuses.Failed;
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterNotTested) {
-                query = scenario => scenario.enStatus == TestScenarioStatuses.NotTested;
+                // 20150805
+                // query = scenario => scenario.enStatus == TestScenarioStatuses.NotTested;
+                query = scenario => scenario.enStatus == TestStatuses.NotTested;
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterPassedWithBadSmell) {
-                query = scenario => scenario.enStatus == TestScenarioStatuses.KnownIssue;
+                // 20150805
+                // query = scenario => scenario.enStatus == TestScenarioStatuses.KnownIssue;
+                query = scenario => scenario.enStatus == TestStatuses.KnownIssue;
                 cmdlet.FilterAll = false;
             }
             if (cmdlet.FilterAll) {
@@ -661,16 +677,24 @@ namespace Tmx
 
                 // dataObject.FilterAll = false;
             else if (dataObject.FilterPassed)
-                query = testResult => testResult.enStatus == TestResultStatuses.Passed;
+                // 20150805
+                // query = testResult => testResult.enStatus == TestResultStatuses.Passed;
+                query = testResult => testResult.enStatus == TestStatuses.Passed;
                 // dataObject.FilterAll = false;
             else if (dataObject.FilterFailed)
-                query = testResult => testResult.enStatus == TestResultStatuses.Failed;
+                // 20150805
+                // query = testResult => testResult.enStatus == TestResultStatuses.Failed;
+                query = testResult => testResult.enStatus == TestStatuses.Failed;
                 // dataObject.FilterAll = false;
             else if (dataObject.FilterNotTested)
-                query = testResult => testResult.enStatus == TestResultStatuses.NotTested;
+                // 20150805
+                // query = testResult => testResult.enStatus == TestResultStatuses.NotTested;
+                query = testResult => testResult.enStatus == TestStatuses.NotTested;
                 // dataObject.FilterAll = false;
             else if (dataObject.FilterPassedWithBadSmell)
-                query = testResult => testResult.enStatus == TestResultStatuses.KnownIssue;
+                // 20150805
+                // query = testResult => testResult.enStatus == TestResultStatuses.KnownIssue;
+                query = testResult => testResult.enStatus == TestStatuses.KnownIssue;
                 // dataObject.FilterAll = false;
             else if (dataObject.FilterOutAutomaticResults)
                 query = testResult => testResult.Origin != TestResultOrigins.Automatic;
@@ -766,7 +790,7 @@ namespace Tmx
         
         public static string GetTestSuiteStatusByName(string name, Guid testPlatformId, bool skipAutomatic)
         {
-            TmxHelper.OpenTestSuite(
+            OpenTestSuite(
                 name,
                 string.Empty,
                 testPlatformId);
@@ -778,7 +802,7 @@ namespace Tmx
         
         public static string GetTestSuiteStatusById(string id, Guid testPlatformId, bool skipAutomatic)
         {
-            TmxHelper.OpenTestSuite(
+            OpenTestSuite(
                 string.Empty,
                 id,
                 testPlatformId);
@@ -798,7 +822,7 @@ namespace Tmx
         
         public static string GetTestScenarioStatus(IOpenScenarioCmdletBaseDataObject dataObject, bool skipAutomatic)
         {
-            TmxHelper.OpenTestScenario(dataObject);
+            OpenTestScenario(dataObject);
             if (null == TestData.CurrentTestScenario) return string.Empty;
             var testStatistics = new TestStatistics();
             testStatistics.RefreshScenarioStatistics(TestData.CurrentTestScenario, skipAutomatic);
@@ -818,11 +842,15 @@ namespace Tmx
                 
                 if (!string.IsNullOrEmpty(cmdlet.Description))
                     TestData.CurrentTestResult.Description = cmdlet.Description;
-                
-                TestData.CurrentTestResult.enStatus = TestResultStatuses.NotTested;
+
+                // 20150805
+                // TestData.CurrentTestResult.enStatus = TestResultStatuses.NotTested;
+                TestData.CurrentTestResult.enStatus = TestStatuses.NotTested;
 
                 if (cmdlet.KnownIssue)
-                    TestData.CurrentTestResult.enStatus = TestResultStatuses.KnownIssue;
+                    // 20150805
+                    // TestData.CurrentTestResult.enStatus = TestResultStatuses.KnownIssue;
+                    TestData.CurrentTestResult.enStatus = TestStatuses.KnownIssue;
                 
                 TestData.CurrentTestResult.SetOrigin(cmdlet.TestOrigin);
 

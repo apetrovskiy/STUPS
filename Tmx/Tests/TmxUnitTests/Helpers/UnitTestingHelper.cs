@@ -161,24 +161,32 @@ namespace TmxUnitTests
         }
         
         // more parameters!
-        internal static ITestResult CloseTestResult(TestResultStatuses codeStatus, bool logicStatus)
+        // 20150805
+        // internal static ITestResult CloseTestResult(TestResultStatuses codeStatus, bool logicStatus)
+        internal static ITestResult CloseTestResult(TestStatuses codeStatus, bool logicStatus)
         {
             GetNewTestSuite("name", "id", "description");
             var cmdlet = new CloseTmxTestResultCommand();
             cmdlet.TestResultName = "test result";
 
             switch (codeStatus) {
-                case TestResultStatuses.Passed:
+                // 20150805
+                // case TestResultStatuses.Passed:
+                case TestStatuses.Passed:
                     cmdlet.TestPassed = true;
                     // 20140715
                     // cmdlet.TestResultStatus = TestResultStatuses.Passed;
                     break;
-                case TestResultStatuses.Failed:
+                // 20150805
+                // case TestResultStatuses.Failed:
+                case TestStatuses.Failed:
                     cmdlet.TestPassed = false;
                     // 20140715
                     // cmdlet.TestResultStatus = TestResultStatuses.Failed;
                     break;
-                case TestResultStatuses.NotTested:
+                // 20150805
+                // case TestResultStatuses.NotTested:
+                case TestStatuses.NotTested:
                     // nothing to do
                     break;
 //                case TestResultStatuses.KnownIssue:

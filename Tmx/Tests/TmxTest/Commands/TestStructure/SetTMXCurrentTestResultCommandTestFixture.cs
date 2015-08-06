@@ -102,7 +102,9 @@ namespace TmxTest.Commands.TestStructure
         public void SetTmxCurrentTestResult_TestResultStatus()
         {
             const string testResultName = "result1";
-            const TestResultStatuses expectedTestResultStatus = TestResultStatuses.NotTested;
+            // 20150805
+            // const TestResultStatuses expectedTestResultStatus = TestResultStatuses.NotTested;
+            const TestStatuses expectedTestResultStatus = TestStatuses.NotTested;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name " + 
                 testResultName + 
@@ -119,7 +121,9 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_TestResultStatus_NotTested()
         {
-            const TestResultStatuses expectedTestResultStatus = TestResultStatuses.NotTested;
+            // 20150805
+            // const TestResultStatuses expectedTestResultStatus = TestResultStatuses.NotTested;
+            const TestStatuses expectedTestResultStatus = TestStatuses.NotTested;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus NotTested; " +
@@ -133,7 +137,9 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_TestResultStatus_Passed()
         {
-            const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Passed;
+            // 20150805
+            // const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Passed;
+            const TestStatuses expectedTestResultStatus = TestStatuses.Passed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Passed; " +
@@ -147,7 +153,9 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_TestResultStatus_Failed()
         {
-            const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
+            // 20150805
+            // const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
+            const TestStatuses expectedTestResultStatus = TestStatuses.Failed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Failed; " +
@@ -161,7 +169,9 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_TestResultStatus_KnownIssue()
         {
-            const TestResultStatuses expectedTestResultStatus = TestResultStatuses.KnownIssue;
+            // 20150805
+            // const TestResultStatuses expectedTestResultStatus = TestResultStatuses.KnownIssue;
+            const TestStatuses expectedTestResultStatus = TestStatuses.KnownIssue;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus KnownIssue; " +
@@ -177,7 +187,9 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_CloseTmxTestResult_TestResultStatus_ImplicitlyFailed()
         {
-            const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
+            // 20150805
+            // const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
+            const TestStatuses expectedTestResultStatus = TestStatuses.Failed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 //@"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus NotTested; " +
@@ -193,7 +205,9 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_CloseTmxTestResult_TestResultStatus_Passed()
         {
-            const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Passed;
+            // 20150805
+            // const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Passed;
+            const TestStatuses expectedTestResultStatus = TestStatuses.Passed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 //@"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Passed; " +
@@ -209,7 +223,9 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_CloseTmxTestResult_TestResultStatus_Failed()
         {
-            const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
+            // 20150805
+            // const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
+            const TestStatuses expectedTestResultStatus = TestStatuses.Failed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 //@"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Failed; " +
@@ -225,7 +241,9 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_CloseTmxTestResult_TestResultStatus_KnownIssue()
         {
-            const TestResultStatuses expectedTestResultStatus = TestResultStatuses.KnownIssue;
+            // 20150805
+            // const TestResultStatuses expectedTestResultStatus = TestResultStatuses.KnownIssue;
+            const TestStatuses expectedTestResultStatus = TestStatuses.KnownIssue;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 //@"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus KnownIssue; " +
@@ -243,7 +261,9 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_NotTested_Passed()
         {
-            const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Passed;
+            // 20150805
+            // const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Passed;
+            const TestStatuses expectedTestResultStatus = TestStatuses.Passed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus NotTested; " +
@@ -258,7 +278,9 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_NotTested_Failed()
         {
-            const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
+            // 20150805
+            // const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
+            const TestStatuses expectedTestResultStatus = TestStatuses.Failed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus NotTested; " +
@@ -273,7 +295,9 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_NotTested_KnownIssue()
         {
-            const TestResultStatuses expectedTestResultStatus = TestResultStatuses.KnownIssue;
+            // 20150805
+            // const TestResultStatuses expectedTestResultStatus = TestResultStatuses.KnownIssue;
+            const TestStatuses expectedTestResultStatus = TestStatuses.KnownIssue;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus NotTested; " +
@@ -288,7 +312,9 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_Passed_Passed()
         {
-            const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Passed;
+            // 20150805
+            // const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Passed;
+            const TestStatuses expectedTestResultStatus = TestStatuses.Passed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Passed; " +
@@ -303,7 +329,9 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_Passed_Failed()
         {
-            const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
+            // 20150805
+            // const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
+            const TestStatuses expectedTestResultStatus = TestStatuses.Failed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Passed; " +
@@ -318,7 +346,9 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_Passed_KnownIssue()
         {
-            const TestResultStatuses expectedTestResultStatus = TestResultStatuses.KnownIssue;
+            // 20150805
+            // const TestResultStatuses expectedTestResultStatus = TestResultStatuses.KnownIssue;
+            const TestStatuses expectedTestResultStatus = TestStatuses.KnownIssue;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Passed; " +
@@ -333,7 +363,9 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_Failed_Passed()
         {
-            const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Passed;
+            // 20150805
+            // const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Passed;
+            const TestStatuses expectedTestResultStatus = TestStatuses.Passed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Failed; " +
@@ -348,7 +380,9 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_Failed_Failed()
         {
-            const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
+            // 20150805
+            // const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
+            const TestStatuses expectedTestResultStatus = TestStatuses.Failed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Failed; " +
@@ -363,7 +397,9 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_Failed_KnownIssue()
         {
-            const TestResultStatuses expectedTestResultStatus = TestResultStatuses.KnownIssue;
+            // 20150805
+            // const TestResultStatuses expectedTestResultStatus = TestResultStatuses.KnownIssue;
+            const TestStatuses expectedTestResultStatus = TestStatuses.KnownIssue;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Failed; " +
@@ -378,7 +414,9 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_KnownIssue_Passed()
         {
-            const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Passed;
+            // 20150805
+            // const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Passed;
+            const TestStatuses expectedTestResultStatus = TestStatuses.Passed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus KnownIssue; " +
@@ -393,7 +431,9 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_KnownIssue_Failed()
         {
-            const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
+            // 20150805
+            // const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
+            const TestStatuses expectedTestResultStatus = TestStatuses.Failed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus KnownIssue; " +
@@ -408,7 +448,9 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_KnownIssue_KnownIssue()
         {
-            const TestResultStatuses expectedTestResultStatus = TestResultStatuses.KnownIssue;
+            // 20150805
+            // const TestResultStatuses expectedTestResultStatus = TestResultStatuses.KnownIssue;
+            const TestStatuses expectedTestResultStatus = TestStatuses.KnownIssue;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus KnownIssue; " +
@@ -429,7 +471,9 @@ namespace TmxTest.Commands.TestStructure
         {
             // 20130408
             //TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
-            const TestResultStatuses expectedTestResultStatus = TestResultStatuses.NotTested;
+            // 20150805
+            // const TestResultStatuses expectedTestResultStatus = TestResultStatuses.NotTested;
+            const TestStatuses expectedTestResultStatus = TestStatuses.NotTested;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus NotTested; " +
@@ -444,7 +488,9 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_SetTmxCurrentTestResult_TestResultStatus_Passed()
         {
-            const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Passed;
+            // 20150805
+            // const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Passed;
+            const TestStatuses expectedTestResultStatus = TestStatuses.Passed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Passed; " +
@@ -459,7 +505,9 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_SetTmxCurrentTestResult_TestResultStatus_Failed()
         {
-            const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
+            // 20150805
+            // const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
+            const TestStatuses expectedTestResultStatus = TestStatuses.Failed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus Failed; " +
@@ -474,7 +522,9 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_SetTmxCurrentTestResult_TestResultStatus_KnownIssue()
         {
-            const TestResultStatuses expectedTestResultStatus = TestResultStatuses.KnownIssue;
+            // 20150805
+            // const TestResultStatuses expectedTestResultStatus = TestResultStatuses.KnownIssue;
+            const TestStatuses expectedTestResultStatus = TestStatuses.KnownIssue;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
                 @"Add-TmxTestResultDetail 'TestResultDetailCmdletBase 01' -TestResultStatus KnownIssue; " +

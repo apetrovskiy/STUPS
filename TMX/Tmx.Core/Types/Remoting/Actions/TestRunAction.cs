@@ -10,7 +10,7 @@
 namespace Tmx.Core.Types.Remoting.Actions
 {
     using System;
-    using Tmx.Interfaces.Remoting.Actions;
+    using Interfaces.Remoting.Actions;
     
     /// <summary>
     /// Description of TestRunAction.

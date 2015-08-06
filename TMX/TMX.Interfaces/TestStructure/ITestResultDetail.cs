@@ -29,7 +29,9 @@ namespace Tmx.Interfaces.TestStructure
         object GetDetail();
         
         [XmlAttribute]
-        TestResultStatuses DetailStatus { get; set; }
+        // 20150805
+        // TestResultStatuses DetailStatus { get; set; }
+        TestStatuses DetailStatus { get; set; }
         
         [XmlAttribute]
         TestResultDetailTypes DetailType { get; set; }

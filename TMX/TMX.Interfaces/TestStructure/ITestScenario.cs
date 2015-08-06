@@ -11,9 +11,9 @@ namespace Tmx.Interfaces.TestStructure
 {
     using System;
     using System.Collections.Generic;
-    // using System.Management.Automation;
     using System.Xml.Serialization;
     using Remoting;
+// using System.Management.Automation;
 
     /// <summary>
     /// Description of ITestScenario.
@@ -71,7 +71,9 @@ namespace Tmx.Interfaces.TestStructure
         [XmlIgnore]
         TestStat Statistics { get; set; }
         [XmlAttribute]
-        TestScenarioStatuses enStatus { get; set; }
+        // 20150805
+        // TestScenarioStatuses enStatus { get; set; }
+        TestStatuses enStatus { get; set; }
         
         int GetAll();
         int GetPassed();

@@ -9,7 +9,6 @@
 
 namespace Tmx.Interfaces.TestStructure
 {
-    using System;
     using Remoting;
 
     // using System.Management.Automation;

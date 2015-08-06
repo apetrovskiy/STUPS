@@ -9,11 +9,6 @@
 
 namespace Tmx.Interfaces.Remoting
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Xml.Linq;
-    using Tmx.Interfaces.TestStructure;
-    
     /// <summary>
     /// Description of ITestResultsDataObject.
     /// </summary>

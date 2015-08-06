@@ -9,8 +9,6 @@
 
 namespace Tmx.Interfaces.Server
 {
-    using System;
-    
     /// <summary>
     /// Description of UrlList.
     /// </summary>

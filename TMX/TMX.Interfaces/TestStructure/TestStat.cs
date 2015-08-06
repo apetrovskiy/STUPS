@@ -10,7 +10,7 @@
 namespace Tmx.Interfaces
 {
     using System;
-    
+
     /// <summary>
     /// Description of TestStat.
     /// </summary>
@@ -41,7 +41,7 @@ namespace Tmx.Interfaces
         public bool Equals(TestStat other)
         {
             // add comparisions for all members here
-            return this.member == other.member;
+            return member == other.member;
         }
         
         public override int GetHashCode()

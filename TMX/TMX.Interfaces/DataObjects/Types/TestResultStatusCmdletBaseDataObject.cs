@@ -9,8 +9,8 @@
 
 namespace Tmx.Interfaces
 {
-    using Tmx.Interfaces.TestStructure;
-    
+    using TestStructure;
+
     /// <summary>
     /// Description of TestResultStatusCmdletBaseDataObject.
     /// </summary>
@@ -19,7 +19,9 @@ namespace Tmx.Interfaces
         public string Id { get; set; }
         
 //        public string TestResultName { get; set; }
-        public TestResultStatuses TestResultStatus { get; set; }
+        // 20150805
+        // public TestResultStatuses TestResultStatus { get; set; }
+        public TestStatuses TestResultStatus { get; set; }
 //        public new SwitchParameter TestPassed { get; set; }
 //        public new SwitchParameter KnownIssue { get; set; }
 //        public string Description { get; set; }

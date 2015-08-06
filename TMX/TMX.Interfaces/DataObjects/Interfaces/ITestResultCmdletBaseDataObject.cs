@@ -7,9 +7,10 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using Tmx.Interfaces.TestStructure;
 namespace Tmx.Interfaces
 {
+    using TestStructure;
+
     /// <summary>
     /// Description of ITestResultCmdletBaseDataObject.
     /// </summary>

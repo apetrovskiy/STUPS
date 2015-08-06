@@ -64,7 +64,9 @@ namespace TmxUnitTests.Commands.Status
         {
             const string expectedResult = TestData.TestStatePassed;
 
-            UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, false);
+            // 20150805
+            // UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, false);
+            UnitTestingHelper.CloseTestResult(TestStatuses.Passed, false);
 
             MbUnit.Framework.Assert.AreEqual(
                 expectedResult,
@@ -77,7 +79,9 @@ namespace TmxUnitTests.Commands.Status
         public void GetTestScenario_Current_WithFailed()
         {
             const string expectedResult = TestData.TestStateFailed;
-            UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, false);
+            // 20150805
+            // UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, false);
+            UnitTestingHelper.CloseTestResult(TestStatuses.Failed, false);
             MbUnit.Framework.Assert.AreEqual(
                 expectedResult,
                 UnitTestingHelper.GetTestScenarioStatus(true));
@@ -90,7 +94,9 @@ namespace TmxUnitTests.Commands.Status
         {
             // Passed -> KnownIssue
             const string expectedResult = TestData.TestStateKnownIssue;
-            UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, true);
+            // 20150805
+            // UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, true);
+            UnitTestingHelper.CloseTestResult(TestStatuses.Passed, true);
             MbUnit.Framework.Assert.AreEqual(
                 expectedResult,
                 UnitTestingHelper.GetTestScenarioStatus(true));
@@ -104,8 +110,10 @@ namespace TmxUnitTests.Commands.Status
             // KnownIssue supersedes the Failed status.
             
             const string expectedResult = TestData.TestStateKnownIssue;
-            
-            UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, true);
+
+            // 20150805
+            // UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, true);
+            UnitTestingHelper.CloseTestResult(TestStatuses.Failed, true);
             MbUnit.Framework.Assert.AreEqual(
                 expectedResult,
                 UnitTestingHelper.GetTestScenarioStatus(true));

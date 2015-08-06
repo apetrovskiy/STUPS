@@ -9,8 +9,6 @@
 
 namespace Tmx.Interfaces.Remoting
 {
-    using System;
-    
     /// <summary>
     /// Description of ITestWorkflow.
     /// </summary>

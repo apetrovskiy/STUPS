@@ -13,10 +13,10 @@ namespace Tmx.Core
     using System.Collections.Generic;
     using System.Linq;
     using System.Xml.Linq;
-    using Tmx.Interfaces;
-    using Tmx.Interfaces.Remoting;
-    using Tmx.Interfaces.TestStructure;
-    using Tmx.Core.Types.Remoting;
+    using Interfaces;
+    using Interfaces.Remoting;
+    using Interfaces.TestStructure;
+    using Types.Remoting;
     
     /// <summary>
     /// Description of TestResultsExporter.

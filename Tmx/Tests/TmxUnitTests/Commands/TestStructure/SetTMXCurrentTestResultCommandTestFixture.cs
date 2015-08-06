@@ -118,7 +118,9 @@ namespace TmxUnitTests.Commands.TestStructure
             const string expectedStatus = TestData.TestStateNotTested;
             const string expectedName = "test result name";
 
-            UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, false);
+            // 20150805
+            // UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, false);
+            UnitTestingHelper.CloseTestResult(TestStatuses.Passed, false);
             UnitTestingHelper.SetTestResult(expectedName, null);
 
             MbUnit.Framework.Assert.AreEqual(
@@ -136,7 +138,9 @@ namespace TmxUnitTests.Commands.TestStructure
             const string expectedStatus = TestData.TestStateNotTested;
             const string expectedName = "test result name";
 
-            UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, false);
+            // 20150805
+            // UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, false);
+            UnitTestingHelper.CloseTestResult(TestStatuses.Failed, false);
             UnitTestingHelper.SetTestResult(expectedName, null);
 
             MbUnit.Framework.Assert.AreEqual(
@@ -151,7 +155,9 @@ namespace TmxUnitTests.Commands.TestStructure
         {
             const string expectedName = "test result name";
 
-            UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, false);
+            // 20150805
+            // UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, false);
+            UnitTestingHelper.CloseTestResult(TestStatuses.Passed, false);
             UnitTestingHelper.SetTestResult(expectedName, null);
 
             MbUnit.Framework.Assert.AreEqual(
@@ -169,7 +175,9 @@ namespace TmxUnitTests.Commands.TestStructure
             const string expectedName = "test result name";
 
             UnitTestingHelper.SetTestResult(expectedName, null);
-            UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, false);
+            // 20150805
+            // UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, false);
+            UnitTestingHelper.CloseTestResult(TestStatuses.Passed, false);
 
             MbUnit.Framework.Assert.AreEqual(
                 expectedName,
@@ -185,7 +193,9 @@ namespace TmxUnitTests.Commands.TestStructure
             const string expectedName = "test result name";
 
             UnitTestingHelper.SetTestResult(expectedName, null);
-            UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, false);
+            // 20150805
+            // UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, false);
+            UnitTestingHelper.CloseTestResult(TestStatuses.Passed, false);
 
             MbUnit.Framework.Assert.AreEqual(
                 expectedStatus,
@@ -201,7 +211,9 @@ namespace TmxUnitTests.Commands.TestStructure
             const string expectedName = "test result name";
 
             UnitTestingHelper.SetTestResult(expectedName, null);
-            UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, false);
+            // 20150805
+            // UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, false);
+            UnitTestingHelper.CloseTestResult(TestStatuses.Failed, false);
 
             MbUnit.Framework.Assert.AreEqual(
                 expectedStatus,

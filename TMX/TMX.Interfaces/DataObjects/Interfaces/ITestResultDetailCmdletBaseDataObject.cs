@@ -9,14 +9,16 @@
 
 namespace Tmx.Interfaces
 {
-    using Tmx.Interfaces.TestStructure;
-    
+    using TestStructure;
+
     /// <summary>
     /// Description of ITestResultDetailCmdletBaseDataObject.
     /// </summary>
     public interface ITestResultDetailCmdletBaseDataObject : ICommonDataObject
     {
-        TestResultStatuses TestResultStatus { get; set; }
+        // 20150805
+        // TestResultStatuses TestResultStatus { get; set; }
+        TestStatuses TestResultStatus { get; set; }
         bool Finished { get; set; }
     }
 }

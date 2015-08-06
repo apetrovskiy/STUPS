@@ -64,7 +64,9 @@ namespace TmxUnitTests.Commands.Status
         {
             const string expectedResult = TestData.TestStatePassed;
 
-            UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, false);
+            // 20150805
+            // UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, false);
+            UnitTestingHelper.CloseTestResult(TestStatuses.Passed, false);
 Console.WriteLine("suite -> " + TestData.CurrentTestSuite.Status);
 Console.WriteLine("scenario -> " + TestData.CurrentTestScenario.Status);
 Console.WriteLine("test result -> " + TestData.CurrentTestResult.Status);
@@ -79,7 +81,9 @@ Console.WriteLine("test result -> " + TestData.CurrentTestResult.Status);
         public void GetTestSuite_Current_WithFailed()
         {
             const string expectedResult = TestData.TestStateFailed;
-            UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, false);
+            // 20150805
+            // UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, false);
+            UnitTestingHelper.CloseTestResult(TestStatuses.Failed, false);
 Console.WriteLine("suite -> " + TestData.CurrentTestSuite.Status);
 Console.WriteLine("scenario -> " + TestData.CurrentTestScenario.Status);
 Console.WriteLine("test result -> " + TestData.CurrentTestResult.Status);
@@ -95,7 +99,9 @@ Console.WriteLine("test result -> " + TestData.CurrentTestResult.Status);
         {
             // Passed -> KnownIssue
             const string expectedResult = TestData.TestStateKnownIssue;
-            UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, true);
+            // 20150805
+            // UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, true);
+            UnitTestingHelper.CloseTestResult(TestStatuses.Passed, true);
 Console.WriteLine("suite -> " + TestData.CurrentTestSuite.Status);
 Console.WriteLine("scenario -> " + TestData.CurrentTestScenario.Status);
 Console.WriteLine("test result -> " + TestData.CurrentTestResult.Status);
@@ -112,8 +118,10 @@ Console.WriteLine("test result -> " + TestData.CurrentTestResult.Status);
             // KnownIssue supersedes the Failed status.
             
             const string expectedResult = TestData.TestStateKnownIssue;
-            
-            UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, true);
+
+            // 20150805
+            // UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, true);
+            UnitTestingHelper.CloseTestResult(TestStatuses.Failed, true);
 Console.WriteLine("suite -> " + TestData.CurrentTestSuite.Status);
 Console.WriteLine("scenario -> " + TestData.CurrentTestScenario.Status);
 Console.WriteLine("test result -> " + TestData.CurrentTestResult.Status);

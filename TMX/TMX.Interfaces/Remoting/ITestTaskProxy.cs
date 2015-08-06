@@ -10,8 +10,7 @@
 namespace Tmx.Interfaces.Remoting
 {
     using System;
-    using System.Collections.Generic;
-    
+
     /// <summary>
     /// Description of ITestTaskProxy.
     /// </summary>

@@ -10,8 +10,7 @@
 namespace Tmx.Interfaces.Remoting
 {
     using System;
-    using Tmx.Interfaces.Internal;
-    
+
     /// <summary>
     /// Description of ITestClientProxy.
     /// </summary>

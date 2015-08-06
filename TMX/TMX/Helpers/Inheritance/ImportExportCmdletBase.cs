@@ -307,11 +307,15 @@ namespace Tmx
                 WriteVerbose(this, "Test Suite: " + ts.Name);
                 string pgfSuite = pgfSuiteOpenNotTested;
                 string styleSuite = styleSuiteOpenNotTested;
-                if (ts.enStatus == TestSuiteStatuses.Passed) {
+                // 20150805
+                // if (ts.enStatus == TestSuiteStatuses.Passed) {
+                if (ts.enStatus == TestStatuses.Passed) {
                     pgfSuite = pgfSuiteOpenPassed;
                     styleSuite = styleSuiteOpenPassed;
                 }
-                if (ts.enStatus == TestSuiteStatuses.Failed) {
+                // 20150805
+                // if (ts.enStatus == TestSuiteStatuses.Failed) {
+                if (ts.enStatus == TestStatuses.Failed) {
                     pgfSuite = pgfSuiteOpenFailed;
                     styleSuite = styleSuiteOpenFailed;
                 }
@@ -359,11 +363,15 @@ namespace Tmx
                     WriteVerbose(this, "Test Scenario: " + tsc.Name);
                     string pgfScenario = pgfScenarioOpenNotTested;
                     string styleScenario = styleScenarioOpenNotTested;
-                    if (tsc.enStatus == TestScenarioStatuses.Passed) {
+                    // 20150805
+                    // if (tsc.enStatus == TestScenarioStatuses.Passed) {
+                    if (tsc.enStatus == TestStatuses.Passed) {
                         pgfScenario = pgfScenarioOpenPassed;
                         styleScenario = styleScenarioOpenPassed;
                     }
-                    if (tsc.enStatus == TestScenarioStatuses.Failed) {
+                    // 20150805
+                    // if (tsc.enStatus == TestScenarioStatuses.Failed) {
+                    if (tsc.enStatus == TestStatuses.Failed) {
                         pgfScenario = pgfScenarioOpenFailed;
                         styleScenario = styleScenarioOpenFailed;
                     }
@@ -408,15 +416,21 @@ namespace Tmx
                         WriteVerbose(this, "Test Result: " + tr.Name);
                         string pgfTestResult = pgfTestResultOpenNotTested;
                         string styleTestResult = styleTestResultOpenNotTested;
-                        if (tr.enStatus == TestResultStatuses.Passed) {
+                        // 20150805
+                        // if (tr.enStatus == TestResultStatuses.Passed) {
+                        if (tr.enStatus == TestStatuses.Passed) {
                             pgfTestResult = pgfTestResultOpenPassed;
                             styleTestResult = styleTestResultOpenPassed;
                         }
-                        if (tr.enStatus == TestResultStatuses.Failed) {
+                        // 20150805
+                        // if (tr.enStatus == TestResultStatuses.Failed) {
+                        if (tr.enStatus == TestStatuses.Failed) {
                             pgfTestResult = pgfTestResultOpenFailed;
                             styleTestResult = styleTestResultOpenFailed;
                         }
-                        if (tr.enStatus == TestResultStatuses.KnownIssue) {
+                        // 20150805
+                        // if (tr.enStatus == TestResultStatuses.KnownIssue) {
+                        if (tr.enStatus == TestStatuses.KnownIssue) {
                             pgfTestResult = pgfTestResultOpenKnownIssue;
                             styleTestResult = styleTestResultOpenKnownIssue;
                         }
@@ -856,13 +870,19 @@ namespace Tmx
             int scNotTested = 0;
             foreach (var tsc in suite.TestScenarios) {
                 switch (tsc.enStatus) {
-                    case TestScenarioStatuses.Passed:
+                    // 20150805
+                    // case TestScenarioStatuses.Passed:
+                    case TestStatuses.Passed:
                         scPassed++;
                         break;
-                    case TestScenarioStatuses.Failed:
+                    // 20150805
+                    // case TestScenarioStatuses.Failed:
+                    case TestStatuses.Failed:
                         scFailed++;
                         break;
-                    case TestScenarioStatuses.NotTested:
+                    // 20150805
+                    // case TestScenarioStatuses.NotTested:
+                    case TestStatuses.NotTested:
                         scNotTested++;
                         break;
                     default:
@@ -924,17 +944,25 @@ namespace Tmx
                 ts.PassedButWithBadSmell += tsuite.Statistics.PassedButWithBadSmell;
                 
                 switch (tsuite.enStatus) {
-                    case TestSuiteStatuses.Passed:
+                    // 20150805
+                    // case TestSuiteStatuses.Passed:
+                    case TestStatuses.Passed:
                         suPassed++;
                         break;
-                    case TestSuiteStatuses.Failed:
+                    // 20150805
+                    // case TestSuiteStatuses.Failed:
+                    case TestStatuses.Failed:
                         suFailed++;
                         break;
-                    case TestSuiteStatuses.NotTested:
+                    // 20150805
+                    // case TestSuiteStatuses.NotTested:
+                    case TestStatuses.NotTested:
                         suNotTested++;
                         break;
                     // 20150114
-                    case TestSuiteStatuses.KnownIssue:
+                    // 20150805
+                    // case TestSuiteStatuses.KnownIssue:
+                    case TestStatuses.KnownIssue:
                         suKnownIssue++;
                         break;
                     default:
@@ -943,17 +971,25 @@ namespace Tmx
                 
                 foreach (var tsc in tsuite.TestScenarios) {
                     switch (tsc.enStatus) {
-                        case TestScenarioStatuses.Passed:
+                        // 20150805
+                        // case TestScenarioStatuses.Passed:
+                        case TestStatuses.Passed:
                             scPassed++;
                             break;
-                        case TestScenarioStatuses.Failed:
+                        // 20150805
+                        // case TestScenarioStatuses.Failed:
+                        case TestStatuses.Failed:
                             scFailed++;
                             break;
-                        case TestScenarioStatuses.NotTested:
+                        // 20150805
+                        // case TestScenarioStatuses.NotTested:
+                        case TestStatuses.NotTested:
                             scNotTested++;
                             break;
                         // 20150114
-                        case TestScenarioStatuses.KnownIssue:
+                        // 20150805
+                        // case TestScenarioStatuses.KnownIssue:
+                        case TestStatuses.KnownIssue:
                             scKnownIssue++;
                             break;
                         default:

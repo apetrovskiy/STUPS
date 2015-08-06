@@ -14,9 +14,9 @@ namespace Tmx
     using System.Collections.Generic;
     using System.Xml.Linq;
     using System.Reflection;
-    using Tmx.Interfaces;
-    using Tmx.Interfaces.TestStructure;
-    using Tmx.Core;
+    using Interfaces;
+    using Interfaces.TestStructure;
+    using Core;
     
     /// <summary>
     /// Description of GatherTestResultsCollections.

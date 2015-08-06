@@ -10,7 +10,7 @@
 namespace Tmx.Interfaces
 {
     using System;
-    
+
     /// <summary>
     /// Description of ITestConstant.
     /// </summary>

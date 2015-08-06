@@ -13,19 +13,18 @@ namespace Tmx.Server.Tests.Helpers
     using System.Collections.Generic;
     using System.Linq;
     using System.Xml.Linq;
+    using Core;
+    using Interfaces;
+    using Interfaces.TestStructure;
     using MbUnit.Framework;
-    using NUnit.Framework;
-    using Tmx.Core;
-    using Tmx.Core.Types.Remoting;
-    using Tmx.Interfaces;
-    using Tmx.Interfaces.Remoting;
-    using Tmx.Interfaces.TestStructure;
     using Xunit;
-    
+    using Assert = Xunit.Assert;
+    using TestSuite = Interfaces.TestSuite;
+
     /// <summary>
     /// Description of ImportExportTestFixture.
     /// </summary>
-    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
+    [TestFixture][NUnit.Framework.TestFixture]
     public class ImportExportTestFixture
     {
         public ImportExportTestFixture()
@@ -33,13 +32,13 @@ namespace Tmx.Server.Tests.Helpers
             // TestSettings.PrepareModuleTests();
         }
         
-        [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
+        [SetUp][NUnit.Framework.SetUp]
         public void SetUp()
         {
             // TestSettings.PrepareModuleTests();
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [Test][NUnit.Framework.Test][Fact]
         public void Should_import_exported_data()
         {
             var sourceTestPlatforms = new List<ITestPlatform>();
@@ -53,15 +52,25 @@ namespace Tmx.Server.Tests.Helpers
             testResultsImporter.MergeTestSuites(sourceTestSuites, suites);
             THEN_there_are_N_platforms_in_xdocument(2, sourceTestPlatforms);
             THEN_there_are_N_suites_in_xdocument(2, sourceTestSuites);
-            
-            THEN_test_result_N_status_is(suites, "1", TestResultStatuses.Passed);
-            THEN_test_result_N_status_is(sourceTestSuites, "2", TestResultStatuses.Passed);
-            THEN_test_result_N_status_is(sourceTestSuites, "3", TestResultStatuses.Failed);
-            THEN_test_result_N_status_is(sourceTestSuites, "4", TestResultStatuses.KnownIssue);
-            THEN_test_result_N_status_is(sourceTestSuites, "5", TestResultStatuses.NotTested);
+
+            // 20150805
+            // THEN_test_result_N_status_is(suites, "1", TestResultStatuses.Passed);
+            THEN_test_result_N_status_is(suites, "1", TestStatuses.Passed);
+            // 20150805
+            // THEN_test_result_N_status_is(sourceTestSuites, "2", TestResultStatuses.Passed);
+            THEN_test_result_N_status_is(sourceTestSuites, "2", TestStatuses.Passed);
+            // 20150805
+            // THEN_test_result_N_status_is(sourceTestSuites, "3", TestResultStatuses.Failed);
+            THEN_test_result_N_status_is(sourceTestSuites, "3", TestStatuses.Failed);
+            // 20150805
+            // THEN_test_result_N_status_is(sourceTestSuites, "4", TestResultStatuses.KnownIssue);
+            THEN_test_result_N_status_is(sourceTestSuites, "4", TestStatuses.KnownIssue);
+            // 20150805
+            // THEN_test_result_N_status_is(sourceTestSuites, "5", TestResultStatuses.NotTested);
+            THEN_test_result_N_status_is(sourceTestSuites, "5", TestStatuses.NotTested);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [Test][NUnit.Framework.Test][Fact]
         public void Should_import_exported_two_data_sets()
         {
             var sourceTestPlatforms = new List<ITestPlatform>();
@@ -84,7 +93,7 @@ namespace Tmx.Server.Tests.Helpers
             THEN_there_are_N_suites_in_xdocument(4, sourceTestSuites);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [Test][NUnit.Framework.Test][Fact]
         public void Should_import_exported_data_twice_without_duplication()
         {
             var sourceTestPlatforms = new List<ITestPlatform>();
@@ -104,7 +113,7 @@ namespace Tmx.Server.Tests.Helpers
             THEN_there_are_N_suites_in_xdocument(2, sourceTestSuites);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [Test][NUnit.Framework.Test][Fact]
         public void Should_import_exported_data_thrice_without_duplication()
         {
             var sourceTestPlatforms = new List<ITestPlatform>();
@@ -127,7 +136,7 @@ namespace Tmx.Server.Tests.Helpers
             THEN_there_are_N_suites_in_xdocument(2, sourceTestSuites);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [Test][NUnit.Framework.Test][Fact]
         public void Should_import_exported_data_with_duplicates_thrice_without_duplication()
         {
             var sourceTestPlatforms = new List<ITestPlatform>();
@@ -202,12 +211,12 @@ namespace Tmx.Server.Tests.Helpers
         
         void THEN_there_are_N_platforms_in_xdocument(int number, List<ITestPlatform> platforms)
         {
-            Xunit.Assert.Equal(number, platforms.Count);
+            Assert.Equal(number, platforms.Count);
         }
         
         void THEN_there_are_N_suites_in_xdocument(int number, List<ITestSuite> suites)
         {
-            Xunit.Assert.Equal(number, suites.Count);
+            Assert.Equal(number, suites.Count);
         }
 
         ITestSuite addTestSuiteWithOneScenario(ITestPlatform platform)
@@ -217,7 +226,7 @@ namespace Tmx.Server.Tests.Helpers
             const string scenarioId = "1";
             var scenarioUniqueId = Guid.NewGuid();
             
-            return new Tmx.Interfaces.TestSuite {
+            return new TestSuite {
                 Id = suiteId,
                 Name = "s01",
                 PlatformId = platform.Id,
@@ -238,7 +247,9 @@ namespace Tmx.Server.Tests.Helpers
                                 Name = "tr01",
                                 PlatformId = platform.Id,
                                 PlatformUniqueId = platform.UniqueId,
-                                enStatus = TestResultStatuses.Passed,
+                                // 20150805
+                                // enStatus = TestResultStatuses.Passed,
+                                enStatus = TestStatuses.Passed,
                                 SuiteId = suiteId,
                                 SuiteUniqueId = suiteUniqueId,
                                 ScenarioId = scenarioId,
@@ -249,7 +260,9 @@ namespace Tmx.Server.Tests.Helpers
                                 Name = "tr02",
                                 PlatformId = platform.Id,
                                 PlatformUniqueId = platform.UniqueId,
-                                enStatus = TestResultStatuses.Passed,
+                                // 20150805
+                                // enStatus = TestResultStatuses.Passed,
+                                enStatus = TestStatuses.Passed,
                                 SuiteId = suiteId,
                                 SuiteUniqueId = suiteUniqueId,
                                 ScenarioId = scenarioId,
@@ -260,7 +273,9 @@ namespace Tmx.Server.Tests.Helpers
                                 Name = "tr03",
                                 PlatformId = platform.Id,
                                 PlatformUniqueId = platform.UniqueId,
-                                enStatus = TestResultStatuses.Failed,
+                                // 20150805
+                                // enStatus = TestResultStatuses.Failed,
+                                enStatus = TestStatuses.Failed,
                                 SuiteId = suiteId,
                                 SuiteUniqueId = suiteUniqueId,
                                 ScenarioId = scenarioId,
@@ -271,7 +286,9 @@ namespace Tmx.Server.Tests.Helpers
                                 Name = "tr04",
                                 PlatformId = platform.Id,
                                 PlatformUniqueId = platform.UniqueId,
-                                enStatus = TestResultStatuses.KnownIssue,
+                                // 20150805
+                                // enStatus = TestResultStatuses.KnownIssue,
+                                enStatus = TestStatuses.KnownIssue,
                                 SuiteId = suiteId,
                                 SuiteUniqueId = suiteUniqueId,
                                 ScenarioId = scenarioId,
@@ -282,7 +299,9 @@ namespace Tmx.Server.Tests.Helpers
                                 Name = "tr05",
                                 PlatformId = platform.Id,
                                 PlatformUniqueId = platform.UniqueId,
-                                enStatus = TestResultStatuses.NotTested,
+                                // 20150805
+                                // enStatus = TestResultStatuses.NotTested,
+                                enStatus = TestStatuses.NotTested,
                                 SuiteId = suiteId,
                                 SuiteUniqueId = suiteUniqueId,
                                 ScenarioId = scenarioId,
@@ -296,7 +315,7 @@ namespace Tmx.Server.Tests.Helpers
         
         ITestSuite addTestSuiteWithTwoScenarios(ITestPlatform platform)
         {
-            return new Tmx.Interfaces.TestSuite {
+            return new TestSuite {
                 Id = "1",
                 Name = "s01",
                 PlatformId = platform.Id,
@@ -313,14 +332,18 @@ namespace Tmx.Server.Tests.Helpers
                                 Name = "tr01",
                                 PlatformId = platform.Id,
                                 PlatformUniqueId = platform.UniqueId,
-                                enStatus = TestResultStatuses.Passed
+                                // 20150805
+                                // enStatus = TestResultStatuses.Passed
+                                enStatus = TestStatuses.Passed
                             },
                             new TestResult {
                                 Id = "2",
                                 Name = "tr02",
                                 PlatformId = platform.Id,
                                 PlatformUniqueId = platform.UniqueId,
-                                enStatus = TestResultStatuses.Passed
+                                // 20150805
+                                // enStatus = TestResultStatuses.Passed
+                                enStatus = TestStatuses.Passed
                             }
                         }
                     },
@@ -335,24 +358,30 @@ namespace Tmx.Server.Tests.Helpers
                                 Name = "tr01",
                                 PlatformId = platform.Id,
                                 PlatformUniqueId = platform.UniqueId,
-                                enStatus = TestResultStatuses.Passed
+                                // 20150805
+                                // enStatus = TestResultStatuses.Passed
+                                enStatus = TestStatuses.Passed
                             },
                             new TestResult {
                                 Id = "2",
                                 Name = "tr02",
                                 PlatformId = platform.Id,
                                 PlatformUniqueId = platform.UniqueId,
-                                enStatus = TestResultStatuses.Passed
+                                // 20150805
+                                // enStatus = TestResultStatuses.Passed
+                                enStatus = TestStatuses.Passed
                             }
                         }
                     }
                 }
             };
         }
-        
-        void THEN_test_result_N_status_is(List<ITestSuite> suites, string id, TestResultStatuses status)
+
+        // 20150805
+        // void THEN_test_result_N_status_is(List<ITestSuite> suites, string id, TestResultStatuses status)
+        void THEN_test_result_N_status_is(List<ITestSuite> suites, string id, TestStatuses status)
         {
-            Xunit.Assert.Equal(status, suites[0].TestScenarios[0].TestResults.First(testResult => testResult.Id == id).enStatus);
+            Assert.Equal(status, suites[0].TestScenarios[0].TestResults.First(testResult => testResult.Id == id).enStatus);
         }
     }
 }

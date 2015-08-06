@@ -260,7 +260,9 @@ namespace Tmx.Server.Tests.Modules
                 SuiteUniqueId = suites[0].UniqueId,
                 ScenarioUniqueId = testScenario.UniqueId,
                 Origin = TestResultOrigins.Logical,
-                enStatus = TestResultStatuses.Passed
+                // 20150805
+                // enStatus = TestResultStatuses.Passed
+                enStatus = TestStatuses.Passed
             });
             suites[0].TestScenarios.Add(testScenario);
             return suites;
@@ -309,8 +311,10 @@ namespace Tmx.Server.Tests.Modules
             testScenario.SuiteId = testSuiteId;
             return testScenario;
         }
-        
-        TestResult GIVEN_test_result(string testResultName, TestResultStatuses status)
+
+        // 20150805
+        // TestResult GIVEN_test_result(string testResultName, TestResultStatuses status)
+        TestResult GIVEN_test_result(string testResultName, TestStatuses status)
         {
             var testResult = new TestResult();
             testResult.Name = testResultName;

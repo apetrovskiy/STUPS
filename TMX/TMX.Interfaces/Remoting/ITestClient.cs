@@ -9,8 +9,8 @@
 
 namespace Tmx.Interfaces.Remoting
 {
-    using Tmx.Interfaces.Internal;
-    
+    using Internal;
+
     /// <summary>
     /// Description of ITestClient.
     /// </summary>

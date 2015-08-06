@@ -9,8 +9,6 @@
 
 namespace Tmx.Interfaces
 {
-    using System;
-    
     public interface IXMLElementsStruct
     {
         string SuitesNode { get; }

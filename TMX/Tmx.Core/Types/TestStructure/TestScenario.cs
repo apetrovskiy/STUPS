@@ -11,11 +11,11 @@ namespace Tmx.Interfaces
 {
     using System;
     using System.Collections.Generic;
-    // using System.Management.Automation;
     using System.Xml.Serialization;
     using Remoting;
-    using Tmx.Interfaces;
-    using Tmx.Interfaces.TestStructure;
+    using TestStructure;
+// using System.Management.Automation;
+
     // using Tmx.Core;
     
     /// <summary>
@@ -26,10 +26,12 @@ namespace Tmx.Interfaces
         public TestScenario()
         {
             UniqueId = Guid.NewGuid();
-            this.TestResults = new List<ITestResult>();
-            this.TestCases = new List<ITestCase>();
-            this.Statistics = new TestStat();
-            this.enStatus = TestScenarioStatuses.NotTested;
+            TestResults = new List<ITestResult>();
+            TestCases = new List<ITestCase>();
+            Statistics = new TestStat();
+            // 20150805
+            // this.enStatus = TestScenarioStatuses.NotTested;
+            enStatus = TestStatuses.NotTested;
         }
         
         // 20141102
@@ -78,13 +80,15 @@ namespace Tmx.Interfaces
             string testSuiteId)
         {
             UniqueId = Guid.NewGuid();
-            this.TestResults = new List<ITestResult>();
-            this.TestCases = new List<ITestCase>();
-            this.Statistics = new TestStat();
-            this.enStatus = TestScenarioStatuses.NotTested;
-            this.Name = testScenarioName;
-            this.Id = !string.IsNullOrEmpty(testScenarioId) ? testScenarioId : TestData.GetTestScenarioId();
-            this.SuiteId = testSuiteId;
+            TestResults = new List<ITestResult>();
+            TestCases = new List<ITestCase>();
+            Statistics = new TestStat();
+            // 20150805
+            // enStatus = TestScenarioStatuses.NotTested;
+            enStatus = TestStatuses.NotTested;
+            Name = testScenarioName;
+            Id = !string.IsNullOrEmpty(testScenarioId) ? testScenarioId : TestData.GetTestScenarioId();
+            SuiteId = testSuiteId;
             
             try{
                 if (TestData.CurrentTestResult.Details.Count > 0) {
@@ -106,11 +110,11 @@ namespace Tmx.Interfaces
             }
             catch {}
             
-            this.SetNow();
-            this.TestResults.Add(
+            SetNow();
+            TestResults.Add(
                 new TestResult(
-                   this.Id,
-                   this.SuiteId));
+                   Id,
+                   SuiteId));
             
             try {
                 if ((null != TestData.CurrentTestResult.Name ||
@@ -141,26 +145,38 @@ namespace Tmx.Interfaces
 
         string _status;
         [XmlAttribute]
-        public virtual string Status { get { return this._status; } }
-        TestScenarioStatuses _enStatus;
+        public virtual string Status { get { return _status; } }
+        // 20150805
+        // TestScenarioStatuses _enStatus;
+        TestStatuses _enStatus;
         [XmlAttribute]
-        public TestScenarioStatuses enStatus
+        // 20150805
+        // public TestScenarioStatuses enStatus
+        public TestStatuses enStatus
         { 
             get { return _enStatus; }
             set{
                 _enStatus = value;
 
                 switch (value) {
-                    case TestScenarioStatuses.Passed:
+                    // 20150805
+                    // case TestScenarioStatuses.Passed:
+                    case TestStatuses.Passed:
                         _status = TestData.TestStatePassed;
                         break;
-                    case TestScenarioStatuses.Failed:
+                    // 20150805
+                    // case TestScenarioStatuses.Failed:
+                    case TestStatuses.Failed:
                         _status = TestData.TestStateFailed;
                         break;
-                    case TestScenarioStatuses.NotTested:
+                    // 20150805
+                    // case TestScenarioStatuses.NotTested:
+                    case TestStatuses.NotTested:
                         _status = TestData.TestStateNotTested;
                         break;
-                    case TestScenarioStatuses.KnownIssue:
+                    // 20150805
+                    // case TestScenarioStatuses.KnownIssue:
+                    case TestStatuses.KnownIssue:
                         _status = TestData.TestStateKnownIssue;
                         break;
                     default:

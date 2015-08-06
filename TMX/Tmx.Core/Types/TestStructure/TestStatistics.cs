@@ -9,13 +9,10 @@
 
 namespace Tmx.Core
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using Tmx.Interfaces;
-    using Tmx.Interfaces.TestStructure;
-    using Tmx.Core.Types.Remoting;
-    
+    using Interfaces;
+    using Interfaces.TestStructure;
+
     /// <summary>
     /// Description of TestStatistics.
     /// </summary>
@@ -85,13 +82,19 @@ namespace Tmx.Core
                     
                     // 20150219
                     switch (testResult.enStatus) {
-                        case TestResultStatuses.Passed:
+                        // 20150805
+                        // case TestResultStatuses.Passed:
+                        case TestStatuses.Passed:
                             testScenarioStatistics.Passed++;
                             break;
-                        case TestResultStatuses.Failed:
+                        // 20150805
+                        // case TestResultStatuses.Failed:
+                        case TestStatuses.Failed:
                             testScenarioStatistics.Failed++;
                             break;
-                        case TestResultStatuses.KnownIssue:
+                        // 20150805
+                        // case TestResultStatuses.KnownIssue:
+                        case TestStatuses.KnownIssue:
                             testScenarioStatistics.PassedButWithBadSmell++;
                             break;
 //                        case TestResultStatuses.NotTested:
@@ -112,16 +115,28 @@ namespace Tmx.Core
         
         void setTestSuiteStatus(ITestSuite suite)
         {
-            suite.enStatus = suite.Statistics.PassedButWithBadSmell > 0 ? TestSuiteStatuses.KnownIssue :
-                suite.Statistics.Failed > 0 ? TestSuiteStatuses.Failed :
-                suite.Statistics.Passed > 0 ? TestSuiteStatuses.Passed : TestSuiteStatuses.NotTested;
+            // 20150805
+            // suite.enStatus = suite.Statistics.PassedButWithBadSmell > 0 ? TestSuiteStatuses.KnownIssue :
+            suite.enStatus = suite.Statistics.PassedButWithBadSmell > 0 ? TestStatuses.KnownIssue :
+                // 20150805
+                // suite.Statistics.Failed > 0 ? TestSuiteStatuses.Failed :
+                suite.Statistics.Failed > 0 ? TestStatuses.Failed :
+                // 20150805
+                // suite.Statistics.Passed > 0 ? TestSuiteStatuses.Passed : TestSuiteStatuses.NotTested;
+                suite.Statistics.Passed > 0 ? TestStatuses.Passed : TestStatuses.NotTested;
         }
         
         void setTestScenarioStatus(ITestScenario scenario)
         {
-            scenario.enStatus = scenario.Statistics.PassedButWithBadSmell > 0 ? TestScenarioStatuses.KnownIssue :
-                scenario.Statistics.Failed > 0 ? TestScenarioStatuses.Failed :
-                scenario.Statistics.Passed > 0 ? TestScenarioStatuses.Passed : TestScenarioStatuses.NotTested;
+            // 20150805
+            // scenario.enStatus = scenario.Statistics.PassedButWithBadSmell > 0 ? TestScenarioStatuses.KnownIssue :
+            scenario.enStatus = scenario.Statistics.PassedButWithBadSmell > 0 ? TestStatuses.KnownIssue :
+                // 20150805
+                // scenario.Statistics.Failed > 0 ? TestScenarioStatuses.Failed :
+                scenario.Statistics.Failed > 0 ? TestStatuses.Failed :
+                // 20150805
+                // scenario.Statistics.Passed > 0 ? TestScenarioStatuses.Passed : TestScenarioStatuses.NotTested;
+                scenario.Statistics.Passed > 0 ? TestStatuses.Passed : TestStatuses.NotTested;
         }
     }
 }

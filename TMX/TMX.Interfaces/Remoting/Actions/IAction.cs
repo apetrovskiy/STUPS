@@ -9,8 +9,6 @@
 
 namespace Tmx.Interfaces.Remoting.Actions
 {
-    using System;
-    
     /// <summary>
     /// Description of IAction.
     /// </summary>

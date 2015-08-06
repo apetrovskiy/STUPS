@@ -44,7 +44,9 @@ namespace TmxUnitTests.Commands.TestStructure
         {
             const string expectedResult = TestData.TestStatePassed;
 
-            UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, false);
+            // 20150805
+            // UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, false);
+            UnitTestingHelper.CloseTestResult(TestStatuses.Passed, false);
 
             MbUnit.Framework.Assert.AreEqual(
                 expectedResult,
@@ -57,7 +59,9 @@ namespace TmxUnitTests.Commands.TestStructure
         public void CloseTestResult_Current_WithFailed()
         {
             const string expectedResult = TestData.TestStateFailed;
-            UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, false);
+            // 20150805
+            // UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, false);
+            UnitTestingHelper.CloseTestResult(TestStatuses.Failed, false);
 
             MbUnit.Framework.Assert.AreEqual(
                 expectedResult,
@@ -70,7 +74,9 @@ namespace TmxUnitTests.Commands.TestStructure
         public void CloseTestResult_Current_WithPassedKnownIssue()
         {
             const string expectedResult = TestData.TestStateKnownIssue;
-            UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, true);
+            // 20150805
+            // UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, true);
+            UnitTestingHelper.CloseTestResult(TestStatuses.Passed, true);
 
             MbUnit.Framework.Assert.AreEqual(
                 expectedResult,
@@ -83,7 +89,9 @@ namespace TmxUnitTests.Commands.TestStructure
         public void CloseTestResult_Current_WithFailedKnownIssue()
         {
             const string expectedResult = TestData.TestStateKnownIssue;
-            UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, true);
+            // 20150805
+            // UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, true);
+            UnitTestingHelper.CloseTestResult(TestStatuses.Failed, true);
             MbUnit.Framework.Assert.AreEqual(
                 expectedResult,
                 TestData.CurrentTestScenario.TestResults[TestData.CurrentTestScenario.TestResults.Count - 2].Status);

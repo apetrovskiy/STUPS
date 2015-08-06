@@ -10,7 +10,7 @@
 namespace Tmx.Interfaces.Internal
 {
     using System.Collections.Generic;
-    
+
     /// <summary>
     /// Description of ISystemInfo.
     /// </summary>

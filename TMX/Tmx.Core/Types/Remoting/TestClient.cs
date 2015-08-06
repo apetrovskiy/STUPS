@@ -15,7 +15,7 @@ namespace Tmx.Core.Types.Remoting
 //    using System.Net;
 //    using System.Net.NetworkInformation;
 //    using System.Security.Principal;
-    using Tmx.Interfaces.Remoting;
+    using Interfaces.Remoting;
     
     /// <summary>
     /// Description of TestClient.

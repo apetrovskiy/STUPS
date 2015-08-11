@@ -204,7 +204,7 @@ namespace Tmx.Server.Tests.Modules
         }
         
         // ============================================================================================================================
-        void probe()
+        void Probe()
         {
             var suite01 = Substitute.For<ITestSuite>();
             suite01.Id = "1";
@@ -215,7 +215,7 @@ namespace Tmx.Server.Tests.Modules
             
         }
         
-        XElement getElementWithTestResults(IOrderedEnumerable<ITestSuite> suites, IOrderedEnumerable<ITestScenario> scenarios, IOrderedEnumerable<ITestResult> testResults)
+        XElement GetElementWithTestResults(IOrderedEnumerable<ITestSuite> suites, IOrderedEnumerable<ITestScenario> scenarios, IOrderedEnumerable<ITestResult> testResults)
         {
             var testResultsExporter = new TestResultsExporter();
             return testResultsExporter.CreateSuitesXElementWithParameters(suites, scenarios, testResults, (new XMLElementsNativeStruct()));
@@ -324,7 +324,7 @@ namespace Tmx.Server.Tests.Modules
         
         void WHEN_Posting_TestResults<T>(T element)
         {
-            _response = _browser.Post(getPathToResourcesCollection(typeof(T)), (with) => {
+            _response = _browser.Post(GetPathToResourcesCollection(typeof(T)), (with) => {
                                           with.JsonBody<T>(element);
                                           with.Accept("application/json");
                                       });
@@ -332,10 +332,10 @@ namespace Tmx.Server.Tests.Modules
         
         void WHEN_Getting_TestResults()
         {
-            _response = _browser.Get(getPathToResourcesCollection(typeof(List<ITestSuite>)), (with) => with.Accept("application/json"));
+            _response = _browser.Get(GetPathToResourcesCollection(typeof(List<ITestSuite>)), (with) => with.Accept("application/json"));
         }
         
-        string getPathToResourcesCollection(MemberInfo type)
+        string GetPathToResourcesCollection(MemberInfo type)
         {
             string path = string.Empty;
             switch (type.Name) {

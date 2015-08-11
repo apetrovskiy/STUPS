@@ -110,7 +110,7 @@ namespace Tmx.Core
         
         public static bool IsFinished(this ITestTask task)
         {
-            return TestTaskStatuses.CompletedSuccessfully == task.TaskStatus || TestTaskStatuses.Interrupted == task.TaskStatus || TestTaskStatuses.Canceled == task.TaskStatus;
+            return TestTaskStatuses.CompletedSuccessfully == task.TaskStatus || TestTaskStatuses.ExecutionFailed == task.TaskStatus || TestTaskStatuses.Canceled == task.TaskStatus;
         }
         
         public static bool IsCancelled(this ITestTask task)
@@ -126,7 +126,7 @@ namespace Tmx.Core
         
         public static bool IsFailed(this ITestTask task)
         {
-            return TestTaskStatuses.Interrupted == task.TaskStatus;
+            return TestTaskStatuses.ExecutionFailed == task.TaskStatus;
         }
         
 //        public static void SetTimeTaken(this ITestTask task)
@@ -166,7 +166,7 @@ namespace Tmx.Core
         public static bool IsCompleted(this ITestRun testRun)
         {
             return TestRunStatuses.CompletedSuccessfully == testRun.Status
-            || TestRunStatuses.Interrupted == testRun.Status
+            || TestRunStatuses.InterruptedOnTaskFailure == testRun.Status
             || TestRunStatuses.Cancelled == testRun.Status;
         }
         
@@ -180,11 +180,6 @@ namespace Tmx.Core
             testRun.StartTime = DateTime.Now;
         }
         
-        // 20150115
-//        public static void SetTimeTaken(this ITestRun testRun)
-//        {
-//            testRun.TimeTaken = DateTime.Now - testRun.StartTime;
-//        }
         public static void SetTimeTaken(this ITestRun testRun)
         {
             // testRun.TimeTaken = DateTime.Now - testRun.StartTime;

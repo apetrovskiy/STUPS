@@ -166,8 +166,8 @@ namespace Tmx.Server.Tests.Helpers
                 new TestPlatform { Id = "2", Name = "p2" }
             };
             var listSuites = new List<ITestSuite> {
-                addTestSuiteWithOneScenario(listPlatforms[0]),
-                addTestSuiteWithOneScenario(listPlatforms[1])
+                AddTestSuiteWithOneScenario(listPlatforms[0]),
+                AddTestSuiteWithOneScenario(listPlatforms[1])
                 };
             var testResultsExporter = new TestResultsExporter();
             return testResultsExporter.GetTestResultsAsXdocument(
@@ -185,8 +185,8 @@ namespace Tmx.Server.Tests.Helpers
                 new TestPlatform { Id = "2", Name = "p2" }
             };
             var listSuites = new List<ITestSuite> {
-                addTestSuiteWithTwoScenarios(listPlatforms[0]),
-                addTestSuiteWithTwoScenarios(listPlatforms[1])
+                AddTestSuiteWithTwoScenarios(listPlatforms[0]),
+                AddTestSuiteWithTwoScenarios(listPlatforms[1])
                 };
             var testResultsExporter = new TestResultsExporter();
             return testResultsExporter.GetTestResultsAsXdocument(
@@ -219,7 +219,7 @@ namespace Tmx.Server.Tests.Helpers
             Assert.Equal(number, suites.Count);
         }
 
-        ITestSuite addTestSuiteWithOneScenario(ITestPlatform platform)
+        ITestSuite AddTestSuiteWithOneScenario(ITestPlatform platform)
         {
             const string suiteId = "1";
             var suiteUniqueId = Guid.NewGuid();
@@ -313,7 +313,7 @@ namespace Tmx.Server.Tests.Helpers
             };
         }
         
-        ITestSuite addTestSuiteWithTwoScenarios(ITestPlatform platform)
+        ITestSuite AddTestSuiteWithTwoScenarios(ITestPlatform platform)
         {
             return new TestSuite {
                 Id = "1",

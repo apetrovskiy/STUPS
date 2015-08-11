@@ -14,7 +14,7 @@ namespace Tmx.Interfaces.Remoting
         New = 0,
         Running = 1,
         CompletedSuccessfully = 2,
-        Interrupted = 3,
+        ExecutionFailed = 3,
         Canceled = 4
     }
     
@@ -58,7 +58,8 @@ namespace Tmx.Interfaces.Remoting
         Pending = 1,
         Scheduled = 2,
         CompletedSuccessfully = 3,
-        Interrupted = 4,
+        // Interrupted = 4,
+        InterruptedOnTaskFailure = 4,
         Cancelled = 5,
         Cancelling = 6
     }

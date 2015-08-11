@@ -31,12 +31,12 @@ namespace Tmx.Server.Tests.Modules
     [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class TestTasksModuleTestFixture
     {
-        const string _testClientHostnameExpected = "testhost";
-        const string _testClientUsernameExpected = "aaa";
-        const string _testClientHostnameAlternateExpected = "client02";
+        const string TestClientHostnameExpected = "testhost";
+        const string TestClientUsernameExpected = "aaa";
+        const string TestClientHostnameAlternateExpected = "client02";
         ITestWorkflow _workflow;
         ITestRun _testRun;
-        BrowserResponse response;
+        BrowserResponse _response;
         Browser _browser;
         DateTime _startTime;
         
@@ -64,8 +64,8 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_provide_a_task_to_test_client_if_the_client_matches_the_rule()
         {
-            var expectedTask = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, _testClientHostnameExpected, 0);
-            var testClient = GIVEN_Registered_TestClient_as_json(_testClientHostnameExpected, _testClientUsernameExpected);
+            var expectedTask = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0);
+            var testClient = GIVEN_Registered_TestClient_as_json(TestClientHostnameExpected, TestClientUsernameExpected);
             
             var actualTask = WHEN_Getting_task_as_json(testClient.Id);
             
@@ -80,7 +80,7 @@ namespace Tmx.Server.Tests.Modules
         {
             // TODO: rewrite as Given-When-Then
             var givenTask = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, "no matches", 0);
-            var testClient = GIVEN_Registered_TestClient_as_json(_testClientHostnameExpected, _testClientUsernameExpected);
+            var testClient = GIVEN_Registered_TestClient_as_json(TestClientHostnameExpected, TestClientUsernameExpected);
             
             Xunit.Assert.Null(testClient);
             
@@ -121,7 +121,7 @@ namespace Tmx.Server.Tests.Modules
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_provide_the_second_task_if_the_client_matches_the_rule_and_there_are_several()
+        public void Should_provide_the_second_task_if_the_client_matches_the_rule_and_there_are_several_tasks()
         {
             var givenTask01 = GIVEN_Loaded_TestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
             var givenTask02 = GIVEN_Loaded_TestTask(2, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
@@ -156,7 +156,7 @@ namespace Tmx.Server.Tests.Modules
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_cancel_all_further_tasks_on_fail()
+        public void Should_cancel_all_further_tasks_and_unregister_clients_on_fail()
         {
             var givenTask01 = GIVEN_Loaded_TestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
             var givenTask02 = GIVEN_Loaded_TestTask(2, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
@@ -166,14 +166,20 @@ namespace Tmx.Server.Tests.Modules
             var registeredClient = GIVEN_Registered_TestClient_as_json("h", "u");
             
             var actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
+            var taskId01 = actualTask.Id;
             WHEN_Failing_Task_as_json(actualTask);
             actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
+            // var taskId02 = actualTask.Id;
             
-            THEN_HttpResponse_Is_NotFound();
+            // 20150807
+            // THEN_HttpResponse_Is_NotFound();
+            THEN_HttpResponse_Is_ExpectationFailed();
             Xunit.Assert.Equal(null, actualTask);
             Xunit.Assert.Equal(0, TaskPool.TasksForClients.Count(task => !task.IsFailed() && !task.IsCancelled()));
             Xunit.Assert.Equal(givenTask03.Id, TaskPool.TasksForClients.OrderBy(t => t.Id).Skip(1).First().Id);
             THEN_testRun_isCompleted();
+            // THEN_testRun_clients_unregistered(actualTask.Id);
+            THEN_testRun_clients_unregistered(taskId01);
         }
         
 //[NUnit.Framework.Test, TestCaseSource("DivideCases")]
@@ -222,8 +228,8 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_not_provide_a_task_before_task_this_depends_on_is_allocated()
         {
-            var givenTask = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, _testClientHostnameExpected, 4);
-            var registeredClient = GIVEN_Registered_TestClient_as_json(_testClientHostnameExpected, _testClientUsernameExpected);
+            var givenTask = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 4);
+            var registeredClient = GIVEN_Registered_TestClient_as_json(TestClientHostnameExpected, TestClientUsernameExpected);
             
             var actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
             
@@ -235,8 +241,8 @@ namespace Tmx.Server.Tests.Modules
         public void Should_provide_a_task_only_after_task_this_depends_on_is_completed()
         {
             var givenTask01 = GIVEN_Allocated_TestTask(4, "task name", true, TestTaskStatuses.CompletedSuccessfully, true, "another rule", 0);
-            var givenTask02 = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, _testClientHostnameExpected, 4);
-            var registeredClient = GIVEN_Registered_TestClient_as_json(_testClientHostnameExpected, _testClientUsernameExpected);
+            var givenTask02 = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 4);
+            var registeredClient = GIVEN_Registered_TestClient_as_json(TestClientHostnameExpected, TestClientUsernameExpected);
             
             var actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
             
@@ -248,8 +254,8 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_provide_no_task_to_unregistered_test_client()
         {
-            var givenTask01 = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, _testClientHostnameExpected, 0);
-            var registeredClient = GIVEN_Registered_TestClient_as_json(_testClientHostnameExpected, _testClientUsernameExpected);
+            var givenTask01 = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0);
+            var registeredClient = GIVEN_Registered_TestClient_as_json(TestClientHostnameExpected, TestClientUsernameExpected);
             
             WHEN_SendingDeregistration_as_json(registeredClient);
             WHEN_Getting_task_as_json(Guid.Empty);
@@ -260,13 +266,13 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_provide_no_task_to_test_client_that_lost_its_registration()
         {
-            var givenTask01 = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, _testClientHostnameExpected, 0);
-            var registeredClient = GIVEN_Registered_TestClient_as_json(_testClientHostnameExpected, _testClientUsernameExpected);
+            var givenTask01 = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0);
+            var registeredClient = GIVEN_Registered_TestClient_as_json(TestClientHostnameExpected, TestClientUsernameExpected);
             
             WHEN_Removing_Registered_Client_On_Server(registeredClient);
             WHEN_Getting_task_as_json(registeredClient.Id);
-            if (HttpStatusCode.ExpectationFailed == response.StatusCode)
-                registeredClient = GIVEN_Registered_TestClient_as_json(_testClientHostnameExpected, _testClientUsernameExpected);
+            if (HttpStatusCode.ExpectationFailed == _response.StatusCode)
+                registeredClient = GIVEN_Registered_TestClient_as_json(TestClientHostnameExpected, TestClientUsernameExpected);
             var actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
             
             THEN_HttpResponse_Is_Ok();
@@ -305,8 +311,8 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_provide_task_by_task_on_loading_new_tasks()
         {
-            var givenTask01 = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, _testClientHostnameExpected, 0);
-            var registeredClient = GIVEN_Registered_TestClient_as_json(_testClientHostnameExpected, _testClientUsernameExpected);
+            var givenTask01 = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0);
+            var registeredClient = GIVEN_Registered_TestClient_as_json(TestClientHostnameExpected, TestClientUsernameExpected);
             
             // the first task
             var actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
@@ -315,7 +321,7 @@ namespace Tmx.Server.Tests.Modules
             WHEN_Finishing_Task_as_json(actualTask);
             
             // the second task
-            var givenTask02 = GIVEN_Loaded_TestTask(10, "task name", false, TestTaskStatuses.New, true, _testClientHostnameExpected, 0);
+            var givenTask02 = GIVEN_Loaded_TestTask(10, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0);
             givenTask02.ClientId = registeredClient.Id;
             TaskPool.TasksForClients.Add(givenTask02);
             actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
@@ -334,8 +340,8 @@ namespace Tmx.Server.Tests.Modules
         public void Should_provide_a_task_to_test_client_if_the_client_matches_the_rule_and_there_are_no_test_runs()
         {
             TestRunQueue.TestRuns.Skip(1).First().Status = TestRunStatuses.Running;
-            var expectedTask = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, _testClientHostnameExpected, 0);
-            var testClient = GIVEN_Registered_TestClient_as_json(_testClientHostnameExpected, _testClientUsernameExpected);
+            var expectedTask = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0);
+            var testClient = GIVEN_Registered_TestClient_as_json(TestClientHostnameExpected, TestClientUsernameExpected);
             
             var actualTask = WHEN_Getting_task_as_json(testClient.Id);
             
@@ -347,9 +353,9 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Should_provide_a_task_to_two_test_clients_if_they_match_the_rule()
         {
-            var expectedTask = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, _testClientHostnameExpected + "|" + _testClientHostnameAlternateExpected, 0);
-            var testClient01 = GIVEN_Registered_TestClient_as_json(_testClientHostnameExpected, _testClientUsernameExpected);
-            var testClient02 = GIVEN_Registered_TestClient_as_json(_testClientHostnameAlternateExpected, _testClientUsernameExpected);
+            var expectedTask = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected + "|" + TestClientHostnameAlternateExpected, 0);
+            var testClient01 = GIVEN_Registered_TestClient_as_json(TestClientHostnameExpected, TestClientUsernameExpected);
+            var testClient02 = GIVEN_Registered_TestClient_as_json(TestClientHostnameAlternateExpected, TestClientUsernameExpected);
             
             var actualTask01 = WHEN_Getting_task_as_json(testClient01.Id);
             
@@ -365,14 +371,36 @@ namespace Tmx.Server.Tests.Modules
             THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == testClient02.Id));
         }
         // ============================================================================================================================
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        public void Should_provide_tasks_to_two_test_clients_based_on_how_they_match_rules()
+        {
+            var expectedTask01 = GIVEN_Loaded_TestTask(5, "task name 01", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0);
+            var expectedTask02 = GIVEN_Loaded_TestTask(6, "task name 02", false, TestTaskStatuses.New, true, TestClientHostnameExpected + "|" + TestClientHostnameAlternateExpected, 0);
+            var testClient01 = GIVEN_Registered_TestClient_as_json(TestClientHostnameExpected, TestClientUsernameExpected);
+            var testClient02 = GIVEN_Registered_TestClient_as_json(TestClientHostnameAlternateExpected, TestClientUsernameExpected);
+            
+            var actualTask01 = WHEN_Getting_task_as_json(testClient01.Id);
+            
+            THEN_HttpResponse_Is_Ok();
+            THEN_TestTask_Properties_Equal_To(expectedTask01, actualTask01, TestTaskStatuses.Running);
+            THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == testClient01.Id));
+            
+            // TODO: refactor this
+            var actualTask02 = WHEN_Getting_task_as_json(testClient02.Id);
+            
+            THEN_HttpResponse_Is_Ok();
+            THEN_TestTask_Properties_Equal_To(expectedTask02, actualTask02, TestTaskStatuses.Running);
+            THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == testClient02.Id));
+        }
+        // ============================================================================================================================
         ITestClient GIVEN_Registered_TestClient_as_json(string hostname, string username)
         {
             var testClient = new TestClient { Hostname = hostname, Username = username };
-            response = _browser.Post(UrlList.TestClientRegistrationPoint_absPath, with => {
+            _response = _browser.Post(UrlList.TestClientRegistrationPoint_absPath, with => {
                                             with.JsonBody<ITestClient>(testClient);
                                             with.Accept("application/json");
                                         });
-            testClient = response.Body.DeserializeJson<TestClient>();
+            testClient = _response.Body.DeserializeJson<TestClient>();
             
             if (null == testClient)
                 return null;
@@ -438,9 +466,9 @@ namespace Tmx.Server.Tests.Modules
         TestTask WHEN_Getting_task_as_json(Guid clientId)
         // TestTaskProxy WHEN_Getting_task_as_json(int clientId)
         {
-            response = _browser.Get(UrlList.TestTasks_Root + "/" + clientId, with => with.Accept("application/json"));
+            _response = _browser.Get(UrlList.TestTasks_Root + "/" + clientId, with => with.Accept("application/json"));
             // 20141020 squeezing a task to its proxy
-            var actualTask = response.Body.DeserializeJson<TestTask>();
+            var actualTask = _response.Body.DeserializeJson<TestTask>();
             // var actualTask = response.Body.DeserializeJson<TestTaskProxy>();
             // var actualTask = response.Body.DeserializeJson<TestTaskCodeProxy>();
             if (null == actualTask) return actualTask;
@@ -481,7 +509,7 @@ namespace Tmx.Server.Tests.Modules
         void WHEN_Failing_Task_as_json(TestTask actualTask)
         // void WHEN_Failing_Task(TestTaskProxy actualTask)
         {
-            actualTask.TaskStatus = TestTaskStatuses.Interrupted;
+            actualTask.TaskStatus = TestTaskStatuses.ExecutionFailed;
             actualTask.TaskFinished = true;
             // 20141020 squeezing a task to its proxy
             _browser.Put(UrlList.TestTasks_Root + "/" + actualTask.Id, with => {
@@ -493,17 +521,17 @@ namespace Tmx.Server.Tests.Modules
         
         void THEN_HttpResponse_Is_Ok()
         {
-            Xunit.Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Xunit.Assert.Equal(HttpStatusCode.OK, _response.StatusCode);
         }
         
         void THEN_HttpResponse_Is_NotFound()
         {
-            Xunit.Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+            Xunit.Assert.Equal(HttpStatusCode.NotFound, _response.StatusCode);
         }
         
         void THEN_HttpResponse_Is_ExpectationFailed()
         {
-            Xunit.Assert.Equal(HttpStatusCode.ExpectationFailed, response.StatusCode);
+            Xunit.Assert.Equal(HttpStatusCode.ExpectationFailed, _response.StatusCode);
         }
         
         // 20141020 squeezing a task to its proxy
@@ -548,6 +576,15 @@ namespace Tmx.Server.Tests.Modules
         void THEN_testRun_isCompleted()
         {
             Xunit.Assert.Equal(true, _testRun.IsCompleted());
+        }
+
+        void THEN_testRun_clients_unregistered(int taskId)
+        {
+            // Xunit.Assert.True(ClientsCollection.Clients.All(client => client.TestRunId != _testRun.Id));
+            // var clientIdOfClientThatRanThisTask = ClientsCollection.Clients.First(client => client.TaskId == taskId).Id;
+            // Xunit.Assert.True(ClientsCollection.Clients.All(client => client.Id != clientIdOfClientThatRanThisTask));
+            // not good, not bad
+            Xunit.Assert.True(ClientsCollection.Clients.All(client => client.TaskId != taskId));
         }
     }
 }

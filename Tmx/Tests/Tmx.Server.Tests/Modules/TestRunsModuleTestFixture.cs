@@ -10,7 +10,7 @@
 namespace Tmx.Server.Tests.Modules
 {
     using System.Linq;
-    using Tmx.Server.Logic.ObjectModel;
+    using Logic.ObjectModel;
     using Core;
     using Core.Types.Remoting;
     using Interfaces.Remoting;
@@ -178,7 +178,7 @@ namespace Tmx.Server.Tests.Modules
             GIVEN_first_testWorkflow();
             
             WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
-            TaskPool.TasksForClients.ForEach(task => task.TaskStatus = TestTaskStatuses.Interrupted);
+            TaskPool.TasksForClients.ForEach(task => task.TaskStatus = TestTaskStatuses.ExecutionFailed);
             TestRunQueue.TestRuns.ForEach(testRun => testRun.Status = TestRunStatuses.CompletedSuccessfully);
             WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
             WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);

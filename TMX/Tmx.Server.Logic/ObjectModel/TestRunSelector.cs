@@ -11,6 +11,7 @@ namespace Tmx.Server.Logic.ObjectModel
 {
     using System.Linq;
     using Core;
+    using ExtensionMethods;
     using Objects;
     using Tmx.Interfaces.Remoting;
 
@@ -36,12 +37,14 @@ namespace Tmx.Server.Logic.ObjectModel
             TaskPool.TasksForClients.Where(task => task.TestRunId == testRun.Id && !task.IsFinished() && !task.IsActive()).ToList().ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled);
             testRun.Status = TestRunStatuses.Cancelled;
             if (TaskPool.TasksForClients.Any(task => task.TestRunId == testRun.Id && task.IsActive())) {
-                TaskPool.TasksForClients.Where(task => task.TestRunId == testRun.Id && task.IsActive()).ToList().ForEach(task => task.TaskStatus = TestTaskStatuses.Interrupted);
+                TaskPool.TasksForClients.Where(task => task.TestRunId == testRun.Id && task.IsActive()).ToList().ForEach(task => task.TaskStatus = TestTaskStatuses.ExecutionFailed);
                 testRun.Status = TestRunStatuses.Cancelling;
             }
             
             // disconnecting clients
-            ClientsCollection.Clients.RemoveAll(client => client.TestRunId == testRun.Id);
+            // 20150807
+            // ClientsCollection.Clients.RemoveAll(client => client.TestRunId == testRun.Id);
+            testRun.UnregisterClients();
             testRun.SetTimeTaken();
             RunNextInRowTestRun();
         }

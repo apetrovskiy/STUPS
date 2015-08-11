@@ -36,37 +36,35 @@ namespace Tmx
             if (task.IsFinished())
                 cmdlet.WriteError(cmdlet, "Task '" + task.Name + "' has been already processed", "AlreadyProcessed", ErrorCategory.InvalidData, true);
             
-            loadCommonData();
-            runTask(task);
-            updateTask(task);
-            sendTestResults();
+            LoadCommonData();
+            RunTask(task);
+            UpdateTask(task);
+            SendTestResults();
             ClientSettings.Instance.CurrentTask = null;
         }
         
-        void loadCommonData()
+        void LoadCommonData()
         {
             var commonDataLoader = new CommonDataLoader(new RestRequestCreator());
-            // 20141030
-            // CommonData.Data = commonDataLoader.Load();
             ClientSettings.Instance.CommonData.Data = commonDataLoader.Load();
         }
         
-        void runTask(ITestTask task)
+        void RunTask(ITestTask task)
         {
             var taskRunner = new TaskRunner();
             var runResult = taskRunner.Run(task);
             // 20150112
             // task.TaskFinished = true
-            task.TaskStatus = runResult ? TestTaskStatuses.CompletedSuccessfully : TestTaskStatuses.Interrupted;
+            task.TaskStatus = runResult ? TestTaskStatuses.CompletedSuccessfully : TestTaskStatuses.ExecutionFailed;
         }
         
-        void updateTask(ITestTask task)
+        void UpdateTask(ITestTask task)
         {
             var taskUpdater = new TaskUpdater(new RestRequestCreator());
             taskUpdater.UpdateTask(task);
         }
         
-        void sendTestResults()
+        void SendTestResults()
         {
             var testResultsSender = new TestResultsSender(new RestRequestCreator());
             var result = testResultsSender.SendTestResults();

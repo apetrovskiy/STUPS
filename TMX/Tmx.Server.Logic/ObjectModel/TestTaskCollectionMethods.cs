@@ -50,7 +50,10 @@
         void CompleteTestRun(ITestTask task)
         {
             var currentTestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == task.TestRunId);
-            currentTestRun.Status = TaskPool.TasksForClients.Any(tsk => tsk.TestRunId == currentTestRun.Id && tsk.TaskStatus == TestTaskStatuses.Interrupted) ? TestRunStatuses.Interrupted : TestRunStatuses.CompletedSuccessfully;
+            currentTestRun.Status = TaskPool.TasksForClients.Any(tsk => tsk.TestRunId == currentTestRun.Id && tsk.TaskStatus == TestTaskStatuses.ExecutionFailed) ? TestRunStatuses.InterruptedOnTaskFailure : TestRunStatuses.CompletedSuccessfully;
+            // 20150807
+            if (TestRunStatuses.InterruptedOnTaskFailure == currentTestRun.Status)
+                currentTestRun.UnregisterClients();
             currentTestRun.SetTimeTaken();
 
             if (!TestRunQueue.TestRuns.Any(testRun => testRun.TestLabId == currentTestRun.TestLabId && testRun.Id != currentTestRun.Id))

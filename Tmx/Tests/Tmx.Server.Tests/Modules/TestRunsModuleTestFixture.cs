@@ -9,14 +9,21 @@
 
 namespace Tmx.Server.Tests.Modules
 {
+    using System;
+    using System.ComponentModel;
+    using System.Dynamic;
+    using System.IO;
     using System.Linq;
     using Logic.ObjectModel;
     using Core;
     using Core.Types.Remoting;
+    using CsQuery.ExtensionMethods;
     using Interfaces.Remoting;
     using Interfaces.Server;
     using Logic.ObjectModel.Objects;
     using MbUnit.Framework;
+    using Nancy;
+    using Nancy.ModelBinding;
     using Nancy.Testing;
     using UnitTestingHelpers;
     using Xunit;
@@ -89,6 +96,20 @@ namespace Tmx.Server.Tests.Modules
             
             THEN_there_should_be_the_following_number_of_testRun_objects(1);
             THEN_testRun_is_running(TestRunQueue.TestRuns[0]);
+        }
+
+        [Test][NUnit.Framework.Test][Fact]
+        public void Should_create_first_testRun_and_returns_its_id()
+        {
+            GIVEN_first_testWorkflow();
+
+            // WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+            WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+
+            THEN_there_should_be_the_following_number_of_testRun_objects(1);
+            THEN_testRun_is_running(TestRunQueue.TestRuns[0]);
+            // THEN_testRun_id_is(testRunCommandResponse.NewTestRunId, TestRunQueue.TestRuns[0].Id);
+            THEN_testRun_id_is(TestRunQueue.TestRuns[0].Id);
         }
         
         [Test][NUnit.Framework.Test][Fact]
@@ -214,6 +235,34 @@ namespace Tmx.Server.Tests.Modules
             THEN_testRun_is_pending(TestRunQueue.TestRuns[4]);
         }
         
+        [Test][NUnit.Framework.Test]// [Fact]
+        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
+        public void Should_return_testRun_as_json()
+        {
+            GIVEN_first_testWorkflow();
+            
+            WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+            TaskPool.TasksForClients.ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled);
+            TestRunQueue.TestRuns.ForEach(testRun => testRun.Status = TestRunStatuses.CompletedSuccessfully);
+            WHEN_getting_testRun(0);
+            
+            THEN_response_has_testRun_id(0);
+        }
+
+        [Test][NUnit.Framework.Test]// [Fact]
+        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
+        public void Should_return_all_testRuns_as_json()
+        {
+            //GIVEN_first_testWorkflow();
+
+            //WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+            //TaskPool.TasksForClients.ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled);
+            //TestRunQueue.TestRuns.ForEach(testRun => testRun.Status = TestRunStatuses.CompletedSuccessfully);
+            //WHEN_getting_testRun(0);
+
+            //THEN_response_has_testRun_id(0);
+        }
+        
 //        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Should_add_one_task_to_the_common_pool_on_imporing_one_task()
 //        {
@@ -300,13 +349,17 @@ namespace Tmx.Server.Tests.Modules
             });
         }
         
-        TestRunCommand WHEN_sending_testRun_as_json(string testWorkflowName, TestRunStatuses status)
+        // TestRunCommand WHEN_sending_testRun_as_json(string testWorkflowName, TestRunStatuses status)
+        void WHEN_sending_testRun_as_json(string testWorkflowName, TestRunStatuses status)
         {
             var testRunCommand = new TestRunCommand { WorkflowName = testWorkflowName, Status = status };
-            return WHEN_sending_testRun_as_json(testWorkflowName, status, UrlList.TestRunsControlPoint_absPath, testRunCommand);
+            // 20150825
+            // return WHEN_sending_testRun_as_json(testWorkflowName, status, UrlList.TestRunsControlPoint_absPath, testRunCommand);
+            WHEN_sending_testRun_as_json(testWorkflowName, status, UrlList.TestRunsControlPoint_absPath, testRunCommand);
         }
         
-        TestRunCommand WHEN_sending_testRun_as_json(string testWorkflowName, TestRunStatuses status, string alternativeUrl, ITestRunCommand testRunCommand)
+        // TestRunCommand WHEN_sending_testRun_as_json(string testWorkflowName, TestRunStatuses status, string alternativeUrl, ITestRunCommand testRunCommand)
+        void WHEN_sending_testRun_as_json(string testWorkflowName, TestRunStatuses status, string alternativeUrl, ITestRunCommand testRunCommand)
         {
             var testRun = new TestRun();
             (testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testWorkflowName));
@@ -320,7 +373,12 @@ namespace Tmx.Server.Tests.Modules
                     with.JsonBody(testRunCommand);
                     with.Accept("application/json");
                 });
-            return _response.Body.DeserializeJson<TestRunCommand>();
+            // return _response.Body.DeserializeJson<TestRunCommand>();
+        }
+        
+        void WHEN_getting_testRun(int numberOfTheTestRun)
+        {
+            _response = _browser.Get(UrlList.TestRunsControlPoint_absPath + TestRunQueue.TestRuns[numberOfTheTestRun].Id, with => with.Accept("application/json"));
         }
         
         void THEN_there_should_be_the_following_number_of_testRun_objects(int number)
@@ -342,5 +400,30 @@ namespace Tmx.Server.Tests.Modules
         {
             Assert.Equal(true, testRun.IsCompleted());
         }
+        
+        void THEN_testRun_id_is(Guid actualTestRunId)
+        {
+            Assert.Equal(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId], actualTestRunId.ToString());
+        }
+        
+        void THEN_response_has_testRun_id(int numberOfTestRunInTheQueue)
+        {
+            var testRun = _response.Body.DeserializeJson<TestRun>();
+            // var testRun = _response.Body.Deserialize<TestRun>(new TestRunDeserializer());
+            Assert.Equal(TestRunQueue.TestRuns[0].Id, testRun.Id);
+        }
     }
+    
+    //public class TestRunDeserializer : IBodyDeserializer
+    //{
+    //    public bool CanDeserialize(string contentType, BindingContext context)
+    //    {
+    //        return true;
+    //    }
+
+    //    public object Deserialize(string contentType, Stream bodyStream, BindingContext context)
+    //    {
+    //        return new TestRun();
+    //    }
+    //}
 }

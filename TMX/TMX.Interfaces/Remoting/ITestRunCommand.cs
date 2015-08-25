@@ -9,6 +9,8 @@
 
 namespace Tmx.Interfaces.Remoting
 {
+    using System;
+
     /// <summary>
     /// Description of ITestRunCommand.
     /// </summary>
@@ -17,5 +19,6 @@ namespace Tmx.Interfaces.Remoting
         string TestRunName { get; set; }
         string WorkflowName { get; set; }
         TestRunStatuses Status { get; set; }
+        Guid NewTestRunId { get; set; }
     }
 }

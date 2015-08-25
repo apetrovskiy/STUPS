@@ -41,5 +41,6 @@ namespace Tmx.Core.Types.Remoting
         }
         public string WorkflowName { get; set; }
         public TestRunStatuses Status { get; set; }
+        public Guid NewTestRunId { get; set; }
     }
 }

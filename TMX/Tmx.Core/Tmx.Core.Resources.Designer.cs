@@ -61,6 +61,15 @@ namespace Tmx.Core {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to lastTestRunId.
+        /// </summary>
+        internal static string NewTestRun_lastTestRunId {
+            get {
+                return ResourceManager.GetString("NewTestRun_lastTestRunId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to generated test result name.
         /// </summary>
         internal static string TestData_AddTestResult_generated_test_result_name {
@@ -84,6 +93,24 @@ namespace Tmx.Core {
         internal static string TestRun_TestRun_This_platform_has_been_created_automatically {
             get {
                 return ResourceManager.GetString("TestRun_TestRun_This_platform_has_been_created_automatically", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to test_run_name.
+        /// </summary>
+        internal static string TestRunCommand_testRunName_param {
+            get {
+                return ResourceManager.GetString("TestRunCommand_testRunName_param", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to workflow_name.
+        /// </summary>
+        internal static string TestRunCommand_workflowName_param {
+            get {
+                return ResourceManager.GetString("TestRunCommand_workflowName_param", resourceCulture);
             }
         }
         

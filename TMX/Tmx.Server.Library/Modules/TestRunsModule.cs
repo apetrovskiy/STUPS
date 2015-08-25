@@ -12,11 +12,14 @@ namespace Tmx.Server.Library.Modules
     using System;
     using System.Diagnostics;
     using System.Dynamic;
+    using System.Linq;
+    using Core;
     using Core.Types.Remoting;
     using Interfaces.Remoting;
     using Interfaces.Server;
     using Logic.Internal;
     using Logic.ObjectModel;
+    using Logic.ObjectModel.Objects;
     using Nancy;
     using Nancy.ModelBinding;
     using Nancy.Responses.Negotiation;
@@ -34,6 +37,8 @@ namespace Tmx.Server.Library.Modules
             
             // http://blog.nancyfx.org/x-http-method-override-with-nancyfx/
             Put[UrlList.TestRuns_One_Cancel] = parameters => CancelTestRun(parameters.id);
+            Get[UrlList.TestRuns_One_relPath] = parameters => GetTestRun(parameters.id);
+            Get[UrlList.TestRunsControlPoint_relPath] = _ => GetAllTestRuns();
         }
         
         Negotiator CreateNewTestRun(ITestRunCommand testRunCommand)
@@ -41,7 +46,9 @@ namespace Tmx.Server.Library.Modules
             var testRunCollectionMethods = ServerObjectFactory.Resolve<TestRunCollectionMethods>();
             return !testRunCollectionMethods.SetTestRunDataAndCreateTestRun(testRunCommand, Request.Form) ? 
                 Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed).WithReasonPhrase("Failed to create a test run") :
-                GetTestRunCollectionExpandoObject();
+                // 20150825
+                // GetTestRunCollectionExpandoObject();
+                GetTestRunCollectionExpandoObject(testRunCollectionMethods.CurrentTestRunId);
         }
 
         protected Negotiator CreateNewDefaultTestRun(DynamicDictionary parameters)
@@ -57,15 +64,26 @@ namespace Tmx.Server.Library.Modules
                                                                                 TestRunName = Defaults.Workflow,
                                                                                 WorkflowName = Defaults.Workflow
                                                                             }, parameters) ? 
-                Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed).WithReasonPhrase("Failed to create a test run") : 
-                GetTestRunCollectionExpandoObject();
+                Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed).WithReasonPhrase("Failed to create a test run") :
+                // 20150825
+                // GetTestRunCollectionExpandoObject();
+                GetTestRunCollectionExpandoObject(testRunCollectionMethods.CurrentTestRunId);
         }
         
-        Negotiator GetTestRunCollectionExpandoObject()
+        // Negotiator GetTestRunCollectionExpandoObject()
+        Negotiator GetTestRunCollectionExpandoObject(Guid currentTestRunId)
         {
             var testRunCollectionMethods = ServerObjectFactory.Resolve<TestRunCollectionMethods>();
-            var data = testRunCollectionMethods.CreateTestRunExpandoObject();
-            return Negotiate.WithStatusCode(HttpStatusCode.Created).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data);
+            // 20150825
+            // var data = testRunCollectionMethods.CreateTestRunExpandoObject();
+            dynamic data = testRunCollectionMethods.CreateTestRunExpandoObject();
+            data.NewTestRunId = currentTestRunId;
+            // return Negotiate.WithStatusCode(HttpStatusCode.Created).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data);
+            return Negotiate
+                .WithStatusCode(HttpStatusCode.Created)
+                .WithView(UrlList.ViewTestRuns_TestRunsPageName)
+                .WithModel((ExpandoObject)data)
+                .WithHeader(Tmx_Core_Resources.NewTestRun_lastTestRunId, currentTestRunId.ToString());
         }
         
         Negotiator DeleteTestRun(Guid testRunId)
@@ -79,7 +97,23 @@ namespace Tmx.Server.Library.Modules
             var testRunCollectionMethods = ServerObjectFactory.Resolve<TestRunCollectionMethods>();
             testRunCollectionMethods.CancelTestRun(testRunId);
             var data = testRunCollectionMethods.CreateTestRunExpandoObject();
+            // data.NewTestRunId = testRunId;
             return Negotiate.WithStatusCode(HttpStatusCode.OK).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data);
+        }
+
+        Negotiator GetTestRun(Guid testRunId)
+        {
+            var requestedTestRun = TestRunQueue.TestRuns.FirstOrDefault(testRun => testRun.Id == testRunId);
+            return null == requestedTestRun || Guid.Empty == requestedTestRun.Id
+                ? Negotiate.WithStatusCode(HttpStatusCode.NotFound).WithReasonPhrase(string.Format("Failed to find test run with id {0}", testRunId))
+                : Negotiate.WithStatusCode(HttpStatusCode.OK).WithModel(requestedTestRun);
+        }
+
+        Negotiator GetAllTestRuns()
+        {
+            return null == TestRunQueue.TestRuns || !TestRunQueue.TestRuns.Any()
+                ? Negotiate.WithStatusCode(HttpStatusCode.NotFound).WithReasonPhrase("There are not test runs")
+                : Negotiate.WithStatusCode(HttpStatusCode.OK).WithModel(TestRunQueue.TestRuns);
         }
     }
     

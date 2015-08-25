@@ -110,4 +110,13 @@
   <data name="TestData_AddTestResult_generated_test_result_name" xml:space="preserve">
     <value>generated test result name</value>
   </data>
+  <data name="TestRunCommand_testRunName_param" xml:space="preserve">
+    <value>test_run_name</value>
+  </data>
+  <data name="TestRunCommand_workflowName_param" xml:space="preserve">
+    <value>workflow_name</value>
+  </data>
+  <data name="NewTestRun_lastTestRunId" xml:space="preserve">
+    <value>lastTestRunId</value>
+  </data>
 </root>

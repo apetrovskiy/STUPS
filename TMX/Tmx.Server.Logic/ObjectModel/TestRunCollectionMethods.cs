@@ -13,14 +13,18 @@
 
     public class TestRunCollectionMethods
     {
+        // 20150825
+        public Guid CurrentTestRunId { get; private set; }
+
         public bool SetTestRunDataAndCreateTestRun(ITestRunCommand testRunCommand, DynamicDictionary formData)
         {
+            CurrentTestRunId = Guid.Empty;
             if (null == testRunCommand)
-                testRunCommand = new TestRunCommand { TestRunName = formData["test_run_name"] ?? string.Empty, WorkflowName = formData["workflow_name"] ?? string.Empty };
+                testRunCommand = new TestRunCommand { TestRunName = formData[Tmx_Core_Resources.TestRunCommand_testRunName_param] ?? string.Empty, WorkflowName = formData[Tmx_Core_Resources.TestRunCommand_workflowName_param] ?? string.Empty };
             if (string.IsNullOrEmpty(testRunCommand.WorkflowName))
-                testRunCommand.WorkflowName = formData["workflow_name"] ?? string.Empty;
+                testRunCommand.WorkflowName = formData[Tmx_Core_Resources.TestRunCommand_workflowName_param] ?? string.Empty;
             if (string.IsNullOrEmpty(testRunCommand.TestRunName))
-                testRunCommand.TestRunName = formData["test_run_name"] ?? string.Empty;
+                testRunCommand.TestRunName = formData[Tmx_Core_Resources.TestRunCommand_testRunName_param] ?? string.Empty;
             
             return PrepareTestRun(testRunCommand, formData);
         }
@@ -29,6 +33,10 @@
         {
             var testRunInitializer = ServerObjectFactory.Resolve<TestRunInitializer>();
             var testRun = testRunInitializer.CreateTestRun(testRunCommand, formData);
+
+            // 20150825
+            // testRunCommand.NewTestRunId = testRun.Id;
+            CurrentTestRunId = testRun.Id;
             
             if (null == testRun)
                 return false;

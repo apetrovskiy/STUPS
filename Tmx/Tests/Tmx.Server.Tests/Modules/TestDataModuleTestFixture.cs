@@ -12,8 +12,6 @@ namespace Tmx.Server.Tests.Modules
     using System.Linq;
     using Nancy;
     using Nancy.Testing;
-    using MbUnit.Framework;
-    using NUnit.Framework;
     using Interfaces.Remoting;
     using Interfaces.Server;
     using Core;
@@ -142,7 +140,7 @@ namespace Tmx.Server.Tests.Modules
             var browser = TestFactory.GetBrowserForTestDataModule();
             var urn = UrlList.TestData_Root + "/" + _testRun.Id + UrlList.TestData_CommonData_forClient_relPath;
             return browser.Post(urn, with => {
-                with.JsonBody<ICommonDataItem>(dataItem);
+                with.JsonBody(dataItem);
                 with.Accept("application/json");
             });
         }
@@ -152,7 +150,7 @@ namespace Tmx.Server.Tests.Modules
             var browser = TestFactory.GetBrowserForTestDataModule();
             var urn = UrlList.TestData_Root + "/" + _testRun.Id + UrlList.TestData_CommonData_forClient_relPath;
             return browser.Post(urn, with => {
-                with.XMLBody<CommonDataItem>(dataItem);
+                with.XMLBody(dataItem);
                 with.Accept("application/xml");
             });
         }

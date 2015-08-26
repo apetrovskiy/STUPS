@@ -14,8 +14,6 @@ namespace Tmx.Server.Tests.Modules
     using System.Linq;
     using Nancy;
     using Nancy.Testing;
-    using MbUnit.Framework;
-    using NUnit.Framework;
     using Core.Types.Remoting;
     using Interfaces.Internal;
     using Interfaces.Server;
@@ -569,7 +567,7 @@ namespace Tmx.Server.Tests.Modules
         ITestClient WHEN_SendingRegistration_as_Json(ITestClient testClient)
         {
             _response = _browser.Post(UrlList.TestClientRegistrationPoint_absPath, with => {
-                with.JsonBody<ITestClient>(testClient);
+                with.JsonBody(testClient);
                 with.Accept("application/json");
             });
             return _response.Body.DeserializeJson<TestClient>();
@@ -578,7 +576,7 @@ namespace Tmx.Server.Tests.Modules
         ITestClient WHEN_SendingRegistration_as_Xml(TestClient testClient)
         {
             _response = _browser.Post(UrlList.TestClientRegistrationPoint_absPath, with => {
-                with.XMLBody<TestClient>(testClient);
+                with.XMLBody(testClient);
                 with.Accept("application/xml");
             });
             return _response.Body.DeserializeXml<TestClient>();
@@ -597,7 +595,7 @@ namespace Tmx.Server.Tests.Modules
         void WHEN_SendingStatus_as_json(Guid clientId, DetailedStatus detailedStatus)
         {
             _response = _browser.Put(UrlList.TestClients_Root + "/" + clientId + "/status", with => {
-                with.JsonBody<DetailedStatus>(detailedStatus);
+                with.JsonBody(detailedStatus);
                 with.Accept("application/json");
             });
         }
@@ -605,7 +603,7 @@ namespace Tmx.Server.Tests.Modules
         void WHEN_SendingStatus_as_xml(Guid clientId, DetailedStatus detailedStatus)
         {
             _response = _browser.Put(UrlList.TestClients_Root + "/" + clientId + "/status", with => {
-                with.JsonBody<DetailedStatus>(detailedStatus);
+                with.JsonBody(detailedStatus);
                 with.Accept("application/xml");
             });
         }

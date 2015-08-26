@@ -9,7 +9,6 @@
 
 namespace Tmx.Server.Tests.Modules
 {
-    using System;
     using System.Linq;
     using MbUnit.Framework;
     using Nancy;
@@ -23,8 +22,7 @@ namespace Tmx.Server.Tests.Modules
     using Tmx.Server.Logic.ObjectModel.Objects;
     using Tmx.Server.SamplePlugin;
     using Xunit;
-    using Tmx.Server.Tests.UnitTestingHelpers;
-    
+
     /// <summary>
     /// Description of ShortcutModuleTestFixture.
     /// </summary>
@@ -74,7 +72,7 @@ namespace Tmx.Server.Tests.Modules
                 Data = alternativeName
             };
             _browser.Put(UrlList.ServerControlPoint_absPath, with => {
-                with.JsonBody<ServerCommand>(serverCommand);
+                with.JsonBody(serverCommand);
                 with.Accept("application/json");
             });
         }

@@ -10,7 +10,6 @@
 namespace Tmx.Server.Library.Modules
 {
     using System;
-    using System.Diagnostics;
     using System.Dynamic;
     using System.Linq;
     using Core;

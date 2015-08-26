@@ -40,9 +40,13 @@ namespace Tmx.Server.Library.ObjectModel.ServerControl //.ObjectModel.ServerCont
         // public void Load()
         void RecursivelyLoad(string path)
         {
-            if (!Directory.Exists(_path)) return;
+            // 20150826
+            // if (!Directory.Exists(_path)) return;
+            if (!Directory.Exists(path)) return;
             try {
-                var dir = new DirectoryInfo(_path);
+                // 20150826
+                // var dir = new DirectoryInfo(_path);
+                var dir = new DirectoryInfo(path);
                 // var files = dir.GetFiles(@"Nancy.ViewEngines*.dll");
                 var files = dir.GetFiles(_fileNameTemplate);
                 // 20150317

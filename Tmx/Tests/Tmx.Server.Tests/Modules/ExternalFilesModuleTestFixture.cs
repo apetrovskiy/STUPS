@@ -9,21 +9,8 @@
 
 namespace Tmx.Server.Tests.Modules
 {
-    using System;
     // using System.Management.Automation;
-    using Nancy;
-    using Nancy.Testing;
-    using MbUnit.Framework;
-    using NUnit.Framework;
-    using Tmx.Interfaces.Internal;
-    using Tmx.Interfaces.Server;
-    using Tmx.Core;
-    using Tmx.Interfaces;
-    using Tmx.Interfaces.Remoting;
-    using Tmx.Interfaces.TestStructure;
-    using Xunit;
-    using PSTestLib;
-    
+
     /// <summary>
     /// Description of ExternalFilesModuleTestFixture.
     /// </summary>

@@ -91,7 +91,7 @@ namespace Tmx.Server.Tests.Modules
         void WHEN_sending_server_command_as_json(ServerCommand serverCommand)
         {
             _browser.Put(UrlList.ServerControlPoint_absPath, with => {
-                with.JsonBody<ServerCommand>(serverCommand);
+                with.JsonBody(serverCommand);
                 with.Accept("application/json");
             });
         }
@@ -99,7 +99,7 @@ namespace Tmx.Server.Tests.Modules
         void WHEN_sending_server_command_as_xml(ServerCommand serverCommand)
         {
             _browser.Put(UrlList.ServerControlPoint_absPath, with => {
-                with.JsonBody<ServerCommand>(serverCommand);
+                with.JsonBody(serverCommand);
                 with.Accept("application/xml");
             });
         }

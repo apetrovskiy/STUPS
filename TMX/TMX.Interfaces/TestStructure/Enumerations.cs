@@ -118,6 +118,7 @@ namespace Tmx.Interfaces.TestStructure
     {
         Passed = 1,
         Failed = 2,
+        // NotTested = 3,
         NotTested = 3,
         KnownIssue = 4
     }

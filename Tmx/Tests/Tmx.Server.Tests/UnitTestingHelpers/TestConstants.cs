@@ -9,8 +9,6 @@
 
 namespace Tmx.Server.Tests
 {
-    using System;
-    
     /// <summary>
     /// Description of TestConstants.
     /// </summary>

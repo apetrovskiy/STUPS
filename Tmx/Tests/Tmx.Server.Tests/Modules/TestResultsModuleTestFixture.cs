@@ -94,7 +94,7 @@ namespace Tmx.Server.Tests.Modules
                 Data = string.Empty
             };
             
-            WHEN_Posting_TestResults<TestResultsDataObject>(dataObject);
+            WHEN_Posting_TestResults(dataObject);
             
             THEN_HttpResponse_Is_Created();
         }
@@ -130,7 +130,7 @@ namespace Tmx.Server.Tests.Modules
                 Data = xDoc.ToString()
             };
             
-            WHEN_Posting_TestResults<TestResultsDataObject>(dataObject);
+            WHEN_Posting_TestResults(dataObject);
             
             THEN_HttpResponse_Is_Created();
             Xunit.Assert.Equal(suites[0].Id, _testRun.TestSuites[0].Id);
@@ -158,7 +158,7 @@ namespace Tmx.Server.Tests.Modules
             
             Console.WriteLine(xDoc.ToString());
             
-            WHEN_Posting_TestResults<TestResultsDataObject>(dataObject);
+            WHEN_Posting_TestResults(dataObject);
             
             THEN_HttpResponse_Is_Created();
             Xunit.Assert.Equal(suites[0].Id, _testRun.TestSuites[0].Id);
@@ -325,7 +325,7 @@ namespace Tmx.Server.Tests.Modules
         void WHEN_Posting_TestResults<T>(T element)
         {
             _response = _browser.Post(GetPathToResourcesCollection(typeof(T)), (with) => {
-                                          with.JsonBody<T>(element);
+                                          with.JsonBody(element);
                                           with.Accept("application/json");
                                       });
         }

@@ -13,8 +13,6 @@ namespace Tmx.Server.Tests.Modules
     using System.Linq;
     using Nancy;
     using Nancy.Testing;
-    using MbUnit.Framework;
-    using NUnit.Framework;
     using Interfaces.Server;
     using Client;
     using Core;

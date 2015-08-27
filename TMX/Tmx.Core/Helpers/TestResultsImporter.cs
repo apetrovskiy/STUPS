@@ -305,7 +305,7 @@ namespace Tmx.Core
         {
             // 20150805
             // return ("PASSED" == getStringAttribute(testResultElement, "status")) ? TestResultStatuses.Passed : ("FAILED" == getStringAttribute(testResultElement, "status")) ? TestResultStatuses.Failed : ("KNOWN ISSUE" == getStringAttribute(testResultElement, "status")) ? TestResultStatuses.KnownIssue : TestResultStatuses.NotTested;
-            return ("PASSED" == getStringAttribute(testResultElement, "status")) ? TestStatuses.Passed : ("FAILED" == getStringAttribute(testResultElement, "status")) ? TestStatuses.Failed : ("KNOWN ISSUE" == getStringAttribute(testResultElement, "status")) ? TestStatuses.KnownIssue : TestStatuses.NotTested;
+            return ("PASSED" == getStringAttribute(testResultElement, "status")) ? TestStatuses.Passed : ("FAILED" == getStringAttribute(testResultElement, "status")) ? TestStatuses.Failed : ("KNOWN ISSUE" == getStringAttribute(testResultElement, "status")) ? TestStatuses.KnownIssue : TestStatuses.NotRun;
         }
         
         List<ITestResultDetail> importTestResultDetails(IEnumerable<XElement> testResultDetailElements)
@@ -337,12 +337,12 @@ namespace Tmx.Core
                     case "NOTTESTED":
                         // 20150805
                         // detail.DetailStatus = TestResultStatuses.NotTested;
-                        detail.DetailStatus = TestStatuses.NotTested;
+                        detail.DetailStatus = TestStatuses.NotRun;
                         break;
                     default:
                         // 20150805
                         // detail.DetailStatus = TestResultStatuses.NotTested;
-                        detail.DetailStatus = TestStatuses.NotTested;
+                        detail.DetailStatus = TestStatuses.NotRun;
                         break;
                 }
             }
@@ -381,7 +381,7 @@ namespace Tmx.Core
                             return;
                         // 20150805
                         // case TestScenarioStatuses.NotTested:
-                        case TestStatuses.NotTested:
+                        case TestStatuses.NotRun:
                             break;
                         // 20150805
                         // case TestScenarioStatuses.KnownIssue:
@@ -441,7 +441,7 @@ namespace Tmx.Core
                             return;
                         // 20150805
                         // case TestResultStatuses.NotTested:
-                        case TestStatuses.NotTested:
+                        case TestStatuses.NotRun:
                             
                             break;
                         // 20150805

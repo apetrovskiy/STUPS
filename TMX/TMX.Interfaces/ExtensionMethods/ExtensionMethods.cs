@@ -28,7 +28,7 @@
                     ? TestStatuses.KnownIssue
                     : testSuites.Any(suite => TestStatuses.Passed == suite.enStatus)
                         ? TestStatuses.Passed
-                        : TestStatuses.NotTested;
+                        : TestStatuses.NotRun;
         }
     }
 }

@@ -186,7 +186,7 @@ namespace TmxUnitTests
                     break;
                 // 20150805
                 // case TestResultStatuses.NotTested:
-                case TestStatuses.NotTested:
+                case TestStatuses.NotRun:
                     // nothing to do
                     break;
 //                case TestResultStatuses.KnownIssue:

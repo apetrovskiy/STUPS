@@ -31,7 +31,7 @@ namespace Tmx.Interfaces
             Statistics = new TestStat();
             // 20150805
             // this.enStatus = TestScenarioStatuses.NotTested;
-            enStatus = TestStatuses.NotTested;
+            enStatus = TestStatuses.NotRun;
         }
         
         // 20141102
@@ -85,7 +85,7 @@ namespace Tmx.Interfaces
             Statistics = new TestStat();
             // 20150805
             // enStatus = TestScenarioStatuses.NotTested;
-            enStatus = TestStatuses.NotTested;
+            enStatus = TestStatuses.NotRun;
             Name = testScenarioName;
             Id = !string.IsNullOrEmpty(testScenarioId) ? testScenarioId : TestData.GetTestScenarioId();
             SuiteId = testSuiteId;
@@ -171,7 +171,7 @@ namespace Tmx.Interfaces
                         break;
                     // 20150805
                     // case TestScenarioStatuses.NotTested:
-                    case TestStatuses.NotTested:
+                    case TestStatuses.NotRun:
                         _status = TestData.TestStateNotTested;
                         break;
                     // 20150805
@@ -187,7 +187,10 @@ namespace Tmx.Interfaces
                 }
             }
         }
-        
+
+        [XmlAttribute]
+        public string Tag { get; set; }
+
         [XmlIgnore]
         public TestStat Statistics { get; set; }
         

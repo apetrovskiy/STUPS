@@ -60,7 +60,7 @@ namespace Tmx.Core
             } else if (cmdlet.FilterNotTested) {
                 // 20150805
                 // query = suite => suite.enStatus == TestSuiteStatuses.NotTested;
-                query = suite => suite.enStatus == TestStatuses.NotTested;
+                query = suite => suite.enStatus == TestStatuses.NotRun;
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterPassedWithBadSmell) {
                 // 20150805
@@ -172,7 +172,7 @@ namespace Tmx.Core
             } else if (searchCriteria.FilterNotTested) {
                 // 20150805
                 // query = scenario => scenario.enStatus == TestScenarioStatuses.NotTested;
-                query = scenario => scenario.enStatus == TestStatuses.NotTested;
+                query = scenario => scenario.enStatus == TestStatuses.NotRun;
                 searchCriteria.FilterAll = false;
             } else if (searchCriteria.FilterPassedWithBadSmell) {
                 // 20150805
@@ -283,7 +283,7 @@ namespace Tmx.Core
             else if (dataObject.FilterNotTested)
                 // 20150805
                 // query = testResult => testResult.enStatus == TestResultStatuses.NotTested;
-                query = testResult => testResult.enStatus == TestStatuses.NotTested;
+                query = testResult => testResult.enStatus == TestStatuses.NotRun;
             else if (dataObject.FilterPassedWithBadSmell)
                 // 20150805
                 // query = testResult => testResult.enStatus == TestResultStatuses.KnownIssue;

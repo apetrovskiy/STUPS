@@ -9,6 +9,7 @@
 
 namespace Tmx
 {
+    using System.Xml.Serialization;
     using Interfaces.Remoting;
     using Interfaces.TestStructure;
 
@@ -61,5 +62,7 @@ namespace Tmx
         public string TestCaseTag { get; set; }
         public string Description { get; set; }
         public virtual object[] TestCodeParameters { get; set; }
+        [XmlAttribute]
+        public string Tag { get; set; }
     }
 }

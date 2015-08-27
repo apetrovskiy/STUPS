@@ -882,7 +882,7 @@ namespace Tmx
                         break;
                     // 20150805
                     // case TestScenarioStatuses.NotTested:
-                    case TestStatuses.NotTested:
+                    case TestStatuses.NotRun:
                         scNotTested++;
                         break;
                     default:
@@ -956,7 +956,7 @@ namespace Tmx
                         break;
                     // 20150805
                     // case TestSuiteStatuses.NotTested:
-                    case TestStatuses.NotTested:
+                    case TestStatuses.NotRun:
                         suNotTested++;
                         break;
                     // 20150114
@@ -983,7 +983,7 @@ namespace Tmx
                             break;
                         // 20150805
                         // case TestScenarioStatuses.NotTested:
-                        case TestStatuses.NotTested:
+                        case TestStatuses.NotRun:
                             scNotTested++;
                             break;
                         // 20150114

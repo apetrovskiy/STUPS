@@ -66,6 +66,9 @@ namespace Tmx.Interfaces.TestStructure
         // 20150805
         // TestSuiteStatuses enStatus { get; set; }
         TestStatuses enStatus { get; set; }
+        // 20150826
+        [XmlAttribute]
+        string Tag { get; set; }
         
         int GetAll();
         int GetPassed();

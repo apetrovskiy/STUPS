@@ -119,7 +119,21 @@ namespace Tmx.Interfaces.TestStructure
         Passed = 1,
         Failed = 2,
         // NotTested = 3,
-        NotTested = 3,
-        KnownIssue = 4
+        NotRun = 3,
+        KnownIssue = 4,
+        Blocked = 5,
+        WorkInProgress = 6
+    }
+
+    public enum TestTagRuleScopes
+    {
+        Include = 1,
+        Exclude = 2
+    }
+
+    public enum TestTagRuleActions
+    {
+        RaiseSeverity = 1,
+        DecreaseSeverity = 2
     }
 }

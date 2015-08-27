@@ -41,8 +41,8 @@ namespace Tmx.Interfaces.TestStructure
         DateTime Timestamp { get; set; }
         void SetNow();
         
-        [XmlIgnore]
-        string Tags { get; set; }
+        //[XmlIgnore]
+        //string Tags { get; set; }
         [XmlAttribute]
         string PlatformId { get; set; }
         [XmlAttribute]
@@ -74,6 +74,9 @@ namespace Tmx.Interfaces.TestStructure
         // 20150805
         // TestScenarioStatuses enStatus { get; set; }
         TestStatuses enStatus { get; set; }
+        // 20150826
+        [XmlAttribute]
+        string Tag { get; set; }
         
         int GetAll();
         int GetPassed();

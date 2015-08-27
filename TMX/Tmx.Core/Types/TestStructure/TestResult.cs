@@ -33,7 +33,7 @@ namespace Tmx.Interfaces
             Details = new List<ITestResultDetail>();
             // 20150805
             // enStatus = TestResultStatuses.NotTested;
-            enStatus = TestStatuses.NotTested;
+            enStatus = TestStatuses.NotRun;
             
             // scenarioId and suiteId
             ScenarioId = testScenarioId;
@@ -133,7 +133,7 @@ namespace Tmx.Interfaces
                         break;
                     // 20150805
                     // case TestResultStatuses.NotTested:
-                    case TestStatuses.NotTested:
+                    case TestStatuses.NotRun:
                         status = TestData.TestStateNotTested;
                         break;
                     // 20150805
@@ -272,7 +272,7 @@ namespace Tmx.Interfaces
 
             // 20150805
             // if (TestResultStatuses.NotTested == status) {
-            if (TestStatuses.NotTested == status) {
+            if (TestStatuses.NotRun == status) {
                     
                 var testResultDetailsNonFiltered = 
                     from detail in Details
@@ -311,5 +311,8 @@ namespace Tmx.Interfaces
         public virtual string PlatformId { get; set; }
         [XmlAttribute]
         public virtual Guid PlatformUniqueId { get; set; }
+
+        [XmlAttribute]
+        public string Tag { get; set; }
     }
 }

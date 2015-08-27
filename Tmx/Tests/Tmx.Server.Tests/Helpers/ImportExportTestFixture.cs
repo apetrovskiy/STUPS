@@ -67,7 +67,7 @@ namespace Tmx.Server.Tests.Helpers
             THEN_test_result_N_status_is(sourceTestSuites, "4", TestStatuses.KnownIssue);
             // 20150805
             // THEN_test_result_N_status_is(sourceTestSuites, "5", TestResultStatuses.NotTested);
-            THEN_test_result_N_status_is(sourceTestSuites, "5", TestStatuses.NotTested);
+            THEN_test_result_N_status_is(sourceTestSuites, "5", TestStatuses.NotRun);
         }
         
         [Test][NUnit.Framework.Test][Fact]
@@ -301,7 +301,7 @@ namespace Tmx.Server.Tests.Helpers
                                 PlatformUniqueId = platform.UniqueId,
                                 // 20150805
                                 // enStatus = TestResultStatuses.NotTested,
-                                enStatus = TestStatuses.NotTested,
+                                enStatus = TestStatuses.NotRun,
                                 SuiteId = suiteId,
                                 SuiteUniqueId = suiteUniqueId,
                                 ScenarioId = scenarioId,

@@ -123,7 +123,7 @@ namespace Tmx.Core
                 suite.Statistics.Failed > 0 ? TestStatuses.Failed :
                 // 20150805
                 // suite.Statistics.Passed > 0 ? TestSuiteStatuses.Passed : TestSuiteStatuses.NotTested;
-                suite.Statistics.Passed > 0 ? TestStatuses.Passed : TestStatuses.NotTested;
+                suite.Statistics.Passed > 0 ? TestStatuses.Passed : TestStatuses.NotRun;
         }
         
         void setTestScenarioStatus(ITestScenario scenario)
@@ -136,7 +136,7 @@ namespace Tmx.Core
                 scenario.Statistics.Failed > 0 ? TestStatuses.Failed :
                 // 20150805
                 // scenario.Statistics.Passed > 0 ? TestScenarioStatuses.Passed : TestScenarioStatuses.NotTested;
-                scenario.Statistics.Passed > 0 ? TestStatuses.Passed : TestStatuses.NotTested;
+                scenario.Statistics.Passed > 0 ? TestStatuses.Passed : TestStatuses.NotRun;
         }
     }
 }

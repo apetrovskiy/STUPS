@@ -88,13 +88,14 @@ namespace Tmx.Interfaces.TestStructure
         TestResultOrigins Origin { get; }
         void SetOrigin(TestResultOrigins origin);
         
-        // 20150805
-        // object[] ListDetailNames(TestResultStatuses status);
         object[] ListDetailNames(TestStatuses status);
         
         [XmlAttribute]
         string PlatformId { get; set; }
         [XmlAttribute]
         Guid PlatformUniqueId { get; set; }
+        // 20150826
+        [XmlAttribute]
+        string Tag { get; set; }
     }
 }

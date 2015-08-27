@@ -409,7 +409,7 @@ namespace Tmx
             } else if (cmdlet.FilterNotTested) {
                 // 20150805
                 // query = suite => suite.enStatus == TestSuiteStatuses.NotTested;
-                query = suite => suite.enStatus == TestStatuses.NotTested;
+                query = suite => suite.enStatus == TestStatuses.NotRun;
                 //queriesList.Add((suite => suite.enStatus == TestSuiteStatuses.NotTested));
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterPassedWithBadSmell) {
@@ -551,7 +551,7 @@ namespace Tmx
             } else if (cmdlet.FilterNotTested) {
                 // 20150805
                 // query = scenario => scenario.enStatus == TestScenarioStatuses.NotTested;
-                query = scenario => scenario.enStatus == TestStatuses.NotTested;
+                query = scenario => scenario.enStatus == TestStatuses.NotRun;
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterPassedWithBadSmell) {
                 // 20150805
@@ -689,7 +689,7 @@ namespace Tmx
             else if (dataObject.FilterNotTested)
                 // 20150805
                 // query = testResult => testResult.enStatus == TestResultStatuses.NotTested;
-                query = testResult => testResult.enStatus == TestStatuses.NotTested;
+                query = testResult => testResult.enStatus == TestStatuses.NotRun;
                 // dataObject.FilterAll = false;
             else if (dataObject.FilterPassedWithBadSmell)
                 // 20150805
@@ -845,7 +845,7 @@ namespace Tmx
 
                 // 20150805
                 // TestData.CurrentTestResult.enStatus = TestResultStatuses.NotTested;
-                TestData.CurrentTestResult.enStatus = TestStatuses.NotTested;
+                TestData.CurrentTestResult.enStatus = TestStatuses.NotRun;
 
                 if (cmdlet.KnownIssue)
                     // 20150805

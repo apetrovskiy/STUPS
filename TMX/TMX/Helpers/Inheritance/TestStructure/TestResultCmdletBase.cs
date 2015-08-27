@@ -23,7 +23,7 @@ namespace Tmx
             // 20130330
             // 20150805
             // this.TestResultStatus = TestResultStatuses.NotTested;
-            TestResultStatus = TestStatuses.NotTested;
+            TestResultStatus = TestStatuses.NotRun;
         }
         
         #region Parameters
@@ -61,7 +61,7 @@ namespace Tmx
         {
             // 20150805
             // if (TestResultStatuses.NotTested == TestResultStatus) return;
-            if (TestStatuses.NotTested == TestResultStatus) return;
+            if (TestStatuses.NotRun == TestResultStatus) return;
             switch (TestResultStatus) {
                 // 20150805
                 // case TestResultStatuses.Passed:
@@ -75,7 +75,7 @@ namespace Tmx
                     break;
                 // 20150805
                 // case TestResultStatuses.NotTested:
-                case TestStatuses.NotTested:
+                case TestStatuses.NotRun:
                     // nothing to do
                     // the impossible combination
                     break;

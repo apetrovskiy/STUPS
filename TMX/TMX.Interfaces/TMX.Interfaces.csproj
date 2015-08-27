@@ -172,6 +172,7 @@
     <Compile Include="TestStructure\ITestResultDetail.cs" />
     <Compile Include="TestStructure\ITestScenario.cs" />
     <Compile Include="TestStructure\ITestSuite.cs" />
+    <Compile Include="TestStructure\ITestTagRule.cs" />
     <Compile Include="TestStructure\TestStat.cs" />
     <Compile Include="UrlList.cs" />
   </ItemGroup>

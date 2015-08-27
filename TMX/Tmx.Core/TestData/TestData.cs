@@ -254,12 +254,12 @@ namespace Tmx
                             scenario.TestResults.Clear();
                             // 20150805
                             // scenario.enStatus = TestScenarioStatuses.NotTested;
-                            scenario.enStatus = TestStatuses.NotTested;
+                            scenario.enStatus = TestStatuses.NotRun;
                         }
                     }
                     // 20150805
                     // suite.enStatus = TestSuiteStatuses.NotTested;
-                    suite.enStatus = TestStatuses.NotTested;
+                    suite.enStatus = TestStatuses.NotRun;
                 }
             }
             CurrentTestResult = null;
@@ -718,7 +718,7 @@ namespace Tmx
                     //break;
                         // 20150805
                         // case TestResultStatuses.NotTested:
-                        case TestStatuses.NotTested:
+                        case TestStatuses.NotRun:
                             
                             break;
                         // 20150805
@@ -784,7 +784,7 @@ namespace Tmx
                             return;
                         // 20150805
                         // case TestScenarioStatuses.NotTested:
-                        case TestStatuses.NotTested:
+                        case TestStatuses.NotRun:
                             break;
                         // 20150805
                         // case TestScenarioStatuses.KnownIssue:
@@ -966,7 +966,7 @@ namespace Tmx
                     break;
                 // 20150805
                 // case TestResultStatuses.NotTested:
-                case TestStatuses.NotTested:
+                case TestStatuses.NotRun:
                     // nothing to do
                     break;
                 // 20150805

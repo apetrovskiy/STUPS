@@ -75,24 +75,16 @@ namespace UIAutomation
                 // AutomationFactory.InitNewCustomScope();
                 
                 BeforeSearchHook();
-                
-                ResultCollection =
-                    SearchForElements(data);
-                
+                ResultCollection = SearchForElements(data);
                 AfterSearchHook();
-                
                 if (null != ResultCollection && 0 < ResultCollection.Count) break;
-                
                 Wait = ContinueSearch(Timeout, startTime);
-                
                 OnSleepHook();
                 
             } while (Wait);
             
             OnFailureHook();
-            
             OnSuccessHook();
-            
             return ResultCollection;
         }
     }

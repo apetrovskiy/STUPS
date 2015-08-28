@@ -40,8 +40,7 @@ namespace UIAutomation.Commands
         {
             CheckCmdletParameters();
             
-            var command =
-                AutomationFactory.GetCommand<GetWindowCommand>(this);
+            var command = AutomationFactory.GetCommand<GetWindowCommand>(this);
             command.Execute();
         }
         

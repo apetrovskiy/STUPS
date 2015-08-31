@@ -17,7 +17,7 @@ namespace UIAutomation
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
     using System.Linq;
     using System.Threading;
-    using UIAutomation.Commands;
+    using Commands;
     
     /// <summary>
     /// Description of Wizard.

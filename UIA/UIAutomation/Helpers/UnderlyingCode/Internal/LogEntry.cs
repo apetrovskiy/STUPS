@@ -20,7 +20,7 @@ namespace UIAutomation
     {
         public LogEntry(LogLevels level, string message)
         {
-            DateTime = System.DateTime.Now;
+            DateTime = DateTime.Now;
             LogLevel = level;
             Message = message;
         }

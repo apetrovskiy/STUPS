@@ -16,7 +16,7 @@ namespace UIAutomation.Commands
 //    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
-    using UIAutomation.Helpers.Commands;
+    using Helpers.Commands;
     
     /// <summary>
     /// Description of ConvertToUiaSearchCriteriaCommand.

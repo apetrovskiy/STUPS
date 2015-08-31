@@ -23,14 +23,14 @@ namespace UIAutomation
         
         public UiaSelectionPattern(IUiElement element, classic.SelectionPattern selectionPattern)
         {
-            this._selectionPattern = selectionPattern;
-            this._element = element;
+            _selectionPattern = selectionPattern;
+            _element = element;
             //this._useCache = useCache;
         }
         
         public UiaSelectionPattern(IUiElement element)
         {
-            this._element = element;
+            _element = element;
         }
         
         public struct SelectionPatternInformation : ISelectionPatternInformation
@@ -40,18 +40,18 @@ namespace UIAutomation
             
             public SelectionPatternInformation(ISelectionPattern selectionPattern, bool useCache)
             {
-                this._selectionPattern = selectionPattern;
-                this._useCache = useCache;
+                _selectionPattern = selectionPattern;
+                _useCache = useCache;
             }
             
             public bool CanSelectMultiple {
                 get {
-                    return (bool)this._selectionPattern.GetParentElement().GetPatternPropertyValue(classic.SelectionPattern.CanSelectMultipleProperty, this._useCache);
+                    return (bool)_selectionPattern.GetParentElement().GetPatternPropertyValue(classic.SelectionPattern.CanSelectMultipleProperty, _useCache);
                 }
             }
             public bool IsSelectionRequired {
                 get {
-                    return (bool)this._selectionPattern.GetParentElement().GetPatternPropertyValue(classic.SelectionPattern.IsSelectionRequiredProperty, this._useCache);
+                    return (bool)_selectionPattern.GetParentElement().GetPatternPropertyValue(classic.SelectionPattern.IsSelectionRequiredProperty, _useCache);
                 }
             }
             
@@ -59,7 +59,7 @@ namespace UIAutomation
             {
                 // 20140302
                 // AutomationElement[] nativeElements = (AutomationElement[])this._selectionPattern.GetParentElement().GetPatternPropertyValue(SelectionPattern.SelectionProperty, this._useCache);
-                var nativeElements = (classic.AutomationElement[])this._selectionPattern.GetParentElement().GetPatternPropertyValue(classic.SelectionPattern.SelectionProperty, this._useCache);
+                var nativeElements = (classic.AutomationElement[])_selectionPattern.GetParentElement().GetPatternPropertyValue(classic.SelectionPattern.SelectionProperty, _useCache);
                 IUiEltCollection tempCollection = AutomationFactory.GetUiEltCollection(nativeElements);
                 if (null == tempCollection || 0 == tempCollection.Count) {
                     return new UiElement[] {};
@@ -76,34 +76,34 @@ namespace UIAutomation
         
         public virtual ISelectionPatternInformation Cached {
             get {
-                return new UiaSelectionPattern.SelectionPatternInformation(this, true);
+                return new SelectionPatternInformation(this, true);
             }
         }
         
         public virtual ISelectionPatternInformation Current {
             get {
-                return new UiaSelectionPattern.SelectionPatternInformation(this, false);
+                return new SelectionPatternInformation(this, false);
             }
         }
         
         public void SetParentElement(IUiElement element)
         {
-            this._element = element;
+            _element = element;
         }
         
         public IUiElement GetParentElement()
         {
-            return this._element;
+            return _element;
         }
         
         public void SetSourcePattern(object pattern)
         {
-            this._selectionPattern = pattern as classic.SelectionPattern;
+            _selectionPattern = pattern as classic.SelectionPattern;
         }
         
         public object GetSourcePattern()
         {
-            return this._selectionPattern;
+            return _selectionPattern;
         }
     }
 }

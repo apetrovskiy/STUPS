@@ -122,7 +122,7 @@ namespace UIAutomation
             
             // 20140124
             ModuleEcoSystem =
-                System.Management.Automation.ScriptBlock.Create(
+                ScriptBlock.Create(
                     @"$Keyboard = (New-Object WindowsInput.InputSimulator).Keyboard; " +
                     @"$Mouse = (New-Object WindowsInput.InputSimulator).Mouse; ");
             
@@ -404,7 +404,7 @@ namespace UIAutomation
         {
             get {
                 // if (Preferences.UseElementsCached || Preferences.UseElementsCurrent || Preferences.UseElementsPatternObjectModel || Preferences.UseElementsSearchObjectModel) {
-                if (Preferences.UseElementsCached || Preferences.UseElementsCurrent || Preferences.UseElementsPatternObjectModel) {
+                if (UseElementsCached || UseElementsCurrent || UseElementsPatternObjectModel) {
                     return true;
                 } else {
                     return false;

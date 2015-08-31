@@ -25,7 +25,7 @@ namespace UIAutomation.Commands
             WhatToDo = "TransformMove";
             TransformMoveX = 1;
             TransformMoveY = 1;
-            base.Child = this;
+            Child = this;
         }
         
         [UiaParameter][Parameter(Mandatory = true)]

@@ -11,7 +11,7 @@ namespace UIAutomation.Commands
 {
     extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
     using System.Management.Automation;
-    using UIAutomation.Helpers.Commands;
+    using Helpers.Commands;
     
     /// <summary>
     /// Description of InvokeUiaControlContextMenuCommand.

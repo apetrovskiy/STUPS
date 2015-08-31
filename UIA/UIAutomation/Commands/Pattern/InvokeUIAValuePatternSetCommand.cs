@@ -26,7 +26,7 @@ namespace UIAutomation.Commands
         {
             WhatToDo = "ValueSet";
             Text = String.Empty;
-            base.Child = this;
+            Child = this;
             
             PassThru = false;
         }

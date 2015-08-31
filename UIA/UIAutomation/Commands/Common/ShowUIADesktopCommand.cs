@@ -13,7 +13,7 @@ namespace UIAutomation.Commands.Common
     using System;
     using System.Management.Automation;
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
-    using UIAutomation.Helpers.Commands;
+    using Helpers.Commands;
     
     /// <summary>
     /// Description of ShowUiaDesktopCommand.

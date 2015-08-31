@@ -17,7 +17,7 @@ namespace UIAutomation.Commands
     using System.Collections.Generic;
     using PSTestLib;
     
-    using UIAutomation.Helpers.Commands;
+    using Helpers.Commands;
 
     /// <summary>
     /// Description of InvokeUiaWizardCommand.

@@ -20,14 +20,14 @@ namespace UIAutomation
         
         public UiaTogglePattern(IUiElement element, classic.TogglePattern togglePattern)
         {
-            this._togglePattern = togglePattern;
-            this._element = element;
+            _togglePattern = togglePattern;
+            _element = element;
             //this._useCache = useCache;
         }
         
         public UiaTogglePattern(IUiElement element)
         {
-            this._element = element;
+            _element = element;
         }
 
         public struct TogglePatternInformation : ITogglePatternInformation
@@ -37,12 +37,12 @@ namespace UIAutomation
             
             public TogglePatternInformation(ITogglePattern tooglePattern, bool useCache)
             {
-                this._togglePattern = tooglePattern;
-                this._useCache = useCache;
+                _togglePattern = tooglePattern;
+                _useCache = useCache;
             }
             
             public classic.ToggleState ToggleState {
-                get { return (classic.ToggleState)this._togglePattern.GetParentElement().GetPatternPropertyValue(classic.TogglePattern.ToggleStateProperty, this._useCache); }
+                get { return (classic.ToggleState)_togglePattern.GetParentElement().GetPatternPropertyValue(classic.TogglePattern.ToggleStateProperty, _useCache); }
             }
         }
         public static readonly classic.AutomationPattern Pattern = classic.TogglePatternIdentifiers.Pattern;
@@ -50,40 +50,40 @@ namespace UIAutomation
         
         public virtual ITogglePatternInformation Cached {
             get {
-                return new UiaTogglePattern.TogglePatternInformation(this, true);
+                return new TogglePatternInformation(this, true);
             }
         }
         
         public virtual ITogglePatternInformation Current {
             get {
-                return new UiaTogglePattern.TogglePatternInformation(this, false);
+                return new TogglePatternInformation(this, false);
             }
         }
         
         public virtual void Toggle()
         {
-            if (null == this._togglePattern) return;
-            this._togglePattern.Toggle();
+            if (null == _togglePattern) return;
+            _togglePattern.Toggle();
         }
         
         public void SetParentElement(IUiElement element)
         {
-            this._element = element;
+            _element = element;
         }
         
         public IUiElement GetParentElement()
         {
-            return this._element;
+            return _element;
         }
         
         public void SetSourcePattern(object pattern)
         {
-            this._togglePattern = pattern as classic.TogglePattern;
+            _togglePattern = pattern as classic.TogglePattern;
         }
         
         public object GetSourcePattern()
         {
-            return this._togglePattern;
+            return _togglePattern;
         }
     }
 }

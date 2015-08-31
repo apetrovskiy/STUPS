@@ -24,19 +24,19 @@ namespace UIAutomation
 
         public UiaDockPattern(IUiElement element, classic.DockPattern dockPattern)
         {
-            this._dockPattern = dockPattern;
-            this._element = element;
+            _dockPattern = dockPattern;
+            _element = element;
             //this._useCache = useCache;
         }
 
         public UiaDockPattern(IUiElement element)
         {
-            this._element = element;
+            _element = element;
         }
         
         public UiaDockPattern(classic.DockPattern DockPattern)
         {
-            this._dockPattern = DockPattern;
+            _dockPattern = DockPattern;
         }
 
         public struct DockPatternInformation : IDockPatternInformation
@@ -49,13 +49,13 @@ namespace UIAutomation
 
             public DockPatternInformation(IDockPattern dockPattern, bool useCache)
             {
-                this._dockPattern = dockPattern;
-                this._useCache = useCache;
+                _dockPattern = dockPattern;
+                _useCache = useCache;
             }
             
             public classic.DockPosition DockPosition {
                 // get { return (DockPosition)this._el.GetPatternPropertyValue(DockPattern.DockPositionProperty, this._useCache); }
-                get { return (classic.DockPosition)this._dockPattern.GetParentElement().GetPatternPropertyValue(classic.DockPattern.DockPositionProperty, this._useCache); }
+                get { return (classic.DockPosition)_dockPattern.GetParentElement().GetPatternPropertyValue(classic.DockPattern.DockPositionProperty, _useCache); }
             }
 //            internal DockPatternInformation(AutomationElement el, bool useCache)
 //            {
@@ -72,7 +72,7 @@ namespace UIAutomation
             get {
                 // Misc.ValidateCached(this._cached);
                 // return new DockPattern.DockPatternInformation(this._el, true);
-                return new UiaDockPattern.DockPatternInformation(this, true);
+                return new DockPatternInformation(this, true);
             }
         }
         
@@ -80,7 +80,7 @@ namespace UIAutomation
             get {
                 // Misc.ValidateCurrent(this._hPattern);
                 // return new DockPattern.DockPatternInformation(this._el, false);
-                return new UiaDockPattern.DockPatternInformation(this, false);
+                return new DockPatternInformation(this, false);
             }
         }
 //        private UiaDockPattern(AutomationElement el, SafePatternHandle hPattern, bool cached) : base(el, hPattern)
@@ -91,7 +91,7 @@ namespace UIAutomation
         public virtual void SetDockPosition(classic.DockPosition dockPosition)
         {
             // UiaCoreApi.DockPattern_SetDockPosition(this._hPattern, dockPosition);
-            this._dockPattern.SetDockPosition(dockPosition);
+            _dockPattern.SetDockPosition(dockPosition);
         }
 //        static internal object Wrap(AutomationElement el, SafePatternHandle hPattern, bool cached)
 //        {
@@ -100,22 +100,22 @@ namespace UIAutomation
         
         public void SetParentElement(IUiElement element)
         {
-            this._element = element;
+            _element = element;
         }
         
         public IUiElement GetParentElement()
         {
-            return this._element;
+            return _element;
         }
         
         public void SetSourcePattern(object pattern)
         {
-            this._dockPattern = pattern as classic.DockPattern;
+            _dockPattern = pattern as classic.DockPattern;
         }
         
         public object GetSourcePattern()
         {
-            return this._dockPattern;
+            return _dockPattern;
         }
     }
 }

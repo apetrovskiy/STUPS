@@ -19,8 +19,8 @@ namespace UIAutomation
     using System.Linq;
     using System.Threading;
     using System.Windows.Forms;
-    using UIAutomation.Commands;
-    using UIAutomation.Helpers.Commands;
+    using Commands;
+    using Helpers.Commands;
 
     /// <summary>
     /// Description of PatternCmdletBase.

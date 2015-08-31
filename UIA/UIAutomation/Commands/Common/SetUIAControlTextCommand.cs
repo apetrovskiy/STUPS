@@ -11,7 +11,7 @@ namespace UIAutomation.Commands
 {
     using System;
     using System.Management.Automation;
-    using UIAutomation.Helpers.Commands;
+    using Helpers.Commands;
     
     /// <summary>
     /// Description of SetUiaControlTextCommand.

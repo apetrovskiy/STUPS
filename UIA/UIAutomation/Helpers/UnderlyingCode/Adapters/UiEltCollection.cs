@@ -39,7 +39,7 @@ namespace UIAutomation
                 
                 try {
                     
-                    if (null == this || 0 == this.Count) return null;
+                    if (null == this || 0 == Count) return null;
                     
                     const WildcardOptions options = WildcardOptions.IgnoreCase |
                                                     WildcardOptions.Compiled;
@@ -48,7 +48,7 @@ namespace UIAutomation
                         new WildcardPattern(infoString, options);
                     
                     var queryByStringData = from collectionItem
-                        in this._collectionHolder //.ToArray()
+                        in _collectionHolder //.ToArray()
                             where wildcardInfoString.IsMatch(collectionItem.GetCurrent().Name) ||
                         wildcardInfoString.IsMatch(collectionItem.GetCurrent().AutomationId) ||
                         wildcardInfoString.IsMatch(collectionItem.GetCurrent().ClassName)

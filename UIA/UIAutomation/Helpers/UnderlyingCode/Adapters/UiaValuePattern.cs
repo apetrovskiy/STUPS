@@ -24,20 +24,20 @@ namespace UIAutomation
         
         public UiaValuePattern(IUiElement element, classic.ValuePattern valuePattern)
         {
-            this._valuePattern = valuePattern;
-            this._element = element;
+            _valuePattern = valuePattern;
+            _element = element;
             //this._useCache = useCache;
         }
         
         public UiaValuePattern(IUiElement element)
         {
-            this._element = element;
-            this._patternEmulator = new SourcePatternEmulator(new object());
+            _element = element;
+            _patternEmulator = new SourcePatternEmulator(new object());
         }
         
         public UiaValuePattern(classic.ValuePattern valuePattern)
         {
-            this._valuePattern = valuePattern;
+            _valuePattern = valuePattern;
         }
 
         public struct ValuePatternInformation : IValuePatternInformation
@@ -47,14 +47,14 @@ namespace UIAutomation
 
             public ValuePatternInformation(IValuePattern valuePattern, bool useCache)
             {
-                this._valuePattern = valuePattern;
-                this._useCache = useCache;
+                _valuePattern = valuePattern;
+                _useCache = useCache;
             }
 
             public string Value {
                 get
                 {
-                    return null == this._valuePattern ? string.Empty : this._valuePattern.GetParentElement().GetPatternPropertyValue(classic.ValuePattern.ValueProperty, this._useCache).ToString();
+                    return null == _valuePattern ? string.Empty : _valuePattern.GetParentElement().GetPatternPropertyValue(classic.ValuePattern.ValueProperty, _useCache).ToString();
                     /*
                     if (null == this._valuePattern) return string.Empty;
                     return this._valuePattern.GetParentElement().GetPatternPropertyValue(ValuePattern.ValueProperty, this._useCache).ToString(); }
@@ -63,7 +63,7 @@ namespace UIAutomation
             }
             public bool IsReadOnly {
                 get {
-                    return null == this._valuePattern || (bool)this._valuePattern.GetParentElement().GetPatternPropertyValue(classic.ValuePattern.IsReadOnlyProperty, this._useCache);
+                    return null == _valuePattern || (bool)_valuePattern.GetParentElement().GetPatternPropertyValue(classic.ValuePattern.IsReadOnlyProperty, _useCache);
                     /*
                     if (null == this._valuePattern) return true;
                     return (bool)this._valuePattern.GetParentElement().GetPatternPropertyValue(ValuePattern.IsReadOnlyProperty, this._useCache);
@@ -77,40 +77,40 @@ namespace UIAutomation
         
         public virtual IValuePatternInformation Cached {
             get {
-                return new UiaValuePattern.ValuePatternInformation(this, true);
+                return new ValuePatternInformation(this, true);
             }
         }
         
         public virtual IValuePatternInformation Current {
             get {
-                return new UiaValuePattern.ValuePatternInformation(this, false);
+                return new ValuePatternInformation(this, false);
             }
         }
         
         public virtual void SetValue(string value)
         {
-            if (null == this._valuePattern) return;
-            this._valuePattern.SetValue(value);
+            if (null == _valuePattern) return;
+            _valuePattern.SetValue(value);
         }
         
         public void SetParentElement(IUiElement element)
         {
-            this._element = element;
+            _element = element;
         }
         
         public IUiElement GetParentElement()
         {
-            return this._element;
+            return _element;
         }
         
         public void SetSourcePattern(object pattern)
         {
-            this._valuePattern = pattern as classic.ValuePattern;
+            _valuePattern = pattern as classic.ValuePattern;
         }
         
         public object GetSourcePattern()
         {
-            return this._valuePattern;
+            return _valuePattern;
         }
     }
 }

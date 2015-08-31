@@ -14,7 +14,7 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
     using System.Xml.Serialization.Configuration;
-    using UIAutomation.Helpers.Commands;
+    using Helpers.Commands;
 
     /// <summary>
     /// Description of WaitUiaControlIsEnabled.

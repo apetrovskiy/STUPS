@@ -15,7 +15,7 @@ namespace UIAutomation.Commands
     
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
     using System.Collections;
-    using UIAutomation.Helpers.Commands;
+    using Helpers.Commands;
     
     /// <summary>
     /// Description of WaitUiaWindowCommand.

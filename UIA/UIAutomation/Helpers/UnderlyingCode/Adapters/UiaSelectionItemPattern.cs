@@ -20,14 +20,14 @@ namespace UIAutomation
         
         public UiaSelectionItemPattern(IUiElement element, classic.SelectionItemPattern selectionItemPattern)
         {
-            this._selectionItemPattern = selectionItemPattern;
-            this._element = element;
+            _selectionItemPattern = selectionItemPattern;
+            _element = element;
             //this._useCache = useCache;
         }
         
         public UiaSelectionItemPattern(IUiElement element)
         {
-            this._element = element;
+            _element = element;
         }
         
         public struct SelectionItemPatternInformation : ISelectionItemPatternInformation
@@ -37,19 +37,19 @@ namespace UIAutomation
             
             public SelectionItemPatternInformation(ISelectionItemPattern selectionItemPattern, bool useCache)
             {
-                this._selectionItemPattern = selectionItemPattern;
-                this._useCache = useCache;
+                _selectionItemPattern = selectionItemPattern;
+                _useCache = useCache;
             }
             
             public bool IsSelected {
                 get {
-                    return (bool)this._selectionItemPattern.GetParentElement().GetPatternPropertyValue(classic.SelectionItemPattern.IsSelectedProperty, this._useCache);
+                    return (bool)_selectionItemPattern.GetParentElement().GetPatternPropertyValue(classic.SelectionItemPattern.IsSelectedProperty, _useCache);
                 }
             }
             
             public IUiElement SelectionContainer {
                 get {
-                    return AutomationFactory.GetUiElement(this._selectionItemPattern.GetParentElement().GetPatternPropertyValue(classic.SelectionItemPattern.SelectionContainerProperty, this._useCache));
+                    return AutomationFactory.GetUiElement(_selectionItemPattern.GetParentElement().GetPatternPropertyValue(classic.SelectionItemPattern.SelectionContainerProperty, _useCache));
                 }
             }
         }
@@ -62,50 +62,50 @@ namespace UIAutomation
         
         public virtual ISelectionItemPatternInformation Cached {
             get {
-                return new UiaSelectionItemPattern.SelectionItemPatternInformation(this, true);
+                return new SelectionItemPatternInformation(this, true);
             }
         }
         
         public virtual ISelectionItemPatternInformation Current {
             get {
-                return new UiaSelectionItemPattern.SelectionItemPatternInformation(this, false);
+                return new SelectionItemPatternInformation(this, false);
             }
         }
         
         public virtual void Select()
         {
-            if (null == this._selectionItemPattern) return;
-            this._selectionItemPattern.Select();
+            if (null == _selectionItemPattern) return;
+            _selectionItemPattern.Select();
         }
         public virtual void AddToSelection()
         {
-            if (null == this._selectionItemPattern) return;
-            this._selectionItemPattern.AddToSelection();
+            if (null == _selectionItemPattern) return;
+            _selectionItemPattern.AddToSelection();
         }
         public virtual void RemoveFromSelection()
         {
-            if (null == this._selectionItemPattern) return;
-            this._selectionItemPattern.RemoveFromSelection();
+            if (null == _selectionItemPattern) return;
+            _selectionItemPattern.RemoveFromSelection();
         }
         
         public void SetParentElement(IUiElement element)
         {
-            this._element = element;
+            _element = element;
         }
         
         public IUiElement GetParentElement()
         {
-            return this._element;
+            return _element;
         }
         
         public void SetSourcePattern(object pattern)
         {
-            this._selectionItemPattern = pattern as classic.SelectionItemPattern;
+            _selectionItemPattern = pattern as classic.SelectionItemPattern;
         }
         
         public object GetSourcePattern()
         {
-            return this._selectionItemPattern;
+            return _selectionItemPattern;
         }
     }
 }

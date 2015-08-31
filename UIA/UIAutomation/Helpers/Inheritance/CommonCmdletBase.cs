@@ -24,7 +24,7 @@ namespace UIAutomation
     // using System.Diagnostics.CodeAnalysis;
     using Tmx;
     using Tmx.Interfaces.TestStructure;
-    using UIAutomation.Commands;
+    using Commands;
     
     /// <summary>
     /// The CommonCmdletBase class in the top of cmdlet hierarchy.
@@ -919,8 +919,8 @@ namespace UIAutomation
             // temporary
             // profiling
             // 20140207
-            this.WriteInfo(this, "running the GetWindowAction scriptblock");
-            this.WriteInfo(this, "parameters" + parameters);
+            WriteInfo(this, "running the GetWindowAction scriptblock");
+            WriteInfo(this, "parameters" + parameters);
             
             try {
                 runTwoScriptBlockCollections(

@@ -25,7 +25,7 @@ namespace UIAutomation.Commands
         {
             WhatToDo = "RangeValueGet";
             Value = 0;
-            base.Child = this;
+            Child = this;
             
             PassThru = false;
         }

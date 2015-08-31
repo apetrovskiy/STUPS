@@ -12,7 +12,7 @@ namespace UIAutomation.Commands
     extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
     using System.Management.Automation;
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
-    using UIAutomation.Helpers.Commands;
+    using Helpers.Commands;
 
     /// <summary>
     /// Description of RegisterUiaStructureChangedEventCommand.
@@ -24,10 +24,10 @@ namespace UIAutomation.Commands
         #region Constructor
         public RegisterUiaStructureChangedEventCommand()
         {
-            base.AutomationEventType = 
+            AutomationEventType = 
                 classic.AutomationElement.StructureChangedEvent;
             // base.AutomationEventHandler = OnUIStructureChangedEvent;
-            base.StructureChangedEventHandler = 
+            StructureChangedEventHandler = 
                 OnUIStructureChangedEvent;
             
 // ChildAdded = false;
@@ -51,7 +51,7 @@ namespace UIAutomation.Commands
 // this.childrenInvalidated = this.ChildrenInvalidated;
 // this.childrenReordered = this.ChildrenReordered;
             
-            base.Child = this;
+            Child = this;
         }
         #endregion Constructor
         

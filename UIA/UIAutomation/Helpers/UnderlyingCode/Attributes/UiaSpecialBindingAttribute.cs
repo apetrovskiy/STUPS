@@ -14,8 +14,8 @@ namespace UIAutomation
     /// <summary>
     /// Description of UiaSpecialBindingAttribute.
     /// </summary>
-    [System.AttributeUsage(System.AttributeTargets.Class | System.AttributeTargets.Struct)]
-    public class UiaSpecialBindingAttribute : System.Attribute
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
+    public class UiaSpecialBindingAttribute : Attribute
     {
         public UiaSpecialBindingAttribute()
         {

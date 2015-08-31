@@ -26,7 +26,7 @@ namespace UIAutomation.Commands
             Horizontal = false;
             //this.Percent = 0;
             PassThru = true;
-            base.Child = this;
+            Child = this;
       }
         
         #region Parameters

@@ -23,14 +23,14 @@ namespace UIAutomation
 
         public UiaRangeValuePattern(IUiElement element, classic.RangeValuePattern rangeValuePattern)
         {
-            this._rangeValuePattern = rangeValuePattern;
-            this._element = element;
+            _rangeValuePattern = rangeValuePattern;
+            _element = element;
             //this._useCache = useCache;
         }
 
         public UiaRangeValuePattern(IUiElement element)
         {
-            this._element = element;
+            _element = element;
         }
 
         public struct RangeValuePatternInformation : IRangeValuePatternInformation
@@ -43,8 +43,8 @@ namespace UIAutomation
 
             public RangeValuePatternInformation(IRangeValuePattern rangeValuePattern, bool useCache)
             {
-                this._rangeValuePattern = rangeValuePattern;
-                this._useCache = useCache;
+                _rangeValuePattern = rangeValuePattern;
+                _useCache = useCache;
             }
             
             public double Value {
@@ -64,11 +64,11 @@ namespace UIAutomation
 //                    }
 //                    return (double)patternPropertyValue;
 //                }
-                get { return (double)this._rangeValuePattern.GetParentElement().GetPatternPropertyValue(classic.RangeValuePattern.ValueProperty, this._useCache); }
+                get { return (double)_rangeValuePattern.GetParentElement().GetPatternPropertyValue(classic.RangeValuePattern.ValueProperty, _useCache); }
             }
             public bool IsReadOnly {
                 // get { return (bool)this._el.GetPatternPropertyValue(RangeValuePattern.IsReadOnlyProperty, this._useCache); }
-                get { return (bool)this._rangeValuePattern.GetParentElement().GetPatternPropertyValue(classic.RangeValuePattern.IsReadOnlyProperty, this._useCache); }
+                get { return (bool)_rangeValuePattern.GetParentElement().GetPatternPropertyValue(classic.RangeValuePattern.IsReadOnlyProperty, _useCache); }
             }
             public double Maximum {
 //                get {
@@ -87,7 +87,7 @@ namespace UIAutomation
 //                    }
 //                    return (double)patternPropertyValue;
 //                }
-                get { return (double)this._rangeValuePattern.GetParentElement().GetPatternPropertyValue(classic.RangeValuePattern.MaximumProperty, this._useCache); }
+                get { return (double)_rangeValuePattern.GetParentElement().GetPatternPropertyValue(classic.RangeValuePattern.MaximumProperty, _useCache); }
             }
             public double Minimum {
 //                get {
@@ -106,7 +106,7 @@ namespace UIAutomation
 //                    }
 //                    return (double)patternPropertyValue;
 //                }
-                get { return (double)this._rangeValuePattern.GetParentElement().GetPatternPropertyValue(classic.RangeValuePattern.MinimumProperty, this._useCache); }
+                get { return (double)_rangeValuePattern.GetParentElement().GetPatternPropertyValue(classic.RangeValuePattern.MinimumProperty, _useCache); }
             }
             public double LargeChange {
 //                get {
@@ -125,7 +125,7 @@ namespace UIAutomation
 //                    }
 //                    return (double)patternPropertyValue;
 //                }
-                get { return (double)this._rangeValuePattern.GetParentElement().GetPatternPropertyValue(classic.RangeValuePattern.LargeChangeProperty, this._useCache); }
+                get { return (double)_rangeValuePattern.GetParentElement().GetPatternPropertyValue(classic.RangeValuePattern.LargeChangeProperty, _useCache); }
             }
             public double SmallChange {
 //                get {
@@ -144,7 +144,7 @@ namespace UIAutomation
 //                    }
 //                    return (double)patternPropertyValue;
 //                }
-                get { return (double)this._rangeValuePattern.GetParentElement().GetPatternPropertyValue(classic.RangeValuePattern.SmallChangeProperty, this._useCache); }
+                get { return (double)_rangeValuePattern.GetParentElement().GetPatternPropertyValue(classic.RangeValuePattern.SmallChangeProperty, _useCache); }
             }
 //            internal RangeValuePatternInformation(AutomationElement el, bool useCache)
 //            {
@@ -166,7 +166,7 @@ namespace UIAutomation
             get {
                 // Misc.ValidateCached(this._cached);
                 // return new RangeValuePattern.RangeValuePatternInformation(this._el, true);
-                return new UiaRangeValuePattern.RangeValuePatternInformation(this, true);
+                return new RangeValuePatternInformation(this, true);
             }
         }
         
@@ -174,7 +174,7 @@ namespace UIAutomation
             get {
                 // Misc.ValidateCurrent(this._hPattern);
                 // return new RangeValuePattern.RangeValuePatternInformation(this._el, false);
-                return new UiaRangeValuePattern.RangeValuePatternInformation(this, false);
+                return new RangeValuePatternInformation(this, false);
             }
         }
 //        private UiaRangeValuePattern(AutomationElement el, SafePatternHandle hPattern, bool cached) : base(el, hPattern)
@@ -193,7 +193,7 @@ namespace UIAutomation
 //                throw new InvalidOperationException(SR.Get("ValueReadonly"));
 //            }
 //            UiaCoreApi.RangeValuePattern_SetValue(this._hPattern, value);
-            this._rangeValuePattern.SetValue(value);
+            _rangeValuePattern.SetValue(value);
         }
 //        static internal object Wrap(AutomationElement el, SafePatternHandle hPattern, bool cached)
 //        {
@@ -202,22 +202,22 @@ namespace UIAutomation
         
         public void SetParentElement(IUiElement element)
         {
-            this._element = element;
+            _element = element;
         }
         
         public IUiElement GetParentElement()
         {
-            return this._element;
+            return _element;
         }
         
         public void SetSourcePattern(object pattern)
         {
-            this._rangeValuePattern = pattern as classic.RangeValuePattern;
+            _rangeValuePattern = pattern as classic.RangeValuePattern;
         }
         
         public object GetSourcePattern()
         {
-            return this._rangeValuePattern;
+            return _rangeValuePattern;
         }
     }
 }

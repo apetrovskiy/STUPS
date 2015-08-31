@@ -12,13 +12,13 @@ namespace UIAutomation.Commands
     using System;
     using System.Management.Automation;
 //    using System.Collections.Generic;
-    using UIAutomation.Helpers.Commands;
+    using Helpers.Commands;
     
     /// <summary>
     /// Description of GetUiaWindow.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaWindow", DefaultParameterSetName = "UIA")]
-    [OutputType(typeof(UIAutomation.IUiElement[]))] // [OutputType(typeof(object))]
+    [OutputType(typeof(IUiElement[]))] // [OutputType(typeof(object))]
     public class GetUiaWindowCommand : GetWindowCmdletBase
     {
         #region Parameters

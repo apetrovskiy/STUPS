@@ -26,14 +26,14 @@ namespace UIAutomation
         
         public UiaScrollItemPattern(IUiElement element, classic.ScrollItemPattern scrollItemPattern)
         {
-            this._scrollItemPattern = scrollItemPattern;
-            this._element = element;
+            _scrollItemPattern = scrollItemPattern;
+            _element = element;
             //this._useCache = useCache;
         }
         
         public UiaScrollItemPattern(IUiElement element)
         {
-            this._element = element;
+            _element = element;
         }
         
 //        private UiaScrollItemPattern(AutomationElement el, SafePatternHandle hPattern) : base(el, hPattern)
@@ -43,7 +43,7 @@ namespace UIAutomation
         public virtual void ScrollIntoView()
         {
             // UiaCoreApi.ScrollItemPattern_ScrollIntoView(this._hPattern);
-            this._scrollItemPattern.ScrollIntoView();
+            _scrollItemPattern.ScrollIntoView();
         }
 //        static internal object Wrap(AutomationElement el, SafePatternHandle hPattern, bool cached)
 //        {
@@ -52,22 +52,22 @@ namespace UIAutomation
         
         public void SetParentElement(IUiElement element)
         {
-            this._element = element;
+            _element = element;
         }
         
         public IUiElement GetParentElement()
         {
-            return this._element;
+            return _element;
         }
         
         public void SetSourcePattern(object pattern)
         {
-            this._scrollItemPattern = pattern as classic.ScrollItemPattern;
+            _scrollItemPattern = pattern as classic.ScrollItemPattern;
         }
         
         public object GetSourcePattern()
         {
-            return this._scrollItemPattern;
+            return _scrollItemPattern;
         }
     }
 }

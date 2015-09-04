@@ -9,7 +9,6 @@
 
 namespace EsxiMgmt.Core.Data
 {
-    using System;
     using System.Collections.Generic;
     using Renci.SshNet;
     

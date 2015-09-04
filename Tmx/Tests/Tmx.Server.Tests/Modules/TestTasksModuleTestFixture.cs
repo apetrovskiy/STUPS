@@ -417,7 +417,9 @@ namespace Tmx.Server.Tests.Modules
         
         ITestTask GIVEN_Loaded_TestTask(int id, string taskName, bool finished, TestTaskStatuses status, bool isActive, string rule, int afterTask)
         {
+            // 20150904
             var task = new TestTask {
+            // var task = new TestTask (TestTaskRuntimeTypes.Powershell) {
                 Id = id,
                 Name = taskName,
                 TaskFinished = finished,
@@ -434,7 +436,9 @@ namespace Tmx.Server.Tests.Modules
         
         ITestTask GIVEN_Allocated_TestTask(int id, string taskName, bool finished, TestTaskStatuses status, bool isActive, string rule, int afterTask)
         {
+            // 20150904
             var task = new TestTask {
+            // var task = new TestTask (TestTaskRuntimeTypes.Powershell) {
                 Id = id,
                 Name = taskName,
                 TaskFinished = finished,

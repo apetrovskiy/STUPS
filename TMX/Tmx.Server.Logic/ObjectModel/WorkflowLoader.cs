@@ -187,7 +187,10 @@ namespace Tmx.Server.Logic.ObjectModel
 
         internal virtual ITestTask GetNewTestTask(XContainer taskNode, Guid workflowId)
         {
+            // 20150904
             return new TestTask {
+            // TODO: parameterize this
+            // return new TestTask (TestTaskRuntimeTypes.Powershell) {
                 Action = GetActionCode(taskNode, LogicConstants.WorkflowLoader_TaskElementAction),
                 ActionParameters = GetActionParameters(taskNode, LogicConstants.WorkflowLoader_TaskElementAction),
                 AfterAction = GetActionCode(taskNode, LogicConstants.WorkflowLoader_TaskElementAfterAction),

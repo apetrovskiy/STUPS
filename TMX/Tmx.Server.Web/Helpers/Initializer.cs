@@ -45,6 +45,7 @@
             Template.RegisterSafeType(typeof(TestClientStatuses), member => member.ToString());
             Template.RegisterSafeType(typeof(ServerControlCommands), member => member.ToString());
             Template.RegisterSafeType(typeof(TestLabStatuses), member => member.ToString());
+            Template.RegisterSafeType(typeof(TestStatuses), member => member.ToString());
             // specific types
             Template.RegisterSafeType(typeof(TestSuite), new[] { "Id", "Name", "Status", "Description", "TestScenarios", "PlatformId", "Statistics", "TimeSpent", "Timestamp", "Tags", "Statistics.All", "Statistics.Passed", "GetAll", "GetPassed", "GetFailed", "GetPassedButWithBadSmell", "GetNotTested" });
             Template.RegisterSafeType(typeof(TestScenario), new[] { "Id", "Name", "Status", "Description", "TestResults", "PlatformId", "Statistics", "TimeSpent", "Timestamp", "Tags", "TestCases", "Statistics.All", "Statistics.Passed", "GetAll", "GetPassed", "GetFailed", "GetPassedButWithBadSmell", "GetNotTested" });
@@ -61,8 +62,10 @@
             // Template.RegisterSafeType(typeof(TestRun), new[] { "Id", "Name", "WorkflowId", "TestLabId", "Description", "Status", "StartType", "Data", "TestSuites", "StartTime", "TimeTaken", "GetTestLabName" });
             // Template.RegisterSafeType(typeof(ITestRun), new[] { "Id", "Name", "WorkflowId", "TestLabId", "Description", "Status", "StartType", "Data", "TestSuites", "StartTime", "GetTimeTaken", "GetTestLabName" });
             // Template.RegisterSafeType(typeof(TestRun), new[] { "Id", "Name", "WorkflowId", "TestLabId", "Description", "Status", "StartType", "Data", "TestSuites", "StartTime", "GetTimeTaken", "GetTestLabName" });
-            Template.RegisterSafeType(typeof(ITestRun), new[] { "Id", "Name", "WorkflowId", "TestLabId", "Description", "Status", "StartType", "Data", "TestSuites", "StartTime", "GetTimeTaken", "GetTestLabName", "TestPlatforms", "CreatedTime", "BeforeActions", "AfterActions", "CancelActions", "FailureActions" });
-            Template.RegisterSafeType(typeof(TestRun), new[] { "Id", "Name", "WorkflowId", "TestLabId", "Description", "Status", "StartType", "Data", "TestSuites", "StartTime", "GetTimeTaken", "GetTestLabName", "TestPlatforms", "CreatedTime", "BeforeActions", "AfterActions", "CancelActions", "FailureActions" });
+            // Template.RegisterSafeType(typeof(ITestRun), new[] { "Id", "Name", "WorkflowId", "TestLabId", "Description", "Status", "StartType", "Data", "TestSuites", "StartTime", "GetTimeTaken", "GetTestLabName", "TestPlatforms", "CreatedTime", "BeforeActions", "AfterActions", "CancelActions", "FailureActions" });
+            Template.RegisterSafeType(typeof(ITestRun), new[] { "Id", "Name", "WorkflowId", "TestLabId", "Description", "Status", "TestStatus", "StartType", "Data", "TestSuites", "StartTime", "GetTimeTaken", "GetTestLabName", "TestPlatforms", "CreatedTime", "BeforeActions", "AfterActions", "CancelActions", "FailureActions" });
+            // Template.RegisterSafeType(typeof(TestRun), new[] { "Id", "Name", "WorkflowId", "TestLabId", "Description", "Status", "StartType", "Data", "TestSuites", "StartTime", "GetTimeTaken", "GetTestLabName", "TestPlatforms", "CreatedTime", "BeforeActions", "AfterActions", "CancelActions", "FailureActions" });
+            Template.RegisterSafeType(typeof(TestRun), new[] { "Id", "Name", "WorkflowId", "TestLabId", "Description", "Status", "TestStatus", "StartType", "Data", "TestSuites", "StartTime", "GetTimeTaken", "GetTestLabName", "TestPlatforms", "CreatedTime", "BeforeActions", "AfterActions", "CancelActions", "FailureActions" });
             // Template.RegisterSafeType(typeof(CommonData), new[] { "Data" });
             Template.RegisterSafeType(typeof(CommonData), new[] { "Data" });
             Template.RegisterSafeType(typeof(ICommonData), new[] { "Data" });

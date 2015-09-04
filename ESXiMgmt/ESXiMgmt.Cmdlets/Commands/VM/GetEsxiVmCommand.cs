@@ -9,9 +9,8 @@
 
 namespace EsxiMgmt.Cmdlets.Commands
 {
-    using System;
     using System.Management.Automation;
-    using EsxiMgmt.Cmdlets.Helpers.UnderlyingCode.Commands.Vm;
+    using Helpers.UnderlyingCode.Commands.Vm;
     
     /// <summary>
     /// Description of GetEsxiVmCommand.

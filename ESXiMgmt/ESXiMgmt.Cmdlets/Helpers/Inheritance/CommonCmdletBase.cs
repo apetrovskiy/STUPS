@@ -9,10 +9,8 @@
 
 namespace EsxiMgmt.Cmdlets
 {
-    using System;
     using System.Management.Automation;
     using PSTestLib;
-    using System.Collections.ObjectModel;
     using System.Collections;
     
     /// <summary>

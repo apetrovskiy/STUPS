@@ -21,7 +21,9 @@ namespace Tmx.Core.Types.Remoting
     {
         DateTime _finishTime;
         
+        // 20150904
         public TestTask()
+        // public TestTask(TestTaskRuntimeTypes taskRunTimeType)
         {
             ActionParameters = new Dictionary<string, string>();
             BeforeActionParameters = new Dictionary<string, string>();
@@ -32,7 +34,9 @@ namespace Tmx.Core.Types.Remoting
             // 20141211
             // temporary
             // TODO: change the behavior
+            // 20150904
             TaskRuntimeType = TestTaskRuntimeTypes.Powershell;
+            // TaskRuntimeType = taskRunTimeType;
         }
         
         public int Id { get; set; }

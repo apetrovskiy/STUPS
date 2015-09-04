@@ -9,9 +9,8 @@
 
 namespace EsxiMgmt.Cmdlets.Commands.Connect
 {
-    using System;
     using System.Management.Automation;
-    using EsxiMgmt.Cmdlets.Helpers.UnderlyingCode.Commands.Connect;
+    using Helpers.UnderlyingCode.Commands.Connect;
     
     /// <summary>
     /// Description of NewEsxiHostConnectionDataCommand.

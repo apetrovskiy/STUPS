@@ -9,7 +9,6 @@
 
 namespace EsxiMgmt.Cmdlets
 {
-    using System;
     using System.Management.Automation;
     
     /// <summary>
@@ -19,9 +18,9 @@ namespace EsxiMgmt.Cmdlets
     {
         public ConnectCmdletBase()
         {
-            this.Port = 22; //443;
-            this.Protocol = "HTTPS";
-            this.Password = string.Empty; // ?
+            Port = 22; //443;
+            Protocol = "HTTPS";
+            Password = string.Empty; // ?
         }
         
         #region Parameters

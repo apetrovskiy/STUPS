@@ -24,13 +24,9 @@ namespace Tmx.Interfaces.Remoting
         ICommonData Data { get; set; }
         List<ITestSuite> TestSuites { get; set; }
         List<ITestPlatform> TestPlatforms { get; set; }
-        // ListOfTestSuites TestSuites { get; set; }
         Guid WorkflowId { get; }
         DateTime CreatedTime { get; set; }
         DateTime StartTime { get; set; }
-        // 20150115
-        // TimeSpan TimeTaken { get; set; }
-        // TimeSpan GetTimeTaken();
         string GetTimeTaken();
 //        string GetTestLabName();
         List<IAction> BeforeActions { get; set; }

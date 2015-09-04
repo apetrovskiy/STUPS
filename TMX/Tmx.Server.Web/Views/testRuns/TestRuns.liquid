@@ -20,7 +20,8 @@
                 <th>Started</th>
                 <th>Time taken</th>
                 <th>Status</th>
-                <th>Description</th>
+				<th>Test status</th>
+                <!-- <th>Description</th> -->
                 <th>Test results</th>
                 <th>Parameters</th>
                 <th>Clients</th>
@@ -34,7 +35,24 @@
                 <td>{{ testRun.Start_Time }}</td>
                 <td>{{ testRun.get_time_taken }}</td>
                 <td>{{ testRun.Status }}</td>
-                <td>{{ testRun.Description }}</td>
+
+                {% if testRun.Test_Status == 'Passed' -%}
+                    <td style="background-color:green; text-align:center">{{ testRun.Test_Status }}</td>
+                {% elseif testRun.Test_Status == 'Failed' -%}
+                    <td style="background-color:red; text-align:center">{{ testRun.Test_Status }}</td>
+                {% elseif testRun.Test_Status == 'NotRun' -%}
+                    <td style="background-color:grey; text-align:center">{{ testRun.Test_Status }}</td>
+                {% elseif testRun.Test_Status == 'KnownIssue' -%}
+                    <td style="background-color:olive; text-align:center">{{ testRun.Test_Status }}</td>
+                {% elseif testRun.Test_Status == 'Blocked' -%}
+                    <td style="background-color:blue; text-align:center">{{ testRun.Test_Status }}</td>
+                {% elseif testRun.Test_Status == 'WorkInProgress' -%}
+                    <td style="background-color:white; text-align:center">{{ testRun.Test_Status }}</td>
+                {% else -%}
+					<td>{{ testRun.Test_Status }}</td>
+                {% endif -%}
+
+                <!-- <td>{{ testRun.Description }}</td> -->
                 <td><a href="/testRuns/{{ testRun.Id }}/testResults">test results</a></td>
                 <td><a href="/testRuns/{{ testRun.Id }}/testParameters">parameters</a></td>
                 <td><a href="/testRuns/{{ testRun.Id }}/clients">clients</a></td>
@@ -52,4 +70,16 @@
             {% endfor -%}
         </table>
     </body>
+
+    <!-- public enum TestStatuses
+    {
+        Passed = 1,
+        Failed = 2,
+        // NotTested = 3,
+        NotRun = 3,
+        KnownIssue = 4,
+        Blocked = 5,
+        WorkInProgress = 6
+    } -->
+
 </html>

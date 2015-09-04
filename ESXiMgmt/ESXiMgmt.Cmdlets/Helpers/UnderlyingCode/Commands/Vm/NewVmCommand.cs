@@ -9,11 +9,10 @@
 
 namespace EsxiMgmt.Cmdlets.Helpers.UnderlyingCode.Commands.Vm
 {
-    using System;
     using System.Linq;
-    using EsxiMgmt.Core.Data;
-    using EsxiMgmt.Core.ObjectModel;
-    using EsxiMgmt.Cmdlets.Commands;
+    using Core.Data;
+    using Core.ObjectModel;
+    using Cmdlets.Commands;
     
     /// <summary>
     /// Description of NewVmCommand.

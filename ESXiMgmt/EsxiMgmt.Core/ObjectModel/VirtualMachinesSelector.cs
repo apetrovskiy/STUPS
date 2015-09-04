@@ -11,11 +11,10 @@ namespace EsxiMgmt.Core.ObjectModel
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.Linq;
     using Renci.SshNet;
-    using EsxiMgmt.Core.Data;
-    using EsxiMgmt.Core.Interfaces;
+    using Data;
+    using Interfaces;
     
     /// <summary>
     /// Description of VirtualMachinesSelector.

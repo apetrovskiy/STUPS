@@ -71,7 +71,9 @@ namespace Tmx.Server.Tests.UnitTestingHelpers
             TestRunQueue.TestRuns.Add(testRun);
             var taskId = 0;
             if (null != rules)
+                // 20150904
                 rules.ToList().ForEach(rule => TaskPool.Tasks.Add(new TestTask { Id = ++taskId, Rule = rule, WorkflowId = workflow.Id, TestRunId = testRun.Id }));
+                // rules.ToList().ForEach(rule => TaskPool.Tasks.Add(new TestTask (TestTaskRuntimeTypes.Powershell) { Id = ++taskId, Rule = rule, WorkflowId = workflow.Id, TestRunId = testRun.Id }));
             
             return testRun;
         }

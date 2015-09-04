@@ -104,8 +104,11 @@ namespace Tmx.Server.Tests.Helpers
         // ==========================================================================================
         void GIVEN_ThereAreTasksInCommonPool()
         {
+            // 20150904
             TaskPool.Tasks.Add(new TestTask { Name = "task001", Id = 10, WorkflowId = new Guid() });
             TaskPool.Tasks.Add(new TestTask { Name = "task002", Id = 20, WorkflowId = new Guid() });
+            // TaskPool.Tasks.Add(new TestTask (TestTaskRuntimeTypes.Powershell) { Name = "task001", Id = 10, WorkflowId = new Guid() });
+            // TaskPool.Tasks.Add(new TestTask (TestTaskRuntimeTypes.Powershell) { Name = "task002", Id = 20, WorkflowId = new Guid() });
         }
         
 //        void GIVEN_ThereIsWorkflow()

@@ -9,9 +9,6 @@
 
 namespace EsxiMgmt.Cmdlets.Helpers.UnderlyingCode.Commands
 {
-    using System;
-    using System.Management.Automation;
-    
     /// <summary>
     /// Description of EsxiCommand.
     /// </summary>
@@ -19,7 +16,7 @@ namespace EsxiMgmt.Cmdlets.Helpers.UnderlyingCode.Commands
     {
         internal EsxiCommand(CommonCmdletBase cmdlet)
         {
-            this.Cmdlet = cmdlet;
+            Cmdlet = cmdlet;
         }
         
         internal CommonCmdletBase Cmdlet { get; set; }

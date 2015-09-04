@@ -24,7 +24,9 @@ namespace Tmx.Core
     {
         public static ITestTask CloneTaskForNewTestClient(this ITestTask task)
         {
+            // 20150904
             return new TestTask {
+            // return new TestTask(task.TaskRuntimeType) {
                 Action = task.Action,
                 ActionParameters = task.ActionParameters,
                 AfterAction = task.AfterAction,

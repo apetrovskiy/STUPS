@@ -9,14 +9,11 @@
 
 namespace Tmx
 {
-    using System;
-    using System.Management.Automation;
-    using System.Collections.Generic;
     using System.Data;
     // blocked due to the need to remove dependency on SQLite
 //    using System.Data.Common;
 //    using System.Data.SQLite;
-    using Tmx.Interfaces;
+    using Interfaces;
     
     /// <summary>
     /// Description of Database.

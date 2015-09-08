@@ -9,9 +9,8 @@
 
 namespace Tmx.Commands
 {
-    using System;
     using System.Management.Automation;
-    using Tmx.Interfaces.TestStructure;
+    using Interfaces.TestStructure;
     
     /// <summary>
     /// Description of SetTmxCurrentTestResultCommand.
@@ -23,7 +22,7 @@ namespace Tmx.Commands
     {
         public SetTmxCurrentTestResultCommand()
         {
-            this.TestOrigin = TestResultOrigins.Logical;
+            TestOrigin = TestResultOrigins.Logical;
         }
         
         #region Parameters

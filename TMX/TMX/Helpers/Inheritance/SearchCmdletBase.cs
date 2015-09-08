@@ -9,7 +9,6 @@
 
 namespace Tmx
 {
-    using System;
     using System.Management.Automation;
     
     /// <summary>
@@ -19,8 +18,8 @@ namespace Tmx
     {
         public SearchCmdletBase()
         {
-            this.Descending = false;
-            this.FilterAll = true;
+            Descending = false;
+            FilterAll = true;
         }
         
         #region Parameters

@@ -13,14 +13,14 @@ namespace Tmx.Server.Tests.Modules
     using MbUnit.Framework;
     using Nancy;
     using Nancy.Testing;
-    using Tmx.Core;
-    using Tmx.Core.Types.Remoting;
-    using Tmx.Interfaces.Remoting;
-    using Tmx.Interfaces.Server;
-    using Tmx.Server.Library.Modules;
-    using Tmx.Server.Logic.ObjectModel;
-    using Tmx.Server.Logic.ObjectModel.Objects;
-    using Tmx.Server.SamplePlugin;
+    using Core;
+    using Core.Types.Remoting;
+    using Interfaces.Remoting;
+    using Interfaces.Server;
+    using Library.Modules;
+    using Logic.ObjectModel;
+    using Logic.ObjectModel.Objects;
+    using SamplePlugin;
     using Xunit;
 
     /// <summary>

@@ -9,7 +9,6 @@
 
 namespace Tmx.Commands
 {
-    using System;
     using System.Management.Automation;
     
     /// <summary>
@@ -33,7 +32,7 @@ namespace Tmx.Commands
             //    this.ResultsDB = true;
             //}
             
-            SQLiteHelper.CloseDatabase(this, this.Name);
+            SQLiteHelper.CloseDatabase(this, Name);
         }
     }
 }

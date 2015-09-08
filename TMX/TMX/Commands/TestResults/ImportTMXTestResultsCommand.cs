@@ -11,8 +11,8 @@ namespace Tmx.Commands
 {
     using System;
     using System.Management.Automation;
-    using Tmx.Core;
-    using Tmx.Interfaces;
+    using Core;
+    using Interfaces;
     
     /// <summary>
     /// Description of ImportTmxTestResultsCommand.
@@ -25,29 +25,29 @@ namespace Tmx.Commands
             CheckCmdletParameters();
             
             var dataObject = new ImportExportCmdletBaseDataObject {
-                As = this.As,
-                Descending = this.Descending,
-                ExcludeAutomatic = this.ExcludeAutomatic,
-                FilterAll = this.FilterAll,
-                FilterDescriptionContains = this.FilterDescriptionContains,
-                FilterFailed = this.FilterFailed,
-                FilterIdContains = this.FilterIdContains,
-                FilterNameContains = this.FilterNameContains,
-                FilterNone = this.FilterNone,
-                FilterNotTested = this.FilterNotTested,
-                FilterOutAutomaticAndTechnicalResults = this.FilterOutAutomaticAndTechnicalResults,
-                FilterOutAutomaticResults = this.FilterOutAutomaticResults,
-                FilterPassed = this.FilterPassed,
-                FilterPassedWithBadSmell = this.FilterPassedWithBadSmell,
-                Id = this.Id,
-                Name = this.Name,
-                OrderByDateTime = this.OrderByDateTime,
-                OrderByFailRate = this.OrderByFailRate,
-                OrderById = this.OrderById,
-                OrderByName = this.OrderByName,
-                OrderByPassRate = this.OrderByPassRate,
-                OrderByTimeSpent = this.OrderByTimeSpent,
-                Path = this.Path
+                As = As,
+                Descending = Descending,
+                ExcludeAutomatic = ExcludeAutomatic,
+                FilterAll = FilterAll,
+                FilterDescriptionContains = FilterDescriptionContains,
+                FilterFailed = FilterFailed,
+                FilterIdContains = FilterIdContains,
+                FilterNameContains = FilterNameContains,
+                FilterNone = FilterNone,
+                FilterNotTested = FilterNotTested,
+                FilterOutAutomaticAndTechnicalResults = FilterOutAutomaticAndTechnicalResults,
+                FilterOutAutomaticResults = FilterOutAutomaticResults,
+                FilterPassed = FilterPassed,
+                FilterPassedWithBadSmell = FilterPassedWithBadSmell,
+                Id = Id,
+                Name = Name,
+                OrderByDateTime = OrderByDateTime,
+                OrderByFailRate = OrderByFailRate,
+                OrderById = OrderById,
+                OrderByName = OrderByName,
+                OrderByPassRate = OrderByPassRate,
+                OrderByTimeSpent = OrderByTimeSpent,
+                Path = Path
             };
             
             string reportFormat = As.ToUpper();

@@ -267,6 +267,8 @@ namespace Tmx.Server.Tests.Helpers
                                 SuiteUniqueId = suiteUniqueId,
                                 ScenarioId = scenarioId,
                                 ScenarioUniqueId = scenarioUniqueId
+                                    ,
+                                Origin = TestResultOrigins.Logical
                             },
                             new TestResult {
                                 Id = "3",
@@ -280,6 +282,8 @@ namespace Tmx.Server.Tests.Helpers
                                 SuiteUniqueId = suiteUniqueId,
                                 ScenarioId = scenarioId,
                                 ScenarioUniqueId = scenarioUniqueId
+                                    ,
+                                Origin = TestResultOrigins.Technical
                             },
                             new TestResult {
                                 Id = "4",

@@ -14,60 +14,79 @@
         <br>
         <br>
         <table border="1">
-            <tr>
-                <th>Name</th>
-                <th>Test Lab</th>
-                <th>Started</th>
-                <th>Time taken</th>
-                <th>Status</th>
-				<th>Test status</th>
-                <!-- <th>Description</th> -->
-                <th>Test results</th>
-                <th>Parameters</th>
-                <th>Clients</th>
-                <th>Tasks</th>
-                <th>Cancel</th>
-            </tr>
-            {% for testRun in @Model.TestRuns -%}
-            <tr>
-                <td>{{ testRun.Name }}</td>
-                <td>{{ testRun.Get_Test_Lab_Name() }}</td>
-                <td>{{ testRun.Start_Time }}</td>
-                <td>{{ testRun.get_time_taken }}</td>
-                <td>{{ testRun.Status }}</td>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Test Lab</th>
+					<th>Started</th>
+					<th>Time taken</th>
+					<th>Status</th>
+					<th>Test status</th>
+					<!-- <th>Description</th> -->
+					<th>Test results</th>
+					<th>Parameters</th>
+					<th>Clients</th>
+					<th>Tasks</th>
+					<th>Cancel</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for testRun in @Model.TestRuns -%}
+				{% if testRun.Test_Status == 'Passed' -%}
+					<tr style="color:#61B557; text-align:center">
+				{% elseif testRun.Test_Status == 'Failed' -%}
+					<tr style="color:#DB534B; text-align:center">
+				{% elseif testRun.Test_Status == 'NotRun' -%}
+					<tr style="color:#999999; text-align:center">
+				{% elseif testRun.Test_Status == 'KnownIssue' -%}
+					<tr style="color:olive; text-align:center">
+				{% elseif testRun.Test_Status == 'Blocked' -%}
+					<tr style="color:#B7D0E3; text-align:center">
+				{% elseif testRun.Test_Status == 'WorkInProgress' -%}
+					<tr style="color:white; text-align:center">
+				{% else -%}
+					<tr>
+				{% endif -%}
 
-                {% if testRun.Test_Status == 'Passed' -%}
-                    <td style="background-color:green; text-align:center">{{ testRun.Test_Status }}</td>
-                {% elseif testRun.Test_Status == 'Failed' -%}
-                    <td style="background-color:red; text-align:center">{{ testRun.Test_Status }}</td>
-                {% elseif testRun.Test_Status == 'NotRun' -%}
-                    <td style="background-color:grey; text-align:center">{{ testRun.Test_Status }}</td>
-                {% elseif testRun.Test_Status == 'KnownIssue' -%}
-                    <td style="background-color:olive; text-align:center">{{ testRun.Test_Status }}</td>
-                {% elseif testRun.Test_Status == 'Blocked' -%}
-                    <td style="background-color:blue; text-align:center">{{ testRun.Test_Status }}</td>
-                {% elseif testRun.Test_Status == 'WorkInProgress' -%}
-                    <td style="background-color:white; text-align:center">{{ testRun.Test_Status }}</td>
-                {% else -%}
+					<td>{{ testRun.Name }}</td>
+					<td>{{ testRun.Get_Test_Lab_Name() }}</td>
+					<td>{{ testRun.Start_Time }}</td>
+					<td>{{ testRun.get_time_taken }}</td>
+					<td>{{ testRun.Status }}</td>
 					<td>{{ testRun.Test_Status }}</td>
-                {% endif -%}
+					<!-- {% if testRun.Test_Status == 'Passed' -%}
+						<td style="background-color:green; text-align:center">{{ testRun.Test_Status }}</td>
+					{% elseif testRun.Test_Status == 'Failed' -%}
+						<td style="background-color:red; text-align:center">{{ testRun.Test_Status }}</td>
+					{% elseif testRun.Test_Status == 'NotRun' -%}
+						<td style="background-color:grey; text-align:center">{{ testRun.Test_Status }}</td>
+					{% elseif testRun.Test_Status == 'KnownIssue' -%}
+						<td style="background-color:olive; text-align:center">{{ testRun.Test_Status }}</td>
+					{% elseif testRun.Test_Status == 'Blocked' -%}
+						<td style="background-color:blue; text-align:center">{{ testRun.Test_Status }}</td>
+					{% elseif testRun.Test_Status == 'WorkInProgress' -%}
+						<td style="background-color:white; text-align:center">{{ testRun.Test_Status }}</td>
+					{% else -%}
+						<td>{{ testRun.Test_Status }}</td>
+					{% endif -%} -->
 
-                <!-- <td>{{ testRun.Description }}</td> -->
-                <td><a href="/testRuns/{{ testRun.Id }}/testResults">test results</a></td>
-                <td><a href="/testRuns/{{ testRun.Id }}/testParameters">parameters</a></td>
-                <td><a href="/testRuns/{{ testRun.Id }}/clients">clients</a></td>
-                <td><a href="/testRuns/{{ testRun.Id }}/tasks">tasks</a></td>
-                {% if testRun.Status == 'Pending' or testRun.Status == 'Running' -%}
-                    <!-- http://blog.nancyfx.org/x-http-method-override-with-nancyfx/ -->                
-                    <form action="/api/testRuns/{{ testRun.Id }}/cancelTestRun" method="POST">
-                        <input type="hidden" name="_method" value="PUT"/>
-                        <td><input type="submit" value="Cancel"/></td>
-                    </form>
-                {% else -%}
-                    <td><input type="submit" value="Cancel" disabled/></td>
-                {% endif -%}
-            </tr>
-            {% endfor -%}
+					<!-- <td>{{ testRun.Description }}</td> -->
+					<td><a href="/testRuns/{{ testRun.Id }}/testResults">test results</a></td>
+					<td><a href="/testRuns/{{ testRun.Id }}/testParameters">parameters</a></td>
+					<td><a href="/testRuns/{{ testRun.Id }}/clients">clients</a></td>
+					<td><a href="/testRuns/{{ testRun.Id }}/tasks">tasks</a></td>
+					{% if testRun.Status == 'Pending' or testRun.Status == 'Running' -%}
+						<!-- http://blog.nancyfx.org/x-http-method-override-with-nancyfx/ -->                
+						<form action="/api/testRuns/{{ testRun.Id }}/cancelTestRun" method="POST">
+							<input type="hidden" name="_method" value="PUT"/>
+							<td><input type="submit" value="Cancel"/></td>
+						</form>
+					{% else -%}
+						<td><input type="submit" value="Cancel" disabled/></td>
+					{% endif -%}
+				</tr>
+				{% endfor -%}
+			</tbody>
         </table>
     </body>
 

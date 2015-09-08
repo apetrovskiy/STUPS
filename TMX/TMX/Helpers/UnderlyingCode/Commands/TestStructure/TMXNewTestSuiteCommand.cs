@@ -12,10 +12,8 @@ namespace Tmx
     using System;
     using System.Linq;
     using System.Management.Automation;
-    using Tmx;
-    using Tmx.Core;
-    using Tmx.Interfaces;
-    
+    using Core;
+
     /// <summary>
     /// Description of TmxNewTestSuiteCommand.
     /// </summary>

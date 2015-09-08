@@ -14,7 +14,6 @@ namespace Tmx
     using Client.Library.ObjectModel;
     using Commands;
     using Core.Types.Remoting;
-    using Interfaces.Remoting;
 
     /// <summary>
     /// Description of SendTestTaskResultCommand.
@@ -35,9 +34,8 @@ namespace Tmx
             var testTask = new TestTask();
             // TODO: parameterize this
             // var testTask = new TestTask(TestTaskRuntimeTypes.Powershell);
-            foreach (var key in cmdlet.Result.Keys) {
+            foreach (var key in cmdlet.Result.Keys)
                 testTask.TaskResult.Add(key.ToString(), cmdlet.Result[key].ToString());
-            }
             taskUpdater.SendTaskResult(testTask, ClientSettings.Instance.ClientId);
         }
     }

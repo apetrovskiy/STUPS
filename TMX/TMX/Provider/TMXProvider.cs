@@ -37,7 +37,7 @@ namespace Tmx
         
         protected override void Stop()
         {
-            this.rootDrive = null;
+            rootDrive = null;
         }
         #endregion CmdletProvider Overrides
         
@@ -427,7 +427,7 @@ namespace Tmx
         {
             try{
 //                this._name = nameOrId;
-                this._id = nameOrId;
+                _id = nameOrId;
     
 //                GetUiaWindowCommand cmd;
 //                _driveWindow = 

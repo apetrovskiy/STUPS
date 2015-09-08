@@ -11,10 +11,8 @@ using System.Linq;
 
 namespace Tmx
 {
-    using System;
     using System.Management.Automation;
-    using Tmx;
-    using Tmx.Interfaces.TestStructure;
+    using Interfaces.TestStructure;
     
     /// <summary>
     /// Description of TestExecCmdletBase.

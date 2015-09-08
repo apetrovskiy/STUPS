@@ -157,12 +157,12 @@ namespace Tmx.Server.Tests.Modules
         
         void THEN_Http_Response_Is_Created(BrowserResponse response)
         {
-            Xunit.Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+            Assert.Equal(HttpStatusCode.Created, response.StatusCode);
         }
         
         void THEN_CommonDataItem_Matches(ICommonDataItem dataItem)
         {
-            Xunit.Assert.Equal(_testRun.Data.Data[dataItem.Key], dataItem.Value);
+            Assert.Equal(_testRun.Data.Data[dataItem.Key], dataItem.Value);
         }
     }
 }

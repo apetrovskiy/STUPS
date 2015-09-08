@@ -9,13 +9,11 @@
 
 namespace Tmx
 {
-    using System;
     using Client.Library.Helpers;
     using Client.Library.ObjectModel;
-    using Tmx.Client;
-    using Tmx.Core;
-    using Tmx.Interfaces.Exceptions;
-    using Tmx.Commands;
+    using Core;
+    using Interfaces.Exceptions;
+    using Commands;
     
     /// <summary>
     /// Description of SendTestCommonDataCommand.

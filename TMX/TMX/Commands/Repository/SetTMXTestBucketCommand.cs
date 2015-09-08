@@ -9,9 +9,8 @@
 
 namespace Tmx.Commands
 {
-    using System;
     using System.Management.Automation;
-    using Tmx.Interfaces;
+    using Interfaces;
     
     /// <summary>
     /// Description of SetTmxTestBucketCommand.
@@ -22,9 +21,9 @@ namespace Tmx.Commands
     {
         public SetTmxTestBucketCommand()
         {
-            this.checkDatabaseInput(this.InputObject);
+            checkDatabaseInput(InputObject);
             
-            SQLiteHelper.ChangeBucket(this, this.BucketName);
+            SQLiteHelper.ChangeBucket(this, BucketName);
         }
     }
 }

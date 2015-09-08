@@ -12,8 +12,7 @@ namespace Tmx
     using System;
     using Ninject;
     using Ninject.Modules;
-    using Ninject.Parameters;
-    
+
     /// <summary>
     /// Description of TmxFactory.
     /// </summary>

@@ -259,10 +259,21 @@ namespace Tmx.Server.Tests.Modules
                 // 20141122
                 SuiteUniqueId = suites[0].UniqueId,
                 ScenarioUniqueId = testScenario.UniqueId,
-                Origin = TestResultOrigins.Logical,
+                // 20150908
+                // experimental
+                // support for technical test results (back again)
+                // Origin = TestResultOrigins.Logical,
+                Origin = TestResultOrigins.Technical,
+                
                 // 20150805
                 // enStatus = TestResultStatuses.Passed
-                enStatus = TestStatuses.Passed
+                
+                
+                // 20150908
+                // experimental
+                // support for technical test results (back again)
+                //enStatus = TestStatuses.Passed
+                enStatus = TestStatuses.Failed
             });
             suites[0].TestScenarios.Add(testScenario);
             return suites;

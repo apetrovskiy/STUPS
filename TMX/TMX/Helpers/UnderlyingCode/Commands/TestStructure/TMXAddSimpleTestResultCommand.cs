@@ -9,13 +9,10 @@
 
 namespace Tmx
 {
-    using System;
     using System.Linq;
-    using System.Management.Automation;
-    using Tmx;
-    using Tmx.Interfaces;
-    using Tmx.Interfaces.TestStructure;
-    using Tmx.Commands;
+    using Interfaces;
+    using Interfaces.TestStructure;
+    using Commands;
     
     /// <summary>
     /// Description of TmxAddSimpleTestResultCommand.

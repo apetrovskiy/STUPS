@@ -9,11 +9,9 @@
 
 namespace Tmx
 {
-    using System;
     using Client.Library.Helpers;
     using Client.Library.ObjectModel;
-    using Tmx.Client;
-    using Tmx.Commands;
+    using Commands;
     
     /// <summary>
     /// Description of ReceiveTestResportCommand.

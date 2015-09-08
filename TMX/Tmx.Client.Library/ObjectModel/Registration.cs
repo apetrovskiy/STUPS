@@ -17,6 +17,8 @@ namespace Tmx.Client.Library.ObjectModel
     using Interfaces.Remoting;
     using Interfaces.Server;
     using Helpers;
+    using Interfaces.ExtensionMethods;
+    using Interfaces.TestStructure;
     using Spring.Http;
     using Spring.Rest.Client;
 //using PSTestLib.Helpers;
@@ -128,6 +130,11 @@ namespace Tmx.Client.Library.ObjectModel
             Trace.TraceInformation("closeCurrentTaskIfAny().5");
             
             task.TaskStatus = TestTaskStatuses.CompletedSuccessfully;
+
+            // 20150908
+            task.TestStatus = TestData.TestSuites.GetOveralStatus();
+            if (TestStatuses.Failed == task.TestStatus)
+                task.TaskStatus = TestTaskStatuses.FailedByTestResults;
             
             Trace.TraceInformation("closeCurrentTaskIfAny().6");
             

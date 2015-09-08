@@ -13,7 +13,8 @@ namespace Tmx.Core.Types.Remoting
     using System.Collections.Generic;
     using Interfaces.ExtensionMethods;
     using Interfaces.Remoting;
-    
+    using Interfaces.TestStructure;
+
     /// <summary>
     /// Description of TestTask.
     /// </summary>
@@ -37,6 +38,9 @@ namespace Tmx.Core.Types.Remoting
             // 20150904
             TaskRuntimeType = TestTaskRuntimeTypes.Powershell;
             // TaskRuntimeType = taskRunTimeType;
+
+            // 20150908
+            TestStatus = TestStatuses.NotRun;
         }
         
         public int Id { get; set; }
@@ -69,6 +73,7 @@ namespace Tmx.Core.Types.Remoting
         public IDictionary<string, string> PreviousTaskResult { get; set; }
         public IDictionary<string, string> TaskResult { get; set; }
         public Guid ClientId { get; set; }
+        public TestStatuses TestStatus { get; set; }
         public Guid WorkflowId { get; set; }
         public Guid TestRunId { get; set; }
         

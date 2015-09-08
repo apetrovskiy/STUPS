@@ -246,7 +246,7 @@ namespace Tmx.Core
                 // TestResultStatuses status;
                 // var testResultElement = getTestResultStatus(out status);
                 var status = getTestResultStatus(testResultElement);
-                TestResultOrigins origin = TestResultOrigins.Logical;
+                var origin = TestResultOrigins.Logical;
                 if ("TECHNICAL" == getStringAttribute(testResultElement, "origin").ToUpper())
                     origin = TestResultOrigins.Technical;
                 if ("AUTOMATIC" == getStringAttribute(testResultElement, "origin").ToUpper())
@@ -255,8 +255,14 @@ namespace Tmx.Core
                 //     passedValue) {
                 // 20150805
                 // if ((TestResultOrigins.Technical == origin) && TestResultStatuses.Passed == status) {
-                if ((TestResultOrigins.Technical == origin) && TestStatuses.Passed == status)
+
+
+                /*
+                if (TestResultOrigins.Technical == origin && TestStatuses.Passed == status)
                     continue;
+
+                */
+
                 string testResultDescription = string.Empty;
                 testResultDescription = getStringAttribute(testResultElement, "description");
                 

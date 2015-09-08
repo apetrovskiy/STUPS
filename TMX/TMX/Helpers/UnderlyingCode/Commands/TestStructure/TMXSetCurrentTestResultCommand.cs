@@ -11,10 +11,8 @@ namespace Tmx
 {
     using System;
     using System.Linq;
-    using System.Management.Automation;
-    using Tmx.Interfaces;
-    using Tmx;
-    using Tmx.Commands;
+    using Interfaces;
+    using Commands;
     
     /// <summary>
     /// Description of TmxSetCurrentTestResultCommand.
@@ -56,7 +54,7 @@ namespace Tmx
                     TestData.CurrentTestResult.SetTimeSpent(
                         //(TestData.CurrentTestResult.Timestamp - TmxHelper.TestCaseStarted).TotalSeconds);
                         //(System.DateTime.Now - TmxHelper.TestCaseStarted).TotalSeconds);
-                        (System.DateTime.Now - TestData.CurrentTestResult.Timestamp).TotalSeconds);
+                        (DateTime.Now - TestData.CurrentTestResult.Timestamp).TotalSeconds);
                     
                     cmdlet.WriteVerbose(
                         cmdlet,

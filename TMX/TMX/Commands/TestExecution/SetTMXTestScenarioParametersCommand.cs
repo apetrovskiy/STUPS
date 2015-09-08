@@ -9,7 +9,6 @@
 
 namespace Tmx.Commands
 {
-    using System;
     using System.Management.Automation;
     
     /// <summary>
@@ -20,7 +19,7 @@ namespace Tmx.Commands
     {
         public SetTmxTestScenarioParametersCommand()
         {
-            this.OnlySetParameters = true;
+            OnlySetParameters = true;
         }
     }
 }

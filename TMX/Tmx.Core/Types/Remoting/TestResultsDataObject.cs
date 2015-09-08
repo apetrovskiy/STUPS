@@ -17,7 +17,5 @@ namespace Tmx.Core.Types.Remoting
     public class TestResultsDataObject : ITestResultsDataObject
     {
         public string Data { get; set; }
-        // public XDocument Doc { get; set; }
-        // public List<ITestSuite> Data { get; set; }
     }
 }

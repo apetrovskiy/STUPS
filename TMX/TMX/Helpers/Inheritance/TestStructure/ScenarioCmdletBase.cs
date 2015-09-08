@@ -9,9 +9,8 @@
 
 namespace Tmx
 {
-    using System;
     using System.Management.Automation;
-    using Tmx.Interfaces.TestStructure;
+    using Interfaces.TestStructure;
     
     /// <summary>
     /// Description of ScenarioCmdletBase.
@@ -20,8 +19,8 @@ namespace Tmx
     {
         public ScenarioCmdletBase()
         {
-            this.TestSuiteName = string.Empty;
-            this.TestSuiteId = string.Empty;
+            TestSuiteName = string.Empty;
+            TestSuiteId = string.Empty;
         }
         
         #region Parameters

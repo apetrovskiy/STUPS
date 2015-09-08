@@ -9,11 +9,9 @@
 
 namespace Tmx
 {
-    using System;
     using System.Linq;
     using System.Management.Automation;
-    using Tmx;
-    
+
     /// <summary>
     /// Description of TmxInvokeTestCaseCommand.
     /// </summary>

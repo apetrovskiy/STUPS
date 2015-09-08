@@ -9,7 +9,6 @@
 
 namespace Tmx.Client.Library.ObjectModel
 {
-    //using System;
     using System.Diagnostics;
     using System.Net;
     using Core.Types.Remoting;
@@ -35,14 +34,7 @@ namespace Tmx.Client.Library.ObjectModel
             try {
                 var url = UrlList.TestReports_Root + "/" + ClientSettings.Instance.CurrentClient.TestRunId + UrlList.TestReports_LoadingPoint_relPath;
                 
-                // 20141211
-                // TODO: AOP
-                Trace.TraceInformation("LoadTestReport().1: testRun id = {0}, url = {1}", ClientSettings.Instance.CurrentClient.TestRunId, url);
-                
-                
                 var loadingReportResponse = _restTemplate.GetForMessage<TestResultsDataObject>(url);
-                
-                Trace.TraceInformation("LoadTestReport).2: loadingResultsResponse is null?{0}", null == loadingReportResponse);
                 
                 if (null == loadingReportResponse || null == loadingReportResponse.Body)
                     throw new LoadingTestReportException("Failed to receive test results.");

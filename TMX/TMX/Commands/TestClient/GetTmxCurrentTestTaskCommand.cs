@@ -9,7 +9,6 @@
 
 namespace Tmx.Commands.TestClient
 {
-    using System;
     using System.Management.Automation;
     
     /// <summary>

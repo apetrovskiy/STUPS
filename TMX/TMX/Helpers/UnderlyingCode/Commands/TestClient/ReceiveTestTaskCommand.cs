@@ -13,11 +13,10 @@ namespace Tmx
     using System.Diagnostics;
     using Client.Library.Helpers;
     using Client.Library.ObjectModel;
-    using Tmx.Interfaces.Exceptions;
-    using Tmx;
-    using Tmx.Client;
-    using Tmx.Interfaces.Remoting;
-    using Tmx.Commands;
+    using Interfaces.Exceptions;
+    using Client;
+    using Interfaces.Remoting;
+    using Commands;
     
     /// <summary>
     /// Description of ReceiveTestTaskCommand.

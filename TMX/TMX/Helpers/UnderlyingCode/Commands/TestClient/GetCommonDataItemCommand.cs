@@ -12,9 +12,8 @@ namespace Tmx
     using System;
     using System.Linq;
     using System.Management.Automation;
-    using Tmx.Client;
-    using Tmx.Core;
-    using Tmx.Commands;
+    using Client;
+    using Commands;
     
     /// <summary>
     /// Description of GetTestCommonDataCommand.

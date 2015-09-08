@@ -9,9 +9,6 @@
 
 namespace Tmx
 {
-    using System;
-    using System.Management.Automation;
-    
     /// <summary>
     /// Description of TmxCommand.
     /// </summary>
@@ -19,7 +16,7 @@ namespace Tmx
     {
         internal TmxCommand(CommonCmdletBase cmdlet)
         {
-            this.Cmdlet = cmdlet;
+            Cmdlet = cmdlet;
         }
         
         internal CommonCmdletBase Cmdlet { get; set; }

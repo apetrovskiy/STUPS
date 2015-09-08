@@ -19,9 +19,8 @@ namespace Tmx
     using System.IO;
     using System.Management.Automation;
     using PSTestLib;
-    using Tmx.Interfaces;
-    using Tmx.Interfaces.TestStructure;
-    
+    using Interfaces;
+
     /// <summary>
     /// Description of SQLiteHelper.
     /// </summary>
@@ -219,9 +218,9 @@ namespace Tmx
             //IDatabase database = null;
             // 20140208
             // if (null == Tmx.SQLiteData.Databases || 0 >= Tmx.SQLiteData.Databases.Count) return null; //database;
-            if (null == Tmx.SQLiteData.Databases || 0 == Tmx.SQLiteData.Databases.Count) return null; //database;
+            if (null == SQLiteData.Databases || 0 == SQLiteData.Databases.Count) return null; //database;
 
-            return Tmx.SQLiteData.Databases.FirstOrDefault(db => db.Name == databaseName);
+            return SQLiteData.Databases.FirstOrDefault(db => db.Name == databaseName);
 
             //if (null != Tmx.SQLiteData.Databases &&
             //    0 < Tmx.SQLiteData.Databases.Count) {

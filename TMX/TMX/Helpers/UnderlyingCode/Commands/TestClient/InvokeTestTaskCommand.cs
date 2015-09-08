@@ -15,7 +15,9 @@ namespace Tmx
     using Client.Library.ObjectModel;
     using Commands;
     using Core;
+    using Interfaces.ExtensionMethods;
     using Interfaces.Remoting;
+    using Interfaces.TestStructure;
 
     /// <summary>
     /// Description of InvokeTestTaskCommand.
@@ -38,6 +40,11 @@ namespace Tmx
             
             LoadCommonData();
             RunTask(task);
+
+            // 20150907
+            if (task.IsCritical && TestStatuses.Failed == TestData.TestSuites.GetOveralStatus())
+                task.TaskStatus = TestTaskStatuses.FailedByTestResults;
+
             UpdateTask(task);
             SendTestResults();
             ClientSettings.Instance.CurrentTask = null;
@@ -56,6 +63,9 @@ namespace Tmx
             // 20150112
             // task.TaskFinished = true
             task.TaskStatus = runResult ? TestTaskStatuses.CompletedSuccessfully : TestTaskStatuses.ExecutionFailed;
+            // 20150908
+            if (TestStatuses.Failed == TestData.TestSuites.GetOveralStatus())
+                task.TaskStatus = TestTaskStatuses.FailedByTestResults;
         }
         
         void UpdateTask(ITestTask task)

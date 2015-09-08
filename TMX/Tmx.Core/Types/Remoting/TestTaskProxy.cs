@@ -12,7 +12,8 @@ namespace Tmx.Core.Types.Remoting
     using System;
     using System.Collections.Generic;
     using Interfaces.Remoting;
-    
+    using Interfaces.TestStructure;
+
     /// <summary>
     /// Description of TestTaskProxy.
     /// </summary>
@@ -55,6 +56,7 @@ namespace Tmx.Core.Types.Remoting
         public IDictionary<string, string> PreviousTaskResult { get; set; }
         public IDictionary<string, string> TaskResult { get; set; }
         public Guid ClientId { get; set; }
+        public TestStatuses TestStatus { get; set; }
         public Guid WorkflowId { get; set; }
         
         public void StartTimer()

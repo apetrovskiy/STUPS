@@ -9,10 +9,9 @@
 
 namespace Tmx.Commands
 {
-    using System;
     using System.Management.Automation;
     using Tmx;
-    using Tmx.Interfaces.TestStructure;
+    using Interfaces.TestStructure;
     
     /// <summary>
     /// Description of CloseTmxTestResultCommand.
@@ -27,10 +26,10 @@ namespace Tmx.Commands
 //            if (null == TestData.TestSuites || 0 == TestData.TestSuites.Count) {
 //                TestData.InitTestData();
 //            }
-            this.Id = TestData.GetTestResultId();
-            this.TestLog = Preferences.TestLog;
-            this.KnownIssue = false;
-            this.Echo |= Preferences.AutoEcho;
+            Id = TestData.GetTestResultId();
+            TestLog = Preferences.TestLog;
+            KnownIssue = false;
+            Echo |= Preferences.AutoEcho;
             
             // 20130626
             //this.TestOrigin = TestResultOrigins.Logical;

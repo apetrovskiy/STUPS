@@ -9,9 +9,8 @@
 
 namespace Tmx
 {
-    using System;
-    using Tmx.Client;
-    using Tmx.Commands;
+    using Client;
+    using Commands;
     
     /// <summary>
     /// Description of ConnectServerCommand.

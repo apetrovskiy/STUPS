@@ -20,7 +20,7 @@ namespace Tmx
         public TestResultDetailCmdletBase()
         {
             if (Preferences.AutoEcho)
-                this.Echo = true;
+                Echo = true;
         }
         
         #region Parameters

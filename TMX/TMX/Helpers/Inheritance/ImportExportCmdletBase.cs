@@ -11,13 +11,10 @@ namespace Tmx
 {
     using System;
     using System.Management.Automation;
-    using System.Linq;
-    using System.Xml.Linq;
     using System.Text;
-    using Tmx;
-    using Tmx.Core;
-    using Tmx.Interfaces;
-    using Tmx.Interfaces.TestStructure;
+    using Core;
+    using Interfaces;
+    using Interfaces.TestStructure;
     
     /// <summary>
     /// Description of ImportExportCmdletBase.
@@ -26,10 +23,10 @@ namespace Tmx
     {
         public ImportExportCmdletBase()
         {
-            this.As = string.Empty;
-            this.Name = string.Empty;
-            this.Path = string.Empty;
-            this.ExcludeAutomatic = false;
+            As = string.Empty;
+            Name = string.Empty;
+            Path = string.Empty;
+            ExcludeAutomatic = false;
         }
         
         #region Parameters
@@ -579,7 +576,7 @@ namespace Tmx
             string generatedFileName = string.Empty;
             WriteVerbose(this, "deciding on which path to use for the report");
             generatedFileName =
-                System.Environment.GetEnvironmentVariable(
+                Environment.GetEnvironmentVariable(
                     "TEMP",
                     EnvironmentVariableTarget.User);
             generatedFileName += @"\";
@@ -637,7 +634,7 @@ namespace Tmx
 //                            ee.Message);
 //                    ThrowTerminatingError(err);
                     
-                    this.WriteError(
+                    WriteError(
                         this,
                         "Unable to create the report file: '" +
                         reportFileName + 
@@ -663,7 +660,7 @@ namespace Tmx
 //                        eee.Message);
 //                ThrowTerminatingError(err2);
                 
-                this.WriteError(
+                WriteError(
                     this,
                     "Unable to create the report file: '" +
                     reportFileName +
@@ -806,9 +803,9 @@ namespace Tmx
             resultHTML += newLineCS;
             resultHTML += headerTitleOpen;
             resultHTML += "Test results ";
-            resultHTML +=  System.DateTime.Now.ToShortDateString();
+            resultHTML +=  DateTime.Now.ToShortDateString();
             resultHTML += " ";
-            resultHTML +=  System.DateTime.Now.ToShortTimeString();
+            resultHTML +=  DateTime.Now.ToShortTimeString();
             resultHTML += headerTitleClose;
             resultHTML += newLineCS;
             resultHTML += getStatisticsStringOverall();

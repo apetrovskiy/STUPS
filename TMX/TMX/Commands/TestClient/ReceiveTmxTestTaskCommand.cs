@@ -9,10 +9,9 @@
 
 namespace Tmx.Commands
 {
-    using System;
     using System.Management.Automation;
     using Tmx;
-    using Tmx.Client;
+    using Client;
     
     /// <summary>
     /// Description of ReceiveTmxTestTaskCommand.
@@ -22,7 +21,7 @@ namespace Tmx.Commands
     {
         public ReceiveTmxTestTaskCommand()
         {
-            this.Seconds = Preferences.ReceivingTaskTimeoutSeconds;
+            Seconds = Preferences.ReceivingTaskTimeoutSeconds;
         }
         
         [Parameter(Mandatory = false,

@@ -34,77 +34,6 @@ namespace Tmx.Interfaces.TestStructure
         /// </summary>
         ExternalData = 4
     }
-
-    // 20150805
-    ///// <summary>
-    /////  /// </summary>
-    //public enum TestResultStatuses
-    //{
-    //    /// <summary>
-    //    ///  Passed
-    //    /// </summary>
-    //    Passed = 1,
-    //    /// <summary>
-    //    ///  Failed
-    //    /// </summary>
-    //    Failed = 2,
-    //    /// <summary>
-    //    ///  NotTested
-    //    /// </summary>
-    //    NotTested = 3,
-    //    /// <summary>
-    //    /// KnownIssue
-    //    /// </summary>
-    //    KnownIssue = 4
-    //}
-
-    // 20150805
-    ///// <summary>
-    /////  /// </summary>
-    //public enum TestScenarioStatuses
-    //{
-    //    /// <summary>
-    //    ///  Passed
-    //    /// </summary>
-    //    Passed = 1,
-    //    /// <summary>
-    //    ///  Failed
-    //    /// </summary>
-    //    Failed = 2,
-    //    /// <summary>
-    //    ///  NotTested
-    //    /// </summary>
-    //    NotTested = 3, //,
-    //    //Blocked = 4
-    //    /// <summary>
-    //    /// KnownIssue
-    //    /// </summary>
-    //    KnownIssue = 4
-    //}
-
-    // 20150805
-    ///// <summary>
-    /////  /// </summary>
-    //public enum TestSuiteStatuses
-    //{
-    //    /// <summary>
-    //    ///  Passed
-    //    /// </summary>
-    //    Passed = 1,
-    //    /// <summary>
-    //    ///  Failed
-    //    /// </summary>
-    //    Failed = 2,
-    //    /// <summary>
-    //    ///  NotTested
-    //    /// </summary>
-    //    NotTested = 3, //,
-    //    //Blocked = 4
-    //    /// <summary>
-    //    /// KnownIssue
-    //    /// </summary>
-    //    KnownIssue = 4
-    //}
     
     public enum TestResultOrigins
     {
@@ -113,12 +42,10 @@ namespace Tmx.Interfaces.TestStructure
         Technical
     }
 
-    // 20150805
     public enum TestStatuses
     {
         Passed = 1,
         Failed = 2,
-        // NotTested = 3,
         NotRun = 3,
         KnownIssue = 4,
         Blocked = 5,

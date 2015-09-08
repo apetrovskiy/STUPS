@@ -9,9 +9,8 @@
 
 namespace Tmx.Commands
 {
-    using System;
     using System.Management.Automation;
-    using Tmx.Interfaces;
+    using Interfaces;
     //using System.Linq;
     
     /// <summary>
@@ -33,26 +32,26 @@ namespace Tmx.Commands
             CheckCmdletParameters();
             
             var dataObject = new SearchTmxTestResultDataObject {
-                OrderByFailRate = this.OrderByFailRate,
-                OrderByPassRate = this.OrderByPassRate,
-                FilterAll = this.FilterAll,
-                Descending = this.Descending,
-                FilterDescriptionContains = this.FilterDescriptionContains,
-                FilterFailed = this.FilterFailed,
-                FilterIdContains = this.FilterIdContains,
-                FilterNameContains = this.FilterNameContains,
-                FilterNone = this.FilterNone,
-                FilterNotTested = this.FilterNotTested,
-                FilterOutAutomaticAndTechnicalResults = this.FilterOutAutomaticAndTechnicalResults,
-                FilterOutAutomaticResults = this.FilterOutAutomaticResults,
-                FilterPassed = this.FilterPassed,
-                FilterPassedWithBadSmell = this.FilterPassedWithBadSmell,
-                Id = this.Id,
-                Name = this.Name,
-                OrderByDateTime = this.OrderByDateTime,
-                OrderById = this.OrderById,
-                OrderByName = this.OrderByName,
-                OrderByTimeSpent = this.OrderByTimeSpent
+                OrderByFailRate = OrderByFailRate,
+                OrderByPassRate = OrderByPassRate,
+                FilterAll = FilterAll,
+                Descending = Descending,
+                FilterDescriptionContains = FilterDescriptionContains,
+                FilterFailed = FilterFailed,
+                FilterIdContains = FilterIdContains,
+                FilterNameContains = FilterNameContains,
+                FilterNone = FilterNone,
+                FilterNotTested = FilterNotTested,
+                FilterOutAutomaticAndTechnicalResults = FilterOutAutomaticAndTechnicalResults,
+                FilterOutAutomaticResults = FilterOutAutomaticResults,
+                FilterPassed = FilterPassed,
+                FilterPassedWithBadSmell = FilterPassedWithBadSmell,
+                Id = Id,
+                Name = Name,
+                OrderByDateTime = OrderByDateTime,
+                OrderById = OrderById,
+                OrderByName = OrderByName,
+                OrderByTimeSpent = OrderByTimeSpent
             };
             
             WriteObject(TmxHelper.SearchForTestResultsPS(dataObject), true);

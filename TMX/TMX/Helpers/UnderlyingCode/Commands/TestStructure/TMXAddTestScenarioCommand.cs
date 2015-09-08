@@ -12,10 +12,9 @@ namespace Tmx
     using System;
     using System.Linq;
     using System.Management.Automation;
-    using Tmx.Core;
-    using Tmx.Interfaces;
-    using Tmx;
-    using Tmx.Interfaces.TestStructure;
+    using Core;
+    using Interfaces;
+    using Interfaces.TestStructure;
     
     /// <summary>
     /// Description of TmxAddTestScenarioCommand.

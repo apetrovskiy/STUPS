@@ -9,7 +9,6 @@
 
 namespace Tmx
 {
-    using System;
     using System.Management.Automation;
     
     /// <summary>
@@ -29,7 +28,7 @@ namespace Tmx
         protected void CheckInputFile(string path)
         {
             if (!System.IO.File.Exists(path)) {
-                this.WriteError(
+                WriteError(
                     this,
                     "Couldn't find file '" + 
                     path + 

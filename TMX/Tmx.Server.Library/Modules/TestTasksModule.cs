@@ -70,7 +70,9 @@ namespace Tmx.Server.Library.Modules
             
             Trace.TraceInformation("returnTaskByClientId(Guid clientId).3");
             
-            ITestTask actualTask = taskSelector.GetFirstLegitimateTask(clientId);
+            // 20150908
+            // ITestTask actualTask = taskSelector.GetFirstLegitimateTask(clientId);
+            var actualTask = taskSelector.GetFirstLegitimateTask(clientId);
             
             Trace.TraceInformation("returnTaskByClientId(Guid clientId).4 actualTask is null? {0}", null == actualTask);
             

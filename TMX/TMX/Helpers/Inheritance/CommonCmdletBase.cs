@@ -9,13 +9,10 @@
 
 namespace Tmx
 {
-    using System;
     using System.Management.Automation;
     using PSTestLib;
-    using System.Collections.ObjectModel;
     using System.Collections;
-    using Tmx;
-    
+
     /// <summary>
     /// Description of CmdletBase.
     /// </summary>
@@ -23,7 +20,7 @@ namespace Tmx
     {
         public CommonCmdletBase()
         {
-            this.Id = string.Empty;
+            Id = string.Empty;
             
             if (null == TestData.TestSuites || 0 == TestData.TestSuites.Count) {
                 TestData.InitTestData();
@@ -65,7 +62,7 @@ namespace Tmx
         
         protected void notImplementedCase()
         {
-            this.WriteError(
+            WriteError(
                 this,
                 "Not implemented",
                 "NotImplemented",
@@ -136,11 +133,11 @@ namespace Tmx
             */
         }
 
-        protected void WriteLog(LogLevels logLevel, System.Management.Automation.ErrorRecord errorRecord)
+        protected void WriteLog(LogLevels logLevel, ErrorRecord errorRecord)
         {
             if (!Preferences.AutoLog) return;
-            this.WriteLog(logLevel, errorRecord.Exception.Message);
-            this.WriteLog(logLevel, "Script: '" + errorRecord.InvocationInfo.ScriptName + "', line: " + errorRecord.InvocationInfo.Line.ToString());
+            WriteLog(logLevel, errorRecord.Exception.Message);
+            WriteLog(logLevel, "Script: '" + errorRecord.InvocationInfo.ScriptName + "', line: " + errorRecord.InvocationInfo.Line.ToString());
 
             /*
             if (Preferences.AutoLog) {

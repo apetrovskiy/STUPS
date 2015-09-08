@@ -1,6 +1,7 @@
 ﻿namespace Tmx.Server.Logic.ObjectModel
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using Core;
     using ExtensionMethods;
@@ -27,15 +28,23 @@
             storedTask.TaskStatus = loadedTask.TaskStatus;
             storedTask.TaskResult = loadedTask.TaskResult;
             storedTask.StartTime = loadedTask.StartTime;
+            // 20150908
+            storedTask.TestStatus = loadedTask.TestStatus;
 
             var taskSelector = ServerObjectFactory.Resolve<TaskSelector>();
 
             if (storedTask.IsFailed())
                 taskSelector.CancelFurtherTasksOfTestClient(storedTask.ClientId);
+            // 20150908
+            if (storedTask.IsFailed() && storedTask.IsCritical)
+                taskSelector.CancelFurtherTasksOfTestRun(storedTask.TestRunId);
+
             if (storedTask.IsFinished())
                 CleanUpClientDetailedStatus(storedTask.ClientId);
 
-            if (storedTask.IsLastTaskInTestRun())
+            // 20150908
+            // if (storedTask.IsLastTaskInTestRun())
+            if (storedTask.IsLastTaskInTestRun() && storedTask.TaskStatus != TestTaskStatuses.Running)
                 CompleteTestRun(storedTask);
 
             if (storedTask.IsFinished())
@@ -46,22 +55,45 @@
 
             return storedTask;
         }
-
+        
         void CompleteTestRun(ITestTask task)
         {
             var currentTestRun = TestRunQueue.TestRuns.First(testRun => testRun.Id == task.TestRunId);
-            currentTestRun.Status = TaskPool.TasksForClients.Any(tsk => tsk.TestRunId == currentTestRun.Id && tsk.TaskStatus == TestTaskStatuses.ExecutionFailed) ? TestRunStatuses.InterruptedOnTaskFailure : TestRunStatuses.CompletedSuccessfully;
+            // 20150907
+            // currentTestRun.Status = TaskPool.TasksForClients.Any(tsk => tsk.TestRunId == currentTestRun.Id && tsk.TaskStatus == TestTaskStatuses.ExecutionFailed) ? TestRunStatuses.InterruptedOnTaskFailure : TestRunStatuses.Finished;
+            // currentTestRun.Status = TaskPool.TasksForClients.Any(tsk => tsk.TestRunId == currentTestRun.Id && (tsk.TaskStatus == TestTaskStatuses.ExecutionFailed || tsk.TaskStatus == TestTaskStatuses.FailedByTestResults)) ? TestRunStatuses.InterruptedOnTaskFailure : TestRunStatuses.Finished;
+            // 20150908
+            //currentTestRun.Status =
+            //    TaskPool.TasksForClients.Any(
+            //        tsk => tsk.TestRunId == currentTestRun.Id && tsk.TaskStatus == TestTaskStatuses.ExecutionFailed)
+            //        ? TestRunStatuses.InterruptedOnTaskFailure
+            //        : TaskPool.TasksForClients.Any(
+            //            tsk =>
+            //                tsk.TestRunId == currentTestRun.Id && tsk.TaskStatus == TestTaskStatuses.FailedByTestResults)
+            //            ? TestRunStatuses.InterruptedOnCriticalTask
+            //            : TestRunStatuses.Finished;
+
+            var tasksForTestRun = TaskPool.TasksForClients.Where(tsk => tsk.TestRunId == currentTestRun.Id);
+            var tasksForTestRunAsArray = tasksForTestRun as ITestTask[] ?? tasksForTestRun.ToArray();
+            currentTestRun.Status = tasksForTestRunAsArray.Any(tsk => tsk.TaskStatus == TestTaskStatuses.ExecutionFailed)
+                ? TestRunStatuses.InterruptedOnTaskFailure
+                : tasksForTestRunAsArray.Any(tsk => tsk.TaskStatus == TestTaskStatuses.FailedByTestResults)
+                    ? TestRunStatuses.InterruptedOnCriticalTask
+                    : TestRunStatuses.Finished;
+
             // 20150807
-            if (TestRunStatuses.InterruptedOnTaskFailure == currentTestRun.Status)
+            // 20150908
+            // if (TestRunStatuses.InterruptedOnTaskFailure == currentTestRun.Status)
+            if (TestRunStatuses.InterruptedOnTaskFailure == currentTestRun.Status || TestRunStatuses.InterruptedOnCriticalTask == currentTestRun.Status)
                 currentTestRun.UnregisterClients();
             currentTestRun.SetTimeTaken();
-
+            
             if (!TestRunQueue.TestRuns.Any(testRun => testRun.TestLabId == currentTestRun.TestLabId && testRun.Id != currentTestRun.Id))
                 TestLabCollection.TestLabs.First(testLab => testLab.Id == currentTestRun.TestLabId).Status = TestLabStatuses.Free;
-
+            
             ActivateNextInRowTestRun();
         }
-
+        
         void CleanUpClientDetailedStatus(Guid clientId)
         {
             ClientsCollection.Clients.First(client => client.Id == clientId).DetailedStatus = string.Empty;

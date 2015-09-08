@@ -18,6 +18,7 @@ namespace Tmx.Server.Tests.Modules
     using Core;
     using Core.Types.Remoting;
     using Interfaces.Remoting;
+    using Interfaces.TestStructure;
     using Logic.ObjectModel.Objects;
     using Xunit;
     using UnitTestingHelpers;
@@ -60,124 +61,153 @@ namespace Tmx.Server.Tests.Modules
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_provide_a_task_to_test_client_if_the_client_matches_the_rule()
+        public void ShouldProvideATaskToTestClientIfTheClientMatchesTheRule()
         {
-            var expectedTask = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0);
-            var testClient = GIVEN_Registered_TestClient_as_json(TestClientHostnameExpected, TestClientUsernameExpected);
+            var expectedTask = GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0);
+            var testClient = GivenRegisteredTestClientAsJson(TestClientHostnameExpected, TestClientUsernameExpected);
             
-            var actualTask = WHEN_Getting_task_as_json(testClient.Id);
+            var actualTask = WhenGettingTaskAsJson(testClient.Id);
             
-            THEN_HttpResponse_Is_Ok();
-            THEN_TestTask_Properties_Equal_To(expectedTask, actualTask, TestTaskStatuses.Running);
-            THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == testClient.Id));
+            ThenHttpResponseIsOk();
+            ThenTestTaskPropertiesEqualTo(expectedTask, actualTask, TestTaskStatuses.Running);
+            ThenTestClientIsBusy(ClientsCollection.Clients.First(client => client.Id == testClient.Id));
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         // public void Should_provide_no_task_to_test_client_if_the_client_does_not_match_the_rule()
-        public void Should_not_register_test_client_if_the_client_does_not_match_the_rule()
+        public void ShouldNotRegisterTestClientIfTheClientDoesNotMatchTheRule()
         {
             // TODO: rewrite as Given-When-Then
-            var givenTask = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, "no matches", 0);
-            var testClient = GIVEN_Registered_TestClient_as_json(TestClientHostnameExpected, TestClientUsernameExpected);
+            var givenTask = GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, "no matches", 0);
+            var testClient = GivenRegisteredTestClientAsJson(TestClientHostnameExpected, TestClientUsernameExpected);
             
-            Xunit.Assert.Null(testClient);
-            
-//            WHEN_Getting_task_as_json(testClient.Id);
-//            
-//            THEN_HttpResponse_Is_NotFound();
-//            THEN_test_client_is_free(testClient);
+            ThenTestClientIsNotRegistered(testClient);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_provide_the_second_task_if_the_client_matches_the_rule()
+        public void ShouldProvideTheSecondTaskIfTheClientMatchesTheRule()
         {
-            var givenTask01 = GIVEN_Loaded_TestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
-            var givenTask02 = GIVEN_Loaded_TestTask(2, "task name 02", false, TestTaskStatuses.New, true, "u", 0);
-            var registeredClient = GIVEN_Registered_TestClient_as_json("h", "u");
+            var givenTask01 = GivenLoadedTestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
+            var givenTask02 = GivenLoadedTestTask(2, "task name 02", false, TestTaskStatuses.New, true, "u", 0);
+            var registeredClient = GivenRegisteredTestClientAsJson("h", "u");
             
-            var actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
-            WHEN_Finishing_Task_as_json(actualTask);
-            actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
+            var actualTask = WhenGettingTaskAsJson(registeredClient.Id);
+            WhenFinishingTaskAsJson(actualTask);
+            actualTask = WhenGettingTaskAsJson(registeredClient.Id);
             
-            THEN_HttpResponse_Is_Ok();
-            THEN_TestTask_Properties_Equal_To(givenTask02, actualTask, TestTaskStatuses.Running);
-            THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == registeredClient.Id));
+            ThenHttpResponseIsOk();
+            ThenTestTaskPropertiesEqualTo(givenTask02, actualTask, TestTaskStatuses.Running);
+            ThenTestClientIsBusy(ClientsCollection.Clients.First(client => client.Id == registeredClient.Id));
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_not_provide_the_second_task_if_the_client_does_not_match_the_rule()
+        public void ShouldNotProvideTheSecondTaskIfTheClientDoesNotMatchTheRule()
         {
-            var givenTask01 = GIVEN_Loaded_TestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
-            var givenTask02 = GIVEN_Loaded_TestTask(2, "task name 02", false, TestTaskStatuses.New, true, "aaa", 0);
-            var registeredClient = GIVEN_Registered_TestClient_as_json("h", "u");
+            var givenTask01 = GivenLoadedTestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
+            var givenTask02 = GivenLoadedTestTask(2, "task name 02", false, TestTaskStatuses.New, true, "aaa", 0);
+            var registeredClient = GivenRegisteredTestClientAsJson("h", "u");
             
-            var actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
-            WHEN_Finishing_Task_as_json(actualTask);
-            WHEN_Getting_task_as_json(registeredClient.Id);
+            var actualTask = WhenGettingTaskAsJson(registeredClient.Id);
+            WhenFinishingTaskAsJson(actualTask);
+            WhenGettingTaskAsJson(registeredClient.Id);
             
-            THEN_HttpResponse_Is_NotFound();
+            ThenHttpResponseIsNotFound();
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_provide_the_second_task_if_the_client_matches_the_rule_and_there_are_several_tasks()
+        public void ShouldProvideTheSecondTaskIfTheClientMatchesTheRuleAndThereAreSeveralTasks()
         {
-            var givenTask01 = GIVEN_Loaded_TestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
-            var givenTask02 = GIVEN_Loaded_TestTask(2, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
-            var givenTask03 = GIVEN_Loaded_TestTask(3, "task name 02", false, TestTaskStatuses.New, true, "u", 0);
-            var givenTask04 = GIVEN_Loaded_TestTask(4, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
-            var registeredClient = GIVEN_Registered_TestClient_as_json("h", "u");
+            var givenTask01 = GivenLoadedTestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
+            var givenTask02 = GivenLoadedTestTask(2, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
+            var givenTask03 = GivenLoadedTestTask(3, "task name 02", false, TestTaskStatuses.New, true, "u", 0);
+            var givenTask04 = GivenLoadedTestTask(4, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
+            var registeredClient = GivenRegisteredTestClientAsJson("h", "u");
             
-            var actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
-            WHEN_Finishing_Task_as_json(actualTask);
-            actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
+            var actualTask = WhenGettingTaskAsJson(registeredClient.Id);
+            WhenFinishingTaskAsJson(actualTask);
+            actualTask = WhenGettingTaskAsJson(registeredClient.Id);
             
-            THEN_HttpResponse_Is_Ok();
-            THEN_TestTask_Properties_Equal_To(givenTask03, actualTask, TestTaskStatuses.Running);
-            Xunit.Assert.Equal(givenTask03.Id, TaskPool.TasksForClients.OrderBy(t => t.Id).Skip(1).First().Id);
-            THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == registeredClient.Id));
+            ThenHttpResponseIsOk();
+            ThenTestTaskPropertiesEqualTo(givenTask03, actualTask, TestTaskStatuses.Running);
+            Assert.Equal(givenTask03.Id, TaskPool.TasksForClients.OrderBy(t => t.Id).Skip(1).First().Id);
+            ThenTestClientIsBusy(ClientsCollection.Clients.First(client => client.Id == registeredClient.Id));
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_not_provide_the_second_task_if_the_client_does_not_match_the_rule_and_there_are_several()
+        public void ShouldNotProvideTheSecondTaskIfTheClientDoesNotMatchTheRuleAndThereAreSeveral()
         {
-            var givenTask01 = GIVEN_Loaded_TestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
-            var givenTask02 = GIVEN_Loaded_TestTask(2, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
-            var givenTask03 = GIVEN_Loaded_TestTask(3, "task name 02", false, TestTaskStatuses.New, true, "aaa", 0);
-            var givenTask04 = GIVEN_Loaded_TestTask(4, "task name 02", false, TestTaskStatuses.New, true, "aaa", 0);
-            var registeredClient = GIVEN_Registered_TestClient_as_json("h", "u");
+            var givenTask01 = GivenLoadedTestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
+            var givenTask02 = GivenLoadedTestTask(2, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
+            var givenTask03 = GivenLoadedTestTask(3, "task name 02", false, TestTaskStatuses.New, true, "aaa", 0);
+            var givenTask04 = GivenLoadedTestTask(4, "task name 02", false, TestTaskStatuses.New, true, "aaa", 0);
+            var registeredClient = GivenRegisteredTestClientAsJson("h", "u");
             
-            var task = WHEN_Getting_task_as_json(registeredClient.Id);
-            WHEN_Finishing_Task_as_json(task);
-            WHEN_Getting_task_as_json(registeredClient.Id);
+            var task = WhenGettingTaskAsJson(registeredClient.Id);
+            WhenFinishingTaskAsJson(task);
+            WhenGettingTaskAsJson(registeredClient.Id);
             
-            THEN_HttpResponse_Is_NotFound();
+            ThenHttpResponseIsNotFound();
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_cancel_all_further_tasks_and_unregister_clients_on_fail()
+        public void ShouldCancelAllFurtherTasksAndUnregisterClientsOnFail()
         {
-            var givenTask01 = GIVEN_Loaded_TestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
-            var givenTask02 = GIVEN_Loaded_TestTask(2, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
-            var givenTask03 = GIVEN_Loaded_TestTask(3, "task name 02", false, TestTaskStatuses.New, true, "u", 0);
-            var givenTask04 = GIVEN_Loaded_TestTask(4, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
-            var givenTask05 = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, "h", 0);
-            var registeredClient = GIVEN_Registered_TestClient_as_json("h", "u");
+            var givenTask01 = GivenLoadedTestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
+            var givenTask02 = GivenLoadedTestTask(2, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
+            var givenTask03 = GivenLoadedTestTask(3, "task name 02", false, TestTaskStatuses.New, true, "u", 0);
+            var givenTask04 = GivenLoadedTestTask(4, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
+            var givenTask05 = GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, "h", 0);
+            var registeredClient = GivenRegisteredTestClientAsJson("h", "u");
             
-            var actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
+            var actualTask = WhenGettingTaskAsJson(registeredClient.Id);
             var taskId01 = actualTask.Id;
-            WHEN_Failing_Task_as_json(actualTask);
-            actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
+            WhenFailingTaskAsJson(actualTask);
+            actualTask = WhenGettingTaskAsJson(registeredClient.Id);
             // var taskId02 = actualTask.Id;
             
             // 20150807
-            // THEN_HttpResponse_Is_NotFound();
-            THEN_HttpResponse_Is_ExpectationFailed();
-            Xunit.Assert.Equal(null, actualTask);
-            Xunit.Assert.Equal(0, TaskPool.TasksForClients.Count(task => !task.IsFailed() && !task.IsCancelled()));
-            Xunit.Assert.Equal(givenTask03.Id, TaskPool.TasksForClients.OrderBy(t => t.Id).Skip(1).First().Id);
-            THEN_testRun_isCompleted();
-            // THEN_testRun_clients_unregistered(actualTask.Id);
-            THEN_testRun_clients_unregistered(taskId01);
+            // ThenHttpResponseIsNotFound();
+            ThenHttpResponseIsExpectationFailed();
+            Assert.Equal(null, actualTask);
+            Assert.Equal(0, TaskPool.TasksForClients.Count(task => !task.IsFailed() && !task.IsCancelled()));
+            Assert.Equal(givenTask03.Id, TaskPool.TasksForClients.OrderBy(t => t.Id).Skip(1).First().Id);
+            ThenTestRunIsCompleted();
+            // ThenTestRunClientsUnregistered(actualTask.Id);
+            ThenTestRunClientsUnregistered(taskId01);
+        }
+        
+        // 20150907
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        public void ShouldCancelAllFurtherTasksAndUnregisterClientsOnTestResultsFailed()
+        {
+            var givenTask01 = GivenLoadedTestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
+            // givenTask01.IsCritical = true;
+            TaskPool.Tasks[0].IsCritical = true;
+            var givenTask02 = GivenLoadedTestTask(2, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
+            var givenTask03 = GivenLoadedTestTask(3, "task name 02", false, TestTaskStatuses.New, true, "u", 0);
+            var givenTask04 = GivenLoadedTestTask(4, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
+            var givenTask05 = GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, "h", 0);
+            var registeredClient = GivenRegisteredTestClientAsJson("h", "u");
+            
+            var actualTask = WhenGettingTaskAsJson(registeredClient.Id);
+            var taskId01 = actualTask.Id;
+            
+            // 20150908
+            actualTask.IsCritical = true;
+            
+            WhenFailingTestResultsForTaskAsJson(actualTask);
+            actualTask = WhenGettingTaskAsJson(registeredClient.Id);
+            // var taskId02 = actualTask.Id;
+            
+            // 20150807
+            // ThenHttpResponseIsNotFound();
+            ThenHttpResponseIsExpectationFailed();
+            Assert.Equal(null, actualTask);
+            Assert.Equal(0, TaskPool.TasksForClients.Count(task => !task.IsFailed() && !task.IsCancelled()));
+            Assert.Equal(givenTask03.Id, TaskPool.TasksForClients.OrderBy(t => t.Id).Skip(1).First().Id);
+            ThenTestRunIsCompleted();
+            // ThenTestRunClientsUnregistered(actualTask.Id);
+            ThenTestRunClientsUnregistered(taskId01);
         }
         
 //[NUnit.Framework.Test, TestCaseSource("DivideCases")]
@@ -195,93 +225,93 @@ namespace Tmx.Server.Tests.Modules
 //};
         
         [MbUnit.Framework.Test][NUnit.Framework.Test] // [Fact]
-        [Xunit.Extensions.Theory]
+        [Theory]
         [InlineData("testHost001", "user001")]
         [InlineData("testHost002", "user002")]
         [InlineData("testHost003", "user003")]
 //        [TestCase("testHost001", "user000")]
 //        [TestCase("testHost002", "user002")]
 //        [TestCase("testHost003", "user003")]
-        // public void Should_not_provide_a_task_before_task_this_depends_on_is_completed() //string hostname, string username)
-        public void Should_not_provide_a_task_before_task_this_depends_on_is_completed<T1, T2>(T1 hostname, T2 username)
+        // public void ShouldNotProvideATaskBeforeTaskThisDependsOnIsCompleted() //string hostname, string username)
+        public void ShouldNotProvideATaskBeforeTaskThisDependsOnIsCompleted<T1, T2>(T1 hostname, T2 username)
         {
-            string testClientHostnameExpected = hostname.ToString();
-            string testClientUsernameExpected = username.ToString();
+            var testClientHostnameExpected = hostname.ToString();
+            var testClientUsernameExpected = username.ToString();
 //            if ("user003" == username.ToString())
 //                // Xunit.Assert.Equal(1, 2);
 //                NUnit.Framework.Assert.AreEqual(1, 2);
 //            else
 //                NUnit.Framework.Assert.AreEqual(2, 3);
             
-            var givenTask01 = GIVEN_Loaded_TestTask(4, "task name", false, TestTaskStatuses.New, true, "another rule", 0);
-            var givenTask02 = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, testClientHostnameExpected, 4);
-            var registeredClient = GIVEN_Registered_TestClient_as_json(testClientHostnameExpected, testClientUsernameExpected);
+            var givenTask01 = GivenLoadedTestTask(4, "task name", false, TestTaskStatuses.New, true, "another rule", 0);
+            var givenTask02 = GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, testClientHostnameExpected, 4);
+            var registeredClient = GivenRegisteredTestClientAsJson(testClientHostnameExpected, testClientUsernameExpected);
             
-            var actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
+            var actualTask = WhenGettingTaskAsJson(registeredClient.Id);
             
-            THEN_TestTask_Is_Null(actualTask);
-            THEN_test_client_is_free(registeredClient);
+            ThenTestTaskIsNull(actualTask);
+            ThenTestClientIsFree(registeredClient);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_not_provide_a_task_before_task_this_depends_on_is_allocated()
+        public void ShouldNotProvideATaskBeforeTaskThisDependsOnIsAllocated()
         {
-            var givenTask = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 4);
-            var registeredClient = GIVEN_Registered_TestClient_as_json(TestClientHostnameExpected, TestClientUsernameExpected);
+            var givenTask = GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 4);
+            var registeredClient = GivenRegisteredTestClientAsJson(TestClientHostnameExpected, TestClientUsernameExpected);
             
-            var actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
+            var actualTask = WhenGettingTaskAsJson(registeredClient.Id);
             
-            THEN_TestTask_Is_Null(actualTask);
-            THEN_test_client_is_free(registeredClient);
+            ThenTestTaskIsNull(actualTask);
+            ThenTestClientIsFree(registeredClient);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_provide_a_task_only_after_task_this_depends_on_is_completed()
+        public void ShouldProvideATaskOnlyAfterTaskThisDependsOnIsCompleted()
         {
-            var givenTask01 = GIVEN_Allocated_TestTask(4, "task name", true, TestTaskStatuses.CompletedSuccessfully, true, "another rule", 0);
-            var givenTask02 = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 4);
-            var registeredClient = GIVEN_Registered_TestClient_as_json(TestClientHostnameExpected, TestClientUsernameExpected);
+            var givenTask01 = GivenAllocatedTestTask(4, "task name", true, TestTaskStatuses.CompletedSuccessfully, true, "another rule", 0);
+            var givenTask02 = GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 4);
+            var registeredClient = GivenRegisteredTestClientAsJson(TestClientHostnameExpected, TestClientUsernameExpected);
             
-            var actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
+            var actualTask = WhenGettingTaskAsJson(registeredClient.Id);
             
-            THEN_HttpResponse_Is_Ok();
-            THEN_TestTask_Properties_Equal_To(givenTask02, actualTask, TestTaskStatuses.Running);
-            THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == registeredClient.Id));
+            ThenHttpResponseIsOk();
+            ThenTestTaskPropertiesEqualTo(givenTask02, actualTask, TestTaskStatuses.Running);
+            ThenTestClientIsBusy(ClientsCollection.Clients.First(client => client.Id == registeredClient.Id));
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_provide_no_task_to_unregistered_test_client()
+        public void ShouldProvideNoTaskToUnregisteredTestClient()
         {
-            var givenTask01 = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0);
-            var registeredClient = GIVEN_Registered_TestClient_as_json(TestClientHostnameExpected, TestClientUsernameExpected);
+            var givenTask01 = GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0);
+            var registeredClient = GivenRegisteredTestClientAsJson(TestClientHostnameExpected, TestClientUsernameExpected);
             
-            WHEN_SendingDeregistration_as_json(registeredClient);
-            WHEN_Getting_task_as_json(Guid.Empty);
+            WhenSendingDeregistrationAsJson(registeredClient);
+            WhenGettingTaskAsJson(Guid.Empty);
             
-            THEN_HttpResponse_Is_ExpectationFailed();
+            ThenHttpResponseIsExpectationFailed();
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_provide_no_task_to_test_client_that_lost_its_registration()
+        public void ShouldProvideNoTaskToTestClientThatLostItsRegistration()
         {
-            var givenTask01 = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0);
-            var registeredClient = GIVEN_Registered_TestClient_as_json(TestClientHostnameExpected, TestClientUsernameExpected);
+            var givenTask01 = GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0);
+            var registeredClient = GivenRegisteredTestClientAsJson(TestClientHostnameExpected, TestClientUsernameExpected);
             
-            WHEN_Removing_Registered_Client_On_Server(registeredClient);
-            WHEN_Getting_task_as_json(registeredClient.Id);
+            WhenRemovingRegisteredClientOnServer(registeredClient);
+            WhenGettingTaskAsJson(registeredClient.Id);
             if (HttpStatusCode.ExpectationFailed == _response.StatusCode)
-                registeredClient = GIVEN_Registered_TestClient_as_json(TestClientHostnameExpected, TestClientUsernameExpected);
-            var actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
+                registeredClient = GivenRegisteredTestClientAsJson(TestClientHostnameExpected, TestClientUsernameExpected);
+            var actualTask = WhenGettingTaskAsJson(registeredClient.Id);
             
-            THEN_HttpResponse_Is_Ok();
-            THEN_TestTask_Properties_Equal_To(givenTask01, actualTask, TestTaskStatuses.Running);
-            Xunit.Assert.Equal(givenTask01.Id, TaskPool.TasksForClients.OrderBy(t => t.Id).Skip(1).First().Id);
-            THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == registeredClient.Id));
+            ThenHttpResponseIsOk();
+            ThenTestTaskPropertiesEqualTo(givenTask01, actualTask, TestTaskStatuses.Running);
+            Assert.Equal(givenTask01.Id, TaskPool.TasksForClients.OrderBy(t => t.Id).Skip(1).First().Id);
+            ThenTestClientIsBusy(ClientsCollection.Clients.First(client => client.Id == registeredClient.Id));
         }
         
         [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
         [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
-        public void Should_complete_the_current_task_on_client_unregistration()
+        public void ShouldCompleteTheCurrentTaskOnClientUnregistration()
         {
             // TODO: do it!
 //            // Given
@@ -303,95 +333,151 @@ namespace Tmx.Server.Tests.Modules
 //            response = browser.Get(UrnList.TestTasks_Root + "/" + 0);
 //            
 //            // Then
-//            THEN_HttpResponse_Is_NotFound(response);
+//            ThenHttpResponseIsNotFound(response);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_provide_task_by_task_on_loading_new_tasks()
+        public void ShouldProvideTaskByTaskOnLoadingNewTasks()
         {
-            var givenTask01 = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0);
-            var registeredClient = GIVEN_Registered_TestClient_as_json(TestClientHostnameExpected, TestClientUsernameExpected);
+            var givenTask01 = GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0);
+            var registeredClient = GivenRegisteredTestClientAsJson(TestClientHostnameExpected, TestClientUsernameExpected);
             
             // the first task
-            var actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
+            var actualTask = WhenGettingTaskAsJson(registeredClient.Id);
             actualTask.TaskResult.Add("result01", "res01");
             actualTask.TaskResult.Add("result02", "res02");
-            WHEN_Finishing_Task_as_json(actualTask);
+            WhenFinishingTaskAsJson(actualTask);
             
             // the second task
-            var givenTask02 = GIVEN_Loaded_TestTask(10, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0);
+            var givenTask02 = GivenLoadedTestTask(10, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0);
             givenTask02.ClientId = registeredClient.Id;
             TaskPool.TasksForClients.Add(givenTask02);
-            actualTask = WHEN_Getting_task_as_json(registeredClient.Id);
+            actualTask = WhenGettingTaskAsJson(registeredClient.Id);
             actualTask.TaskResult.Add("result01", "res01");
             actualTask.TaskResult.Add("result02", "res02");
-            WHEN_Finishing_Task_as_json(actualTask);
+            WhenFinishingTaskAsJson(actualTask);
             
-            THEN_HttpResponse_Is_Ok();
-            THEN_TestTask_Properties_Equal_To(givenTask02, actualTask);
-            Xunit.Assert.Equal(givenTask02.Id, TaskPool.TasksForClients.OrderBy(t => t.Id).Skip(1).First().Id);
-            THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == registeredClient.Id));
+            ThenHttpResponseIsOk();
+            ThenTestTaskPropertiesEqualTo(givenTask02, actualTask);
+            Assert.Equal(givenTask02.Id, TaskPool.TasksForClients.OrderBy(t => t.Id).Skip(1).First().Id);
+            ThenTestClientIsBusy(ClientsCollection.Clients.First(client => client.Id == registeredClient.Id));
         }
         
         // ======================================== Lack of pending test runs ========================================================
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_provide_a_task_to_test_client_if_the_client_matches_the_rule_and_there_are_no_test_runs()
+        public void ShouldProvideATaskToTestClientIfTheClientMatchesTheRuleAndThereAreNoTestRuns()
         {
             TestRunQueue.TestRuns.Skip(1).First().Status = TestRunStatuses.Running;
-            var expectedTask = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0);
-            var testClient = GIVEN_Registered_TestClient_as_json(TestClientHostnameExpected, TestClientUsernameExpected);
+            var expectedTask = GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0);
+            var testClient = GivenRegisteredTestClientAsJson(TestClientHostnameExpected, TestClientUsernameExpected);
             
-            var actualTask = WHEN_Getting_task_as_json(testClient.Id);
+            var actualTask = WhenGettingTaskAsJson(testClient.Id);
             
-            THEN_HttpResponse_Is_Ok();
-            THEN_TestTask_Properties_Equal_To(expectedTask, actualTask, TestTaskStatuses.Running);
-            THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == testClient.Id));
+            ThenHttpResponseIsOk();
+            ThenTestTaskPropertiesEqualTo(expectedTask, actualTask, TestTaskStatuses.Running);
+            ThenTestClientIsBusy(ClientsCollection.Clients.First(client => client.Id == testClient.Id));
         }
         // ============================================================================================================================
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_provide_a_task_to_two_test_clients_if_they_match_the_rule()
+        public void ShouldProvideATaskToTwoTestClientsIfTheyMatchTheRule()
         {
-            var expectedTask = GIVEN_Loaded_TestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected + "|" + TestClientHostnameAlternateExpected, 0);
-            var testClient01 = GIVEN_Registered_TestClient_as_json(TestClientHostnameExpected, TestClientUsernameExpected);
-            var testClient02 = GIVEN_Registered_TestClient_as_json(TestClientHostnameAlternateExpected, TestClientUsernameExpected);
+            var expectedTask = GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected + "|" + TestClientHostnameAlternateExpected, 0);
+            var testClient01 = GivenRegisteredTestClientAsJson(TestClientHostnameExpected, TestClientUsernameExpected);
+            var testClient02 = GivenRegisteredTestClientAsJson(TestClientHostnameAlternateExpected, TestClientUsernameExpected);
             
-            var actualTask01 = WHEN_Getting_task_as_json(testClient01.Id);
+            var actualTask01 = WhenGettingTaskAsJson(testClient01.Id);
             
-            THEN_HttpResponse_Is_Ok();
-            THEN_TestTask_Properties_Equal_To(expectedTask, actualTask01, TestTaskStatuses.Running);
-            THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == testClient01.Id));
+            ThenHttpResponseIsOk();
+            ThenTestTaskPropertiesEqualTo(expectedTask, actualTask01, TestTaskStatuses.Running);
+            ThenTestClientIsBusy(ClientsCollection.Clients.First(client => client.Id == testClient01.Id));
             
             // TODO: refactor this
-            var actualTask02 = WHEN_Getting_task_as_json(testClient02.Id);
+            var actualTask02 = WhenGettingTaskAsJson(testClient02.Id);
             
-            THEN_HttpResponse_Is_Ok();
-            THEN_TestTask_Properties_Equal_To(expectedTask, actualTask02, TestTaskStatuses.Running);
-            THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == testClient02.Id));
+            ThenHttpResponseIsOk();
+            ThenTestTaskPropertiesEqualTo(expectedTask, actualTask02, TestTaskStatuses.Running);
+            ThenTestClientIsBusy(ClientsCollection.Clients.First(client => client.Id == testClient02.Id));
         }
         // ============================================================================================================================
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_provide_tasks_to_two_test_clients_based_on_how_they_match_rules()
+        public void ShouldProvideTasksToTwoTestClientsBasedOnHowTheyMatchRules()
         {
-            var expectedTask01 = GIVEN_Loaded_TestTask(5, "task name 01", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0);
-            var expectedTask02 = GIVEN_Loaded_TestTask(6, "task name 02", false, TestTaskStatuses.New, true, TestClientHostnameExpected + "|" + TestClientHostnameAlternateExpected, 0);
-            var testClient01 = GIVEN_Registered_TestClient_as_json(TestClientHostnameExpected, TestClientUsernameExpected);
-            var testClient02 = GIVEN_Registered_TestClient_as_json(TestClientHostnameAlternateExpected, TestClientUsernameExpected);
+            var expectedTask01 = GivenLoadedTestTask(5, "task name 01", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0);
+            var expectedTask02 = GivenLoadedTestTask(6, "task name 02", false, TestTaskStatuses.New, true, TestClientHostnameExpected + "|" + TestClientHostnameAlternateExpected, 0);
+            var testClient01 = GivenRegisteredTestClientAsJson(TestClientHostnameExpected, TestClientUsernameExpected);
+            var testClient02 = GivenRegisteredTestClientAsJson(TestClientHostnameAlternateExpected, TestClientUsernameExpected);
             
-            var actualTask01 = WHEN_Getting_task_as_json(testClient01.Id);
+            var actualTask01 = WhenGettingTaskAsJson(testClient01.Id);
             
-            THEN_HttpResponse_Is_Ok();
-            THEN_TestTask_Properties_Equal_To(expectedTask01, actualTask01, TestTaskStatuses.Running);
-            THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == testClient01.Id));
+            ThenHttpResponseIsOk();
+            ThenTestTaskPropertiesEqualTo(expectedTask01, actualTask01, TestTaskStatuses.Running);
+            ThenTestClientIsBusy(ClientsCollection.Clients.First(client => client.Id == testClient01.Id));
             
             // TODO: refactor this
-            var actualTask02 = WHEN_Getting_task_as_json(testClient02.Id);
+            var actualTask02 = WhenGettingTaskAsJson(testClient02.Id);
             
-            THEN_HttpResponse_Is_Ok();
-            THEN_TestTask_Properties_Equal_To(expectedTask02, actualTask02, TestTaskStatuses.Running);
-            THEN_test_client_is_busy(ClientsCollection.Clients.First(client => client.Id == testClient02.Id));
+            ThenHttpResponseIsOk();
+            ThenTestTaskPropertiesEqualTo(expectedTask02, actualTask02, TestTaskStatuses.Running);
+            ThenTestClientIsBusy(ClientsCollection.Clients.First(client => client.Id == testClient02.Id));
         }
         // ============================================================================================================================
-        ITestClient GIVEN_Registered_TestClient_as_json(string hostname, string username)
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        public void ShouldNotFailTestRunOnATaskFailedByTestResults()
+        {
+            var expectedTask01 = GivenLoadedTestTask(5, "task name 01", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0, TestStatuses.Failed);
+            TaskPool.Tasks[1].IsCritical = false;
+            var expectedTask02 = GivenLoadedTestTask(6, "task name 02", false, TestTaskStatuses.New, true, TestClientHostnameExpected + "|" + TestClientHostnameAlternateExpected, 0);
+            var testClient01 = GivenRegisteredTestClientAsJson(TestClientHostnameExpected, TestClientUsernameExpected);
+            var testClient02 = GivenRegisteredTestClientAsJson(TestClientHostnameAlternateExpected, TestClientUsernameExpected);
+            
+            var actualTask01 = WhenGettingTaskAsJson(testClient01.Id);
+            // actualTask01.IsCritical = false;
+            WhenFailingTestResultsForTaskAsJson(actualTask01);
+            
+            ThenHttpResponseIsOk();
+            ThenTestTaskPropertiesEqualTo(expectedTask01, actualTask01, TestTaskStatuses.FailedByTestResults);
+            ThenTestClientIsBusy(ClientsCollection.Clients.First(client => client.Id == testClient01.Id));
+            
+            // TODO: refactor this
+            var actualTask02 = WhenGettingTaskAsJson(testClient02.Id);
+            
+            ThenHttpResponseIsOk();
+            ThenTestTaskPropertiesEqualTo(expectedTask02, actualTask02, TestTaskStatuses.Running);
+            ThenTestClientIsBusy(ClientsCollection.Clients.First(client => client.Id == testClient02.Id));
+        }
+        
+        [MbUnit.Framework.Test]
+        [NUnit.Framework.Test]
+        [Fact]
+        public void ShouldFailTestRunOnACriticalTaskFailedByTestResults()
+        {
+            var expectedTask01 = GivenLoadedTestTask(5, "task name 01", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0, TestStatuses.Failed);
+            // expectedTask01.IsCritical = true;
+            TaskPool.Tasks[1].IsCritical = true;
+            var expectedTask02 = GivenLoadedTestTask(6, "task name 02", false, TestTaskStatuses.New, true, TestClientHostnameExpected + "|" + TestClientHostnameAlternateExpected, 0);
+            var testClient01 = GivenRegisteredTestClientAsJson(TestClientHostnameExpected, TestClientUsernameExpected);
+            var testClient02 = GivenRegisteredTestClientAsJson(TestClientHostnameAlternateExpected, TestClientUsernameExpected);
+            
+            var actualTask01 = WhenGettingTaskAsJson(testClient01.Id);
+            // actualTask01.IsCritical = true;
+            expectedTask01.TaskStatus = TestTaskStatuses.FailedByTestResults;
+            WhenFailingTestResultsForTaskAsJson(actualTask01);
+            
+            ThenHttpResponseIsOk();
+            ThenTestTaskPropertiesEqualTo(expectedTask01, actualTask01, TestTaskStatuses.FailedByTestResults);
+            // ThenTestClientIsBusy(ClientsCollection.Clients.First(client => client.Id == testClient01.Id));
+            
+            // TODO: refactor this
+            var actualTask02 = WhenGettingTaskAsJson(testClient02.Id);
+            
+            // ThenHttpResponseIsOk();
+            ThenHttpResponseIsExpectationFailed();
+            // ThenTestTaskPropertiesEqualTo(expectedTask02, actualTask02, TestTaskStatuses.Running);
+            //ThenTestTaskPropertiesEqualTo(expectedTask02, actualTask02, TestTaskStatuses.Canceled);
+            //ThenTestClientIsBusy(ClientsCollection.Clients.First(client => client.Id == testClient02.Id));
+        }
+        // ============================================================================================================================
+        ITestClient GivenRegisteredTestClientAsJson(string hostname, string username)
         {
             var testClient = new TestClient { Hostname = hostname, Username = username };
             _response = _browser.Post(UrlList.TestClientRegistrationPoint_absPath, with => {
@@ -415,7 +501,7 @@ namespace Tmx.Server.Tests.Modules
             return testClient;
         }
         
-        ITestTask GIVEN_Loaded_TestTask(int id, string taskName, bool finished, TestTaskStatuses status, bool isActive, string rule, int afterTask)
+        ITestTask GivenLoadedTestTask(int id, string taskName, bool finished, TestTaskStatuses status, bool isActive, string rule, int afterTask, TestStatuses testStatus = TestStatuses.NotRun)
         {
             // 20150904
             var task = new TestTask {
@@ -429,12 +515,15 @@ namespace Tmx.Server.Tests.Modules
                 AfterTask = afterTask,
                 WorkflowId = _workflow.Id,
                 TestRunId = _testRun.Id
+                // 20150908
+                ,
+                TestStatus = testStatus
             };
             TaskPool.Tasks.Add(task);
             return task;
         }
         
-        ITestTask GIVEN_Allocated_TestTask(int id, string taskName, bool finished, TestTaskStatuses status, bool isActive, string rule, int afterTask)
+        ITestTask GivenAllocatedTestTask(int id, string taskName, bool finished, TestTaskStatuses status, bool isActive, string rule, int afterTask, TestStatuses testStatus = TestStatuses.NotRun)
         {
             // 20150904
             var task = new TestTask {
@@ -448,25 +537,28 @@ namespace Tmx.Server.Tests.Modules
                 AfterTask = afterTask,
                 WorkflowId = _workflow.Id,
                 TestRunId = _testRun.Id
+                    // 20150908
+                    ,
+                TestStatus = testStatus
             };
             TaskPool.TasksForClients.Add(task);
             return task;
         }
         
         // TODO: duplicated
-        void WHEN_SendingDeregistration_as_json(ITestClient testClient)
+        void WhenSendingDeregistrationAsJson(ITestClient testClient)
         {
             _browser.Delete(UrlList.TestClients_Root + "/" + testClient.Id, with => with.Accept("application/json"));
         }
         
-        void WHEN_SendingDeregistration_as_xml(TestClient testClient)
+        void WhenSendingDeregistrationAsXml(TestClient testClient)
         {
             _browser.Delete(UrlList.TestClients_Root + "/" + testClient.Id, with => with.Accept("application/xml"));
         }
         
         // 20141020 squeezing a task to its proxy
-        TestTask WHEN_Getting_task_as_json(Guid clientId)
-        // TestTaskProxy WHEN_Getting_task_as_json(int clientId)
+        TestTask WhenGettingTaskAsJson(Guid clientId)
+        // TestTaskProxy WhenGettingTaskAsJson(int clientId)
         {
             _response = _browser.Get(UrlList.TestTasks_Root + "/" + clientId, with => with.Accept("application/json"));
             // 20141020 squeezing a task to its proxy
@@ -488,14 +580,14 @@ namespace Tmx.Server.Tests.Modules
             return actualTask;
         }
         
-        void WHEN_Removing_Registered_Client_On_Server(ITestClient registeredClient)
+        void WhenRemovingRegisteredClientOnServer(ITestClient registeredClient)
         {
             ClientsCollection.Clients.RemoveAll(client => client.Id == registeredClient.Id);
         }
         
         // 20141020 squeezing a task to its proxy
-        void WHEN_Finishing_Task_as_json(TestTask actualTask)
-        // void WHEN_Finishing_Task_as_json(TestTaskProxy actualTask)
+        void WhenFinishingTaskAsJson(TestTask actualTask)
+        // void WhenFinishingTaskAsJson(TestTaskProxy actualTask)
         {
             actualTask.TaskStatus = TestTaskStatuses.CompletedSuccessfully;
             actualTask.TaskFinished = true;
@@ -508,7 +600,7 @@ namespace Tmx.Server.Tests.Modules
         }
         
         // 20141020 squeezing a task to its proxy
-        void WHEN_Failing_Task_as_json(TestTask actualTask)
+        void WhenFailingTaskAsJson(TestTask actualTask)
         // void WHEN_Failing_Task(TestTaskProxy actualTask)
         {
             actualTask.TaskStatus = TestTaskStatuses.ExecutionFailed;
@@ -520,73 +612,102 @@ namespace Tmx.Server.Tests.Modules
                          });
             // _browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => with.JsonBody<ITestTaskProxy>(actualTask));
         }
-        
-        void THEN_HttpResponse_Is_Ok()
+
+        // 20150907
+        // 20141020 squeezing a task to its proxy
+        void WhenFailingTestResultsForTaskAsJson(TestTask actualTask)
+        // void WHEN_Failing_Task(TestTaskProxy actualTask)
         {
-            Xunit.Assert.Equal(HttpStatusCode.OK, _response.StatusCode);
+            actualTask.TaskStatus = TestTaskStatuses.FailedByTestResults;
+            
+            // 20150908
+            actualTask.TestStatus = TestStatuses.Failed;
+            
+            actualTask.TaskFinished = true;
+            
+            // 20141020 squeezing a task to its proxy
+            _browser.Put(UrlList.TestTasks_Root + "/" + actualTask.Id, with =>
+            {
+                with.Accept("application/json");
+                with.JsonBody<ITestTask>(actualTask);
+            });
+            // _browser.Put(UrnList.TestTasks_Root + "/" + actualTask.Id, with => with.JsonBody<ITestTaskProxy>(actualTask));
         }
         
-        void THEN_HttpResponse_Is_NotFound()
+        void ThenHttpResponseIsOk()
         {
-            Xunit.Assert.Equal(HttpStatusCode.NotFound, _response.StatusCode);
+            Assert.Equal(HttpStatusCode.OK, _response.StatusCode);
         }
         
-        void THEN_HttpResponse_Is_ExpectationFailed()
+        void ThenHttpResponseIsNotFound()
         {
-            Xunit.Assert.Equal(HttpStatusCode.ExpectationFailed, _response.StatusCode);
+            Assert.Equal(HttpStatusCode.NotFound, _response.StatusCode);
+        }
+        
+        void ThenHttpResponseIsExpectationFailed()
+        {
+            Assert.Equal(HttpStatusCode.ExpectationFailed, _response.StatusCode);
         }
         
         // 20141020 squeezing a task to its proxy
-        void THEN_TestTask_Properties_Equal_To(ITestTask expectedTask, ITestTask actualTask)
-        // void THEN_TestTask_Properties_Equal_To(ITestTask expectedTask, ITestTaskProxy actualTask)
+        void ThenTestTaskPropertiesEqualTo(ITestTask expectedTask, ITestTask actualTask)
+        // void ThenTestTaskPropertiesEqualTo(ITestTask expectedTask, ITestTaskProxy actualTask)
         {
-            Xunit.Assert.Equal(expectedTask.Id, actualTask.Id);
-            Xunit.Assert.Equal(expectedTask.Name, actualTask.Name);
-            Xunit.Assert.Equal(expectedTask.TaskStatus, actualTask.TaskStatus);
+            Assert.Equal(expectedTask.Id, actualTask.Id);
+            Assert.Equal(expectedTask.Name, actualTask.Name);
+            Assert.Equal(expectedTask.TaskStatus, actualTask.TaskStatus);
             // 20150112
             // Xunit.Assert.Equal(expectedTask.TaskFinished, actualTask.TaskFinished);
             // 20141020 squeezing a task to its proxy
-            Xunit.Assert.Equal(expectedTask.IsActive, actualTask.IsActive);
+            Assert.Equal(expectedTask.IsActive, actualTask.IsActive);
             // Xunit.Assert.Equal(_startTime, actualTask.StartTime);
+
+            // 20150908
+            Assert.Equal(expectedTask.TestStatus, actualTask.TestStatus);
         }
         
         // 20141020 squeezing a task to its proxy
-        void THEN_TestTask_Properties_Equal_To(ITestTask expectedTask, ITestTask actualTask, TestTaskStatuses status)
-        // void THEN_TestTask_Properties_Equal_To(ITestTask expectedTask, ITestTaskProxy actualTask, TestTaskStatuses status)
+        void ThenTestTaskPropertiesEqualTo(ITestTask expectedTask, ITestTask actualTask, TestTaskStatuses status)
+        // void ThenTestTaskPropertiesEqualTo(ITestTask expectedTask, ITestTaskProxy actualTask, TestTaskStatuses status)
         {
             expectedTask.TaskStatus = status;
-            THEN_TestTask_Properties_Equal_To(expectedTask, actualTask);
+            ThenTestTaskPropertiesEqualTo(expectedTask, actualTask);
         }
         
         // 20141020 squeezing a task to its proxy
-        void THEN_TestTask_Is_Null(ITestTask task)
-        // void THEN_TestTask_Is_Null(ITestTaskProxy task)
+        void ThenTestTaskIsNull(ITestTask task)
+        // void ThenTestTaskIsNull(ITestTaskProxy task)
         {
-            Xunit.Assert.Equal(null, task);
+            Assert.Equal(null, task);
         }
         
-        void THEN_test_client_is_busy(ITestClient testClient)
+        void ThenTestClientIsBusy(ITestClient testClient)
         {
-            Xunit.Assert.Equal(TestClientStatuses.Running, testClient.Status);
+            Assert.Equal(TestClientStatuses.Running, testClient.Status);
         }
         
-        void THEN_test_client_is_free(ITestClient testClient)
+        void ThenTestClientIsFree(ITestClient testClient)
         {
-            Xunit.Assert.Equal(TestClientStatuses.NoTasks, testClient.Status);
+            Assert.Equal(TestClientStatuses.NoTasks, testClient.Status);
         }
         
-        void THEN_testRun_isCompleted()
+        void ThenTestRunIsCompleted()
         {
-            Xunit.Assert.Equal(true, _testRun.IsCompleted());
+            Assert.Equal(true, _testRun.IsCompleted());
         }
 
-        void THEN_testRun_clients_unregistered(int taskId)
+        void ThenTestRunClientsUnregistered(int taskId)
         {
             // Xunit.Assert.True(ClientsCollection.Clients.All(client => client.TestRunId != _testRun.Id));
             // var clientIdOfClientThatRanThisTask = ClientsCollection.Clients.First(client => client.TaskId == taskId).Id;
             // Xunit.Assert.True(ClientsCollection.Clients.All(client => client.Id != clientIdOfClientThatRanThisTask));
             // not good, not bad
-            Xunit.Assert.True(ClientsCollection.Clients.All(client => client.TaskId != taskId));
+            Assert.True(ClientsCollection.Clients.All(client => client.TaskId != taskId));
+        }
+
+        void ThenTestClientIsNotRegistered(ITestClient testClient)
+        {
+            Assert.Null(testClient);
         }
     }
 }

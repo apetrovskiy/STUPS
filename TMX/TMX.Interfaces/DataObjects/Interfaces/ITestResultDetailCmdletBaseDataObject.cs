@@ -16,8 +16,6 @@ namespace Tmx.Interfaces
     /// </summary>
     public interface ITestResultDetailCmdletBaseDataObject : ICommonDataObject
     {
-        // 20150805
-        // TestResultStatuses TestResultStatus { get; set; }
         TestStatuses TestResultStatus { get; set; }
         bool Finished { get; set; }
     }

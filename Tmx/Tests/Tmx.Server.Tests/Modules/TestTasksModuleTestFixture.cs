@@ -78,7 +78,7 @@ namespace Tmx.Server.Tests.Modules
         public void ShouldNotRegisterTestClientIfTheClientDoesNotMatchTheRule()
         {
             // TODO: rewrite as Given-When-Then
-            var givenTask = GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, "no matches", 0);
+            GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, "no matches", 0);
             var testClient = GivenRegisteredTestClientAsJson(TestClientHostnameExpected, TestClientUsernameExpected);
             
             ThenTestClientIsNotRegistered(testClient);
@@ -87,7 +87,7 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldProvideTheSecondTaskIfTheClientMatchesTheRule()
         {
-            var givenTask01 = GivenLoadedTestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
+            GivenLoadedTestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
             var givenTask02 = GivenLoadedTestTask(2, "task name 02", false, TestTaskStatuses.New, true, "u", 0);
             var registeredClient = GivenRegisteredTestClientAsJson("h", "u");
             
@@ -103,8 +103,8 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldNotProvideTheSecondTaskIfTheClientDoesNotMatchTheRule()
         {
-            var givenTask01 = GivenLoadedTestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
-            var givenTask02 = GivenLoadedTestTask(2, "task name 02", false, TestTaskStatuses.New, true, "aaa", 0);
+            GivenLoadedTestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
+            GivenLoadedTestTask(2, "task name 02", false, TestTaskStatuses.New, true, "aaa", 0);
             var registeredClient = GivenRegisteredTestClientAsJson("h", "u");
             
             var actualTask = WhenGettingTaskAsJson(registeredClient.Id);
@@ -117,10 +117,10 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldProvideTheSecondTaskIfTheClientMatchesTheRuleAndThereAreSeveralTasks()
         {
-            var givenTask01 = GivenLoadedTestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
-            var givenTask02 = GivenLoadedTestTask(2, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
+            GivenLoadedTestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
+            GivenLoadedTestTask(2, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
             var givenTask03 = GivenLoadedTestTask(3, "task name 02", false, TestTaskStatuses.New, true, "u", 0);
-            var givenTask04 = GivenLoadedTestTask(4, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
+            GivenLoadedTestTask(4, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
             var registeredClient = GivenRegisteredTestClientAsJson("h", "u");
             
             var actualTask = WhenGettingTaskAsJson(registeredClient.Id);
@@ -136,10 +136,10 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldNotProvideTheSecondTaskIfTheClientDoesNotMatchTheRuleAndThereAreSeveral()
         {
-            var givenTask01 = GivenLoadedTestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
-            var givenTask02 = GivenLoadedTestTask(2, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
-            var givenTask03 = GivenLoadedTestTask(3, "task name 02", false, TestTaskStatuses.New, true, "aaa", 0);
-            var givenTask04 = GivenLoadedTestTask(4, "task name 02", false, TestTaskStatuses.New, true, "aaa", 0);
+            GivenLoadedTestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
+            GivenLoadedTestTask(2, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
+            GivenLoadedTestTask(3, "task name 02", false, TestTaskStatuses.New, true, "aaa", 0);
+            GivenLoadedTestTask(4, "task name 02", false, TestTaskStatuses.New, true, "aaa", 0);
             var registeredClient = GivenRegisteredTestClientAsJson("h", "u");
             
             var task = WhenGettingTaskAsJson(registeredClient.Id);
@@ -152,11 +152,11 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldCancelAllFurtherTasksAndUnregisterClientsOnFail()
         {
-            var givenTask01 = GivenLoadedTestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
-            var givenTask02 = GivenLoadedTestTask(2, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
+            GivenLoadedTestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
+            GivenLoadedTestTask(2, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
             var givenTask03 = GivenLoadedTestTask(3, "task name 02", false, TestTaskStatuses.New, true, "u", 0);
-            var givenTask04 = GivenLoadedTestTask(4, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
-            var givenTask05 = GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, "h", 0);
+            GivenLoadedTestTask(4, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
+            GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, "h", 0);
             var registeredClient = GivenRegisteredTestClientAsJson("h", "u");
             
             var actualTask = WhenGettingTaskAsJson(registeredClient.Id);
@@ -167,9 +167,11 @@ namespace Tmx.Server.Tests.Modules
             
             // 20150807
             // ThenHttpResponseIsNotFound();
-            ThenHttpResponseIsExpectationFailed();
+            // 20150909
+            // ThenHttpResponseIsExpectationFailed();
+            ThenHttpResponseIsNotFound(); // as there's no more client
             Assert.Equal(null, actualTask);
-            Assert.Equal(0, TaskPool.TasksForClients.Count(task => !task.IsFailed() && !task.IsCancelled()));
+            Assert.Equal(0, TaskPool.TasksForClients.Count(task => !task.IsFailed() && !task.IsCanceled()));
             Assert.Equal(givenTask03.Id, TaskPool.TasksForClients.OrderBy(t => t.Id).Skip(1).First().Id);
             ThenTestRunIsCompleted();
             // ThenTestRunClientsUnregistered(actualTask.Id);
@@ -180,13 +182,13 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldCancelAllFurtherTasksAndUnregisterClientsOnTestResultsFailed()
         {
-            var givenTask01 = GivenLoadedTestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
+            GivenLoadedTestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
             // givenTask01.IsCritical = true;
             TaskPool.Tasks[0].IsCritical = true;
-            var givenTask02 = GivenLoadedTestTask(2, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
+            GivenLoadedTestTask(2, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
             var givenTask03 = GivenLoadedTestTask(3, "task name 02", false, TestTaskStatuses.New, true, "u", 0);
-            var givenTask04 = GivenLoadedTestTask(4, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
-            var givenTask05 = GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, "h", 0);
+            GivenLoadedTestTask(4, "task name", false, TestTaskStatuses.New, true, ".*aaa.*", 0);
+            GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, "h", 0);
             var registeredClient = GivenRegisteredTestClientAsJson("h", "u");
             
             var actualTask = WhenGettingTaskAsJson(registeredClient.Id);
@@ -201,9 +203,11 @@ namespace Tmx.Server.Tests.Modules
             
             // 20150807
             // ThenHttpResponseIsNotFound();
-            ThenHttpResponseIsExpectationFailed();
+            // 20150909
+            // ThenHttpResponseIsExpectationFailed();
+            ThenHttpResponseIsNotFound(); // as there's no more client
             Assert.Equal(null, actualTask);
-            Assert.Equal(0, TaskPool.TasksForClients.Count(task => !task.IsFailed() && !task.IsCancelled()));
+            Assert.Equal(0, TaskPool.TasksForClients.Count(task => !task.IsFailed() && !task.IsCanceled()));
             Assert.Equal(givenTask03.Id, TaskPool.TasksForClients.OrderBy(t => t.Id).Skip(1).First().Id);
             ThenTestRunIsCompleted();
             // ThenTestRunClientsUnregistered(actualTask.Id);
@@ -243,8 +247,8 @@ namespace Tmx.Server.Tests.Modules
 //            else
 //                NUnit.Framework.Assert.AreEqual(2, 3);
             
-            var givenTask01 = GivenLoadedTestTask(4, "task name", false, TestTaskStatuses.New, true, "another rule", 0);
-            var givenTask02 = GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, testClientHostnameExpected, 4);
+            GivenLoadedTestTask(4, "task name", false, TestTaskStatuses.New, true, "another rule", 0);
+            GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, testClientHostnameExpected, 4);
             var registeredClient = GivenRegisteredTestClientAsJson(testClientHostnameExpected, testClientUsernameExpected);
             
             var actualTask = WhenGettingTaskAsJson(registeredClient.Id);
@@ -256,7 +260,7 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldNotProvideATaskBeforeTaskThisDependsOnIsAllocated()
         {
-            var givenTask = GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 4);
+            GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 4);
             var registeredClient = GivenRegisteredTestClientAsJson(TestClientHostnameExpected, TestClientUsernameExpected);
             
             var actualTask = WhenGettingTaskAsJson(registeredClient.Id);
@@ -268,7 +272,7 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldProvideATaskOnlyAfterTaskThisDependsOnIsCompleted()
         {
-            var givenTask01 = GivenAllocatedTestTask(4, "task name", true, TestTaskStatuses.CompletedSuccessfully, true, "another rule", 0);
+            GivenAllocatedTestTask(4, "task name", true, TestTaskStatuses.CompletedSuccessfully, true, "another rule", 0);
             var givenTask02 = GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 4);
             var registeredClient = GivenRegisteredTestClientAsJson(TestClientHostnameExpected, TestClientUsernameExpected);
             
@@ -282,7 +286,7 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldProvideNoTaskToUnregisteredTestClient()
         {
-            var givenTask01 = GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0);
+            GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0);
             var registeredClient = GivenRegisteredTestClientAsJson(TestClientHostnameExpected, TestClientUsernameExpected);
             
             WhenSendingDeregistrationAsJson(registeredClient);
@@ -339,7 +343,7 @@ namespace Tmx.Server.Tests.Modules
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldProvideTaskByTaskOnLoadingNewTasks()
         {
-            var givenTask01 = GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0);
+            GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0);
             var registeredClient = GivenRegisteredTestClientAsJson(TestClientHostnameExpected, TestClientUsernameExpected);
             
             // the first task
@@ -452,9 +456,8 @@ namespace Tmx.Server.Tests.Modules
         public void ShouldFailTestRunOnACriticalTaskFailedByTestResults()
         {
             var expectedTask01 = GivenLoadedTestTask(5, "task name 01", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0, TestStatuses.Failed);
-            // expectedTask01.IsCritical = true;
             TaskPool.Tasks[1].IsCritical = true;
-            var expectedTask02 = GivenLoadedTestTask(6, "task name 02", false, TestTaskStatuses.New, true, TestClientHostnameExpected + "|" + TestClientHostnameAlternateExpected, 0);
+            GivenLoadedTestTask(6, "task name 02", false, TestTaskStatuses.New, true, TestClientHostnameExpected + "|" + TestClientHostnameAlternateExpected, 0);
             var testClient01 = GivenRegisteredTestClientAsJson(TestClientHostnameExpected, TestClientUsernameExpected);
             var testClient02 = GivenRegisteredTestClientAsJson(TestClientHostnameAlternateExpected, TestClientUsernameExpected);
             
@@ -468,10 +471,12 @@ namespace Tmx.Server.Tests.Modules
             // ThenTestClientIsBusy(ClientsCollection.Clients.First(client => client.Id == testClient01.Id));
             
             // TODO: refactor this
-            var actualTask02 = WhenGettingTaskAsJson(testClient02.Id);
+            WhenGettingTaskAsJson(testClient02.Id);
             
             // ThenHttpResponseIsOk();
-            ThenHttpResponseIsExpectationFailed();
+            // 20150909
+            // ThenHttpResponseIsExpectationFailed();
+            ThenHttpResponseIsNotFound(); // as there's no more client
             // ThenTestTaskPropertiesEqualTo(expectedTask02, actualTask02, TestTaskStatuses.Running);
             //ThenTestTaskPropertiesEqualTo(expectedTask02, actualTask02, TestTaskStatuses.Canceled);
             //ThenTestClientIsBusy(ClientsCollection.Clients.First(client => client.Id == testClient02.Id));
@@ -480,10 +485,16 @@ namespace Tmx.Server.Tests.Modules
         ITestClient GivenRegisteredTestClientAsJson(string hostname, string username)
         {
             var testClient = new TestClient { Hostname = hostname, Username = username };
-            _response = _browser.Post(UrlList.TestClientRegistrationPoint_absPath, with => {
-                                            with.JsonBody<ITestClient>(testClient);
-                                            with.Accept("application/json");
-                                        });
+            //_response = _browser.Post(UrlList.TestClientRegistrationPoint_absPath, with => {
+            //                                with.JsonBody<ITestClient>(testClient);
+            //                                with.Accept("application/json");
+            //                            });
+            var client = testClient;
+            _response = _browser.Post(UrlList.TestClientRegistrationPoint_absPath, with =>
+            {
+                with.JsonBody<ITestClient>(client);
+                with.Accept("application/json");
+            });
             testClient = _response.Body.DeserializeJson<TestClient>();
             
             if (null == testClient)
@@ -565,7 +576,7 @@ namespace Tmx.Server.Tests.Modules
             var actualTask = _response.Body.DeserializeJson<TestTask>();
             // var actualTask = response.Body.DeserializeJson<TestTaskProxy>();
             // var actualTask = response.Body.DeserializeJson<TestTaskCodeProxy>();
-            if (null == actualTask) return actualTask;
+            if (null == actualTask) return null;
             actualTask.TaskStatus = TestTaskStatuses.Running;
             // emulates actualTask.StartTimer();
             _startTime = DateTime.Now;

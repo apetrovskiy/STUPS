@@ -235,27 +235,12 @@ namespace Tmx.Core
             if (null == testResultElements) return importedTestResults;
             
             foreach (var testResultElement in testResultElements) {
-                // 20150127
-                // bool passedValue = false;
-                // bool knownIssueValue = false;
-                // passedValue |= "PASSED" == getStringAttribute(testResultElement, "status");
-                // knownIssueValue |= "KNOWN ISSUE" == getStringAttribute(testResultElement, "status");
-//                var status = ("PASSED" == getStringAttribute(testResultElement, "status")) ? TestResultStatuses.Passed :
-//                    ("FAILED" == getStringAttribute(testResultElement, "status")) ? TestResultStatuses.Failed :
-//                    ("KNOWN ISSUE" == getStringAttribute(testResultElement, "status")) ? TestResultStatuses.KnownIssue : TestResultStatuses.NotTested;
-                // TestResultStatuses status;
-                // var testResultElement = getTestResultStatus(out status);
                 var status = getTestResultStatus(testResultElement);
                 var origin = TestResultOrigins.Logical;
                 if ("TECHNICAL" == getStringAttribute(testResultElement, "origin").ToUpper())
                     origin = TestResultOrigins.Technical;
                 if ("AUTOMATIC" == getStringAttribute(testResultElement, "origin").ToUpper())
                     origin = TestResultOrigins.Automatic;
-                // if ((TestResultOrigins.Technical == origin) &&
-                //     passedValue) {
-                // 20150805
-                // if ((TestResultOrigins.Technical == origin) && TestResultStatuses.Passed == status) {
-
 
                 /*
                 if (TestResultOrigins.Technical == origin && TestStatuses.Passed == status)
@@ -309,8 +294,6 @@ namespace Tmx.Core
         // TestResultStatuses getTestResultStatus(XElement testResultElement)
         TestStatuses getTestResultStatus(XElement testResultElement)
         {
-            // 20150805
-            // return ("PASSED" == getStringAttribute(testResultElement, "status")) ? TestResultStatuses.Passed : ("FAILED" == getStringAttribute(testResultElement, "status")) ? TestResultStatuses.Failed : ("KNOWN ISSUE" == getStringAttribute(testResultElement, "status")) ? TestResultStatuses.KnownIssue : TestResultStatuses.NotTested;
             return ("PASSED" == getStringAttribute(testResultElement, "status")) ? TestStatuses.Passed : ("FAILED" == getStringAttribute(testResultElement, "status")) ? TestStatuses.Failed : ("KNOWN ISSUE" == getStringAttribute(testResultElement, "status")) ? TestStatuses.KnownIssue : TestStatuses.NotRun;
         }
         
@@ -326,28 +309,18 @@ namespace Tmx.Core
                 string detailStatus = getStringAttribute(testResultDetailElement, "status");
                 switch (detailStatus.ToUpper()) {
                     case "FAILED":
-                        // 20150805
-                        // detail.DetailStatus = TestResultStatuses.Failed;
                         detail.DetailStatus = TestStatuses.Failed;
                         break;
                     case "PASSED":
-                        // 20150805
-                        // detail.DetailStatus = TestResultStatuses.Passed;
                         detail.DetailStatus = TestStatuses.Passed;
                         break;
                     case "KNOWNISSUE":
-                        // 20150805
-                        // detail.DetailStatus = TestResultStatuses.KnownIssue;
                         detail.DetailStatus = TestStatuses.KnownIssue;
                         break;
                     case "NOTTESTED":
-                        // 20150805
-                        // detail.DetailStatus = TestResultStatuses.NotTested;
                         detail.DetailStatus = TestStatuses.NotRun;
                         break;
                     default:
-                        // 20150805
-                        // detail.DetailStatus = TestResultStatuses.NotTested;
                         detail.DetailStatus = TestStatuses.NotRun;
                         break;
                 }
@@ -367,37 +340,19 @@ namespace Tmx.Core
                     setScenarioStatus(scenario, skipAutomatic);
                     
                     switch (scenario.enStatus) {
-                        // 20150805
-                        // case TestScenarioStatuses.Passed:
                         case TestStatuses.Passed:
                             counterPassedResults++;
-                            // 20150805
-                            // if (TestSuiteStatuses.Failed != testSuite.enStatus)
                             if (TestStatuses.Failed != testSuite.enStatus)
-                                // 20150805
-                                // testSuite.enStatus = TestSuiteStatuses.Passed;
                                 testSuite.enStatus = TestStatuses.Passed;
                             break;
-                        // 20150805
-                        // case TestScenarioStatuses.Failed:
                         case TestStatuses.Failed:
-                            // 20150805
-                            // testSuite.enStatus = TestSuiteStatuses.Failed;
                             testSuite.enStatus = TestStatuses.Failed;
                             return;
-                        // 20150805
-                        // case TestScenarioStatuses.NotTested:
                         case TestStatuses.NotRun:
                             break;
-                        // 20150805
-                        // case TestScenarioStatuses.KnownIssue:
                         case TestStatuses.KnownIssue:
                             counterKnownIssueResults++;
-                            // 20150805
-                            // if (TestSuiteStatuses.Failed != testSuite.enStatus)
                             if (TestStatuses.Failed != testSuite.enStatus)
-                                // 20150805
-                                // testSuite.enStatus = TestSuiteStatuses.Passed;
                                 testSuite.enStatus = TestStatuses.Passed;
                             break;
                         default:
@@ -409,8 +364,6 @@ namespace Tmx.Core
                 }
                 
                 if (0 == counterPassedResults && 0 < counterKnownIssueResults)
-                    // 20150805
-                    // testSuite.enStatus = TestSuiteStatuses.KnownIssue;
                     testSuite.enStatus = TestStatuses.KnownIssue;
                 
                 var testStatistics = new TestStatistics();

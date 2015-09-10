@@ -27,7 +27,6 @@ namespace Tmx.Server.Library.Modules
     {
         public ServerControlModule() : base(UrlList.ServerControl_Root)
         {
-            // Put[UrlList.ServerControlPoint_relPath] = parameters => {
             Put[UrlList.ServerControlPoint_relPath] = _ => {
                 IServerCommand serverCommand = this.Bind<ServerCommand>();
                 ProcessServerCommand(serverCommand);

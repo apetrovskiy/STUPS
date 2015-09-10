@@ -85,18 +85,18 @@ namespace Tmx.Server.Tests.Modules
 //        }
         
         [MbUnit.Framework.Test][Test][Fact]
-        public void Should_accept_when_posting_no_data()
+        public void ShouldAcceptWhenPostingNoData()
         {
             var testResultsExporter = new TestResultsExporter();
-            var xDoc = testResultsExporter.GetTestResultsAsXdocument(new SearchCmdletBaseDataObject { FilterAll = true }, new List<ITestSuite>(), new List<ITestPlatform>());
+            testResultsExporter.GetTestResultsAsXdocument(new SearchCmdletBaseDataObject { FilterAll = true }, new List<ITestSuite>(), new List<ITestPlatform>());
             
             var dataObject = new TestResultsDataObject {
                 Data = string.Empty
             };
             
-            WHEN_Posting_TestResults(dataObject);
+            WhenPostingTestResults(dataObject);
             
-            THEN_HttpResponse_Is_Created();
+            ThenHttpResponseIsCreated();
         }
         
 //        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -109,16 +109,16 @@ namespace Tmx.Server.Tests.Modules
 //                Data = xDoc.ToString()
 //            };
 //            
-//            WHEN_Posting_TestResults<TestResultsDataObject>(dataObject);
+//            WhenPostingTestResults<TestResultsDataObject>(dataObject);
 //            
-//            THEN_HttpResponse_Is_Created();
+//            ThenHttpResponseIsCreated();
 //        }
         
         [MbUnit.Framework.Test][Test][Fact]
-        public void Should_send_one_test_suite_with_inner_data()
+        public void ShouldSendOneTestSuiteWithInnerData()
         {
             var testPlatform = new TestPlatform();
-            var suites = GIVEN_one_testSuite_with_inner_hierarchy("1", "2", "3", testPlatform.UniqueId);
+            var suites = GivenOneTestSuiteWithInnerHierarchy("1", "2", "3", testPlatform.UniqueId);
             var testResultsExporter = new TestResultsExporter();
             var xDoc = testResultsExporter.GetTestResultsAsXdocument(new SearchCmdletBaseDataObject {
                                                                          FilterAll = true,
@@ -130,21 +130,21 @@ namespace Tmx.Server.Tests.Modules
                 Data = xDoc.ToString()
             };
             
-            WHEN_Posting_TestResults(dataObject);
+            WhenPostingTestResults(dataObject);
             
-            THEN_HttpResponse_Is_Created();
+            ThenHttpResponseIsCreated();
             Xunit.Assert.Equal(suites[0].Id, _testRun.TestSuites[0].Id);
             Xunit.Assert.Equal(suites[0].TestScenarios[0].Id, _testRun.TestSuites[0].TestScenarios[0].Id);
             Xunit.Assert.Equal(suites[0].TestScenarios[0].TestResults[0].Id, _testRun.TestSuites[0].TestScenarios[0].TestResults[0].Id);
         }
         
         [MbUnit.Framework.Test][Test][Fact]
-        public void Should_send_three_test_suites_with_inner_data()
+        public void ShouldSendThreeTestSuitesWithInnerData()
         {
             var guid = Guid.NewGuid();
-            var suites = GIVEN_one_testSuite_with_inner_hierarchy("1", "2", "3", guid);
-            suites.AddRange(GIVEN_one_testSuite_with_inner_hierarchy("10", "20", "30", guid));
-            suites.AddRange(GIVEN_one_testSuite_with_inner_hierarchy("100", "200", "300", guid));
+            var suites = GivenOneTestSuiteWithInnerHierarchy("1", "2", "3", guid);
+            suites.AddRange(GivenOneTestSuiteWithInnerHierarchy("10", "20", "30", guid));
+            suites.AddRange(GivenOneTestSuiteWithInnerHierarchy("100", "200", "300", guid));
             var testResultsExporter = new TestResultsExporter();
             var xDoc = testResultsExporter.GetTestResultsAsXdocument(new SearchCmdletBaseDataObject {
                                                                          FilterAll = true,
@@ -158,9 +158,9 @@ namespace Tmx.Server.Tests.Modules
             
             Console.WriteLine(xDoc.ToString());
             
-            WHEN_Posting_TestResults(dataObject);
+            WhenPostingTestResults(dataObject);
             
-            THEN_HttpResponse_Is_Created();
+            ThenHttpResponseIsCreated();
             Xunit.Assert.Equal(suites[0].Id, _testRun.TestSuites[0].Id);
             Xunit.Assert.Equal(suites[0].TestScenarios[0].Id, _testRun.TestSuites[0].TestScenarios[0].Id);
             Xunit.Assert.Equal(suites[0].TestScenarios[0].TestResults[0].Id, _testRun.TestSuites[0].TestScenarios[0].TestResults[0].Id);
@@ -175,12 +175,12 @@ namespace Tmx.Server.Tests.Modules
         }
         
         [MbUnit.Framework.Test][Test][Fact]
-        public void Should_receive_test_results_one_suite_from_test_run()
+        public void ShouldReceiveTestResultsOneSuiteFromTestRun()
         {
-            var suites = GIVEN_one_testSuite_with_inner_hierarchy("10", "11", "12", Guid.NewGuid());
+            var suites = GivenOneTestSuiteWithInnerHierarchy("10", "11", "12", Guid.NewGuid());
             _testRun.TestSuites.AddRange(suites);
             
-            WHEN_Getting_TestResults();
+            WhenGettingTestResults();
             
             Console.WriteLine(_response.Body);
             Console.WriteLine(_response.Body.GetType().Name);
@@ -190,13 +190,13 @@ namespace Tmx.Server.Tests.Modules
         }
         
         [MbUnit.Framework.Test][Test][Fact]
-        public void Should_receive_test_results_two_suites_from_test_run()
+        public void ShouldReceiveTestResultsTwoSuitesFromTestRun()
         {
-            var suites = GIVEN_one_testSuite_with_inner_hierarchy("10", "11", "12", Guid.NewGuid());
-            suites.AddRange(GIVEN_one_testSuite_with_inner_hierarchy("10", "11", "12", Guid.NewGuid()));
+            var suites = GivenOneTestSuiteWithInnerHierarchy("10", "11", "12", Guid.NewGuid());
+            suites.AddRange(GivenOneTestSuiteWithInnerHierarchy("10", "11", "12", Guid.NewGuid()));
             _testRun.TestSuites.AddRange(suites);
             
-            WHEN_Getting_TestResults();
+            WhenGettingTestResults();
             
             Console.WriteLine(_response.Body);
             Console.WriteLine(_response.Body.GetType().Name);
@@ -221,19 +221,19 @@ namespace Tmx.Server.Tests.Modules
             return testResultsExporter.CreateSuitesXElementWithParameters(suites, scenarios, testResults, (new XMLElementsNativeStruct()));
         }
         
-        XElement GIVEN_empty_element()
+        XElement GivenEmptyElement()
         {
             return new XElement("suites");
         }
         
-        XElement GIVEN_suite_element()
+        XElement GivenSuiteElement()
         {
             var suites = new XElement("suites");
             suites.AddFirst(new XElement("suite"));
             return suites;
         }
         
-        List<ITestSuite> GIVEN_one_testSuite_with_inner_hierarchy(string suiteId, string scenarioId, string testResultId, Guid platformId)
+        List<ITestSuite> GivenOneTestSuiteWithInnerHierarchy(string suiteId, string scenarioId, string testResultId, Guid platformId)
         {
             var suites = new List<ITestSuite>() {
                 new TestSuite {
@@ -304,7 +304,7 @@ namespace Tmx.Server.Tests.Modules
 //            return new XElement("aaa");
 //        }
         
-        TestSuite GIVEN_test_suite(string testSuiteId, string testSuiteName)
+        TestSuite GivenTestSuite(string testSuiteId, string testSuiteName)
         {
             var testSuite = Substitute.For<TestSuite>();
             testSuite.Name = testSuiteName;
@@ -313,7 +313,7 @@ namespace Tmx.Server.Tests.Modules
             return testSuite;
         }
         
-        TestScenario GIVEN_test_scenario(string testScenarioId, string testScenarioName, string testSuiteId, Guid testPlatformId)
+        TestScenario GivenTestScenario(string testScenarioId, string testScenarioName, string testSuiteId, Guid testPlatformId)
         {
             var testScenario = Substitute.For<TestScenario>();
             testScenario.Name = testScenarioName;
@@ -324,8 +324,8 @@ namespace Tmx.Server.Tests.Modules
         }
 
         // 20150805
-        // TestResult GIVEN_test_result(string testResultName, TestResultStatuses status)
-        TestResult GIVEN_test_result(string testResultName, TestStatuses status)
+        // TestResult GivenTestResult(string testResultName, TestResultStatuses status)
+        TestResult GivenTestResult(string testResultName, TestStatuses status)
         {
             var testResult = new TestResult();
             testResult.Name = testResultName;
@@ -333,7 +333,7 @@ namespace Tmx.Server.Tests.Modules
             return testResult;
         }
         
-        void WHEN_Posting_TestResults<T>(T element)
+        void WhenPostingTestResults<T>(T element)
         {
             _response = _browser.Post(GetPathToResourcesCollection(typeof(T)), (with) => {
                                           with.JsonBody(element);
@@ -341,7 +341,7 @@ namespace Tmx.Server.Tests.Modules
                                       });
         }
         
-        void WHEN_Getting_TestResults()
+        void WhenGettingTestResults()
         {
             _response = _browser.Get(GetPathToResourcesCollection(typeof(List<ITestSuite>)), (with) => with.Accept("application/json"));
         }
@@ -378,12 +378,12 @@ namespace Tmx.Server.Tests.Modules
 //            browser.Delete(UrnList.TestClients_Root + "/" + testClient.Id);
 //        }
         
-        void THEN_HttpResponse_Is_Created()
+        void ThenHttpResponseIsCreated()
         {
             Xunit.Assert.Equal(HttpStatusCode.Created, _response.StatusCode);
         }
         
-        void THEN_HttpResponse_Is_ExpectationFailed()
+        void ThenHttpResponseIsExpectationFailed()
         {
             Xunit.Assert.Equal(HttpStatusCode.ExpectationFailed, _response.StatusCode);
         }

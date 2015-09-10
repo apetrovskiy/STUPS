@@ -53,7 +53,7 @@ namespace Tmx.Server.Logic.ObjectModel
         
         
         
-        public void CreateTestMessage2(string server)
+        public virtual void CreateTestMessage2(string server)
         {
             const string to = "jane@contoso.com";
             const string @from = "ben@contoso.com";

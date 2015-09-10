@@ -48,94 +48,94 @@ namespace Tmx.Server.Tests.Modules
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_accept_common_data_item_sent_to_empty_CommonData_as_json()
+        public void ShouldAcceptCommonDataItemSentToEmptyCommonDataAsJson()
         {
-            var commonDataItem = GIVEN_CommonDataItem(ExpectedKey, ExpectedValue);
+            var commonDataItem = GivenCommonDataItem(ExpectedKey, ExpectedValue);
             
-            var response = WHEN_SendingCommonDataItem_as_Json(commonDataItem);
+            var response = WhenSendingCommonDataItemAsJson(commonDataItem);
             
-            THEN_Http_Response_Is_Created(response);
-            THEN_CommonDataItem_Matches(commonDataItem);
+            ThenHttpResponseIsCreated(response);
+            ThenCommonDataItemMatches(commonDataItem);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_accept_common_data_item_sent_to_empty_CommonData_as_xml()
+        public void ShouldAcceptCommonDataItemSentToEmptyCommonDataAsXml()
         {
-            var commonDataItem = GIVEN_CommonDataItem(ExpectedKey, ExpectedValue) as CommonDataItem;
+            var commonDataItem = GivenCommonDataItem(ExpectedKey, ExpectedValue) as CommonDataItem;
             
-            var response = WHEN_SendingCommonDataItem_as_Xml(commonDataItem);
+            var response = WhenSendingCommonDataItemAsXml(commonDataItem);
             
-            THEN_Http_Response_Is_Created(response);
-            THEN_CommonDataItem_Matches(commonDataItem);
+            ThenHttpResponseIsCreated(response);
+            ThenCommonDataItemMatches(commonDataItem);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_accept_common_data_item_sent_to_non_empty_CommonData_as_json()
+        public void ShouldAcceptCommonDataItemSentToNonEmptyCommonDataAsJson()
         {
-            GIVEN_non_empty_CommonData();
-            var commonDataItem = GIVEN_CommonDataItem(ExpectedKey, ExpectedValue);
+            GivenNonEmptyCommonData();
+            var commonDataItem = GivenCommonDataItem(ExpectedKey, ExpectedValue);
             
-            var response = WHEN_SendingCommonDataItem_as_Json(commonDataItem);
+            var response = WhenSendingCommonDataItemAsJson(commonDataItem);
             
-            THEN_Http_Response_Is_Created(response);
-            THEN_CommonDataItem_Matches(commonDataItem);
+            ThenHttpResponseIsCreated(response);
+            ThenCommonDataItemMatches(commonDataItem);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_accept_common_data_item_sent_to_non_empty_CommonData_as_xml()
+        public void ShouldAcceptCommonDataItemSentToNonEmptyCommonDataAsXml()
         {
-            GIVEN_non_empty_CommonData();
-            var commonDataItem = GIVEN_CommonDataItem(ExpectedKey, ExpectedValue) as CommonDataItem;
+            GivenNonEmptyCommonData();
+            var commonDataItem = GivenCommonDataItem(ExpectedKey, ExpectedValue) as CommonDataItem;
             
-            var response = WHEN_SendingCommonDataItem_as_Xml(commonDataItem);
+            var response = WhenSendingCommonDataItemAsXml(commonDataItem);
             
-            THEN_Http_Response_Is_Created(response);
-            THEN_CommonDataItem_Matches(commonDataItem);
+            ThenHttpResponseIsCreated(response);
+            ThenCommonDataItemMatches(commonDataItem);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_accept_common_data_item_sent_for_replacement_as_json()
+        public void ShouldAcceptCommonDataItemSentForReplacementAsJson()
         {
-            GIVEN_non_empty_CommonData();
-            GIVEN_dataItem_with_key(ExpectedKey, ExpectedValue);
-            var commonDataItem = GIVEN_CommonDataItem(ExpectedKey, ExpectedValue);
+            GivenNonEmptyCommonData();
+            GivenDataItemWithKey(ExpectedKey, ExpectedValue);
+            var commonDataItem = GivenCommonDataItem(ExpectedKey, ExpectedValue);
             
-            var response = WHEN_SendingCommonDataItem_as_Json(commonDataItem);
+            var response = WhenSendingCommonDataItemAsJson(commonDataItem);
             
-            THEN_Http_Response_Is_Created(response);
-            THEN_CommonDataItem_Matches(commonDataItem);
+            ThenHttpResponseIsCreated(response);
+            ThenCommonDataItemMatches(commonDataItem);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_accept_common_data_item_sent_for_replacement_as_xml()
+        public void ShouldAcceptCommonDataItemSentForReplacementAsXml()
         {
-            GIVEN_non_empty_CommonData();
-            GIVEN_dataItem_with_key(ExpectedKey, ExpectedValue);
-            var commonDataItem = GIVEN_CommonDataItem(ExpectedKey, ExpectedValue) as CommonDataItem;
+            GivenNonEmptyCommonData();
+            GivenDataItemWithKey(ExpectedKey, ExpectedValue);
+            var commonDataItem = GivenCommonDataItem(ExpectedKey, ExpectedValue) as CommonDataItem;
             
-            var response = WHEN_SendingCommonDataItem_as_Xml(commonDataItem);
+            var response = WhenSendingCommonDataItemAsXml(commonDataItem);
             
-            THEN_Http_Response_Is_Created(response);
-            THEN_CommonDataItem_Matches(commonDataItem);
+            ThenHttpResponseIsCreated(response);
+            ThenCommonDataItemMatches(commonDataItem);
         }
         // ============================================================================================================================
         
-        void GIVEN_non_empty_CommonData()
+        void GivenNonEmptyCommonData()
         {
             TestRunQueue.TestRuns.First().Data.Data.Add("aaa", "bbb");
         }
         
-        void GIVEN_dataItem_with_key(string key, string value)
+        void GivenDataItemWithKey(string key, string value)
         {
             TestRunQueue.TestRuns.First().Data.Data.Add(key, value);
         }
         
-        ICommonDataItem GIVEN_CommonDataItem(string key, string value)
+        ICommonDataItem GivenCommonDataItem(string key, string value)
         {
             return new CommonDataItem { Key = key, Value = value };
         }
         
-        BrowserResponse WHEN_SendingCommonDataItem_as_Json(ICommonDataItem dataItem)
+        BrowserResponse WhenSendingCommonDataItemAsJson(ICommonDataItem dataItem)
         {
             var browser = TestFactory.GetBrowserForTestDataModule();
             var urn = UrlList.TestData_Root + "/" + _testRun.Id + UrlList.TestData_CommonData_forClient_relPath;
@@ -145,7 +145,7 @@ namespace Tmx.Server.Tests.Modules
             });
         }
         
-        BrowserResponse WHEN_SendingCommonDataItem_as_Xml(CommonDataItem dataItem)
+        BrowserResponse WhenSendingCommonDataItemAsXml(CommonDataItem dataItem)
         {
             var browser = TestFactory.GetBrowserForTestDataModule();
             var urn = UrlList.TestData_Root + "/" + _testRun.Id + UrlList.TestData_CommonData_forClient_relPath;
@@ -155,12 +155,12 @@ namespace Tmx.Server.Tests.Modules
             });
         }
         
-        void THEN_Http_Response_Is_Created(BrowserResponse response)
+        void ThenHttpResponseIsCreated(BrowserResponse response)
         {
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
         }
         
-        void THEN_CommonDataItem_Matches(ICommonDataItem dataItem)
+        void ThenCommonDataItemMatches(ICommonDataItem dataItem)
         {
             Assert.Equal(_testRun.Data.Data[dataItem.Key], dataItem.Value);
         }

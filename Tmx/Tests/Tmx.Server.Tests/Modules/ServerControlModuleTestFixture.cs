@@ -40,42 +40,42 @@ namespace Tmx.Server.Tests.Modules
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_create_first_workflow_object_as_json()
+        public void ShouldCreateFirstWorkflowObjectAsJson()
         {
-            var serverCommand = GIVEN_server_command(ServerControlCommands.LoadConfiguraiton, TestConstants.Workflow01);
-            WHEN_sending_server_command_as_json(serverCommand);
-            THEN_there_should_be_the_following_number_of_workflow_objects(1);
+            var serverCommand = GivenServerCommand(ServerControlCommands.LoadConfiguraiton, TestConstants.Workflow01);
+            WhenSendingServerCommandAsJson(serverCommand);
+            ThenThereShouldBeTheFollowingNumberOfWorkflowObjects(1);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_create_first_workflow_object_as_xml()
+        public void ShouldCreateFirstWorkflowObjectAsXml()
         {
-            var serverCommand = GIVEN_server_command(ServerControlCommands.LoadConfiguraiton, TestConstants.Workflow01);
-            WHEN_sending_server_command_as_xml(serverCommand);
-            THEN_there_should_be_the_following_number_of_workflow_objects(1);
+            var serverCommand = GivenServerCommand(ServerControlCommands.LoadConfiguraiton, TestConstants.Workflow01);
+            WhenSendingServerCommandAsXml(serverCommand);
+            ThenThereShouldBeTheFollowingNumberOfWorkflowObjects(1);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_create_second_workflow_object_as_json()
+        public void ShouldCreateSecondWorkflowObjectAsJson()
         {
-            var serverCommand01 = GIVEN_server_command(ServerControlCommands.LoadConfiguraiton, TestConstants.Workflow01);
-            GIVEN_sending_server_command(serverCommand01);
-            var serverCommand02 = GIVEN_server_command(ServerControlCommands.LoadConfiguraiton, TestConstants.Workflow02);
-            WHEN_sending_server_command_as_json(serverCommand02);
-            THEN_there_should_be_the_following_number_of_workflow_objects(2);
+            var serverCommand01 = GivenServerCommand(ServerControlCommands.LoadConfiguraiton, TestConstants.Workflow01);
+            GivenSendingServerCommand(serverCommand01);
+            var serverCommand02 = GivenServerCommand(ServerControlCommands.LoadConfiguraiton, TestConstants.Workflow02);
+            WhenSendingServerCommandAsJson(serverCommand02);
+            ThenThereShouldBeTheFollowingNumberOfWorkflowObjects(2);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_create_second_workflow_object_as_xml()
+        public void ShouldCreateSecondWorkflowObjectAsXml()
         {
-            var serverCommand01 = GIVEN_server_command(ServerControlCommands.LoadConfiguraiton, TestConstants.Workflow01);
-            GIVEN_sending_server_command(serverCommand01);
-            var serverCommand02 = GIVEN_server_command(ServerControlCommands.LoadConfiguraiton, TestConstants.Workflow02);
-            WHEN_sending_server_command_as_xml(serverCommand02);
-            THEN_there_should_be_the_following_number_of_workflow_objects(2);
+            var serverCommand01 = GivenServerCommand(ServerControlCommands.LoadConfiguraiton, TestConstants.Workflow01);
+            GivenSendingServerCommand(serverCommand01);
+            var serverCommand02 = GivenServerCommand(ServerControlCommands.LoadConfiguraiton, TestConstants.Workflow02);
+            WhenSendingServerCommandAsXml(serverCommand02);
+            ThenThereShouldBeTheFollowingNumberOfWorkflowObjects(2);
         }
         
-        ServerCommand GIVEN_server_command(ServerControlCommands commandType, string data)
+        ServerCommand GivenServerCommand(ServerControlCommands commandType, string data)
         {
             return new ServerCommand {
                 Command = commandType,
@@ -83,12 +83,12 @@ namespace Tmx.Server.Tests.Modules
             };
         }
         
-        void GIVEN_sending_server_command(ServerCommand serverCommand)
+        void GivenSendingServerCommand(ServerCommand serverCommand)
         {
-            WHEN_sending_server_command_as_xml(serverCommand);
+            WhenSendingServerCommandAsXml(serverCommand);
         }
         
-        void WHEN_sending_server_command_as_json(ServerCommand serverCommand)
+        void WhenSendingServerCommandAsJson(ServerCommand serverCommand)
         {
             _browser.Put(UrlList.ServerControlPoint_absPath, with => {
                 with.JsonBody(serverCommand);
@@ -96,7 +96,7 @@ namespace Tmx.Server.Tests.Modules
             });
         }
         
-        void WHEN_sending_server_command_as_xml(ServerCommand serverCommand)
+        void WhenSendingServerCommandAsXml(ServerCommand serverCommand)
         {
             _browser.Put(UrlList.ServerControlPoint_absPath, with => {
                 with.JsonBody(serverCommand);
@@ -104,7 +104,7 @@ namespace Tmx.Server.Tests.Modules
             });
         }
         
-        void THEN_there_should_be_the_following_number_of_workflow_objects(int number)
+        void ThenThereShouldBeTheFollowingNumberOfWorkflowObjects(int number)
         {
             Assert.Equal(number, WorkflowCollection.Workflows.Count);
         }

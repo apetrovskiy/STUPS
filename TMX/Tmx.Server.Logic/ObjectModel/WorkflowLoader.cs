@@ -203,6 +203,7 @@ namespace Tmx.Server.Logic.ObjectModel
                 AfterTask = ConvertTestTaskElementValue(taskNode, LogicConstants.WorkflowLoader_TaskElementAfterTask),
                 IsActive = "1" == GetTestTaskElementValue(taskNode, LogicConstants.WorkflowLoader_TaskElementIsActive),
                 IsCritical = "1" == GetTestTaskElementValue(taskNode, LogicConstants.WorkflowLoader_TaskElementIsCritical),
+                IsCancel = "1" == GetTestTaskElementValue(taskNode, LogicConstants.WorkflowLoader_TaskElementIsCancel),
                 Name = GetTestTaskElementValue(taskNode, LogicConstants.WorkflowLoader_TaskElementName),
                 // PreviousTaskId
                 RetryCount = ConvertTestTaskElementValue(taskNode, LogicConstants.WorkflowLoader_TaskElementRetryCount),

@@ -5,7 +5,7 @@
 
     public class DefaultsLoader
     {
-        public void Load(string fileWithDefaults)
+        public virtual void Load(string fileWithDefaults)
         {
             var xDoc = XDocument.Load(fileWithDefaults);
             SetWorkflowElement(xDoc);

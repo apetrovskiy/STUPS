@@ -16,8 +16,6 @@ namespace Tmx.Interfaces
     /// </summary>
     public class TestResultDetailCmdletBaseDataObject : ITestResultDetailCmdletBaseDataObject
     {
-        // 20150805
-        // public TestResultStatuses TestResultStatus { get; set; }
         public TestStatuses TestResultStatus { get; set; }
         public bool Finished { get; set; }
     }

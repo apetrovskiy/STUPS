@@ -19,8 +19,6 @@ namespace Tmx.Interfaces
         public string Id { get; set; }
         
 //        public string TestResultName { get; set; }
-        // 20150805
-        // public TestResultStatuses TestResultStatus { get; set; }
         public TestStatuses TestResultStatus { get; set; }
 //        public new SwitchParameter TestPassed { get; set; }
 //        public new SwitchParameter KnownIssue { get; set; }
@@ -40,9 +38,6 @@ namespace Tmx.Interfaces
         
 //        [Parameter(Mandatory = false)]
 //        internal new string TestResultName { get; set; }
-//        
-//        [Parameter(Mandatory = false)]
-//        internal new TestResultStatuses TestResultStatus { get; set; }
 //
 //        [Parameter(Mandatory = false)]
 //        internal new SwitchParameter TestPassed { get; set; }

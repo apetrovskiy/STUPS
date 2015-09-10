@@ -159,6 +159,9 @@
   <data name="WorkflowLoader_TaskElementIsActive" xml:space="preserve">
     <value>isActive</value>
   </data>
+  <data name="WorkflowLoader_TaskElementIsCancel" xml:space="preserve">
+    <value>isCancel</value>
+  </data>
   <data name="WorkflowLoader_TaskElementIsCritical" xml:space="preserve">
     <value>isCritical</value>
   </data>

@@ -19,9 +19,6 @@ namespace Tmx
     {
         public TestResultCmdletBase()
         {
-            // 20130330
-            // 20150805
-            // this.TestResultStatus = TestResultStatuses.NotTested;
             TestResultStatus = TestStatuses.NotRun;
         }
         
@@ -33,8 +30,6 @@ namespace Tmx
 
         [Parameter(Mandatory = false,
                    ParameterSetName = "EnumLogic")]
-        // 20150805
-        // public TestResultStatuses TestResultStatus { get; set; }
         public TestStatuses TestResultStatus { get; set; }
         [Parameter(Mandatory = false,
                    ParameterSetName = "DualLogic")]
@@ -58,28 +53,18 @@ namespace Tmx
         
         public void ConvertTestResultStatusToTraditionalTestResult()
         {
-            // 20150805
-            // if (TestResultStatuses.NotTested == TestResultStatus) return;
             if (TestStatuses.NotRun == TestResultStatus) return;
             switch (TestResultStatus) {
-                // 20150805
-                // case TestResultStatuses.Passed:
                 case TestStatuses.Passed:
                     TestPassed = true;
                     break;
-                // 20150805
-                // case TestResultStatuses.Failed:
                 case TestStatuses.Failed:
                     TestPassed = false;
                     break;
-                // 20150805
-                // case TestResultStatuses.NotTested:
                 case TestStatuses.NotRun:
                     // nothing to do
                     // the impossible combination
                     break;
-                // 20150805
-                // case TestResultStatuses.KnownIssue:
                 case TestStatuses.KnownIssue:
                     KnownIssue = true;
                     break;

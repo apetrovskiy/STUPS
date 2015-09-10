@@ -27,8 +27,6 @@ namespace Tmx.Commands
         
         #region Parameters
         [Parameter(Mandatory = false)]
-        // 20150805
-        // internal new TestResultStatuses TestResultStatus { get; set; }
         internal new TestStatuses TestResultStatus { get; set; }
         [Parameter(Mandatory = false)]
         internal new SwitchParameter TestPassed { get; set; }

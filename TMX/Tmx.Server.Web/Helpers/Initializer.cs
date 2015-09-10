@@ -72,7 +72,8 @@
             Template.RegisterSafeType(typeof(ICodeBlock), new[] { "Code" });
             Template.RegisterSafeType(typeof(CodeBlock), new[] { "Code" });
             Template.RegisterSafeType(typeof(TestLab), new[] { "Id", "Name", "Description", "Status" });
-            Template.RegisterSafeType(typeof(TestTask), new[] { "Id", "Name", "StartTime", "TaskStatus", "TaskFinished", "TaskResult", "TimeTaken", "ClientId", "GetTimeTaken" });
+            // Template.RegisterSafeType(typeof(TestTask), new[] { "Id", "Name", "StartTime", "TaskStatus", "TaskFinished", "TaskResult", "TimeTaken", "ClientId", "GetTimeTaken" });
+            Template.RegisterSafeType(typeof(TestTask), new[] { "Id", "Name", "StartTime", "TaskStatus", "TaskFinished", "TaskResult", "TimeTaken", "ClientId", "GetTimeTaken", "IsActive", "IsCritical", "IsCancel" });
             Template.RegisterSafeType(typeof(TestClient), new[] { "Id", "Hostname", "Fqdn", "Username", "CustomString", "Status", "TaskId", "TaskName", "DetailedStatus" });
             // Template.RegisterSafeType(typeof(CommonDataItem), new[] { "Key", "Value" });
             Template.RegisterSafeType(typeof(ICommonDataItem), new[] { "Key", "Value" });

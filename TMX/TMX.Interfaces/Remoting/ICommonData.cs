@@ -10,13 +10,12 @@
 namespace Tmx.Interfaces.Remoting
 {
     using System.Collections.Generic;
-
+    
     /// <summary>
     /// Description of ICommonData.
     /// </summary>
     public interface ICommonData
     {
-        // Dictionary<string, string> Data { get; set; }
         IDictionary<string, object> Data { get; set; }
         void AddOrUpdateDataItem(ICommonDataItem commonDataItem);
     }

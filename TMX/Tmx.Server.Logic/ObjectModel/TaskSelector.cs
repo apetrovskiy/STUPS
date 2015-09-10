@@ -18,6 +18,7 @@ namespace Tmx.Server.Logic.ObjectModel
     using Interfaces;
     using Objects;
     using Tmx.Interfaces.Remoting;
+    using Tmx.Server.Logic.ObjectModel.ExtensionMethods;
 
     /// <summary>
     /// Description of TaskSelector.
@@ -111,16 +112,26 @@ namespace Tmx.Server.Logic.ObjectModel
         
         public virtual void CancelFurtherTasksOfTestClient(Guid clientId)
         {
+            // 20150909
+            //TaskPool.TasksForClients
+            //    .Where(task => task.ClientId == clientId && !task.IsFinished())
+            //    .ToList()
+            //    .ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled);
             TaskPool.TasksForClients
-                .Where(task => task.ClientId == clientId && !task.IsFinished())
+                .Where(task => task.ClientId == clientId && !task.IsFinished() && !task.IsCancel)
                 .ToList()
                 .ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled);
         }
         
         public virtual void CancelFurtherTasksOfTestRun(Guid testRunId)
         {
+            // 20150909
+            //TaskPool.TasksForClients
+            //    .Where(task => task.TestRunId == testRunId && !task.IsFinished())
+            //        .ToList()
+            //        .ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled);
             TaskPool.TasksForClients
-                .Where(task => task.TestRunId == testRunId && !task.IsFinished())
+                .Where(task => task.TestRunId == testRunId && !task.IsFinished() && !task.IsCancel)
                     .ToList()
                     .ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled);
         }
@@ -148,7 +159,15 @@ namespace Tmx.Server.Logic.ObjectModel
         {
             if (0 == ClientsCollection.Clients.Count) return;
             
-            foreach (var tasksForClient in from clientId in ClientsCollection.Clients.Where(client => ExtensionMethods.ExtensionMethods.IsInActiveTestRun(client)).Select(client => client.Id)
+//            foreach (var tasksForClient in from clientId in ClientsCollection.Clients.Where(client => ExtensionMethods.ExtensionMethods.IsInActiveTestRun(client)).Select(client => client.Id)
+//                                           let workflowsTasks = activeWorkflowsTasks as ITestTask[] ?? activeWorkflowsTasks.ToArray()
+//                                           select SelectTasksForClient(clientId, workflowsTasks.ToList()))
+//            {
+//                tasksForClient.ForEach(task => task.TestRunId = testRunId);
+//                TaskPool.TasksForClients.AddRange(tasksForClient);
+//            }
+            
+            foreach (var tasksForClient in from clientId in ClientsCollection.Clients.Where(client => client.IsInActiveTestRun()).Select(client => client.Id)
                                            let workflowsTasks = activeWorkflowsTasks as ITestTask[] ?? activeWorkflowsTasks.ToArray()
                                            select SelectTasksForClient(clientId, workflowsTasks.ToList()))
             {

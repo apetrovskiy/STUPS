@@ -413,25 +413,18 @@ namespace Tmx
                         WriteVerbose(this, "Test Result: " + tr.Name);
                         string pgfTestResult = pgfTestResultOpenNotTested;
                         string styleTestResult = styleTestResultOpenNotTested;
-                        // 20150805
-                        // if (tr.enStatus == TestResultStatuses.Passed) {
                         if (tr.enStatus == TestStatuses.Passed) {
                             pgfTestResult = pgfTestResultOpenPassed;
                             styleTestResult = styleTestResultOpenPassed;
                         }
-                        // 20150805
-                        // if (tr.enStatus == TestResultStatuses.Failed) {
                         if (tr.enStatus == TestStatuses.Failed) {
                             pgfTestResult = pgfTestResultOpenFailed;
                             styleTestResult = styleTestResultOpenFailed;
                         }
-                        // 20150805
-                        // if (tr.enStatus == TestResultStatuses.KnownIssue) {
                         if (tr.enStatus == TestStatuses.KnownIssue) {
                             pgfTestResult = pgfTestResultOpenKnownIssue;
                             styleTestResult = styleTestResultOpenKnownIssue;
                         }
-                        // 20130322
                         if (skipAutomatic) {
                             if (TestResultOrigins.Automatic == tr.Origin) {
                                 continue;

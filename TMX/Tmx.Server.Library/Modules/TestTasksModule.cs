@@ -51,7 +51,8 @@ namespace Tmx.Server.Library.Modules
             
             if (ClientsCollection.Clients.All(client => client.Id != clientId))
                 // return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed);
-                return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed).WithReasonPhrase("There's no test client with id = " + clientId);
+                // return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed).WithReasonPhrase("There's no test client with id = " + clientId);
+                return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed).WithReasonPhrase(string.Format(ServerLibrary.ReasonPhrase_ThereIsNOTestClientWithId, clientId));
             
             Trace.TraceInformation("returnTaskByClientId(Guid clientId).2");
 

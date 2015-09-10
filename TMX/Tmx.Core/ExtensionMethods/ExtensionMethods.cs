@@ -40,6 +40,7 @@ namespace Tmx.Core
                 AfterTask = task.AfterTask,
                 IsActive = task.IsActive,
                 IsCritical = task.IsCritical,
+                IsCancel = task.IsCancel,
                 Name = task.Name,
                 PreviousTaskId = task.PreviousTaskId, // ??
                 PreviousTaskResult = task.PreviousTaskResult, // ??
@@ -126,7 +127,7 @@ namespace Tmx.Core
                    TestTaskStatuses.FailedByTestResults == task.TaskStatus;
         }
         
-        public static bool IsCancelled(this ITestTask task)
+        public static bool IsCanceled(this ITestTask task)
         {
             return TestTaskStatuses.Canceled == task.TaskStatus;
         }
@@ -155,7 +156,7 @@ namespace Tmx.Core
         public static bool IsNotQuiet(this ITestRun testRun)
         {
             return TestRunStatuses.Running == testRun.Status
-            || TestRunStatuses.Cancelling == testRun.Status;
+            || TestRunStatuses.Canceling == testRun.Status;
         }
         
         public static bool IsPending(this ITestRun testRun)
@@ -174,7 +175,7 @@ namespace Tmx.Core
             || TestRunStatuses.InterruptedOnTaskFailure == testRun.Status
             // 20150908
             || TestRunStatuses.InterruptedOnCriticalTask == testRun.Status
-            || TestRunStatuses.Cancelled == testRun.Status;
+            || TestRunStatuses.Canceled == testRun.Status;
         }
         
         public static bool IsQueued(this ITestRun testRun)

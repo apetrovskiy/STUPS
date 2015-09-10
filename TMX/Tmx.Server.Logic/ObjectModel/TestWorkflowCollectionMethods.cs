@@ -1,13 +1,12 @@
 ﻿namespace Tmx.Server.Logic.ObjectModel
 {
-    using System.Diagnostics;
     using Objects;
     using System.Linq;
     using Tmx.Interfaces.Remoting;
 
     public class TestWorkflowCollectionMethods
     {
-        public void SetDefaultWorkflow()
+        public virtual void SetDefaultWorkflow()
         {
             if (string.IsNullOrEmpty(Defaults.Workflow))
                 return;
@@ -22,7 +21,7 @@
             matchingWorkflow.IsDefault = true;
         }
 
-        public ITestWorkflow GetDefaultWorkflow()
+        public virtual ITestWorkflow GetDefaultWorkflow()
         {
             return WorkflowCollection.Workflows.FirstOrDefault(wfl => wfl.IsDefault);
         }

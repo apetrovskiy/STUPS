@@ -16,7 +16,7 @@
         // 20150825
         public Guid CurrentTestRunId { get; private set; }
 
-        public bool SetTestRunDataAndCreateTestRun(ITestRunCommand testRunCommand, DynamicDictionary formData)
+        public virtual bool SetTestRunDataAndCreateTestRun(ITestRunCommand testRunCommand, DynamicDictionary formData)
         {
             CurrentTestRunId = Guid.Empty;
             if (null == testRunCommand)
@@ -51,7 +51,7 @@
             return true;
         }
         
-        public dynamic CreateTestRunExpandoObject()
+        public virtual dynamic CreateTestRunExpandoObject()
         {
             dynamic data = new ExpandoObject();
             data.TestRuns = TestRunQueue.TestRuns ?? new List<ITestRun>();
@@ -59,12 +59,12 @@
             return data;
         }
         
-        public void DeleteTestRun(Guid testRunId)
+        public virtual void DeleteTestRun(Guid testRunId)
         {
             TestRunQueue.TestRuns.RemoveAll(tr => tr.Id == testRunId);
         }
         
-        public bool CancelTestRun(Guid testRunId)
+        public virtual bool CancelTestRun(Guid testRunId)
         {
             var testRun = TestRunQueue.TestRuns.First(tr => tr.Id == testRunId);
             if (null == testRun || testRun.IsCompleted())

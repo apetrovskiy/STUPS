@@ -50,22 +50,24 @@ namespace Tmx.Server.Tests.Modules
         }
         
         [Test][NUnit.Framework.Test][Fact]
-        public void Should_create_first_testRun_of_default_workflow_Running_as_json()
+        public void ShouldCreateFirstTestRunOfDefaultWorkflowRunningAsJson()
         {
-            GIVEN_first_testWorkflow(TestConstants.Workflow03);
+            GivenFirstTestWorkflow(TestConstants.Workflow03);
             WorkflowCollection.Workflows[0].IsDefault = true;
             Defaults.Workflow = WorkflowCollection.Workflows[0].Name;
             
-            WHEN_sending_testRun_as_json("def", TestRunStatuses.Running, "/start/" + "paramValue", null);
+            WhenSendingTestRunAsJson("def", TestRunStatuses.Running, "/start/" + "paramValue", null);
             
-            THEN_there_should_be_the_following_number_of_testRun_objects(1);
-            THEN_testRun_is_running(TestRunQueue.TestRuns[0]);
+            ThenThereShouldBeTheFollowingNumberOfTestRunObjects(1);
+            ThenTestRunIsRunning(TestRunQueue.TestRuns[0]);
             
-            var w1 = WorkflowCollection.Workflows[0];
-            var t1 = TestRunQueue.TestRuns[0];
+            // 20150909
+            // what was this supposed to be?
+            //var w1 = WorkflowCollection.Workflows[0];
+            //var t1 = TestRunQueue.TestRuns[0];
         }
         
-        void GIVEN_first_testWorkflow(string alternativeName)
+        void GivenFirstTestWorkflow(string alternativeName)
         {
             var serverCommand = new ServerCommand {
                 Command = ServerControlCommands.LoadConfiguraiton,
@@ -77,7 +79,7 @@ namespace Tmx.Server.Tests.Modules
             });
         }
         
-        TestRunCommand WHEN_sending_testRun_as_json(string testWorkflowName, TestRunStatuses status, string alternativeUrl, ITestRunCommand testRunCommand)
+        TestRunCommand WhenSendingTestRunAsJson(string testWorkflowName, TestRunStatuses status, string alternativeUrl, ITestRunCommand testRunCommand)
         {
             var testRun = new TestRun();
             (testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testWorkflowName));
@@ -97,12 +99,12 @@ namespace Tmx.Server.Tests.Modules
             return _response.Body.DeserializeJson<TestRunCommand>();
         }
         
-        void THEN_there_should_be_the_following_number_of_testRun_objects(int number)
+        void ThenThereShouldBeTheFollowingNumberOfTestRunObjects(int number)
         {
             Xunit.Assert.Equal(number, TestRunQueue.TestRuns.Count);
         }
         
-        void THEN_testRun_is_running(ITestRun testRun)
+        void ThenTestRunIsRunning(ITestRun testRun)
         {
             Xunit.Assert.Equal(true, testRun.IsActive());
         }

@@ -346,8 +346,6 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_Passed_KnownIssue()
         {
-            // 20150805
-            // const TestResultStatuses expectedTestResultStatus = TestResultStatuses.KnownIssue;
             const TestStatuses expectedTestResultStatus = TestStatuses.KnownIssue;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
@@ -363,8 +361,6 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_Failed_Passed()
         {
-            // 20150805
-            // const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Passed;
             const TestStatuses expectedTestResultStatus = TestStatuses.Passed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 
@@ -380,8 +376,6 @@ namespace TmxTest.Commands.TestStructure
         [MbUnit.Framework.Category("Set-TmxCurrentTestResult")]
         public void SetTmxCurrentTestResult_AddTmxTestResultDetail_CloseTmxTestResult_TestResultStatus_Failed_Failed()
         {
-            // 20150805
-            // const TestResultStatuses expectedTestResultStatus = TestResultStatuses.Failed;
             const TestStatuses expectedTestResultStatus = TestStatuses.Failed;
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(
                 @"Set-TmxCurrentTestResult -Name 'tr1'; " + 

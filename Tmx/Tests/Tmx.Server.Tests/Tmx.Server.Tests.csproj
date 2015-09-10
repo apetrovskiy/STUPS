@@ -175,6 +175,8 @@
     <None Include="Data\-5.xml" />
     <None Include="Data\0.xml" />
     <None Include="Data\1.xml" />
+    <None Include="Data\test_normal.html" />
+    <None Include="Data\test_normal.xml" />
     <None Include="Data\TMX_red_report.xml" />
     <None Include="Data\TMX_report.xml" />
     <None Include="Data\Workflow1.xml">

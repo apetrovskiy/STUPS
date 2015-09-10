@@ -52,7 +52,8 @@ namespace Tmx.Core.Types.Remoting
         public DateTime StartTime { get; set; }
         public int RetryCount { get; set; }
         public bool IsCritical { get; set; }
-        
+        public bool IsCancel { get; set; }
+
         public TestTaskExecutionTypes TaskType { get; set; }
         // 20141211
         public TestTaskRuntimeTypes TaskRuntimeType { get; set; }

@@ -44,26 +44,26 @@ namespace Tmx.Server.Library.Modules
         {
             var testRunCollectionMethods = ServerObjectFactory.Resolve<TestRunCollectionMethods>();
             return !testRunCollectionMethods.SetTestRunDataAndCreateTestRun(testRunCommand, Request.Form) ? 
-                Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed).WithReasonPhrase("Failed to create a test run") :
+                Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed).WithReasonPhrase(ServerLibrary.ReasonPhrase_TestRunsModule_FailedToCreateTestRun) :
                 // 20150825
                 // GetTestRunCollectionExpandoObject();
                 GetTestRunCollectionExpandoObject(testRunCollectionMethods.CurrentTestRunId);
         }
-
+        
         protected Negotiator CreateNewDefaultTestRun(DynamicDictionary parameters)
         {
             var testRunCollectionMethods = ServerObjectFactory.Resolve<TestRunCollectionMethods>();
             
             if (string.IsNullOrEmpty(parameters[UrlList.TestRuns_DefaultParameterName]))
-                return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed).WithReasonPhrase("There's not been supplied the default parameter");
-
+                return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed).WithReasonPhrase(ServerLibrary.ReasonPhrase_TestRunsModule_ThereHasNotBeenSuppliedTheDefaultParameter);
+            
             if (string.IsNullOrEmpty(Defaults.Workflow))
-                return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed).WithReasonPhrase("There's no default workflow");
+                return Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed).WithReasonPhrase(ServerLibrary.ReasonPhrase_TestRunsModule_ThereIsNoDefaultWorkflow);
             return !testRunCollectionMethods.SetTestRunDataAndCreateTestRun(new TestRunCommand {
                                                                                 TestRunName = Defaults.Workflow,
                                                                                 WorkflowName = Defaults.Workflow
                                                                             }, parameters) ? 
-                Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed).WithReasonPhrase("Failed to create a test run") :
+                Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed).WithReasonPhrase(ServerLibrary.ReasonPhrase_TestRunsModule_FailedToCreateTestRun) :
                 // 20150825
                 // GetTestRunCollectionExpandoObject();
                 GetTestRunCollectionExpandoObject(testRunCollectionMethods.CurrentTestRunId);
@@ -73,11 +73,8 @@ namespace Tmx.Server.Library.Modules
         Negotiator GetTestRunCollectionExpandoObject(Guid currentTestRunId)
         {
             var testRunCollectionMethods = ServerObjectFactory.Resolve<TestRunCollectionMethods>();
-            // 20150825
-            // var data = testRunCollectionMethods.CreateTestRunExpandoObject();
             dynamic data = testRunCollectionMethods.CreateTestRunExpandoObject();
             data.NewTestRunId = currentTestRunId;
-            // return Negotiate.WithStatusCode(HttpStatusCode.Created).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data);
             return Negotiate
                 .WithStatusCode(HttpStatusCode.Created)
                 .WithView(UrlList.ViewTestRuns_TestRunsPageName)
@@ -104,14 +101,14 @@ namespace Tmx.Server.Library.Modules
         {
             var requestedTestRun = TestRunQueue.TestRuns.FirstOrDefault(testRun => testRun.Id == testRunId);
             return null == requestedTestRun || Guid.Empty == requestedTestRun.Id
-                ? Negotiate.WithStatusCode(HttpStatusCode.NotFound).WithReasonPhrase(string.Format("Failed to find test run with id {0}", testRunId))
+                ? Negotiate.WithStatusCode(HttpStatusCode.NotFound).WithReasonPhrase(string.Format(ServerLibrary.ReasonPhrase_TestRunsModule_FailedToFindTestRunWithId, testRunId))
                 : Negotiate.WithStatusCode(HttpStatusCode.OK).WithModel(requestedTestRun);
         }
 
         Negotiator GetAllTestRuns()
         {
             return null == TestRunQueue.TestRuns || !TestRunQueue.TestRuns.Any()
-                ? Negotiate.WithStatusCode(HttpStatusCode.NotFound).WithReasonPhrase("There are not test runs")
+                ? Negotiate.WithStatusCode(HttpStatusCode.NotFound).WithReasonPhrase(ServerLibrary.ReasonPhrase_TestRunsModule_ThereAreNoTestRuns)
                 : Negotiate.WithStatusCode(HttpStatusCode.OK).WithModel(TestRunQueue.TestRuns);
         }
     }

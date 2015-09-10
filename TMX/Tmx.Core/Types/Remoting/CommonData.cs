@@ -12,7 +12,7 @@ namespace Tmx.Core.Types.Remoting
     using System.Collections.Generic;
     using System.Linq;
     using Interfaces.Remoting;
-
+    
     /// <summary>
     /// Description of CommonData.
     /// </summary>

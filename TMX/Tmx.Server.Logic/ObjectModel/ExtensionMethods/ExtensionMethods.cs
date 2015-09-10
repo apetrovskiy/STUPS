@@ -65,7 +65,7 @@ namespace Tmx.Server.Logic.ObjectModel.ExtensionMethods
         {
             return TestLabCollection.TestLabs.FirstOrDefault(testLab => testLab.Id == testRun.TestLabId).Name;
         }
-
+        
         // 20150807
         public static void UnregisterClients(this ITestRun testRun)
         {

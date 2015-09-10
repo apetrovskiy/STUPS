@@ -39,69 +39,59 @@ namespace Tmx.Server.Tests.Helpers
         }
         
         [Test][NUnit.Framework.Test][Fact]
-        public void Should_import_exported_data()
+        public void ShouldImportExportedData()
         {
             var sourceTestPlatforms = new List<ITestPlatform>();
             var sourceTestSuites = new List<ITestSuite>();
             
-            var xDoc = GIVEN_exported_test_results();
-            var platforms = WHEN_importing_test_platforms(xDoc);
-            var suites = WHEN_importing_test_results(xDoc);
+            var xDoc = GivenExportedTestResults();
+            var platforms = WhenImportingTestPlatforms(xDoc);
+            var suites = WhenImportingTestResults(xDoc);
             var testResultsImporter = new TestResultsImporter();
             testResultsImporter.MergeTestPlatforms(sourceTestPlatforms, platforms);
             testResultsImporter.MergeTestSuites(sourceTestSuites, suites);
-            THEN_there_are_N_platforms_in_xdocument(2, sourceTestPlatforms);
-            THEN_there_are_N_suites_in_xdocument(2, sourceTestSuites);
+            ThenThereAreNPlatformsInXdocument(2, sourceTestPlatforms);
+            ThenThereAreNSuitesInXdocument(2, sourceTestSuites);
 
-            // 20150805
-            // THEN_test_result_N_status_is(suites, "1", TestResultStatuses.Passed);
-            THEN_test_result_N_status_is(suites, "1", TestStatuses.Passed);
-            // 20150805
-            // THEN_test_result_N_status_is(sourceTestSuites, "2", TestResultStatuses.Passed);
-            THEN_test_result_N_status_is(sourceTestSuites, "2", TestStatuses.Passed);
-            // 20150805
-            // THEN_test_result_N_status_is(sourceTestSuites, "3", TestResultStatuses.Failed);
-            THEN_test_result_N_status_is(sourceTestSuites, "3", TestStatuses.Failed);
-            // 20150805
-            // THEN_test_result_N_status_is(sourceTestSuites, "4", TestResultStatuses.KnownIssue);
-            THEN_test_result_N_status_is(sourceTestSuites, "4", TestStatuses.KnownIssue);
-            // 20150805
-            // THEN_test_result_N_status_is(sourceTestSuites, "5", TestResultStatuses.NotTested);
-            THEN_test_result_N_status_is(sourceTestSuites, "5", TestStatuses.NotRun);
+            ThenTestResultNStatusIs(suites, "1", TestStatuses.Passed);
+            ThenTestResultNStatusIs(sourceTestSuites, "2", TestStatuses.Passed);
+            ThenTestResultNStatusIs(sourceTestSuites, "3", TestStatuses.Failed);
+            ThenTestResultNStatusIs(sourceTestSuites, "4", TestStatuses.KnownIssue);
+            ThenTestResultNStatusIs(sourceTestSuites, "5", TestStatuses.NotRun);
         }
         
         [Test][NUnit.Framework.Test][Fact]
-        public void Should_import_exported_two_data_sets()
+        public void ShouldImportExportedTwoDataSets()
         {
             var sourceTestPlatforms = new List<ITestPlatform>();
             var sourceTestSuites = new List<ITestSuite>();
             
-            var xDoc = GIVEN_exported_test_results();
-            var platforms01 = WHEN_importing_test_platforms(xDoc);
-            var suites01 = WHEN_importing_test_results(xDoc);
+            var xDoc = GivenExportedTestResults();
+            var platforms01 = WhenImportingTestPlatforms(xDoc);
+            var suites01 = WhenImportingTestResults(xDoc);
             var testResultsImporter = new TestResultsImporter();
             testResultsImporter.MergeTestPlatforms(sourceTestPlatforms, platforms01);
             testResultsImporter.MergeTestSuites(sourceTestSuites, suites01);
             
-            xDoc = GIVEN_exported_test_results();
-            var platforms02 = WHEN_importing_test_platforms(xDoc);
-            var suites02 = WHEN_importing_test_results(xDoc);
+            xDoc = GivenExportedTestResults();
+            var platforms02 = WhenImportingTestPlatforms(xDoc);
+            var suites02 = WhenImportingTestResults(xDoc);
             testResultsImporter.MergeTestPlatforms(sourceTestPlatforms, platforms02);
             testResultsImporter.MergeTestSuites(sourceTestSuites, suites02);
             
-            THEN_there_are_N_platforms_in_xdocument(4, sourceTestPlatforms);
-            THEN_there_are_N_suites_in_xdocument(4, sourceTestSuites);
+            ThenThereAreNPlatformsInXdocument(4, sourceTestPlatforms);
+            ThenThereAreNSuitesInXdocument(4, sourceTestSuites);
         }
         
         [Test][NUnit.Framework.Test][Fact]
-        public void Should_import_exported_data_twice_without_duplication()
+        public void ShouldImportExportedDataTwiceWithoutDuplication()
         {
             var sourceTestPlatforms = new List<ITestPlatform>();
             var sourceTestSuites = new List<ITestSuite>();
             
-            var xDoc = GIVEN_exported_test_results();
-            var platforms = WHEN_importing_test_platforms(xDoc);
-            var suites = WHEN_importing_test_results(xDoc);
+            var xDoc = GivenExportedTestResults();
+            var platforms = WhenImportingTestPlatforms(xDoc);
+            var suites = WhenImportingTestResults(xDoc);
             var testResultsImporter = new TestResultsImporter();
             testResultsImporter.MergeTestPlatforms(sourceTestPlatforms, platforms);
             testResultsImporter.MergeTestSuites(sourceTestSuites, suites);
@@ -109,42 +99,19 @@ namespace Tmx.Server.Tests.Helpers
             testResultsImporter.MergeTestPlatforms(sourceTestPlatforms, platforms);
             testResultsImporter.MergeTestSuites(sourceTestSuites, suites);
             
-            THEN_there_are_N_platforms_in_xdocument(2, sourceTestPlatforms);
-            THEN_there_are_N_suites_in_xdocument(2, sourceTestSuites);
+            ThenThereAreNPlatformsInXdocument(2, sourceTestPlatforms);
+            ThenThereAreNSuitesInXdocument(2, sourceTestSuites);
         }
         
         [Test][NUnit.Framework.Test][Fact]
-        public void Should_import_exported_data_thrice_without_duplication()
+        public void ShouldImportExportedDataThriceWithoutDuplication()
         {
             var sourceTestPlatforms = new List<ITestPlatform>();
             var sourceTestSuites = new List<ITestSuite>();
             
-            var xDoc = GIVEN_exported_test_results();
-            var platforms = WHEN_importing_test_platforms(xDoc);
-            var suites = WHEN_importing_test_results(xDoc);
-            var testResultsImporter = new TestResultsImporter();
-            testResultsImporter.MergeTestPlatforms(sourceTestPlatforms, platforms);
-            testResultsImporter.MergeTestSuites(sourceTestSuites, suites);
-            
-            testResultsImporter.MergeTestPlatforms(sourceTestPlatforms, platforms);
-            testResultsImporter.MergeTestSuites(sourceTestSuites, suites);
-            
-            testResultsImporter.MergeTestPlatforms(sourceTestPlatforms, platforms);
-            testResultsImporter.MergeTestSuites(sourceTestSuites, suites);
-            
-            THEN_there_are_N_platforms_in_xdocument(2, sourceTestPlatforms);
-            THEN_there_are_N_suites_in_xdocument(2, sourceTestSuites);
-        }
-        
-        [Test][NUnit.Framework.Test][Fact]
-        public void Should_import_exported_data_with_duplicates_thrice_without_duplication()
-        {
-            var sourceTestPlatforms = new List<ITestPlatform>();
-            var sourceTestSuites = new List<ITestSuite>();
-            
-            var xDoc = GIVEN_exported_test_results();
-            var platforms = WHEN_importing_test_platforms(xDoc);
-            var suites = WHEN_importing_test_results(xDoc);
+            var xDoc = GivenExportedTestResults();
+            var platforms = WhenImportingTestPlatforms(xDoc);
+            var suites = WhenImportingTestResults(xDoc);
             var testResultsImporter = new TestResultsImporter();
             testResultsImporter.MergeTestPlatforms(sourceTestPlatforms, platforms);
             testResultsImporter.MergeTestSuites(sourceTestSuites, suites);
@@ -155,11 +122,34 @@ namespace Tmx.Server.Tests.Helpers
             testResultsImporter.MergeTestPlatforms(sourceTestPlatforms, platforms);
             testResultsImporter.MergeTestSuites(sourceTestSuites, suites);
             
-            THEN_there_are_N_platforms_in_xdocument(2, sourceTestPlatforms);
-            THEN_there_are_N_suites_in_xdocument(2, sourceTestSuites);
+            ThenThereAreNPlatformsInXdocument(2, sourceTestPlatforms);
+            ThenThereAreNSuitesInXdocument(2, sourceTestSuites);
         }
         
-        XDocument GIVEN_exported_test_results()
+        [Test][NUnit.Framework.Test][Fact]
+        public void ShouldImportExportedDataWithDuplicatesThriceWithoutDuplication()
+        {
+            var sourceTestPlatforms = new List<ITestPlatform>();
+            var sourceTestSuites = new List<ITestSuite>();
+            
+            var xDoc = GivenExportedTestResults();
+            var platforms = WhenImportingTestPlatforms(xDoc);
+            var suites = WhenImportingTestResults(xDoc);
+            var testResultsImporter = new TestResultsImporter();
+            testResultsImporter.MergeTestPlatforms(sourceTestPlatforms, platforms);
+            testResultsImporter.MergeTestSuites(sourceTestSuites, suites);
+            
+            testResultsImporter.MergeTestPlatforms(sourceTestPlatforms, platforms);
+            testResultsImporter.MergeTestSuites(sourceTestSuites, suites);
+            
+            testResultsImporter.MergeTestPlatforms(sourceTestPlatforms, platforms);
+            testResultsImporter.MergeTestSuites(sourceTestSuites, suites);
+            
+            ThenThereAreNPlatformsInXdocument(2, sourceTestPlatforms);
+            ThenThereAreNSuitesInXdocument(2, sourceTestSuites);
+        }
+        
+        XDocument GivenExportedTestResults()
         {
             var listPlatforms = new List<ITestPlatform> {
                 new TestPlatform { Id = "1", Name = "p1" },
@@ -178,7 +168,7 @@ namespace Tmx.Server.Tests.Helpers
                 listPlatforms);
         }
         
-        XDocument GIVEN_exported_test_results_with_duplicates()
+        XDocument GivenExportedTestResultsWithDuplicates()
         {
             var listPlatforms = new List<ITestPlatform> {
                 new TestPlatform { Id = "1", Name = "p1" },
@@ -197,24 +187,24 @@ namespace Tmx.Server.Tests.Helpers
                 listPlatforms);
         }
         
-        List<ITestPlatform> WHEN_importing_test_platforms(XDocument xDoc)
+        List<ITestPlatform> WhenImportingTestPlatforms(XDocument xDoc)
         {
             var testResultsImporter = new TestResultsImporter();
             return testResultsImporter.ImportTestPlatformFromXdocument(xDoc);
         }
         
-        List<ITestSuite> WHEN_importing_test_results(XDocument xDoc)
+        List<ITestSuite> WhenImportingTestResults(XDocument xDoc)
         {
             var testResultsImporter = new TestResultsImporter();
             return testResultsImporter.ImportTestResultsFromXdocument(xDoc);
         }
         
-        void THEN_there_are_N_platforms_in_xdocument(int number, List<ITestPlatform> platforms)
+        void ThenThereAreNPlatformsInXdocument(int number, List<ITestPlatform> platforms)
         {
             Assert.Equal(number, platforms.Count);
         }
         
-        void THEN_there_are_N_suites_in_xdocument(int number, List<ITestSuite> suites)
+        void ThenThereAreNSuitesInXdocument(int number, List<ITestSuite> suites)
         {
             Assert.Equal(number, suites.Count);
         }
@@ -247,8 +237,6 @@ namespace Tmx.Server.Tests.Helpers
                                 Name = "tr01",
                                 PlatformId = platform.Id,
                                 PlatformUniqueId = platform.UniqueId,
-                                // 20150805
-                                // enStatus = TestResultStatuses.Passed,
                                 enStatus = TestStatuses.Passed,
                                 SuiteId = suiteId,
                                 SuiteUniqueId = suiteUniqueId,
@@ -260,8 +248,6 @@ namespace Tmx.Server.Tests.Helpers
                                 Name = "tr02",
                                 PlatformId = platform.Id,
                                 PlatformUniqueId = platform.UniqueId,
-                                // 20150805
-                                // enStatus = TestResultStatuses.Passed,
                                 enStatus = TestStatuses.Passed,
                                 SuiteId = suiteId,
                                 SuiteUniqueId = suiteUniqueId,
@@ -275,8 +261,6 @@ namespace Tmx.Server.Tests.Helpers
                                 Name = "tr03",
                                 PlatformId = platform.Id,
                                 PlatformUniqueId = platform.UniqueId,
-                                // 20150805
-                                // enStatus = TestResultStatuses.Failed,
                                 enStatus = TestStatuses.Failed,
                                 SuiteId = suiteId,
                                 SuiteUniqueId = suiteUniqueId,
@@ -290,8 +274,6 @@ namespace Tmx.Server.Tests.Helpers
                                 Name = "tr04",
                                 PlatformId = platform.Id,
                                 PlatformUniqueId = platform.UniqueId,
-                                // 20150805
-                                // enStatus = TestResultStatuses.KnownIssue,
                                 enStatus = TestStatuses.KnownIssue,
                                 SuiteId = suiteId,
                                 SuiteUniqueId = suiteUniqueId,
@@ -303,8 +285,6 @@ namespace Tmx.Server.Tests.Helpers
                                 Name = "tr05",
                                 PlatformId = platform.Id,
                                 PlatformUniqueId = platform.UniqueId,
-                                // 20150805
-                                // enStatus = TestResultStatuses.NotTested,
                                 enStatus = TestStatuses.NotRun,
                                 SuiteId = suiteId,
                                 SuiteUniqueId = suiteUniqueId,
@@ -336,8 +316,6 @@ namespace Tmx.Server.Tests.Helpers
                                 Name = "tr01",
                                 PlatformId = platform.Id,
                                 PlatformUniqueId = platform.UniqueId,
-                                // 20150805
-                                // enStatus = TestResultStatuses.Passed
                                 enStatus = TestStatuses.Passed
                             },
                             new TestResult {
@@ -345,8 +323,6 @@ namespace Tmx.Server.Tests.Helpers
                                 Name = "tr02",
                                 PlatformId = platform.Id,
                                 PlatformUniqueId = platform.UniqueId,
-                                // 20150805
-                                // enStatus = TestResultStatuses.Passed
                                 enStatus = TestStatuses.Passed
                             }
                         }
@@ -362,8 +338,6 @@ namespace Tmx.Server.Tests.Helpers
                                 Name = "tr01",
                                 PlatformId = platform.Id,
                                 PlatformUniqueId = platform.UniqueId,
-                                // 20150805
-                                // enStatus = TestResultStatuses.Passed
                                 enStatus = TestStatuses.Passed
                             },
                             new TestResult {
@@ -371,8 +345,6 @@ namespace Tmx.Server.Tests.Helpers
                                 Name = "tr02",
                                 PlatformId = platform.Id,
                                 PlatformUniqueId = platform.UniqueId,
-                                // 20150805
-                                // enStatus = TestResultStatuses.Passed
                                 enStatus = TestStatuses.Passed
                             }
                         }
@@ -381,9 +353,7 @@ namespace Tmx.Server.Tests.Helpers
             };
         }
 
-        // 20150805
-        // void THEN_test_result_N_status_is(List<ITestSuite> suites, string id, TestResultStatuses status)
-        void THEN_test_result_N_status_is(List<ITestSuite> suites, string id, TestStatuses status)
+        void ThenTestResultNStatusIs(List<ITestSuite> suites, string id, TestStatuses status)
         {
             Assert.Equal(status, suites[0].TestScenarios[0].TestResults.First(testResult => testResult.Id == id).enStatus);
         }

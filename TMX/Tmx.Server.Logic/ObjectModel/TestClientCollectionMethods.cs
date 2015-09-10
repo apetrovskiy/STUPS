@@ -14,7 +14,7 @@
 
     public class TestClientCollectionMethods
     {
-        public bool CreateNewClient(ITestClient testClient)
+        public virtual bool CreateNewClient(ITestClient testClient)
         {
             if (!TestRunQueue.TestRuns.HasActiveTestRuns())
                 return false;
@@ -56,16 +56,18 @@
             return true;
         }
 
-        public void DeleteClientById(Guid clientId)
+        public virtual void DeleteClientById(Guid clientId)
         {
             var testRunId = ClientsCollection.Clients.First(client => client.Id == clientId).TestRunId;
             ClientsCollection.Clients.RemoveAll(client => client.Id == clientId);
-            TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.TestRunId == testRunId && task.TaskStatus == TestTaskStatuses.New)
+            // 20150909
+            // TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.TestRunId == testRunId && task.TaskStatus == TestTaskStatuses.New)
+            TaskPool.TasksForClients.Where(task => task.ClientId == clientId && task.TestRunId == testRunId && task.TaskStatus == TestTaskStatuses.New && !task.IsCancel)
                 .ToList()
                 .ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled);
         }
 
-        public bool UpdateStatus(Guid clientId, DetailedStatus detailedStatus)
+        public virtual bool UpdateStatus(Guid clientId, DetailedStatus detailedStatus)
         {
             if (ClientsCollection.Clients.All(client => client.Id != clientId))
                 return false;
@@ -73,12 +75,12 @@
             return true;
         }
 
-        public List<ITestClient> ReturnAllClients()
+        public virtual List<ITestClient> ReturnAllClients()
         {
             return ClientsCollection.Clients;
         }
 
-        public ITestClient ReturnClientById(Guid clientId)
+        public virtual ITestClient ReturnClientById(Guid clientId)
         {
             return ClientsCollection.Clients.FirstOrDefault(client => client.Id == clientId);
         }

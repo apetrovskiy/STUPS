@@ -53,243 +53,243 @@ namespace Tmx.Server.Tests.Modules
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_register_the_first_test_client_as_json()
+        public void ShouldRegisterTheFirstTestClientAsJson()
         {
-            GIVEN_Active_TestRun();
-            var testClient = GIVEN_TestClient(TestClientHostnameExpected01, TestClientUsernameExpected01);
+            GivenActiveTestRun();
+            var testClient = GivenTestClient(TestClientHostnameExpected01, TestClientUsernameExpected01);
             
-            WHEN_SendingRegistration_as_Json(testClient);
+            WhenSendingRegistrationAsJson(testClient);
             
-            THEN_Http_Response_Is_Created();
-            THEN_Test_Client_Properties_Were_Applied(testClient);
-            THEN_Id_Of_The_First_Client_Equals(_response.Body.DeserializeJson<TestClient>().Id);
-            THEN_test_client_is_free(testClient);
+            ThenHttpResponseIsCreated();
+            ThenTestClientPropertiesWereApplied(testClient);
+            ThenIdOfTheFirstClientEquals(_response.Body.DeserializeJson<TestClient>().Id);
+            ThenTestClientIsFree(testClient);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_register_the_first_test_client_as_xml()
+        public void ShouldRegisterTheFirstTestClientAsXml()
         {
-            GIVEN_Active_TestRun();
-            var testClient = GIVEN_TestClient(TestClientHostnameExpected01, TestClientUsernameExpected01);
+            GivenActiveTestRun();
+            var testClient = GivenTestClient(TestClientHostnameExpected01, TestClientUsernameExpected01);
             
-            WHEN_SendingRegistration_as_Xml(testClient as TestClient);
+            WhenSendingRegistrationAsXml(testClient as TestClient);
             
-            THEN_Http_Response_Is_Created();
-            THEN_Test_Client_Properties_Were_Applied(testClient);
-            THEN_Id_Of_The_First_Client_Equals(_response.Body.DeserializeXml<TestClient>().Id);
-            THEN_test_client_is_free(testClient);
+            ThenHttpResponseIsCreated();
+            ThenTestClientPropertiesWereApplied(testClient);
+            ThenIdOfTheFirstClientEquals(_response.Body.DeserializeXml<TestClient>().Id);
+            ThenTestClientIsFree(testClient);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_register_the_second_test_client_as_json()
+        public void ShouldRegisterTheSecondTestClientAsJson()
         {
-            GIVEN_Active_TestRun(TestClientHostnameExpected01, TestClientHostnameExpected02);
-            GIVEN_SendingRegistration_as_Json(GIVEN_TestClient(TestClientHostnameExpected01, TestClientUsernameExpected01));
-            var testClient02 = GIVEN_TestClient(TestClientHostnameExpected02, TestClientUsernameExpected02);
+            GivenActiveTestRun(TestClientHostnameExpected01, TestClientHostnameExpected02);
+            GivenSendingRegistrationAsJson(GivenTestClient(TestClientHostnameExpected01, TestClientUsernameExpected01));
+            var testClient02 = GivenTestClient(TestClientHostnameExpected02, TestClientUsernameExpected02);
             
-            WHEN_SendingRegistration_as_Json(testClient02);
+            WhenSendingRegistrationAsJson(testClient02);
             
-            THEN_Http_Response_Is_Created();
-            THEN_Test_Client_Properties_Were_Applied(testClient02);
-            THEN_Id_Of_The_First_Client_Equals(_response.Body.DeserializeJson<TestClient>().Id);
-            THEN_test_client_is_free(testClient02);
+            ThenHttpResponseIsCreated();
+            ThenTestClientPropertiesWereApplied(testClient02);
+            ThenIdOfTheFirstClientEquals(_response.Body.DeserializeJson<TestClient>().Id);
+            ThenTestClientIsFree(testClient02);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_register_the_second_test_client_as_xml()
+        public void ShouldRegisterTheSecondTestClientAsXml()
         {
-            GIVEN_Active_TestRun(TestClientHostnameExpected01, TestClientHostnameExpected02);
-            GIVEN_SendingRegistration_as_Xml(GIVEN_TestClient(TestClientHostnameExpected01, TestClientUsernameExpected01) as TestClient);
-            var testClient02 = GIVEN_TestClient(TestClientHostnameExpected02, TestClientUsernameExpected02) as TestClient;
+            GivenActiveTestRun(TestClientHostnameExpected01, TestClientHostnameExpected02);
+            GivenSendingRegistrationAsXml(GivenTestClient(TestClientHostnameExpected01, TestClientUsernameExpected01) as TestClient);
+            var testClient02 = GivenTestClient(TestClientHostnameExpected02, TestClientUsernameExpected02) as TestClient;
             
-            WHEN_SendingRegistration_as_Xml(testClient02);
+            WhenSendingRegistrationAsXml(testClient02);
             
-            THEN_Http_Response_Is_Created();
-            THEN_Test_Client_Properties_Were_Applied(testClient02);
-            THEN_Id_Of_The_First_Client_Equals(_response.Body.DeserializeXml<TestClient>().Id);
-            THEN_test_client_is_free(testClient02);
+            ThenHttpResponseIsCreated();
+            ThenTestClientPropertiesWereApplied(testClient02);
+            ThenIdOfTheFirstClientEquals(_response.Body.DeserializeXml<TestClient>().Id);
+            ThenTestClientIsFree(testClient02);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_be_no_clients_after_unregistering_the_only_test_client_as_json()
+        public void ShouldBeNoClientsAfterUnregisteringTheOnlyTestClientAsJson()
         {
-            GIVEN_Active_TestRun(TestClientHostnameExpected02);
-            var testClient = GIVEN_SendingRegistration_as_Json(GIVEN_TestClient(TestClientHostnameExpected02, TestClientUsernameExpected02));
+            GivenActiveTestRun(TestClientHostnameExpected02);
+            var testClient = GivenSendingRegistrationAsJson(GivenTestClient(TestClientHostnameExpected02, TestClientUsernameExpected02));
             
-            WHEN_SendingDeregistration_as_json(testClient);
+            WhenSendingDeregistrationAsJson(testClient);
             
-            THEN_There_Is_The_Number_Of_Registered_Clients(0);
+            ThenThereIsTheNumberOfRegisteredClients(0);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_be_no_clients_after_unregistering_the_only_test_client_as_xml()
+        public void ShouldBeNoClientsAfterUnregisteringTheOnlyTestClientAsXml()
         {
-            GIVEN_Active_TestRun(TestClientHostnameExpected02);
-            var testClient = GIVEN_SendingRegistration_as_Xml(GIVEN_TestClient(TestClientHostnameExpected02, TestClientUsernameExpected02) as TestClient);
+            GivenActiveTestRun(TestClientHostnameExpected02);
+            var testClient = GivenSendingRegistrationAsXml(GivenTestClient(TestClientHostnameExpected02, TestClientUsernameExpected02) as TestClient);
             
-            WHEN_SendingDeregistration_as_json(testClient);
+            WhenSendingDeregistrationAsJson(testClient);
             
-            THEN_There_Is_The_Number_Of_Registered_Clients(0);
+            ThenThereIsTheNumberOfRegisteredClients(0);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_be_only_one_client_after_unregistering_one_of_two_test_clients_as_json()
+        public void ShouldBeOnlyOneClientAfterUnregisteringOneOfTwoTestClientsAsJson()
         {
-            GIVEN_Active_TestRun(TestClientHostnameExpected01, TestClientHostnameExpected02);
-            var testClient01 = GIVEN_SendingRegistration_as_Json(GIVEN_TestClient(TestClientHostnameExpected01, TestClientUsernameExpected01));
-            var testClient02 = GIVEN_SendingRegistration_as_Json(GIVEN_TestClient(TestClientHostnameExpected02, TestClientUsernameExpected02));
+            GivenActiveTestRun(TestClientHostnameExpected01, TestClientHostnameExpected02);
+            var testClient01 = GivenSendingRegistrationAsJson(GivenTestClient(TestClientHostnameExpected01, TestClientUsernameExpected01));
+            var testClient02 = GivenSendingRegistrationAsJson(GivenTestClient(TestClientHostnameExpected02, TestClientUsernameExpected02));
             
-            WHEN_SendingDeregistration_as_json(testClient01);
+            WhenSendingDeregistrationAsJson(testClient01);
             
-            THEN_There_Is_The_Number_Of_Registered_Clients(1);
-            THEN_Id_Of_The_First_Client_Equals(testClient02.Id);
+            ThenThereIsTheNumberOfRegisteredClients(1);
+            ThenIdOfTheFirstClientEquals(testClient02.Id);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_be_only_one_client_after_unregistering_one_of_two_test_clients_as_xml()
+        public void ShouldBeOnlyOneClientAfterUnregisteringOneOfTwoTestClientsAsXml()
         {
-            GIVEN_Active_TestRun(TestClientHostnameExpected01, TestClientHostnameExpected02);
-            var testClient01 = GIVEN_SendingRegistration_as_Xml(GIVEN_TestClient(TestClientHostnameExpected01, TestClientUsernameExpected01) as TestClient);
-            var testClient02 = GIVEN_SendingRegistration_as_Xml(GIVEN_TestClient(TestClientHostnameExpected02, TestClientUsernameExpected02) as TestClient);
+            GivenActiveTestRun(TestClientHostnameExpected01, TestClientHostnameExpected02);
+            var testClient01 = GivenSendingRegistrationAsXml(GivenTestClient(TestClientHostnameExpected01, TestClientUsernameExpected01) as TestClient);
+            var testClient02 = GivenSendingRegistrationAsXml(GivenTestClient(TestClientHostnameExpected02, TestClientUsernameExpected02) as TestClient);
             
-            WHEN_SendingDeregistration_as_xml(testClient01);
+            WhenSendingDeregistrationAsXml(testClient01);
             
-            THEN_There_Is_The_Number_Of_Registered_Clients(1);
-            THEN_Id_Of_The_First_Client_Equals(testClient02.Id);
+            ThenThereIsTheNumberOfRegisteredClients(1);
+            ThenIdOfTheFirstClientEquals(testClient02.Id);
         }
         
         // ============================================= Detailed status ==============================================================
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_set_test_client_first_status_as_json()
+        public void ShouldSetTestClientFirstStatusAsJson()
         {
-            var testRun = GIVEN_Active_TestRun(TestClientHostnameExpected01);
-            var testClient01 = GIVEN_SendingRegistration_as_Json(GIVEN_TestClient(TestClientHostnameExpected01, TestClientUsernameExpected01));
+            GivenActiveTestRun(TestClientHostnameExpected01);
+            var testClient01 = GivenSendingRegistrationAsJson(GivenTestClient(TestClientHostnameExpected01, TestClientUsernameExpected01));
             
-            WHEN_SendingStatus_as_json(testClient01.Id, new DetailedStatus(TheCurrentDetailedStatus));
+            WhenSendingStatusAsJson(testClient01.Id, new DetailedStatus(TheCurrentDetailedStatus));
             
-            THEN_There_Is_The_Number_Of_Registered_Clients(1); // ??
+            ThenThereIsTheNumberOfRegisteredClients(1); // ??
             Assert.Equal(TheCurrentDetailedStatus, ClientsCollection.Clients.First(client => client.Id == testClient01.Id).DetailedStatus);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_set_test_client_first_status_as_xml()
+        public void ShouldSetTestClientFirstStatusAsXml()
         {
-            GIVEN_Active_TestRun();
-            var testClient01 = GIVEN_SendingRegistration_as_Xml(GIVEN_TestClient(TestClientHostnameExpected01, TestClientUsernameExpected01) as TestClient);
+            GivenActiveTestRun();
+            var testClient01 = GivenSendingRegistrationAsXml(GivenTestClient(TestClientHostnameExpected01, TestClientUsernameExpected01) as TestClient);
             
-            WHEN_SendingStatus_as_xml(testClient01.Id, new DetailedStatus(TheCurrentDetailedStatus));
+            WhenSendingStatusAsXml(testClient01.Id, new DetailedStatus(TheCurrentDetailedStatus));
             
-            THEN_There_Is_The_Number_Of_Registered_Clients(1); // ??
+            ThenThereIsTheNumberOfRegisteredClients(1); // ??
             Assert.Equal(TheCurrentDetailedStatus, ClientsCollection.Clients.First(client => client.Id == testClient01.Id).DetailedStatus);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_set_test_client_second_status_as_json()
+        public void ShouldSetTestClientSecondStatusAsJson()
         {
-            GIVEN_Active_TestRun();
-            var testClient01 = GIVEN_SendingRegistration_as_Json(GIVEN_TestClient(TestClientHostnameExpected01, TestClientUsernameExpected01));
+            GivenActiveTestRun();
+            var testClient01 = GivenSendingRegistrationAsJson(GivenTestClient(TestClientHostnameExpected01, TestClientUsernameExpected01));
             
-            WHEN_SendingStatus_as_json(testClient01.Id, new DetailedStatus(TheCurrentDetailedStatus));
-            WHEN_SendingStatus_as_json(testClient01.Id, new DetailedStatus(TheLastDetailedStatus));
+            WhenSendingStatusAsJson(testClient01.Id, new DetailedStatus(TheCurrentDetailedStatus));
+            WhenSendingStatusAsJson(testClient01.Id, new DetailedStatus(TheLastDetailedStatus));
             
-            THEN_There_Is_The_Number_Of_Registered_Clients(1); // ??
+            ThenThereIsTheNumberOfRegisteredClients(1); // ??
             Assert.Equal(TheLastDetailedStatus, ClientsCollection.Clients.First(client => client.Id == testClient01.Id).DetailedStatus);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_set_test_client_second_status_as_xml()
+        public void ShouldSetTestClientSecondStatusAsXml()
         {
-            GIVEN_Active_TestRun();
-            var testClient01 = GIVEN_SendingRegistration_as_Xml(GIVEN_TestClient(TestClientHostnameExpected01, TestClientUsernameExpected01) as TestClient);
+            GivenActiveTestRun();
+            var testClient01 = GivenSendingRegistrationAsXml(GivenTestClient(TestClientHostnameExpected01, TestClientUsernameExpected01) as TestClient);
             
-            WHEN_SendingStatus_as_xml(testClient01.Id, new DetailedStatus(TheCurrentDetailedStatus));
-            WHEN_SendingStatus_as_xml(testClient01.Id, new DetailedStatus(TheLastDetailedStatus));
+            WhenSendingStatusAsXml(testClient01.Id, new DetailedStatus(TheCurrentDetailedStatus));
+            WhenSendingStatusAsXml(testClient01.Id, new DetailedStatus(TheLastDetailedStatus));
             
-            THEN_There_Is_The_Number_Of_Registered_Clients(1); // ??
+            ThenThereIsTheNumberOfRegisteredClients(1); // ??
             Assert.Equal(TheLastDetailedStatus, ClientsCollection.Clients.First(client => client.Id == testClient01.Id).DetailedStatus);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_set_test_client_empty_status_as_json()
+        public void ShouldSetTestClientEmptyStatusAsJson()
         {
-            GIVEN_Active_TestRun();
-            var testClient01 = GIVEN_SendingRegistration_as_Json(GIVEN_TestClient(TestClientHostnameExpected01, TestClientUsernameExpected01));
+            GivenActiveTestRun();
+            var testClient01 = GivenSendingRegistrationAsJson(GivenTestClient(TestClientHostnameExpected01, TestClientUsernameExpected01));
             
-            WHEN_SendingStatus_as_json(testClient01.Id, new DetailedStatus(TheCurrentDetailedStatus));
-            WHEN_SendingStatus_as_json(testClient01.Id, new DetailedStatus(string.Empty));
+            WhenSendingStatusAsJson(testClient01.Id, new DetailedStatus(TheCurrentDetailedStatus));
+            WhenSendingStatusAsJson(testClient01.Id, new DetailedStatus(string.Empty));
             
-            THEN_There_Is_The_Number_Of_Registered_Clients(1); // ??
+            ThenThereIsTheNumberOfRegisteredClients(1); // ??
             Assert.Equal(string.Empty, ClientsCollection.Clients.First(client => client.Id == testClient01.Id).DetailedStatus);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_set_test_client_empty_status_as_xml()
+        public void ShouldSetTestClientEmptyStatusAsXml()
         {
-            GIVEN_Active_TestRun();
-            var testClient01 = GIVEN_SendingRegistration_as_Xml(GIVEN_TestClient(TestClientHostnameExpected01, TestClientUsernameExpected01) as TestClient);
+            GivenActiveTestRun();
+            var testClient01 = GivenSendingRegistrationAsXml(GivenTestClient(TestClientHostnameExpected01, TestClientUsernameExpected01) as TestClient);
             
-            WHEN_SendingStatus_as_xml(testClient01.Id, new DetailedStatus(TheCurrentDetailedStatus));
-            WHEN_SendingStatus_as_xml(testClient01.Id, new DetailedStatus(string.Empty));
+            WhenSendingStatusAsXml(testClient01.Id, new DetailedStatus(TheCurrentDetailedStatus));
+            WhenSendingStatusAsXml(testClient01.Id, new DetailedStatus(string.Empty));
             
-            THEN_There_Is_The_Number_Of_Registered_Clients(1); // ??
+            ThenThereIsTheNumberOfRegisteredClients(1); // ??
             Assert.Equal(string.Empty, ClientsCollection.Clients.First(client => client.Id == testClient01.Id).DetailedStatus);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_not_set_test_client_status_from_wrong_clientId_as_json()
+        public void ShouldNotSetTestClientStatusFromWrongClientIdAsJson()
         {
-            GIVEN_Active_TestRun();
-            var testClient01 = GIVEN_SendingRegistration_as_Json(GIVEN_TestClient(TestClientHostnameExpected01, TestClientUsernameExpected01));
+            GivenActiveTestRun();
+            var testClient01 = GivenSendingRegistrationAsJson(GivenTestClient(TestClientHostnameExpected01, TestClientUsernameExpected01));
             
-            WHEN_SendingStatus_as_json(testClient01.Id, new DetailedStatus(TheCurrentDetailedStatus));
-            WHEN_SendingStatus_as_json(new Guid(), new DetailedStatus(TheLastDetailedStatus));
+            WhenSendingStatusAsJson(testClient01.Id, new DetailedStatus(TheCurrentDetailedStatus));
+            WhenSendingStatusAsJson(new Guid(), new DetailedStatus(TheLastDetailedStatus));
             
-            THEN_There_Is_The_Number_Of_Registered_Clients(1); // ??
-            THEN_Http_Response_Is_NotFound();
+            ThenThereIsTheNumberOfRegisteredClients(1); // ??
+            ThenHttpResponseIsNotFound();
             Assert.Equal(TheCurrentDetailedStatus, ClientsCollection.Clients.First(client => client.Id == testClient01.Id).DetailedStatus);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_not_set_test_client_status_from_wrong_clientId_as_xml()
+        public void ShouldNotSetTestClientStatusFromWrongClientIdAsXml()
         {
-            GIVEN_Active_TestRun();
-            var testClient01 = GIVEN_SendingRegistration_as_Xml(GIVEN_TestClient(TestClientHostnameExpected01, TestClientUsernameExpected01) as TestClient);
+            GivenActiveTestRun();
+            var testClient01 = GivenSendingRegistrationAsXml(GivenTestClient(TestClientHostnameExpected01, TestClientUsernameExpected01) as TestClient);
             
-            WHEN_SendingStatus_as_xml(testClient01.Id, new DetailedStatus(TheCurrentDetailedStatus));
-            WHEN_SendingStatus_as_xml(new Guid(), new DetailedStatus(TheLastDetailedStatus));
+            WhenSendingStatusAsXml(testClient01.Id, new DetailedStatus(TheCurrentDetailedStatus));
+            WhenSendingStatusAsXml(new Guid(), new DetailedStatus(TheLastDetailedStatus));
             
-            THEN_There_Is_The_Number_Of_Registered_Clients(1); // ??
-            THEN_Http_Response_Is_NotFound();
+            ThenThereIsTheNumberOfRegisteredClients(1); // ??
+            ThenHttpResponseIsNotFound();
             Assert.Equal(TheCurrentDetailedStatus, ClientsCollection.Clients.First(client => client.Id == testClient01.Id).DetailedStatus);
         }
         
         // cleaning up detailed status on finishing a task
         
 //        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-//        public void Should_set_test_client_second_status_as_json()
+//        public void ShouldSetTestClientSecondStatusAsJson()
 //        {
 //            const string detailedStatus01 = "the current status";
 //            const string detailedStatus02 = "the latest status";
-//            var testClient01 = GIVEN_SendingRegistration_as_Json(GIVEN_TestClient("testhost_03", "aaa_03"));
+//            var testClient01 = GivenSendingRegistrationAsJson(GivenTestClient("testhost_03", "aaa_03"));
 //            
-//            WHEN_SendingStatus_as_json(testClient01.Id, new DetailedStatus(detailedStatus01));
-//            WHEN_SendingStatus_as_json(testClient01.Id, new DetailedStatus(detailedStatus02));
+//            WhenSendingStatusAsJson(testClient01.Id, new DetailedStatus(detailedStatus01));
+//            WhenSendingStatusAsJson(testClient01.Id, new DetailedStatus(detailedStatus02));
 //            
-//            THEN_There_Is_The_Number_Of_Registered_Clients(testClient01.Id);
+//            ThenThereIsTheNumberOfRegisteredClients(testClient01.Id);
 //            Xunit.Assert.Equal(detailedStatus02, ClientsCollection.Clients.First(client => client.Id == testClient01.Id).DetailedStatus);
 //        }
 //        
 //        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-//        public void Should_set_test_client_second_status_as_xml()
+//        public void ShouldSetTestClientSecondStatusAsXml()
 //        {
 //            const string detailedStatus01 = "the current status";
 //            const string detailedStatus02 = "the latest status";
-//            var testClient01 = GIVEN_SendingRegistration_as_Xml(GIVEN_TestClient("testhost_03", "aaa_03") as TestClient);
+//            var testClient01 = GivenSendingRegistrationAsXml(GivenTestClient("testhost_03", "aaa_03") as TestClient);
 //            
-//            WHEN_SendingStatus_as_xml(testClient01.Id, new DetailedStatus(detailedStatus01));
-//            WHEN_SendingStatus_as_xml(testClient01.Id, new DetailedStatus(detailedStatus02));
+//            WhenSendingStatusAsXml(testClient01.Id, new DetailedStatus(detailedStatus01));
+//            WhenSendingStatusAsXml(testClient01.Id, new DetailedStatus(detailedStatus02));
 //            
-//            THEN_There_Is_The_Number_Of_Registered_Clients(testClient01.Id);
+//            ThenThereIsTheNumberOfRegisteredClients(testClient01.Id);
 //            Xunit.Assert.Equal(detailedStatus02, ClientsCollection.Clients.First(client => client.Id == testClient01.Id).DetailedStatus);
 //        }
         
@@ -300,12 +300,12 @@ namespace Tmx.Server.Tests.Modules
 //        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Should_register_test_client_only_in_the_first_workflow_if_there_is_no_active_workflow()
 //        {
-//            var workflow01 = GIVEN_LoadedWorkflow(1, "w1");
-//            GIVEN_LoadedWorkflow(2, "w2");
-//            var testClient = GIVEN_TestClient("h", "u");
+//            var workflow01 = GivenLoadedWorkflow(1, "w1");
+//            GivenLoadedWorkflow(2, "w2");
+//            var testClient = GivenTestClient("h", "u");
 //            WorkflowCollection.ActiveWorkflow = null;
 //            
-//            WHEN_SendingRegistration_as_Json(testClient);
+//            WhenSendingRegistrationAsJson(testClient);
 //            
 //            Xunit.Assert.Equal(workflow01.Id, ClientsCollection.Clients.First(client => client.Id == testClient.Id).WorkflowId);
 //        }
@@ -313,59 +313,59 @@ namespace Tmx.Server.Tests.Modules
 //        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Should_register_test_client_only_in_the_active_workflow_if_there_is_any()
 //        {
-//            GIVEN_LoadedWorkflow(1, "w1");
-//            var workflow02 = GIVEN_LoadedWorkflow(2, "w2");
+//            GivenLoadedWorkflow(1, "w1");
+//            var workflow02 = GivenLoadedWorkflow(2, "w2");
 //            WorkflowCollection.ActiveWorkflow = workflow02;
-//            var testClient = GIVEN_TestClient("h", "u");
+//            var testClient = GivenTestClient("h", "u");
 //            
-//            WHEN_SendingRegistration_as_Json(testClient);
+//            WhenSendingRegistrationAsJson(testClient);
 //            
 //            Xunit.Assert.Equal(workflow02.Id, ClientsCollection.Clients.First(client => client.Id == testClient.Id).WorkflowId);
 //        }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_register_new_client_only_in_one_testRun_as_json()
+        public void ShouldRegisterNewClientOnlyInOneTestRunAsJson()
         {
-            var testRun = GIVEN_Active_TestRun();
+            var testRun = GivenActiveTestRun();
             // the second active test run
             TestFactory.GetTestRunWithStatus(TestRunStatuses.Running);
-            var testClient = GIVEN_TestClient(TestClientHostnameExpected01, TestClientUsernameExpected01);
+            var testClient = GivenTestClient(TestClientHostnameExpected01, TestClientUsernameExpected01);
             
-            testClient = WHEN_SendingRegistration_as_Json(testClient);
+            testClient = WhenSendingRegistrationAsJson(testClient);
             
-            THEN_Http_Response_Is_Created();
+            ThenHttpResponseIsCreated();
             Assert.Equal(1, ClientsCollection.Clients.Count);
             Assert.Equal(testRun.Id, testClient.TestRunId);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_register_new_client_only_in_one_testRun_as_xml()
+        public void ShouldRegisterNewClientOnlyInOneTestRunAsXml()
         {
-            var testRun = GIVEN_Active_TestRun();
+            var testRun = GivenActiveTestRun();
             // the second active test run
             TestFactory.GetTestRunWithStatus(TestRunStatuses.Running);
-            var testClient = GIVEN_TestClient(TestClientHostnameExpected01, TestClientUsernameExpected01);
+            var testClient = GivenTestClient(TestClientHostnameExpected01, TestClientUsernameExpected01);
             
-            testClient = WHEN_SendingRegistration_as_Xml(testClient as TestClient);
+            testClient = WhenSendingRegistrationAsXml(testClient as TestClient);
             
-            THEN_Http_Response_Is_Created();
+            ThenHttpResponseIsCreated();
             Assert.Equal(1, ClientsCollection.Clients.Count);
             Assert.Equal(testRun.Id, testClient.TestRunId);
         }
         
         [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
         [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
-        public void Should_register_two_clients_in_separate_testRuns_as_json()
+        public void ShouldRegisterTwoClientsInSeparateTestRunsAsJson()
         {
-            var testRun01 = GIVEN_Active_TestRun();
-            var testRun02 = GIVEN_Active_TestRun();
-            var testClient01 = GIVEN_TestClient(TestClientHostnameExpected01, TestClientUsernameExpected01);
-            var testClient02 = GIVEN_TestClient("testhost_02", "aaa_02");
+            var testRun01 = GivenActiveTestRun();
+            var testRun02 = GivenActiveTestRun();
+            var testClient01 = GivenTestClient(TestClientHostnameExpected01, TestClientUsernameExpected01);
+            var testClient02 = GivenTestClient("testhost_02", "aaa_02");
             
-            testClient01 = WHEN_SendingRegistration_as_Json(testClient01);
-            testClient02 = WHEN_SendingRegistration_as_Json(testClient02);
+            testClient01 = WhenSendingRegistrationAsJson(testClient01);
+            testClient02 = WhenSendingRegistrationAsJson(testClient02);
             
-            THEN_Http_Response_Is_Created();
+            ThenHttpResponseIsCreated();
             Assert.Equal(2, ClientsCollection.Clients.Count);
             Assert.Equal(testRun01.Id, testClient01.TestRunId);
             Assert.Equal(testRun02.Id, testClient02.TestRunId);
@@ -373,74 +373,74 @@ namespace Tmx.Server.Tests.Modules
         
         // ============================================= No active test runs =============================================================
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_not_register_a_test_client_if_there_are_no_active_testRuns_only_pending_as_json()
+        public void ShouldNotRegisterATestClientIfThereAreNoActiveTestRunsOnlyPendingAsJson()
         {
-            var testRun = GIVEN_Pending_TestRun();
-            var testClient = GIVEN_TestClient(TestClientHostnameExpected01, TestClientUsernameExpected01);
+            GivenPendingTestRun();
+            var testClient = GivenTestClient(TestClientHostnameExpected01, TestClientUsernameExpected01);
             
-            WHEN_SendingRegistration_as_Json(testClient);
+            WhenSendingRegistrationAsJson(testClient);
             
-            THEN_Http_Response_Is_ExpectationFailed();
+            ThenHttpResponseIsExpectationFailed();
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_not_register_a_test_client_if_there_are_no_active_testRuns_only_scheduled_as_json()
+        public void ShouldNotRegisterATestClientIfThereAreNoActiveTestRunsOnlyScheduledAsJson()
         {
-            GIVEN_Scheduled_TestRun();
-            var testClient = GIVEN_TestClient(TestClientHostnameExpected01, TestClientUsernameExpected01);
+            GivenScheduledTestRun();
+            var testClient = GivenTestClient(TestClientHostnameExpected01, TestClientUsernameExpected01);
             
-            WHEN_SendingRegistration_as_Json(testClient);
+            WhenSendingRegistrationAsJson(testClient);
             
-            THEN_Http_Response_Is_ExpectationFailed();
+            ThenHttpResponseIsExpectationFailed();
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_not_register_a_test_client_if_there_are_no_active_testRuns_only_completed_as_json()
+        public void ShouldNotRegisterATestClientIfThereAreNoActiveTestRunsOnlyCompletedAsJson()
         {
-            GIVEN_Completed_TestRun();
-            var testClient = GIVEN_TestClient(TestClientHostnameExpected01, TestClientUsernameExpected01);
+            GivenCompletedTestRun();
+            var testClient = GivenTestClient(TestClientHostnameExpected01, TestClientUsernameExpected01);
             
-            WHEN_SendingRegistration_as_Json(testClient);
+            WhenSendingRegistrationAsJson(testClient);
             
-            THEN_Http_Response_Is_ExpectationFailed();
+            ThenHttpResponseIsExpectationFailed();
         }
         
         // ============================================= Querying clients =============================================================
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_return_all_registered_clients_as_json()
+        public void ShouldReturnAllRegisteredClientsAsJson()
         {
-            GIVEN_Active_TestRun(TestClientHostnameExpected01, TestClientHostnameExpected02, TestClientHostnameExpected03);
-            var testClient01 = GIVEN_SendingRegistration_as_Json(GIVEN_TestClient(TestClientHostnameExpected01, TestClientUsernameExpected01));
-            var testClient02 = GIVEN_SendingRegistration_as_Json(GIVEN_TestClient(TestClientHostnameExpected02, TestClientUsernameExpected02));
-            var testClient03 = GIVEN_SendingRegistration_as_Json(GIVEN_TestClient(TestClientHostnameExpected03, TestClientUsernameExpected03));
+            GivenActiveTestRun(TestClientHostnameExpected01, TestClientHostnameExpected02, TestClientHostnameExpected03);
+            GivenSendingRegistrationAsJson(GivenTestClient(TestClientHostnameExpected01, TestClientUsernameExpected01));
+            GivenSendingRegistrationAsJson(GivenTestClient(TestClientHostnameExpected02, TestClientUsernameExpected02));
+            GivenSendingRegistrationAsJson(GivenTestClient(TestClientHostnameExpected03, TestClientUsernameExpected03));
             
-            var testClientCollection = WHEN_Getting_all_registered_clients_as_json();
+            var testClientCollection = WhenGettingAllRegisteredClientsAsJson();
             
-            THEN_Http_Response_Is_Ok();
+            ThenHttpResponseIsOk();
             Assert.Equal(3, testClientCollection.Count);
         }
         
 //        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Should_return_all_registered_clients_as_xml()
 //        {
-//            var testClient01 = GIVEN_SendingRegistration_as_Json(GIVEN_TestClient("testhost_01", "aaa_01"));
-//            var testClient02 = GIVEN_SendingRegistration_as_Json(GIVEN_TestClient("testhost_02", "aaa_02"));
-//            var testClient03 = GIVEN_SendingRegistration_as_Json(GIVEN_TestClient("testhost_03", "aaa_03"));
+//            var testClient01 = GivenSendingRegistrationAsJson(GivenTestClient("testhost_01", "aaa_01"));
+//            var testClient02 = GivenSendingRegistrationAsJson(GivenTestClient("testhost_02", "aaa_02"));
+//            var testClient03 = GivenSendingRegistrationAsJson(GivenTestClient("testhost_03", "aaa_03"));
 //            
-//            var testClientCollection = WHEN_Getting_all_registered_clients_as_xml();
+//            var testClientCollection = WhenGettingAllRegisteredClientsAsXml();
 //            
-//            THEN_Http_Response_Is_Ok();
+//            ThenHttpResponseIsOk();
 //            Xunit.Assert.Equal(3, testClientCollection.Count);
 //        }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_return_NotFound_if_no_clients_registered_as_json()
+        public void ShouldReturnNotFoundIfNoClientsRegisteredAsJson()
         {
             ClientsCollection.Clients.Clear();
             
-            var testClientCollection = WHEN_Getting_all_registered_clients_as_json();
+            var testClientCollection = WhenGettingAllRegisteredClientsAsJson();
             
-            THEN_Http_Response_Is_NotFound();
+            ThenHttpResponseIsNotFound();
             Assert.Equal(null, testClientCollection);
         }
         
@@ -449,48 +449,48 @@ namespace Tmx.Server.Tests.Modules
 //        {
 //            ClientsCollection.Clients.Clear();
 //            
-//            var testClientCollection = WHEN_Getting_all_registered_clients_as_xml();
+//            var testClientCollection = WhenGettingAllRegisteredClientsAsXml();
 //            
-//            THEN_Http_Response_Is_NotFound();
+//            ThenHttpResponseIsNotFound();
 //            Xunit.Assert.Equal(null, testClientCollection);
 //        }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_return_registered_client_by_Id_as_json()
+        public void ShouldReturnRegisteredClientByIdAsJson()
         {
-            GIVEN_Active_TestRun(TestClientHostnameExpected01,TestClientHostnameExpected02, TestClientHostnameExpected03);
-            GIVEN_SendingRegistration_as_Json(GIVEN_TestClient(TestClientHostnameExpected01, TestClientUsernameExpected01));
-            var testClient02 = GIVEN_SendingRegistration_as_Json(GIVEN_TestClient(TestClientHostnameExpected02, TestClientUsernameExpected02));
-            GIVEN_SendingRegistration_as_Json(GIVEN_TestClient(TestClientHostnameExpected03, TestClientUsernameExpected03));
+            GivenActiveTestRun(TestClientHostnameExpected01,TestClientHostnameExpected02, TestClientHostnameExpected03);
+            GivenSendingRegistrationAsJson(GivenTestClient(TestClientHostnameExpected01, TestClientUsernameExpected01));
+            var testClient02 = GivenSendingRegistrationAsJson(GivenTestClient(TestClientHostnameExpected02, TestClientUsernameExpected02));
+            GivenSendingRegistrationAsJson(GivenTestClient(TestClientHostnameExpected03, TestClientUsernameExpected03));
             
-            var testClientActual = WHEN_Getting_registered_client_by_Id_as_json(testClient02.Id);
+            var testClientActual = WhenGettingRegisteredClientByIdAsJson(testClient02.Id);
             
-            THEN_Http_Response_Is_Ok();
-            THEN_Test_Client_Properties_Were_Applied(testClientActual, 1);
+            ThenHttpResponseIsOk();
+            ThenTestClientPropertiesWereApplied(testClientActual, 1);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_return_registered_client_by_Id_as_xml()
+        public void ShouldReturnRegisteredClientByIdAsXml()
         {
-            GIVEN_Active_TestRun(TestClientHostnameExpected01, TestClientHostnameExpected02, TestClientHostnameExpected03);
-            GIVEN_SendingRegistration_as_Json(GIVEN_TestClient(TestClientHostnameExpected01, TestClientUsernameExpected01));
-            var testClient02 = GIVEN_SendingRegistration_as_Json(GIVEN_TestClient(TestClientHostnameExpected02, TestClientUsernameExpected02));
-            GIVEN_SendingRegistration_as_Json(GIVEN_TestClient(TestClientHostnameExpected03, TestClientUsernameExpected03));
+            GivenActiveTestRun(TestClientHostnameExpected01, TestClientHostnameExpected02, TestClientHostnameExpected03);
+            GivenSendingRegistrationAsJson(GivenTestClient(TestClientHostnameExpected01, TestClientUsernameExpected01));
+            var testClient02 = GivenSendingRegistrationAsJson(GivenTestClient(TestClientHostnameExpected02, TestClientUsernameExpected02));
+            GivenSendingRegistrationAsJson(GivenTestClient(TestClientHostnameExpected03, TestClientUsernameExpected03));
             
-            var testClientActual = WHEN_Getting_registered_client_by_Id_as_xml(testClient02.Id);
+            var testClientActual = WhenGettingRegisteredClientByIdAsXml(testClient02.Id);
             
-            THEN_Http_Response_Is_Ok();
-            THEN_Test_Client_Properties_Were_Applied(testClientActual, 1);
+            ThenHttpResponseIsOk();
+            ThenTestClientPropertiesWereApplied(testClientActual, 1);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_return_NotFound_if_no_clients_registered_and_by_Id_as_json()
+        public void ShouldReturnNotFoundIfNoClientsRegisteredAndByIdAsJson()
         {
             ClientsCollection.Clients.Clear();
             
-            var testClientCollection = WHEN_Getting_registered_client_by_Id_as_json(Guid.NewGuid());
+            var testClientCollection = WhenGettingRegisteredClientByIdAsJson(Guid.NewGuid());
             
-            THEN_Http_Response_Is_NotFound();
+            ThenHttpResponseIsNotFound();
             Assert.Equal(null, testClientCollection);
         }
         
@@ -499,38 +499,38 @@ namespace Tmx.Server.Tests.Modules
 //        {
 //            ClientsCollection.Clients.Clear();
 //            
-//            var testClientCollection = WHEN_Getting_registered_client_by_Id_as_xml(2);
+//            var testClientCollection = WhenGettingRegisteredClientByIdAsXml(2);
 //            
-//            THEN_Http_Response_Is_NotFound();
+//            ThenHttpResponseIsNotFound();
 //            Xunit.Assert.Equal(null, testClientCollection);
 //        }
         // ============================================================================================================================
-        ITestClient GIVEN_TestClient(string hostname, string username) // , int testRunId)
+        ITestClient GivenTestClient(string hostname, string username) // , int testRunId)
         {
             return TestFactory.GivenTestClient(hostname, username); // , testRunId);
         }
         
-        ITestRun GIVEN_Active_TestRun()
+        ITestRun GivenActiveTestRun()
         {
-            return GIVEN_Active_TestRun("aaa_01");
+            return GivenActiveTestRun("aaa_01");
         }
         
-        ITestRun GIVEN_Active_TestRun(params string[] rules)
+        ITestRun GivenActiveTestRun(params string[] rules)
         {
             return getTestRunWithStatus(TestRunStatuses.Running, rules);
         }
         
-        ITestRun GIVEN_Pending_TestRun()
+        ITestRun GivenPendingTestRun()
         {
             return getTestRunWithStatus(TestRunStatuses.Pending);
         }
         
-        ITestRun GIVEN_Scheduled_TestRun()
+        ITestRun GivenScheduledTestRun()
         {
             return getTestRunWithStatus(TestRunStatuses.Scheduled);
         }
         
-        ITestRun GIVEN_Completed_TestRun()
+        ITestRun GivenCompletedTestRun()
         {
             return getTestRunWithStatus(TestRunStatuses.Finished);
         }
@@ -545,26 +545,26 @@ namespace Tmx.Server.Tests.Modules
             return TestFactory.GetTestRunWithStatus(status, rules);
         }
         
-        ITestClient GIVEN_SendingRegistration_as_Json(ITestClient testClient)
+        ITestClient GivenSendingRegistrationAsJson(ITestClient testClient)
         {
-            WHEN_SendingRegistration_as_Json(testClient);
+            WhenSendingRegistrationAsJson(testClient);
             return _response.Body.DeserializeJson<TestClient>();
         }
         
-        ITestClient GIVEN_SendingRegistration_as_Xml(TestClient testClient)
+        ITestClient GivenSendingRegistrationAsXml(TestClient testClient)
         {
-            WHEN_SendingRegistration_as_Xml(testClient);
+            WhenSendingRegistrationAsXml(testClient);
             return _response.Body.DeserializeXml<TestClient>();
         }
         
-        IWorkflow GIVEN_LoadedWorkflow(int id, string name)
+        IWorkflow GivenLoadedWorkflow(int id, string name)
         {
             var workflow = new TestWorkflow(TestLabCollection.TestLabs.First()) { Name = name };
             WorkflowCollection.AddWorkflow(workflow);
             return workflow;
         }
         
-        ITestClient WHEN_SendingRegistration_as_Json(ITestClient testClient)
+        ITestClient WhenSendingRegistrationAsJson(ITestClient testClient)
         {
             _response = _browser.Post(UrlList.TestClientRegistrationPoint_absPath, with => {
                 with.JsonBody(testClient);
@@ -573,7 +573,7 @@ namespace Tmx.Server.Tests.Modules
             return _response.Body.DeserializeJson<TestClient>();
         }
         
-        ITestClient WHEN_SendingRegistration_as_Xml(TestClient testClient)
+        ITestClient WhenSendingRegistrationAsXml(TestClient testClient)
         {
             _response = _browser.Post(UrlList.TestClientRegistrationPoint_absPath, with => {
                 with.XMLBody(testClient);
@@ -582,17 +582,17 @@ namespace Tmx.Server.Tests.Modules
             return _response.Body.DeserializeXml<TestClient>();
         }
         
-        void WHEN_SendingDeregistration_as_json(ITestClient testClient)
+        void WhenSendingDeregistrationAsJson(ITestClient testClient)
         {
             _browser.Delete(UrlList.TestClients_Root + "/" + testClient.Id, with => with.Accept("application/json"));
         }
         
-        void WHEN_SendingDeregistration_as_xml(ITestClient testClient)
+        void WhenSendingDeregistrationAsXml(ITestClient testClient)
         {
             _browser.Delete(UrlList.TestClients_Root + "/" + testClient.Id, with => with.Accept("application/xml"));
         }
         
-        void WHEN_SendingStatus_as_json(Guid clientId, DetailedStatus detailedStatus)
+        void WhenSendingStatusAsJson(Guid clientId, DetailedStatus detailedStatus)
         {
             _response = _browser.Put(UrlList.TestClients_Root + "/" + clientId + "/status", with => {
                 with.JsonBody(detailedStatus);
@@ -600,7 +600,7 @@ namespace Tmx.Server.Tests.Modules
             });
         }
         
-        void WHEN_SendingStatus_as_xml(Guid clientId, DetailedStatus detailedStatus)
+        void WhenSendingStatusAsXml(Guid clientId, DetailedStatus detailedStatus)
         {
             _response = _browser.Put(UrlList.TestClients_Root + "/" + clientId + "/status", with => {
                 with.JsonBody(detailedStatus);
@@ -608,68 +608,68 @@ namespace Tmx.Server.Tests.Modules
             });
         }
         
-        List<TestClient> WHEN_Getting_all_registered_clients_as_json()
+        List<TestClient> WhenGettingAllRegisteredClientsAsJson()
         {
             _response = _browser.Get(UrlList.TestClients_Root + UrlList.TestClientRegistrationPoint_relPath, with => with.Accept("application/json"));
             return _response.Body.DeserializeJson<List<TestClient>>();
         }
         
-        List<TestClient> WHEN_Getting_all_registered_clients_as_xml()
+        List<TestClient> WhenGettingAllRegisteredClientsAsXml()
         {
             _response = _browser.Get(UrlList.TestClients_Root + UrlList.TestClientRegistrationPoint_relPath, with => with.Accept("application/xml"));
             return _response.Body.DeserializeJson<List<TestClient>>();
         }
         
-        TestClient WHEN_Getting_registered_client_by_Id_as_json(Guid clientId)
+        TestClient WhenGettingRegisteredClientByIdAsJson(Guid clientId)
         {
             _response = _browser.Get(UrlList.TestClients_Root + "/" + clientId, with => with.Accept("application/json"));
             return _response.Body.DeserializeJson<TestClient>();
         }
         
-        TestClient WHEN_Getting_registered_client_by_Id_as_xml(Guid clientId)
+        TestClient WhenGettingRegisteredClientByIdAsXml(Guid clientId)
         {
             _response = _browser.Get(UrlList.TestClients_Root + "/" + clientId, with => with.Accept("application/xml"));
             return _response.Body.DeserializeXml<TestClient>();
         }
         
-        void THEN_There_Is_The_Number_Of_Registered_Clients(int number)
+        void ThenThereIsTheNumberOfRegisteredClients(int number)
         {
             Assert.Equal(number, ClientsCollection.Clients.Count);
         }
         
-        void THEN_Id_Of_The_First_Client_Equals(Guid clientId)
+        void ThenIdOfTheFirstClientEquals(Guid clientId)
         {
             int testClientCounter = ClientsCollection.Clients.Count - 1;
             Assert.Equal(clientId, ClientsCollection.Clients[testClientCounter].Id);
         }
         
-        void THEN_Http_Response_Is_Ok()
+        void ThenHttpResponseIsOk()
         {
             Assert.Equal(HttpStatusCode.OK, _response.StatusCode);
         }
         
-        void THEN_Http_Response_Is_Created()
+        void ThenHttpResponseIsCreated()
         {
             Assert.Equal(HttpStatusCode.Created, _response.StatusCode);
         }
         
-        void THEN_Http_Response_Is_NotFound()
+        void ThenHttpResponseIsNotFound()
         {
             Assert.Equal(HttpStatusCode.NotFound, _response.StatusCode);
         }
         
-        void THEN_Http_Response_Is_ExpectationFailed()
+        void ThenHttpResponseIsExpectationFailed()
         {
             Assert.Equal(HttpStatusCode.ExpectationFailed, _response.StatusCode);
         }
         
-        void THEN_Test_Client_Properties_Were_Applied(ISystemInfo testClient)
+        void ThenTestClientPropertiesWereApplied(ISystemInfo testClient)
         {
             int testClientNumber = ClientsCollection.Clients.Count - 1;
-            THEN_Test_Client_Properties_Were_Applied(testClient, testClientNumber);
+            ThenTestClientPropertiesWereApplied(testClient, testClientNumber);
         }
         
-        void THEN_Test_Client_Properties_Were_Applied(ISystemInfo testClient, int testClientNumber)
+        void ThenTestClientPropertiesWereApplied(ISystemInfo testClient, int testClientNumber)
         {
             Assert.Equal(testClient.CustomString, ClientsCollection.Clients[testClientNumber].CustomString);
             Assert.Equal(testClient.EnvironmentVersion, ClientsCollection.Clients[testClientNumber].EnvironmentVersion);
@@ -687,12 +687,12 @@ namespace Tmx.Server.Tests.Modules
         }
         
         // TODO: duplicated
-        void THEN_test_client_is_busy(ITestClient testClient)
+        void ThenTestClientIsBusy(ITestClient testClient)
         {
             Assert.Equal(TestClientStatuses.Running, testClient.Status);
         }
         
-        void THEN_test_client_is_free(ITestClient testClient)
+        void ThenTestClientIsFree(ITestClient testClient)
         {
             Assert.Equal(TestClientStatuses.NoTasks, testClient.Status);
         }

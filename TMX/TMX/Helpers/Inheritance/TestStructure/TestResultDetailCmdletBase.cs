@@ -36,8 +36,6 @@ namespace Tmx
         public string TestResultDetail { get; set; }
         
         [Parameter(Mandatory = false)]
-        // 20150805
-        // public TestResultStatuses TestResultStatus { get; set; }
         public TestStatuses TestResultStatus { get; set; }
         
         [Parameter(Mandatory = false)]

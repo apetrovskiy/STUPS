@@ -21,6 +21,7 @@ namespace Tmx.Interfaces.Remoting
         bool IsActive { get; set; }
         int RetryCount { get; set; }
         bool IsCritical { get; set; }
+        bool IsCancel { get; set; }
         string Rule { get; set; }
         string StoryId { get; set; }
         string[] ExpectedResult { get; set; }

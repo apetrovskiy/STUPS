@@ -10,6 +10,7 @@
 namespace Tmx.Server.Tests.Modules
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using Logic.ObjectModel;
     using Core;
@@ -31,6 +32,8 @@ namespace Tmx.Server.Tests.Modules
     {
         BrowserResponse _response;
         Browser _browser;
+        const string TestClientHostnameExpected01 = "testhost_01";
+        const string TestClientUsernameExpected01 = "aaa_01";
         
         public TestRunsModuleTestFixture()
         {
@@ -46,240 +49,316 @@ namespace Tmx.Server.Tests.Modules
         }
         
         [Test][NUnit.Framework.Test][Fact]
-        public void Should_create_first_testRun_of_default_workflow_Running_as_json()
+        public void ShouldCreateFirstTestRunOfDefaultWorkflowRunningAsJson()
         {
-            GIVEN_first_testWorkflow(TestConstants.Workflow03);
+            GivenFirstTestWorkflow(TestConstants.Workflow03);
             WorkflowCollection.Workflows[0].IsDefault = true;
             Defaults.Workflow = WorkflowCollection.Workflows[0].Name;
             
             // 20150826
-            // WHEN_sending_testRun_as_json("def", TestRunStatuses.Running, UrlList.TestRunsControlPoint_absPath_for_newDefaultTestRun + "paramValue", null);
-            WHEN_sending_testRun_as_json("def", UrlList.TestRunsControlPoint_absPath_for_newDefaultTestRun + "paramValue", null);
+            // WhenSendingTestRunAsJson(TestConstants.Workflow03Name, TestRunStatuses.Running, UrlList.TestRunsControlPoint_absPath_for_newDefaultTestRun + "paramValue", null);
+            WhenSendingTestRunAsJson(TestConstants.Workflow03Name, UrlList.TestRunsControlPoint_absPath_for_newDefaultTestRun + "paramValue", null);
 
-            THEN_there_should_be_the_following_number_of_testRun_objects(1);
-            THEN_testRun_is_running(TestRunQueue.TestRuns[0]);
+            ThenThereShouldBeTheFollowingNumberOfTestRunObjects(1);
+            ThenTestRunIsRunning(TestRunQueue.TestRuns[0]);
             
             var w1 = WorkflowCollection.Workflows[0];
             var t1 = TestRunQueue.TestRuns[0];
         }
         
         [Test][NUnit.Framework.Test][Fact]
-        public void Should_create_second_testRun_of_default_workflow_object_to_another_workflow_and_another_testLab_Running_as_json()
+        public void ShouldCreateSecondTestRunOfDefaultWorkflowObjectToAnotherWorkflowAndAnotherTestLabRunningAsJson()
         {
-            GIVEN_first_testWorkflow(TestConstants.Workflow03);
+            GivenFirstTestWorkflow(TestConstants.Workflow03);
             WorkflowCollection.Workflows[0].IsDefault = true;
             Defaults.Workflow = WorkflowCollection.Workflows[0].Name;
-            GIVEN_second_testWorkflow();
+            GivenSecondTestWorkflow();
             var secondTestWorkflow = WorkflowCollection.Workflows.Skip(1).First();
             var secondTestLab = new TestLab();
             TestLabCollection.TestLabs.Add(secondTestLab);
             secondTestWorkflow.SetTestLab(secondTestLab);
             
-            WHEN_sending_testRun_as_json("def", TestRunStatuses.Running);
-            WHEN_sending_testRun_as_json("NAC", TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow03Name, TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow02Name, TestRunStatuses.Running);
             
-            THEN_there_should_be_the_following_number_of_testRun_objects(2);
-            THEN_testRun_is_running(TestRunQueue.TestRuns[0]);
-            THEN_testRun_is_running(TestRunQueue.TestRuns[1]);
+            ThenThereShouldBeTheFollowingNumberOfTestRunObjects(2);
+            ThenTestRunIsRunning(TestRunQueue.TestRuns[0]);
+            ThenTestRunIsRunning(TestRunQueue.TestRuns[1]);
         }
         
         [Test][NUnit.Framework.Test][Fact]
-        public void Should_create_first_testRun_Running_as_json()
+        public void ShouldCreateFirstTestRunRunningAsJson()
         {
-            GIVEN_first_testWorkflow();
+            GivenFirstTestWorkflow();
             
-            WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
             
-            THEN_there_should_be_the_following_number_of_testRun_objects(1);
-            THEN_testRun_is_running(TestRunQueue.TestRuns[0]);
+            ThenThereShouldBeTheFollowingNumberOfTestRunObjects(1);
+            ThenTestRunIsRunning(TestRunQueue.TestRuns[0]);
         }
 
         [Test][NUnit.Framework.Test][Fact]
-        public void Should_create_first_testRun_and_returns_its_id()
+        public void ShouldCreateFirstTestRunAndReturnsItsId()
         {
-            GIVEN_first_testWorkflow();
+            GivenFirstTestWorkflow();
 
-            // WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
-            WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+            // WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
 
-            THEN_there_should_be_the_following_number_of_testRun_objects(1);
-            THEN_testRun_is_running(TestRunQueue.TestRuns[0]);
-            // THEN_testRun_id_is(testRunCommandResponse.NewTestRunId, TestRunQueue.TestRuns[0].Id);
-            THEN_testRun_id_is(TestRunQueue.TestRuns[0].Id);
+            ThenThereShouldBeTheFollowingNumberOfTestRunObjects(1);
+            ThenTestRunIsRunning(TestRunQueue.TestRuns[0]);
+            // ThenTestRunIdIs(testRunCommandResponse.NewTestRunId, TestRunQueue.TestRuns[0].Id);
+            ThenTestRunIdIs(TestRunQueue.TestRuns[0].Id);
         }
         
         [Test][NUnit.Framework.Test][Fact]
-        public void Should_create_second_testRun_object_to_another_workflow_and_another_testLab_Running_as_json()
+        public void ShouldCreateSecondTestRunObjectToAnotherWorkflowAndAnotherTestLabRunningAsJson()
         {
-            GIVEN_first_testWorkflow();
-            GIVEN_second_testWorkflow();
+            GivenFirstTestWorkflow();
+            GivenSecondTestWorkflow();
             var secondTestWorkflow = WorkflowCollection.Workflows.Skip(1).First();
             var secondTestLab = new TestLab();
             TestLabCollection.TestLabs.Add(secondTestLab);
             secondTestWorkflow.SetTestLab(secondTestLab);
             
-            WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
-            WHEN_sending_testRun_as_json("NAC", TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow02Name, TestRunStatuses.Running);
             
-            THEN_there_should_be_the_following_number_of_testRun_objects(2);
-            THEN_testRun_is_running(TestRunQueue.TestRuns[0]);
-            THEN_testRun_is_running(TestRunQueue.TestRuns[1]);
+            ThenThereShouldBeTheFollowingNumberOfTestRunObjects(2);
+            ThenTestRunIsRunning(TestRunQueue.TestRuns[0]);
+            ThenTestRunIsRunning(TestRunQueue.TestRuns[1]);
         }
         
         [Test][NUnit.Framework.Test][Fact]
-        public void Should_create_second_testRun_object_to_the_same_testLab_and_another_workflow_Pending_as_json()
+        public void ShouldCreateSecondTestRunObjectToTheSameTestLabAndAnotherWorkflowPendingAsJson()
         {
-            GIVEN_first_testWorkflow();
-            GIVEN_second_testWorkflow();
+            GivenFirstTestWorkflow();
+            GivenSecondTestWorkflow();
             
-            WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
-            WHEN_sending_testRun_as_json("NAC", TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow02Name, TestRunStatuses.Running);
             
-            THEN_there_should_be_the_following_number_of_testRun_objects(2);
-            THEN_testRun_is_running(TestRunQueue.TestRuns[0]);
-            THEN_testRun_is_pending(TestRunQueue.TestRuns[1]);
+            ThenThereShouldBeTheFollowingNumberOfTestRunObjects(2);
+            ThenTestRunIsRunning(TestRunQueue.TestRuns[0]);
+            ThenTestRunIsPending(TestRunQueue.TestRuns[1]);
         }
         
         [Test][NUnit.Framework.Test][Fact]
-        public void Should_create_second_testRun_object_to_the_same_testLab_and_the_same_workflow_Pending_as_json()
+        public void ShouldCreateSecondTestRunObjectToTheSameTestLabAndTheSameWorkflowPendingAsJson()
         {
-            GIVEN_first_testWorkflow();
+            GivenFirstTestWorkflow();
             
-            WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
-            WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
             
-            THEN_there_should_be_the_following_number_of_testRun_objects(2);
-            THEN_testRun_is_running(TestRunQueue.TestRuns[0]);
-            THEN_testRun_is_pending(TestRunQueue.TestRuns[1]);
+            ThenThereShouldBeTheFollowingNumberOfTestRunObjects(2);
+            ThenTestRunIsRunning(TestRunQueue.TestRuns[0]);
+            ThenTestRunIsPending(TestRunQueue.TestRuns[1]);
         }
         
         [Test][NUnit.Framework.Test][Fact]
-        public void Should_create_second_testRun_object_to_the_same_testLab_and_the_same_workflow_as_completed_Running_as_json()
+        public void ShouldCreateSecondTestRunObjectToTheSameTestLabAndTheSameWorkflowAsCompletedRunningAsJson()
         {
-            GIVEN_first_testWorkflow();
+            GivenFirstTestWorkflow();
             
-            WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
             TaskPool.TasksForClients.ForEach(task => task.TaskStatus = TestTaskStatuses.CompletedSuccessfully);
             TestRunQueue.TestRuns.ForEach(testRun => testRun.Status = TestRunStatuses.Finished);
-            WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
             
-            THEN_there_should_be_the_following_number_of_testRun_objects(2);
-            THEN_testRun_is_completed(TestRunQueue.TestRuns[0]);
-            THEN_testRun_is_running(TestRunQueue.TestRuns[1]);
+            ThenThereShouldBeTheFollowingNumberOfTestRunObjects(2);
+            ThenTestRunIsCompleted(TestRunQueue.TestRuns[0]);
+            ThenTestRunIsRunning(TestRunQueue.TestRuns[1]);
         }
         
         [Test][NUnit.Framework.Test][Fact]
-        public void Should_run_only_one_testRun_after_completion_of_the_previous_one_as_json()
+        public void ShouldRunOnlyOneTestRunAfterCompletionOfThePreviousOneAsJson()
         {
-            GIVEN_first_testWorkflow();
+            GivenFirstTestWorkflow();
             
-            WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
             TaskPool.TasksForClients.ForEach(task => task.TaskStatus = TestTaskStatuses.CompletedSuccessfully);
             TestRunQueue.TestRuns.ForEach(testRun => testRun.Status = TestRunStatuses.Finished);
-            WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
-            WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
-            WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
-            WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
             
-            THEN_there_should_be_the_following_number_of_testRun_objects(5);
-            THEN_testRun_is_completed(TestRunQueue.TestRuns[0]);
-            THEN_testRun_is_running(TestRunQueue.TestRuns[1]);
-            THEN_testRun_is_pending(TestRunQueue.TestRuns[2]);
-            THEN_testRun_is_pending(TestRunQueue.TestRuns[3]);
-            THEN_testRun_is_pending(TestRunQueue.TestRuns[4]);
+            ThenThereShouldBeTheFollowingNumberOfTestRunObjects(5);
+            ThenTestRunIsCompleted(TestRunQueue.TestRuns[0]);
+            ThenTestRunIsRunning(TestRunQueue.TestRuns[1]);
+            ThenTestRunIsPending(TestRunQueue.TestRuns[2]);
+            ThenTestRunIsPending(TestRunQueue.TestRuns[3]);
+            ThenTestRunIsPending(TestRunQueue.TestRuns[4]);
         }
         
         [Test][NUnit.Framework.Test][Fact]
-        public void Should_run_only_one_testRun_after_interruption_of_the_previous_one_as_json()
+        public void ShouldRunOnlyOneTestRunAfterInterruptionOfThePreviousOneAsJson()
         {
-            GIVEN_first_testWorkflow();
+            GivenFirstTestWorkflow();
             
-            WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
             TaskPool.TasksForClients.ForEach(task => task.TaskStatus = TestTaskStatuses.ExecutionFailed);
             TestRunQueue.TestRuns.ForEach(testRun => testRun.Status = TestRunStatuses.Finished);
-            WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
-            WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
-            WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
-            WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
             
-            THEN_there_should_be_the_following_number_of_testRun_objects(5);
-            THEN_testRun_is_completed(TestRunQueue.TestRuns[0]);
-            THEN_testRun_is_running(TestRunQueue.TestRuns[1]);
-            THEN_testRun_is_pending(TestRunQueue.TestRuns[2]);
-            THEN_testRun_is_pending(TestRunQueue.TestRuns[3]);
-            THEN_testRun_is_pending(TestRunQueue.TestRuns[4]);
+            ThenThereShouldBeTheFollowingNumberOfTestRunObjects(5);
+            ThenTestRunIsCompleted(TestRunQueue.TestRuns[0]);
+            ThenTestRunIsRunning(TestRunQueue.TestRuns[1]);
+            ThenTestRunIsPending(TestRunQueue.TestRuns[2]);
+            ThenTestRunIsPending(TestRunQueue.TestRuns[3]);
+            ThenTestRunIsPending(TestRunQueue.TestRuns[4]);
         }
 
         // 20150907
         [Test][NUnit.Framework.Test][Fact]
-        public void Should_run_only_one_testRun_after_interruption_of_the_previous_one_by_test_results_as_json()
+        public void ShouldRunOnlyOneTestRunAfterInterruptionOfThePreviousOneByTestResultsAsJson()
         {
-            GIVEN_first_testWorkflow();
+            GivenFirstTestWorkflow();
 
-            WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
             TaskPool.TasksForClients.ForEach(task => task.TaskStatus = TestTaskStatuses.FailedByTestResults);
             TestRunQueue.TestRuns.ForEach(testRun => testRun.Status = TestRunStatuses.Finished);
-            WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
-            WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
-            WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
-            WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
 
-            THEN_there_should_be_the_following_number_of_testRun_objects(5);
-            THEN_testRun_is_completed(TestRunQueue.TestRuns[0]);
-            THEN_testRun_is_running(TestRunQueue.TestRuns[1]);
-            THEN_testRun_is_pending(TestRunQueue.TestRuns[2]);
-            THEN_testRun_is_pending(TestRunQueue.TestRuns[3]);
-            THEN_testRun_is_pending(TestRunQueue.TestRuns[4]);
+            ThenThereShouldBeTheFollowingNumberOfTestRunObjects(5);
+            ThenTestRunIsCompleted(TestRunQueue.TestRuns[0]);
+            ThenTestRunIsRunning(TestRunQueue.TestRuns[1]);
+            ThenTestRunIsPending(TestRunQueue.TestRuns[2]);
+            ThenTestRunIsPending(TestRunQueue.TestRuns[3]);
+            ThenTestRunIsPending(TestRunQueue.TestRuns[4]);
         }
         
         [Test][NUnit.Framework.Test][Fact]
-        public void Should_run_only_one_testRun_after_cancellation_of_the_previous_one_as_json()
+        public void ShouldRunOnlyOneTestRunAfterCancellationOfThePreviousOneAsJson()
         {
-            GIVEN_first_testWorkflow();
+            GivenFirstTestWorkflow();
             
-            WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
             TaskPool.TasksForClients.ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled);
             TestRunQueue.TestRuns.ForEach(testRun => testRun.Status = TestRunStatuses.Finished);
-            WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
-            WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
-            WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
-            WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
             
-            THEN_there_should_be_the_following_number_of_testRun_objects(5);
-            THEN_testRun_is_completed(TestRunQueue.TestRuns[0]);
-            THEN_testRun_is_running(TestRunQueue.TestRuns[1]);
-            THEN_testRun_is_pending(TestRunQueue.TestRuns[2]);
-            THEN_testRun_is_pending(TestRunQueue.TestRuns[3]);
-            THEN_testRun_is_pending(TestRunQueue.TestRuns[4]);
+            ThenThereShouldBeTheFollowingNumberOfTestRunObjects(5);
+            ThenTestRunIsCompleted(TestRunQueue.TestRuns[0]);
+            ThenTestRunIsRunning(TestRunQueue.TestRuns[1]);
+            ThenTestRunIsPending(TestRunQueue.TestRuns[2]);
+            ThenTestRunIsPending(TestRunQueue.TestRuns[3]);
+            ThenTestRunIsPending(TestRunQueue.TestRuns[4]);
         }
         
         [Test][NUnit.Framework.Test]// [Fact]
         [Ignore][NUnit.Framework.Ignore]
-        public void Should_return_testRun_as_json()
+        public void ShouldReturnTestRunAsJson()
         {
-            GIVEN_first_testWorkflow();
+            GivenFirstTestWorkflow();
             
-            WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+            WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
             TaskPool.TasksForClients.ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled);
             TestRunQueue.TestRuns.ForEach(testRun => testRun.Status = TestRunStatuses.Finished);
-            WHEN_getting_testRun(0);
+            WhenGettingTestRun(0);
             
-            THEN_response_has_testRun_id(0);
+            ThenResponseHasTestRunId(0);
         }
-
+        
         [Test][NUnit.Framework.Test]// [Fact]
         [Ignore][NUnit.Framework.Ignore]
-        public void Should_return_all_testRuns_as_json()
+        public void ShouldReturnAllTestRunsAsJson()
         {
-            //GIVEN_first_testWorkflow();
-
-            //WHEN_sending_testRun_as_json("CRsuite", TestRunStatuses.Running);
+            //GivenFirstTestWorkflow();
+            
+            //WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
             //TaskPool.TasksForClients.ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled);
             //TestRunQueue.TestRuns.ForEach(testRun => testRun.Status = TestRunStatuses.Finished);
-            //WHEN_getting_testRun(0);
-
-            //THEN_response_has_testRun_id(0);
+            //WhenGettingTestRun(0);
+            
+            //ThenResponseHasTestRunId(0);
+            
+            GivenFirstTestWorkflow();
+            GivenSecondTestWorkflow();
+            GivenTestRunRunning(TestConstants.Workflow01Name);
+            // GivenTestRunPending(TestConstants.Workflow02Name);
+            // GivenTestRunPending(TestConstants.Workflow01Name);
+            
+            var allTestRuns = WhenSendingRequestToGetAllTestRuns();
+            
+            // UrlList.TestRunsControlPoint_relPath
+            // ThenTestRunEqualsTo(TestRunQueue.TestRuns[0], )
+            Assert.Equal(TestRunQueue.TestRuns[0], allTestRuns[0]);
+            // Assert.Equal(TestRunQueue.TestRuns[1], allTestRuns[1]);
+            // Assert.Equal(TestRunQueue.TestRuns[2], allTestRuns[2]);
         }
+        
+        [Test][NUnit.Framework.Test][Fact]
+        public void ShouldSetTestRunStatusCanceledOnCancelingOfPendingTestRun()
+        {
+            GivenFirstTestWorkflow();
+            GivenSecondTestWorkflow();
+            GivenTestRunRunning(TestConstants.Workflow01Name);
+            GivenTestRunPending(TestConstants.Workflow02Name);
+            
+            WhenCancelingTestRun(TestRunQueue.TestRuns[1]);
+            
+            ThenTestRunStatusIsCanceled(TestRunQueue.TestRuns[1]);
+        }
+        
+        [Test][NUnit.Framework.Test][Fact]
+        public void ShouldSetTestRunStatusCancelingOnCancelingOfRunningTestRun()
+        {
+            GivenFirstTestWorkflow();
+            GivenSecondTestWorkflow();
+            GivenTestRunRunning(TestConstants.Workflow01Name);
+            GivenTestRunPending(TestConstants.Workflow02Name);
+            
+            WhenCancelingTestRun(TestRunQueue.TestRuns[0]);
+            
+            ThenTestRunStatusIsCanceled(TestRunQueue.TestRuns[0]);
+        }
+        
+        [Test][NUnit.Framework.Test][Fact]
+        public void ShouldSetTestRunStatusCancelingOnCancelingOfRunningTestRunWithRegisteredClients()
+        {
+            var testRun = TestFactory.GetTestRunWithStatus(TestRunStatuses.Running, TestClientHostnameExpected01);
+            GivenTasksForRule(testRun, TestClientHostnameExpected01);
+            GivenRegisteredClient(TestClientHostnameExpected01, TestClientUsernameExpected01);
+            TestFactory.GetTestRunWithStatus(TestRunStatuses.Pending, TestClientHostnameExpected01);
+            
+            WhenCancelingTestRun(TestRunQueue.TestRuns[0]);
+            
+            ThenTestRunStatusIsCanceling(TestRunQueue.TestRuns[0]);
+            // ThenTestTaskStatusIs(TaskPool.TasksForClients[0], TestTaskStatuses.ExecutionFailed);
+            ThenTestTaskStatusIs(TaskPool.TasksForClients[0], TestTaskStatuses.InterruptedByUser);
+            ThenTestTaskStatusIs(TaskPool.TasksForClients[1], TestTaskStatuses.New); // emulates the situation when a cancel task has been ready to be sent to a client
+            ThenTestTaskStatusIs(TaskPool.TasksForClients[2], TestTaskStatuses.Canceled);
+        }
+        
+        
+        
+//        ITestClient GivenTestClient(string hostname, string username) // , int testRunId)
+//        {
+//            return TestFactory.GivenTestClient(hostname, username); // , testRunId);
+//        }
+        
+        ITestClient GivenRegisteredClient(string hostname, string username)
+        {
+            var testClient = new TestClient { Hostname = hostname, Username = username };
+            _response = _browser.Post(UrlList.TestClientRegistrationPoint_absPath, with => {
+                with.JsonBody(testClient);
+                with.Accept("application/json");
+            });
+            return _response.Body.DeserializeJson<TestClient>();
+        }
+        
+        
         
 //        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Should_add_one_task_to_the_common_pool_on_imporing_one_task()
@@ -337,13 +416,43 @@ namespace Tmx.Server.Tests.Modules
 //        {
 //            Xunit.Assert.Equal(0, 1);
 //        }
-        
-        void GIVEN_first_testWorkflow()
+
+        void GivenTasksForRule(ITestRun testRun, string rule)
         {
-            GIVEN_first_testWorkflow(TestConstants.Workflow01);
+            TaskPool.TasksForClients.AddRange(
+                new[] {
+                    new TestTask {
+                        Id = 1,
+                        TaskStatus = TestTaskStatuses.Running,
+                        Rule = rule,
+                        TestRunId = testRun.Id,
+                        WorkflowId = testRun.WorkflowId
+                    },
+                    new TestTask {
+                        Id = 2,
+                        TaskStatus = TestTaskStatuses.New,
+                        IsCancel = true,
+                        Rule = rule,
+                        TestRunId = testRun.Id,
+                        WorkflowId = testRun.WorkflowId
+                    },
+                    new TestTask {
+                        Id = 2,
+                        TaskStatus = TestTaskStatuses.New,
+                        Rule = rule,
+                        TestRunId = testRun.Id,
+                        WorkflowId = testRun.WorkflowId
+                    }
+                }
+               );
         }
         
-        void GIVEN_first_testWorkflow(string alternativeName)
+        void GivenFirstTestWorkflow()
+        {
+            GivenFirstTestWorkflow(TestConstants.Workflow01);
+        }
+        
+        void GivenFirstTestWorkflow(string alternativeName)
         {
             var serverCommand = new ServerCommand {
                 Command = ServerControlCommands.LoadConfiguraiton,
@@ -355,7 +464,7 @@ namespace Tmx.Server.Tests.Modules
             });
         }
         
-        void GIVEN_second_testWorkflow()
+        void GivenSecondTestWorkflow()
         {
             var serverCommand = new ServerCommand {
                 Command = ServerControlCommands.LoadConfiguraiton,
@@ -367,24 +476,28 @@ namespace Tmx.Server.Tests.Modules
             });
         }
         
-        // TestRunCommand WHEN_sending_testRun_as_json(string testWorkflowName, TestRunStatuses status)
-        void WHEN_sending_testRun_as_json(string testWorkflowName, TestRunStatuses status)
+        void GivenTestRunRunning(string testWorkflowName)
         {
-            var testRunCommand = new TestRunCommand { WorkflowName = testWorkflowName, Status = status };
-            // 20150825
-            // return WHEN_sending_testRun_as_json(testWorkflowName, status, UrlList.TestRunsControlPoint_absPath, testRunCommand);
-            // 20150826
-            // WHEN_sending_testRun_as_json(testWorkflowName, status, UrlList.TestRunsControlPoint_absPath, testRunCommand);
-            WHEN_sending_testRun_as_json(testWorkflowName, UrlList.TestRunsControlPoint_absPath, testRunCommand);
+            var testRunCommand = new TestRunCommand { WorkflowName = testWorkflowName, Status = TestRunStatuses.Running };
+            WhenSendingTestRunAsJson(testWorkflowName, UrlList.TestRunsControlPoint_absPath, testRunCommand);
         }
         
-        // TestRunCommand WHEN_sending_testRun_as_json(string testWorkflowName, TestRunStatuses status, string alternativeUrl, ITestRunCommand testRunCommand)
-        // 20150826
-        // void WHEN_sending_testRun_as_json(string testWorkflowName, TestRunStatuses status, string alternativeUrl, ITestRunCommand testRunCommand)
-        void WHEN_sending_testRun_as_json(string testWorkflowName, string alternativeUrl, ITestRunCommand testRunCommand)
+        void GivenTestRunPending(string testWorkflowName)
+        {
+            var testRunCommand = new TestRunCommand { WorkflowName = testWorkflowName, Status = TestRunStatuses.Running }; // will be pending
+            WhenSendingTestRunAsJson(testWorkflowName, UrlList.TestRunsControlPoint_absPath, testRunCommand);
+        }
+        
+        void WhenSendingTestRunAsJson(string testWorkflowName, TestRunStatuses status)
+        {
+            var testRunCommand = new TestRunCommand { WorkflowName = testWorkflowName, Status = status };
+            WhenSendingTestRunAsJson(testWorkflowName, UrlList.TestRunsControlPoint_absPath, testRunCommand);
+        }
+        
+        void WhenSendingTestRunAsJson(string testWorkflowName, string alternativeUrl, ITestRunCommand testRunCommand)
         {
             var testRun = new TestRun();
-            (testRun as TestRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testWorkflowName));
+            ((TestRun) testRun).SetWorkflow(WorkflowCollection.Workflows.First(wfl => wfl.Name == testWorkflowName));
             if (null == testRunCommand)
                 _response = _browser.Post(alternativeUrl, with => {
                     // with.JsonBody(testRunCommand);
@@ -395,44 +508,86 @@ namespace Tmx.Server.Tests.Modules
                     with.JsonBody(testRunCommand);
                     with.Accept("application/json");
                 });
-            // return _response.Body.DeserializeJson<TestRunCommand>();
         }
         
-        void WHEN_getting_testRun(int numberOfTheTestRun)
+        void WhenGettingTestRun(int numberOfTheTestRun)
         {
             _response = _browser.Get(UrlList.TestRunsControlPoint_absPath + TestRunQueue.TestRuns[numberOfTheTestRun].Id, with => with.Accept("application/json"));
         }
         
-        void THEN_there_should_be_the_following_number_of_testRun_objects(int number)
+        void WhenCancelingTestRun(ITestRun testRun)
+        {
+            _response = _browser.Put(UrlList.TestRuns_Root + "/" + testRun.Id + "/cancelTestRun", with => {
+                                         with.Accept("application/json");
+                                     });
+        }
+        
+        List<ITestRun> WhenSendingRequestToGetAllTestRuns()
+        // List<TestRun> WhenSendingRequestToGetAllTestRuns()
+        {
+            _response = _browser.Get(UrlList.TestRuns_Root + UrlList.TestRunsControlPoint_relPath, with =>
+            {
+                with.Accept("application/json");
+            });
+            // return _response.Body.DeserializeJson<List<ITestRun>>();
+            //try {
+            //    // var testRuns = _response.Body.DeserializeJson<List<TestRun>>();
+            //    // var testRuns = _response.Body.DeserializeJson<List<ITestRun>>();
+            //    // var testRuns = _response.Body.DeserializeJson<IEnumerable<ITestRun>>();
+            //    var testRuns = _response.Body.DeserializeJson();
+            //}
+            //catch (Exception ee) {
+            //    Console.WriteLine(ee.Message);
+            //}
+            // return _response.Body.DeserializeJson<List<TestRun>>();
+            return _response.Body.DeserializeJson<List<ITestRun>>();
+        }
+        
+        void ThenThereShouldBeTheFollowingNumberOfTestRunObjects(int number)
         {
             Assert.Equal(number, TestRunQueue.TestRuns.Count);
         }
         
-        void THEN_testRun_is_running(ITestRun testRun)
+        void ThenTestRunIsRunning(ITestRun testRun)
         {
             Assert.Equal(true, testRun.IsActive());
         }
         
-        void THEN_testRun_is_pending(ITestRun testRun)
+        void ThenTestRunIsPending(ITestRun testRun)
         {
             Assert.Equal(true, testRun.IsPending());
         }
         
-        void THEN_testRun_is_completed(ITestRun testRun)
+        void ThenTestRunIsCompleted(ITestRun testRun)
         {
             Assert.Equal(true, testRun.IsCompleted());
         }
         
-        void THEN_testRun_id_is(Guid actualTestRunId)
+        void ThenTestRunIdIs(Guid actualTestRunId)
         {
             Assert.Equal(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId], actualTestRunId.ToString());
         }
         
-        void THEN_response_has_testRun_id(int numberOfTestRunInTheQueue)
+        void ThenResponseHasTestRunId(int numberOfTestRunInTheQueue)
         {
             var testRun = _response.Body.DeserializeJson<TestRun>();
             // var testRun = _response.Body.Deserialize<TestRun>(new TestRunDeserializer());
             Assert.Equal(TestRunQueue.TestRuns[0].Id, testRun.Id);
+        }
+        
+        void ThenTestRunStatusIsCanceling(ITestRun testRun)
+        {
+            Assert.Equal(TestRunStatuses.Canceling, testRun.Status);
+        }
+        
+        void ThenTestRunStatusIsCanceled(ITestRun testRun)
+        {
+            Assert.Equal(TestRunStatuses.Canceled, testRun.Status);
+        }
+
+        void ThenTestTaskStatusIs(ITestTask testTask, TestTaskStatuses status)
+        {
+            Assert.Equal(status, testTask.TaskStatus);
         }
     }
     

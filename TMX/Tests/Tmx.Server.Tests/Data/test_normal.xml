@@ -1,0 +1,550 @@
+﻿<?xml version="1.0"?>
+<workflow name="test normal">
+    <parametersPage>test_normal</parametersPage>
+    <testLabName>SPB-QCVMA001</testLabName>
+    <inputs>
+        <!-- Full path to the previous build:
+        <input type="text" id="previousBuild" name="previousBuild" placeholder="\\server.fqdn\share\path\package.msi" required size=100 disabled> -->
+        Full path to the current build:
+        <input type="text" id="currentBuild" name="currentBuild" placeholder="\\server.fqdn\share\path\package.msi" />
+        Mail recipients <i>(ONLY ONE)</i>:
+        <input type="text" id="mailRecipient" name="mailRecipient" placeholder="vassily.poopkin@netwrix.com" />
+    </inputs>
+    <defaults>
+        <param name="pathToDistributive02" value="dddd" />
+        <param name="pathToDistributive03" value="eeee" />
+        <param name="vmNames" value="2008R2remote-de,2012R2remote-pt," />
+        <param name="hostNames" value="2008R2remote-de.SPALab.at.local,2012R2remote-pt.SPALab.at.local," />
+    </defaults>
+    <tasks>
+
+        <task>
+            <name>Task 101</name>
+            <test_name>Task 101 test name</test_name>
+            <isActive>1</isActive>
+            <!-- <taskType>psremoting</taskType> -->
+            <rule>testConsole</rule>
+            <id>101</id>
+            <isCritical>1</isCritical>
+            <!-- <storyId>101</storyId> -->
+            <action>
+                <code>
+                    param($a, $b)
+                        
+                        Write-Host "==========101==========";
+                        $Error.Clear();
+                        sleep -Seconds 10;
+                </code>
+                <parameters>
+                    <productCode>NAC</productCode>
+                    <testHome>C:\TESTHOME</testHome>
+                </parameters>
+            </action>
+            <testcases></testcases>
+            <expected_result></expected_result>
+            <timelimit>600</timelimit>
+        </task>
+        
+        <task>
+            <name>Task 102</name>
+            <test_name>Task 101 test name</test_name>
+            <isActive>1</isActive>
+            <!-- <taskType>psremoting</taskType> -->
+            <rule>testConsole</rule>
+            <id>102</id>
+            <isCritical>1</isCritical>
+            <storyId>102</storyId>
+            <!-- <old_style_action></old_style_action> -->
+            <action>
+                <code>
+                    param($a, $b)
+                        Write-Host "==========102==========";
+                        $Error.Clear();
+                        sleep -Seconds 10;
+                </code>
+                <parameters>
+                    <a>spb-qcvms001.nwx.local</a>
+                    <b>nwx\at_nwx_user</b>
+                    <c>Lock12Lock</c>
+                </parameters>
+            </action>
+            <beforeAction>
+                <code>
+                    Write-Host "==========102B==========";
+                    $Error.Clear();
+                    sleep -Seconds 2;
+                </code>
+            </beforeAction>
+            <expected_result></expected_result>
+            <timelimit>600</timelimit>
+        </task>
+        
+        <task>
+            <name>Task 105</name>
+            <test_name>Task 105 test name $(hostname)</test_name>
+            <isActive>1</isActive>
+            <!-- <taskType>rdp</taskType> -->
+            <rule>console</rule>
+            <id>105</id>
+            <afterTask>102</afterTask>
+            <isCritical>1</isCritical>
+            <storyId>105</storyId>
+            <!-- <old_style_action>1010</old_style_action> -->
+            <action>
+                <code>
+                    param($a, $b)
+                    Write-Host "==========105==========";
+                    $Error.Clear();
+                    sleep -Seconds 10;
+                </code>
+                <parameters>
+                    <a>\\spbfs01.nwx.local\builds\Netwrix Auditor\6.5\LatestVersion</a>
+                    <b>Netwrix_Auditor.exe</b>
+                    <c>NWX\at_nwx_user</c>
+                </parameters>
+            </action>
+            <beforeAction>
+                <code>
+                    Write-Host "==========105B==========";
+                    $Error.Clear();
+                    sleep -Seconds 2;
+                </code>
+            </beforeAction>
+            <afterAction>
+                <code>
+                    Write-Host "==========105A==========";
+                    $Error.Clear();
+                    sleep -Seconds 2;
+                </code>
+            </afterAction>
+            <expected_result></expected_result>
+            <retryCount>3</retryCount>
+            <timelimit>2400</timelimit>
+        </task>
+        
+        <task>
+            <name>Task 106</name>
+            <test_name>Task 106 test name</test_name>
+            <isActive>1</isActive>
+            <!-- <taskType>rdp</taskType> -->
+            <rule>console</rule>
+            <id>106</id>
+            <isCritical>1</isCritical>
+            <storyId>106</storyId>
+            <old_style_action>1011</old_style_action>
+            <action>
+                <code>
+                    param($a, $b)
+                    Write-Host "==========106==========";
+                    $Error.Clear();
+                    sleep -Seconds 10;
+                </code>
+                <parameters>
+                    <a>$true</a>
+                    <b>FSCR0001.xml,ADCR0001.xml,VMCR0001.xml,SPCR0001.xml,IUT0001.xml</b>
+                    <c>c:\tests</c>
+                </parameters>
+            </action>
+            <beforeAction>
+                <code>
+                    Write-Host "==========106B==========";
+                    $Error.Clear();
+                    sleep -Seconds 2;
+                </code>
+            </beforeAction>
+            <afterAction>
+                <code>
+                    Write-Host "==========106A==========";
+                    $Error.Clear();
+                    sleep -Seconds 2;
+                </code>
+            </afterAction>
+            <expected_result></expected_result>
+            <retryCount>0</retryCount>
+            <timelimit>3600</timelimit>
+        </task>
+
+        <task>
+            <name>Task 162</name>
+            <test_name>Task 162 test name</test_name>
+            <isActive>1</isActive>
+            <!-- <taskType>rdp</taskType> -->
+            <rule>console</rule>
+            <id>162</id>
+            <isCritical>1</isCritical>
+            <storyId>162</storyId>
+            <action>
+                <code>
+                    param($a, $b)
+                    Write-Host "==========162==========";
+                    $Error.Clear();
+                    sleep -Seconds 10;
+                </code>
+                <parameters>
+                    <a>$true</a>
+                    <b>FSCR0001.xml,ADCR0001.xml,VMCR0001.xml,SPCR0001.xml,IUT0001.xml</b>
+                    <c>c:\tests</c>
+                </parameters>
+            </action>
+            <beforeAction>
+                <code>
+                    Write-Host "==========162B==========";
+                    $Error.Clear();
+                    sleep -Seconds 2;
+                </code>
+            </beforeAction>
+            <afterAction>
+                <code>
+                    Write-Host "==========162A==========";
+                    $Error.Clear();
+                    sleep -Seconds 2;
+                </code>
+            </afterAction>
+            <expected_result></expected_result>
+            <retryCount>0</retryCount>
+            <timelimit>3600</timelimit>
+        </task>
+
+        <task>
+            <name>Task 163</name>
+            <test_name>Task 163 test name</test_name>
+            <isActive>1</isActive>
+            <!-- <taskType>rdp</taskType> -->
+            <rule>console|agent</rule>
+            <id>163</id>
+            <afterTask>162</afterTask>
+            <isCritical>1</isCritical>
+            <storyId>163</storyId>
+            <action>
+                <code>
+                    param($a, $b)
+                    Write-Host "==========163==========";
+                    $Error.Clear();
+                    sleep -Seconds 10;
+                </code>
+                <parameters>
+                    <a>$true</a>
+                    <b>FSCR0001.xml,ADCR0001.xml,VMCR0001.xml,SPCR0001.xml,IUT0001.xml</b>
+                    <c>c:\tests</c>
+                </parameters>
+            </action>
+            <beforeAction>
+                <code>
+                    Write-Host "==========163B==========";
+                    $Error.Clear();
+                    sleep -Seconds 2;
+                </code>
+            </beforeAction>
+            <afterAction>
+                <code>
+                    Write-Host "==========163A==========";
+                    $Error.Clear();
+                    sleep -Seconds 2;
+                </code>
+            </afterAction>
+            <expected_result></expected_result>
+            <retryCount>0</retryCount>
+            <timelimit>3600</timelimit>
+        </task>
+
+        <task>
+            <name>Task 164</name>
+            <test_name>Task 164 test name</test_name>
+            <isActive>1</isActive>
+            <!-- <taskType>rdp</taskType> -->
+            <rule>console</rule>
+            <id>164</id>
+            <afterTask>163</afterTask>
+            <isCritical>1</isCritical>
+            <storyId>164</storyId>
+            <action>
+                <code>
+                    param($a, $b)
+                    Write-Host "==========164==========";
+                    $Error.Clear();
+                    sleep -Seconds 10;
+                </code>
+                <parameters>
+                    <a>$true</a>
+                    <b>FSCR0001.xml,ADCR0001.xml,VMCR0001.xml,SPCR0001.xml,IUT0001.xml</b>
+                    <c>c:\tests</c>
+                </parameters>
+            </action>
+            <beforeAction>
+                <code>
+                    Write-Host "==========164B==========";
+                    $Error.Clear();
+                    sleep -Seconds 2;
+                </code>
+            </beforeAction>
+            <afterAction>
+                <code>
+                    Write-Host "==========164A==========";
+                    $Error.Clear();
+                    sleep -Seconds 2;
+                </code>
+            </afterAction>
+            <expected_result></expected_result>
+            <retryCount>0</retryCount>
+            <timelimit>3600</timelimit>
+        </task>
+
+        <task>
+            <name>Task 165</name>
+            <test_name>Task 165 test name</test_name>
+            <isActive>1</isActive>
+            <!-- <taskType>rdp</taskType> -->
+            <rule>console|agent</rule>
+            <id>165</id>
+            <afterTask>164</afterTask>
+<!-- <afterTask>163</afterTask> -->
+            <isCritical>1</isCritical>
+            <storyId>165</storyId>
+            <action>
+                <code>
+                    param($a, $b)
+                    Write-Host "==========165==========";
+                    $Error.Clear();
+                    sleep -Seconds 10;
+                </code>
+                <parameters>
+                    <a>$true</a>
+                    <b>FSCR0001.xml,ADCR0001.xml,VMCR0001.xml,SPCR0001.xml,IUT0001.xml</b>
+                    <c>c:\tests</c>
+                </parameters>
+            </action>
+            <beforeAction>
+                <code>
+                    Write-Host "==========165B==========";
+                    $Error.Clear();
+                    sleep -Seconds 2;
+                </code>
+            </beforeAction>
+            <afterAction>
+                <code>
+                    Write-Host "==========165A==========";
+                    $Error.Clear();
+                    sleep -Seconds 2;
+                </code>
+            </afterAction>
+            <expected_result></expected_result>
+            <retryCount>0</retryCount>
+            <timelimit>3600</timelimit>
+        </task>
+
+        <task>
+            <name>Task 166</name>
+            <test_name>Task 166 test name</test_name>
+            <isActive>1</isActive>
+            <!-- <taskType>rdp</taskType> -->
+            <rule>console</rule>
+            <id>166</id>
+            <afterTask>165</afterTask>
+            <isCritical>1</isCritical>
+            <storyId>1001016</storyId>
+            <action>
+                <code>
+                    param($a, $b)
+                    Write-Host "==========166==========";
+                    $Error.Clear();
+                    sleep -Seconds 10;
+                </code>
+                <parameters>
+                    <a>$true</a>
+                    <b>FSCR0001.xml,ADCR0001.xml,VMCR0001.xml,SPCR0001.xml,IUT0001.xml</b>
+                    <c>c:\tests</c>
+                </parameters>
+            </action>
+            <beforeAction>
+                <code>
+                    Write-Host "==========166B==========";
+                    $Error.Clear();
+                    sleep -Seconds 2;
+                </code>
+            </beforeAction>
+            <afterAction>
+                <code>
+                    Write-Host "==========166A==========";
+                    $Error.Clear();
+                    sleep -Seconds 2;
+                </code>
+            </afterAction>
+            <expected_result></expected_result>
+            <retryCount>0</retryCount>
+            <timelimit>3600</timelimit>
+        </task>
+
+        <task>
+            <name>Task 167</name>
+            <test_name>Task 167 test name</test_name>
+            <isActive>1</isActive>
+            <!-- <taskType>rdp</taskType> -->
+            <rule>console</rule>
+            <id>167</id>
+            <isCritical>1</isCritical>
+            <storyId>1001017</storyId>
+            <action>
+                <code>
+                    param($a, $b)
+                    Write-Host "==========167==========";
+                    $Error.Clear();
+                    sleep -Seconds 10;
+                </code>
+                <parameters>
+                    <a>$true</a>
+                    <b>FSCR0001.xml,ADCR0001.xml,VMCR0001.xml,SPCR0001.xml,IUT0001.xml</b>
+                    <c>c:\tests</c>
+                </parameters>
+            </action>
+            <beforeAction>
+                <code>
+                    Write-Host "==========167B==========";
+                    $Error.Clear();
+                    sleep -Seconds 2;
+                </code>
+            </beforeAction>
+            <afterAction>
+                <code>
+                    Write-Host "==========167A==========";
+                    $Error.Clear();
+                    sleep -Seconds 2;
+                </code>
+            </afterAction>
+            <expected_result></expected_result>
+            <retryCount>0</retryCount>
+            <timelimit>3600</timelimit>
+        </task>
+
+        <task>
+            <name>Task 180</name>
+            <test_name>Task 180 test name</test_name>
+            <isActive>1</isActive>
+            <!-- <taskType>psremoting</taskType> -->
+            <rule>testConsole</rule>
+            <id>180</id>
+            <afterTask>8999</afterTask>
+            <isCritical>1</isCritical>
+            <storyId>180</storyId>
+            <!-- <old_style_action></old_style_action> -->
+            <action>
+                <code>
+                    param($a, $b)
+                    Write-Host "==========180==========";
+                    $Error.Clear();
+                    sleep -Seconds 10;
+                </code>
+                <parameters>
+                    <a>$true</a>
+                    <b>FSCR0001.xml,ADCR0001.xml,VMCR0001.xml,SPCR0001.xml,IUT0001.xml,FSCR0002.xml,ADCR0002.xml,VMCR0002.xml,SPCR0002.xml</b>
+                    <c>c:\tests</c>
+                </parameters>
+            </action>
+            <beforeAction>
+                <code>
+                    Write-Host "==========180B==========";
+                    $Error.Clear();
+                    sleep -Seconds 2;
+                </code>
+            </beforeAction>
+            <afterAction>
+                <code>
+                    Write-Host "==========180A==========";
+                    $Error.Clear();
+                    sleep -Seconds 2;
+                </code>
+            </afterAction>
+            <expected_result></expected_result>
+            <retryCount>0</retryCount>
+            <timelimit>3600</timelimit>
+        </task>
+        
+        <task>
+            <name>Exit the test</name>
+            <test_name>Exit the test test name</test_name>
+            <isActive>1</isActive>
+            <taskType>rdp</taskType>
+            <rule>console</rule>
+            <id>8999</id>
+            <storyId>8999</storyId>
+            <action>
+                <code>
+                    Write-Host "==========8999==========";
+                    $Error.Clear();
+                    sleep -Seconds 10;
+                </code>
+            </action>
+            <timelimit>30</timelimit>
+        </task>
+        <task>
+            <name>Stopping test hosts</name>
+            <test_name>Stopping test hosts</test_name>
+            <isActive>1</isActive>
+            <isCancel>1</isCancel>
+            <!-- <taskType>rdp</taskType> -->
+            <rule>testConsole</rule>
+            <id>9997</id>
+            <afterTask>180</afterTask>
+            <storyId>9997</storyId>
+            <!-- <old_style_action></old_style_action> -->
+            <action>
+                <code>
+                    param($a, $b)
+                        Write-Host "==========9997==========";
+                    $Error.Clear();
+                    sleep -Seconds 10;
+                </code>
+                <parameters>
+                    <a>spb-qcvms001.nwx.local</a>
+                    <b>nwx\at_nwx_user</b>
+                    <c>Lock12Lock</c>
+                </parameters>
+            </action>
+            <timelimit>600</timelimit>
+        </task>
+        <task>
+            <name>Preparing and sending reports</name>
+            <test_name>Preparing and sending reports</test_name>
+            <isActive>1</isActive>
+            <!-- <taskType>rdp</taskType> -->
+            <rule>testConsole</rule>
+            <id>9998</id>
+            <afterTask>9997</afterTask>
+            <storyId>9998</storyId>
+            <!-- <old_style_action></old_style_action> -->
+            <action>
+                <code>
+                    param($a, $b)
+                        Write-Host "==========9998==========";
+                    $Error.Clear();
+                    sleep -Seconds 10;
+                </code>
+                <parameters>
+                    <a>spb-qcvms001.nwx.local</a>
+                    <b>nwx\at_nwx_user</b>
+                    <c>Lock12Lock</c>
+                </parameters>
+            </action>
+            <timelimit>600</timelimit>
+        </task>
+        <task>
+            <name>Exit the test</name>
+            <test_name>Exit the test</test_name>
+            <isActive>1</isActive>
+            <isCancel>1</isCancel>
+            <!-- <taskType>rdp</taskType> -->
+            <rule>testConsole</rule>
+            <id>9999</id>
+            <storyId>9999</storyId>
+            <!-- <old_style_action></old_style_action> -->
+            <action>
+                <code>
+                    Write-Host "==========9999==========";
+                    $Error.Clear();
+                    sleep -Seconds 10;
+                    Unregister-TmxSystemUnderTest;
+                </code>
+            </action>
+            <timelimit>30</timelimit>
+        </task>
+    </tasks>
+</workflow>

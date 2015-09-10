@@ -89,7 +89,7 @@
                     ? TestRunStatuses.InterruptedOnCriticalTask
                     : tasksForTestRunAsArray.Any(tsk => tsk.TaskStatus == TestTaskStatuses.ExecutionFailed)
                         ? TestRunStatuses.InterruptedOnTaskFailure
-                        : tasksForTestRunAsArray.Any(tsk => tsk.TaskStatus == TestTaskStatuses.InterruptedByUser)
+                        : tasksForTestRunAsArray.Any(tsk => tsk.TaskStatus == TestTaskStatuses.InterruptedByUser || tsk.TaskStatus == TestTaskStatuses.Canceled)
                             ? TestRunStatuses.Canceled
                             : TestRunStatuses.Finished;
 

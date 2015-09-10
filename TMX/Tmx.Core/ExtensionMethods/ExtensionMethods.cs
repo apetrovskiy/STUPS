@@ -14,7 +14,9 @@ namespace Tmx.Core
     using System.Text;
     using System.Xml.Linq;
     using System.Xml.Serialization;
+    using Interfaces.ExtensionMethods;
     using Interfaces.Remoting;
+    using Interfaces.TestStructure;
     using Types.Remoting;
 
     /// <summary>
@@ -146,6 +148,12 @@ namespace Tmx.Core
         public static bool IsFailed(this ITestTask task)
         {
             return TestTaskStatuses.ExecutionFailed == task.TaskStatus || TestTaskStatuses.FailedByTestResults == task.TaskStatus;
+        }
+
+        public static void CheckTestStatus(this ITestTask task)
+        {
+            if (task.IsCritical && TestStatuses.Failed == TestData.TestSuites.GetOveralStatus())
+                task.TaskStatus = TestTaskStatuses.FailedByTestResults;
         }
         
         public static bool IsActive(this ITestRun testRun)

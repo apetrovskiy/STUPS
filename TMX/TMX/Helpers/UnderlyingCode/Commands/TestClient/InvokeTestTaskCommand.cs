@@ -41,9 +41,11 @@ namespace Tmx
             LoadCommonData();
             RunTask(task);
 
-            // 20150907
-            if (task.IsCritical && TestStatuses.Failed == TestData.TestSuites.GetOveralStatus())
-                task.TaskStatus = TestTaskStatuses.FailedByTestResults;
+            //// 20150907
+            //if (task.IsCritical && TestStatuses.Failed == TestData.TestSuites.GetOveralStatus())
+            //    task.TaskStatus = TestTaskStatuses.FailedByTestResults;
+            // 20150910
+            task.CheckTestStatus();
 
             UpdateTask(task);
             SendTestResults();
@@ -63,9 +65,13 @@ namespace Tmx
             // 20150112
             // task.TaskFinished = true
             task.TaskStatus = runResult ? TestTaskStatuses.CompletedSuccessfully : TestTaskStatuses.ExecutionFailed;
-            // 20150908
-            if (TestStatuses.Failed == TestData.TestSuites.GetOveralStatus())
-                task.TaskStatus = TestTaskStatuses.FailedByTestResults;
+            //// 20150908
+            //if (TestStatuses.Failed == TestData.TestSuites.GetOveralStatus())
+            //    task.TaskStatus = TestTaskStatuses.FailedByTestResults;
+            // 20150910
+            //if (task.IsCritical && TestStatuses.Failed == TestData.TestSuites.GetOveralStatus())
+            //    task.TaskStatus = TestTaskStatuses.FailedByTestResults;
+            task.CheckTestStatus();
         }
         
         void UpdateTask(ITestTask task)

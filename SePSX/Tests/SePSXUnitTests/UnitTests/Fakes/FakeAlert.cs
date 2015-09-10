@@ -22,7 +22,12 @@ namespace SePSXUnitTests
         public FakeAlert()
         {
         }
-        
+
+        public void SetAuthenticationCredentials(string userName, string password)
+        {
+            throw new NotImplementedException();
+        }
+
         public string Text {
             get {
                 throw new NotImplementedException();

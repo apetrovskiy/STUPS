@@ -12,6 +12,7 @@ namespace Tmx.Client.Library.ObjectModel
     using System;
     using System.Diagnostics;
     using System.Net;
+    using Core;
     using Core.Types.Remoting;
     using Interfaces.Exceptions;
     using Interfaces.Remoting;
@@ -131,11 +132,17 @@ namespace Tmx.Client.Library.ObjectModel
             
             task.TaskStatus = TestTaskStatuses.CompletedSuccessfully;
 
-            // 20150908
-            task.TestStatus = TestData.TestSuites.GetOveralStatus();
-            if (TestStatuses.Failed == task.TestStatus)
-                task.TaskStatus = TestTaskStatuses.FailedByTestResults;
-            
+            //// 20150908
+            //task.TestStatus = TestData.TestSuites.GetOveralStatus();
+            //if (TestStatuses.Failed == task.TestStatus)
+            //    task.TaskStatus = TestTaskStatuses.FailedByTestResults;
+            //// 20150910
+            //task.TestStatus = TestData.TestSuites.GetOveralStatus();
+            //if (task.IsCritical && TestStatuses.Failed == task.TestStatus)
+            //    task.TaskStatus = TestTaskStatuses.FailedByTestResults;
+            // 20150910
+            task.CheckTestStatus();
+
             Trace.TraceInformation("closeCurrentTaskIfAny().6");
             
             taskUpdater.UpdateTask(task);

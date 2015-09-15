@@ -19,14 +19,14 @@ namespace PSTestLib
     /// </summary>
     public static class ExtensionMethods
     {
-        public static System.Collections.Generic.Dictionary<string, object> ConvertHashtableToDictionary(
+        public static Dictionary<string, object> ConvertHashtableToDictionary(
             this Hashtable hashtable)
         {
             // 20130318
             //System.Collections.Generic.Dictionary<string, string> dict = 
             //    new System.Collections.Generic.Dictionary<string, string>();
-            System.Collections.Generic.Dictionary<string, object> dict =
-                new System.Collections.Generic.Dictionary<string, object>();
+            Dictionary<string, object> dict =
+                new Dictionary<string, object>();
             
             // this.WriteVerbose(this, hashtable.Keys.Count.ToString());
             
@@ -56,6 +56,38 @@ namespace PSTestLib
 //            }
             
             return dict;
+        }
+
+        public static string ConvertToString(this Hashtable hashtable)
+        {
+            var result = String.Empty;
+            if (null == hashtable || 0 == hashtable.Count)
+                return result;
+            result += "@{";
+            result = hashtable.Keys.Cast<object>().Aggregate(result, (current, key) => current + (key + "=" + hashtable[key] + ";"));
+            result += "}";
+            return result;
+        }
+
+        public static string ConvertToString(this IEnumerable<Hashtable> hashtables)
+        {
+            string result = string.Empty;
+
+            var enumerable = hashtables as Hashtable[] ?? hashtables.ToArray();
+            if (null == hashtables || !enumerable.Any()) {
+                return result;
+            }
+            
+            foreach (Hashtable hashtable in enumerable) {
+                result += ",";
+                // 20150915
+                // result += ConvertHashtableToString(hashtable);
+                result += hashtable.ConvertToString();
+            }
+            
+            result = result.Substring(1);
+            
+            return result;
         }
     }
 }

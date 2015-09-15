@@ -111,7 +111,7 @@ namespace UIAutomation
         {
             if (!Preferences.AutoLog) return;
             WriteLog(logLevel, errorRecord.Exception.Message);
-            WriteLog(logLevel, "Script: '" + errorRecord.InvocationInfo.ScriptName + "', line: " + errorRecord.InvocationInfo.Line.ToString());
+            WriteLog(logLevel, "Script: '" + errorRecord.InvocationInfo.ScriptName + "', line: " + errorRecord.InvocationInfo.Line);
         }
         
         protected internal void WriteDebug(CommonCmdletBase cmdlet, string text)
@@ -127,7 +127,7 @@ namespace UIAutomation
         {
             string reportString =
                 CmdletSignature(cmdlet) +
-                obj.ToString();
+                obj;
             
             WriteLog(LogLevels.Debug, reportString);
         }
@@ -497,7 +497,7 @@ namespace UIAutomation
                             "Name: '" +
                             ((Wizard)outputObject).Name +
                             "', Steps count: " +
-                            ((Wizard)outputObject).Steps.Count.ToString();
+                            ((Wizard)outputObject).Steps.Count;
                         break;
                     case "WizardStep":
                         reportString +=
@@ -507,11 +507,15 @@ namespace UIAutomation
                         break;
                     case "Hashtable":
                         reportString +=
-                            ConvertHashtableToString((Hashtable)outputObject);
+                            // 20150915
+                            // ConvertHashtableToString((Hashtable)outputObject);
+                            ((Hashtable) outputObject).ConvertToString();
                         break;
                     case "Hashtable[]":
                         reportString +=
-                            ConvertHashtablesArrayToString((Hashtable[])outputObject);
+                            // 20150915
+                            // ConvertHashtablesArrayToString((Hashtable[])outputObject);
+                            ((Hashtable[]) outputObject).ConvertToString();
                         break;
                     case "Boolean":
                         reportString +=
@@ -529,7 +533,9 @@ namespace UIAutomation
                                 Hashtable[] hashtables =
                                     ((GetControlStateCmdletBase)cmdlet).SearchCriteria;
                                 reportString +=
-                                    ConvertHashtablesArrayToString(hashtables);
+                                    // 20150915
+                                    // ConvertHashtablesArrayToString(hashtables);
+                                    hashtables.ConvertToString();
                             }
                             if (cmdlet is WaitUiaWindowCommand) {
                                 
@@ -737,7 +743,7 @@ namespace UIAutomation
             Preferences.TimeoutSetByCustomer = false;
             Preferences.StoredDefaultTimeout = timeoutToStore;
 
-            WriteVerbose(this, "Preferences.StoredDefaultTimeout = " + Preferences.StoredDefaultTimeout.ToString());
+            WriteVerbose(this, "Preferences.StoredDefaultTimeout = " + Preferences.StoredDefaultTimeout);
         }
 
         protected override void WriteErrorMethod040AddErrorToErrorList(PSCmdletBase cmdlet, ErrorRecord err)
@@ -942,7 +948,7 @@ namespace UIAutomation
             // temporary
             // profiling
             // 20140207
-            WriteInfo(this, "the result of the GetWindowAction scriptblock run is " + result.ToString());
+            WriteInfo(this, "the result of the GetWindowAction scriptblock run is " + result);
             
             return result;
         }

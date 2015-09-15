@@ -545,5 +545,40 @@ namespace UIAutomation
             result = viaWildcardOrRegex ? wildcardValue.IsMatch(realValue) : Regex.IsMatch(realValue, textValue, regexOptions);
             return result;
         }
+
+        public static Hashtable ConvertToHashtable(this IUiElement element)
+        {
+            return new Hashtable
+            {
+                {"Name", element.GetCurrent().Name},
+                {"AutomationId", element.GetCurrent().AutomationId},
+                {"ControlType", element.GetCurrent().ControlType.ProgrammaticName},
+                {"Class", element.GetCurrent().ClassName},
+                {"AcceleratorKey", element.GetCurrent().AcceleratorKey},
+                {"AccessKey", element.GetCurrent().AccessKey},
+                {"BoundingRectangle", element.GetCurrent().BoundingRectangle.ToString()},
+                {"FrameworkId", element.GetCurrent().FrameworkId},
+                {"HasKeyboardFocus", element.GetCurrent().HasKeyboardFocus.ToString()},
+                {"HelpText", element.GetCurrent().HelpText},
+                {"IsContentElement", element.GetCurrent().IsContentElement.ToString()},
+                {"IsControlElement", element.GetCurrent().IsControlElement.ToString()},
+                {"IsEnabled", element.GetCurrent().IsEnabled.ToString()},
+                {"IsKeyboardFocusable", element.GetCurrent().IsKeyboardFocusable.ToString()},
+                {"IsOffscreen", element.GetCurrent().IsOffscreen.ToString()},
+                {"IsPassword", element.GetCurrent().IsPassword.ToString()},
+                {"IsRequiredForForm", element.GetCurrent().IsRequiredForForm.ToString()},
+                {"ItemStatus", element.GetCurrent().ItemStatus},
+                {"ItemType", element.GetCurrent().ItemType},
+                {"LocalizedControlType", element.GetCurrent().LocalizedControlType},
+                {"NativeWindowHandle", element.GetCurrent().NativeWindowHandle.ToString()},
+                {"Orientation", element.GetCurrent().Orientation.ToString()},
+                {"ProcessId", element.GetCurrent().ProcessId.ToString()}
+            };
+        }
+
+        public static IEnumerable<Hashtable> ConvertToHashtables(this IEnumerable<IUiElement> elements)
+        {
+            return elements.Select(element => element.ConvertToHashtable());
+        }
     }
 }

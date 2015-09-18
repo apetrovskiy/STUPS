@@ -313,7 +313,7 @@ namespace UIAutomation
             try {
                 CurrentData.LastResult = outputObject;
 
-                string iInfo = string.Empty;
+                var iInfo = string.Empty;
                 if (!string.IsNullOrEmpty(((HasScriptBlockCmdletBase)cmdlet).TestResultName)) {
                     
                     TmxHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
@@ -416,7 +416,6 @@ namespace UIAutomation
             if (cmdlet == null) return;
             try {
                 var element = outputObject as IUiElement;
-                // IUiElement element = outputObject as IUiElement;
                 WriteVerbose(this, "getting the element again to ensure that it still exists");
                 if (!(cmdlet is WizardCmdletBase) &&
                     (null != element)) {
@@ -459,18 +458,7 @@ namespace UIAutomation
                         try {
                             
                             var ae = outputObject as IUiElement;
-                            // IUiElement ae = outputObject as IUiElement;
                             if (null != ae) {
-                                
-                                // 20140312
-//                                reportString +=
-//                                    "Name: '" +
-//                                    ae.Current.Name +
-//                                    "', AutomationId: '" +
-//                                    ae.Current.AutomationId +
-//                                    "', Class: '" +
-//                                    ae.Current.ClassName +
-//                                    "'";
                                 reportString +=
                                     "Name: '" +
                                     ae.GetCurrent().Name +
@@ -530,24 +518,13 @@ namespace UIAutomation
                                 
                             if (cmdlet is GetControlStateCmdletBase) {
                                     
-                                Hashtable[] hashtables =
-                                    ((GetControlStateCmdletBase)cmdlet).SearchCriteria;
+                                Hashtable[] hashtables = ((GetControlStateCmdletBase)cmdlet).SearchCriteria;
                                 reportString +=
                                     // 20150915
                                     // ConvertHashtablesArrayToString(hashtables);
                                     hashtables.ConvertToString();
                             }
-                            if (cmdlet is WaitUiaWindowCommand) {
-                                
-                                // 20140312
-//                                reportString +=
-//                                    "Name: '" +
-//                                    CurrentData.CurrentWindow.Current.Name +
-//                                    "', AutomationId: '" +
-//                                    CurrentData.CurrentWindow.Current.AutomationId +
-//                                    "', Class: '" +
-//                                    CurrentData.CurrentWindow.Current.ClassName +
-//                                    "'";
+                            if (cmdlet is WaitUiaWindowCommand)
                                 reportString +=
                                     "Name: '" +
                                     CurrentData.CurrentWindow.GetCurrent().Name +
@@ -556,11 +533,9 @@ namespace UIAutomation
                                     "', Class: '" +
                                     CurrentData.CurrentWindow.GetCurrent().ClassName +
                                     "'";
-                            }
                             // 20131020
-                            if (cmdlet is DiscoveryCmdletBase) {
+                            if (cmdlet is DiscoveryCmdletBase)
                                 reportString += outputObject.ToString();
-                            }
                         }
                         catch {
                             reportString +=

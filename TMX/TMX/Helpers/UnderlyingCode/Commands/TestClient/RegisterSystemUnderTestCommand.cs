@@ -32,7 +32,9 @@ namespace Tmx
             clientSettings.ServerUrl = cmdlet.ServerUrl;
             clientSettings.StopImmediately = false;
             
-            var registration = new Registration(new RestRequestCreator());
+            // 20150918
+            // var registration = new Registration(new RestRequestCreator());
+            var registration = new Registration();
             // temporarily
             // TODO: to a template method
             var startTime = DateTime.Now;

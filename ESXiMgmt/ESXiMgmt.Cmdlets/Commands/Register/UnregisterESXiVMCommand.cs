@@ -10,15 +10,18 @@
 namespace EsxiMgmt.Cmdlets.Commands
 {
     using System.Management.Automation;
-        
+    using Helpers.UnderlyingCode.Commands.Register;
+
     /// <summary>
     /// Description of UnregisterESXiVMCommand.
     /// </summary>
     [Cmdlet(VerbsLifecycle.Unregister, "ESXiVM")]
-    public class UnregisterESXiVMCommand : ConnectCmdletBase
+    public class UnregisterESXiVMCommand : VmListCmdletBase
     {
         public UnregisterESXiVMCommand()
         {
+            var command = new UnregisterVmCommand(this);
+            command.Execute();
         }
     }
 }

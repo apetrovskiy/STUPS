@@ -11,6 +11,7 @@ namespace Tmx.Client.Library.ObjectModel
 {
     using System.Diagnostics;
     using System.Net;
+    using Abstract;
     using Core.Types.Remoting;
     using Interfaces.Exceptions;
     using Interfaces.Server;
@@ -28,9 +29,14 @@ namespace Tmx.Client.Library.ObjectModel
     {
         readonly IRestOperations _restTemplate;
         
-        public StatusSender(RestRequestCreator requestCreator)
+        //public StatusSender(IRestRequestCreator requestCreator)
+        //{
+        //    _restTemplate = requestCreator.GetRestTemplate();
+        //}
+
+        public StatusSender()
         {
-            _restTemplate = requestCreator.GetRestTemplate();
+            _restTemplate = RestRequestFactory.GetRestRequestCreator().GetRestTemplate();
         }
         
         public virtual void Send(string status)

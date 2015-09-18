@@ -54,7 +54,9 @@ namespace Tmx
         
         void LoadCommonData()
         {
-            var commonDataLoader = new CommonDataLoader(new RestRequestCreator());
+            // 20150918
+            // var commonDataLoader = new CommonDataLoader(new RestRequestCreator());
+            var commonDataLoader = new CommonDataLoader();
             ClientSettings.Instance.CommonData.Data = commonDataLoader.Load();
         }
         
@@ -76,13 +78,17 @@ namespace Tmx
         
         void UpdateTask(ITestTask task)
         {
-            var taskUpdater = new TaskUpdater(new RestRequestCreator());
+            // 20150918
+            // var taskUpdater = new TaskUpdater(new RestRequestCreator());
+            var taskUpdater = new TaskUpdater();
             taskUpdater.UpdateTask(task);
         }
         
         void SendTestResults()
         {
-            var testResultsSender = new TestResultsSender(new RestRequestCreator());
+            // 20150918
+            // var testResultsSender = new TestResultsSender(new RestRequestCreator());
+            var testResultsSender = new TestResultsSender();
             var result = testResultsSender.SendTestResults();
             if (result)
                 TestData.ResetData();

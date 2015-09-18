@@ -28,7 +28,9 @@ namespace Tmx
         {
             var cmdlet = (SendTmxCommonDataItemCommand)Cmdlet;
             var keyValuePair = new CommonDataItem { Key = cmdlet.Key, Value = cmdlet.Value };
-            var commonDataSender = new CommonDataSender(new RestRequestCreator());
+            // 20150918
+            // var commonDataSender = new CommonDataSender(new RestRequestCreator());
+            var commonDataSender = new CommonDataSender();
             try {
                 commonDataSender.Send(keyValuePair);
                 cmdlet.WriteObject(true);

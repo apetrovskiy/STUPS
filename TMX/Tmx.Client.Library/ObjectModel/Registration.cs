@@ -12,6 +12,7 @@ namespace Tmx.Client.Library.ObjectModel
     using System;
     using System.Diagnostics;
     using System.Net;
+    using Abstract;
     using Core;
     using Core.Types.Remoting;
     using Interfaces.Exceptions;
@@ -33,14 +34,19 @@ namespace Tmx.Client.Library.ObjectModel
         // volatile RestTemplate _restTemplate;
         readonly RestTemplate _restTemplate;
         
-        public Registration(RestRequestCreator requestCreator)
-        {
-            _restTemplate = requestCreator.GetRestTemplate();
+//        public Registration(IRestRequestCreator requestCreator)
+//        {
+//            _restTemplate = requestCreator.GetRestTemplate();
             
-//            // 20141211
-//            // temporary
-//            // TODO: think about where to move it
-//            var tracingControl = new TracingControl("TmxClient_");
+////            // 20141211
+////            // temporary
+////            // TODO: think about where to move it
+////            var tracingControl = new TracingControl("TmxClient_");
+//        }
+
+        public Registration()
+        {
+            _restTemplate = RestRequestFactory.GetRestRequestCreator().GetRestTemplate();
         }
         
         public virtual Guid SendRegistrationInfoAndGetClientId(string customClientString)
@@ -121,7 +127,9 @@ namespace Tmx.Client.Library.ObjectModel
             
             Trace.TraceInformation("closeCurrentTaskIfAny().3");
             
-            var taskUpdater = new TaskUpdater(new RestRequestCreator());
+            // 20150918
+            // var taskUpdater = new TaskUpdater(new RestRequestCreator());
+            var taskUpdater = new TaskUpdater();
             
             Trace.TraceInformation("closeCurrentTaskIfAny().4");
             

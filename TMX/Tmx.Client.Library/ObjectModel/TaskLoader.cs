@@ -13,6 +13,7 @@ namespace Tmx.Client.Library.ObjectModel
     using System.Diagnostics;
     using System.Net;
     using System.Text.RegularExpressions;
+    using Abstract;
     using Core.Types.Remoting;
     using Interfaces.Exceptions;
     using Interfaces.Remoting;
@@ -29,9 +30,14 @@ namespace Tmx.Client.Library.ObjectModel
         // volatile RestTemplate _restTemplate;
         readonly IRestOperations _restTemplate;
         
-        public TaskLoader(RestRequestCreator requestCreator)
+        //public TaskLoader(IRestRequestCreator requestCreator)
+        //{
+        //    _restTemplate = requestCreator.GetRestTemplate();
+        //}
+
+        public TaskLoader()
         {
-            _restTemplate = requestCreator.GetRestTemplate();
+            _restTemplate = RestRequestFactory.GetRestRequestCreator().GetRestTemplate();
         }
         
         // 20141020 squeezing a task to its proxy

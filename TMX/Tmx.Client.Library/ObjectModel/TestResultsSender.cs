@@ -12,6 +12,7 @@ namespace Tmx.Client.Library.ObjectModel
     using System;
     using System.Diagnostics;
     using System.Net;
+    using Abstract;
     using Core;
     using Core.Types.Remoting;
     using Interfaces;
@@ -31,9 +32,14 @@ namespace Tmx.Client.Library.ObjectModel
         // volatile RestTemplate _restTemplate;
         readonly IRestOperations _restTemplate; // chrome-extension://aejoelaoggembcahagimdiliamlcdmfm/dhc.html#void
         
-        public TestResultsSender(RestRequestCreator requestCreator)
+        //public TestResultsSender(IRestRequestCreator requestCreator)
+        //{
+        //    _restTemplate = requestCreator.GetRestTemplate();
+        //}
+
+        public TestResultsSender()
         {
-            _restTemplate = requestCreator.GetRestTemplate();
+            _restTemplate = RestRequestFactory.GetRestRequestCreator().GetRestTemplate();
         }
         
         public virtual bool SendTestResults()

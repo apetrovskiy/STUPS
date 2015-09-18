@@ -9,6 +9,7 @@
 
 namespace Tmx.Client.Library.Helpers
 {
+    using Abstract;
     using Spring.Http.Client;
     using Spring.Http.Converters;
     using Spring.Http.Converters.Json;
@@ -18,9 +19,20 @@ namespace Tmx.Client.Library.Helpers
     /// <summary>
     /// Description of RestRequestCreator.
     /// </summary>
-    public class RestRequestCreator
+    public class RestRequestCreator : IRestRequestCreator
     {
         RestTemplate _restTemplate;
+        //static RestRequestCreator _restRequestCreator;
+
+        //private RestRequestCreator()
+        //{
+        //    _restRequestCreator = this;
+        //}
+
+        //public static RestRequestCreator GetInstance()
+        //{
+        //    return _restRequestCreator;
+        //}
         
         public virtual RestTemplate GetRestTemplate()
         {

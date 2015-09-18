@@ -25,7 +25,9 @@ namespace Tmx
         internal override void Execute()
         {
             var cmdlet = (ReceiveTmxTestReportCommand)Cmdlet;
-            var testReportLoader = new TestReportLoader(new RestRequestCreator());
+            // 20150918
+            // var testReportLoader = new TestReportLoader(new RestRequestCreator());
+            var testReportLoader = new TestReportLoader();
             cmdlet.WriteObject(testReportLoader.LoadTestReport());
         }
     }

@@ -129,8 +129,10 @@
     <Compile Include="..\TMX\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Abstract\IRestRequestCreator.cs" />
     <Compile Include="ClientControl.cs" />
     <Compile Include="Helpers\RestRequestCreator.cs" />
+    <Compile Include="Helpers\RestRequestFactory.cs" />
     <Compile Include="ObjectModel\ClientSettings.cs" />
     <Compile Include="ObjectModel\CommonDataLoader.cs" />
     <Compile Include="ObjectModel\CommonDataSender.cs" />

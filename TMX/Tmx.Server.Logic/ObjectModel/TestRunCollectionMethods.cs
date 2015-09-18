@@ -38,8 +38,10 @@
             // testRunCommand.NewTestRunId = testRun.Id;
             CurrentTestRunId = testRun.Id;
             
-            if (null == testRun)
-                return false;
+            // 20150918
+            // this was always false
+            // if (null == testRun)
+            //     return false;
             if (Guid.Empty == testRun.WorkflowId) // ??
                 return false;
             TestRunQueue.TestRuns.Add(testRun);

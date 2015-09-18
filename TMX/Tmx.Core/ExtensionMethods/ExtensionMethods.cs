@@ -158,7 +158,9 @@ namespace Tmx.Core
         
         public static bool IsActive(this ITestRun testRun)
         {
-            return TestRunStatuses.Running == testRun.Status;
+            // 20150918
+            // return TestRunStatuses.Running == testRun.Status;
+            return TestRunStatuses.Running == testRun.Status || TestRunStatuses.Canceling == testRun.Status;
         }
         
         public static bool IsNotQuiet(this ITestRun testRun)

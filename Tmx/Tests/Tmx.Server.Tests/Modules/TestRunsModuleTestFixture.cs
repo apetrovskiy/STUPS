@@ -55,8 +55,6 @@ namespace Tmx.Server.Tests.Modules
             WorkflowCollection.Workflows[0].IsDefault = true;
             Defaults.Workflow = WorkflowCollection.Workflows[0].Name;
             
-            // 20150826
-            // WhenSendingTestRunAsJson(TestConstants.Workflow03Name, TestRunStatuses.Running, UrlList.TestRunsControlPoint_absPath_for_newDefaultTestRun + "paramValue", null);
             WhenSendingTestRunAsJson(TestConstants.Workflow03Name, UrlList.TestRunsControlPoint_absPath_for_newDefaultTestRun + "paramValue", null);
 
             ThenThereShouldBeTheFollowingNumberOfTestRunObjects(1);
@@ -335,8 +333,12 @@ namespace Tmx.Server.Tests.Modules
             WhenCancelingTestRun(TestRunQueue.TestRuns[0]);
             
             ThenTestRunStatusIsCanceling(TestRunQueue.TestRuns[0]);
-            // ThenTestTaskStatusIs(TaskPool.TasksForClients[0], TestTaskStatuses.ExecutionFailed);
-            ThenTestTaskStatusIs(TaskPool.TasksForClients[0], TestTaskStatuses.InterruptedByUser);
+            // 20150918
+            // temporarily
+            // linked lines of code 20150918-001
+            // ThenTestTaskStatusIs(TaskPool.TasksForClients[0], TestTaskStatuses.InterruptedByUser);
+            ThenTestTaskStatusIs(TaskPool.TasksForClients[0], TestTaskStatuses.Running);
+
             ThenTestTaskStatusIs(TaskPool.TasksForClients[1], TestTaskStatuses.New); // emulates the situation when a cancel task has been ready to be sent to a client
             ThenTestTaskStatusIs(TaskPool.TasksForClients[2], TestTaskStatuses.Canceled);
         }

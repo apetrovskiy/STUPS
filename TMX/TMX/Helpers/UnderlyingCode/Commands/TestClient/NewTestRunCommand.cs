@@ -25,7 +25,9 @@ namespace Tmx
         internal override void Execute()
         {
             var cmdlet = (NewTmxTestRunCommand)Cmdlet;
-            var testRunCreator = new TestRunCreator(new RestRequestCreator());
+            // 20150918
+            // var testRunCreator = new TestRunCreator(new RestRequestCreator());
+            var testRunCreator = new TestRunCreator();
             var result = testRunCreator.CreateTestRun(cmdlet.WorkflowName, cmdlet.Status, cmdlet.Name);
             cmdlet.WriteObject(cmdlet, result);
         }

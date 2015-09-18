@@ -21,25 +21,23 @@ namespace EsxiMgmt.Core.ObjectModel
     /// </summary>
     public class VirtualMachinesSelector
     {
-        public IEnumerable<IEsxiVirtualMachine> GetMachines(string[] hostnames, int id, string name, string path)
+        public virtual IEnumerable<IEsxiVirtualMachine> GetMachines(string[] hostnames, int id, string name, string path)
         {
-            var connectionInfosApplicable = getConnectionInfosForSelectedServers(hostnames);
+            var connectionInfosApplicable = GetConnectionInfosForSelectedServers(hostnames);
             
             // TODO: use wildcards
-            var allVirtualMachinesFromHosts = getMachinesFromServer(connectionInfosApplicable);
+            var allVirtualMachinesFromHosts = GetMachinesFromServer(connectionInfosApplicable);
             if ("*" == name || "*" == path)
                 return allVirtualMachinesFromHosts;
             return 0 < id ? 
                 allVirtualMachinesFromHosts.Where(virtualMachine => virtualMachine.Id == id) : 
                 !string.IsNullOrEmpty(name) ? 
-            // allVirtualMachinesFromHosts.Where(virtualMachine => virtualMachine.Name == name) : 
                 allVirtualMachinesFromHosts.Where(virtualMachine => 0 == string.Compare(virtualMachine.Name, name, StringComparison.OrdinalIgnoreCase)) :
-            // !string.IsNullOrEmpty(path) ? allVirtualMachinesFromHosts.Where(virtualMachine => virtualMachine.Path == path) : 
                 !string.IsNullOrEmpty(path) ? allVirtualMachinesFromHosts.Where(virtualMachine => 0 == string.Compare(virtualMachine.Path, path, StringComparison.OrdinalIgnoreCase)) :
                 allVirtualMachinesFromHosts;
         }
         
-        List<ConnectionInfo> getConnectionInfosForSelectedServers(string[] hostnames)
+        List<ConnectionInfo> GetConnectionInfosForSelectedServers(string[] hostnames)
         {
             // TODO: support for wildcards
             var connectionInfosApplicable = new List<ConnectionInfo>();
@@ -50,7 +48,7 @@ namespace EsxiMgmt.Core.ObjectModel
             return connectionInfosApplicable;
         }
         
-        IEnumerable<IEsxiVirtualMachine> getMachinesFromServer(List<ConnectionInfo> connectionInfos)
+        IEnumerable<IEsxiVirtualMachine> GetMachinesFromServer(IEnumerable<ConnectionInfo> connectionInfos)
         {
             var vms = new List<IEsxiVirtualMachine>();
             

@@ -45,8 +45,6 @@ namespace Tmx.Server.Library.Modules
             var testRunCollectionMethods = ServerObjectFactory.Resolve<TestRunCollectionMethods>();
             return !testRunCollectionMethods.SetTestRunDataAndCreateTestRun(testRunCommand, Request.Form) ? 
                 Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed).WithReasonPhrase(ServerLibrary.ReasonPhrase_TestRunsModule_FailedToCreateTestRun) :
-                // 20150825
-                // GetTestRunCollectionExpandoObject();
                 GetTestRunCollectionExpandoObject(testRunCollectionMethods.CurrentTestRunId);
         }
         
@@ -64,12 +62,9 @@ namespace Tmx.Server.Library.Modules
                                                                                 WorkflowName = Defaults.Workflow
                                                                             }, parameters) ? 
                 Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed).WithReasonPhrase(ServerLibrary.ReasonPhrase_TestRunsModule_FailedToCreateTestRun) :
-                // 20150825
-                // GetTestRunCollectionExpandoObject();
                 GetTestRunCollectionExpandoObject(testRunCollectionMethods.CurrentTestRunId);
         }
         
-        // Negotiator GetTestRunCollectionExpandoObject()
         Negotiator GetTestRunCollectionExpandoObject(Guid currentTestRunId)
         {
             var testRunCollectionMethods = ServerObjectFactory.Resolve<TestRunCollectionMethods>();
@@ -85,15 +80,31 @@ namespace Tmx.Server.Library.Modules
         Negotiator DeleteTestRun(Guid testRunId)
         {
             ServerObjectFactory.Resolve<TestRunCollectionMethods>().DeleteTestRun(testRunId);
-            return Negotiate.WithStatusCode(HttpStatusCode.OK);
+            // 20150918
+            // return Negotiate.WithStatusCode(HttpStatusCode.OK);
+            //var testRunCollectionMethods = ServerObjectFactory.Resolve<TestRunCollectionMethods>();
+            //var data = testRunCollectionMethods.CreateTestRunExpandoObject();
+            //return Negotiate.WithStatusCode(HttpStatusCode.OK).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data);
+
+            return ReturnListOfTestRunsAndOk();
         }
         
         Negotiator CancelTestRun(Guid testRunId)
         {
+            // 20150918
+            //var testRunCollectionMethods = ServerObjectFactory.Resolve<TestRunCollectionMethods>();
+            //testRunCollectionMethods.CancelTestRun(testRunId);
+            //var data = testRunCollectionMethods.CreateTestRunExpandoObject();
+            //return Negotiate.WithStatusCode(HttpStatusCode.OK).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data);
+
+            ServerObjectFactory.Resolve<TestRunCollectionMethods>().CancelTestRun(testRunId);
+            return ReturnListOfTestRunsAndOk();
+        }
+
+        Negotiator ReturnListOfTestRunsAndOk()
+        {
             var testRunCollectionMethods = ServerObjectFactory.Resolve<TestRunCollectionMethods>();
-            testRunCollectionMethods.CancelTestRun(testRunId);
             var data = testRunCollectionMethods.CreateTestRunExpandoObject();
-            // data.NewTestRunId = testRunId;
             return Negotiate.WithStatusCode(HttpStatusCode.OK).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data);
         }
 

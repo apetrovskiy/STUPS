@@ -27,7 +27,9 @@ namespace Tmx
         internal override void Execute()
         {
             var cmdlet = (SendTmxTestTaskResultCommand)Cmdlet;
-            var taskUpdater = new TaskUpdater(new RestRequestCreator());
+            // 20150918
+            // var taskUpdater = new TaskUpdater(new RestRequestCreator());
+            var taskUpdater = new TaskUpdater();
             // 20140926
             // var testTask = new TestTask { TaskResult = new Dictionary<string, string>() };
             // 20150904

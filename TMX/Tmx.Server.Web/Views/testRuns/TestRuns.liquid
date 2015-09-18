@@ -28,6 +28,7 @@
 					<th>Clients</th>
 					<th>Tasks</th>
 					<th>Cancel</th>
+					<th>Delete</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -83,6 +84,15 @@
 						</form>
 					{% else -%}
 						<td><input type="submit" value="Cancel" disabled/></td>
+					{% endif -%}
+
+					{% if testRun.Status == 'Canceled' -%}
+						<form action="/api/testRuns/{{ testRun.Id }}" method="POST">
+							<input type="hidden" name="_method" value="DELETE"/>
+							<td><input type="submit" value="Delete"/></td>
+						</form>
+					{% else -%}
+						<td><input type="submit" value="Delete" disabled/></td>
 					{% endif -%}
 				</tr>
 				{% endfor -%}

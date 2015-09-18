@@ -13,6 +13,7 @@ namespace Tmx.Client.Library.ObjectModel
     using System.Diagnostics;
     using System.Net;
     using System.Xml.Linq;
+    using Abstract;
     using Core;
     using Core.Types.Remoting;
     using Interfaces.Exceptions;
@@ -29,9 +30,14 @@ namespace Tmx.Client.Library.ObjectModel
     {
         readonly IRestOperations _restTemplate;
         
-        public TestResultsLoader(RestRequestCreator requestCreator)
+        //public TestResultsLoader(IRestRequestCreator requestCreator)
+        //{
+        //    _restTemplate = requestCreator.GetRestTemplate();
+        //}
+
+        public TestResultsLoader()
         {
-            _restTemplate = requestCreator.GetRestTemplate();
+            _restTemplate = RestRequestFactory.GetRestRequestCreator().GetRestTemplate();
         }
         
         public virtual bool LoadTestResults()

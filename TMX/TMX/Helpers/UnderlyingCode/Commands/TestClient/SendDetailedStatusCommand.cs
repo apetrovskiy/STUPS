@@ -26,7 +26,9 @@ namespace Tmx
         internal override void Execute()
         {
             var cmdlet = (SendTmxDetailedStatusCommand)Cmdlet;
-            var statusSender = new StatusSender(new RestRequestCreator());
+            // 20150918
+            // var statusSender = new StatusSender(new RestRequestCreator());
+            var statusSender = new StatusSender();
             try {
                 statusSender.Send(cmdlet.Status);
                 cmdlet.WriteObject(cmdlet, true);

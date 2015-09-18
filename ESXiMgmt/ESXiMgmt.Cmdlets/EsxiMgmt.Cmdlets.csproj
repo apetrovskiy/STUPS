@@ -122,6 +122,7 @@
     <Compile Include="Helpers\Inheritance\VmListCmdletBase.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Connect\NewHostConnectionDataCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\EsxiCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Register\UnregisterVmCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Vm\GetVmCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Vm\NewVmCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Vm\RemoveVmCommand.cs" />

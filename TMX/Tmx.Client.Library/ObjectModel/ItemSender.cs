@@ -14,6 +14,7 @@ namespace Tmx.Client.Library.ObjectModel
     using System.Diagnostics;
     using System.IO;
     using System.Net;
+    using Abstract;
     using Interfaces.Server;
     using Helpers;
     using Spring.Http;
@@ -26,9 +27,14 @@ namespace Tmx.Client.Library.ObjectModel
     {
         readonly IRestOperations _restTemplate;
         
-        public ItemSender(RestRequestCreator requestCreator)
+        //public ItemSender(IRestRequestCreator requestCreator)
+        //{
+        //    _restTemplate = requestCreator.GetRestTemplate();
+        //}
+
+        public ItemSender()
         {
-            _restTemplate = requestCreator.GetRestTemplate();
+            _restTemplate = RestRequestFactory.GetRestRequestCreator().GetRestTemplate();
         }
         
         public virtual bool SendFileSystemHierarchy(string sourcePath, string destinationPath, bool recurse, bool force)

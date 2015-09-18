@@ -42,31 +42,16 @@ namespace Tmx.Server.Logic.ObjectModel.ExtensionMethods
             return ActiveTestRunIds(TestRunQueue.TestRuns).Contains(testClient.TestRunId);
         }
         
-        // 20141211
-        // since this is not used
-//        public static IEnumerable<Guid> ActiveWorkflowIds(this List<ITestWorkflow> list)
-//        {
-//            // return WorkflowCollection.Workflows.Select(wfl => wfl.Id).Intersect(TestRunQueue.TestRuns.Where(tr => tr.Status == TestRunStatuses.Running).Select(tr => tr.WorkflowId));
-//            return WorkflowCollection.Workflows.Select(wfl => wfl.Id).Intersect(TestRunQueue.TestRuns.Where(tr => tr.IsActive()).Select(tr => tr.WorkflowId));
-//            // return WorkflowCollection.Workflows.Select(wfl => wfl.Id).Intersect(TestRunQueue.TestRuns.Where(IsActive).Select(tr => tr.WorkflowId));
-//        }
-        
         public static bool IsLastTaskInTestRun(this ITestTask task)
         {
             return !TaskPool.TasksForClients.Any(tsk => tsk.TestRunId == task.TestRunId && tsk.Id != task.Id && !tsk.IsFinished());
         }
-//        
-//        public static string GetTestLabName(this IWorkflow testRun)
-//        {
-//            return TestLabCollection.TestLabs.FirstOrDefault(testLab => testLab.Id == testRun.TestLabId).Name;
-//        }
         
         public static string GetTestLabName(this ITestRun testRun)
         {
             return TestLabCollection.TestLabs.FirstOrDefault(testLab => testLab.Id == testRun.TestLabId).Name;
         }
         
-        // 20150807
         public static void UnregisterClients(this ITestRun testRun)
         {
             ClientsCollection.Clients.RemoveAll(client => client.TestRunId == testRun.Id);

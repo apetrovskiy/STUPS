@@ -25,7 +25,9 @@ namespace Tmx
         internal override void Execute()
         {
             var cmdlet = (SendTmxFileSystemItemCommand)Cmdlet;
-            var itemSender = new ItemSender(new RestRequestCreator());
+            // 20150918
+            // var itemSender = new ItemSender(new RestRequestCreator());
+            var itemSender = new ItemSender();
             cmdlet.WriteObject(itemSender.SendFileSystemHierarchy(cmdlet.Path, cmdlet.Destination, cmdlet.Recurse, cmdlet.Force));
         }
     }

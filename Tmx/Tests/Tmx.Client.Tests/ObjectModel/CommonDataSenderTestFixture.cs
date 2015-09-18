@@ -77,7 +77,9 @@ Call MockRestServiceServer.Verify() method.
                 .AndExpectBodyContains(expectedValue)
                 .AndRespondWith("", _responseHeaders, HttpStatusCode.Created, "");
             
-            var commonDataSender = new CommonDataSender(_restRequestCreator);
+            // 20150918
+            // var commonDataSender = new CommonDataSender(_restRequestCreator);
+            var commonDataSender = new CommonDataSender();
             commonDataSender.Send(new CommonDataItem { Key = expectedKey, Value = expectedValue });
         }
         
@@ -101,7 +103,9 @@ Call MockRestServiceServer.Verify() method.
                 .AndExpectBodyContains(expectedValue)
                 .AndRespondWith("", _responseHeaders, HttpStatusCode.Created, "");
             
-            var commonDataSender = new CommonDataSender(_restRequestCreator);
+            // 20150918
+            // var commonDataSender = new CommonDataSender(_restRequestCreator);
+            var commonDataSender = new CommonDataSender();
             commonDataSender.Send(new CommonDataItem { Key = expectedKey, Value = expectedValue });
             commonDataSender.Send(new CommonDataItem { Key = expectedKey, Value = expectedValue });
         }
@@ -116,7 +120,9 @@ Call MockRestServiceServer.Verify() method.
                 .AndExpectMethod(HttpMethod.GET)
                 .AndRespondWith("{ \"Key\":\"aaa\",\"Value\":\"bbb\" }", _responseHeaders, HttpStatusCode.OK, "");
             
-            var commonDataLoader = new CommonDataLoader(_restRequestCreator);
+            // 20150918
+            // var commonDataLoader = new CommonDataLoader(_restRequestCreator);
+            var commonDataLoader = new CommonDataLoader();
             var resultDictionary = commonDataLoader.Load();
             
             Assert.Equal("aaa", resultDictionary["Key"]);
@@ -141,6 +147,7 @@ Call MockRestServiceServer.Verify() method.
             ClientSettings.Instance.ServerUrl = BaseUrl;
             _restRequestCreator = new RestRequestCreator();
             _restRequestCreator.SetRestTemplate(_restTemplate);
+            RestRequestFactory.RestRequestCreator = _restRequestCreator;
         }
     }
 }

@@ -11,6 +11,7 @@ namespace Tmx.Client.Library.ObjectModel
 {
     using System.Diagnostics;
     using System.Net;
+    using Abstract;
     using Interfaces.Exceptions;
     using Interfaces.Remoting;
     using Interfaces.Server;
@@ -27,9 +28,14 @@ namespace Tmx.Client.Library.ObjectModel
     {
         readonly IRestOperations _restTemplate;
         
-        public CommonDataSender(RestRequestCreator requestCreator)
+        //public CommonDataSender(IRestRequestCreator requestCreator)
+        //{
+        //    _restTemplate = requestCreator.GetRestTemplate();
+        //}
+
+        public CommonDataSender()
         {
-            _restTemplate = requestCreator.GetRestTemplate();
+            _restTemplate = RestRequestFactory.GetRestRequestCreator().GetRestTemplate();
         }
         
         public virtual void Send(ICommonDataItem item)

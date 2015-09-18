@@ -26,7 +26,7 @@ namespace EsxiMgmt.Cmdlets.Helpers.UnderlyingCode.Commands.Vm
             Cmdlet.WriteObject(RemoveVirtualMachines());
         }
         
-        internal bool RemoveVirtualMachines()
+        bool RemoveVirtualMachines()
         {
             var cmdlet = (RemoveEsxiVmCommand)Cmdlet;
             var virtualMachinesSelector = new VirtualMachinesSelector();

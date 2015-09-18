@@ -33,7 +33,9 @@ namespace Tmx
             var clientSettings = ClientSettings.Instance;
             clientSettings.StopImmediately = false;
             
-            var taskLoader = new TaskLoader(new RestRequestCreator());
+            // 20150918
+            // var taskLoader = new TaskLoader(new RestRequestCreator());
+            var taskLoader = new TaskLoader();
             // 20141020 squeezing a task to its proxy
             ITestTask task = null;
             // ITestTaskProxy task = null;
@@ -50,7 +52,9 @@ namespace Tmx
                 }
                 catch (ClientNotRegisteredException) {
                     if (Guid.Empty != ClientSettings.Instance.ClientId && string.Empty != ClientSettings.Instance.ServerUrl) {
-                        var registration = new Registration(new RestRequestCreator());
+                        // 20150918
+                        // var registration = new Registration(new RestRequestCreator());
+                        var registration = new Registration();
                         ClientSettings.Instance.ClientId = registration.SendRegistrationInfoAndGetClientId(ClientSettings.Instance.CurrentClient.CustomString);
                     }
                     

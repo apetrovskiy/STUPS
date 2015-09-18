@@ -21,11 +21,6 @@ namespace Tmx.Server.Logic.ObjectModel
     {
         public virtual ITestRun GetNextInRowTestRun()
         {
-            // var testRunsThatPending = TestRunQueue.TestRuns.Where(testRun => TestRunStatuses.Pending == testRun.Status);
-            /*
-            var testRunsThatPending = TestRunQueue.TestRuns.Where(testRun => testRun.IsPending());
-            return !testRunsThatPending.Any() ? null : testRunsThatPending.OrderBy(testRun => testRun.CreatedTime).First();
-            */
             var testRunsThatPending = TestRunQueue.TestRuns.Where(testRun => testRun.IsPending());
             var testRunsThatPendingArray = testRunsThatPending as ITestRun[] ?? testRunsThatPending.ToArray();
             return !testRunsThatPendingArray.Any() ? null : testRunsThatPendingArray.OrderBy(testRun => testRun.CreatedTime).First();
@@ -33,20 +28,18 @@ namespace Tmx.Server.Logic.ObjectModel
         
         public virtual void CancelTestRun(ITestRun testRun)
         {
-            // 20150909
-            //TaskPool.TasksForClients.Where(task => task.TestRunId == testRun.Id && !task.IsFinished() && !task.IsActive()).ToList().ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled);
-            //testRun.Status = TestRunStatuses.Canceled;
-            //if (TaskPool.TasksForClients.Any(task => task.TestRunId == testRun.Id && task.IsActive())) {
-            //    TaskPool.TasksForClients.Where(task => task.TestRunId == testRun.Id && task.IsActive()).ToList().ForEach(task => task.TaskStatus = TestTaskStatuses.ExecutionFailed);
-            //    testRun.Status = TestRunStatuses.Canceling;
-            //}
             TaskPool.TasksForClients.Where(task => task.TestRunId == testRun.Id && !task.IsFinished() && !task.IsActive() && !task.IsCancel).ToList().ForEach(task => task.TaskStatus = TestTaskStatuses.Canceled);
             var activeTasks = TaskPool.TasksForClients.Where(task => task.TestRunId == testRun.Id && task.IsActive()).ToList();
             if (activeTasks.Any())
             {
-                // 20150909
-                // activeTasks.ForEach(task => { if (!task.IsCancel) task.TaskStatus = TestTaskStatuses.ExecutionFailed; });
-                activeTasks.ForEach(task => { if (!task.IsCancel) task.TaskStatus = TestTaskStatuses.InterruptedByUser; });
+                // 20150918
+                // temporarily
+                // until there'll be async execution of task here
+                // linked lines of code 20150918-001
+                // activeTasks.ForEach(task => { if (!task.IsCancel) task.TaskStatus = TestTaskStatuses.InterruptedByUser; });
+                // TODO: provide all clients that ran active tasks with newly available tasks
+                // however clients can't interrupt their tasks
+                // 
                 testRun.Status = TestRunStatuses.Canceling;
             }
             else

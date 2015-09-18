@@ -14,6 +14,7 @@ namespace Tmx.Client.Library.ObjectModel
     using System.Diagnostics;
     using System.Linq;
     using System.Net;
+    using Abstract;
     using Interfaces.Server;
     using Helpers;
     using Spring.Rest.Client;
@@ -25,9 +26,14 @@ namespace Tmx.Client.Library.ObjectModel
     {
         readonly IRestOperations _restTemplate;
         
-        public CommonDataLoader(RestRequestCreator requestCreator)
+        //public CommonDataLoader(IRestRequestCreator requestCreator)
+        //{
+        //    _restTemplate = requestCreator.GetRestTemplate();
+        //}
+
+        public CommonDataLoader()
         {
-            _restTemplate = requestCreator.GetRestTemplate();
+            _restTemplate = RestRequestFactory.GetRestRequestCreator().GetRestTemplate();
         }
         
         // public virtual Dictionary<string, string> Load()

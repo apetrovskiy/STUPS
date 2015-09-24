@@ -46,7 +46,9 @@
             if (!workflowIds.Any())
                 return false;
             
-            testClient.TestRunId = TestRunQueue.TestRuns.First(testRun => testRun.IsActive() && workflowIds.Contains(testRun.WorkflowId)).Id;
+            // 20150922
+            // testClient.TestRunId = TestRunQueue.TestRuns.First(testRun => testRun.IsActive() && workflowIds.Contains(testRun.WorkflowId)).Id;
+            testClient.TestRunId = TestRunQueue.TestRuns.First(testRun => testRun.IsAcceptingNewClients() && workflowIds.Contains(testRun.WorkflowId)).Id;
             
             ClientsCollection.Clients.Add(testClient);
             var taskSelector = ServerObjectFactory.Resolve<TaskSelector>();

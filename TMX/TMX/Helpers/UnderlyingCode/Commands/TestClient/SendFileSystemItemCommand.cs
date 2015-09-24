@@ -12,7 +12,8 @@ namespace Tmx
     using Client.Library.Helpers;
     using Client.Library.ObjectModel;
     using Commands;
-    
+    using Core.Proxy;
+
     /// <summary>
     /// Description of SendFileSystemItemCommand.
     /// </summary>
@@ -27,7 +28,8 @@ namespace Tmx
             var cmdlet = (SendTmxFileSystemItemCommand)Cmdlet;
             // 20150918
             // var itemSender = new ItemSender(new RestRequestCreator());
-            var itemSender = new ItemSender();
+            // var itemSender = new ItemSender();
+            var itemSender = ProxyFactory.Get<ItemSender>();
             cmdlet.WriteObject(itemSender.SendFileSystemHierarchy(cmdlet.Path, cmdlet.Destination, cmdlet.Recurse, cmdlet.Force));
         }
     }

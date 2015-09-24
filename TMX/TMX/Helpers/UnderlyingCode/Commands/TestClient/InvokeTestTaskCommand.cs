@@ -15,6 +15,7 @@ namespace Tmx
     using Client.Library.ObjectModel;
     using Commands;
     using Core;
+    using Core.Proxy;
     using Interfaces.ExtensionMethods;
     using Interfaces.Remoting;
     using Interfaces.TestStructure;
@@ -56,13 +57,15 @@ namespace Tmx
         {
             // 20150918
             // var commonDataLoader = new CommonDataLoader(new RestRequestCreator());
-            var commonDataLoader = new CommonDataLoader();
+            // var commonDataLoader = new CommonDataLoader();
+            var commonDataLoader = ProxyFactory.Get<CommonDataLoader>();
             ClientSettings.Instance.CommonData.Data = commonDataLoader.Load();
         }
         
         void RunTask(ITestTask task)
         {
-            var taskRunner = new TaskRunner();
+            // var taskRunner = new TaskRunner();
+            var taskRunner = ProxyFactory.Get<TaskRunner>();
             var runResult = taskRunner.Run(task);
             // 20150112
             // task.TaskFinished = true
@@ -80,7 +83,8 @@ namespace Tmx
         {
             // 20150918
             // var taskUpdater = new TaskUpdater(new RestRequestCreator());
-            var taskUpdater = new TaskUpdater();
+            // var taskUpdater = new TaskUpdater();
+            var taskUpdater = ProxyFactory.Get<TaskUpdater>();
             taskUpdater.UpdateTask(task);
         }
         
@@ -88,7 +92,8 @@ namespace Tmx
         {
             // 20150918
             // var testResultsSender = new TestResultsSender(new RestRequestCreator());
-            var testResultsSender = new TestResultsSender();
+            // var testResultsSender = new TestResultsSender();
+            var testResultsSender = ProxyFactory.Get<TestResultsSender>();
             var result = testResultsSender.SendTestResults();
             if (result)
                 TestData.ResetData();

@@ -21,6 +21,7 @@ namespace Tmx.Client.Tests.ObjectModel
     using Interfaces.Server;
     using Xunit;
     using Client;
+    using Core.Proxy;
     using Library.Helpers;
     using Library.ObjectModel;
 
@@ -79,7 +80,8 @@ Call MockRestServiceServer.Verify() method.
             
             // 20150918
             // var commonDataSender = new CommonDataSender(_restRequestCreator);
-            var commonDataSender = new CommonDataSender();
+            // var commonDataSender = new CommonDataSender();
+            var commonDataSender = ProxyFactory.Get<CommonDataSender>();
             commonDataSender.Send(new CommonDataItem { Key = expectedKey, Value = expectedValue });
         }
         
@@ -105,7 +107,8 @@ Call MockRestServiceServer.Verify() method.
             
             // 20150918
             // var commonDataSender = new CommonDataSender(_restRequestCreator);
-            var commonDataSender = new CommonDataSender();
+            // var commonDataSender = new CommonDataSender();
+            var commonDataSender = ProxyFactory.Get<CommonDataSender>();
             commonDataSender.Send(new CommonDataItem { Key = expectedKey, Value = expectedValue });
             commonDataSender.Send(new CommonDataItem { Key = expectedKey, Value = expectedValue });
         }
@@ -122,7 +125,8 @@ Call MockRestServiceServer.Verify() method.
             
             // 20150918
             // var commonDataLoader = new CommonDataLoader(_restRequestCreator);
-            var commonDataLoader = new CommonDataLoader();
+            // var commonDataLoader = new CommonDataLoader();
+            var commonDataLoader = ProxyFactory.Get<CommonDataLoader>();
             var resultDictionary = commonDataLoader.Load();
             
             Assert.Equal("aaa", resultDictionary["Key"]);

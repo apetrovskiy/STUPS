@@ -14,7 +14,6 @@ namespace Tmx.Client.Library.ObjectModel
     using System.Diagnostics;
     using System.IO;
     using System.Net;
-    using Abstract;
     using Interfaces.Server;
     using Helpers;
     using Spring.Http;

@@ -13,7 +13,6 @@ namespace Tmx.Client.Library.ObjectModel
     using System.Diagnostics;
     using System.Net;
     using System.Text.RegularExpressions;
-    using Abstract;
     using Core.Types.Remoting;
     using Interfaces.Exceptions;
     using Interfaces.Remoting;

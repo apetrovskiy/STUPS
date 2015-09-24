@@ -13,7 +13,8 @@ namespace Tmx
     using Client.Library.ObjectModel;
     using Interfaces.Exceptions;
     using Commands;
-    
+    using Core.Proxy;
+
     /// <summary>
     /// Description of SendDetailedStatusCommand.
     /// </summary>
@@ -28,7 +29,8 @@ namespace Tmx
             var cmdlet = (SendTmxDetailedStatusCommand)Cmdlet;
             // 20150918
             // var statusSender = new StatusSender(new RestRequestCreator());
-            var statusSender = new StatusSender();
+            // var statusSender = new StatusSender();
+            var statusSender = ProxyFactory.Get<StatusSender>();
             try {
                 statusSender.Send(cmdlet.Status);
                 cmdlet.WriteObject(cmdlet, true);

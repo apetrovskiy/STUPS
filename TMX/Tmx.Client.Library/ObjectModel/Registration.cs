@@ -12,15 +12,12 @@ namespace Tmx.Client.Library.ObjectModel
     using System;
     using System.Diagnostics;
     using System.Net;
-    using Abstract;
     using Core;
     using Core.Types.Remoting;
     using Interfaces.Exceptions;
     using Interfaces.Remoting;
     using Interfaces.Server;
     using Helpers;
-    using Interfaces.ExtensionMethods;
-    using Interfaces.TestStructure;
     using Spring.Http;
     using Spring.Rest.Client;
 //using PSTestLib.Helpers;

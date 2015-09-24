@@ -14,7 +14,7 @@
     public class TestRunCollectionMethods
     {
         // 20150825
-        public Guid CurrentTestRunId { get; private set; }
+        public virtual Guid CurrentTestRunId { get; private set; }
 
         public virtual bool SetTestRunDataAndCreateTestRun(ITestRunCommand testRunCommand, DynamicDictionary formData)
         {
@@ -25,7 +25,7 @@
                 testRunCommand.WorkflowName = formData[Tmx_Core_Resources.TestRunCommand_workflowName_param] ?? string.Empty;
             if (string.IsNullOrEmpty(testRunCommand.TestRunName))
                 testRunCommand.TestRunName = formData[Tmx_Core_Resources.TestRunCommand_testRunName_param] ?? string.Empty;
-            
+
             return PrepareTestRun(testRunCommand, formData);
         }
         
@@ -45,7 +45,7 @@
             if (Guid.Empty == testRun.WorkflowId) // ??
                 return false;
             TestRunQueue.TestRuns.Add(testRun);
-            
+
             foreach (var testRunAction in testRun.BeforeActions)
             {
                 testRunAction.Run();

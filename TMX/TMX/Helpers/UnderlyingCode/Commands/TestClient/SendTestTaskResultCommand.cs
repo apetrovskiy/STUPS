@@ -13,6 +13,7 @@ namespace Tmx
     using Client.Library.Helpers;
     using Client.Library.ObjectModel;
     using Commands;
+    using Core.Proxy;
     using Core.Types.Remoting;
 
     /// <summary>
@@ -29,7 +30,8 @@ namespace Tmx
             var cmdlet = (SendTmxTestTaskResultCommand)Cmdlet;
             // 20150918
             // var taskUpdater = new TaskUpdater(new RestRequestCreator());
-            var taskUpdater = new TaskUpdater();
+            // var taskUpdater = new TaskUpdater();
+            var taskUpdater = ProxyFactory.Get<TaskUpdater>();
             // 20140926
             // var testTask = new TestTask { TaskResult = new Dictionary<string, string>() };
             // 20150904

@@ -162,6 +162,11 @@ namespace Tmx.Core
             // return TestRunStatuses.Running == testRun.Status;
             return TestRunStatuses.Running == testRun.Status || TestRunStatuses.Canceling == testRun.Status;
         }
+
+        public static bool IsAcceptingNewClients(this ITestRun testRun)
+        {
+            return TestRunStatuses.Running == testRun.Status;
+        }
         
         public static bool IsNotQuiet(this ITestRun testRun)
         {

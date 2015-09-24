@@ -12,6 +12,7 @@ namespace Tmx
     using Client.Library.Helpers;
     using Client.Library.ObjectModel;
     using Commands;
+    using Core.Proxy;
 
     /// <summary>
     /// Description of NewTestRunCommand.
@@ -27,7 +28,9 @@ namespace Tmx
             var cmdlet = (NewTmxTestRunCommand)Cmdlet;
             // 20150918
             // var testRunCreator = new TestRunCreator(new RestRequestCreator());
-            var testRunCreator = new TestRunCreator();
+            // var testRunCreator = new TestRunCreator();
+            // var testRunCreator = new TestRunCreator();
+            var testRunCreator = ProxyFactory.Get<TestRunCreator>();
             var result = testRunCreator.CreateTestRun(cmdlet.WorkflowName, cmdlet.Status, cmdlet.Name);
             cmdlet.WriteObject(cmdlet, result);
         }

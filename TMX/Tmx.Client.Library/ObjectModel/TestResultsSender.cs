@@ -12,7 +12,6 @@ namespace Tmx.Client.Library.ObjectModel
     using System;
     using System.Diagnostics;
     using System.Net;
-    using Abstract;
     using Core;
     using Core.Types.Remoting;
     using Interfaces;

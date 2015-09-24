@@ -54,6 +54,7 @@ namespace Tmx.Server.Logic.ObjectModel.ExtensionMethods
         
         public static void UnregisterClients(this ITestRun testRun)
         {
+            // TODO: send command to unregister to clients
             ClientsCollection.Clients.RemoveAll(client => client.TestRunId == testRun.Id);
         }
     }

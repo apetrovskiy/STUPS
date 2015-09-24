@@ -15,7 +15,8 @@ namespace Tmx
     using Client.Library.Helpers;
     using Client.Library.ObjectModel;
     using Commands;
-    
+    using Core.Proxy;
+
     /// <summary>
     /// Description of RegisterSystemUnderTestCommand.
     /// </summary>
@@ -34,7 +35,8 @@ namespace Tmx
             
             // 20150918
             // var registration = new Registration(new RestRequestCreator());
-            var registration = new Registration();
+            // var registration = new Registration();
+            var registration = ProxyFactory.Get<Registration>();
             // temporarily
             // TODO: to a template method
             var startTime = DateTime.Now;

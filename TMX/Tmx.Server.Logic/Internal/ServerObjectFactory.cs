@@ -1,6 +1,7 @@
 ﻿namespace Tmx.Server.Logic.Internal
 {
     using System;
+    using Core.Proxy;
     using Nancy.TinyIoc;
 
     public class ServerObjectFactory
@@ -12,13 +13,7 @@
                 throw new Exception(string.Format("Unable to resolve type {0}", typeof(T).Name));
 
             // return Proxify<T>(typeToReturn);
-            return Proxify(typeToReturn);
-        }
-
-        static T Proxify<T>(T typeToProxify)
-        {
-            // TODO: use Castle
-            return typeToProxify;
+            return ProxyFactory.Proxify(typeToReturn);
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Tmx.Core {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Tmx_Core_Resources {
+    public class Tmx_Core_Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Tmx.Core {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Tmx.Core.Tmx.Core.Resources", typeof(Tmx_Core_Resources).Assembly);
@@ -51,7 +51,7 @@ namespace Tmx.Core {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,9 +61,18 @@ namespace Tmx.Core {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to tmxLog.
+        /// </summary>
+        public static string LogName {
+            get {
+                return ResourceManager.GetString("LogName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to lastTestRunId.
         /// </summary>
-        internal static string NewTestRun_lastTestRunId {
+        public static string NewTestRun_lastTestRunId {
             get {
                 return ResourceManager.GetString("NewTestRun_lastTestRunId", resourceCulture);
             }
@@ -72,7 +81,7 @@ namespace Tmx.Core {
         /// <summary>
         ///   Looks up a localized string similar to generated test result name.
         /// </summary>
-        internal static string TestData_AddTestResult_generated_test_result_name {
+        public static string TestData_AddTestResult_generated_test_result_name {
             get {
                 return ResourceManager.GetString("TestData_AddTestResult_generated_test_result_name", resourceCulture);
             }
@@ -81,7 +90,7 @@ namespace Tmx.Core {
         /// <summary>
         ///   Looks up a localized string similar to PROCESSOR_ARCHITECTURE.
         /// </summary>
-        internal static string TestPlatform_TestPlatform_PROCESSOR_ARCHITECTURE {
+        public static string TestPlatform_TestPlatform_PROCESSOR_ARCHITECTURE {
             get {
                 return ResourceManager.GetString("TestPlatform_TestPlatform_PROCESSOR_ARCHITECTURE", resourceCulture);
             }
@@ -90,7 +99,7 @@ namespace Tmx.Core {
         /// <summary>
         ///   Looks up a localized string similar to This platform has been created automatically.
         /// </summary>
-        internal static string TestRun_TestRun_This_platform_has_been_created_automatically {
+        public static string TestRun_TestRun_This_platform_has_been_created_automatically {
             get {
                 return ResourceManager.GetString("TestRun_TestRun_This_platform_has_been_created_automatically", resourceCulture);
             }
@@ -99,7 +108,7 @@ namespace Tmx.Core {
         /// <summary>
         ///   Looks up a localized string similar to test_run_name.
         /// </summary>
-        internal static string TestRunCommand_testRunName_param {
+        public static string TestRunCommand_testRunName_param {
             get {
                 return ResourceManager.GetString("TestRunCommand_testRunName_param", resourceCulture);
             }
@@ -108,7 +117,7 @@ namespace Tmx.Core {
         /// <summary>
         ///   Looks up a localized string similar to workflow_name.
         /// </summary>
-        internal static string TestRunCommand_workflowName_param {
+        public static string TestRunCommand_workflowName_param {
             get {
                 return ResourceManager.GetString("TestRunCommand_workflowName_param", resourceCulture);
             }
@@ -117,7 +126,7 @@ namespace Tmx.Core {
         /// <summary>
         ///   Looks up a localized string similar to Invalid value for TestSuiteStatuses.
         /// </summary>
-        internal static string TestSuite_enStatus_Invalid_value_for_TestSuiteStatuses {
+        public static string TestSuite_enStatus_Invalid_value_for_TestSuiteStatuses {
             get {
                 return ResourceManager.GetString("TestSuite_enStatus_Invalid_value_for_TestSuiteStatuses", resourceCulture);
             }

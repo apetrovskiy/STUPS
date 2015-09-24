@@ -12,7 +12,8 @@ namespace Tmx
     using Client.Library.Helpers;
     using Client.Library.ObjectModel;
     using Commands;
-    
+    using Core.Proxy;
+
     /// <summary>
     /// Description of ReceiveTestResportCommand.
     /// </summary>
@@ -27,7 +28,8 @@ namespace Tmx
             var cmdlet = (ReceiveTmxTestReportCommand)Cmdlet;
             // 20150918
             // var testReportLoader = new TestReportLoader(new RestRequestCreator());
-            var testReportLoader = new TestReportLoader();
+            // var testReportLoader = new TestReportLoader();
+            var testReportLoader = ProxyFactory.Get<TestReportLoader>();
             cmdlet.WriteObject(testReportLoader.LoadTestReport());
         }
     }

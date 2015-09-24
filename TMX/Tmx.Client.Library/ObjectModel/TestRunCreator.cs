@@ -12,7 +12,6 @@ namespace Tmx.Client.Library.ObjectModel
     using System;
     using System.Diagnostics;
     using System.Net;
-    using Abstract;
     using Core.Types.Remoting;
     using Interfaces.Remoting;
     using Interfaces.Server;
@@ -36,7 +35,7 @@ namespace Tmx.Client.Library.ObjectModel
             _restTemplate = RestRequestFactory.GetRestRequestCreator().GetRestTemplate();
         }
         
-        public bool CreateTestRun(string workflowName, TestRunStatuses status, string name)
+        public virtual bool CreateTestRun(string workflowName, TestRunStatuses status, string name)
         {
             Trace.TraceInformation("CreateTestRun(string workflowName, TestRunStatuses status, string name).1");
             

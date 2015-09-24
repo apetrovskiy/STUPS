@@ -82,6 +82,7 @@ namespace Tmx.Server.Tests.Modules
             ThenThereShouldBeTheFollowingNumberOfTestRunObjects(2);
             ThenTestRunIsRunning(TestRunQueue.TestRuns[0]);
             ThenTestRunIsRunning(TestRunQueue.TestRuns[1]);
+            ThenTestRunIdIs(1, Guid.Parse(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId]));
         }
         
         [Test][NUnit.Framework.Test][Fact]
@@ -93,20 +94,19 @@ namespace Tmx.Server.Tests.Modules
             
             ThenThereShouldBeTheFollowingNumberOfTestRunObjects(1);
             ThenTestRunIsRunning(TestRunQueue.TestRuns[0]);
+            ThenTestRunIdIs(0, Guid.Parse(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId]));
         }
 
         [Test][NUnit.Framework.Test][Fact]
-        public void ShouldCreateFirstTestRunAndReturnsItsId()
+        public void ShouldCreateFirstTestRunAndReturnItsId()
         {
             GivenFirstTestWorkflow();
 
-            // WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
             WhenSendingTestRunAsJson(TestConstants.Workflow01Name, TestRunStatuses.Running);
 
             ThenThereShouldBeTheFollowingNumberOfTestRunObjects(1);
             ThenTestRunIsRunning(TestRunQueue.TestRuns[0]);
-            // ThenTestRunIdIs(testRunCommandResponse.NewTestRunId, TestRunQueue.TestRuns[0].Id);
-            ThenTestRunIdIs(TestRunQueue.TestRuns[0].Id);
+            ThenTestRunIdIs(0, Guid.Parse(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId]));
         }
         
         [Test][NUnit.Framework.Test][Fact]
@@ -125,6 +125,7 @@ namespace Tmx.Server.Tests.Modules
             ThenThereShouldBeTheFollowingNumberOfTestRunObjects(2);
             ThenTestRunIsRunning(TestRunQueue.TestRuns[0]);
             ThenTestRunIsRunning(TestRunQueue.TestRuns[1]);
+            ThenTestRunIdIs(1, Guid.Parse(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId]));
         }
         
         [Test][NUnit.Framework.Test][Fact]
@@ -139,6 +140,7 @@ namespace Tmx.Server.Tests.Modules
             ThenThereShouldBeTheFollowingNumberOfTestRunObjects(2);
             ThenTestRunIsRunning(TestRunQueue.TestRuns[0]);
             ThenTestRunIsPending(TestRunQueue.TestRuns[1]);
+            ThenTestRunIdIs(1, Guid.Parse(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId]));
         }
         
         [Test][NUnit.Framework.Test][Fact]
@@ -152,6 +154,7 @@ namespace Tmx.Server.Tests.Modules
             ThenThereShouldBeTheFollowingNumberOfTestRunObjects(2);
             ThenTestRunIsRunning(TestRunQueue.TestRuns[0]);
             ThenTestRunIsPending(TestRunQueue.TestRuns[1]);
+            ThenTestRunIdIs(1, Guid.Parse(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId]));
         }
         
         [Test][NUnit.Framework.Test][Fact]
@@ -167,6 +170,7 @@ namespace Tmx.Server.Tests.Modules
             ThenThereShouldBeTheFollowingNumberOfTestRunObjects(2);
             ThenTestRunIsCompleted(TestRunQueue.TestRuns[0]);
             ThenTestRunIsRunning(TestRunQueue.TestRuns[1]);
+            ThenTestRunIdIs(1, Guid.Parse(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId]));
         }
         
         [Test][NUnit.Framework.Test][Fact]
@@ -188,6 +192,7 @@ namespace Tmx.Server.Tests.Modules
             ThenTestRunIsPending(TestRunQueue.TestRuns[2]);
             ThenTestRunIsPending(TestRunQueue.TestRuns[3]);
             ThenTestRunIsPending(TestRunQueue.TestRuns[4]);
+            ThenTestRunIdIs(4, Guid.Parse(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId]));
         }
         
         [Test][NUnit.Framework.Test][Fact]
@@ -209,6 +214,7 @@ namespace Tmx.Server.Tests.Modules
             ThenTestRunIsPending(TestRunQueue.TestRuns[2]);
             ThenTestRunIsPending(TestRunQueue.TestRuns[3]);
             ThenTestRunIsPending(TestRunQueue.TestRuns[4]);
+            ThenTestRunIdIs(4, Guid.Parse(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId]));
         }
 
         // 20150907
@@ -231,6 +237,7 @@ namespace Tmx.Server.Tests.Modules
             ThenTestRunIsPending(TestRunQueue.TestRuns[2]);
             ThenTestRunIsPending(TestRunQueue.TestRuns[3]);
             ThenTestRunIsPending(TestRunQueue.TestRuns[4]);
+            ThenTestRunIdIs(4, Guid.Parse(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId]));
         }
         
         [Test][NUnit.Framework.Test][Fact]
@@ -252,6 +259,7 @@ namespace Tmx.Server.Tests.Modules
             ThenTestRunIsPending(TestRunQueue.TestRuns[2]);
             ThenTestRunIsPending(TestRunQueue.TestRuns[3]);
             ThenTestRunIsPending(TestRunQueue.TestRuns[4]);
+            ThenTestRunIdIs(4, Guid.Parse(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId]));
         }
         
         [Test][NUnit.Framework.Test]// [Fact]
@@ -266,6 +274,7 @@ namespace Tmx.Server.Tests.Modules
             WhenGettingTestRun(0);
             
             ThenResponseHasTestRunId(0);
+            ThenTestRunIdIs(0, Guid.Parse(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId]));
         }
         
         [Test][NUnit.Framework.Test]// [Fact]
@@ -565,9 +574,13 @@ namespace Tmx.Server.Tests.Modules
             Assert.Equal(true, testRun.IsCompleted());
         }
         
-        void ThenTestRunIdIs(Guid actualTestRunId)
+        // void ThenTestRunIdIs(Guid actualTestRunId)
+        void ThenTestRunIdIs(int testRunNumber, Guid actualTestRunId)
         {
-            Assert.Equal(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId], actualTestRunId.ToString());
+            // Assert.Equal(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId], actualTestRunId.ToString());
+            // Assert.Equal(TestRunQueue.TestRuns[0].Id, actualTestRunId.ToString());
+            // Assert.Equal(TestRunQueue.TestRuns[0].Id, actualTestRunId);
+            Assert.Equal(TestRunQueue.TestRuns[testRunNumber].Id, actualTestRunId);
         }
         
         void ThenResponseHasTestRunId(int numberOfTestRunInTheQueue)

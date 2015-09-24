@@ -18,7 +18,7 @@ namespace Tmx.Server.Logic.ObjectModel
     using Interfaces;
     using Objects;
     using Tmx.Interfaces.Remoting;
-    using Tmx.Server.Logic.ObjectModel.ExtensionMethods;
+    using ExtensionMethods;
 
     /// <summary>
     /// Description of TaskSelector.

@@ -71,7 +71,9 @@ namespace Tmx.Server.Logic.ObjectModel
         {
             var testRun = GetNextInRowTestRun();
             if (null == testRun) return;
-            if (TestRunQueue.TestRuns.Any(tr => tr.IsActive() && tr.TestLabId == testRun.TestLabId)) return;
+            // 20150922
+            // if (TestRunQueue.TestRuns.Any(tr => tr.IsActive() && tr.TestLabId == testRun.TestLabId)) return;
+            if (TestRunQueue.TestRuns.Any(tr => tr.IsAcceptingNewClients() && tr.TestLabId == testRun.TestLabId)) return;
             testRun.SetStartTime();
             testRun.Status = TestRunStatuses.Running;
         }

@@ -17,7 +17,8 @@ namespace Tmx
     using Client;
     using Interfaces.Remoting;
     using Commands;
-    
+    using Core.Proxy;
+
     /// <summary>
     /// Description of ReceiveTestTaskCommand.
     /// </summary>
@@ -35,7 +36,8 @@ namespace Tmx
             
             // 20150918
             // var taskLoader = new TaskLoader(new RestRequestCreator());
-            var taskLoader = new TaskLoader();
+            // var taskLoader = new TaskLoader();
+            var taskLoader = ProxyFactory.Get<TaskLoader>();
             // 20141020 squeezing a task to its proxy
             ITestTask task = null;
             // ITestTaskProxy task = null;
@@ -54,7 +56,8 @@ namespace Tmx
                     if (Guid.Empty != ClientSettings.Instance.ClientId && string.Empty != ClientSettings.Instance.ServerUrl) {
                         // 20150918
                         // var registration = new Registration(new RestRequestCreator());
-                        var registration = new Registration();
+                        // var registration = new Registration();
+                        var registration = ProxyFactory.Get<Registration>();
                         ClientSettings.Instance.ClientId = registration.SendRegistrationInfoAndGetClientId(ClientSettings.Instance.CurrentClient.CustomString);
                     }
                     

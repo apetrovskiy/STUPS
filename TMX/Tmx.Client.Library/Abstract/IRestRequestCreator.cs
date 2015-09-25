@@ -4,7 +4,8 @@
 
     public interface IRestRequestCreator
     {
-        RestTemplate GetRestTemplate();
+        // RestTemplate GetRestTemplate();
+        IRestOperations GetRestTemplate();
         // void SetRestTemplate(RestTemplate restTemplate);
         void SetRestTemplate(IRestOperations restTemplate);
     }

@@ -12,9 +12,9 @@ namespace Tmx
     using System;
     using System.Collections.Generic;
     using Core;
-    using Core.Types.Remoting;
 //    using System.ComponentModel;
     using System.Linq;
+    using Core.Proxy;
     using Interfaces.Remoting;
     using Interfaces;
     using Interfaces.TestStructure;
@@ -360,11 +360,7 @@ namespace Tmx
                 // it is marked as passed
                 bool noErrors = true;
                 if (null == currentTestResult.Error &&
-                    // 20150805
-                    // TestResultStatuses.Failed != currentTestResult.enStatus &&
                     TestStatuses.Failed != currentTestResult.enStatus &&
-                    // 20150805
-                    // TestResultStatuses.KnownIssue != currentTestResult.enStatus) {
                     TestStatuses.KnownIssue != currentTestResult.enStatus) {
                     
                     //foreach (ITestResultDetail detail in currentTestResult.Details) {
@@ -711,7 +707,9 @@ namespace Tmx
                     CurrentTestScenario.enStatus = TestStatuses.KnownIssue;
             
                 // set statistics
-                var testStatistics = new TestStatistics();
+                // 20150925
+                // var testStatistics = new TestStatistics();
+                var testStatistics = ProxyFactory.Get<TestStatistics>();
                 testStatistics.RefreshScenarioStatistics(CurrentTestScenario, skipAutomatic);
             }
         }
@@ -759,7 +757,9 @@ namespace Tmx
                     CurrentTestSuite.enStatus = TestStatuses.KnownIssue;
                 
                 // set statistics
-                var testStatistics = new TestStatistics();
+                // 20150925
+                // var testStatistics = new TestStatistics();
+                var testStatistics = ProxyFactory.Get<TestStatistics>();
                 testStatistics.RefreshSuiteStatistics(CurrentTestSuite, skipAutomatic);
             }
         }

@@ -9,77 +9,122 @@
     using Fakes;
     using Interfaces.Remoting;
     using Interfaces.Server;
+    using Logic.ObjectModel;
+    using Logic.ObjectModel.Objects;
     using NUnit.Framework;
-    using Spring.Http;
-    using Spring.Rest.Client;
     using Xunit;
+    using Client.Library.Abstract;
+    using Assert = Xunit.Assert;
 
     public class ClientRegistrationTests
     {
         RestTemplateWrapper _restTemplate;
-        RestRequestCreator _restRequestCreator;
+        IRestRequestCreator _restRequestCreator;
+        const string _baseUrl = "http://localhost:12340";
+        const string _pathToWorkflows = @"../../Data/";
+        const string _workflow01Name = "CRsuite";
+        const string _workflow02Name = "NAC";
+        const string _testRun01Name = "test run name";
+        const string _testRun02Name = "test run name 02";
+        const string _workflow01TestConsoleName = "testConsole";
+        const string _workflowFileName = "Workflow1.xml";
 
         void PrepareMocks()
         {
-            _restTemplate = new RestTemplateWrapper("http://localhost:12340");
-            // _restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
-            //_mockRestServer = MockRestServiceServer.CreateServer(_restTemplate);
-            //_responseHeaders = new HttpHeaders { ContentType = new MediaType("application", "json") };
-            //ClientSettings.Instance.ServerUrl = BaseUrl;
-            _restRequestCreator = new RestRequestCreator();
+            _restTemplate = new RestTemplateWrapper(_baseUrl);
+            ClientSettings.Instance.ServerUrl = _baseUrl;
+            _restRequestCreator = new RestRequestCreatorEmulator();
             _restRequestCreator.SetRestTemplate(_restTemplate);
             RestRequestFactory.RestRequestCreator = _restRequestCreator;
+        }
+
+        public ClientRegistrationTests()
+        {
+            PrepareMocks();
+            CleanUp();
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
+            PrepareMocks();
+            CleanUp();
         }
 
         [Test][Fact]
         public void RegisterFirstClient()
         {
             GivenFirstTestWorkflow();
-            GivenNewTestRunWithStatusRunning();
+            GivenNewTestRunWithStatusRunning(_testRun01Name);
 
-            WhenSendingRegistration("testConsole");
+            WhenSendingRegistration(_workflow01TestConsoleName);
 
-            ThenTheClientIsRegistered();
+            ThenTheClientIsRegistered(0);
+        }
+
+        [Test][Fact]
+        public void RegisterSecondClient()
+        {
+            GivenFirstTestWorkflow();
+            GivenNewTestRunWithStatusRunning(_testRun01Name);
+
+            WhenSendingRegistration(_workflow01TestConsoleName);
+            WhenSendingRegistration(_workflow01TestConsoleName);
+
+            ThenTheClientIsRegistered(1);
+        }
+
+        [Test][Fact]
+        public void RegisterThirdClient()
+        {
+            GivenFirstTestWorkflow();
+            GivenNewTestRunWithStatusRunning(_testRun01Name);
+
+            WhenSendingRegistration(_workflow01TestConsoleName);
+            WhenSendingRegistration(_workflow01TestConsoleName);
+            WhenSendingRegistration(_workflow01TestConsoleName);
+
+            ThenTheClientIsRegistered(2);
+        }
+
+        void CleanUp()
+        {
+            WorkflowCollection.Workflows.Clear();
+            ClientsCollection.Clients.Clear();
+            TestRunQueue.TestRuns.Clear();
+            TaskPool.Tasks.Clear();
+            TaskPool.TasksForClients.Clear();
         }
 
         void GivenFirstTestWorkflow()
         {
-            // 
             var serverCommand = new ServerCommand
             {
                 Command = ServerControlCommands.LoadConfiguraiton,
                 Data = TestConstants.Workflow01
             };
-            /*
-            _browser.Put(UrlList.ServerControlPoint_absPath, with =>
-            {
-                with.JsonBody(serverCommand);
-                with.Accept("application/json");
-            });
-            */
-            var restTemplateWrapper = new RestTemplateWrapper("http://localhost:12340");
-            restTemplateWrapper.Put(UrlList.ServerControlPoint_absPath, serverCommand);
+            _restTemplate.Put(UrlList.ServerControlPoint_absPath, serverCommand);
+
+            var workflowLoader = new WorkflowLoader();
+            workflowLoader.Load(_pathToWorkflows + _workflowFileName);
         }
 
-        void GivenNewTestRunWithStatusRunning()
+        void GivenNewTestRunWithStatusRunning(string name)
         {
-            // TODO: create a workflow!
-            // var testRunCreator = new TestRunCreator();
             var testRunCreator = ProxyFactory.Get<TestRunCreator>();
-            testRunCreator.CreateTestRun("w", TestRunStatuses.Running, "t");
+            testRunCreator.CreateTestRun(_workflow01Name, TestRunStatuses.Running, name);
         }
 
         Guid WhenSendingRegistration(string customString)
         {
-            // 
-            // var registration = new Registration();
             var registration = ProxyFactory.Get<Registration>();
             return registration.SendRegistrationInfoAndGetClientId(customString);
         }
 
-        void ThenTheClientIsRegistered()
+        void ThenTheClientIsRegistered(int clientNumber)
         {
-            
+            Assert.Equal(clientNumber + 1, ClientsCollection.Clients.Count);
+            Assert.Equal(_workflow01TestConsoleName, ClientsCollection.Clients[clientNumber].CustomString);
         }
     }
 }

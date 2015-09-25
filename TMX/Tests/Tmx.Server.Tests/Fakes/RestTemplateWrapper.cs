@@ -20,6 +20,7 @@
         public IList<IHttpMessageConverter> MessageConverters { get; set; }
         string _baseUrl;
         BrowserResponse _response;
+        HttpHeaders _headers;
 
         public RestTemplateWrapper(string baseUrl)
         {
@@ -104,7 +105,13 @@
 
         public HttpResponseMessage<T> PostForMessage<T>(string url, object request, params object[] uriVariables) where T : class
         {
-            throw new NotImplementedException();
+            _response = _browser.Post(url, with =>
+            {
+                with.JsonBody(request);
+                with.Accept("application/json");
+            });
+            _headers = ExtractHttpHeadersFromResponse();
+            return new HttpResponseMessage<T>(_response.Body.DeserializeJson<T>(), _headers, (HttpStatusCode)_response.StatusCode, string.Empty);
         }
 
         public HttpResponseMessage<T> PostForMessage<T>(string url, object request, IDictionary<string, object> uriVariables) where T : class
@@ -119,27 +126,15 @@
 
         public HttpResponseMessage PostForMessage(string url, object request, params object[] uriVariables)
         {
-            // throw new NotImplementedException();
-
-            /*
-            _response = _browser.Post(UrlList.TestClientRegistrationPoint_absPath, with => {
-                with.JsonBody(testClient);
-                with.Accept("application/json");
-            });
-            return _response.Body.DeserializeJson<TestClient>();
-            */
-
-            _response = _browser.Post(_baseUrl + url, with =>
+            _response = _browser.Post(url, with =>
             {
                 with.JsonBody(request);
                 with.Accept("application/json");
             });
-            var headers = new HttpHeaders();
-            headers.Add(Tmx_Core_Resources.NewTestRun_lastTestRunId, _response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId]);
-Console.WriteLine(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId]);
-            return new HttpResponseMessage(headers, (HttpStatusCode) _response.StatusCode, string.Empty);
+            _headers = ExtractHttpHeadersFromResponse();
+            return new HttpResponseMessage(_headers, (HttpStatusCode) _response.StatusCode, string.Empty);
         }
-
+        
         public HttpResponseMessage PostForMessage(string url, object request, IDictionary<string, object> uriVariables)
         {
             throw new NotImplementedException();
@@ -152,7 +147,13 @@ Console.WriteLine(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId]
 
         public void Put(string url, object request, params object[] uriVariables)
         {
-            throw new NotImplementedException();
+            // _response = _browser.Put(_baseUrl + url, with =>
+            _response = _browser.Put(url, with =>
+            {
+                with.JsonBody(request);
+                with.Accept("application/json");
+            });
+            _headers = ExtractHttpHeadersFromResponse();
         }
 
         public void Put(string url, object request, IDictionary<string, object> uriVariables)
@@ -647,6 +648,14 @@ Console.WriteLine(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId]
             CancellationToken cancellationToken) where T : class
         {
             throw new NotImplementedException();
+        }
+
+        HttpHeaders ExtractHttpHeadersFromResponse()
+        {
+            var headers = new HttpHeaders();
+            foreach (var header in _response.Headers)
+                headers.Add(header.Key, header.Value);
+            return headers;
         }
     }
 }

@@ -34,14 +34,8 @@
             var testRunInitializer = ServerObjectFactory.Resolve<TestRunInitializer>();
             var testRun = testRunInitializer.CreateTestRun(testRunCommand, formData);
 
-            // 20150825
-            // testRunCommand.NewTestRunId = testRun.Id;
             CurrentTestRunId = testRun.Id;
             
-            // 20150918
-            // this was always false
-            // if (null == testRun)
-            //     return false;
             if (Guid.Empty == testRun.WorkflowId) // ??
                 return false;
             TestRunQueue.TestRuns.Add(testRun);

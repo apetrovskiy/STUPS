@@ -9,8 +9,6 @@
 
 namespace TmxUnitTests.Commands.TestExecution
 {
-    using System;
-    
     /// <summary>
     /// Description of InvokeTmxTestCaseCommandTestFixture.
     /// </summary>

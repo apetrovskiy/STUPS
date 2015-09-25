@@ -304,14 +304,10 @@ namespace Tmx
                 WriteVerbose(this, "Test Suite: " + ts.Name);
                 string pgfSuite = pgfSuiteOpenNotTested;
                 string styleSuite = styleSuiteOpenNotTested;
-                // 20150805
-                // if (ts.enStatus == TestSuiteStatuses.Passed) {
                 if (ts.enStatus == TestStatuses.Passed) {
                     pgfSuite = pgfSuiteOpenPassed;
                     styleSuite = styleSuiteOpenPassed;
                 }
-                // 20150805
-                // if (ts.enStatus == TestSuiteStatuses.Failed) {
                 if (ts.enStatus == TestStatuses.Failed) {
                     pgfSuite = pgfSuiteOpenFailed;
                     styleSuite = styleSuiteOpenFailed;
@@ -360,14 +356,10 @@ namespace Tmx
                     WriteVerbose(this, "Test Scenario: " + tsc.Name);
                     string pgfScenario = pgfScenarioOpenNotTested;
                     string styleScenario = styleScenarioOpenNotTested;
-                    // 20150805
-                    // if (tsc.enStatus == TestScenarioStatuses.Passed) {
                     if (tsc.enStatus == TestStatuses.Passed) {
                         pgfScenario = pgfScenarioOpenPassed;
                         styleScenario = styleScenarioOpenPassed;
                     }
-                    // 20150805
-                    // if (tsc.enStatus == TestScenarioStatuses.Failed) {
                     if (tsc.enStatus == TestStatuses.Failed) {
                         pgfScenario = pgfScenarioOpenFailed;
                         styleScenario = styleScenarioOpenFailed;
@@ -860,18 +852,12 @@ namespace Tmx
             int scNotTested = 0;
             foreach (var tsc in suite.TestScenarios) {
                 switch (tsc.enStatus) {
-                    // 20150805
-                    // case TestScenarioStatuses.Passed:
                     case TestStatuses.Passed:
                         scPassed++;
                         break;
-                    // 20150805
-                    // case TestScenarioStatuses.Failed:
                     case TestStatuses.Failed:
                         scFailed++;
                         break;
-                    // 20150805
-                    // case TestScenarioStatuses.NotTested:
                     case TestStatuses.NotRun:
                         scNotTested++;
                         break;
@@ -934,24 +920,15 @@ namespace Tmx
                 ts.PassedButWithBadSmell += tsuite.Statistics.PassedButWithBadSmell;
                 
                 switch (tsuite.enStatus) {
-                    // 20150805
-                    // case TestSuiteStatuses.Passed:
                     case TestStatuses.Passed:
                         suPassed++;
                         break;
-                    // 20150805
-                    // case TestSuiteStatuses.Failed:
                     case TestStatuses.Failed:
                         suFailed++;
                         break;
-                    // 20150805
-                    // case TestSuiteStatuses.NotTested:
                     case TestStatuses.NotRun:
                         suNotTested++;
                         break;
-                    // 20150114
-                    // 20150805
-                    // case TestSuiteStatuses.KnownIssue:
                     case TestStatuses.KnownIssue:
                         suKnownIssue++;
                         break;
@@ -961,24 +938,15 @@ namespace Tmx
                 
                 foreach (var tsc in tsuite.TestScenarios) {
                     switch (tsc.enStatus) {
-                        // 20150805
-                        // case TestScenarioStatuses.Passed:
                         case TestStatuses.Passed:
                             scPassed++;
                             break;
-                        // 20150805
-                        // case TestScenarioStatuses.Failed:
                         case TestStatuses.Failed:
                             scFailed++;
                             break;
-                        // 20150805
-                        // case TestScenarioStatuses.NotTested:
                         case TestStatuses.NotRun:
                             scNotTested++;
                             break;
-                        // 20150114
-                        // 20150805
-                        // case TestScenarioStatuses.KnownIssue:
                         case TestStatuses.KnownIssue:
                             scKnownIssue++;
                             break;

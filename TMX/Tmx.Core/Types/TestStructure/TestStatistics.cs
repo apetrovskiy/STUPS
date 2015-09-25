@@ -80,20 +80,13 @@ namespace Tmx.Core
 //                    if (testResult.enStatus == TestResultStatuses.Failed)
 //                        testScenarioStatistics.Failed++;
                     
-                    // 20150219
                     switch (testResult.enStatus) {
-                        // 20150805
-                        // case TestResultStatuses.Passed:
                         case TestStatuses.Passed:
                             testScenarioStatistics.Passed++;
                             break;
-                        // 20150805
-                        // case TestResultStatuses.Failed:
                         case TestStatuses.Failed:
                             testScenarioStatistics.Failed++;
                             break;
-                        // 20150805
-                        // case TestResultStatuses.KnownIssue:
                         case TestStatuses.KnownIssue:
                             testScenarioStatistics.PassedButWithBadSmell++;
                             break;
@@ -105,8 +98,6 @@ namespace Tmx.Core
                     testScenarioStatistics.TimeSpent += testResult.TimeSpent;
                 }
             }
-            // 20150219
-            // testScenarioStatistics.NotTested = testScenarioStatistics.All - testScenarioStatistics.Passed - testScenarioStatistics.Failed;
             testScenarioStatistics.NotTested = testScenarioStatistics.All - testScenarioStatistics.Passed - testScenarioStatistics.Failed -testScenarioStatistics.PassedButWithBadSmell;
             scenario.Statistics = testScenarioStatistics;
             setTestScenarioStatus(scenario);
@@ -115,27 +106,15 @@ namespace Tmx.Core
         
         void setTestSuiteStatus(ITestSuite suite)
         {
-            // 20150805
-            // suite.enStatus = suite.Statistics.PassedButWithBadSmell > 0 ? TestSuiteStatuses.KnownIssue :
             suite.enStatus = suite.Statistics.PassedButWithBadSmell > 0 ? TestStatuses.KnownIssue :
-                // 20150805
-                // suite.Statistics.Failed > 0 ? TestSuiteStatuses.Failed :
                 suite.Statistics.Failed > 0 ? TestStatuses.Failed :
-                // 20150805
-                // suite.Statistics.Passed > 0 ? TestSuiteStatuses.Passed : TestSuiteStatuses.NotTested;
                 suite.Statistics.Passed > 0 ? TestStatuses.Passed : TestStatuses.NotRun;
         }
         
         void setTestScenarioStatus(ITestScenario scenario)
         {
-            // 20150805
-            // scenario.enStatus = scenario.Statistics.PassedButWithBadSmell > 0 ? TestScenarioStatuses.KnownIssue :
             scenario.enStatus = scenario.Statistics.PassedButWithBadSmell > 0 ? TestStatuses.KnownIssue :
-                // 20150805
-                // scenario.Statistics.Failed > 0 ? TestScenarioStatuses.Failed :
                 scenario.Statistics.Failed > 0 ? TestStatuses.Failed :
-                // 20150805
-                // scenario.Statistics.Passed > 0 ? TestScenarioStatuses.Passed : TestScenarioStatuses.NotTested;
                 scenario.Statistics.Passed > 0 ? TestStatuses.Passed : TestStatuses.NotRun;
         }
     }

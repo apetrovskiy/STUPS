@@ -12,6 +12,7 @@ namespace Tmx.Client.Library
     using System;
     using System.Linq;
     using Common.Logging;
+    //using NLog;
     using PSTestLib.Helpers;
     using Spring.Rest.Client;
 
@@ -35,7 +36,7 @@ namespace Tmx.Client.Library
             LoadPlugins();
             
             // to make reference to Commnon.Logging
-            var log = LogManager.GetLogger(typeof(RestTemplate));
+            var log = LogManager.GetLogger(typeof(RestTemplate).Name);
             log = null;
             
             _alreadyInitialized = true;

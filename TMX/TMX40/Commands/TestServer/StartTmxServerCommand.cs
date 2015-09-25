@@ -9,6 +9,7 @@
 
 namespace Tmx.Commands.TestServer
 {
+    using System;
     using System.Management.Automation;
     using System.Net;
     using System.Net.NetworkInformation;
@@ -39,6 +40,10 @@ namespace Tmx.Commands.TestServer
         
         protected override void BeginProcessing()
         {
+            var basedirPath = AppDomain.CurrentDomain.BaseDirectory;
+            Console.WriteLine(basedirPath);
+
+
             var command = new StartServerCommand(this);
             command.Execute();
         }

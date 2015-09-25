@@ -28,18 +28,12 @@ namespace Tmx.Commands
             // Tmx.Logger.TmxLogger.Info(this.TestResultDetail);
             if (Echo)
                 WriteObject(TestResultDetail);
-            // 20130331
-            //TestData.AddTestResultTextDetail(this.TestResultDetail);
             
-            // 20140721
             var dataObject = new TestResultDetailCmdletBaseDataObject {
                 Finished = Finished,
-                // 20150805
-                // TestResultStatus = this.TestResultStatus
                 TestResultStatus = TestResultStatus
             };
             
-            // TestData.AddTestResultTextDetail(this, TestResultDetail);
             TestData.AddTestResultTextDetail(dataObject, TestResultDetail);
         }
     }

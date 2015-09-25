@@ -32,8 +32,6 @@ namespace Tmx.Interfaces.TestStructure
         [XmlAttribute]
         string Status { get; }
         [XmlAttribute]
-        // 20150805
-        // TestResultStatuses enStatus { get; set; }
         TestStatuses enStatus { get; set; }
         
         [XmlAttribute]

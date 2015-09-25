@@ -10,11 +10,9 @@
 
 namespace TmxUnitTests
 {
-    using System;
     using Tmx;
     using Tmx.Commands;
     using PSTestLib;
-    // using Tmx.Core;
     using Tmx.Interfaces;
     using Tmx.Interfaces.TestStructure;
     
@@ -161,8 +159,6 @@ namespace TmxUnitTests
         }
         
         // more parameters!
-        // 20150805
-        // internal static ITestResult CloseTestResult(TestResultStatuses codeStatus, bool logicStatus)
         internal static ITestResult CloseTestResult(TestStatuses codeStatus, bool logicStatus)
         {
             GetNewTestSuite("name", "id", "description");
@@ -170,22 +166,16 @@ namespace TmxUnitTests
             cmdlet.TestResultName = "test result";
 
             switch (codeStatus) {
-                // 20150805
-                // case TestResultStatuses.Passed:
                 case TestStatuses.Passed:
                     cmdlet.TestPassed = true;
                     // 20140715
                     // cmdlet.TestResultStatus = TestResultStatuses.Passed;
                     break;
-                // 20150805
-                // case TestResultStatuses.Failed:
                 case TestStatuses.Failed:
                     cmdlet.TestPassed = false;
                     // 20140715
                     // cmdlet.TestResultStatus = TestResultStatuses.Failed;
                     break;
-                // 20150805
-                // case TestResultStatuses.NotTested:
                 case TestStatuses.NotRun:
                     // nothing to do
                     break;

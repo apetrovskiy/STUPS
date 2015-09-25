@@ -12,10 +12,10 @@ namespace Tmx.Core
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Xml.Linq;
     using Interfaces;
     using Interfaces.TestStructure;
-    
+    using Proxy;
+
     /// <summary>
     /// Description of TestResultsSearcher.
     /// </summary>
@@ -27,11 +27,13 @@ namespace Tmx.Core
         /// </summary>
         /// <param name="cmdlet"></param>
         /// <returns></returns>
-        public IOrderedEnumerable<ITestSuite> SearchForSuites(ISearchCmdletBaseDataObject cmdlet, List<ITestSuite> suitesForSearch)
+        public virtual IOrderedEnumerable<ITestSuite> SearchForSuites(ISearchCmdletBaseDataObject cmdlet, List<ITestSuite> suitesForSearch)
         {
             IOrderedEnumerable<ITestSuite> suitesFound = null;
             // 20141107
-            var testStatistics = new TestStatistics();
+            // 20150925
+            // var testStatistics = new TestStatistics();
+            var testStatistics = ProxyFactory.Get<TestStatistics>();
             
             // Filtering results
             
@@ -141,7 +143,7 @@ namespace Tmx.Core
         /// </summary>
         /// <param name="cmdlet"></param>
         /// <returns></returns>
-        public IOrderedEnumerable<ITestScenario> SearchForScenarios(ISearchCmdletBaseDataObject searchCriteria, List<ITestSuite> suitesForSearch)
+        public virtual IOrderedEnumerable<ITestScenario> SearchForScenarios(ISearchCmdletBaseDataObject searchCriteria, List<ITestSuite> suitesForSearch)
         {
             IOrderedEnumerable<ITestScenario> scenarios = null;
             
@@ -255,7 +257,7 @@ namespace Tmx.Core
         /// </summary>
         /// <param name="cmdlet"></param>
         /// <returns></returns>
-        public IOrderedEnumerable<ITestResult> SearchForTestResults(ISearchCmdletBaseDataObject dataObject, List<ITestSuite> suitesForSearch)
+        public virtual IOrderedEnumerable<ITestResult> SearchForTestResults(ISearchCmdletBaseDataObject dataObject, List<ITestSuite> suitesForSearch)
         {
             IOrderedEnumerable<ITestResult> testResults = null;
 

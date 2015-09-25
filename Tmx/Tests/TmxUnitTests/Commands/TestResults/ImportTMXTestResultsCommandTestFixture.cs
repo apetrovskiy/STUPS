@@ -11,12 +11,9 @@ namespace TmxUnitTests.Commands.TestResults
 {
     using System;
     using System.Collections.Generic;
-    using System.Xml;
     using System.Xml.Linq;
-    using System.Xml.Serialization.Configuration;
     using MbUnit.Framework;
     // using NUnit.Framework;
-    using Tmx;
     using Tmx.Core;
     using Tmx.Interfaces.TestStructure;
     

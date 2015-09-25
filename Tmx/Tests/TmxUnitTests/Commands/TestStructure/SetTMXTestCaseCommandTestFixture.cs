@@ -9,11 +9,6 @@
 
 namespace TmxUnitTests.Commands.TestStructure
 {
-    using System;
-    using MbUnit.Framework;using NUnit.Framework;
-    using PSTestLib;
-    using Tmx;
-    
     /// <summary>
     /// Description of SetTmxTestCaseCommandTestFixture.
     /// </summary>

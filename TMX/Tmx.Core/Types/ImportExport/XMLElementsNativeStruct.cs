@@ -9,7 +9,6 @@
 
 namespace Tmx
 {
-    using System;
     using Interfaces;
 
     /// <summary>

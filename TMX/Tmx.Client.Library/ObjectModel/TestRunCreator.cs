@@ -24,11 +24,6 @@ namespace Tmx.Client.Library.ObjectModel
     public class TestRunCreator
     {
         readonly IRestOperations _restTemplate;
-        
-        //public TestRunCreator(IRestRequestCreator requestCreator)
-        //{
-        //    _restTemplate = requestCreator.GetRestTemplate();
-        //}
 
         public TestRunCreator()
         {
@@ -50,7 +45,7 @@ namespace Tmx.Client.Library.ObjectModel
             var creatingTestRunResponse = _restTemplate.PostForMessage(UrlList.TestRunsControlPoint_absPath, testRunCommand);
             
             Trace.TraceInformation("CreateTestRun(string workflowName, TestRunStatuses status, string name).3 creatingTestRunResponse is null? {0}", null == creatingTestRunResponse);
-            // 20150316
+            
             if (null == creatingTestRunResponse)
                 throw  new Exception("Failed to create a test run.");
             

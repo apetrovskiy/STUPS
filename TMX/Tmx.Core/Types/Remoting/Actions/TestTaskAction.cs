@@ -9,7 +9,6 @@
 
 namespace Tmx.Core.Types.Remoting.Actions
 {
-    using System;
     using Interfaces.Remoting.Actions;
     
     /// <summary>

@@ -9,8 +9,6 @@
 
 namespace TmxUnitTests.ParamChecks.Logging
 {
-    using System;
-    
     /// <summary>
     /// Description of NewTmxLoggerCommandTestFixture.
     /// </summary>

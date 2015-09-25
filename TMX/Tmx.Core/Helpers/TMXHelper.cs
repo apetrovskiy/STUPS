@@ -12,11 +12,10 @@ namespace Tmx
     using System;
     
     using System.Linq;
-    
-    using System.Collections.Generic;
     using System.Xml.Linq;
     using Interfaces.Remoting;
     using Core;
+    using Core.Proxy;
 //    using System.Reflection;
     using Interfaces;
     using Interfaces.TestStructure;
@@ -349,7 +348,9 @@ namespace Tmx
         {
             IOrderedEnumerable<ITestSuite> suites = null;
             // 20141107
-            var testStatistics = new TestStatistics();
+            // 20150925
+            // var testStatistics = new TestStatistics();
+            var testStatistics = ProxyFactory.Get<TestStatistics>();
             
             // Filtering results
             
@@ -395,26 +396,18 @@ namespace Tmx
 //                    }));
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterPassed) {
-                // 20150805
-                // query = suite => suite.enStatus == TestSuiteStatuses.Passed;
                 query = suite => suite.enStatus == TestStatuses.Passed;
                 //queriesList.Add((suite => suite.enStatus == TestSuiteStatuses.Passed));
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterFailed) {
-                // 20150805
-                // query = suite => suite.enStatus == TestSuiteStatuses.Failed;
                 query = suite => suite.enStatus == TestStatuses.Failed;
                 //queriesList.Add((suite => suite.enStatus == TestSuiteStatuses.Failed));
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterNotTested) {
-                // 20150805
-                // query = suite => suite.enStatus == TestSuiteStatuses.NotTested;
                 query = suite => suite.enStatus == TestStatuses.NotRun;
                 //queriesList.Add((suite => suite.enStatus == TestSuiteStatuses.NotTested));
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterPassedWithBadSmell) {
-                // 20150805
-                // query = suite => suite.enStatus == TestSuiteStatuses.KnownIssue;
                 query = suite => suite.enStatus == TestStatuses.KnownIssue;
                 //queriesList.Add((suite => suite.enStatus == TestSuiteStatuses.KnownIssue));
                 cmdlet.FilterAll = false;
@@ -539,23 +532,15 @@ namespace Tmx
                 //};
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterPassed) {
-                // 20150805
-                // query = scenario => scenario.enStatus == TestScenarioStatuses.Passed;
                 query = scenario => scenario.enStatus == TestStatuses.Passed;
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterFailed) {
-                // 20150805
-                // query = scenario => scenario.enStatus == TestScenarioStatuses.Failed;
                 query = scenario => scenario.enStatus == TestStatuses.Failed;
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterNotTested) {
-                // 20150805
-                // query = scenario => scenario.enStatus == TestScenarioStatuses.NotTested;
                 query = scenario => scenario.enStatus == TestStatuses.NotRun;
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterPassedWithBadSmell) {
-                // 20150805
-                // query = scenario => scenario.enStatus == TestScenarioStatuses.KnownIssue;
                 query = scenario => scenario.enStatus == TestStatuses.KnownIssue;
                 cmdlet.FilterAll = false;
             }
@@ -746,11 +731,14 @@ namespace Tmx
         public static void ExportResultsToJUnitXML(ISearchCmdletBaseDataObject cmdlet, string path)
         {
             try {
-
-                var gathered = new GatherTestResultsCollections();
+                // 20150925
+                // var gathered = new GatherTestResultsCollections();
+                var gathered = ProxyFactory.Get<GatherTestResultsCollections>();
                 gathered.GatherCollections(cmdlet);
-                
-                var testResultsExporter = new TestResultsExporter();
+
+                // 20150925
+                // var testResultsExporter = new TestResultsExporter();
+                var testResultsExporter = ProxyFactory.Get<TestResultsExporter>();
                 var suitesElement = testResultsExporter.CreateSuitesXElementWithParameters(
                     gathered.TestSuites,
                     gathered.TestScenarios,
@@ -783,7 +771,9 @@ namespace Tmx
         public static string GetCurrentTestSuiteStatus(IOpenSuiteCmdletBaseDataObject cmdlet, bool skipAutomatic)
         {
             if (null == TestData.CurrentTestSuite) return string.Empty;
-            var testStatistics = new TestStatistics();
+            // 20150925
+            // var testStatistics = new TestStatistics();
+            var testStatistics = ProxyFactory.Get<TestStatistics>();
             testStatistics.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
             return TestData.CurrentTestSuite.Status;
         }
@@ -795,7 +785,9 @@ namespace Tmx
                 string.Empty,
                 testPlatformId);
             if (null == TestData.CurrentTestSuite) return string.Empty;
-            var testStatistics = new TestStatistics();
+            // 20150925
+            // var testStatistics = new TestStatistics();
+            var testStatistics = ProxyFactory.Get<TestStatistics>();
             testStatistics.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
             return TestData.CurrentTestSuite.Status;
         }
@@ -807,7 +799,9 @@ namespace Tmx
                 id,
                 testPlatformId);
             if (null == TestData.CurrentTestSuite) return string.Empty;
-            var testStatistics = new TestStatistics();
+            // 20150925
+            // var testStatistics = new TestStatistics();
+            var testStatistics = ProxyFactory.Get<TestStatistics>();
             testStatistics.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
             return TestData.CurrentTestSuite.Status;
         }
@@ -815,7 +809,9 @@ namespace Tmx
         public static string GetCurrentTestScenarioStatus(IOpenScenarioCmdletBaseDataObject cmdlet, bool skipAutomatic)
         {
             if (null == TestData.CurrentTestScenario) return string.Empty;
-            var testStatistics = new TestStatistics();
+            // 20150925
+            // var testStatistics = new TestStatistics();
+            var testStatistics = ProxyFactory.Get<TestStatistics>();
             testStatistics.RefreshScenarioStatistics(TestData.CurrentTestScenario, skipAutomatic);
             return TestData.CurrentTestScenario.Status;
         }
@@ -824,7 +820,9 @@ namespace Tmx
         {
             OpenTestScenario(dataObject);
             if (null == TestData.CurrentTestScenario) return string.Empty;
-            var testStatistics = new TestStatistics();
+            // 20150925
+            // var testStatistics = new TestStatistics();
+            var testStatistics = ProxyFactory.Get<TestStatistics>();
             testStatistics.RefreshScenarioStatistics(TestData.CurrentTestScenario, skipAutomatic);
             return TestData.CurrentTestScenario.Status;
         }

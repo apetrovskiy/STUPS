@@ -12,12 +12,10 @@ namespace Tmx.Interfaces
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    // using System.Management.Automation;
     using System.Xml.Serialization;
     using Core;
     using Remoting;
     using TestStructure;
-    // using Tmx.Core;
     
     /// <summary>
     /// Description of TestSuite.
@@ -29,8 +27,6 @@ namespace Tmx.Interfaces
             UniqueId = Guid.NewGuid();
             TestScenarios = new List<ITestScenario>();
             Statistics = new TestStat();
-            // 20150805
-            // this.enStatus = TestSuiteStatuses.NotTested;
             enStatus = TestStatuses.NotRun;
             Id = TestData.GetTestSuiteId();
             addDefaultPlatform();
@@ -42,8 +38,6 @@ namespace Tmx.Interfaces
             UniqueId = Guid.NewGuid();
             TestScenarios = new List<ITestScenario> ();
             Statistics = new TestStat();
-            // 20150805
-            // this.enStatus = TestSuiteStatuses.NotTested;
             enStatus = TestStatuses.NotRun;
             Name = testSuiteName;
             Id = testSuiteId != string.Empty ? testSuiteId : TestData.GetTestSuiteId();
@@ -78,12 +72,9 @@ namespace Tmx.Interfaces
         string _status;
         [XmlAttribute]
         public virtual string Status { get { return _status; } }
-        // 20150805
-        // TestSuiteStatuses _enStatus;
         TestStatuses _enStatus;
         [XmlAttribute]
-        // 20150805
-        // public TestSuiteStatuses enStatus        
+     
         public TestStatuses enStatus
         { 
             get { return _enStatus; }
@@ -91,23 +82,15 @@ namespace Tmx.Interfaces
                 _enStatus = value;
 
                 switch (value) {
-                    // 20150805
-                    // case TestSuiteStatuses.Passed:
                     case TestStatuses.Passed:
                         _status = TestData.TestStatePassed;
                         break;
-                    // 20150805
-                    // case TestSuiteStatuses.Failed:
                     case TestStatuses.Failed:
                         _status = TestData.TestStateFailed;
                         break;
-                    // 20150805
-                    // case TestSuiteStatuses.NotTested:
                     case TestStatuses.NotRun:
                         _status = TestData.TestStateNotTested;
                         break;
-                    // 20150805
-                    // case TestSuiteStatuses.KnownIssue:
                     case TestStatuses.KnownIssue:
                         _status = TestData.TestStateKnownIssue;
                         break;

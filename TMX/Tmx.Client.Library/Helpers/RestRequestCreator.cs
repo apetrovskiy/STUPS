@@ -24,31 +24,11 @@ namespace Tmx.Client.Library.Helpers
         // RestTemplate _restTemplate;
         IRestOperations _restTemplate;
 
-        //static RestRequestCreator _restRequestCreator;
-
-        //private RestRequestCreator()
-        //{
-        //    _restRequestCreator = this;
-        //}
-
-        //public static RestRequestCreator GetInstance()
-        //{
-        //    return _restRequestCreator;
-        //}
-        
-        public virtual RestTemplate GetRestTemplate()
+        // public virtual RestTemplate GetRestTemplate()
+        public virtual IRestOperations GetRestTemplate()
         {
             if (null != _restTemplate) return (RestTemplate)_restTemplate;
             _restTemplate = new RestTemplate(ClientSettings.Instance.ServerUrl);
-            /*
-            _restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
-            _restTemplate.MessageConverters.Add(new XElementHttpMessageConverter());
-            _restTemplate.MessageConverters.Add(new XmlSerializableHttpMessageConverter());
-            _restTemplate.MessageConverters.Add(new ResourceHttpMessageConverter());
-            _restTemplate.MessageConverters.Add(new StringHttpMessageConverter());
-            var requestFactory = new WebClientHttpRequestFactory {Timeout = 600000};
-            _restTemplate.RequestFactory = requestFactory;
-            */
             ((RestTemplate)_restTemplate).MessageConverters.Add(new NJsonHttpMessageConverter());
             ((RestTemplate)_restTemplate).MessageConverters.Add(new XElementHttpMessageConverter());
             ((RestTemplate)_restTemplate).MessageConverters.Add(new XmlSerializableHttpMessageConverter());
@@ -56,7 +36,8 @@ namespace Tmx.Client.Library.Helpers
             ((RestTemplate)_restTemplate).MessageConverters.Add(new StringHttpMessageConverter());
             var requestFactory = new WebClientHttpRequestFactory { Timeout = 600000 };
             ((RestTemplate)_restTemplate).RequestFactory = requestFactory;
-            return (RestTemplate)_restTemplate;
+            // return (RestTemplate)_restTemplate;
+            return _restTemplate;
         }
         
         // public virtual void SetRestTemplate(RestTemplate restTemplate)

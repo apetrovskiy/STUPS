@@ -9,8 +9,6 @@
 
 namespace TmxUnitTests.Commands.TestStructure
 {
-    using System;
-    
     /// <summary>
     /// Description of NewTmxTestPlatformCommandTestFixture.
     /// </summary>

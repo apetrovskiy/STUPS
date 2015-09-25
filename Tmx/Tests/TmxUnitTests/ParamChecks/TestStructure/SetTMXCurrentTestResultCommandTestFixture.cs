@@ -9,8 +9,6 @@
 
 namespace TmxUnitTests.ParamChecks.TestStructure
 {
-    using System;
-    
     /// <summary>
     /// Description of SetTmxCurrentTestResultCommandTestFixture.
     /// </summary>

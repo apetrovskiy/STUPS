@@ -9,8 +9,6 @@
 
 namespace TmxUnitTests.ParamChecks.TestResults
 {
-    using System;
-    
     /// <summary>
     /// Description of ImportTmxTestResultsCommandTestFixture.
     /// </summary>

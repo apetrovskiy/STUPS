@@ -26,7 +26,7 @@
 
             try
             {
-                if (null == parameters)
+                if (null == parameters || 0 == parameters.Length)
                     proxiedObject =
                         (T)_generator.CreateClassProxy(
                             typeof(T),

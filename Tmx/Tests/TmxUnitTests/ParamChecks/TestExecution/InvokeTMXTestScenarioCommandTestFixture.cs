@@ -9,8 +9,6 @@
 
 namespace TmxUnitTests.ParamChecks.TestExecution
 {
-    using System;
-    
     /// <summary>
     /// Description of InvokeTmxTestScenarioCommandTestFixture.
     /// </summary>

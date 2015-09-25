@@ -41,6 +41,9 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("RmAddinUnitTests")]
 [assembly: InternalsVisibleTo("RallyUnitTests")]
 
+
+[assembly: InternalsVisibleTo("TestClientRegistration")]
+
 // 20130111
 //[assembly: InternalsVisibleTo("testninject")]
 

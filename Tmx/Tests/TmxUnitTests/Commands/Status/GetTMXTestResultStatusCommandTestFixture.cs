@@ -9,8 +9,6 @@
 
 namespace TmxUnitTests.Commands.Status
 {
-    using System;
-    
     /// <summary>
     /// Description of GetTmxTestResultStatusCommandTestFixture.
     /// </summary>

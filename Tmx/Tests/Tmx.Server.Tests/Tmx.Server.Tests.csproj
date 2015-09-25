@@ -122,6 +122,7 @@
     <Compile Include="..\..\TMX\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Fakes\RestRequestCreatorEmulator.cs" />
     <Compile Include="Fakes\RestTemplateWrapper.cs" />
     <Compile Include="Helpers\ImportExportTestFixture.cs" />
     <Compile Include="Helpers\WorkflowLoaderTestFixture.cs" />

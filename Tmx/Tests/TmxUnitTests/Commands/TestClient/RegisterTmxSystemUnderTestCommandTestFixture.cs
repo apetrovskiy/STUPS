@@ -9,7 +9,6 @@
 
 namespace TmxUnitTests.Commands.TestClient
 {
-    using System;
     using TmxUnitTests;
     
     /// <summary>

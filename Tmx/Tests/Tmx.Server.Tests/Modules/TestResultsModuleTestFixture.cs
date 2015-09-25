@@ -265,10 +265,6 @@ namespace Tmx.Server.Tests.Modules
                 // Origin = TestResultOrigins.Logical,
                 Origin = TestResultOrigins.Technical,
                 
-                // 20150805
-                // enStatus = TestResultStatuses.Passed
-                
-                
                 // 20150908
                 // experimental
                 // support for technical test results (back again)
@@ -323,8 +319,6 @@ namespace Tmx.Server.Tests.Modules
             return testScenario;
         }
 
-        // 20150805
-        // TestResult GivenTestResult(string testResultName, TestResultStatuses status)
         TestResult GivenTestResult(string testResultName, TestStatuses status)
         {
             var testResult = new TestResult();

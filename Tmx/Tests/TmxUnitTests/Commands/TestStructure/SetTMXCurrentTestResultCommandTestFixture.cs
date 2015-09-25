@@ -9,9 +9,6 @@
 
 namespace TmxUnitTests.Commands.TestStructure
 {
-    using System;
-    using MbUnit.Framework;using NUnit.Framework;
-    using PSTestLib;
     using Tmx;
     // using Tmx.Core;
     using Tmx.Interfaces.TestStructure;
@@ -118,8 +115,6 @@ namespace TmxUnitTests.Commands.TestStructure
             const string expectedStatus = TestData.TestStateNotTested;
             const string expectedName = "test result name";
 
-            // 20150805
-            // UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, false);
             UnitTestingHelper.CloseTestResult(TestStatuses.Passed, false);
             UnitTestingHelper.SetTestResult(expectedName, null);
 
@@ -138,8 +133,6 @@ namespace TmxUnitTests.Commands.TestStructure
             const string expectedStatus = TestData.TestStateNotTested;
             const string expectedName = "test result name";
 
-            // 20150805
-            // UnitTestingHelper.CloseTestResult(TestResultStatuses.Failed, false);
             UnitTestingHelper.CloseTestResult(TestStatuses.Failed, false);
             UnitTestingHelper.SetTestResult(expectedName, null);
 
@@ -155,8 +148,6 @@ namespace TmxUnitTests.Commands.TestStructure
         {
             const string expectedName = "test result name";
 
-            // 20150805
-            // UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, false);
             UnitTestingHelper.CloseTestResult(TestStatuses.Passed, false);
             UnitTestingHelper.SetTestResult(expectedName, null);
 
@@ -175,8 +166,6 @@ namespace TmxUnitTests.Commands.TestStructure
             const string expectedName = "test result name";
 
             UnitTestingHelper.SetTestResult(expectedName, null);
-            // 20150805
-            // UnitTestingHelper.CloseTestResult(TestResultStatuses.Passed, false);
             UnitTestingHelper.CloseTestResult(TestStatuses.Passed, false);
 
             MbUnit.Framework.Assert.AreEqual(

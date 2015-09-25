@@ -15,7 +15,6 @@ namespace Tmx
     using System.Net;
     using System.Net.NetworkInformation;
     using System.Security.Principal;
-    using System.Xml;
     using System.Xml.Serialization;
     using Core;
     using Interfaces.TestStructure;

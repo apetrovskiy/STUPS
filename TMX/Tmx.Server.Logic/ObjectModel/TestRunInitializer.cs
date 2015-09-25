@@ -49,8 +49,6 @@ namespace Tmx.Server.Logic.ObjectModel
         {
             if (TestRunStartTypes.Immediately == testRun.StartType)
                 testRun.Status = TestRunQueue.TestRuns.Any(tr => tr.TestLabId == testRun.TestLabId && tr.IsQueued()) ? TestRunStatuses.Pending : TestRunStatuses.Running;
-            // 20150922
-            // if (testRun.IsActive())
             if (testRun.IsAcceptingNewClients())
                 testRun.SetStartTime();
         }

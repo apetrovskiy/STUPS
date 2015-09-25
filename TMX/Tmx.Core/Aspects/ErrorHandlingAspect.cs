@@ -14,7 +14,7 @@
             }
             catch (Exception eErrorHandling)
             {
-                var logger = LogManager.GetLogger(Core.Tmx_Core_Resources.LogName);
+                var logger = LogManager.GetLogger(Tmx_Core_Resources.LogName);
                 logger.Error(eErrorHandling);
             }
         }

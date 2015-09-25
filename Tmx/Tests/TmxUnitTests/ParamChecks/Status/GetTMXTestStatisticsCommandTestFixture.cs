@@ -9,8 +9,6 @@
 
 namespace TmxUnitTests.ParamChecks.Status
 {
-    using System;
-    
     /// <summary>
     /// Description of GetTmxTestStatisticsCommandTestFixture.
     /// </summary>

@@ -9,8 +9,6 @@
 
 namespace Tmx.Core.Types.Remoting
 {
-    using System;
-    
     /// <summary>
     /// Description of DetailedStatus.
     /// </summary>

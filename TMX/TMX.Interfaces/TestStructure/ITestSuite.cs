@@ -63,8 +63,6 @@ namespace Tmx.Interfaces.TestStructure
         [XmlIgnore]
         TestStat Statistics { get; set; }
         [XmlAttribute]
-        // 20150805
-        // TestSuiteStatuses enStatus { get; set; }
         TestStatuses enStatus { get; set; }
         // 20150826
         [XmlAttribute]

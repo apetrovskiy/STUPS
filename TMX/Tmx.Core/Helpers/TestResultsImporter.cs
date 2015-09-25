@@ -15,7 +15,8 @@ namespace Tmx.Core
     using System.Xml.Linq;
     using Interfaces;
     using Interfaces.TestStructure;
-    
+    using Proxy;
+
     /// <summary>
     /// Description of TestResultsImporter.
     /// </summary>
@@ -25,7 +26,9 @@ namespace Tmx.Core
         
         public void MergeTestSuites(List<ITestSuite> sourceTestSuites, List<ITestSuite> testSuitesToAdd)
         {
-            var testStatistics = new TestStatistics();
+            // 20150925
+            // var testStatistics = new TestStatistics();
+            var testStatistics = ProxyFactory.Get<TestStatistics>();
             
             foreach (var testSuite in testSuitesToAdd) {
                 if (sourceTestSuites.All(ts => ts.UniqueId != testSuite.UniqueId)) {
@@ -43,7 +46,9 @@ namespace Tmx.Core
         
         void MergeTestScenarios(List<ITestScenario> sourceTestScenarios, List<ITestScenario> testScenariosToAdd)
         {
-            var testStatistics = new TestStatistics();
+            // 20150925
+            // var testStatistics = new TestStatistics();
+            var testStatistics = ProxyFactory.Get<TestStatistics>();
             
             foreach (var testScenario in testScenariosToAdd) {
                 if (sourceTestScenarios.All(tsc => tsc.UniqueId != testScenario.UniqueId)) {
@@ -153,7 +158,9 @@ namespace Tmx.Core
         {
             var importedTestSuites = new List<ITestSuite>();
             // TODO: DI
-            var testStatistics = new TestStatistics();
+            // 20150925
+            // var testStatistics = new TestStatistics();
+            var testStatistics = ProxyFactory.Get<TestStatistics>();
             
             foreach (var suiteElement in suiteElements) {
                 string suiteDescription = string.Empty;
@@ -290,8 +297,6 @@ namespace Tmx.Core
             return importedTestResults;
         }
 
-        // 20150805
-        // TestResultStatuses getTestResultStatus(XElement testResultElement)
         TestStatuses getTestResultStatus(XElement testResultElement)
         {
             return ("PASSED" == getStringAttribute(testResultElement, "status")) ? TestStatuses.Passed : ("FAILED" == getStringAttribute(testResultElement, "status")) ? TestStatuses.Failed : ("KNOWN ISSUE" == getStringAttribute(testResultElement, "status")) ? TestStatuses.KnownIssue : TestStatuses.NotRun;
@@ -366,7 +371,9 @@ namespace Tmx.Core
                 if (0 == counterPassedResults && 0 < counterKnownIssueResults)
                     testSuite.enStatus = TestStatuses.KnownIssue;
                 
-                var testStatistics = new TestStatistics();
+                // 20150925
+                // var testStatistics = new TestStatistics();
+                var testStatistics = ProxyFactory.Get<TestStatistics>();
                 testStatistics.RefreshSuiteStatistics(testSuite, skipAutomatic);
             }
         }
@@ -422,8 +429,10 @@ namespace Tmx.Core
                     // 20150805
                     // testScenario.enStatus = TestScenarioStatuses.KnownIssue;
                     testScenario.enStatus = TestStatuses.KnownIssue;
-                
-                var testStatistics = new TestStatistics();
+
+                // 20150925
+                // var testStatistics = new TestStatistics();
+                var testStatistics = ProxyFactory.Get<TestStatistics>();
                 testStatistics.RefreshScenarioStatistics(testScenario, skipAutomatic);
             }
         }

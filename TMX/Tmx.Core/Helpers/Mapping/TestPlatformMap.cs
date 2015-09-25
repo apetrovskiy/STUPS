@@ -9,14 +9,9 @@
 
 namespace Tmx
 {
-    using System;
-    using System.Data;
-//    using System.Data.SQLite;
-    using FluentNHibernate;
+    //    using System.Data.SQLite;
     using FluentNHibernate.Mapping;
-    using NHibernate;
-    using NHibernate.Mapping;
-    
+
     /// <summary>
     /// Description of TestPlatformMap.
     /// </summary>

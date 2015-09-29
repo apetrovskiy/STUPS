@@ -19,9 +19,11 @@ namespace Tmx.Server.Tests
         public static string Workflow01 = XmlPath + "Workflow1.xml";
         public static string Workflow02 = XmlPath + "Workflow2.xml";
         public static string Workflow03 = XmlPath + "Workflow3.xml";
+        public static string Workflow04 = XmlPath + "Workflow4.xml";
         
         public static string Workflow01Name = "CRsuite";
         public static string Workflow02Name = "NAC";
         public static string Workflow03Name = "def";
+        public static string Workflow04Name = "fourth";
     }
 }

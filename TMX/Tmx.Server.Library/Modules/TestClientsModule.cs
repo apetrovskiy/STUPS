@@ -43,7 +43,6 @@ namespace Tmx.Server.Library.Modules
         {
             return ServerObjectFactory.Resolve<TestClientCollectionMethods>().CreateNewClient(testClient)
                 ? Negotiate.WithModel(testClient).WithStatusCode(HttpStatusCode.Created)
-                // : Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed);
                 : Negotiate.WithStatusCode(HttpStatusCode.ExpectationFailed).WithReasonPhrase(ServerLibrary.ReasonPhrase_TestClientsModule_FailedToCreateNewTestClient); // TODO: check that the phrase fits
         }
         

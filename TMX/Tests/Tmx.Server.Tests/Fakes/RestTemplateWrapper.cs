@@ -2,11 +2,10 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.Specialized;
+    using System.Management.Automation;
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
-    using Core;
     using Library.Modules;
     using Nancy.Testing;
     using Spring.Http;
@@ -213,7 +212,24 @@
 
         public HttpResponseMessage Exchange(string url, HttpMethod method, HttpEntity requestEntity, params object[] uriVariables)
         {
-            throw new NotImplementedException();
+            switch (method.ToString())
+            {
+                case "GET":
+                    break;
+                case "POST":
+                    break;
+                case "PUT":
+                    break;
+                case "DELETE":
+                    _response = _browser.Delete(url, with =>
+                    {
+                        with.Accept("application/json");
+                    });
+                    _headers = ExtractHttpHeadersFromResponse();
+                    return new HttpResponseMessage(_headers, (HttpStatusCode)_response.StatusCode, string.Empty);
+            }
+            return null;
+            // return new HttpResponseMessage((_response.Body.DeserializeJson(), _headers, (HttpStatusCode)_response.StatusCode, string.Empty);
         }
 
         public HttpResponseMessage Exchange(string url, HttpMethod method, HttpEntity requestEntity, IDictionary<string, object> uriVariables)

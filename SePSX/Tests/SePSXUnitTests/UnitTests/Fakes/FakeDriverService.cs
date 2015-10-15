@@ -10,11 +10,8 @@
 namespace SePSXUnitTests
 {
     using System;
-    using SePSX;
     using OpenQA.Selenium;
-    using OpenQA.Selenium.Chrome;
-    using OpenQA.Selenium.IE;
-    
+
     /// <summary>
     /// Description of FakeDriverService.
     /// </summary>

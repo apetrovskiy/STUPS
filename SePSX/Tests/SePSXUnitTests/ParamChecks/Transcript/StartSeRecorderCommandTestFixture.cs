@@ -9,8 +9,6 @@
 
 namespace SePSXUnitTests.CheckCmdletParameters
 {
-    using System;
-    using SePSX;
     using MbUnit.Framework;
 
     /// <summary>

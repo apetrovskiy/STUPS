@@ -29,12 +29,9 @@ namespace SePSX
 //    using System.Diagnostics;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.Collections;
-    using System.Drawing;
-    
+
     //
     //
-    using System.Windows.Automation;
     //
     //
     
@@ -69,71 +66,71 @@ namespace SePSX
         
         
         //internal const string constAuxElementClicked = 
-        public const string constAuxElementClicked = 
+        public const string ConstAuxElementClicked = 
             @"recclicked";
         //internal const string constAuxElementTypedIn = 
-        public const string constAuxElementTypedIn = 
+        public const string ConstAuxElementTypedIn = 
             @"rectypedin";
         //internal const string constAuxElementSelected = 
-        public const string constAuxElementSelected = 
+        public const string ConstAuxElementSelected = 
             @"recselected";
         //internal const string constAuxElementData = 
-        public const string constAuxElementData = 
+        public const string ConstAuxElementData = 
             @"recdata";
         
-        public const string codeGenGetElement = "\r\nGet-SeWebElement";
-        public const string codeGenElementClick = " | Invoke-SeWebElementClick;";
-        public const string codeGenIdParameter = " -Id '";
-        public const string codeGenNameParameter = " -Name '";
-        public const string codeGenClassParameter = " -Class '";
-        public const string codeGenTagParameter = " -Tag '";
-        public const string codeGenNameComment = "\r\n\t# -Name '";
-        public const string codeGenClassComment = "\r\n\t# -Class '";
-        public const string codeGenTagComment = "\r\n\t# -Tag '";
+        public const string CodeGenGetElement = "\r\nGet-SeWebElement";
+        public const string CodeGenElementClick = " | Invoke-SeWebElementClick;";
+        public const string CodeGenIdParameter = " -Id '";
+        public const string CodeGenNameParameter = " -Name '";
+        public const string CodeGenClassParameter = " -Class '";
+        public const string CodeGenTagParameter = " -Tag '";
+        public const string CodeGenNameComment = "\r\n\t# -Name '";
+        public const string CodeGenClassComment = "\r\n\t# -Class '";
+        public const string CodeGenTagComment = "\r\n\t# -Tag '";
         
             #endregion constants
         
-        internal static System.Collections.Generic.List<IRecordedCodeSequence> recordingCollection = 
-            new System.Collections.Generic.List<IRecordedCodeSequence>();
+        internal static List<IRecordedCodeSequence> RecordingCollection = 
+            new List<IRecordedCodeSequence>();
         
         internal static bool CodeSequenceCompleted { get; set; }
         
-        private static ILanguagePackage selectLanguage(RecorderLanguages languageCode)
+        private static ILanguagePackage SelectLanguage(RecorderLanguages languageCode)
         {
             ILanguagePackage languagePackage = null;
             
             switch (languageCode) {
                 case RecorderLanguages.PowerShell:
-                    languagePackage = new PSLanguage();
+                    languagePackage = new PsLanguage();
                     break;
                 case RecorderLanguages.CSharp:
-                    languagePackage = new CSLanguage();
+                    languagePackage = new CsLanguage();
                     break;
                 case RecorderLanguages.Java:
                     languagePackage = new JavaLanguage();
                     break;
                 default:
                     //throw new Exception("Invalid value for RecorderLanguages");
-                    languagePackage = new PSLanguage();
+                    languagePackage = new PsLanguage();
                     break;
             }
             
             return languagePackage;
         }
         
-        public static void RecordActions(TranscriptCmdletBase cmdlet, IJSRecorder jsRecorder, RecorderLanguages languageCode) //, bool waitForElement)
+        public static void RecordActions(TranscriptCmdletBase cmdlet, IJsRecorder jsRecorder, RecorderLanguages languageCode) //, bool waitForElement)
         {
-            System.DateTime startTime = System.DateTime.Now;
+            var startTime = DateTime.Now;
 
-            recordingCollection = 
-                new System.Collections.Generic.List<IRecordedCodeSequence>();
+            RecordingCollection = 
+                new List<IRecordedCodeSequence>();
             IRecordedCodeSequence codeSequence =
                 new RecordedCodeSequence();
-            string codeString = string.Empty;
+            var codeString = string.Empty;
 
-            ReadOnlyCollection<string> currentWindowHandles =
+            var currentWindowHandles =
                 //CurrentData.CurrentWebDriver.WindowHandles;
-                new ReadOnlyCollection<string>((new System.Collections.Generic.List<string>()));
+                new ReadOnlyCollection<string>((new List<string>()));
 
             if (null != CurrentData.CurrentWebDriver &&
                 null != CurrentData.CurrentWebDriver.WindowHandles) {
@@ -143,7 +140,7 @@ namespace SePSX
 
             do {
 
-                jsRecorder.MakeJSInjection(cmdlet);
+                jsRecorder.MakeJsInjection(cmdlet);
 
                 try {
 
@@ -153,32 +150,32 @@ namespace SePSX
                         foreach (var singleResult in scriptResults) {
 
                             codeSequence =
-                                Recorder.RecordCodeSequence(
+                                RecordCodeSequence(
                                     cmdlet,
-                                    recordingCollection,
+                                    RecordingCollection,
                                     singleResult,
                                     codeSequence);
 
-                            if (Recorder.CodeSequenceCompleted) {
+                            if (CodeSequenceCompleted) {
 
-                                Recorder.NotifyCodeGathered();
+                                NotifyCodeGathered();
                                 
                                 codeString =
-                                    Recorder.ConvertCodeSequenceToCode(
+                                    ConvertCodeSequenceToCode(
                                         codeSequence,
-                                        selectLanguage(languageCode),
+                                        SelectLanguage(languageCode),
                                         codeString);
 Console.WriteLine("codeString:");
 Console.WriteLine(codeString);
-                                Recorder.CodeSequenceCompleted = false;
+                                CodeSequenceCompleted = false;
                             }
                             
                             if (null != (singleResult as IWebElement)) {
 
-                                IWebElement resultElement = 
+                                var resultElement = 
                                     singleResult as IWebElement;
 
-                                if (Recorder.isNotFakeWebElement(resultElement)) {
+                                if (IsNotFakeWebElement(resultElement)) {
                                     cmdlet.WriteVerbose(cmdlet, "element is not a fake");
 
                                     if (cmdlet.PassThru) {
@@ -314,15 +311,15 @@ Console.WriteLine(codeString);
                 
                 cmdlet.WriteVerbose(cmdlet, "startTime = " + startTime.ToString());
                 
-                if ((System.DateTime.Now - startTime).TotalSeconds > 
+                if ((DateTime.Now - startTime).TotalSeconds > 
                     (cmdlet.Timeout / 1000) &&
                     cmdlet.Wait) {
-                    cmdlet.WriteVerbose(cmdlet, "Time spent: " + (System.DateTime.Now - startTime).TotalSeconds + " seconds");
+                    cmdlet.WriteVerbose(cmdlet, "Time spent: " + (DateTime.Now - startTime).TotalSeconds + " seconds");
                     
                     cmdlet.Wait = false;
                 }
                 
-                Recorder.SleepAndRunScriptBlocks(cmdlet);
+                SleepAndRunScriptBlocks(cmdlet);
                 
                 /*
                 if (Preferences.TranscriptCleanRecordedDuringSleep) {
@@ -330,7 +327,7 @@ Console.WriteLine(codeString);
                 }
                 */
                
-               goToNewlyOpenedWindowhandle(currentWindowHandles);
+               GoToNewlyOpenedWindowhandle(currentWindowHandles);
                
 
             } while (cmdlet.Wait);
@@ -338,22 +335,22 @@ Console.WriteLine(codeString);
             //SeHelper.ExitRecording(cmdlet);
             
             // store the last code sequence
-            Recorder.StoreCodeSequenceInCollection(
+            StoreCodeSequenceInCollection(
                 cmdlet,
-                Recorder.recordingCollection,
+                RecordingCollection,
                 codeSequence);
             
         }
         
-        private static void goToNewlyOpenedWindowhandle(
+        private static void GoToNewlyOpenedWindowhandle(
            ReadOnlyCollection<string> currentWindowHandles)
         {
             if (null != CurrentData.CurrentWebDriver.WindowHandles && 
                 currentWindowHandles.Count < CurrentData.CurrentWebDriver.WindowHandles.Count) {
                 
-                string newWindowhandle = string.Empty;
+                var newWindowhandle = string.Empty;
                 // go to a newly opened window handle
-                foreach (string  windowhandle in CurrentData.CurrentWebDriver.WindowHandles) {
+                foreach (var  windowhandle in CurrentData.CurrentWebDriver.WindowHandles) {
                     
                     if (!currentWindowHandles.Contains(windowhandle)) {
                         newWindowhandle = windowhandle;
@@ -373,18 +370,18 @@ Console.WriteLine(codeString);
             //throw new NotImplementedException();
         }
         
-        internal static bool isNotFakeWebElement(IWebElement resultElement)
+        internal static bool IsNotFakeWebElement(IWebElement resultElement)
         {
-            bool result = false;
+            var result = false;
             
             if (null == resultElement) {
                 return result;
             }
 
-            if (resultElement.TagName != Recorder.constAuxElementClicked &&
-                resultElement.TagName != Recorder.constAuxElementData &&
-                resultElement.TagName != Recorder.constAuxElementSelected &&
-                resultElement.TagName != Recorder.constAuxElementTypedIn) {
+            if (resultElement.TagName != ConstAuxElementClicked &&
+                resultElement.TagName != ConstAuxElementData &&
+                resultElement.TagName != ConstAuxElementSelected &&
+                resultElement.TagName != ConstAuxElementTypedIn) {
                 result = true;
             }
             return result;
@@ -397,7 +394,7 @@ Console.WriteLine(codeString);
         /// <param name="recordedElement"></param>
         internal static void StoreCodeSequenceInCollection(
             TranscriptCmdletBase cmdlet,
-            System.Collections.Generic.List<IRecordedCodeSequence> recordings,
+            List<IRecordedCodeSequence> recordings,
             IRecordedCodeSequence codeSequence)
         {
             cmdlet.WriteVerbose(cmdlet, "StoreCodeSequenceInCollection");
@@ -418,7 +415,7 @@ Console.WriteLine(codeString);
             List<IRecordedCodeSequence> recordings, 
             IRecordedCodeSequence codeSequence)
         {
-            bool result = false;
+            var result = false;
             
             if (null == recordings) {
                 return result;
@@ -433,20 +430,20 @@ Console.WriteLine(codeString);
                 return true;
             }
             
-            IRecordedCodeSequence lastCollectedCodeSeq = 
+            var lastCollectedCodeSeq = 
                 recordings[recordings.Count - 1];
             
             if (lastCollectedCodeSeq.Items.Count == codeSequence.Items.Count) {
                 
-                for (int i = 0; i < codeSequence.Items.Count; i++) {
+                for (var i = 0; i < codeSequence.Items.Count; i++) {
 
                     if (codeSequence.Items[i].ItemType == lastCollectedCodeSeq.Items[i].ItemType) {
                         
                         switch (codeSequence.Items[i].GetType().Name) {
                             case "RecordedWebElement":
-                                RecordedWebElement eltWebToBeAdded =
+                                var eltWebToBeAdded =
                                     (codeSequence.Items[i] as RecordedWebElement);
-                                RecordedWebElement eltWebThatAlreadyCollected =
+                                var eltWebThatAlreadyCollected =
                                     (lastCollectedCodeSeq.Items[i] as RecordedWebElement);
                                 if (null != eltWebToBeAdded && null != eltWebThatAlreadyCollected) {
                                     /*
@@ -466,9 +463,9 @@ Console.WriteLine(codeString);
                                 }
                                 break;
                             case "RecordedAction":
-                                RecordedAction eltActToBeAdded =
+                                var eltActToBeAdded =
                                     (codeSequence.Items[i] as RecordedAction);
-                                RecordedAction eltActThatAlreadyCollected =
+                                var eltActThatAlreadyCollected =
                                     (lastCollectedCodeSeq.Items[i] as RecordedAction);
                                 if (null != eltActToBeAdded && null != eltActThatAlreadyCollected) {
                                     /*
@@ -488,9 +485,9 @@ Console.WriteLine(codeString);
                                 }
                                 break;
                             case "RecordedData":
-                                RecordedData eltDataToBeAdded =
+                                var eltDataToBeAdded =
                                     (codeSequence.Items[i] as RecordedData);
-                                RecordedData eltDataThatAlreadyCollected =
+                                var eltDataThatAlreadyCollected =
                                     (lastCollectedCodeSeq.Items[i] as RecordedData);
                                 if (null != eltDataToBeAdded && null != eltDataThatAlreadyCollected) {
                                     /*
@@ -559,7 +556,7 @@ Console.WriteLine(codeString);
         
         internal static IRecordedCodeSequence RecordCodeSequence(
             TranscriptCmdletBase cmdlet,
-            System.Collections.Generic.List<IRecordedCodeSequence> recordingCollection,
+            List<IRecordedCodeSequence> recordingCollection,
             object resultElement,
             IRecordedCodeSequence codeSequence)
         {
@@ -567,11 +564,11 @@ Console.WriteLine(codeString);
             RecordedAction actionItem = null;
             RecordedData dataItem = null;
             
-            IWebElement resultWebElement =
+            var resultWebElement =
                 resultElement as IWebElement;
             //RecordedData resultDataCollection =
             //    resultElement as RecordedData;
-            ReadOnlyCollection<object> resultDataCollection =
+            var resultDataCollection =
                 resultElement as ReadOnlyCollection<object>;
             
             if (null == codeSequence) {
@@ -586,15 +583,15 @@ Console.WriteLine(codeString);
 //Console.WriteLine(@"\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ resultElement.GetType().Name = " + resultElement.GetType().Name);
             if (null != resultWebElement) {
 
-                if (Recorder.isNotFakeWebElement(resultWebElement)) {
+                if (IsNotFakeWebElement(resultWebElement)) {
 
                     codeSequence =
-                        Recorder.RecordWebItem(cmdlet, codeSequence, resultWebElement, elementItem);
+                        RecordWebItem(cmdlet, codeSequence, resultWebElement, elementItem);
     
                 } else { // if (Recorder.isNotFakeWebElement(resultWebElement)) {
 
                     codeSequence =
-                        Recorder.RecordActionItem(cmdlet, codeSequence, resultWebElement, actionItem);
+                        RecordActionItem(cmdlet, codeSequence, resultWebElement, actionItem);
     
                 } // else
                 
@@ -604,7 +601,7 @@ Console.WriteLine(codeString);
             if (null != resultDataCollection) {
 Console.WriteLine(@"////////////////////////////////////////////////////////// null != resultDataCollection " + resultDataCollection.GetType().Name);
                 codeSequence =
-                    Recorder.RecordDataItem(cmdlet, codeSequence, resultDataCollection, dataItem);
+                    RecordDataItem(cmdlet, codeSequence, resultDataCollection, dataItem);
             }
 
             cmdlet.WriteVerbose(cmdlet, "RecordCodeSequence");
@@ -635,9 +632,9 @@ Console.WriteLine(@"////////////////////////////////////////////////////////// n
                     
                     codeSequence.ReadyToProduceCode = true;
                     
-                    Recorder.StoreCodeSequenceInCollection(
+                    StoreCodeSequenceInCollection(
                         cmdlet,
-                        recordingCollection,
+                        RecordingCollection,
                         codeSequence);
                     codeSequence = new RecordedCodeSequence();
                 }
@@ -650,7 +647,7 @@ Console.WriteLine(@"////////////////////////////////////////////////////////// n
                 elementItem.UserData.Add("Size", resultWebElement.Size);
                 elementItem.UserData.Add("TagName", resultWebElement.TagName);
                 elementItem.UserData.Add("Text", resultWebElement.Text);
-                elementItem.UserData.Add("code", codeGenGetElement);
+                elementItem.UserData.Add("code", CodeGenGetElement);
                     
                     // temporarily or not
                     //elementItem.Id = resultWebElement.GetAttribute("id");
@@ -688,17 +685,17 @@ Console.WriteLine("not a fake item exception: " + eElementItem.Message);
             }
             
             actionItem = new RecordedAction();
-            string elementId = string.Empty;
-            string elementName = string.Empty;
-            string elementClass = string.Empty;
-            string elementTagName = string.Empty;
-            string elementText = string.Empty;
+            var elementId = string.Empty;
+            var elementName = string.Empty;
+            var elementClass = string.Empty;
+            var elementTagName = string.Empty;
+            var elementText = string.Empty;
             
             try {
             
                 switch (resultWebElement.TagName) {
-                    case Recorder.constAuxElementClicked:
-                        actionItem.UserData.Add("code", codeGenElementClick);
+                    case ConstAuxElementClicked:
+                        actionItem.UserData.Add("code", CodeGenElementClick);
                         break;
                         
 #region temporaly commented
@@ -732,8 +729,8 @@ Console.WriteLine("not a fake item exception: " + eElementItem.Message);
 //                        break;
 #endregion temporaly commented
 
-                    case Recorder.constAuxElementTypedIn:
-                        string typedInData = string.Empty;
+                    case ConstAuxElementTypedIn:
+                        var typedInData = string.Empty;
                         if (null != (typedInData = resultWebElement.GetAttribute("text"))) {
                             
                             // ??
@@ -744,10 +741,10 @@ Console.WriteLine("not a fake item exception: " + eElementItem.Message);
                         }
                         actionItem.UserData.Add("code", @" | Set-SeWebElementKeys '" + typedInData + "'");
                         break;
-                    case Recorder.constAuxElementSelected:
+                    case ConstAuxElementSelected:
                         // TBD
                         break;
-                    case Recorder.constAuxElementData:
+                    case ConstAuxElementData:
                         // nothing to do
                         break;
                 }
@@ -807,8 +804,8 @@ Console.WriteLine("a fake item exception: " + eActionItem.Message);
 
 //int dictionariesCounter = 0;
 
-            string keyKey = string.Empty;
-            string keyValue = string.Empty;
+            var keyKey = string.Empty;
+            var keyValue = string.Empty;
             //codeSequence.Items.Add(resultDataCollection);
             foreach (Dictionary<string, object> data in resultDataCollection) {
                 try {
@@ -874,20 +871,20 @@ Console.WriteLine("a fake item exception: " + eActionItem.Message);
             
             cmdlet.WriteVerbose(cmdlet, "WriteRecordingsToFile");
 
-            string commonData = string.Empty;
+            var commonData = string.Empty;
                 
             //foreach (IRecordedCodeSequence codeSequence in recordingCollection) {
-            foreach (IRecordedCodeSequence codeSequence in Recorder.recordingCollection) {
+            foreach (var codeSequence in RecordingCollection) {
                 
                 commonData =
-                    Recorder.ConvertCodeSequenceToCode(codeSequence, (new PSLanguage()), commonData);
+                    ConvertCodeSequenceToCode(codeSequence, (new PsLanguage()), commonData);
 Console.WriteLine("<<<<<<<<<<<<<<<<<<< written >>>>>>>>>>>>>>>>>>>>>");
             }
             
             if (string.Empty != commonData) {
 Console.WriteLine("<<<<<<<<<<<<<<<<<<< string.Empty != commonData >>>>>>>>>>>>>>>>>>>>>");
                 try {
-                    using (System.IO.StreamWriter writer = new System.IO.StreamWriter(fileName)) {
+                    using (var writer = new System.IO.StreamWriter(fileName)) {
 Console.WriteLine("<<<<<<<<<<<<<<<<<<< writing to the file >>>>>>>>>>>>>>>>>>>>>");
                         writer.WriteLine(commonData);
                         writer.Flush();
@@ -927,20 +924,20 @@ Console.WriteLine("FINISHED!!!!!!!!");
             string commonData)
         {
             
-            string webCode = string.Empty;
-            string actCode = string.Empty;
-            string dataCode = string.Empty;
+            var webCode = string.Empty;
+            var actCode = string.Empty;
+            var dataCode = string.Empty;
             
             codeSequence.Header.Add(languagePackage.RegionOpen);
             
-            foreach (IRecordedItem recordedItem in codeSequence.Items) {
+            foreach (var recordedItem in codeSequence.Items) {
 
-                string recordedData = string.Empty;
-                string additionalData = string.Empty;
+                var recordedData = string.Empty;
+                var additionalData = string.Empty;
                 
-                RecordedWebElement webElement = recordedItem as RecordedWebElement;
-                RecordedAction actionElement = recordedItem as RecordedAction;
-                RecordedData dataElement = recordedItem as RecordedData;
+                var webElement = recordedItem as RecordedWebElement;
+                var actionElement = recordedItem as RecordedAction;
+                var dataElement = recordedItem as RecordedData;
 
                 
                 //codeSequence.Data.Add(languagePackage.SingleLineComment);
@@ -1003,7 +1000,7 @@ Console.WriteLine("FINISHED!!!!!!!!");
                     codeSequence.Data.Add(additionalData);
                     additionalData = string.Empty;
                     
-                    string tempTextData =
+                    var tempTextData =
                         //(recordedItem as RecordedWebElement).Text;
                         //webElement.Text;
                         webElement.UserData["Text"].ToString();
@@ -1057,13 +1054,13 @@ Console.WriteLine("FINISHED!!!!!!!!");
                     additionalData +=
                         "\r\n#";
                     //foreach (string key in (recordedItem as RecordedData).UserData.Keys) {
-                    foreach (string key in dataElement.UserData.Keys) {
+                    foreach (var key in dataElement.UserData.Keys) {
 //Console.WriteLine("dataItem's key = " + key);
                         if ("XPath" == key) {
 //Console.WriteLine("XPath = ");
                             additionalData +=
                                 "XPath = ";
-string sTemp = "XPath = ";
+var sTemp = "XPath = ";
 //Console.WriteLine("dataElement.UserData[key].GetType().Name = " + dataElement.UserData[key].GetType().Name);
                             //foreach (var xpathPart in ((ReadOnlyCollection<object>)((RecordedData)recordedItem).UserData[key])) {
                             foreach (var xpathPart in ((ReadOnlyCollection<object>)dataElement.UserData[key])) {
@@ -1081,7 +1078,7 @@ sTemp += xpathPart;
                                 ";";
 Console.WriteLine(sTemp);
                         } else {
-string sTemp2 = string.Empty;
+var sTemp2 = string.Empty;
                             additionalData +=
                                 " ";
                             additionalData +=
@@ -1117,11 +1114,11 @@ Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< unused element !!!!!!!!!!!!!
             
             commonData +=
                 codeSequence.Header;
-            foreach (string dataString in codeSequence.Data) {
+            foreach (var dataString in codeSequence.Data) {
                 commonData +=
                     dataString;
             }
-            foreach (string codeString in codeSequence.Code) {
+            foreach (var codeString in codeSequence.Code) {
                 commonData +=
                     codeString;
             }

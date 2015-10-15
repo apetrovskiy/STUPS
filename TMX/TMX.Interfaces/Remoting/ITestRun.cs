@@ -11,7 +11,6 @@ namespace Tmx.Interfaces.Remoting
 {
     using System;
     using System.Collections.Generic;
-    using Actions;
     using TestStructure;
 
     /// <summary>
@@ -28,11 +27,6 @@ namespace Tmx.Interfaces.Remoting
         DateTime CreatedTime { get; set; }
         DateTime StartTime { get; set; }
         string GetTimeTaken();
-//        string GetTestLabName();
-        List<IAction> BeforeActions { get; set; }
-        List<IAction> AfterActions { get; set; }
-        List<IAction> CancelActions { get; set; }
-        List<IAction> FailureActions { get; set; }
         TestStatuses TestStatus { get; }
     }
 }

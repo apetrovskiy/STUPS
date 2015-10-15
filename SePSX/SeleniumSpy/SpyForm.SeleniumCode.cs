@@ -42,7 +42,7 @@ namespace UIAutomationSpy
             cmdlet.Wait = true;
             cmdlet.Seconds = 60 * 60 * 24;
             
-            Recorder.RecordActions(cmdlet, (new JSRecorder()), cmdlet.Language);
+            Recorder.RecordActions(cmdlet, (new JsRecorder()), cmdlet.Language);
             
             //
             //

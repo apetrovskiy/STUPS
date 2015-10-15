@@ -9,12 +9,9 @@
 
 namespace SePSXUnitTests.Commands.Driver
 {
-    using System;
     using SePSX;
     using SePSX.Commands;
     using MbUnit.Framework;
-    using PSTestLib;
-    using OpenQA.Selenium;
     using Autofac;
     
     /// <summary>
@@ -44,15 +41,15 @@ namespace SePSXUnitTests.Commands.Driver
                 new SeStartChromeCommand(cmdlet0);
             command0.Execute();
 
-            EnterSeURLCommand cmdlet1 =
+            EnterSeUrlCommand cmdlet1 =
                 //new EnterSeURLCommandTestFixture();
-                WebDriverFactory.Container.Resolve<EnterSeURLCommand>();
+                WebDriverFactory.Container.Resolve<EnterSeUrlCommand>();
             cmdlet1.InputObject =
                 //new FakeWebDriver[]{ (CommonCmdletBase.UnitTestOutput[0] as FakeWebDriver) };
                 new FakeWebDriver[]{ ((FakeWebDriver)(object)PSTestLib.UnitTestOutput.LastOutput) };
-            cmdlet1.URL = url;
-            SeEnterURLCommand command1 =
-                new SeEnterURLCommand(cmdlet1);
+            cmdlet1.Url = url;
+            SeEnterUrlCommand command1 =
+                new SeEnterUrlCommand(cmdlet1);
             command1.Execute();
 
             ReadSeWebDriverTitleCommand cmdlet2 =

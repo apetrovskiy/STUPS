@@ -9,15 +9,11 @@
 
 namespace SePSXUnitTests.Recording
 {
-    using System;
     using MbUnit.Framework;
     //using NUnit.Framework;
     using SePSX;
     using PSTestLib;
-    using OpenQA.Selenium;
-    using System.Drawing;
-    using System.Collections.ObjectModel;
-    
+
     /// <summary>
     /// Description of CheckCodeSequenceNoveltyTestFixture.
     /// </summary>
@@ -40,12 +36,12 @@ namespace SePSXUnitTests.Recording
             bool result = false;
             bool expectedResult = false;
             TranscriptCmdletBase cmdlet = new TranscriptCmdletBase();
-            Recorder.recordingCollection = null;
+            Recorder.RecordingCollection = null;
             IRecordedCodeSequence codeSequence = null;
             result = 
                 Recorder.CheckCodeSequenceNovelty(
                     cmdlet,
-                    Recorder.recordingCollection,
+                    Recorder.RecordingCollection,
                     codeSequence);
             Assert.AreEqual(expectedResult, result);
         }
@@ -57,12 +53,12 @@ namespace SePSXUnitTests.Recording
             bool result = false;
             bool expectedResult = false;
             TranscriptCmdletBase cmdlet = new TranscriptCmdletBase();
-            Recorder.recordingCollection = null;
+            Recorder.RecordingCollection = null;
             IRecordedCodeSequence codeSequence = new RecordedCodeSequence();
             result = 
                 Recorder.CheckCodeSequenceNovelty(
                     cmdlet,
-                    Recorder.recordingCollection,
+                    Recorder.RecordingCollection,
                     codeSequence);
             Assert.AreEqual(expectedResult, result);
         }
@@ -74,13 +70,13 @@ namespace SePSXUnitTests.Recording
             bool result = false;
             bool expectedResult = false;
             TranscriptCmdletBase cmdlet = new TranscriptCmdletBase();
-            Recorder.recordingCollection = null;
+            Recorder.RecordingCollection = null;
             IRecordedCodeSequence codeSequence = new RecordedCodeSequence();
             codeSequence.Items.Add((new RecordedAction()));
             result = 
                 Recorder.CheckCodeSequenceNovelty(
                     cmdlet,
-                    Recorder.recordingCollection,
+                    Recorder.RecordingCollection,
                     codeSequence);
             Assert.AreEqual(expectedResult, result);
         }
@@ -92,13 +88,13 @@ namespace SePSXUnitTests.Recording
             bool result = false;
             bool expectedResult = false;
             TranscriptCmdletBase cmdlet = new TranscriptCmdletBase();
-            Recorder.recordingCollection =
+            Recorder.RecordingCollection =
                 new System.Collections.Generic.List<IRecordedCodeSequence>();
             IRecordedCodeSequence codeSequence = null;
             result = 
                 Recorder.CheckCodeSequenceNovelty(
                     cmdlet,
-                    Recorder.recordingCollection,
+                    Recorder.RecordingCollection,
                     codeSequence);
             Assert.AreEqual(expectedResult, result);
         }
@@ -110,13 +106,13 @@ namespace SePSXUnitTests.Recording
             bool result = false;
             bool expectedResult = false;
             TranscriptCmdletBase cmdlet = new TranscriptCmdletBase();
-            Recorder.recordingCollection =
+            Recorder.RecordingCollection =
                 new System.Collections.Generic.List<IRecordedCodeSequence>();
             IRecordedCodeSequence codeSequence = new RecordedCodeSequence();
             result = 
                 Recorder.CheckCodeSequenceNovelty(
                     cmdlet,
-                    Recorder.recordingCollection,
+                    Recorder.RecordingCollection,
                     codeSequence);
             Assert.AreEqual(expectedResult, result);
         }
@@ -128,14 +124,14 @@ namespace SePSXUnitTests.Recording
             bool result = false;
             bool expectedResult = true;
             TranscriptCmdletBase cmdlet = new TranscriptCmdletBase();
-            Recorder.recordingCollection =
+            Recorder.RecordingCollection =
                 new System.Collections.Generic.List<IRecordedCodeSequence>();
             IRecordedCodeSequence codeSequence = new RecordedCodeSequence();
             codeSequence.Items.Add((new RecordedAction()));
             result = 
                 Recorder.CheckCodeSequenceNovelty(
                     cmdlet,
-                    Recorder.recordingCollection,
+                    Recorder.RecordingCollection,
                     codeSequence);
             Assert.AreEqual(expectedResult, result);
         }
@@ -147,17 +143,17 @@ namespace SePSXUnitTests.Recording
             bool result = false;
             bool expectedResult = true;
             TranscriptCmdletBase cmdlet = new TranscriptCmdletBase();
-            Recorder.recordingCollection =
+            Recorder.RecordingCollection =
                 new System.Collections.Generic.List<IRecordedCodeSequence>();
             IRecordedCodeSequence codeSequence = new RecordedCodeSequence();
             RecordedWebElement webElement = new RecordedWebElement();
             webElement.TagName = "button";
             codeSequence.Items.Add(webElement);
             RecordedAction action = new RecordedAction();
-            action.UserData.Add("code", Recorder.codeGenElementClick);
+            action.UserData.Add("code", Recorder.CodeGenElementClick);
             codeSequence.Items.Add(action);
             
-            Recorder.recordingCollection.Add(codeSequence);
+            Recorder.RecordingCollection.Add(codeSequence);
             
             // a new code sequence
             codeSequence = new RecordedCodeSequence();
@@ -165,13 +161,13 @@ namespace SePSXUnitTests.Recording
             webElement.TagName = "button";
             codeSequence.Items.Add(webElement);
             action = new RecordedAction();
-            action.UserData.Add("code", Recorder.codeGenIdParameter + "aaaa'");
+            action.UserData.Add("code", Recorder.CodeGenIdParameter + "aaaa'");
             codeSequence.Items.Add(action);
             
             result = 
                 Recorder.CheckCodeSequenceNovelty(
                     cmdlet,
-                    Recorder.recordingCollection,
+                    Recorder.RecordingCollection,
                     codeSequence);
             Assert.AreEqual(expectedResult, result);
         }
@@ -183,17 +179,17 @@ namespace SePSXUnitTests.Recording
             bool result = false;
             bool expectedResult = false;
             TranscriptCmdletBase cmdlet = new TranscriptCmdletBase();
-            Recorder.recordingCollection =
+            Recorder.RecordingCollection =
                 new System.Collections.Generic.List<IRecordedCodeSequence>();
             IRecordedCodeSequence codeSequence = new RecordedCodeSequence();
             RecordedWebElement webElement = new RecordedWebElement();
             webElement.TagName = "button";
             codeSequence.Items.Add(webElement);
             RecordedAction action = new RecordedAction();
-            action.UserData.Add("code", Recorder.codeGenElementClick);
+            action.UserData.Add("code", Recorder.CodeGenElementClick);
             codeSequence.Items.Add(action);
             
-            Recorder.recordingCollection.Add(codeSequence);
+            Recorder.RecordingCollection.Add(codeSequence);
             
             // a new code sequence
             codeSequence = new RecordedCodeSequence();
@@ -201,13 +197,13 @@ namespace SePSXUnitTests.Recording
             webElement.TagName = "button";
             codeSequence.Items.Add(webElement);
             action = new RecordedAction();
-            action.UserData.Add("code", Recorder.codeGenElementClick);
+            action.UserData.Add("code", Recorder.CodeGenElementClick);
             codeSequence.Items.Add(action);
             
             result = 
                 Recorder.CheckCodeSequenceNovelty(
                     cmdlet,
-                    Recorder.recordingCollection,
+                    Recorder.RecordingCollection,
                     codeSequence);
             Assert.AreEqual(expectedResult, result);
         }

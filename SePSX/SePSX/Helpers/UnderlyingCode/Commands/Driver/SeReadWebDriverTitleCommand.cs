@@ -9,10 +9,6 @@
 
 namespace SePSX
 {
-    using System;
-    using System.Management.Automation;
-    using SePSX.Commands;
-    
     /// <summary>
     /// Description of SeReadWebDriverTitleCommand.
     /// </summary>
@@ -28,8 +24,8 @@ namespace SePSX
 //                ((SeReadWebDriverTitleCommand)this.Cmdlet),
 //                ((SeReadWebDriverTitleCommand)this.Cmdlet).InputObject);
             SeHelper.GetTitle(
-                this.Cmdlet,
-                ((HasWebDriverInputCmdletBase)this.Cmdlet).InputObject);
+                Cmdlet,
+                ((HasWebDriverInputCmdletBase)Cmdlet).InputObject);
         }
     }
 }

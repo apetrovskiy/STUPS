@@ -9,10 +9,6 @@
 
 namespace SePSX
 {
-    using System;
-    using System.Management.Automation;
-    using SePSX.Commands;
-    
     using OpenQA.Selenium;
     
     /// <summary>
@@ -30,8 +26,8 @@ namespace SePSX
 //                ((ClearSeWebElementCommand)this.Cmdlet),
 //                ((IWebElement[])((ClearSeWebElementCommand)this.Cmdlet).InputObject));
             SeHelper.ClearWebElement(
-                this.Cmdlet,
-                ((IWebElement[])((WebElementCmdletBase)this.Cmdlet).InputObject));
+                Cmdlet,
+                ((IWebElement[])((WebElementCmdletBase)Cmdlet).InputObject));
         }
     }
 }

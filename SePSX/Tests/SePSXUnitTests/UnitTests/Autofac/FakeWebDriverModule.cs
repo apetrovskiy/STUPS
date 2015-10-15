@@ -11,7 +11,6 @@ namespace SePSXUnitTests
 {
     using System;
     using Autofac;
-    using Autofac.Builder;
     using Autofac.Features.ResolveAnything;
     using SePSX;
     using OpenQA.Selenium;
@@ -254,12 +253,12 @@ namespace SePSXUnitTests
                                   //typeof(RemoteWebElement)
                                   typeof(WebElementDecorator)
                               })
-            .Keyed<IWebElement>(Constructors.FakeWebElement_IWebElement);
+            .Keyed<IWebElement>(Constructors.FakeWebElementIWebElement);
 //System.Windows.Forms.MessageBox.Show("good IWebDriver");
         builder.RegisterType<FakeWebElement>()
             .As<IWebElement>()
             .UsingConstructor(new Type[] {})
-            .Keyed<IWebElement>(Constructors.FakeWebElement_NoParameters);
+            .Keyed<IWebElement>(Constructors.FakeWebElementNoParameters);
 //System.Windows.Forms.MessageBox.Show("good no param");
         builder.RegisterType<FakeWebElement>()
             .As<IWebElement>()
@@ -267,7 +266,7 @@ namespace SePSXUnitTests
                                   typeof(string),
                                   typeof(string)
                               })
-            .Keyed<IWebElement>(Constructors.FakeWebElement_TagName_Text);
+            .Keyed<IWebElement>(Constructors.FakeWebElementTagNameText);
 //System.Windows.Forms.MessageBox.Show("good two strings");
         builder.RegisterType<FakeWebElement>()
             .As<IWebElement>()
@@ -278,7 +277,7 @@ namespace SePSXUnitTests
                                   typeof(bool),
                                   typeof(bool)
                               })
-            .Keyed<IWebElement>(Constructors.FakeWebElement_TagName_Text_Displayed_Enabled_Selected);
+            .Keyed<IWebElement>(Constructors.FakeWebElementTagNameTextDisplayedEnabledSelected);
 //System.Windows.Forms.MessageBox.Show("good two strings and three booleans");
         builder.RegisterType<FakeWebElement>()
             .As<IWebElement>()
@@ -288,7 +287,7 @@ namespace SePSXUnitTests
                                   typeof(Point),
                                   typeof(Size)
                               })
-            .Keyed<IWebElement>(Constructors.FakeWebElement_TagName_Text_Location_Size);
+            .Keyed<IWebElement>(Constructors.FakeWebElementTagNameTextLocationSize);
 //System.Windows.Forms.MessageBox.Show("good two strings and point and size");
         } catch (Exception eeeee222222) {
             Console.WriteLine(eeeee222222.Message);

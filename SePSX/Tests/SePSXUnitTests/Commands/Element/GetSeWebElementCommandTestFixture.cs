@@ -13,15 +13,11 @@ namespace SePSXUnitTests.Commands.Element
     using SePSX;
     using SePSX.Commands;
     using MbUnit.Framework;
-    using PSTestLib;
     using OpenQA.Selenium;
     using OpenQA.Selenium.Remote;
     using System.Collections.Generic;
-    using System.Linq;
     using Autofac;
-    
-    using Moq;
-    
+
     /// <summary>
     /// 
     /// </summary>
@@ -69,7 +65,7 @@ namespace SePSXUnitTests.Commands.Element
                 case FindElementParameters.ByPartialLinkText:
                     cmdlet.PartialLinkText = searchValue;
                     break;
-                case FindElementParameters.ByCSS:
+                case FindElementParameters.ByCss:
                     cmdlet.CssSelector = searchValue;
                     break;
                 case FindElementParameters.ByXPath:
@@ -96,7 +92,7 @@ namespace SePSXUnitTests.Commands.Element
             } else if (WebElementsFrom.WebElement == typeFrom) {
 
                 testElement =
-                    WebDriverFactory.Container.ResolveKeyed<FakeWebElement>(Constructors.FakeWebElement_NoParameters);
+                    WebDriverFactory.Container.ResolveKeyed<FakeWebElement>(Constructors.FakeWebElementNoParameters);
 
                 ((FakeWebElement)testElement).SetElementsCollection(listOfElements);
 

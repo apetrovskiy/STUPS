@@ -1,5 +1,4 @@
-﻿using UIAutomation;
-/*
+﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 8/16/2012
@@ -10,11 +9,8 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
-    using OpenQA.Selenium;
-    using System.Windows.Automation;
-    
+
     /// <summary>
     /// Description of ConvertToSeAutomationElementCommand.
     /// </summary>
@@ -28,12 +24,12 @@ namespace SePSX.Commands
         
         protected override void ProcessRecord()
         {
-            this.checkInputWebDriverOrWebElement();
+            CheckInputWebDriverOrWebElement();
             
-            this.WriteVerbose(this, "the input is checked and valid");
+            WriteVerbose(this, "the input is checked and valid");
             
             //SeHelper.ConvertWebDriverToAutomationElement(this, ((IWebDriver[])this.InputObject));
-            SeHelper.ConvertWebDriverOrWebElementToAutomationElement(this, (this.InputObject));
+            SeHelper.ConvertWebDriverOrWebElementToAutomationElement(this, (InputObject));
         }
     }
 }

@@ -15,8 +15,7 @@ namespace SePSXUnitTests
     using OpenQA.Selenium.Remote;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using SePSX;
-    
+
     /// <summary>
     /// Description of FakeWebDriver.
     /// </summary>

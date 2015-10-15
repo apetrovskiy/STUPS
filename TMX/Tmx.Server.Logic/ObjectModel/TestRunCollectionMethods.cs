@@ -69,5 +69,24 @@
             testRunSelector.CancelTestRun(testRun);
             return true;
         }
+
+        public virtual bool SetTestRunData(Guid testRunId) //, )
+        {
+            var testRun = TestRunQueue.TestRuns.First(tr => tr.Id == testRunId);
+            // testRun.AfterActions
+            // testRun.BeforeActions
+            // testRun.CancelActions
+            // testRun.CreatedTime
+            // testRun.Data
+            // testRun.FailureActions
+            // testRun.StartTime
+            // testRun.StartType //!
+            // testRun.Status //!
+            // testRun.TestPlatforms
+            // testRun.TestStatus //!
+            // testRun.Name //!
+            // testRun.Description //!
+            return false;
+        }
     }
 }

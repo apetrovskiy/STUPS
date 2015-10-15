@@ -9,9 +9,7 @@
 
 namespace SePSX
 {
-    using System;
-    using System.Management.Automation;
-    using SePSX.Commands;
+    using Commands;
     
     /// <summary>
     /// Description of SeSelectWebDriverCommand.
@@ -25,8 +23,8 @@ namespace SePSX
         internal override void Execute()
         {
             SeHelper.GetWebDriver(
-                ((SelectSeWebDriverCommand)this.Cmdlet),
-                ((SelectSeWebDriverCommand)this.Cmdlet).InstanceName);
+                ((SelectSeWebDriverCommand)Cmdlet),
+                ((SelectSeWebDriverCommand)Cmdlet).InstanceName);
         }
     }
 }

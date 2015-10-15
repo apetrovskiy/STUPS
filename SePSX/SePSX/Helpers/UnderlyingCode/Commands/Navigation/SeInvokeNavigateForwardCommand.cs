@@ -9,9 +9,7 @@
 
 namespace SePSX
 {
-    using System;
-    using System.Management.Automation;
-    using SePSX.Commands;
+    using Commands;
     
     /// <summary>
     /// Description of SeInvokeNavigateForwardCommand.
@@ -25,8 +23,8 @@ namespace SePSX
         internal override void Execute()
         {
             SeHelper.NavigateForward(
-                this.Cmdlet,
-                ((InvokeSeNavigateForwardCommand)this.Cmdlet).InputObject);
+                Cmdlet,
+                ((InvokeSeNavigateForwardCommand)Cmdlet).InputObject);
         }
     }
 }

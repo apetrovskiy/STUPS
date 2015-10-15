@@ -9,7 +9,6 @@
 
 namespace SePSXUnitTests
 {
-    using System;
     using OpenQA.Selenium;
     
     /// <summary>

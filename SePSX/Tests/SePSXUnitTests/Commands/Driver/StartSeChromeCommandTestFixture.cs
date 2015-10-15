@@ -9,14 +9,12 @@
 
 namespace SePSXUnitTests.Commands.Driver
 {
-    using System;
     using SePSX;
     using OpenQA.Selenium;
-    using OpenQA.Selenium.Chrome;
     using SePSX.Commands;
     using MbUnit.Framework;
     using Autofac;
-    using System.Reflection;
+
 //    using Moq;
 //    using Ninject;
     
@@ -85,7 +83,7 @@ namespace SePSXUnitTests.Commands.Driver
             Assert.AreEqual(
                 //ChromeDriverConstructorOptions.chrome_bare.ToString(),
                 //DriverServerConstructorOptions.bare.ToString(),
-                DriverServerConstructorOptions.with_service_and_options_and_timespan.ToString(),
+                DriverServerConstructorOptions.WithServiceAndOptionsAndTimespan.ToString(),
                 ((FakeChromeDriver)result).UnitTestReport);
         }
         
@@ -100,7 +98,7 @@ namespace SePSXUnitTests.Commands.Driver
             Assert.AreEqual(
                 //ChromeDriverConstructorOptions.chrome_with_path.ToString(),
                 //DriverServerConstructorOptions.with_path.ToString(),
-                DriverServerConstructorOptions.with_service_and_options_and_timespan.ToString(),
+                DriverServerConstructorOptions.WithServiceAndOptionsAndTimespan.ToString(),
                 ((FakeChromeDriver)result).UnitTestReport);
         }
         
@@ -115,7 +113,7 @@ namespace SePSXUnitTests.Commands.Driver
             Assert.AreEqual(
                 //ChromeDriverConstructorOptions.chrome_with_options.ToString(),
                 //DriverServerConstructorOptions.with_options.ToString(),
-                DriverServerConstructorOptions.with_service_and_options_and_timespan.ToString(),
+                DriverServerConstructorOptions.WithServiceAndOptionsAndTimespan.ToString(),
                 ((FakeChromeDriver)result).UnitTestReport);
         }
         
@@ -130,7 +128,7 @@ namespace SePSXUnitTests.Commands.Driver
             Assert.AreEqual(
                 //ChromeDriverConstructorOptions.chrome_with_path_and_options.ToString(),
                 //DriverServerConstructorOptions.with_path_and_options.ToString(),
-                DriverServerConstructorOptions.with_service_and_options_and_timespan.ToString(),
+                DriverServerConstructorOptions.WithServiceAndOptionsAndTimespan.ToString(),
                 ((FakeChromeDriver)result).UnitTestReport);
         }
         
@@ -145,7 +143,7 @@ namespace SePSXUnitTests.Commands.Driver
             Assert.AreEqual(
                 //ChromeDriverConstructorOptions.chrome_with_path_and_options_and_timespan.ToString(),
                 //DriverServerConstructorOptions.with_path_and_options_and_timespan.ToString(),
-                DriverServerConstructorOptions.with_service_and_options_and_timespan.ToString(),
+                DriverServerConstructorOptions.WithServiceAndOptionsAndTimespan.ToString(),
                 ((FakeChromeDriver)result).UnitTestReport);
         }
         
@@ -159,7 +157,7 @@ namespace SePSXUnitTests.Commands.Driver
             
             Assert.AreEqual(
                 //ChromeDriverConstructorOptions.chrome_with_service_and_options_and_timespan.ToString(),
-                DriverServerConstructorOptions.with_service_and_options_and_timespan.ToString(),
+                DriverServerConstructorOptions.WithServiceAndOptionsAndTimespan.ToString(),
                 ((FakeChromeDriver)result).UnitTestReport);
         }
     }

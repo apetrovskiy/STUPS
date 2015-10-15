@@ -9,7 +9,6 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
     using OpenQA.Selenium;
     
@@ -18,9 +17,9 @@ namespace SePSX.Commands
     /// </summary>
     [Cmdlet(VerbsCommon.Enter, "SeURL")]
     [OutputType(typeof(IWebDriver))]
-    public class EnterSeURLCommand : NavigationCmdletBase
+    public class EnterSeUrlCommand : NavigationCmdletBase
     {
-        public EnterSeURLCommand()
+        public EnterSeUrlCommand()
         {
         }
         
@@ -29,15 +28,15 @@ namespace SePSX.Commands
                    Position = 0)]
         [ValidateNotNullOrEmpty()]
         //[ValidatePattern(@"h[t]{2}p[Ss]{0,1}[\:][\/]{2}.*|about[\:].*|ms-its[\:].*|file[\:][\/]{3}.*")]
-        public string URL { get; set; }
+        public string Url { get; set; }
         #endregion Parameters
         
         protected override void ProcessRecord()
         {
-            this.checkInputWebDriver(true);
+            CheckInputWebDriver(true);
             
-            SeEnterURLCommand command =
-                new SeEnterURLCommand(this);
+            var command =
+                new SeEnterUrlCommand(this);
             command.Execute();
             //SeHelper.NavigateTo(this, this.InputObject, this.URL);
         }

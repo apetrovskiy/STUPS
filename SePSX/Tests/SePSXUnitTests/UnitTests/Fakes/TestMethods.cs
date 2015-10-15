@@ -9,8 +9,6 @@
 
 namespace SePSXUnitTests
 {
-    using System;
-    
     /// <summary>
     /// Description of TestMethods.
     /// </summary>

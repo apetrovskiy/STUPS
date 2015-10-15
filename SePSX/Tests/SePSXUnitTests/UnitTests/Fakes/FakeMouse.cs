@@ -9,11 +9,8 @@
 
 namespace SePSXUnitTests
 {
-    using System;
     using OpenQA.Selenium;
     using OpenQA.Selenium.Interactions.Internal;
-    using System.Drawing;
-    using System.Collections.ObjectModel;
 
     /// <summary>
     /// Description of FakeMouse.

@@ -9,9 +9,7 @@
 
 namespace SePSX
 {
-    using System;
-    using System.Management.Automation;
-    using SePSX.Commands;
+    using Commands;
     using OpenQA.Selenium;
     
     /// <summary>
@@ -26,8 +24,8 @@ namespace SePSX
         internal override void Execute()
         {
             SeHelper.SubmitWebElement(
-                this.Cmdlet,
-                ((IWebElement[])((SubmitSeWebElementCommand)this.Cmdlet).InputObject));
+                Cmdlet,
+                ((IWebElement[])((SubmitSeWebElementCommand)Cmdlet).InputObject));
         }
     }
 }

@@ -9,15 +9,12 @@
 
 namespace SePSX
 {
-    using System;
-    using System.Management.Automation;
-    
     /// <summary>
     /// Description of IEOptionsCmdletBase.
     /// </summary>
-    public class IEOptionsCmdletBase : CommonCmdletBase
+    public class IeOptionsCmdletBase : CommonCmdletBase
     {
-        public IEOptionsCmdletBase()
+        public IeOptionsCmdletBase()
         {
         }
     }

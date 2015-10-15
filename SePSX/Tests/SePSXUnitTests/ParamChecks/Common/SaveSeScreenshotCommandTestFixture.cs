@@ -9,10 +9,8 @@
 
 namespace SePSXUnitTests.CheckCmdletParameters
 {
-    using System;
-    using SePSX; using MbUnit.Framework;
-    using System.Runtime.InteropServices;
-    
+    using MbUnit.Framework;
+
     /// <summary>
     /// Description of SaveSeScreenshotCommand.
     /// </summary>

@@ -36,6 +36,7 @@ namespace Tmx.Server.Library.Modules
             
             // http://blog.nancyfx.org/x-http-method-override-with-nancyfx/
             Put[UrlList.TestRuns_One_Cancel] = parameters => CancelTestRun(parameters.id);
+            Put[UrlList.TestRuns_One_relPath] = parameters => SetTestRunData(parameters.id);
             Get[UrlList.TestRuns_One_relPath] = parameters => GetTestRun(parameters.id);
             Get[UrlList.TestRunsControlPoint_relPath] = _ => GetAllTestRuns();
         }
@@ -80,24 +81,18 @@ namespace Tmx.Server.Library.Modules
         Negotiator DeleteTestRun(Guid testRunId)
         {
             ServerObjectFactory.Resolve<TestRunCollectionMethods>().DeleteTestRun(testRunId);
-            // 20150918
-            // return Negotiate.WithStatusCode(HttpStatusCode.OK);
-            //var testRunCollectionMethods = ServerObjectFactory.Resolve<TestRunCollectionMethods>();
-            //var data = testRunCollectionMethods.CreateTestRunExpandoObject();
-            //return Negotiate.WithStatusCode(HttpStatusCode.OK).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data);
-
             return ReturnListOfTestRunsAndOk();
         }
         
         Negotiator CancelTestRun(Guid testRunId)
         {
-            // 20150918
-            //var testRunCollectionMethods = ServerObjectFactory.Resolve<TestRunCollectionMethods>();
-            //testRunCollectionMethods.CancelTestRun(testRunId);
-            //var data = testRunCollectionMethods.CreateTestRunExpandoObject();
-            //return Negotiate.WithStatusCode(HttpStatusCode.OK).WithView(UrlList.ViewTestRuns_TestRunsPageName).WithModel((ExpandoObject)data);
-
             ServerObjectFactory.Resolve<TestRunCollectionMethods>().CancelTestRun(testRunId);
+            return ReturnListOfTestRunsAndOk();
+        }
+
+        Negotiator SetTestRunData(Guid testRunId)
+        {
+            ServerObjectFactory.Resolve<TestRunCollectionMethods>(); //.CancelTestRun(testRunId);
             return ReturnListOfTestRunsAndOk();
         }
 

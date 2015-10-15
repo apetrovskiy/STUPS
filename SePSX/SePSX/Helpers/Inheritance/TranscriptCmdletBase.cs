@@ -9,7 +9,6 @@
 
 namespace SePSX
 {
-    using System;
     using System.Management.Automation;
     
     /// <summary>
@@ -19,8 +18,8 @@ namespace SePSX
     {
         public TranscriptCmdletBase()
         {
-            this.PassThru = false;
-            this.Language = RecorderLanguages.PowerShell;
+            PassThru = false;
+            Language = RecorderLanguages.PowerShell;
         }
         
         

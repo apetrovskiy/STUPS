@@ -9,9 +9,6 @@
 
 namespace SePSX
 {
-    using System;
-    using System.Management.Automation;
-    
     /// <summary>
     /// Description of SeAddFirefoxExtensionCommand.
     /// </summary>
@@ -23,7 +20,7 @@ namespace SePSX
         
         internal override void Execute()
         {
-            SeHelper.AddFirefoxExtension(this.Cmdlet);
+            SeHelper.AddFirefoxExtension(Cmdlet);
         }
     }
 }

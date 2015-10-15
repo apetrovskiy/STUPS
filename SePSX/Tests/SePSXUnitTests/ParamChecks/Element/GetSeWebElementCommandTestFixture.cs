@@ -9,14 +9,8 @@
 
 namespace SePSXUnitTests.CheckCmdletParameters
 {
-    using System;
-    using SePSX; using MbUnit.Framework;
-    using OpenQA.Selenium;
-    using System.Collections.ObjectModel;
-    using System.Collections.Generic;
-    
-    using OpenQA.Selenium.Remote;
-    
+    using MbUnit.Framework;
+
     /// <summary>
     /// Description of GetSeWebElementCommand.
     /// </summary>

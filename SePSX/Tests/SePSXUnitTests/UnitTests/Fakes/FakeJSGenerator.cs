@@ -11,7 +11,6 @@ namespace SePSXUnitTests
 {
     #region using
     using System;
-    using OpenQA.Selenium;
 //    using OpenQA.Selenium.Firefox;
 //    using OpenQA.Selenium.Chrome;
 //    using OpenQA.Selenium.IE;
@@ -28,7 +27,6 @@ namespace SePSXUnitTests
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Collections;
-    using System.Drawing;
 
     //
     //
@@ -37,9 +35,6 @@ namespace SePSXUnitTests
     //
 
     //using OpenQA.Selenium.Remote;
-
-    using PSTestLib;
-    using System.Management.Automation;
     using SePSX;
 
     #endregion using
@@ -47,7 +42,7 @@ namespace SePSXUnitTests
     /// <summary>
     /// Description of JSFakeGenerator.
     /// </summary>
-    public class FakeJSGenerator : IJSRecorder
+    public class FakeJSGenerator : IJsRecorder
     {
         public FakeJSGenerator()
         {
@@ -63,7 +58,7 @@ namespace SePSXUnitTests
         public void CleanRecordedDuringSleep(TranscriptCmdletBase cmdlet)
         {
             cmdlet.WriteVerbose(cmdlet, "cleaning colelcted during the sleep");
-            SeHelper.ExecuteJavaScript(cmdlet, (new OpenQA.Selenium.IWebDriver[] { CurrentData.CurrentWebDriver }), JSRecorder.constRecorderCleanRecordings, (new string[] { string.Empty }), false);
+            SeHelper.ExecuteJavaScript(cmdlet, (new OpenQA.Selenium.IWebDriver[] { CurrentData.CurrentWebDriver }), JsRecorder.ConstRecorderCleanRecordings, (new string[] { string.Empty }), false);
             cmdlet.WriteVerbose(cmdlet, "cleaned");
         }
 
@@ -71,19 +66,19 @@ namespace SePSXUnitTests
         {
             cmdlet.WriteVerbose(cmdlet, "exit recording");
 
-            SeHelper.ExecuteJavaScript(cmdlet, (new OpenQA.Selenium.IWebDriver[] { CurrentData.CurrentWebDriver }), JSRecorder.constRecorderExitRecording, (new string[] { string.Empty }), false);
+            SeHelper.ExecuteJavaScript(cmdlet, (new OpenQA.Selenium.IWebDriver[] { CurrentData.CurrentWebDriver }), JsRecorder.ConstRecorderExitRecording, (new string[] { string.Empty }), false);
             cmdlet.WriteVerbose(cmdlet, "exited");
         }
 
-        public void MakeJSInjection(TranscriptCmdletBase cmdlet)
+        public void MakeJsInjection(TranscriptCmdletBase cmdlet)
         {
             try {
                 cmdlet.WriteVerbose(cmdlet, "checking injection");
-                var result = SeHelper.ExecuteJavaScript(cmdlet, (new OpenQA.Selenium.IWebDriver[] { CurrentData.CurrentWebDriver }), JSRecorder.constRecorderCheckInjection, (new string[] { string.Empty }), false);
+                var result = SeHelper.ExecuteJavaScript(cmdlet, (new OpenQA.Selenium.IWebDriver[] { CurrentData.CurrentWebDriver }), JsRecorder.ConstRecorderCheckInjection, (new string[] { string.Empty }), false);
                 if (result) {
                     cmdlet.WriteVerbose(cmdlet, "inserting injection");
 
-                    SeHelper.ExecuteJavaScript(cmdlet, (new OpenQA.Selenium.IWebDriver[] { CurrentData.CurrentWebDriver }), JSRecorder.constRecorderInjectScript, (new string[] { SePSX.Preferences.TranscriptExcludeList }), false);
+                    SeHelper.ExecuteJavaScript(cmdlet, (new OpenQA.Selenium.IWebDriver[] { CurrentData.CurrentWebDriver }), JsRecorder.ConstRecorderInjectScript, (new string[] { SePSX.Preferences.TranscriptExcludeList }), false);
                     cmdlet.WriteVerbose(cmdlet, "injection inserted");
                 }
             } catch (Exception eGetInjectionCode) {

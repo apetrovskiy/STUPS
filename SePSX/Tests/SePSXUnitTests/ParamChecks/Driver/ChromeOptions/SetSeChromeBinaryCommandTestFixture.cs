@@ -9,11 +9,8 @@
 
 namespace SePSXUnitTests.CheckCmdletParameters
 {
-    using System;
-    using SePSX; using MbUnit.Framework;
-    using OpenQA.Selenium;
-    using OpenQA.Selenium.Chrome;
-    
+    using MbUnit.Framework;
+
     /// <summary>
     /// Description of SetSeChromeBinaryCommand.
     /// </summary>

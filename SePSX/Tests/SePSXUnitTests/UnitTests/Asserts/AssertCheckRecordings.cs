@@ -10,8 +10,8 @@
 namespace SePSXUnitTests
 {
     #region using
-    using System;
-//    using OpenQA.Selenium;
+
+    //    using OpenQA.Selenium;
 //    using OpenQA.Selenium.Firefox;
 //    using OpenQA.Selenium.Chrome;
 //    using OpenQA.Selenium.IE;
@@ -25,10 +25,6 @@ namespace SePSXUnitTests
 //    using OpenQA.Selenium.Remote;
 
 //    using System.Diagnostics;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Collections;
-    
     using MbUnit.Framework;
     //using NUnit.Framework;
 //    using System.Drawing;

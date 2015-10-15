@@ -9,7 +9,6 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
     using OpenQA.Selenium;
     
@@ -32,9 +31,9 @@ namespace SePSX.Commands
         
         protected override void ProcessRecord()
         {
-            this.checkInputWebElementOnly(this.InputObject);
+            checkInputWebElementOnly(InputObject);
             
-            SeSetWebElementKeysCommand command =
+            var command =
                 new SeSetWebElementKeysCommand(this);
             command.Execute();
 //            SeHelper.SendWebElementKeys(

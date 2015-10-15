@@ -28,18 +28,18 @@ namespace SePSX
         //public WebElementDecorator(RemoteWebElement realWebElement) // : base(realWebElement.WrappedDriver, "")
         public WebElementDecorator(RemoteWebElement realWebElement)
         {
-            this.DecoratedWebElement = realWebElement; // as RemoteWebElement;
-Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<WebElementDecorator(IWebElement realWebElement): " + this.DecoratedWebElement.ToString());
-Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<WebElementDecorator(IWebElement realWebElement): " + this.DecoratedWebElement.GetType().Name);
+            DecoratedWebElement = realWebElement; // as RemoteWebElement;
+Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<WebElementDecorator(IWebElement realWebElement): " + DecoratedWebElement.ToString());
+Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<WebElementDecorator(IWebElement realWebElement): " + DecoratedWebElement.GetType().Name);
 try {
 //Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<WebElementDecorator(IWebElement realWebElement): " + this.DecoratedWebElement.TagName);
-Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<WebElementDecorator(IWebElement realWebElement): " + this.DecoratedWebElement.TagName);
+Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<WebElementDecorator(IWebElement realWebElement): " + DecoratedWebElement.TagName);
 } catch (Exception eTagName) {
     Console.WriteLine(eTagName.Message);
     Console.WriteLine(eTagName.GetType().Name);
 }
 Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<WebElementDecorator(IWebElement realWebElement): OK");
-            this.SearchHistory =
+            SearchHistory =
                 new List<ISearchHistory>();
         }
         
@@ -58,72 +58,72 @@ Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<WebElementDecorator(IWebElement realWeb
         
         public string TagName
         {
-            get { try { return this.DecoratedWebElement.TagName; } 
+            get { try { return DecoratedWebElement.TagName; } 
                 catch (Exception eTagName) { Console.WriteLine("WebElementDecorator (tagName): " + eTagName.Message); return null; } }
         }
         public string Text
         {
-            get { try { return this.DecoratedWebElement.Text; } 
+            get { try { return DecoratedWebElement.Text; } 
                 catch (Exception eText) { Console.WriteLine("WebElementDecorator (text): " + eText.Message); return null; } }
         }
         public bool Enabled
         {
-            get { return this.DecoratedWebElement.Enabled; }
+            get { return DecoratedWebElement.Enabled; }
         }
         public bool Selected
         {
-            get { return this.DecoratedWebElement.Selected; }
+            get { return DecoratedWebElement.Selected; }
         }
         public Point Location
         {
-            get { return this.DecoratedWebElement.Location; }
+            get { return DecoratedWebElement.Location; }
         }
         public Size Size
         {
-            get { return this.DecoratedWebElement.Size; }
+            get { return DecoratedWebElement.Size; }
         }
         public bool Displayed
         {
-            get { return this.DecoratedWebElement.Displayed; }
+            get { return DecoratedWebElement.Displayed; }
         }
         public void Clear()
         {
-            this.DecoratedWebElement.Clear();
+            DecoratedWebElement.Clear();
         }
         public void SendKeys(string text)
         {
-            this.DecoratedWebElement.SendKeys(text);
+            DecoratedWebElement.SendKeys(text);
         }
         public void Submit()
         {
-            this.DecoratedWebElement.Submit();
+            DecoratedWebElement.Submit();
         }
         public void Click()
         {
-            this.DecoratedWebElement.Click();
+            DecoratedWebElement.Click();
         }
         public string GetAttribute(string attributeName)
         {
-            return this.DecoratedWebElement.GetAttribute(attributeName);
+            return DecoratedWebElement.GetAttribute(attributeName);
         }
         public string GetCssValue(string propertyName)
         {
-            return this.DecoratedWebElement.GetCssValue(propertyName);
+            return DecoratedWebElement.GetCssValue(propertyName);
         }
         public IWebElement FindElement(By by)
         {
-            return this.DecoratedWebElement.FindElement(by);
+            return DecoratedWebElement.FindElement(by);
         }
         public ReadOnlyCollection<IWebElement> FindElements(By by)
         {
-            return this.DecoratedWebElement.FindElements(by);
+            return DecoratedWebElement.FindElements(by);
         }
         
         public IWebDriver WrappedDriver
         {
             get
             {
-                return this.DecoratedWebElement.WrappedDriver;
+                return DecoratedWebElement.WrappedDriver;
             }
         }
 
@@ -131,7 +131,7 @@ Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<WebElementDecorator(IWebElement realWeb
         {
             get
             {
-                return this.DecoratedWebElement.LocationOnScreenOnceScrolledIntoView;
+                return DecoratedWebElement.LocationOnScreenOnceScrolledIntoView;
             }
         }
         /// <summary>
@@ -142,7 +142,7 @@ Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<WebElementDecorator(IWebElement realWeb
         {
             get
             {
-                return this.DecoratedWebElement.Coordinates;
+                return DecoratedWebElement.Coordinates;
                 //return new RemoteCoordinates(this);
             }
         }
@@ -160,7 +160,7 @@ Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<WebElementDecorator(IWebElement realWeb
         /// </example>
         public IWebElement FindElementByLinkText(string linkText)
         {
-            return this.DecoratedWebElement.FindElementByLinkText(linkText);
+            return DecoratedWebElement.FindElementByLinkText(linkText);
         }
         /// <summary>
         ///       Finds the first of elements that match the link text supplied
@@ -175,7 +175,7 @@ Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<WebElementDecorator(IWebElement realWeb
         /// </example>
         public ReadOnlyCollection<IWebElement> FindElementsByLinkText(string linkText)
         {
-            return this.DecoratedWebElement.FindElementsByLinkText(linkText);
+            return DecoratedWebElement.FindElementsByLinkText(linkText);
         }
         /// <summary>
         ///       Finds the first element in the page that matches the ID supplied
@@ -190,7 +190,7 @@ Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<WebElementDecorator(IWebElement realWeb
         /// </example>
         public IWebElement FindElementById(string id)
         {
-            return this.DecoratedWebElement.FindElementById(id);
+            return DecoratedWebElement.FindElementById(id);
         }
         /// <summary>
         ///       Finds the first element in the page that matches the ID supplied
@@ -205,7 +205,7 @@ Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<WebElementDecorator(IWebElement realWeb
         /// </example>
         public ReadOnlyCollection<IWebElement> FindElementsById(string id)
         {
-            return this.DecoratedWebElement.FindElementsById(id);
+            return DecoratedWebElement.FindElementsById(id);
         }
         /// <summary>
         ///       Finds the first of elements that match the name supplied
@@ -220,7 +220,7 @@ Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<WebElementDecorator(IWebElement realWeb
         /// </example>
         public IWebElement FindElementByName(string name)
         {
-            return this.DecoratedWebElement.FindElementByName(name);
+            return DecoratedWebElement.FindElementByName(name);
         }
         /// <summary>
         ///       Finds a list of elements that match the name supplied
@@ -235,7 +235,7 @@ Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<WebElementDecorator(IWebElement realWeb
         /// </example>
         public ReadOnlyCollection<IWebElement> FindElementsByName(string name)
         {
-            return this.DecoratedWebElement.FindElementsByName(name);
+            return DecoratedWebElement.FindElementsByName(name);
         }
         /// <summary>
         ///       Finds the first of elements that match the DOM Tag supplied
@@ -250,7 +250,7 @@ Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<WebElementDecorator(IWebElement realWeb
         /// </example>
         public IWebElement FindElementByTagName(string tagName)
         {
-            return this.DecoratedWebElement.FindElementByTagName(tagName);
+            return DecoratedWebElement.FindElementByTagName(tagName);
         }
         /// <summary>
         ///       Finds a list of elements that match the DOM Tag supplied
@@ -265,7 +265,7 @@ Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<WebElementDecorator(IWebElement realWeb
         /// </example>
         public ReadOnlyCollection<IWebElement> FindElementsByTagName(string tagName)
         {
-            return this.DecoratedWebElement.FindElementsByTagName(tagName);
+            return DecoratedWebElement.FindElementsByTagName(tagName);
         }
         /// <summary>
         ///       Finds the first element in the page that matches the CSS Class supplied
@@ -280,7 +280,7 @@ Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<WebElementDecorator(IWebElement realWeb
         /// </example>
         public IWebElement FindElementByClassName(string className)
         {
-            return this.DecoratedWebElement.FindElementByClassName(className);
+            return DecoratedWebElement.FindElementByClassName(className);
         }
         /// <summary>
         ///       Finds a list of elements that match the class name supplied
@@ -295,7 +295,7 @@ Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<WebElementDecorator(IWebElement realWeb
         /// </example>
         public ReadOnlyCollection<IWebElement> FindElementsByClassName(string className)
         {
-            return this.DecoratedWebElement.FindElementsByClassName(className);
+            return DecoratedWebElement.FindElementsByClassName(className);
         }
         /// <summary>
         ///       Finds the first of elements that match the XPath supplied
@@ -310,7 +310,7 @@ Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<WebElementDecorator(IWebElement realWeb
         /// </example>
         public IWebElement FindElementByXPath(string xpath)
         {
-            return this.DecoratedWebElement.FindElementByXPath(xpath);
+            return DecoratedWebElement.FindElementByXPath(xpath);
         }
         /// <summary>
         ///       Finds a list of elements that match the XPath supplied
@@ -325,7 +325,7 @@ Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<WebElementDecorator(IWebElement realWeb
         /// </example>
         public ReadOnlyCollection<IWebElement> FindElementsByXPath(string xpath)
         {
-            return this.DecoratedWebElement.FindElementsByXPath(xpath);
+            return DecoratedWebElement.FindElementsByXPath(xpath);
         }
         /// <summary>
         ///       Finds the first of elements that match the part of the link text supplied
@@ -340,7 +340,7 @@ Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<WebElementDecorator(IWebElement realWeb
         /// </example>
         public IWebElement FindElementByPartialLinkText(string partialLinkText)
         {
-            return this.DecoratedWebElement.FindElementByPartialLinkText(partialLinkText);
+            return DecoratedWebElement.FindElementByPartialLinkText(partialLinkText);
         }
         /// <summary>
         ///       Finds a list of elements that match the link text supplied
@@ -355,7 +355,7 @@ Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<WebElementDecorator(IWebElement realWeb
         /// </example>
         public ReadOnlyCollection<IWebElement> FindElementsByPartialLinkText(string partialLinkText)
         {
-            return this.DecoratedWebElement.FindElementsByPartialLinkText(partialLinkText);
+            return DecoratedWebElement.FindElementsByPartialLinkText(partialLinkText);
         }
         /// <summary>
         ///       Finds the first element matching the specified CSS selector.
@@ -364,7 +364,7 @@ Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<WebElementDecorator(IWebElement realWeb
         /// <returns>The first <see cref="T:OpenQA.Selenium.IWebElement" /> matching the criteria.</returns>
         public IWebElement FindElementByCssSelector(string cssSelector)
         {
-            return this.DecoratedWebElement.FindElementByCssSelector(cssSelector);
+            return DecoratedWebElement.FindElementByCssSelector(cssSelector);
         }
         /// <summary>
         ///       Finds all elements matching the specified CSS selector.
@@ -374,7 +374,7 @@ Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<WebElementDecorator(IWebElement realWeb
         ///       <see cref="T:OpenQA.Selenium.IWebElement">IWebElements</see> matching the criteria.</returns>
         public ReadOnlyCollection<IWebElement> FindElementsByCssSelector(string cssSelector)
         {
-            return this.DecoratedWebElement.FindElementsByCssSelector(cssSelector);
+            return DecoratedWebElement.FindElementsByCssSelector(cssSelector);
         }
     }
 }

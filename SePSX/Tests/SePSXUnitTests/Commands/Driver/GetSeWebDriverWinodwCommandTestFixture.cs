@@ -9,13 +9,8 @@
 
 namespace SePSXUnitTests.Commands.Driver
 {
-    using System;
-    using SePSX;
-    using SePSX.Commands;
     using MbUnit.Framework;
-    using PSTestLib;
-    using OpenQA.Selenium;
-    
+
     /// <summary>
     /// 
     /// </summary>

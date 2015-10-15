@@ -9,9 +9,7 @@
 
 namespace SePSX
 {
-    using System;
     using System.Management.Automation;
-    using OpenQA.Selenium;
     using OpenQA.Selenium.Chrome;
     
     /// <summary>

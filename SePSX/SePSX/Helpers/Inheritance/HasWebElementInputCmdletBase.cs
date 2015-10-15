@@ -9,10 +9,8 @@
 
 namespace SePSX
 {
-    using System;
     using System.Management.Automation;
-    using OpenQA.Selenium;
-    
+
     /// <summary>
     /// Description of HasWebElementInputCmdletBase.
     /// </summary>
@@ -21,9 +19,9 @@ namespace SePSX
         public HasWebElementInputCmdletBase()
         {
             //this.InputObject = CurrentData.CurrentWebDriver;
-            if (this.InputObject == null) {
-                this.InputObject = new object[1];
-                this.InputObject[0] = CurrentData.CurrentWebDriver;
+            if (InputObject == null) {
+                InputObject = new object[1];
+                InputObject[0] = CurrentData.CurrentWebDriver;
             }
         }
         
@@ -47,7 +45,7 @@ namespace SePSX
         
         protected override void BeginProcessing()
         {
-            this.CheckCmdletParameters();
+            CheckCmdletParameters();
             
             SeHelper.SetBrowserInstanceForeground(this);
         }

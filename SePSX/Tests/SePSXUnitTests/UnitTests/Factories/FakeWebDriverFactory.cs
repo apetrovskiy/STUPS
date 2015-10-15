@@ -11,10 +11,6 @@ namespace SePSXUnitTests
 {
     using System;
     using OpenQA.Selenium;
-    using OpenQA.Selenium.Chrome;
-    using SePSX;
-    using SePSX.Commands;
-    using OpenQA.Selenium.Remote;
     using Moq;
     using System.Collections.ObjectModel;
     

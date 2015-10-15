@@ -9,11 +9,8 @@
 
 namespace SePSXUnitTests.CheckCmdletParameters
 {
-    using System;
-    using SePSX;
     using MbUnit.Framework;
-    using OpenQA.Selenium;
-    
+
     /// <summary>
     /// Description of EnterSeURLCommand.
     /// </summary>

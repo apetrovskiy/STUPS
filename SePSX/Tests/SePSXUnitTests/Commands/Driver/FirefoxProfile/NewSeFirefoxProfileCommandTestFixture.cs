@@ -9,12 +9,9 @@
 
 namespace SePSXUnitTests.Commands.Driver.FirefoxProfile
 {
-    using System;
     using SePSX;
     using SePSX.Commands;
     using MbUnit.Framework;
-    using PSTestLib;
-    using OpenQA.Selenium.IE;
     using OpenQA.Selenium.Firefox;
     using Autofac;
     

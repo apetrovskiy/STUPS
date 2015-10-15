@@ -9,11 +9,9 @@
 
 namespace SePSXUnitTests.Recording
 {
-    using System;
     using MbUnit.Framework;
     //using NUnit.Framework;
     using SePSX;
-    using PSTestLib;
     using OpenQA.Selenium;
     
     /// <summary>
@@ -39,7 +37,7 @@ namespace SePSXUnitTests.Recording
             bool expectedResult = false;
             IWebElement element = null;
             result = 
-                Recorder.isNotFakeWebElement(
+                Recorder.IsNotFakeWebElement(
                     element);
             Assert.AreEqual(expectedResult, result);
         }
@@ -52,7 +50,7 @@ namespace SePSXUnitTests.Recording
             bool expectedResult = true;
             IWebElement element = new FakeWebElement("a", "text");
             result = 
-                Recorder.isNotFakeWebElement(
+                Recorder.IsNotFakeWebElement(
                     element);
             Assert.AreEqual(expectedResult, result);
         }
@@ -63,9 +61,9 @@ namespace SePSXUnitTests.Recording
         {
             bool result = false;
             bool expectedResult = false;
-            IWebElement element = new FakeWebElement(Recorder.constAuxElementClicked, "");
+            IWebElement element = new FakeWebElement(Recorder.ConstAuxElementClicked, "");
             result = 
-                Recorder.isNotFakeWebElement(
+                Recorder.IsNotFakeWebElement(
                     element);
             Assert.AreEqual(expectedResult, result);
         }
@@ -76,9 +74,9 @@ namespace SePSXUnitTests.Recording
         {
             bool result = false;
             bool expectedResult = false;
-            IWebElement element = new FakeWebElement(Recorder.constAuxElementData, "");
+            IWebElement element = new FakeWebElement(Recorder.ConstAuxElementData, "");
             result = 
-                Recorder.isNotFakeWebElement(
+                Recorder.IsNotFakeWebElement(
                     element);
             Assert.AreEqual(expectedResult, result);
         }
@@ -89,9 +87,9 @@ namespace SePSXUnitTests.Recording
         {
             bool result = false;
             bool expectedResult = false;
-            IWebElement element = new FakeWebElement(Recorder.constAuxElementSelected, "");
+            IWebElement element = new FakeWebElement(Recorder.ConstAuxElementSelected, "");
             result = 
-                Recorder.isNotFakeWebElement(
+                Recorder.IsNotFakeWebElement(
                     element);
             Assert.AreEqual(expectedResult, result);
         }
@@ -102,9 +100,9 @@ namespace SePSXUnitTests.Recording
         {
             bool result = false;
             bool expectedResult = false;
-            IWebElement element = new FakeWebElement(Recorder.constAuxElementTypedIn, "");
+            IWebElement element = new FakeWebElement(Recorder.ConstAuxElementTypedIn, "");
             result = 
-                Recorder.isNotFakeWebElement(
+                Recorder.IsNotFakeWebElement(
                     element);
             Assert.AreEqual(expectedResult, result);
         }

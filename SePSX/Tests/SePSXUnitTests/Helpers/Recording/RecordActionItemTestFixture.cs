@@ -9,7 +9,6 @@
 
 namespace SePSXUnitTests.Recording
 {
-    using System;
     using MbUnit.Framework;
     //using NUnit.Framework;
     using SePSX;
@@ -84,9 +83,9 @@ namespace SePSXUnitTests.Recording
         public void RecordActionItem_Click()
         {
             IRecordedCodeSequence result = null;
-            string expectedResult = Recorder.codeGenElementClick;
+            string expectedResult = Recorder.CodeGenElementClick;
             IRecordedCodeSequence codeSequence = null;
-            IWebElement element = new FakeWebElement(Recorder.constAuxElementClicked, "");
+            IWebElement element = new FakeWebElement(Recorder.ConstAuxElementClicked, "");
             result = 
                 generateActionItem(
                     codeSequence,
@@ -158,9 +157,9 @@ namespace SePSXUnitTests.Recording
         public void CodeSequence_Empty()
         {
             IRecordedCodeSequence result = null;
-            string expectedResult = Recorder.codeGenElementClick;
+            string expectedResult = Recorder.CodeGenElementClick;
             IRecordedCodeSequence codeSequence = new RecordedCodeSequence();
-            IWebElement element = new FakeWebElement(Recorder.constAuxElementClicked, "");
+            IWebElement element = new FakeWebElement(Recorder.ConstAuxElementClicked, "");
             result = 
                 generateActionItem(
                     codeSequence,
@@ -176,10 +175,10 @@ namespace SePSXUnitTests.Recording
         public void CodeSequence_with_WebElement()
         {
             IRecordedCodeSequence result = null;
-            string expectedResult = Recorder.codeGenElementClick;
+            string expectedResult = Recorder.CodeGenElementClick;
             IRecordedCodeSequence codeSequence = new RecordedCodeSequence();
             IWebElement alreadyHere = new FakeWebElement("input", "aaa");
-            IWebElement element = new FakeWebElement(Recorder.constAuxElementClicked, "");
+            IWebElement element = new FakeWebElement(Recorder.ConstAuxElementClicked, "");
             result = 
                 generateActionItem(
                     codeSequence,
@@ -195,10 +194,10 @@ namespace SePSXUnitTests.Recording
         public void CodeSequence_with_different_RecordedAction()
         {
             IRecordedCodeSequence result = null;
-            string expectedResult = Recorder.codeGenElementClick;
+            string expectedResult = Recorder.CodeGenElementClick;
             IRecordedCodeSequence codeSequence = new RecordedCodeSequence();
-            IWebElement alreadyHere = new FakeWebElement(Recorder.constAuxElementSelected, "aaa");
-            IWebElement element = new FakeWebElement(Recorder.constAuxElementClicked, "");
+            IWebElement alreadyHere = new FakeWebElement(Recorder.ConstAuxElementSelected, "aaa");
+            IWebElement element = new FakeWebElement(Recorder.ConstAuxElementClicked, "");
             result = 
                 generateActionItem(
                     codeSequence,
@@ -214,10 +213,10 @@ namespace SePSXUnitTests.Recording
         public void CodeSequence_with_of_the_same_type_RecordedAction()
         {
             IRecordedCodeSequence result = null;
-            string expectedResult = Recorder.codeGenElementClick;
+            string expectedResult = Recorder.CodeGenElementClick;
             IRecordedCodeSequence codeSequence = new RecordedCodeSequence();
-            IWebElement alreadyHere = new FakeWebElement(Recorder.constAuxElementClicked, "aaa");
-            IWebElement element = new FakeWebElement(Recorder.constAuxElementClicked, "");
+            IWebElement alreadyHere = new FakeWebElement(Recorder.ConstAuxElementClicked, "aaa");
+            IWebElement element = new FakeWebElement(Recorder.ConstAuxElementClicked, "");
             result = 
                 generateActionItem(
                     codeSequence,
@@ -233,10 +232,10 @@ namespace SePSXUnitTests.Recording
         public void CodeSequence_with_the_same_RecordedAction()
         {
             IRecordedCodeSequence result = null;
-            string expectedResult = Recorder.codeGenElementClick;
+            string expectedResult = Recorder.CodeGenElementClick;
             IRecordedCodeSequence codeSequence = new RecordedCodeSequence();
-            IWebElement alreadyHere = new FakeWebElement(Recorder.constAuxElementClicked, "aaa");
-            IWebElement element = new FakeWebElement(Recorder.constAuxElementClicked, "aaa");
+            IWebElement alreadyHere = new FakeWebElement(Recorder.ConstAuxElementClicked, "aaa");
+            IWebElement element = new FakeWebElement(Recorder.ConstAuxElementClicked, "aaa");
             result = 
                 generateActionItem(
                     codeSequence,

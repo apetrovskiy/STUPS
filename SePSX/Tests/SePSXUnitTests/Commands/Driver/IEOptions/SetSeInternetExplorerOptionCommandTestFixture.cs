@@ -9,11 +9,9 @@
 
 namespace SePSXUnitTests.Commands.Driver.InternetExplorerOptions
 {
-    using System;
     using SePSX;
     using SePSX.Commands;
     using MbUnit.Framework;
-    using PSTestLib;
     using OpenQA.Selenium.IE;
     using Autofac;
     
@@ -47,8 +45,8 @@ namespace SePSXUnitTests.Commands.Driver.InternetExplorerOptions
                 //new NewSeInternetExplorerOptionsCommandTestFixture();
                 WebDriverFactory.Container.Resolve<NewSeInternetExplorerOptionsCommand>();
             //NewSeInternetExplorerOptionsCommand.UnitTestMode = true;
-            SeNewIEOptionsCommand command =
-                new SeNewIEOptionsCommand(cmdlet);
+            SeNewIeOptionsCommand command =
+                new SeNewIeOptionsCommand(cmdlet);
             command.Execute();
             //Assert.IsNotNull(SePSX.CommonCmdletBase.UnitTestOutput[0] as InternetExplorerOptions);
             Assert.IsNotNull(

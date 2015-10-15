@@ -9,6 +9,7 @@
 
 namespace Tmx.Core.Types.Remoting.Actions
 {
+    using System.Collections.Generic;
     using Interfaces.Remoting.Actions;
     
     /// <summary>
@@ -16,6 +17,8 @@ namespace Tmx.Core.Types.Remoting.Actions
     /// </summary>
     public class TestRunAction : ITestRunAction
     {
+        public Dictionary<string, string> Settings { get; set; }
+
         public bool Run()
         {
             return true;

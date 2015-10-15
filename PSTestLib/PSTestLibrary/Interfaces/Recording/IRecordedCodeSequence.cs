@@ -9,8 +9,6 @@
 
 namespace PSTestLib
 {
-    using System;
-    
     /// <summary>
     /// Description of IRecordedCodeSequence.
     /// </summary>

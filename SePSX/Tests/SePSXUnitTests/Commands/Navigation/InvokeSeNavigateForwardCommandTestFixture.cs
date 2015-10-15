@@ -9,12 +9,9 @@
 
 namespace SePSXUnitTests.Commands.Navigation
 {
-    using System;
     using SePSX;
     using SePSX.Commands;
     using MbUnit.Framework;
-    using PSTestLib;
-    using OpenQA.Selenium;
     using Autofac;
     
     /// <summary>
@@ -46,22 +43,22 @@ namespace SePSXUnitTests.Commands.Navigation
                 new SeStartChromeCommand(cmdlet0);
             command0.Execute();
             
-            EnterSeURLCommand cmdlet1 =
-                WebDriverFactory.Container.Resolve<EnterSeURLCommand>();
+            EnterSeUrlCommand cmdlet1 =
+                WebDriverFactory.Container.Resolve<EnterSeUrlCommand>();
             cmdlet1.InputObject =
                 new FakeWebDriver[]{ ((FakeWebDriver)(object)PSTestLib.UnitTestOutput.LastOutput[0]) };
-            cmdlet1.URL = firstUrl;
-            SeEnterURLCommand command1 =
-                new SeEnterURLCommand(cmdlet1);
+            cmdlet1.Url = firstUrl;
+            SeEnterUrlCommand command1 =
+                new SeEnterUrlCommand(cmdlet1);
             command1.Execute();
 
-            EnterSeURLCommand cmdlet2 =
-                WebDriverFactory.Container.Resolve<EnterSeURLCommand>();
+            EnterSeUrlCommand cmdlet2 =
+                WebDriverFactory.Container.Resolve<EnterSeUrlCommand>();
             cmdlet2.InputObject =
                 new FakeWebDriver[]{ ((FakeWebDriver)(object)PSTestLib.UnitTestOutput.LastOutput[0]) };
-            cmdlet2.URL = secondUrl;
-            SeEnterURLCommand command2 =
-                new SeEnterURLCommand(cmdlet2);
+            cmdlet2.Url = secondUrl;
+            SeEnterUrlCommand command2 =
+                new SeEnterUrlCommand(cmdlet2);
             command2.Execute();
 
             InvokeSeNavigateBackCommand cmdlet3 =

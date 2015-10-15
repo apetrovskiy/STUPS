@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium.Remote;
-/*
+﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 8/21/2012
@@ -10,11 +9,8 @@
 
 namespace SePSXUnitTests.CheckCmdletParameters
 {
-    using System;
-    using SePSX; using MbUnit.Framework;
-    using OpenQA.Selenium;
-    using OpenQA.Selenium.Interactions;
-    
+    using MbUnit.Framework;
+
     /// <summary>
     /// Description of MoveSeCursorToWebElementCommand.
     /// </summary>

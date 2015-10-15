@@ -9,9 +9,7 @@
 
 namespace SePSX
 {
-    using System;
-    using System.Management.Automation;
-    using SePSX.Commands;
+    using Commands;
     
     /// <summary>
     /// Description of SeSaveScreenshotCommand.
@@ -36,11 +34,11 @@ namespace SePSX
 //                this.Path + @"\" + this.Name,
 //                this.As);
 
-            bool save = this.Cmdlet.GetType().Name == "SaveSeScreenshotCommand";
+            var save = Cmdlet.GetType().Name == "SaveSeScreenshotCommand";
 
             SeHelper.GetScreenshotOfCmdletInput(
-                this.Cmdlet,
-                ((SaveSeScreenshotCommand)this.Cmdlet).Description,
+                Cmdlet,
+                ((SaveSeScreenshotCommand)Cmdlet).Description,
                 save,
                 // 20140111
                 // ((SaveSeScreenshotCommand)this.Cmdlet).Left,
@@ -48,13 +46,13 @@ namespace SePSX
                 // ((SaveSeScreenshotCommand)this.Cmdlet).Height,
                 // ((SaveSeScreenshotCommand)this.Cmdlet).Width,
                 new UIAutomation.ScreenshotRect() {
-                    Left = ((SaveSeScreenshotCommand)this.Cmdlet).Left,
-                    Top = ((SaveSeScreenshotCommand)this.Cmdlet).Top,
-                    Height = ((SaveSeScreenshotCommand)this.Cmdlet).Height,
-                    Width = ((SaveSeScreenshotCommand)this.Cmdlet).Width
+                    Left = ((SaveSeScreenshotCommand)Cmdlet).Left,
+                    Top = ((SaveSeScreenshotCommand)Cmdlet).Top,
+                    Height = ((SaveSeScreenshotCommand)Cmdlet).Height,
+                    Width = ((SaveSeScreenshotCommand)Cmdlet).Width
                 },
-                ((SaveSeScreenshotCommand)this.Cmdlet).Path + @"\" + ((SaveSeScreenshotCommand)this.Cmdlet).Name,
-                ((SaveSeScreenshotCommand)this.Cmdlet).As);
+                ((SaveSeScreenshotCommand)Cmdlet).Path + @"\" + ((SaveSeScreenshotCommand)Cmdlet).Name,
+                ((SaveSeScreenshotCommand)Cmdlet).As);
             
             //Tmx.
             //} else {

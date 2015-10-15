@@ -10,9 +10,8 @@
 namespace SePSX
 {
     #region using
-    using System;
-    using OpenQA.Selenium;
-//    using OpenQA.Selenium.Firefox;
+
+    //    using OpenQA.Selenium.Firefox;
 //    using OpenQA.Selenium.Chrome;
 //    using OpenQA.Selenium.IE;
 
@@ -25,10 +24,7 @@ namespace SePSX
 //    using OpenQA.Selenium.Remote;
 
 //    using System.Diagnostics;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Collections;
-    using System.Drawing;
 
     //
     //
@@ -38,15 +34,13 @@ namespace SePSX
 
     //using OpenQA.Selenium.Remote;
 
-    using PSTestLib;
-    using System.Management.Automation;
     #endregion using
     
-    public interface IJSRecorder
+    public interface IJsRecorder
     {
         void CleanRecordedDuringSleep(TranscriptCmdletBase cmdlet);
         void StopRecording(TranscriptCmdletBase cmdlet);
-        void MakeJSInjection(TranscriptCmdletBase cmdlet);
+        void MakeJsInjection(TranscriptCmdletBase cmdlet);
         IEnumerable GetRecordedResults();
     }
 }

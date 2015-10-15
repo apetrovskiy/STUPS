@@ -9,11 +9,9 @@
 
 namespace SePSXUnitTests.Recording
 {
-    using System;
     using MbUnit.Framework;
     //using NUnit.Framework;
-    using SePSX;
-    using PSTestLib;
+
 //    using OpenQA.Selenium;
 //    using System.Drawing;
 //    using System.Collections.ObjectModel;

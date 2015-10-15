@@ -9,9 +9,7 @@
 
 namespace SePSX
 {
-    using System;
-    using System.Management.Automation;
-    using SePSX.Commands;
+    using Commands;
     using OpenQA.Selenium;
     
     /// <summary>
@@ -29,8 +27,8 @@ namespace SePSX
 //                ((ReadSeWebElementTagNameCommand)this.Cmdlet),
 //                ((IWebElement[])((ReadSeWebElementTagNameCommand)this.Cmdlet).InputObject));
             SeHelper.GetWebElementTagName(
-                this.Cmdlet,
-                ((IWebElement[])((ReadSeWebElementTagNameCommand)this.Cmdlet).InputObject));
+                Cmdlet,
+                ((IWebElement[])((ReadSeWebElementTagNameCommand)Cmdlet).InputObject));
         }
     }
 }

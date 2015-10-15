@@ -9,9 +9,7 @@
 
 namespace SePSX
 {
-    using System;
-    using System.Management.Automation;
-    using SePSX.Commands;
+    using Commands;
     
     /// <summary>
     /// Description of SeGetElementByTypeCommand.
@@ -24,10 +22,10 @@ namespace SePSX
         
         internal override void Execute()
         {
-            SeHelper.GetWebElementViaJS(
-                this.Cmdlet,
-                ((GetSeElementByTypeCommand)this.Cmdlet).InputObject, 
-                ((GetSeElementByTypeCommand)this.Cmdlet).TagName);
+            SeHelper.GetWebElementViaJs(
+                Cmdlet,
+                ((GetSeElementByTypeCommand)Cmdlet).InputObject, 
+                ((GetSeElementByTypeCommand)Cmdlet).TagName);
         }
     }
 }

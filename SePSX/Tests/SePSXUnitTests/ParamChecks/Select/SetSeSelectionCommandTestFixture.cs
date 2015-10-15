@@ -9,9 +9,8 @@
 
 namespace SePSXUnitTests.CheckCmdletParameters
 {
-    using System;
-    using SePSX; using MbUnit.Framework;
-    using OpenQA.Selenium;
+    using MbUnit.Framework;
+
     //using OpenQA.Selenium.Support.UI;
     
     /// <summary>

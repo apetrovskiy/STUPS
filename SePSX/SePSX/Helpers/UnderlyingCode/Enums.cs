@@ -29,7 +29,7 @@ namespace SePSX
         ByName,
         ByLinkText,
         ByPartialLinkText,
-        ByCSS,
+        ByCss,
         ByXPath,
         ByJavaScript//,
         //All
@@ -43,7 +43,7 @@ namespace SePSX
         InternetExplorer,
         Safari,
 //        Opera,
-        HTML //,
+        Html //,
 //        iOS,
 //        Android
     }
@@ -51,8 +51,8 @@ namespace SePSX
     // 20121206
     //public enum InternetExplorer {
     internal enum InternetExplorer {
-        x86,
-        x64
+        X86,
+        X64
     }
     
     public enum RecorderLanguages {
@@ -63,19 +63,19 @@ namespace SePSX
     
     internal enum DriverServers
     {
-        none,
-        chrome,
-        ie
+        None,
+        Chrome,
+        Ie
     }
     
     internal enum DriverServerConstructorOptions
     {
-        bare,
-        with_path,
-        with_options,
-        with_path_and_options,
-        with_path_and_options_and_timespan,
-        with_service_and_options_and_timespan
+        Bare,
+        WithPath,
+        WithOptions,
+        WithPathAndOptions,
+        WithPathAndOptionsAndTimespan,
+        WithServiceAndOptionsAndTimespan
     }
 
 //    internal enum ChromeDriverConstructorOptions
@@ -100,9 +100,9 @@ namespace SePSX
     
     internal enum FirefoxProfileConstructorOptions
     {
-        ff_bare,
-        ff_with_path,
-        ff_with_path_and_bool
+        FfBare,
+        FfWithPath,
+        FfWithPathAndBool
     }
 
             //bare
@@ -113,11 +113,11 @@ namespace SePSX
             
     internal enum FirefoxDriverConstructorOptions
     {
-        ff_bare,
-        ff_with_profile,
-        ff_with_capabilities,
-        ff_with_binary_and_profile,
-        ff_with_binary_and_profile_and_timeout
+        FfBare,
+        FfWithProfile,
+        FfWithCapabilities,
+        FfWithBinaryAndProfile,
+        FfWithBinaryAndProfileAndTimeout
     }
     
     // // 20121206
@@ -137,11 +137,11 @@ namespace SePSX
     }
     
     internal enum Constructors {
-        FakeWebElement_NoParameters,
-        FakeWebElement_IWebElement,
-        FakeWebElement_TagName_Text,
-        FakeWebElement_TagName_Text_Displayed_Enabled_Selected,
-        FakeWebElement_TagName_Text_Location_Size,
-        FakeWebElement_As_Decorator
+        FakeWebElementNoParameters,
+        FakeWebElementIWebElement,
+        FakeWebElementTagNameText,
+        FakeWebElementTagNameTextDisplayedEnabledSelected,
+        FakeWebElementTagNameTextLocationSize,
+        FakeWebElementAsDecorator
     }
 }

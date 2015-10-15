@@ -9,7 +9,6 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
     using OpenQA.Selenium;
     
@@ -26,10 +25,10 @@ namespace SePSX.Commands
         
         protected override void ProcessRecord()
         {
-            this.checkInputWebDriver(true);
+            CheckInputWebDriver(true);
             
             //SeHelper.RefreshPage(this, ((IWebDriver[])this.InputObject));
-            SeHelper.RefreshPage(this, this.InputObject);
+            SeHelper.RefreshPage(this, InputObject);
         }
     }
 }

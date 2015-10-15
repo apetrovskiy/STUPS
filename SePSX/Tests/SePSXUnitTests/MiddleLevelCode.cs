@@ -11,7 +11,7 @@ namespace SePSXUnitTests
 {
     using System;
     // using NUnit;
-    using System.Diagnostics;
+
     //using System.Management.Automation;
     
     /// <summary>

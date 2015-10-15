@@ -9,11 +9,8 @@
 
 namespace SePSX
 {
-    using System;
-    using System.Management.Automation;
-    using SePSX.Commands;
-    using Autofac;
-    
+    using Commands;
+
     /// <summary>
     /// Description of SeStartWebDriverCommand.
     /// </summary>
@@ -25,7 +22,7 @@ namespace SePSX
         
         internal override void Execute()
         {
-            SeHelper.StartWebDriver((StartSeWebDriverCommand)this.Cmdlet);
+            SeHelper.StartWebDriver((StartSeWebDriverCommand)Cmdlet);
 
 #region commented
             // ??

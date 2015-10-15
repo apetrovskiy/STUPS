@@ -9,7 +9,6 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
     using OpenQA.Selenium;
     
@@ -50,17 +49,17 @@ namespace SePSX.Commands
         
         protected override void ProcessRecord()
         {
-            this.checkInputWebElementOnly(this.InputObject);
+            checkInputWebElementOnly(InputObject);
             
             SeHelper.ClickOnElement(
                 this, 
-                this.InputObject,
-                this.WebElementMethod,
-                this.Single,
-                this.DoubleClick,
-                this.Right,
-                this.Hold,
-                this.Here);
+                InputObject,
+                WebElementMethod,
+                Single,
+                DoubleClick,
+                Right,
+                Hold,
+                Here);
         }
     }
 }

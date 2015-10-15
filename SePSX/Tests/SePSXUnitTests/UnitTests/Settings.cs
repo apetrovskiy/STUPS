@@ -9,8 +9,6 @@
 
 namespace SePSXUnitTests
 {
-    using System;
-    using MbUnit.Framework;
     //using NUnit.Framework;
     using SePSX;
 //    using PSTestLib;
@@ -29,8 +27,8 @@ namespace SePSXUnitTests
         
         public static void CleanUpRecordingCollection()
         {
-            if (null != Recorder.recordingCollection) {
-                Recorder.recordingCollection.Clear();
+            if (null != Recorder.RecordingCollection) {
+                Recorder.RecordingCollection.Clear();
             }
         }
         

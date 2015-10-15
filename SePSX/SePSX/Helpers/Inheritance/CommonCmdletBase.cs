@@ -15,15 +15,12 @@ namespace SePSX
     using OpenQA.Selenium.Chrome;
     using OpenQA.Selenium.Firefox;
     using OpenQA.Selenium.IE;
-    using OpenQA.Selenium.Remote;
-    
     using PSTestLib;
     
     using System.IO;
     
     using System.Collections;
     using System.Collections.ObjectModel;
-    using System.Windows.Automation;
     using UIAutomation;
     using Tmx.Interfaces.TestStructure;
     
@@ -51,13 +48,13 @@ namespace SePSX
         internal static bool ModuleAlreadyLoaded { get; set; }
 //        internal static System.Collections.Generic.List<object> UnitTestOutput { get; set; }
         
-        private const string exceptionMessageNull = 
+        private const string ExceptionMessageNull = 
             "The pipeline input is null";
-        private const string exceptionMessageWrongTypeWebDriver = 
+        private const string ExceptionMessageWrongTypeWebDriver = 
             "The pipeline input is not of IWebDriver type";
-        private const string exceptionMessageWrongTypeWebElement = 
+        private const string ExceptionMessageWrongTypeWebElement = 
             "The pipeline input is not of IWebElement type";
-        private const string exceptionMessageWrongTypeWebDriverOrWebElement = 
+        private const string ExceptionMessageWrongTypeWebDriverOrWebElement = 
             "The pipeline input is null or not of IWebDriver or IWebElement type";
         
         // 20130430
@@ -95,66 +92,66 @@ namespace SePSX
                 //WriteToLogFile(record);
                 WriteToLogFile(logRecord);
             } catch (Exception e) {
-                this.WriteVerbose(this, "Unable to write to the log file: " +
+                WriteVerbose(this, "Unable to write to the log file: " +
                              Preferences.LogPath);
-                this.WriteVerbose(this, e.Message);
+                WriteVerbose(this, e.Message);
             }
         }
         
-        protected void WriteLog(LogLevels logLevel, System.Management.Automation.ErrorRecord errorRecord)
+        protected void WriteLog(LogLevels logLevel, ErrorRecord errorRecord)
         {
             if (Preferences.AutoLog) {
                 
-                this.WriteLog(logLevel, errorRecord.Exception.Message);
-                this.WriteLog(logLevel, "Script: '" + errorRecord.InvocationInfo.ScriptName + "', line: " + errorRecord.InvocationInfo.Line.ToString());
+                WriteLog(logLevel, errorRecord.Exception.Message);
+                WriteLog(logLevel, "Script: '" + errorRecord.InvocationInfo.ScriptName + "', line: " + errorRecord.InvocationInfo.Line.ToString());
             }
         }
         
-        protected void checkInputWebDriver(bool strict)
+        protected void CheckInputWebDriver(bool strict)
         {
             if (null == ((HasWebDriverInputCmdletBase)this).InputObject) {
-                this.WriteError(
+                WriteError(
                     this,
-                    exceptionMessageNull,
+                    ExceptionMessageNull,
                     "WrongInput",
                     ErrorCategory.InvalidArgument,
                     true);
             } else {
                 if (strict) {
                     if (!(((HasWebDriverInputCmdletBase)this).InputObject is IWebDriver[])) {
-                        this.WriteError(
+                        WriteError(
                             this,
-                            exceptionMessageWrongTypeWebDriver,
+                            ExceptionMessageWrongTypeWebDriver,
                             "WrongInput",
                             ErrorCategory.InvalidArgument,
                             true);
                     }
                 }
-                this.WriteVerbose(this, "The pipeline input is good");
+                WriteVerbose(this, "The pipeline input is good");
             }
         }
         
-        protected void checkInputWebDriverOrWebElement()
+        protected void CheckInputWebDriverOrWebElement()
         {
             IWebDriver[] driver = null;
-            System.Collections.Generic.List<IWebDriver> driverList = 
+            var driverList = 
                 new System.Collections.Generic.List<IWebDriver>();
             IWebElement[] element = null;
-            System.Collections.Generic.List<IWebElement> elementList = 
+            var elementList = 
                 new System.Collections.Generic.List<IWebElement>();
             //foreach(object inputObject in ((HasWebElementInputCmdletBase)this).InputObject) {
                 try {
-                    this.WriteVerbose(this, "Checking whether the input is of WebDriver type");
+                    WriteVerbose(this, "Checking whether the input is of WebDriver type");
                     var driverTest = 
                         ((HasWebElementInputCmdletBase)this).InputObject as IWebDriver[];
                     if (null != driverTest) {
-                        this.WriteVerbose(this, "input is IWebDriver");
+                        WriteVerbose(this, "input is IWebDriver");
                         driver = (IWebDriver[])driverTest;
                     } else {
-                        this.WriteVerbose(this, "input is PSObject");
+                        WriteVerbose(this, "input is PSObject");
 //                        driver = 
 //                            ((PSObject[])((HasWebElementInputCmdletBase)this).InputObject).BaseObject as IWebDriver[];
-                        for (int i = 0; i < ((HasWebElementInputCmdletBase)this).InputObject.Length; i++) {
+                        for (var i = 0; i < ((HasWebElementInputCmdletBase)this).InputObject.Length; i++) {
                             //driver[i] = 
                             var rawInputItemDriver = 
                                 ((HasWebElementInputCmdletBase)this).InputObject[i];
@@ -175,12 +172,12 @@ namespace SePSX
                     //driver =
                     //    //((PSObject)((HasWebElementInputCmdletBase)this).InputObject).BaseObject as IWebDriver;
                     //    ((HasWebElementInputCmdletBase)this).InputObject as IWebDriver;
-                    this.WriteVerbose(this, "The pipeline input is of WebDriver type");
+                    WriteVerbose(this, "The pipeline input is of WebDriver type");
                     //if (driver != null) {
                     if (driverList.Count > 0) {
-                        this.WriteVerbose(this, "set InputObject");
+                        WriteVerbose(this, "set InputObject");
                         //((HasWebElementInputCmdletBase)this).InputObject[0] = driver;
-                        for (int i = 0; i < driverList.Count; i++) {
+                        for (var i = 0; i < driverList.Count; i++) {
                             ((HasWebElementInputCmdletBase)this).InputObject[i] =
                                 driverList[i];
                         }
@@ -189,20 +186,20 @@ namespace SePSX
                     //    ((HasWebElementInputCmdletBase)this).InputObject as IWebDriver;
                  }
                 catch (Exception eNotWebDriver) {
-                    this.WriteVerbose(this, "The pipeline input is not of WebDriver type");
-                    this.WriteVerbose(this, eNotWebDriver.Message);
+                    WriteVerbose(this, "The pipeline input is not of WebDriver type");
+                    WriteVerbose(this, eNotWebDriver.Message);
                     try {
-                        this.WriteVerbose(this, "Checking whether the input is of WebElement type");
+                        WriteVerbose(this, "Checking whether the input is of WebElement type");
                         var elementTest = 
                             ((HasWebElementInputCmdletBase)this).InputObject as IWebElement[];
                         if (elementTest != null) {
-                            this.WriteVerbose(this, "input is IWebElement");
+                            WriteVerbose(this, "input is IWebElement");
                             element = elementTest;
                         } else {
-                            this.WriteVerbose(this, "input is PSObject");
+                            WriteVerbose(this, "input is PSObject");
 //                            element =
 //                                ((PSObject[])((HasWebElementInputCmdletBase)this).InputObject).BaseObject as IWebElement[];
-                            for (int i = 0; i < ((HasWebElementInputCmdletBase)this).InputObject.Length; i++) {
+                            for (var i = 0; i < ((HasWebElementInputCmdletBase)this).InputObject.Length; i++) {
                                 //element[i] = 
 //                                elementList.Add(
 //                                    ((PSObject)((HasWebElementInputCmdletBase)this).InputObject[i]).BaseObject as IWebElement);
@@ -222,12 +219,12 @@ namespace SePSX
                         //element = 
                         //    //((PSObject)((HasWebElementInputCmdletBase)this).InputObject).BaseObject as IWebElement;
                         //    ((HasWebElementInputCmdletBase)this).InputObject as IWebElement;
-                        this.WriteVerbose(this, "The pipeline input is of WebElement type");
+                        WriteVerbose(this, "The pipeline input is of WebElement type");
                         //if (element != null) {
                         if (elementList.Count > 0) {
-                            this.WriteVerbose(this, "set InputObject");
+                            WriteVerbose(this, "set InputObject");
                             //((HasWebElementInputCmdletBase)this).InputObject = element;
-                            for (int i = 0; i < elementList.Count; i++) {
+                            for (var i = 0; i < elementList.Count; i++) {
                                 ((HasWebElementInputCmdletBase)this).InputObject[i] =
                                     elementList[i];
                             }
@@ -236,11 +233,11 @@ namespace SePSX
                         //    ((HasWebElementInputCmdletBase)this).InputObject as IWebElement;
                     }
                     catch (Exception eNotWebElement) {
-                        this.WriteVerbose(this, "The pipeline input is not of WebElement type");
-                        this.WriteVerbose(this, eNotWebElement.Message);
-                        this.WriteError(
+                        WriteVerbose(this, "The pipeline input is not of WebElement type");
+                        WriteVerbose(this, eNotWebElement.Message);
+                        WriteError(
                             this,
-                            exceptionMessageWrongTypeWebDriverOrWebElement,
+                            ExceptionMessageWrongTypeWebDriverOrWebElement,
                             "WrongInput",
                             ErrorCategory.InvalidArgument,
                             true);
@@ -257,11 +254,11 @@ namespace SePSX
                 }
             }
             catch (Exception eNotWebElement) {
-                this.WriteVerbose(this, "The pipeline input is not of WebElement type");
-                this.WriteVerbose(this, eNotWebElement.Message);
-                this.WriteError(
+                WriteVerbose(this, "The pipeline input is not of WebElement type");
+                WriteVerbose(this, eNotWebElement.Message);
+                WriteError(
                     this,
-                    exceptionMessageWrongTypeWebDriverOrWebElement,
+                    ExceptionMessageWrongTypeWebDriverOrWebElement,
                     "WrongInput",
                     ErrorCategory.InvalidArgument,
                     true);
@@ -273,22 +270,22 @@ namespace SePSX
         {
             //IWebDriver driver = null;
             IWebElement[] element = null; // = new IWebElement[]; //null;
-            System.Collections.Generic.List<IWebElement> elementList = 
+            var elementList = 
                 new System.Collections.Generic.List<IWebElement>();
             
                 try {
-                    this.WriteVerbose(this, "Checking whether the input is of WebElement type");
+                    WriteVerbose(this, "Checking whether the input is of WebElement type");
                     var elementTest = 
                         //((HasWebElementInputCmdletBase)this).InputObject as IWebElement;
                         //input as IWebElement[];
                         ((HasWebElementInputCmdletBase)this).InputObject as IWebElement[];
                     if (null != elementTest) {
-                        this.WriteVerbose(this, "input is IWebElement");
+                        WriteVerbose(this, "input is IWebElement");
                         element = elementTest;
                     } else {
-                        this.WriteVerbose(this, "input is PSObject");
+                        WriteVerbose(this, "input is PSObject");
                         
-                        for (int i = 0; i < ((HasWebElementInputCmdletBase)this).InputObject.Length; i++) {
+                        for (var i = 0; i < ((HasWebElementInputCmdletBase)this).InputObject.Length; i++) {
                             //element[i] = 
 //                                elementList.Add(
 //                                    ((PSObject)((HasWebElementInputCmdletBase)this).InputObject[i]).BaseObject as IWebElement);
@@ -309,13 +306,13 @@ namespace SePSX
                     //element = 
                     //    //((PSObject)((HasWebElementInputCmdletBase)this).InputObject).BaseObject as IWebElement;
                     //    ((HasWebElementInputCmdletBase)this).InputObject as IWebElement;
-                    this.WriteVerbose(this, "The pipeline input is of WebElement type");
+                    WriteVerbose(this, "The pipeline input is of WebElement type");
                     //if (element != null) {
                     if (elementList.Count > 0) {
-                        this.WriteVerbose(this, "set InputObject");
+                        WriteVerbose(this, "set InputObject");
                         //((HasWebElementInputCmdletBase)this).InputObject = element;
                         //cmdlet.InputObject = element;
-                        for (int i = 0; i < elementList.Count; i++) {
+                        for (var i = 0; i < elementList.Count; i++) {
                             ((HasWebElementInputCmdletBase)this).InputObject[i] =
                                 (IWebElement)elementList[i];
                         }
@@ -324,11 +321,11 @@ namespace SePSX
                     //    ((HasWebElementInputCmdletBase)this).InputObject as IWebElement;
                 }
                 catch (Exception eNotWebElement) {
-                    this.WriteVerbose(this, "The pipeline input is not of WebElement type");
-                    this.WriteVerbose(this, eNotWebElement.Message);
-                    this.WriteError(
+                    WriteVerbose(this, "The pipeline input is not of WebElement type");
+                    WriteVerbose(this, eNotWebElement.Message);
+                    WriteError(
                         this,
-                        exceptionMessageWrongTypeWebDriverOrWebElement,
+                        ExceptionMessageWrongTypeWebDriverOrWebElement,
                         "WrongInput",
                         ErrorCategory.InvalidArgument,
                         true);
@@ -337,11 +334,11 @@ namespace SePSX
         }
 
         
-        protected void checkInputAlert(bool strict)
+        protected void CheckInputAlert(bool strict)
         {
             if (null == ((AlertCmdletBase)this).InputObject) {
 
-                this.WriteError(
+                WriteError(
                     this,
                     "The alert is null.",
                     "WrongInput",
@@ -351,7 +348,7 @@ namespace SePSX
                 if (strict) {
                     if (!(((AlertCmdletBase)this).InputObject is IAlert)) {
 
-                        this.WriteError(
+                        WriteError(
                             this,
                             "The alert is null.",
                             "WrongInput",
@@ -359,15 +356,15 @@ namespace SePSX
                             true);
                     }
                 }
-                this.WriteVerbose(this, "The pipeline input is good");
+                WriteVerbose(this, "The pipeline input is good");
             }
         }
         
-        protected void checkInputFirefoxProfile(bool strict)
+        protected void CheckInputFirefoxProfile(bool strict)
         {
             if (null == ((EditFirefoxProfileCmdletBase)this).InputObject) {
 
-                this.WriteError(
+                WriteError(
                     this,
                     "The input Firefox profile object is null.",
                     "WrongInput",
@@ -377,7 +374,7 @@ namespace SePSX
                 if (strict) {
                     if (!(((EditFirefoxProfileCmdletBase)this).InputObject is FirefoxProfile)) {
 
-                        this.WriteError(
+                        WriteError(
                             this,
                             "The input Firefox profile object is null.",
                             "WrongInput",
@@ -385,15 +382,15 @@ namespace SePSX
                             true);
                     }
                 }
-                this.WriteVerbose(this, "The pipeline input is good");
+                WriteVerbose(this, "The pipeline input is good");
             }
         }
         
-        protected void checkInputChromeOptions(bool strict)
+        protected void CheckInputChromeOptions(bool strict)
         {
             if (null == ((EditChromeOptionsCmdletBase)this).InputObject) {
 
-                this.WriteError(
+                WriteError(
                     this,
                     "The input Chrome options object is null.",
                     "WrongInput",
@@ -403,7 +400,7 @@ namespace SePSX
                 if (strict) {
                     if (!(((EditChromeOptionsCmdletBase)this).InputObject is ChromeOptions)) {
 
-                        this.WriteError(
+                        WriteError(
                             this,
                             "The input Chrome options object is null.",
                             "WrongInput",
@@ -411,15 +408,15 @@ namespace SePSX
                             true);
                     }
                 }
-                this.WriteVerbose(this, "The pipeline input is good");
+                WriteVerbose(this, "The pipeline input is good");
             }
         }
         
-        protected void checkInputInternetExplorerOptions(bool strict)
+        protected void CheckInputInternetExplorerOptions(bool strict)
         {
-            if (null == ((EditIEOptionsCmdletBase)this).InputObject) {
+            if (null == ((EditIeOptionsCmdletBase)this).InputObject) {
 
-                this.WriteError(
+                WriteError(
                     this,
                     "The input Internet Explorer options object is null.",
                     "WrongInput",
@@ -427,9 +424,9 @@ namespace SePSX
                     true);
             } else {
                 if (strict) {
-                    if (!(((EditIEOptionsCmdletBase)this).InputObject is InternetExplorerOptions)) {
+                    if (!(((EditIeOptionsCmdletBase)this).InputObject is InternetExplorerOptions)) {
 
-                        this.WriteError(
+                        WriteError(
                             this,
                             "The input Internet Explorer options object is null.",
                             "WrongInput",
@@ -437,13 +434,13 @@ namespace SePSX
                             true);
                     }
                 }
-                this.WriteVerbose(this, "The pipeline input is good");
+                WriteVerbose(this, "The pipeline input is good");
             }
         }
         
         public virtual void WriteObject(PSCmdletBase cmdlet, ReadOnlyCollection<IWebElement> outputObjectCollection)
         {
-            for (int i = 0; i < outputObjectCollection.Count; i++) {
+            for (var i = 0; i < outputObjectCollection.Count; i++) {
                 WriteObject(cmdlet, outputObjectCollection[i]);
             }
         }
@@ -491,7 +488,7 @@ Console.WriteLine("WriteSingleObject 00008");
         //protected override bool WriteObjectMethod010CheckOutputObject(object outputObject)
         protected bool WriteObjectMethod010CheckOutputObject(PSCmdletBase cmdlet, object outputObject)
         {
-            bool result = false || outputObject != null;
+            var result = false || outputObject != null;
 
             return result;
         }
@@ -500,15 +497,15 @@ Console.WriteLine("WriteSingleObject 00008");
         //protected override void WriteObjectMethod020Highlight(PSCmdletBase cmdlet, object outputObject)
         protected void WriteObjectMethod020Highlight(PSCmdletBase cmdlet, object outputObject)
         {
-            this.WriteVerbose(this, "IWebDriver or IWebElement");
+            WriteVerbose(this, "IWebDriver or IWebElement");
 //Console.WriteLine("WriteObjectMethod020Highlight 00001");
             if (Preferences.Highlight && outputObject is IWebElement) {
 //Console.WriteLine("WriteObjectMethod020Highlight 00002");
-                this.WriteVerbose(this, "Highlighting");
+                WriteVerbose(this, "Highlighting");
 //Console.WriteLine("WriteObjectMethod020Highlight 00003");
-                this.WriteVerbose(this, outputObject.GetType().Name);
+                WriteVerbose(this, outputObject.GetType().Name);
 //Console.WriteLine("WriteObjectMethod020Highlight 00004");
-                this.WriteVerbose(this, ((IWebElement)outputObject).GetType().Name);
+                WriteVerbose(this, ((IWebElement)outputObject).GetType().Name);
 //Console.WriteLine("WriteObjectMethod020Highlight 00005");
                 SeHelper.Highlight((IWebElement)outputObject);
 //Console.WriteLine("WriteObjectMethod020Highlight 00006");
@@ -555,7 +552,7 @@ Console.WriteLine("WriteSingleObject 00008");
             if (cmdlet != null) {
                 try {
                     CurrentData.LastResult = outputObject;
-                    string iInfo = string.Empty;
+                    var iInfo = string.Empty;
                     //if (((HasScriptBlockCmdletBase)cmdlet).TestResultName != null &&
                     if (cmdlet.TestResultName != null &&
                         //((HasScriptBlockCmdletBase)cmdlet).TestResultName.Length > 0) {
@@ -584,8 +581,8 @@ Console.WriteLine("WriteSingleObject 00008");
                             //((HasScriptBlockCmdletBase)cmdlet).TestResultName = 
                             cmdlet.TestResultName = 
                                 GetGeneratedTestResultNameByPosition(
-                                    this.MyInvocation.Line,
-                                    this.MyInvocation.PipelinePosition);
+                                    MyInvocation.Line,
+                                    MyInvocation.PipelinePosition);
                             //((HasScriptBlockCmdletBase)cmdlet).TestResultId = string.Empty;
                             cmdlet.TestResultId = string.Empty;
                             //((HasScriptBlockCmdletBase)cmdlet).TestPassed = true;
@@ -637,7 +634,7 @@ Console.WriteLine("WriteSingleObject 00008");
                     // 0,
                     new ScreenshotRect(),
                     string.Empty,
-                    SePSX.Preferences.OnSuccessScreenShotFormat);
+                    Preferences.OnSuccessScreenShotFormat);
             }
         }
         
@@ -647,8 +644,8 @@ Console.WriteLine("WriteSingleObject 00008");
         protected void WriteObjectMethod050OnSuccessDelay(PSCmdletBase cmdlet, object outputObject)
         {
             
-            this.WriteVerbose(this, "sleeping if sleep time is provided");
-            this.WriteVerbose(this, (Preferences.OnSuccessDelay / 1000).ToString() + " seconds");
+            WriteVerbose(this, "sleeping if sleep time is provided");
+            WriteVerbose(this, (Preferences.OnSuccessDelay / 1000).ToString() + " seconds");
             System.Threading.Thread.Sleep(Preferences.OnSuccessDelay);
         }
         
@@ -681,18 +678,18 @@ Console.WriteLine("WriteSingleObject 00008");
             
             if (Preferences.AutoLog) {
                 
-                string reportString =
+                var reportString =
                     CmdletSignature(((CommonCmdletBase)cmdlet)) +
                     outputObject.ToString();
                 
                 if (cmdlet != null && reportString != null && reportString != string.Empty) { //try { WriteVerbose(this, reportString);
-                    this.WriteVerbose(this, reportString);
+                    WriteVerbose(this, reportString);
                 } 
                 //this.WriteVerbose(this, "writing into the log");
                 // 20130430
                 //WriteLog(reportString);
                 //WriteLog(
-                this.WriteLog(LogLevels.Info, reportString);
+                WriteLog(LogLevels.Info, reportString);
                 //this.WriteVerbose(this, "the log record has been written");
             
             }
@@ -739,7 +736,7 @@ Console.WriteLine("WriteSingleObject 00008");
                     
                     // 20120328
                     CurrentData.LastResult = null;
-                    string iInfo = string.Empty;
+                    var iInfo = string.Empty;
                     //if (((HasScriptBlockCmdletBase)cmdlet).TestResultName != null &&
                     if (cmdlet.TestResultName != null &&
                         //((HasScriptBlockCmdletBase)cmdlet).TestResultName.Length > 0) {
@@ -777,8 +774,8 @@ Console.WriteLine("WriteSingleObject 00008");
                                 //((HasScriptBlockCmdletBase)cmdlet).TestResultName = 
                                 cmdlet.TestResultName = 
                                     GetGeneratedTestResultNameByPosition(
-                                        this.MyInvocation.Line,
-                                        this.MyInvocation.PipelinePosition);
+                                        MyInvocation.Line,
+                                        MyInvocation.PipelinePosition);
 //                                    this.MyInvocation.Line + 
 //                                    ", position: " +
 //                                    this.MyInvocation.PipelinePosition.ToString();
@@ -814,14 +811,14 @@ Console.WriteLine("WriteSingleObject 00008");
                     }
                 }
                 catch {
-                    this.WriteVerbose(this, "for working with test results you need to import the TMX module");
+                    WriteVerbose(this, "for working with test results you need to import the TMX module");
                 }
             }
         }
         
         protected override void WriteErrorMethod030ChangeTimeoutSettings(PSCmdletBase cmdlet, bool terminating)
         {
-            this.WriteVerbose(this, "WriteErrorMethod030ChangeTimeoutSettings SePSX");
+            WriteVerbose(this, "WriteErrorMethod030ChangeTimeoutSettings SePSX");
         }
         
         protected override void WriteErrorMethod040AddErrorToErrorList(PSCmdletBase cmdlet, ErrorRecord errorRecord)
@@ -829,14 +826,14 @@ Console.WriteLine("WriteSingleObject 00008");
             //WriteVerbose(this, "WriteErrorMethod040AddErrorToErrorList SePSX");
             
             // write an error to the Error list
-            this.writeErrorToTheList(errorRecord);
+            WriteErrorToTheList(errorRecord);
         }
         
         protected override void WriteErrorMethod045OnErrorScreenshot(PSCmdletBase cmdlet)
         {
-            this.WriteVerbose(this, "WriteErrorMethod045OnErrorScreenshot SePSX");
+            WriteVerbose(this, "WriteErrorMethod045OnErrorScreenshot SePSX");
             
-            if (SePSX.Preferences.OnErrorScreenShot) {
+            if (Preferences.OnErrorScreenShot) {
                 //UIAutomation.UiaHelper.GetScreenshotOfSquare(
 //                SeHelper.GetScreenshotOfWebElement(
 //                    //(cmdlet as HasWebElementInputCmdletBase),
@@ -850,7 +847,7 @@ Console.WriteLine("WriteSingleObject 00008");
 //                    string.Empty,
 //                    SePSX.Preferences.OnErrorScreenShotFormat);
                 
-                UIAutomation.UiaHelper.GetScreenshotOfAutomationElement(
+                UiaHelper.GetScreenshotOfAutomationElement(
                     (new HasControlInputCmdletBase()),
                     // 20131109
                     //AutomationElement.RootElement,
@@ -864,7 +861,7 @@ Console.WriteLine("WriteSingleObject 00008");
                     // 0,
                     new ScreenshotRect(),
                     string.Empty,
-                    SePSX.Preferences.OnErrorScreenShotFormat);
+                    Preferences.OnErrorScreenShotFormat);
                 
             }
         }
@@ -905,7 +902,7 @@ Console.WriteLine("WriteSingleObject 00008");
             //this.WriteVerbose(this, "WriteErrorMethod070Report PSePSX");
         }
         
-        private void writeErrorToTheList(ErrorRecord err)
+        private void WriteErrorToTheList(ErrorRecord err)
         {
             CurrentData.Error.Add(err);
             if (CurrentData.Error.Count > Preferences.MaximumErrorCount) {
@@ -1010,15 +1007,15 @@ Console.WriteLine("WriteSingleObject 00008");
 #endregion commented
         
         #region Log
-        private static System.IO.StreamWriter LogStream { get; set; }
-        private static System.IO.Stream Stream { get; set; }
+        private static StreamWriter LogStream { get; set; }
+        private static Stream Stream { get; set; }
         
         internal static void CreateLogFile()
         {
             if (Preferences.Log) {
                 try {
                     Stream = 
-                        System.IO.File.Open(
+                        File.Open(
                             Preferences.LogPath,
                             FileMode.OpenOrCreate | FileMode.Append,
                             FileAccess.Write,
@@ -1028,7 +1025,7 @@ Console.WriteLine("WriteSingleObject 00008");
                 } catch {
                     Preferences.LogPath = 
                         "'" +
-                        System.Environment.GetEnvironmentVariable(
+                        Environment.GetEnvironmentVariable(
                             "TEMP",
                             EnvironmentVariableTarget.User) + 
                             @"\UIAutomation_" +
@@ -1038,7 +1035,7 @@ Console.WriteLine("WriteSingleObject 00008");
                             "'";
                     try {
                         Stream =
-                            System.IO.File.Open(
+                            File.Open(
                                 Preferences.LogPath,
                                 FileMode.OpenOrCreate | FileMode.Append,
                                 FileAccess.Write,
@@ -1070,10 +1067,10 @@ Console.WriteLine("WriteSingleObject 00008");
         internal static void WriteToLogFile(string record)
         {
             if (Preferences.Log) {
-                if (System.IO.File.Exists(Preferences.LogPath)) {
+                if (File.Exists(Preferences.LogPath)) {
                     if (LogStream == null) {
                         Stream = 
-                            System.IO.File.Open(
+                            File.Open(
                                 Preferences.LogPath,
                                 FileMode.OpenOrCreate | FileMode.Append,
                                 FileAccess.Write,
@@ -1081,10 +1078,10 @@ Console.WriteLine("WriteSingleObject 00008");
                         LogStream = 
                             new StreamWriter(Stream);
                     }
-                    string dateAndTime = 
-                        System.DateTime.Now.ToShortDateString() + 
+                    var dateAndTime = 
+                        DateTime.Now.ToShortDateString() + 
                         " " +
-                        System.DateTime.Now.ToShortTimeString();
+                        DateTime.Now.ToShortTimeString();
                     LogStream.WriteLine(dateAndTime + "\t" + record);
                     //  //  // LogStream.Flush();
                     //  // 

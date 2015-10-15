@@ -199,6 +199,7 @@
     <Compile Include="Commands\Status\GetTMXTestSuiteStatusCommand.cs" />
     <Compile Include="Commands\Status\UpdateTMXTestStatisticsCommand.cs" />
     <Compile Include="Commands\TestClient\AddTmxTestTaskResultCommand.cs" />
+    <Compile Include="Commands\TestClient\ReceiveTmxCommonDataItemsCollection.cs" />
     <Compile Include="Commands\TestClient\ReceiveTmxTestReportCommand.cs" />
     <Compile Include="Commands\TestClient\SetTmxServerSettingsCommand.cs" />
     <Compile Include="Commands\TestClient\GetTmxCurrentTestTaskCommand.cs" />
@@ -287,6 +288,7 @@
     <Compile Include="Helpers\UnderlyingCode\Commands\Status\TMXGetTestScenarioStatusCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Status\TMXGetTestSuiteStatusCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestClient\AddTestTaskResultCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestClient\ReceiveCommonDataItemsCollectionCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestClient\ReceiveTestResportCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestClient\SetServerSettingsCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestClient\GetCurrentTestTaskCommand.cs" />

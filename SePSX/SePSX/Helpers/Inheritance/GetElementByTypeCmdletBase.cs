@@ -9,11 +9,7 @@
 
 namespace SePSX
 {
-    using System;
     using System.Management.Automation;
-    using OpenQA.Selenium;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Collections;
     
     /// <summary>
@@ -23,9 +19,9 @@ namespace SePSX
     {
         public GetElementByTypeCmdletBase()
         {
-            this.Timeout = Preferences.Timeout;
-            this.Seconds = Timeout / 1000;
-            this.First = false;
+            Timeout = Preferences.Timeout;
+            Seconds = Timeout / 1000;
+            First = false;
         }
         
         internal protected string TagName { get; set; }

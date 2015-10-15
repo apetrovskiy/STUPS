@@ -5,10 +5,7 @@
 //namespace OpenQA.Selenium.Support.UI
 namespace SePSXUnitTests
 {
-    using System;
     using System.Collections.Generic;
-    using System.Globalization;
-    using System.Text;
     using OpenQA.Selenium;
 
     public interface ISelectElement

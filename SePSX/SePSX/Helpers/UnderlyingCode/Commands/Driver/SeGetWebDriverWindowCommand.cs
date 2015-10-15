@@ -9,9 +9,7 @@
 
 namespace SePSX
 {
-    using System;
-    using System.Management.Automation;
-    using SePSX.Commands;
+    using Commands;
     
     /// <summary>
     /// Description of SeGetWebDriverWindowCommand.
@@ -25,8 +23,8 @@ namespace SePSX
         internal override void Execute()
         {
             SeHelper.GetWindow(
-                ((GetSeWebDriverWindowCommand)this.Cmdlet),
-                ((GetSeWebDriverWindowCommand)this.Cmdlet).InputObject);
+                ((GetSeWebDriverWindowCommand)Cmdlet),
+                ((GetSeWebDriverWindowCommand)Cmdlet).InputObject);
         }
     }
 }

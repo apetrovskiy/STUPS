@@ -9,7 +9,6 @@
 
 namespace SePSX
 {
-    using System;
     using System.Management.Automation;
     //using OpenQA.Selenium;
     
@@ -20,7 +19,7 @@ namespace SePSX
     {
         public StartDriverCmdletBase()
         {
-            this.Count = 0;
+            Count = 0;
         }
         
         #region Parameters
@@ -49,7 +48,7 @@ namespace SePSX
         
         protected override void BeginProcessing()
         {
-            this.CheckCmdletParameters();
+            CheckCmdletParameters();
             
             SeHelper.SetBrowserInstanceForeground(this);
         }

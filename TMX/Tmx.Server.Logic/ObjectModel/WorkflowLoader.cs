@@ -38,8 +38,6 @@ namespace Tmx.Server.Logic.ObjectModel
                 if (!File.Exists(pathToWorkflowFile))
                     throw new WorkflowLoadingException("There is no such file '" + pathToWorkflowFile + "'.");
                 var pathToCopiedWorkflowFile = CopyWorkflowFileToStorage(pathToWorkflowFile);
-                // ImportXdocument(XDocument.Load(pathToCopiedWorkflowFile));
-                // ImportXdocument(pathToCopiedWorkflowFile);
                 ImportXdocumentAndCreateWorkflowAndTasks(XDocument.Load(pathToCopiedWorkflowFile), pathToCopiedWorkflowFile);
             }
             catch (Exception eImportDocument) {
@@ -97,9 +95,6 @@ namespace Tmx.Server.Logic.ObjectModel
         // public virtual void ImportXdocument(XContainer xDocument)
         public virtual void ImportXdocumentAndCreateWorkflowAndTasks(XContainer xDocument, string pathToWorkflowFile)
         {
-            // var workflowId = GetWorkflowId(xDocument);
-            // var xDocument = XDocument.Parse(pathToWorkflowFile);
-            // var workflowId = GetWorkflowId(xDocument);
             var workflowId = AddWorkflowAndReturnWorkflowId(xDocument, pathToWorkflowFile);
             SetParametersPageName(xDocument);
             var tasks = from task in xDocument.Descendants(LogicConstants.WorkflowLoader_TestWorkflow_TaskNode)
@@ -109,6 +104,8 @@ namespace Tmx.Server.Logic.ObjectModel
             var importedTasks = tasks.Select(tsk => GetNewTestTask(tsk, workflowId));
             AddTasksToCommonPool(importedTasks);
             AddWorkflowDefaults(xDocument, workflowId);
+            // 20151012
+            AddWorkflowPlugins(workflowId);
         }
         
         // Guid GetWorkflowId(XContainer xDocument)
@@ -183,6 +180,11 @@ namespace Tmx.Server.Logic.ObjectModel
         {
             var currentWorkflow = WorkflowCollection.Workflows.First(wfl => workflowId == wfl.Id);
             currentWorkflow.DefaultData = GetDefaultData(xDocument);
+        }
+
+        void AddWorkflowPlugins(Guid workflowId)
+        {
+            
         }
 
         internal virtual ITestTask GetNewTestTask(XContainer taskNode, Guid workflowId)

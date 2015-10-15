@@ -9,7 +9,6 @@
 
 namespace SePSXUnitTests.ParamChecks
 {
-    using System;
     using Moq;
     using OpenQA.Selenium;
     

@@ -11,7 +11,6 @@ namespace SePSXUnitTests
 {
     using System;
     using OpenQA.Selenium;
-    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using Moq;
     using System.Text.RegularExpressions;

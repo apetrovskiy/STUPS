@@ -9,17 +9,15 @@
 
 namespace SePSX
 {
-    using System;
     using System.Management.Automation;
-    using OpenQA.Selenium;
     using OpenQA.Selenium.IE;
     
     /// <summary>
     /// Description of EditIEOptionsCmdletBase.
     /// </summary>
-    public class EditIEOptionsCmdletBase : IEOptionsCmdletBase
+    public class EditIeOptionsCmdletBase : IeOptionsCmdletBase
     {
-        public EditIEOptionsCmdletBase()
+        public EditIeOptionsCmdletBase()
         {
         }
         

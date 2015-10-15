@@ -9,21 +9,18 @@
 
 namespace SePSX
 {
-    using System;
-    using System.Management.Automation;
-    
     /// <summary>
     /// Description of SeSetIEOptionCommand.
     /// </summary>
-    internal class SeSetIEOptionCommand : SeCommand
+    internal class SeSetIeOptionCommand : SeCommand
     {
-        internal SeSetIEOptionCommand(CommonCmdletBase cmdlet) : base (cmdlet)
+        internal SeSetIeOptionCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
         internal override void Execute()
         {
-            SeHelper.SetIEOption(this.Cmdlet);
+            SeHelper.SetIeOption(Cmdlet);
         }
     }
 }

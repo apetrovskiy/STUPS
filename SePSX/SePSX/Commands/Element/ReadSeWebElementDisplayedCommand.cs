@@ -9,10 +9,8 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
-    using OpenQA.Selenium;
-    
+
     /// <summary>
     /// Description of ReadSeWebElementDisplayedCommand.
     /// </summary>
@@ -26,9 +24,9 @@ namespace SePSX.Commands
         
         protected override void ProcessRecord()
         {
-            this.checkInputWebElementOnly(this.InputObject);
+            checkInputWebElementOnly(InputObject);
             
-            SeReadWebElementDisplayedCommand command =
+            var command =
                 new SeReadWebElementDisplayedCommand(this);
             command.Execute();
             //SeHelper.GetWebElementIsDisplayed(this, ((IWebElement[])this.InputObject));

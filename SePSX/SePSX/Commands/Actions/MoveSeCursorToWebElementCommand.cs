@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium.Remote;
-/*
+﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 8/21/2012
@@ -10,11 +9,9 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
     using OpenQA.Selenium;
-    using OpenQA.Selenium.Interactions;
-    
+
     /// <summary>
     /// Description of MoveSeCursorToWebElementCommand.
     /// </summary>
@@ -36,9 +33,9 @@ namespace SePSX.Commands
         
         protected override void ProcessRecord()
         {
-            this.checkInputWebElementOnly(this.InputObject);
+            checkInputWebElementOnly(InputObject);
             
-            SeHelper.MoveCursorToElement(this, this.InputObject, this.X, this.Y);
+            SeHelper.MoveCursorToElement(this, InputObject, X, Y);
         }
     }
 }

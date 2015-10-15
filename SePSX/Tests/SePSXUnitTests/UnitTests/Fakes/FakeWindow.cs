@@ -9,10 +9,8 @@
 
 namespace SePSXUnitTests
 {
-    using System;
     using OpenQA.Selenium;
     using System.Drawing;
-    using System.Collections.ObjectModel;
 
     /// <summary>
     /// Description of FakeWindow.

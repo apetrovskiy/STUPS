@@ -9,9 +9,7 @@
 
 namespace SePSX
 {
-    using System;
-    using System.Management.Automation;
-    using SePSX.Commands;
+    using Commands;
     
     /// <summary>
     /// Description of SeInvokeNavigateBackCommand.
@@ -25,8 +23,8 @@ namespace SePSX
         internal override void Execute()
         {
             SeHelper.NavigateBack(
-                this.Cmdlet,
-                ((InvokeSeNavigateBackCommand)this.Cmdlet).InputObject);
+                Cmdlet,
+                ((InvokeSeNavigateBackCommand)Cmdlet).InputObject);
         }
     }
 }

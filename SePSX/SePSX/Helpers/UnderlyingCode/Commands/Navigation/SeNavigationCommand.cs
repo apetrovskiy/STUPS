@@ -6,14 +6,9 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-using System;
 
 namespace SePSX
 {
-    using System;
-    using System.Management.Automation;
-    using SePSX.Commands;
-    
     /// <summary>
     /// Description of SeNavigationCommand.
     /// </summary>

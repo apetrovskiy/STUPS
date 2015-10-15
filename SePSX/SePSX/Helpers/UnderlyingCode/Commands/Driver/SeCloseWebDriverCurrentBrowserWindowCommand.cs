@@ -9,9 +9,7 @@
 
 namespace SePSX
 {
-    using System;
-    using System.Management.Automation;
-    using SePSX.Commands;
+    using Commands;
     
     /// <summary>
     /// Description of SeCloseWebDriverCurrentBrowserWindowCommand.
@@ -25,8 +23,8 @@ namespace SePSX
         internal override void Execute()
         {
             SeHelper.CloseCurrentBrowserWindow(
-                ((CloseSeWebDriverCurrentBrowserWindowCommand)this.Cmdlet), 
-                ((CloseSeWebDriverCurrentBrowserWindowCommand)this.Cmdlet).InputObject);
+                ((CloseSeWebDriverCurrentBrowserWindowCommand)Cmdlet), 
+                ((CloseSeWebDriverCurrentBrowserWindowCommand)Cmdlet).InputObject);
         }
     }
 }

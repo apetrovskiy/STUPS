@@ -9,9 +9,6 @@
 
 namespace SePSX
 {
-    using System;
-    using System.Management.Automation;
-    
     /// <summary>
     /// Description of SeAddChromeExtensionCommand.
     /// </summary>
@@ -23,7 +20,7 @@ namespace SePSX
         
         internal override void Execute()
         {
-            SeHelper.AddChromeExtension(this.Cmdlet);
+            SeHelper.AddChromeExtension(Cmdlet);
         }
     }
 }

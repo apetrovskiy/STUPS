@@ -9,7 +9,6 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
     using OpenQA.Selenium;
     
@@ -46,7 +45,7 @@ namespace SePSX.Commands
         
         protected override void ProcessRecord()
         {
-            checkInputWebDriver(true);
+            CheckInputWebDriver(true);
             
             //SeHelper.SwitchToFrame(this, ((IWebDriver[])this.InputObject), this.FrameIndex);
             // if (null != this.FrameElement && null == this.FrameIndex && null == this.FrameName) {

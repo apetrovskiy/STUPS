@@ -9,12 +9,8 @@
 
 namespace SePSXUnitTests.Commands.Select
 {
-    using System;
     using MbUnit.Framework;
     //using NUnit.Framework;
-    using SePSX;
-    using PSTestLib;
-    using OpenQA.Selenium;
     using OpenQA.Selenium.Support.UI;
     using Moq;
 //    using System.Drawing;

@@ -24,7 +24,7 @@ namespace Tmx.Client.Tests.ObjectModel
     using Core.Proxy;
     using Library.Helpers;
     using Library.ObjectModel;
-
+    
     /// <summary>
     /// Description of CommonDataSenderTestFixture.
     /// </summary>
@@ -78,9 +78,6 @@ Call MockRestServiceServer.Verify() method.
                 .AndExpectBodyContains(expectedValue)
                 .AndRespondWith("", _responseHeaders, HttpStatusCode.Created, "");
             
-            // 20150918
-            // var commonDataSender = new CommonDataSender(_restRequestCreator);
-            // var commonDataSender = new CommonDataSender();
             var commonDataSender = ProxyFactory.Get<CommonDataSender>();
             commonDataSender.Send(new CommonDataItem { Key = expectedKey, Value = expectedValue });
         }
@@ -105,9 +102,6 @@ Call MockRestServiceServer.Verify() method.
                 .AndExpectBodyContains(expectedValue)
                 .AndRespondWith("", _responseHeaders, HttpStatusCode.Created, "");
             
-            // 20150918
-            // var commonDataSender = new CommonDataSender(_restRequestCreator);
-            // var commonDataSender = new CommonDataSender();
             var commonDataSender = ProxyFactory.Get<CommonDataSender>();
             commonDataSender.Send(new CommonDataItem { Key = expectedKey, Value = expectedValue });
             commonDataSender.Send(new CommonDataItem { Key = expectedKey, Value = expectedValue });
@@ -123,16 +117,13 @@ Call MockRestServiceServer.Verify() method.
                 .AndExpectMethod(HttpMethod.GET)
                 .AndRespondWith("{ \"Key\":\"aaa\",\"Value\":\"bbb\" }", _responseHeaders, HttpStatusCode.OK, "");
             
-            // 20150918
-            // var commonDataLoader = new CommonDataLoader(_restRequestCreator);
-            // var commonDataLoader = new CommonDataLoader();
             var commonDataLoader = ProxyFactory.Get<CommonDataLoader>();
             var resultDictionary = commonDataLoader.Load();
             
             Assert.Equal("aaa", resultDictionary["Key"]);
             Assert.Equal("bbb", resultDictionary["Value"]);
         }
-
+        
         string GIVEN_url_to_testRun_data()
         {
             _testRun = new TestRun();
@@ -141,7 +132,7 @@ Call MockRestServiceServer.Verify() method.
             };
             return UrlList.TestData_Root + "/" + _testRun.Id + UrlList.TestData_CommonData_forClient_relPath;
         }
-
+        
         void PrepareMocks()
         {
             _restTemplate = new RestTemplate(BaseUrl);

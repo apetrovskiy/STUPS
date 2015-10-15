@@ -9,7 +9,6 @@
 
 namespace SePSXUnitTests
 {
-    using System;
     using SePSX;
     using SePSX.Commands;
     using Autofac;

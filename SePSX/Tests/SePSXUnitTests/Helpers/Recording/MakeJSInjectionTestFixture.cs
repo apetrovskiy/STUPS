@@ -9,12 +9,9 @@
 
 namespace SePSXUnitTests.Recording
 {
-    using System;
     using MbUnit.Framework;
     //using NUnit.Framework;
-    using SePSX;
-    using PSTestLib;
-    
+
     /// <summary>
     /// Description of MakeJSInjectionTestFixture.
     /// </summary>

@@ -9,9 +9,7 @@
 
 namespace SePSX
 {
-    using System;
-    using System.Management.Automation;
-    using SePSX.Commands;
+    using Commands;
     
     /// <summary>
     /// Description of SeReadWebDriverNativeWindowHandleCommand.
@@ -29,9 +27,9 @@ namespace SePSX
 //                ((SeReadWebDriverNativeWindowHandleCommand)this.Cmdlet).InputObject, 
 //                ((SeReadWebDriverNativeWindowHandleCommand)this.Cmdlet).MainWindowHandle);
             SeHelper.GetNativeWindowHandle(
-                this.Cmdlet,
-                ((HasWebDriverInputCmdletBase)this.Cmdlet).InputObject,
-                ((ReadSeWebDriverNativeWindowHandleCommand)this.Cmdlet).MainWindowHandle);
+                Cmdlet,
+                ((HasWebDriverInputCmdletBase)Cmdlet).InputObject,
+                ((ReadSeWebDriverNativeWindowHandleCommand)Cmdlet).MainWindowHandle);
         }
     }
 }

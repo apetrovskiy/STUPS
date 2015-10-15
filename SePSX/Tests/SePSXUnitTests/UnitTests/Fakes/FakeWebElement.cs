@@ -9,9 +9,7 @@
 
 namespace SePSXUnitTests
 {
-    using System;
     using OpenQA.Selenium;
-    using OpenQA.Selenium.Remote;
     using OpenQA.Selenium.Interactions.Internal;
     using OpenQA.Selenium.Internal;
     using System.Drawing;

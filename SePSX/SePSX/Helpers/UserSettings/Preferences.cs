@@ -75,7 +75,7 @@ namespace SePSX
 //            DisableWin32Search = false;
             
             ScreenShotFolder = 
-                System.Environment.GetEnvironmentVariable(
+                Environment.GetEnvironmentVariable(
                     "TEMP",
                     EnvironmentVariableTarget.User);
             //OnErrorScreenShot = false;
@@ -106,7 +106,7 @@ namespace SePSX
 //            OnClickDelay = 0;
             Log = true;
             LogPath = 
-                System.Environment.GetEnvironmentVariable(
+                Environment.GetEnvironmentVariable(
                     "TEMP",
                     EnvironmentVariableTarget.User) + 
                 @"\SePSX.log";
@@ -293,23 +293,23 @@ namespace SePSX
         // 20130429
         public static bool AutoLog { get; set; }
         
-        private static int maximumErrorCount;
+        private static int _maximumErrorCount;
         /// <summary>
         /// The upper limit of number of errors that
         /// are stored in the Error collection.
         /// </summary>
         public static int MaximumErrorCount
         {
-            get { return maximumErrorCount; } 
-            set{ maximumErrorCount = value; }
+            get { return _maximumErrorCount; } 
+            set{ _maximumErrorCount = value; }
         }
         
-        private static int maximumEventCount;
+        private static int _maximumEventCount;
         
         public static int MaximumEventCount
         {
-            get { return maximumEventCount; } 
-            set{ maximumEventCount = value; }
+            get { return _maximumEventCount; } 
+            set{ _maximumEventCount = value; }
         }
 //        
 //        /// <summary>

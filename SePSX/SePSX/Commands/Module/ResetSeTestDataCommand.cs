@@ -9,10 +9,6 @@
 
 namespace SePSX.Commands
 {
-    using System;
-    using System.Management.Automation;
-    using OpenQA.Selenium;
-    
     /// <summary>
     /// Description of ResetSeTestDataCommand.
     /// </summary>

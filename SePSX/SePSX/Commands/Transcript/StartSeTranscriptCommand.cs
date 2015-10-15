@@ -9,7 +9,6 @@
 
 namespace SePSX.Commands.Transcript
 {
-    using System;
     using System.Management.Automation;
 
     /// <summary>
@@ -20,14 +19,14 @@ namespace SePSX.Commands.Transcript
     {
         public StartSeTranscriptCommand()
         {
-            this.Wait = true;
+            Wait = true;
         }
         
         protected override void BeginProcessing()
         {
-            this.CheckCmdletParameters();
+            CheckCmdletParameters();
             
-            bool highlightParent = Preferences.HighlightParent;
+            var highlightParent = Preferences.HighlightParent;
             Preferences.HighlightParent = false;
             //
             //
@@ -77,16 +76,16 @@ namespace SePSX.Commands.Transcript
             
             //
             //
-            Recorder.RecordActions(this, (new JSRecorder()), this.Language);
+            Recorder.RecordActions(this, (new JsRecorder()), Language);
             
-            Recorder.WriteRecordingsToFile(this, this.FileName); //, );
+            Recorder.WriteRecordingsToFile(this, FileName); //, );
             
             Preferences.HighlightParent = highlightParent;
         }
         
         protected override void StopProcessing()
         {
-            this.Wait = false;
+            Wait = false;
         }
     }
     

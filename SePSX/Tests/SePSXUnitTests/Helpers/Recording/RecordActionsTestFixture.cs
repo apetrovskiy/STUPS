@@ -9,11 +9,9 @@
 
 namespace SePSXUnitTests.Recording
 {
-    using System;
     using MbUnit.Framework;
     //using NUnit.Framework;
     using SePSX;
-    using PSTestLib;
     using OpenQA.Selenium;
     using System.Collections.ObjectModel;
     using System.Collections.Generic;
@@ -41,7 +39,7 @@ namespace SePSXUnitTests.Recording
             var cmdlet = new TranscriptCmdletBase();
             cmdlet.Timeout = 10;
 
-            IJSRecorder recorder = new FakeJSGenerator(listOfItems);
+            IJsRecorder recorder = new FakeJSGenerator(listOfItems);
 
             Recorder.RecordActions(cmdlet, recorder, cmdlet.Language);
         }
@@ -60,8 +58,8 @@ namespace SePSXUnitTests.Recording
 
             Assert.AreEqual(
                 expectedResult,
-                ((RecordedWebElement)Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items[
-                    Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 1]).UserData["TagName"]);
+                ((RecordedWebElement)Recorder.RecordingCollection[Recorder.RecordingCollection.Count - 1].Items[
+                    Recorder.RecordingCollection[Recorder.RecordingCollection.Count - 1].Items.Count - 1]).UserData["TagName"]);
         }
         
         [Test] //[Test(Description="The Recorder.RecordActions test")]
@@ -82,8 +80,8 @@ namespace SePSXUnitTests.Recording
             
             Assert.AreEqual(
                 expectedResult,
-                ((RecordedWebElement)Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items[
-                    Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 1]).UserData["TagName"]);
+                ((RecordedWebElement)Recorder.RecordingCollection[Recorder.RecordingCollection.Count - 1].Items[
+                    Recorder.RecordingCollection[Recorder.RecordingCollection.Count - 1].Items.Count - 1]).UserData["TagName"]);
         }
         
         [Test] //[Test(Description="The Recorder.RecordActions test")]
@@ -104,37 +102,37 @@ namespace SePSXUnitTests.Recording
             
             Assert.AreEqual(
                 expectedResult,
-                ((RecordedWebElement)Recorder.recordingCollection[Recorder.recordingCollection.Count - 2].Items[
-                    Recorder.recordingCollection[Recorder.recordingCollection.Count - 2].Items.Count - 1]).UserData["TagName"]);
+                ((RecordedWebElement)Recorder.RecordingCollection[Recorder.RecordingCollection.Count - 2].Items[
+                    Recorder.RecordingCollection[Recorder.RecordingCollection.Count - 2].Items.Count - 1]).UserData["TagName"]);
         }
         
         [Test] //[Test(Description="The Recorder.RecordActions test")]
         [Category("Fast")]
         public void WebElement_and_action_the_Last()
         {
-            const string expectedResult = Recorder.codeGenElementClick;
+            const string expectedResult = Recorder.CodeGenElementClick;
             IWebElement webElement = 
                 new FakeWebElement("button", "OK");
             var list = new List<object>();
             list.Add(webElement);
             
             webElement = 
-                new FakeWebElement(Recorder.constAuxElementClicked, "");
+                new FakeWebElement(Recorder.ConstAuxElementClicked, "");
             list.Add(webElement);
             
             runRecordActions(list);
             
             Assert.AreEqual(
                 expectedResult,
-                ((RecordedAction)Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items[
-                    Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 1]).UserData["code"]);
+                ((RecordedAction)Recorder.RecordingCollection[Recorder.RecordingCollection.Count - 1].Items[
+                    Recorder.RecordingCollection[Recorder.RecordingCollection.Count - 1].Items.Count - 1]).UserData["code"]);
         }
         
         [Test] //[Test(Description="The Recorder.RecordActions test")]
         [Category("Fast")]
         public void WebElement_and_action_the_First()
         {
-            const string expectedResult = Recorder.codeGenGetElement;
+            const string expectedResult = Recorder.CodeGenGetElement;
             IWebElement webElement = 
                 new FakeWebElement("a", "text");
             var list = new List<object>();
@@ -148,8 +146,8 @@ namespace SePSXUnitTests.Recording
 
             Assert.AreEqual(
                 expectedResult,
-                ((RecordedWebElement)Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items[
-                    Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 2]).UserData["code"]);
+                ((RecordedWebElement)Recorder.RecordingCollection[Recorder.RecordingCollection.Count - 1].Items[
+                    Recorder.RecordingCollection[Recorder.RecordingCollection.Count - 1].Items.Count - 2]).UserData["code"]);
         }
         
         [Test] //[Test(Description="The Recorder.RecordActions test")]
@@ -189,15 +187,15 @@ namespace SePSXUnitTests.Recording
             
             Assert.AreEqual(
                 expectedResult,
-                ((RecordedData)Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items[
-                    Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 1]).UserData["code"]);
+                ((RecordedData)Recorder.RecordingCollection[Recorder.RecordingCollection.Count - 1].Items[
+                    Recorder.RecordingCollection[Recorder.RecordingCollection.Count - 1].Items.Count - 1]).UserData["code"]);
         }
         
         [Test] //[Test(Description="The Recorder.RecordActions test")]
         [Category("Fast")]
         public void WebElement_and_data_the_First()
         {
-            const string expectedResult = Recorder.codeGenGetElement;
+            const string expectedResult = Recorder.CodeGenGetElement;
             IWebElement webElement = 
                 new FakeWebElement("a", "text");
             var list = new List<object>();
@@ -219,8 +217,8 @@ namespace SePSXUnitTests.Recording
 
             Assert.AreEqual(
                 expectedResult,
-                ((RecordedWebElement)Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items[
-                    Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 2]).UserData["code"]);
+                ((RecordedWebElement)Recorder.RecordingCollection[Recorder.RecordingCollection.Count - 1].Items[
+                    Recorder.RecordingCollection[Recorder.RecordingCollection.Count - 1].Items.Count - 2]).UserData["code"]);
         }
         
         [Test] //[Test(Description="The Recorder.RecordActions test")]
@@ -233,7 +231,7 @@ namespace SePSXUnitTests.Recording
             var list = new List<object>();
             list.Add(webElement);
             
-            webElement = new FakeWebElement(Recorder.constAuxElementClicked, "");
+            webElement = new FakeWebElement(Recorder.ConstAuxElementClicked, "");
             list.Add(webElement);
             
 //            System.Collections.Generic.List<object> list1 =
@@ -262,15 +260,15 @@ namespace SePSXUnitTests.Recording
             
             Assert.AreEqual(
                 expectedResult,
-                ((RecordedData)Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items[
-                    Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 1]).UserData["code"]);
+                ((RecordedData)Recorder.RecordingCollection[Recorder.RecordingCollection.Count - 1].Items[
+                    Recorder.RecordingCollection[Recorder.RecordingCollection.Count - 1].Items.Count - 1]).UserData["code"]);
         }
         
         [Test] //[Test(Description="The Recorder.RecordActions test")]
         [Category("Fast")]
         public void WebElement_and_action_and_data_the_First()
         {
-            const string expectedResult = Recorder.codeGenGetElement;
+            const string expectedResult = Recorder.CodeGenGetElement;
             IWebElement webElement = new FakeWebElement("a", "text");
             var list = new List<object>();
             list.Add(webElement);
@@ -298,8 +296,8 @@ namespace SePSXUnitTests.Recording
             
             Assert.AreEqual(
                 expectedResult,
-                ((RecordedWebElement)Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items[
-                    Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 3]).UserData["code"]);
+                ((RecordedWebElement)Recorder.RecordingCollection[Recorder.RecordingCollection.Count - 1].Items[
+                    Recorder.RecordingCollection[Recorder.RecordingCollection.Count - 1].Items.Count - 3]).UserData["code"]);
         }
         
         [TearDown]

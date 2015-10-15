@@ -12,8 +12,7 @@ namespace SePSX.Commands
     using System;
     using System.Management.Automation;
     using OpenQA.Selenium;
-    using System.Collections.Generic;
-    
+
     /// <summary>
     /// Description of StopSeWebDriverCommand.
     /// </summary>
@@ -42,23 +41,23 @@ namespace SePSX.Commands
         
         protected override void BeginProcessing()
         {
-            this.CheckCmdletParameters();
+            CheckCmdletParameters();
             
-            if (this.InstanceName != null &&
+            if (InstanceName != null &&
                 //this.InstanceName != string.Empty &&
-                this.InstanceName.Length > 0) {
+                InstanceName.Length > 0) {
                 
                 try {
-                    for (int i = 0; i < this.InstanceName.Length; i++) {
-                        if (this.InstanceName[i] != string.Empty) {
-                            IWebDriver driver = 
-                                CurrentData.Drivers[this.InstanceName[i]];
+                    for (var i = 0; i < InstanceName.Length; i++) {
+                        if (InstanceName[i] != string.Empty) {
+                            var driver = 
+                                CurrentData.Drivers[InstanceName[i]];
                             
                             if (driver.Equals(CurrentData.CurrentWebDriver)) {
                                 CurrentData.CurrentWebDriver = null;
                             }
                             
-                            CurrentData.Drivers.Remove(this.InstanceName[i]);
+                            CurrentData.Drivers.Remove(InstanceName[i]);
                             
                             driver.Quit();
                             //CurrentData.CurrentWebDriver = null;
@@ -68,7 +67,7 @@ namespace SePSX.Commands
                 }
                 catch (Exception eFailed) {
                     CurrentData.CurrentWebDriver = null;
-                    this.WriteError(
+                    WriteError(
                         this,
                         "Failed to stop the driver. " +
                         eFailed.Message,
@@ -81,13 +80,13 @@ namespace SePSX.Commands
         
         protected override void ProcessRecord()
         {
-            if (this.InputObject != null &&
-                this.InputObject is IWebDriver[]) {
+            if (InputObject != null &&
+                InputObject is IWebDriver[]) {
                 
-                foreach (IWebDriver driver in this.InputObject) {
+                foreach (var driver in InputObject) {
                     
                     try {
-                        foreach (KeyValuePair<string, IWebDriver> driverPair in CurrentData.Drivers) {
+                        foreach (var driverPair in CurrentData.Drivers) {
                             if (driverPair.Value == driver) {
                                 CurrentData.Drivers.Remove(driverPair.Key);
                                 break;
@@ -99,7 +98,7 @@ namespace SePSX.Commands
                         WriteObject(this, true);
                     }
                     catch (Exception eFailed) {
-                        this.WriteError(
+                        WriteError(
                             this,
                             "Failed to stop the driver. " +
                             eFailed.Message,

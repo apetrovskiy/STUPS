@@ -24,7 +24,7 @@ namespace SePSXUnitTests
 Console.WriteLine("bare2");
             this.UnitTestReport =
                 //IEDriverConstructorOptions.ie_bare.ToString();
-                DriverServerConstructorOptions.bare.ToString();
+                DriverServerConstructorOptions.Bare.ToString();
         }
         
         public FakeIEDriver(string internetExplorerDriverServerDirectory)
@@ -32,7 +32,7 @@ Console.WriteLine("bare2");
 Console.WriteLine("dir2");
             this.UnitTestReport =
                 //IEDriverConstructorOptions.ie_with_path.ToString();
-                DriverServerConstructorOptions.with_path.ToString();
+                DriverServerConstructorOptions.WithPath.ToString();
         }
         
         public FakeIEDriver(InternetExplorerOptions options)
@@ -40,7 +40,7 @@ Console.WriteLine("dir2");
 Console.WriteLine("opt2");
             this.UnitTestReport =
                 //IEDriverConstructorOptions.ie_with_options.ToString();
-                DriverServerConstructorOptions.with_options.ToString();
+                DriverServerConstructorOptions.WithOptions.ToString();
         }
         
         public FakeIEDriver(string internetExplorerDriverServerDirectory, InternetExplorerOptions options)
@@ -48,7 +48,7 @@ Console.WriteLine("opt2");
 Console.WriteLine("dir opt2");
             this.UnitTestReport =
                 //IEDriverConstructorOptions.ie_with_path_and_options.ToString();
-                DriverServerConstructorOptions.with_path_and_options.ToString();
+                DriverServerConstructorOptions.WithPathAndOptions.ToString();
         }
         
         public FakeIEDriver(string internetExplorerDriverServerDirectory, InternetExplorerOptions options, TimeSpan commandTimeout)
@@ -56,7 +56,7 @@ Console.WriteLine("dir opt2");
 Console.WriteLine("dir opt span2");
             this.UnitTestReport =
                 //IEDriverConstructorOptions.ie_with_path_and_options_and_timespan.ToString();
-                DriverServerConstructorOptions.with_path_and_options_and_timespan.ToString();
+                DriverServerConstructorOptions.WithPathAndOptionsAndTimespan.ToString();
         }
         
         public FakeIEDriver(DriverService service, InternetExplorerOptions options, TimeSpan commandTimeout)
@@ -64,7 +64,7 @@ Console.WriteLine("dir opt span2");
 Console.WriteLine("svc opt span2");
             this.UnitTestReport =
                 //IEDriverConstructorOptions.ie_with_service_and_options_and_timespan.ToString();
-                DriverServerConstructorOptions.with_service_and_options_and_timespan.ToString();
+                DriverServerConstructorOptions.WithServiceAndOptionsAndTimespan.ToString();
         }
     }
 }

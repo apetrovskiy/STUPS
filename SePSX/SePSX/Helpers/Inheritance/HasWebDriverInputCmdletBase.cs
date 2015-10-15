@@ -9,7 +9,6 @@
 
 namespace SePSX
 {
-    using System;
     using System.Management.Automation;
     using OpenQA.Selenium;
     
@@ -20,12 +19,12 @@ namespace SePSX
     {
         public HasWebDriverInputCmdletBase()
         {
-            this.WriteVerbose(this, "trying to set: this.InputObject[0] = CurrentData.CurrentWebDriver;");
-            if (null == this.InputObject) {
-                this.InputObject = new IWebDriver[1];
-                this.InputObject[0] = CurrentData.CurrentWebDriver;
+            WriteVerbose(this, "trying to set: this.InputObject[0] = CurrentData.CurrentWebDriver;");
+            if (null == InputObject) {
+                InputObject = new IWebDriver[1];
+                InputObject[0] = CurrentData.CurrentWebDriver;
             }
-            this.WriteVerbose(this, "succeed to set: this.InputObject[0] = CurrentData.CurrentWebDriver;");
+            WriteVerbose(this, "succeed to set: this.InputObject[0] = CurrentData.CurrentWebDriver;");
         }
         
         #region Parameters
@@ -38,7 +37,7 @@ namespace SePSX
         // 20121011
         protected override void BeginProcessing()
         {
-            this.CheckCmdletParameters();
+            CheckCmdletParameters();
             
             SeHelper.SetBrowserInstanceForeground(this);
         }

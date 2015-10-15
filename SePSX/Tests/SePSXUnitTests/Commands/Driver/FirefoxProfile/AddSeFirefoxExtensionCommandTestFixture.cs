@@ -9,14 +9,11 @@
 
 namespace SePSXUnitTests.Commands.Driver.FirefoxProfile
 {
-    using System;
     using SePSX;
     using SePSX.Commands;
     using MbUnit.Framework;
-    using PSTestLib;
     using OpenQA.Selenium.Firefox;
     using System.Collections.ObjectModel;
-    using System.Collections.Generic;
     using Autofac;
     
     /// <summary>

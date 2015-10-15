@@ -9,10 +9,8 @@
 
 namespace SePSXUnitTests.Commands.Driver
 {
-    using System;
     using SePSX;
     using OpenQA.Selenium;
-    using OpenQA.Selenium.IE;
     using SePSX.Commands;
     using MbUnit.Framework;
 //    using Moq;
@@ -56,7 +54,7 @@ namespace SePSXUnitTests.Commands.Driver
                 //cmdlet.Options = new FakeOptions();
                 //cmdlet.Options = new ChromeOptions();
                 //cmdlet.IEOptions = WebDriverFactory.GetIEOptions();
-                cmdlet.IEOptions =
+                cmdlet.IeOptions =
                     WebDriverFactory.Container.Resolve<OpenQA.Selenium.IE.InternetExplorerOptions>();
             }
 //            if (true == useService) {
@@ -90,7 +88,7 @@ namespace SePSXUnitTests.Commands.Driver
             Assert.AreEqual(
                 //IEDriverConstructorOptions.ie_bare.ToString(),
                 //DriverServerConstructorOptions.bare.ToString(),
-                DriverServerConstructorOptions.with_service_and_options_and_timespan.ToString(),
+                DriverServerConstructorOptions.WithServiceAndOptionsAndTimespan.ToString(),
                 ((FakeIEDriver)result).UnitTestReport);
         }
         
@@ -105,7 +103,7 @@ namespace SePSXUnitTests.Commands.Driver
             Assert.AreEqual(
                 //IEDriverConstructorOptions.ie_with_path.ToString(),
                 //DriverServerConstructorOptions.with_path.ToString(),
-                DriverServerConstructorOptions.with_service_and_options_and_timespan.ToString(),
+                DriverServerConstructorOptions.WithServiceAndOptionsAndTimespan.ToString(),
                 ((FakeIEDriver)result).UnitTestReport);
         }
         
@@ -120,7 +118,7 @@ namespace SePSXUnitTests.Commands.Driver
             Assert.AreEqual(
                 //IEDriverConstructorOptions.ie_with_options.ToString(),
                 //DriverServerConstructorOptions.with_options.ToString(),
-                DriverServerConstructorOptions.with_service_and_options_and_timespan.ToString(),
+                DriverServerConstructorOptions.WithServiceAndOptionsAndTimespan.ToString(),
                 ((FakeIEDriver)result).UnitTestReport);
         }
         
@@ -135,7 +133,7 @@ namespace SePSXUnitTests.Commands.Driver
             Assert.AreEqual(
                 //IEDriverConstructorOptions.ie_with_path_and_options.ToString(),
                 //DriverServerConstructorOptions.with_path_and_options.ToString(),
-                DriverServerConstructorOptions.with_service_and_options_and_timespan.ToString(),
+                DriverServerConstructorOptions.WithServiceAndOptionsAndTimespan.ToString(),
                 ((FakeIEDriver)result).UnitTestReport);
         }
         
@@ -150,7 +148,7 @@ namespace SePSXUnitTests.Commands.Driver
             Assert.AreEqual(
                 //IEDriverConstructorOptions.ie_with_path_and_options_and_timespan.ToString(),
                 //DriverServerConstructorOptions.with_path_and_options_and_timespan.ToString(),
-                DriverServerConstructorOptions.with_service_and_options_and_timespan.ToString(),
+                DriverServerConstructorOptions.WithServiceAndOptionsAndTimespan.ToString(),
                 ((FakeIEDriver)result).UnitTestReport);
         }
         
@@ -164,7 +162,7 @@ namespace SePSXUnitTests.Commands.Driver
             
             Assert.AreEqual(
                 //IEDriverConstructorOptions.ie_with_service_and_options_and_timespan.ToString(),
-                DriverServerConstructorOptions.with_service_and_options_and_timespan.ToString(),
+                DriverServerConstructorOptions.WithServiceAndOptionsAndTimespan.ToString(),
                 ((FakeIEDriver)result).UnitTestReport);
         }
     }

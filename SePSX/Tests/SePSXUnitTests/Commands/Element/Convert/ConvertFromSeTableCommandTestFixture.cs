@@ -9,12 +9,8 @@
 
 namespace SePSXUnitTests.Commands.Element.Convert
 {
-    using System;
-    using SePSX;
-    using SePSX.Commands;
     using MbUnit.Framework;
-    using PSTestLib;
-    
+
     /// <summary>
     /// Description of ConvertFromSeTableCommandTestFixture.
     /// </summary>

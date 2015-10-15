@@ -9,15 +9,12 @@
 
 namespace SePSXUnitTests.Recording
 {
-    using System;
     using MbUnit.Framework;
     //using NUnit.Framework;
     using SePSX;
     using PSTestLib;
     using OpenQA.Selenium;
-    using System.Drawing;
-    using System.Collections.ObjectModel;
-    
+
     /// <summary>
     /// Description of RecordCodeSequencyTestFixture.
     /// </summary>
@@ -41,12 +38,12 @@ namespace SePSXUnitTests.Recording
             IWebElement firstElement,
             IWebElement secondElement)
         {
-            Recorder.recordingCollection = recordingsCollection;
+            Recorder.RecordingCollection = recordingsCollection;
 
             codeSequence = 
                 Recorder.RecordCodeSequence(
                     cmdlet,
-                    Recorder.recordingCollection,
+                    Recorder.RecordingCollection,
                     firstElement,
                     codeSequence);
 
@@ -54,14 +51,14 @@ namespace SePSXUnitTests.Recording
                 codeSequence = 
                     Recorder.RecordCodeSequence(
                         cmdlet,
-                        Recorder.recordingCollection,
+                        Recorder.RecordingCollection,
                         secondElement,
                         codeSequence);
             }
             
             Recorder.StoreCodeSequenceInCollection(
                 cmdlet,
-                Recorder.recordingCollection,
+                Recorder.RecordingCollection,
                 codeSequence);
         }
         
@@ -79,7 +76,7 @@ namespace SePSXUnitTests.Recording
             // there should no codeSequence as there's nothing to put into
             Assert.AreEqual(
                 0,
-                Recorder.recordingCollection.Count);
+                Recorder.RecordingCollection.Count);
         }
         
         
@@ -95,14 +92,14 @@ namespace SePSXUnitTests.Recording
                 (new FakeWebElement("recclicked", string.Empty)));
 
             Assert.AreEqual(
-                Recorder.codeGenGetElement, 
-                ((RecordedWebElement)Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items[
-                    Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 2]).UserData["code"]);
+                Recorder.CodeGenGetElement, 
+                ((RecordedWebElement)Recorder.RecordingCollection[Recorder.RecordingCollection.Count - 1].Items[
+                    Recorder.RecordingCollection[Recorder.RecordingCollection.Count - 1].Items.Count - 2]).UserData["code"]);
 
             Assert.AreEqual(
-                Recorder.codeGenElementClick, 
-                ((RecordedAction)Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items[
-                    Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 1]).UserData["code"]);
+                Recorder.CodeGenElementClick, 
+                ((RecordedAction)Recorder.RecordingCollection[Recorder.RecordingCollection.Count - 1].Items[
+                    Recorder.RecordingCollection[Recorder.RecordingCollection.Count - 1].Items.Count - 1]).UserData["code"]);
 
         }
         
@@ -118,9 +115,9 @@ namespace SePSXUnitTests.Recording
                 (new FakeWebElement("recclicked", string.Empty)));
 
             Assert.AreEqual(
-                Recorder.codeGenElementClick, 
-                ((RecordedAction)Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items[
-                    Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 1]).UserData["code"]);
+                Recorder.CodeGenElementClick, 
+                ((RecordedAction)Recorder.RecordingCollection[Recorder.RecordingCollection.Count - 1].Items[
+                    Recorder.RecordingCollection[Recorder.RecordingCollection.Count - 1].Items.Count - 1]).UserData["code"]);
         }
         
         [Test] //[Test(Description="code sequence")]
@@ -138,9 +135,9 @@ namespace SePSXUnitTests.Recording
                 null);
             
             Assert.AreEqual(
-                Recorder.codeGenGetElement, 
-                ((RecordedWebElement)Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items[
-                    Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items.Count - 1]).UserData["code"]); // ?
+                Recorder.CodeGenGetElement, 
+                ((RecordedWebElement)Recorder.RecordingCollection[Recorder.RecordingCollection.Count - 1].Items[
+                    Recorder.RecordingCollection[Recorder.RecordingCollection.Count - 1].Items.Count - 1]).UserData["code"]); // ?
         }
         
         [Test] //[Test(Description="code sequence")]
@@ -158,8 +155,8 @@ namespace SePSXUnitTests.Recording
                 null);
 
             Assert.AreEqual(
-                Recorder.codeGenElementClick, 
-                ((RecordedAction)Recorder.recordingCollection[Recorder.recordingCollection.Count - 1].Items[codeSequence.Items.Count - 1]).UserData["code"]);  // ?
+                Recorder.CodeGenElementClick, 
+                ((RecordedAction)Recorder.RecordingCollection[Recorder.RecordingCollection.Count - 1].Items[codeSequence.Items.Count - 1]).UserData["code"]);  // ?
         }
         
         [TearDown]

@@ -9,9 +9,6 @@
 
 namespace SePSX
 {
-    using System;
-    using System.Management.Automation;
-    
     /// <summary>
     /// Description of SeNewChromeOptionsCommand.
     /// </summary>
@@ -23,7 +20,7 @@ namespace SePSX
         
         internal override void Execute()
         {
-            SeHelper.GetNewChromeOptions(this.Cmdlet);
+            SeHelper.GetNewChromeOptions(Cmdlet);
         }
     }
 }

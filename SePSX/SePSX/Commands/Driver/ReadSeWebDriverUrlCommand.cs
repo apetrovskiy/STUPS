@@ -9,10 +9,8 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
-    using OpenQA.Selenium;
-    
+
     /// <summary>
     /// Description of ReadSeWebDriverUrlCommand.
     /// </summary>
@@ -26,9 +24,9 @@ namespace SePSX.Commands
         
         protected override void ProcessRecord()
         {
-            this.checkInputWebDriver(true);
+            CheckInputWebDriver(true);
             
-            SeReadWebDriverUrlCommand command =
+            var command =
                 new SeReadWebDriverUrlCommand(this);
             command.Execute();
             //SeHelper.GetUrl(this, this.InputObject);

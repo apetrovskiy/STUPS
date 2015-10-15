@@ -9,17 +9,14 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
-    using OpenQA.Selenium;
-    using OpenQA.Selenium.IE;
-    
+
     /// <summary>
     /// Description of SetSeInternetExplorerOptionCommand.
     /// </summary>
     [Cmdlet(VerbsCommon.Set, "SeInternetExplorerOption")]
     [OutputType(typeof(OpenQA.Selenium.IE.InternetExplorerOptions))]
-    public class SetSeInternetExplorerOptionCommand : EditIEOptionsCmdletBase
+    public class SetSeInternetExplorerOptionCommand : EditIeOptionsCmdletBase
     {
         public SetSeInternetExplorerOptionCommand()
         {
@@ -30,8 +27,8 @@ namespace SePSX.Commands
         {
             //this.CheckParameters();
             
-            SeSetIEOptionCommand command =
-                new SeSetIEOptionCommand(this);
+            var command =
+                new SeSetIeOptionCommand(this);
             command.Execute();
         }
     }

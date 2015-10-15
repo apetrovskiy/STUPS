@@ -9,10 +9,8 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
-    using OpenQA.Selenium;
-    
+
     /// <summary>
     /// Description of SetSeAlertKeysCommand.
     /// </summary>
@@ -32,9 +30,9 @@ namespace SePSX.Commands
         
         protected override void ProcessRecord()
         {
-            this.checkInputAlert(true);
+            CheckInputAlert(true);
             
-            SeHelper.AlertSendKeys(this, this.InputObject, this.Text);
+            SeHelper.AlertSendKeys(this, InputObject, Text);
         }
     }
 }

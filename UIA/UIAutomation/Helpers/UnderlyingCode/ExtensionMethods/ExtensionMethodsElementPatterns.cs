@@ -13,13 +13,7 @@ namespace UIAutomation
     using System;
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
     // using System.Windows.Automation.Text;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Management.Automation;
-    using PSTestLib;
-    using System.Runtime.CompilerServices;
-    
+
     /// <summary>
     /// Description of ExtensionMethodsElementPatterns.
     /// </summary>

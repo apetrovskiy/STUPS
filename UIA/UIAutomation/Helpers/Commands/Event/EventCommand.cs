@@ -9,9 +9,6 @@
 
 namespace UIAutomation.Helpers.Commands
 {
-    using System;
-    using UIAutomation.Commands;
-    
     /// <summary>
     /// Description of EventCommand.
     /// </summary>

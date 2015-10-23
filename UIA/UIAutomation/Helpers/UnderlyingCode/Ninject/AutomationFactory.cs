@@ -21,7 +21,6 @@ namespace UIAutomation
 //    using System.Collections.Generic;
     using PSTestLib;
     using Castle.DynamicProxy;
-    using System.Linq;
     using WindowsInput;
     
     using NLog;

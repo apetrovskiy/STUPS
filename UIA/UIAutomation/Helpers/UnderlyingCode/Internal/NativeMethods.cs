@@ -16,7 +16,6 @@ namespace UIAutomation
     using System.Runtime.InteropServices;
     // http://msdn.microsoft.com/ru-ru/library/windows/desktop/aa379560(v=vs.85).aspx
     using DWORD = UInt32; // Optional alias, used below.
-    using System.ComponentModel;
     using System.Collections;
     
     /// <summary>

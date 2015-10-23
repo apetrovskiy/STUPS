@@ -12,8 +12,7 @@ using System.Drawing.Imaging;
 namespace UIAutomation.Commands
 {
     using System.Management.Automation;
-    using Helpers.Commands;
-    
+
     /// <summary>
     /// Description of SaveUiaScreenshotCommand.
     /// </summary>

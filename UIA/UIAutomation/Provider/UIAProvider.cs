@@ -15,8 +15,7 @@ namespace UIAutomation
     using System.Management.Automation.Provider;
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
     using System.Collections.ObjectModel;
-    using Commands;
-    
+
     /// <summary>
     /// Description of UiaProvider.
     /// </summary>

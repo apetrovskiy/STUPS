@@ -11,7 +11,6 @@ using System.Drawing;
 
 namespace UIAutomation
 {
-    using System;
     using System.Management.Automation;
     
     /// <summary>

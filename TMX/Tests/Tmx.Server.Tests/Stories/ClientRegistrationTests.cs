@@ -21,23 +21,23 @@
     {
         RestTemplateWrapper _restTemplate;
         IRestRequestCreator _restRequestCreator;
-        const string _baseUrl = "http://localhost:12340";
-        const string _pathToWorkflows = @"../../Data/";
-        const string _workflow01Name = "CRsuite";
-        const string _workflow02Name = "NAC";
-        const string _workflow04Name = "fourth";
-        const string _testRun01Name = "test run name";
-        const string _testRun02Name = "test run name 02";
-        const string _workflow01TestConsoleName = "testConsole";
-        const string _workflow04TestConsoleName = "testConsole2";
-        const string _workflow01FileName = "Workflow1.xml";
-        const string _workflow02FileName = "Workflow2.xml";
-        const string _workflow04FileName = "Workflow4.xml";
+        const string BaseUrl = "http://localhost:12340";
+        const string PathToWorkflows = @"../../Data/";
+        const string Workflow01Name = "CRsuite";
+        const string Workflow02Name = "NAC";
+        const string Workflow04Name = "fourth";
+        const string TestRun01Name = "test run name";
+        const string TestRun02Name = "test run name 02";
+        const string Workflow01TestConsoleName = "testConsole";
+        const string Workflow04TestConsoleName = "testConsole2";
+        const string Workflow01FileName = "Workflow1.xml";
+        const string Workflow02FileName = "Workflow2.xml";
+        const string Workflow04FileName = "Workflow4.xml";
 
         void PrepareMocks()
         {
-            _restTemplate = new RestTemplateWrapper(_baseUrl);
-            ClientSettings.Instance.ServerUrl = _baseUrl;
+            _restTemplate = new RestTemplateWrapper(BaseUrl);
+            ClientSettings.Instance.ServerUrl = BaseUrl;
             _restRequestCreator = new RestRequestCreatorEmulator();
             _restRequestCreator.SetRestTemplate(_restTemplate);
             RestRequestFactory.RestRequestCreator = _restRequestCreator;
@@ -60,99 +60,99 @@
         public void RegisterFirstClient()
         {
             GivenFirstTestWorkflow();
-            GivenNewTestRunWithStatusRunningFirstWorkflow(_testRun01Name);
+            GivenNewTestRunWithStatusRunningFirstWorkflow(TestRun01Name);
 
-            WhenSendingRegistration(_workflow01TestConsoleName);
+            WhenSendingRegistration(Workflow01TestConsoleName);
 
             ThenThereAreTheNumberOfClientsRegistered(1);
-            ThenTheClientIsRegistered(0, _workflow01TestConsoleName);
+            ThenTheClientIsRegistered(0, Workflow01TestConsoleName);
         }
 
         [Test][Fact]
         public void RegisterSecondClient()
         {
             GivenFirstTestWorkflow();
-            GivenNewTestRunWithStatusRunningFirstWorkflow(_testRun01Name);
+            GivenNewTestRunWithStatusRunningFirstWorkflow(TestRun01Name);
 
-            WhenSendingRegistration(_workflow01TestConsoleName);
-            WhenSendingRegistration(_workflow01TestConsoleName);
+            WhenSendingRegistration(Workflow01TestConsoleName);
+            WhenSendingRegistration(Workflow01TestConsoleName);
 
             ThenThereAreTheNumberOfClientsRegistered(2);
-            ThenTheClientIsRegistered(1, _workflow01TestConsoleName);
+            ThenTheClientIsRegistered(1, Workflow01TestConsoleName);
         }
 
         [Test][Fact]
         public void RegisterThirdClient()
         {
             GivenFirstTestWorkflow();
-            GivenNewTestRunWithStatusRunningFirstWorkflow(_testRun01Name);
+            GivenNewTestRunWithStatusRunningFirstWorkflow(TestRun01Name);
 
-            WhenSendingRegistration(_workflow01TestConsoleName);
-            WhenSendingRegistration(_workflow01TestConsoleName);
-            WhenSendingRegistration(_workflow01TestConsoleName);
+            WhenSendingRegistration(Workflow01TestConsoleName);
+            WhenSendingRegistration(Workflow01TestConsoleName);
+            WhenSendingRegistration(Workflow01TestConsoleName);
 
             ThenThereAreTheNumberOfClientsRegistered(3);
-            ThenTheClientIsRegistered(2, _workflow01TestConsoleName);
+            ThenTheClientIsRegistered(2, Workflow01TestConsoleName);
         }
 
         [Test][Fact]
         public void RegisterClientsInTheFirstOfTwoTestRuns()
         {
             GivenFirstTestWorkflow();
-            GivenNewTestRunWithStatusRunningFirstWorkflow(_testRun01Name);
+            GivenNewTestRunWithStatusRunningFirstWorkflow(TestRun01Name);
             GivenSecondTestWorkflow();
-            GivenNewTestRunWithStatusRunningSecondWorkflow(_testRun02Name);
+            GivenNewTestRunWithStatusRunningSecondWorkflow(TestRun02Name);
 
-            WhenSendingRegistration(_workflow01TestConsoleName);
-            WhenSendingRegistration(_workflow01TestConsoleName);
+            WhenSendingRegistration(Workflow01TestConsoleName);
+            WhenSendingRegistration(Workflow01TestConsoleName);
 
             ThenThereAreTheNumberOfClientsRegistered(2);
-            ThenTheClientIsRegistered(0, _workflow01TestConsoleName);
-            ThenTheClientIsRegistered(1, _workflow01TestConsoleName);
+            ThenTheClientIsRegistered(0, Workflow01TestConsoleName);
+            ThenTheClientIsRegistered(1, Workflow01TestConsoleName);
         }
 
         [Test][Fact]
         public void RegisterClientsInTwoTestRuns()
         {
             GivenFirstTestWorkflow();
-            GivenNewTestRunWithStatusRunningFirstWorkflow(_testRun01Name);
+            GivenNewTestRunWithStatusRunningFirstWorkflow(TestRun01Name);
             GivenFourthTestWorkflow();
-            GivenNewTestRunWithStatusRunningFourthWorkflow(_testRun02Name);
+            GivenNewTestRunWithStatusRunningFourthWorkflow(TestRun02Name);
 
-            WhenSendingRegistration(_workflow01TestConsoleName);
-            WhenSendingRegistration(_workflow04TestConsoleName);
+            WhenSendingRegistration(Workflow01TestConsoleName);
+            WhenSendingRegistration(Workflow04TestConsoleName);
 
             ThenThereAreTheNumberOfClientsRegistered(2);
-            ThenTheClientIsRegistered(0, _workflow01TestConsoleName);
-            ThenTheClientIsRegistered(1, _workflow04TestConsoleName);
+            ThenTheClientIsRegistered(0, Workflow01TestConsoleName);
+            ThenTheClientIsRegistered(1, Workflow04TestConsoleName);
         }
 
         [Test][Fact]
         public void UnregisterClient()
         {
             GivenFirstTestWorkflow();
-            GivenNewTestRunWithStatusRunningFirstWorkflow(_testRun01Name);
+            GivenNewTestRunWithStatusRunningFirstWorkflow(TestRun01Name);
             GivenSecondTestWorkflow();
-            GivenNewTestRunWithStatusRunningSecondWorkflow(_testRun02Name);
-            GivenSendingRegistration(_workflow01TestConsoleName);
-            GivenSendingRegistration(_workflow01TestConsoleName);
+            GivenNewTestRunWithStatusRunningSecondWorkflow(TestRun02Name);
+            GivenSendingRegistration(Workflow01TestConsoleName);
+            GivenSendingRegistration(Workflow01TestConsoleName);
 
             ClientSettings.Instance.ClientId = ClientsCollection.Clients[1].Id;
             WhenSendingDeregistration();
 
             ThenThereAreTheNumberOfClientsRegistered(1);
-            ThenTheClientIsRegistered(0, _workflow01TestConsoleName);
+            ThenTheClientIsRegistered(0, Workflow01TestConsoleName);
         }
 
         [Test][Fact]
         public void UnregisterAllClients()
         {
             GivenFirstTestWorkflow();
-            GivenNewTestRunWithStatusRunningFirstWorkflow(_testRun01Name);
+            GivenNewTestRunWithStatusRunningFirstWorkflow(TestRun01Name);
             GivenSecondTestWorkflow();
-            GivenNewTestRunWithStatusRunningSecondWorkflow(_testRun02Name);
-            GivenSendingRegistration(_workflow01TestConsoleName);
-            GivenSendingRegistration(_workflow01TestConsoleName);
+            GivenNewTestRunWithStatusRunningSecondWorkflow(TestRun02Name);
+            GivenSendingRegistration(Workflow01TestConsoleName);
+            GivenSendingRegistration(Workflow01TestConsoleName);
 
             ClientSettings.Instance.ClientId = ClientsCollection.Clients[1].Id;
             WhenSendingDeregistration();
@@ -173,17 +173,17 @@
 
         void GivenFirstTestWorkflow()
         {
-            CreateTestWorkflow(TestConstants.Workflow01, _workflow01FileName);
+            CreateTestWorkflow(TestConstants.Workflow01, Workflow01FileName);
         }
 
         void GivenSecondTestWorkflow()
         {
-            CreateTestWorkflow(TestConstants.Workflow02, _workflow02FileName);
+            CreateTestWorkflow(TestConstants.Workflow02, Workflow02FileName);
         }
 
         void GivenFourthTestWorkflow()
         {
-            CreateTestWorkflow(TestConstants.Workflow04, _workflow04FileName);
+            CreateTestWorkflow(TestConstants.Workflow04, Workflow04FileName);
         }
 
         void CreateTestWorkflow(string testWorkflowName, string testWorkflowFileName)
@@ -196,22 +196,22 @@
             _restTemplate.Put(UrlList.ServerControlPoint_absPath, serverCommand);
 
             var workflowLoader = new WorkflowLoader();
-            workflowLoader.Load(_pathToWorkflows + testWorkflowFileName);
+            workflowLoader.Load(PathToWorkflows + testWorkflowFileName);
         }
 
         void GivenNewTestRunWithStatusRunningFirstWorkflow(string name)
         {
-            NewTestRun(_workflow01Name, name);
+            NewTestRun(Workflow01Name, name);
         }
 
         void GivenNewTestRunWithStatusRunningSecondWorkflow(string name)
         {
-            NewTestRun(_workflow02Name, name);
+            NewTestRun(Workflow02Name, name);
         }
 
         void GivenNewTestRunWithStatusRunningFourthWorkflow(string name)
         {
-            NewTestRun(_workflow04Name, name);
+            NewTestRun(Workflow04Name, name);
         }
 
         void NewTestRun(string workflowName, string testRunName)

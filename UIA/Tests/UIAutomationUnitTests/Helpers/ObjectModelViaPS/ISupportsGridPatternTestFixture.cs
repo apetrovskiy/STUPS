@@ -15,7 +15,6 @@ namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
     using System.Management.Automation;
     using NSubstitute;
     using UIAutomation;
-    // using UIAutomationTest;
     
     /// <summary>
     /// Description of ISupportsGridPatternTestFixture.

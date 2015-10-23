@@ -9,7 +9,6 @@
 
 namespace UIAutomation
 {
-    using System;
     using System.Collections;
     
     /// <summary>

@@ -13,13 +13,8 @@ namespace UIAutomation
     using System;
     using System.Management.Automation;
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
-    
-    using System.Collections;
-    
     using System.Linq;
-    using System.Linq.Expressions;
     using System.Collections.Generic;
-    using Commands;
 
     /// <summary>
     /// Description of GetControlCollectionCmdletBase.

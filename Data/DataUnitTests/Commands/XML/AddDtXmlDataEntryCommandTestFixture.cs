@@ -9,8 +9,6 @@
 
 namespace DataUnitTests.Commands.XML
 {
-    using System;
-    
     /// <summary>
     /// Description of AddDtXmlDataEntryCommandTestFixture.
     /// </summary>

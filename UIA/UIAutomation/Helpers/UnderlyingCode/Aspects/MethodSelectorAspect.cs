@@ -10,15 +10,8 @@
 namespace UIAutomation
 {
     extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
-    using System;
-    using System.Reflection;
-    using System.Runtime.Remoting.Lifetime;
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
-    using System.Collections;
-    using System.Collections.Generic;
     using Castle.DynamicProxy;
-    using NLog;
-    using WindowsInput;
     using WindowsInput.Native;
     
     /// <summary>

@@ -13,7 +13,6 @@ namespace UIAutomation
     using System;
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
     using System.Windows.Forms;
-    using System.Runtime.InteropServices;
     using System.Drawing;
 
     /// <summary>

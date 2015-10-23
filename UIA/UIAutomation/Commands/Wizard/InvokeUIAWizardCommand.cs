@@ -11,9 +11,7 @@ using System.Linq;
 
 namespace UIAutomation.Commands
 {
-    using System;
     using System.Management.Automation;
-    using System.Collections;
     using System.Collections.Generic;
     using PSTestLib;
     

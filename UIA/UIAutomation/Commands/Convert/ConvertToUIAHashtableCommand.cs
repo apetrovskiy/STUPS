@@ -10,13 +10,10 @@
 namespace UIAutomation.Commands
 {
     extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
-    using System;
     using System.Management.Automation;
     
     // 20120823
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
-    using System.Collections;
-    using System.Collections.Generic;
     using System.Linq;
     
     /// <summary>

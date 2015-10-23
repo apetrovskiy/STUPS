@@ -68,5 +68,14 @@ namespace Tmx.Interfaces {
                 return ResourceManager.GetString("UpdateTaskException", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There&apos;s no workflow element in the document.
+        /// </summary>
+        public static string WorkflowLoadingException_ThereIsNoWorkflowElement {
+            get {
+                return ResourceManager.GetString("WorkflowLoadingException_ThereIsNoWorkflowElement", resourceCulture);
+            }
+        }
     }
 }

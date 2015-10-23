@@ -17,10 +17,6 @@ namespace UIAutomation
     using System.Linq;
     using System.Management.Automation;
     using PSTestLib;
-    
-    using System.Globalization;
-    using System.Threading;
-    using System.Windows.Forms;
     using System.Text.RegularExpressions;
     
     /// <summary>

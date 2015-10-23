@@ -9,9 +9,6 @@
 
 namespace UIAutomation
 {
-    using System;
-    using System.Management.Automation;
-    
     /// <summary>
     /// Description of UiaCommand.
     /// </summary>

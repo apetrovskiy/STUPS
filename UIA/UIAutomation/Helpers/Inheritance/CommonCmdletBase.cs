@@ -19,7 +19,6 @@ namespace UIAutomation
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
     using System.Collections.Generic;
     // using System.Text.RegularExpressions;
-    using System.Linq;
     using PSTestLib;
     // using System.Diagnostics.CodeAnalysis;
     using Tmx;

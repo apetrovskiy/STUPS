@@ -13,7 +13,6 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
 //    using System.Collections;
 //    using System.Collections.Generic;
-    using System.Linq;
     using Helpers.Commands;
 
     /// <summary>

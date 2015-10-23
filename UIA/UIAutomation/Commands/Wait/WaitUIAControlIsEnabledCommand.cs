@@ -13,7 +13,6 @@ namespace UIAutomation.Commands
     using System;
     using System.Management.Automation;
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
-    using System.Xml.Serialization.Configuration;
     using Helpers.Commands;
 
     /// <summary>

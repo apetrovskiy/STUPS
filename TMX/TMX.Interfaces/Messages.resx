@@ -120,4 +120,7 @@
   <data name="UpdateTaskException" xml:space="preserve">
     <value>Failed to update task with id = {0}</value>
   </data>
+  <data name="WorkflowLoadingException_ThereIsNoWorkflowElement" xml:space="preserve">
+    <value>There's no workflow element in the document</value>
+  </data>
 </root>

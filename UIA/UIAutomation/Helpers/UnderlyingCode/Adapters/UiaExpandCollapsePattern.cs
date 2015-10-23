@@ -1,5 +1,4 @@
-﻿using System.Deployment.Internal;
-/*
+﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 12/6/2013
@@ -11,7 +10,6 @@
 namespace UIAutomation
 {
     extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
-    using System;
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
 
     public class UiaExpandCollapsePattern : IExpandCollapsePattern

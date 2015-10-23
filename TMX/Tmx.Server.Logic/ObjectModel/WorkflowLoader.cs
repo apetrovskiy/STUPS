@@ -20,6 +20,7 @@ namespace Tmx.Server.Logic.ObjectModel
     using Internal;
     using Objects;
     using ServerControl;
+    using Tmx.Interfaces;
     using Tmx.Interfaces.Exceptions;
     using Tmx.Interfaces.Remoting;
     using Tmx.Interfaces.Server;
@@ -38,7 +39,8 @@ namespace Tmx.Server.Logic.ObjectModel
                 if (!File.Exists(pathToWorkflowFile))
                     throw new WorkflowLoadingException("There is no such file '" + pathToWorkflowFile + "'.");
                 var pathToCopiedWorkflowFile = CopyWorkflowFileToStorage(pathToWorkflowFile);
-                ImportXdocumentAndCreateWorkflowAndTasks(XDocument.Load(pathToCopiedWorkflowFile), pathToCopiedWorkflowFile);
+                var xDoc = XDocument.Load(pathToCopiedWorkflowFile);
+                ImportXdocumentAndCreateWorkflowAndTasks(xDoc, AddWorkflowAndReturnWorkflowId(xDoc, pathToCopiedWorkflowFile));
             }
             catch (Exception eImportDocument) {
                 // TODO: AOP
@@ -68,8 +70,6 @@ namespace Tmx.Server.Logic.ObjectModel
             }
             try
             {
-                // File.Copy(pathToWorkflowFile.ToLower().Replace((string)LogicConstants.WorkflowLoader_FileExtension_Xml, LogicConstants.WorkflowLoader_FileExtension_Html),
-                //     workflowsDirectoryPath + LogicConstants.WorkflowLoader_BackSlashe + workflowFileName.ToLower().Replace((string)LogicConstants.WorkflowLoader_FileExtension_Xml, LogicConstants.WorkflowLoader_FileExtension_Html), true);
                 File.Copy(pathToWorkflowFile.ToLower().Replace(LogicConstants.WorkflowLoader_FileExtension_Xml, LogicConstants.WorkflowLoader_FileExtension_Html),
                     workflowsDirectoryPath + LogicConstants.WorkflowLoader_BackSlashe + workflowFileName.ToLower().Replace(LogicConstants.WorkflowLoader_FileExtension_Xml, LogicConstants.WorkflowLoader_FileExtension_Html), true);
             }
@@ -78,7 +78,6 @@ namespace Tmx.Server.Logic.ObjectModel
             }
             try
             {
-                // File.Copy(pathToWorkflowFile.ToLower().Replace((string)LogicConstants.WorkflowLoader_FileExtension_Xml, LogicConstants.WorkflowLoader_FileExtension_Htm), workflowsDirectoryPath + LogicConstants.WorkflowLoader_BackSlashe + workflowFileName.ToLower().Replace((string)LogicConstants.WorkflowLoader_FileExtension_Xml, LogicConstants.WorkflowLoader_FileExtension_Htm), true);
                 File.Copy(pathToWorkflowFile.ToLower().Replace(LogicConstants.WorkflowLoader_FileExtension_Xml, LogicConstants.WorkflowLoader_FileExtension_Htm), workflowsDirectoryPath + LogicConstants.WorkflowLoader_BackSlashe + workflowFileName.ToLower().Replace(LogicConstants.WorkflowLoader_FileExtension_Xml, LogicConstants.WorkflowLoader_FileExtension_Htm), true);
             }
             catch
@@ -93,13 +92,12 @@ namespace Tmx.Server.Logic.ObjectModel
         }
         
         // public virtual void ImportXdocument(XContainer xDocument)
-        public virtual void ImportXdocumentAndCreateWorkflowAndTasks(XContainer xDocument, string pathToWorkflowFile)
+        public virtual void ImportXdocumentAndCreateWorkflowAndTasks(XContainer xDocument, Guid workflowId)
         {
-            var workflowId = AddWorkflowAndReturnWorkflowId(xDocument, pathToWorkflowFile);
             SetParametersPageName(xDocument);
             var tasks = from task in xDocument.Descendants(LogicConstants.WorkflowLoader_TestWorkflow_TaskNode)
-                let element = task.Element(LogicConstants.WorkflowLoader_TaskElementIsActive)
-                where element != null && element.Value == "1"
+                        let element = task.Element(LogicConstants.WorkflowLoader_TaskElementIsActive)
+                        where element != null && element.Value == "1"
                         select task;
             var importedTasks = tasks.Select(tsk => GetNewTestTask(tsk, workflowId));
             AddTasksToCommonPool(importedTasks);
@@ -109,11 +107,11 @@ namespace Tmx.Server.Logic.ObjectModel
         }
         
         // Guid GetWorkflowId(XContainer xDocument)
-        Guid AddWorkflowAndReturnWorkflowId(XContainer xDocument, string pathToWorkflowFile)
+        public virtual Guid AddWorkflowAndReturnWorkflowId(XContainer xDocument, string pathToWorkflowFile)
         {
             var workflowElement = xDocument.Descendants(LogicConstants.WorkflowLoader_TestWorkflow_WorkflowNode).FirstOrDefault();
             if (null == workflowElement)
-                throw new WorkflowLoadingException("There's no workflow element in the document");
+                throw new WorkflowLoadingException(Messages.WorkflowLoadingException_ThereIsNoWorkflowElement);
             var nameAttribute = workflowElement.Attribute(LogicConstants.WorkflowLoader_TestWorkflow_NameAttribute);
             var workflowName = null != nameAttribute ? nameAttribute.Value : "unnamed workflow";
 
@@ -135,15 +133,13 @@ namespace Tmx.Server.Logic.ObjectModel
             // 20150708
             // if there already is a workflow with the same name
             // merge the new one with the existing
-            bool replace = false || WorkflowCollection.Workflows.Any(wfl => wfl.Name == _workflow.Name && wfl.Path == _workflow.Path);
+            var replace = false || WorkflowCollection.Workflows.Any(wfl => wfl.Name == _workflow.Name && wfl.Path == _workflow.Path);
             
             if (replace)
                 WorkflowCollection.MergeWorkflow(_workflow);
             else
                 WorkflowCollection.AddWorkflow(_workflow);
             
-            // 20150708
-            // WorkflowCollection.AddWorkflow(_workflow);
             ServerObjectFactory.Resolve<TestWorkflowCollectionMethods>().SetDefaultWorkflow();
             return _workflow.Id;
         }
@@ -155,7 +151,7 @@ namespace Tmx.Server.Logic.ObjectModel
         
         ITestLab GetOrCreateTestLab(string testLabName)
         {
-            var testLab = TestLabCollection.TestLabs.FirstOrDefault(tl => tl.Name.ToLower() == testLabName.ToLower());
+            var testLab = TestLabCollection.TestLabs.FirstOrDefault(tl => string.Equals(tl.Name, testLabName, StringComparison.CurrentCultureIgnoreCase));
             if (null != testLab)
                 return testLab;
             testLab = new TestLab { Name = testLabName };

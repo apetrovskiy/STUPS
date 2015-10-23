@@ -36,60 +36,60 @@ namespace Tmx.Server.Tests.Helpers
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_add_no_tasks_to_the_common_pool_on_adding_empty_task_collection()
+        public void ShouldAddNoTasksToTheCommonPoolOnAddingEmptyTaskCollection()
         {
-            GIVEN_ThereAreTasksInCommonPool();
-            WHEN_AddedFakeImportedTasks();
-            THEN_NumberOfCommonTasksIncreasedBy(0);
+            GivenThereAreTasksInCommonPool();
+            WhenAddedFakeImportedTasks();
+            ThenNumberOfCommonTasksIncreasedBy(0);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_add_8_tasks_to_the_common_pool_on_adding_a_task_collection()
+        public void ShouldAdd8TasksToTheCommonPoolOnAddingATaskCollection()
         {
-            GIVEN_ThereAreTasksInCommonPool();
-            WHEN_ImportingTasks(TestConstants.Workflow01);
-            THEN_NumberOfCommonTasksIncreasedBy(10);
+            GivenThereAreTasksInCommonPool();
+            WhenImportingTasks(TestConstants.Workflow01);
+            ThenNumberOfCommonTasksIncreasedBy(10);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_add_a_workflow_to_the_collection()
+        public void ShouldAddAWorkflowToTheCollection()
         {
-            GIVEN_ThereAreTasksInCommonPool();
-            var workflowId = WHEN_ImportingTasks(TestConstants.Workflow01);
-            THEN_NumberOfCommonTasksIncreasedBy(10);
-            THEN_workflow_has_been_added(workflowId);
+            GivenThereAreTasksInCommonPool();
+            var workflowId = WhenImportingTasks(TestConstants.Workflow01);
+            ThenNumberOfCommonTasksIncreasedBy(10);
+            ThenWorkflowHasBeenAdded(workflowId);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
-        public void Should_add_tasks_with_workflow_id()
+        public void ShouldAddTasksWithWorkflowId()
         {
-            GIVEN_ThereAreTasksInCommonPool();
-            var workflowId = WHEN_ImportingTasks(TestConstants.Workflow01);
-            THEN_NumberOfCommonTasksIncreasedBy(10);
-            THEN_workflow_has_been_added(workflowId);
-            THEN_there_are_number_of_tasks_for_selected_workflow(10, workflowId);
+            GivenThereAreTasksInCommonPool();
+            var workflowId = WhenImportingTasks(TestConstants.Workflow01);
+            ThenNumberOfCommonTasksIncreasedBy(10);
+            ThenWorkflowHasBeenAdded(workflowId);
+            ThenThereAreNumberOfTasksForSelectedWorkflow(10, workflowId);
         }
         
         [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
         [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
-        public void Should_add_no_tasks_if_no_valid_path_provided()
+        public void ShouldAddNoTasksIfNoValidPathProvided()
         {
-            GIVEN_ThereAreTasksInCommonPool();
-            var workflowId = WHEN_ImportingTasks(TestConstants.XmlPath + "wrong_path.xml");
-            THEN_NumberOfCommonTasksIncreasedBy(10);
-            THEN_workflow_has_been_added(workflowId);
-            THEN_there_are_number_of_tasks_for_selected_workflow(10, workflowId);
+            GivenThereAreTasksInCommonPool();
+            var workflowId = WhenImportingTasks(TestConstants.XmlPath + "wrong_path.xml");
+            ThenNumberOfCommonTasksIncreasedBy(10);
+            ThenWorkflowHasBeenAdded(workflowId);
+            ThenThereAreNumberOfTasksForSelectedWorkflow(10, workflowId);
         }
         
 //        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Should_replace_workflow_on_adding_one_with_the_same_name()
 //        {
-//            // GIVEN_ThereAreTasksInCommonPool();
+//            // GivenThereAreTasksInCommonPool();
 //            GIVEN_ThereIsWorkflow();
-//            var workflowId = WHEN_ImportingTasks(TestConstants.Workflow01);
-//            THEN_NumberOfCommonTasksIncreasedBy(10);
-//            THEN_workflow_has_been_added(workflowId);
-//            THEN_there_are_number_of_tasks_for_selected_workflow(10, workflowId);
+//            var workflowId = WhenImportingTasks(TestConstants.Workflow01);
+//            ThenNumberOfCommonTasksIncreasedBy(10);
+//            ThenWorkflowHasBeenAdded(workflowId);
+//            ThenThereAreNumberOfTasksForSelectedWorkflow(10, workflowId);
 //        }
         
 //        [NUnit.Framework.Test]
@@ -102,7 +102,7 @@ namespace Tmx.Server.Tests.Helpers
 //        }
         
         // ==========================================================================================
-        void GIVEN_ThereAreTasksInCommonPool()
+        void GivenThereAreTasksInCommonPool()
         {
             // 20150904
             TaskPool.Tasks.Add(new TestTask { Name = "task001", Id = 10, WorkflowId = new Guid() });
@@ -111,12 +111,7 @@ namespace Tmx.Server.Tests.Helpers
             // TaskPool.Tasks.Add(new TestTask (TestTaskRuntimeTypes.Powershell) { Name = "task002", Id = 20, WorkflowId = new Guid() });
         }
         
-//        void GIVEN_ThereIsWorkflow()
-//        {
-//            WorkflowCollection
-//        }
-        
-        void WHEN_AddedFakeImportedTasks(params ITestTask[] tasks)
+        void WhenAddedFakeImportedTasks(params ITestTask[] tasks)
         {
             var workflowLoader = new WorkflowLoader();
             var xDoc = new XDocument();
@@ -127,28 +122,27 @@ namespace Tmx.Server.Tests.Helpers
             workflowElement.Add(testLabElement);
             var parametersPageElement = new XElement("parametersPage", "page");
             workflowElement.Add(parametersPageElement);
-            // workflowLoader.ImportXdocument(xDoc);
-            workflowLoader.ImportXdocumentAndCreateWorkflowAndTasks(xDoc, string.Empty);
+            workflowLoader.ImportXdocumentAndCreateWorkflowAndTasks(xDoc, workflowLoader.AddWorkflowAndReturnWorkflowId(xDoc, string.Empty));
         }
         
-        Guid WHEN_ImportingTasks(string path)
+        Guid WhenImportingTasks(string path)
         {
             var workflowLoader = new WorkflowLoader();
             workflowLoader.Load(path);
             return WorkflowCollection.Workflows.Last().Id;
         }
         
-        void THEN_NumberOfCommonTasksIncreasedBy(int number)
+        void ThenNumberOfCommonTasksIncreasedBy(int number)
         {
             Assert.Equal(2 + number, TaskPool.Tasks.Count);
         }
         
-        void THEN_workflow_has_been_added(Guid workflowId)
+        void ThenWorkflowHasBeenAdded(Guid workflowId)
         {
-            Assert.Equal(true, WorkflowCollection.Workflows.Any(wfl => wfl.Id == workflowId));
+            Assert.Equal(true, WorkflowCollection.Workflows.Any(workflow => workflow.Id == workflowId));
         }
         
-        void THEN_there_are_number_of_tasks_for_selected_workflow(int numberOfTasks, Guid workflowId)
+        void ThenThereAreNumberOfTasksForSelectedWorkflow(int numberOfTasks, Guid workflowId)
         {
             Assert.Equal(numberOfTasks, TaskPool.Tasks.Count(task => task.WorkflowId == workflowId));
         }

@@ -10,8 +10,7 @@
 namespace UIAutomation.Commands
 {
     using System.Management.Automation;
-    using Helpers.Commands;
-    
+
     /// <summary>
     /// Description of RegisterUiaUnexpectedWindowCommand.
     /// </summary>

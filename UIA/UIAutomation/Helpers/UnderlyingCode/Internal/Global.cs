@@ -7,14 +7,11 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using System.Drawing;
-using PSTestLib;
-
 namespace UIAutomation
 {
-    using System;
     using System.IO;
-    
+    using System.Drawing;
+
     internal static class Global
     {
         internal static bool GTranscript = false;

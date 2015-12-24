@@ -9,7 +9,6 @@
 
 namespace SePSX
 {
-    using System;
     using PSTestLib;
 
     /// <summary>

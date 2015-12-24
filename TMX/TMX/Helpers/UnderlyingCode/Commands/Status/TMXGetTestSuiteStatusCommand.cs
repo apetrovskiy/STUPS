@@ -9,12 +9,10 @@
 
 namespace Tmx
 {
-    using System;
     using System.Linq;
     using System.Management.Automation;
-    using Tmx.Interfaces;
-    using Tmx.Commands;
-    
+    using Commands;
+
     /// <summary>
     /// Description of TmxGetTestSuiteStatusCommand.
     /// </summary>
@@ -28,6 +26,9 @@ namespace Tmx
         {
             var cmdlet = (GetTmxTestSuiteStatusCommand)Cmdlet;
             
+            // 20150408
+            // as no longer in use
+            /*
             // 20140721
             var dataObject = new GetTmxTestSuiteStatusDataObject {
                 FilterOutAutomaticResults = cmdlet.FilterOutAutomaticResults,
@@ -35,7 +36,22 @@ namespace Tmx
                 Id = cmdlet.Id,
                 TestPlatformId = cmdlet.TestPlatformId
             };
+            */
             
+            // 20150408
+            var currentTestPlatform = TestData.TestPlatforms.FirstOrDefault(tp => tp.Id == cmdlet.TestPlatformId);
+            if (null == currentTestPlatform)
+                cmdlet.WriteError(
+                    cmdlet,
+                    "Failed to find test suite with name = '" +
+                    cmdlet.Name +
+                    "' and id = '" +
+                    cmdlet.Id +
+                    "'",
+                    "FailedToFindTestSuite",
+                    ErrorCategory.InvalidArgument,
+                    true);
+
             if (!string.IsNullOrEmpty(cmdlet.Name)) {
                 // 20140721
                 // 20140722
@@ -46,7 +62,9 @@ namespace Tmx
                         cmdlet.Name,
                         // 20141114
                         // cmdlet.TestPlatformId,
-                        TestData.TestPlatforms.FirstOrDefault(tp => tp.Id == cmdlet.TestPlatformId).UniqueId,
+                        // 20150408
+                        // TestData.TestPlatforms.FirstOrDefault(tp => tp.Id == cmdlet.TestPlatformId).UniqueId,
+                        currentTestPlatform.UniqueId,
                         cmdlet.FilterOutAutomaticResults);
                 cmdlet.WriteObject(result);
             } else if (!string.IsNullOrEmpty(cmdlet.Id)) {
@@ -59,7 +77,9 @@ namespace Tmx
                         cmdlet.Id,
                         // 20141114
                         // cmdlet.TestPlatformId,
-                        TestData.TestPlatforms.FirstOrDefault(tp => tp.Id == cmdlet.TestPlatformId).UniqueId,
+                        // 20150408
+                        // TestData.TestPlatforms.FirstOrDefault(tp => tp.Id == cmdlet.TestPlatformId).UniqueId,
+                        currentTestPlatform.UniqueId,
                         cmdlet.FilterOutAutomaticResults);
                 cmdlet.WriteObject(result2);
             } else {

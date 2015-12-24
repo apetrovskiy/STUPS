@@ -9,8 +9,7 @@
 
 namespace Tmx
 {
-    using System;
-    using Tmx.Interfaces;
+    using Interfaces;
 
     /// <summary>
     /// Description of XMLElementsNativeStruct.

@@ -9,14 +9,13 @@
 
 namespace EsxiMgmt.Core.ObjectModel
 {
-    using System;
-    
     /// <summary>
     /// Description of Commands.
     /// </summary>
     public class Commands
     {
         public const string GetVirtualMachines = "vim-cmd vmsvc/getallvms";
+        public const string UnregisterVirtualMachine = "vim-cmd vmsvc/unregister {0}";
         public const string RemoveVirtualMachine = "vim-cmd vmsvc/destroy {0}";
         public const string StartVirtualMachine = "vim-cmd vmsvc/power.on {0}";
         public const string StopVirtualMachine = "vim-cmd vmsvc/power.on {0}";

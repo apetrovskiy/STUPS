@@ -9,8 +9,7 @@
 
 namespace EsxiMgmt.Core.Types
 {
-    using System;
-    using EsxiMgmt.Core.Interfaces;
+    using Interfaces;
     
     /// <summary>
     /// Description of VirtualMachine.

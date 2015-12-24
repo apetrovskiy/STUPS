@@ -11,13 +11,10 @@ namespace Tmx
 {
     using System;
     using System.Management.Automation;
-    using System.Linq;
-    using System.Xml.Linq;
     using System.Text;
-    using Tmx;
-    using Tmx.Core;
-    using Tmx.Interfaces;
-    using Tmx.Interfaces.TestStructure;
+    using Core;
+    using Interfaces;
+    using Interfaces.TestStructure;
     
     /// <summary>
     /// Description of ImportExportCmdletBase.
@@ -26,10 +23,10 @@ namespace Tmx
     {
         public ImportExportCmdletBase()
         {
-            this.As = string.Empty;
-            this.Name = string.Empty;
-            this.Path = string.Empty;
-            this.ExcludeAutomatic = false;
+            As = string.Empty;
+            Name = string.Empty;
+            Path = string.Empty;
+            ExcludeAutomatic = false;
         }
         
         #region Parameters
@@ -307,11 +304,11 @@ namespace Tmx
                 WriteVerbose(this, "Test Suite: " + ts.Name);
                 string pgfSuite = pgfSuiteOpenNotTested;
                 string styleSuite = styleSuiteOpenNotTested;
-                if (ts.enStatus == TestSuiteStatuses.Passed) {
+                if (ts.enStatus == TestStatuses.Passed) {
                     pgfSuite = pgfSuiteOpenPassed;
                     styleSuite = styleSuiteOpenPassed;
                 }
-                if (ts.enStatus == TestSuiteStatuses.Failed) {
+                if (ts.enStatus == TestStatuses.Failed) {
                     pgfSuite = pgfSuiteOpenFailed;
                     styleSuite = styleSuiteOpenFailed;
                 }
@@ -359,11 +356,11 @@ namespace Tmx
                     WriteVerbose(this, "Test Scenario: " + tsc.Name);
                     string pgfScenario = pgfScenarioOpenNotTested;
                     string styleScenario = styleScenarioOpenNotTested;
-                    if (tsc.enStatus == TestScenarioStatuses.Passed) {
+                    if (tsc.enStatus == TestStatuses.Passed) {
                         pgfScenario = pgfScenarioOpenPassed;
                         styleScenario = styleScenarioOpenPassed;
                     }
-                    if (tsc.enStatus == TestScenarioStatuses.Failed) {
+                    if (tsc.enStatus == TestStatuses.Failed) {
                         pgfScenario = pgfScenarioOpenFailed;
                         styleScenario = styleScenarioOpenFailed;
                     }
@@ -408,19 +405,18 @@ namespace Tmx
                         WriteVerbose(this, "Test Result: " + tr.Name);
                         string pgfTestResult = pgfTestResultOpenNotTested;
                         string styleTestResult = styleTestResultOpenNotTested;
-                        if (tr.enStatus == TestResultStatuses.Passed) {
+                        if (tr.enStatus == TestStatuses.Passed) {
                             pgfTestResult = pgfTestResultOpenPassed;
                             styleTestResult = styleTestResultOpenPassed;
                         }
-                        if (tr.enStatus == TestResultStatuses.Failed) {
+                        if (tr.enStatus == TestStatuses.Failed) {
                             pgfTestResult = pgfTestResultOpenFailed;
                             styleTestResult = styleTestResultOpenFailed;
                         }
-                        if (tr.enStatus == TestResultStatuses.KnownIssue) {
+                        if (tr.enStatus == TestStatuses.KnownIssue) {
                             pgfTestResult = pgfTestResultOpenKnownIssue;
                             styleTestResult = styleTestResultOpenKnownIssue;
                         }
-                        // 20130322
                         if (skipAutomatic) {
                             if (TestResultOrigins.Automatic == tr.Origin) {
                                 continue;
@@ -565,7 +561,7 @@ namespace Tmx
             string generatedFileName = string.Empty;
             WriteVerbose(this, "deciding on which path to use for the report");
             generatedFileName =
-                System.Environment.GetEnvironmentVariable(
+                Environment.GetEnvironmentVariable(
                     "TEMP",
                     EnvironmentVariableTarget.User);
             generatedFileName += @"\";
@@ -623,7 +619,7 @@ namespace Tmx
 //                            ee.Message);
 //                    ThrowTerminatingError(err);
                     
-                    this.WriteError(
+                    WriteError(
                         this,
                         "Unable to create the report file: '" +
                         reportFileName + 
@@ -649,7 +645,7 @@ namespace Tmx
 //                        eee.Message);
 //                ThrowTerminatingError(err2);
                 
-                this.WriteError(
+                WriteError(
                     this,
                     "Unable to create the report file: '" +
                     reportFileName +
@@ -792,9 +788,9 @@ namespace Tmx
             resultHTML += newLineCS;
             resultHTML += headerTitleOpen;
             resultHTML += "Test results ";
-            resultHTML +=  System.DateTime.Now.ToShortDateString();
+            resultHTML +=  DateTime.Now.ToShortDateString();
             resultHTML += " ";
-            resultHTML +=  System.DateTime.Now.ToShortTimeString();
+            resultHTML +=  DateTime.Now.ToShortTimeString();
             resultHTML += headerTitleClose;
             resultHTML += newLineCS;
             resultHTML += getStatisticsStringOverall();
@@ -856,13 +852,13 @@ namespace Tmx
             int scNotTested = 0;
             foreach (var tsc in suite.TestScenarios) {
                 switch (tsc.enStatus) {
-                    case TestScenarioStatuses.Passed:
+                    case TestStatuses.Passed:
                         scPassed++;
                         break;
-                    case TestScenarioStatuses.Failed:
+                    case TestStatuses.Failed:
                         scFailed++;
                         break;
-                    case TestScenarioStatuses.NotTested:
+                    case TestStatuses.NotRun:
                         scNotTested++;
                         break;
                     default:
@@ -924,17 +920,16 @@ namespace Tmx
                 ts.PassedButWithBadSmell += tsuite.Statistics.PassedButWithBadSmell;
                 
                 switch (tsuite.enStatus) {
-                    case TestSuiteStatuses.Passed:
+                    case TestStatuses.Passed:
                         suPassed++;
                         break;
-                    case TestSuiteStatuses.Failed:
+                    case TestStatuses.Failed:
                         suFailed++;
                         break;
-                    case TestSuiteStatuses.NotTested:
+                    case TestStatuses.NotRun:
                         suNotTested++;
                         break;
-                    // 20150114
-                    case TestSuiteStatuses.KnownIssue:
+                    case TestStatuses.KnownIssue:
                         suKnownIssue++;
                         break;
                     default:
@@ -943,17 +938,16 @@ namespace Tmx
                 
                 foreach (var tsc in tsuite.TestScenarios) {
                     switch (tsc.enStatus) {
-                        case TestScenarioStatuses.Passed:
+                        case TestStatuses.Passed:
                             scPassed++;
                             break;
-                        case TestScenarioStatuses.Failed:
+                        case TestStatuses.Failed:
                             scFailed++;
                             break;
-                        case TestScenarioStatuses.NotTested:
+                        case TestStatuses.NotRun:
                             scNotTested++;
                             break;
-                        // 20150114
-                        case TestScenarioStatuses.KnownIssue:
+                        case TestStatuses.KnownIssue:
                             scKnownIssue++;
                             break;
                         default:

@@ -9,13 +9,11 @@
 
 namespace Tmx.Commands
 {
-    using System;
     using System.Management.Automation;
     using System.Linq;
-    using System.Xml.Linq;
-    using Tmx.Core;
-    using Tmx.Interfaces;
-    using Tmx.Interfaces.TestStructure;
+    using Core;
+    using Interfaces;
+    using Interfaces.TestStructure;
     
     /// <summary>
     /// Description of GetTestResultsFromSearchCommand.

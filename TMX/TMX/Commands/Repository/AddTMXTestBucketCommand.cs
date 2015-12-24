@@ -9,9 +9,8 @@
 
 namespace Tmx.Commands
 {
-    using System;
     using System.Management.Automation;
-    using Tmx.Interfaces;
+    using Interfaces;
     
     /// <summary>
     /// Description of AddTmxTestBucketCommand.

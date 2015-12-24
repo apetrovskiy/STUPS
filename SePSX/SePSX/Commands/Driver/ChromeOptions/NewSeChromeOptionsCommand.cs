@@ -9,11 +9,8 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
-    using OpenQA.Selenium;
-    using OpenQA.Selenium.Chrome;
-    
+
     /// <summary>
     /// Description of NewSeChromeOptionsCommand.
     /// </summary>
@@ -27,9 +24,9 @@ namespace SePSX.Commands
         
         protected override void BeginProcessing()
         {
-            this.CheckCmdletParameters();
+            CheckCmdletParameters();
             
-            SeNewChromeOptionsCommand command =
+            var command =
                 new SeNewChromeOptionsCommand(this);
             command.Execute();
         }

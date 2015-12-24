@@ -9,7 +9,6 @@
 
 namespace UIAutomation.Commands
 {
-    using System;
     using System.Management.Automation;
     
     /// <summary>
@@ -26,7 +25,7 @@ namespace UIAutomation.Commands
             Horizontal = false;
             //this.Percent = 0;
             PassThru = true;
-            base.Child = this;
+            Child = this;
       }
         
         #region Parameters

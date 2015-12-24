@@ -11,8 +11,7 @@ namespace UIAutomation
 {
     using System.Management.Automation;
     using System.Collections;
-    using System.Collections.Generic;
-    
+
     /// <summary>
     /// Description of GetCmdletBase.
     /// </summary>

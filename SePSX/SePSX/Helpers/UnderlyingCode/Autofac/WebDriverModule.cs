@@ -18,10 +18,8 @@ namespace SePSX
     using OpenQA.Selenium.IE;
     using OpenQA.Selenium.Remote;
     using Autofac;
-    using Autofac.Builder;
     using Autofac.Features.ResolveAnything;
-    using System.Reflection;
-    
+
     /// <summary>
     /// Description of WebDriverModule.
     /// </summary>
@@ -31,7 +29,7 @@ namespace SePSX
         {
         }
         
-        internal IContainer container = null;
+        internal IContainer Container = null;
         
         protected override void Load(ContainerBuilder builder)
         {
@@ -95,9 +93,9 @@ namespace SePSX
 
         #region SePSX
 
-            Assembly[] assemblies =
-                System.AppDomain.CurrentDomain.GetAssemblies();
-            Assembly sepsxAssembly = assemblies.FirstOrDefault(assm => assm.FullName.Contains("SePSX,"));
+            var assemblies =
+                AppDomain.CurrentDomain.GetAssemblies();
+            var sepsxAssembly = assemblies.FirstOrDefault(assm => assm.FullName.Contains("SePSX,"));
             /*
             foreach (Assembly assm in assemblies)
             {
@@ -200,20 +198,20 @@ namespace SePSX
             #endregion ChromeDriver
             #region FirefoxDriver
                 #region Firefox profile
-            builder.RegisterType<OpenQA.Selenium.Firefox.FirefoxProfile>()
+            builder.RegisterType<FirefoxProfile>()
                 .UsingConstructor(new Type[]{} )
-                .Named<OpenQA.Selenium.Firefox.FirefoxProfile>("ff_bare");
-            builder.RegisterType<OpenQA.Selenium.Firefox.FirefoxProfile>()
+                .Named<FirefoxProfile>("ff_bare");
+            builder.RegisterType<FirefoxProfile>()
                 .UsingConstructor(new Type[] {
                                       typeof(string)
                                   })
-                .Named<OpenQA.Selenium.Firefox.FirefoxProfile>("ff_with_path");
-            builder.RegisterType<OpenQA.Selenium.Firefox.FirefoxProfile>()
+                .Named<FirefoxProfile>("ff_with_path");
+            builder.RegisterType<FirefoxProfile>()
                 .UsingConstructor(new Type[] {
                                       typeof(string),
                                       typeof(bool)
                                   })
-                .Named<OpenQA.Selenium.Firefox.FirefoxProfile>("ff_with_path_and_bool");
+                .Named<FirefoxProfile>("ff_with_path_and_bool");
                 #endregion Firefox profile
             
             builder.RegisterType<FirefoxDriver>()

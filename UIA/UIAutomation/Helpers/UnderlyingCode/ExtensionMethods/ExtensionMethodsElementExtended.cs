@@ -16,7 +16,6 @@ namespace UIAutomation
 //    using System.Windows.Automation.Text;
 //    using System.Collections;
 //    using System.Collections.Generic;
-    using System.Linq;
 //    using System.Management.Automation;
     using System.Windows.Forms;
 //    using PSTestLib;

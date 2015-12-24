@@ -12,7 +12,6 @@ namespace UIAutomation.Commands
     extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
     using System.Management.Automation;
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
-    using UIAutomation.Helpers.Commands;
 
     /// <summary>
     /// Description of RegisterUiaPropertyChangedEventCommand.
@@ -101,7 +100,7 @@ namespace UIAutomation.Commands
             // 20140217
             // base.AutomationProperty = 
             //     GridPattern.RowCountProperty;
-            AutomationProperty = new[] { classic.TablePattern.RowCountProperty };
+            AutomationProperty = new[] { classic.GridPattern.RowCountProperty };
             /*
             base.AutomationProperty = 
                 TablePattern.RowCountProperty;
@@ -122,7 +121,7 @@ namespace UIAutomation.Commands
             // 20140217
             // base.AutomationProperty = 
             //     GridPattern.ColumnCountProperty;
-            AutomationProperty = new[] { classic.TablePattern.ColumnCountProperty };
+            AutomationProperty = new[] { classic.GridPattern.ColumnCountProperty };
             /*
             base.AutomationProperty = 
                 TablePattern.ColumnCountProperty;

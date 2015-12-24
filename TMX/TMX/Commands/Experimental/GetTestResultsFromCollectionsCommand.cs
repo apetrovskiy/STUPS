@@ -9,11 +9,9 @@
 
 namespace Tmx.Commands
 {
-    using System;
     using System.Management.Automation;
     using Tmx;
-    using Tmx.Interfaces.TestStructure;
-    
+
     /// <summary>
     /// Description of GetTestResultsFromCollectionsCommand.
     /// </summary>

@@ -85,6 +85,7 @@
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -100,9 +101,9 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Tmx.Client\Tmx.Client.csproj">
+    <ProjectReference Include="..\Tmx.Client.Library\Tmx.Client.Library.csproj">
       <Project>{6943EC2F-CB75-4F9B-B83C-A664400052A7}</Project>
-      <Name>Tmx.Client</Name>
+      <Name>Tmx.Client.Library</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -9,17 +9,14 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
-    using OpenQA.Selenium;
-    using OpenQA.Selenium.IE;
-    
+
     /// <summary>
     /// Description of NewSeInternetExplorerOptionsCommand.
     /// </summary>
     [Cmdlet(VerbsCommon.New, "SeInternetExplorerOptions")]
     [OutputType(typeof(OpenQA.Selenium.IE.InternetExplorerOptions))]
-    public class NewSeInternetExplorerOptionsCommand : IEOptionsCmdletBase
+    public class NewSeInternetExplorerOptionsCommand : IeOptionsCmdletBase
     {
         public NewSeInternetExplorerOptionsCommand()
         {
@@ -27,10 +24,10 @@ namespace SePSX.Commands
         
         protected override void BeginProcessing()
         {
-            this.CheckCmdletParameters();
+            CheckCmdletParameters();
             
-            SeNewIEOptionsCommand command =
-                new SeNewIEOptionsCommand(this);
+            var command =
+                new SeNewIeOptionsCommand(this);
             command.Execute();
         }
     }

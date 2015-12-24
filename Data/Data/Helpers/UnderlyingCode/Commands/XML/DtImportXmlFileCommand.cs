@@ -9,8 +9,6 @@
 
 namespace Data
 {
-    using System;
-    using System.Management.Automation;
     using Data.Commands;
     
     /// <summary>

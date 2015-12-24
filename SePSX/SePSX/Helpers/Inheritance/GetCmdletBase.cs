@@ -9,12 +9,8 @@
 
 namespace SePSX
 {
-    using System;
     using System.Management.Automation;
-    using OpenQA.Selenium;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    
+
     /// <summary>
     /// Description of GetCmdletBase.
     /// </summary>
@@ -30,14 +26,14 @@ namespace SePSX
             
             
 //            this.Wait = true;
-            this.Timeout = Preferences.Timeout;
-            this.Seconds = Timeout / 1000;
+            Timeout = Preferences.Timeout;
+            Seconds = Timeout / 1000;
 //            this.OnErrorScreenShot = Preferences.OnErrorScreenShot;
 //            this.OnSuccessAction = null;
 //            this.OnErrorAction = null;
 
 
-            this.First = false;
+            First = false;
         }
         
         #region Parameters

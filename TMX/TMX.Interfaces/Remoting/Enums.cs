@@ -14,8 +14,11 @@ namespace Tmx.Interfaces.Remoting
         New = 0,
         Running = 1,
         CompletedSuccessfully = 2,
-        Interrupted = 3,
-        Canceled = 4
+        ExecutionFailed = 3,
+        Canceled = 4,
+        FailedByTestResults = 5,
+        InterruptedByUser = 6,
+        InterruptedByTimeout = 7
     }
     
     public enum TestTaskExecutionTypes
@@ -57,10 +60,13 @@ namespace Tmx.Interfaces.Remoting
         Running = 0,
         Pending = 1,
         Scheduled = 2,
-        CompletedSuccessfully = 3,
-        Interrupted = 4,
-        Cancelled = 5,
-        Cancelling = 6
+        Finished = 3,
+        InterruptedOnTaskFailure = 4,
+        Canceled = 5,
+        Canceling = 6,
+        InterruptedOnCriticalTask = 7,
+        InterruptedOnTaskTimeout = 8,
+        TestResultsAvailable = 9
     }
     
     public enum TestRunStartTypes

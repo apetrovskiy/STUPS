@@ -9,10 +9,8 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
-    using OpenQA.Selenium;
-    
+
     /// <summary>
     /// Description of ReadSeWebDriverNativeWindowHandleCommand.
     /// </summary>
@@ -31,9 +29,9 @@ namespace SePSX.Commands
         
         protected override void ProcessRecord()
         {
-            this.checkInputWebDriver(true);
+            CheckInputWebDriver(true);
             
-            SeReadWebDriverNativeWindowHandleCommand command =
+            var command =
                 new SeReadWebDriverNativeWindowHandleCommand(this);
             command.Execute();
             //SeHelper.GetNativeWindowHandle(this, this.InputObject, this.MainWindowHandle);

@@ -8,7 +8,8 @@
     <RootNamespace>UIAutomation</RootNamespace>
     <AssemblyName>UIAutomation</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <OutputPath>bin\Release\</OutputPath>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
@@ -136,8 +137,9 @@
     <Reference Include="Ninject.Extensions.NamedScope">
       <HintPath>..\..\packages\Ninject.Extensions.NamedScope.3.2.0.0\lib\net40\Ninject.Extensions.NamedScope.dll</HintPath>
     </Reference>
-    <Reference Include="NLog">
-      <HintPath>..\..\packages\NLog.3.2.0.0\lib\net40\NLog.dll</HintPath>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NLog.4.2.2\lib\net40\NLog.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="PresentationCore">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
@@ -1027,7 +1029,6 @@
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Internal\Highligher.cs">
       <Link>Helpers\UnderlyingCode\Internal\Highligher.cs</Link>
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Internal\JavaHelper.cs">
       <Link>Helpers\UnderlyingCode\Internal\JavaHelper.cs</Link>
@@ -1368,10 +1369,9 @@
       <Link>Commands\Transcript\Window1.xaml</Link>
     </Page>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Resources" />
-  </ItemGroup>
-  <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

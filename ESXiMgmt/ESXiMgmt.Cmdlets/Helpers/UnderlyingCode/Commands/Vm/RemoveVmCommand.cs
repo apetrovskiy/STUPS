@@ -9,11 +9,8 @@
 
 namespace EsxiMgmt.Cmdlets.Helpers.UnderlyingCode.Commands.Vm
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using EsxiMgmt.Core.ObjectModel;
-    using EsxiMgmt.Cmdlets.Commands.Vm;
+    using Core.ObjectModel;
+    using Cmdlets.Commands.Vm;
     
     /// <summary>
     /// Description of RemoveVmCommand.
@@ -29,7 +26,7 @@ namespace EsxiMgmt.Cmdlets.Helpers.UnderlyingCode.Commands.Vm
             Cmdlet.WriteObject(RemoveVirtualMachines());
         }
         
-        internal bool RemoveVirtualMachines()
+        bool RemoveVirtualMachines()
         {
             var cmdlet = (RemoveEsxiVmCommand)Cmdlet;
             var virtualMachinesSelector = new VirtualMachinesSelector();

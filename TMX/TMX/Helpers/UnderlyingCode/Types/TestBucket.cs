@@ -9,10 +9,7 @@
 
 namespace Tmx
 {
-    using System;
-    using System.Management.Automation;
-    using System.Collections.Generic;
-    using Tmx.Interfaces;
+    using Interfaces;
     
     /// <summary>
     /// Description of TestBucket.
@@ -21,13 +18,13 @@ namespace Tmx
     {
         public TestBucket(string name)
         {
-            this.BucketName = name;
+            BucketName = name;
         }
         
         public TestBucket(string name, string tag)
         {
-            this.BucketName = name;
-            this.BucketTag = tag;
+            BucketName = name;
+            BucketTag = tag;
         }
         
 //        public TestBucket(string name, string description)
@@ -38,9 +35,9 @@ namespace Tmx
         
         public TestBucket(string name, string tag, string description)
         {
-            this.BucketName = name;
-            this.BucketTag = tag;
-            this.Description = description;
+            BucketName = name;
+            BucketTag = tag;
+            Description = description;
         }
         
         public int BucketId { get; set; }

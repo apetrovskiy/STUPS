@@ -199,6 +199,7 @@
     <Compile Include="Commands\Status\GetTMXTestSuiteStatusCommand.cs" />
     <Compile Include="Commands\Status\UpdateTMXTestStatisticsCommand.cs" />
     <Compile Include="Commands\TestClient\AddTmxTestTaskResultCommand.cs" />
+    <Compile Include="Commands\TestClient\ReceiveTmxCommonDataItemsCollection.cs" />
     <Compile Include="Commands\TestClient\ReceiveTmxTestReportCommand.cs" />
     <Compile Include="Commands\TestClient\SetTmxServerSettingsCommand.cs" />
     <Compile Include="Commands\TestClient\GetTmxCurrentTestTaskCommand.cs" />
@@ -287,6 +288,7 @@
     <Compile Include="Helpers\UnderlyingCode\Commands\Status\TMXGetTestScenarioStatusCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\Status\TMXGetTestSuiteStatusCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestClient\AddTestTaskResultCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestClient\ReceiveCommonDataItemsCollectionCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestClient\ReceiveTestResportCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestClient\SetServerSettingsCommand.cs" />
     <Compile Include="Helpers\UnderlyingCode\Commands\TestClient\GetCurrentTestTaskCommand.cs" />
@@ -374,9 +376,9 @@
       <Project>{e4499004-dae5-4700-b212-4cdea3080bc5}</Project>
       <Name>PSTestLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tmx.Client\Tmx.Client.csproj">
+    <ProjectReference Include="..\Tmx.Client.Library\Tmx.Client.Library.csproj">
       <Project>{6943ec2f-cb75-4f9b-b83c-a664400052a7}</Project>
-      <Name>Tmx.Client</Name>
+      <Name>Tmx.Client.Library</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tmx.Core\Tmx.Core.csproj">
       <Project>{069651a0-fe15-42e2-89d5-9a761a47b143}</Project>

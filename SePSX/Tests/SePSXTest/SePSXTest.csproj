@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{905942E6-86A9-4461-9DE7-DB14B1FEF7EB}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SePsxTest</RootNamespace>
+    <AssemblyName>SePsxTest</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release35' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release40' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Release35' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Release40' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Release35'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Release40'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Release35'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Release40'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|Release35'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|Release40'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release40|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release40|Release35'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release40|Release40'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release35|AnyCPU' ">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release40|AnyCPU' ">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Gallio, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\mbunit.3.4.14.0\lib\net35\Gallio.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Gallio35, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\mbunit.3.4.14.0\lib\net35\Gallio35.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MbUnit, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\mbunit.3.4.14.0\lib\net35\MbUnit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MbUnit35, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\mbunit.3.4.14.0\lib\net35\MbUnit35.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Moq.4.2.1510.2205\lib\net35\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Linq" />
+    <Reference Include="System.Management.Automation" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WebDriver, Version=2.48.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Selenium.WebDriver.2.48.2\lib\net35\WebDriver.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebDriver.Support, Version=2.48.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Selenium.Support.2.48.2\lib\net35\WebDriver.Support.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\SePSX\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Commands\Alert\InvokeSeAlertAcceptCommandTestFixture.cs" />
+    <Compile Include="Commands\Alert\InvokeSeAlertDismissCommandTestFixture.cs" />
+    <Compile Include="Commands\Alert\Read-SeAlertTextCommandTestFixture.cs" />
+    <Compile Include="Commands\Alert\SetSeAlertKeysCommandTestFixture.cs" />
+    <Compile Include="Commands\Common\SaveSeScreenshotCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\CloseSeWebDriverCurrentBrowserWindowCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\GetSeWebDriverCookiesCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\GetSeWebDriverWindowCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\ReadSeWebDriverNativeWindowHandleCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\ReadSeWebDriverPageSourceCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\ReadSeWebDriverTitleCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\ReadSeWebDriverUrlCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\SelectSeWebDriverCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\SetSeWebDriverTimeoutCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\StartSeChromeCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\StartSeFirefoxCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\StartSeInternetExplorer32CommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\StartSeInternetExplorer64CommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\StartSeWebDriverCommandTestFixture.cs" />
+    <Compile Include="Commands\Driver\StopSeWebDriverCommandTestFixture.cs" />
+    <Compile Include="Commands\Element\ClearSeWebElementCommandTestFixture.cs" />
+    <Compile Include="Commands\Element\GetSeWebElementCollectionCommandTestFixture.cs" />
+    <Compile Include="Commands\Element\GetSeWebElementCommandTestFixture.cs" />
+    <Compile Include="Commands\Element\InvokeSeWebElementClickCommandTestFixture.cs" />
+    <Compile Include="Commands\Element\ReadSeWebElementAttributeCommandTestFixture.cs" />
+    <Compile Include="Commands\Element\ReadSeWebElementCssValueCommandTestFixture.cs" />
+    <Compile Include="Commands\Element\ReadSeWebElementDisplayedCommandTestFixture.cs" />
+    <Compile Include="Commands\Element\ReadSeWebElementEnabledCommandTestFixture.cs" />
+    <Compile Include="Commands\Element\ReadSeWebElementLocationCommandTestFixture.cs" />
+    <Compile Include="Commands\Element\ReadSeWebElementSelectedCommandTestFixture.cs" />
+    <Compile Include="Commands\Element\ReadSeWebElementSizeCommandTestFixture.cs" />
+    <Compile Include="Commands\Element\ReadSeWebElementTagNameCommandTestFixture.cs" />
+    <Compile Include="Commands\Element\ReadSeWebElementTextCommandTestFixture.cs" />
+    <Compile Include="Commands\Element\SetSeWebElementKeysCommandTestFixture.cs" />
+    <Compile Include="Commands\Element\SubmitSeWebElementCommandTestFixture.cs" />
+    <Compile Include="Commands\JSExecutor\InvokeSeJSExecutorCommandTestFixture.cs" />
+    <Compile Include="Commands\Module\ResetSeTestDataCommandTestFixture.cs" />
+    <Compile Include="Commands\Navigation\EnterSeURLCommandTestFixture.cs" />
+    <Compile Include="Commands\Navigation\InvokeSeNavigateBackCommandTestFixture.cs" />
+    <Compile Include="Commands\Navigation\InvokeSeNavigateForwardCommandTestFixture.cs" />
+    <Compile Include="Commands\Navigation\InvokeSePageRefreshCommandTestFixture.cs" />
+    <Compile Include="Commands\Navigation\SwitchSeToActiveElementCommandTestFixture.cs" />
+    <Compile Include="Commands\Navigation\SwitchSeToAlertCommandTestFixture.cs" />
+    <Compile Include="Commands\Navigation\SwitchSeToDefaultContentCommandTestFixture.cs" />
+    <Compile Include="Commands\Navigation\SwitchSeToFrameCommandTestFixture.cs" />
+    <Compile Include="Commands\Navigation\SwitchSeToWindowCommandTestFixture.cs" />
+    <Compile Include="Commands\PageObject\NewSePageObjectCommandTestFixture.cs" />
+    <Compile Include="Commands\Relatives\GetSeWebElementAncestorsCommandTestFixture.cs" />
+    <Compile Include="Commands\Relatives\GetSeWebElementParentCommandTestFixture.cs" />
+    <Compile Include="Commands\Rendered\InvokeSeDragAndDropCommandTestFixture.cs" />
+    <Compile Include="Commands\Rendered\InvokeSeHoverCommandTestFixture.cs" />
+    <Compile Include="Commands\Select\GetSeSelectionCommandTestFixture.cs" />
+    <Compile Include="Commands\Select\SetSeSelectionCommandTestFixture.cs" />
+    <Compile Include="Commands\Transcript\StartSeTranscriptCommandTestFixture.cs" />
+    <Compile Include="MiddleLevelCode.cs" />
+    <Compile Include="Settings.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands\Actions\" />
+    <Folder Include="Helpers\Inheritance\" />
+    <Folder Include="Helpers\UnderlyingCode\" />
+    <Folder Include="Helpers\UserSettings\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
+      <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
+      <Name>PSTestLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\PS\CmdletUnit\CmdletUnit.csproj">
+      <Project>{36F73FA0-C636-48CF-BB7A-FE10FE52C391}</Project>
+      <Name>CmdletUnit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SePsx.Core\SePsx.Core.csproj">
+      <Project>{32BE1DB4-E1CC-43EC-B356-1C3777A56CF8}</Project>
+      <Name>SePsx.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SePSX\SePSX.csproj">
+      <Project>{A0B50771-4889-46F4-8999-D2830DC9E486}</Project>
+      <Name>SePSX</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+</Project>

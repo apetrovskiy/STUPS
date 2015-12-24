@@ -9,13 +9,11 @@
 
 namespace Tmx
 {
-    using System;
     using System.Linq;
     using System.Management.Automation;
-    using Tmx.Core;
-    using Tmx.Interfaces;
-    using Tmx;
-    
+    using Core;
+    using Interfaces;
+
     /// <summary>
     /// Description of TmxAddTestCaseCommand.
     /// </summary>

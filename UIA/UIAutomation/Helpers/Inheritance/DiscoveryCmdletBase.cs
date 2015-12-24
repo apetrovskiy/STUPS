@@ -9,9 +9,6 @@
 
 namespace UIAutomation
 {
-    using System;
-    using System.Management.Automation;
-
     /// <summary>
     /// The DiscoveryCmdletBase class is an ancestor of the general cmdlets like
     /// Get-UiaControlFromPoint, Get-UiaCurrentPattern, Get-UiaCurrentPatternFromPoint.

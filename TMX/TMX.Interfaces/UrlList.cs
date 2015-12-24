@@ -9,8 +9,6 @@
 
 namespace Tmx.Interfaces.Server
 {
-    using System;
-    
     /// <summary>
     /// Description of UrlList.
     /// </summary>
@@ -77,6 +75,12 @@ namespace Tmx.Interfaces.Server
         public const string TestRuns_Root = "/api/testRuns";
         public const string TestRunsControlPoint_relPath = "/";
         public const string TestRunsControlPoint_absPath = TestRuns_Root + TestRunsControlPoint_relPath;
+        public const string TestRunsControlPoint_newDefaultTestRun = TestRunsControlPoint_relPath + "default/";
+        public const string TestRuns_DefaultParameterName = "defaultParam";
+        // public const string TestRunsControlPoint_newDefaultTestRunWithParam = TestRunsControlPoint_newDefaultTestRun + "{defaultParam}";
+        public const string TestRunsControlPoint_newDefaultTestRunWithParam = TestRunsControlPoint_newDefaultTestRun + "{" + TestRuns_DefaultParameterName + "}";
+        public const string TestRunsControlPoint_absPath_for_newDefaultTestRun = TestRuns_Root + TestRunsControlPoint_newDefaultTestRun;
+        // public const string TestRunsControlPoint_newDefaultTestRun = TestRunsControlPoint_relPath + "default";
         public const string TestRuns_One_relPath = "/{id:guid}";
         public const string TestRuns_One_absPath = TestRuns_Root + TestRuns_One_relPath;
         public const string TestRuns_ByName_relPath = "/{name}";
@@ -125,7 +129,8 @@ namespace Tmx.Interfaces.Server
 //        public const string ViewTestStatus_TestRunsPage = "/TestRuns";
 //        public const string ViewTestStatus_TestRunsPageName = "TestRuns.liquid";
         public const string ViewTestStatus_WorkflowsPage = "/workflows";
-        public const string ViewTestStatus_WorkflowsPageName = "workflows.htm";
+        // public const string ViewTestStatus_WorkflowsPageName = "workflows.htm";
+        public const string ViewTestStatus_WorkflowsPageName = "workflows.liquid";
         public const string ViewTestStatus_TestLabsPage = "/testLabs";
         public const string ViewTestStatus_TestLabsPageName = "testLabs.liquid";
 //        public const string ViewTestStatus_TestRun_CancelPage = "/{id:guid}/cancelTestRun";

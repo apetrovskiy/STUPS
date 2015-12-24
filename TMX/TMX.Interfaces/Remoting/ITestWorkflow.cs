@@ -9,8 +9,6 @@
 
 namespace Tmx.Interfaces.Remoting
 {
-    using System;
-    
     /// <summary>
     /// Description of ITestWorkflow.
     /// </summary>
@@ -18,5 +16,8 @@ namespace Tmx.Interfaces.Remoting
     {
         void SetTestLab(ITestLab testLab);
         string ParametersPageName { get; set; }
+        string Path { get; set; }
+        ICommonData DefaultData { get; set; }
+        bool IsDefault { get; set; }
     }
 }

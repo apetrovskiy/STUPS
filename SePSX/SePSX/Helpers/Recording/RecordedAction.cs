@@ -9,7 +9,6 @@
 
 namespace SePSX
 {
-    using System;
     using PSTestLib;
     
     /// <summary>
@@ -19,8 +18,8 @@ namespace SePSX
     {
         public RecordedAction()
         {
-            this.ItemType = RecordingTypes.Action;
-            this.UserData =
+            ItemType = RecordingTypes.Action;
+            UserData =
                 new System.Collections.Generic.Dictionary<string, object>();
         }
         

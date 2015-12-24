@@ -11,17 +11,17 @@ namespace Tmx.Core.Types.Remoting
 {
     using System;
     using System.Collections.Generic;
-    using Tmx.Interfaces.Remoting;
-    using Tmx.Interfaces.Remoting.Actions;
-    using Tmx.Interfaces.TestStructure;
-    
+    using Interfaces.ExtensionMethods;
+    using Interfaces.Remoting;
+    using Interfaces.Remoting.Actions;
+    using Interfaces.TestStructure;
+
     /// <summary>
     /// Description of TestRun.
     /// </summary>
     public class TestRun : ITestRun
     {
         ITestWorkflow _workflow;
-        // 20150115
         DateTime _finishTime;
         
         public TestRun()
@@ -32,7 +32,7 @@ namespace Tmx.Core.Types.Remoting
                 new TestPlatform {
                     Id = TestData.DefaultPlatformId,
                     Name = TestData.DefaultPlatformName,
-                    Description = "This platform has been created automatically"
+                    Description = Tmx_Core_Resources.TestRun_TestRun_This_platform_has_been_created_automatically
                 }
             };
             
@@ -41,7 +41,6 @@ namespace Tmx.Core.Types.Remoting
             CancelActions = new List<IAction>();
             FailureActions = new List<IAction>();
             
-            // TestSuites = new ListOfTestSuites();
             Status = TestRunStatuses.Pending;
             Id = Guid.NewGuid();
         }
@@ -52,7 +51,6 @@ namespace Tmx.Core.Types.Remoting
         public ICommonData Data { get; set; }
         public List<ITestSuite> TestSuites { get; set; }
         public List<ITestPlatform> TestPlatforms { get; set; }
-        // public ListOfTestSuites TestSuites { get; set; }
         public Guid TestLabId {
             get { return _workflow.TestLabId; }
         }
@@ -63,22 +61,20 @@ namespace Tmx.Core.Types.Remoting
         {
             get { return _workflow.Id; }
         }
-        
-        internal void SetWorkflow(ITestWorkflow testWorkflow)
+
+        public void SetWorkflow(ITestWorkflow testWorkflow)
         {
             _workflow = testWorkflow;
         }
         
         public DateTime CreatedTime { get; set; }
         public DateTime StartTime { get; set; }
-        // 20150115
-        // public TimeSpan TimeTaken { get; set; }
-        public TimeSpan GetTimeTaken()
+        
+        public string GetTimeTaken()
         {
-            if (DateTime.MinValue < _finishTime)
-                return _finishTime - StartTime;
-            return DateTime.Now - StartTime;
+            return _finishTime.GetTimeTaken(StartTime);
         }
+
         public void SetFinishTime()
         {
             _finishTime = DateTime.Now;
@@ -94,5 +90,7 @@ namespace Tmx.Core.Types.Remoting
         public List<IAction> AfterActions { get; set; }
         public List<IAction> CancelActions { get; set; }
         public List<IAction> FailureActions { get; set; }
+
+        public TestStatuses TestStatus { get { return TestSuites.GetOveralStatus(); } }
     }
 }

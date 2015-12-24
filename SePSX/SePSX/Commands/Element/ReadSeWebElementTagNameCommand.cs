@@ -9,10 +9,8 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
-    using OpenQA.Selenium;
-    
+
     /// <summary>
     /// Description of ReadSeWebElementTagNameCommand.
     /// </summary>
@@ -26,9 +24,9 @@ namespace SePSX.Commands
         
         protected override void ProcessRecord()
         {
-            this.checkInputWebElementOnly(this.InputObject);
+            checkInputWebElementOnly(InputObject);
             
-            SeReadWebElementTagNameCommand command =
+            var command =
                 new SeReadWebElementTagNameCommand(this);
             command.Execute();
             //SeHelper.GetWebElementTagName(this, ((IWebElement[])this.InputObject));

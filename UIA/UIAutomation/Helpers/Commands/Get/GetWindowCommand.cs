@@ -11,9 +11,7 @@ namespace UIAutomation.Helpers.Commands
 {
     using System;
     using System.Management.Automation;
-    using System.Collections;
     using System.Collections.Generic;
-    using System.Windows.Media.Imaging;
     using UIAutomation.Commands;
     
     /// <summary>
@@ -71,8 +69,7 @@ namespace UIAutomation.Helpers.Commands
                 
                 try {
                     
-                    var windowSearcher =
-                        AutomationFactory.GetSearcherImpl<WindowSearcher>();
+                    var windowSearcher = AutomationFactory.GetSearcherImpl<WindowSearcher>();
                     
     //                var windowSearcherData =
     //                    new WindowSearcherData {
@@ -106,10 +103,9 @@ namespace UIAutomation.Helpers.Commands
                     windowSearcherData.Recurse = cmdlet.Recurse;
                     windowSearcherData.WaitNoWindow = cmdlet.WaitNoWindow;
                     
-                    returnedWindows =
-                        windowSearcher.GetElements(
-                            windowSearcherData,
-                            cmdlet.Timeout);
+                    returnedWindows = windowSearcher.GetElements(
+                        windowSearcherData,
+                        cmdlet.Timeout);
                     
                     windowSearcherData = null;
                 }
@@ -117,16 +113,11 @@ namespace UIAutomation.Helpers.Commands
                 
                 try {
                     if (null != returnedWindows && returnedWindows.Count > 0) {
-                        
-                        if (cmdlet.TestMode) {
-                            
+                        if (cmdlet.TestMode)
                             cmdlet.WriteObject(cmdlet, !cmdlet.WaitNoWindow);
-                            
-                        } else {
-                            
+                        else
                             cmdlet.WriteObject(cmdlet, returnedWindows);
-                        }
-                        
+
                         // 20140121
                         returnedWindows.Clear();
                         returnedWindows = null;

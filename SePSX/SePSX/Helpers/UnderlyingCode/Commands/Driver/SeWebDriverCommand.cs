@@ -9,10 +9,6 @@
 
 namespace SePSX
 {
-    using System;
-    using System.Management.Automation;
-    using SePSX.Commands;
-    
     /// <summary>
     /// Description of SeWebDriverCommand.
     /// </summary>

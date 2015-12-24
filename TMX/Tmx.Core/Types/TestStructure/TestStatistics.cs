@@ -9,12 +9,10 @@
 
 namespace Tmx.Core
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using Tmx.Interfaces;
-    using Tmx.Interfaces.TestStructure;
-    
+    using Interfaces;
+    using Interfaces.TestStructure;
+
     /// <summary>
     /// Description of TestStatistics.
     /// </summary>
@@ -60,22 +58,47 @@ namespace Tmx.Core
                 
                 testScenarioStatistics.All = scenario.TestResults.Count;
                 foreach (var testResult in scenario.TestResults) {
+//                    if (skipAutomatic)
+//                        if (TestResultOrigins.Automatic == testResult.Origin)
+//                            continue;
+                    if (skipAutomatic && TestResultOrigins.Automatic == testResult.Origin)
+                        continue;
                     
-                    if (skipAutomatic)
-                        if (TestResultOrigins.Automatic == testResult.Origin)
-                            continue;
+//                    if (testResult.enStatus == TestResultStatuses.Passed || testResult.enStatus == TestResultStatuses.KnownIssue) {
+//                        testScenarioStatistics.Passed++;
+//                        if (testResult.enStatus == TestResultStatuses.KnownIssue)
+//                            testScenarioStatistics.PassedButWithBadSmell++;
+//                    }
+//                    switch (testResult.enStatus) {
+//                        case TestResultStatuses.Passed:
+//                        case TestResultStatuses.KnownIssue:
+//                            testScenarioStatistics.Passed++;
+//                            if (testResult.enStatus == TestResultStatuses.KnownIssue)
+//                                testScenarioStatistics.PassedButWithBadSmell++;
+//                            break;
+//                    }
+//                    if (testResult.enStatus == TestResultStatuses.Failed)
+//                        testScenarioStatistics.Failed++;
                     
-                    if (testResult.enStatus == TestResultStatuses.Passed || testResult.enStatus == TestResultStatuses.KnownIssue) {
-                        testScenarioStatistics.Passed++;
-                        if (testResult.enStatus == TestResultStatuses.KnownIssue)
+                    switch (testResult.enStatus) {
+                        case TestStatuses.Passed:
+                            testScenarioStatistics.Passed++;
+                            break;
+                        case TestStatuses.Failed:
+                            testScenarioStatistics.Failed++;
+                            break;
+                        case TestStatuses.KnownIssue:
                             testScenarioStatistics.PassedButWithBadSmell++;
+                            break;
+//                        case TestResultStatuses.NotTested:
+//                            testScenarioStatistics.NotTested++;
+//                            break;
                     }
-                    if (testResult.enStatus == TestResultStatuses.Failed)
-                        testScenarioStatistics.Failed++;
+                    
                     testScenarioStatistics.TimeSpent += testResult.TimeSpent;
                 }
             }
-            testScenarioStatistics.NotTested = testScenarioStatistics.All - testScenarioStatistics.Passed - testScenarioStatistics.Failed;
+            testScenarioStatistics.NotTested = testScenarioStatistics.All - testScenarioStatistics.Passed - testScenarioStatistics.Failed -testScenarioStatistics.PassedButWithBadSmell;
             scenario.Statistics = testScenarioStatistics;
             setTestScenarioStatus(scenario);
             return testScenarioStatistics;
@@ -83,16 +106,16 @@ namespace Tmx.Core
         
         void setTestSuiteStatus(ITestSuite suite)
         {
-            suite.enStatus = suite.Statistics.PassedButWithBadSmell > 0 ? TestSuiteStatuses.KnownIssue :
-                suite.Statistics.Failed > 0 ? TestSuiteStatuses.Failed :
-                suite.Statistics.Passed > 0 ? TestSuiteStatuses.Passed : TestSuiteStatuses.NotTested;
+            suite.enStatus = suite.Statistics.PassedButWithBadSmell > 0 ? TestStatuses.KnownIssue :
+                suite.Statistics.Failed > 0 ? TestStatuses.Failed :
+                suite.Statistics.Passed > 0 ? TestStatuses.Passed : TestStatuses.NotRun;
         }
         
         void setTestScenarioStatus(ITestScenario scenario)
         {
-            scenario.enStatus = scenario.Statistics.PassedButWithBadSmell > 0 ? TestScenarioStatuses.KnownIssue :
-                scenario.Statistics.Failed > 0 ? TestScenarioStatuses.Failed :
-                scenario.Statistics.Passed > 0 ? TestScenarioStatuses.Passed : TestScenarioStatuses.NotTested;
+            scenario.enStatus = scenario.Statistics.PassedButWithBadSmell > 0 ? TestStatuses.KnownIssue :
+                scenario.Statistics.Failed > 0 ? TestStatuses.Failed :
+                scenario.Statistics.Passed > 0 ? TestStatuses.Passed : TestStatuses.NotRun;
         }
     }
 }

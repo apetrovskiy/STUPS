@@ -9,8 +9,6 @@
 
 namespace Tmx
 {
-    using System;
-    using System.Linq;
     using System.Management.Automation;
     
     /// <summary>

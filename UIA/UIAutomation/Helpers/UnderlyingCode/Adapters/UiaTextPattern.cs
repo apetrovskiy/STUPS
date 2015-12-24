@@ -10,7 +10,6 @@
 namespace UIAutomation
 {
     extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
-    using System;
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
     // using System.Windows.Automation.Text;
     using System.Windows;
@@ -25,19 +24,19 @@ namespace UIAutomation
         
         public UiaTextPattern(IUiElement element, classic.TextPattern textPattern)
         {
-            this._textPattern = textPattern;
-            this._element = element;
+            _textPattern = textPattern;
+            _element = element;
             //this._useCache = useCache;
         }
         
         public UiaTextPattern(IUiElement element)
         {
-            this._element = element;
+            _element = element;
         }
         
         public UiaTextPattern(classic.TextPattern textPattern)
         {
-            this._textPattern = textPattern;
+            _textPattern = textPattern;
         }
         
         public static readonly object MixedAttributeValue = classic.TextPatternIdentifiers.MixedAttributeValue;
@@ -81,12 +80,12 @@ namespace UIAutomation
             get {
                 // SafeTextRangeHandle hTextRange = UiaCoreApi.TextPattern_get_DocumentRange(this._hPattern);
                 // return TextPatternRange.Wrap(hTextRange, this);
-                return this._textPattern.DocumentRange;
+                return _textPattern.DocumentRange;
             }
         }
         public classic.SupportedTextSelection SupportedTextSelection {
             // get { return UiaCoreApi.TextPattern_get_SupportedTextSelection(this._hPattern); }
-            get { return this._textPattern.SupportedTextSelection; }
+            get { return _textPattern.SupportedTextSelection; }
         }
 //        internal UiaTextPattern(AutomationElement el, SafePatternHandle hPattern) : base(el, hPattern)
 //        {
@@ -97,13 +96,13 @@ namespace UIAutomation
         {
             // SafeTextRangeHandle[] hTextRanges = UiaCoreApi.TextPattern_GetSelection(this._hPattern);
             // return TextPatternRange.Wrap(hTextRanges, this);
-            return this._textPattern.GetSelection();
+            return _textPattern.GetSelection();
         }
         public virtual classic.Text.TextPatternRange[] GetVisibleRanges()
         {
             // SafeTextRangeHandle[] hTextRanges = UiaCoreApi.TextPattern_GetVisibleRanges(this._hPattern);
             // return TextPatternRange.Wrap(hTextRanges, this);
-            return this._textPattern.GetVisibleRanges();
+            return _textPattern.GetVisibleRanges();
         }
         
         public virtual classic.Text.TextPatternRange RangeFromChild(IUiElement childElement)
@@ -115,7 +114,7 @@ namespace UIAutomation
 //            return TextPatternRange.Wrap(hTextRange, this);
             // 20140102
             // return this._textPattern.RangeFromChild(childElement.GetSourceElement());
-            return this._textPattern.RangeFromChild(childElement.GetSourceElement() as classic.AutomationElement);
+            return _textPattern.RangeFromChild(childElement.GetSourceElement() as classic.AutomationElement);
         }
         public virtual classic.Text.TextPatternRange RangeFromPoint(Point screenLocation)
         {
@@ -125,7 +124,7 @@ namespace UIAutomation
 //            }
 //            SafeTextRangeHandle hTextRange = UiaCoreApi.TextPattern_RangeFromPoint(this._hPattern, screenLocation);
 //            return TextPatternRange.Wrap(hTextRange, this);
-            return this._textPattern.RangeFromPoint(screenLocation);
+            return _textPattern.RangeFromPoint(screenLocation);
         }
 //        static internal object Wrap(AutomationElement el, SafePatternHandle hPattern, bool cached)
 //        {
@@ -141,22 +140,22 @@ namespace UIAutomation
         
         public void SetParentElement(IUiElement element)
         {
-            this._element = element;
+            _element = element;
         }
         
         public IUiElement GetParentElement()
         {
-            return this._element;
+            return _element;
         }
         
         public void SetSourcePattern(object pattern)
         {
-            this._textPattern = pattern as classic.TextPattern;
+            _textPattern = pattern as classic.TextPattern;
         }
         
         public object GetSourcePattern()
         {
-            return this._textPattern;
+            return _textPattern;
         }
     }
 }

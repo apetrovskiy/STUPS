@@ -9,7 +9,6 @@
 
 namespace UIAutomation
 {
-    using System;
     using Castle.DynamicProxy;
     
     /// <summary>

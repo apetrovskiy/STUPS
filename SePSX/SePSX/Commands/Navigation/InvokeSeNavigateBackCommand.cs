@@ -9,7 +9,6 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
     using OpenQA.Selenium;
     
@@ -26,10 +25,10 @@ namespace SePSX.Commands
         
         protected override void ProcessRecord()
         {
-            this.checkInputWebDriver(true);
+            CheckInputWebDriver(true);
             
             //SeHelper.NavigateBack(this, ((IWebDriver[])this.InputObject));
-            SeInvokeNavigateBackCommand command =
+            var command =
                 new SeInvokeNavigateBackCommand(this);
             command.Execute();
             //SeHelper.NavigateBack(this, this.InputObject);

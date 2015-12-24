@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{0279EBA4-1E49-41A5-8570-AF7C636E6AFC}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>TMXUnitTests</RootNamespace>
+    <AssemblyName>TMXUnitTests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <DebugType>None</DebugType>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugSymbols>false</DebugSymbols>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release35' ">
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Release35' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <BaseAddress>4194304</BaseAddress>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>Full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>None</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>None</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Gallio, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\mbunit.3.4.14.0\lib\net35\Gallio.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Gallio35, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\mbunit.3.4.14.0\lib\net35\Gallio35.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MbUnit, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\mbunit.3.4.14.0\lib\net35\MbUnit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MbUnit35, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\mbunit.3.4.14.0\lib\net35\MbUnit35.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>..\..\..\packages\NUnit.Engine.3.0.1\lib\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit-agent">
+      <HintPath>..\..\..\packages\NUnit.Engine.3.0.1\lib\nunit-agent.exe</HintPath>
+    </Reference>
+    <Reference Include="nunit-agent-x86">
+      <HintPath>..\..\..\packages\NUnit.Engine.3.0.1\lib\nunit-agent-x86.exe</HintPath>
+    </Reference>
+    <Reference Include="nunit.engine">
+      <HintPath>..\..\..\packages\NUnit.Engine.3.0.1\lib\nunit.engine.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.engine.api">
+      <HintPath>..\..\..\packages\NUnit.Engine.3.0.1\lib\nunit.engine.api.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.0.5813.39033, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NUnit.3.0.1\lib\net20\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Management.Automation" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\TMX\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Commands\Logging\NewTMXLoggerCommandTestFixture.cs" />
+    <Compile Include="Commands\Status\GetTMXTestResultDetailsCommandTestFixture.cs" />
+    <Compile Include="Commands\Status\GetTMXTestResultStatusCommandTestFixture.cs" />
+    <Compile Include="Commands\Status\GetTMXTestScenarioStatusCommandTestFixture.cs" />
+    <Compile Include="Commands\Status\GetTMXTestStatisticsCommandTestFixture.cs" />
+    <Compile Include="Commands\Status\GetTMXTestSuiteStatusCommandTestFixture.cs" />
+    <Compile Include="Commands\TestClient\RegisterTmxSystemUnderTestCommandTestFixture.cs" />
+    <Compile Include="Commands\TestExecution\InvokeTMXTestCaseCommandTestFixture.cs" />
+    <Compile Include="Commands\TestExecution\InvokeTMXTestScenarioCommandTestFixture.cs" />
+    <Compile Include="Commands\TestExecution\InvokeTMXTestSuiteCommandTestFixture.cs" />
+    <Compile Include="Commands\TestResults\ImportTMXTestResultsCommandTestFixture.cs" />
+    <Compile Include="Commands\TestStructure\AddTMXSimpleTestResultCommandTestFixture.cs" />
+    <Compile Include="Commands\TestStructure\AddTMXTestCaseCommandTestFixture.cs" />
+    <Compile Include="Commands\TestStructure\AddTMXTestResultDetailCommandTestFixture.cs" />
+    <Compile Include="Commands\TestStructure\AddTMXTestScenarioCommandTestFixture.cs" />
+    <Compile Include="Commands\TestStructure\CloseTMXTestResultCommandTestFixture.cs" />
+    <Compile Include="Commands\TestStructure\GetTMXTestCaseCommandTestFixture.cs" />
+    <Compile Include="Commands\TestStructure\NewTMXTestPlatformCommandTestFixture.cs" />
+    <Compile Include="Commands\TestStructure\NewTMXTestSuiteCommandTestFixture.cs" />
+    <Compile Include="Commands\TestStructure\OpenTMXTestScenarioCommandTestFixture.cs" />
+    <Compile Include="Commands\TestStructure\OpenTMXTestSuiteCommandTestFixture.cs" />
+    <Compile Include="Commands\TestStructure\RemoveTMXTestCaseCommandTestFixture.cs" />
+    <Compile Include="Commands\TestStructure\SetTMXCurrentTestResultCommandTestFixture.cs" />
+    <Compile Include="Commands\TestStructure\SetTMXTestCaseCommandTestFixture.cs" />
+    <Compile Include="Helpers\UnitTestingHelper.cs" />
+    <Compile Include="ParamChecks\Logging\NewTMXLoggerCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\Status\GetTMXTestResultDetailsCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\Status\GetTMXTestResultStatusCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\Status\GetTMXTestStatisticsCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\TestExecution\InvokeTMXTestCaseCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\TestExecution\InvokeTMXTestScenarioCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\TestExecution\InvokeTMXTestSuiteCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\TestResults\ImportTMXTestResultsCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\TestStructure\AddTMXSimpleTestResultCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\TestStructure\NewTMXTestPlatformCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\TestStructure\SetTMXCurrentTestResultCommandTestFixture.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
+      <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
+      <Name>PSTestLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tmx.Client.Library\Tmx.Client.Library.csproj">
+      <Project>{6943EC2F-CB75-4F9B-B83C-A664400052A7}</Project>
+      <Name>Tmx.Client.Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tmx.Core\Tmx.Core.csproj">
+      <Project>{069651A0-FE15-42E2-89D5-9A761A47B143}</Project>
+      <Name>Tmx.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tmx.Interfaces\Tmx.Interfaces.csproj">
+      <Project>{9C5DA25F-6A59-4F97-B107-64DD549CB800}</Project>
+      <Name>Tmx.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tmx\Tmx.csproj">
+      <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>
+      <Name>Tmx</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helpers\UnderlyingCode\Commands\Status\" />
+    <Folder Include="Helpers\UnderlyingCode\Commands\TestClient\" />
+    <Folder Include="ParamChecks\Configuration\" />
+    <Folder Include="ParamChecks\Database\" />
+    <Folder Include="ParamChecks\Repository\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+</Project>

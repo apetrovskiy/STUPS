@@ -9,19 +9,13 @@
 
 namespace Tmx.Core.Types.Remoting
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Xml.Linq;
-    using Tmx.Interfaces.Remoting;
-    using Tmx.Interfaces.TestStructure;
-    
+    using Interfaces.Remoting;
+
     /// <summary>
     /// Description of TestResultsDataObject.
     /// </summary>
     public class TestResultsDataObject : ITestResultsDataObject
     {
         public string Data { get; set; }
-        // public XDocument Doc { get; set; }
-        // public List<ITestSuite> Data { get; set; }
     }
 }

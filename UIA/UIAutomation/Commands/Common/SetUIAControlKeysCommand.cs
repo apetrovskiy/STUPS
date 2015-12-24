@@ -13,8 +13,7 @@ namespace UIAutomation.Commands
 {
     using System;
     using System.Management.Automation;
-    using UIAutomation.Helpers.Commands;
-    
+
     /// <summary>
     /// Description of SetUiaControlKeysCommand.
     /// </summary>
@@ -81,7 +80,7 @@ namespace UIAutomation.Commands
     //                        eKeys.Message);
     //                WriteError(this, err, true);
                     
-                    this.WriteError(
+                    WriteError(
                         this,
                         "Failed to send keys to a control",
                         "SendKeysFailed",

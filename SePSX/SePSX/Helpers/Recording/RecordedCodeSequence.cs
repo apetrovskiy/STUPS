@@ -12,7 +12,6 @@ using System.Linq;
 
 namespace SePSX
 {
-    using System;
     using PSTestLib;
     
     /// <summary>
@@ -22,32 +21,32 @@ namespace SePSX
     {
         public RecordedCodeSequence()
         {
-            this.Items =
-                new System.Collections.Generic.List<IRecordedItem>();
-            this.Header =
-                new System.Collections.Generic.List<string>();
-            this.Data =
-                new System.Collections.Generic.List<string>();
-            this.Footer =
-                new System.Collections.Generic.List<string>();
-            this.Code =
-                new System.Collections.Generic.List<string>();
+            Items =
+                new List<IRecordedItem>();
+            Header =
+                new List<string>();
+            Data =
+                new List<string>();
+            Footer =
+                new List<string>();
+            Code =
+                new List<string>();
         }
         
-        public System.Collections.Generic.List<IRecordedItem> Items { get; set; }
-        public System.Collections.Generic.List<string> Header { get; set; }
-        public System.Collections.Generic.List<string> Data { get; set; }
-        public System.Collections.Generic.List<string> Footer { get; set; }
-        public System.Collections.Generic.List<string> Code { get; set; }
+        public List<IRecordedItem> Items { get; set; }
+        public List<string> Header { get; set; }
+        public List<string> Data { get; set; }
+        public List<string> Footer { get; set; }
+        public List<string> Code { get; set; }
         
         public bool ReadyToProduceCode { get; set; }
         public bool CodeProduced { get; set; }
         
         public bool ContainsDataItem()
         {
-            bool result = false;
+            var result = false;
             
-            foreach (var element in this.Items) {
+            foreach (var element in Items) {
                 if (null != (element as RecordedData)) {
                     result = true;
                     break;
@@ -57,7 +56,7 @@ namespace SePSX
             return result;
         }
         
-        private string convertListToString(IEnumerable<string> list)
+        private string ConvertListToString(IEnumerable<string> list)
         {
             return list.Aggregate(string.Empty, (current, listItem) => current + listItem);
             /*
@@ -74,18 +73,18 @@ namespace SePSX
 
         public string GenerateCode(CodeAmount codeAmount)
         {
-            string result = string.Empty;
+            var result = string.Empty;
             
             if (CodeAmount.HeaderDataFooterCode == codeAmount) {
-                result += this.convertListToString(this.Header);
+                result += ConvertListToString(Header);
             }
             if (CodeAmount.DataCode == codeAmount || CodeAmount.HeaderDataFooterCode == codeAmount) {
-                result += this.convertListToString(this.Data);
+                result += ConvertListToString(Data);
             }
             if (CodeAmount.HeaderDataFooterCode == codeAmount) {
-                result += this.convertListToString(this.Footer);
+                result += ConvertListToString(Footer);
             }
-            result += this.convertListToString(this.Code);
+            result += ConvertListToString(Code);
             
             return result;
         }

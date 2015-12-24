@@ -9,7 +9,6 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
     using OpenQA.Selenium;
     
@@ -22,9 +21,9 @@ namespace SePSX.Commands
     {
         public SetSeWebDriverTimeoutCommand()
         {
-            this.ImplicitlyWaitTimeout = 0;
-            this.PageLoadTimeout = 0;
-            this.ScriptTimeout = 0;
+            ImplicitlyWaitTimeout = 0;
+            PageLoadTimeout = 0;
+            ScriptTimeout = 0;
         }
         
         #region Parameters
@@ -43,9 +42,9 @@ namespace SePSX.Commands
         
         protected override void ProcessRecord()
         {
-            this.checkInputWebDriver(true);
+            CheckInputWebDriver(true);
             
-            SeSetWebDriverTimeoutCommand command =
+            var command =
                 new SeSetWebDriverTimeoutCommand(this);
             command.Execute();
 //            if (0 != this.ImplicitlyWaitTimeout) {

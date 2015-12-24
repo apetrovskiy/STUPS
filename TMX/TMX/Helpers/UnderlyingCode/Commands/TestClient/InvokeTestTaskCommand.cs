@@ -9,15 +9,17 @@
 
 namespace Tmx
 {
-    using System;
     using System.Management.Automation;
-    using System.Linq;
-    using Tmx;
-    using Tmx.Client;
-    using Tmx.Core;
-    using Tmx.Interfaces.Remoting;
-    using Tmx.Commands;
-    
+    using Client;
+    using Client.Library.Helpers;
+    using Client.Library.ObjectModel;
+    using Commands;
+    using Core;
+    using Core.Proxy;
+    using Interfaces.ExtensionMethods;
+    using Interfaces.Remoting;
+    using Interfaces.TestStructure;
+
     /// <summary>
     /// Description of InvokeTestTaskCommand.
     /// </summary>
@@ -37,39 +39,61 @@ namespace Tmx
             if (task.IsFinished())
                 cmdlet.WriteError(cmdlet, "Task '" + task.Name + "' has been already processed", "AlreadyProcessed", ErrorCategory.InvalidData, true);
             
-            loadCommonData();
-            runTask(task);
-            updateTask(task);
-            sendTestResults();
+            LoadCommonData();
+            RunTask(task);
+
+            //// 20150907
+            //if (task.IsCritical && TestStatuses.Failed == TestData.TestSuites.GetOveralStatus())
+            //    task.TaskStatus = TestTaskStatuses.FailedByTestResults;
+            // 20150910
+            task.CheckTestStatus();
+
+            UpdateTask(task);
+            SendTestResults();
             ClientSettings.Instance.CurrentTask = null;
         }
         
-        void loadCommonData()
+        void LoadCommonData()
         {
-            var commonDataLoader = new CommonDataLoader(new RestRequestCreator());
-            // 20141030
-            // CommonData.Data = commonDataLoader.Load();
+            // 20150918
+            // var commonDataLoader = new CommonDataLoader(new RestRequestCreator());
+            // var commonDataLoader = new CommonDataLoader();
+            var commonDataLoader = ProxyFactory.Get<CommonDataLoader>();
             ClientSettings.Instance.CommonData.Data = commonDataLoader.Load();
         }
         
-        void runTask(ITestTask task)
+        void RunTask(ITestTask task)
         {
-            var taskRunner = new TaskRunner();
+            // var taskRunner = new TaskRunner();
+            var taskRunner = ProxyFactory.Get<TaskRunner>();
             var runResult = taskRunner.Run(task);
             // 20150112
             // task.TaskFinished = true
-            task.TaskStatus = runResult ? TestTaskStatuses.CompletedSuccessfully : TestTaskStatuses.Interrupted;
+            task.TaskStatus = runResult ? TestTaskStatuses.CompletedSuccessfully : TestTaskStatuses.ExecutionFailed;
+            //// 20150908
+            //if (TestStatuses.Failed == TestData.TestSuites.GetOveralStatus())
+            //    task.TaskStatus = TestTaskStatuses.FailedByTestResults;
+            // 20150910
+            //if (task.IsCritical && TestStatuses.Failed == TestData.TestSuites.GetOveralStatus())
+            //    task.TaskStatus = TestTaskStatuses.FailedByTestResults;
+            task.CheckTestStatus();
         }
         
-        void updateTask(ITestTask task)
+        void UpdateTask(ITestTask task)
         {
-            var taskUpdater = new TaskUpdater(new RestRequestCreator());
+            // 20150918
+            // var taskUpdater = new TaskUpdater(new RestRequestCreator());
+            // var taskUpdater = new TaskUpdater();
+            var taskUpdater = ProxyFactory.Get<TaskUpdater>();
             taskUpdater.UpdateTask(task);
         }
         
-        void sendTestResults()
+        void SendTestResults()
         {
-            var testResultsSender = new TestResultsSender(new RestRequestCreator());
+            // 20150918
+            // var testResultsSender = new TestResultsSender(new RestRequestCreator());
+            // var testResultsSender = new TestResultsSender();
+            var testResultsSender = ProxyFactory.Get<TestResultsSender>();
             var result = testResultsSender.SendTestResults();
             if (result)
                 TestData.ResetData();

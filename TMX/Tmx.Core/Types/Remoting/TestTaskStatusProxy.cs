@@ -10,8 +10,9 @@
 namespace Tmx.Core.Types.Remoting
 {
     using System;
-    using Tmx.Interfaces.Remoting;
-    
+    using Interfaces.Remoting;
+    using Interfaces.TestStructure;
+
     /// <summary>
     /// Description of TestTaskStatusProxy.
     /// </summary>
@@ -19,6 +20,7 @@ namespace Tmx.Core.Types.Remoting
     {
         public int Id { get; set; }
         public Guid ClientId { get; set; }
+        public TestStatuses TestStatus { get; set; }
         public TestTaskStatuses TaskStatus { get; set; }
         public bool TaskFinished { get; set; }
     }

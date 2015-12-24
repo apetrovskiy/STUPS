@@ -9,8 +9,6 @@
 
 namespace Tmx.Core
 {
-    using System;
-    
     /// <summary>
     /// Description of ObjectFactory.
     /// </summary>

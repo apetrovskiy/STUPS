@@ -1,0 +1,50 @@
+﻿<html>
+    <head>
+        <title>Workflows</title>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+        </style>
+        <meta http-equiv="refresh" content="10">
+    </head>
+    <body>
+        <a href="/">Home</a>
+        <br>
+        <br>
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Test lab</th>
+                <th>Is Default?</th>
+                <th>Default data</th>
+            </tr>
+            {% for workflow in @Model.Workflows -%}
+                <tr>
+                <td>{{ workflow.Name }}</td>
+                <td>{{ workflow.Description }}</td>
+                <td>{{ workflow.Test_Lab_Id }}</td>
+                <td>{{ workflow.Is_Default }}</td>
+                <td>
+                    <table>
+                    {% assign dataItems = workflow.Default_Data.Data | sort:'Key' -%}
+                         <!-- <tr>
+                            <th>Key</th>
+                            <th>Value</th>
+                        </tr> -->
+                    {% for dataItem in dataItems -%}
+                        <tr>
+                        <td>{{ dataItem }}</td>
+                        <!-- <td>{{ dataItem.Get_Key() }}</td>
+                        <td>{{ dataItem.Value() }}</td> -->
+                        </tr>
+                    {% endfor -%}
+                    </table>
+                </td>
+                </tr>
+            {% endfor -%}
+        </table>
+    </body>
+</html>

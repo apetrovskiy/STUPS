@@ -12,17 +12,18 @@ namespace Tmx.Interfaces.Remoting
     using System;
     using System.Collections.Generic;
     using System.Xml;
+    using System.Xml.Schema;
     using System.Xml.Serialization;
-    using Tmx.Interfaces.TestStructure;
-    
+    using TestStructure;
+
     /// <summary>
     /// Description of ListOfTestSuites.
     /// </summary>
     public class ListOfTestSuites : List<ITestSuite>, IXmlSerializable
     {
-        public ListOfTestSuites() : base() { }
-        
-        public System.Xml.Schema.XmlSchema GetSchema() { return null; }
+        // public ListOfTestSuites() : base() { }
+
+        public XmlSchema GetSchema() { return null; }
 
         public void ReadXml(XmlReader reader)
         {

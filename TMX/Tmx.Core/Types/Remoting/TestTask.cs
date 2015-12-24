@@ -11,16 +11,20 @@ namespace Tmx.Core.Types.Remoting
 {
     using System;
     using System.Collections.Generic;
-    using Tmx.Interfaces.Remoting;
-    
+    using Interfaces.ExtensionMethods;
+    using Interfaces.Remoting;
+    using Interfaces.TestStructure;
+
     /// <summary>
     /// Description of TestTask.
     /// </summary>
     public class TestTask : ITestTask
     {
-        TimeSpan _timeTaken;
+        DateTime _finishTime;
         
+        // 20150904
         public TestTask()
+        // public TestTask(TestTaskRuntimeTypes taskRunTimeType)
         {
             ActionParameters = new Dictionary<string, string>();
             BeforeActionParameters = new Dictionary<string, string>();
@@ -31,7 +35,12 @@ namespace Tmx.Core.Types.Remoting
             // 20141211
             // temporary
             // TODO: change the behavior
+            // 20150904
             TaskRuntimeType = TestTaskRuntimeTypes.Powershell;
+            // TaskRuntimeType = taskRunTimeType;
+
+            // 20150908
+            TestStatus = TestStatuses.NotRun;
         }
         
         public int Id { get; set; }
@@ -43,7 +52,8 @@ namespace Tmx.Core.Types.Remoting
         public DateTime StartTime { get; set; }
         public int RetryCount { get; set; }
         public bool IsCritical { get; set; }
-        
+        public bool IsCancel { get; set; }
+
         public TestTaskExecutionTypes TaskType { get; set; }
         // 20141211
         public TestTaskRuntimeTypes TaskRuntimeType { get; set; }
@@ -64,18 +74,19 @@ namespace Tmx.Core.Types.Remoting
         public IDictionary<string, string> PreviousTaskResult { get; set; }
         public IDictionary<string, string> TaskResult { get; set; }
         public Guid ClientId { get; set; }
+        public TestStatuses TestStatus { get; set; }
         public Guid WorkflowId { get; set; }
         public Guid TestRunId { get; set; }
-        // public TimeSpan TimeTaken { get; set; }
-        // internal TimeSpan TimeTaken { get; set; }
-        public TimeSpan GetTimeTaken()
-        {
-            return _timeTaken;
-        }
         
-        public void SetTimeTaken()
+        public string GetTimeTaken()
         {
-            _timeTaken = DateTime.Now - StartTime;
+            return _finishTime.GetTimeTaken(StartTime);
+        }
+
+        public void SetFinishTime()
+        {
+            _finishTime = DateTime.Now;
+            TaskFinished = true;
         }
         
         // 20141020 squeezing a task to its proxy

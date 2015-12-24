@@ -22,7 +22,7 @@ namespace UIAutomation
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading;
-    using UIAutomation.Commands;
+    using Commands;
     using PSTestLib;
 
     #region declarations
@@ -172,7 +172,7 @@ namespace UIAutomation
                 // if (whereTheHandle.Current.NativeWindowHandle == 0) {
                 if (whereTheHandle.GetCurrent().NativeWindowHandle == 0) {
                     
-                    this.WriteError(
+                    WriteError(
                         this,
                         "The handle of this control equals to zero",
                         "ZeroHandle",

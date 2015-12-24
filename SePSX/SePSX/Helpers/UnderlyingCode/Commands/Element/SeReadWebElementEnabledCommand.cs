@@ -9,9 +9,7 @@
 
 namespace SePSX
 {
-    using System;
-    using System.Management.Automation;
-    using SePSX.Commands;
+    using Commands;
     using OpenQA.Selenium;
     
     /// <summary>
@@ -29,8 +27,8 @@ namespace SePSX
 //                ((ReadSeWebElementEnabledCommand)this.Cmdlet),
 //                ((IWebElement[])((ReadSeWebElementEnabledCommand)this.Cmdlet).InputObject));
             SeHelper.GetWebElementIsEnabled(
-                this.Cmdlet,
-                ((IWebElement[])((ReadSeWebElementEnabledCommand)this.Cmdlet).InputObject));
+                Cmdlet,
+                ((IWebElement[])((ReadSeWebElementEnabledCommand)Cmdlet).InputObject));
         }
     }
 }

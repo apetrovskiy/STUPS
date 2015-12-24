@@ -9,11 +9,8 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
-    using OpenQA.Selenium;
-    using OpenQA.Selenium.Firefox;
-    
+
     /// <summary>
     /// Description of AddSeFirefoxExtensionCommand.
     /// </summary>
@@ -33,10 +30,10 @@ namespace SePSX.Commands
         protected override void ProcessRecord()
         {
             // check input options
-            this.checkInputFirefoxProfile(true);
+            CheckInputFirefoxProfile(true);
             
             // add an extension
-            SeAddFirefoxExtensionCommand command =
+            var command =
                 new SeAddFirefoxExtensionCommand(this);
             command.Execute();
         }

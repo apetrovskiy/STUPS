@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <Import Project="..\..\..\packages\xunit.core.2.1.0\build\portable-net45+win8+wp8+wpa81\xunit.core.props" Condition="Exists('..\..\..\packages\xunit.core.2.1.0\build\portable-net45+win8+wp8+wpa81\xunit.core.props')" />
+  <PropertyGroup>
+    <ProjectGuid>{4270678E-76B2-4B90-8D00-ABE4726B4589}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>UIAutomationUnitTests</RootNamespace>
+    <AssemblyName>UIAutomationUnitTests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <DebugType>None</DebugType>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>false</DebugSymbols>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release35' ">
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Release35' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <FileAlignment>4096</FileAlignment>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <FileAlignment>4096</FileAlignment>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|AnyCPU'">
+    <FileAlignment>4096</FileAlignment>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Gallio">
+      <HintPath>..\..\..\..\..\Program Files\Gallio\bin\Gallio.dll</HintPath>
+    </Reference>
+    <Reference Include="MbUnit">
+      <HintPath>..\..\..\..\..\Program Files\Gallio\bin\MbUnit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Moq.4.2.1510.2205\lib\net35\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\..\..\packages\Ninject.3.2.2.0\lib\net35\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.NamedScope">
+      <HintPath>..\..\..\packages\Ninject.Extensions.NamedScope.3.2.0.0\lib\net35\Ninject.Extensions.NamedScope.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.MockingKernel">
+      <HintPath>..\..\..\packages\Ninject.MockingKernel.3.2.2.0\lib\net35-full\Ninject.MockingKernel.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.MockingKernel.Moq">
+      <HintPath>..\..\..\packages\Ninject.MockingKernel.Moq.3.2.2.0\lib\net35-full\Ninject.MockingKernel.Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="NSubstitute, Version=1.9.2.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NSubstitute.1.9.2.0\lib\net35\NSubstitute.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.0.5813.39033, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NUnit.3.0.1\lib\net20\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management.Automation" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UIAutomationClient" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsInput">
+      <HintPath>..\..\..\packages\InputSimulator.1.0.4.0\lib\net20\WindowsInput.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.abstractions">
+      <HintPath>..\..\..\packages\xunit.abstractions.2.0.0\lib\net35\xunit.abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.assert">
+      <HintPath>..\..\..\packages\xunit.assert.2.1.0\lib\portable-net45+win8+wp8+wpa81\xunit.assert.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.core">
+      <HintPath>..\..\..\packages\xunit.extensibility.core.2.1.0\lib\portable-net45+win8+wp8+wpa81\xunit.core.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.execution.desktop">
+      <HintPath>..\..\..\packages\xunit.extensibility.execution.2.1.0\lib\net45\xunit.execution.desktop.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\UIAutomation\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Commands\Common\HideUIACurrentHighlighterCommandTestFixture.cs" />
+    <Compile Include="Commands\Common\InvokeUIAControlContextMenuCommandTestFixture.cs" />
+    <Compile Include="Commands\Container\NewUIAContainerCommandTestFixture.cs" />
+    <Compile Include="Commands\Event\EventCmdletBaseTestFixture.cs" />
+    <Compile Include="Commands\Get\GetUiaButtonCommandTestFixture.cs" />
+    <Compile Include="Commands\Get\TestUIAControlStateCommandTestFixture.cs" />
+    <Compile Include="Commands\No\WaitUIANoWindowCommandTestFixture.cs" />
+    <Compile Include="Commands\Pattern\InvokeUIAToggleStateSetCommandTestFixture.cs" />
+    <Compile Include="Commands\Wait\WaitUIAControlIsEnabledCommandTestFixture.cs" />
+    <Compile Include="Commands\Wait\WaitUIAControlIsVisibleCommandTestFixture.cs" />
+    <Compile Include="Commands\Wait\WaitUIAControlStateCommandTestFixture.cs" />
+    <Compile Include="Commands\Wait\WaitUIAWindowCommandTestFixture.cs" />
+    <Compile Include="Commands\Wizard\AddUIAWizardStepCommandTestFixture.cs" />
+    <Compile Include="Commands\Wizard\NewUIAWizardCommandTestFixture.cs" />
+    <Compile Include="Fakes\ElementData.cs" />
+    <Compile Include="Fakes\FakeFactory.cs" />
+    <Compile Include="Fakes\FakeSourcePattern.cs" />
+    <Compile Include="Fakes\FakeUiElement.cs" />
+    <Compile Include="Fakes\IFakeUiElement.cs" />
+    <Compile Include="Fakes\PatternsData.cs" />
+    <Compile Include="Fakes\RealCodeCaller.cs" />
+    <Compile Include="Helpers\Inheritance\GetAutomationElementsWithFindAllTestFixture.cs" />
+    <Compile Include="Helpers\Inheritance\GetWindowCollectionByPidTestFixture.cs" />
+    <Compile Include="Helpers\Inheritance\Legacy\CommonCmdletBaseTestFixture.cs" />
+    <Compile Include="Helpers\Inheritance\new_code\GetControlTestFixture.cs" />
+    <Compile Include="Helpers\Inheritance\new_code\SearchByWildcardViaWin32TestFixture.cs" />
+    <Compile Include="Helpers\Inheritance\ReturnOnlyRightElementsTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModelViaPS\CommonPatternsTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModelViaPS\ISupportsDockPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModelViaPS\ISupportsExpandCollapseTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModelViaPS\ISupportsExtendedModelTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModelViaPS\ISupportsGridItemPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModelViaPS\ISupportsGridPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModelViaPS\ISupportsInvokePatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModelViaPS\ISupportsRangeValuePatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModelViaPS\ISupportsScrollItemPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModelViaPS\ISupportsScrollPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModelViaPS\ISupportsSelectionItemPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModelViaPS\ISupportsSelectionPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModelViaPS\ISupportsTableItemPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModelViaPS\ISupportsTablePatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModelViaPS\ISupportsTextPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModelViaPS\ISupportsTogglePatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModelViaPS\ISupportsTransformPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModelViaPS\ISupportsValuePatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModelViaPS\ISupportsWindowPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModelViaPS\NoPatternsTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModelViaPS\ObjectModelParametersTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\CommonPatternsTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsDockPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsExpandCollapseTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsExtendedModelTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsGridItemPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsGridPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsInvokePatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsRangeValuePatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsScrollItemPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsScrollPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsSelectionItemPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsSelectionPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsTableItemPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsTablePatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsTextPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsTogglePatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsTransformPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsValuePatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ISupportsWindowPatternTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\NoPatternsTestFixture.cs" />
+    <Compile Include="Helpers\ObjectModel\ObjectModelParametersTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Adapter\GetSupportedPatternsTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\ControlProviders\ControlFromWin32ProviderTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\elementOfPossibleControlTypeTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\getControlConditionsTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\NewModel\ControlSearchTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\NewModel\TimeoutManagerTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Searchers\SearchByContainsTextViaUiaTextFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Searchers\SearchByExactConditionsViaUiaTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Searchers\SearchByTextViaWin32TestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Searchers\SearchByWildcardOrRegexViaUiaTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Types\IsStepActiveTestFixture.cs" />
+    <Compile Include="Helpers\UnitTestingHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
+      <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
+      <Name>PSTestLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\PS\CmdletUnit\CmdletUnit.csproj">
+      <Project>{36F73FA0-C636-48CF-BB7A-FE10FE52C391}</Project>
+      <Name>CmdletUnit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\UIAutomation\UIAutomation.csproj">
+      <Project>{BF63F595-4A58-49E8-97F2-7701F51F0CD1}</Project>
+      <Name>UIAutomation</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands\Cache\" />
+    <Folder Include="Commands\Convert\" />
+    <Folder Include="Commands\Discovery\" />
+    <Folder Include="Commands\ExecutionPlan\" />
+    <Folder Include="Commands\Hotkey\" />
+    <Folder Include="Ninject\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+</Project>

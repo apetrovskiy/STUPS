@@ -9,10 +9,7 @@
 
 namespace Tmx
 {
-    using System;
-    using System.Management.Automation;
-    using System.Collections.Generic;
-    using Tmx.Interfaces;
+    using Interfaces;
     
     /// <summary>
     /// Description of TestConstant.
@@ -24,9 +21,9 @@ namespace Tmx
             object constantValue, 
             System.Type constantType)
         {
-            this.ConstantName = constantName;
-            this.ConstantValue = ConstantValue;
-            this.ConstantType = ConstantType;
+            ConstantName = constantName;
+            ConstantValue = ConstantValue;
+            ConstantType = ConstantType;
         }
         
         public TestConstant(
@@ -36,11 +33,11 @@ namespace Tmx
             string constantTag,
             string description)
         {
-            this.ConstantName = constantName;
-            this.ConstantValue = ConstantValue;
-            this.ConstantType = ConstantType;
-            this.ConstantTag = constantTag;
-            this.Description = description;
+            ConstantName = constantName;
+            ConstantValue = ConstantValue;
+            ConstantType = ConstantType;
+            ConstantTag = constantTag;
+            Description = description;
         }
         
         public int ConstantId { get; set; }

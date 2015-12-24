@@ -14,8 +14,7 @@ namespace UIAutomation.Commands
     using System.Management.Automation;
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
     using System.Collections.Generic;
-    using UIAutomation.Helpers.Commands;
-    
+
     /// <summary>
     /// Description of StartUiaCachedModeCommand.
     /// </summary>

@@ -15,7 +15,6 @@ namespace PSTestLib
     using System.Collections;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.Linq;
     using System.Windows.Automation;
     
     /// <summary>
@@ -566,40 +565,44 @@ namespace PSTestLib
             
             return result;
         }
+
+        // 20150915
+        //protected string ConvertHashtableToString(Hashtable hashtable)
+        //{
+        //    string result = string.Empty;
+            
+        //    if (null == hashtable || 0 == hashtable.Count) {
+        //        return result;
+        //    }
+            
+        //    result += "@{";
+        //    foreach (var key in hashtable.Keys)
+        //        result += key + "=" + hashtable[key] + ";";
+        //    result += "}";
+            
+        //    return result;
+        //}
         
-        protected string ConvertHashtableToString(Hashtable hashtable)
-        {
-            string result = string.Empty;
+        // 20150915
+        //protected string ConvertHashtablesArrayToString(Hashtable[] hashtables)
+        //{
+        //    string result = string.Empty;
             
-            if (null == hashtable || 0 == hashtable.Count) {
-                return result;
-            }
+        //    if (null == hashtables || 0 == hashtables.Length) {
+        //        return result;
+        //    }
             
-            result += "@{";
-            foreach (var key in hashtable.Keys)
-                result += key + "=" + hashtable[key] + ";";
-            result += "}";
+        //    foreach (Hashtable hashtable in hashtables) {
+        //        result += ",";
+        //        // 20150915
+        //        // result += ConvertHashtableToString(hashtable);
+        //        result += hashtable.ConvertToString();
+        //    }
             
-            return result;
-        }
-        
-        protected string ConvertHashtablesArrayToString(Hashtable[] hashtables)
-        {
-            string result = string.Empty;
+        //    result = result.Substring(1);
             
-            if (null == hashtables || 0 == hashtables.Length) {
-                return result;
-            }
-            
-            foreach (Hashtable hashtable in hashtables) {
-                result += ",";
-                result += ConvertHashtableToString(hashtable);
-            }
-            
-            result = result.Substring(1);
-            
-            return result;
-        }
+        //    return result;
+        //}
         #endregion utilities
         
 //        // 20130318

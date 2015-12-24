@@ -10,8 +10,8 @@
 namespace Tmx
 {
     using System;
-    using Tmx.Client;
-    using Tmx.Commands.TestClient;
+    using Client;
+    using Commands.TestClient;
     
     /// <summary>
     /// Description of GetCurrentTestTaskCommand.

@@ -11,16 +11,13 @@ namespace UIAutomation
 {
     extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
     using System;
-    using System.Management.Automation;
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
     // using System.Windows.Automation.Text;
     // using classic.Text = UIANET::System.Windows.Automation.Text;
-    using System.Collections;
     using System.Linq;
     using System.Threading;
-    using System.Windows.Forms;
-    using UIAutomation.Commands;
-    using UIAutomation.Helpers.Commands;
+    using Commands;
+    using Helpers.Commands;
 
     /// <summary>
     /// Description of PatternCmdletBase.

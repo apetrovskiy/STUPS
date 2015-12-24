@@ -15,9 +15,9 @@ namespace Tmx
     using System.Net;
     using System.Net.NetworkInformation;
     using System.Security.Principal;
-    using System.Xml;
     using System.Xml.Serialization;
-    using Tmx.Interfaces.TestStructure;
+    using Core;
+    using Interfaces.TestStructure;
     
     /// <summary>
     /// Description of TestPlatform.
@@ -54,7 +54,7 @@ namespace Tmx
             Username = Environment.UserName;
             UserDomainName = Environment.UserDomainName;
             Version = Environment.OSVersion.VersionString;
-            Architecture = Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE");
+            Architecture = Environment.GetEnvironmentVariable(Tmx_Core_Resources.TestPlatform_TestPlatform_PROCESSOR_ARCHITECTURE);
             
 //            Created = DateTime.Now;
         }

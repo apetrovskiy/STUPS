@@ -12,8 +12,7 @@ using System.Drawing.Imaging;
 namespace UIAutomation.Commands
 {
     using System.Management.Automation;
-    using UIAutomation.Helpers.Commands;
-    
+
     /// <summary>
     /// Description of SaveUiaScreenshotCommand.
     /// </summary>
@@ -85,10 +84,10 @@ namespace UIAutomation.Commands
                 Description,
                 save,
                 new ScreenshotRect {
-                    Left = this.Left,
-                    Top = this.Top,
-                    Height = this.Height,
-                    Width = this.Width
+                    Left = Left,
+                    Top = Top,
+                    Height = Height,
+                    Width = Width
                 },
                 Path + @"\" + Name,
                 As);

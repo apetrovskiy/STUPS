@@ -9,11 +9,8 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
-    using OpenQA.Selenium;
-    using OpenQA.Selenium.Firefox;
-    
+
     /// <summary>
     /// Description of NewSeFirefoxProfileCommand.
     /// </summary>
@@ -35,9 +32,9 @@ namespace SePSX.Commands
         
         protected override void BeginProcessing()
         {
-            this.CheckCmdletParameters();
+            CheckCmdletParameters();
             
-            SeNewFirefoxProfileCommand command =
+            var command =
                 new SeNewFirefoxProfileCommand(this);
             command.Execute();
         }

@@ -9,11 +9,9 @@
 
 namespace Tmx.Commands
 {
-    using System;
     using System.Management.Automation;
-    using Tmx.Interfaces;
-    using Tmx;
-    
+    using Interfaces;
+
     /// <summary>
     /// Description of AddTmxTestResultDetailCommand.
     /// </summary>
@@ -28,20 +26,14 @@ namespace Tmx.Commands
             // 20140317
             // turning off the logger
             // Tmx.Logger.TmxLogger.Info(this.TestResultDetail);
-            if (Echo) {
-
+            if (Echo)
                 WriteObject(TestResultDetail);
-            }
-            // 20130331
-            //TestData.AddTestResultTextDetail(this.TestResultDetail);
             
-            // 20140721
             var dataObject = new TestResultDetailCmdletBaseDataObject {
-                Finished = this.Finished,
-                TestResultStatus = this.TestResultStatus
+                Finished = Finished,
+                TestResultStatus = TestResultStatus
             };
             
-            // TestData.AddTestResultTextDetail(this, TestResultDetail);
             TestData.AddTestResultTextDetail(dataObject, TestResultDetail);
         }
     }

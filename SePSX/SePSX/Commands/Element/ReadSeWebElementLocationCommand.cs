@@ -9,10 +9,8 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
-    using OpenQA.Selenium;
-    
+
     /// <summary>
     /// Description of ReadSeWebElementLocationCommand.
     /// </summary>
@@ -26,9 +24,9 @@ namespace SePSX.Commands
         
         protected override void ProcessRecord()
         {
-            this.checkInputWebElementOnly(this.InputObject);
+            checkInputWebElementOnly(InputObject);
             
-            SeReadWebElementLocationCommand command =
+            var command =
                 new SeReadWebElementLocationCommand(this);
             command.Execute();
             //SeHelper.GetWebElementLocation(this, ((IWebElement[])this.InputObject));

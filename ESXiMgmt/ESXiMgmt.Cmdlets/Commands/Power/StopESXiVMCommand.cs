@@ -9,7 +9,6 @@
 
 namespace EsxiMgmt.Cmdlets.Commands
 {
-    using System;
     using System.Management.Automation;
         
     /// <summary>

@@ -10,7 +10,6 @@
 namespace UIAutomation
 {
     extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
-    using System;
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
 
     /// <summary>
@@ -23,14 +22,14 @@ namespace UIAutomation
 
         public UiaGridItemPattern(IUiElement element, classic.GridItemPattern gridItemPattern)
         {
-            this._gridItemPattern = gridItemPattern;
-            this._element = element;
+            _gridItemPattern = gridItemPattern;
+            _element = element;
             //this._useCache = useCache;
         }
 
         public UiaGridItemPattern(IUiElement element)
         {
-            this._element = element;
+            _element = element;
         }
 
         public struct GridItemPatternInformation : IGridItemPatternInformation
@@ -43,30 +42,30 @@ namespace UIAutomation
 
             public GridItemPatternInformation(IGridItemPattern gridItemPattern, bool useCache)
             {
-                this._gridItemPattern = gridItemPattern;
-                this._useCache = useCache;
+                _gridItemPattern = gridItemPattern;
+                _useCache = useCache;
             }
             
             public int Row {
                 // get { return (int)this._el.GetPatternPropertyValue(GridItemPattern.RowProperty, this._useCache); }
-                get { return (int)this._gridItemPattern.GetParentElement().GetPatternPropertyValue(classic.GridItemPattern.RowProperty, this._useCache); }
+                get { return (int)_gridItemPattern.GetParentElement().GetPatternPropertyValue(classic.GridItemPattern.RowProperty, _useCache); }
             }
             public int Column {
                 // get { return (int)this._el.GetPatternPropertyValue(GridItemPattern.ColumnProperty, this._useCache); }
-                get { return (int)this._gridItemPattern.GetParentElement().GetPatternPropertyValue(classic.GridItemPattern.ColumnProperty, this._useCache); }
+                get { return (int)_gridItemPattern.GetParentElement().GetPatternPropertyValue(classic.GridItemPattern.ColumnProperty, _useCache); }
             }
             public int RowSpan {
                 // get { return (int)this._el.GetPatternPropertyValue(GridItemPattern.RowSpanProperty, this._useCache); }
-                get { return (int)this._gridItemPattern.GetParentElement().GetPatternPropertyValue(classic.GridItemPattern.RowSpanProperty, this._useCache); }
+                get { return (int)_gridItemPattern.GetParentElement().GetPatternPropertyValue(classic.GridItemPattern.RowSpanProperty, _useCache); }
             }
             public int ColumnSpan {
                 // get { return (int)this._el.GetPatternPropertyValue(GridItemPattern.ColumnSpanProperty, this._useCache); }
-                get { return (int)this._gridItemPattern.GetParentElement().GetPatternPropertyValue(classic.GridItemPattern.ColumnSpanProperty, this._useCache); }
+                get { return (int)_gridItemPattern.GetParentElement().GetPatternPropertyValue(classic.GridItemPattern.ColumnSpanProperty, _useCache); }
             }
             
             public IUiElement ContainingGrid {
                 // get { return (AutomationElement)this._el.GetPatternPropertyValue(GridItemPattern.ContainingGridProperty, this._useCache); }
-                get { return AutomationFactory.GetUiElement((classic.AutomationElement)this._gridItemPattern.GetParentElement().GetPatternPropertyValue(classic.GridItemPattern.ContainingGridProperty, this._useCache)); }
+                get { return AutomationFactory.GetUiElement((classic.AutomationElement)_gridItemPattern.GetParentElement().GetPatternPropertyValue(classic.GridItemPattern.ContainingGridProperty, _useCache)); }
             }
 //            internal GridItemPatternInformation(AutomationElement el, bool useCache)
 //            {
@@ -87,7 +86,7 @@ namespace UIAutomation
             get {
                 // Misc.ValidateCached(this._cached);
                 // return new GridItemPattern.GridItemPatternInformation(this._el, true);
-                return new UiaGridItemPattern.GridItemPatternInformation(this, true);
+                return new GridItemPatternInformation(this, true);
             }
         }
         
@@ -95,7 +94,7 @@ namespace UIAutomation
             get {
                 // Misc.ValidateCurrent(this._hPattern);
                 // return new GridItemPattern.GridItemPatternInformation(this._el, false);
-                return new UiaGridItemPattern.GridItemPatternInformation(this, false);
+                return new GridItemPatternInformation(this, false);
             }
         }
 //        internal UiaGridItemPattern(AutomationElement el, SafePatternHandle hPattern, bool cached) : base(el, hPattern)
@@ -110,22 +109,22 @@ namespace UIAutomation
         
         public void SetParentElement(IUiElement element)
         {
-            this._element = element;
+            _element = element;
         }
         
         public IUiElement GetParentElement()
         {
-            return this._element;
+            return _element;
         }
         
         public void SetSourcePattern(object pattern)
         {
-            this._gridItemPattern = pattern as classic.GridItemPattern;
+            _gridItemPattern = pattern as classic.GridItemPattern;
         }
         
         public object GetSourcePattern()
         {
-            return this._gridItemPattern;
+            return _gridItemPattern;
         }
     }
 }

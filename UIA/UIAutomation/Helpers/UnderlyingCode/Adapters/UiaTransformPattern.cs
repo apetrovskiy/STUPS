@@ -10,7 +10,6 @@
 namespace UIAutomation
 {
     extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
-    using System;
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
 
     /// <summary>
@@ -23,14 +22,14 @@ namespace UIAutomation
 
         public UiaTransformPattern(IUiElement element, classic.TransformPattern transformPattern)
         {
-            this._transformPattern = transformPattern;
-            this._element = element;
+            _transformPattern = transformPattern;
+            _element = element;
             //this._useCache = useCache;
         }
 
         public UiaTransformPattern(IUiElement element)
         {
-            this._element = element;
+            _element = element;
         }
 
         public struct TransformPatternInformation : ITransformPatternInformation
@@ -43,21 +42,21 @@ namespace UIAutomation
 
             public TransformPatternInformation(ITransformPattern transformPattern, bool useCache)
             {
-                this._transformPattern = transformPattern;
-                this._useCache = useCache;
+                _transformPattern = transformPattern;
+                _useCache = useCache;
             }
             
             public bool CanMove {
                 // get { return (bool)this._el.GetPatternPropertyValue(TransformPattern.CanMoveProperty, this._useCache); }
-                get { return (bool)this._transformPattern.GetParentElement().GetPatternPropertyValue(classic.TransformPattern.CanMoveProperty, this._useCache); }
+                get { return (bool)_transformPattern.GetParentElement().GetPatternPropertyValue(classic.TransformPattern.CanMoveProperty, _useCache); }
             }
             public bool CanResize {
                 // get { return (bool)this._el.GetPatternPropertyValue(TransformPattern.CanResizeProperty, this._useCache); }
-                get { return (bool)this._transformPattern.GetParentElement().GetPatternPropertyValue(classic.TransformPattern.CanResizeProperty, this._useCache); }
+                get { return (bool)_transformPattern.GetParentElement().GetPatternPropertyValue(classic.TransformPattern.CanResizeProperty, _useCache); }
             }
             public bool CanRotate {
                 // get { return (bool)this._el.GetPatternPropertyValue(TransformPattern.CanRotateProperty, this._useCache); }
-                get { return (bool)this._transformPattern.GetParentElement().GetPatternPropertyValue(classic.TransformPattern.CanRotateProperty, this._useCache); }
+                get { return (bool)_transformPattern.GetParentElement().GetPatternPropertyValue(classic.TransformPattern.CanRotateProperty, _useCache); }
             }
 //            internal TransformPatternInformation(AutomationElement el, bool useCache)
 //            {
@@ -76,7 +75,7 @@ namespace UIAutomation
             get {
                 // Misc.ValidateCached(this._cached);
                 // return new TransformPattern.TransformPatternInformation(this._el, true);
-                return new UiaTransformPattern.TransformPatternInformation(this, true);
+                return new TransformPatternInformation(this, true);
             }
         }
         
@@ -84,7 +83,7 @@ namespace UIAutomation
             get {
                 // Misc.ValidateCurrent(this._hPattern);
                 // return new TransformPattern.TransformPatternInformation(this._el, false);
-                return new UiaTransformPattern.TransformPatternInformation(this, false);
+                return new TransformPatternInformation(this, false);
             }
         }
 //        private UiaTransformPattern(AutomationElement el, SafePatternHandle hPattern, bool cached) : base(el, hPattern)
@@ -95,17 +94,17 @@ namespace UIAutomation
         public virtual void Move(double x, double y)
         {
             // UiaCoreApi.TransformPattern_Move(this._hPattern, x, y);
-            this._transformPattern.Move(x, y);
+            _transformPattern.Move(x, y);
         }
         public virtual void Resize(double width, double height)
         {
             // UiaCoreApi.TransformPattern_Resize(this._hPattern, width, height);
-            this._transformPattern.Resize(width, height);
+            _transformPattern.Resize(width, height);
         }
         public virtual void Rotate(double degrees)
         {
             // UiaCoreApi.TransformPattern_Rotate(this._hPattern, degrees);
-            this._transformPattern.Rotate(degrees);
+            _transformPattern.Rotate(degrees);
         }
 //        static internal object Wrap(AutomationElement el, SafePatternHandle hPattern, bool cached)
 //        {
@@ -114,22 +113,22 @@ namespace UIAutomation
         
         public void SetParentElement(IUiElement element)
         {
-            this._element = element;
+            _element = element;
         }
         
         public IUiElement GetParentElement()
         {
-            return this._element;
+            return _element;
         }
         
         public void SetSourcePattern(object pattern)
         {
-            this._transformPattern = pattern as classic.TransformPattern;
+            _transformPattern = pattern as classic.TransformPattern;
         }
         
         public object GetSourcePattern()
         {
-            return this._transformPattern;
+            return _transformPattern;
         }
     }
 }

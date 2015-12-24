@@ -9,7 +9,6 @@
 
 namespace Data.Commands
 {
-    using System;
     using System.Management.Automation;
     
     /// <summary>

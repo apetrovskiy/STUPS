@@ -9,8 +9,6 @@
 
 namespace Data
 {
-    using System;
-    
     public enum XMLComparisonResults
     {
         /// <summary>

@@ -87,32 +87,32 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataTypes\IAddScenarioCmdletBaseDataObject.cs" />
-    <Compile Include="DataTypes\IAddTestCaseCmdletBaseDataObject.cs" />
-    <Compile Include="DataTypes\ICommonCmdletBaseDataObject.cs" />
-    <Compile Include="DataTypes\ICommonDataObject.cs" />
-    <Compile Include="DataTypes\IGetTmxTestSuiteStatusDataObject.cs" />
-    <Compile Include="DataTypes\IImportExportCmdletBaseDataObject.cs" />
-    <Compile Include="DataTypes\IOpenScenarioCmdletBaseDataObject.cs" />
-    <Compile Include="DataTypes\IOpenSuiteCmdletBaseDataObject.cs" />
-    <Compile Include="DataTypes\ISearchCmdletBaseDataObject.cs" />
-    <Compile Include="DataTypes\ISearchTmxTestResultDataObject.cs" />
-    <Compile Include="DataTypes\ISettingsCmdletBaseDataObject.cs" />
-    <Compile Include="DataTypes\ITestResultCmdletBaseDataObject.cs" />
-    <Compile Include="DataTypes\ITestResultDetailCmdletBaseDataObject.cs" />
-    <Compile Include="DataTypes\ITestResultStatusCmdletBaseDataObject.cs" />
-    <Compile Include="DataTypes\Types\AddScenarioCmdletBaseDataObject.cs" />
-    <Compile Include="DataTypes\Types\AddTestCaseCmdletBaseDataObject.cs" />
-    <Compile Include="DataTypes\Types\CommonCmdletBaseDataObject.cs" />
-    <Compile Include="DataTypes\Types\GetTmxTestSuiteStatusDataObject.cs" />
-    <Compile Include="DataTypes\Types\ImportExportCmdletBaseDataObject.cs" />
-    <Compile Include="DataTypes\Types\OpenScenarioCmdletBaseDataObject.cs" />
-    <Compile Include="DataTypes\Types\SearchCmdletBaseDataObject.cs" />
-    <Compile Include="DataTypes\Types\SearchTmxTestResultDataObject.cs" />
-    <Compile Include="DataTypes\Types\SettingsCmdletBaseDataObject.cs" />
-    <Compile Include="DataTypes\Types\TestResultCmdletBaseDataObject.cs" />
-    <Compile Include="DataTypes\Types\TestResultDetailCmdletBaseDataObject.cs" />
-    <Compile Include="DataTypes\Types\TestResultStatusCmdletBaseDataObject.cs" />
+    <Compile Include="DataObjects\Interfaces\IAddScenarioCmdletBaseDataObject.cs" />
+    <Compile Include="DataObjects\Interfaces\IAddTestCaseCmdletBaseDataObject.cs" />
+    <Compile Include="DataObjects\Interfaces\ICommonCmdletBaseDataObject.cs" />
+    <Compile Include="DataObjects\Interfaces\ICommonDataObject.cs" />
+    <Compile Include="DataObjects\Interfaces\IGetTmxTestSuiteStatusDataObject.cs" />
+    <Compile Include="DataObjects\Interfaces\IImportExportCmdletBaseDataObject.cs" />
+    <Compile Include="DataObjects\Interfaces\IOpenScenarioCmdletBaseDataObject.cs" />
+    <Compile Include="DataObjects\Interfaces\IOpenSuiteCmdletBaseDataObject.cs" />
+    <Compile Include="DataObjects\Interfaces\ISearchCmdletBaseDataObject.cs" />
+    <Compile Include="DataObjects\Interfaces\ISearchTmxTestResultDataObject.cs" />
+    <Compile Include="DataObjects\Interfaces\ISettingsCmdletBaseDataObject.cs" />
+    <Compile Include="DataObjects\Interfaces\ITestResultCmdletBaseDataObject.cs" />
+    <Compile Include="DataObjects\Interfaces\ITestResultDetailCmdletBaseDataObject.cs" />
+    <Compile Include="DataObjects\Interfaces\ITestResultStatusCmdletBaseDataObject.cs" />
+    <Compile Include="DataObjects\Types\AddScenarioCmdletBaseDataObject.cs" />
+    <Compile Include="DataObjects\Types\AddTestCaseCmdletBaseDataObject.cs" />
+    <Compile Include="DataObjects\Types\CommonCmdletBaseDataObject.cs" />
+    <Compile Include="DataObjects\Types\GetTmxTestSuiteStatusDataObject.cs" />
+    <Compile Include="DataObjects\Types\ImportExportCmdletBaseDataObject.cs" />
+    <Compile Include="DataObjects\Types\OpenScenarioCmdletBaseDataObject.cs" />
+    <Compile Include="DataObjects\Types\SearchCmdletBaseDataObject.cs" />
+    <Compile Include="DataObjects\Types\SearchTmxTestResultDataObject.cs" />
+    <Compile Include="DataObjects\Types\SettingsCmdletBaseDataObject.cs" />
+    <Compile Include="DataObjects\Types\TestResultCmdletBaseDataObject.cs" />
+    <Compile Include="DataObjects\Types\TestResultDetailCmdletBaseDataObject.cs" />
+    <Compile Include="DataObjects\Types\TestResultStatusCmdletBaseDataObject.cs" />
     <Compile Include="Delegates\Delegates.cs" />
     <Compile Include="Exceptions\Remoting\AcceptTaskException.cs" />
     <Compile Include="Exceptions\Remoting\ClientDeregistrationException.cs" />
@@ -129,7 +129,13 @@
     <Compile Include="Exceptions\Remoting\UpdateTaskException.cs" />
     <Compile Include="Exceptions\Remoting\WorkflowLoadingException.cs" />
     <Compile Include="Exceptions\Remoting\WrongTaskDataException.cs" />
-    <Compile Include="ICodeBlock.cs" />
+    <Compile Include="ExtensionMethods\ExtensionMethods.cs" />
+    <Compile Include="Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Remoting\ICodeBlock.cs" />
     <Compile Include="IDatabase.cs" />
     <Compile Include="Internal\ISystemInfo.cs" />
     <Compile Include="ITestSuitesCollection.cs" />
@@ -161,6 +167,7 @@
     <Compile Include="Remoting\ITestWorkflow.cs" />
     <Compile Include="Remoting\IWorkflow.cs" />
     <Compile Include="Remoting\ListOfTestSuites.cs" />
+    <Compile Include="Remoting\Web\IInitializer.cs" />
     <Compile Include="TestStructure\Enumerations.cs" />
     <Compile Include="TestStructure\ITestBucket.cs" />
     <Compile Include="TestStructure\ITestCase.cs" />
@@ -170,12 +177,18 @@
     <Compile Include="TestStructure\ITestResultDetail.cs" />
     <Compile Include="TestStructure\ITestScenario.cs" />
     <Compile Include="TestStructure\ITestSuite.cs" />
+    <Compile Include="TestStructure\ITestTagRule.cs" />
     <Compile Include="TestStructure\TestStat.cs" />
     <Compile Include="UrlList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Messages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

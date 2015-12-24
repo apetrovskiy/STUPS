@@ -9,8 +9,6 @@
 
 namespace DataUnitTests.ParamChecks.XML
 {
-    using System;
-    
     /// <summary>
     /// Description of NewDtXmlComparerCommandTestFixture.
     /// </summary>

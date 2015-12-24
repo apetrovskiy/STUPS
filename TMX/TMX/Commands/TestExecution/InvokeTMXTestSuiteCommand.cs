@@ -9,7 +9,6 @@
 
 namespace Tmx.Commands
 {
-    using System;
     using System.Management.Automation;
     
     /// <summary>
@@ -23,7 +22,7 @@ namespace Tmx.Commands
         
         protected override void BeginProcessing()
         {
-            this.CheckCmdletParameters();
+            CheckCmdletParameters();
             
             TmxInvokeTestSuiteCommand command =
                 new TmxInvokeTestSuiteCommand(this);

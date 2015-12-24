@@ -1,6 +1,6 @@
 ﻿#region Using directives
 
-using System;
+//using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
@@ -28,9 +28,11 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("TmxUnitTests")]
 [assembly: InternalsVisibleTo("Tmx")]
 [assembly: InternalsVisibleTo("Tmx.Core")]
-[assembly: InternalsVisibleTo("Tmx.Server")]
+[assembly: InternalsVisibleTo("Tmx.Server.Library")]
+[assembly: InternalsVisibleTo("Tmx.Server.Logic")]
+[assembly: InternalsVisibleTo("Tmx.Server.Web")]
 [assembly: InternalsVisibleTo("Tmx.Server.Tests")]
-[assembly: InternalsVisibleTo("Tmx.Client")]
+[assembly: InternalsVisibleTo("Tmx.Client.Library")]
 [assembly: InternalsVisibleTo("Tmx.Client.Tests")]
 [assembly: InternalsVisibleTo("TlAddinUnitTests")]
 [assembly: InternalsVisibleTo("TFAddinUnitTests")]
@@ -38,6 +40,9 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("BzAddinUnitTests")]
 [assembly: InternalsVisibleTo("RmAddinUnitTests")]
 [assembly: InternalsVisibleTo("RallyUnitTests")]
+
+
+[assembly: InternalsVisibleTo("TestClientRegistration")]
 
 // 20130111
 //[assembly: InternalsVisibleTo("testninject")]

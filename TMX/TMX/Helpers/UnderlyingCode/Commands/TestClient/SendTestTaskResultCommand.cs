@@ -9,14 +9,13 @@
 
 namespace Tmx
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using Tmx;
-    using Tmx.Client;
-    using Tmx.Core.Types.Remoting;
-    using Tmx.Commands;
-    
+    using Client;
+    using Client.Library.Helpers;
+    using Client.Library.ObjectModel;
+    using Commands;
+    using Core.Proxy;
+    using Core.Types.Remoting;
+
     /// <summary>
     /// Description of SendTestTaskResultCommand.
     /// </summary>
@@ -29,13 +28,18 @@ namespace Tmx
         internal override void Execute()
         {
             var cmdlet = (SendTmxTestTaskResultCommand)Cmdlet;
-            var taskUpdater = new TaskUpdater(new RestRequestCreator());
+            // 20150918
+            // var taskUpdater = new TaskUpdater(new RestRequestCreator());
+            // var taskUpdater = new TaskUpdater();
+            var taskUpdater = ProxyFactory.Get<TaskUpdater>();
             // 20140926
             // var testTask = new TestTask { TaskResult = new Dictionary<string, string>() };
+            // 20150904
             var testTask = new TestTask();
-            foreach (var key in cmdlet.Result.Keys) {
+            // TODO: parameterize this
+            // var testTask = new TestTask(TestTaskRuntimeTypes.Powershell);
+            foreach (var key in cmdlet.Result.Keys)
                 testTask.TaskResult.Add(key.ToString(), cmdlet.Result[key].ToString());
-            }
             taskUpdater.SendTaskResult(testTask, ClientSettings.Instance.ClientId);
         }
     }

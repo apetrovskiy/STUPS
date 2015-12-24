@@ -9,10 +9,11 @@
 
 namespace Tmx
 {
-    using System;
-    using Tmx.Client;
-    using Tmx.Commands;
-    
+    using Client.Library.Helpers;
+    using Client.Library.ObjectModel;
+    using Commands;
+    using Core.Proxy;
+
     /// <summary>
     /// Description of NewTestRunCommand.
     /// </summary>
@@ -25,7 +26,11 @@ namespace Tmx
         internal override void Execute()
         {
             var cmdlet = (NewTmxTestRunCommand)Cmdlet;
-            var testRunCreator = new TestRunCreator(new RestRequestCreator());
+            // 20150918
+            // var testRunCreator = new TestRunCreator(new RestRequestCreator());
+            // var testRunCreator = new TestRunCreator();
+            // var testRunCreator = new TestRunCreator();
+            var testRunCreator = ProxyFactory.Get<TestRunCreator>();
             var result = testRunCreator.CreateTestRun(cmdlet.WorkflowName, cmdlet.Status, cmdlet.Name);
             cmdlet.WriteObject(cmdlet, result);
         }

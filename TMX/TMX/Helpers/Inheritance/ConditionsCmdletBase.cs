@@ -9,8 +9,6 @@
 
 namespace Tmx
 {
-    using System;
-
     /// <summary>
     /// Description of ConditionsCmdletBase.
     /// </summary>

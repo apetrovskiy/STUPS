@@ -11,8 +11,9 @@ namespace Tmx.Interfaces.TestStructure
 {
     using System;
     using System.Collections.Generic;
-    // using System.Management.Automation;
     using System.Xml.Serialization;
+    using Remoting;
+// using System.Management.Automation;
 
     /// <summary>
     /// Description of ITestSuite.
@@ -62,7 +63,10 @@ namespace Tmx.Interfaces.TestStructure
         [XmlIgnore]
         TestStat Statistics { get; set; }
         [XmlAttribute]
-        TestSuiteStatuses enStatus { get; set; }
+        TestStatuses enStatus { get; set; }
+        // 20150826
+        [XmlAttribute]
+        string Tag { get; set; }
         
         int GetAll();
         int GetPassed();

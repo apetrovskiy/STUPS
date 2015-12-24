@@ -9,12 +9,13 @@
 
 namespace Tmx
 {
-    using System;
-    using Tmx.Client;
-    using Tmx.Core;
-    using Tmx.Interfaces.Exceptions;
-    using Tmx.Commands;
-    
+    using Client.Library.Helpers;
+    using Client.Library.ObjectModel;
+    using Core;
+    using Interfaces.Exceptions;
+    using Commands;
+    using Core.Proxy;
+
     /// <summary>
     /// Description of SendTestCommonDataCommand.
     /// </summary>
@@ -28,7 +29,7 @@ namespace Tmx
         {
             var cmdlet = (SendTmxCommonDataItemCommand)Cmdlet;
             var keyValuePair = new CommonDataItem { Key = cmdlet.Key, Value = cmdlet.Value };
-            var commonDataSender = new CommonDataSender(new RestRequestCreator());
+            var commonDataSender = ProxyFactory.Get<CommonDataSender>();
             try {
                 commonDataSender.Send(keyValuePair);
                 cmdlet.WriteObject(true);

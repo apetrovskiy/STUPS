@@ -9,10 +9,6 @@
 
 namespace SePSX
 {
-    using System;
-    using System.Management.Automation;
-    using SePSX.Commands;
-    
     /// <summary>
     /// Description of SeGetWebDriverCookiesCommand.
     /// </summary>
@@ -28,8 +24,8 @@ namespace SePSX
 //                ((SeGetWebDriverCookiesCommand)this.Cmdlet), 
 //                ((SeGetWebDriverCookiesCommand)this.Cmdlet).InputObject);
             SeHelper.GetCookies(
-                this.Cmdlet,
-                ((HasWebDriverInputCmdletBase)this.Cmdlet).InputObject);
+                Cmdlet,
+                ((HasWebDriverInputCmdletBase)Cmdlet).InputObject);
         }
     }
 }

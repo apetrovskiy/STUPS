@@ -9,10 +9,8 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
-    using OpenQA.Selenium;
-    
+
     /// <summary>
     /// Description of ReadSeWebElementSelectedCommand.
     /// </summary>
@@ -26,9 +24,9 @@ namespace SePSX.Commands
         
         protected override void ProcessRecord()
         {
-            this.checkInputWebElementOnly(this.InputObject);
+            checkInputWebElementOnly(InputObject);
             
-            SeReadWebElementSelectedCommand command =
+            var command =
                 new SeReadWebElementSelectedCommand(this);
             command.Execute();
             //SeHelper.GetWebElementIsSelected(this, ((IWebElement[])this.InputObject));

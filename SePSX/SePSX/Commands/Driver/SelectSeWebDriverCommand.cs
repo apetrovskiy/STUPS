@@ -9,7 +9,6 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
     using OpenQA.Selenium;
 //    using OpenQA.Selenium.Firefox;
@@ -32,8 +31,8 @@ namespace SePSX.Commands
         
         protected override void ProcessRecord() // ??
         {
-            if (null == this.InstanceName || 0 == this.InstanceName.Length) {
-                this.WriteError(
+            if (null == InstanceName || 0 == InstanceName.Length) {
+                WriteError(
                     this,
                     "You need to specify input parameter: InstanceName",
                     "NoInstanceNameSpecified",
@@ -41,7 +40,7 @@ namespace SePSX.Commands
                     true);
             }
             
-            SeSelectWebDriverCommand command =
+            var command =
                 new SeSelectWebDriverCommand(this);
             command.Execute();
             //SeHelper.GetWebDriver(this, this.InstanceName);

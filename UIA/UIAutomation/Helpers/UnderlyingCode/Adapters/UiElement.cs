@@ -13,11 +13,9 @@ namespace UIAutomation
     using System;
     // using UIANET::System.Windows.Automation;
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
-    using System.Windows.Automation;
     using Ninject;
     using System.Windows;
-    using System.Linq;
-    
+
 //    using Ninject.Extensions.ChildKernel;
     
     /// <summary>

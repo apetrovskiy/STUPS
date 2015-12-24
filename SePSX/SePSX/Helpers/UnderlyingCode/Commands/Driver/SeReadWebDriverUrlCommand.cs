@@ -9,9 +9,7 @@
 
 namespace SePSX
 {
-    using System;
-    using System.Management.Automation;
-    using SePSX.Commands;
+    using Commands;
     
     /// <summary>
     /// Description of SeReadWebDriverUrlCommand.
@@ -25,8 +23,8 @@ namespace SePSX
         internal override void Execute()
         {
             SeHelper.GetUrl(
-                ((ReadSeWebDriverUrlCommand)this.Cmdlet),
-                ((ReadSeWebDriverUrlCommand)this.Cmdlet).InputObject);
+                ((ReadSeWebDriverUrlCommand)Cmdlet),
+                ((ReadSeWebDriverUrlCommand)Cmdlet).InputObject);
         }
     }
 }

@@ -9,8 +9,6 @@
 
 namespace Data
 {
-    using System;
-    
     /// <summary>
     /// Description of Preferences.
     /// </summary>

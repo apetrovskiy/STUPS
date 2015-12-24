@@ -7,11 +7,10 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx
+namespace Tmx.Helpers.UnderlyingCode.Commands.TestServer
 {
-    using System;
-    using Tmx.Server;
-    
+    using Server.Library.ObjectModel.ServerControl;
+
     /// <summary>
     /// Description of StopTmxServerCommand.
     /// </summary>

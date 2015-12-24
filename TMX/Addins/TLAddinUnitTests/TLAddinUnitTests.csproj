@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{83AA5A96-56A5-4F10-AA26-5382D3DB64C0}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>TlAddinUnitTests</RootNamespace>
+    <AssemblyName>TlAddinUnitTests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <DebugType>None</DebugType>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>false</DebugSymbols>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release35' ">
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Release35' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>Full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>None</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>None</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\..\..\binaries\autofac\35\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="CookComputing.XmlRpcV2">
+      <HintPath>..\..\..\binaries\TestLink\CookComputing.XmlRpcV2.dll</HintPath>
+    </Reference>
+    <Reference Include="Gallio">
+      <HintPath>..\..\..\..\..\Program Files\Gallio\bin\Gallio.dll</HintPath>
+    </Reference>
+    <Reference Include="MbUnit">
+      <HintPath>..\..\..\..\..\Program Files\Gallio\bin\MbUnit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Moq.4.2.1510.2205\lib\net35\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Management.Automation" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\PS\CmdletUnit\CmdletUnit.csproj">
+      <Project>{36F73FA0-C636-48CF-BB7A-FE10FE52C391}</Project>
+      <Name>CmdletUnit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\TestLink\TestLinkAPI\TestLinkAPI.csproj">
+      <Project>{743BC178-7039-4D01-B3AF-83099B8411BA}</Project>
+      <Name>TestLinkAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
+      <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
+      <Name>PSTestLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLAddin\TLAddin.csproj">
+      <Project>{9857AD05-4F29-421F-B441-89360A2D4127}</Project>
+      <Name>TLAddin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tmx.Core\Tmx.Core.csproj">
+      <Project>{069651A0-FE15-42E2-89D5-9A761A47B143}</Project>
+      <Name>Tmx.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tmx.Interfaces\Tmx.Interfaces.csproj">
+      <Project>{9C5DA25F-6A59-4F97-B107-64DD549CB800}</Project>
+      <Name>Tmx.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tmx\Tmx.csproj">
+      <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>
+      <Name>Tmx</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\TMX\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Commands\TL\GetTLProjectCommandTestFixture.cs" />
+    <Compile Include="Commands\TL\NewTLUserCommandTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Builds\AddBuildTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Builds\GetBuildTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Connect\TLSrvConnectCommandTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\ConnectTestLinkTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\ConnectTLServerTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\TestCases\AddTestCaseTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\TestCases\GetTestCaseTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\TestPlans\GetTestPlansTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\TestPlans\GetTestPlanTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\TestProjects\GetProjectCollectionTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\TestProjects\GetProjectTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\TestSuites\AddTestSubSuiteTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\TestSuites\AddTestSuiteTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\TestSuites\GetTestSubSuiteTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\TestSuites\GetTestSuiteFromProjectTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\TestSuites\GetTestSuiteFromTestPlanTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\TestSuites\GetTestSuiteFromTestSuiteTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\TestSuites\GetTestSuiteTestFixture.cs" />
+    <Compile Include="Helpers\UnderlyingCode\UnitTestingHelper.cs" />
+    <Compile Include="ParamChecks\MiddleLevelCode.cs" />
+    <Compile Include="ParamChecks\Settings.cs" />
+    <Compile Include="ParamChecks\TL\AddTLBuildCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\TL\AddTLTestCaseCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\TL\AddTLTestSubSuiteCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\TL\AddTLTestSuiteCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\TL\ConnectTLServerCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\TL\GetTLBuildCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\TL\GetTLProjectCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\TL\GetTLTestCaseCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\TL\GetTLTestPlanCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\TL\GetTLTestSuiteCommandTestFixture.cs" />
+    <Compile Include="ParamChecks\TL\NewTLTestPlanCommandTestFixture.cs" />
+    <Compile Include="UnitTests\Fakes\FakeTestLink.cs" />
+    <Compile Include="UnitTests\Fakes\FakeTestLinkFactory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helpers\Inheritance\" />
+    <Folder Include="Helpers\UnderlyingCode\Users\" />
+    <Folder Include="Helpers\UserSettings\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+</Project>

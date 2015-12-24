@@ -9,7 +9,6 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
     using OpenQA.Selenium;
     
@@ -42,9 +41,9 @@ namespace SePSX.Commands
         
         protected override void ProcessRecord()
         {
-            this.checkInputWebDriverOrWebElement();
+            CheckInputWebDriverOrWebElement();
             
-            SeGetElementByTypeCommand command =
+            var command =
                 new SeGetElementByTypeCommand(this);
             command.Execute();
         }
@@ -58,7 +57,7 @@ namespace SePSX.Commands
     public class GetSeAnyCommand : GetSeElementByTypeCommand
     {
         public GetSeAnyCommand()
-        { this.TagName = "*"; }
+        { TagName = "*"; }
     }
     
     /// <summary>
@@ -69,7 +68,7 @@ namespace SePSX.Commands
     public class GetSeCommentCommand : GetSeElementByTypeCommand
     {
         public GetSeCommentCommand()
-        { this.TagName = "Comment"; }
+        { TagName = "Comment"; }
     }
     
     /// <summary>
@@ -80,7 +79,7 @@ namespace SePSX.Commands
     public class GetSeDocTypeCommand : GetSeElementByTypeCommand
     {
         public GetSeDocTypeCommand()
-        { this.TagName = "DocType"; }
+        { TagName = "DocType"; }
     }
     
     /// <summary>
@@ -91,7 +90,7 @@ namespace SePSX.Commands
     public class GetSeACommand : GetSeElementByTypeCommand
     {
         public GetSeACommand()
-        { this.TagName = "A"; }
+        { TagName = "A"; }
     }
 
     /// <summary>
@@ -102,7 +101,7 @@ namespace SePSX.Commands
     public class GetSeAbbrCommand : GetSeElementByTypeCommand
     {
         public GetSeAbbrCommand()
-        { this.TagName = "Abbr"; }
+        { TagName = "Abbr"; }
     }
     
     /// <summary>
@@ -113,7 +112,7 @@ namespace SePSX.Commands
     public class GetSeAcronymCommand : GetSeElementByTypeCommand
     {
         public GetSeAcronymCommand()
-        { this.TagName = "Acronym"; }
+        { TagName = "Acronym"; }
     }
     
     /// <summary>
@@ -124,7 +123,7 @@ namespace SePSX.Commands
     public class GetSeAddressCommand : GetSeElementByTypeCommand
     {
         public GetSeAddressCommand()
-        { this.TagName = "Address"; }
+        { TagName = "Address"; }
     }
     
     /// <summary>
@@ -135,7 +134,7 @@ namespace SePSX.Commands
     public class GetSeAppletCommand : GetSeElementByTypeCommand
     {
         public GetSeAppletCommand()
-        { this.TagName = "Applet"; }
+        { TagName = "Applet"; }
     }
     
     /// <summary>
@@ -146,7 +145,7 @@ namespace SePSX.Commands
     public class GetSeAreaCommand : GetSeElementByTypeCommand
     {
         public GetSeAreaCommand()
-        { this.TagName = "Area"; }
+        { TagName = "Area"; }
     }
     
     /// <summary>
@@ -157,7 +156,7 @@ namespace SePSX.Commands
     public class GetSeArticleCommand : GetSeElementByTypeCommand
     {
         public GetSeArticleCommand()
-        { this.TagName = "Article"; }
+        { TagName = "Article"; }
     }
     
     /// <summary>
@@ -168,7 +167,7 @@ namespace SePSX.Commands
     public class GetSeAsideCommand : GetSeElementByTypeCommand
     {
         public GetSeAsideCommand()
-        { this.TagName = "Aside"; }
+        { TagName = "Aside"; }
     }
     
     /// <summary>
@@ -179,7 +178,7 @@ namespace SePSX.Commands
     public class GetSeAudioCommand : GetSeElementByTypeCommand
     {
         public GetSeAudioCommand()
-        { this.TagName = "Audio"; }
+        { TagName = "Audio"; }
     }
     
     /// <summary>
@@ -190,7 +189,7 @@ namespace SePSX.Commands
     public class GetSeBCommand : GetSeElementByTypeCommand
     {
         public GetSeBCommand()
-        { this.TagName = "B"; }
+        { TagName = "B"; }
     }
     
     /// <summary>
@@ -201,7 +200,7 @@ namespace SePSX.Commands
     public class GetSeBaseCommand : GetSeElementByTypeCommand
     {
         public GetSeBaseCommand()
-        { this.TagName = "Base"; }
+        { TagName = "Base"; }
     }
     
     /// <summary>
@@ -212,7 +211,7 @@ namespace SePSX.Commands
     public class GetSeBasefontCommand : GetSeElementByTypeCommand
     {
         public GetSeBasefontCommand()
-        { this.TagName = "Basefont"; }
+        { TagName = "Basefont"; }
     }
     
     /// <summary>
@@ -223,7 +222,7 @@ namespace SePSX.Commands
     public class GetSeBdiCommand : GetSeElementByTypeCommand
     {
         public GetSeBdiCommand()
-        { this.TagName = "Bdi"; }
+        { TagName = "Bdi"; }
     }
     
     /// <summary>
@@ -234,7 +233,7 @@ namespace SePSX.Commands
     public class GetSeBdoCommand : GetSeElementByTypeCommand
     {
         public GetSeBdoCommand()
-        { this.TagName = "Bdo"; }
+        { TagName = "Bdo"; }
     }
     
     /// <summary>
@@ -245,7 +244,7 @@ namespace SePSX.Commands
     public class GetSeBigCommand : GetSeElementByTypeCommand
     {
         public GetSeBigCommand()
-        { this.TagName = "Big"; }
+        { TagName = "Big"; }
     }
     
     /// <summary>
@@ -256,7 +255,7 @@ namespace SePSX.Commands
     public class GetSeBlockQuoteCommand : GetSeElementByTypeCommand
     {
         public GetSeBlockQuoteCommand()
-        { this.TagName = "BlockQuote"; }
+        { TagName = "BlockQuote"; }
     }
     
     /// <summary>
@@ -267,7 +266,7 @@ namespace SePSX.Commands
     public class GetSeBodyCommand : GetSeElementByTypeCommand
     {
         public GetSeBodyCommand()
-        { this.TagName = "Body"; }
+        { TagName = "Body"; }
     }
     
     /// <summary>
@@ -278,7 +277,7 @@ namespace SePSX.Commands
     public class GetSeBrCommand : GetSeElementByTypeCommand
     {
         public GetSeBrCommand()
-        { this.TagName = "Br"; }
+        { TagName = "Br"; }
     }
     
     /// <summary>
@@ -289,7 +288,7 @@ namespace SePSX.Commands
     public class GetSeButtonCommand : GetSeElementByTypeCommand
     {
         public GetSeButtonCommand()
-        { this.TagName = "Button"; }
+        { TagName = "Button"; }
     }
     
     /// <summary>
@@ -300,7 +299,7 @@ namespace SePSX.Commands
     public class GetSeCanvasCommand : GetSeElementByTypeCommand
     {
         public GetSeCanvasCommand()
-        { this.TagName = "Canvas"; }
+        { TagName = "Canvas"; }
     }
     
     /// <summary>
@@ -311,7 +310,7 @@ namespace SePSX.Commands
     public class GetSeCaptionCommand : GetSeElementByTypeCommand
     {
         public GetSeCaptionCommand()
-        { this.TagName = "Caption"; }
+        { TagName = "Caption"; }
     }
     
     /// <summary>
@@ -322,7 +321,7 @@ namespace SePSX.Commands
     public class GetSeCenterCommand : GetSeElementByTypeCommand
     {
         public GetSeCenterCommand()
-        { this.TagName = "Center"; }
+        { TagName = "Center"; }
     }
     
     /// <summary>
@@ -333,7 +332,7 @@ namespace SePSX.Commands
     public class GetSeCiteCommand : GetSeElementByTypeCommand
     {
         public GetSeCiteCommand()
-        { this.TagName = "Cite"; }
+        { TagName = "Cite"; }
     }
     
     /// <summary>
@@ -344,7 +343,7 @@ namespace SePSX.Commands
     public class GetSeCodeCommand : GetSeElementByTypeCommand
     {
         public GetSeCodeCommand()
-        { this.TagName = "Code"; }
+        { TagName = "Code"; }
     }
     
     /// <summary>
@@ -355,7 +354,7 @@ namespace SePSX.Commands
     public class GetSeColCommand : GetSeElementByTypeCommand
     {
         public GetSeColCommand()
-        { this.TagName = "Col"; }
+        { TagName = "Col"; }
     }
     
     /// <summary>
@@ -366,7 +365,7 @@ namespace SePSX.Commands
     public class GetSeColGroupCommand : GetSeElementByTypeCommand
     {
         public GetSeColGroupCommand()
-        { this.TagName = "ColGroup"; }
+        { TagName = "ColGroup"; }
     }
     
     /// <summary>
@@ -377,7 +376,7 @@ namespace SePSX.Commands
     public class GetSeCommandCommand : GetSeElementByTypeCommand
     {
         public GetSeCommandCommand()
-        { this.TagName = "Command"; }
+        { TagName = "Command"; }
     }
     
     /// <summary>
@@ -388,7 +387,7 @@ namespace SePSX.Commands
     public class GetSeDataListCommand : GetSeElementByTypeCommand
     {
         public GetSeDataListCommand()
-        { this.TagName = "DataList"; }
+        { TagName = "DataList"; }
     }
     
     /// <summary>
@@ -399,7 +398,7 @@ namespace SePSX.Commands
     public class GetSeDdCommand : GetSeElementByTypeCommand
     {
         public GetSeDdCommand()
-        { this.TagName = "Dd"; }
+        { TagName = "Dd"; }
     }
     
     /// <summary>
@@ -410,7 +409,7 @@ namespace SePSX.Commands
     public class GetSeDelCommand : GetSeElementByTypeCommand
     {
         public GetSeDelCommand()
-        { this.TagName = "Del"; }
+        { TagName = "Del"; }
     }
     
     /// <summary>
@@ -421,7 +420,7 @@ namespace SePSX.Commands
     public class GetSeDetailsCommand : GetSeElementByTypeCommand
     {
         public GetSeDetailsCommand()
-        { this.TagName = "Details"; }
+        { TagName = "Details"; }
     }
     
     /// <summary>
@@ -432,7 +431,7 @@ namespace SePSX.Commands
     public class GetSeDfnCommand : GetSeElementByTypeCommand
     {
         public GetSeDfnCommand()
-        { this.TagName = "Dfn"; }
+        { TagName = "Dfn"; }
     }
     
     /// <summary>
@@ -443,7 +442,7 @@ namespace SePSX.Commands
     public class GetSeDirCommand : GetSeElementByTypeCommand
     {
         public GetSeDirCommand()
-        { this.TagName = "Dir"; }
+        { TagName = "Dir"; }
     }
     
     /// <summary>
@@ -454,7 +453,7 @@ namespace SePSX.Commands
     public class GetSeDivCommand : GetSeElementByTypeCommand
     {
         public GetSeDivCommand()
-        { this.TagName = "Div"; }
+        { TagName = "Div"; }
     }
     
     /// <summary>
@@ -465,7 +464,7 @@ namespace SePSX.Commands
     public class GetSeDlCommand : GetSeElementByTypeCommand
     {
         public GetSeDlCommand()
-        { this.TagName = "Dl"; }
+        { TagName = "Dl"; }
     }
     
     /// <summary>
@@ -476,7 +475,7 @@ namespace SePSX.Commands
     public class GetSeDtCommand : GetSeElementByTypeCommand
     {
         public GetSeDtCommand()
-        { this.TagName = "Dt"; }
+        { TagName = "Dt"; }
     }
     
     /// <summary>
@@ -487,7 +486,7 @@ namespace SePSX.Commands
     public class GetSeEmCommand : GetSeElementByTypeCommand
     {
         public GetSeEmCommand()
-        { this.TagName = "Em"; }
+        { TagName = "Em"; }
     }
     
     /// <summary>
@@ -498,7 +497,7 @@ namespace SePSX.Commands
     public class GetSeEmbedCommand : GetSeElementByTypeCommand
     {
         public GetSeEmbedCommand()
-        { this.TagName = "Embed"; }
+        { TagName = "Embed"; }
     }
     
     /// <summary>
@@ -509,7 +508,7 @@ namespace SePSX.Commands
     public class GetSeFieldSetCommand : GetSeElementByTypeCommand
     {
         public GetSeFieldSetCommand()
-        { this.TagName = "FieldSet"; }
+        { TagName = "FieldSet"; }
     }
     
     /// <summary>
@@ -520,7 +519,7 @@ namespace SePSX.Commands
     public class GetSeFigCaptionCommand : GetSeElementByTypeCommand
     {
         public GetSeFigCaptionCommand()
-        { this.TagName = "FigCaption"; }
+        { TagName = "FigCaption"; }
     }
     
     /// <summary>
@@ -531,7 +530,7 @@ namespace SePSX.Commands
     public class GetSeFigureCommand : GetSeElementByTypeCommand
     {
         public GetSeFigureCommand()
-        { this.TagName = "Figure"; }
+        { TagName = "Figure"; }
     }
     
     /// <summary>
@@ -542,7 +541,7 @@ namespace SePSX.Commands
     public class GetSeFontCommand : GetSeElementByTypeCommand
     {
         public GetSeFontCommand()
-        { this.TagName = "Font"; }
+        { TagName = "Font"; }
     }
     
     /// <summary>
@@ -553,7 +552,7 @@ namespace SePSX.Commands
     public class GetSeFooterCommand : GetSeElementByTypeCommand
     {
         public GetSeFooterCommand()
-        { this.TagName = "Footer"; }
+        { TagName = "Footer"; }
     }
     
     /// <summary>
@@ -564,7 +563,7 @@ namespace SePSX.Commands
     public class GetSeFormCommand : GetSeElementByTypeCommand
     {
         public GetSeFormCommand()
-        { this.TagName = "Form"; }
+        { TagName = "Form"; }
     }
     
     /// <summary>
@@ -575,7 +574,7 @@ namespace SePSX.Commands
     public class GetSeFrameCommand : GetSeElementByTypeCommand
     {
         public GetSeFrameCommand()
-        { this.TagName = "Frame"; }
+        { TagName = "Frame"; }
     }
     
     /// <summary>
@@ -586,7 +585,7 @@ namespace SePSX.Commands
     public class GetSeFrameSetCommand : GetSeElementByTypeCommand
     {
         public GetSeFrameSetCommand()
-        { this.TagName = "FrameSet"; }
+        { TagName = "FrameSet"; }
     }
     
     /// <summary>
@@ -597,7 +596,7 @@ namespace SePSX.Commands
     public class GetSeHeadCommand : GetSeElementByTypeCommand
     {
         public GetSeHeadCommand()
-        { this.TagName = "Head"; }
+        { TagName = "Head"; }
     }
     
     /// <summary>
@@ -608,7 +607,7 @@ namespace SePSX.Commands
     public class GetSeHeaderCommand : GetSeElementByTypeCommand
     {
         public GetSeHeaderCommand()
-        { this.TagName = "Header"; }
+        { TagName = "Header"; }
     }
     
     /// <summary>
@@ -619,7 +618,7 @@ namespace SePSX.Commands
     public class GetSeHGroupCommand : GetSeElementByTypeCommand
     {
         public GetSeHGroupCommand()
-        { this.TagName = "HGroup"; }
+        { TagName = "HGroup"; }
     }
     
     /// <summary>
@@ -630,7 +629,7 @@ namespace SePSX.Commands
     public class GetSeH1Command : GetSeElementByTypeCommand
     {
         public GetSeH1Command()
-        { this.TagName = "H1"; }
+        { TagName = "H1"; }
     }
     
     /// <summary>
@@ -641,7 +640,7 @@ namespace SePSX.Commands
     public class GetSeH2Command : GetSeElementByTypeCommand
     {
         public GetSeH2Command()
-        { this.TagName = "H2"; }
+        { TagName = "H2"; }
     }
     
     /// <summary>
@@ -652,7 +651,7 @@ namespace SePSX.Commands
     public class GetSeH3Command : GetSeElementByTypeCommand
     {
         public GetSeH3Command()
-        { this.TagName = "H3"; }
+        { TagName = "H3"; }
     }
     
     /// <summary>
@@ -663,7 +662,7 @@ namespace SePSX.Commands
     public class GetSeH4Command : GetSeElementByTypeCommand
     {
         public GetSeH4Command()
-        { this.TagName = "H4"; }
+        { TagName = "H4"; }
     }
     
     /// <summary>
@@ -674,7 +673,7 @@ namespace SePSX.Commands
     public class GetSeH5Command : GetSeElementByTypeCommand
     {
         public GetSeH5Command()
-        { this.TagName = "H5"; }
+        { TagName = "H5"; }
     }
     
     /// <summary>
@@ -685,7 +684,7 @@ namespace SePSX.Commands
     public class GetSeH6Command : GetSeElementByTypeCommand
     {
         public GetSeH6Command()
-        { this.TagName = "H6"; }
+        { TagName = "H6"; }
     }
     
     /// <summary>
@@ -696,7 +695,7 @@ namespace SePSX.Commands
     public class GetSeHrCommand : GetSeElementByTypeCommand
     {
         public GetSeHrCommand()
-        { this.TagName = "Hr"; }
+        { TagName = "Hr"; }
     }
     
     /// <summary>
@@ -707,7 +706,7 @@ namespace SePSX.Commands
     public class GetSeHtmlCommand : GetSeElementByTypeCommand
     {
         public GetSeHtmlCommand()
-        { this.TagName = "Html"; }
+        { TagName = "Html"; }
     }
     
     /// <summary>
@@ -718,7 +717,7 @@ namespace SePSX.Commands
     public class GetSeICommand : GetSeElementByTypeCommand
     {
         public GetSeICommand()
-        { this.TagName = "I"; }
+        { TagName = "I"; }
     }
     
     /// <summary>
@@ -729,7 +728,7 @@ namespace SePSX.Commands
     public class GetSeIFrameCommand : GetSeElementByTypeCommand
     {
         public GetSeIFrameCommand()
-        { this.TagName = "IFrame"; }
+        { TagName = "IFrame"; }
     }
     
     /// <summary>
@@ -740,7 +739,7 @@ namespace SePSX.Commands
     public class GetSeImgCommand : GetSeElementByTypeCommand
     {
         public GetSeImgCommand()
-        { this.TagName = "Img"; }
+        { TagName = "Img"; }
     }
     
     /// <summary>
@@ -751,7 +750,7 @@ namespace SePSX.Commands
     public class GetSeInputCommand : GetSeElementByTypeCommand
     {
         public GetSeInputCommand()
-        { this.TagName = "Input"; }
+        { TagName = "Input"; }
     }
     
     /// <summary>
@@ -762,7 +761,7 @@ namespace SePSX.Commands
     public class GetSeInsCommand : GetSeElementByTypeCommand
     {
         public GetSeInsCommand()
-        { this.TagName = "Ins"; }
+        { TagName = "Ins"; }
     }
     
     /// <summary>
@@ -773,7 +772,7 @@ namespace SePSX.Commands
     public class GetSeKbdCommand : GetSeElementByTypeCommand
     {
         public GetSeKbdCommand()
-        { this.TagName = "Kbd"; }
+        { TagName = "Kbd"; }
     }
     
     /// <summary>
@@ -784,7 +783,7 @@ namespace SePSX.Commands
     public class GetSeKeygenCommand : GetSeElementByTypeCommand
     {
         public GetSeKeygenCommand()
-        { this.TagName = "Keygen"; }
+        { TagName = "Keygen"; }
     }
     
     /// <summary>
@@ -795,7 +794,7 @@ namespace SePSX.Commands
     public class GetSeLabelCommand : GetSeElementByTypeCommand
     {
         public GetSeLabelCommand()
-        { this.TagName = "Label"; }
+        { TagName = "Label"; }
     }
     
     /// <summary>
@@ -806,7 +805,7 @@ namespace SePSX.Commands
     public class GetSeLegendCommand : GetSeElementByTypeCommand
     {
         public GetSeLegendCommand()
-        { this.TagName = "Legend"; }
+        { TagName = "Legend"; }
     }
     
     /// <summary>
@@ -817,7 +816,7 @@ namespace SePSX.Commands
     public class GetSeLiCommand : GetSeElementByTypeCommand
     {
         public GetSeLiCommand()
-        { this.TagName = "Li"; }
+        { TagName = "Li"; }
     }
     
     /// <summary>
@@ -828,7 +827,7 @@ namespace SePSX.Commands
     public class GetSeLinkCommand : GetSeElementByTypeCommand
     {
         public GetSeLinkCommand()
-        { this.TagName = "Link"; }
+        { TagName = "Link"; }
     }
     
     /// <summary>
@@ -839,7 +838,7 @@ namespace SePSX.Commands
     public class GetSeMapCommand : GetSeElementByTypeCommand
     {
         public GetSeMapCommand()
-        { this.TagName = "Map"; }
+        { TagName = "Map"; }
     }
     
     /// <summary>
@@ -850,7 +849,7 @@ namespace SePSX.Commands
     public class GetSeMarkCommand : GetSeElementByTypeCommand
     {
         public GetSeMarkCommand()
-        { this.TagName = "Mark"; }
+        { TagName = "Mark"; }
     }
     
     /// <summary>
@@ -861,7 +860,7 @@ namespace SePSX.Commands
     public class GetSeMenuCommand : GetSeElementByTypeCommand
     {
         public GetSeMenuCommand()
-        { this.TagName = "Menu"; }
+        { TagName = "Menu"; }
     }
     
     /// <summary>
@@ -872,7 +871,7 @@ namespace SePSX.Commands
     public class GetSeMetaCommand : GetSeElementByTypeCommand
     {
         public GetSeMetaCommand()
-        { this.TagName = "Meta"; }
+        { TagName = "Meta"; }
     }
     
     /// <summary>
@@ -883,7 +882,7 @@ namespace SePSX.Commands
     public class GetSeMeterCommand : GetSeElementByTypeCommand
     {
         public GetSeMeterCommand()
-        { this.TagName = "Meter"; }
+        { TagName = "Meter"; }
     }
     
     /// <summary>
@@ -894,7 +893,7 @@ namespace SePSX.Commands
     public class GetSeNavCommand : GetSeElementByTypeCommand
     {
         public GetSeNavCommand()
-        { this.TagName = "Nav"; }
+        { TagName = "Nav"; }
     }
     
     /// <summary>
@@ -905,7 +904,7 @@ namespace SePSX.Commands
     public class GetSeNoFramesCommand : GetSeElementByTypeCommand
     {
         public GetSeNoFramesCommand()
-        { this.TagName = "NoFrames"; }
+        { TagName = "NoFrames"; }
     }
     
     /// <summary>
@@ -916,7 +915,7 @@ namespace SePSX.Commands
     public class GetSeNoScriptCommand : GetSeElementByTypeCommand
     {
         public GetSeNoScriptCommand()
-        { this.TagName = "NoScript"; }
+        { TagName = "NoScript"; }
     }
     
     /// <summary>
@@ -927,7 +926,7 @@ namespace SePSX.Commands
     public class GetSeObjectCommand : GetSeElementByTypeCommand
     {
         public GetSeObjectCommand()
-        { this.TagName = "Object"; }
+        { TagName = "Object"; }
     }
     
     /// <summary>
@@ -938,7 +937,7 @@ namespace SePSX.Commands
     public class GetSeOlCommand : GetSeElementByTypeCommand
     {
         public GetSeOlCommand()
-        { this.TagName = "Ol"; }
+        { TagName = "Ol"; }
     }
     
     /// <summary>
@@ -949,7 +948,7 @@ namespace SePSX.Commands
     public class GetSeOptGroupCommand : GetSeElementByTypeCommand
     {
         public GetSeOptGroupCommand()
-        { this.TagName = "OptGroup"; }
+        { TagName = "OptGroup"; }
     }
     
     /// <summary>
@@ -960,7 +959,7 @@ namespace SePSX.Commands
     public class GetSeOptionCommand : GetSeElementByTypeCommand
     {
         public GetSeOptionCommand()
-        { this.TagName = "Option"; }
+        { TagName = "Option"; }
     }
     
     /// <summary>
@@ -971,7 +970,7 @@ namespace SePSX.Commands
     public class GetSeOutputCommand : GetSeElementByTypeCommand
     {
         public GetSeOutputCommand()
-        { this.TagName = "Output"; }
+        { TagName = "Output"; }
     }
     
     /// <summary>
@@ -982,7 +981,7 @@ namespace SePSX.Commands
     public class GetSePCommand : GetSeElementByTypeCommand
     {
         public GetSePCommand()
-        { this.TagName = "P"; }
+        { TagName = "P"; }
     }
     
     /// <summary>
@@ -993,7 +992,7 @@ namespace SePSX.Commands
     public class GetSeParamCommand : GetSeElementByTypeCommand
     {
         public GetSeParamCommand()
-        { this.TagName = "Param"; }
+        { TagName = "Param"; }
     }
     
     /// <summary>
@@ -1004,7 +1003,7 @@ namespace SePSX.Commands
     public class GetSePreCommand : GetSeElementByTypeCommand
     {
         public GetSePreCommand()
-        { this.TagName = "Pre"; }
+        { TagName = "Pre"; }
     }
     
     /// <summary>
@@ -1015,7 +1014,7 @@ namespace SePSX.Commands
     public class GetSeProgressCommand : GetSeElementByTypeCommand
     {
         public GetSeProgressCommand()
-        { this.TagName = "Progress"; }
+        { TagName = "Progress"; }
     }
     
     /// <summary>
@@ -1026,7 +1025,7 @@ namespace SePSX.Commands
     public class GetSeQCommand : GetSeElementByTypeCommand
     {
         public GetSeQCommand()
-        { this.TagName = "Q"; }
+        { TagName = "Q"; }
     }
     
     /// <summary>
@@ -1037,7 +1036,7 @@ namespace SePSX.Commands
     public class GetSeRpCommand : GetSeElementByTypeCommand
     {
         public GetSeRpCommand()
-        { this.TagName = "Rp"; }
+        { TagName = "Rp"; }
     }
     
     /// <summary>
@@ -1048,7 +1047,7 @@ namespace SePSX.Commands
     public class GetSeRtCommand : GetSeElementByTypeCommand
     {
         public GetSeRtCommand()
-        { this.TagName = "Rt"; }
+        { TagName = "Rt"; }
     }
     
     /// <summary>
@@ -1059,7 +1058,7 @@ namespace SePSX.Commands
     public class GetSeRubyCommand : GetSeElementByTypeCommand
     {
         public GetSeRubyCommand()
-        { this.TagName = "Ruby"; }
+        { TagName = "Ruby"; }
     }
     
     /// <summary>
@@ -1070,7 +1069,7 @@ namespace SePSX.Commands
     public class GetSeSCommand : GetSeElementByTypeCommand
     {
         public GetSeSCommand()
-        { this.TagName = "S"; }
+        { TagName = "S"; }
     }
     
     /// <summary>
@@ -1081,7 +1080,7 @@ namespace SePSX.Commands
     public class GetSeSampCommand : GetSeElementByTypeCommand
     {
         public GetSeSampCommand()
-        { this.TagName = "Samp"; }
+        { TagName = "Samp"; }
     }
     
     /// <summary>
@@ -1092,7 +1091,7 @@ namespace SePSX.Commands
     public class GetSeScriptCommand : GetSeElementByTypeCommand
     {
         public GetSeScriptCommand()
-        { this.TagName = "Script"; }
+        { TagName = "Script"; }
     }
     
     /// <summary>
@@ -1103,7 +1102,7 @@ namespace SePSX.Commands
     public class GetSeSectionCommand : GetSeElementByTypeCommand
     {
         public GetSeSectionCommand()
-        { this.TagName = "Section"; }
+        { TagName = "Section"; }
     }
     
     /// <summary>
@@ -1114,7 +1113,7 @@ namespace SePSX.Commands
     public class GetSeSelectCommand : GetSeElementByTypeCommand
     {
         public GetSeSelectCommand()
-        { this.TagName = "Select"; }
+        { TagName = "Select"; }
     }
     
     /// <summary>
@@ -1125,7 +1124,7 @@ namespace SePSX.Commands
     public class GetSeSmallCommand : GetSeElementByTypeCommand
     {
         public GetSeSmallCommand()
-        { this.TagName = "Small"; }
+        { TagName = "Small"; }
     }
 
     /// <summary>
@@ -1136,7 +1135,7 @@ namespace SePSX.Commands
     public class GetSeSourceCommand : GetSeElementByTypeCommand
     {
         public GetSeSourceCommand()
-        { this.TagName = "Source"; }
+        { TagName = "Source"; }
     }
     
     /// <summary>
@@ -1147,7 +1146,7 @@ namespace SePSX.Commands
     public class GetSeSpanCommand : GetSeElementByTypeCommand
     {
         public GetSeSpanCommand()
-        { this.TagName = "Span"; }
+        { TagName = "Span"; }
     }
     
     /// <summary>
@@ -1158,7 +1157,7 @@ namespace SePSX.Commands
     public class GetSeStrikeCommand : GetSeElementByTypeCommand
     {
         public GetSeStrikeCommand()
-        { this.TagName = "Strike"; }
+        { TagName = "Strike"; }
     }
     
     /// <summary>
@@ -1169,7 +1168,7 @@ namespace SePSX.Commands
     public class GetSeStrongCommand : GetSeElementByTypeCommand
     {
         public GetSeStrongCommand()
-        { this.TagName = "Strong"; }
+        { TagName = "Strong"; }
     }
     
     /// <summary>
@@ -1180,7 +1179,7 @@ namespace SePSX.Commands
     public class GetSeStyleCommand : GetSeElementByTypeCommand
     {
         public GetSeStyleCommand()
-        { this.TagName = "Style"; }
+        { TagName = "Style"; }
     }
     
     /// <summary>
@@ -1191,7 +1190,7 @@ namespace SePSX.Commands
     public class GetSeSubCommand : GetSeElementByTypeCommand
     {
         public GetSeSubCommand()
-        { this.TagName = "Sub"; }
+        { TagName = "Sub"; }
     }
     
     /// <summary>
@@ -1202,7 +1201,7 @@ namespace SePSX.Commands
     public class GetSeSummaryCommand : GetSeElementByTypeCommand
     {
         public GetSeSummaryCommand()
-        { this.TagName = "Summary"; }
+        { TagName = "Summary"; }
     }
     
     /// <summary>
@@ -1213,7 +1212,7 @@ namespace SePSX.Commands
     public class GetSeSupCommand : GetSeElementByTypeCommand
     {
         public GetSeSupCommand()
-        { this.TagName = "Sup"; }
+        { TagName = "Sup"; }
     }
     
     /// <summary>
@@ -1224,7 +1223,7 @@ namespace SePSX.Commands
     public class GetSeTableCommand : GetSeElementByTypeCommand
     {
         public GetSeTableCommand()
-        { this.TagName = "Table"; }
+        { TagName = "Table"; }
     }
     
     /// <summary>
@@ -1235,7 +1234,7 @@ namespace SePSX.Commands
     public class GetSeTBodyCommand : GetSeElementByTypeCommand
     {
         public GetSeTBodyCommand()
-        { this.TagName = "TBody"; }
+        { TagName = "TBody"; }
     }
     
     /// <summary>
@@ -1246,7 +1245,7 @@ namespace SePSX.Commands
     public class GetSeTdCommand : GetSeElementByTypeCommand
     {
         public GetSeTdCommand()
-        { this.TagName = "Td"; }
+        { TagName = "Td"; }
     }
     
     /// <summary>
@@ -1257,7 +1256,7 @@ namespace SePSX.Commands
     public class GetSeTextAreaCommand : GetSeElementByTypeCommand
     {
         public GetSeTextAreaCommand()
-        { this.TagName = "TextArea"; }
+        { TagName = "TextArea"; }
     }
     
     /// <summary>
@@ -1268,7 +1267,7 @@ namespace SePSX.Commands
     public class GetSeTFootCommand : GetSeElementByTypeCommand
     {
         public GetSeTFootCommand()
-        { this.TagName = "TFoot"; }
+        { TagName = "TFoot"; }
     }
     
     /// <summary>
@@ -1279,7 +1278,7 @@ namespace SePSX.Commands
     public class GetSeThCommand : GetSeElementByTypeCommand
     {
         public GetSeThCommand()
-        { this.TagName = "Th"; }
+        { TagName = "Th"; }
     }
     
     /// <summary>
@@ -1290,7 +1289,7 @@ namespace SePSX.Commands
     public class GetSeTHeadCommand : GetSeElementByTypeCommand
     {
         public GetSeTHeadCommand()
-        { this.TagName = "THead"; }
+        { TagName = "THead"; }
     }
     
     /// <summary>
@@ -1301,7 +1300,7 @@ namespace SePSX.Commands
     public class GetSeTimeCommand : GetSeElementByTypeCommand
     {
         public GetSeTimeCommand()
-        { this.TagName = "Time"; }
+        { TagName = "Time"; }
     }
     
     /// <summary>
@@ -1312,7 +1311,7 @@ namespace SePSX.Commands
     public class GetSeTitleCommand : GetSeElementByTypeCommand
     {
         public GetSeTitleCommand()
-        { this.TagName = "Title"; }
+        { TagName = "Title"; }
     }
     
     /// <summary>
@@ -1323,7 +1322,7 @@ namespace SePSX.Commands
     public class GetSeTrCommand : GetSeElementByTypeCommand
     {
         public GetSeTrCommand()
-        { this.TagName = "Tr"; }
+        { TagName = "Tr"; }
     }
     
     /// <summary>
@@ -1334,7 +1333,7 @@ namespace SePSX.Commands
     public class GetSeTrackCommand : GetSeElementByTypeCommand
     {
         public GetSeTrackCommand()
-        { this.TagName = "Track"; }
+        { TagName = "Track"; }
     }
     
     /// <summary>
@@ -1345,7 +1344,7 @@ namespace SePSX.Commands
     public class GetSeTtCommand : GetSeElementByTypeCommand
     {
         public GetSeTtCommand()
-        { this.TagName = "Tt"; }
+        { TagName = "Tt"; }
     }
     
     /// <summary>
@@ -1356,7 +1355,7 @@ namespace SePSX.Commands
     public class GetSeUCommand : GetSeElementByTypeCommand
     {
         public GetSeUCommand()
-        { this.TagName = "U"; }
+        { TagName = "U"; }
     }
     
     /// <summary>
@@ -1367,7 +1366,7 @@ namespace SePSX.Commands
     public class GetSeUlCommand : GetSeElementByTypeCommand
     {
         public GetSeUlCommand()
-        { this.TagName = "Ul"; }
+        { TagName = "Ul"; }
     }
     
     /// <summary>
@@ -1378,7 +1377,7 @@ namespace SePSX.Commands
     public class GetSeVarCommand : GetSeElementByTypeCommand
     {
         public GetSeVarCommand()
-        { this.TagName = "Var"; }
+        { TagName = "Var"; }
     }
     
     /// <summary>
@@ -1389,7 +1388,7 @@ namespace SePSX.Commands
     public class GetSeVideoCommand : GetSeElementByTypeCommand
     {
         public GetSeVideoCommand()
-        { this.TagName = "Video"; }
+        { TagName = "Video"; }
     }
     
     /// <summary>
@@ -1400,6 +1399,6 @@ namespace SePSX.Commands
     public class GetSeWbrCommand : GetSeElementByTypeCommand
     {
         public GetSeWbrCommand()
-        { this.TagName = "Wbr"; }
+        { TagName = "Wbr"; }
     }
 }

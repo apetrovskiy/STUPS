@@ -9,9 +9,8 @@
 
 namespace Tmx
 {
-    using System;
     using System.Management.Automation;
-    using Tmx.Interfaces.TestStructure;
+    using Interfaces.TestStructure;
     
     /// <summary>
     /// Description of TestResultStatusCmdletBase.
@@ -23,8 +22,8 @@ namespace Tmx
         internal new string TestResultName { get; set; }
         
         [Parameter(Mandatory = false)]
-        internal new TestResultStatuses TestResultStatus { get; set; }
-
+        internal new TestStatuses TestResultStatus { get; set; }
+        
         [Parameter(Mandatory = false)]
         internal new SwitchParameter TestPassed { get; set; }
         

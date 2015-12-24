@@ -9,11 +9,8 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
-    using OpenQA.Selenium;
-    using OpenQA.Selenium.Chrome;
-    
+
     /// <summary>
     /// Description of AddSeChromeArgumentCommand.
     /// </summary>
@@ -33,10 +30,10 @@ namespace SePSX.Commands
         protected override void ProcessRecord()
         {
             // check input options
-            this.checkInputChromeOptions(true);
+            CheckInputChromeOptions(true);
             
             // add an option
-            SeAddChromeArgumentCommand command =
+            var command =
                 new SeAddChromeArgumentCommand(this);
             command.Execute();
         }

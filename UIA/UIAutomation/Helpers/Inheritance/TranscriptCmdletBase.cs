@@ -15,7 +15,6 @@ namespace UIAutomation
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
     using System.IO;
 
     /// <summary>

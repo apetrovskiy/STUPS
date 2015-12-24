@@ -11,11 +11,9 @@ namespace Tmx.Interfaces
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections;
     using System.Linq;
     using System.Xml.Serialization;
-    using Tmx.Interfaces.TestStructure;
-    // using Tmx.Core;
+    using TestStructure;
     
     /// <summary>
     /// Description of TestResult.
@@ -32,20 +30,36 @@ namespace Tmx.Interfaces
            string testSuiteId)
         {
             UniqueId = Guid.NewGuid();
-            this.Details = new List<ITestResultDetail>();
-            this.enStatus = TestResultStatuses.NotTested;
+            Details = new List<ITestResultDetail>();
+            // 20150805
+            // enStatus = TestResultStatuses.NotTested;
+            enStatus = TestStatuses.NotRun;
             
             // scenarioId and suiteId
-            this.ScenarioId = testScenarioId;
-            this.SuiteId = testSuiteId;
+            ScenarioId = testScenarioId;
+            SuiteId = testSuiteId;
             
-            this.SetNow();
+            SetNow();
         }
         
         [XmlAttribute]
         public virtual Guid UniqueId { get; set; }
         [XmlAttribute]
         public virtual string Name { get; set; }
+
+        // 20150521
+        public virtual string MessageOnSuccess
+        {
+            get { return string.IsNullOrEmpty(_messageOnSuccess) ? Name : _messageOnSuccess; }
+            set { _messageOnSuccess = value; }
+        }
+
+        public virtual string MessageOnFail
+        {
+            get { return string.IsNullOrEmpty(_messageOnFail) ? Name : _messageOnFail; }
+            set { _messageOnFail = value; }
+        }
+
         [XmlAttribute]
         public virtual string Id { get; set; }
         [XmlAttribute]
@@ -90,26 +104,41 @@ namespace Tmx.Interfaces
 
         string status;
         [XmlAttribute]
-        public virtual string Status { get { return this.status; } }
-        TestResultStatuses _enStatus;
+        public virtual string Status { get { return status; } }
+        // 20150805
+        // TestResultStatuses _enStatus;
+        TestStatuses _enStatus;
+        private string _messageOnSuccess;
+        private string _messageOnFail;
+
         [XmlAttribute]
-        public virtual TestResultStatuses enStatus
+        // 20150805
+        // public virtual TestResultStatuses enStatus
+        public virtual TestStatuses enStatus
         { 
             get { return _enStatus; }
             set{
                 _enStatus = value;
                 
                 switch (value) {
-                    case TestResultStatuses.Passed:
+                    // 20150805
+                    // case TestResultStatuses.Passed:
+                    case TestStatuses.Passed:
                         status = TestData.TestStatePassed;
                         break;
-                    case TestResultStatuses.Failed:
+                    // 20150805
+                    // case TestResultStatuses.Failed:
+                    case TestStatuses.Failed:
                         status = TestData.TestStateFailed;
                         break;
-                    case TestResultStatuses.NotTested:
+                    // 20150805
+                    // case TestResultStatuses.NotTested:
+                    case TestStatuses.NotRun:
                         status = TestData.TestStateNotTested;
                         break;
-                    case TestResultStatuses.KnownIssue:
+                    // 20150805
+                    // case TestResultStatuses.KnownIssue:
+                    case TestStatuses.KnownIssue:
                         status = TestData.TestStateKnownIssue;
                         break;
                     default:
@@ -163,7 +192,7 @@ namespace Tmx.Interfaces
         public virtual TestResultOrigins Origin { get; protected internal set; }
         public virtual void SetOrigin(TestResultOrigins origin)
         {
-            if (TestResultOrigins.Logical == this.Origin) {
+            if (TestResultOrigins.Logical == Origin) {
                 
                 // don't change the origin - it already was logical
             } else {
@@ -232,17 +261,21 @@ namespace Tmx.Interfaces
 //            
 //            return detailsList;
 //        }
-        
-        public virtual object[] ListDetailNames(TestResultStatuses status)
+
+        // 20150805
+        // public virtual object[] ListDetailNames(TestResultStatuses status)
+        public virtual object[] ListDetailNames(TestStatuses status)
         {
             ITestResultDetail[] detailsList = null;
             
-            if (null == this.Details || 0 == this.Details.Count) return detailsList;
-            
-            if (TestResultStatuses.NotTested == status) {
+            if (null == Details || 0 == Details.Count) return detailsList;
+
+            // 20150805
+            // if (TestResultStatuses.NotTested == status) {
+            if (TestStatuses.NotRun == status) {
                     
                 var testResultDetailsNonFiltered = 
-                    from detail in this.Details
+                    from detail in Details
                     select detail;
                     
                 try {
@@ -253,8 +286,10 @@ namespace Tmx.Interfaces
             } else {
                     
                 var testResultDetailFiltered =
-                    from detail in this.Details
-                    where detail.DetailStatus == TestResultStatuses.Failed || detail.DetailStatus == TestResultStatuses.KnownIssue
+                    from detail in Details
+                    // 20150805
+                    // where detail.DetailStatus == TestResultStatuses.Failed || detail.DetailStatus == TestResultStatuses.KnownIssue
+                    where detail.DetailStatus == TestStatuses.Failed || detail.DetailStatus == TestStatuses.KnownIssue
                     select detail;
                     
                 try {
@@ -276,5 +311,8 @@ namespace Tmx.Interfaces
         public virtual string PlatformId { get; set; }
         [XmlAttribute]
         public virtual Guid PlatformUniqueId { get; set; }
+
+        [XmlAttribute]
+        public string Tag { get; set; }
     }
 }

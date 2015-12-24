@@ -9,9 +9,6 @@
 
 namespace Data
 {
-    using System;
-    using System.Management.Automation;
-    
     /// <summary>
     /// Description of DataCommand.
     /// </summary>

@@ -11,10 +11,12 @@ namespace Tmx
 {
     using System;
     using System.Threading;
-    using Tmx;
-    using Tmx.Client;
-    using Tmx.Commands;
-    
+    using Client;
+    using Client.Library.Helpers;
+    using Client.Library.ObjectModel;
+    using Commands;
+    using Core.Proxy;
+
     /// <summary>
     /// Description of RegisterSystemUnderTestCommand.
     /// </summary>
@@ -31,7 +33,10 @@ namespace Tmx
             clientSettings.ServerUrl = cmdlet.ServerUrl;
             clientSettings.StopImmediately = false;
             
-            var registration = new Registration(new RestRequestCreator());
+            // 20150918
+            // var registration = new Registration(new RestRequestCreator());
+            // var registration = new Registration();
+            var registration = ProxyFactory.Get<Registration>();
             // temporarily
             // TODO: to a template method
             var startTime = DateTime.Now;
@@ -41,7 +46,7 @@ namespace Tmx
                     clientSettings.ClientId = registration.SendRegistrationInfoAndGetClientId(cmdlet.CustomClientString);
                 }
                 catch (Exception e2) {
-// Console.WriteLine("registering " + e2.Message);
+Console.WriteLine("registering " + e2.Message);
                     // cmdlet.WriteProgress(new System.Management.Automation.ProgressRecord(
                 }
                 

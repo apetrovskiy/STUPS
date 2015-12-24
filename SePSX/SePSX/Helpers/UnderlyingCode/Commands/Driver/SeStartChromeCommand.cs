@@ -9,9 +9,7 @@
 
 namespace SePSX
 {
-    using System;
-    using System.Management.Automation;
-    using SePSX.Commands;
+    using Commands;
     
     /// <summary>
     /// Description of SeStartChromeCommand.
@@ -25,7 +23,7 @@ namespace SePSX
         internal override void Execute()
         {
             //SeHelper.StartWebDriver((StartSeDriverServerCommand)this.Cmdlet);
-            SeHelper.StartWebDriver((StartSeWebDriverCommand)this.Cmdlet);
+            SeHelper.StartWebDriver((StartSeWebDriverCommand)Cmdlet);
         }
     }
 }

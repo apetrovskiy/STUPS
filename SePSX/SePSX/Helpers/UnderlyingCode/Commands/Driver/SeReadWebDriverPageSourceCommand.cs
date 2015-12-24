@@ -9,10 +9,6 @@
 
 namespace SePSX
 {
-    using System;
-    using System.Management.Automation;
-    using SePSX.Commands;
-    
     /// <summary>
     /// Description of SeReadWebDriverPageSourceCommand.
     /// </summary>
@@ -28,8 +24,8 @@ namespace SePSX
 //                ((SeReadWebDriverPageSourceCommand)this.Cmdlet),
 //                ((SeReadWebDriverPageSourceCommand)this.Cmdlet).InputObject);
             SeHelper.GetPageSource(
-                this.Cmdlet,
-                ((HasWebDriverInputCmdletBase)this.Cmdlet).InputObject);
+                Cmdlet,
+                ((HasWebDriverInputCmdletBase)Cmdlet).InputObject);
         }
     }
 }

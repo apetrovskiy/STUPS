@@ -7,19 +7,19 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx
-{
-    using System;
-    
-    /// <summary>
-    /// Description of Import.
-    /// </summary>
-    public static class Import
-    {
-        static Import()
-        {
-        }
-        
-        //public static void Create
-    }
-}
+//namespace Tmx
+//{
+//    using System;
+//    
+//    /// <summary>
+//    /// Description of Import.
+//    /// </summary>
+//    public static class Import
+//    {
+//        static Import()
+//        {
+//        }
+//        
+//        //public static void Create
+//    }
+//}

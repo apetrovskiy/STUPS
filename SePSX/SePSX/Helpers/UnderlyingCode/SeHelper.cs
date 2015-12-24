@@ -7,22 +7,17 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using System.Linq;
-
 namespace SePSX
 {
     #region using
     using System;
+    using System.Linq;
     using OpenQA.Selenium;
-    using OpenQA.Selenium.Firefox;
     using OpenQA.Selenium.Chrome;
     using OpenQA.Selenium.IE;
-    
-    using OpenQA.Selenium.Safari;
+
     //using OpenQA.Selenium.Opera;
     // using OpenQA.Selenium.Android;
-    
-    using OpenQA.Selenium.Support;
     using UIAutomation;
     using OpenQA.Selenium.Remote;
     
@@ -30,7 +25,8 @@ namespace SePSX
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Collections;
-    using System.Drawing;
+    // 20150314
+    // using System.Drawing;
     
     //
     //
@@ -49,11 +45,11 @@ namespace SePSX
     using OpenQA.Selenium.Support.UI;
     
     using System.Windows.Forms;
+    // 20150314
+    // using System.Management.Automation.Runspaces;
     
-    using System.Management.Automation.Runspaces;
     
-    
-    using SePSX.Commands;
+    using Commands;
     
     using Autofac;
 
@@ -72,12 +68,12 @@ namespace SePSX
             //            DriverIE = new InternetExplorerDriver();
 
             DriverProcesses =
-                new System.Collections.Generic.List<Process>();
+                new List<Process>();
         }
         
         #region internals
-        private static UIAutomation.Highlighter highlighter = null;
-        private static UIAutomation.Highlighter highlighterParent = null;
+        private static Highlighter _highlighter = null;
+        private static Highlighter _highlighterParent = null;
         //private static Highlighter highlighterFirstChild = null;
         
         //private static System.Windows.Automation.AutomationElement element = null;
@@ -86,11 +82,11 @@ namespace SePSX
         
         internal const string ProcessNameChrome = "chrome";
         internal const string ProcessNameFirefox = "firefox";
-        internal const string ProcessNameIE = "iexplore";
+        internal const string ProcessNameIe = "iexplore";
         internal const string ProcessNameSafari = "safari";
         internal const string ProcessNameOpera = "opera";
-        internal const string ProcessNameHTMLDriver = "htmld";
-        internal static System.Collections.Generic.List<Process> DriverProcesses { get; set; }
+        internal const string ProcessNameHtmlDriver = "htmld";
+        internal static List<Process> DriverProcesses { get; set; }
         internal static Process DriverProcess { get; set; }
         
         internal const string DriverTitleComplementChrome = " - Google Chrome";
@@ -105,28 +101,28 @@ namespace SePSX
         public const string DriverTitleOnStartSafari = " ??? safari ???";
         public const string DriverTitleOnStartOpera = " ???? opera ????";
         
-        internal static bool waitForElement = true;
+        internal static bool WaitForElement = true;
         
         
         // 20120928
-        internal const string driverNameFirefox = "FIREFOX";
-        internal const string driverNameFirefox2 = "FF";
-        internal const string driverNameChrome = "CHROME";
-        internal const string driverNameChrome2 = "CH";
-        internal const string driverNameInternetExplorer = "INTERNETEXPLORER";
-        internal const string driverNameInternetExplorer2 = "IE";
-        internal const string driverNameInternetExplorer3 = "INTERNETEXPLORER32";
-        internal const string driverNameInternetExplorer4 = "IE32";
-        internal const string driverNameInternetExplorer5 = "INTERNETEXPLORER64";
-        internal const string driverNameInternetExplorer6 = "IE64";
-        internal const string driverNameSafari = "SAFARI";
-        internal const string driverNameSafari2 = "SF";
-        internal const string driverNameOpera = "OPERA";
-        internal const string driverNameOpera2 = "OP";
-        internal const string driverNameAndroid = "ANDROID";
-        internal const string driverNameAndroid2 = "AN";
-        internal const string driverNameHTMLUnit = "HTMLUNIT";
-        internal const string driverNameHTMLUnit2 = "HTML";
+        internal const string DriverNameFirefox = "FIREFOX";
+        internal const string DriverNameFirefox2 = "FF";
+        internal const string DriverNameChrome = "CHROME";
+        internal const string DriverNameChrome2 = "CH";
+        internal const string DriverNameInternetExplorer = "INTERNETEXPLORER";
+        internal const string DriverNameInternetExplorer2 = "IE";
+        internal const string DriverNameInternetExplorer3 = "INTERNETEXPLORER32";
+        internal const string DriverNameInternetExplorer4 = "IE32";
+        internal const string DriverNameInternetExplorer5 = "INTERNETEXPLORER64";
+        internal const string DriverNameInternetExplorer6 = "IE64";
+        internal const string DriverNameSafari = "SAFARI";
+        internal const string DriverNameSafari2 = "SF";
+        internal const string DriverNameOpera = "OPERA";
+        internal const string DriverNameOpera2 = "OP";
+        internal const string DriverNameAndroid = "ANDROID";
+        internal const string DriverNameAndroid2 = "AN";
+        internal const string DriverNameHtmlUnit = "HTMLUNIT";
+        internal const string DriverNameHtmlUnit2 = "HTML";
         
         
         #endregion internals
@@ -134,41 +130,41 @@ namespace SePSX
         #region Highlight
         // 20121212
         //private static int[] getWebElementCoordinates(RemoteWebElement element)
-        private static int[] getWebElementCoordinates(WebElementDecorator element)
+        private static int[] GetWebElementCoordinates(WebElementDecorator element)
         {
 
-            int[] driverCoordinates = new int[2];
+            var driverCoordinates = new int[2];
 //Console.WriteLine("getWebElementCoordinates 000001");
             // 20131109
             //AutomationElement driverElement =
             //    System.Windows.Automation.AutomationElement.RootElement.FindFirst(
-            IUiElement driverElement =
+            var driverElement =
                 UiElement.RootElement.FindFirst(
                     TreeScope.Children,
                     new PropertyCondition(
                         AutomationElement.ProcessIdProperty,
-                        CurrentData.CurrentWebDriverPID));
+                        CurrentData.CurrentWebDriverPid));
 //Console.WriteLine("getWebElementCoordinates 000002");
             if (driverElement != null) {
 //Console.WriteLine("getWebElementCoordinates 000003");
                 PropertyCondition internalPaneCondition = null;
                 
-                switch (SeHelper.DriverProcess.ProcessName) {
-                    case SeHelper.ProcessNameChrome:
-                    case SeHelper.ProcessNameFirefox:
-                    case SeHelper.ProcessNameOpera:
+                switch (DriverProcess.ProcessName) {
+                    case ProcessNameChrome:
+                    case ProcessNameFirefox:
+                    case ProcessNameOpera:
                         internalPaneCondition =
                             new PropertyCondition(
                                 AutomationElement.ControlTypeProperty,
                                 ControlType.Document);
                         break;
-                    case SeHelper.ProcessNameIE:
+                    case ProcessNameIe:
                         internalPaneCondition =
                             new PropertyCondition(
                                 AutomationElement.ControlTypeProperty,
                                 ControlType.Pane);
                         break;
-                    case SeHelper.ProcessNameSafari:
+                    case ProcessNameSafari:
                         internalPaneCondition =
                             new PropertyCondition(
                                 AutomationElement.ControlTypeProperty,
@@ -184,7 +180,7 @@ namespace SePSX
 //Console.WriteLine("getWebElementCoordinates 000005");
                 // 20131109
                 //AutomationElement internalPaneElement =
-      IUiElement internalPaneElement =
+      var internalPaneElement =
                     driverElement.FindFirst(
                         TreeScope.Descendants,
                         internalPaneCondition);
@@ -208,9 +204,9 @@ Console.WriteLine("getWebElementCoordinates 000008");
         public static void Highlight(IWebElement webElement)
         {
 //Console.WriteLine("Highlight 00000000000001");
-            try { if (highlighter != null) { highlighter.Dispose(); } } catch {}
+            try { if (_highlighter != null) { _highlighter.Dispose(); } } catch {}
 //Console.WriteLine("Highlight 00000000000002");
-            try { if (highlighterParent != null) { highlighterParent.Dispose(); } } catch {}
+            try { if (_highlighterParent != null) { _highlighterParent.Dispose(); } } catch {}
 //Console.WriteLine("Highlight 00000000000003");
             //try { if (highlighterFirstChild != null) { highlighterFirstChild.Dispose(); } } catch {}
 
@@ -219,7 +215,7 @@ Console.WriteLine("getWebElementCoordinates 000008");
 //                    webElement as RemoteWebElement;
 //Console.WriteLine("Highlight 00000000000004");
                 // 20121212
-                WebElementDecorator decoratedElement =
+                var decoratedElement =
                     webElement as WebElementDecorator;
 //Console.WriteLine("Highlight 00000000000005");
                 WebElementDecorator parentElement;
@@ -230,14 +226,14 @@ Console.WriteLine("getWebElementCoordinates 000008");
                 //if (remoteElement != null) {
                 if (null != decoratedElement) {
 Console.WriteLine("Highlight 00000000000007");
-                    int[] absoluteCoordinates =
+                    var absoluteCoordinates =
                         // 20121212
                         //getWebElementCoordinates(remoteElement);
-                        getWebElementCoordinates(decoratedElement);
+                        GetWebElementCoordinates(decoratedElement);
 Console.WriteLine("Highlight 00000000000008");
                     try {
-                        highlighter =
-                            new UIAutomation.Highlighter(
+                        _highlighter =
+                            new Highlighter(
                                 // 20121212
                                 //remoteElement.Size.Height,
                                 decoratedElement.Size.Height,
@@ -247,7 +243,7 @@ Console.WriteLine("Highlight 00000000000008");
                                 absoluteCoordinates[0],
                                 absoluteCoordinates[1],
                                 0,
-                                UIAutomation.Highlighters.Element,
+                                Highlighters.Element,
                                 // 20130423
                                 null);
 Console.WriteLine("Highlight 00000000000009");
@@ -268,24 +264,24 @@ Console.WriteLine("Highlight 00000000000010");
                                 // 20121212
                                 //(RemoteWebElement)SeHelper.GetParentWebElement(remoteElement);
                                 //(RemoteWebElement)SeHelper.GetParentWebElement(decoratedElement);
-                                (WebElementDecorator)SeHelper.GetParentWebElement(decoratedElement);
+                                (WebElementDecorator)GetParentWebElement(decoratedElement);
 Console.WriteLine("Highlight 00000000000011");
                             // 20121212
                             //if ((parentElement as RemoteWebElement) != null) {
                             if ((parentElement as WebElementDecorator) != null) {
 Console.WriteLine("Highlight 00000000000012");
-                                int[] parentAbsoluteCoordinates =
-                                    getWebElementCoordinates(parentElement);
+                                var parentAbsoluteCoordinates =
+                                    GetWebElementCoordinates(parentElement);
 Console.WriteLine("Highlight 00000000000014");
                                 try {
-                                    highlighterParent =
-                                        new UIAutomation.Highlighter(
+                                    _highlighterParent =
+                                        new Highlighter(
                                             parentElement.Size.Height,
                                             parentElement.Size.Width,
                                             parentAbsoluteCoordinates[0],
                                             parentAbsoluteCoordinates[1],
                                             0,
-                                            UIAutomation.Highlighters.Parent,
+                                            Highlighters.Parent,
                                             // 20130423
                                             null);
 Console.WriteLine("Highlight 00000000000015");
@@ -305,7 +301,7 @@ Console.WriteLine("Highlight 00000000000015");
             }
         }
         
-        private static double getSquare(Process process, string title)
+        private static double GetSquare(Process process, string title)
         {
             double result = 0;
             
@@ -315,7 +311,7 @@ Console.WriteLine("Highlight 00000000000015");
                 // 20131109
                 //AutomationElement element =
                 //    System.Windows.Automation.AutomationElement.RootElement.FindFirst(
-      IUiElement element =
+      var element =
           UiElement.RootElement.FindFirst(
                         TreeScope.Children,
                         new AndCondition(
@@ -345,25 +341,25 @@ Console.WriteLine("Highlight 00000000000015");
         
         #region starting driver
         internal static string GetDriverProcessName(
-            SePSX.Drivers driverCode) //,
+            Drivers driverCode) //,
             //WebDriverFactory factory)
         {
-            string processToWatch = string.Empty;
+            var processToWatch = string.Empty;
             switch (driverCode) {
-                case SePSX.Drivers.Chrome:
-                    processToWatch = SeHelper.ProcessNameChrome;
+                case Drivers.Chrome:
+                    processToWatch = ProcessNameChrome;
                     break;
-                case SePSX.Drivers.Firefox:
-                    processToWatch = SeHelper.ProcessNameFirefox;
+                case Drivers.Firefox:
+                    processToWatch = ProcessNameFirefox;
                     break;
-                case SePSX.Drivers.InternetExplorer:
-                    processToWatch = SeHelper.ProcessNameIE;
+                case Drivers.InternetExplorer:
+                    processToWatch = ProcessNameIe;
                     break;
-                case SePSX.Drivers.HTML:
-                    processToWatch = SeHelper.ProcessNameHTMLDriver;
+                case Drivers.Html:
+                    processToWatch = ProcessNameHtmlDriver;
                     break;
-                case SePSX.Drivers.Safari:
-                    processToWatch = SeHelper.ProcessNameSafari;
+                case Drivers.Safari:
+                    processToWatch = ProcessNameSafari;
                     break;
                     //case SePSX.Drivers.Opera:
                     //    processToWatch = SeHelper.ProcessNameOpera;
@@ -376,19 +372,19 @@ Console.WriteLine("Highlight 00000000000015");
         }
         
         internal static string GetDriverProcessName(
-            SePSX.DriverServers driverCode) //,
+            DriverServers driverCode) //,
             //WebDriverFactory factory)
         {
-            string processToWatch = string.Empty;
+            var processToWatch = string.Empty;
             switch (driverCode) {
-                case SePSX.DriverServers.chrome:
-                    processToWatch = SeHelper.ProcessNameChrome;
+                case DriverServers.Chrome:
+                    processToWatch = ProcessNameChrome;
                     break;
                     //                case SePSX.Drivers.Firefox:
                     //                    processToWatch = SeHelper.ProcessNameFirefox;
                     //                    break;
-                case SePSX.DriverServers.ie:
-                    processToWatch = SeHelper.ProcessNameIE;
+                case DriverServers.Ie:
+                    processToWatch = ProcessNameIe;
                     break;
                     //                case SePSX.Drivers.HTML:
                     //                    processToWatch = SeHelper.ProcessNameHTMLDriver;
@@ -408,30 +404,30 @@ Console.WriteLine("Highlight 00000000000015");
         
         internal static void CollectDriverProcesses(Drivers driverCode)
         {
-            Process[] processArray =
+            var processArray =
                 //Process.GetProcessesByName(GetDriverProcessName(driverCode, (new WebDriverFactory(new WebDriverModule()))));
                 Process.GetProcessesByName(GetDriverProcessName(driverCode));
-            foreach (Process process in processArray) {
+            foreach (var process in processArray) {
                 DriverProcesses.Add(process);
             }
         }
         
         internal static void CollectDriverProcesses(DriverServers driverCode)
         {
-            Process[] processArray =
+            var processArray =
                 //Process.GetProcessesByName(GetDriverProcessName(driverCode, (new WebDriverFactory(new WebDriverModule()))));
                 Process.GetProcessesByName(GetDriverProcessName(driverCode));
-            foreach (Process process in processArray) {
+            foreach (var process in processArray) {
                 DriverProcesses.Add(process);
             }
         }
         
         internal static void GetDriverProcess(Drivers driverCode, string title)
         {
-            Process[] processArray =
+            var processArray =
                 //Process.GetProcessesByName(GetDriverProcessName(driverCode, (new WebDriverFactory(new WebDriverModule()))));
                 Process.GetProcessesByName(GetDriverProcessName(driverCode));
-            System.Collections.Generic.List<Process> newProcesses = processArray.Where(process => !DriverProcesses.Contains(process) && process.MainWindowHandle.ToInt32() > 0).ToList();
+            var newProcesses = processArray.Where(process => !DriverProcesses.Contains(process) && process.MainWindowHandle.ToInt32() > 0).ToList();
             /*
             foreach (Process process in processArray)
             {
@@ -446,16 +442,16 @@ Console.WriteLine("Highlight 00000000000015");
             */
 
             if (newProcesses.Count == 1) {
-                SeHelper.DriverProcess = newProcesses[0];
+                DriverProcess = newProcesses[0];
             } else {
                 //Process theBiggestWindowProcess = null;
-                SeHelper.DriverProcess = null;
+                DriverProcess = null;
                 double square = 0;
                 double currentSquare = 0;
-                foreach (Process process in newProcesses) {
-                    currentSquare = getSquare(process, title);
+                foreach (var process in newProcesses) {
+                    currentSquare = GetSquare(process, title);
                     if (currentSquare > square) {
-                        SeHelper.DriverProcess = process;
+                        DriverProcess = process;
                         square = currentSquare;
                     }
                 }
@@ -484,10 +480,10 @@ Console.WriteLine("Highlight 00000000000015");
                 cmdlet.Count = 1;
             }
 
-            for (int i = 0; i < cmdlet.Count; i++) {
+            for (var i = 0; i < cmdlet.Count; i++) {
                 cmdlet.WriteVerbose(cmdlet, "clean process collection");
-                SeHelper.DriverProcesses.Clear();
-                SeHelper.DriverProcess = null;
+                DriverProcesses.Clear();
+                DriverProcess = null;
 
                 #region commented
                 //                            System.Management.Automation.InvocationInfo info =
@@ -505,7 +501,7 @@ Console.WriteLine("Highlight 00000000000015");
                 #endregion commented
                 
                 cmdlet.WriteVerbose(cmdlet, "creating a driver");
-                string errorReport = cmdlet.DriverName;
+                var errorReport = cmdlet.DriverName;
 
                 try {
 
@@ -578,8 +574,8 @@ Console.WriteLine("Highlight 00000000000015");
                         case Drivers.Safari:
                             driver = WebDriverFactory.GetDriver(cmdlet, Drivers.Safari);
                             break;
-                        case Drivers.HTML:
-                            driver = WebDriverFactory.GetDriver(cmdlet, Drivers.HTML);
+                        case Drivers.Html:
+                            driver = WebDriverFactory.GetDriver(cmdlet, Drivers.Html);
                             break;
                         default:
                             Console.WriteLine("SeHelper.StartWebDriver");
@@ -587,7 +583,7 @@ Console.WriteLine("Highlight 00000000000015");
                     }
                     
                     cmdlet.WriteVerbose(cmdlet, "adding the driver to the collection");
-                    string currentInstanceName = string.Empty;
+                    var currentInstanceName = string.Empty;
                     try {
 
                         currentInstanceName =
@@ -599,17 +595,17 @@ Console.WriteLine("Highlight 00000000000015");
                         currentInstanceName.Length > 0) {
 
                         cmdlet.WriteVerbose(cmdlet, "the name given is appropriate");
-                        addDriverToCollection(cmdlet, currentInstanceName, driver);
+                        AddDriverToCollection(cmdlet, currentInstanceName, driver);
 
                     } else {
 
-                        string driverName = generateDriverName();
+                        var driverName = GenerateDriverName();
                         if (driverName.Length == 0) {
                             //
                         }
 
                         cmdlet.WriteVerbose(cmdlet, "generating the driver name");
-                        addDriverToCollection(cmdlet, driverName, driver);
+                        AddDriverToCollection(cmdlet, driverName, driver);
                     }
 
                     cmdlet.WriteVerbose(cmdlet, "outputting the driver");
@@ -631,7 +627,7 @@ Console.WriteLine("Highlight 00000000000015");
             }
         }
         
-        private static void addDriverToCollection(
+        private static void AddDriverToCollection(
             StartDriverCmdletBase cmdlet,
             string driverName,
             IWebDriver driver)
@@ -642,9 +638,9 @@ Console.WriteLine("Highlight 00000000000015");
             try {
 
                 cmdlet.WriteVerbose(cmdlet, "adding the driver's PID to collection");
-                CurrentData.DriverPIDs.Add(
+                CurrentData.DriverPiDs.Add(
                     driverName,
-                    SeHelper.DriverProcess.Id);
+                    DriverProcess.Id);
 
             }
             catch {}
@@ -653,7 +649,7 @@ Console.WriteLine("Highlight 00000000000015");
                 cmdlet.WriteVerbose(cmdlet, "adding the driver's handle to collection");
                 CurrentData.DriverHandles.Add(
                     driverName,
-                    SeHelper.DriverProcess.MainWindowHandle);
+                    DriverProcess.MainWindowHandle);
 
             }
             catch {}
@@ -664,19 +660,19 @@ Console.WriteLine("Highlight 00000000000015");
             try {
 
                 cmdlet.WriteVerbose(cmdlet, "setting CurrentWebDriverPID");
-                CurrentData.CurrentWebDriverPID =
-                    SeHelper.DriverProcess.Id;
+                CurrentData.CurrentWebDriverPid =
+                    DriverProcess.Id;
 
             } catch {
 
-                CurrentData.CurrentWebDriverPID = 0;
+                CurrentData.CurrentWebDriverPid = 0;
 
             }
             try {
 
                 cmdlet.WriteVerbose(cmdlet, "setting CurrentWebDriverHandle");
                 CurrentData.CurrentWebDriverHandle =
-                    SeHelper.DriverProcess.MainWindowHandle;
+                    DriverProcess.MainWindowHandle;
 
             }
             catch {
@@ -687,12 +683,12 @@ Console.WriteLine("Highlight 00000000000015");
             }
         }
         
-        private static string generateDriverName()
+        private static string GenerateDriverName()
         {
-            string result = string.Empty;
+            var result = string.Empty;
             
-            System.DateTime now =
-                System.DateTime.Now;
+            var now =
+                DateTime.Now;
             result = "driver";
             result += now.Year.ToString();
             result += now.Month.ToString();
@@ -709,9 +705,9 @@ Console.WriteLine("Highlight 00000000000015");
         #region Get
         public static void GetWebDriver(PSCmdletBase cmdlet, string[] instanceNames)
         {
-            foreach (string instanceName in instanceNames) {
+            foreach (var instanceName in instanceNames) {
                 try {
-                    foreach (KeyValuePair<string, IWebDriver> pair in CurrentData.Drivers) {
+                    foreach (var pair in CurrentData.Drivers) {
                         if (pair.Key == instanceName) {
                             cmdlet.WriteObject(cmdlet, CurrentData.Drivers[instanceName]);
                             CurrentData.CurrentWebDriver =
@@ -788,14 +784,14 @@ Console.WriteLine("Highlight 00000000000015");
             //                this.Hold,
             //                this.Here);
         {
-            bool result = false;
-            foreach (IWebElement element in elements) {
+            var result = false;
+            foreach (var element in elements) {
                 try {
                     if (CurrentData.CurrentWebDriver == null) {
                         cmdlet.WriteVerbose(cmdlet, "CurrentData.CurrentWebDriver == null");
                     }
-                    Actions builder = new Actions(CurrentData.CurrentWebDriver);
-                    IWebElement webElement =
+                    var builder = new Actions(CurrentData.CurrentWebDriver);
+                    var webElement =
                         element as IWebElement;
                     if (webElement != null) {
                         if (clickByWebElementMethod ||
@@ -840,9 +836,9 @@ Console.WriteLine("Highlight 00000000000015");
                     }
                 }
                 catch (Exception eFailed) {
-                    string errorMessage =
+                    var errorMessage =
                         "The Click() method has failed";
-                    ErrorRecord err =
+                    var err =
                         new ErrorRecord(
                             new Exception(errorMessage),
                             "ClickFailed",
@@ -857,9 +853,9 @@ Console.WriteLine("Highlight 00000000000015");
         
         public static bool DragAndDropOnElement(PSCmdletBase cmdlet, IWebElement[] sourceElements, IWebElement targetElement)
         {
-            bool result = false;
+            var result = false;
             
-            foreach (IWebElement element in sourceElements) {
+            foreach (var element in sourceElements) {
                 
             }
             
@@ -869,15 +865,15 @@ Console.WriteLine("Highlight 00000000000015");
         
         public static bool MoveCursorToElement(PSCmdletBase cmdlet, IWebElement[] elements, int x, int y)
         {
-            bool result = false;
-            foreach (IWebElement element in elements) {
+            var result = false;
+            foreach (var element in elements) {
                 try {
                     if (CurrentData.CurrentWebDriver == null) {
                         cmdlet.WriteVerbose(cmdlet, "CurrentData.CurrentWebDriver == null");
                         throw (new Exception("CurrentData.CurrentWebDriver == null"));
                     }
                     //                Actions builder = new Actions(CurrentData.CurrentWebDriver);
-                    IWebElement webElement =
+                    var webElement =
                         element as IWebElement;
                     //Actions builder2 = null;
                     //WriteVerbose(this, webElement.TagName);
@@ -938,11 +934,11 @@ Console.WriteLine("Highlight 00000000000015");
             // 20131109
             //System.Collections.Generic.List<AutomationElement> resultElements =
             //    new System.Collections.Generic.List<AutomationElement>();
-            System.Collections.Generic.List<IUiElement> resultElements =
-                new System.Collections.Generic.List<IUiElement>();
+            var resultElements =
+                new List<IUiElement>();
             
             //foreach (IWebDriver driver in drivers) {
-            foreach (object webDriverOrElement in drivers) {
+            foreach (var webDriverOrElement in drivers) {
                 
                 // 20131109
                 //AutomationElement resultElement = null;
@@ -957,7 +953,7 @@ Console.WriteLine("Highlight 00000000000015");
                             TreeScope.Children,
                             new PropertyCondition(
                                 AutomationElement.ProcessIdProperty,
-                                CurrentData.CurrentWebDriverPID));
+                                CurrentData.CurrentWebDriverPid));
                     
                     if (resultElement != null) {
                         cmdlet.WriteObject(cmdlet, resultElement);
@@ -975,10 +971,10 @@ Console.WriteLine("Highlight 00000000000015");
                 
                 if (null != (webDriverOrElement as IWebElement) ) {
                     //
-                    int[] absoluteCoordinates =
+                    var absoluteCoordinates =
                         // 20121212
                         //getWebElementCoordinates((webDriverOrElement as RemoteWebElement));
-                        getWebElementCoordinates((webDriverOrElement as WebElementDecorator));
+                        GetWebElementCoordinates((webDriverOrElement as WebElementDecorator));
                     resultElement =
                         // 20131109
                         //System.Windows.Automation.AutomationElement.FromPoint(
@@ -1042,9 +1038,9 @@ Console.WriteLine("Highlight 00000000000015");
         #region Driver
         public static bool CloseCurrentBrowserWindow(PSCmdletBase cmdlet, IWebDriver[] drivers)
         {
-            bool result = false;
+            var result = false;
             
-            foreach (IWebDriver driver in drivers) {
+            foreach (var driver in drivers) {
                 
                 try {
                     driver.Close();
@@ -1066,12 +1062,12 @@ Console.WriteLine("Highlight 00000000000015");
         
         public static bool GetCookies(PSCmdletBase cmdlet, IWebDriver[] drivers)
         {
-            bool result = false;
+            var result = false;
             
-            foreach (IWebDriver driver in drivers) {
+            foreach (var driver in drivers) {
                 
                 try {
-                    ICookieJar cookie = driver.Manage().Cookies;
+                    var cookie = driver.Manage().Cookies;
                     cmdlet.WriteObject(cmdlet, cookie);
                 }
                 catch (Exception eFailed) {
@@ -1090,12 +1086,12 @@ Console.WriteLine("Highlight 00000000000015");
         
         public static bool GetWindow(PSCmdletBase cmdlet, IWebDriver[] drivers)
         {
-            bool result = false;
+            var result = false;
             
-            foreach (IWebDriver driver in drivers) {
+            foreach (var driver in drivers) {
                 
                 try {
-                    IWindow window = driver.Manage().Window;
+                    var window = driver.Manage().Window;
                     cmdlet.WriteObject(cmdlet, window);
                 }
                 catch (Exception eFailed) {
@@ -1114,14 +1110,14 @@ Console.WriteLine("Highlight 00000000000015");
         
         public static bool GetNativeWindowHandle(PSCmdletBase cmdlet, IWebDriver[] drivers, bool onlyMain)
         {
-            bool result = false;
+            var result = false;
             
-            foreach (IWebDriver driver in drivers) {
+            foreach (var driver in drivers) {
                 
                 try {
                     
-                    string driverKey = string.Empty;
-                    foreach (KeyValuePair<string, IWebDriver> pair in CurrentData.Drivers) {
+                    var driverKey = string.Empty;
+                    foreach (var pair in CurrentData.Drivers) {
                         if (driver == pair.Value) {
                             driverKey = pair.Key;
                             break;
@@ -1134,11 +1130,11 @@ Console.WriteLine("Highlight 00000000000015");
                         
                     } else {
 
-                        int processId =
-                            CurrentData.DriverPIDs[driverKey];
+                        var processId =
+                            CurrentData.DriverPiDs[driverKey];
                         
-                        AutomationElementCollection driverWindows =
-                            System.Windows.Automation.AutomationElement.RootElement.FindAll(
+                        var driverWindows =
+                            AutomationElement.RootElement.FindAll(
                                 TreeScope.Children,
                                 new PropertyCondition(
                                     AutomationElement.ProcessIdProperty,
@@ -1173,9 +1169,9 @@ Console.WriteLine("Highlight 00000000000015");
         
         public static bool GetPageSource(PSCmdletBase cmdlet, IWebDriver[] drivers)
         {
-            bool result = false;
+            var result = false;
             
-            foreach (IWebDriver driver in drivers) {
+            foreach (var driver in drivers) {
                 
                 try {
                     cmdlet.WriteObject(cmdlet, driver.PageSource);
@@ -1196,9 +1192,9 @@ Console.WriteLine("Highlight 00000000000015");
         
         public static bool GetTitle(PSCmdletBase cmdlet, IWebDriver[] drivers)
         {
-            bool result = false;
+            var result = false;
             
-            foreach (IWebDriver driver in drivers) {
+            foreach (var driver in drivers) {
                 
                 try {
                     cmdlet.WriteObject(cmdlet, driver.Title);
@@ -1219,7 +1215,7 @@ Console.WriteLine("Highlight 00000000000015");
         
         public static bool GetUrl(PSCmdletBase cmdlet, IWebDriver[] drivers)
         {
-            bool result = false;
+            var result = false;
             Console.WriteLine("GetUrl 02");
             if (null == drivers) {
                 Console.WriteLine("null == drivers");
@@ -1230,7 +1226,7 @@ Console.WriteLine("Highlight 00000000000015");
                     Console.WriteLine("valid drivers");
                 }
             }
-            foreach (IWebDriver driver in drivers) {
+            foreach (var driver in drivers) {
                 Console.WriteLine("GetUrl 02");
                 if (null == driver) {
                     Console.WriteLine("null == driver");
@@ -1264,24 +1260,24 @@ Console.WriteLine("Highlight 00000000000015");
             DriverTimeoutTypes timeoutType,
             double timeoutValue)
         {
-            bool result = false;
+            var result = false;
             
-            foreach (IWebDriver driver in drivers) {
+            foreach (var driver in drivers) {
                 
                 try {
                     
                     switch (timeoutType) {
-                        case SePSX.DriverTimeoutTypes.ImplicitlyWait:
+                        case DriverTimeoutTypes.ImplicitlyWait:
                             cmdlet.WriteVerbose(cmdlet, "ImplicitlyWaitTimeout");
-                            driver.Manage().Timeouts().ImplicitlyWait(System.TimeSpan.FromMilliseconds(timeoutValue));
+                            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromMilliseconds(timeoutValue));
                             break;
-                        case SePSX.DriverTimeoutTypes.PageLoad:
+                        case DriverTimeoutTypes.PageLoad:
                             cmdlet.WriteVerbose(cmdlet, "PageLoadTimeout");
-                            driver.Manage().Timeouts().SetPageLoadTimeout(System.TimeSpan.FromMilliseconds(timeoutValue));
+                            driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromMilliseconds(timeoutValue));
                             break;
-                        case SePSX.DriverTimeoutTypes.Script:
+                        case DriverTimeoutTypes.Script:
                             cmdlet.WriteVerbose(cmdlet, "ScriptTimeout");
-                            driver.Manage().Timeouts().SetScriptTimeout(System.TimeSpan.FromMilliseconds(timeoutValue));
+                            driver.Manage().Timeouts().SetScriptTimeout(TimeSpan.FromMilliseconds(timeoutValue));
                             break;
                             //default:
                             //    throw new Exception("Invalid value for DriverTimeoutTypes");
@@ -1309,17 +1305,17 @@ Console.WriteLine("Highlight 00000000000015");
         public static void GetWebElement(PSCmdletBase cmdlet, object[] elements) // the second parameter?
         {
             // 20120903
-            GetCmdletBase cmdletGet = (GetCmdletBase)cmdlet;
+            var cmdletGet = (GetCmdletBase)cmdlet;
             
-            ReadOnlyCollection<IWebElement> result =
+            var result =
                 new ReadOnlyCollection<IWebElement>(new List<IWebElement>());
             bool firstVsAll = cmdletGet.First;
             cmdletGet.WriteVerbose(cmdletGet, "only the first element? " + firstVsAll.ToString());
 //Console.WriteLine("GetWebElement: 00003");
-            foreach (object inputObject in cmdletGet.InputObject) {
+            foreach (var inputObject in cmdletGet.InputObject) {
 //Console.WriteLine("GetWebElement: 00004");
 //Console.WriteLine("GetWebElement: inputObject = " + inputObject.GetType().Name);
-                string errorReport = string.Empty;
+                var errorReport = string.Empty;
                 try {
 //Console.WriteLine("GetWebElement: 00005");
                     if (!string.IsNullOrEmpty(cmdletGet.Id) && cmdletGet.Id.Length > 0) {
@@ -1408,7 +1404,7 @@ Console.WriteLine("Highlight 00000000000015");
                             getWebElement(
                                 cmdletGet,
                                 inputObject,
-                                FindElementParameters.ByCSS,
+                                FindElementParameters.ByCss,
                                 cmdletGet.CssSelector,
                                 firstVsAll); //true);
 //Console.WriteLine("GetWebElement: 00019 css");
@@ -1515,7 +1511,7 @@ Console.WriteLine("GetSeWebElement 0002");
         private static ReadOnlyCollection<IWebElement> getWebElement(
             GetCmdletBase cmdlet,
             object element,
-            SePSX.FindElementParameters parameterId,
+            FindElementParameters parameterId,
             string parameterValue,
             bool oneElement)
         {
@@ -1564,10 +1560,10 @@ Console.WriteLine("GetSeWebElement 0002");
             }
             
             ReadOnlyCollection<IWebElement> result = null;
-            List<IWebElement> listOfResults = new List<IWebElement>();
+            var listOfResults = new List<IWebElement>();
 //Console.WriteLine("getWebElement: 00009");
-            string errorReport = string.Empty;
-            OpenQA.Selenium.By by = null;
+            var errorReport = string.Empty;
+            By by = null;
             
             cmdlet.WriteVerbose(cmdlet, "select By");
             switch (parameterId) {
@@ -1575,7 +1571,7 @@ Console.WriteLine("GetSeWebElement 0002");
                     errorReport = "ClassName";
                     by = By.ClassName(parameterValue);
                     break;
-                case FindElementParameters.ByCSS:
+                case FindElementParameters.ByCss:
                     errorReport = "CSS";
                     by = By.CssSelector(parameterValue);
                     break;
@@ -1620,8 +1616,8 @@ Console.WriteLine("GetSeWebElement 0002");
             cmdlet.WriteVerbose(cmdlet, "error report: " + errorReport);
             
             
-            System.DateTime startTime =
-                System.DateTime.Now;
+            var startTime =
+                DateTime.Now;
             
             do {
                 
@@ -1746,18 +1742,18 @@ Console.WriteLine("GetSeWebElement 0002");
                     //cmdlet.WriteVerbose(cmdlet, "(result.Count > 0");
                     //cmdlet.Wait = false;
                     //wait = false;
-                    waitForElement = false;
+                    WaitForElement = false;
                 }
                 
                 cmdlet.WriteVerbose(cmdlet, "startTime = " + startTime.ToString());
-                if ((System.DateTime.Now - startTime).TotalSeconds >
+                if ((DateTime.Now - startTime).TotalSeconds >
                     (cmdlet.Timeout / 1000) &&
                     //cmdlet.Wait) {
                     //wait) {
-                    waitForElement) {
+                    WaitForElement) {
 //Console.WriteLine("getWebElement: 00039");
                     //cmdlet.Wait = false;
-                    cmdlet.WriteVerbose(cmdlet, "Time spent: " + (System.DateTime.Now - startTime).TotalSeconds + " seconds");
+                    cmdlet.WriteVerbose(cmdlet, "Time spent: " + (DateTime.Now - startTime).TotalSeconds + " seconds");
                     //cmdlet.WriteVerbose(cmdlet, "(System.DateTime.Now - startTime).TotalSeconds = " + (System.DateTime.Now - startTime).TotalSeconds);
                     //cmdlet.WriteVerbose(cmdlet, "cmdlet.Wait = " + cmdlet.Wait.ToString());
                     //cmdlet.WriteVerbose(cmdlet, "the Timeout = " + (cmdlet.Timeout / 1000).ToString());
@@ -1774,7 +1770,7 @@ Console.WriteLine("GetSeWebElement 0002");
 //Console.WriteLine("getWebElement: 00040");
                 System.Threading.Thread.Sleep(Preferences.OnSleepDelay);
 //Console.WriteLine("getWebElement: 00041");
-            } while (waitForElement); //(wait); //(cmdlet.Wait);
+            } while (WaitForElement); //(wait); //(cmdlet.Wait);
             
             
             
@@ -1808,12 +1804,12 @@ Console.WriteLine("GetSeWebElement 0002");
         public static ReadOnlyCollection<IWebElement> GetDecoratedCollection<T>(
             ReadOnlyCollection<IWebElement> inputCollection,
             IWebElement inputWebElement,
-            OpenQA.Selenium.By @by)
+            By @by)
         {
 //Console.WriteLine("GetDecoratedCollection: 00001");
 List<IWebElement> resultList;
 try{
-            int position = 0;
+            var position = 0;
             //List<IWebElement> resultList =
             resultList =
                 //WebDriverFactory.Container.Resolve<System.Collections.Generic.List<IWebElement>>();
@@ -1888,8 +1884,8 @@ try{
         
         public static bool ClearWebElement(PSCmdletBase cmdlet, IWebElement[] elements)
         {
-            bool result = false;
-            foreach (IWebElement element in elements) {
+            var result = false;
+            foreach (var element in elements) {
                 try {
                     (element as IWebElement).Clear();
                     cmdlet.WriteObject(cmdlet, (element as IWebElement));
@@ -1912,8 +1908,8 @@ try{
         
         public static bool GetWebElementAttribute(PSCmdletBase cmdlet, IWebElement[] elements, string attributeName)
         {
-            bool result = false;
-            foreach (IWebElement element in elements) {
+            var result = false;
+            foreach (var element in elements) {
                 try {
                     cmdlet.WriteObject(cmdlet, (element as IWebElement).GetAttribute(attributeName));
                     result = true;
@@ -1933,10 +1929,10 @@ try{
             return result;
         }
         
-        public static bool GetWebElementCSSValue(PSCmdletBase cmdlet, IWebElement[] elements, string propertyName)
+        public static bool GetWebElementCssValue(PSCmdletBase cmdlet, IWebElement[] elements, string propertyName)
         {
-            bool result = false;
-            foreach (IWebElement element in elements) {
+            var result = false;
+            foreach (var element in elements) {
                 try {
                     cmdlet.WriteObject(cmdlet, (element as IWebElement).GetCssValue(propertyName));
                     result = true;
@@ -1958,8 +1954,8 @@ try{
         
         public static bool GetWebElementIsDisplayed(PSCmdletBase cmdlet, IWebElement[] elements)
         {
-            bool result = false;
-            foreach (IWebElement element in elements) {
+            var result = false;
+            foreach (var element in elements) {
                 try {
                     cmdlet.WriteObject(cmdlet, (element as IWebElement).Displayed);
                     result = true;
@@ -1979,8 +1975,8 @@ try{
         
         public static bool GetWebElementIsEnabled(PSCmdletBase cmdlet, IWebElement[] elements)
         {
-            bool result = false;
-            foreach (IWebElement element in elements) {
+            var result = false;
+            foreach (var element in elements) {
                 try {
                     cmdlet.WriteObject(cmdlet, (element as IWebElement).Enabled);
                     result = true;
@@ -2000,8 +1996,8 @@ try{
         
         public static bool GetWebElementLocation(PSCmdletBase cmdlet, IWebElement[] elements)
         {
-            bool result = false;
-            foreach (IWebElement element in elements) {
+            var result = false;
+            foreach (var element in elements) {
                 try {
                     cmdlet.WriteObject(cmdlet, (element as IWebElement).Location);
                     result = true;
@@ -2021,8 +2017,8 @@ try{
         
         public static bool GetWebElementIsSelected(PSCmdletBase cmdlet, IWebElement[] elements)
         {
-            bool result = false;
-            foreach (IWebElement element in elements) {
+            var result = false;
+            foreach (var element in elements) {
                 try {
                     cmdlet.WriteObject(cmdlet, (element as IWebElement).Selected);
                     result = true;
@@ -2042,8 +2038,8 @@ try{
         
         public static bool GetWebElementSize(PSCmdletBase cmdlet, IWebElement[] elements)
         {
-            bool result = false;
-            foreach (IWebElement element in elements) {
+            var result = false;
+            foreach (var element in elements) {
                 try {
                     cmdlet.WriteObject(cmdlet, (element as IWebElement).Size);
                     result = true;
@@ -2063,8 +2059,8 @@ try{
         
         public static bool GetWebElementTagName(PSCmdletBase cmdlet, IWebElement[] elements)
         {
-            bool result = false;
-            foreach (IWebElement element in elements) {
+            var result = false;
+            foreach (var element in elements) {
                 try {
                     cmdlet.WriteObject(cmdlet, (element as IWebElement).TagName);
                     result = true;
@@ -2084,8 +2080,8 @@ try{
         
         public static bool GetWebElementText(PSCmdletBase cmdlet, IWebElement[] elements)
         {
-            bool result = false;
-            foreach (IWebElement element in elements) {
+            var result = false;
+            foreach (var element in elements) {
                 try {
                     cmdlet.WriteVerbose(cmdlet, "trying to get the Text");
                     cmdlet.WriteObject(cmdlet, (element as IWebElement).Text);
@@ -2107,8 +2103,8 @@ try{
         
         public static bool SendWebElementKeys(PSCmdletBase cmdlet, IWebElement[] elements, string text)
         {
-            bool result = false;
-            foreach (IWebElement element in elements) {
+            var result = false;
+            foreach (var element in elements) {
                 cmdlet.WriteVerbose(cmdlet, "The input element is appropriate");
                 try {
                     //Console.WriteLine("element.GetAttribute(\"id\") = " + element.GetAttribute("id"));
@@ -2148,8 +2144,8 @@ try{
         
         public static bool SubmitWebElement(PSCmdletBase cmdlet, IWebElement[] elements)
         {
-            bool result = false;
-            foreach (IWebElement element in elements) {
+            var result = false;
+            foreach (var element in elements) {
                 try {
                     (element as IWebElement).Submit();
                     cmdlet.WriteObject(cmdlet, (element as IWebElement));
@@ -2177,8 +2173,8 @@ try{
             string[] arguments,
             bool output)
         {
-            bool result = false;
-            foreach (IWebDriver driver in drivers) {
+            var result = false;
+            foreach (var driver in drivers) {
                 try {
                     ((IJavaScriptExecutor)driver).ExecuteScript(
                         scriptCode,
@@ -2208,8 +2204,8 @@ try{
         #region Navigation
         public static bool NavigateTo(PSCmdletBase cmdlet, IWebDriver[] drivers, string uri)
         {
-            bool result = false;
-            foreach (IWebDriver driver in drivers) {
+            var result = false;
+            foreach (var driver in drivers) {
 
                 try {
 Console.WriteLine("NavigatoTo: 00001");
@@ -2238,8 +2234,8 @@ Console.WriteLine("NavigatoTo: 00003");
         
         public static bool NavigateBack(PSCmdletBase cmdlet, IWebDriver[] drivers)
         {
-            bool result = false;
-            foreach (IWebDriver driver in drivers) {
+            var result = false;
+            foreach (var driver in drivers) {
                 try {
                     (driver as IWebDriver).Navigate().Back();
                     cmdlet.WriteObject(cmdlet, (driver as IWebDriver));
@@ -2260,8 +2256,8 @@ Console.WriteLine("NavigatoTo: 00003");
         
         public static bool NavigateForward(PSCmdletBase cmdlet, IWebDriver[] drivers)
         {
-            bool result = false;
-            foreach (IWebDriver driver in drivers) {
+            var result = false;
+            foreach (var driver in drivers) {
                 try {
                     (driver as IWebDriver).Navigate().Forward();
                     cmdlet.WriteObject(cmdlet, (driver as IWebDriver));
@@ -2282,8 +2278,8 @@ Console.WriteLine("NavigatoTo: 00003");
         
         public static bool RefreshPage(PSCmdletBase cmdlet, IWebDriver[] drivers)
         {
-            bool result = false;
-            foreach (IWebDriver driver in drivers) {
+            var result = false;
+            foreach (var driver in drivers) {
                 try {
                     (driver as IWebDriver).Navigate().Refresh();
                     cmdlet.WriteObject(cmdlet, (driver as IWebDriver));
@@ -2304,11 +2300,11 @@ Console.WriteLine("NavigatoTo: 00003");
         
         public static bool SwitchToFrame(PSCmdletBase cmdlet, IWebDriver[] drivers, SwitchToFrameWays selector)
         {
-            bool result = false;
+            var result = false;
             
-            string errorReport = string.Empty;
+            var errorReport = string.Empty;
             
-            foreach (IWebDriver driver in drivers) {
+            foreach (var driver in drivers) {
                 try {
                     
                     (driver as IWebDriver).SwitchTo().DefaultContent();
@@ -2350,8 +2346,8 @@ Console.WriteLine("NavigatoTo: 00003");
         
         public static bool SwitchToWindow(PSCmdletBase cmdlet, IWebDriver[] drivers, string windowName)
         {
-            bool result = false;
-            foreach (IWebDriver driver in drivers) {
+            var result = false;
+            foreach (var driver in drivers) {
                 try {
                     cmdlet.WriteObject(cmdlet, (driver as IWebDriver).SwitchTo().Window(windowName));
                     result = true;
@@ -2372,8 +2368,8 @@ Console.WriteLine("NavigatoTo: 00003");
         
         public static bool SwitchToActiveElement(PSCmdletBase cmdlet, IWebDriver[] drivers)
         {
-            bool result = false;
-            foreach (IWebDriver driver in drivers) {
+            var result = false;
+            foreach (var driver in drivers) {
                 try {
                     cmdlet.WriteObject(cmdlet, (driver as IWebDriver).SwitchTo().ActiveElement());
                     result = true;
@@ -2393,8 +2389,8 @@ Console.WriteLine("NavigatoTo: 00003");
         
         public static bool SwitchToDefaultContent(PSCmdletBase cmdlet, IWebDriver[] drivers)
         {
-            bool result = false;
-            foreach (IWebDriver driver in drivers) {
+            var result = false;
+            foreach (var driver in drivers) {
                 try {
                     cmdlet.WriteObject(cmdlet, (driver as IWebDriver).SwitchTo().DefaultContent());
                     result = true;
@@ -2414,8 +2410,8 @@ Console.WriteLine("NavigatoTo: 00003");
         
         public static bool SwitchToAlert(PSCmdletBase cmdlet, IWebDriver[] drivers)
         {
-            bool result = false;
-            foreach (IWebDriver driver in drivers) {
+            var result = false;
+            foreach (var driver in drivers) {
                 try {
                     cmdlet.WriteObject(cmdlet, (driver as IWebDriver).SwitchTo().Alert());
                     result = true;
@@ -2437,7 +2433,7 @@ Console.WriteLine("NavigatoTo: 00003");
         #region Alert
         public static bool AlertAcceptButtonClick(PSCmdletBase cmdlet, IAlert alert)
         {
-            bool result = false;
+            var result = false;
             
             try {
                 (alert as IAlert).Accept();
@@ -2459,7 +2455,7 @@ Console.WriteLine("NavigatoTo: 00003");
         
         public static bool AlertDismissButtonClick(PSCmdletBase cmdlet, IAlert alert)
         {
-            bool result = false;
+            var result = false;
             
             try {
                 (alert as IAlert).Dismiss();
@@ -2481,7 +2477,7 @@ Console.WriteLine("NavigatoTo: 00003");
         
         public static bool AlertGetText(PSCmdletBase cmdlet, IAlert alert)
         {
-            bool result = false;
+            var result = false;
             
             try {
                 cmdlet.WriteObject(cmdlet, (alert as IAlert).Text);
@@ -2502,7 +2498,7 @@ Console.WriteLine("NavigatoTo: 00003");
         
         public static bool AlertSendKeys(PSCmdletBase cmdlet, IAlert alert, string text)
         {
-            bool result = false;
+            var result = false;
             
             try {
                 (alert as IAlert).SendKeys(text);
@@ -2526,8 +2522,8 @@ Console.WriteLine("NavigatoTo: 00003");
         #region PageObject
         public static bool CreatePageObject(PSCmdletBase cmdlet, IWebDriver[] drivers)
         {
-            bool result = false;
-            foreach (IWebDriver driver in drivers) {
+            var result = false;
+            foreach (var driver in drivers) {
                 try {
                     object page = null;
                     //object newPage =
@@ -2561,15 +2557,15 @@ Console.WriteLine("NavigatoTo: 00003");
         #region Relatives
         public static bool GetElementAncestors(PSCmdletBase cmdlet, IWebElement[] elements)
         {
-            bool result = false;
-            foreach (IWebElement element in elements) {
+            var result = false;
+            foreach (var element in elements) {
                 try {
-                    IWebElement resultElement =
+                    var resultElement =
                         (element as IWebElement).FindElement(By.XPath(@".."));
                     while ((resultElement as IWebElement) != null) {
                         cmdlet.WriteObject(cmdlet, resultElement);
                         try {
-                            IWebElement currentChildElement = resultElement;
+                            var currentChildElement = resultElement;
                             resultElement = null;
                             resultElement =
                                 currentChildElement.FindElement(By.XPath(@".."));
@@ -2602,10 +2598,10 @@ Console.WriteLine("NavigatoTo: 00003");
         
         public static bool GetElementParent(PSCmdletBase cmdlet, IWebElement[] elements)
         {
-            bool result = false;
-            foreach (IWebElement element in elements) {
+            var result = false;
+            foreach (var element in elements) {
                 try {
-                    IWebElement resultElement =
+                    var resultElement =
                         (element as IWebElement).FindElement(By.XPath(@".."));
                     cmdlet.WriteObject(cmdlet, resultElement);
                     result = true;
@@ -2645,14 +2641,14 @@ Console.WriteLine("NavigatoTo: 00003");
             bool selected,
             bool all)
         {
-            bool result = false;
-            foreach (IWebElement element in elements) {
+            var result = false;
+            foreach (var element in elements) {
                 cmdlet.WriteVerbose(cmdlet, "getting the Select object");
-                SelectElement select = //null;
+                var select = //null;
                     //try {
                     //    select =
                     //new SelectElement((element as IWebElement));
-                    SeHelper.GetSelectFromWebElement(cmdlet, element);
+                    GetSelectFromWebElement(cmdlet, element);
                 if (null != select) {
                     cmdlet.WriteVerbose(cmdlet, "the Select object has been gotten");
                 } else {
@@ -2672,14 +2668,14 @@ Console.WriteLine("NavigatoTo: 00003");
                     
                     if (selected) {
                         cmdlet.WriteVerbose(cmdlet, "getting all selected elements");
-                        foreach (IWebElement option in select.AllSelectedOptions) {
+                        foreach (var option in select.AllSelectedOptions) {
                             resultList.Add(option);
                         }
                     }
                     
                     if (all) {
                         cmdlet.WriteVerbose(cmdlet, "getting all elements");
-                        foreach (IWebElement oneElement in select.Options) {
+                        foreach (var oneElement in select.Options) {
                             resultList.Add(oneElement);
                         }
                     }
@@ -2714,12 +2710,12 @@ Console.WriteLine("NavigatoTo: 00003");
             bool all,
             bool deselect)
         {
-            bool result = false;
-            foreach (IWebElement element in elements) {
+            var result = false;
+            foreach (var element in elements) {
                 cmdlet.WriteVerbose(cmdlet, "getting the Select object");
-                SelectElement select =
+                var select =
                     //new SelectElement((element as IWebElement));
-                    SeHelper.GetSelectFromWebElement(cmdlet, element);
+                    GetSelectFromWebElement(cmdlet, element);
                 if (null != select) {
                     cmdlet.WriteVerbose(cmdlet, "the Select object has been gotten");
                 } else {
@@ -2728,7 +2724,7 @@ Console.WriteLine("NavigatoTo: 00003");
                 
                 try {
                     if (indices != null) {
-                        foreach (int index in indices) {
+                        foreach (var index in indices) {
                             if (deselect) {
                                 select.DeselectByIndex(index);
                             } else {
@@ -2738,7 +2734,7 @@ Console.WriteLine("NavigatoTo: 00003");
                     }
                     
                     if (values != null) {
-                        foreach (string valueString in values) {
+                        foreach (var valueString in values) {
                             if (deselect) {
                                 select.DeselectByValue(valueString);
                             } else {
@@ -2748,7 +2744,7 @@ Console.WriteLine("NavigatoTo: 00003");
                     }
                     
                     if (visibleTexts != null) {
-                        foreach (string text in visibleTexts) {
+                        foreach (var text in visibleTexts) {
                             if (deselect) {
                                 select.DeselectByText(text);
                             } else {
@@ -2761,7 +2757,7 @@ Console.WriteLine("NavigatoTo: 00003");
                         if (deselect) {
                             select.DeselectAll();
                         } else {
-                            for (int i = 0; i < select.Options.Count; i++) {
+                            for (var i = 0; i < select.Options.Count; i++) {
                                 select.SelectByIndex(i);
                             }
                         }
@@ -2834,7 +2830,7 @@ Console.WriteLine("NavigatoTo: 00003");
                 
                 try {
                     inputCollection =
-                        new OpenQA.Selenium.IWebElement [] { CurrentData.CurrentWebDriver.FindElement(By.TagName("html")) };
+                        new IWebElement [] { CurrentData.CurrentWebDriver.FindElement(By.TagName("html")) };
                     
                     if (null != inputCollection) {
                         cmdlet.WriteVerbose(cmdlet, "inputCollection.Length = " + inputCollection.Length.ToString());
@@ -2845,7 +2841,7 @@ Console.WriteLine("NavigatoTo: 00003");
                     cmdlet.WriteVerbose(cmdlet, eWebDriver.Message);
                     cmdlet.WriteVerbose(cmdlet, "taking the desktop for screenshot");
                     
-                    UIAutomation.UiaHelper.GetScreenshotOfAutomationElement(
+                    UiaHelper.GetScreenshotOfAutomationElement(
                         (new HasControlInputCmdletBase()),
                         // 20131109
                         //AutomationElement.RootElement,
@@ -2859,7 +2855,7 @@ Console.WriteLine("NavigatoTo: 00003");
                         // 0,
                         new ScreenshotRect(),
                         string.Empty,
-                        SePSX.Preferences.OnSuccessScreenShotFormat);
+                        Preferences.OnSuccessScreenShotFormat);
                 }
                 
             } else if (null != (cmdlet as DriverCmdletBase)) {
@@ -2873,7 +2869,7 @@ Console.WriteLine("NavigatoTo: 00003");
 
                 cmdlet.WriteVerbose(cmdlet, "taking the desktop for screenshot");
                 
-                UIAutomation.UiaHelper.GetScreenshotOfAutomationElement(
+                UiaHelper.GetScreenshotOfAutomationElement(
                     (new HasControlInputCmdletBase()),
                     // 20131109
                     //AutomationElement.RootElement,
@@ -2887,7 +2883,7 @@ Console.WriteLine("NavigatoTo: 00003");
                     // 0,
                     new ScreenshotRect(),
                     string.Empty,
-                    SePSX.Preferences.OnSuccessScreenShotFormat);
+                    Preferences.OnSuccessScreenShotFormat);
                 
             } else if (null != (cmdlet as HasWebElementInputCmdletBase)) {
                 
@@ -2901,7 +2897,7 @@ Console.WriteLine("NavigatoTo: 00003");
 
                     try {
                         inputCollection =
-                            new OpenQA.Selenium.IWebElement [] { CurrentData.CurrentWebDriver.FindElement(By.TagName("html")) };
+                            new IWebElement [] { CurrentData.CurrentWebDriver.FindElement(By.TagName("html")) };
                         
                         if (null != inputCollection) {
                             cmdlet.WriteVerbose(cmdlet, "inputCollection.Length = " + inputCollection.Length.ToString());
@@ -2955,7 +2951,7 @@ Console.WriteLine("NavigatoTo: 00003");
                         
                         try {
                             inputCollection =
-                                new OpenQA.Selenium.IWebElement [] { CurrentData.CurrentWebDriver.FindElement(By.TagName("html")) };
+                                new IWebElement [] { CurrentData.CurrentWebDriver.FindElement(By.TagName("html")) };
                             
                             if (null != inputCollection) {
                                 cmdlet.WriteVerbose(cmdlet, "inputCollection.Length = " + inputCollection.Length.ToString());
@@ -2973,7 +2969,7 @@ Console.WriteLine("NavigatoTo: 00003");
                             //inputCollection =
                             //    (IWebDriver[])((cmdlet as HasWebDriverInputCmdletBase).InputObject);
                             
-                            for (int i = 0; i < (cmdlet as HasWebDriverInputCmdletBase).InputObject.Length; i++) {
+                            for (var i = 0; i < (cmdlet as HasWebDriverInputCmdletBase).InputObject.Length; i++) {
                                 inputCollection[i] =
                                     (cmdlet as HasWebDriverInputCmdletBase).InputObject[i].FindElement(By.TagName("html"));
                             }
@@ -3020,7 +3016,7 @@ Console.WriteLine("NavigatoTo: 00003");
             foreach (WebElementDecorator inputObject in inputCollection) {
                 
                 cmdlet.WriteVerbose(cmdlet, "calculating the size");
-                ScreenshotRect absoluteRect =
+                var absoluteRect =
                     new ScreenshotRect() {
                     Left = 0,
                     Top = 0,
@@ -3045,8 +3041,8 @@ Console.WriteLine("NavigatoTo: 00003");
                     //absoluteY = (int)inputObject.Current.BoundingRectangle.Y + Top;
                     //absoluteY = inputObject.Location.Y;
                     
-                    int[] absoluteCoordinates =
-                        SeHelper.getWebElementCoordinates(inputObject);
+                    var absoluteCoordinates =
+                        GetWebElementCoordinates(inputObject);
                     absoluteRect.Left = absoluteCoordinates[0];
                     absoluteRect.Top = absoluteCoordinates[1];
                     //absoluteHeight = (int)inputObject.Current.BoundingRectangle.Height + Height;
@@ -3110,7 +3106,7 @@ Console.WriteLine("NavigatoTo: 00003");
                 //                    }
                 //                }
 
-                UIAutomation.UiaHelper.GetScreenshotOfSquare(
+                UiaHelper.GetScreenshotOfSquare(
                     cmdlet,
                     description,
                     save,
@@ -3152,7 +3148,7 @@ Console.WriteLine("NavigatoTo: 00003");
                 
             }
             if (null == elementToTakeScreenShot) {
-                UIAutomation.UiaHelper.GetScreenshotOfAutomationElement(
+                UiaHelper.GetScreenshotOfAutomationElement(
                     (new HasControlInputCmdletBase()),
                     // 20131109
                     //AutomationElement.RootElement,
@@ -3171,7 +3167,7 @@ Console.WriteLine("NavigatoTo: 00003");
             }
             
             cmdlet.WriteVerbose(cmdlet, "calculating the size");
-            ScreenshotRect absoluteRect =
+            var absoluteRect =
                 new ScreenshotRect() {
                 Left = 0,
                 Top = 0,
@@ -3196,10 +3192,10 @@ Console.WriteLine("NavigatoTo: 00003");
                 //absoluteY = (int)elementToTakeScreenShot.Current.BoundingRectangle.Y + Top;
                 //absoluteY = elementToTakeScreenShot.Location.Y;
                 
-                int[] absoluteCoordinates =
+                var absoluteCoordinates =
                     // 20121212
                     //SeHelper.getWebElementCoordinates((OpenQA.Selenium.Remote.RemoteWebElement)elementToTakeScreenShot);
-                    SeHelper.getWebElementCoordinates((WebElementDecorator)elementToTakeScreenShot);
+                    GetWebElementCoordinates((WebElementDecorator)elementToTakeScreenShot);
                 absoluteRect.Left = absoluteCoordinates[0];
                 absoluteRect.Top = absoluteCoordinates[1];
                 //absoluteHeight = (int)elementToTakeScreenShot.Current.BoundingRectangle.Height + Height;
@@ -3265,7 +3261,7 @@ Console.WriteLine("NavigatoTo: 00003");
             //                    }
             //                }
 
-            UIAutomation.UiaHelper.GetScreenshotOfSquare(
+            UiaHelper.GetScreenshotOfSquare(
                 cmdlet,
                 description,
                 save,
@@ -3292,12 +3288,12 @@ Console.WriteLine("NavigatoTo: 00003");
         {
             if (Preferences.SetBrowserWindowForeground) {
                 try {
-                    UIAutomation.UiaHelper.GetAutomationElementFromHandle(
+                    UiaHelper.GetAutomationElementFromHandle(
                         // (new UIAutomation.DiscoveryCmdletBase()),
                         CurrentData.CurrentWebDriverHandle.ToInt32()).SetFocus();
                     
-                    bool result =
-                        UIAutomation.UiaHelper.SetFocus(
+                    var result =
+                        UiaHelper.SetFocus(
                             CurrentData.CurrentWebDriverHandle);
                     
                     if (!result) {
@@ -3312,16 +3308,16 @@ Console.WriteLine("NavigatoTo: 00003");
         }
         #endregion set ForeGround
         
-        public static void GetWebElementViaJS(PSCmdletBase cmdlet, object[] elements, string tagName)
+        public static void GetWebElementViaJs(PSCmdletBase cmdlet, object[] elements, string tagName)
         {
-            GetElementByTypeCmdletBase cmdletGet = (GetElementByTypeCmdletBase)cmdlet;
+            var cmdletGet = (GetElementByTypeCmdletBase)cmdlet;
             
-            ReadOnlyCollection<IWebElement> result =
+            var result =
                 new ReadOnlyCollection<IWebElement>(new List<IWebElement>());
             bool firstVsAll = cmdletGet.First;
             cmdletGet.WriteVerbose(cmdletGet, "only the first element? " + firstVsAll.ToString());
 
-            string script =
+            var script =
                 @"function getSeElements(tagName, id, name, className, partialtext) {
                     var elements = document.getElementsByTagName(tagName);
                     var resultCollection = [];
@@ -3363,7 +3359,7 @@ Console.WriteLine("NavigatoTo: 00003");
                 }
                 return getSeElements(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4]);";
             
-            foreach (object inputObject in cmdletGet.InputObject) {
+            foreach (var inputObject in cmdletGet.InputObject) {
                 
                 //                SeHelper.ExecuteJavaScript(
                 //                    cmdlet,
@@ -3388,14 +3384,14 @@ Console.WriteLine("NavigatoTo: 00003");
                 //} while (
                 cmdlet.WriteObject(
                     cmdlet, 
-                    SeHelper.GetDecoratedCollection<IWebElement>((ReadOnlyCollection<IWebElement>)scriptResults, null, null));
+                    GetDecoratedCollection<IWebElement>((ReadOnlyCollection<IWebElement>)scriptResults, null, null));
                 
             }
         }
         
         public static void AddFirefoxExtension(CommonCmdletBase cmdlet)
         {
-            FirefoxProfile profile =
+            var profile =
                 ((EditFirefoxProfileCmdletBase)cmdlet).InputObject;
             if (null == profile) {
                 cmdlet.WriteError(
@@ -3406,12 +3402,12 @@ Console.WriteLine("NavigatoTo: 00003");
                     true);
             }
             
-            string[] extensionList =
+            var extensionList =
                 ((AddSeFirefoxExtensionCommand)cmdlet).ExtensionList;
             
             if (null != extensionList && 0 < extensionList.Length) {
                 //profile.AddExtensions(extensionList);
-                foreach (string ext in extensionList) {
+                foreach (var ext in extensionList) {
                     profile.AddExtension(ext);
                 }
             }
@@ -3421,7 +3417,7 @@ Console.WriteLine("NavigatoTo: 00003");
         
         public static void GetNewChromeOptions(PSCmdletBase cmdlet)
         {
-            ChromeOptions options =
+            var options =
                 WebDriverFactory.Container.Resolve<ChromeOptions>();
 
             cmdlet.WriteObject(cmdlet, options);
@@ -3429,7 +3425,7 @@ Console.WriteLine("NavigatoTo: 00003");
         
         public static void SetChromeOptionsBinary(CommonCmdletBase cmdlet)
         {
-            ChromeOptions options =
+            var options =
                 ((EditChromeOptionsCmdletBase)cmdlet).InputObject;
             
             if (null == options) {
@@ -3441,7 +3437,7 @@ Console.WriteLine("NavigatoTo: 00003");
                     true);
             }
             
-            string pathToBinary =
+            var pathToBinary =
                 ((SetSeChromeBinaryCommand)cmdlet).BinaryPath;
             
             if (!string.IsNullOrEmpty(pathToBinary)) {
@@ -3453,7 +3449,7 @@ Console.WriteLine("NavigatoTo: 00003");
         
         public static void AddChromeArgument(CommonCmdletBase cmdlet)
         {
-            ChromeOptions options =
+            var options =
                 ((EditChromeOptionsCmdletBase)cmdlet).InputObject;
             if (null == options) {
                 cmdlet.WriteError(
@@ -3464,7 +3460,7 @@ Console.WriteLine("NavigatoTo: 00003");
                     true);
             }
             
-            string[] argumentList =
+            var argumentList =
                 ((AddSeChromeArgumentCommand)cmdlet).ArgumentList;
             
             if (null != argumentList && 0 < argumentList.Length) {
@@ -3476,7 +3472,7 @@ Console.WriteLine("NavigatoTo: 00003");
         
         public static void AddChromeExtension(CommonCmdletBase cmdlet)
         {
-            ChromeOptions options =
+            var options =
                 ((EditChromeOptionsCmdletBase)cmdlet).InputObject;
             if (null == options) {
                 cmdlet.WriteError(
@@ -3487,7 +3483,7 @@ Console.WriteLine("NavigatoTo: 00003");
                     true);
             }
             
-            string[] extensionList =
+            var extensionList =
                 ((AddSeChromeExtensionCommand)cmdlet).ExtensionList;
             
             if (null != extensionList && 0 < extensionList.Length) {
@@ -3497,15 +3493,15 @@ Console.WriteLine("NavigatoTo: 00003");
             cmdlet.WriteObject(cmdlet, options);
         }
         
-        public static void GetNewIEOptions(CommonCmdletBase cmdlet)
+        public static void GetNewIeOptions(CommonCmdletBase cmdlet)
         {
-            InternetExplorerOptions options =
+            var options =
                 WebDriverFactory.Container.Resolve<InternetExplorerOptions>();
 
             cmdlet.WriteObject(cmdlet, options);
         }
         
-        public static void SetIEOption(CommonCmdletBase cmdlet)
+        public static void SetIeOption(CommonCmdletBase cmdlet)
         {
             throw new NotImplementedException();
             
@@ -3514,7 +3510,7 @@ Console.WriteLine("NavigatoTo: 00003");
         
         public static void GetNewFirefoxProfile(CommonCmdletBase cmdlet)
         {
-            FirefoxProfile profile =
+            var profile =
                 WebDriverFactory.GetFirefoxProfile(((FirefoxProfileCmdletBase)cmdlet));
             
             //profile.AddExtension

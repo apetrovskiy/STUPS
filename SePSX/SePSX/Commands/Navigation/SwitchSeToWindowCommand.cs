@@ -9,7 +9,6 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
     using OpenQA.Selenium;
     
@@ -33,10 +32,10 @@ namespace SePSX.Commands
         
         protected override void ProcessRecord()
         {
-            this.checkInputWebDriver(true);
+            CheckInputWebDriver(true);
             
             //SeHelper.SwitchToWindow(this, ((IWebDriver[])this.InputObject), this.WindowName);
-            SeHelper.SwitchToWindow(this, this.InputObject, this.WindowName);
+            SeHelper.SwitchToWindow(this, InputObject, WindowName);
         }
     }
 }

@@ -9,10 +9,8 @@
 
 namespace Tmx
 {
-    using System;
-    using System.Management.Automation;
     using System.Collections.Generic;
-    using Tmx.Interfaces;
+    using Interfaces;
     
     /// <summary>
     /// Description of SQLiteData.

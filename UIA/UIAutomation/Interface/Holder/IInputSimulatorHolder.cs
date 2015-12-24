@@ -10,7 +10,6 @@
 namespace UIAutomation
 {
     // using System.Windows.Automation;
-    using WindowsInput;
     
     /// <summary>
     /// Description of IInputSimulatorHolder.

@@ -9,14 +9,16 @@
 
 namespace Tmx.Core.Types.Remoting.Actions
 {
-    using System;
-    using Tmx.Interfaces.Remoting.Actions;
+    using System.Collections.Generic;
+    using Interfaces.Remoting.Actions;
     
     /// <summary>
     /// Description of TestTaskAction.
     /// </summary>
     public class TestTaskAction : ITestTaskAction
     {
+        public Dictionary<string, string> Settings { get; set; }
+
         public bool Run()
         {
             return true;

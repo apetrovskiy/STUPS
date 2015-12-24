@@ -12,13 +12,13 @@ namespace Tmx
     using System;
     
     using System.Linq;
-    
-    using System.Collections.Generic;
     using System.Xml.Linq;
-    using Tmx.Core;
+    using Interfaces.Remoting;
+    using Core;
+    using Core.Proxy;
 //    using System.Reflection;
-    using Tmx.Interfaces;
-    using Tmx.Interfaces.TestStructure;
+    using Interfaces;
+    using Interfaces.TestStructure;
     // using Tmx.Core;
     
     //using System.Data.SqlTypes;
@@ -96,14 +96,8 @@ namespace Tmx
                 }
             }
             
-            // 20141114
-            // TestData.CurrentTestSuite = TestData.GetTestSuite(testSuiteName, testSuiteId, testPlatformId);
             TestData.CurrentTestSuite = TestData.GetTestSuite(testSuiteName, testSuiteId, testPlatformUniqueId);
-            // 20140714
-            // if (null != TestData.CurrentTestSuite.TestScenarios && 0 < TestData.CurrentTestSuite.TestScenarios.Count) {
             if (null != TestData.CurrentTestSuite && null != TestData.CurrentTestSuite.TestScenarios && 0 < TestData.CurrentTestSuite.TestScenarios.Count)
-                // 20140720
-                // TestData.CurrentTestScenario = (TestScenario)TestData.CurrentTestSuite.TestScenarios[TestData.CurrentTestSuite.TestScenarios.Count - 1];
                 TestData.CurrentTestScenario = TestData.CurrentTestSuite.TestScenarios[TestData.CurrentTestSuite.TestScenarios.Count - 1];
             if (null == TestData.CurrentTestSuite) return false;
             // set the initial time for this suite's session
@@ -135,9 +129,6 @@ namespace Tmx
                                         string testSuiteId,
                                         Guid testPlatformId,
                                         string testSuiteDesctiption,
-                                        // 20141211
-                                        // ScriptBlock[] testSuiteBeforeScenario,
-                                        // ScriptBlock[] testSuiteAfterScenario)
                                         ICodeBlock[] testSuiteBeforeScenario,
                                         ICodeBlock[] testSuiteAfterScenario)
         {
@@ -330,253 +321,22 @@ namespace Tmx
         #endregion Actions
         
         #region Import/export test structure
-        public static bool ImportTestStructure(string path)
-        {
-            bool result = false;
-            
-            
-            return result;
-        }
+//        public static bool ImportTestStructure(string path)
+//        {
+//            bool result = false;
+//            
+//            
+//            return result;
+//        }
         
-        public static bool ExportTestStructure(string path)
-        {
-            bool result = false;
-            
-            
-            return result;
-        }
+//        public static bool ExportTestStructure(string path)
+//        {
+//            bool result = false;
+//            
+//            
+//            return result;
+//        }
         #endregion Import/export test structure
-        
-        #region Export results
-        
-            #region export to XML
-        // 20141124
-        // deprecated
-//        public static XElement CreateSuitesXElementWithParameters(
-//                IOrderedEnumerable<ITestSuite> suites,
-//                IOrderedEnumerable<ITestScenario> scenarios,
-//                IOrderedEnumerable<ITestResult> testResults,
-//                IXMLElementsStruct xmlStruct)
-//        {
-//            var suitesElement = 
-//                new XElement(xmlStruct.SuitesNode,
-//                             from suite in suites
-//                             select new XElement(xmlStruct.SuiteNode,
-//                                                 new XAttribute("id", suite.Id),
-//                                                 new XAttribute("name", suite.Name),
-//                                                 new XAttribute("status", suite.Status),
-//                                                 TmxHelper.CreateXAttribute(xmlStruct.TimeSpentAttribute, Convert.ToInt32(suite.Statistics.TimeSpent)),
-//                                                 new XAttribute("all", suite.Statistics.All.ToString()),
-//                                                 new XAttribute("passed", suite.Statistics.Passed.ToString()),
-//                                                 TmxHelper.CreateXAttribute(xmlStruct.FailedAttribute, suite.Statistics.Failed.ToString()),
-//                                                 new XAttribute("notTested", suite.Statistics.NotTested.ToString()),
-//                                                 new XAttribute("knownIssue", suite.Statistics.PassedButWithBadSmell.ToString()),
-//                                                 TmxHelper.CreateXAttribute("description", suite.Description),
-//                                                 TmxHelper.CreateXAttribute("platformId", suite.PlatformId),
-//                                                 TmxHelper.CreateScenariosXElementCommon(
-//                                                     suite,
-//                                                     scenarios,
-//                                                     testResults,
-//                                                     xmlStruct)
-//                                                 )
-//                            );
-//            return suitesElement;
-//        }
-//        
-//        public static XElement CreateScenariosXElementCommon(
-//                ITestSuite suite,
-//                IOrderedEnumerable<ITestScenario> scenarios,
-//                IOrderedEnumerable<ITestResult> testResults,
-//                IXMLElementsStruct xmlStruct)
-//        {
-//
-//            var testScenariosFiltered = 
-//                from scenario in scenarios
-//                // 20141022
-//                // where scenario.SuiteId == suite.Id
-//                // 20141119
-//                // where scenario.SuiteId == suite.Id && scenario.PlatformId == suite.PlatformId
-//                where scenario.SuiteId == suite.Id && scenario.PlatformUniqueId == suite.PlatformUniqueId
-//                select scenario;
-//
-//            if (!testScenariosFiltered.Any()) {
-//                return null;
-//            }
-//            
-//            var scenariosElement = 
-//                 new XElement(xmlStruct.ScenariosNode,
-//                              from scenario in testScenariosFiltered
-//                              select getScenariosXElement(
-//                                  suite, 
-//                                  scenario, 
-//                                  testResults, 
-//                                  xmlStruct)
-//                             );
-//            return scenariosElement;
-//        }
-//        
-//        static XElement getScenariosXElement(
-//                ITestSuite suite,
-//                ITestScenario scenario,
-//                IOrderedEnumerable<ITestResult> testResults,
-//                IXMLElementsStruct xmlStruct)
-//        {
-//
-//            var scenariosElement =
-//                new XElement(xmlStruct.ScenarioNode,
-//                             new XAttribute("id", scenario.Id),
-//                             new XAttribute("name", scenario.Name),
-//                             new XAttribute("status", scenario.Status),
-//                             TmxHelper.CreateXAttribute(xmlStruct.TimeSpentAttribute, Convert.ToInt32(suite.Statistics.TimeSpent)),
-//                             new XAttribute("all", scenario.Statistics.All.ToString()),
-//                             new XAttribute("passed", scenario.Statistics.Passed.ToString()),
-//                             TmxHelper.CreateXAttribute(xmlStruct.FailedAttribute, scenario.Statistics.Failed.ToString()),
-//                             new XAttribute("notTested", scenario.Statistics.NotTested.ToString()),
-//                             new XAttribute("knownIssue", scenario.Statistics.PassedButWithBadSmell.ToString()),
-//                             TmxHelper.CreateXAttribute("description", scenario.Description),
-//                             // 20141119
-//                             // TmxHelper.CreateXAttribute("platformId", scenario.PlatformId),
-//                             TmxHelper.CreateXAttribute("platformId", scenario.PlatformUniqueId),
-//                             TmxHelper.CreateTestResultsXElementCommon(
-//                                 suite,
-//                                 scenario,
-//                                 testResults,
-//                                 xmlStruct)
-//                            );
-//
-//            return scenariosElement;
-//        }
-//            
-//        public static XElement CreateTestResultsXElementCommon(
-//                ITestSuite suite,
-//                ITestScenario scenario,
-//                IOrderedEnumerable<ITestResult> testResults,
-//                IXMLElementsStruct xmlStruct)
-//        {
-//
-//            var testResultsFiltered = 
-//                from testResult in testResults
-//                where testResult.SuiteId == suite.Id &&
-//                testResult.ScenarioId == scenario.Id &&
-//                testResult.Id != null &&
-//                // 20141022
-//                // testResult.Name != null
-//                testResult.Name != null &&
-//                // 20141119
-//                // testResult.PlatformId == scenario.PlatformId
-//                testResult.PlatformUniqueId == scenario.PlatformUniqueId
-//                select testResult;
-//
-//            if (!testResultsFiltered.Any()) {
-//                return null;
-//            }
-//            
-//            var testResultsElement =
-//                new XElement(xmlStruct.TestResultsNode,
-//                             from testResult in testResultsFiltered
-//                             select getTestResultsXElement(testResult, xmlStruct)
-//                            );
-//
-//            return testResultsElement;
-//        }
-//        
-//        static XElement getTestResultsXElement(
-//                ITestResult testResult,
-//                IXMLElementsStruct xmlStruct)
-//        {
-//
-//            var testResultsElement =
-//                new XElement(xmlStruct.TestResultNode,
-//                             new XAttribute("id", testResult.Id),
-//                             new XAttribute("name", testResult.Name),
-//                             new XAttribute("status", testResult.Status),
-//                             new XAttribute("origin", testResult.Origin),
-//                             TmxHelper.CreateXAttribute(xmlStruct.TimeSpentAttribute, Convert.ToInt32(testResult.TimeSpent)), // ??
-//                             TmxHelper.CreateXElement(
-//                                 "source",
-//                                 TmxHelper.CreateXAttribute("scriptName", testResult.ScriptName),
-//                                 TmxHelper.CreateXAttribute("lineNumber", testResult.LineNumber),
-//                                 TmxHelper.CreateXAttribute("position", testResult.Position),
-//                                 TmxHelper.CreateXAttribute("code", testResult.Code)
-//                                ),
-//                             TmxHelper.CreateXAttribute(xmlStruct.TimeStampAttribute, testResult.Timestamp),
-//                             TmxHelper.CreateXElement(
-//                                 "error",
-//                                 TmxHelper.CreateXAttribute("error", testResult.Error)
-//                                ),
-//                             TmxHelper.CreateXAttribute("screenshot", testResult.Screenshot),
-//                             TmxHelper.CreateXAttribute("description", testResult.Description),
-//                             TmxHelper.CreateXAttribute("platformId", testResult.PlatformId),
-//                             TmxHelper.CreateTestResultDetailsXElement(
-//                                 testResult,
-//                                 xmlStruct)
-//                            );
-//
-//            return testResultsElement;
-//        }
-//        
-//        public static XElement CreateTestResultDetailsXElement(
-//                ITestResult testResult,
-//                IXMLElementsStruct xmlStruct)
-//        {
-//
-//            if (0 == testResult.Details.Count) {
-//                return null;
-//            }
-//
-//            var testResultDetailsElement =
-//                new XElement("details",
-//                             from testResultDetail in testResult.Details
-//                             select new XElement("detail", 
-//                                                 TmxHelper.CreateXAttribute("name", testResultDetail.Name),
-//                                                 TmxHelper.CreateXAttribute(xmlStruct.TimeSpentAttribute, testResultDetail.Timestamp),
-//                                                 TmxHelper.CreateXAttribute("status", testResultDetail.DetailStatus)
-//                                                )
-//                            );
-//
-//            return testResultDetailsElement;
-//        }
-        
-        /// <summary>
-        /// Performs parametrized search for all types of TMX objects and stores
-        /// the findings by the path provided.
-        /// </summary>
-        /// <param name="cmdlet"></param>
-        /// <param name="path"></param>
-//        public static void ExportResultsToXML(ISearchCmdletBaseDataObject cmdlet, string path)
-//        {
-//            try {
-//                var document = GetTestResultsAsXdocument(cmdlet);
-//                document.Save(path);
-//            }
-//            catch (Exception eCreateDocument) {
-//                throw new Exception(
-//                    "Unable to save XML report to the file '" +
-//                    path +
-//                    "'. " + 
-//                    eCreateDocument.Message);
-//            }
-//        }
-//
-//        public static XDocument GetTestResultsAsXdocument(ISearchCmdletBaseDataObject cmdlet)
-//        {
-//            var suitesElement = GetTestResultsAsXelement(cmdlet);
-//            var document = new XDocument();
-//            document.Add(suitesElement);
-//            return document;
-//        }
-//
-//        public static XElement GetTestResultsAsXelement(ISearchCmdletBaseDataObject cmdlet)
-//        {
-//            var gathered = new GatherTestResultsCollections();
-//            gathered.GatherCollections(cmdlet);
-//            var suitesElement = TmxHelper.CreateSuitesXElementWithParameters(gathered.TestSuites, gathered.TestScenarios, gathered.TestResults, (new XMLElementsNativeStruct()));
-//            return suitesElement;
-//        }
-
-            #endregion export to XML
-        
-        #endregion Export results
         
         #region Search
         /// <summary>
@@ -588,7 +348,9 @@ namespace Tmx
         {
             IOrderedEnumerable<ITestSuite> suites = null;
             // 20141107
-            var testStatistics = new TestStatistics();
+            // 20150925
+            // var testStatistics = new TestStatistics();
+            var testStatistics = ProxyFactory.Get<TestStatistics>();
             
             // Filtering results
             
@@ -634,19 +396,19 @@ namespace Tmx
 //                    }));
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterPassed) {
-                query = suite => suite.enStatus == TestSuiteStatuses.Passed;
+                query = suite => suite.enStatus == TestStatuses.Passed;
                 //queriesList.Add((suite => suite.enStatus == TestSuiteStatuses.Passed));
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterFailed) {
-                query = suite => suite.enStatus == TestSuiteStatuses.Failed;
+                query = suite => suite.enStatus == TestStatuses.Failed;
                 //queriesList.Add((suite => suite.enStatus == TestSuiteStatuses.Failed));
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterNotTested) {
-                query = suite => suite.enStatus == TestSuiteStatuses.NotTested;
+                query = suite => suite.enStatus == TestStatuses.NotRun;
                 //queriesList.Add((suite => suite.enStatus == TestSuiteStatuses.NotTested));
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterPassedWithBadSmell) {
-                query = suite => suite.enStatus == TestSuiteStatuses.KnownIssue;
+                query = suite => suite.enStatus == TestStatuses.KnownIssue;
                 //queriesList.Add((suite => suite.enStatus == TestSuiteStatuses.KnownIssue));
                 cmdlet.FilterAll = false;
             }
@@ -770,16 +532,16 @@ namespace Tmx
                 //};
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterPassed) {
-                query = scenario => scenario.enStatus == TestScenarioStatuses.Passed;
+                query = scenario => scenario.enStatus == TestStatuses.Passed;
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterFailed) {
-                query = scenario => scenario.enStatus == TestScenarioStatuses.Failed;
+                query = scenario => scenario.enStatus == TestStatuses.Failed;
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterNotTested) {
-                query = scenario => scenario.enStatus == TestScenarioStatuses.NotTested;
+                query = scenario => scenario.enStatus == TestStatuses.NotRun;
                 cmdlet.FilterAll = false;
             } else if (cmdlet.FilterPassedWithBadSmell) {
-                query = scenario => scenario.enStatus == TestScenarioStatuses.KnownIssue;
+                query = scenario => scenario.enStatus == TestStatuses.KnownIssue;
                 cmdlet.FilterAll = false;
             }
             if (cmdlet.FilterAll) {
@@ -900,16 +662,24 @@ namespace Tmx
 
                 // dataObject.FilterAll = false;
             else if (dataObject.FilterPassed)
-                query = testResult => testResult.enStatus == TestResultStatuses.Passed;
+                // 20150805
+                // query = testResult => testResult.enStatus == TestResultStatuses.Passed;
+                query = testResult => testResult.enStatus == TestStatuses.Passed;
                 // dataObject.FilterAll = false;
             else if (dataObject.FilterFailed)
-                query = testResult => testResult.enStatus == TestResultStatuses.Failed;
+                // 20150805
+                // query = testResult => testResult.enStatus == TestResultStatuses.Failed;
+                query = testResult => testResult.enStatus == TestStatuses.Failed;
                 // dataObject.FilterAll = false;
             else if (dataObject.FilterNotTested)
-                query = testResult => testResult.enStatus == TestResultStatuses.NotTested;
+                // 20150805
+                // query = testResult => testResult.enStatus == TestResultStatuses.NotTested;
+                query = testResult => testResult.enStatus == TestStatuses.NotRun;
                 // dataObject.FilterAll = false;
             else if (dataObject.FilterPassedWithBadSmell)
-                query = testResult => testResult.enStatus == TestResultStatuses.KnownIssue;
+                // 20150805
+                // query = testResult => testResult.enStatus == TestResultStatuses.KnownIssue;
+                query = testResult => testResult.enStatus == TestStatuses.KnownIssue;
                 // dataObject.FilterAll = false;
             else if (dataObject.FilterOutAutomaticResults)
                 query = testResult => testResult.Origin != TestResultOrigins.Automatic;
@@ -961,11 +731,14 @@ namespace Tmx
         public static void ExportResultsToJUnitXML(ISearchCmdletBaseDataObject cmdlet, string path)
         {
             try {
-
-                var gathered = new GatherTestResultsCollections();
+                // 20150925
+                // var gathered = new GatherTestResultsCollections();
+                var gathered = ProxyFactory.Get<GatherTestResultsCollections>();
                 gathered.GatherCollections(cmdlet);
-                
-                var testResultsExporter = new TestResultsExporter();
+
+                // 20150925
+                // var testResultsExporter = new TestResultsExporter();
+                var testResultsExporter = ProxyFactory.Get<TestResultsExporter>();
                 var suitesElement = testResultsExporter.CreateSuitesXElementWithParameters(
                     gathered.TestSuites,
                     gathered.TestScenarios,
@@ -998,31 +771,37 @@ namespace Tmx
         public static string GetCurrentTestSuiteStatus(IOpenSuiteCmdletBaseDataObject cmdlet, bool skipAutomatic)
         {
             if (null == TestData.CurrentTestSuite) return string.Empty;
-            var testStatistics = new TestStatistics();
+            // 20150925
+            // var testStatistics = new TestStatistics();
+            var testStatistics = ProxyFactory.Get<TestStatistics>();
             testStatistics.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
             return TestData.CurrentTestSuite.Status;
         }
         
         public static string GetTestSuiteStatusByName(string name, Guid testPlatformId, bool skipAutomatic)
         {
-            TmxHelper.OpenTestSuite(
+            OpenTestSuite(
                 name,
                 string.Empty,
                 testPlatformId);
             if (null == TestData.CurrentTestSuite) return string.Empty;
-            var testStatistics = new TestStatistics();
+            // 20150925
+            // var testStatistics = new TestStatistics();
+            var testStatistics = ProxyFactory.Get<TestStatistics>();
             testStatistics.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
             return TestData.CurrentTestSuite.Status;
         }
         
         public static string GetTestSuiteStatusById(string id, Guid testPlatformId, bool skipAutomatic)
         {
-            TmxHelper.OpenTestSuite(
+            OpenTestSuite(
                 string.Empty,
                 id,
                 testPlatformId);
             if (null == TestData.CurrentTestSuite) return string.Empty;
-            var testStatistics = new TestStatistics();
+            // 20150925
+            // var testStatistics = new TestStatistics();
+            var testStatistics = ProxyFactory.Get<TestStatistics>();
             testStatistics.RefreshSuiteStatistics(TestData.CurrentTestSuite, skipAutomatic);
             return TestData.CurrentTestSuite.Status;
         }
@@ -1030,16 +809,20 @@ namespace Tmx
         public static string GetCurrentTestScenarioStatus(IOpenScenarioCmdletBaseDataObject cmdlet, bool skipAutomatic)
         {
             if (null == TestData.CurrentTestScenario) return string.Empty;
-            var testStatistics = new TestStatistics();
+            // 20150925
+            // var testStatistics = new TestStatistics();
+            var testStatistics = ProxyFactory.Get<TestStatistics>();
             testStatistics.RefreshScenarioStatistics(TestData.CurrentTestScenario, skipAutomatic);
             return TestData.CurrentTestScenario.Status;
         }
         
         public static string GetTestScenarioStatus(IOpenScenarioCmdletBaseDataObject dataObject, bool skipAutomatic)
         {
-            TmxHelper.OpenTestScenario(dataObject);
+            OpenTestScenario(dataObject);
             if (null == TestData.CurrentTestScenario) return string.Empty;
-            var testStatistics = new TestStatistics();
+            // 20150925
+            // var testStatistics = new TestStatistics();
+            var testStatistics = ProxyFactory.Get<TestStatistics>();
             testStatistics.RefreshScenarioStatistics(TestData.CurrentTestScenario, skipAutomatic);
             return TestData.CurrentTestScenario.Status;
         }
@@ -1057,11 +840,15 @@ namespace Tmx
                 
                 if (!string.IsNullOrEmpty(cmdlet.Description))
                     TestData.CurrentTestResult.Description = cmdlet.Description;
-                
-                TestData.CurrentTestResult.enStatus = TestResultStatuses.NotTested;
+
+                // 20150805
+                // TestData.CurrentTestResult.enStatus = TestResultStatuses.NotTested;
+                TestData.CurrentTestResult.enStatus = TestStatuses.NotRun;
 
                 if (cmdlet.KnownIssue)
-                    TestData.CurrentTestResult.enStatus = TestResultStatuses.KnownIssue;
+                    // 20150805
+                    // TestData.CurrentTestResult.enStatus = TestResultStatuses.KnownIssue;
+                    TestData.CurrentTestResult.enStatus = TestStatuses.KnownIssue;
                 
                 TestData.CurrentTestResult.SetOrigin(cmdlet.TestOrigin);
 

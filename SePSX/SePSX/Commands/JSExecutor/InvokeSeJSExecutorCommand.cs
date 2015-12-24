@@ -9,9 +9,8 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
-    using OpenQA.Selenium;
+
     //using OpenQA.Selenium.Interactions;
     
     /// <summary>
@@ -19,21 +18,21 @@ namespace SePSX.Commands
     /// </summary>
     [Cmdlet(VerbsLifecycle.Invoke, "SeJSExecutor")]
     [OutputType(typeof(bool))]
-    public class InvokeSeJSExecutorCommand : JSExecutorCmdletBase
+    public class InvokeSeJsExecutorCommand : JsExecutorCmdletBase
     {
-        public InvokeSeJSExecutorCommand()
+        public InvokeSeJsExecutorCommand()
         {
         }
         
         protected override void ProcessRecord()
         {
-            this.checkInputWebDriver(true);
+            CheckInputWebDriver(true);
             
             SeHelper.ExecuteJavaScript(
                 this,
-                this.InputObject,
-                this.ScriptCode,
-                this.ArgumentList,
+                InputObject,
+                ScriptCode,
+                ArgumentList,
                 true);
         }
     }

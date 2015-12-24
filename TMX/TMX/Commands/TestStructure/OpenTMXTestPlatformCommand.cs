@@ -9,10 +9,8 @@
 
 namespace Tmx.Commands
 {
-    using System;
     using System.Management.Automation;
-    using Tmx.Interfaces.TestStructure;
-    
+
     /// <summary>
     /// Description of OpenTmxTestPlatformCommand.
     /// </summary>
@@ -24,7 +22,7 @@ namespace Tmx.Commands
             CheckCmdletParameters();
             
             // temporary
-            var platform = TmxHelper.GetTestPlatformById(this.Id);
+            var platform = TmxHelper.GetTestPlatformById(Id);
             TestData.CurrentTestPlatform = platform;
             WriteObject(this, platform);
         }

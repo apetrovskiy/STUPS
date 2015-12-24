@@ -9,10 +9,9 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
     using OpenQA.Selenium;
-    using OpenQA.Selenium.Support.PageObjects;
+    // using OpenQA.Selenium.Support.PageObjects;
     
     /// <summary>
     /// Description of NewSePageObjectCommand.
@@ -28,9 +27,9 @@ namespace SePSX.Commands
         
         protected override void ProcessRecord()
         {
-            this.checkInputWebDriver(true);
+            CheckInputWebDriver(true);
             
-            SeHelper.CreatePageObject(this, ((IWebDriver[])this.InputObject));
+            SeHelper.CreatePageObject(this, ((IWebDriver[])InputObject));
         }
     }
 }

@@ -649,9 +649,13 @@
       <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
       <Name>PSTestLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tmx.Client\Tmx.Client.csproj">
+    <ProjectReference Include="..\Tmx.Server.Logic\Tmx.Server.Logic.csproj">
+      <Project>{E24A3950-BC27-4FBC-B463-8AAF417939CE}</Project>
+      <Name>Tmx.Server.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tmx.Client.Library\Tmx.Client.Library.csproj">
       <Project>{6943EC2F-CB75-4F9B-B83C-A664400052A7}</Project>
-      <Name>Tmx.Client</Name>
+      <Name>Tmx.Client.Library</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tmx.Core\Tmx.Core.csproj">
       <Project>{069651A0-FE15-42E2-89D5-9A761A47B143}</Project>
@@ -661,9 +665,9 @@
       <Project>{9C5DA25F-6A59-4F97-B107-64DD549CB800}</Project>
       <Name>Tmx.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tmx.Server\Tmx.Server.csproj">
+    <ProjectReference Include="..\Tmx.Server.Library\Tmx.Server.Library.csproj">
       <Project>{A80B14D0-C8DB-4F70-B18E-4FD1C16E0AEC}</Project>
-      <Name>Tmx.Server</Name>
+      <Name>Tmx.Server.Library</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -9,7 +9,6 @@
 
 namespace Tmx.Commands
 {
-    using System;
     using System.Management.Automation;
     
     /// <summary>
@@ -20,12 +19,12 @@ namespace Tmx.Commands
     {
         protected override void BeginProcessing()
         {
-            this.CheckCmdletParameters();
+            CheckCmdletParameters();
             
-            this.WriteVerbose(this, "As = " + this.As);
-            this.WriteVerbose(this, "Path = " + this.Path);
+            WriteVerbose(this, "As = " + As);
+            WriteVerbose(this, "Path = " + Path);
             
-            string reportFormat = this.As.ToUpper();
+            string reportFormat = As.ToUpper();
             switch (reportFormat){
                 case "NUNIT":
                     
@@ -33,16 +32,16 @@ namespace Tmx.Commands
                 case "HTML":
                     // 20130322
                     //this.ExportSummaryToHTML(this.Path);
-                    this.ExportSummaryToHTML(this, this.Path);
+                    ExportSummaryToHTML(this, Path);
                     break;
                 case "CSV":
-                    this.ExportSummaryToCSV(this.Path);
+                    ExportSummaryToCSV(Path);
                     break;
                 case "TEXT":
-                    this.ExportSummaryToTEXT(this.Path);
+                    ExportSummaryToTEXT(Path);
                     break;
                 case "ZIP":
-                    this.ExportSummaryToZIP(this.Path); // ?
+                    ExportSummaryToZIP(Path); // ?
                     break;
                 default:
                     

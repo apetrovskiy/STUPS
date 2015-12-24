@@ -9,12 +9,10 @@
 
 namespace Tmx
 {
-    using System;
-    using Tmx.Interfaces;
-    // using System.Management.Automation;
-    using System.Collections.Generic;
-    using Tmx.Interfaces.TestStructure;
-    
+    using System.Xml.Serialization;
+    using Interfaces.Remoting;
+    using Interfaces.TestStructure;
+
     /// <summary>
     /// Description of TestCase.
     /// </summary>
@@ -22,10 +20,10 @@ namespace Tmx
     {
         public TestCase(string testCaseName, string testCaseId) //, string testCaseNumber)
         {
-            this.TestCaseName = testCaseName;
+            TestCaseName = testCaseName;
             // 20130617
             //this.TestCaseNumber = testCaseNumber;
-            this.TestCaseId = testCaseId;
+            TestCaseId = testCaseId;
         }
         
         public TestCase(
@@ -41,12 +39,12 @@ namespace Tmx
             ICodeBlock[] mainCode,
             ICodeBlock[] afterCode)
         {
-            this.TestCaseName = testCaseName;
+            TestCaseName = testCaseName;
             // 20130617
             //this.TestCaseNumber = testCaseNumber;
-            this.TestCaseId = testCaseId;
+            TestCaseId = testCaseId;
             //this.AlternateBeforeTest = beforeCode;
-            this.TestCode = mainCode;
+            TestCode = mainCode;
             //this.AlternateAfterTest = afterCode;
         }
         
@@ -64,5 +62,7 @@ namespace Tmx
         public string TestCaseTag { get; set; }
         public string Description { get; set; }
         public virtual object[] TestCodeParameters { get; set; }
+        [XmlAttribute]
+        public string Tag { get; set; }
     }
 }

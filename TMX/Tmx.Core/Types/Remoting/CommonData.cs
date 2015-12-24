@@ -9,11 +9,9 @@
 
 namespace Tmx.Core.Types.Remoting
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Tmx.Core;
-    using Tmx.Interfaces.Remoting;
+    using Interfaces.Remoting;
     
     /// <summary>
     /// Description of CommonData.
@@ -22,25 +20,25 @@ namespace Tmx.Core.Types.Remoting
     {
         public CommonData()
         {
-            Data = new Dictionary<string, string>();
+            Data = new Dictionary<string, object>();
         }
         
-        public Dictionary<string, string> Data { get; set; }
+        public IDictionary<string, object> Data { get; set; }
         
         public void AddOrUpdateDataItem(ICommonDataItem commonDataItem)
         {
             if (Data.Keys.Any(key => key == commonDataItem.Key))
-                updateExistingDataItem(commonDataItem);
+                UpdateExistingDataItem(commonDataItem);
             else
-                addNewDataItem(commonDataItem);
+                AddNewDataItem(commonDataItem);
         }
         
-        void addNewDataItem(ICommonDataItem commonDataItem)
+        void AddNewDataItem(ICommonDataItem commonDataItem)
         {
             Data.Add(commonDataItem.Key, commonDataItem.Value);
         }
         
-        void updateExistingDataItem(ICommonDataItem commonDataItem)
+        void UpdateExistingDataItem(ICommonDataItem commonDataItem)
         {
             Data[commonDataItem.Key] = commonDataItem.Value;
         }

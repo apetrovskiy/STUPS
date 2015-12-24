@@ -10,9 +10,6 @@
 namespace UIAutomation.Helpers.Commands
 {
     using System;
-    using System.Management.Automation;
-    using System.Collections;
-    using System.Collections.Generic;
     using UIAutomation.Commands;
     
     /// <summary>

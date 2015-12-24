@@ -9,10 +9,9 @@
 
 namespace Tmx.Commands
 {
-    using System;
     using System.Management.Automation;
     using Tmx;
-    using Tmx.Interfaces.Remoting;
+    using Interfaces.Remoting;
     
     /// <summary>
     /// Description of InvokeTmxTestTaskCommand.

@@ -9,7 +9,6 @@
 
 namespace UIAutomation.Commands
 {
-    using System;
     using System.Management.Automation;
 
     /// <summary>
@@ -25,7 +24,7 @@ namespace UIAutomation.Commands
             WhatToDo = "TransformResize";
             TransformResizeWidth = 1;
             TransformResizeHeight = 1;
-            base.Child = this;
+            Child = this;
         }
         
         [UiaParameter][Parameter(Mandatory = true)]

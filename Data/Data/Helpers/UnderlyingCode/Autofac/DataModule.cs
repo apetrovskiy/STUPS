@@ -11,10 +11,7 @@ namespace Data
 {
     using System;
     using Autofac;
-    using Autofac.Builder;
     using Autofac.Features.ResolveAnything;
-    using System.Reflection;
-    
     using System.Collections.Generic;
     
     /// <summary>

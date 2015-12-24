@@ -9,18 +9,11 @@
 
 namespace PSTestLib
 {
-    using System;
-    using System.Management.Automation;
-    
     /// <summary>
     /// Description of PSTestHelper.
     /// </summary>
     public static class PSTestHelper
     {
-//        static PSTestHelper()
-//        {
-//        }
-        
         internal static string GetZeroesLine(int desiredLength)
         {
             string result = string.Empty;

@@ -9,9 +9,8 @@
 
 namespace Tmx.Commands
 {
-    using System;
     using System.Management.Automation;
-    using Tmx.Interfaces;
+    using Interfaces;
     using Tmx;
     
     /// <summary>
@@ -24,17 +23,17 @@ namespace Tmx.Commands
         {
             // 20140721
             var dataObject = new OpenScenarioCmdletBaseDataObject {
-                InputObject = this.InputObject,
-                Name = this.Name,
-                Id = this.Id,
+                InputObject = InputObject,
+                Name = Name,
+                Id = Id,
                 // Descriprion = this.Description,
                 // 20141203
 //                TestSuiteName = this.TestSuiteName,
 //                TestSuiteId = this.TestSuiteId,
 //                TestPlatformId = this.TestPlatformId
-                TestSuiteName = this.TestSuiteName ?? TestData.CurrentTestSuite.Name,
-                TestSuiteId = this.TestSuiteId ?? TestData.CurrentTestSuite.Id,
-                TestPlatformId = this.TestPlatformId ?? TestData.CurrentTestPlatform.Id
+                TestSuiteName = TestSuiteName ?? TestData.CurrentTestSuite.Name,
+                TestSuiteId = TestSuiteId ?? TestData.CurrentTestSuite.Id,
+                TestPlatformId = TestPlatformId ?? TestData.CurrentTestPlatform.Id
             };
             
             // bool result = TmxHelper.OpenTestScenario(this);

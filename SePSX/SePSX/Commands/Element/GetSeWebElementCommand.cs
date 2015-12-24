@@ -9,14 +9,9 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
     using OpenQA.Selenium;
-    using System.Collections.ObjectModel;
-    using System.Collections.Generic;
-    
-    using OpenQA.Selenium.Remote;
-    
+
     /// <summary>
     /// Description of GetSeWebElementCommand.
     /// </summary>
@@ -31,16 +26,16 @@ namespace SePSX.Commands
         
         protected override void ProcessRecord()
         {
-            this.checkInputWebDriverOrWebElement();
+            CheckInputWebDriverOrWebElement();
             
-            SeGetWebElementCommand command =
+            var command =
                 new SeGetWebElementCommand(this);
             command.Execute();
         }
         
         protected override void StopProcessing()
         {
-            SeHelper.waitForElement = false;
+            SeHelper.WaitForElement = false;
         }
     }
 }

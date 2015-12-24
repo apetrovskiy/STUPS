@@ -9,8 +9,6 @@
 
 namespace EsxiMgmt.Core.Interfaces
 {
-    using System;
-    
     /// <summary>
     /// Description of IEsxiVirtualMachine.
     /// </summary>

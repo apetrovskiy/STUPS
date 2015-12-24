@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{9857AD05-4F29-421F-B441-89360A2D4127}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>TMX</RootNamespace>
+    <AssemblyName>TlAddin</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <DebugType>None</DebugType>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>false</DebugSymbols>
+    <RunCodeAnalysis>False</RunCodeAnalysis>
+    <NoWin32Manifest>False</NoWin32Manifest>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release35' ">
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Release35' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>Full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>None</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>None</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CookComputing.XmlRpcV2">
+      <HintPath>..\binaries\TestLink\CookComputing.XmlRpcV2.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Management.Automation" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
+      <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
+      <Name>PSTestLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\TestLink\TestLinkAPI\TestLinkAPI.csproj">
+      <Project>{743BC178-7039-4D01-B3AF-83099B8411BA}</Project>
+      <Name>TestLinkAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\TestLink\TestLinkFixture\TestLinkFixture.csproj">
+      <Project>{B412DDEB-7308-4FCF-8C6A-1EAF38F90DED}</Project>
+      <Name>TestLinkFixture</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tmx.Core\Tmx.Core.csproj">
+      <Project>{069651A0-FE15-42E2-89D5-9A761A47B143}</Project>
+      <Name>Tmx.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tmx.Interfaces\Tmx.Interfaces.csproj">
+      <Project>{9C5DA25F-6A59-4F97-B107-64DD549CB800}</Project>
+      <Name>Tmx.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tmx\Tmx.csproj">
+      <Project>{DFFF7F28-CFA4-4EE5-84F0-4A12A415BC0C}</Project>
+      <Name>Tmx</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\TMX\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Commands\TL\AddTLBuildCommand.cs" />
+    <Compile Include="Commands\TL\AddTLTestCaseCommand.cs" />
+    <Compile Include="Commands\TL\AddTLTestSubSuiteCommand.cs" />
+    <Compile Include="Commands\TL\AddTLTestSuiteCommand.cs" />
+    <Compile Include="Commands\TL\ConnectTLServerCommand.cs" />
+    <Compile Include="Commands\TL\GetTLBuildCommand.cs" />
+    <Compile Include="Commands\TL\GetTLProjectCommand.cs" />
+    <Compile Include="Commands\TL\GetTLTestCaseCommand.cs" />
+    <Compile Include="Commands\TL\GetTLTestPlanCommand.cs" />
+    <Compile Include="Commands\TL\GetTLTestSuiteCommand.cs" />
+    <Compile Include="Commands\TL\NewTLTestPlanCommand.cs" />
+    <Compile Include="Commands\TL\NewTLUserCommand.cs" />
+    <Compile Include="Helpers\Inheritance\TLAddTestPlanCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\TLBuildCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\TLCollectionCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\TLGetTestPlanCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\TLProjectCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\TLSCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\TLSConnectCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\TLTestCaseCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\TLTestPlanCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\TLTestSubSuiteCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\TLTestSuiteCmdletBase.cs" />
+    <Compile Include="Helpers\Inheritance\TLUserCmdletBase.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Builds\TLSrvAddBuildCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Builds\TLSrvGetBuildCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Connect\TLSrvConnectCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestCases\TLSrvAddTestCaseCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestCases\TLSrvGetTestCaseCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestPlans\TLSrvGetTestPlanCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestPlans\TLSrvNewTestPlanCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestProjects\TLSrvGetProjectCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestSuites\TLSrvAddTestSuiteCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TestSuites\TLSrvGetTestSuiteCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\TLSrvCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Commands\Users\TLSrvNewUserCommand.cs" />
+    <Compile Include="Helpers\UnderlyingCode\TestLinkFactory.cs" />
+    <Compile Include="Helpers\UnderlyingCode\TLHelper.cs" />
+    <Compile Include="Helpers\UnderlyingCode\Wrappers\WrappedTestLink.cs" />
+    <Compile Include="Helpers\UserSettings\TLAddinData.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+</Project>

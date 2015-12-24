@@ -7,12 +7,12 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-namespace Tmx
+namespace Tmx.Helpers.UnderlyingCode.Commands.TestServer
 {
     using System;
-    using Tmx.Server;
-    using Tmx.Commands;
-    
+    using Server.Library.ObjectModel.ServerControl;
+    using Tmx.Commands.TestServer;
+
     /// <summary>
     /// Description of StartServerCommand.
     /// </summary>
@@ -25,7 +25,6 @@ namespace Tmx
         internal override void Execute()
         {
             var cmdlet = (StartTmxServerCommand)Cmdlet;
-            // 20141001
             try {
                 ServerControl.Port = cmdlet.Port;
                 ServerControl.Start(@"http://localhost:" + cmdlet.Port);

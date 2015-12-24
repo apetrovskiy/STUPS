@@ -15,7 +15,7 @@ namespace Tmx.Core.Types.Remoting
 //    using System.Net;
 //    using System.Net.NetworkInformation;
 //    using System.Security.Principal;
-    using Tmx.Interfaces.Remoting;
+    using Interfaces.Remoting;
     
     /// <summary>
     /// Description of TestClient.
@@ -67,5 +67,6 @@ namespace Tmx.Core.Types.Remoting
         public string TaskName { get; set; }
         public string DetailedStatus { get; set; }
         public Guid TestRunId { get; set; }
+        public Guid TestHostId { get; set; }
     }
 }

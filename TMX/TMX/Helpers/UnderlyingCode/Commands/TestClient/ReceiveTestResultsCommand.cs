@@ -9,10 +9,11 @@
 
 namespace Tmx
 {
-    using System;
-    using Tmx.Client;
-    using Tmx.Commands;
-    
+    using Client.Library.Helpers;
+    using Client.Library.ObjectModel;
+    using Commands;
+    using Core.Proxy;
+
     /// <summary>
     /// Description of ReceiveTestResultsCommand.
     /// </summary>
@@ -25,7 +26,10 @@ namespace Tmx
         internal override void Execute()
         {
             var cmdlet = (ReceiveTmxTestResultsCommand)Cmdlet;
-            var testResultsLoader = new TestResultsLoader(new RestRequestCreator());
+            // 20150918
+            // var testResultsLoader = new TestResultsLoader(new RestRequestCreator());
+            // var testResultsLoader = new TestResultsLoader();
+            var testResultsLoader = ProxyFactory.Get<TestResultsLoader>();
             cmdlet.WriteObject(testResultsLoader.LoadTestResults());
         }
     }

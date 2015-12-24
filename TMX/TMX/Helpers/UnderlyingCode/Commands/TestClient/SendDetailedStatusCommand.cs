@@ -9,12 +9,12 @@
 
 namespace Tmx
 {
-    using System;
-    using Tmx.Client;
-    using Tmx.Core;
-    using Tmx.Interfaces.Exceptions;
-    using Tmx.Commands;
-    
+    using Client.Library.Helpers;
+    using Client.Library.ObjectModel;
+    using Interfaces.Exceptions;
+    using Commands;
+    using Core.Proxy;
+
     /// <summary>
     /// Description of SendDetailedStatusCommand.
     /// </summary>
@@ -27,7 +27,10 @@ namespace Tmx
         internal override void Execute()
         {
             var cmdlet = (SendTmxDetailedStatusCommand)Cmdlet;
-            var statusSender = new StatusSender(new RestRequestCreator());
+            // 20150918
+            // var statusSender = new StatusSender(new RestRequestCreator());
+            // var statusSender = new StatusSender();
+            var statusSender = ProxyFactory.Get<StatusSender>();
             try {
                 statusSender.Send(cmdlet.Status);
                 cmdlet.WriteObject(cmdlet, true);
@@ -36,7 +39,9 @@ namespace Tmx
                 // throw new SendingDetailedStatusException("Failed to send detailed status");
                 // throw;
                 // cmdlet.WriteError(cmdlet, e.Message, "FailedToSendDetailedStatus", errorc
-                throw;
+                // throw;
+
+                // TODO: log only!
             }
         }
     }

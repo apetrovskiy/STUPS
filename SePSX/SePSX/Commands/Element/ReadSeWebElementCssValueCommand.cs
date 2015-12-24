@@ -9,10 +9,8 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
-    using OpenQA.Selenium;
-    
+
     /// <summary>
     /// Description of ReadSeWebElementCssValueCommand.
     /// </summary>
@@ -33,9 +31,9 @@ namespace SePSX.Commands
         
         protected override void ProcessRecord()
         {
-            this.checkInputWebElementOnly(this.InputObject);
+            checkInputWebElementOnly(InputObject);
             
-            SeReadWebElementCssValueCommand command =
+            var command =
                 new SeReadWebElementCssValueCommand(this);
             command.Execute();
 //            SeHelper.GetWebElementCSSValue(

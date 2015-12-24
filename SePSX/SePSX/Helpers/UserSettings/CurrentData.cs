@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-/*
+﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 7/18/2012
@@ -33,12 +32,12 @@ namespace SePSX
         
 //        public static AutomationElement CurrentWindow { get; internal set; }
         public static IWebDriver CurrentWebDriver { get; internal set; }
-        public static int CurrentWebDriverPID { get; internal set; }
+        public static int CurrentWebDriverPid { get; internal set; }
         public static IntPtr CurrentWebDriverHandle { get; internal set; }
         public static System.Collections.ArrayList Error { get; set; }
         
         public static System.Collections.Generic.Dictionary<string, IWebDriver> Drivers { get; set; }
-        public static System.Collections.Generic.Dictionary<string, int> DriverPIDs { get; set; }
+        public static System.Collections.Generic.Dictionary<string, int> DriverPiDs { get; set; }
         public static System.Collections.Generic.Dictionary<string, IntPtr> DriverHandles { get; set; }
         public static string LastCmdlet { get; internal set; }
         public static object LastResult { get; internal set; }
@@ -57,23 +56,23 @@ namespace SePSX
         
 //        public static CacheRequest CacheRequest = null;
         
-        private static bool initFlag = false;
+        private static bool _initFlag = false;
 
         internal static void Init()
         {
-            if (!initFlag) {
+            if (!_initFlag) {
                 Error = new System.Collections.ArrayList(Preferences.MaximumErrorCount);
                 //Profiles = new System.Collections.Generic.List<Profile>();
                 Drivers = new System.Collections.Generic.Dictionary<string, IWebDriver>();
-                DriverPIDs = new System.Collections.Generic.Dictionary<string, int>();
+                DriverPiDs = new System.Collections.Generic.Dictionary<string, int>();
                 DriverHandles = new System.Collections.Generic.Dictionary<string, IntPtr>();
-                initFlag = true;
+                _initFlag = true;
             }
         }
         
         internal static void InitUnconditional()
         {
-            initFlag = false;
+            _initFlag = false;
             Init();
         }
         
@@ -93,10 +92,10 @@ Console.WriteLine("ResetData: 00002");
 //            LastEventArgs = null;
 //            LastEventInfoAdded = false;
             
-            System.Collections.Generic.Dictionary<string, IWebDriver>.KeyCollection keys = Drivers.Keys;
+            var keys = Drivers.Keys;
 Console.WriteLine("ResetData: 00002-1 keys.Count = " + keys.Count.ToString());
 Console.WriteLine("ResetData: 00003");
-            foreach (string key in keys) {
+            foreach (var key in keys) {
 Console.WriteLine("ResetData: 00004 key = " + key);
 //                try { Drivers[key].Close(); } catch {}
 //                try { Drivers[key].Dispose(); } catch {}
@@ -111,13 +110,13 @@ Console.WriteLine("ResetData: 00004-1");
             }
 Console.WriteLine("ResetData: 00005");
             CurrentWebDriver = null;
-            CurrentWebDriverPID = 0;
+            CurrentWebDriverPid = 0;
 Console.WriteLine("ResetData: 00007");
             CurrentWebDriverHandle = IntPtr.Zero;
 Console.WriteLine("ResetData: 00008");
             Drivers.Clear();
 Console.WriteLine("ResetData: 00009");
-            DriverPIDs.Clear();
+            DriverPiDs.Clear();
 Console.WriteLine("ResetData: 00010");
             DriverHandles.Clear();
 Console.WriteLine("ResetData: 00011");

@@ -12,23 +12,22 @@ namespace Tmx
     using System;
     using System.Linq;
     using System.Collections.Generic;
-    using System.Xml.Linq;
-    using System.Reflection;
-    using Tmx.Interfaces;
-    using Tmx.Interfaces.TestStructure;
-    using Tmx.Core;
-    
+    using Interfaces;
+    using Interfaces.TestStructure;
+    using Core;
+    using Core.Proxy;
+
     /// <summary>
     /// Description of GatherTestResultsCollections.
     /// </summary>
     public class GatherTestResultsCollections
     {
-        public IOrderedEnumerable<ITestSuite> TestSuites { get; set; }
-        public IOrderedEnumerable<ITestScenario> TestScenarios { get; set; }
-        public IOrderedEnumerable<ITestResult> TestResults { get; set; }
+        public virtual IOrderedEnumerable<ITestSuite> TestSuites { get; set; }
+        public virtual IOrderedEnumerable<ITestScenario> TestScenarios { get; set; }
+        public virtual IOrderedEnumerable<ITestResult> TestResults { get; set; }
         
         [Obsolete]
-        public void GatherCollections(ISearchCmdletBaseDataObject searchCriteria)
+        public virtual void GatherCollections(ISearchCmdletBaseDataObject searchCriteria)
         {
             // IOrderedEnumerable<ITestSuite> suites = TmxHelper.SearchForSuites(searchCriteria);
             // TestSuites = suites;
@@ -43,9 +42,11 @@ namespace Tmx
             TestResults = TmxHelper.SearchForTestResults(searchCriteria);
         }
         
-        public void GatherCollections(ISearchCmdletBaseDataObject searchCriteria, List<ITestSuite> suitesForSearch)
+        public virtual void GatherCollections(ISearchCmdletBaseDataObject searchCriteria, List<ITestSuite> suitesForSearch)
         {
-            var testResultsSearcher = new TestResultsSearcher();
+            // 20150925
+            // var testResultsSearcher = new TestResultsSearcher();
+            var testResultsSearcher = ProxyFactory.Get<TestResultsSearcher>();
             TestSuites = testResultsSearcher.SearchForSuites(searchCriteria, suitesForSearch);
             TestScenarios = testResultsSearcher.SearchForScenarios(searchCriteria, suitesForSearch);
             TestResults = testResultsSearcher.SearchForTestResults(searchCriteria, suitesForSearch);

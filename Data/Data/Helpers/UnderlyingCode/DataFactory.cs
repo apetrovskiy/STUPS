@@ -14,15 +14,7 @@ namespace Data
 
     using Autofac;
     using Autofac.Builder;
-    using Autofac.Core;
 
-    using System.Reflection;
-    using Autofac.Core.Activators.Reflection;
-    
-    using System.Management.Automation;
-    
-    using System.Linq;
-    
     /// <summary>
     /// Description of DataFactory.
     /// </summary>

@@ -16,12 +16,7 @@ namespace Tmx
     using FluentNHibernate.Cfg.Db;
     using NHibernate.Cfg;
     using NHibernate.Tool.hbm2ddl;
-    using System.Reflection;
-    using NHibernate.Dialect;
-    using NHibernate.Driver;
-    using System.Collections;
-    using Tmx.Interfaces;
-    
+
     /// <summary>
     /// Description of StorageHelper.
     /// </summary>

@@ -9,13 +9,14 @@
 
 namespace Tmx.Interfaces.Remoting.Actions
 {
-    using System;
-    
+    using System.Collections.Generic;
+
     /// <summary>
     /// Description of IAction.
     /// </summary>
     public interface IAction
     {
+        Dictionary<string, string> Settings { get; set; } 
         bool Run();
     }
 }

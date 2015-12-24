@@ -9,10 +9,8 @@
 
 namespace Tmx
 {
-    using System;
-    using Tmx.Client;
-    using Tmx.Core;
-    using Tmx.Commands;
+    using Client;
+    using Commands;
     
     /// <summary>
     /// Description of AddTestTaskResultCommand.

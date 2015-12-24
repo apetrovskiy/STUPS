@@ -9,9 +9,8 @@
 
 namespace Tmx
 {
-    using System;
     using System.Management.Automation;
-    using Tmx.Interfaces.TestStructure;
+    using Interfaces.TestStructure;
     
     /// <summary>
     /// Description of TestResultCmdletBase.
@@ -20,8 +19,7 @@ namespace Tmx
     {
         public TestResultCmdletBase()
         {
-            // 20130330
-            this.TestResultStatus = TestResultStatuses.NotTested;
+            TestResultStatus = TestStatuses.NotRun;
         }
         
         #region Parameters
@@ -29,10 +27,10 @@ namespace Tmx
                    Position = 0)]
         [Alias("Name")]
         public new string TestResultName { get; set; }
-        
+
         [Parameter(Mandatory = false,
                    ParameterSetName = "EnumLogic")]
-        public TestResultStatuses TestResultStatus { get; set; }
+        public TestStatuses TestResultStatus { get; set; }
         [Parameter(Mandatory = false,
                    ParameterSetName = "DualLogic")]
         public new SwitchParameter TestPassed { get; set; }
@@ -55,19 +53,19 @@ namespace Tmx
         
         public void ConvertTestResultStatusToTraditionalTestResult()
         {
-            if (TestResultStatuses.NotTested == TestResultStatus) return;
+            if (TestStatuses.NotRun == TestResultStatus) return;
             switch (TestResultStatus) {
-                case TestResultStatuses.Passed:
+                case TestStatuses.Passed:
                     TestPassed = true;
                     break;
-                case TestResultStatuses.Failed:
+                case TestStatuses.Failed:
                     TestPassed = false;
                     break;
-                case TestResultStatuses.NotTested:
+                case TestStatuses.NotRun:
                     // nothing to do
                     // the impossible combination
                     break;
-                case TestResultStatuses.KnownIssue:
+                case TestStatuses.KnownIssue:
                     KnownIssue = true;
                     break;
                 default:

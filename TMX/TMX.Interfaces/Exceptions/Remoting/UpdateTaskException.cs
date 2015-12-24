@@ -11,7 +11,7 @@ namespace Tmx.Interfaces.Exceptions
 {
     using System;
     using System.Runtime.Serialization;
-    
+
     /// <summary>
     /// Desctiption of UpdateTaskException.
     /// </summary>

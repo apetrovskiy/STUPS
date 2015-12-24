@@ -13,7 +13,7 @@ namespace Tmx.Interfaces
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Xml.Serialization;
-    using Tmx.Interfaces.TestStructure;
+    using TestStructure;
     
     /// <summary>
     /// Description of TestResultDetail.
@@ -23,9 +23,9 @@ namespace Tmx.Interfaces
     {
         public TestResultDetail()
         {
-            this.Timestamp = DateTime.Now;
-            this.DetailType = TestResultDetailTypes.Comment;
-            this.ExternalData = new List<string>();
+            Timestamp = DateTime.Now;
+            DetailType = TestResultDetailTypes.Comment;
+            ExternalData = new List<string>();
             UniqueId = Guid.NewGuid();
         }
         
@@ -110,6 +110,8 @@ namespace Tmx.Interfaces
         }
         
         [XmlAttribute]
-        public virtual TestResultStatuses DetailStatus { get; set; }
+        // 20150805
+        // public virtual TestResultStatuses DetailStatus { get; set; }
+        public virtual TestStatuses DetailStatus { get; set; }
     }
 }

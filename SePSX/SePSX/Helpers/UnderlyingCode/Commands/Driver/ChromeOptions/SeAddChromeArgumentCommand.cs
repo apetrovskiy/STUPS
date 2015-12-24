@@ -9,9 +9,6 @@
 
 namespace SePSX
 {
-    using System;
-    using System.Management.Automation;
-    
     /// <summary>
     /// Description of SeAddChromeArgumentCommand.
     /// </summary>
@@ -23,7 +20,7 @@ namespace SePSX
         
         internal override void Execute()
         {
-            SeHelper.AddChromeArgument(this.Cmdlet);
+            SeHelper.AddChromeArgument(Cmdlet);
         }
     }
 }

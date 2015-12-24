@@ -9,7 +9,6 @@
 
 namespace UIAutomation
 {
-    using WindowsInput;
     using WindowsInput.Native;
     
     /// <summary>

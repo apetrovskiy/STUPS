@@ -9,7 +9,6 @@
 
 namespace UIAutomation.Commands
 {
-    using System;
     using System.Management.Automation;
 
     /// <summary>
@@ -24,7 +23,7 @@ namespace UIAutomation.Commands
         {
             WhatToDo = "TransformRotate";
             TransformRotateDegrees = 1;
-            base.Child = this;
+            Child = this;
         }
         
         [UiaParameter][Parameter(Mandatory = true)]

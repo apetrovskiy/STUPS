@@ -9,11 +9,7 @@
 
 namespace SePSX
 {
-    using System;
     using PSTestLib;
-
-    using OpenQA.Selenium;
-
     using System.Drawing;
 
     /// <summary>
@@ -23,8 +19,8 @@ namespace SePSX
     {
         public RecordedWebElement()
         {
-            this.ItemType = RecordingTypes.Element;
-            this.UserData =
+            ItemType = RecordingTypes.Element;
+            UserData =
                 new System.Collections.Generic.Dictionary<string, object>();
         }
 

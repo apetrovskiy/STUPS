@@ -13,7 +13,6 @@ namespace EsxiMgmt.Core.ObjectModel
     using System.Collections.Generic;
     using System.IO;
     using System.Text.RegularExpressions;
-    using Renci.SshNet;
     // TODO: refactoring in SD
     // using EsxiMgmt.Core.Interfaces;
     using Interfaces;

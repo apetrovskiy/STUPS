@@ -24,20 +24,16 @@ namespace TestUtils
         internal static void AddFilesToArchive(NewTuZipArchiveCommand cmdlet)
         {
             
-            if (null == cmdlet.Filename || 0 == cmdlet.Filename.Length) {
-                
+            if (null == cmdlet.Filename || 0 == cmdlet.Filename.Length)
                 cmdlet.WriteError(
                     cmdlet,
                     "There are no files to archive",
                     "NoFiles",
                     ErrorCategory.InvalidArgument,
                     true);
-            }
             
-            if (string.IsNullOrEmpty(cmdlet.ArchiveName)) {
-                
+            if (string.IsNullOrEmpty(cmdlet.ArchiveName))
                 cmdlet.ArchiveName = "NewArchive";
-            }
             
             try {
                 using (var zipFile = new ZipFile()) {
@@ -64,10 +60,11 @@ namespace TestUtils
                                 zipFile.AddFile(fileName, cmdlet.PathInArchive);
                             }
                         }
-                        
+//                        if (System.IO.Directory.Exists(fileName))
+//                            string.IsNullOrEmpty(cmdlet.PathInArchive) ? zipFile.AddDirectory(fileName) : zipFile.AddDirectory(fileName, cmdlet.PathInArchive);
+//                        if (System.IO.File.Exists(fileName))
+//                            string.IsNullOrEmpty(cmdlet.PathInArchive) ? zipFile.AddFile(fileName) : zipFile.AddFile(file, cmdlet.PathInArchive);
                     }
-                    
-                    //zipFile.AddFiles(cmdlet.Filename);
                     
                     zipFile.Comment = cmdlet.Comment;
                     

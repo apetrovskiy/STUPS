@@ -11,8 +11,8 @@ namespace Tmx.Interfaces.TestStructure
 {
     using System;
     using System.Xml.Serialization;
-    using Tmx.Interfaces.Internal;
-    
+    using Internal;
+
     /// <summary>
     /// Description of ITestPlatform.
     /// </summary>

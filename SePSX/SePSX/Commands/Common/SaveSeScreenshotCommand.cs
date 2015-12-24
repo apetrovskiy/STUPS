@@ -9,13 +9,8 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
-    using System.Runtime.InteropServices;
-    using System.Windows.Automation;
-    
-    using UIAutomation;
-    
+
     /// <summary>
     /// Description of SaveSeScreenshotCommand.
     /// </summary>
@@ -24,8 +19,8 @@ namespace SePSX.Commands
         #region Constructor
         public ScreenshotCmdletBase()
         {
-            this.Path = string.Empty;
-            this.As = System.Drawing.Imaging.ImageFormat.Bmp;
+            Path = string.Empty;
+            As = System.Drawing.Imaging.ImageFormat.Bmp;
         }
         #endregion Constructor
         
@@ -91,7 +86,7 @@ namespace SePSX.Commands
 //            //} else {
 //            // UiaHelper.GetControlScreenshot(this.InputObject, this.Description);
 //            //}
-            SeSaveScreenshotCommand command =
+            var command =
                 new SeSaveScreenshotCommand(this);
             command.Execute();
         }
@@ -122,7 +117,7 @@ namespace SePSX.Commands
         #region Constructor
         public GetSeScreenshotCommand()
         {
-            this.Path = string.Empty; // ?
+            Path = string.Empty; // ?
         }
         #endregion Constructor
         

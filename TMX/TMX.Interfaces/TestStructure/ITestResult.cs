@@ -12,7 +12,7 @@ namespace Tmx.Interfaces.TestStructure
     using System;
     using System.Collections.Generic;
     using System.Xml.Serialization;
-    
+
     /// <summary>
     /// Description of ITestResult.
     /// </summary>
@@ -22,6 +22,9 @@ namespace Tmx.Interfaces.TestStructure
         Guid UniqueId { get; set; }
         [XmlAttribute]
         string Name { get; set; }
+        // 20150521
+        string MessageOnSuccess { get; set; }
+        string MessageOnFail { get; set; }
         [XmlAttribute]
         string Id { get; set; }
         [XmlElement("TestResultDetails", typeof(ITestResultDetail))]
@@ -29,7 +32,7 @@ namespace Tmx.Interfaces.TestStructure
         [XmlAttribute]
         string Status { get; }
         [XmlAttribute]
-        TestResultStatuses enStatus { get; set; }
+        TestStatuses enStatus { get; set; }
         
         [XmlAttribute]
         string ScriptName { get; }
@@ -83,11 +86,14 @@ namespace Tmx.Interfaces.TestStructure
         TestResultOrigins Origin { get; }
         void SetOrigin(TestResultOrigins origin);
         
-        object[] ListDetailNames(TestResultStatuses status);
+        object[] ListDetailNames(TestStatuses status);
         
         [XmlAttribute]
         string PlatformId { get; set; }
         [XmlAttribute]
         Guid PlatformUniqueId { get; set; }
+        // 20150826
+        [XmlAttribute]
+        string Tag { get; set; }
     }
 }

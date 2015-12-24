@@ -13,17 +13,16 @@ namespace Tmx.Core
     using System.Collections.Generic;
     using System.Linq;
     using System.Xml.Linq;
-    using Tmx.Interfaces;
-    using Tmx.Interfaces.Remoting;
-    using Tmx.Interfaces.TestStructure;
-    using Tmx.Core.Types.Remoting;
-    
+    using Interfaces;
+    using Interfaces.TestStructure;
+    using Proxy;
+
     /// <summary>
     /// Description of TestResultsExporter.
     /// </summary>
     public class TestResultsExporter
     {
-        public void ExportResultsToXml(ISearchCmdletBaseDataObject cmdlet, string path, List<ITestSuite> suites, List<ITestPlatform> platforms)
+        public virtual void ExportResultsToXml(ISearchCmdletBaseDataObject cmdlet, string path, List<ITestSuite> suites, List<ITestPlatform> platforms)
         {
             try {
                 var document = GetTestResultsAsXdocument(cmdlet, suites, platforms);
@@ -70,7 +69,9 @@ namespace Tmx.Core
         
         public XElement GetTestResultsAsXelement(ISearchCmdletBaseDataObject searchCriteria, List<ITestSuite> suites)
         {
-            var gathered = new GatherTestResultsCollections();
+            // 20150925
+            // var gathered = new GatherTestResultsCollections();
+            var gathered = ProxyFactory.Get<GatherTestResultsCollections>();
             gathered.GatherCollections(searchCriteria, suites);
             var suitesElement = CreateSuitesXElementWithParameters(gathered.TestSuites, gathered.TestScenarios, gathered.TestResults, (new XMLElementsNativeStruct()));
             return suitesElement;

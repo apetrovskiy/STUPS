@@ -42,27 +42,22 @@ namespace UIAutomation
             if (0 == timeout) return result;
             
             if ((null == ResultCollection || 0 == ResultCollection.Count) &&
-                (System.DateTime.Now - startTime).TotalSeconds <= timeout / 1000) return true;
+                (DateTime.Now - startTime).TotalSeconds <= timeout / 1000) return true;
             
-            if (null == ResultCollection) {
-                
-                var eTimeoutException =
-                    new TimeoutException(
-                        TimeoutExpirationInformation);
-                
-                throw(eTimeoutException);
-            } else {
-                // no action currently
-            }
-            
-            return result;
+            //if (null == ResultCollection) {
+            //    var eTimeoutException = new TimeoutException(TimeoutExpirationInformation);
+            //    throw(eTimeoutException);
+            //}
+            if (null != ResultCollection) return result;
+            var eTimeoutException = new TimeoutException(TimeoutExpirationInformation);
+            throw (eTimeoutException);
         }
         
         public List<IUiElement> GetElements(SearcherTemplateData data, int timeout)
         {
             Timeout = timeout;
             SearcherData = data;
-            var startTime = System.DateTime.Now;
+            var startTime = DateTime.Now;
             Wait = true;
             
             OnStartHook();
@@ -75,24 +70,16 @@ namespace UIAutomation
                 // AutomationFactory.InitNewCustomScope();
                 
                 BeforeSearchHook();
-                
-                ResultCollection =
-                    SearchForElements(data);
-                
+                ResultCollection = SearchForElements(data);
                 AfterSearchHook();
-                
                 if (null != ResultCollection && 0 < ResultCollection.Count) break;
-                
                 Wait = ContinueSearch(Timeout, startTime);
-                
                 OnSleepHook();
                 
             } while (Wait);
             
             OnFailureHook();
-            
             OnSuccessHook();
-            
             return ResultCollection;
         }
     }

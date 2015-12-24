@@ -9,12 +9,11 @@
 
 namespace Tmx
 {
-    using System;
-    using System.Management.Automation;
-    using Tmx;
-    using Tmx.Client;
-    using Tmx.Commands;
-    
+    using Client.Library.Helpers;
+    using Client.Library.ObjectModel;
+    using Commands;
+    using Core.Proxy;
+
     /// <summary>
     /// Description of UnregisterSystemUnderTestCommand.
     /// </summary>
@@ -27,7 +26,10 @@ namespace Tmx
         internal override void Execute()
         {
             var cmdlet = (UnregisterTmxSystemUnderTestCommand)Cmdlet;
-            var registration = new Registration(new RestRequestCreator());
+            // 20150918
+            // var registration = new Registration(new RestRequestCreator());
+            // var registration = new Registration();
+            var registration = ProxyFactory.Get<Registration>();
             registration.UnregisterClient();
         }
     }

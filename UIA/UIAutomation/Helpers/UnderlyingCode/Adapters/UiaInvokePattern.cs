@@ -10,7 +10,6 @@
 namespace UIAutomation
 {
     extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
-    using System;
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
     
     public class UiaInvokePattern : IInvokePattern
@@ -20,19 +19,19 @@ namespace UIAutomation
         
         public UiaInvokePattern(IUiElement element, classic.InvokePattern invokePattern)
         {
-            this._invokePattern = invokePattern;
-            this._element = element;
+            _invokePattern = invokePattern;
+            _element = element;
             //this._useCache = useCache;
         }
         
         public UiaInvokePattern(IUiElement element)
         {
-            this._element = element;
+            _element = element;
         }
         
         public UiaInvokePattern(classic.InvokePattern InvokePattern)
         {
-            this._invokePattern = InvokePattern;
+            _invokePattern = InvokePattern;
         }
         
         public static readonly classic.AutomationPattern Pattern = classic.InvokePatternIdentifiers.Pattern;
@@ -40,28 +39,28 @@ namespace UIAutomation
         
         public virtual void Invoke()
         {
-            if (null == this._invokePattern) return;
-            this._invokePattern.Invoke();
+            if (null == _invokePattern) return;
+            _invokePattern.Invoke();
         }
         
         public void SetParentElement(IUiElement element)
         {
-            this._element = element;
+            _element = element;
         }
         
         public IUiElement GetParentElement()
         {
-            return this._element;
+            return _element;
         }
         
         public void SetSourcePattern(object pattern)
         {
-            this._invokePattern = pattern as classic.InvokePattern;
+            _invokePattern = pattern as classic.InvokePattern;
         }
         
         public object GetSourcePattern()
         {
-            return this._invokePattern;
+            return _invokePattern;
         }
     }
 }

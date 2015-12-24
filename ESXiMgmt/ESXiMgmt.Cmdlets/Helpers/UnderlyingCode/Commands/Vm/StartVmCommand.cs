@@ -9,8 +9,7 @@
 
 namespace EsxiMgmt.Cmdlets.Helpers.UnderlyingCode.Commands.Vm
 {
-    using System;
-    using EsxiMgmt.Cmdlets.Commands.Vm;
+    using Cmdlets.Commands.Vm;
     
     /// <summary>
     /// Description of StartVmCommand.

@@ -10,8 +10,7 @@
 namespace Tmx.Interfaces.Remoting
 {
     using System;
-    using System.Collections.Generic;
-    
+
     /// <summary>
     /// Description of ITestTask.
     /// </summary>
@@ -22,13 +21,14 @@ namespace Tmx.Interfaces.Remoting
         bool IsActive { get; set; }
         int RetryCount { get; set; }
         bool IsCritical { get; set; }
+        bool IsCancel { get; set; }
         string Rule { get; set; }
         string StoryId { get; set; }
         string[] ExpectedResult { get; set; }
         Guid WorkflowId { get; set; }
         Guid TestRunId { get; set; }
-        TimeSpan GetTimeTaken();
-        void SetTimeTaken();
+        string GetTimeTaken();
+        void SetFinishTime();
     }
     
     /*

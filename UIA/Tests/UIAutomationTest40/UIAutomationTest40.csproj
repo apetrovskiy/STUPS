@@ -1,0 +1,645 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <Import Project="..\..\..\packages\xunit.core.2.1.0\build\portable-net45+win8+wp8+wpa81\xunit.core.props" Condition="Exists('..\..\..\packages\xunit.core.2.1.0\build\portable-net45+win8+wp8+wpa81\xunit.core.props')" />
+  <PropertyGroup>
+    <ProjectGuid>{3E6BC4C9-C3C8-4338-B8E1-7D22BCC30B58}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>UIAutomationTest</RootNamespace>
+    <AssemblyName>UIAutomationTest40</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <DebugType>None</DebugType>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>false</DebugSymbols>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <NuGetPackageImportStamp>afc6625b</NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release35' ">
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Release35' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Release35'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Release35'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|Release35'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|x86'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>Full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>None</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>None</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Gallio">
+      <HintPath>..\..\..\..\Program Files\Gallio\bin\Gallio.dll</HintPath>
+    </Reference>
+    <Reference Include="MbUnit">
+      <HintPath>..\..\..\..\Program Files\Gallio\bin\MbUnit.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.0.5813.39032, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NUnit.3.0.1\lib\net40\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management.Automation" />
+    <Reference Include="System.Windows.Presentation">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationClient">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationTypes">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\xunit.abstractions.2.0.0\lib\net35\xunit.abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="xunit.assert, Version=2.1.0.3179, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\xunit.assert.2.1.0\lib\portable-net45+win8+wp8+wpa81\xunit.assert.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="xunit.core, Version=2.1.0.3179, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\xunit.extensibility.core.2.1.0\lib\portable-net45+win8+wp8+wpa81\xunit.core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="xunit.execution.desktop, Version=2.1.0.3179, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\xunit.extensibility.execution.2.1.0\lib\net45\xunit.execution.desktop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\UIAutomationTest\Commands\Cache\StartUIACacheRequestCommandTestFixture.cs">
+      <Link>Commands\Cache\StartUIACacheRequestCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Cache\StopUIACacheRequestCommandTestFixture.cs">
+      <Link>Commands\Cache\StopUIACacheRequestCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Common\HideUIACurrentHighlighterCommandTestFixture.cs">
+      <Link>Commands\Common\HideUIACurrentHighlighterCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Common\InvokeUIAControlClickCommandTestFixture.cs">
+      <Link>Commands\Common\InvokeUIAControlClickCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Common\InvokeUIAControlContextMenuCommandTestFixture.cs">
+      <Link>Commands\Common\InvokeUIAControlContextMenuCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Common\MoveUIACursorCommandTestFixture.cs">
+      <Link>Commands\Common\MoveUIACursorCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Common\ReadUIAControlAutomationIdCommandTextFixture.cs">
+      <Link>Commands\Common\ReadUIAControlAutomationIdCommandTextFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Common\ReadUIAControlClassCommandTestFixture.cs">
+      <Link>Commands\Common\ReadUIAControlClassCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Common\ReadUIAControlNameCommandTestFixture.cs">
+      <Link>Commands\Common\ReadUIAControlNameCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Common\SaveUIAScreenshotCommandTestFixture.cs">
+      <Link>Commands\Common\SaveUIAScreenshotCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Common\SetUIAFocusCommandTextFixture.cs">
+      <Link>Commands\Common\SetUIAFocusCommandTextFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Container\NewUIAContainerCommandTestFixture.cs">
+      <Link>Commands\Container\NewUIAContainerCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Convert\ConvertFromUIADataGridCommandTestFixture.cs">
+      <Link>Commands\Convert\ConvertFromUIADataGridCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Convert\ConvertFromUIAListCommandTestFixture.cs">
+      <Link>Commands\Convert\ConvertFromUIAListCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Convert\ConvertFromUIATableCommandTestFixture.cs">
+      <Link>Commands\Convert\ConvertFromUIATableCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Convert\ConvertToUIAHashtableCommandTestFixture.cs">
+      <Link>Commands\Convert\ConvertToUIAHashtableCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Discovery\GetUIAControlFromPointCommandTestFixture.cs">
+      <Link>Commands\Discovery\GetUIAControlFromPointCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Discovery\GetUIACurrentPatternCommandTestFixture.cs">
+      <Link>Commands\Discovery\GetUIACurrentPatternCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Discovery\GetUIACurrentPatternFromPointCommandTestFixture.cs">
+      <Link>Commands\Discovery\GetUIACurrentPatternFromPointCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Event\RegisterUIAInvokedEventCommandTestFixture.cs">
+      <Link>Commands\Event\RegisterUIAInvokedEventCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Event\RegisterUIAMenuClosedEventCommandTestFixture.cs">
+      <Link>Commands\Event\RegisterUIAMenuClosedEventCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Event\RegisterUIAMenuOpenedEventCommandTestFixture.cs">
+      <Link>Commands\Event\RegisterUIAMenuOpenedEventCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\ExecutionPlan\HideUIAExecutionPlanCommandTestFixture.cs">
+      <Link>Commands\ExecutionPlan\HideUIAExecutionPlanCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\ExecutionPlan\ShowUIAExecutionPlanCommandTestFixture.cs">
+      <Link>Commands\ExecutionPlan\ShowUIAExecutionPlanCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Get\GetUIAControlCommandTestFixture.cs">
+      <Link>Commands\Get\GetUIAControlCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Get\GetUIADesktopCommandTestFixture.cs">
+      <Link>Commands\Get\GetUIADesktopCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Get\GetUIAWindowCommandTestFixture.cs">
+      <Link>Commands\Get\GetUIAWindowCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Get\NamedCommands\GetUIACalendarCommandTestFixture.cs">
+      <Link>Commands\Get\NamedCommands\GetUIACalendarCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Get\NamedCommands\GetUIACheckBoxCommandTestFixture.cs">
+      <Link>Commands\Get\NamedCommands\GetUIACheckBoxCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Get\NamedCommands\GetUIAComboBoxCommandTestFixture.cs">
+      <Link>Commands\Get\NamedCommands\GetUIAComboBoxCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Get\NamedCommands\GetUIADocumentCommandTestFixture.cs">
+      <Link>Commands\Get\NamedCommands\GetUIADocumentCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Get\NamedCommands\GetUIAGroupBoxCommandTestFixture.cs">
+      <Link>Commands\Get\NamedCommands\GetUIAGroupBoxCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Get\NamedCommands\GetUIALabelCommandTestFixture.cs">
+      <Link>Commands\Get\NamedCommands\GetUIALabelCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Get\NamedCommands\GetUIAListBoxCommandTestFixture.cs">
+      <Link>Commands\Get\NamedCommands\GetUIAListBoxCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Get\NamedCommands\GetUIAListViewCommandTestFixture.cs">
+      <Link>Commands\Get\NamedCommands\GetUIAListViewCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Get\NamedCommands\GetUIAMenuBarCommandTestFixture.cs">
+      <Link>Commands\Get\NamedCommands\GetUIAMenuBarCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Get\NamedCommands\GetUIAProgressBarCommandTestFixture.cs">
+      <Link>Commands\Get\NamedCommands\GetUIAProgressBarCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Get\NamedCommands\GetUIAPropertyGridCommandTestFixture.cs">
+      <Link>Commands\Get\NamedCommands\GetUIAPropertyGridCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Get\NamedCommands\GetUIARadioButtonCommandTestFixture.cs">
+      <Link>Commands\Get\NamedCommands\GetUIARadioButtonCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Get\NamedCommands\GetUIAStatusBarCommandTestFixture.cs">
+      <Link>Commands\Get\NamedCommands\GetUIAStatusBarCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Get\NamedCommands\GetUIATextBoxCommandTestFixture.cs">
+      <Link>Commands\Get\NamedCommands\GetUIATextBoxCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Get\NamedCommands\GetUIATreeViewCommandTestFixture.cs">
+      <Link>Commands\Get\NamedCommands\GetUIATreeViewCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Get\Parameterless\ParameterlessSearchTestFixture.cs">
+      <Link>Commands\Get\Parameterless\ParameterlessSearchTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Get\Relatives\GetUIAControlRelativesTestFixture.cs">
+      <Link>Commands\Get\Relatives\GetUIAControlRelativesTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Get\TestUIAControlStateCommandTestFixture.cs">
+      <Link>Commands\Get\TestUIAControlStateCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\No\WaitUIANoWindowCommandTestFixture.cs">
+      <Link>Commands\No\WaitUIANoWindowCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Pattern\InvokeUIACollapsePatternCommandTestFixture.cs">
+      <Link>Commands\Pattern\InvokeUIACollapsePatternCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Pattern\InvokeUIAExpandPatternCommandTestFixture.cs">
+      <Link>Commands\Pattern\InvokeUIAExpandPatternCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Pattern\InvokeUIAInvokePatternCommandTestFixture.cs">
+      <Link>Commands\Pattern\InvokeUIAInvokePatternCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Pattern\InvokeUIAScrollItemPatternCommandTestFixture.cs">
+      <Link>Commands\Pattern\InvokeUIAScrollItemPatternCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Pattern\InvokeUIAScrollPatternCommandTestFixture.cs">
+      <Link>Commands\Pattern\InvokeUIAScrollPatternCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Pattern\InvokeUIASelectionItemPatternCommandTestFixture.cs">
+      <Link>Commands\Pattern\InvokeUIASelectionItemPatternCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Pattern\InvokeUIASelectionItemStateCommandTestFixture.cs">
+      <Link>Commands\Pattern\InvokeUIASelectionItemStateCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Pattern\InvokeUIATogglePatternCommandTestFixture.cs">
+      <Link>Commands\Pattern\InvokeUIATogglePatternCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Pattern\InvokeUIAToggleStateCommandTestFixture.cs">
+      <Link>Commands\Pattern\InvokeUIAToggleStateCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Pattern\InvokeUIAToggleStateSetCommandTestFixture.cs">
+      <Link>Commands\Pattern\InvokeUIAToggleStateSetCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Pattern\InvokeUIATransformPatternMoveCommandTestFixture.cs">
+      <Link>Commands\Pattern\InvokeUIATransformPatternMoveCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Pattern\InvokeUIATransformPatternResizeCommandTestFixture.cs">
+      <Link>Commands\Pattern\InvokeUIATransformPatternResizeCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Pattern\InvokeUIATransformPatternRotateCommandTestFixture.cs">
+      <Link>Commands\Pattern\InvokeUIATransformPatternRotateCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Pattern\InvokeUIAValuePatternGetCommandTestFixture.cs">
+      <Link>Commands\Pattern\InvokeUIAValuePatternGetCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Pattern\InvokeUIAValuePatternSetCommandTestFixture.cs">
+      <Link>Commands\Pattern\InvokeUIAValuePatternSetCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Pattern\InvokeUIAWindowPatternCommandTestFixture.cs">
+      <Link>Commands\Pattern\InvokeUIAWindowPatternCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Profile\GetUIATestProfileCommandTestFixture.cs">
+      <Link>Commands\Profile\GetUIATestProfileCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Profile\NewUIATestProfileCommandTestFixture.cs">
+      <Link>Commands\Profile\NewUIATestProfileCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Profile\SetUIACurrentTestProfileCommandTestFixture.cs">
+      <Link>Commands\Profile\SetUIACurrentTestProfileCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Search\SearchUIAControlCommandTestFixture.cs">
+      <Link>Commands\Search\SearchUIAControlCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Search\SearchUIAWindowCommandTestFixture.cs">
+      <Link>Commands\Search\SearchUIAWindowCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Settings\SetUIAHighligherSettingsCommandTestFixture.cs">
+      <Link>Commands\Settings\SetUIAHighligherSettingsCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Settings\SetUIALoggingSettingsCommandTestFixture.cs">
+      <Link>Commands\Settings\SetUIALoggingSettingsCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Settings\SetUIAModuleSettingsCommandTestFixture.cs">
+      <Link>Commands\Settings\SetUIAModuleSettingsCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Settings\SetUIAOnErrorActionSettingsCommandTestFixture.cs">
+      <Link>Commands\Settings\SetUIAOnErrorActionSettingsCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Settings\SetUIAOnSleepActionSettingsCommandTestFixture.cs">
+      <Link>Commands\Settings\SetUIAOnSleepActionSettingsCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Settings\SetUIAOnSuccessActionSettingsCommandTestFixture.cs">
+      <Link>Commands\Settings\SetUIAOnSuccessActionSettingsCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Settings\SetUIAScreenshotSettingsCommandTestFixture.cs">
+      <Link>Commands\Settings\SetUIAScreenshotSettingsCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Settings\ShowUIACurrentDataCommandTestFixture.cs">
+      <Link>Commands\Settings\ShowUIACurrentDataCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Sheridan\GetUIAshTreeItemCommandTestFixture.cs">
+      <Link>Commands\Sheridan\GetUIAshTreeItemCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Sheridan\InvokeUIAshTreeItemClickCommandTestFixture.cs">
+      <Link>Commands\Sheridan\InvokeUIAshTreeItemClickCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Transcript\StartUIATranscriptCommandTestFixture.cs">
+      <Link>Commands\Transcript\StartUIATranscriptCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Transcript\StopUIATranscriptCommandTestFixture.cs">
+      <Link>Commands\Transcript\StopUIATranscriptCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Wait\WaitUIAControlIsEnabledCommandTestFixture.cs">
+      <Link>Commands\Wait\WaitUIAControlIsEnabledCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Wait\WaitUIAControlIsVisibleCommandTestFixture.cs">
+      <Link>Commands\Wait\WaitUIAControlIsVisibleCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Wait\WaitUIAControlStateCommandTestFixture.cs">
+      <Link>Commands\Wait\WaitUIAControlStateCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Wait\WaitUIAWindowCommandTestFixture.cs">
+      <Link>Commands\Wait\WaitUIAWindowCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Wizard\AddUIAWizardStepCommandTestFixture.cs">
+      <Link>Commands\Wizard\AddUIAWizardStepCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Commands\Wizard\NewUIAWizardCommandTestFixture.cs">
+      <Link>Commands\Wizard\NewUIAWizardCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Enumerations.cs">
+      <Link>Enumerations.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModelWithMocks\CommonPatternsTestFixture.cs">
+      <Link>Helpers\ObjectModelWithMocks\CommonPatternsTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModelWithMocks\ISupportsDockPatternTestFixture.cs">
+      <Link>Helpers\ObjectModelWithMocks\ISupportsDockPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModelWithMocks\ISupportsExpandCollapseTestFixture.cs">
+      <Link>Helpers\ObjectModelWithMocks\ISupportsExpandCollapseTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModelWithMocks\ISupportsExtendedModelTestFixture.cs">
+      <Link>Helpers\ObjectModelWithMocks\ISupportsExtendedModelTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\CommonPatternsTestFixture.cs">
+      <Link>Helpers\ObjectModel\CommonPatternsTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsDockPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsDockPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsExpandCollapseTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsExpandCollapseTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsExtendedModelTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsExtendedModelTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsGridItemPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsGridItemPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsGridPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsGridPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsInvokePatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsInvokePatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsRangeValuePatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsRangeValuePatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsScrollItemPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsScrollItemPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsScrollPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsScrollPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsSelectionItemPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsSelectionItemPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsSelectionPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsSelectionPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsTableItemPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsTableItemPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsTablePatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsTablePatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsTextPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsTextPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsTogglePatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsTogglePatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsTransformPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsTransformPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsValuePatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsValuePatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ISupportsWindowPatternTestFixture.cs">
+      <Link>Helpers\ObjectModel\ISupportsWindowPatternTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\NoPatternsTestFixture.cs">
+      <Link>Helpers\ObjectModel\NoPatternsTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\ObjectModel\ObjectModelParametersTestFixture.cs">
+      <Link>Helpers\ObjectModel\ObjectModelParametersTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\PreferencesTestFixture.cs">
+      <Link>Helpers\PreferencesTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Helpers\TestResultsTestFixture.cs">
+      <Link>Helpers\TestResultsTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\MiddleLevelCode.cs">
+      <Link>MiddleLevelCode.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\ParamChecks\Common\HideUIACurrentHighlighterCommandTestFixture.cs">
+      <Link>ParamChecks\Common\HideUIACurrentHighlighterCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\ParamChecks\Common\InvokeUIAControlClickCommandTestFixture.cs">
+      <Link>ParamChecks\Common\InvokeUIAControlClickCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\ParamChecks\Container\NewUIAContainerCommandTestFixture.cs">
+      <Link>ParamChecks\Container\NewUIAContainerCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\ParamChecks\Get\GetUIAControlCommandTestFixture.cs">
+      <Link>ParamChecks\Get\GetUIAControlCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\ParamChecks\Get\GetUIAWindowCommandTestFixture.cs">
+      <Link>ParamChecks\Get\GetUIAWindowCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\ParamChecks\MiddleLevelCode.cs">
+      <Link>ParamChecks\MiddleLevelCode.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\ParamChecks\No\WaitUIANoWindowCommandTestFixture.cs">
+      <Link>ParamChecks\No\WaitUIANoWindowCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\ParamChecks\Pattern\GetUIAEditTextCommandTestFixture.cs">
+      <Link>ParamChecks\Pattern\GetUIAEditTextCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\ParamChecks\Pattern\InvokeUIAButtonClickCommandTestFixture.cs">
+      <Link>ParamChecks\Pattern\InvokeUIAButtonClickCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\ParamChecks\Pattern\InvokeUIAInvokePatternCommandTestFixture.cs">
+      <Link>ParamChecks\Pattern\InvokeUIAInvokePatternCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\ParamChecks\Pattern\InvokeUIAToggleStateSetCommandTestFixture.cs">
+      <Link>ParamChecks\Pattern\InvokeUIAToggleStateSetCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\ParamChecks\Pattern\SetUIAEditTextCommandTestFixture.cs">
+      <Link>ParamChecks\Pattern\SetUIAEditTextCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\ParamChecks\Settings.cs">
+      <Link>ParamChecks\Settings.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\ParamChecks\Wait\WaitUIAWindowCommandTestFixture.cs">
+      <Link>ParamChecks\Wait\WaitUIAWindowCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\ParamChecks\Wizard\AddUIAWizardStepCommandTestFixture.cs">
+      <Link>ParamChecks\Wizard\AddUIAWizardStepCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\ParamChecks\Wizard\NewUIAWizardCommandTestFixture.cs">
+      <Link>ParamChecks\Wizard\NewUIAWizardCommandTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Provider\UIAProviderTestFixture.cs">
+      <Link>Provider\UIAProviderTestFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\Settings.cs">
+      <Link>Settings.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\StartUp.cs">
+      <Link>StartUp.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\TestClasses.cs">
+      <Link>TestClasses.cs</Link>
+    </Compile>
+    <Compile Include="..\UIAutomationTest\TestRunspace.cs">
+      <Link>TestRunspace.cs</Link>
+    </Compile>
+    <Compile Include="..\..\UIAutomation\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
+      <Project>{E4499004-DAE5-4700-B212-4CDEA3080BC5}</Project>
+      <Name>PSTestLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\PS\CmdletUnit\CmdletUnit.csproj">
+      <Project>{36F73FA0-C636-48CF-BB7A-FE10FE52C391}</Project>
+      <Name>CmdletUnit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UIAutomationTestForms40\UIAutomationTestForms40.csproj">
+      <Project>{F7605B82-4F23-41E9-B7C9-0EE95EF6EBEC}</Project>
+      <Name>UIAutomationTestForms40</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UIAutomationUnitTests40\UIAutomationUnitTests40.csproj">
+      <Project>{B63278E9-C2A9-47DD-BC0D-8AC41C8314D3}</Project>
+      <Name>UIAutomationUnitTests40</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\UIAutomation\UIAutomation.csproj">
+      <Project>{BF63F595-4A58-49E8-97F2-7701F51F0CD1}</Project>
+      <Name>UIAutomation</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands\Get\Win32\" />
+    <Folder Include="ParamChecks\Cache\" />
+    <Folder Include="ParamChecks\Convert\" />
+    <Folder Include="ParamChecks\Discovery\" />
+    <Folder Include="ParamChecks\Event\" />
+    <Folder Include="ParamChecks\ExecutionPlan\" />
+    <Folder Include="ParamChecks\Hotkey\" />
+    <Folder Include="ParamChecks\Profile\" />
+    <Folder Include="ParamChecks\Search\" />
+    <Folder Include="ParamChecks\Transcript\" />
+    <Folder Include="ParamChecks\UltraGrid\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+    <Error Condition="!Exists('..\..\..\packages\xunit.core.2.1.0\build\portable-net45+win8+wp8+wpa81\xunit.core.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\xunit.core.2.1.0\build\portable-net45+win8+wp8+wpa81\xunit.core.props'))" />
+  </Target>
+</Project>

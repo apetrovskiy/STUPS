@@ -9,7 +9,9 @@
 
 namespace Tmx.Interfaces.TestStructure
 {
-    using System;
+    using System.Xml.Serialization;
+    using Remoting;
+
     // using System.Management.Automation;
     
     /// <summary>
@@ -29,7 +31,11 @@ namespace Tmx.Interfaces.TestStructure
         // ScriptBlock[] TestCode { get; set; }
         ICodeBlock[] TestCode { get; set; }
         //ScriptBlock[] AlternateAfterTest { get; set; }
-        string TestCaseTag { get; set; }
+        // 20150826
+        // string TestCaseTag { get; set; }
         object[] TestCodeParameters { get; set; }
+        // 20150826
+        [XmlAttribute]
+        string Tag { get; set; }
     }
 }

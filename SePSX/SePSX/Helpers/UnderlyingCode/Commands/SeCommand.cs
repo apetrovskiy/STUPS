@@ -9,9 +9,6 @@
 
 namespace SePSX
 {
-    using System;
-    using System.Management.Automation;
-    
     /// <summary>
     /// Description of SeCommand.
     /// </summary>
@@ -19,7 +16,7 @@ namespace SePSX
     {
         internal SeCommand(CommonCmdletBase cmdlet)
         {
-            this.Cmdlet = cmdlet;
+            Cmdlet = cmdlet;
         }
         
         internal CommonCmdletBase Cmdlet { get; set; }

@@ -9,7 +9,6 @@
 
 namespace UIAutomation.Commands
 {
-    using System;
     using System.Management.Automation;
     
     /// <summary>

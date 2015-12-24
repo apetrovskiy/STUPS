@@ -7,10 +7,13 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-public enum VirtualMachineSelectorTypes
+namespace EsxiMgmt.Core
 {
-    None,
-    ById,
-    ByName,
-    ByPath
+    public enum VirtualMachineSelectorTypes
+    {
+        None,
+        ById,
+        ByName,
+        ByPath
+    }
 }

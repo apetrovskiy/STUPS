@@ -9,10 +9,8 @@
 
 namespace Tmx
 {
-    using Ninject;
     using Ninject.Modules;
-    using Ninject.Extensions.NamedScope;
-    
+
     /// <summary>
     /// Description of TmxModule.
     /// </summary>

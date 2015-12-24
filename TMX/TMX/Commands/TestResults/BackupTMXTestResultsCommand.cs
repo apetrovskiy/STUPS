@@ -9,7 +9,6 @@
 
 namespace Tmx.Commands
 {
-    using System;
     using System.Management.Automation;
     // blocked due to the need to remove dependency on SQLite
 //    using System.Data.SQLite;

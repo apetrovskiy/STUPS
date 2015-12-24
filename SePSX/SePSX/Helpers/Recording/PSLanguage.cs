@@ -9,15 +9,14 @@
 
 namespace SePSX
 {
-    using System;
     using PSTestLib;
     
     /// <summary>
     /// Description of PSLanguage.
     /// </summary>
-    public class PSLanguage : ILanguagePackage
+    public class PsLanguage : ILanguagePackage
     {
-        public PSLanguage()
+        public PsLanguage()
         {
         }
         

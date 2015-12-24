@@ -9,19 +9,14 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
     using OpenQA.Selenium;
     using OpenQA.Selenium.Firefox;
-    using OpenQA.Selenium.Chrome;
-    using OpenQA.Selenium.IE;
     //using OpenQA.Selenium.Safari;
     //using OpenQA.Selenium.Opera;
     //using OpenQA.Selenium.Android;
     //using OpenQA.Selenium.Remote;
-    
-    using Autofac;
-    
+
     /// <summary>
     /// Description of StartSeWebDriverCommand.
     /// </summary>
@@ -36,11 +31,11 @@ namespace SePSX.Commands
         #region Parameters
         [Parameter(Mandatory = false,
                    ParameterSetName = "ChromeDriver")]
-        internal SwitchParameter CH { get; set; }
+        internal SwitchParameter Ch { get; set; }
         
         [Parameter(Mandatory = false,
                    ParameterSetName = "IEDriver")]
-        internal SwitchParameter IE { get; set; }
+        internal SwitchParameter Ie { get; set; }
         
         [Parameter(Mandatory = false,
                    ParameterSetName = "ChromeDriver")]
@@ -55,7 +50,7 @@ namespace SePSX.Commands
         [Parameter(Mandatory = false,
                    ParameterSetName = "IEDriver")]
         //public InternetExplorerOptions IEOptions { get; set; }
-        public OpenQA.Selenium.IE.InternetExplorerOptions IEOptions { get; set; }
+        public OpenQA.Selenium.IE.InternetExplorerOptions IeOptions { get; set; }
         
 //        [Parameter(Mandatory = false,
 //                   ParameterSetName = "ChromeDriver")]
@@ -77,7 +72,7 @@ namespace SePSX.Commands
         
         [Parameter(Mandatory = false,
                    ParameterSetName = "FirefoxDriver")]
-        internal SwitchParameter FF { get; set; }
+        internal SwitchParameter Ff { get; set; }
         
         [Parameter(Mandatory = false,
                    ParameterSetName = "ChromeDriver")]
@@ -92,30 +87,30 @@ namespace SePSX.Commands
         
         protected override void BeginProcessing()
         {
-            this.CheckCmdletParameters();
+            CheckCmdletParameters();
             
-            switch (this.DriverName.ToUpper()) {
-                case SeHelper.driverNameChrome:
-                case SeHelper.driverNameChrome2:
-                    this.CH = true;
-                    this.DriverType = Drivers.Chrome;
+            switch (DriverName.ToUpper()) {
+                case SeHelper.DriverNameChrome:
+                case SeHelper.DriverNameChrome2:
+                    Ch = true;
+                    DriverType = Drivers.Chrome;
                     break;
-                case SeHelper.driverNameFirefox:
-                case SeHelper.driverNameFirefox2:
-                    this.FF = true;
-                    this.DriverType = Drivers.Firefox;
+                case SeHelper.DriverNameFirefox:
+                case SeHelper.DriverNameFirefox2:
+                    Ff = true;
+                    DriverType = Drivers.Firefox;
                     break;
-                case SeHelper.driverNameInternetExplorer:
-                case SeHelper.driverNameInternetExplorer2:
-                case SeHelper.driverNameInternetExplorer3:
-                case SeHelper.driverNameInternetExplorer4:
-                case SeHelper.driverNameInternetExplorer5:
-                case SeHelper.driverNameInternetExplorer6:
-                    this.IE = true;
-                    this.DriverType = Drivers.InternetExplorer;
+                case SeHelper.DriverNameInternetExplorer:
+                case SeHelper.DriverNameInternetExplorer2:
+                case SeHelper.DriverNameInternetExplorer3:
+                case SeHelper.DriverNameInternetExplorer4:
+                case SeHelper.DriverNameInternetExplorer5:
+                case SeHelper.DriverNameInternetExplorer6:
+                    Ie = true;
+                    DriverType = Drivers.InternetExplorer;
                     break;
                 default:
-                    this.WriteError(
+                    WriteError(
                         this,
                         "Could not determine the type of driver.",
                         "DriverType",
@@ -124,7 +119,7 @@ namespace SePSX.Commands
                     break;
             }
             
-            SeStartWebDriverCommand command =
+            var command =
                 new SeStartWebDriverCommand(this);
                 //WebDriverFactory.Container.Resolve<SeStartWebDriverCommand>(new NamedParameter("cmdlet", this));
             command.Execute();
@@ -140,9 +135,9 @@ namespace SePSX.Commands
     {
         public StartSeFirefoxCommand()
         {
-            this.DriverName = SeHelper.driverNameFirefox;
-            this.FF = true;
-            this.DriverType = Drivers.Firefox;
+            DriverName = SeHelper.DriverNameFirefox;
+            Ff = true;
+            DriverType = Drivers.Firefox;
         }
     }
     
@@ -165,9 +160,9 @@ namespace SePSX.Commands
     {
         public StartSeChromeCommand()
         {
-            this.DriverName = SeHelper.driverNameChrome;
-            this.CH = true;
-            this.DriverType = Drivers.Chrome;
+            DriverName = SeHelper.DriverNameChrome;
+            Ch = true;
+            DriverType = Drivers.Chrome;
         }
     }
     
@@ -179,10 +174,10 @@ namespace SePSX.Commands
     {
         public StartSeInternetExplorer32Command()
         {
-            this.DriverName = SeHelper.driverNameInternetExplorer;
-            this.Architecture = InternetExplorer.x86;
-            this.IE = true;
-            this.DriverType = Drivers.InternetExplorer;
+            DriverName = SeHelper.DriverNameInternetExplorer;
+            Architecture = InternetExplorer.X86;
+            Ie = true;
+            DriverType = Drivers.InternetExplorer;
         }
     }
     
@@ -194,10 +189,10 @@ namespace SePSX.Commands
     {
         public StartSeInternetExplorer64Command()
         {
-            this.DriverName = SeHelper.driverNameInternetExplorer;
-            this.Architecture = InternetExplorer.x64;
-            this.IE = true;
-            this.DriverType = Drivers.InternetExplorer;
+            DriverName = SeHelper.DriverNameInternetExplorer;
+            Architecture = InternetExplorer.X64;
+            Ie = true;
+            DriverType = Drivers.InternetExplorer;
         }
     }
     
@@ -209,8 +204,8 @@ namespace SePSX.Commands
     {
         public StartSeSafariCommand()
         {
-            this.DriverName = SeHelper.driverNameSafari;
-            this.DriverType = Drivers.Safari;
+            DriverName = SeHelper.DriverNameSafari;
+            DriverType = Drivers.Safari;
         }
     }
     
@@ -222,7 +217,7 @@ namespace SePSX.Commands
     {
         public StartSeOperaCommand()
         {
-            this.DriverName = SeHelper.driverNameOpera;
+            DriverName = SeHelper.DriverNameOpera;
             //this.DriverType = Drivers.Opera;
         }
     }
@@ -235,7 +230,7 @@ namespace SePSX.Commands
     {
         public StartSeAndroidCommand()
         {
-            this.DriverName = SeHelper.driverNameAndroid;
+            DriverName = SeHelper.DriverNameAndroid;
             //this.DriverType = Drivers.Android;
         }
     }
@@ -244,11 +239,11 @@ namespace SePSX.Commands
     /// 
     /// </summary>
     [Cmdlet(VerbsLifecycle.Start, "SeHTMLUnit")]
-    public class StartSeHTMLUnitCommand : StartSeWebDriverCommand
+    public class StartSeHtmlUnitCommand : StartSeWebDriverCommand
     {
-        public StartSeHTMLUnitCommand()
+        public StartSeHtmlUnitCommand()
         {
-            this.DriverName = SeHelper.driverNameHTMLUnit;
+            DriverName = SeHelper.DriverNameHtmlUnit;
             //this.DriverType = Drivers.HTML;
         }
     }

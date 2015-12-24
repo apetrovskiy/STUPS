@@ -9,10 +9,8 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
-    using OpenQA.Selenium;
-    
+
     /// <summary>
     /// Description of SetSeSelectionCommand.
     /// </summary>
@@ -26,16 +24,16 @@ namespace SePSX.Commands
         
         protected override void ProcessRecord()
         {
-            this.checkInputWebElementOnly(this.InputObject);
+            checkInputWebElementOnly(InputObject);
             
             SeHelper.SetSelect(
                 this,
-                this.InputObject,
-                this.Index,
-                this.Value,
-                this.VisibleText,
-                this.All,
-                this.Deselect);
+                InputObject,
+                Index,
+                Value,
+                VisibleText,
+                All,
+                Deselect);
         }
     }
 }

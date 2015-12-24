@@ -9,8 +9,6 @@
 
 namespace Tmx.Interfaces.TestStructure
 {
-    using System;
-    
     /// <summary>
     ///  /// </summary>
     public enum TestResultDetailTypes
@@ -37,78 +35,32 @@ namespace Tmx.Interfaces.TestStructure
         ExternalData = 4
     }
     
-    /// <summary>
-    ///  /// </summary>
-    public enum TestResultStatuses
-    {
-        /// <summary>
-        ///  Passed
-        /// </summary>
-        Passed = 1,
-        /// <summary>
-        ///  Failed
-        /// </summary>
-        Failed = 2,
-        /// <summary>
-        ///  NotTested
-        /// </summary>
-        NotTested = 3,
-        /// <summary>
-        /// KnownIssue
-        /// </summary>
-        KnownIssue = 4
-    }
-    
-    /// <summary>
-    ///  /// </summary>
-    public enum TestScenarioStatuses
-    {
-        /// <summary>
-        ///  Passed
-        /// </summary>
-        Passed = 1,
-        /// <summary>
-        ///  Failed
-        /// </summary>
-        Failed = 2,
-        /// <summary>
-        ///  NotTested
-        /// </summary>
-        NotTested = 3, //,
-        //Blocked = 4
-        /// <summary>
-        /// KnownIssue
-        /// </summary>
-        KnownIssue = 4
-    }
-    
-    /// <summary>
-    ///  /// </summary>
-    public enum TestSuiteStatuses
-    {
-        /// <summary>
-        ///  Passed
-        /// </summary>
-        Passed = 1,
-        /// <summary>
-        ///  Failed
-        /// </summary>
-        Failed = 2,
-        /// <summary>
-        ///  NotTested
-        /// </summary>
-        NotTested = 3, //,
-        //Blocked = 4
-        /// <summary>
-        /// KnownIssue
-        /// </summary>
-        KnownIssue = 4
-    }
-    
     public enum TestResultOrigins
     {
         Automatic,
         Logical,
         Technical
+    }
+
+    public enum TestStatuses
+    {
+        Passed = 1,
+        Failed = 2,
+        NotRun = 3,
+        KnownIssue = 4,
+        Blocked = 5,
+        WorkInProgress = 6
+    }
+
+    public enum TestTagRuleScopes
+    {
+        Include = 1,
+        Exclude = 2
+    }
+
+    public enum TestTagRuleActions
+    {
+        RaiseSeverity = 1,
+        DecreaseSeverity = 2
     }
 }

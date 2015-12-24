@@ -11,9 +11,9 @@ namespace Tmx.Core.Types.Remoting
 {
     using System;
     using System.Collections.Generic;
-    using Tmx.Interfaces.Remoting;
-    using Tmx.Interfaces.TestStructure;
-    
+    using Interfaces.Remoting;
+    using Interfaces.Remoting.Actions;
+
     /// <summary>
     /// Description of TestWorkflow.
     /// </summary>
@@ -25,6 +25,7 @@ namespace Tmx.Core.Types.Remoting
         {
             Id = Guid.NewGuid();
             _testLab = testLab;
+            DefaultData = new CommonData();
         }
         
         public Guid Id { get; set; }
@@ -40,5 +41,13 @@ namespace Tmx.Core.Types.Remoting
         }
         
         public string ParametersPageName { get; set; }
+        public string Path { get; set; }
+        public ICommonData DefaultData { get; set; }
+        public bool IsDefault { get; set; }
+
+        public List<IAction> BeforeActions { get; set; }
+        public List<IAction> AfterActions { get; set; }
+        public List<IAction> CancelActions { get; set; }
+        public List<IAction> FailureActions { get; set; }
     }
 }

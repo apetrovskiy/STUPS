@@ -11,10 +11,9 @@ namespace Tmx.Helpers
 {
     using System;
     using System.Collections.Generic;
-    using System.Management.Automation;
     using System.Linq;
     using System.Xml.Linq;
-    using Tmx.Interfaces;
+    using Interfaces;
     
     /// <summary>
     /// Description of ImportExportHelper.
@@ -95,8 +94,6 @@ namespace Tmx.Helpers
         }
         
         public static void ImportTestSettings(
-            // 20140720
-            // SettingsCmdletBase cmdlet,
             ISettingsCmdletBaseDataObject cmdlet,
             string path,
             string[] variableNames)

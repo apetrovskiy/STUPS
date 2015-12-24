@@ -12,13 +12,13 @@ namespace UIAutomation.Commands
     extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
     using System.Management.Automation;
 //    using System.Windows.Automation;
-    using UIAutomation.Helpers.Commands;
+    using Helpers.Commands;
     
     /// <summary>
     /// Description of GetUiaDesktopCommand.
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "UiaDesktop")]
-    [OutputType(typeof(UIAutomation.IUiElement[]))] // [OutputType(typeof(object))]
+    [OutputType(typeof(IUiElement[]))] // [OutputType(typeof(object))]
     public class GetUiaDesktopCommand : GetCmdletBase
     {
         protected override void BeginProcessing()

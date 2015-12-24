@@ -9,9 +9,8 @@
 
 namespace Tmx.Interfaces
 {
-    using System;
     using System.Data;
-    
+
     /// <summary>
     /// Description of IDatabase.
     /// </summary>

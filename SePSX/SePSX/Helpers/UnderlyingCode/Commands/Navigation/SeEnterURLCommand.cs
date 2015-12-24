@@ -9,16 +9,14 @@
 
 namespace SePSX
 {
-    using System;
-    using System.Management.Automation;
-    using SePSX.Commands;
+    using Commands;
     
     /// <summary>
     /// Description of SeEnterURLCommand.
     /// </summary>
-    internal class SeEnterURLCommand : SeNavigationCommand
+    internal class SeEnterUrlCommand : SeNavigationCommand
     {
-        internal SeEnterURLCommand(CommonCmdletBase cmdlet) : base(cmdlet)
+        internal SeEnterUrlCommand(CommonCmdletBase cmdlet) : base(cmdlet)
         {
         }
         
@@ -36,9 +34,9 @@ namespace SePSX
 //                this.URL);
 //Console.WriteLine("command 01");
             SeHelper.NavigateTo(
-                this.Cmdlet,
-                ((EnterSeURLCommand)this.Cmdlet).InputObject,
-                ((EnterSeURLCommand)this.Cmdlet).URL);
+                Cmdlet,
+                ((EnterSeUrlCommand)Cmdlet).InputObject,
+                ((EnterSeUrlCommand)Cmdlet).Url);
 //Console.WriteLine("command 02");
         }
     }

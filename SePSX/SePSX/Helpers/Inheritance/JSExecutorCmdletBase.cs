@@ -9,16 +9,14 @@
 
 namespace SePSX
 {
-    using System;
     using System.Management.Automation;
-    using OpenQA.Selenium;
-    
+
     /// <summary>
     /// Description of JSExecutorCmdletBase.
     /// </summary>
-    public class JSExecutorCmdletBase : HasWebDriverInputCmdletBase
+    public class JsExecutorCmdletBase : HasWebDriverInputCmdletBase
     {
-        public JSExecutorCmdletBase()
+        public JsExecutorCmdletBase()
         {
         }
         

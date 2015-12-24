@@ -9,9 +9,8 @@
 
 namespace Tmx.Core
 {
-    using System;
-    using Tmx.Interfaces;
-    
+    using Interfaces.Remoting;
+
     /// <summary>
     /// Description of CodeBlock.
     /// </summary>

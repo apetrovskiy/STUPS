@@ -9,12 +9,8 @@
 
 namespace Tmx.Commands
 {
-    using System;
     using System.Management.Automation;
-    using System.Data;
-    using System.Data.OleDb;
-    using System.Linq;
-    using Tmx.Interfaces;
+    using Interfaces;
     
     /// <summary>
     /// Description of GetTestResultsViaDataSetCommand.
@@ -24,7 +20,7 @@ namespace Tmx.Commands
     {
         protected override void BeginProcessing()
         {
-            this.CheckCmdletParameters();
+            CheckCmdletParameters();
 
             var cmdlet = new SearchCmdletBase {FilterAll = true};
 

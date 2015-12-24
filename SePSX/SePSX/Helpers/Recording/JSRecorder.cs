@@ -25,10 +25,7 @@ namespace SePSX
 //    using OpenQA.Selenium.Remote;
 
 //    using System.Diagnostics;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Collections;
-    using System.Drawing;
 
     //
     //
@@ -38,22 +35,19 @@ namespace SePSX
 
     //using OpenQA.Selenium.Remote;
 
-    using PSTestLib;
-    using System.Management.Automation;
-
     #endregion using
     
     /// <summary>
     /// Description of ScriptRunner.
     /// </summary>
-    public class JSRecorder : IJSRecorder
+    public class JsRecorder : IJsRecorder
     {
-        public JSRecorder()
+        public JsRecorder()
         {
         }
         
         #region constants
-        internal static string constRecorderInjectScript =
+        internal static string ConstRecorderInjectScript =
             @"if (null == document.flagRecorgingHooks && 1 !== document.flagRecorgingHooks) {
                 //document.title = ""INSERT"";
                     function setHooks(excludeTags) {
@@ -83,21 +77,21 @@ namespace SePSX
                     setHooks(arguments[0]);
                 }";
 
-        internal static string constRecorderGetElement =
+        internal static string ConstRecorderGetElement =
             @"if (null != window.recordings && 0 < window.recordings.length) {
                 var collected = window.recordings.slice(0, window.recordings.length - 1);
                 window.recordings.splice(0, window.recordings.length - 1);
                 return collected;
             }";
         
-        internal static string constRecorderCleanRecordings = 
+        internal static string ConstRecorderCleanRecordings = 
             @"window.recordings = new Array();";
         
-        internal static string constRecorderExitRecording =
+        internal static string ConstRecorderExitRecording =
             //@"document.getElementsByTagName(""html"")[0].setAttribute(""onmouseover"", """");";
             @"document.getElementsByTagName(""html"")[0].setAttribute(""onmouseover"", """");";
         
-        internal static string constRecorderCheckInjection =
+        internal static string ConstRecorderCheckInjection =
             @"if ((null == document.flagRecorgingHooks) || (1 !== document.flagRecorgingHooks) || (null == window.recordings)) {
                 ""0"";
             } else {
@@ -108,7 +102,7 @@ namespace SePSX
         public void CleanRecordedDuringSleep(TranscriptCmdletBase cmdlet)
         {
             cmdlet.WriteVerbose(cmdlet, "cleaning colelcted during the sleep");
-            SeHelper.ExecuteJavaScript(cmdlet, (new OpenQA.Selenium.IWebDriver[] { CurrentData.CurrentWebDriver }), JSRecorder.constRecorderCleanRecordings, (new string[] { string.Empty }), false);
+            SeHelper.ExecuteJavaScript(cmdlet, (new IWebDriver[] { CurrentData.CurrentWebDriver }), ConstRecorderCleanRecordings, (new string[] { string.Empty }), false);
             cmdlet.WriteVerbose(cmdlet, "cleaned");
         }
 
@@ -116,19 +110,19 @@ namespace SePSX
         {
             cmdlet.WriteVerbose(cmdlet, "exit recording");
 
-            SeHelper.ExecuteJavaScript(cmdlet, (new OpenQA.Selenium.IWebDriver[] { CurrentData.CurrentWebDriver }), JSRecorder.constRecorderExitRecording, (new string[] { string.Empty }), false);
+            SeHelper.ExecuteJavaScript(cmdlet, (new IWebDriver[] { CurrentData.CurrentWebDriver }), ConstRecorderExitRecording, (new string[] { string.Empty }), false);
             cmdlet.WriteVerbose(cmdlet, "exited");
         }
 
-        public void MakeJSInjection(TranscriptCmdletBase cmdlet)
+        public void MakeJsInjection(TranscriptCmdletBase cmdlet)
         {
             try {
                 cmdlet.WriteVerbose(cmdlet, "checking injection");
-                var result = SeHelper.ExecuteJavaScript(cmdlet, (new OpenQA.Selenium.IWebDriver[] { CurrentData.CurrentWebDriver }), JSRecorder.constRecorderCheckInjection, (new string[] { string.Empty }), false);
+                var result = SeHelper.ExecuteJavaScript(cmdlet, (new IWebDriver[] { CurrentData.CurrentWebDriver }), ConstRecorderCheckInjection, (new string[] { string.Empty }), false);
                 if (result) {
                     cmdlet.WriteVerbose(cmdlet, "inserting injection");
 
-                    SeHelper.ExecuteJavaScript(cmdlet, (new OpenQA.Selenium.IWebDriver[] { CurrentData.CurrentWebDriver }), JSRecorder.constRecorderInjectScript, (new string[] { Preferences.TranscriptExcludeList }), false);
+                    SeHelper.ExecuteJavaScript(cmdlet, (new IWebDriver[] { CurrentData.CurrentWebDriver }), ConstRecorderInjectScript, (new string[] { Preferences.TranscriptExcludeList }), false);
                     cmdlet.WriteVerbose(cmdlet, "injection inserted");
                 }
             } catch (Exception eGetInjectionCode) {
@@ -138,7 +132,7 @@ namespace SePSX
 
         public IEnumerable GetRecordedResults()
         {
-            var scriptResults = ((IJavaScriptExecutor)CurrentData.CurrentWebDriver).ExecuteScript(JSRecorder.constRecorderGetElement, (new string[] { string.Empty })) as IEnumerable;
+            var scriptResults = ((IJavaScriptExecutor)CurrentData.CurrentWebDriver).ExecuteScript(ConstRecorderGetElement, (new string[] { string.Empty })) as IEnumerable;
             return scriptResults;
         }
     }

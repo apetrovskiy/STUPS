@@ -19,7 +19,7 @@ namespace UIAutomation
     using NLog.Targets;
     using NLog.Config;
     using PSTestLib;
-    using UIAutomation.Commands;
+    using Commands;
     
     /// <summary>
     /// Description of LogHelper.
@@ -271,7 +271,7 @@ namespace UIAutomation
             config.AddTarget("file", fileTarget);
 
             fileTarget.FileName =
-                System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) +
+                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
                 @"\UIA.log";
             
             // 20140312
@@ -290,7 +290,7 @@ namespace UIAutomation
             
             // 20140307
             // var rule = new LoggingRule("*", NLog.LogLevel.Info, fileTarget);
-            var rule = new LoggingRule("*", NLog.LogLevel.Debug, fileTarget);
+            var rule = new LoggingRule("*", LogLevel.Debug, fileTarget);
             config.LoggingRules.Add(rule);
 
             LogManager.Configuration = config;

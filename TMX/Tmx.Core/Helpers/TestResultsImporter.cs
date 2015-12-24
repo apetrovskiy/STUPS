@@ -13,9 +13,10 @@ namespace Tmx.Core
     using System.Collections.Generic;
     using System.Linq;
     using System.Xml.Linq;
-    using Tmx.Interfaces;
-    using Tmx.Interfaces.TestStructure;
-    
+    using Interfaces;
+    using Interfaces.TestStructure;
+    using Proxy;
+
     /// <summary>
     /// Description of TestResultsImporter.
     /// </summary>
@@ -25,34 +26,40 @@ namespace Tmx.Core
         
         public void MergeTestSuites(List<ITestSuite> sourceTestSuites, List<ITestSuite> testSuitesToAdd)
         {
-            // 20150113
-            var testStatistics = new TestStatistics();
+            // 20150925
+            // var testStatistics = new TestStatistics();
+            var testStatistics = ProxyFactory.Get<TestStatistics>();
             
             foreach (var testSuite in testSuitesToAdd) {
                 if (sourceTestSuites.All(ts => ts.UniqueId != testSuite.UniqueId)) {
+                    // 20150219
+                    // TODO: move it to another place
+                    testStatistics.RefreshSuiteStatistics(testSuite, false);
                     sourceTestSuites.Add(testSuite);
                     continue;
                 }
                 var existingTestSuite = sourceTestSuites.First(ts => ts.UniqueId == testSuite.UniqueId);
                 MergeTestScenarios(existingTestSuite.TestScenarios, testSuite.TestScenarios);
-                // 20150113
                 testStatistics.RefreshSuiteStatistics(existingTestSuite, false);
             }
         }
         
         void MergeTestScenarios(List<ITestScenario> sourceTestScenarios, List<ITestScenario> testScenariosToAdd)
         {
-            // 20150113
-            var testStatistics = new TestStatistics();
+            // 20150925
+            // var testStatistics = new TestStatistics();
+            var testStatistics = ProxyFactory.Get<TestStatistics>();
             
             foreach (var testScenario in testScenariosToAdd) {
                 if (sourceTestScenarios.All(tsc => tsc.UniqueId != testScenario.UniqueId)) {
+                    // 20150219
+                    // TODO: move it to another place
+                    testStatistics.RefreshScenarioStatistics(testScenario, false);
                     sourceTestScenarios.Add(testScenario);
                     continue;
                 }
                 var existingTestScenario = sourceTestScenarios.First(tsc => tsc.UniqueId == testScenario.UniqueId);
                 MergeTestResults(existingTestScenario.TestResults, testScenario.TestResults);
-                // 20150113
                 testStatistics.RefreshScenarioStatistics(existingTestScenario, false);
             }
         }
@@ -62,7 +69,6 @@ namespace Tmx.Core
             foreach (var testResult in testResultsToAdd)
                 if (sourceTestResults.All(tr => tr.UniqueId != testResult.UniqueId))
                     sourceTestResults.Add(testResult);
-
         }
         
         public void MergeTestPlatforms(List<ITestPlatform> sourceTestPlatforms, List<ITestPlatform> testPlatformsToAdd)
@@ -152,7 +158,9 @@ namespace Tmx.Core
         {
             var importedTestSuites = new List<ITestSuite>();
             // TODO: DI
-            var testStatistics = new TestStatistics();
+            // 20150925
+            // var testStatistics = new TestStatistics();
+            var testStatistics = ProxyFactory.Get<TestStatistics>();
             
             foreach (var suiteElement in suiteElements) {
                 string suiteDescription = string.Empty;
@@ -234,27 +242,19 @@ namespace Tmx.Core
             if (null == testResultElements) return importedTestResults;
             
             foreach (var testResultElement in testResultElements) {
-                // 20150127
-                // bool passedValue = false;
-                // bool knownIssueValue = false;
-                // passedValue |= "PASSED" == getStringAttribute(testResultElement, "status");
-                // knownIssueValue |= "KNOWN ISSUE" == getStringAttribute(testResultElement, "status");
-//                var status = ("PASSED" == getStringAttribute(testResultElement, "status")) ? TestResultStatuses.Passed :
-//                    ("FAILED" == getStringAttribute(testResultElement, "status")) ? TestResultStatuses.Failed :
-//                    ("KNOWN ISSUE" == getStringAttribute(testResultElement, "status")) ? TestResultStatuses.KnownIssue : TestResultStatuses.NotTested;
-                // TestResultStatuses status;
-                // var testResultElement = gettestResultStatus(out status);
-                var status = gettestResultStatus(testResultElement);
-                TestResultOrigins origin = TestResultOrigins.Logical;
+                var status = getTestResultStatus(testResultElement);
+                var origin = TestResultOrigins.Logical;
                 if ("TECHNICAL" == getStringAttribute(testResultElement, "origin").ToUpper())
                     origin = TestResultOrigins.Technical;
                 if ("AUTOMATIC" == getStringAttribute(testResultElement, "origin").ToUpper())
                     origin = TestResultOrigins.Automatic;
-                // if ((TestResultOrigins.Technical == origin) &&
-                //     passedValue) {
-                if ((TestResultOrigins.Technical == origin) && TestResultStatuses.Passed == status) {
+
+                /*
+                if (TestResultOrigins.Technical == origin && TestStatuses.Passed == status)
                     continue;
-                }
+
+                */
+
                 string testResultDescription = string.Empty;
                 testResultDescription = getStringAttribute(testResultElement, "description");
                 
@@ -296,10 +296,10 @@ namespace Tmx.Core
             }
             return importedTestResults;
         }
-        
-        TestResultStatuses gettestResultStatus(XElement testResultElement)
+
+        TestStatuses getTestResultStatus(XElement testResultElement)
         {
-            return ("PASSED" == getStringAttribute(testResultElement, "status")) ? TestResultStatuses.Passed : ("FAILED" == getStringAttribute(testResultElement, "status")) ? TestResultStatuses.Failed : ("KNOWN ISSUE" == getStringAttribute(testResultElement, "status")) ? TestResultStatuses.KnownIssue : TestResultStatuses.NotTested;
+            return ("PASSED" == getStringAttribute(testResultElement, "status")) ? TestStatuses.Passed : ("FAILED" == getStringAttribute(testResultElement, "status")) ? TestStatuses.Failed : ("KNOWN ISSUE" == getStringAttribute(testResultElement, "status")) ? TestStatuses.KnownIssue : TestStatuses.NotRun;
         }
         
         List<ITestResultDetail> importTestResultDetails(IEnumerable<XElement> testResultDetailElements)
@@ -314,19 +314,19 @@ namespace Tmx.Core
                 string detailStatus = getStringAttribute(testResultDetailElement, "status");
                 switch (detailStatus.ToUpper()) {
                     case "FAILED":
-                        detail.DetailStatus = TestResultStatuses.Failed;
+                        detail.DetailStatus = TestStatuses.Failed;
                         break;
                     case "PASSED":
-                        detail.DetailStatus = TestResultStatuses.Passed;
+                        detail.DetailStatus = TestStatuses.Passed;
                         break;
                     case "KNOWNISSUE":
-                        detail.DetailStatus = TestResultStatuses.KnownIssue;
+                        detail.DetailStatus = TestStatuses.KnownIssue;
                         break;
                     case "NOTTESTED":
-                        detail.DetailStatus = TestResultStatuses.NotTested;
+                        detail.DetailStatus = TestStatuses.NotRun;
                         break;
                     default:
-                        detail.DetailStatus = TestResultStatuses.NotTested;
+                        detail.DetailStatus = TestStatuses.NotRun;
                         break;
                 }
             }
@@ -345,20 +345,20 @@ namespace Tmx.Core
                     setScenarioStatus(scenario, skipAutomatic);
                     
                     switch (scenario.enStatus) {
-                        case TestScenarioStatuses.Passed:
+                        case TestStatuses.Passed:
                             counterPassedResults++;
-                            if (TestSuiteStatuses.Failed != testSuite.enStatus)
-                                testSuite.enStatus = TestSuiteStatuses.Passed;
+                            if (TestStatuses.Failed != testSuite.enStatus)
+                                testSuite.enStatus = TestStatuses.Passed;
                             break;
-                        case TestScenarioStatuses.Failed:
-                            testSuite.enStatus = TestSuiteStatuses.Failed;
+                        case TestStatuses.Failed:
+                            testSuite.enStatus = TestStatuses.Failed;
                             return;
-                        case TestScenarioStatuses.NotTested:
+                        case TestStatuses.NotRun:
                             break;
-                        case TestScenarioStatuses.KnownIssue:
+                        case TestStatuses.KnownIssue:
                             counterKnownIssueResults++;
-                            if (TestSuiteStatuses.Failed != testSuite.enStatus)
-                                testSuite.enStatus = TestSuiteStatuses.Passed;
+                            if (TestStatuses.Failed != testSuite.enStatus)
+                                testSuite.enStatus = TestStatuses.Passed;
                             break;
                         default:
                             // 20130428
@@ -369,9 +369,11 @@ namespace Tmx.Core
                 }
                 
                 if (0 == counterPassedResults && 0 < counterKnownIssueResults)
-                    testSuite.enStatus = TestSuiteStatuses.KnownIssue;
+                    testSuite.enStatus = TestStatuses.KnownIssue;
                 
-                var testStatistics = new TestStatistics();
+                // 20150925
+                // var testStatistics = new TestStatistics();
+                var testStatistics = ProxyFactory.Get<TestStatistics>();
                 testStatistics.RefreshSuiteStatistics(testSuite, skipAutomatic);
             }
         }
@@ -385,30 +387,52 @@ namespace Tmx.Core
                 foreach (var testResult in testScenario.TestResults) {
 
                     switch (testResult.enStatus) {
-                        case TestResultStatuses.Passed:
+                        // 20150805
+                        // case TestResultStatuses.Passed:
+                        case TestStatuses.Passed:
                             counterPassedResults++;
-                            if (TestScenarioStatuses.Failed != testScenario.enStatus)
-                                testScenario.enStatus = TestScenarioStatuses.Passed;
+                            // 20150805
+                            // if (TestScenarioStatuses.Failed != testScenario.enStatus)
+                            if (TestStatuses.Failed != testScenario.enStatus)
+                                // 20150805
+                                // testScenario.enStatus = TestScenarioStatuses.Passed;
+                                testScenario.enStatus = TestStatuses.Passed;
                             break;
-                        case TestResultStatuses.Failed:
-                            testScenario.enStatus = TestScenarioStatuses.Failed;
+                        // 20150805
+                        // case TestResultStatuses.Failed:
+                        case TestStatuses.Failed:
+                            // 20150805
+                            // testScenario.enStatus = TestScenarioStatuses.Failed;
+                            testScenario.enStatus = TestStatuses.Failed;
                             return;
-                        case TestResultStatuses.NotTested:
+                        // 20150805
+                        // case TestResultStatuses.NotTested:
+                        case TestStatuses.NotRun:
                             
                             break;
-                        case TestResultStatuses.KnownIssue:
+                        // 20150805
+                        // case TestResultStatuses.KnownIssue:
+                        case TestStatuses.KnownIssue:
                             counterKnownIssueResults++;
-                            if (TestScenarioStatuses.Failed != testScenario.enStatus)
-                                testScenario.enStatus = TestScenarioStatuses.Passed;
+                            // 20150805
+                            // if (TestScenarioStatuses.Failed != testScenario.enStatus)
+                            if (TestStatuses.Failed != testScenario.enStatus)
+                                // 20150805
+                                // testScenario.enStatus = TestScenarioStatuses.Passed;
+                                testScenario.enStatus = TestStatuses.Passed;
                             break;
                         default:
                             throw new Exception("Invalid value for TestResultStatuses");
                     }
                 }
                 if (0 == counterPassedResults && 0 < counterKnownIssueResults)
-                    testScenario.enStatus = TestScenarioStatuses.KnownIssue;
-                
-                var testStatistics = new TestStatistics();
+                    // 20150805
+                    // testScenario.enStatus = TestScenarioStatuses.KnownIssue;
+                    testScenario.enStatus = TestStatuses.KnownIssue;
+
+                // 20150925
+                // var testStatistics = new TestStatistics();
+                var testStatistics = ProxyFactory.Get<TestStatistics>();
                 testStatistics.RefreshScenarioStatistics(testScenario, skipAutomatic);
             }
         }

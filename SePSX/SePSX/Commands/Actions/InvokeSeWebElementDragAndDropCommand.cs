@@ -9,7 +9,6 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
     using OpenQA.Selenium;
     
@@ -31,12 +30,12 @@ namespace SePSX.Commands
         
         protected override void ProcessRecord()
         {
-            this.checkInputWebElementOnly(this.InputObject);
+            checkInputWebElementOnly(InputObject);
             
             SeHelper.DragAndDropOnElement(
                 this, 
-                ((IWebElement[])this.InputObject),
-                ((IWebElement)this.TargetElement));
+                ((IWebElement[])InputObject),
+                ((IWebElement)TargetElement));
         }
     }
 }

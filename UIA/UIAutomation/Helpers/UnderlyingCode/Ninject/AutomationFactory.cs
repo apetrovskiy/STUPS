@@ -21,7 +21,6 @@ namespace UIAutomation
 //    using System.Collections.Generic;
     using PSTestLib;
     using Castle.DynamicProxy;
-    using System.Linq;
     using WindowsInput;
     
     using NLog;
@@ -874,7 +873,7 @@ namespace UIAutomation
         
         public static Logger GetLogger(string logPath)
         {
-            var logHelper = AutomationFactory.GetLogHelper(logPath);
+            var logHelper = GetLogHelper(logPath);
             // 20140304
             return logHelper.UiaLogger;
             // return ConvertToProxiedObject<Logger>(logHelper.UiaLogger);

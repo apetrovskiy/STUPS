@@ -9,9 +9,7 @@
 
 namespace SePSX
 {
-    using System;
-    using System.Management.Automation;
-    using SePSX.Commands;
+    using Commands;
     
     /// <summary>
     /// Description of SeGetWebElementCommand.
@@ -25,8 +23,8 @@ namespace SePSX
         internal override void Execute()
         {
             SeHelper.GetWebElement(
-                this.Cmdlet,
-                ((GetSeWebElementCommand)this.Cmdlet).InputObject);
+                Cmdlet,
+                ((GetSeWebElementCommand)Cmdlet).InputObject);
         }
     }
 }

@@ -19,12 +19,11 @@ namespace UIAutomation
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
     using System.Collections.Generic;
     // using System.Text.RegularExpressions;
-    using System.Linq;
     using PSTestLib;
     // using System.Diagnostics.CodeAnalysis;
     using Tmx;
     using Tmx.Interfaces.TestStructure;
-    using UIAutomation.Commands;
+    using Commands;
     
     /// <summary>
     /// The CommonCmdletBase class in the top of cmdlet hierarchy.
@@ -111,7 +110,7 @@ namespace UIAutomation
         {
             if (!Preferences.AutoLog) return;
             WriteLog(logLevel, errorRecord.Exception.Message);
-            WriteLog(logLevel, "Script: '" + errorRecord.InvocationInfo.ScriptName + "', line: " + errorRecord.InvocationInfo.Line.ToString());
+            WriteLog(logLevel, "Script: '" + errorRecord.InvocationInfo.ScriptName + "', line: " + errorRecord.InvocationInfo.Line);
         }
         
         protected internal void WriteDebug(CommonCmdletBase cmdlet, string text)
@@ -127,7 +126,7 @@ namespace UIAutomation
         {
             string reportString =
                 CmdletSignature(cmdlet) +
-                obj.ToString();
+                obj;
             
             WriteLog(LogLevels.Debug, reportString);
         }
@@ -313,7 +312,7 @@ namespace UIAutomation
             try {
                 CurrentData.LastResult = outputObject;
 
-                string iInfo = string.Empty;
+                var iInfo = string.Empty;
                 if (!string.IsNullOrEmpty(((HasScriptBlockCmdletBase)cmdlet).TestResultName)) {
                     
                     TmxHelper.CloseTestResult(((HasScriptBlockCmdletBase)cmdlet).TestResultName,
@@ -416,7 +415,6 @@ namespace UIAutomation
             if (cmdlet == null) return;
             try {
                 var element = outputObject as IUiElement;
-                // IUiElement element = outputObject as IUiElement;
                 WriteVerbose(this, "getting the element again to ensure that it still exists");
                 if (!(cmdlet is WizardCmdletBase) &&
                     (null != element)) {
@@ -459,18 +457,7 @@ namespace UIAutomation
                         try {
                             
                             var ae = outputObject as IUiElement;
-                            // IUiElement ae = outputObject as IUiElement;
                             if (null != ae) {
-                                
-                                // 20140312
-//                                reportString +=
-//                                    "Name: '" +
-//                                    ae.Current.Name +
-//                                    "', AutomationId: '" +
-//                                    ae.Current.AutomationId +
-//                                    "', Class: '" +
-//                                    ae.Current.ClassName +
-//                                    "'";
                                 reportString +=
                                     "Name: '" +
                                     ae.GetCurrent().Name +
@@ -497,7 +484,7 @@ namespace UIAutomation
                             "Name: '" +
                             ((Wizard)outputObject).Name +
                             "', Steps count: " +
-                            ((Wizard)outputObject).Steps.Count.ToString();
+                            ((Wizard)outputObject).Steps.Count;
                         break;
                     case "WizardStep":
                         reportString +=
@@ -507,11 +494,15 @@ namespace UIAutomation
                         break;
                     case "Hashtable":
                         reportString +=
-                            ConvertHashtableToString((Hashtable)outputObject);
+                            // 20150915
+                            // ConvertHashtableToString((Hashtable)outputObject);
+                            ((Hashtable) outputObject).ConvertToString();
                         break;
                     case "Hashtable[]":
                         reportString +=
-                            ConvertHashtablesArrayToString((Hashtable[])outputObject);
+                            // 20150915
+                            // ConvertHashtablesArrayToString((Hashtable[])outputObject);
+                            ((Hashtable[]) outputObject).ConvertToString();
                         break;
                     case "Boolean":
                         reportString +=
@@ -526,22 +517,13 @@ namespace UIAutomation
                                 
                             if (cmdlet is GetControlStateCmdletBase) {
                                     
-                                Hashtable[] hashtables =
-                                    ((GetControlStateCmdletBase)cmdlet).SearchCriteria;
+                                Hashtable[] hashtables = ((GetControlStateCmdletBase)cmdlet).SearchCriteria;
                                 reportString +=
-                                    ConvertHashtablesArrayToString(hashtables);
+                                    // 20150915
+                                    // ConvertHashtablesArrayToString(hashtables);
+                                    hashtables.ConvertToString();
                             }
-                            if (cmdlet is WaitUiaWindowCommand) {
-                                
-                                // 20140312
-//                                reportString +=
-//                                    "Name: '" +
-//                                    CurrentData.CurrentWindow.Current.Name +
-//                                    "', AutomationId: '" +
-//                                    CurrentData.CurrentWindow.Current.AutomationId +
-//                                    "', Class: '" +
-//                                    CurrentData.CurrentWindow.Current.ClassName +
-//                                    "'";
+                            if (cmdlet is WaitUiaWindowCommand)
                                 reportString +=
                                     "Name: '" +
                                     CurrentData.CurrentWindow.GetCurrent().Name +
@@ -550,11 +532,9 @@ namespace UIAutomation
                                     "', Class: '" +
                                     CurrentData.CurrentWindow.GetCurrent().ClassName +
                                     "'";
-                            }
                             // 20131020
-                            if (cmdlet is DiscoveryCmdletBase) {
+                            if (cmdlet is DiscoveryCmdletBase)
                                 reportString += outputObject.ToString();
-                            }
                         }
                         catch {
                             reportString +=
@@ -737,7 +717,7 @@ namespace UIAutomation
             Preferences.TimeoutSetByCustomer = false;
             Preferences.StoredDefaultTimeout = timeoutToStore;
 
-            WriteVerbose(this, "Preferences.StoredDefaultTimeout = " + Preferences.StoredDefaultTimeout.ToString());
+            WriteVerbose(this, "Preferences.StoredDefaultTimeout = " + Preferences.StoredDefaultTimeout);
         }
 
         protected override void WriteErrorMethod040AddErrorToErrorList(PSCmdletBase cmdlet, ErrorRecord err)
@@ -919,8 +899,8 @@ namespace UIAutomation
             // temporary
             // profiling
             // 20140207
-            this.WriteInfo(this, "running the GetWindowAction scriptblock");
-            this.WriteInfo(this, "parameters" + parameters);
+            WriteInfo(this, "running the GetWindowAction scriptblock");
+            WriteInfo(this, "parameters" + parameters);
             
             try {
                 runTwoScriptBlockCollections(
@@ -942,7 +922,7 @@ namespace UIAutomation
             // temporary
             // profiling
             // 20140207
-            WriteInfo(this, "the result of the GetWindowAction scriptblock run is " + result.ToString());
+            WriteInfo(this, "the result of the GetWindowAction scriptblock run is " + result);
             
             return result;
         }

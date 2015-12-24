@@ -20,33 +20,32 @@ namespace PSTestLib.Helpers
     public class TracingControl
     {
         readonly string _fileNamePrefix;
-        static List<string> _initializedLogs = new List<string>();
+        static readonly List<string> InitializedLogs = new List<string>();
         
         public TracingControl(string filenamePrefix)
         {
             _fileNamePrefix = filenamePrefix;
-            setTracing();
+            SetTracing();
         }
         
-        void setTracing()
+        void SetTracing()
         {
-            if (_initializedLogs.Contains(_fileNamePrefix)) return;
-            var fileStream = getFileStream(_fileNamePrefix);
-            var listener = new TextWriterTraceListener(fileStream);
-            listener.TraceOutputOptions = TraceOptions.DateTime;
+            if (InitializedLogs.Contains(_fileNamePrefix)) return;
+            var fileStream = GetFileStream(_fileNamePrefix);
+            var listener = new TextWriterTraceListener(fileStream) {TraceOutputOptions = TraceOptions.DateTime};
             Trace.Listeners.Add(listener);
             Trace.AutoFlush = true;
-            _initializedLogs.Add(_fileNamePrefix);
+            InitializedLogs.Add(_fileNamePrefix);
         }
         
-        FileStream getFileStream(string fileName)
+        FileStream GetFileStream(string fileName)
         {
-            string filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\" + fileName + getCurrentDateTime() + ".log";
+            string filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\" + fileName + GetCurrentDateTime() + ".log";
             var fileStream = new FileStream(filePath, FileMode.Append);
             return fileStream;
         }
 
-        string getCurrentDateTime()
+        string GetCurrentDateTime()
         {
             var now = DateTime.Now;
             return (string.Format("{0}{1}{2}{3}{4}{5}", now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second));

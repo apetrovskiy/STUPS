@@ -9,8 +9,6 @@
 
 namespace SePSX
 {
-    using System;
-    
     /// <summary>
     /// Description of ConvertCmdletBase.
     /// </summary>

@@ -82,10 +82,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Gallio">
-      <HintPath>..\..\..\..\Program Files\Gallio\bin\Gallio.dll</HintPath>
+      <HintPath>..\..\packages\mbunit.3.4.14.0\lib\net40\Gallio.dll</HintPath>
+    </Reference>
+    <Reference Include="Gallio40">
+      <HintPath>..\..\packages\mbunit.3.4.14.0\lib\net40\Gallio40.dll</HintPath>
     </Reference>
     <Reference Include="MbUnit">
-      <HintPath>..\..\..\..\Program Files\Gallio\bin\MbUnit.dll</HintPath>
+      <HintPath>..\..\packages\mbunit.3.4.14.0\lib\net40\MbUnit.dll</HintPath>
+    </Reference>
+    <Reference Include="MbUnit40">
+      <HintPath>..\..\packages\mbunit.3.4.14.0\lib\net40\MbUnit40.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
@@ -116,6 +122,9 @@
       <Project>{36F73FA0-C636-48CF-BB7A-FE10FE52C391}</Project>
       <Name>CmdletUnit</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

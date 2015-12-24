@@ -295,7 +295,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [MbUnit.Framework.Test][NUnit.Framework.Test]
         // [Ignore]
         [MbUnit.Framework.Ignore]
-        [NUnit.Framework.Ignore]
+        [NUnit.Framework.Ignore("")]
         public void Get3of3_NoRecurison_DifferentPids()
         {
             // Arrange
@@ -352,7 +352,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [MbUnit.Framework.Test][NUnit.Framework.Test]
         // [Ignore]
         [MbUnit.Framework.Ignore]
-        [NUnit.Framework.Ignore]
+        [NUnit.Framework.Ignore("")]
         public void Get1of1_Name()
         {
             // Arrange
@@ -395,7 +395,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [MbUnit.Framework.Test][NUnit.Framework.Test]
         // [Ignore]
         [MbUnit.Framework.Ignore]
-        [NUnit.Framework.Ignore]
+        [NUnit.Framework.Ignore("")]
         public void Get1of1_AutomaitonId()
         {
             // Arrange
@@ -438,7 +438,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         [MbUnit.Framework.Test][NUnit.Framework.Test]
         // [Ignore]
         [MbUnit.Framework.Ignore]
-        [NUnit.Framework.Ignore]
+        [NUnit.Framework.Ignore("")]
         public void Get1of1_ClassName()
         {
             // Arrange

@@ -114,7 +114,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         [MbUnit.Framework.Test][NUnit.Framework.Test]
         // [Ignore]
         [MbUnit.Framework.Ignore]
-        [NUnit.Framework.Ignore]
+        [NUnit.Framework.Ignore("")]
         public void Value_Value_Set()
         {
             // Arrange

@@ -29,7 +29,7 @@ namespace TmxUnitTests.Commands.TestStructure
         [MbUnit.Framework.Test][NUnit.Framework.Test]
         [MbUnit.Framework.Description("Add-TmxTestCase")]
         [MbUnit.Framework.Category("Fast")]
-        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
+        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore("")]
         public void Need_Code()
         {
             

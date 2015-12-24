@@ -74,7 +74,7 @@ namespace UIAutomationUnitTests.Commands.Wizard
 //        [Category("Wizard")]
         // [Ignore]
         [MbUnit.Framework.Ignore]
-        [NUnit.Framework.Ignore]
+        [NUnit.Framework.Ignore("")]
         public void NewWizard_DuplicatedName()
         {
             const string expectedName = "name";

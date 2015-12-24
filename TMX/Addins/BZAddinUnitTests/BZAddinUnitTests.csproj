@@ -7,7 +7,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>BzAddinUnitTests</RootNamespace>
     <AssemblyName>BzAddinUnitTests</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -84,6 +84,9 @@
   <ItemGroup>
     <Reference Include="bugzproxy">
       <HintPath>..\..\binaries\BugZilla\bugzproxy.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">

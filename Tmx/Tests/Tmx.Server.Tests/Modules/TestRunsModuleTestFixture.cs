@@ -263,7 +263,7 @@ namespace Tmx.Server.Tests.Modules
         }
         
         [Test][NUnit.Framework.Test]// [Fact]
-        [Ignore][NUnit.Framework.Ignore]
+        [Ignore][NUnit.Framework.Ignore("")]
         public void ShouldReturnTestRunAsJson()
         {
             GivenFirstTestWorkflow();
@@ -278,7 +278,7 @@ namespace Tmx.Server.Tests.Modules
         }
         
         [Test][NUnit.Framework.Test]// [Fact]
-        [Ignore][NUnit.Framework.Ignore]
+        [Ignore][NUnit.Framework.Ignore("")]
         public void ShouldReturnAllTestRunsAsJson()
         {
             //GivenFirstTestWorkflow();

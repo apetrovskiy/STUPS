@@ -21,7 +21,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
     /// <summary>
     /// Description of ISupportsExtendedModelTestFixture.
     /// </summary>
-    [Parallelizable(TestScope.All)]
+    [MbUnit.Framework.Parallelizable(TestScope.All)]
+    [NUnit.Framework.Parallelizable(ParallelScope.Fixtures)]
     [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class ISupportsExtendedModelTestFixture
     {
@@ -1748,7 +1749,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         [MbUnit.Framework.Test][NUnit.Framework.Test]
         // [Ignore]
         [MbUnit.Framework.Ignore]
-        [NUnit.Framework.Ignore]
+        [NUnit.Framework.Ignore("")]
         public void Keyboard_KeyPress_Multiple()
         {
             // Arrange

@@ -173,7 +173,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
         
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]
-        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
+        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore("")]
         public void ExpandCollapseState_Expanded()
         {
             // Arrange
@@ -235,7 +235,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]
-        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
+        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore("")]
         public void ExpandCollapseState_Collapsed()
         {
             // Arrange
@@ -285,7 +285,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]
-        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
+        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore("")]
         public void ExpandCollapseState_LeafNode()
         {
             // Arrange
@@ -330,7 +330,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]
-        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
+        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore("")]
         public void ExpandCollapseState_PartiallyExpanded()
         {
             // Arrange

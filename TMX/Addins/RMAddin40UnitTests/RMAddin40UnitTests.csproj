@@ -7,7 +7,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>RmAddin40UnitTests</RootNamespace>
     <AssemblyName>RmAddin40UnitTests</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <AppDesignerFolder>Properties</AppDesignerFolder>

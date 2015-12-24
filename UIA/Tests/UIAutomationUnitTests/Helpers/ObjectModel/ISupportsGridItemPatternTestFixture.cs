@@ -16,7 +16,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
     /// <summary>
     /// Description of ISupportsGridItemPatternTestFixture.
     /// </summary>
-    [Parallelizable(TestScope.All)]
+    [MbUnit.Framework.Parallelizable(TestScope.All)]
+    [NUnit.Framework.Parallelizable(ParallelScope.Fixtures)]
     [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class ISupportsGridItemPatternTestFixture
     {
@@ -131,7 +132,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         [MbUnit.Framework.Test][NUnit.Framework.Test]
         // [Ignore]
         [MbUnit.Framework.Ignore]
-        [NUnit.Framework.Ignore]
+        [NUnit.Framework.Ignore("")]
         public void GridItem_ContainingGrid()
         {
             // Arrange

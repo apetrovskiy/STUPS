@@ -97,7 +97,7 @@ namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 //        }
 //        
         [MbUnit.Framework.Test][NUnit.Framework.Test]
-        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
+        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore("")]
         public void Dock_DockPosition()
         {
             // Arrange

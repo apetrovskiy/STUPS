@@ -168,7 +168,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
         [MbUnit.Framework.Test][NUnit.Framework.Test]
         // [Ignore]
         [MbUnit.Framework.Ignore]
-        [NUnit.Framework.Ignore]
+        [NUnit.Framework.Ignore("")]
         public void OneCriterion_OneElement_Match_AutomationIdWrongTyped()
         {
             // Arrange
@@ -192,7 +192,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
         [MbUnit.Framework.Test][NUnit.Framework.Test]
         // [Ignore]
         [MbUnit.Framework.Ignore]
-        [NUnit.Framework.Ignore]
+        [NUnit.Framework.Ignore("")]
         public void OneCriterion_OneElement_NoMatch_AutomationIdWrongTyped()
         {
             // Arrange

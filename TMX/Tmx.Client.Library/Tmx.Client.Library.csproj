@@ -164,10 +164,6 @@
       <Project>{7387A702-B524-4B45-B98B-B7705A1EB116}</Project>
       <Name>Tmx.Client.Powershell</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tmx.Client.Xunit\Tmx.Client.Xunit.csproj">
-      <Project>{0BD9E2BF-96BD-400B-AC3D-CDB70B563ED5}</Project>
-      <Name>Tmx.Client.Xunit</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Tmx.Core\Tmx.Core.csproj">
       <Project>{069651A0-FE15-42E2-89D5-9A761A47B143}</Project>
       <Name>Tmx.Core</Name>

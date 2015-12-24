@@ -228,7 +228,8 @@ namespace Tmx.Server.Tests.Modules
 //    new object[] { 12, 4, 3 } 
 //};
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test] // [Fact]
+        // temporarily, because of lack of parameters here
+        // [MbUnit.Framework.Test][NUnit.Framework.Test] // [Fact]
         [Theory]
         [InlineData("testHost001", "user001")]
         [InlineData("testHost002", "user002")]
@@ -313,7 +314,7 @@ namespace Tmx.Server.Tests.Modules
             ThenTestClientIsBusy(ClientsCollection.Clients.First(client => client.Id == registeredClient.Id));
         }
         
-        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
+        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore("")]
         [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         public void ShouldCompleteTheCurrentTaskOnClientUnregistration()
         {

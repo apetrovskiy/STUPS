@@ -14,7 +14,9 @@ namespace Tmx.Server.Tests
     /// </summary>
     public class TestConstants
     {
-        public const string XmlPath = @"../../Data/";
+        // TODO: set a universal path
+        // public const string XmlPath = @"../../Data/";
+        public const string XmlPath = @"C:/Projects/PS/STUPS/TMX/Tests/Tmx.Server.Tests/Data/";
         
         public static string Workflow01 = XmlPath + "Workflow1.xml";
         public static string Workflow02 = XmlPath + "Workflow2.xml";

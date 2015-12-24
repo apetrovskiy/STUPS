@@ -7,7 +7,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>BddAddinUnitTests</RootNamespace>
     <AssemblyName>BddAddinUnitTests</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -106,6 +106,9 @@
     <Reference Include="MbUnit35, Version=3.3.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\mbunit.3.3.454.0\lib\net35\MbUnit35.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="NBehave.Fluent.Framework">
       <HintPath>..\..\..\packages\nbehave.fluent.mbunit.0.6.2\lib\net35\NBehave.Fluent.Framework.dll</HintPath>

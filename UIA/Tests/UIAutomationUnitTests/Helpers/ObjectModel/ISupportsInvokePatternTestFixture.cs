@@ -16,7 +16,8 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
     /// <summary>
     /// Description of ISupportsInvokePatternTestFixture.
     /// </summary>
-    [Parallelizable(TestScope.All)]
+    [MbUnit.Framework.Parallelizable(TestScope.All)]
+    [NUnit.Framework.Parallelizable(ParallelScope.Fixtures)]
     [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class ISupportsInvokePatternTestFixture
     {

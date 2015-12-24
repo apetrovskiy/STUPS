@@ -70,7 +70,7 @@ namespace Tmx.Server.Tests.Helpers
             ThenThereAreNumberOfTasksForSelectedWorkflow(10, workflowId);
         }
         
-        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
+        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore("")]
         [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         public void ShouldAddNoTasksIfNoValidPathProvided()
         {

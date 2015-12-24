@@ -148,6 +148,37 @@ namespace Tmx.Server.Tests.Helpers
             ThenThereAreNPlatformsInXdocument(2, sourceTestPlatforms);
             ThenThereAreNSuitesInXdocument(2, sourceTestSuites);
         }
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////// filtering ////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        [Test][NUnit.Framework.Test][Fact]
+        public void ShouldImportExportedDataWithExclusion()
+        {
+            var sourceTestPlatforms = new List<ITestPlatform>();
+            var sourceTestSuites = new List<ITestSuite>();
+            TestData.ExcludeList = new List<string> {"03"};
+
+            var xDoc = GivenExportedTestResults();
+            var platforms = WhenImportingTestPlatforms(xDoc);
+            var suites = WhenImportingTestResults(xDoc);
+            var testResultsImporter = new TestResultsImporter();
+            testResultsImporter.MergeTestPlatforms(sourceTestPlatforms, platforms);
+            testResultsImporter.MergeTestSuites(sourceTestSuites, suites);
+            ThenThereAreNPlatformsInXdocument(2, sourceTestPlatforms);
+            ThenThereAreNSuitesInXdocument(2, sourceTestSuites);
+
+            ThenTestResultNStatusIs(suites, "1", TestStatuses.Passed);
+            ThenTestResultNStatusIs(sourceTestSuites, "2", TestStatuses.Passed);
+            /*
+            ThenTestResultNStatusIs(sourceTestSuites, "3", TestStatuses.Failed);
+            ThenTestResultNStatusIs(sourceTestSuites, "4", TestStatuses.KnownIssue);
+            ThenTestResultNStatusIs(sourceTestSuites, "5", TestStatuses.NotRun);
+            */
+            ThenTestResultNStatusIs(sourceTestSuites, "3", TestStatuses.KnownIssue);
+            ThenTestResultNStatusIs(sourceTestSuites, "4", TestStatuses.KnownIssue);
+            ThenTestResultNStatusIs(sourceTestSuites, "5", TestStatuses.NotRun);
+        }
         
         XDocument GivenExportedTestResults()
         {

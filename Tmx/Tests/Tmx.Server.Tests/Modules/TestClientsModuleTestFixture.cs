@@ -353,7 +353,7 @@ namespace Tmx.Server.Tests.Modules
             Assert.Equal(testRun.Id, testClient.TestRunId);
         }
         
-        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore]
+        [MbUnit.Framework.Ignore][NUnit.Framework.Ignore("")]
         [MbUnit.Framework.Test][NUnit.Framework.Test]// [Fact]
         public void ShouldRegisterTwoClientsInSeparateTestRunsAsJson()
         {

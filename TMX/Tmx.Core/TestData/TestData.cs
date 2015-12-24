@@ -47,6 +47,7 @@ namespace Tmx
         {
             TestSuites = new List<ITestSuite>();
             TestPlatforms = new List<ITestPlatform>();
+            ExcludeList = new List<string>();
             AddDefaultPlatform();
         }
         
@@ -89,7 +90,8 @@ namespace Tmx
         public static IDatabase CurrentStructureDB { get; set; }
         public static IDatabase CurrentRepositoryDB { get; set; }
         public static IDatabase CurrentResultsDB { get; set; }
-        
+        public static List<string> ExcludeList { get; set; }
+
         // ------------------ Events -----------------------------
         public static event TmxStructureChangedEventHandler TmxNewTestSuiteCreated;
         public static event TmxStructureChangedEventHandler TmxTestSuiteOpened;

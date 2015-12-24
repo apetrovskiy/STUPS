@@ -22,10 +22,12 @@ namespace Tmx.Core
     public class TestResultsSearcher
     {
         #region Search
+
         /// <summary>
         /// Performs parametrized search for Test Suites.
         /// </summary>
         /// <param name="cmdlet"></param>
+        /// <param name="suitesForSearch"></param>
         /// <returns></returns>
         public virtual IOrderedEnumerable<ITestSuite> SearchForSuites(ISearchCmdletBaseDataObject cmdlet, List<ITestSuite> suitesForSearch)
         {

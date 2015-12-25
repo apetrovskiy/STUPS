@@ -26,7 +26,6 @@ DEALINGS IN THE SOFTWARE.
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using CookComputing.XmlRpc;
 
 namespace Meyn.TestLink
@@ -127,7 +126,7 @@ namespace Meyn.TestLink
             lastResponse = sr.ReadToEnd();
         }
 
-        private void myHandler(object sender, CookComputing.XmlRpc.XmlRpcRequestEventArgs args)
+        private void myHandler(object sender, XmlRpcRequestEventArgs args)
         {
             long l = args.RequestStream.Length;
             args.RequestStream.Seek(0, System.IO.SeekOrigin.Begin);
@@ -443,8 +442,8 @@ namespace Meyn.TestLink
             stateIsValid();
             string base64String;
             try {
-                base64String = System.Convert.ToBase64String(content, 0, content.Length);
-            } catch (System.ArgumentNullException) {
+                base64String = Convert.ToBase64String(content, 0, content.Length);
+            } catch (ArgumentNullException) {
                 // System.Console.WriteLine("Binary data array is null.");
                 base64String = "";
             }
@@ -766,8 +765,8 @@ namespace Meyn.TestLink
         {
             string base64String;
             try {
-                base64String = System.Convert.ToBase64String(content, 0, content.Length);
-            } catch (System.ArgumentNullException) {
+                base64String = Convert.ToBase64String(content, 0, content.Length);
+            } catch (ArgumentNullException) {
                 // System.Console.WriteLine("Binary data array is null.");
                 base64String = "";
             }
@@ -966,7 +965,7 @@ namespace Meyn.TestLink
             try {
                 response = proxy.getProjectTestPlans(devkey, projectid);
             // if a project has no test plans this exception is thrown
-            } catch (CookComputing.XmlRpc.XmlRpcTypeMismatchException) {
+            } catch (XmlRpcTypeMismatchException) {
                 return retval;
                 // empty list
             // happens when no plans exist. Empty response is sent back
@@ -1143,8 +1142,8 @@ namespace Meyn.TestLink
         {
             string base64String;
             try {
-                base64String = System.Convert.ToBase64String(content, 0, content.Length);
-            } catch (System.ArgumentNullException) {
+                base64String = Convert.ToBase64String(content, 0, content.Length);
+            } catch (ArgumentNullException) {
                 // System.Console.WriteLine("Binary data array is null.");
                 base64String = "";
             }
@@ -1297,8 +1296,8 @@ namespace Meyn.TestLink
         {
             string base64String;
             try {
-                base64String = System.Convert.ToBase64String(content, 0, content.Length);
-            } catch (System.ArgumentNullException) {
+                base64String = Convert.ToBase64String(content, 0, content.Length);
+            } catch (ArgumentNullException) {
                 // System.Console.WriteLine("Binary data array is null.");
                 base64String = "";
             }

@@ -9,13 +9,11 @@
 
 namespace EsxiMgmt.Tests.Helpers.UnderlyingCode.Commands.Connect
 {
-    using System;
     using System.Collections.Generic;
-    using EsxiMgmt.Cmdlets;
-    using EsxiMgmt.Cmdlets.Commands.Connect;
-    using EsxiMgmt.Cmdlets.Helpers.UnderlyingCode.Commands;
-    using EsxiMgmt.Cmdlets.Helpers.UnderlyingCode.Commands.Connect;
-    using EsxiMgmt.Core.Data;
+    using Cmdlets;
+    using Cmdlets.Commands.Connect;
+    using Cmdlets.Helpers.UnderlyingCode.Commands.Connect;
+    using Core.Data;
     using Renci.SshNet;
     
     /// <summary>

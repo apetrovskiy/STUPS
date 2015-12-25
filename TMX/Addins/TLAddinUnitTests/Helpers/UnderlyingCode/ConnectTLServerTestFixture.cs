@@ -9,14 +9,8 @@
 
 namespace TlAddinUnitTests
 {
-    using System;
     using MbUnit.Framework;
-    using PSTestLib;
-    using Moq;
-    using Tmx;
-    using Meyn.TestLink;
-    using CookComputing.XmlRpc;
-    
+
     /// <summary>
     /// Description of ConnectTLServerTestFixture.
     /// </summary>

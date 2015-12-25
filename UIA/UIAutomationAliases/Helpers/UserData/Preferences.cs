@@ -10,11 +10,7 @@
 namespace UIAutomationAliases
 {
     using System;
-    using System.Management.Automation;
-    
-    using System.Reflection;
-    using System.Reflection.Emit;
-    
+
     /// <summary>
     /// Description of Preferences.
     /// </summary>

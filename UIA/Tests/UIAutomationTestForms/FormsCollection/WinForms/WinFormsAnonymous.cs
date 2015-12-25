@@ -9,10 +9,6 @@
 
 namespace UIAutomationTestForms
 {
-    using System;
-    using System.Drawing;
-    using System.Windows.Forms;
-
     /// <summary>
     /// Description of WinFormsAnonymous.
     /// </summary>
@@ -36,7 +32,7 @@ namespace UIAutomationTestForms
             System.Windows.Automation.ControlType controlType,
             int controlDelay) : base ("WinFormsAnonymous", "", controlType, controlDelay)
         {
-            base.ChildForm = this;
+            ChildForm = this;
         }
         
         public WinFormsAnonymous(
@@ -45,13 +41,13 @@ namespace UIAutomationTestForms
             string controlAutomationId,
             int controlDelay) : base ("WinFormsAnonymous", "", controlType, controlName, controlAutomationId, controlDelay)
         {
-            base.ChildForm = this;
+            ChildForm = this;
         }
         
         public WinFormsAnonymous(
             ControlToForm[] controls) : base ("WinFormsAnonymous", "WinFormsAnonymous", controls)
         {
-            base.ChildForm = this;
+            ChildForm = this;
         }
     }
 }

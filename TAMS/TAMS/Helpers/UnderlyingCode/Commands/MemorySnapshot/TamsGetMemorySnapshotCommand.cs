@@ -11,7 +11,7 @@ namespace TAMS
 {
     using System;
     using System.Management.Automation;
-    using TAMS.Commands;
+    using Commands;
     using System.Collections;
     using System.Diagnostics;
     
@@ -20,7 +20,7 @@ namespace TAMS
     /// </summary>
     internal class TamsGetMemorySnapshotCommand : TamsCommand
     {
-        internal TamsGetMemorySnapshotCommand(TAMS.CommonCmdletBase cmdlet) : base (cmdlet)
+        internal TamsGetMemorySnapshotCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         
@@ -42,7 +42,7 @@ namespace TAMS
                 
                 foreach (string processName in cmdlet.ProcessName) {
                     try {
-                        Process[] processes = System.Diagnostics.Process.GetProcessesByName(processName);
+                        Process[] processes = Process.GetProcessesByName(processName);
                         foreach (Process process in processes) {
                             processIdObjects.Add(process.Id);
                         }

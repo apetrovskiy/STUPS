@@ -26,25 +26,25 @@ namespace Data.Commands
         protected override void ProcessRecord()
         {
             
-            if (null != this.InputObject) {
+            if (null != InputObject) {
                 
-                this.WriteObject(this.InputObject.GetType().Name);
+                WriteObject(InputObject.GetType().Name);
                 
                 PropertyInfo[] properties =
-                    this.InputObject.GetType().GetProperties();
+                    InputObject.GetType().GetProperties();
                 
                 if (null != properties) {
                     
                     foreach (PropertyInfo prop in properties) {
                         
-                        this.WriteObject(prop.Name + "\t" + prop.PropertyType.Name);
+                        WriteObject(prop.Name + "\t" + prop.PropertyType.Name);
                     }
                 }
                 
-                this.WriteObject("Properties:" + "\t" + ((PSObject)this.InputObject).Properties.GetType().Name);
-                foreach (var prop in ((PSObject)this.InputObject).Properties) {
+                WriteObject("Properties:" + "\t" + ((PSObject)InputObject).Properties.GetType().Name);
+                foreach (var prop in ((PSObject)InputObject).Properties) {
                     
-                    this.WriteObject(prop.Name + "\t" + prop.Value);
+                    WriteObject(prop.Name + "\t" + prop.Value);
                     
                 }
                 

@@ -9,7 +9,6 @@
 
 namespace SePSXTest.Commands.Driver
 {
-    using System;
     using MbUnit.Framework;
     
     /// <summary>

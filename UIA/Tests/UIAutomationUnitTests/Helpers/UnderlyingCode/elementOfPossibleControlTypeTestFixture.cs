@@ -10,7 +10,7 @@
 namespace UIAutomationUnitTests
 {
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;using NUnit.Framework;
+    using Xunit;
     
     /// <summary>
     /// Description of elementOfPossibleControlTypeTestFixture.
@@ -50,7 +50,7 @@ namespace UIAutomationUnitTests
                     null,
                     null));
             
-            Xunit.Assert.Equal(
+            Assert.Equal(
                 false,
                 getClass().ElementOfPossibleControlType(
                     null,
@@ -68,7 +68,7 @@ namespace UIAutomationUnitTests
                     null,
                     "Button"));
             
-            Xunit.Assert.Equal(
+            Assert.Equal(
                 false,
                 getClass().ElementOfPossibleControlType(
                     null,
@@ -86,7 +86,7 @@ namespace UIAutomationUnitTests
                     (new[]{ "Button" }),
                     null));
             
-            Xunit.Assert.Equal(
+            Assert.Equal(
                 false,
                 getClass().ElementOfPossibleControlType(
                     (new[]{ "Button" }),
@@ -104,7 +104,7 @@ namespace UIAutomationUnitTests
                     (new[]{ "Button" }),
                     "Button"));
             
-            Xunit.Assert.Equal(
+            Assert.Equal(
                 true,
                 getClass().ElementOfPossibleControlType(
                     (new[]{ "Button" }),
@@ -122,7 +122,7 @@ namespace UIAutomationUnitTests
                     (new[]{ "Button" }),
                     "CheckBox"));
             
-            Xunit.Assert.Equal(
+            Assert.Equal(
                 false,
                 getClass().ElementOfPossibleControlType(
                     (new[]{ "Button" }),
@@ -140,7 +140,7 @@ namespace UIAutomationUnitTests
                     (new[]{ "TreeItem", "Button", "Edit" }),
                     "Button"));
             
-            Xunit.Assert.Equal(
+            Assert.Equal(
                 true,
                 getClass().ElementOfPossibleControlType(
                     (new[]{ "TreeItem", "Button", "Edit" }),
@@ -158,7 +158,7 @@ namespace UIAutomationUnitTests
                     (new[]{ "TreeItem", "ComboBox", "Edit" }),
                     "Button"));
             
-            Xunit.Assert.Equal(
+            Assert.Equal(
                 false,
                 getClass().ElementOfPossibleControlType(
                     (new[]{ "TreeItem", "ComboBox", "Edit" }),

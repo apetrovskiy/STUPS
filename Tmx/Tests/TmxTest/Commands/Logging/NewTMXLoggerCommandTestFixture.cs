@@ -9,9 +9,6 @@
 
 namespace TmxTest.Commands.Logging
 {
-    using System;
-    using MbUnit.Framework;using NUnit.Framework;
-    
     /// <summary>
     /// Description of NewTmxLoggerCommandTestFixture.
     /// </summary>

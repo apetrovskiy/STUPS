@@ -9,8 +9,7 @@
 
 namespace Hap
 {
-    using System;
-	using System.Collections.Generic;
+    using System.Collections.Generic;
     
     /// <summary>
     /// Description of ConverterTemplate.

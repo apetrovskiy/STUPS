@@ -9,9 +9,6 @@
 
 namespace UIAutomationTest.Helpers
 {
-    using System;
-    using MbUnit.Framework;using NUnit.Framework;
-    
     using UIAutomationTestForms;
     
     /// <summary>

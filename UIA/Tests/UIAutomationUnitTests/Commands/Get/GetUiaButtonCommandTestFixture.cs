@@ -12,7 +12,7 @@ namespace UIAutomationUnitTests.Commands.Get
 {
     // using System.Windows.Automation;
     // using UIAutomation;
-    using MbUnit.Framework;// using Xunit;
+     // using Xunit;
     // using NSubstitute;
     
     /// <summary>

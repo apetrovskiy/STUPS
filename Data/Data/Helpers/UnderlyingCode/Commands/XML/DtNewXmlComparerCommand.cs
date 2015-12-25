@@ -9,7 +9,7 @@
 
 namespace Data
 {
-    using Data.Commands;
+    using Commands;
     
     /// <summary>
     /// Description of DtNewXmlComparerCommand.

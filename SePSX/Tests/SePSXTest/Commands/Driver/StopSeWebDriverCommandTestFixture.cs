@@ -9,7 +9,6 @@
 
 namespace SePSXTest.Commands.Driver
 {
-    using System;
     using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
     using System.Management.Automation;
     
@@ -77,8 +76,8 @@ namespace SePSXTest.Commands.Driver
         public void FF_TestPrm_DriverNameAsArray_Firefox()
         {
             
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            System.Collections.ObjectModel.Collection<PSObject> coll = 
+                new System.Collections.ObjectModel.Collection<PSObject>();
 //            System.Collections.ObjectModel.Collection<string> coll = 
 //                new System.Collections.ObjectModel.Collection<string>();
             

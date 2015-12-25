@@ -9,10 +9,8 @@
 
 namespace TmxTest.Provider
 {
-    using System;
-    using MbUnit.Framework;using NUnit.Framework; // using MbUnit.Framework;using NUnit.Framework;
-    using System.Management.Automation;
-    
+    // using MbUnit.Framework;using NUnit.Framework;
+
     /// <summary>
     /// Description of TmxProviderTestFixture.
     /// </summary>

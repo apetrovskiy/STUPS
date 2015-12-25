@@ -9,10 +9,8 @@
 
 namespace EsxiMgmt.Tests
 {
-    using System;
     // using NUnit;
-    using System.Diagnostics;
-    
+
     /// <summary>
     /// Description of MiddleLevelCode.
     /// </summary>

@@ -9,9 +9,8 @@
 
 namespace UIAutomationUnitTests.Helpers.ObjectModel
 {
-    using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;using NUnit.Framework;
+    using Xunit;
     
     /// <summary>
     /// Description of NoPatternsTestFixture.
@@ -49,28 +48,28 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
                     new IBasePattern[] {}) as ISupportsHighlighter;
             
             MbUnit.Framework.Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
-            Xunit.Assert.NotNull(highlightableElement as ISupportsHighlighter);
+            Assert.NotNull(highlightableElement as ISupportsHighlighter);
             
             var navigatableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] {}) as ISupportsNavigation;
             
             MbUnit.Framework.Assert.IsNotNull(navigatableElement as ISupportsNavigation);
-            Xunit.Assert.NotNull(navigatableElement as ISupportsNavigation);
+            Assert.NotNull(navigatableElement as ISupportsNavigation);
             
             var conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] {}) as ISupportsConversion;
             
             MbUnit.Framework.Assert.IsNotNull(conversibleElement as ISupportsConversion);
-            Xunit.Assert.NotNull(conversibleElement as ISupportsConversion);
+            Assert.NotNull(conversibleElement as ISupportsConversion);
             
             var refreshableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] {}) as ISupportsRefresh;
             
             MbUnit.Framework.Assert.IsNotNull(refreshableElement as ISupportsRefresh);
-            Xunit.Assert.NotNull(refreshableElement as ISupportsRefresh);
+            Assert.NotNull(refreshableElement as ISupportsRefresh);
         }
     }
 }

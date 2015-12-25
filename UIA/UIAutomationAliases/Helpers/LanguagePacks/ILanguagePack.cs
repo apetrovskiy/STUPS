@@ -9,8 +9,6 @@
 
 namespace UIAutomationAliases
 {
-    using System;
-    
     /// <summary>
     /// Description of ILanguagePack.
     /// </summary>

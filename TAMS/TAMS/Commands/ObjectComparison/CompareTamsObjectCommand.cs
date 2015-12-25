@@ -9,7 +9,6 @@
 
 namespace TAMS.Commands
 {
-    using System;
     using System.Management.Automation;
     
     /// <summary>
@@ -33,7 +32,7 @@ namespace TAMS.Commands
         
         protected override void ProcessRecord()
         {
-            this.CheckCmdletParameters();
+            CheckCmdletParameters();
             
             TamsCompareObjectCommand command =
                 new TamsCompareObjectCommand(this);

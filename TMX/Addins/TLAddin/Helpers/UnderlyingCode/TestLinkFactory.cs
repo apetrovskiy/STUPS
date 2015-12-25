@@ -9,9 +9,6 @@
 
 namespace Tmx
 {
-    using System;
-    using Meyn.TestLink;
-    
     /// <summary>
     /// Description of TestLinkFactory.
     /// </summary>

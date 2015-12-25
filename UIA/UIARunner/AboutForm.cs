@@ -7,7 +7,6 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace UiaRunner
@@ -31,7 +30,7 @@ namespace UiaRunner
         
         void BtnOkClick(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

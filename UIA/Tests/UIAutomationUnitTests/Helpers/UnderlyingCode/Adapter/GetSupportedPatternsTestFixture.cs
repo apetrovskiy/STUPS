@@ -9,13 +9,9 @@
 
 namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Adapter
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;using NUnit.Framework;
+    using Xunit;
     using System.Linq;
     
     /// <summary>
@@ -56,7 +52,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Adapter
                     true);
             
             MbUnit.Framework.Assert.AreEqual(0, element.GetSupportedPatterns().Count());
-            Xunit.Assert.Equal(0, element.GetSupportedPatterns().Count());
+            Assert.Equal(0, element.GetSupportedPatterns().Count());
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -73,7 +69,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Adapter
             
             MbUnit.Framework.Assert.AreEqual(1, element.GetSupportedPatterns().Count());
             MbUnit.Framework.Assert.Exists(element.GetSupportedPatterns(), p => p is IValuePattern);
-            Xunit.Assert.Equal(1, element.GetSupportedPatterns().Count());
+            Assert.Equal(1, element.GetSupportedPatterns().Count());
             // Xunit.Assert.Contains<IBasePattern>(AutomationFactory.GetPatternAdapter<IValuePattern>(AutomationFactory.GetUiElement(), null) as IBasePattern, element.GetSupportedPatterns());
         }
         
@@ -97,7 +93,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Adapter
             MbUnit.Framework.Assert.Exists(element.GetSupportedPatterns(), p => p is IExpandCollapsePattern);
             MbUnit.Framework.Assert.Exists(element.GetSupportedPatterns(), p => p is ITableItemPattern);
             MbUnit.Framework.Assert.Exists(element.GetSupportedPatterns(), p => p is IWindowPattern);
-            Xunit.Assert.Equal(3, element.GetSupportedPatterns().Count());
+            Assert.Equal(3, element.GetSupportedPatterns().Count());
             // Xunit.Assert.Contains<IBasePattern>(AutomationFactory.GetPatternAdapter<IExpandCollapsePattern>(AutomationFactory.GetUiElement(), null) as IBasePattern, element.GetSupportedPatterns());
             // Xunit.Assert.Contains<IBasePattern>(AutomationFactory.GetPatternAdapter<ITableItemPattern>(AutomationFactory.GetUiElement(), null), element.GetSupportedPatterns());
             // Xunit.Assert.Contains<IBasePattern>(AutomationFactory.GetPatternAdapter<IWindowPattern>(AutomationFactory.GetUiElement(), null), element.GetSupportedPatterns());

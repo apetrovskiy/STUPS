@@ -43,7 +43,7 @@ namespace Data
         
         protected override void BeginProcessing()
         {
-            this.CheckCmdletParameters();
+            CheckCmdletParameters();
         }
         
         internal static bool ModuleAlreadyLoaded { get; set; }
@@ -80,10 +80,10 @@ namespace Data
         protected void WriteLog(LogLevels logLevel, ErrorRecord errorRecord)
         {
             if (!Preferences.AutoLog) return;
-            this.WriteLog(logLevel, errorRecord.Exception.Message);
+            WriteLog(logLevel, errorRecord.Exception.Message);
             // 20131102
             //this.WriteLog(logLevel, "Script: '" + errorRecord.InvocationInfo.ScriptName + "', line: " + errorRecord.InvocationInfo.Line.ToString());
-            this.WriteLog(logLevel, "Script: '" + errorRecord.InvocationInfo.ScriptName + "', line: " + errorRecord.InvocationInfo.Line);
+            WriteLog(logLevel, "Script: '" + errorRecord.InvocationInfo.ScriptName + "', line: " + errorRecord.InvocationInfo.Line);
             /*
             if (Preferences.AutoLog)
             {
@@ -145,22 +145,22 @@ namespace Data
         
         protected override void WriteErrorMethod010RunScriptBlocks(PSCmdletBase cmdlet)
         {
-            this.WriteVerbose(this, " Data");
+            WriteVerbose(this, " Data");
         }
         
         protected override void WriteErrorMethod020SetTestResult(PSCmdletBase cmdlet, ErrorRecord errorRecord)
         {
-            this.WriteVerbose(this, " Data");
+            WriteVerbose(this, " Data");
         }
         
         protected override void WriteErrorMethod030ChangeTimeoutSettings(PSCmdletBase cmdlet, bool terminating)
         {
-            this.WriteVerbose(this, " Data");
+            WriteVerbose(this, " Data");
         }
         
         protected override void WriteErrorMethod040AddErrorToErrorList(PSCmdletBase cmdlet, ErrorRecord errorRecord)
         {
-            this.WriteVerbose(this, " Data");
+            WriteVerbose(this, " Data");
         }
 
         protected override void WriteErrorMethod045OnErrorScreenshot(PSCmdletBase cmdlet)
@@ -170,19 +170,19 @@ namespace Data
         
         protected override void WriteErrorMethod050OnErrorDelay(PSCmdletBase cmdlet)
         {
-            this.WriteVerbose(this, " Data");
+            WriteVerbose(this, " Data");
         }
 
         protected override void WriteErrorMethod060OutputError(PSCmdletBase cmdlet, ErrorRecord errorRecord, bool terminating)
         {
             if (terminating) {
-                this.WriteVerbose(this, "terminating error !!!");
+                WriteVerbose(this, "terminating error !!!");
                 try {
                     ThrowTerminatingError(errorRecord);
                 }
                 catch {}
             } else {
-                this.WriteVerbose(this, "regular error !!!");
+                WriteVerbose(this, "regular error !!!");
                 try {
                     WriteError(errorRecord);
                 }
@@ -192,7 +192,7 @@ namespace Data
         
         protected override void WriteErrorMethod070Report(PSCmdletBase cmdlet)
         {
-            this.WriteVerbose(this, " Data");
+            WriteVerbose(this, " Data");
         }
     }
 }

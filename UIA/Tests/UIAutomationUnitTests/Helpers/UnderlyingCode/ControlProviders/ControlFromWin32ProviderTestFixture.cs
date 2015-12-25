@@ -9,11 +9,10 @@
 
 namespace UIAutomationUnitTests.Helpers.UnderlyingCode.ControlProviders
 {
-    using System;
     using System.Collections.Generic;
     using System.Windows.Automation;
     using System.Linq;
-    using MbUnit.Framework;using Xunit;using NUnit.Framework;
+    using Xunit;
     using UIAutomation;
     
     /// <summary>
@@ -55,7 +54,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.ControlProviders
             
             // Assert
             MbUnit.Framework.Assert.Count(expectedNumberOfElements, resultList);
-            Xunit.Assert.Equal(expectedNumberOfElements, resultList.Count);
+            Assert.Equal(expectedNumberOfElements, resultList.Count);
         }
         #endregion helpers
         

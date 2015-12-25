@@ -11,7 +11,6 @@ namespace CmdletUnitTest
 {
     using System;
     using System.Collections.ObjectModel;
-    using System.Diagnostics;
     using System.Management.Automation;
 //    using System.Management.Automation.Runspaces;
     

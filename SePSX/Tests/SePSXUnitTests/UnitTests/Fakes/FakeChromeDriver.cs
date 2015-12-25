@@ -21,42 +21,42 @@ namespace SePSXUnitTests
     {
         public FakeChromeDriver()
         {
-            this.UnitTestReport =
+            UnitTestReport =
                 //ChromeDriverConstructorOptions.chrome_bare.ToString();
                 DriverServerConstructorOptions.Bare.ToString();
         }
         
         public FakeChromeDriver(string chromeDriverDirectory)
         {
-            this.UnitTestReport =
+            UnitTestReport =
                 //ChromeDriverConstructorOptions.chrome_with_path.ToString();
                 DriverServerConstructorOptions.WithPath.ToString();
         }
         
         public FakeChromeDriver(ChromeOptions options)
         {
-            this.UnitTestReport =
+            UnitTestReport =
                 //ChromeDriverConstructorOptions.chrome_with_options.ToString();
                 DriverServerConstructorOptions.WithOptions.ToString();
         }
         
         public FakeChromeDriver(string chromeDriverDirectory, ChromeOptions options)
         {
-            this.UnitTestReport =
+            UnitTestReport =
                 //ChromeDriverConstructorOptions.chrome_with_path_and_options.ToString();
                 DriverServerConstructorOptions.WithPathAndOptions.ToString();
         }
         
         public FakeChromeDriver(string chromeDriverDirectory, ChromeOptions options, TimeSpan commandTimeout)
         {
-            this.UnitTestReport =
+            UnitTestReport =
                 //ChromeDriverConstructorOptions.chrome_with_path_and_options_and_timespan.ToString();
                 DriverServerConstructorOptions.WithPathAndOptionsAndTimespan.ToString();
         }
         
         public FakeChromeDriver(DriverService service, ChromeOptions options, TimeSpan commandTimeout)
         {
-            this.UnitTestReport =
+            UnitTestReport =
                 //ChromeDriverConstructorOptions.chrome_with_service_and_options_and_timespan.ToString();
                 DriverServerConstructorOptions.WithServiceAndOptionsAndTimespan.ToString();
         }

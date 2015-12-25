@@ -9,14 +9,10 @@
 
 namespace TlAddinUnitTests.TestProjects
 {
-    using System;
     using MbUnit.Framework;
-    using PSTestLib;
-    using Moq;
     using Tmx;
     using Meyn.TestLink;
-    using CookComputing.XmlRpc;
-    
+
     /// <summary>
     /// Description of GetProjectTestFixture.
     /// </summary>
@@ -63,7 +59,7 @@ namespace TlAddinUnitTests.TestProjects
 //cmdlet.WriteTrace(cmdlet, "getProject 00003");
             foreach (object tpr in PSTestLib.UnitTestOutput.LastOutput) {
 //cmdlet.WriteTrace(cmdlet, "getProject 00004_1");
-                resultList.Add((Meyn.TestLink.TestProject)tpr);
+                resultList.Add((TestProject)tpr);
 //cmdlet.WriteTrace(cmdlet, "getProject 00004_2");
             }
 

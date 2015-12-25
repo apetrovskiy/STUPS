@@ -9,9 +9,6 @@
 
 namespace TAMS
 {
-    using System;
-    using System.Management.Automation;
-    
     /// <summary>
     /// Description of MemorySnapshotCmdletBase.
     /// </summary>

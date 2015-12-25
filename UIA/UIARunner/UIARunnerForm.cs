@@ -10,13 +10,11 @@
 namespace UiaRunner
 {
     using System;
-    using System.Collections.Generic;
     using System.Drawing;
     using System.Windows.Forms;
     // using Tmx.Core;
     using Tmx;
     using Tmx.Interfaces.TestStructure;
-    using System.Threading;
     using PSTestRunner;
     
     /// <summary>
@@ -35,10 +33,10 @@ namespace UiaRunner
             // TODO: Add constructor code after the InitializeComponent() call.
             //
             
-            this.cellStylePassed.BackColor = System.Drawing.Color.Green;
-            this.cellStyleFailed.BackColor = System.Drawing.Color.Red;
-            this.cellStylePassedWithBadSmell.BackColor = System.Drawing.Color.Olive;
-            this.cellStyleOutput.BackColor = System.Drawing.Color.LightBlue;
+            cellStylePassed.BackColor = Color.Green;
+            cellStyleFailed.BackColor = Color.Red;
+            cellStylePassedWithBadSmell.BackColor = Color.Olive;
+            cellStyleOutput.BackColor = Color.LightBlue;
         }
         
         
@@ -53,45 +51,45 @@ namespace UiaRunner
         
         private int testResultsPassed = 0;
         private int testResultsFailed = 0;
-        private DateTime startTime = System.DateTime.Now;
+        private DateTime startTime = DateTime.Now;
         private int testResultsAll = 0;
         
         private const string rowStateOutput = "OUTPUT";
         
         void UiaRunnerFormLeave(object sender, EventArgs e)
         {
-            this.TopMost = true;
+            TopMost = true;
         }
         
         void UiaRunnerFormDeactivate(object sender, EventArgs e)
         {
-            this.TopMost = true;
+            TopMost = true;
         }
         
         void UiaRunnerFormResize(object sender, EventArgs e)
         {
-            this.TopMost = true;
+            TopMost = true;
         }
         
         void UiaRunnerFormLoad(object sender, EventArgs e)
         {
-            this.TopMost = true;
+            TopMost = true;
         }
         
         void OpenToolStripMenuItemClick(object sender, EventArgs e)
         {
             //this.openFileDialog.AddExtension = "*.ps1";
-            this.openFileDialog.CheckFileExists = true;
-            this.openFileDialog.CheckPathExists = true;
-            DialogResult res = this.openFileDialog.ShowDialog();
+            openFileDialog.CheckFileExists = true;
+            openFileDialog.CheckPathExists = true;
+            DialogResult res = openFileDialog.ShowDialog();
             
-            PSTestRunner.TestRunner.ScriptPath = 
-                this.openFileDialog.FileName;
+            TestRunner.ScriptPath = 
+                openFileDialog.FileName;
             
-            if (PSTestRunner.TestRunner.ScriptPath != null && PSTestRunner.TestRunner.ScriptPath != string.Empty &&
-                PSTestRunner.TestRunner.ScriptPath.Length > 0 && System.IO.File.Exists(PSTestRunner.TestRunner.ScriptPath)) {
+            if (TestRunner.ScriptPath != null && TestRunner.ScriptPath != string.Empty &&
+                TestRunner.ScriptPath.Length > 0 && System.IO.File.Exists(TestRunner.ScriptPath)) {
                 setToReadyToRunState();
-                setCaption(PSTestRunner.TestRunner.ScriptPath);
+                setCaption(TestRunner.ScriptPath);
             } else {
                 resetCaption();
             }
@@ -109,7 +107,7 @@ namespace UiaRunner
         {
             setToRunningState();
 
-            this.dgvTestResults.Rows.Clear();
+            dgvTestResults.Rows.Clear();
 
             TestData.ResetData();
 
@@ -123,13 +121,13 @@ namespace UiaRunner
             bool res = false;
 
             try {
-                if (this.inputToolStripTextBox.Text.Length > 0) {
-                    PSTestRunner.TestRunner.ScriptParameters =
-                        this.inputToolStripTextBox.Text;
+                if (inputToolStripTextBox.Text.Length > 0) {
+                    TestRunner.ScriptParameters =
+                        inputToolStripTextBox.Text;
                 }
                 
                 res =
-                    PSTestRunner.TestRunner.InitScript();
+                    TestRunner.InitScript();
                 /*
                 if (res) return;
                 index = 
@@ -151,8 +149,8 @@ namespace UiaRunner
                 if (!res)
                 {
                     index =
-                        this.dgvTestResults.Rows.Add(
-                            System.DateTime.Now.ToString(),
+                        dgvTestResults.Rows.Add(
+                            DateTime.Now.ToString(),
                             TestData.TestStateFailed,
                             "UiaRunner.ps1",
                             string.Empty,
@@ -474,18 +472,18 @@ namespace UiaRunner
         void setRowStatus(int index, string status)
         {
             if (status != TestData.TestStateNotTested) {
-                foreach (DataGridViewCell cell in this.dgvTestResults.Rows[index].Cells) {
+                foreach (DataGridViewCell cell in dgvTestResults.Rows[index].Cells) {
                     if (status == TestData.TestStatePassed) {
-                        cell.Style = this.cellStylePassed;
+                        cell.Style = cellStylePassed;
                     }
                     if (status == TestData.TestStateFailed) {
-                        cell.Style = this.cellStyleFailed;
+                        cell.Style = cellStyleFailed;
                     }
                     if (status == TestData.TestStateKnownIssue) {
-                        cell.Style = this.cellStylePassedWithBadSmell;
+                        cell.Style = cellStylePassedWithBadSmell;
                     }
                     if (status == rowStateOutput) {
-                        cell.Style = this.cellStyleOutput;
+                        cell.Style = cellStyleOutput;
                     }
                 }
             }
@@ -551,7 +549,7 @@ namespace UiaRunner
             // variables
             testResultsPassed = 0;
             testResultsFailed = 0;
-            startTime = System.DateTime.Now;
+            startTime = DateTime.Now;
             testResultsAll = 0;
             setTestResultsCounters(TestData.TestStatePassed, 0);
             setTestResultsCounters(TestData.TestStateFailed, 0);

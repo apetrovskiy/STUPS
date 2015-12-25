@@ -9,8 +9,7 @@
 
 namespace Hap
 {
-    using System;
-//	using System.Net;
+    //	using System.Net;
 	using System.Text;
     using HtmlAgilityPack;
     

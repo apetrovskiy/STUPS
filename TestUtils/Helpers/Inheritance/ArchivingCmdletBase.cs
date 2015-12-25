@@ -9,9 +9,6 @@
 
 namespace TestUtils
 {
-    using System;
-    using System.Management.Automation;
-    
     /// <summary>
     /// Description of ArchivingCmdletBase.
     /// </summary>

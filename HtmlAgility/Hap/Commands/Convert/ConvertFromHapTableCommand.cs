@@ -9,10 +9,9 @@
 
 namespace Hap.Commands
 {
-    using System;
     using System.Management.Automation;
 	using HtmlAgilityPack;
-	using Hap.Helpers.Commands.Convert;
+	using Helpers.Commands.Convert;
     
     /// <summary>
     /// Description of ConvertFromHapTableCommand.

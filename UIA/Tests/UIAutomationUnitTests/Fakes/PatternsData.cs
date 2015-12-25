@@ -36,7 +36,7 @@ namespace UIAutomationUnitTests
         public bool Equals(PatternsData other)
         {
             // add comparisions for all members here
-            return this.member == other.member;
+            return member == other.member;
         }
         
         public override int GetHashCode()

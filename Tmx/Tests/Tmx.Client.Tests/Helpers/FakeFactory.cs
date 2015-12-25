@@ -9,8 +9,6 @@
 
 namespace Tmx.Client.Tests.Helpers
 {
-    using System;
-    
     /// <summary>
     /// Description of FakeFactory.
     /// </summary>

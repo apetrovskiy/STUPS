@@ -9,11 +9,8 @@
 
 namespace Tmx
 {
-    using System;
-    using System.Management.Automation;
     using Redmine.Net.Api;
-    using Redmine.Net.Api.Types;
-    
+
     /// <summary>
     /// Description of RMHelper.
     /// </summary>

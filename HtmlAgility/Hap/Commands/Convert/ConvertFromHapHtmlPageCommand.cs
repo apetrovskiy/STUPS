@@ -9,11 +9,8 @@
 
 namespace Hap.Commands
 {
-    using System;
     using System.Management.Automation;
-	using HtmlAgilityPack;
-	using Hap.Helpers.Commands.Convert;
-    
+
     /// <summary>
     /// Description of ConvertFromHapHtmlPageCommand.
     /// </summary>

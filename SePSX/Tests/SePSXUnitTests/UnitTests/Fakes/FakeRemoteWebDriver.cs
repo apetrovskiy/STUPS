@@ -33,19 +33,19 @@ namespace SePSXUnitTests
                 new Response();
             
             if ("getElementTagName" == driverCommandToExecute) {
-                resp.Value = this.TagNameResponse;
+                resp.Value = TagNameResponse;
             }
             if ("getElementText" == driverCommandToExecute) {
-                resp.Value = this.TextResponse;
+                resp.Value = TextResponse;
             }
             if ("isElementEnabled" == driverCommandToExecute) {
-                resp.Value = this.EnabledResponse;
+                resp.Value = EnabledResponse;
             }
             if ("isElementSelected" == driverCommandToExecute) {
-                resp.Value = this.SelectedResponse;
+                resp.Value = SelectedResponse;
             }
             if ("isElementDisplayed" == driverCommandToExecute) {
-                resp.Value = this.DisplayedResponse;
+                resp.Value = DisplayedResponse;
             }
 //            if ("" == driverCommandToExecute) {
 //                

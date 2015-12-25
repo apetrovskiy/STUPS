@@ -27,7 +27,7 @@ namespace SePSXUnitTests
 
         public FakeNavigation(FakeWebDriver driver)
         {
-            this.Driver = driver;
+            Driver = driver;
         }
         
         internal FakeWebDriver Driver { get; set; }

@@ -9,11 +9,9 @@
 
 namespace Hap
 {
-	using System;
-	using System.Management.Automation;
-	using PSTestLib;
-	
-	/// <summary>
+    using System.Management.Automation;
+
+    /// <summary>
 	/// Description of CommonCmdletBase.
 	/// </summary>
 	public class CommonCmdletBase : PSCmdlet //PSCmdletBase

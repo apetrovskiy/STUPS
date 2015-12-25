@@ -10,7 +10,6 @@
 namespace MoqCmdlets
 {
     using System;
-    using System.Management.Automation;
     using Moq;
     
     /// <summary>

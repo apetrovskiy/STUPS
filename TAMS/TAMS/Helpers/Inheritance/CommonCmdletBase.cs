@@ -9,10 +9,8 @@
 
 namespace TAMS
 {
-    using System;
     using System.Management.Automation;
     using PSTestLib;
-    using System.Collections.ObjectModel;
     using System.Collections;
     
     /// <summary>
@@ -49,12 +47,12 @@ namespace TAMS
             }
         }
         
-        protected void WriteLog(LogLevels logLevel, System.Management.Automation.ErrorRecord errorRecord)
+        protected void WriteLog(LogLevels logLevel, ErrorRecord errorRecord)
         {
             if (Preferences.AutoLog) {
                 
-                this.WriteLog(logLevel, errorRecord.Exception.Message);
-                this.WriteLog(logLevel, "Script: '" + errorRecord.InvocationInfo.ScriptName + "', line: " + errorRecord.InvocationInfo.Line.ToString());
+                WriteLog(logLevel, errorRecord.Exception.Message);
+                WriteLog(logLevel, "Script: '" + errorRecord.InvocationInfo.ScriptName + "', line: " + errorRecord.InvocationInfo.Line.ToString());
             }
         }
         
@@ -82,7 +80,7 @@ namespace TAMS
                     reportString +=
                         outputObject.ToString();
                     
-                    this.WriteLog(LogLevels.Info, reportString);
+                    WriteLog(LogLevels.Info, reportString);
                 }
             }
             catch {}

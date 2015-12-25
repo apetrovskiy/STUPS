@@ -113,11 +113,21 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gallio">
-      <HintPath>..\..\..\..\Program Files\Gallio\bin\Gallio.dll</HintPath>
+    <Reference Include="Gallio, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\mbunit.3.4.14.0\lib\net40\Gallio.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="MbUnit">
-      <HintPath>..\..\..\..\Program Files\Gallio\bin\MbUnit.dll</HintPath>
+    <Reference Include="Gallio40, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\mbunit.3.4.14.0\lib\net40\Gallio40.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MbUnit, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\mbunit.3.4.14.0\lib\net40\MbUnit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MbUnit40, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\mbunit.3.4.14.0\lib\net40\MbUnit40.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="nunit.framework, Version=3.0.5813.39032, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\NUnit.3.0.1\lib\net40\nunit.framework.dll</HintPath>

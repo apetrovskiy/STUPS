@@ -47,9 +47,9 @@ catch {
             
             PSCmdletBase.UnitTestMode = true;
             
-            if (0 < PSTestLib.UnitTestOutput.Count) {
+            if (0 < UnitTestOutput.Count) {
 
-                PSTestLib.UnitTestOutput.Clear();
+                UnitTestOutput.Clear();
             }
             
             IWebDriver webDriver = new FakeWebDriver();

@@ -9,7 +9,6 @@
 
 namespace SePSXTest.Commands.Driver.Chrome
 {
-    using System;
     using MbUnit.Framework;
     
     /// <summary>

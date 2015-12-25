@@ -9,10 +9,6 @@
 
 namespace Tmx
 {
-    using System;
-    using System.Management.Automation;
-    using Meyn.TestLink;
-    
     /// <summary>
     /// Description of TLSrvGetTestSuiteCommand.
     /// </summary>

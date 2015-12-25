@@ -9,14 +9,10 @@
 
 namespace TlAddinUnitTests.TestPlans
 {
-    using System;
     using MbUnit.Framework;
-    using PSTestLib;
-    using Moq;
     using Tmx;
     using Meyn.TestLink;
-    using CookComputing.XmlRpc;
-    
+
     /// <summary>
     /// Description of GetTestPlanTestFixture.
     /// </summary>
@@ -129,7 +125,7 @@ namespace TlAddinUnitTests.TestPlans
                 getTestPlansFromProjectsInPipelineByName(listOfProjects, listOfTestPlans, (new string[]{ "testplan 02" }), true, false);
             
             Assert.AreEqual<System.Collections.Generic.List<TestPlan>>(
-                (new System.Collections.Generic.List<Meyn.TestLink.TestPlan>()),
+                (new System.Collections.Generic.List<TestPlan>()),
                 resultList);
         }
         
@@ -180,7 +176,7 @@ namespace TlAddinUnitTests.TestPlans
             listOfTestPlans.RemoveAt(2);
             listOfTestPlans.RemoveAt(0);
             
-            Assert.AreElementsSameIgnoringOrder<Meyn.TestLink.TestPlan>(
+            Assert.AreElementsSameIgnoringOrder<TestPlan>(
                 listOfTestPlans,
                 resultList);
         }
@@ -252,7 +248,7 @@ namespace TlAddinUnitTests.TestPlans
             listOfTestPlans.RemoveAt(2);
             listOfTestPlans.RemoveAt(0);
             
-            Assert.AreElementsSameIgnoringOrder<Meyn.TestLink.TestPlan>(
+            Assert.AreElementsSameIgnoringOrder<TestPlan>(
                 listOfTestPlans,
                 resultList);
         }
@@ -356,7 +352,7 @@ namespace TlAddinUnitTests.TestPlans
             listOfTestPlans.RemoveAt(2);
             listOfTestPlans.RemoveAt(0);
             
-            Assert.AreElementsSameIgnoringOrder<Meyn.TestLink.TestPlan>(
+            Assert.AreElementsSameIgnoringOrder<TestPlan>(
                 listOfTestPlans,
                 resultList);
         }

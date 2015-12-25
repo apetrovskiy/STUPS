@@ -42,7 +42,7 @@ namespace TmxUnitTests.Commands.TestStructure
             UnitTestingHelper.GetNewTestSuite(expectedResultName, string.Empty, string.Empty);
             MbUnit.Framework.Assert.AreEqual(
                 expectedResultName,
-                ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
+                ((ITestSuite)(object)UnitTestOutput.LastOutput[0]).Name);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]
@@ -55,11 +55,11 @@ namespace TmxUnitTests.Commands.TestStructure
             UnitTestingHelper.GetNewTestSuite(expectedResultName, string.Empty, expectedResultDescr);
             MbUnit.Framework.Assert.AreEqual(
                 expectedResultName,
-                ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
+                ((ITestSuite)(object)UnitTestOutput.LastOutput[0]).Name);
             
             MbUnit.Framework.Assert.AreEqual(
                 expectedResultDescr,
-                ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Description);
+                ((ITestSuite)(object)UnitTestOutput.LastOutput[0]).Description);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]
@@ -72,11 +72,11 @@ namespace TmxUnitTests.Commands.TestStructure
             UnitTestingHelper.GetNewTestSuite(expectedResultName, expectedResultId, string.Empty);
             MbUnit.Framework.Assert.AreEqual(
                 expectedResultName,
-                ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
+                ((ITestSuite)(object)UnitTestOutput.LastOutput[0]).Name);
             
             MbUnit.Framework.Assert.AreEqual(
                 expectedResultId,
-                ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Id);
+                ((ITestSuite)(object)UnitTestOutput.LastOutput[0]).Id);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]
@@ -90,15 +90,15 @@ namespace TmxUnitTests.Commands.TestStructure
             UnitTestingHelper.GetNewTestSuite(expectedResultName, expectedResultId, expectedResultDescr);
             MbUnit.Framework.Assert.AreEqual(
                 expectedResultName,
-                ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
+                ((ITestSuite)(object)UnitTestOutput.LastOutput[0]).Name);
             
             MbUnit.Framework.Assert.AreEqual(
                 expectedResultId,
-                ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Id);
+                ((ITestSuite)(object)UnitTestOutput.LastOutput[0]).Id);
             
             MbUnit.Framework.Assert.AreEqual(
                 expectedResultDescr,
-                ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Description);
+                ((ITestSuite)(object)UnitTestOutput.LastOutput[0]).Description);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]
@@ -113,12 +113,12 @@ namespace TmxUnitTests.Commands.TestStructure
             // checks the first test suite
             MbUnit.Framework.Assert.AreEqual(
                 expectedResultName,
-                ((ITestSuite)(object)PSTestLib.UnitTestOutput.PreviousOutput[0]).Name);
+                ((ITestSuite)(object)UnitTestOutput.PreviousOutput[0]).Name);
             
             // checks the second test suite
             MbUnit.Framework.Assert.AreEqual(
                 expectedResultName,
-                ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
+                ((ITestSuite)(object)UnitTestOutput.LastOutput[0]).Name);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]
@@ -139,7 +139,7 @@ namespace TmxUnitTests.Commands.TestStructure
                 //((ITestSuite)CommonCmdletBase.UnitTestOutput[CommonCmdletBase.UnitTestOutput.Count - 1]).Name);
                 // 20140715
                 // ((ITestSuite)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
-                ((ErrorRecord)(object)PSTestLib.UnitTestOutput.LastOutput[0]).Exception.Message);
+                ((ErrorRecord)(object)UnitTestOutput.LastOutput[0]).Exception.Message);
             
             // checks how many test suites
             Console.WriteLine("Output in the UnitTestOutput object");

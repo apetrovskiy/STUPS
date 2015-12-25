@@ -9,8 +9,7 @@
 
 namespace Hap.Helpers.Commands.Convert
 {
-    using System;
-	using HtmlAgilityPack;
+    using HtmlAgilityPack;
 	using Hap.Commands;
     
     /// <summary>
@@ -24,7 +23,7 @@ namespace Hap.Helpers.Commands.Convert
         
         public override void Execute()
         {
-            var cmdlet = (ConvertFromHapTableCommand)this.Cmdlet;
+            var cmdlet = (ConvertFromHapTableCommand)Cmdlet;
             var converter = new FromHtmlNodeToCsvConverter();
             cmdlet.WriteObject(converter.Convert<HtmlNode, SmartString>(cmdlet.InputObject));
         }

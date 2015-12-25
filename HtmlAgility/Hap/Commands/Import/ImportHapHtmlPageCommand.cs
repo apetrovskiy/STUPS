@@ -9,10 +9,9 @@
 
 namespace Hap.Commands
 {
-	using System;
-	using System.Management.Automation;
+    using System.Management.Automation;
     using HtmlAgilityPack;
-	using Hap.Helpers.Commands.Import;
+	using Helpers.Commands.Import;
 	
 	/// <summary>
 	/// Description of ImportHapPageCommand.

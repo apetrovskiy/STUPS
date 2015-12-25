@@ -11,7 +11,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 {
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;using NUnit.Framework;
+    using Xunit;
     using NSubstitute;
     
     /// <summary>
@@ -50,28 +50,28 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
                     new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData()) }) as ISupportsHighlighter;
             
             MbUnit.Framework.Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
-            Xunit.Assert.NotNull(highlightableElement as ISupportsHighlighter);
+            Assert.NotNull(highlightableElement as ISupportsHighlighter);
             
             var navigatableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData()) }) as ISupportsNavigation;
             
             MbUnit.Framework.Assert.IsNotNull(navigatableElement as ISupportsNavigation);
-            Xunit.Assert.NotNull(navigatableElement as ISupportsNavigation);
+            Assert.NotNull(navigatableElement as ISupportsNavigation);
             
             var conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData()) }) as ISupportsConversion;
             
             MbUnit.Framework.Assert.IsNotNull(conversibleElement as ISupportsConversion);
-            Xunit.Assert.NotNull(conversibleElement as ISupportsConversion);
+            Assert.NotNull(conversibleElement as ISupportsConversion);
             
             var refreshableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData()) }) as ISupportsRefresh;
             
             MbUnit.Framework.Assert.IsNotNull(refreshableElement as ISupportsRefresh);
-            Xunit.Assert.NotNull(refreshableElement as ISupportsRefresh);
+            Assert.NotNull(refreshableElement as ISupportsRefresh);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -82,7 +82,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
                     new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData()) }) as ISupportsWindowPattern;
             
             MbUnit.Framework.Assert.IsNotNull(element as ISupportsWindowPattern);
-            Xunit.Assert.NotNull(element as ISupportsWindowPattern);
+            Assert.NotNull(element as ISupportsWindowPattern);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -93,7 +93,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
                     new IBasePattern[] { FakeFactory.GetWindowPattern(new PatternsData()) }) as ISupportsValuePattern;
             
             MbUnit.Framework.Assert.IsNull(element as ISupportsValuePattern);
-            Xunit.Assert.Null(element as ISupportsValuePattern);
+            Assert.Null(element as ISupportsValuePattern);
         }
         
 //        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -148,7 +148,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(expectedValue, element.CanMaximize);
-            Xunit.Assert.Equal(expectedValue, element.CanMaximize);
+            Assert.Equal(expectedValue, element.CanMaximize);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -164,7 +164,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(expectedValue, element.CanMinimize);
-            Xunit.Assert.Equal(expectedValue, element.CanMinimize);
+            Assert.Equal(expectedValue, element.CanMinimize);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -180,7 +180,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(expectedValue, element.IsModal);
-            Xunit.Assert.Equal(expectedValue, element.IsModal);
+            Assert.Equal(expectedValue, element.IsModal);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -196,7 +196,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(expectedValue, element.IsTopmost);
-            Xunit.Assert.Equal(expectedValue, element.IsTopmost);
+            Assert.Equal(expectedValue, element.IsTopmost);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -212,7 +212,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(expectedValue, element.WindowInteractionState);
-            Xunit.Assert.Equal(expectedValue, element.WindowInteractionState);
+            Assert.Equal(expectedValue, element.WindowInteractionState);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -228,7 +228,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(expectedValue, element.WindowVisualState);
-            Xunit.Assert.Equal(expectedValue, element.WindowVisualState);
+            Assert.Equal(expectedValue, element.WindowVisualState);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -251,7 +251,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(expectedResult, result);
-            Xunit.Assert.Equal(expectedResult, result);
+            Assert.Equal(expectedResult, result);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -274,7 +274,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(expectedValue, element.WindowVisualState);
-            Xunit.Assert.Equal(expectedValue, element.WindowVisualState);
+            Assert.Equal(expectedValue, element.WindowVisualState);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -297,7 +297,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(expectedResult, result);
-            Xunit.Assert.Equal(expectedResult, result);
+            Assert.Equal(expectedResult, result);
         }
     }
 }

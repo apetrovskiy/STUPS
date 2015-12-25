@@ -24,7 +24,7 @@ namespace SePSXUnitTests
         }
 
         [ThreadStatic]
-        private static System.Random generator = new System.Random();
+        private static Random generator = new Random();
         
         #region IWebDriver
         private static Mock<IWebDriver> _getWebDriverMock()

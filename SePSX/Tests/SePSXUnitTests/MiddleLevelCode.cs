@@ -29,7 +29,7 @@ namespace SePSXUnitTests
             //
             //
             // MiddleLevelCode.DisposeRunspace(); // 20121226
-            MiddleLevelCode.DisposeRunspace();
+            DisposeRunspace();
             //
             //
             

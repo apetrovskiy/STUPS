@@ -9,10 +9,7 @@
 
 namespace Hap.Helpers.Commands
 {
-	using System;
-	using System.Management.Automation;
-	
-	/// <summary>
+    /// <summary>
 	/// Description of HapCommand.
 	/// </summary>
 	public abstract class HapCommand

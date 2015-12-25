@@ -16,7 +16,6 @@ namespace Tmx.Server.Tests.Helpers
     using Core;
     using Interfaces;
     using Interfaces.TestStructure;
-    using MbUnit.Framework;
     using Xunit;
     using Assert = Xunit.Assert;
     using TestSuite = Interfaces.TestSuite;
@@ -24,21 +23,24 @@ namespace Tmx.Server.Tests.Helpers
     /// <summary>
     /// Description of ImportExportTestFixture.
     /// </summary>
-    [TestFixture][NUnit.Framework.TestFixture]
+    [MbUnit.Framework.TestFixture][NUnit.Framework.TestFixture]
     public class ImportExportTestFixture
     {
         public ImportExportTestFixture()
         {
             // TestSettings.PrepareModuleTests();
         }
-        
-        [SetUp][NUnit.Framework.SetUp]
+
+        [MbUnit.Framework.SetUp]
+        [NUnit.Framework.SetUp]
         public void SetUp()
         {
             // TestSettings.PrepareModuleTests();
         }
-        
-        [Test][NUnit.Framework.Test][Fact]
+
+        [MbUnit.Framework.Test]
+        [NUnit.Framework.Test]
+        [Fact]
         public void ShouldImportExportedData()
         {
             var sourceTestPlatforms = new List<ITestPlatform>();
@@ -59,8 +61,10 @@ namespace Tmx.Server.Tests.Helpers
             ThenTestResultNStatusIs(sourceTestSuites, "4", TestStatuses.KnownIssue);
             ThenTestResultNStatusIs(sourceTestSuites, "5", TestStatuses.NotRun);
         }
-        
-        [Test][NUnit.Framework.Test][Fact]
+
+        [MbUnit.Framework.Test]
+        [NUnit.Framework.Test]
+        [Fact]
         public void ShouldImportExportedTwoDataSets()
         {
             var sourceTestPlatforms = new List<ITestPlatform>();
@@ -83,7 +87,7 @@ namespace Tmx.Server.Tests.Helpers
             ThenThereAreNSuitesInXdocument(4, sourceTestSuites);
         }
         
-        [Test][NUnit.Framework.Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldImportExportedDataTwiceWithoutDuplication()
         {
             var sourceTestPlatforms = new List<ITestPlatform>();
@@ -103,7 +107,7 @@ namespace Tmx.Server.Tests.Helpers
             ThenThereAreNSuitesInXdocument(2, sourceTestSuites);
         }
         
-        [Test][NUnit.Framework.Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldImportExportedDataThriceWithoutDuplication()
         {
             var sourceTestPlatforms = new List<ITestPlatform>();
@@ -126,7 +130,7 @@ namespace Tmx.Server.Tests.Helpers
             ThenThereAreNSuitesInXdocument(2, sourceTestSuites);
         }
         
-        [Test][NUnit.Framework.Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldImportExportedDataWithDuplicatesThriceWithoutDuplication()
         {
             var sourceTestPlatforms = new List<ITestPlatform>();
@@ -152,7 +156,7 @@ namespace Tmx.Server.Tests.Helpers
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////// filtering ////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        [Test][NUnit.Framework.Test][Fact]
+        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldImportExportedDataWithExclusion()
         {
             var sourceTestPlatforms = new List<ITestPlatform>();

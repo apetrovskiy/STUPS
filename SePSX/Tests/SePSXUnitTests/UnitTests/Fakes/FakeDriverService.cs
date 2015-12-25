@@ -23,7 +23,7 @@ namespace SePSXUnitTests
             string driverServiceExecutableName, 
             Uri driverServiceDownloadUrl) : base (servicePath, port, driverServiceExecutableName, driverServiceDownloadUrl)
         {
-            System.Uri u = new System.Uri("aaa");
+            Uri u = new Uri("aaa");
         }
         
         /// <summary>
@@ -43,12 +43,12 @@ namespace SePSXUnitTests
 
         public static FakeDriverService CreateDefaultService()
         {
-            return new FakeDriverService(string.Empty, 0, string.Empty, new System.Uri("aaa"));
+            return new FakeDriverService(string.Empty, 0, string.Empty, new Uri("aaa"));
         }
 
         public static FakeDriverService CreateDefaultService(string driverPath)
         {
-            return new FakeDriverService(string.Empty, 0, string.Empty, new System.Uri("aaa"));
+            return new FakeDriverService(string.Empty, 0, string.Empty, new Uri("aaa"));
         }
     }
 }

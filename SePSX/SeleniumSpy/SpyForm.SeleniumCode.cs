@@ -9,18 +9,10 @@
 
 namespace UIAutomationSpy
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Drawing;
     using System.Windows.Forms;
-    using System.Windows.Automation;
-    using System.Windows;
-    
+
 //    using System;
 //    using System.Diagnostics;
-    using System.Management.Automation;
-    using System.Management.Automation.Runspaces;
-    
     using SePSX;
     
     /// <summary>
@@ -34,7 +26,7 @@ namespace UIAutomationSpy
         
         private void startSpying_Selenium()
         {
-            SePSX.TranscriptCmdletBase cmdlet = 
+            TranscriptCmdletBase cmdlet = 
                 new TranscriptCmdletBase();
             
             

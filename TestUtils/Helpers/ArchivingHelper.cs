@@ -11,7 +11,7 @@ namespace TestUtils
 {
     using System;
     using System.Management.Automation;
-    using TestUtils.Commands;
+    using Commands;
     using Ionic.Zip;
     using NUnrar.Archive;
     using NUnrar.Common;

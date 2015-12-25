@@ -57,7 +57,7 @@ namespace UIAutomationSpy
                     if (System.IO.File.Exists(autoInitScript)) {
                         processScript(autoInitScript);
                     }
-                    processScript(this.codeToRun);
+                    processScript(codeToRun);
                 }
                 destroyRunspace();
             }
@@ -84,8 +84,8 @@ namespace UIAutomationSpy
             }
             catch (Exception eInitRunspace) {
 
-                this.richResults.Text += eInitRunspace.Message;
-                this.richResults.Text += "\r\n";
+                richResults.Text += eInitRunspace.Message;
+                richResults.Text += "\r\n";
                 result = false;
             }
             return result;
@@ -98,9 +98,9 @@ namespace UIAutomationSpy
             System.Collections.Generic.List<PSObject> resultList =
                 new System.Collections.Generic.List<PSObject>();
 
-            this.richResults.Text = string.Empty;
+            richResults.Text = string.Empty;
             try {
-                this.pGridElement.SelectedObject = null;
+                pGridElement.SelectedObject = null;
                 Pipeline cmd =
                     testRunSpace.CreatePipeline(codeSnippet);
                 System.Collections.ObjectModel.Collection<PSObject> resultObject =
@@ -108,17 +108,17 @@ namespace UIAutomationSpy
                 
                 if (resultObject.Count <= 0) return resultObject;
                 if (resultObject.Count == 1) {
-                    this.pGridElement.SelectedObject = resultObject[0];
-                    this.richResults.Text += resultObject[0].ToString();
-                    this.richResults.Text += "\r\n";
+                    pGridElement.SelectedObject = resultObject[0];
+                    richResults.Text += resultObject[0].ToString();
+                    richResults.Text += "\r\n";
                 }
                 if (resultObject.Count <= 1) return resultObject;
                 foreach (PSObject psObj in resultObject) {
                     resultList.Add(psObj);
-                    this.richResults.Text += psObj.ToString();
-                    this.richResults.Text += "\r\n";
+                    richResults.Text += psObj.ToString();
+                    richResults.Text += "\r\n";
                 }
-                this.pGridElement.SelectedObjects =
+                pGridElement.SelectedObjects =
                     new object[] { resultList.ToArray() };
                 
                 /*
@@ -148,8 +148,8 @@ namespace UIAutomationSpy
             }
             catch (Exception eRunspace) {
 
-                this.richResults.Text += eRunspace.Message;
-                this.richResults.Text += "\r\n";
+                richResults.Text += eRunspace.Message;
+                richResults.Text += "\r\n";
                 throw(eRunspace);
             }
         }
@@ -162,7 +162,7 @@ namespace UIAutomationSpy
                 testRunSpace = null;
             }
             catch (Exception eee) {
-                this.txtFullCode.Text = eee.Message;
+                txtFullCode.Text = eee.Message;
             }
         }
 
@@ -176,61 +176,61 @@ namespace UIAutomationSpy
             InitializeComponent();
             
             try {
-                this.tabooPID =
+                tabooPID =
                     System.Diagnostics.Process.GetCurrentProcess().Id;
             }
             catch (Exception eee) {
-                this.txtFullCode.Text = eee.Message;
+                txtFullCode.Text = eee.Message;
             }
             //  // TODO: Add constructor code after the InitializeComponent() call.
             // 
             
             switch (spyMode) {
                 case SpyModes.uIAutomationSpy:
-                    this.switchToUIAutomationSpyMode();
+                    switchToUIAutomationSpyMode();
                     break;
                 case SpyModes.seleniumSpy:
-                    this.switchToSeleniumSpyMode();
+                    switchToSeleniumSpyMode();
                     break;
                 default:
-                    this.switchToUIAutomationSpyMode();
+                    switchToUIAutomationSpyMode();
                     break;
             }
         }
         
         void SpyFormLeave(object sender, EventArgs e)
         {
-            this.TopMost = true;
+            TopMost = true;
         }
         
         void SpyFormDeactivate(object sender, EventArgs e)
         {
-            this.TopMost = true;
+            TopMost = true;
         }
         
         void BtnRunAllClick(object sender, EventArgs e)
         {
-            this.menuAutomationState_RunScript();
+            menuAutomationState_RunScript();
             
-            this.codeToRun = this.txtScript.Text;
-            this.runPowerShellCode();
+            codeToRun = txtScript.Text;
+            runPowerShellCode();
 
-            this.menuAutomationState_ReadyToAll();
+            menuAutomationState_ReadyToAll();
         }
         
         void BtnRunSelClick(object sender, EventArgs e)
         {
-            this.menuAutomationState_RunScript();
+            menuAutomationState_RunScript();
 
-            this.codeToRun = this.txtScript.SelectedText;
-            this.runPowerShellCode();
+            codeToRun = txtScript.SelectedText;
+            runPowerShellCode();
 
-            this.menuAutomationState_ReadyToAll();
+            menuAutomationState_ReadyToAll();
         }
         
         void BtnBreakPSClick(object sender, EventArgs e)
         {
-            this.menuAutomationState_ReadyToAll();
+            menuAutomationState_ReadyToAll();
             
             try {
                 testRunSpace.CloseAsync();
@@ -241,9 +241,9 @@ namespace UIAutomationSpy
             }
         }
         
-        void btnStartClick(object sender, System.EventArgs e)
+        void btnStartClick(object sender, EventArgs e)
         {
-            switch (this.spyMode) {
+            switch (spyMode) {
                 case SpyModes.uIAutomationSpy:
                     startSpying_UIAutomation();
                     break;
@@ -405,11 +405,11 @@ namespace UIAutomationSpy
             ref System.Collections.Generic.List<string> listForCode,
             IUiElement element)
         {
-            this.cleanAncestry();
+            cleanAncestry();
             
-            System.Windows.Automation.TreeWalker walker =
-                new System.Windows.Automation.TreeWalker(
-                    System.Windows.Automation.Condition.TrueCondition);
+            TreeWalker walker =
+                new TreeWalker(
+                    Condition.TrueCondition);
             
             try {
                 
@@ -473,22 +473,22 @@ namespace UIAutomationSpy
                 }
             } catch (Exception eNew)  {
 
-                this.txtFullCode.Text = eNew.Message;
+                txtFullCode.Text = eNew.Message;
             }
         }
         
         void SpyFormFormClosing(object sender, FormClosingEventArgs e)
         {
-            this.stopNow = true;
+            stopNow = true;
             this.Dispose(); //// ?
         }
         
         
         void BtnStopClick(object sender, EventArgs e)
         {
-            this.stopNow = true;
+            stopNow = true;
             
-            this.menuAutomationState_ReadyToAll();
+            menuAutomationState_ReadyToAll();
         }
         
         void SpyFormResize(object sender, EventArgs e)
@@ -496,21 +496,21 @@ namespace UIAutomationSpy
             // 20130508
             // in the minimized mode
             try {
-                this.tabOuter.Height = this.Height - 80;
-                this.tabOuter.Width = this.Width - 40;
+                tabOuter.Height = this.Height - 80;
+                tabOuter.Width = this.Width - 40;
                 
-                this.tabInner.Height = this.tabOuter.Height - 40;
-                this.tabInner.Width = this.tabOuter.Width - 25;
+                tabInner.Height = tabOuter.Height - 40;
+                tabInner.Width = tabOuter.Width - 25;
                 
-                this.richControlCode.Width = this.tabInner.Width - 40;
-                this.richPatterns.Width = this.richControlCode.Width;
-                this.txtFullCode.Width = this.richControlCode.Width;
-                this.txtFullCode.Height = this.tabInner.Height - 150;
+                richControlCode.Width = tabInner.Width - 40;
+                richPatterns.Width = richControlCode.Width;
+                txtFullCode.Width = richControlCode.Width;
+                txtFullCode.Height = tabInner.Height - 150;
                 
-                this.splitContScript.SplitterDistance = 51;
+                splitContScript.SplitterDistance = 51;
             }
             catch {}
-            this.TopMost = true;
+            TopMost = true;
         }
         
         void SpyFormFormClosed(object sender, FormClosedEventArgs e)
@@ -520,12 +520,12 @@ namespace UIAutomationSpy
         
         void SpyFormLoad(object sender, EventArgs e)
         {
-            this.TopMost = true;
+            TopMost = true;
         }
         
         private void cleanAncestry()
         {
-            this.tvwHierarhy.Nodes.Clear();
+            tvwHierarhy.Nodes.Clear();
             ancestorsNodesList.Clear();
             ancestorsCodeList.Clear();
         }
@@ -630,14 +630,14 @@ namespace UIAutomationSpy
         private void guiWritingAutomationElementToPropertyGridControl(IUiElement element)
         {
             try {
-                this.pGridElement.SelectedObject =
+                pGridElement.SelectedObject =
                     // 20140312
                     // element.Current;
                     element.GetCurrent();
             }
             catch {
                 try {
-                    this.pGridElement.SelectedObject =
+                    pGridElement.SelectedObject =
                         // 20140312
                         // element.Cached;
                         // (element as ISupportsCached).Cached;
@@ -657,8 +657,8 @@ namespace UIAutomationSpy
                 for (int i = ancestorsNodesList.Count; i > 0; i--) {
                     TreeNode node = new TreeNode(ancestorsNodesList[i - 1]);
                     
-                    if (this.tvwHierarhy.Nodes.Count == 0) {
-                        this.tvwHierarhy.Nodes.Add(node);
+                    if (tvwHierarhy.Nodes.Count == 0) {
+                        tvwHierarhy.Nodes.Add(node);
                     } else {
                         if (previousNode != null)
                         {
@@ -687,32 +687,32 @@ namespace UIAutomationSpy
                  */
             }
             catch (Exception eNodes) {
-                this.txtFullCode.Text = eNodes.Message;
+                txtFullCode.Text = eNodes.Message;
             }
         }
         
         private void guiWriteCodeGenerated()
         {
-            this.txtFullCode.Text = string.Empty;
+            txtFullCode.Text = string.Empty;
             if (ancestorsCodeList.Count <= 0) return;
             for (int i = ancestorsCodeList.Count; i > 0; i--) {
-                if (this.txtFullCode.Text.Length == 0) {
-                    this.txtFullCode.Text += ancestorsCodeList[i - 1];
+                if (txtFullCode.Text.Length == 0) {
+                    txtFullCode.Text += ancestorsCodeList[i - 1];
                 } else {
-                    this.txtFullCode.Text += " | `\r\n";
-                    this.txtFullCode.Text += ancestorsCodeList[i - 1];
+                    txtFullCode.Text += " | `\r\n";
+                    txtFullCode.Text += ancestorsCodeList[i - 1];
                 }
             }
 
-            if (this.txtFullCode.Text.Length <= 0) return;
-            this.scriptCurrentString =
-                this.txtFullCode.Text;
-            if (this.scriptPreviousString == this.scriptCurrentString) return;
-            this.txtScript.Text += "\r\n\r\n";
-            this.txtScript.Text +=
-                this.txtFullCode.Text;
-            this.scriptPreviousString =
-                this.scriptCurrentString;
+            if (txtFullCode.Text.Length <= 0) return;
+            scriptCurrentString =
+                txtFullCode.Text;
+            if (scriptPreviousString == scriptCurrentString) return;
+            txtScript.Text += "\r\n\r\n";
+            txtScript.Text +=
+                txtFullCode.Text;
+            scriptPreviousString =
+                scriptCurrentString;
 
             /*
             if (ancestorsCodeList.Count > 0) {
@@ -743,27 +743,27 @@ namespace UIAutomationSpy
         
         void StartRecordingToolStripMenuItemClick(object sender, EventArgs e)
         {
-            this.btnStart.PerformClick();
+            btnStart.PerformClick();
         }
         
         void StopRecorgingToolStripMenuItemClick(object sender, EventArgs e)
         {
-            this.btnStop.PerformClick();
+            btnStop.PerformClick();
         }
         
         void RunScriptToolStripMenuItemClick(object sender, EventArgs e)
         {
-            this.btnRunAll.PerformClick();
+            btnRunAll.PerformClick();
         }
         
         void RunSelectionToolStripMenuItemClick(object sender, EventArgs e)
         {
-            this.btnRunSel.PerformClick();
+            btnRunSel.PerformClick();
         }
         
         void BreakScriptToolStripMenuItemClick(object sender, EventArgs e)
         {
-            this.btnBreakPS.PerformClick();
+            btnBreakPS.PerformClick();
         }
         
         void UIAutomationToolStripMenuItemClick(object sender, EventArgs e)
@@ -788,30 +788,30 @@ namespace UIAutomationSpy
         
         void CodeGenerationToolStripMenuItemClick(object sender, EventArgs e)
         {
-            this.tabOuter.SelectTab((int)SpyTabs.outer_Code);
-            this.tabInner.SelectTab((int)SpyTabs.inner_Control);
+            tabOuter.SelectTab((int)SpyTabs.outer_Code);
+            tabInner.SelectTab((int)SpyTabs.inner_Control);
         }
         
         void AncestryTreeToolStripMenuItemClick(object sender, EventArgs e)
         {
-            this.tabOuter.SelectTab((int)SpyTabs.outer_Code);
-            this.tabInner.SelectTab((int)SpyTabs.inner_Hierarchy);
+            tabOuter.SelectTab((int)SpyTabs.outer_Code);
+            tabInner.SelectTab((int)SpyTabs.inner_Hierarchy);
         }
         
         void PropertiesToolStripMenuItemClick(object sender, EventArgs e)
         {
-            this.tabOuter.SelectTab((int)SpyTabs.outer_Code);
-            this.tabInner.SelectTab((int)SpyTabs.inner_Properties);
+            tabOuter.SelectTab((int)SpyTabs.outer_Code);
+            tabInner.SelectTab((int)SpyTabs.inner_Properties);
         }
         
         void ScriptToolStripMenuItemClick(object sender, EventArgs e)
         {
-            this.tabOuter.SelectTab((int)SpyTabs.outer_Script);
+            tabOuter.SelectTab((int)SpyTabs.outer_Script);
         }
         
         void ScriptResultsToolStripMenuItemClick(object sender, EventArgs e)
         {
-            this.tabOuter.SelectTab((int)SpyTabs.outer_Results);
+            tabOuter.SelectTab((int)SpyTabs.outer_Results);
         }
         
         void NotImplementedToolStripMenuItemClick(object sender, EventArgs e)
@@ -823,81 +823,81 @@ namespace UIAutomationSpy
         
         private void menuAutomationState_ReadyToAll()
         {
-            this.btnStart.Enabled = true;
-            this.startRecordingToolStripMenuItem.Enabled = true;
+            btnStart.Enabled = true;
+            startRecordingToolStripMenuItem.Enabled = true;
             
-            this.btnStop.Enabled = false;
-            this.stopRecorgingToolStripMenuItem.Enabled = false;
+            btnStop.Enabled = false;
+            stopRecorgingToolStripMenuItem.Enabled = false;
             
-            this.btnRunAll.Enabled = true;
-            this.runScriptToolStripMenuItem.Enabled = true;
+            btnRunAll.Enabled = true;
+            runScriptToolStripMenuItem.Enabled = true;
             
-            this.btnRunSel.Enabled = true;
-            this.runSelectionToolStripMenuItem.Enabled = true;
+            btnRunSel.Enabled = true;
+            runSelectionToolStripMenuItem.Enabled = true;
             
-            this.btnBreakPS.Enabled = false;
-            this.breakScriptToolStripMenuItem.Enabled = false;
+            btnBreakPS.Enabled = false;
+            breakScriptToolStripMenuItem.Enabled = false;
             
         }
         
         private void menuAutomationState_RunScript()
         {
-            this.btnStart.Enabled = false;
-            this.startRecordingToolStripMenuItem.Enabled = false;
+            btnStart.Enabled = false;
+            startRecordingToolStripMenuItem.Enabled = false;
             
-            this.btnStop.Enabled = false;
-            this.stopRecorgingToolStripMenuItem.Enabled = false;
+            btnStop.Enabled = false;
+            stopRecorgingToolStripMenuItem.Enabled = false;
             
-            this.btnRunAll.Enabled = false;
-            this.runScriptToolStripMenuItem.Enabled = false;
+            btnRunAll.Enabled = false;
+            runScriptToolStripMenuItem.Enabled = false;
             
-            this.btnRunSel.Enabled = false;
-            this.runSelectionToolStripMenuItem.Enabled = false;
+            btnRunSel.Enabled = false;
+            runSelectionToolStripMenuItem.Enabled = false;
             
-            this.btnBreakPS.Enabled = true;
-            this.breakScriptToolStripMenuItem.Enabled = true;
+            btnBreakPS.Enabled = true;
+            breakScriptToolStripMenuItem.Enabled = true;
         }
         
         private void menuAutomationState_RunSpy()
         {
-            this.btnStart.Enabled = false;
-            this.startRecordingToolStripMenuItem.Enabled = false;
+            btnStart.Enabled = false;
+            startRecordingToolStripMenuItem.Enabled = false;
             
-            this.btnStop.Enabled = true;
-            this.stopRecorgingToolStripMenuItem.Enabled = true;
+            btnStop.Enabled = true;
+            stopRecorgingToolStripMenuItem.Enabled = true;
             
-            this.btnRunAll.Enabled = false;
-            this.runScriptToolStripMenuItem.Enabled = false;
+            btnRunAll.Enabled = false;
+            runScriptToolStripMenuItem.Enabled = false;
             
-            this.btnRunSel.Enabled = false;
-            this.runSelectionToolStripMenuItem.Enabled = false;
+            btnRunSel.Enabled = false;
+            runSelectionToolStripMenuItem.Enabled = false;
             
-            this.btnBreakPS.Enabled = false;
-            this.breakScriptToolStripMenuItem.Enabled = false;
+            btnBreakPS.Enabled = false;
+            breakScriptToolStripMenuItem.Enabled = false;
         }
         
 
         // 20121003
         private void switchToUIAutomationSpyMode()
         {
-            this.uIAutomationToolStripMenuItem.Checked = true;
-            this.seleniumToolStripMenuItem.Checked = false;
-            this.Text = "UIAutomationSpy";
+            uIAutomationToolStripMenuItem.Checked = true;
+            seleniumToolStripMenuItem.Checked = false;
+            Text = "UIAutomationSpy";
         }
         
         private void switchToSeleniumSpyMode()
         {
-            this.seleniumToolStripMenuItem.Checked = true;
-            this.uIAutomationToolStripMenuItem.Checked = false;
-            this.Text = "SeleniumSpy";
+            seleniumToolStripMenuItem.Checked = true;
+            uIAutomationToolStripMenuItem.Checked = false;
+            Text = "SeleniumSpy";
         }
         
         private void startSpying_UIAutomation()
         {
-            if (this.btnStart.Text != "Start") return;
-            this.stopNow = false;
+            if (btnStart.Text != "Start") return;
+            stopNow = false;
 
-            this.menuAutomationState_RunSpy();
+            menuAutomationState_RunSpy();
 
             // 20120618 UiaCOMWrapper
             // 20131109
@@ -1163,7 +1163,7 @@ namespace UIAutomationSpy
                             if (!res) {
                             }
                         } catch (Exception eProcessingElement) {
-                            this.txtFullCode.Text = "eProcessingElement element method:\r\n" + eProcessingElement.Message;
+                            txtFullCode.Text = "eProcessingElement element method:\r\n" + eProcessingElement.Message;
                             element = null;
                             System.Threading.Thread.Sleep(Preferences.TranscriptInterval);
                             continue;
@@ -1186,38 +1186,38 @@ namespace UIAutomationSpy
                         
                         // 20131227
                         // int elementPID = UiaHelper.GetElementProcessIdSafely(element);
-                        if (elementPID != this.tabooPID) {
+                        if (elementPID != tabooPID) {
                             if (cmdlet.LastRecordedItem.Count > 0) {
                                 try {
-                                    this.richControlCode.Text = cmdlet.WritingRecord(cmdlet.LastRecordedItem, null, null, null);
-                                    if (this.chkClipboard.Checked) {
-                                        Clipboard.SetDataObject(this.richControlCode.Text);
+                                    richControlCode.Text = cmdlet.WritingRecord(cmdlet.LastRecordedItem, null, null, null);
+                                    if (chkClipboard.Checked) {
+                                        Clipboard.SetDataObject(richControlCode.Text);
                                     }
                                 } catch (Exception eCollectingElements) {
-                                    this.txtFullCode.Text = "Collecting:\r\n" + eCollectingElements.Message;
+                                    txtFullCode.Text = "Collecting:\r\n" + eCollectingElements.Message;
                                     Exception eCollectingElements2 = new Exception("Collecting (eCollectingElements):\r\n" + eCollectingElements.Message);
                                     throw (eCollectingElements2);
                                 }
-                                this.guiWritingAutomationElementToPropertyGridControl(element);
+                                guiWritingAutomationElementToPropertyGridControl(element);
                                 try {
-                                    this.collectAncestry(ref ancestorsNodesList, ref ancestorsCodeList, element);
-                                    this.guiFillHierarchyTree();
-                                    this.guiWriteCodeGenerated();
+                                    collectAncestry(ref ancestorsNodesList, ref ancestorsCodeList, element);
+                                    guiFillHierarchyTree();
+                                    guiWriteCodeGenerated();
                                 } catch (Exception eInner) {
-                                    this.txtFullCode.Text += "Inner cycle (eInner):\r\n" + eInner.Message;
+                                    txtFullCode.Text += "Inner cycle (eInner):\r\n" + eInner.Message;
                                 }
                             }
-                            this.richPatterns.Text = ExSpyCode.WritingAvailablePatterns(element);
+                            richPatterns.Text = ExSpyCode.WritingAvailablePatterns(element);
                         }
                     }
                     
                     System.Threading.Thread.Sleep(Preferences.TranscriptInterval);
                 } catch (Exception eUnknown) {
-                    this.txtFullCode.Text += "External cycle (eUnknown):\r\n" + eUnknown.Message;
+                    txtFullCode.Text += "External cycle (eUnknown):\r\n" + eUnknown.Message;
                     System.Threading.Thread.Sleep(Preferences.TranscriptInterval);
                 }
                 
-            } while (!this.stopNow);
+            } while (!stopNow);
         }
     }
     

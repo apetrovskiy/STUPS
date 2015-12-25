@@ -9,7 +9,6 @@
 
 namespace TlAddinUnitTests.CheckCmdletParameters
 {
-    using System;
     using PSTestLib;
     
     /// <summary>

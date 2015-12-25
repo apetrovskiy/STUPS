@@ -145,7 +145,7 @@ namespace UIAutomationTest
         {
             CmdletUnitTest.TestRunspace.InitializeRunspace(Settings.RunspaceCommand);
             TestProcessStartInfo = new ProcessStartInfo();
-            TestProcessStartInfo.FileName = MiddleLevelCode.TestFormPath;
+            TestProcessStartInfo.FileName = TestFormPath;
             CmdletUnitTest.TestRunspace.RunPSCode(
                 @"[void]([UIAutomation.Preferences]::OnSuccessDelay = 0); " + 
                 @"[PSTestLib.PSCmdletBase]::SetCmdletParametersCheckingOn($false);");

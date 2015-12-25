@@ -90,15 +90,21 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gallio">
-      <HintPath>..\..\..\..\..\Program Files\Gallio\bin\Gallio.dll</HintPath>
+    <Reference Include="Gallio, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\mbunit.3.4.14.0\lib\net40\Gallio.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Gallio40, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\mbunit.3.4.14.0\lib\net40\Gallio40.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="MbUnit, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\Gallio\bin\MbUnit.dll</HintPath>
+      <HintPath>..\..\packages\mbunit.3.4.14.0\lib\net40\MbUnit.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="MbUnit35">
-      <HintPath>..\..\..\..\..\Program Files\Gallio\bin\MbUnit35.dll</HintPath>
+    <Reference Include="MbUnit40, Version=3.4.0.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\mbunit.3.4.14.0\lib\net40\MbUnit40.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>

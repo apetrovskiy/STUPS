@@ -9,10 +9,6 @@
 
 namespace UIAutomationTestForms
 {
-    using System;
-    using System.Drawing;
-    using System.Windows.Forms;
-
     /// <summary>
     /// Description of WinFormsNoTaskBar.
     /// </summary>
@@ -36,7 +32,7 @@ namespace UIAutomationTestForms
             System.Windows.Automation.ControlType controlType,
             int controlDelay) : base ("WinFormsNoTaskBar", "WinFormsNoTaskBar", controlType, controlDelay)
         {
-            base.ChildForm = this;
+            ChildForm = this;
         }
         
         public WinFormsNoTaskBar(
@@ -45,13 +41,13 @@ namespace UIAutomationTestForms
             string controlAutomationId,
             int controlDelay) : base ("WinFormsNoTaskBar", "WinFormsNoTaskBar", controlType, controlName, controlAutomationId, controlDelay)
         {
-            base.ChildForm = this;
+            ChildForm = this;
         }
         
         public WinFormsNoTaskBar(
             ControlToForm[] controls) : base ("WinFormsNoTaskBar", "WinFormsNoTaskBar", controls)
         {
-            base.ChildForm = this;
+            ChildForm = this;
         }
     }
 }

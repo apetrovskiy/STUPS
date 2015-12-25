@@ -9,10 +9,8 @@
 
 namespace Tmx
 {
-    using System;
     using System.Management.Automation;
-    using System.Net;
-    
+
     /// <summary>
     /// Description of TLSConnectCmdletBase.
     /// </summary>

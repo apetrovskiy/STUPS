@@ -9,12 +9,8 @@
 
 namespace UIAutomationUnitTests.Helpers.ObjectModelViaPS
 {
-    using System;
-    using System.Windows.Automation;
-    using MbUnit.Framework;// using Xunit;
-    using System.Management.Automation;
-    using NSubstitute;
-    using UIAutomation;
+    // using Xunit;
+
     // using UIAutomationTest;
     
     /// <summary>

@@ -9,14 +9,9 @@
 
 namespace UIAutomationUnitTests.Commands.Event
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;using NUnit.Framework;
-    using System.Linq;
+    using Xunit;
     using UIAutomation.Commands;
     using UIAutomation.Helpers.Commands;
     using NSubstitute;
@@ -30,8 +25,8 @@ namespace UIAutomationUnitTests.Commands.Event
         public EventCmdletBaseTestFixture()
         {
             FakeFactory.Init();
-            UIAutomation.Preferences.UseElementsPatternObjectModel = false;
-            UIAutomation.Preferences.UseElementsSearchObjectModel = false;
+            Preferences.UseElementsPatternObjectModel = false;
+            Preferences.UseElementsSearchObjectModel = false;
         }
         
         [MbUnit.Framework.SetUp][NUnit.Framework.SetUp]
@@ -39,8 +34,8 @@ namespace UIAutomationUnitTests.Commands.Event
         {
             FakeFactory.Init();
             // 20140227
-            UIAutomation.Preferences.UseElementsPatternObjectModel = false;
-            UIAutomation.Preferences.UseElementsSearchObjectModel = false;
+            Preferences.UseElementsPatternObjectModel = false;
+            Preferences.UseElementsSearchObjectModel = false;
         }
         
         [MbUnit.Framework.TearDown][NUnit.Framework.TearDown]
@@ -177,7 +172,7 @@ namespace UIAutomationUnitTests.Commands.Event
                             new AutomationPropertyChangedEventHandler(cmdlet.AutomationPropertyChangedEventHandler),
                             cmdlet.AutomationProperty);
                         MbUnit.Framework.Assert.AreEqual<AutomationProperty[]>(properties, cmdlet.AutomationProperty);
-                        Xunit.Assert.Equal<AutomationProperty[]>(properties, cmdlet.AutomationProperty);
+                        Assert.Equal<AutomationProperty[]>(properties, cmdlet.AutomationProperty);
                         break;
                 }
             }

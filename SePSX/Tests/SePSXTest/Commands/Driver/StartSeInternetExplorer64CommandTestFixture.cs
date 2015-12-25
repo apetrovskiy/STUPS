@@ -9,7 +9,6 @@
 
 namespace SePSXTest.Commands.Driver.InternetExplorer
 {
-    using System;
     using MbUnit.Framework;
     
     /// <summary>

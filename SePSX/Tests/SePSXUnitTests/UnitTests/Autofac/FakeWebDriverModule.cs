@@ -39,7 +39,7 @@ namespace SePSXUnitTests
         #region SePSX
             Assembly sepsxAssembly = null;
             Assembly[] assemblies =
-                System.AppDomain.CurrentDomain.GetAssemblies();
+                AppDomain.CurrentDomain.GetAssemblies();
             foreach (Assembly assm in assemblies) {
                 if (assm.FullName.Contains("SePSX,")) { // || assm.FullName.Contains("WebDriver")) {
                     sepsxAssembly = assm;
@@ -121,20 +121,20 @@ namespace SePSXUnitTests
             #endregion ChromeDriver
             #region FirefoxDriver
                 #region Firefox profile
-            builder.RegisterType<OpenQA.Selenium.Firefox.FirefoxProfile>()
+            builder.RegisterType<FirefoxProfile>()
                 .UsingConstructor(new Type[]{} )
-                .Named<OpenQA.Selenium.Firefox.FirefoxProfile>("ff_bare");
-            builder.RegisterType<OpenQA.Selenium.Firefox.FirefoxProfile>()
+                .Named<FirefoxProfile>("ff_bare");
+            builder.RegisterType<FirefoxProfile>()
                 .UsingConstructor(new Type[] {
                                       typeof(string)
                                   })
-                .Named<OpenQA.Selenium.Firefox.FirefoxProfile>("ff_with_path");
-            builder.RegisterType<OpenQA.Selenium.Firefox.FirefoxProfile>()
+                .Named<FirefoxProfile>("ff_with_path");
+            builder.RegisterType<FirefoxProfile>()
                 .UsingConstructor(new Type[] {
                                       typeof(string),
                                       typeof(bool)
                                   })
-                .Named<OpenQA.Selenium.Firefox.FirefoxProfile>("ff_with_path_and_bool");
+                .Named<FirefoxProfile>("ff_with_path_and_bool");
                 #endregion Firefox profile
             
             builder.RegisterType<FirefoxDriver>()
@@ -245,7 +245,7 @@ namespace SePSXUnitTests
                                   typeof(FakeRemoteWebElement)
                               });
 //System.Windows.Forms.MessageBox.Show("decorator");
-        builder.RegisterType<SePSXUnitTests.FakeWebElement>()
+        builder.RegisterType<FakeWebElement>()
             .As<IWebElement>()
             .UsingConstructor(new Type[] {
                                   //typeof(IWebDriver)

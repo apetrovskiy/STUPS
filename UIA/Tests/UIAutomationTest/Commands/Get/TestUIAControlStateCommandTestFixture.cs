@@ -9,10 +9,7 @@
 
 namespace UIAutomationTest.Commands.Get
 {
-    using System;
-    using System.Diagnostics;
     using System.Windows.Automation;
-    using MbUnit.Framework;using NUnit.Framework;
 
     /// <summary>
     /// Description of TestUIAControlStateCommandTestFixture.

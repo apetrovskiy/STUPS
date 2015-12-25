@@ -10,8 +10,6 @@
 namespace Tmx.Client.Runner
 {
     using System;
-    using System.ServiceProcess;
-    using System.Threading;
 
     class Program
     {

@@ -9,7 +9,7 @@
 
 namespace UIAutomationUnitTests.Commands.Wizard
 {
-    using MbUnit.Framework;using Xunit;using NUnit.Framework;
+    using Xunit;
     using UIAutomation;
     
     /// <summary>

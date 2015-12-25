@@ -9,8 +9,7 @@
 
 namespace UIAutomationUnitTests.Helpers.Inheritance
 {
-    using MbUnit.Framework;// using Xunit;//using MbUnit.Framework;// using Xunit; // using MbUnit.Framework;// using Xunit;
-    using NUnit.Framework;
+    // using Xunit;//using MbUnit.Framework;// using Xunit; // using MbUnit.Framework;// using Xunit;
     using System.Windows.Automation;
     using UIAutomation;
     
@@ -23,8 +22,8 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
     [NUnit.Framework.Ignore("Incompatible with the contemporary code")]
     public class CommonCmdletBaseTestFixture
     {
-        UIAutomation.GetControlCmdletBase cmdlet = null;
-        UIAutomation.CommonCmdletBase cmdletBase = null;
+        GetControlCmdletBase cmdlet = null;
+        CommonCmdletBase cmdletBase = null;
         
         private void checkConditionsArray(
             string controlType,
@@ -35,7 +34,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             cmdlet = 
                 new UIAutomation.Commands.GetUiaControlCommand();
             cmdletBase = 
-                new UIAutomation.GetControlCmdletBase();
+                new GetControlCmdletBase();
             
             Condition condition =
                 // cmdlet.GetWildcardSearchCondition(cmdlet);

@@ -9,10 +9,7 @@
 
 namespace UIAutomationTest.Helpers.ObjectModelWithMocks
 {
-    using System;
     using System.Windows.Automation;
-    using MbUnit.Framework;using NUnit.Framework;
-    using System.Management.Automation;
     using UIAutomation;
     using UIAutomationUnitTests;
     

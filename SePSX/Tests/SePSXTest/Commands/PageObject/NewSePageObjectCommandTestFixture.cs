@@ -9,10 +9,8 @@
 
 namespace SePSXTest.Commands.PageObject
 {
-    using System;
     using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
-    using System.Management.Automation;
-    
+
     /// <summary>
     /// Description of NewSePageObjectCommandTestFixture.
     /// </summary>

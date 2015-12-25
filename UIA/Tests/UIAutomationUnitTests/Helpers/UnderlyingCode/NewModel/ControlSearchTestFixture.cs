@@ -9,11 +9,9 @@
 
 namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
 {
-    using System;
-    
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;using NUnit.Framework;
+    using Xunit;
     
     /// <summary>
     /// Description of ControlSearchTestFixture.
@@ -110,7 +108,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_TextSearch, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_TextSearch, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_TextSearch, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -126,7 +124,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_TextSearchWin32, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_TextSearchWin32, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_TextSearchWin32, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -143,7 +141,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -160,7 +158,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -177,7 +175,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -194,7 +192,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -209,7 +207,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -224,7 +222,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -239,7 +237,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -254,7 +252,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -270,7 +268,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -286,7 +284,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -302,7 +300,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -318,7 +316,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -334,7 +332,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -350,7 +348,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -366,7 +364,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -382,7 +380,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
         }
         
         // =========================================== non-empty result =============================================
@@ -399,7 +397,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_TextSearch, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_TextSearch, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_TextSearch, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -415,7 +413,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_TextSearchWin32, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_TextSearchWin32, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_TextSearchWin32, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -431,7 +429,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -447,7 +445,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -463,7 +461,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -479,7 +477,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_ExactSearch, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -494,7 +492,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -509,7 +507,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -524,7 +522,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -539,7 +537,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_WildcardSearch, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -555,7 +553,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -571,7 +569,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -587,7 +585,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -603,7 +601,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_RegexSearch, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -619,7 +617,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -635,7 +633,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -651,7 +649,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -667,7 +665,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
-            Xunit.Assert.Equal(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
+            Assert.Equal(UsedSearchType.Control_Win32Search, controlSearch.UsedSearchType);
         }
     }
 }

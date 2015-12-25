@@ -50,9 +50,9 @@ namespace SePSXUnitTests
         {
             //this.Elements =
             //    new List<IWebElement>();
-            this.Attributes =
+            Attributes =
                 new Dictionary<string, string>();
-            this.CssValues =
+            CssValues =
                 new Dictionary<string, string>();
         }
         
@@ -83,13 +83,13 @@ namespace SePSXUnitTests
         {
             this.tagName = tagName;
 Console.WriteLine("FakeRemoteWebElement: SetTagName: this.tagName = " + this.tagName);
-Console.WriteLine("FakeRemoteWebElement: SetTagName: this.TagName = " + this.TagName);
+Console.WriteLine("FakeRemoteWebElement: SetTagName: this.TagName = " + TagName);
         }
         internal void SetText(string text)
         {
             this.text = text;
 Console.WriteLine("FakeRemoteWebElement: SetText: this.text = " + this.text);
-Console.WriteLine("FakeRemoteWebElement: SetText: this.Text = " + this.Text);
+Console.WriteLine("FakeRemoteWebElement: SetText: this.Text = " + Text);
         }
         internal void SetEnabled(bool enabled)
         {
@@ -101,7 +101,7 @@ Console.WriteLine("FakeRemoteWebElement: SetText: this.Text = " + this.Text);
         }
         internal void SetDipslayed(bool dipslayed)
         {
-            this.displayed = dipslayed;
+            displayed = dipslayed;
         }
         
 
@@ -118,7 +118,7 @@ Console.WriteLine("FakeRemoteWebElement: SetText: this.Text = " + this.Text);
             
             
             
-            get { try { Console.WriteLine("FakeRemoteWebElement: TagName (prop) = " + this.tagName); return this.tagName; } catch (Exception eTagName) { Console.WriteLine(".TagName: " + eTagName.Message); return "tagname failed!!!!!!!!!!!!!!!!!!!!!!!!!!"; } }
+            get { try { Console.WriteLine("FakeRemoteWebElement: TagName (prop) = " + tagName); return tagName; } catch (Exception eTagName) { Console.WriteLine(".TagName: " + eTagName.Message); return "tagname failed!!!!!!!!!!!!!!!!!!!!!!!!!!"; } }
         }
         public new string Text
         {
@@ -127,27 +127,27 @@ Console.WriteLine("FakeRemoteWebElement: SetText: this.Text = " + this.Text);
             
             
             
-            get { Console.WriteLine("FakeRemoteWebElement: Text (prop) = " + this.text); return this.text; }
+            get { Console.WriteLine("FakeRemoteWebElement: Text (prop) = " + text); return text; }
         }
         public new bool Enabled
         {
-            get { return this.enabled; }
+            get { return enabled; }
         }
         public new bool Selected
         {
-            get { return this.selected; }
+            get { return selected; }
         }
         public new Point Location
         {
-            get { return this.location; }
+            get { return location; }
         }
         public new Size Size
         {
-            get { return this.size; }
+            get { return size; }
         }
         public new bool Displayed
         {
-            get { return this.displayed; }
+            get { return displayed; }
         }
         public new void Clear() { }
         public new void SendKeys(string text) { }
@@ -168,18 +168,18 @@ Console.WriteLine("FakeRemoteWebElement: SetText: this.Text = " + this.Text);
         internal ReadOnlyCollection<IWebElement> Elements { get; set; }
         internal void SetElementsCollection(List<IWebElement> listOfElements)
         {
-            this.Elements =
+            Elements =
                 new ReadOnlyCollection<IWebElement>(listOfElements);
         }
         
-        public ReadOnlyCollection<IWebElement> FindElements(OpenQA.Selenium.By by)
+        public ReadOnlyCollection<IWebElement> FindElements(By by)
         {
-            return this.Elements;
+            return Elements;
         }
         
-        public IWebElement FindElement(OpenQA.Selenium.By by)
+        public IWebElement FindElement(By by)
         {
-            return this.Elements[0];
+            return Elements[0];
         }
         
         
@@ -208,67 +208,67 @@ Console.WriteLine("FakeRemoteWebElement: SetText: this.Text = " + this.Text);
 //        }
         public IWebElement FindElementByLinkText(string linkText)
         {
-            return this.Elements[0]; // this.DecoratedWebElement.FindElementByLinkText(linkText);
+            return Elements[0]; // this.DecoratedWebElement.FindElementByLinkText(linkText);
         }
         public ReadOnlyCollection<IWebElement> FindElementsByLinkText(string linkText)
         {
-            return this.Elements; // this.DecoratedWebElement.FindElementsByLinkText(linkText);
+            return Elements; // this.DecoratedWebElement.FindElementsByLinkText(linkText);
         }
         public IWebElement FindElementById(string id)
         {
-            return this.Elements[0]; // this.DecoratedWebElement.FindElementById(id);
+            return Elements[0]; // this.DecoratedWebElement.FindElementById(id);
         }
         public ReadOnlyCollection<IWebElement> FindElementsById(string id)
         {
-            return this.Elements; // this.DecoratedWebElement.FindElementsById(id);
+            return Elements; // this.DecoratedWebElement.FindElementsById(id);
         }
         public IWebElement FindElementByName(string name)
         {
-            return this.Elements[0]; // this.DecoratedWebElement.FindElementByName(name);
+            return Elements[0]; // this.DecoratedWebElement.FindElementByName(name);
         }
         public ReadOnlyCollection<IWebElement> FindElementsByName(string name)
         {
-            return this.Elements; // this.DecoratedWebElement.FindElementsByName(name);
+            return Elements; // this.DecoratedWebElement.FindElementsByName(name);
         }
         public IWebElement FindElementByTagName(string tagName)
         {
-            return this.Elements[0]; // this.DecoratedWebElement.FindElementByTagName(tagName);
+            return Elements[0]; // this.DecoratedWebElement.FindElementByTagName(tagName);
         }
         public ReadOnlyCollection<IWebElement> FindElementsByTagName(string tagName)
         {
-            return this.Elements; // this.DecoratedWebElement.FindElementsByTagName(tagName);
+            return Elements; // this.DecoratedWebElement.FindElementsByTagName(tagName);
         }
         public IWebElement FindElementByClassName(string className)
         {
-            return this.Elements[0]; // this.DecoratedWebElement.FindElementByClassName(className);
+            return Elements[0]; // this.DecoratedWebElement.FindElementByClassName(className);
         }
         public ReadOnlyCollection<IWebElement> FindElementsByClassName(string className)
         {
-            return this.Elements; // this.DecoratedWebElement.FindElementsByClassName(className);
+            return Elements; // this.DecoratedWebElement.FindElementsByClassName(className);
         }
         public IWebElement FindElementByXPath(string xpath)
         {
-            return this.Elements[0]; // this.DecoratedWebElement.FindElementByXPath(xpath);
+            return Elements[0]; // this.DecoratedWebElement.FindElementByXPath(xpath);
         }
         public ReadOnlyCollection<IWebElement> FindElementsByXPath(string xpath)
         {
-            return this.Elements; // this.DecoratedWebElement.FindElementsByXPath(xpath);
+            return Elements; // this.DecoratedWebElement.FindElementsByXPath(xpath);
         }
         public IWebElement FindElementByPartialLinkText(string partialLinkText)
         {
-            return this.Elements[0]; // this.DecoratedWebElement.FindElementByPartialLinkText(partialLinkText);
+            return Elements[0]; // this.DecoratedWebElement.FindElementByPartialLinkText(partialLinkText);
         }
         public ReadOnlyCollection<IWebElement> FindElementsByPartialLinkText(string partialLinkText)
         {
-            return this.Elements; // this.DecoratedWebElement.FindElementsByPartialLinkText(partialLinkText);
+            return Elements; // this.DecoratedWebElement.FindElementsByPartialLinkText(partialLinkText);
         }
         public IWebElement FindElementByCssSelector(string cssSelector)
         {
-            return this.Elements[0]; // this.DecoratedWebElement.FindElementByCssSelector(cssSelector);
+            return Elements[0]; // this.DecoratedWebElement.FindElementByCssSelector(cssSelector);
         }
         public ReadOnlyCollection<IWebElement> FindElementsByCssSelector(string cssSelector)
         {
-            return this.Elements; // this.DecoratedWebElement.FindElementsByCssSelector(cssSelector);
+            return Elements; // this.DecoratedWebElement.FindElementsByCssSelector(cssSelector);
         }
     }
 }

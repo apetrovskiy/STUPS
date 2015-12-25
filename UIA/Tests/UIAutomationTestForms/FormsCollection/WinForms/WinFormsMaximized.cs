@@ -9,10 +9,6 @@
 
 namespace UIAutomationTestForms
 {
-    using System;
-    using System.Drawing;
-    using System.Windows.Forms;
-
     /// <summary>
     /// Description of WinFormsMaximized.
     /// </summary>
@@ -36,7 +32,7 @@ namespace UIAutomationTestForms
             System.Windows.Automation.ControlType controlType,
             int controlDelay) : base ("WinFormsMaximized", "WinFormsMaximized", controlType, controlDelay)
         {
-            base.ChildForm = this;
+            ChildForm = this;
         }
         
         public WinFormsMaximized(
@@ -45,13 +41,13 @@ namespace UIAutomationTestForms
             string controlAutomationId,
             int controlDelay) : base ("WinFormsMaximized", "WinFormsMaximized", controlType, controlName, controlAutomationId, controlDelay)
         {
-            base.ChildForm = this;
+            ChildForm = this;
         }
         
         public WinFormsMaximized(
             ControlToForm[] controls) : base ("WinFormsMaximized", "WinFormsMaximized", controls)
         {
-            base.ChildForm = this;
+            ChildForm = this;
         }        
     }
 }

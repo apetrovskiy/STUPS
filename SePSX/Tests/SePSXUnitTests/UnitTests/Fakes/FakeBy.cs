@@ -368,7 +368,7 @@ namespace SePSXUnitTests
 
         public virtual IWebElement FindElement(ISearchContext context)
         {
-            return this.findElementMethod(context);
+            return findElementMethod(context);
         }
         /// <summary>
         ///       Finds all elements matching the criteria.
@@ -378,7 +378,7 @@ namespace SePSXUnitTests
         ///       matching the current criteria, or an empty list if nothing matches.</returns>
         public virtual ReadOnlyCollection<IWebElement> FindElements(ISearchContext context)
         {
-            return this.findElementsMethod(context);
+            return findElementsMethod(context);
         }
         /// <summary>
         ///       Gets a string representation of the finder.
@@ -386,7 +386,7 @@ namespace SePSXUnitTests
         /// <returns>The string displaying the finder content.</returns>
         public override string ToString()
         {
-            return this.description;
+            return description;
         }
         /// <summary>
         ///       Determines whether the specified <see cref="T:System.Object">Object</see> is equal 
@@ -414,7 +414,7 @@ namespace SePSXUnitTests
         /// <returns>A hash code for the current <see cref="T:System.Object">Object</see>.</returns>
         public override int GetHashCode()
         {
-            return this.description.GetHashCode();
+            return description.GetHashCode();
         }
     }
 }

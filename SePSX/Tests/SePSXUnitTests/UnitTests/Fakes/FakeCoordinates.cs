@@ -34,7 +34,7 @@ namespace SePSXUnitTests
         {
             get
             {
-                return this.element.LocationOnScreenOnceScrolledIntoView;
+                return element.LocationOnScreenOnceScrolledIntoView;
             }
         }
         /// <summary>

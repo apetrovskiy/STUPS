@@ -9,8 +9,6 @@
 
 namespace UiaRunner
 {
-    using System;
-    
     public enum RunModes
     {
         Gui = 1,

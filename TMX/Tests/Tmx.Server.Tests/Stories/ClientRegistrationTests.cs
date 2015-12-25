@@ -15,7 +15,6 @@
     using Xunit;
     using Client.Library.Abstract;
     using Assert = Xunit.Assert;
-    using Tmx.Client;
 
     public class ClientRegistrationTests
     {

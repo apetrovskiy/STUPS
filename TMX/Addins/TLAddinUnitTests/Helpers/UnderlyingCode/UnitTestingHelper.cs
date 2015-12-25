@@ -9,7 +9,6 @@
 
 namespace TlAddinUnitTests
 {
-    using System;
     using Tmx;
     using PSTestLib;
     
@@ -26,8 +25,8 @@ namespace TlAddinUnitTests
         {
             PSCmdletBase.UnitTestMode = true;
             
-            if (0 < PSTestLib.UnitTestOutput.Count) {
-                PSTestLib.UnitTestOutput.Clear();
+            if (0 < UnitTestOutput.Count) {
+                UnitTestOutput.Clear();
             }
             
             TLAddinData.CurrentTestLinkConnection = null;

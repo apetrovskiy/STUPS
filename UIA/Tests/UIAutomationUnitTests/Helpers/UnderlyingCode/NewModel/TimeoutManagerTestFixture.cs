@@ -10,7 +10,7 @@
 namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
 {
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;using NUnit.Framework;
+    using Xunit;
     
     /// <summary>
     /// Description of TimeoutManagerTestFixture.
@@ -46,7 +46,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(Preferences.OnSleepDelay, result);
-            Xunit.Assert.Equal(Preferences.OnSleepDelay, result);
+            Assert.Equal(Preferences.OnSleepDelay, result);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -60,7 +60,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(Preferences.OnSleepDelay, result);
-            Xunit.Assert.Equal(Preferences.OnSleepDelay, result);
+            Assert.Equal(Preferences.OnSleepDelay, result);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -74,7 +74,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(250, result);
-            Xunit.Assert.Equal(250, result);
+            Assert.Equal(250, result);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -88,7 +88,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(500, result);
-            Xunit.Assert.Equal(500, result);
+            Assert.Equal(500, result);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -102,7 +102,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(1000, result);
-            Xunit.Assert.Equal(1000, result);
+            Assert.Equal(1000, result);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -116,7 +116,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(6000, result);
-            Xunit.Assert.Equal(6000, result);
+            Assert.Equal(6000, result);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -130,7 +130,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(6000, result);
-            Xunit.Assert.Equal(6000, result);
+            Assert.Equal(6000, result);
         }
     }
 }

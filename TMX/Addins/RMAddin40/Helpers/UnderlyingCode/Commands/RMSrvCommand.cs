@@ -9,9 +9,6 @@
 
 namespace Tmx
 {
-    using System;
-    using System.Management.Automation;
-    
     /// <summary>
     /// Description of RMSrvCommand.
     /// </summary>
@@ -19,7 +16,7 @@ namespace Tmx
     {
         public RMSrvCommand(RMCmdletBase cmdlet)
         {
-            this.Cmdlet = cmdlet;
+            Cmdlet = cmdlet;
         }
         
         internal RMCmdletBase Cmdlet { get; set; }

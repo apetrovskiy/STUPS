@@ -9,9 +9,6 @@
 
 namespace TestUtils.Commands
 {
-    using System;
-    using System.Management.Automation;
-    
     /// <summary>
     /// Description of GrantWin32LocalAccountPrivilegeCommand.
     /// </summary>

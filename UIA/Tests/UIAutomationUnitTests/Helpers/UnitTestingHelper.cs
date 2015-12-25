@@ -14,8 +14,7 @@ namespace UIAutomationUnitTests
     using UIAutomation.Commands;
     using System.Management.Automation;
     using PSTestLib;
-    using CmdletUnitTest;
-    
+
     /// <summary>
     /// Description of UnitTestingHelper.
     /// </summary>
@@ -25,9 +24,9 @@ namespace UIAutomationUnitTests
         {
             PSCmdletBase.UnitTestMode = true;
             
-            if (0 < PSTestLib.UnitTestOutput.Count) {
+            if (0 < UnitTestOutput.Count) {
 
-                PSTestLib.UnitTestOutput.Clear();
+                UnitTestOutput.Clear();
             }
             
             CurrentData.ResetData();

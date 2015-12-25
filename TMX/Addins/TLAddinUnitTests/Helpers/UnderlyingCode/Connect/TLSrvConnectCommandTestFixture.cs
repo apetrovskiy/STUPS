@@ -9,15 +9,9 @@
 
 namespace TlAddinUnitTests
 {
-    using System;
     using MbUnit.Framework;
-    using PSTestLib;
-    using Moq;
-    using Autofac;
 //    using System.Drawing;
 //    using System.Collections.ObjectModel;
-    using Tmx;
-    using Meyn.TestLink;
 
     /// <summary>
     /// Description of TLSrvConnectCommandTestFixture.

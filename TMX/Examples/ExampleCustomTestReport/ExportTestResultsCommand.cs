@@ -9,12 +9,10 @@
 
 namespace ExampleCustomTestReport
 {
-    using System;
     using System.Management.Automation;
     using Tmx;
     // using Tmx.Core;
-    using Tmx.Interfaces.TestStructure;
-    
+
     /// <summary>
     /// Description of Export_TestResultsCommand.
     /// </summary>

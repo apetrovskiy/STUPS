@@ -9,8 +9,6 @@
 
 namespace Hap
 {
-    using System;
-    
     /// <summary>
     /// Description of PageImporterData.
     /// </summary>

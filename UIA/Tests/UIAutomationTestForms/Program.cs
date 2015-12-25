@@ -10,11 +10,9 @@
 namespace UIAutomationTestForms
 {
     using System;
-    using System.Windows;
-    using UIAutomation.Commands;
     using UIAutomation;
     using System.Reflection;
-    using UIAutomationTestForms.FormsCollection.WinForms;
+    using FormsCollection.WinForms;
 
     //class Program
     internal sealed class Program
@@ -45,11 +43,11 @@ namespace UIAutomationTestForms
             if (args.Length > 1 && args[1] != null && args[1] != string.Empty)
             {
                 try {
-                    if ((System.Convert.ToInt32(args[0]) != 0) &&
-                        (System.Convert.ToInt32(args[1]) != 0))
+                    if ((Convert.ToInt32(args[0]) != 0) &&
+                        (Convert.ToInt32(args[1]) != 0))
                     {
                         int sleepTime = 
-                            System.Convert.ToInt32(args[1]);
+                            Convert.ToInt32(args[1]);
                         System.Threading.Thread.Sleep(sleepTime);
                     }
                 } catch {
@@ -67,7 +65,7 @@ namespace UIAutomationTestForms
             {
                 Forms formCode;
                 try {
-                    formCode = (Forms)(System.Convert.ToInt32(args[0]));
+                    formCode = (Forms)(Convert.ToInt32(args[0]));
                 } catch {
                     // Console.WriteLine("Wrong arguments!Use numbers:");
                     // Console.WriteLine("TetUIAutomation Forms SleepBefore");
@@ -219,7 +217,7 @@ namespace UIAutomationTestForms
                     // the fourth command-line argument ControlDelay
                     if (args[i + 1] != null && args[i + 1] != string.Empty) {
                         try {
-                            controlDelay = System.Convert.ToInt32(args[i + 1]);
+                            controlDelay = Convert.ToInt32(args[i + 1]);
                             controlToForm.ControlDelayEn = controlDelay;
                         } catch { }
                     }
@@ -415,11 +413,11 @@ namespace UIAutomationTestForms
         
         private static void dumpTypes(string path)
         {
-            UIAutomation.ReadUiaControlIsOffscreenCommand ccc = 
+            ReadUiaControlIsOffscreenCommand ccc = 
                 new ReadUiaControlIsOffscreenCommand();
             
             Assembly[] allAssms = 
-                System.AppDomain.CurrentDomain.GetAssemblies();
+                AppDomain.CurrentDomain.GetAssemblies();
             
             System.IO.StreamWriter writer = 
                 new System.IO.StreamWriter(path);

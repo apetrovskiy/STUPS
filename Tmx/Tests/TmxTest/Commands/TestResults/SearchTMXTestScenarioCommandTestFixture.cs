@@ -9,9 +9,9 @@
 
 namespace TmxTest.Commands.TestResults
 {
-    using System;
     using System.Collections.ObjectModel;
-    using MbUnit.Framework;using NUnit.Framework; // using MbUnit.Framework;using NUnit.Framework;
+
+    // using MbUnit.Framework;using NUnit.Framework;
     
     /// <summary>
     /// Description of SearchTmxTestScenarioCommandTestFixture.

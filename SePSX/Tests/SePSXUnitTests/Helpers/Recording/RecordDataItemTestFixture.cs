@@ -86,8 +86,8 @@ namespace SePSXUnitTests.Recording
             IRecordedCodeSequence result = null;
             IRecordedCodeSequence codeSequence = new RecordedCodeSequence();
 
-            System.Collections.Generic.List<object> list = 
-                new System.Collections.Generic.List<object>();
+            List<object> list = 
+                new List<object>();
             ReadOnlyCollection<object> dataCollection =
                 new ReadOnlyCollection<object>(list);
             
@@ -107,8 +107,8 @@ namespace SePSXUnitTests.Recording
             IRecordedCodeSequence result = null;
             IRecordedCodeSequence codeSequence = new RecordedCodeSequence();
             
-            System.Collections.Generic.List<object> list = 
-                new System.Collections.Generic.List<object>();
+            List<object> list = 
+                new List<object>();
             Dictionary<string, object> dict1 = new Dictionary<string, object>();
             dict1.Add("key1", "data1");
             list.Add(dict1);

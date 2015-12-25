@@ -9,8 +9,6 @@
 
 namespace Tmx
 {
-    using System;
-    using System.Net;
     using Meyn.TestLink;
     
     /// <summary>
@@ -23,8 +21,8 @@ namespace Tmx
 //        }
 
         public static ITestLinkExtra CurrentTestLinkConnection { get; set; }
-        public static Meyn.TestLink.TestProject CurrentTestProject { get; set; }
-        public static Meyn.TestLink.TestPlan CurrentTestPlan { get; set; }
-        public static Meyn.TestLink.TestSuite CurrentTestSuite { get; set; }
+        public static TestProject CurrentTestProject { get; set; }
+        public static TestPlan CurrentTestPlan { get; set; }
+        public static TestSuite CurrentTestSuite { get; set; }
     }
 }

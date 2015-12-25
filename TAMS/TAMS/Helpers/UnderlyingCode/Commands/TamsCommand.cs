@@ -9,20 +9,17 @@
 
 namespace TAMS
 {
-    using System;
-    using System.Management.Automation;
-    
     /// <summary>
     /// Description of TamsCommand.
     /// </summary>
     internal abstract class TamsCommand
     {
-        internal TamsCommand(TAMS.CommonCmdletBase cmdlet)
+        internal TamsCommand(CommonCmdletBase cmdlet)
         {
-            this.Cmdlet = cmdlet;
+            Cmdlet = cmdlet;
         }
         
-        internal TAMS.CommonCmdletBase Cmdlet { get; set; }
+        internal CommonCmdletBase Cmdlet { get; set; }
         internal abstract void Execute();
     }
 }

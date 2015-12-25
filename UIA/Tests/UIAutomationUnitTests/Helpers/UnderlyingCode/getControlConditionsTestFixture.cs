@@ -11,9 +11,8 @@ namespace UIAutomationUnitTests
 {
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;// using Xunit;
-    using NUnit.Framework;
-    
+    // using Xunit;
+
     /// <summary>
     /// Description of GetControlConditionsTestFixture.
     /// </summary>

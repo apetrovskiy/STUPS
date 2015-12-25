@@ -9,8 +9,6 @@
 
 namespace TlAddinUnitTests.CheckCmdletParameters
 {
-    using System;
-    
     /// <summary>
     /// Description of Settings.
     /// </summary>

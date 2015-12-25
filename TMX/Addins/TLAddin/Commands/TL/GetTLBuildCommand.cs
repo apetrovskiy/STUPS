@@ -9,7 +9,6 @@
 
 namespace Tmx
 {
-    using System;
     using System.Management.Automation;
     
     /// <summary>
@@ -20,7 +19,7 @@ namespace Tmx
     {
         protected override void ProcessRecord()
         {
-            TLHelper.checkTestPlan(this.InputObject);
+            TLHelper.checkTestPlan(InputObject);
             
             var command = new TLSrvGetBuildCommand(this);
             command.Execute();

@@ -11,7 +11,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 {
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;using NUnit.Framework;
+    using Xunit;
     using NSubstitute;
     
     /// <summary>
@@ -50,28 +50,28 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
                     new IBasePattern[] { FakeFactory.GetValuePattern(new PatternsData()) }) as ISupportsHighlighter;
             
             MbUnit.Framework.Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
-            Xunit.Assert.NotNull(highlightableElement as ISupportsHighlighter);
+            Assert.NotNull(highlightableElement as ISupportsHighlighter);
             
             var navigatableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetValuePattern(new PatternsData()) }) as ISupportsNavigation;
             
             MbUnit.Framework.Assert.IsNotNull(navigatableElement as ISupportsNavigation);
-            Xunit.Assert.NotNull(navigatableElement as ISupportsNavigation);
+            Assert.NotNull(navigatableElement as ISupportsNavigation);
             
             var conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetValuePattern(new PatternsData()) }) as ISupportsConversion;
             
             MbUnit.Framework.Assert.IsNotNull(conversibleElement as ISupportsConversion);
-            Xunit.Assert.NotNull(conversibleElement as ISupportsConversion);
+            Assert.NotNull(conversibleElement as ISupportsConversion);
             
             var refreshableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetValuePattern(new PatternsData()) }) as ISupportsRefresh;
             
             MbUnit.Framework.Assert.IsNotNull(refreshableElement as ISupportsRefresh);
-            Xunit.Assert.NotNull(refreshableElement as ISupportsRefresh);
+            Assert.NotNull(refreshableElement as ISupportsRefresh);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -82,7 +82,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
                     new IBasePattern[] { FakeFactory.GetValuePattern(new PatternsData()) }) as ISupportsValuePattern;
             
             MbUnit.Framework.Assert.IsNotNull(element as ISupportsValuePattern);
-            Xunit.Assert.NotNull(element as ISupportsValuePattern);
+            Assert.NotNull(element as ISupportsValuePattern);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -93,7 +93,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
                     new IBasePattern[] { FakeFactory.GetValuePattern(new PatternsData()) }) as ISupportsDockPattern;
             
             MbUnit.Framework.Assert.IsNull(element as ISupportsDockPattern);
-            Xunit.Assert.Null(element as ISupportsDockPattern);
+            Assert.Null(element as ISupportsDockPattern);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -108,7 +108,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Act
             // Assert
             MbUnit.Framework.Assert.AreEqual(expectedValue, element.Value);
-            Xunit.Assert.Equal(expectedValue, element.Value);
+            Assert.Equal(expectedValue, element.Value);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]
@@ -134,7 +134,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(expectedValue, element.Value);
-            Xunit.Assert.Equal(expectedValue, element.Value);
+            Assert.Equal(expectedValue, element.Value);
         }
     }
 }

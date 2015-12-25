@@ -9,10 +9,6 @@
 
 namespace UIAutomationTestForms
 {
-    using System;
-    using System.Drawing;
-    using System.Windows.Forms;
-
     /// <summary>
     /// Description of WinFormsTripled.
     /// </summary>
@@ -36,7 +32,7 @@ namespace UIAutomationTestForms
             System.Windows.Automation.ControlType controlType,
             int controlDelay) : base ("WinFormsTripled", "WinFormsTripled", controlType, controlDelay)
         {
-            base.ChildForm = this;
+            ChildForm = this;
         }
         
         public WinFormsTripled(
@@ -45,15 +41,15 @@ namespace UIAutomationTestForms
             string controlAutomationId,
             int controlDelay) : base ("WinFormsTripled", "WinFormsTripled", controlType, controlName, controlAutomationId, controlDelay)
         {
-            base.ChildForm = this;
+            ChildForm = this;
         }
         
         public WinFormsTripled(
             ControlToForm[] controls) : base ("WinFormsTripled", "WinFormsTripled", controls)
         {
-            base.ChildForm = this;
+            ChildForm = this;
             
-            this.neededControls = controls;
+            neededControls = controls;
         }
         
         
@@ -82,7 +78,7 @@ namespace UIAutomationTestForms
         void btnSecondFormClick(object sender, System.EventArgs e)
         {
             WinFormsSecond secondForm =
-                new WinFormsSecond(this.neededControls);
+                new WinFormsSecond(neededControls);
             secondForm.Show();
         }
     }

@@ -9,9 +9,7 @@
 
 namespace UIAutomationAliases.Commands
 {
-    using System;
     using System.Management.Automation;
-    using UIAutomation.Commands;
 
 //    /// <summary>
 //    /// Description of InvokeUiaInvokePatternCommand.

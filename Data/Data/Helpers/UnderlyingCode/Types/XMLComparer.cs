@@ -18,7 +18,7 @@ namespace Data
     {
         public XMLComparer(List<IXMLDataEntry> dataEntryCollection)
         {
-            this.DataEntryCollection = dataEntryCollection;
+            DataEntryCollection = dataEntryCollection;
         }
         
         public List<IXMLDataEntry> DataEntryCollection { get; set; }

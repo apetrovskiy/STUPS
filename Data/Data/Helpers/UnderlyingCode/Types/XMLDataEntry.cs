@@ -16,8 +16,8 @@ namespace Data
     {
         public XMLDataEntry(string xpath, string value)
         {
-            this.XPath = xpath;
-            this.Value = value;
+            XPath = xpath;
+            Value = value;
         }
         
         public string XPath { get; set; }

@@ -9,8 +9,7 @@
 
 namespace TestUtils
 {
-    using System;
-    using TestUtils.Commands;
+    using Commands;
     
     /// <summary>
     /// Description of NewScheduledTaskCommand.

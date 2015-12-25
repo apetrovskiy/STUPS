@@ -9,7 +9,6 @@
 
 namespace SePSXTest.Commands.Element
 {
-    using System;
     using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
     using System.Management.Automation;
     
@@ -54,8 +53,8 @@ namespace SePSXTest.Commands.Element
         
         private void TestPrm_Id_WebDriverInput(string driverName)
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            System.Collections.ObjectModel.Collection<PSObject> coll = 
+                new System.Collections.ObjectModel.Collection<PSObject>();
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementLink03Answer)));
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementLink04Answer)));
             
@@ -100,8 +99,8 @@ namespace SePSXTest.Commands.Element
         
         private void TestPrm_Id_WebElementInput(string driverName)
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            System.Collections.ObjectModel.Collection<PSObject> coll = 
+                new System.Collections.ObjectModel.Collection<PSObject>();
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementLink03Answer)));
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementLink04Answer)));
 
@@ -153,8 +152,8 @@ namespace SePSXTest.Commands.Element
         
         private void TestPrm_ClassName_WebDriverInput(string driverName)
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            System.Collections.ObjectModel.Collection<PSObject> coll = 
+                new System.Collections.ObjectModel.Collection<PSObject>();
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementButton02Text)));
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementButton03Text)));
             
@@ -199,8 +198,8 @@ namespace SePSXTest.Commands.Element
         
         private void TestPrm_ClassName_WebElementInput(string driverName)
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            System.Collections.ObjectModel.Collection<PSObject> coll = 
+                new System.Collections.ObjectModel.Collection<PSObject>();
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementButton02Text)));
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementButton03Text)));
 
@@ -249,8 +248,8 @@ namespace SePSXTest.Commands.Element
         
         private void TestPrm_TagName_WebDriverInput(string driverName)
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            System.Collections.ObjectModel.Collection<PSObject> coll = 
+                new System.Collections.ObjectModel.Collection<PSObject>();
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementLink01Answer)));
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementLink02Answer)));
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementLink03Answer)));
@@ -298,8 +297,8 @@ namespace SePSXTest.Commands.Element
         
         private void TestPrm_TagName_WebElementInput(string driverName)
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            System.Collections.ObjectModel.Collection<PSObject> coll = 
+                new System.Collections.ObjectModel.Collection<PSObject>();
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementLink01Answer)));
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementLink02Answer)));
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementLink03Answer)));
@@ -352,8 +351,8 @@ namespace SePSXTest.Commands.Element
         
         private void TestPrm_LinkText_WebDriverInput(string driverName)
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            System.Collections.ObjectModel.Collection<PSObject> coll = 
+                new System.Collections.ObjectModel.Collection<PSObject>();
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementLink04Answer)));
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementLink05Answer)));
             
@@ -398,8 +397,8 @@ namespace SePSXTest.Commands.Element
         
         private void TestPrm_LinkText_WebElementInput(string driverName)
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            System.Collections.ObjectModel.Collection<PSObject> coll = 
+                new System.Collections.ObjectModel.Collection<PSObject>();
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementLink04Answer)));
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementLink05Answer)));
 
@@ -450,8 +449,8 @@ namespace SePSXTest.Commands.Element
         
         private void TestPrm_PartialLinkText_WebDriverInput(string driverName)
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            System.Collections.ObjectModel.Collection<PSObject> coll = 
+                new System.Collections.ObjectModel.Collection<PSObject>();
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementLink01Answer)));
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementLink02Answer)));
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementLink03Answer)));
@@ -499,8 +498,8 @@ namespace SePSXTest.Commands.Element
         
         private void TestPrm_PartialLinkText_WebElementInput(string driverName)
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            System.Collections.ObjectModel.Collection<PSObject> coll = 
+                new System.Collections.ObjectModel.Collection<PSObject>();
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementLink01Answer)));
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementLink02Answer)));
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementLink03Answer)));

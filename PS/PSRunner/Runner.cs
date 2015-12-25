@@ -11,7 +11,6 @@ namespace PSRunner
 {
     using System;
     using System.Collections;
-    using System.Collections.Generic;
 //    using System.Diagnostics;
     using System.Management.Automation;
     using System.Management.Automation.Runspaces;

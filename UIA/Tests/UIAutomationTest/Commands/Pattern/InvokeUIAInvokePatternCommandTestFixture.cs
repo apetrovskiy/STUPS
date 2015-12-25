@@ -9,8 +9,6 @@
 
 namespace UIAutomationTest.Commands.Pattern
 {
-    using System;
-    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
     
     using System.Collections.ObjectModel;

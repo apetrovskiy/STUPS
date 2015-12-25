@@ -9,8 +9,6 @@
 
 namespace UIAutomationTest.Commands.ExecutionPlan
 {
-    using System;
-    
     /// <summary>
     /// Description of HideUiaExecutionPlanCommandTestFixture.
     /// </summary>

@@ -11,7 +11,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 {
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;using NUnit.Framework;
+    using Xunit;
     using NSubstitute;
     
     /// <summary>
@@ -50,28 +50,28 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
                     new IBasePattern[] { FakeFactory.GetTableItemPattern(new PatternsData()) }) as ISupportsHighlighter;
             
             MbUnit.Framework.Assert.IsNotNull(highlightableElement as ISupportsHighlighter);
-            Xunit.Assert.NotNull(highlightableElement as ISupportsHighlighter);
+            Assert.NotNull(highlightableElement as ISupportsHighlighter);
             
             var navigatableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTableItemPattern(new PatternsData()) }) as ISupportsNavigation;
             
             MbUnit.Framework.Assert.IsNotNull(navigatableElement as ISupportsNavigation);
-            Xunit.Assert.NotNull(navigatableElement as ISupportsNavigation);
+            Assert.NotNull(navigatableElement as ISupportsNavigation);
             
             var conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTableItemPattern(new PatternsData()) }) as ISupportsConversion;
             
             MbUnit.Framework.Assert.IsNotNull(conversibleElement as ISupportsConversion);
-            Xunit.Assert.NotNull(conversibleElement as ISupportsConversion);
+            Assert.NotNull(conversibleElement as ISupportsConversion);
             
             var refreshableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetTableItemPattern(new PatternsData()) }) as ISupportsRefresh;
             
             MbUnit.Framework.Assert.IsNotNull(refreshableElement as ISupportsRefresh);
-            Xunit.Assert.NotNull(refreshableElement as ISupportsRefresh);
+            Assert.NotNull(refreshableElement as ISupportsRefresh);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -82,7 +82,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
                     new IBasePattern[] { FakeFactory.GetTableItemPattern(new PatternsData()) }) as ISupportsTableItemPattern;
             
             MbUnit.Framework.Assert.IsNotNull(element as ISupportsTableItemPattern);
-            Xunit.Assert.NotNull(element as ISupportsTableItemPattern);
+            Assert.NotNull(element as ISupportsTableItemPattern);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -93,7 +93,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
                     new IBasePattern[] { FakeFactory.GetTableItemPattern(new PatternsData()) }) as ISupportsValuePattern;
             
             MbUnit.Framework.Assert.IsNull(element as ISupportsValuePattern);
-            Xunit.Assert.Null(element as ISupportsValuePattern);
+            Assert.Null(element as ISupportsValuePattern);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -116,7 +116,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(expectedResult, result);
-            Xunit.Assert.Equal(expectedResult, result);
+            Assert.Equal(expectedResult, result);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -139,7 +139,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(expectedResult, result);
-            Xunit.Assert.Equal(expectedResult, result);
+            Assert.Equal(expectedResult, result);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -155,7 +155,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(expectedValue, element.TableColumn);
-            Xunit.Assert.Equal(expectedValue, element.TableColumn);
+            Assert.Equal(expectedValue, element.TableColumn);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -171,7 +171,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(expectedValue, element.TableColumnSpan);
-            Xunit.Assert.Equal(expectedValue, element.TableColumnSpan);
+            Assert.Equal(expectedValue, element.TableColumnSpan);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]
@@ -223,16 +223,16 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             MbUnit.Framework.Assert.AreEqual(expectedValue.GetCurrent().IsOffscreen, element.TableContainingGrid.GetCurrent().IsOffscreen);
             MbUnit.Framework.Assert.AreEqual(expectedValue.GetCurrent().AcceleratorKey, element.TableContainingGrid.GetCurrent().AcceleratorKey);
             
-            Xunit.Assert.Equal(expectedValue.GetCurrent().Name, element.TableContainingGrid.GetCurrent().Name);
-            Xunit.Assert.Equal(expectedValue.GetCurrent().AutomationId, element.TableContainingGrid.GetCurrent().AutomationId);
-            Xunit.Assert.Equal(expectedValue.GetCurrent().ClassName, element.TableContainingGrid.GetCurrent().ClassName);
-            Xunit.Assert.Equal(expectedValue.GetCurrent().ControlType, element.TableContainingGrid.GetCurrent().ControlType);
-            Xunit.Assert.Equal(expectedValue.GetCurrent().BoundingRectangle, element.TableContainingGrid.GetCurrent().BoundingRectangle);
-            Xunit.Assert.Equal(expectedValue.GetCurrent().NativeWindowHandle, element.TableContainingGrid.GetCurrent().NativeWindowHandle);
-            Xunit.Assert.Equal(expectedValue.GetCurrent().ProcessId, element.TableContainingGrid.GetCurrent().ProcessId);
-            Xunit.Assert.Equal(expectedValue.GetCurrent().IsEnabled, element.TableContainingGrid.GetCurrent().IsEnabled);
-            Xunit.Assert.Equal(expectedValue.GetCurrent().IsOffscreen, element.TableContainingGrid.GetCurrent().IsOffscreen);
-            Xunit.Assert.Equal(expectedValue.GetCurrent().AcceleratorKey, element.TableContainingGrid.GetCurrent().AcceleratorKey);
+            Assert.Equal(expectedValue.GetCurrent().Name, element.TableContainingGrid.GetCurrent().Name);
+            Assert.Equal(expectedValue.GetCurrent().AutomationId, element.TableContainingGrid.GetCurrent().AutomationId);
+            Assert.Equal(expectedValue.GetCurrent().ClassName, element.TableContainingGrid.GetCurrent().ClassName);
+            Assert.Equal(expectedValue.GetCurrent().ControlType, element.TableContainingGrid.GetCurrent().ControlType);
+            Assert.Equal(expectedValue.GetCurrent().BoundingRectangle, element.TableContainingGrid.GetCurrent().BoundingRectangle);
+            Assert.Equal(expectedValue.GetCurrent().NativeWindowHandle, element.TableContainingGrid.GetCurrent().NativeWindowHandle);
+            Assert.Equal(expectedValue.GetCurrent().ProcessId, element.TableContainingGrid.GetCurrent().ProcessId);
+            Assert.Equal(expectedValue.GetCurrent().IsEnabled, element.TableContainingGrid.GetCurrent().IsEnabled);
+            Assert.Equal(expectedValue.GetCurrent().IsOffscreen, element.TableContainingGrid.GetCurrent().IsOffscreen);
+            Assert.Equal(expectedValue.GetCurrent().AcceleratorKey, element.TableContainingGrid.GetCurrent().AcceleratorKey);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -248,7 +248,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(expectedValue, element.TableRow);
-            Xunit.Assert.Equal(expectedValue, element.TableRow);
+            Assert.Equal(expectedValue, element.TableRow);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -264,7 +264,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(expectedValue, element.TableRowSpan);
-            Xunit.Assert.Equal(expectedValue, element.TableRowSpan);
+            Assert.Equal(expectedValue, element.TableRowSpan);
         }
     }
 }

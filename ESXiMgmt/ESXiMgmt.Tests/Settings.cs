@@ -9,8 +9,6 @@
 
 namespace EsxiMgmt.Tests
 {
-    using System;
-    
     /// <summary>
     /// Description of Settings.
     /// </summary>

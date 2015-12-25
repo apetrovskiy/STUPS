@@ -9,17 +9,6 @@
 
 namespace UIAutomationUnitTests.Commands.Wait
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Windows.Automation;
-    using UIAutomation;
-    using MbUnit.Framework;using Xunit;using NUnit.Framework;
-    using System.Linq;
-    using UIAutomation.Commands;
-    using UIAutomation.Helpers.Commands;
-    
     /// <summary>
     /// Description of WaitUIAControlIsEnabledCommandTestFixture.
     /// </summary>

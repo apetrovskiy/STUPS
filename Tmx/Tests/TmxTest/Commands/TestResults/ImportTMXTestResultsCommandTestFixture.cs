@@ -9,8 +9,6 @@
 
 namespace TmxTest.Commands.TestResults
 {
-    using System;
-    
     /// <summary>
     /// Description of ImportTmxTestResultsCommandTestFixture.
     /// </summary>

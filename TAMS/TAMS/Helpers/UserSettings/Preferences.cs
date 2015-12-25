@@ -9,8 +9,6 @@
 
 namespace TAMS
 {
-    using System;
-    
     /// <summary>
     /// Description of Preferences.
     /// </summary>

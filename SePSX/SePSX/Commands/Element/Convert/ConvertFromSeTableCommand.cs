@@ -9,10 +9,8 @@
 
 namespace SePSX.Commands
 {
-    using System;
     using System.Management.Automation;
-    using OpenQA.Selenium;
-    
+
     /// <summary>
     /// Description of ConvertFromSeTableCommand.
     /// </summary>
@@ -26,7 +24,7 @@ namespace SePSX.Commands
         
         protected override void ProcessRecord()
         {
-            this.checkInputWebElementOnly(this.InputObject);
+            checkInputWebElementOnly(InputObject);
             
             SeConvertFromTableCommand command =
                 new SeConvertFromTableCommand(this);

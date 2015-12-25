@@ -31,8 +31,8 @@ namespace UIAutomationUnitTests
         public static void InitForPowerShell()
         {
             AutomationFactory.InitUnitTests();
-            UIAutomation.Preferences.UseElementsPatternObjectModel = true;
-            UIAutomation.Preferences.UseElementsSearchObjectModel = true;
+            Preferences.UseElementsPatternObjectModel = true;
+            Preferences.UseElementsSearchObjectModel = true;
             Preferences.UseElementsCurrent = true;
             Preferences.UseElementsCached = false;
         }
@@ -80,7 +80,7 @@ namespace UIAutomationUnitTests
         {
             var gridPattern = Substitute.For<IGridPattern>();
             IUiElement fakeElement =
-                FakeFactory.GetAutomationElement(
+                GetAutomationElement(
                     data.GridPattern_GetItem_ControlType,
                     data.GridPattern_GetItem_Name,
                     data.GridPattern_GetItem_AutomationId,
@@ -301,7 +301,7 @@ namespace UIAutomationUnitTests
         {
             IValuePattern valuePattern = null;
             if (!string.IsNullOrEmpty(data.Current_Value)) {
-                valuePattern = FakeFactory.GetValuePattern(new PatternsData{ ValuePattern_Value = data.Current_Value });
+                valuePattern = GetValuePattern(new PatternsData{ ValuePattern_Value = data.Current_Value });
             }
             return GetAutomationElement(data, new IBasePattern[] { valuePattern }, true);
         }
@@ -329,7 +329,7 @@ namespace UIAutomationUnitTests
         {
             IValuePattern valuePattern = null;
             if (!string.IsNullOrEmpty(data.Current_Value)) {
-                valuePattern = FakeFactory.GetValuePattern(new PatternsData{ ValuePattern_Value = data.Current_Value });
+                valuePattern = GetValuePattern(new PatternsData{ ValuePattern_Value = data.Current_Value });
             }
             return GetAutomationElement(data, new IBasePattern[] { valuePattern }, false);
         }

@@ -9,12 +9,9 @@
 
 namespace UIAutomationUnitTests
 {
-    using System;
     using System.Windows.Automation;
-    using System.Windows.Automation.Text;
     using System.Windows;
-    using UIAutomation;
-    
+
     /// <summary>
     /// Description of ElementData.
     /// </summary>

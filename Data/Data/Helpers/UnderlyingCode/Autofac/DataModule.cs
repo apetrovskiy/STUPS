@@ -17,7 +17,7 @@ namespace Data
     /// <summary>
     /// Description of DataModule.
     /// </summary>
-    public class DataModule : Autofac.Module
+    public class DataModule : Module
     {
         /* ReSharper
         public DataModule()

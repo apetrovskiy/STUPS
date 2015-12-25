@@ -9,14 +9,11 @@
 
 namespace UIAutomationUnitTests.Commands.Get
 {
-    using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;using NUnit.Framework;
-    using System.Linq;
+    using Xunit;
     using UIAutomation.Commands;
     using UIAutomation.Helpers.Commands;
     
@@ -76,7 +73,7 @@ namespace UIAutomationUnitTests.Commands.Get
             MbUnit.Framework.Assert.AreEqual<bool>(
                 expectedResult,
                 (bool)PSTestLib.UnitTestOutput.LastOutput[0]);
-            Xunit.Assert.Equal<bool>(
+            Assert.Equal<bool>(
                 expectedResult,
                 (bool)PSTestLib.UnitTestOutput.LastOutput[0]);
         }

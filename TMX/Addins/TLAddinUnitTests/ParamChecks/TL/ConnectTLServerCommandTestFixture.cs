@@ -9,8 +9,6 @@
 
 namespace TlAddinUnitTests.CheckCmdletParameters
 {
-    using System;
-    using System.Management.Automation;
     using MbUnit.Framework;
     
     /// <summary>

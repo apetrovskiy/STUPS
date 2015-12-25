@@ -34,11 +34,11 @@ namespace SePSXUnitTests
         {
             get
             {
-                return this.binaryLocation;
+                return binaryLocation;
             }
             set
             {
-                this.binaryLocation = value;
+                binaryLocation = value;
             }
         }
         /// <summary>
@@ -49,7 +49,7 @@ namespace SePSXUnitTests
         {
             get
             {
-                return this.arguments.AsReadOnly();
+                return arguments.AsReadOnly();
             }
         }
         /// <summary>
@@ -61,7 +61,7 @@ namespace SePSXUnitTests
             get
             {
                 List<string> encodedExtensions = new List<string>();
-                foreach (string extensionFile in this.extensionFiles)
+                foreach (string extensionFile in extensionFiles)
                 {
                     //byte[] extensionByteArray = File.ReadAllBytes(extensionFile);
                     string encodedExtension = "extension"; //Convert.ToBase64String(extensionByteArray);
@@ -80,7 +80,7 @@ namespace SePSXUnitTests
             {
                 throw new ArgumentException("argument must not be null or empty", "argument");
             }
-            this.AddArguments(new string[]
+            AddArguments(new string[]
             {
                 argument
             });
@@ -91,7 +91,7 @@ namespace SePSXUnitTests
         /// <param name="arguments">An array of arguments to add.</param>
         public void AddArguments(params string[] arguments)
         {
-            this.AddArguments(new List<string>(arguments));
+            AddArguments(new List<string>(arguments));
         }
         /// <summary>
         ///       Adds arguments to be appended to the Chrome.exe command line.
@@ -116,7 +116,7 @@ namespace SePSXUnitTests
             {
                 throw new ArgumentException("pathToExtension must not be null or empty", "pathToExtension");
             }
-            this.AddExtensions(new string[]
+            AddExtensions(new string[]
             {
                 pathToExtension
             });
@@ -128,7 +128,7 @@ namespace SePSXUnitTests
         /// <param name="extensions">An array of full paths to the extensions to add.</param>
         public void AddExtensions(params string[] extensions)
         {
-            this.AddExtensions(new List<string>(extensions));
+            AddExtensions(new List<string>(extensions));
         }
         /// <summary>
         ///       Adds a list of paths to packed Chrome extensions (.crx files) to be installed

@@ -13,12 +13,9 @@
 namespace Tmx
 {
     using System;
-    using System.Net;
-    using System.Collections.Specialized;
     using Meyn.TestLink;
     using System.Management.Automation;
-    using System.Linq;
-    
+
     /// <summary>
     /// Description of TLHelper.
     /// </summary>
@@ -47,7 +44,7 @@ namespace Tmx
                 
                 if (null != apikey && string.Empty != apikey) {
 
-                    TLHelper.ConnectTestLink(
+                    ConnectTestLink(
                         cmdlet,
                         (new TestLink(apikey, connectionString)));
                     
@@ -149,10 +146,10 @@ namespace Tmx
             }
         }
         
-        internal static Meyn.TestLink.TestProject[] GetProjectsByName(TLSCmdletBase cmdlet, string[] projectNames)
+        internal static TestProject[] GetProjectsByName(TLSCmdletBase cmdlet, string[] projectNames)
         {
-            System.Collections.Generic.List<Meyn.TestLink.TestProject> resultList =
-                new System.Collections.Generic.List<Meyn.TestLink.TestProject>();
+            System.Collections.Generic.List<TestProject> resultList =
+                new System.Collections.Generic.List<TestProject>();
             
             string projectNameNow = string.Empty;
             
@@ -188,27 +185,27 @@ namespace Tmx
                     true);
             }
 
-            Meyn.TestLink.TestProject[] resultArray =
+            TestProject[] resultArray =
                 resultList.ToArray();
 
             return resultArray;
         }
         
-        internal static Meyn.TestLink.TestProject[] GetProjectsById(TLSCmdletBase cmdlet, string[] projectIds)
+        internal static TestProject[] GetProjectsById(TLSCmdletBase cmdlet, string[] projectIds)
         {
-            System.Collections.Generic.List<Meyn.TestLink.TestProject> resultList =
-                new System.Collections.Generic.List<Meyn.TestLink.TestProject>();
+            System.Collections.Generic.List<TestProject> resultList =
+                new System.Collections.Generic.List<TestProject>();
 
             string projectIdNow = string.Empty;
             
             try {
 
                 cmdlet.WriteVerbose(cmdlet, "collecting all projects");
-                System.Collections.Generic.List<Meyn.TestLink.TestProject> projectsList =
+                System.Collections.Generic.List<TestProject> projectsList =
                     TLAddinData.CurrentTestLinkConnection.GetProjects();
 
                 cmdlet.WriteVerbose(cmdlet, "iterating through the project colection");
-                foreach (Meyn.TestLink.TestProject testProject in projectsList) {
+                foreach (TestProject testProject in projectsList) {
 
                     cmdlet.WriteVerbose(cmdlet, "iterating through the project ids colection");
                     foreach (string id in projectIds) {
@@ -234,7 +231,7 @@ namespace Tmx
                     true);
             }
 
-            Meyn.TestLink.TestProject[] resultArray =
+            TestProject[] resultArray =
                 resultList.ToArray();
 
             return resultArray;
@@ -244,7 +241,7 @@ namespace Tmx
         {
             cmdlet.WriteObject(
                 cmdlet,
-                TLHelper.GetProjectsByName(
+                GetProjectsByName(
                     cmdlet,
                     projectNames));
         }
@@ -254,7 +251,7 @@ namespace Tmx
 
             cmdlet.WriteObject(
                 cmdlet,
-                TLHelper.GetProjectsById(
+                GetProjectsById(
                     cmdlet,
                     projectIds));
 
@@ -304,7 +301,7 @@ namespace Tmx
             }
         }
         
-        public static void GetTestPlans(TLSCmdletBase cmdlet, Meyn.TestLink.TestProject[] testProjects)
+        public static void GetTestPlans(TLSCmdletBase cmdlet, TestProject[] testProjects)
         {
             try {
                 
@@ -351,7 +348,7 @@ namespace Tmx
             }
         }
         
-        public static void GetTestPlan(TLSCmdletBase cmdlet, Meyn.TestLink.TestProject[] testProjects, string[] testPlanNames)
+        public static void GetTestPlan(TLSCmdletBase cmdlet, TestProject[] testProjects, string[] testPlanNames)
         {
             string testPlanNameNow = string.Empty;
             
@@ -369,7 +366,7 @@ namespace Tmx
                     return;
                 }
                 
-                foreach (Meyn.TestLink.TestProject testProject in testProjects) {
+                foreach (TestProject testProject in testProjects) {
                     foreach (string name in testPlanNames) {
                         
                         testPlanNameNow = name;
@@ -447,7 +444,7 @@ namespace Tmx
             string[] keyword,
             int order,
             bool checkDuplicatedName,
-            Meyn.TestLink.ActionOnDuplicatedName actionDuplicatedName,
+            ActionOnDuplicatedName actionDuplicatedName,
             int executionType,
             int importance)
         {
@@ -485,19 +482,19 @@ Console.WriteLine("!!!");
             //TLAddinData.CurrentTestLinkConnection.ReportTCResult
         }
         
-        public static void GetTestCaseFromProject(TLSCmdletBase cmdlet, Meyn.TestLink.TestProject[] testProjects, string[] testCaseNames)
+        public static void GetTestCaseFromProject(TLSCmdletBase cmdlet, TestProject[] testProjects, string[] testCaseNames)
         {
-            foreach (Meyn.TestLink.TestProject project in testProjects) {
+            foreach (TestProject project in testProjects) {
                 
-                System.Collections.Generic.List<Meyn.TestLink.TestPlan> testPlans =
+                System.Collections.Generic.List<TestPlan> testPlans =
                     TLAddinData.CurrentTestLinkConnection.GetProjectTestPlans(project.id);
                 
-                TLHelper.GetTestCaseFromTestPlan(cmdlet, testPlans.ToArray(), testCaseNames);
+                GetTestCaseFromTestPlan(cmdlet, testPlans.ToArray(), testCaseNames);
                 
-                System.Collections.Generic.List<Meyn.TestLink.TestSuite> firstLevelTestSuites =
+                System.Collections.Generic.List<TestSuite> firstLevelTestSuites =
                     TLAddinData.CurrentTestLinkConnection.GetFirstLevelTestSuitesForTestProject(project.id);
                 
-                TLHelper.GetTestCaseFromTestSuite(cmdlet, firstLevelTestSuites.ToArray(), testCaseNames, true);
+                GetTestCaseFromTestSuite(cmdlet, firstLevelTestSuites.ToArray(), testCaseNames, true);
                 
 //                foreach (Meyn.TestLink.TestSuite suite in firstLevelTestSuites) {
 //                    
@@ -506,16 +503,16 @@ Console.WriteLine("!!!");
             }
         }
         
-        public static void GetTestCaseFromTestSuite(TLSCmdletBase cmdlet, Meyn.TestLink.TestSuite[] testSuites, string[] testCaseNames, bool deep)
+        public static void GetTestCaseFromTestSuite(TLSCmdletBase cmdlet, TestSuite[] testSuites, string[] testCaseNames, bool deep)
         {
-            foreach (Meyn.TestLink.TestSuite testSuite in testSuites) {
+            foreach (TestSuite testSuite in testSuites) {
                 
-                System.Collections.Generic.List<Meyn.TestLink.TestCaseFromTestSuite> testCases =
+                System.Collections.Generic.List<TestCaseFromTestSuite> testCases =
                     TLAddinData.CurrentTestLinkConnection.GetTestCasesForTestSuite(testSuite.id, deep);
                 
                 if (null != testCaseNames && 0 < testCaseNames.Length) {
                     
-                    foreach (Meyn.TestLink.TestCaseFromTestSuite testCase in testCases) {
+                    foreach (TestCaseFromTestSuite testCase in testCases) {
                         
                         cmdlet.WriteObject(cmdlet, testCase);
                     }
@@ -526,16 +523,16 @@ Console.WriteLine("!!!");
             }
         }
 //        
-        public static void GetTestCaseFromTestPlan(TLSCmdletBase cmdlet, Meyn.TestLink.TestPlan[] testPlans, string[] testCaseNames)
+        public static void GetTestCaseFromTestPlan(TLSCmdletBase cmdlet, TestPlan[] testPlans, string[] testCaseNames)
         {
-            foreach (Meyn.TestLink.TestPlan testPlan in testPlans) {
+            foreach (TestPlan testPlan in testPlans) {
                 
-                System.Collections.Generic.List<Meyn.TestLink.TestCaseFromTestPlan> testCases =
+                System.Collections.Generic.List<TestCaseFromTestPlan> testCases =
                     TLAddinData.CurrentTestLinkConnection.GetTestCasesForTestPlan(testPlan.id);
                 
                 if (null != testCaseNames && 0 < testCaseNames.Length) {
                     
-                    foreach (Meyn.TestLink.TestCaseFromTestPlan testCase in testCases) {
+                    foreach (TestCaseFromTestPlan testCase in testCases) {
                         
                         cmdlet.WriteObject(cmdlet, testCase);
                     }
@@ -613,11 +610,11 @@ Console.WriteLine("!!!");
             
             try {
 
-                foreach (Meyn.TestLink.TestPlan testPlan in testPlans) {
+                foreach (TestPlan testPlan in testPlans) {
                     
                     testPlanNameNow = testPlan.name;
                     
-                    System.Collections.Generic.List<Meyn.TestLink.Build> buildsList = 
+                    System.Collections.Generic.List<Build> buildsList = 
                         TLAddinData.CurrentTestLinkConnection.GetBuildsForTestPlan(testPlan.id);
                     
                     if (null == buildNames || 0 == buildNames.Length) {
@@ -626,7 +623,7 @@ Console.WriteLine("!!!");
                             buildsList);
                     } else {
                         
-                        foreach (Meyn.TestLink.Build build in buildsList) {
+                        foreach (Build build in buildsList) {
                             
                             foreach (string buildName in buildNames) {
                                 
@@ -659,7 +656,7 @@ Console.WriteLine("!!!");
             }
         }
         
-        internal static bool checkTestPlan(Meyn.TestLink.TestPlan[] inputObjects)
+        internal static bool checkTestPlan(TestPlan[] inputObjects)
         {
             bool result = false;
             
@@ -667,7 +664,7 @@ Console.WriteLine("!!!");
             if (null == inputObjects) {
 
                 if (null != TLAddinData.CurrentTestPlan) {
-                    inputObjects = new Meyn.TestLink.TestPlan[1];
+                    inputObjects = new TestPlan[1];
                     inputObjects[0] = TLAddinData.CurrentTestPlan;
                     result = true;
                 }
@@ -676,12 +673,12 @@ Console.WriteLine("!!!");
             return result;
         }
         
-        public static void GetTestSuiteFromProject(TLTestSuiteCmdletBase cmdlet, Meyn.TestLink.TestProject[] testProjects)
+        public static void GetTestSuiteFromProject(TLTestSuiteCmdletBase cmdlet, TestProject[] testProjects)
         {
             string testProjectNameNow = string.Empty;
             
             try {
-                foreach (Meyn.TestLink.TestProject testProject in testProjects) {
+                foreach (TestProject testProject in testProjects) {
                     
                     testProjectNameNow = testProject.name;
                     cmdlet.WriteVerbose(
@@ -690,12 +687,12 @@ Console.WriteLine("!!!");
                         testProjectNameNow +
                         "'.");
                     
-                    System.Collections.Generic.List<Meyn.TestLink.TestSuite> list =
+                    System.Collections.Generic.List<TestSuite> list =
                         TLAddinData.CurrentTestLinkConnection.GetFirstLevelTestSuitesForTestProject(testProject.id);
                     
                     cmdlet.WriteVerbose(cmdlet, "There have been found " + list.Count.ToString() + " test suites.");
                     
-                    foreach (Meyn.TestLink.TestSuite testSuiteFound in list) {
+                    foreach (TestSuite testSuiteFound in list) {
                         TLAddinData.CurrentTestSuite = testSuiteFound;
                     }
                     
@@ -715,12 +712,12 @@ Console.WriteLine("!!!");
             }
         }
         
-        public static void GetTestSuiteFromTestPlan(TLTestSuiteCmdletBase cmdlet, Meyn.TestLink.TestPlan[] testPlans)
+        public static void GetTestSuiteFromTestPlan(TLTestSuiteCmdletBase cmdlet, TestPlan[] testPlans)
         {
             string testPlanNameNow = string.Empty;
             
             try {
-                foreach (Meyn.TestLink.TestPlan testPlan in testPlans) {
+                foreach (TestPlan testPlan in testPlans) {
                     
                     testPlanNameNow = testPlan.name;
                     cmdlet.WriteVerbose(
@@ -729,12 +726,12 @@ Console.WriteLine("!!!");
                         testPlanNameNow +
                         "'.");
                     
-                    System.Collections.Generic.List<Meyn.TestLink.TestSuite> list =
+                    System.Collections.Generic.List<TestSuite> list =
                         TLAddinData.CurrentTestLinkConnection.GetTestSuitesForTestPlan(testPlan.id);
                     
                     cmdlet.WriteVerbose(cmdlet, "There have been found " + list.Count.ToString() + " test suites.");
                     
-                    foreach (Meyn.TestLink.TestSuite testSuiteFound in list) {
+                    foreach (TestSuite testSuiteFound in list) {
                         TLAddinData.CurrentTestSuite = testSuiteFound;
                     }
                     
@@ -754,12 +751,12 @@ Console.WriteLine("!!!");
             }
         }
         
-        public static void GetTestSuiteFromTestSuite(TLTestSuiteCmdletBase cmdlet, Meyn.TestLink.TestSuite[] testSuites)
+        public static void GetTestSuiteFromTestSuite(TLTestSuiteCmdletBase cmdlet, TestSuite[] testSuites)
         {
             string testSuiteNameNow = string.Empty;
             
             try {
-                foreach (Meyn.TestLink.TestSuite testSuite in testSuites) {
+                foreach (TestSuite testSuite in testSuites) {
                     
                     testSuiteNameNow = testSuite.name;
                     cmdlet.WriteVerbose(
@@ -768,12 +765,12 @@ Console.WriteLine("!!!");
                         testSuiteNameNow +
                         "'.");
                     
-                    System.Collections.Generic.List<Meyn.TestLink.TestSuite> list =
+                    System.Collections.Generic.List<TestSuite> list =
                         TLAddinData.CurrentTestLinkConnection.GetTestSuitesForTestSuite(testSuite.id);
                     
                     cmdlet.WriteVerbose(cmdlet, "There have been found " + list.Count.ToString() + " test suites.");
                     
-                    foreach (Meyn.TestLink.TestSuite testSuiteFound in list) {
+                    foreach (TestSuite testSuiteFound in list) {
                         TLAddinData.CurrentTestSuite = testSuiteFound;
                     }
                     
@@ -801,8 +798,8 @@ Console.WriteLine("!!!");
                 testSuiteNames.Add(suiteName);
             }
             
-            System.Collections.Generic.List<Meyn.TestLink.TestSuite> testSuites =
-                new System.Collections.Generic.List<Meyn.TestLink.TestSuite>();
+            System.Collections.Generic.List<TestSuite> testSuites =
+                new System.Collections.Generic.List<TestSuite>();
             
             // getting test projects
             System.Collections.Generic.List<TestProject> testProjects =
@@ -824,7 +821,7 @@ Console.WriteLine("!!!");
                         "getting first level test suites from the project '" +
                         testProject.name +
                         ",.");
-                    System.Collections.Generic.List<Meyn.TestLink.TestSuite> firstLevelTestSuites =
+                    System.Collections.Generic.List<TestSuite> firstLevelTestSuites =
                         TLAddinData.CurrentTestLinkConnection.GetFirstLevelTestSuitesForTestProject(testProject.id);
                     
                     if (null != firstLevelTestSuites && 0 < firstLevelTestSuites.Count) {
@@ -838,7 +835,7 @@ Console.WriteLine("!!!");
                             "'.");
                         
                         foreach (string  testSuiteName in testSuiteNames) {
-                            System.Collections.Generic.List<Meyn.TestLink.TestSuite> suitesThatMatch =
+                            System.Collections.Generic.List<TestSuite> suitesThatMatch =
                                 firstLevelTestSuites.FindAll(s => s.name == testSuiteName);
                             if (null != suitesThatMatch && 0 < suitesThatMatch.Count) {
                                 
@@ -853,7 +850,7 @@ Console.WriteLine("!!!");
                         }
                         
                         // getting down-level test suites
-                        foreach (Meyn.TestLink.TestSuite firstLevelTestSuite in firstLevelTestSuites) {
+                        foreach (TestSuite firstLevelTestSuite in firstLevelTestSuites) {
                             
                             cmdlet.WriteVerbose(
                                 cmdlet,
@@ -861,7 +858,7 @@ Console.WriteLine("!!!");
                                 firstLevelTestSuite.name +
                                 "'.");
                             
-                            System.Collections.Generic.List<Meyn.TestLink.TestSuite> downLevelTestSuites =
+                            System.Collections.Generic.List<TestSuite> downLevelTestSuites =
                                 TLAddinData.CurrentTestLinkConnection.GetTestSuitesForTestSuite(firstLevelTestSuite.id);
                             
                             if (null != downLevelTestSuites && 0 < downLevelTestSuites.Count) {
@@ -875,7 +872,7 @@ Console.WriteLine("!!!");
                                     "'.");
                                 
                                 foreach (string testSuiteName in testSuiteNames) {
-                                    System.Collections.Generic.List<Meyn.TestLink.TestSuite> dlSuitesThatMatch =
+                                    System.Collections.Generic.List<TestSuite> dlSuitesThatMatch =
                                         downLevelTestSuites.FindAll(d => d.name == testSuiteName);
                                     if (null != dlSuitesThatMatch && 0 < dlSuitesThatMatch.Count) {
                                         

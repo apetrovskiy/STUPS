@@ -9,9 +9,6 @@
 
 namespace SePSX
 {
-    using System;
-    using System.Management.Automation;
-    
     /// <summary>
     /// Description of SeConvertFromTableCommand.
     /// </summary>
@@ -23,7 +20,7 @@ namespace SePSX
         
         internal override void Execute()
         {
-            SeHelper.ConvertFromTable(this.Cmdlet);
+            SeHelper.ConvertFromTable(Cmdlet);
         }
     }
 }

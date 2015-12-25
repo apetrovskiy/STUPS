@@ -94,14 +94,14 @@ namespace PSTestLib
         protected abstract void WriteSingleObject(PSCmdletBase cmdlet, object outputObject);
         protected abstract void AfterWriteSingleObject(PSCmdletBase cmdlet, object outputObject);
         protected abstract void BeforeWriteCollection(PSCmdletBase cmdlet, object[] outputObjectCollection);
-        protected abstract void BeforeWriteCollection(PSCmdletBase cmdlet, System.Collections.Generic.List<object> outputObjectCollection);
+        protected abstract void BeforeWriteCollection(PSCmdletBase cmdlet, List<object> outputObjectCollection);
         protected abstract void BeforeWriteCollection(PSCmdletBase cmdlet, ArrayList outputObjectCollection);
         protected abstract void BeforeWriteCollection(PSCmdletBase cmdlet, IList outputObjectCollection);
         protected abstract void BeforeWriteCollection(PSCmdletBase cmdlet, IEnumerable outputObjectCollection);
         protected abstract void BeforeWriteCollection(PSCmdletBase cmdlet, ICollection outputObjectCollection);
         protected abstract void BeforeWriteCollection(PSCmdletBase cmdlet, Hashtable outputObjectCollection);
         protected abstract void AfterWriteCollection(PSCmdletBase cmdlet, object[] outputObjectCollection);
-        protected abstract void AfterWriteCollection(PSCmdletBase cmdlet, System.Collections.Generic.List<object> outputObjectCollection);
+        protected abstract void AfterWriteCollection(PSCmdletBase cmdlet, List<object> outputObjectCollection);
         protected abstract void AfterWriteCollection(PSCmdletBase cmdlet, ArrayList outputObjectCollection);
         protected abstract void AfterWriteCollection(PSCmdletBase cmdlet, IList outputObjectCollection);
         protected abstract void AfterWriteCollection(PSCmdletBase cmdlet, IEnumerable outputObjectCollection);
@@ -110,7 +110,7 @@ namespace PSTestLib
         
         public void WriteObject(PSCmdletBase cmdlet, object outputObject)
         {
-            if (PSCmdletBase.UnitTestMode) {
+            if (UnitTestMode) {
                 UnitTestOutput.CheckInitialized();
                 UnitTestOutput.StartAddingOutput();
             }
@@ -125,7 +125,7 @@ namespace PSTestLib
         {
             BeforeWriteCollection(cmdlet, outputObjectCollection);
             
-            if (PSCmdletBase.UnitTestMode) {
+            if (UnitTestMode) {
                 UnitTestOutput.CheckInitialized();
                 UnitTestOutput.StartAddingOutput();
             }
@@ -136,11 +136,11 @@ namespace PSTestLib
             AfterWriteCollection(cmdlet, outputObjectCollection);
         }
         
-        public virtual void WriteObject(PSCmdletBase cmdlet, System.Collections.Generic.List<object> outputObjectCollection)
+        public virtual void WriteObject(PSCmdletBase cmdlet, List<object> outputObjectCollection)
         {
             BeforeWriteCollection(cmdlet, outputObjectCollection);
             
-            if (PSCmdletBase.UnitTestMode) {
+            if (UnitTestMode) {
                 
                 UnitTestOutput.CheckInitialized();
 
@@ -159,7 +159,7 @@ namespace PSTestLib
         {
             BeforeWriteCollection(cmdlet, outputObjectCollection);
             
-            if (PSCmdletBase.UnitTestMode) {
+            if (UnitTestMode) {
                 UnitTestOutput.CheckInitialized();
                 //UnitTestOutput.Add(outputObjectCollection);
                 UnitTestOutput.StartAddingOutput();
@@ -175,7 +175,7 @@ namespace PSTestLib
         {
             BeforeWriteCollection(cmdlet, outputObjectCollection);
             
-            if (PSCmdletBase.UnitTestMode) {
+            if (UnitTestMode) {
                 UnitTestOutput.CheckInitialized();
                 UnitTestOutput.StartAddingOutput();
             }
@@ -190,7 +190,7 @@ namespace PSTestLib
         {
             BeforeWriteCollection(cmdlet, outputObjectCollection);
             
-            if (PSCmdletBase.UnitTestMode) {
+            if (UnitTestMode) {
                 UnitTestOutput.CheckInitialized();
                 UnitTestOutput.StartAddingOutput();
             }
@@ -203,7 +203,7 @@ namespace PSTestLib
         
         public virtual void WriteObject(PSCmdletBase cmdlet, string outputObject)
         {
-            if (PSCmdletBase.UnitTestMode) {
+            if (UnitTestMode) {
                 UnitTestOutput.CheckInitialized();
                 UnitTestOutput.StartAddingOutput();
             }
@@ -215,7 +215,7 @@ namespace PSTestLib
         {
             BeforeWriteCollection(cmdlet, outputObjectCollection);
             
-            if (PSCmdletBase.UnitTestMode) {
+            if (UnitTestMode) {
                 UnitTestOutput.CheckInitialized();
                 UnitTestOutput.StartAddingOutput();
             }
@@ -231,7 +231,7 @@ namespace PSTestLib
         {
             BeforeWriteCollection(cmdlet, outputObjectCollection);
             
-            if (PSCmdletBase.UnitTestMode) {
+            if (UnitTestMode) {
                 UnitTestOutput.CheckInitialized();
                 UnitTestOutput.StartAddingOutput();
             }
@@ -263,7 +263,7 @@ namespace PSTestLib
                 
                 try {
 
-                    if (PSCmdletBase.UnitTestMode) {
+                    if (UnitTestMode) {
                         
                         UnitTestOutput.Add(outputObject);
 
@@ -312,7 +312,7 @@ namespace PSTestLib
                 
                 try {
                     
-                    if (PSCmdletBase.UnitTestMode)
+                    if (UnitTestMode)
                         UnitTestOutput.Add(errorRecord);
                     else
     //                        WriteObjectMethod060OutputResult(cmdlet, outputObject);
@@ -390,7 +390,7 @@ namespace PSTestLib
         
         public void WriteError(PSCmdletBase cmdlet, string message, string errorId, ErrorCategory category, bool terminating)
         {
-            if (PSCmdletBase.UnitTestMode) {
+            if (UnitTestMode) {
                 UnitTestOutput.CheckInitialized();
                 UnitTestOutput.StartAddingOutput();
             }
@@ -453,7 +453,7 @@ namespace PSTestLib
         
         public void WriteVerbose(PSCmdletBase cmdlet, object obj)
         {
-            if (PSCmdletBase.UnitTestMode) {
+            if (UnitTestMode) {
                 UnitTestOutput.CheckInitialized();
                 UnitTestOutput.StartAddingOutput();
             }
@@ -542,7 +542,7 @@ namespace PSTestLib
             
         protected string CmdletSignature(PSCmdletBase cmdlet)
         {
-            string result = this.CmdletName(cmdlet);
+            string result = CmdletName(cmdlet);
             result += ": ";
             return result;
         }

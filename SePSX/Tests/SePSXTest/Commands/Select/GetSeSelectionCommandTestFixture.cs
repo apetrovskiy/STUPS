@@ -9,7 +9,6 @@
 
 namespace SePSXTest.Commands.Select
 {
-    using System;
     using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
     using System.Management.Automation;
     
@@ -54,8 +53,8 @@ namespace SePSXTest.Commands.Select
         
         private void Select_AllOptions(string driverName)
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            System.Collections.ObjectModel.Collection<PSObject> coll = 
+                new System.Collections.ObjectModel.Collection<PSObject>();
             
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementSelect01Value01Name)));
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementSelect01Value02Name)));
@@ -148,8 +147,8 @@ namespace SePSXTest.Commands.Select
         
         private void Select_SelectedOptions(string driverName)
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            System.Collections.ObjectModel.Collection<PSObject> coll = 
+                new System.Collections.ObjectModel.Collection<PSObject>();
             
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementSelect04Value01Name)));
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementSelect04Value03Name)));
@@ -244,8 +243,8 @@ namespace SePSXTest.Commands.Select
         
         private void Select_FirstSelectedOptions(string driverName)
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            System.Collections.ObjectModel.Collection<PSObject> coll = 
+                new System.Collections.ObjectModel.Collection<PSObject>();
             
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementSelect04Value02Name)));
             CmdletUnitTest.TestRunspace.RunAndEvaluateAreEqual(

@@ -9,10 +9,6 @@
 
 namespace UIAutomationTest.Commands.Pattern
 {
-    using System;
-    using MbUnit.Framework;using NUnit.Framework;
-    using System.Management.Automation;
-    
     /// <summary>
     /// Description of InvokeUiaToggleStateSetCommandTestFixture.
     /// </summary>

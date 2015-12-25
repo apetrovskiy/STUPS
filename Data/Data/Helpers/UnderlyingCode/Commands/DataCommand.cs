@@ -16,7 +16,7 @@ namespace Data
     {
         internal DataCommand(CommonCmdletBase cmdlet)
         {
-            this.Cmdlet = cmdlet;
+            Cmdlet = cmdlet;
         }
         
         internal CommonCmdletBase Cmdlet { get; set; }

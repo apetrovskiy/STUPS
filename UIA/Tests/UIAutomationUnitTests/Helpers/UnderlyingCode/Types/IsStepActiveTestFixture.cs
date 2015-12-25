@@ -9,12 +9,10 @@
 
 namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
 {
-    using System;
-    
     using System.Collections;
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;using NUnit.Framework;
+    using Xunit;
     
     /// <summary>
     /// Description of IsStepActiveTestFixture.
@@ -56,7 +54,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(false, result);
-            Xunit.Assert.Equal(false, result);
+            Assert.Equal(false, result);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -75,7 +73,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(false, result);
-            Xunit.Assert.Equal(false, result);
+            Assert.Equal(false, result);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -100,7 +98,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(false, result);
-            Xunit.Assert.Equal(false, result);
+            Assert.Equal(false, result);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -120,7 +118,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(false, result);
-            Xunit.Assert.Equal(false, result);
+            Assert.Equal(false, result);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -141,7 +139,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(true, result);
-            Xunit.Assert.Equal(true, result);
+            Assert.Equal(true, result);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -162,7 +160,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(false, result);
-            Xunit.Assert.Equal(false, result);
+            Assert.Equal(false, result);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]
@@ -186,7 +184,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(false, result);
-            Xunit.Assert.Equal(false, result);
+            Assert.Equal(false, result);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test]
@@ -210,7 +208,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(false, result);
-            Xunit.Assert.Equal(false, result);
+            Assert.Equal(false, result);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -231,7 +229,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(true, result);
-            Xunit.Assert.Equal(true, result);
+            Assert.Equal(true, result);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -252,7 +250,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(false, result);
-            Xunit.Assert.Equal(false, result);
+            Assert.Equal(false, result);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -273,7 +271,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(true, result);
-            Xunit.Assert.Equal(true, result);
+            Assert.Equal(true, result);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -294,7 +292,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(false, result);
-            Xunit.Assert.Equal(false, result);
+            Assert.Equal(false, result);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -318,7 +316,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(true, result);
-            Xunit.Assert.Equal(true, result);
+            Assert.Equal(true, result);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -342,7 +340,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(false, result);
-            Xunit.Assert.Equal(false, result);
+            Assert.Equal(false, result);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -364,7 +362,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(false, result);
-            Xunit.Assert.Equal(false, result);
+            Assert.Equal(false, result);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -387,7 +385,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(true, result);
-            Xunit.Assert.Equal(true, result);
+            Assert.Equal(true, result);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -410,7 +408,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(false, result);
-            Xunit.Assert.Equal(false, result);
+            Assert.Equal(false, result);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -437,7 +435,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(true, result);
-            Xunit.Assert.Equal(true, result);
+            Assert.Equal(true, result);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -464,7 +462,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(false, result);
-            Xunit.Assert.Equal(false, result);
+            Assert.Equal(false, result);
         }
     }
 }

@@ -10,8 +10,6 @@
 namespace UIAutomationTestForms
 {
     using System;
-    using System.Drawing;
-    using System.Reflection;
     using System.Windows.Forms;
     using System.Collections;
     
@@ -35,18 +33,18 @@ namespace UIAutomationTestForms
             System.Windows.Automation.ControlType controlType,
             int controlDelay)
         {
-            this.ControlType = controlType;
-            this.ControlDelay = controlDelay;
-            this.FormName = formName;
-            this.FormTitle = formTitle;
+            ControlType = controlType;
+            ControlDelay = controlDelay;
+            FormName = formName;
+            FormTitle = formTitle;
             
             if (FormName == "WinFormsNoTaskBar") {
-                this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+                FormBorderStyle = FormBorderStyle.FixedToolWindow;
                 this.Visible = false;
-                this.AllowTransparency = true;
-                this.ControlBox = false;
-                this.ShowIcon = false;
-                this.ShowInTaskbar = false;
+                AllowTransparency = true;
+                ControlBox = false;
+                ShowIcon = false;
+                ShowInTaskbar = false;
             }
             
             //this.ChildForm = this;
@@ -66,20 +64,20 @@ namespace UIAutomationTestForms
             string controlAutomationId,
             int controlDelay)
         {
-            this.ControlType = controlType;
-            this.ControlDelay = controlDelay;
-            this.ControlName = controlName;
-            this.ControlAutomationId = controlAutomationId;
-            this.FormName = formName;
-            this.FormTitle = formTitle;
+            ControlType = controlType;
+            ControlDelay = controlDelay;
+            ControlName = controlName;
+            ControlAutomationId = controlAutomationId;
+            FormName = formName;
+            FormTitle = formTitle;
             
             if (FormName == "WinFormsNoTaskBar") {
-                this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+                FormBorderStyle = FormBorderStyle.FixedToolWindow;
                 this.Visible = false;
-                this.AllowTransparency = true;
-                this.ControlBox = false;
-                this.ShowIcon = false;
-                this.ShowInTaskbar = false;
+                AllowTransparency = true;
+                ControlBox = false;
+                ShowIcon = false;
+                ShowInTaskbar = false;
             }
             
             //this.ChildForm = this;
@@ -101,18 +99,18 @@ namespace UIAutomationTestForms
 //            this.ControlName = controlName;
 //            this.ControlAutomationId = controlAutomationId;
             
-            this.controlsArray = controlToForm;
+            controlsArray = controlToForm;
             
-            this.FormName = formName;
-            this.FormTitle = formTitle;
+            FormName = formName;
+            FormTitle = formTitle;
             
             if (FormName == "WinFormsNoTaskBar") {
-                this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+                FormBorderStyle = FormBorderStyle.FixedToolWindow;
                 this.Visible = false;
-                this.AllowTransparency = true;
-                this.ControlBox = false;
-                this.ShowIcon = false;
-                this.ShowInTaskbar = false;
+                AllowTransparency = true;
+                ControlBox = false;
+                ShowIcon = false;
+                ShowInTaskbar = false;
             }
             
             //this.ChildForm = this;
@@ -154,7 +152,7 @@ namespace UIAutomationTestForms
                 arrList.Add(ctf);
                 arr = (ControlToForm[])arrList.ToArray(typeof(ControlToForm));
             } else {
-                arr = this.controlsArray;
+                arr = controlsArray;
             }
 
             for (int i = 0; i < arr.Length; i++) {
@@ -269,7 +267,7 @@ namespace UIAutomationTestForms
                 (control as Control).GetType()
                     .GetProperty("Name")
                     .SetValue(control,
-                    ControlAutomationId != string.Empty ? this.ControlAutomationId : _controlType, null);
+                    ControlAutomationId != string.Empty ? ControlAutomationId : _controlType, null);
 
                 /*
                 if (this.ControlAutomationId != string.Empty){
@@ -287,7 +285,7 @@ namespace UIAutomationTestForms
                 ChildForm.Controls.Add(control as Control);
                 
                 var showControlDelegate = new ShowControl(runTimeout);
-                showControlDelegate(this.ControlDelay, control as Control);
+                showControlDelegate(ControlDelay, control as Control);
             } catch {
             }
         }
@@ -319,7 +317,7 @@ namespace UIAutomationTestForms
                 //            } else {
                 //                (control as System.Windows.Forms.Control).GetType().GetProperty("Name").SetValue(control, _controlType, null);
                 //            }
-                (control as System.Windows.Forms.Control).GetType()
+                (control as Control).GetType()
                     .GetProperty("Name")
                     .SetValue(control,
                     controlToForm.ControlAutomationId != string.Empty
@@ -344,12 +342,12 @@ namespace UIAutomationTestForms
                 //r.Next(0, this.Height - 20);
                     r.Next(0, this.Height - 50);
                 // this.Controls.Add(b);
-                this.ChildForm.Controls.Add(control as Control);
+                ChildForm.Controls.Add(control as Control);
                 
                 var showControlDelegate = new ShowControl(runTimeout);
                 // WriteVerbose(this, "runScriptBlocks 5 fired");
                 //showControlDelegate(this.ControlDelay, control as System.Windows.Forms.Control);
-                showControlDelegate(controlToForm.ControlDelayEn, control as System.Windows.Forms.Control);
+                showControlDelegate(controlToForm.ControlDelayEn, control as Control);
             } catch {
             }
         }

@@ -9,9 +9,7 @@
 
 namespace TAMS
 {
-    using System;
-    using System.Management.Automation;
-    using TAMS.Commands;
+    using Commands;
     //using System.Collections;
     //using System.Diagnostics;
     
@@ -20,7 +18,7 @@ namespace TAMS
     /// </summary>
     internal class TamsCompareObjectCommand : TamsCommand
     {
-        internal TamsCompareObjectCommand(TAMS.CommonCmdletBase cmdlet) : base (cmdlet)
+        internal TamsCompareObjectCommand(CommonCmdletBase cmdlet) : base (cmdlet)
         {
         }
         

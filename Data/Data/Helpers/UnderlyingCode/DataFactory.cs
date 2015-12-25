@@ -23,15 +23,15 @@ namespace Data
         static DataFactory()
         {
             try {
-                DataFactory.AutofacModule = new DataModule();
+                AutofacModule = new DataModule();
             }
             catch (Exception eLoadingModule) {
                 Console.WriteLine("Loading of module failed; " + eLoadingModule.Message);
             }
         }
         
-        private static Autofac.Module autofacModule;
-        internal static Autofac.Module AutofacModule
+        private static Module autofacModule;
+        internal static Module AutofacModule
         { 
             get { return autofacModule; }
             set{ autofacModule = value; initFlag = false; }
@@ -48,13 +48,13 @@ namespace Data
 
                     builder = new ContainerBuilder();
 
-                    builder.RegisterModule(DataFactory.AutofacModule);
+                    builder.RegisterModule(AutofacModule);
 
-                    DataFactory.Container = null;
+                    Container = null;
 
                     var container = builder.Build(ContainerBuildOptions.Default);
 
-                    DataFactory.Container = container;
+                    Container = container;
 
                 }
                 catch (Exception efgh) {

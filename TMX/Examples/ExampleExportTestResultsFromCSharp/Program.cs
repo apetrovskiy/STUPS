@@ -159,8 +159,8 @@ namespace ExampleExportTestResultsFromCSharp
     {
         public TestStory(string id, string name)
         {
-            this.Id = id;
-            this.Name = name;
+            Id = id;
+            Name = name;
         }
         
         public string Id { get; set; }
@@ -171,11 +171,11 @@ namespace ExampleExportTestResultsFromCSharp
     {
         public TestResult(string id, string name, string description, string storyId, string status)
         {
-            this.Id = id;
-            this.Name = name;
-            this.Description = description;
-            this.StoryId = storyId;
-            this.Status = status;
+            Id = id;
+            Name = name;
+            Description = description;
+            StoryId = storyId;
+            Status = status;
         }
         
         public string Id { get; set; }

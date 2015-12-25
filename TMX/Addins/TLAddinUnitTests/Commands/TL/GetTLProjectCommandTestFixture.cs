@@ -9,14 +9,11 @@
 
 namespace TlAddinUnitTests.Commands.TL
 {
-    using System;
     using System.Collections.Generic;
     using MbUnit.Framework;
     using PSTestLib;
-    using Moq;
     using Tmx;
     using Meyn.TestLink;
-    using CookComputing.XmlRpc;
 
     /// <summary>
     /// Description of GetTLProjectCommandTestFixture.
@@ -109,7 +106,7 @@ namespace TlAddinUnitTests.Commands.TL
             
             Assert.AreEqual(
                 list,
-                UnitTestOutput.LastOutput.AsList<Meyn.TestLink.TestProject>());
+                UnitTestOutput.LastOutput.AsList<TestProject>());
         }
         
         [Test] //, Parallelizable]
@@ -138,7 +135,7 @@ namespace TlAddinUnitTests.Commands.TL
             
             Assert.AreEqual(
                 list,
-                UnitTestOutput.LastOutput.AsList<Meyn.TestLink.TestProject>());
+                UnitTestOutput.LastOutput.AsList<TestProject>());
         }
         
         [Test] //, Parallelizable]
@@ -159,7 +156,7 @@ namespace TlAddinUnitTests.Commands.TL
             
             Assert.AreEqual(
                 list,
-                UnitTestOutput.LastOutput.AsList<Meyn.TestLink.TestProject>());
+                UnitTestOutput.LastOutput.AsList<TestProject>());
         }
         
         [Test] //, Parallelizable]
@@ -190,7 +187,7 @@ namespace TlAddinUnitTests.Commands.TL
             
             Assert.AreEqual(
                 list,
-                UnitTestOutput.LastOutput.AsList<Meyn.TestLink.TestProject>());
+                UnitTestOutput.LastOutput.AsList<TestProject>());
         }
         
         [Test] //, Parallelizable]
@@ -212,7 +209,7 @@ namespace TlAddinUnitTests.Commands.TL
             
             Assert.AreEqual(
                 list,
-                UnitTestOutput.LastOutput.AsList<Meyn.TestLink.TestProject>());
+                UnitTestOutput.LastOutput.AsList<TestProject>());
         }
         
         [Test] //, Parallelizable]
@@ -244,7 +241,7 @@ namespace TlAddinUnitTests.Commands.TL
             
             Assert.AreEqual(
                 list,
-                UnitTestOutput.LastOutput.AsList<Meyn.TestLink.TestProject>());
+                UnitTestOutput.LastOutput.AsList<TestProject>());
         }
     }
 }

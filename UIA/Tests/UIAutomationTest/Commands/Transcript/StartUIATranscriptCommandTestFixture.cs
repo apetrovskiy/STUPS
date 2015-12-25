@@ -6,9 +6,6 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-using System;
-using MbUnit.Framework;using NUnit.Framework;
-using System.Management.Automation;
 
 namespace UIAutomationTest.Commands.Transcript
 {

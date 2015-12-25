@@ -181,7 +181,7 @@ namespace Meyn.TestLink
             title = (string)data["title"];
             date_added = toDate(data, "date_added");
             string s = (string)data["content"];
-            content = System.Convert.FromBase64String(s);
+            content = Convert.FromBase64String(s);
         }
     }
     /// <summary>
@@ -464,7 +464,7 @@ namespace Meyn.TestLink
             external_id = (string)data["tc_external_id"];
             testSuite_id = toInt(data, "parent_id");
             is_open = int.Parse((string)data["is_open"]) == 1;
-            modification_ts = base.toDate(data, "modification_ts");
+            modification_ts = toDate(data, "modification_ts");
             updater_id = toInt(data, "updater_id");
             execution_type = toInt(data, "execution_type");
             summary = (string)data["summary"];
@@ -473,7 +473,7 @@ namespace Meyn.TestLink
             else
                 details = "";
             author_id = toInt(data, "author_id");
-            creation_ts = base.toDate(data, "creation_ts");
+            creation_ts = toDate(data, "creation_ts");
             importance = toInt(data, "importance");
             parent_id = toInt(data, "parent_id");
             node_type_id = toInt(data, "node_type_id");
@@ -540,8 +540,8 @@ namespace Meyn.TestLink
             importance = toInt(data, "importance");
             author_id = toInt(data, "author_id");
             updater_id = toInt(data, "updater_id");
-            modification_ts = base.toDate(data, "modification_ts");
-            creation_ts = base.toDate(data, "creation_ts");
+            modification_ts = toDate(data, "modification_ts");
+            creation_ts = toDate(data, "creation_ts");
             is_open = int.Parse((string)data["is_open"]) == 1;
             execution_type = toInt(data, "execution_type");
             author_first_name = (string)data["author_first_name"];
@@ -612,9 +612,9 @@ namespace Meyn.TestLink
         {
             step_number = stepNr;
             this.actions = actions;
-            this.expected_results = expectedResult;
-            this.active = isActive;
-            this.execution_type = executionType;
+            expected_results = expectedResult;
+            active = isActive;
+            execution_type = executionType;
         }
     }
 

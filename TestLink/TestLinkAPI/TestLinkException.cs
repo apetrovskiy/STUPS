@@ -63,7 +63,7 @@ namespace Meyn.TestLink
         {
             errors = errs;
             foreach (TLErrorMessage error in errs)
-                base.Data.Add(error.code, error.message);
+                Data.Add(error.code, error.message);
         }
        /// <summary>
        /// constructor 
@@ -75,7 +75,7 @@ namespace Meyn.TestLink
         {
             errors = errs;
             foreach (TLErrorMessage error in errs)
-                base.Data.Add(error.code, error.message);
+                Data.Add(error.code, error.message);
         }
        /// <summary>
        /// 

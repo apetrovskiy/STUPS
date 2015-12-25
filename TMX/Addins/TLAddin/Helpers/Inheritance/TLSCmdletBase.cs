@@ -9,13 +9,10 @@
 
 namespace Tmx
 {
-    using System;
-    using System.Management.Automation;
-    
     /// <summary>
     /// Description of TLSCmdletBase.
     /// </summary>
-    public class TLSCmdletBase : Tmx.CommonCmdletBase
+    public class TLSCmdletBase : CommonCmdletBase
     {
         public TLSCmdletBase()
         {

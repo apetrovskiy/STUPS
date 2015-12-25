@@ -9,8 +9,6 @@
 
 namespace TestUtils.ObjectModel.ScheduledTasks
 {
-    using System;
-    
     /// <summary>
     /// Description of TaskCreator.
     /// </summary>

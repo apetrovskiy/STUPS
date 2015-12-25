@@ -10,9 +10,8 @@
 namespace MoqCmdlets
 {
     using System;
-    using System.Management.Automation;
     using Moq;
-    using MoqCmdlets.Commands;
+    using Commands;
     
     /// <summary>
     /// Description of MoqNewMockCommand.
@@ -21,7 +20,7 @@ namespace MoqCmdlets
     {
         internal MoqNewMockCommand(CommonCmdletBase cmdlet)
         {
-            this.Cmdlet = cmdlet;
+            Cmdlet = cmdlet;
         }
         
         internal override void Execute()
@@ -29,16 +28,16 @@ namespace MoqCmdlets
 //        internal void Execute()
         {
             //T t = ((NewMqMockCommand<T>)this.Cmdlet).MockedType;
-            this.Cmdlet.WriteVerbose(this.Cmdlet, "001");
+            Cmdlet.WriteVerbose(Cmdlet, "001");
             //Type t = typeof((((NewMqMockCommand)this.Cmdlet).MockedType));
             
             // 20130226
             var cmdlet = (NewMqMockCommand)Cmdlet;
             // 20130226
             //var t = System.Type.GetType(((NewMqMockCommand)this.Cmdlet).MockedType.GetType().Name);
-            var t = System.Type.GetType(cmdlet.MockedType.GetType().Name);
+            var t = Type.GetType(cmdlet.MockedType.GetType().Name);
             
-            this.Cmdlet.WriteVerbose(this.Cmdlet, "002");
+            Cmdlet.WriteVerbose(Cmdlet, "002");
             //System.Runtime.
 //Console.WriteLine(t.GetType().Name);
             
@@ -49,12 +48,12 @@ namespace MoqCmdlets
             MoqHelper.CreateMock(cmdlet, ref t, cmdlet.Arguments);
             //;//(((NewMqMockCommand)this.Cmdlet).MockedType)
             
-            this.Cmdlet.WriteVerbose(this.Cmdlet, "004");
+            Cmdlet.WriteVerbose(Cmdlet, "004");
             
             //var aaa = new Mock<t>();
-            this.Cmdlet.WriteObject(this.Cmdlet, t);
+            Cmdlet.WriteObject(Cmdlet, t);
             
-            this.Cmdlet.WriteVerbose(this.Cmdlet, "005");
+            Cmdlet.WriteVerbose(Cmdlet, "005");
             
 Console.WriteLine("after 01");
             
@@ -64,7 +63,7 @@ Console.WriteLine("after 01");
             rnd.Setup(r => r.Next(It.IsAny<int>(), It.IsAny<int>())).Returns((int minValue, int maxValue) => (maxValue - minValue) / 2);
             rnd.Setup(r => r.Next(It.IsAny<int>())).Returns((int maxValue) => (maxValue / 2));
             
-            this.Cmdlet.WriteObject(this.Cmdlet, rnd);
+            Cmdlet.WriteObject(Cmdlet, rnd);
         }
     }
 }

@@ -28,7 +28,7 @@ namespace Tmx.Commands.TestServer
                 Hostname += ".";
                 Hostname += IPGlobalProperties.GetIPGlobalProperties().DomainName;
             }
-            this.Port = 12340;
+            Port = 12340;
         }
         
         [Parameter(Mandatory = false,

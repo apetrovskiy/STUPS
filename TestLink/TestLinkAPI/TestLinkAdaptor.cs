@@ -70,7 +70,7 @@ namespace Meyn.TestLink
         /// <summary>
         /// the proxy to the current server
         /// </summary>
-        Meyn.TestLink.TestLink proxy = null;
+        TestLink proxy = null;
         List<TestProject> allProjects = new List<TestProject>();
         List<TestPlan> AllTestPlans = new List<TestPlan>();
         private TestProject currentProject;
@@ -324,9 +324,9 @@ namespace Meyn.TestLink
         private int GetTestSuiteId(int projectId, string testSuiteName)
         {
             int testSuiteId = 0;
-            List<Meyn.TestLink.TestSuite> testSuites = proxy.GetFirstLevelTestSuitesForTestProject(projectId); //GetTestSuitesForTestPlan(testPlanId);
+            List<TestSuite> testSuites = proxy.GetFirstLevelTestSuitesForTestProject(projectId); //GetTestSuitesForTestPlan(testPlanId);
             // testsuite must exist. Currently no way of creating them
-            foreach (Meyn.TestLink.TestSuite ts in testSuites)
+            foreach (TestSuite ts in testSuites)
                 if (ts.name == testSuiteName)
                 {
                     testSuiteId = ts.id;

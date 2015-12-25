@@ -9,9 +9,6 @@
 
 namespace Tmx
 {
-    using System;
-    using System.Management.Automation;
-    
     /// <summary>
     /// Description of TLSrvGetTestCaseCommand.
     /// </summary>

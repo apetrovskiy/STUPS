@@ -4,17 +4,10 @@ namespace UIAutomation
 {
     extern alias UIANET; extern alias UIACOM;// using System.Windows.Automation;
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Management.Automation;
     using classic = UIANET::System.Windows.Automation; using viacom = UIACOM::System.Windows.Automation; // using System.Windows.Automation;
-    using System.Text.RegularExpressions;
     using System.Runtime.InteropServices;
-    using System.Collections;
-    using System.Diagnostics;
     // using NativeTypes;
-    using UIAutomation;
 
     /// <summary>
     /// Invokes selected WindowPattern on AutomationElement

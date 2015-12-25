@@ -50,7 +50,7 @@ namespace SePSXUnitTests
         
         public FakeJSGenerator(List<object> listObjects)
         {
-            this.allTypesOfObjects = listObjects;
+            allTypesOfObjects = listObjects;
         }
         
         private List<object> allTypesOfObjects;
@@ -78,7 +78,7 @@ namespace SePSXUnitTests
                 if (result) {
                     cmdlet.WriteVerbose(cmdlet, "inserting injection");
 
-                    SeHelper.ExecuteJavaScript(cmdlet, (new OpenQA.Selenium.IWebDriver[] { CurrentData.CurrentWebDriver }), JsRecorder.ConstRecorderInjectScript, (new string[] { SePSX.Preferences.TranscriptExcludeList }), false);
+                    SeHelper.ExecuteJavaScript(cmdlet, (new OpenQA.Selenium.IWebDriver[] { CurrentData.CurrentWebDriver }), JsRecorder.ConstRecorderInjectScript, (new string[] { Preferences.TranscriptExcludeList }), false);
                     cmdlet.WriteVerbose(cmdlet, "injection inserted");
                 }
             } catch (Exception eGetInjectionCode) {
@@ -88,9 +88,9 @@ namespace SePSXUnitTests
 
         public IEnumerable GetRecordedResults()
         {
-            if (null != this.allTypesOfObjects && 0 < this.allTypesOfObjects.Count) {
+            if (null != allTypesOfObjects && 0 < allTypesOfObjects.Count) {
                 
-                return (new ReadOnlyCollection<object>(this.allTypesOfObjects));
+                return (new ReadOnlyCollection<object>(allTypesOfObjects));
             } else {
                 
                 List<object> listToReturn = new List<object>();

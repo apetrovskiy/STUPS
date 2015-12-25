@@ -9,10 +9,8 @@
 
 namespace UIAutomationTest.Helpers
 {
-    using System;
     //using System.Diagnostics;
-    using MbUnit.Framework;using NUnit.Framework;
-    
+
     /// <summary>
     /// Description of PreferencesTestFixture.
     /// </summary>

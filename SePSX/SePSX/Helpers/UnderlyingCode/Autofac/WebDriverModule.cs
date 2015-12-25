@@ -23,7 +23,7 @@ namespace SePSX
     /// <summary>
     /// Description of WebDriverModule.
     /// </summary>
-    public class WebDriverModule : Autofac.Module
+    public class WebDriverModule : Module
     {
         public WebDriverModule()
         {

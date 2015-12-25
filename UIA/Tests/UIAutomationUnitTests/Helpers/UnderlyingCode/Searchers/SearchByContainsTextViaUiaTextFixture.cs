@@ -9,11 +9,10 @@
 
 namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
 {
-    using System;
     using System.Collections.Generic;
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;using NUnit.Framework;
+    using Xunit;
     using System.Linq;
     
     /// <summary>
@@ -65,7 +64,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
             
             // Assert
             MbUnit.Framework.Assert.Count(expectedNumberOfElements, resultList);
-            Xunit.Assert.Equal(expectedNumberOfElements, resultList.Count);
+            Assert.Equal(expectedNumberOfElements, resultList.Count);
             if (!string.IsNullOrEmpty(searchString)) {
                 MbUnit.Framework.Assert.ForAll(
                     resultList.Cast<IUiElement>().ToList<IUiElement>(),
@@ -84,7 +83,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
 //                MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.ControlType == controlType);
 //            }
             
-            Xunit.Assert.Equal(expectedNumberOfElements, resultList.Count);
+            Assert.Equal(expectedNumberOfElements, resultList.Count);
             if (!string.IsNullOrEmpty(searchString)) {
                 resultList.All(
                     // 20140312

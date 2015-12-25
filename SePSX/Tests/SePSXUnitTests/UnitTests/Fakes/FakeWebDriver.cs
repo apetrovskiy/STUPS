@@ -63,22 +63,22 @@ namespace SePSXUnitTests
         
         public ReadOnlyCollection<string> WindowHandles
         {
-            get { return this.WritableWindowHandles; }
+            get { return WritableWindowHandles; }
             set{ }
         }
         public string CurrentWindowHandle { get; set; }
         
         private string pageSource;
         //public string PageSource { get; set; }
-        public string PageSource { get { return this.pageSource; } set { this.pageSource = value; } }
-        internal string _pageSource { get { return this.pageSource; } set { this.pageSource = value; } }
+        public string PageSource { get { return pageSource; } set { pageSource = value; } }
+        internal string _pageSource { get { return pageSource; } set { pageSource = value; } }
         //public string Title { get; set; }
         //
         //
         //public string Title { get { return "fake title"; } set {  } }
         private string title;
-        public string Title { get { return this.title + "fake title: " + this.UnitTestReport; } set {  } }
-        internal string _title { get { return this.title; } set { this.title = value; } }
+        public string Title { get { return title + "fake title: " + UnitTestReport; } set {  } }
+        internal string _title { get { return title; } set { title = value; } }
         //
         //
         
@@ -89,14 +89,14 @@ namespace SePSXUnitTests
         public string Url { get {
 
 Console.WriteLine("!!!!!!!!!!!!URL!!!!!!!!!!!!!!!!!!!!!");
-this.PrintOutCollection();
+PrintOutCollection();
 
-                return this.url; } set { this.url = value; } }
-        internal string _url { get { return this.url; } set { this.url = value; } }
+                return url; } set { url = value; } }
+        internal string _url { get { return url; } set { url = value; } }
         
         public void Dispose()
         {
-            this.Dispose();
+            Dispose();
         }
         
         internal ReadOnlyCollection<IWebElement> Elements { get; set; }
@@ -109,19 +109,19 @@ Console.WriteLine(listOfElements[0].GetType().Name);
 Console.WriteLine(((FakeRemoteWebElement)listOfElements[0]).TagName);
             
             
-            this.Elements =
+            Elements =
                 new ReadOnlyCollection<IWebElement>(listOfElements);
             
-            this.TagNameResponse =
-                ((FakeRemoteWebElement)this.Elements[0]).TagName;
-            this.TextResponse =
-                ((FakeRemoteWebElement)this.Elements[0]).Text;
-            this.EnabledResponse =
-                ((FakeRemoteWebElement)this.Elements[0]).Enabled;
-            this.DisplayedResponse =
-                ((FakeRemoteWebElement)this.Elements[0]).Displayed;
-            this.SelectedResponse =
-                ((FakeRemoteWebElement)this.Elements[0]).Selected;
+            TagNameResponse =
+                ((FakeRemoteWebElement)Elements[0]).TagName;
+            TextResponse =
+                ((FakeRemoteWebElement)Elements[0]).Text;
+            EnabledResponse =
+                ((FakeRemoteWebElement)Elements[0]).Enabled;
+            DisplayedResponse =
+                ((FakeRemoteWebElement)Elements[0]).Displayed;
+            SelectedResponse =
+                ((FakeRemoteWebElement)Elements[0]).Selected;
             
             
 //if (null == this.Elements) {
@@ -143,14 +143,14 @@ Console.WriteLine(((FakeRemoteWebElement)listOfElements[0]).TagName);
 //Console.WriteLine("tagName = " + ((FakeRemoteWebElement)this.Elements[1]).TagName);
 
 Console.WriteLine("!!!!!!!!!!!!SetElementsCollection!!!!!!!!!!!!!!!!!!!!!");
-this.PrintOutCollection();
+PrintOutCollection();
 
         }
         
         
 internal void PrintOutCollection()
 {
-    foreach (var element in this.Elements) {
+    foreach (var element in Elements) {
         try {
             Console.WriteLine("PrintOutCollection: type = " + element.GetType().Name);
             Console.WriteLine("PrintOutCollection: TagName = " + ((FakeRemoteWebElement)element).TagName);
@@ -176,19 +176,19 @@ internal void PrintOutCollection()
                 new Response();
             
             if ("getElementTagName" == driverCommandToExecute) {
-                resp.Value = this.TagNameResponse;
+                resp.Value = TagNameResponse;
             }
             if ("getElementText" == driverCommandToExecute) {
-                resp.Value = this.TextResponse;
+                resp.Value = TextResponse;
             }
             if ("isElementEnabled" == driverCommandToExecute) {
-                resp.Value = this.EnabledResponse;
+                resp.Value = EnabledResponse;
             }
             if ("isElementSelected" == driverCommandToExecute) {
-                resp.Value = this.SelectedResponse;
+                resp.Value = SelectedResponse;
             }
             if ("isElementDisplayed" == driverCommandToExecute) {
-                resp.Value = this.DisplayedResponse;
+                resp.Value = DisplayedResponse;
             }
 //            if ("" == driverCommandToExecute) {
 //                
@@ -225,14 +225,14 @@ internal void PrintOutCollection()
         
         
         
-        public ReadOnlyCollection<IWebElement> FindElements(OpenQA.Selenium.By by)
+        public ReadOnlyCollection<IWebElement> FindElements(By by)
         {
-            return this.Elements;
+            return Elements;
         }
         
-        public IWebElement FindElement(OpenQA.Selenium.By by)
+        public IWebElement FindElement(By by)
         {
-            return this.Elements[0];
+            return Elements[0];
         }
         
         public ITargetLocator SwitchTo()
@@ -264,7 +264,7 @@ internal void PrintOutCollection()
         
         public void Quit()
         {
-            this.Dispose();
+            Dispose();
         }
         
         //internal IWebElement ElementToFind { get; set; }

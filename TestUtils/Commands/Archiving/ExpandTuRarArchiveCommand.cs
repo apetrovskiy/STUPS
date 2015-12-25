@@ -9,7 +9,6 @@
 
 namespace TestUtils.Commands
 {
-    using System;
     using System.Management.Automation;
     
     /// <summary>

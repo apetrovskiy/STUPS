@@ -9,8 +9,6 @@
 
 namespace TmxTest
 {
-    using System;
-    
     /// <summary>
     /// Description of Settings.
     /// </summary>

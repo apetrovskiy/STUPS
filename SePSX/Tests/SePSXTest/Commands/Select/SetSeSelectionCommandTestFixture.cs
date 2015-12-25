@@ -9,7 +9,6 @@
 
 namespace SePSXTest.Commands.Select
 {
-    using System;
     using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
     using System.Management.Automation;
     
@@ -54,8 +53,8 @@ namespace SePSXTest.Commands.Select
         
         private void Select_SelectAllOptions(string driverName)
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            System.Collections.ObjectModel.Collection<PSObject> coll = 
+                new System.Collections.ObjectModel.Collection<PSObject>();
             
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementSelect04Value01Name)));
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementSelect04Value02Name)));
@@ -106,8 +105,8 @@ namespace SePSXTest.Commands.Select
         
         private void Select_SelectAllOptions_WrongInput(string driverName)
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            System.Collections.ObjectModel.Collection<PSObject> coll = 
+                new System.Collections.ObjectModel.Collection<PSObject>();
             
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementSelect04Value01Name)));
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementSelect04Value02Name)));
@@ -255,8 +254,8 @@ namespace SePSXTest.Commands.Select
         
         private void Select_SelectByIndex(string driverName)
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            System.Collections.ObjectModel.Collection<PSObject> coll = 
+                new System.Collections.ObjectModel.Collection<PSObject>();
             
             //coll.Add((new PSObject(Settings.TestFile05Controls1ElementSelect04Value01Name)));
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementSelect04Value02Name)));
@@ -307,8 +306,8 @@ namespace SePSXTest.Commands.Select
         
         private void Select_DeselectByIndex(string driverName)
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            System.Collections.ObjectModel.Collection<PSObject> coll = 
+                new System.Collections.ObjectModel.Collection<PSObject>();
             
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementSelect04Value01Name)));
             //coll.Add((new PSObject(Settings.TestFile05Controls1ElementSelect04Value02Name)));
@@ -364,8 +363,8 @@ namespace SePSXTest.Commands.Select
         
         private void Select_SelectByValue(string driverName)
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            System.Collections.ObjectModel.Collection<PSObject> coll = 
+                new System.Collections.ObjectModel.Collection<PSObject>();
             
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementSelect04Value01Name)));
             //coll.Add((new PSObject(Settings.TestFile05Controls1ElementSelect04Value02Name)));
@@ -420,8 +419,8 @@ namespace SePSXTest.Commands.Select
         
         private void Select_DeselectByValue(string driverName)
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            System.Collections.ObjectModel.Collection<PSObject> coll = 
+                new System.Collections.ObjectModel.Collection<PSObject>();
             
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementSelect04Value01Name)));
             //coll.Add((new PSObject(Settings.TestFile05Controls1ElementSelect04Value02Name)));
@@ -480,8 +479,8 @@ namespace SePSXTest.Commands.Select
         
         private void Select_SelectByVisibleText(string driverName)
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            System.Collections.ObjectModel.Collection<PSObject> coll = 
+                new System.Collections.ObjectModel.Collection<PSObject>();
             
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementSelect04Value01Name)));
             //coll.Add((new PSObject(Settings.TestFile05Controls1ElementSelect04VisibleText02Name)));
@@ -536,8 +535,8 @@ namespace SePSXTest.Commands.Select
         
         private void Select_DeselectByVisibleText(string driverName)
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            System.Collections.ObjectModel.Collection<PSObject> coll = 
+                new System.Collections.ObjectModel.Collection<PSObject>();
             
             coll.Add((new PSObject(Settings.TestFile05Controls1ElementSelect04Value01Name)));
             //coll.Add((new PSObject(Settings.TestFile05Controls1ElementSelect04VisibleText02Name)));

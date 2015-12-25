@@ -9,10 +9,6 @@
 
 namespace MoqCmdlets
 {
-    using System;
-    using System.Management.Automation;
-    using PSTestLib;
-    
     /// <summary>
     /// Description of MoqCommand.
     /// </summary>

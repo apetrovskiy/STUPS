@@ -9,11 +9,10 @@
 
 namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
 {
-    using System;
     using System.Collections.Generic;
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;using NUnit.Framework;
+    using Xunit;
     
     /// <summary>
     /// Description of SearchByContainsTextViaWin32TestFixture.
@@ -50,7 +49,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
             
             // Assert
             MbUnit.Framework.Assert.Count(expectedNumberOfElements, resultList);
-            Xunit.Assert.Equal(expectedNumberOfElements, resultList.Count);
+            Assert.Equal(expectedNumberOfElements, resultList.Count);
         }
         #endregion helpers
         

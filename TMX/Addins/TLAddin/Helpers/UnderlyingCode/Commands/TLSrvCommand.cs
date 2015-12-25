@@ -9,9 +9,6 @@
 
 namespace Tmx
 {
-    using System;
-    using System.Management.Automation;
-    
     /// <summary>
     /// Description of TLSrvCommand.
     /// </summary>
@@ -19,7 +16,7 @@ namespace Tmx
     {
         internal TLSrvCommand(TLSCmdletBase cmdlet)
         {
-            this.Cmdlet = cmdlet;
+            Cmdlet = cmdlet;
         }
         
         internal TLSCmdletBase Cmdlet { get; set; }

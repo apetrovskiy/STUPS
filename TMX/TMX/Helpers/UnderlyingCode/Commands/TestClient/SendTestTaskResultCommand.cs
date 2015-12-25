@@ -10,7 +10,6 @@
 namespace Tmx
 {
     using Client;
-    using Client.Library.Helpers;
     using Client.Library.ObjectModel;
     using Commands;
     using Core.Proxy;

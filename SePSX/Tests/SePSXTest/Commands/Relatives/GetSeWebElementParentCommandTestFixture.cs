@@ -9,7 +9,6 @@
 
 namespace SePSXTest.Commands.Relatives
 {
-    using System;
     using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
     
     /// <summary>

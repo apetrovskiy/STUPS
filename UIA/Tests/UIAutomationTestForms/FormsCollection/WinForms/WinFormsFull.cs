@@ -10,7 +10,6 @@
 namespace UIAutomationTestForms.FormsCollection.WinForms
 {
     using System;
-    using System.Drawing;
     using System.Windows.Forms;
 
     /// <summary>
@@ -39,20 +38,20 @@ namespace UIAutomationTestForms.FormsCollection.WinForms
         {
             // 20120830
             //this.listBox1.Items.Clear();
-            this.listBox1.Items.Add("Invoked");
+            listBox1.Items.Add("Invoked");
         }
         
         void LinkLabel1LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            this.listBox1.Items.Clear();
-            this.listBox1.Items.Add("Invoked");
-            this.listBox1.Items.Add("LinkClicked");
+            listBox1.Items.Clear();
+            listBox1.Items.Add("Invoked");
+            listBox1.Items.Add("LinkClicked");
         }
         
         void TabPage2Click(object sender, EventArgs e)
         {
-            this.listBox1.Items.Clear();
-            this.listBox1.Items.Add("Invoked");
+            listBox1.Items.Clear();
+            listBox1.Items.Add("Invoked");
         }
         
         void ListBox1SelectedIndexChanged(object sender, EventArgs e)
@@ -62,36 +61,36 @@ namespace UIAutomationTestForms.FormsCollection.WinForms
         
         void ToolStripSplitButton2ButtonClick(object sender, EventArgs e)
         {
-            this.listBox1.Items.Clear();
-            this.listBox1.Items.Add("Invoked");
+            listBox1.Items.Clear();
+            listBox1.Items.Add("Invoked");
         }
         
         void LinkLabel1Click(object sender, EventArgs e)
         {
             //this.listBox1.Items.Clear();
-            this.listBox1.Items.Add("Invoked");
-            this.listBox1.Items.Add("Click");
+            listBox1.Items.Add("Invoked");
+            listBox1.Items.Add("Click");
         }
         
         void TabControl1Click(object sender, EventArgs e)
         {
-            this.listBox1.Items.Clear();
-            this.listBox1.Items.Add("Invoked");
-            this.listBox1.Items.Add("Click");
+            listBox1.Items.Clear();
+            listBox1.Items.Add("Invoked");
+            listBox1.Items.Add("Click");
         }
         
         void TreeView1AfterSelect(object sender, TreeViewEventArgs e)
         {
-            this.listBox1.Items.Clear();
-            this.listBox1.Items.Add("Invoked");
-            this.listBox1.Items.Add("AfterSelect");
+            listBox1.Items.Clear();
+            listBox1.Items.Add("Invoked");
+            listBox1.Items.Add("AfterSelect");
         }
         
         void TreeView1Click(object sender, EventArgs e)
         {
-            this.listBox1.Items.Clear();
-            this.listBox1.Items.Add("Invoked");
-            this.listBox1.Items.Add("Click");
+            listBox1.Items.Clear();
+            listBox1.Items.Add("Invoked");
+            listBox1.Items.Add("Click");
         }
         
         void ComboBox1SelectedIndexChanged(object sender, EventArgs e)
@@ -101,8 +100,8 @@ namespace UIAutomationTestForms.FormsCollection.WinForms
         
         void CheckBox1CheckedChanged(object sender, EventArgs e)
         {
-            this.listBox1.Items.Clear();
-            this.listBox1.Items.Add(this.checkBox1.Checked ? "Checked" : "Unchecked");
+            listBox1.Items.Clear();
+            listBox1.Items.Add(checkBox1.Checked ? "Checked" : "Unchecked");
 
             /*
             if (this.checkBox1.Checked) {
@@ -116,7 +115,7 @@ namespace UIAutomationTestForms.FormsCollection.WinForms
         void CheckBox1Click(object sender, EventArgs e)
         {
             //this.listBox1.Items.Clear();
-            this.listBox1.Items.Add(this.checkBox1.Checked ? "Clicked" : "Unclicked");
+            listBox1.Items.Add(checkBox1.Checked ? "Clicked" : "Unclicked");
 
             /*
             if (this.checkBox1.Checked) {
@@ -129,51 +128,51 @@ namespace UIAutomationTestForms.FormsCollection.WinForms
 
         void CheckedListBox1SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.listBox1.Items.Clear();
+            listBox1.Items.Clear();
             //this.listBox1.Items.Add((object)sender.ToString());
-            this.listBox1.Items.Add("SelectedIndexChanged");
+            listBox1.Items.Add("SelectedIndexChanged");
         }
         
         void CheckedListBox1Click(object sender, EventArgs e)
         {
             //this.listBox1.Items.Clear();
-            this.listBox1.Items.Add("Clicked");
+            listBox1.Items.Add("Clicked");
             
             
             
-            this.listBox1.Items.Add(sender.ToString().Substring(21));
-            this.Text = sender.ToString().Substring(21);
+            listBox1.Items.Add(sender.ToString().Substring(21));
+            Text = sender.ToString().Substring(21);
         }
         
         void CheckedListBox1ItemCheck(object sender, ItemCheckEventArgs e)
         {
             //this.listBox1.Items.Clear();
-            this.listBox1.Items.Add("Checked");
+            listBox1.Items.Add("Checked");
             //this.listBox1.Items.Add(sender.ToString().Substring(21));
-            this.label1.Text = sender.ToString().Substring(21);
+            label1.Text = sender.ToString().Substring(21);
             //this.Text = sender.ToString().Substring(21);
             //this.listBox1.Items.Add(sender.GetType().Name.Substring(21));
         }
         
         void Button2Click(object sender, EventArgs e)
         {
-            int label2Left = this.label2.Left;
-            this.label2.Left = -10000;
-            int radio2Left = this.radioButton2.Left;
-            this.radioButton2.Left = -10000;
-            int domain2Left = this.domainUpDown2.Left;
-            this.domainUpDown2.Left = -10000;
+            int label2Left = label2.Left;
+            label2.Left = -10000;
+            int radio2Left = radioButton2.Left;
+            radioButton2.Left = -10000;
+            int domain2Left = domainUpDown2.Left;
+            domainUpDown2.Left = -10000;
             System.Threading.Thread.Sleep(2000);
-            this.label2.Left = label2Left;
-            this.radioButton2.Left = radio2Left;
-            this.domainUpDown2.Left = domain2Left;
-            this.label2.Enabled = true;
-            this.radioButton2.Enabled = true;
-            this.domainUpDown2.Enabled = true;
+            label2.Left = label2Left;
+            radioButton2.Left = radio2Left;
+            domainUpDown2.Left = domain2Left;
+            label2.Enabled = true;
+            radioButton2.Enabled = true;
+            domainUpDown2.Enabled = true;
             
             // for testing double Invoke
             //this.listBox1.Items.Clear();
-            this.listBox1.Items.Add("Invoked2");
+            listBox1.Items.Add("Invoked2");
         }
     }
 }

@@ -9,7 +9,6 @@
 
 namespace SePSXTest.Commands.Module
 {
-    using System;
     using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
     
     /// <summary>

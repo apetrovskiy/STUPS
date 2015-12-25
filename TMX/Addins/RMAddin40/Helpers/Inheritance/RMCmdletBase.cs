@@ -9,10 +9,6 @@
 
 namespace Tmx
 {
-    using System;
-    using System.Management.Automation;
-    using Tmx;
-    
     /// <summary>
     /// Description of RMCmdletBase.
     /// </summary>

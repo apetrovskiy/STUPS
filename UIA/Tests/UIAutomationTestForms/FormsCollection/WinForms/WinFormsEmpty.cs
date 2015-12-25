@@ -9,10 +9,6 @@
 
 namespace UIAutomationTestForms
 {
-    using System;
-    using System.Drawing;
-    using System.Windows.Forms;
-
     /// <summary>
     /// Description of WinFormsEmpty.
     /// </summary>
@@ -37,7 +33,7 @@ namespace UIAutomationTestForms
             System.Windows.Automation.ControlType controlType,
             int controlDelay) : base ("WinFormsEmpty", "WinFormsEmpty", controlType, controlDelay)
         {
-            base.ChildForm = this;
+            ChildForm = this;
         }
         
         public WinFormsEmpty(
@@ -46,13 +42,13 @@ namespace UIAutomationTestForms
             string controlAutomationId,
             int controlDelay) : base ("WinFormsEmpty", "WinFormsEmpty", controlType, controlName, controlAutomationId, controlDelay)
         {
-            base.ChildForm = this;
+            ChildForm = this;
         }
         
         public WinFormsEmpty(
             ControlToForm[] controls) : base ("WinFormsEmpty", "WinFormsEmpty", controls)
         {
-            base.ChildForm = this;
+            ChildForm = this;
         }
     }
 }

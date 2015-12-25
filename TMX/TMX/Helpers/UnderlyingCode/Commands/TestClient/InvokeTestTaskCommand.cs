@@ -11,14 +11,11 @@ namespace Tmx
 {
     using System.Management.Automation;
     using Client;
-    using Client.Library.Helpers;
     using Client.Library.ObjectModel;
     using Commands;
     using Core;
     using Core.Proxy;
-    using Interfaces.ExtensionMethods;
     using Interfaces.Remoting;
-    using Interfaces.TestStructure;
 
     /// <summary>
     /// Description of InvokeTestTaskCommand.

@@ -9,7 +9,6 @@
 
 namespace Hap.Helpers.Commands.Import
 {
-    using System;
     using Hap.Commands;
     
 	/// <summary>
@@ -23,7 +22,7 @@ namespace Hap.Helpers.Commands.Import
         
         public override void Execute()
         {
-            var cmdlet = (ImportHapHtmlPageCommand)this.Cmdlet;
+            var cmdlet = (ImportHapHtmlPageCommand)Cmdlet;
             var data = new PageImporterData { Url = cmdlet.Url, StringInput = cmdlet.InputObject, Path = cmdlet.Path };
             var pageImporter = new PageImporter(data);
             

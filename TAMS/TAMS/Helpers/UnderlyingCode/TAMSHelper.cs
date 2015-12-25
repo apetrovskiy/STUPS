@@ -9,8 +9,6 @@
 
 namespace TAMS
 {
-    using System;
-    using System.Management.Automation;
     using Microsoft.Test.LeakDetection;
     using Microsoft.Test.ObjectComparison;
     

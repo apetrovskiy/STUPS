@@ -9,7 +9,6 @@
 
 namespace TestUtils.Commands
 {
-    using System;
     using System.Management.Automation;
     
     /// <summary>
@@ -20,7 +19,7 @@ namespace TestUtils.Commands
     {
         public NewTuZipArchiveCommand()
         {
-            this.PathInArchive = null;
+            PathInArchive = null;
         }
         
         #region Parameters

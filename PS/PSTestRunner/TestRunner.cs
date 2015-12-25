@@ -11,7 +11,6 @@ namespace PSTestRunner
 {
     using System;
     using PSRunner;
-    using System.Management.Automation;
     using Tmx.Interfaces.TestStructure;
     
     /// <summary>
@@ -123,7 +122,7 @@ namespace PSTestRunner
                 // 20120716
                 //result = PSRunner.Runner.RunPSScriptAsync(scriptCode);
                 result = 
-                    PSRunner.Runner.RunPSScriptAsync(
+                    Runner.RunPSScriptAsync(
                         //@"powershell.exe -command {" +
                         //"& " +
                         //ScriptPath, // + 
@@ -203,7 +202,7 @@ namespace PSTestRunner
             
             try {
                 //PSRunner.Runner.RunPSCode(scriptPath);
-                PSRunner.Runner.RunPSCodeAsync(scriptPath);
+                Runner.RunPSCodeAsync(scriptPath);
 
             }
             catch (Exception eRunPSCode) {
@@ -227,7 +226,7 @@ namespace PSTestRunner
             
             try {
                 result = false;
-                result = PSRunner.Runner.CloseRunspace();
+                result = Runner.CloseRunspace();
                 result = true;
             }
             catch (Exception) {
@@ -242,7 +241,7 @@ namespace PSTestRunner
         
         public static void BreakScript()
         {
-            PSRunner.Runner.StopScriptAsync();
+            Runner.StopScriptAsync();
         }
         
         public static object GetVariable(string variableName)
@@ -260,7 +259,7 @@ namespace PSTestRunner
             System.Windows.Forms.ToolStripStatusLabel passed,
             System.Windows.Forms.ToolStripStatusLabel failed,
             System.Windows.Forms.ToolStripStatusLabel average,
-            System.DateTime startTime)
+            DateTime startTime)
         {
             switch (type) {
                 case TestResultTypes.Passed:
@@ -289,7 +288,7 @@ namespace PSTestRunner
             }
             testResultsAll++;
             string trps = 
-               (testResultsAll / (System.DateTime.Now - startTime).TotalSeconds).ToString();
+               (testResultsAll / (DateTime.Now - startTime).TotalSeconds).ToString();
             average.Text = 
                 trps.Substring(0, trps.IndexOf(".") + 2) +
                 " trps";

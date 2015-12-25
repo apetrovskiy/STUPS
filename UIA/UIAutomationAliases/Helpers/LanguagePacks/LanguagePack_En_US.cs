@@ -9,8 +9,6 @@
 
 namespace UIAutomationAliases
 {
-    using System;
-    
     /// <summary>
     /// Description of LanguagePack_En_US.
     /// </summary>

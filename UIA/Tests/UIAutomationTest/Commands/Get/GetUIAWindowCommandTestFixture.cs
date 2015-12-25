@@ -9,10 +9,6 @@
 
 namespace UIAutomationTest.Commands.Get
 {
-    using System;
-    using System.Diagnostics;
-    using MbUnit.Framework;using NUnit.Framework;
-
     /// <summary>
     /// Description of GetUiaWindowCommandTestFixture.
     /// </summary>

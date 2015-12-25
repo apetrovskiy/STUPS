@@ -27,19 +27,19 @@ namespace SePSXUnitTests
             }
         }
         
-        public System.Collections.Generic.IList<OpenQA.Selenium.IWebElement> Options {
+        public System.Collections.Generic.IList<IWebElement> Options {
             get {
                 throw new NotImplementedException();
             }
         }
         
-        public OpenQA.Selenium.IWebElement SelectedOption {
+        public IWebElement SelectedOption {
             get {
                 throw new NotImplementedException();
             }
         }
         
-        public System.Collections.Generic.IList<OpenQA.Selenium.IWebElement> AllSelectedOptions {
+        public System.Collections.Generic.IList<IWebElement> AllSelectedOptions {
             get {
                 throw new NotImplementedException();
             }

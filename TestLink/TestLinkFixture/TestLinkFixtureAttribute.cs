@@ -24,9 +24,7 @@ DEALINGS IN THE SOFTWARE.
 */
 
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Xml;
 
 namespace Meyn.TestLink
@@ -35,7 +33,7 @@ namespace Meyn.TestLink
     /// this attribute is used for the various exporter adapters such as the Gallio and the NUnit test frameworks
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    public class TestLinkFixtureAttribute : System.Attribute
+    public class TestLinkFixtureAttribute : Attribute
     {
         private string url;
 

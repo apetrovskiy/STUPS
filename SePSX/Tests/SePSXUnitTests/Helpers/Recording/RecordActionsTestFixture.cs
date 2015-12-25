@@ -31,7 +31,7 @@ namespace SePSXUnitTests.Recording
         {
         }
         
-        private void runRecordActions(System.Collections.Generic.List<object> listOfItems)
+        private void runRecordActions(List<object> listOfItems)
         {
             IWebDriver webDriver = new FakeWebDriver();
             CurrentData.CurrentWebDriver = webDriver;

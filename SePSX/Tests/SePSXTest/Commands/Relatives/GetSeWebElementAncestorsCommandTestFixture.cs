@@ -9,7 +9,6 @@
 
 namespace SePSXTest.Commands.Relatives
 {
-    using System;
     using MbUnit.Framework;//using MbUnit.Framework; // using MbUnit.Framework;
     using System.Management.Automation;
     
@@ -54,8 +53,8 @@ namespace SePSXTest.Commands.Relatives
         
         private void Ancestors_1(string driverName)
         {
-            System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject> coll = 
-                new System.Collections.ObjectModel.Collection<System.Management.Automation.PSObject>();
+            System.Collections.ObjectModel.Collection<PSObject> coll = 
+                new System.Collections.ObjectModel.Collection<PSObject>();
             
             //coll.Add((new PSObject("  Value1\r\n  Value 2\r\n  Value \\3\r\n  Value /4\r\n ")));
             coll.Add((new PSObject("div3\r\nMy first paragraph.\r\nMy second paragraph.")));

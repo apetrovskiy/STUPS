@@ -8,9 +8,7 @@
  */
 
 namespace TmxTest.TestData
-{
-    using System;
-    using MbUnit.Framework;using NUnit.Framework; // using MbUnit.Framework;using NUnit.Framework;
+{ // using MbUnit.Framework;using NUnit.Framework;
     
     /// <summary>
     /// Description of TmxEventsTestFixture.

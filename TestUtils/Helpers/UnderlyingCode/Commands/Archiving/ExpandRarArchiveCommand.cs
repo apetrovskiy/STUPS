@@ -9,9 +9,7 @@
 
 namespace TestUtils
 {
-    using System;
-    using System.Management.Automation;
-    using TestUtils.Commands;
+    using Commands;
     
     /// <summary>
     /// Description of ExpandTuRarArchiveCommand.

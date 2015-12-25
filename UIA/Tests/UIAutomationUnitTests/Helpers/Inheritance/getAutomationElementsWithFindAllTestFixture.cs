@@ -12,7 +12,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
     using System.Collections.Generic;
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;using NUnit.Framework;
+    using Xunit;
     using System.Linq;
     
     /// <summary>
@@ -88,7 +88,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             
             // Assert
             MbUnit.Framework.Assert.Count(expectedNumberOfElements, resultList);
-            Xunit.Assert.Equal(expectedNumberOfElements, resultList.Count);
+            Assert.Equal(expectedNumberOfElements, resultList.Count);
             // 20140312
 //            if (!string.IsNullOrEmpty(name)) {
 //                MbUnit.Framework.Assert.ForAll(resultList.Cast<IUiElement>().ToList<IUiElement>(), x => x.Current.Name == name);
@@ -131,7 +131,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                         IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;
                         return valuePattern != null && valuePattern.Current.Value == txtValue;
                     });
-            Xunit.Assert.True(    
+            Assert.True(    
                 resultList.All(
                     x => {
                              IValuePattern valuePattern = x.GetCurrentPattern<IValuePattern>(ValuePattern.Pattern) as IValuePattern;

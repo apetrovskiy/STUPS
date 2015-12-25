@@ -2,7 +2,6 @@
 {
     using Client.Library.ObjectModel;
     using Commands.TestClient;
-    using Core;
     using Core.Proxy;
     using Interfaces.Exceptions;
 

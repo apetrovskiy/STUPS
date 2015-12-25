@@ -9,10 +9,6 @@
 
 namespace UIAutomationTestForms
 {
-    using System;
-    using System.Drawing;
-    using System.Windows.Forms;
-
     /// <summary>
     /// Description of WinFormsMinimized.
     /// </summary>
@@ -36,7 +32,7 @@ namespace UIAutomationTestForms
             System.Windows.Automation.ControlType controlType,
             int controlDelay) : base ("WinFormsMinimized", "WinFormsMinimized", controlType, controlDelay)
         {
-            base.ChildForm = this;
+            ChildForm = this;
         }
         
         public WinFormsMinimized(
@@ -45,13 +41,13 @@ namespace UIAutomationTestForms
             string controlAutomationId,
             int controlDelay) : base ("WinFormsMinimized", "WinFormsMinimized", controlType, controlName, controlAutomationId, controlDelay)
         {
-            base.ChildForm = this;
+            ChildForm = this;
         }
         
         public WinFormsMinimized(
             ControlToForm[] controls) : base ("WinFormsMinimized", "WinFormsMinimized", controls)
         {
-            base.ChildForm = this;
+            ChildForm = this;
         }
     }
 }

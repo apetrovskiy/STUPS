@@ -22,8 +22,7 @@ namespace Tmx.Server.Tests.Modules
     using Logic.ObjectModel.Objects;
     using Xunit;
     using UnitTestingHelpers;
-    using Xunit.Extensions;
-    
+
     /// <summary>
     /// Description of TestTasksModuleTestFixture.
     /// </summary>

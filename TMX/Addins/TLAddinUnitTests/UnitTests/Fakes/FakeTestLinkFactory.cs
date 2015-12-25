@@ -10,12 +10,7 @@
 namespace TlAddinUnitTests
 {
     using System;
-    using MbUnit.Framework;
-    using PSTestLib;
     using Moq;
-    using Autofac;
-    using Autofac.Builder;
-    using Tmx;
     using Meyn.TestLink;
     using CookComputing.XmlRpc;
     
@@ -29,7 +24,7 @@ namespace TlAddinUnitTests
         internal static string TestLinkUrlRight = "http://1.2.3.4/testlink/lib/api/xmlrpc.php";
         internal static string TestLinkUrlWrong = "wrong url";
         
-        static System.Random generator = new Random();
+        static Random generator = new Random();
         
         static Mock<ITestLinkExtra> _getTestLinkMock(string apiKey, string url)
         {
@@ -178,7 +173,7 @@ namespace TlAddinUnitTests
         }
         
         public static Mock<ITestLinkExtra> _getTestLinkMockWithProjects(
-           System.Collections.Generic.List<Meyn.TestLink.TestProject> listOfProjects)
+           System.Collections.Generic.List<TestProject> listOfProjects)
         {
             var testLinkMock = _getTestLinkMock();
             
@@ -191,7 +186,7 @@ namespace TlAddinUnitTests
         }
         
         public static ITestLinkExtra GetTestLinkWithProjects(
-           System.Collections.Generic.List<Meyn.TestLink.TestProject> listOfProjects)
+           System.Collections.Generic.List<TestProject> listOfProjects)
         {
             var testLinkMock = _getTestLinkMockWithProjects(listOfProjects);
             
@@ -200,10 +195,10 @@ namespace TlAddinUnitTests
         
         
         public static Mock<ITestLinkExtra> _getTestLinkMockWithTestPlans(
-           System.Collections.Generic.List<Meyn.TestLink.TestProject> listOfProjects,
-           System.Collections.Generic.List<Meyn.TestLink.TestPlan> listOfTestPlans,
-           System.Collections.Generic.List<Meyn.TestLink.TestPlatform> listOfTestPlatforms,
-           System.Collections.Generic.List<Meyn.TestLink.TestPlanTotal> listOfTestPlanTotals)
+           System.Collections.Generic.List<TestProject> listOfProjects,
+           System.Collections.Generic.List<TestPlan> listOfTestPlans,
+           System.Collections.Generic.List<TestPlatform> listOfTestPlatforms,
+           System.Collections.Generic.List<TestPlanTotal> listOfTestPlanTotals)
         {
             var testLinkMock = _getTestLinkMockWithProjects(listOfProjects);
             
@@ -228,10 +223,10 @@ namespace TlAddinUnitTests
         }
         
         public static ITestLinkExtra GetTestLinkWithTestPlans(
-           System.Collections.Generic.List<Meyn.TestLink.TestProject> listOfProjects,
-           System.Collections.Generic.List<Meyn.TestLink.TestPlan> listOfTestPlans,
-           System.Collections.Generic.List<Meyn.TestLink.TestPlatform> listOfTestPlatforms,
-           System.Collections.Generic.List<Meyn.TestLink.TestPlanTotal> listOfTestPlanTotals)
+           System.Collections.Generic.List<TestProject> listOfProjects,
+           System.Collections.Generic.List<TestPlan> listOfTestPlans,
+           System.Collections.Generic.List<TestPlatform> listOfTestPlatforms,
+           System.Collections.Generic.List<TestPlanTotal> listOfTestPlanTotals)
         {
             var testLinkMock = _getTestLinkMockWithTestPlans(listOfProjects, listOfTestPlans, listOfTestPlatforms, listOfTestPlanTotals);
             
@@ -239,11 +234,11 @@ namespace TlAddinUnitTests
         }
         
         public static Mock<ITestLinkExtra> _getTestLinkMockWithBuilds(
-           System.Collections.Generic.List<Meyn.TestLink.TestProject> listOfProjects,
-           System.Collections.Generic.List<Meyn.TestLink.TestPlan> listOfTestPlans,
-           System.Collections.Generic.List<Meyn.TestLink.TestPlatform> listOfTestPlatforms,
-           System.Collections.Generic.List<Meyn.TestLink.TestPlanTotal> listOfTestPlanTotals,
-           System.Collections.Generic.List<Meyn.TestLink.Build> listOfBuilds)
+           System.Collections.Generic.List<TestProject> listOfProjects,
+           System.Collections.Generic.List<TestPlan> listOfTestPlans,
+           System.Collections.Generic.List<TestPlatform> listOfTestPlatforms,
+           System.Collections.Generic.List<TestPlanTotal> listOfTestPlanTotals,
+           System.Collections.Generic.List<Build> listOfBuilds)
         {
         
             var testLinkMock = _getTestLinkMockWithTestPlans(listOfProjects, listOfTestPlans, listOfTestPlatforms, listOfTestPlanTotals);
@@ -259,11 +254,11 @@ namespace TlAddinUnitTests
         }
         
         public static ITestLinkExtra GetTestLinkWithTestBuilds(
-           System.Collections.Generic.List<Meyn.TestLink.TestProject> listOfProjects,
-           System.Collections.Generic.List<Meyn.TestLink.TestPlan> listOfTestPlans,
-           System.Collections.Generic.List<Meyn.TestLink.TestPlatform> listOfTestPlatforms,
-           System.Collections.Generic.List<Meyn.TestLink.TestPlanTotal> listOfTestPlanTotals,
-           System.Collections.Generic.List<Meyn.TestLink.Build> listOfBuilds)
+           System.Collections.Generic.List<TestProject> listOfProjects,
+           System.Collections.Generic.List<TestPlan> listOfTestPlans,
+           System.Collections.Generic.List<TestPlatform> listOfTestPlatforms,
+           System.Collections.Generic.List<TestPlanTotal> listOfTestPlanTotals,
+           System.Collections.Generic.List<Build> listOfBuilds)
         {
             var testLinkMock = _getTestLinkMockWithBuilds(listOfProjects, listOfTestPlans, listOfTestPlatforms, listOfTestPlanTotals, listOfBuilds);
             
@@ -271,12 +266,12 @@ namespace TlAddinUnitTests
         }
         
         public static Mock<ITestLinkExtra> _getTestLinkMockWithTestSuites(
-           System.Collections.Generic.List<Meyn.TestLink.TestProject> listOfProjects,
-           System.Collections.Generic.List<Meyn.TestLink.TestPlan> listOfTestPlans,
-           System.Collections.Generic.List<Meyn.TestLink.TestPlatform> listOfTestPlatforms,
-           System.Collections.Generic.List<Meyn.TestLink.TestPlanTotal> listOfTestPlanTotals,
-           System.Collections.Generic.List<Meyn.TestLink.Build> listOfBuilds,
-           System.Collections.Generic.List<Meyn.TestLink.TestSuite> listOfTestSuites)
+           System.Collections.Generic.List<TestProject> listOfProjects,
+           System.Collections.Generic.List<TestPlan> listOfTestPlans,
+           System.Collections.Generic.List<TestPlatform> listOfTestPlatforms,
+           System.Collections.Generic.List<TestPlanTotal> listOfTestPlanTotals,
+           System.Collections.Generic.List<Build> listOfBuilds,
+           System.Collections.Generic.List<TestSuite> listOfTestSuites)
         {
             var testLinkMock = _getTestLinkMockWithBuilds(listOfProjects, listOfTestPlans, listOfTestPlatforms, listOfTestPlanTotals, listOfBuilds);
             
@@ -298,12 +293,12 @@ namespace TlAddinUnitTests
         }
         
         public static ITestLinkExtra GetTestLinkWithTestSuites(
-           System.Collections.Generic.List<Meyn.TestLink.TestProject> listOfProjects,
-           System.Collections.Generic.List<Meyn.TestLink.TestPlan> listOfTestPlans,
-           System.Collections.Generic.List<Meyn.TestLink.TestPlatform> listOfTestPlatforms,
-           System.Collections.Generic.List<Meyn.TestLink.TestPlanTotal> listOfTestPlanTotals,
-           System.Collections.Generic.List<Meyn.TestLink.Build> listOfBuilds,
-           System.Collections.Generic.List<Meyn.TestLink.TestSuite> listOfTestSuites)
+           System.Collections.Generic.List<TestProject> listOfProjects,
+           System.Collections.Generic.List<TestPlan> listOfTestPlans,
+           System.Collections.Generic.List<TestPlatform> listOfTestPlatforms,
+           System.Collections.Generic.List<TestPlanTotal> listOfTestPlanTotals,
+           System.Collections.Generic.List<Build> listOfBuilds,
+           System.Collections.Generic.List<TestSuite> listOfTestSuites)
         {
             var testLinkMock = _getTestLinkMockWithTestSuites(listOfProjects, listOfTestPlans, listOfTestPlatforms, listOfTestPlanTotals, listOfBuilds, listOfTestSuites);
             
@@ -312,13 +307,13 @@ namespace TlAddinUnitTests
         
         
         public static Mock<ITestLinkExtra> _getTestLinkMockWithTestCases(
-           System.Collections.Generic.List<Meyn.TestLink.TestProject> listOfProjects,
-           System.Collections.Generic.List<Meyn.TestLink.TestPlan> listOfTestPlans,
-           System.Collections.Generic.List<Meyn.TestLink.TestPlatform> listOfTestPlatforms,
-           System.Collections.Generic.List<Meyn.TestLink.TestPlanTotal> listOfTestPlanTotals,
-           System.Collections.Generic.List<Meyn.TestLink.Build> listOfBuilds,
-           System.Collections.Generic.List<Meyn.TestLink.TestSuite> listOfTestSuites,
-           System.Collections.Generic.List<Meyn.TestLink.TestCase> listOfTestCases)
+           System.Collections.Generic.List<TestProject> listOfProjects,
+           System.Collections.Generic.List<TestPlan> listOfTestPlans,
+           System.Collections.Generic.List<TestPlatform> listOfTestPlatforms,
+           System.Collections.Generic.List<TestPlanTotal> listOfTestPlanTotals,
+           System.Collections.Generic.List<Build> listOfBuilds,
+           System.Collections.Generic.List<TestSuite> listOfTestSuites,
+           System.Collections.Generic.List<TestCase> listOfTestCases)
         {
             var testLinkMock = _getTestLinkMockWithTestSuites(listOfProjects, listOfTestPlans, listOfTestPlatforms, listOfTestPlanTotals, listOfBuilds, listOfTestSuites);
             
@@ -356,13 +351,13 @@ namespace TlAddinUnitTests
         }
         
         public static ITestLinkExtra GetTestLinkWithTestCases(
-           System.Collections.Generic.List<Meyn.TestLink.TestProject> listOfProjects,
-           System.Collections.Generic.List<Meyn.TestLink.TestPlan> listOfTestPlans,
-           System.Collections.Generic.List<Meyn.TestLink.TestPlatform> listOfTestPlatforms,
-           System.Collections.Generic.List<Meyn.TestLink.TestPlanTotal> listOfTestPlanTotals,
-           System.Collections.Generic.List<Meyn.TestLink.Build> listOfBuilds,
-           System.Collections.Generic.List<Meyn.TestLink.TestSuite> listOfTestSuites,
-           System.Collections.Generic.List<Meyn.TestLink.TestCase> listOfTestCases)
+           System.Collections.Generic.List<TestProject> listOfProjects,
+           System.Collections.Generic.List<TestPlan> listOfTestPlans,
+           System.Collections.Generic.List<TestPlatform> listOfTestPlatforms,
+           System.Collections.Generic.List<TestPlanTotal> listOfTestPlanTotals,
+           System.Collections.Generic.List<Build> listOfBuilds,
+           System.Collections.Generic.List<TestSuite> listOfTestSuites,
+           System.Collections.Generic.List<TestCase> listOfTestCases)
         {
             var testLinkMock = _getTestLinkMockWithTestCases(listOfProjects, listOfTestPlans, listOfTestPlatforms, listOfTestPlanTotals, listOfBuilds, listOfTestSuites, listOfTestCases);
             
@@ -419,7 +414,7 @@ namespace TlAddinUnitTests
             data.Add("opt", optStruct);
             */
             
-            var testProject = new Mock<Meyn.TestLink.TestProject>(data);
+            var testProject = new Mock<TestProject>(data);
             return testProject.Object;
             
         }
@@ -479,7 +474,7 @@ namespace TlAddinUnitTests
             return testPlan.Object;
         }
         
-        public static Meyn.TestLink.TestSuite GetTestSuite(
+        public static TestSuite GetTestSuite(
             string name,
             int nodeOrder,
             int nodeTypeId,
@@ -503,7 +498,7 @@ namespace TlAddinUnitTests
             data.Add("node_order", nodeOrder);
             */
             
-            var testSuite = new Mock<Meyn.TestLink.TestSuite>(data);
+            var testSuite = new Mock<TestSuite>(data);
             return testSuite.Object;
         }
         
@@ -766,7 +761,7 @@ namespace TlAddinUnitTests
 //        }
 //    }
         
-        public static Meyn.TestLink.TestCase GetTestCase(
+        public static TestCase GetTestCase(
             //int id,
             string externalid,
             string updater_login,
@@ -828,7 +823,7 @@ namespace TlAddinUnitTests
             
             data.Add("steps", structs);
             
-            var testCase = new Mock<Meyn.TestLink.TestCase>(data);
+            var testCase = new Mock<TestCase>(data);
             return testCase.Object;
 
 #region commented
@@ -865,7 +860,7 @@ namespace TlAddinUnitTests
 #endregion commented
         }
         
-        public static Meyn.TestLink.TestPlatform GetTestPlatform(
+        public static TestPlatform GetTestPlatform(
            string name,
            string notes)
         {
@@ -876,11 +871,11 @@ namespace TlAddinUnitTests
             data.Add("id", id);
             data.Add("notes", notes);
             
-            var testPlatform = new Mock<Meyn.TestLink.TestPlatform>(data);
+            var testPlatform = new Mock<TestPlatform>(data);
             return testPlatform.Object;
         }
         
-        public static Meyn.TestLink.TestPlanTotal GetTestPlanTotal(
+        public static TestPlanTotal GetTestPlanTotal(
            string name,
            string type,
            int total_tc)
@@ -933,7 +928,7 @@ namespace TlAddinUnitTests
             
             data.Add("details", details);
             
-            var testPlanTotal = new Mock<Meyn.TestLink.TestPlanTotal>(data);
+            var testPlanTotal = new Mock<TestPlanTotal>(data);
             return testPlanTotal.Object;
            
         }

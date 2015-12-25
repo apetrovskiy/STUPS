@@ -1,5 +1,4 @@
-﻿using System;
-/*
+﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 1/4/2014
@@ -12,7 +11,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 {
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;using NUnit.Framework;
+    using Xunit;
     using NSubstitute;
     
     /// <summary>
@@ -51,35 +50,35 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsInvokePattern;
             
             MbUnit.Framework.Assert.IsNull(invokableElement as ISupportsInvokePattern);
-            Xunit.Assert.Null(invokableElement as ISupportsInvokePattern);
+            Assert.Null(invokableElement as ISupportsInvokePattern);
             
             var highlightableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsHighlighter;
             
             MbUnit.Framework.Assert.IsNull(highlightableElement as ISupportsHighlighter);
-            Xunit.Assert.Null(highlightableElement as ISupportsHighlighter);
+            Assert.Null(highlightableElement as ISupportsHighlighter);
             
             var navigatableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsNavigation;
             
             MbUnit.Framework.Assert.IsNull(navigatableElement as ISupportsNavigation);
-            Xunit.Assert.Null(navigatableElement as ISupportsNavigation);
+            Assert.Null(navigatableElement as ISupportsNavigation);
             
             var conversibleElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsConversion;
             
             MbUnit.Framework.Assert.IsNull(conversibleElement as ISupportsConversion);
-            Xunit.Assert.Null(conversibleElement as ISupportsConversion);
+            Assert.Null(conversibleElement as ISupportsConversion);
             
             var refreshableElement =
                 FakeFactory.GetAutomationElementForMethodsOfObjectModel(
                     new IBasePattern[] { FakeFactory.GetDockPattern(new PatternsData()) }) as ISupportsRefresh;
             
             MbUnit.Framework.Assert.IsNull(refreshableElement as ISupportsRefresh);
-            Xunit.Assert.Null(refreshableElement as ISupportsRefresh);
+            Assert.Null(refreshableElement as ISupportsRefresh);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -100,7 +99,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             // Assert
             MbUnit.Framework.Assert.IsNull(element as ISupportsExtendedModel);
-            Xunit.Assert.Null(element as ISupportsExtendedModel);
+            Assert.Null(element as ISupportsExtendedModel);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -128,7 +127,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(expectedValue, element.ToggleState);
-            Xunit.Assert.Equal(expectedValue, element.ToggleState);
+            Assert.Equal(expectedValue, element.ToggleState);
         }
         
         [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
@@ -156,7 +155,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             
             // Assert
             MbUnit.Framework.Assert.AreEqual(expectedValue, element.ToggleState);
-            Xunit.Assert.Equal(expectedValue, element.ToggleState);
+            Assert.Equal(expectedValue, element.ToggleState);
         }
     }
 }

@@ -9,8 +9,6 @@
 
 namespace TmxTest.Commands.Configuration
 {
-    using System;
-    
     /// <summary>
     /// Description of ImportTmxTestSettingsCommandTestFixture.
     /// </summary>

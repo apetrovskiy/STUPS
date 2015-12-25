@@ -9,8 +9,6 @@
 
 namespace SePSXTest
 {
-    using System;
-    
     /// <summary>
     /// Description of Settings.
     /// </summary>

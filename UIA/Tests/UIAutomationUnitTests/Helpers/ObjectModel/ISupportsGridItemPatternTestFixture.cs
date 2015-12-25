@@ -9,7 +9,6 @@
 
 namespace UIAutomationUnitTests.Helpers.ObjectModel
 {
-    using System.Windows.Automation;
     using UIAutomation;
     using MbUnit.Framework;using Xunit;using NUnit.Framework;
     

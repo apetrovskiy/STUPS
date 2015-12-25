@@ -10,7 +10,8 @@
 namespace UIAutomationTest.CheckCmdletParameters
 {
     using UIAutomation;
-    using MbUnit.Framework;using NUnit.Framework;// using Xunit;
+
+    // using Xunit;
     
     /// <summary>
     /// Description of NewUiaWizardCommandTestFixture.

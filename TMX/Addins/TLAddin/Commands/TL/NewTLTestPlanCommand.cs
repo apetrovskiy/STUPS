@@ -9,7 +9,6 @@
 
 namespace Tmx
 {
-    using System;
     using System.Management.Automation;
     
     /// <summary>
@@ -20,7 +19,7 @@ namespace Tmx
     {
         public NewTLTestPlanCommand()
         {
-            this.Active = true;
+            Active = true;
         }
         
         protected override void ProcessRecord()

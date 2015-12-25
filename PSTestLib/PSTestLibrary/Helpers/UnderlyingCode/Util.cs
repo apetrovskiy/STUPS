@@ -20,13 +20,13 @@ namespace PSTestLib
         {
         }
         
-        public static System.Collections.Generic.List<T> AsList<T>(this IEnumerable<object> collection)
+        public static List<T> AsList<T>(this IEnumerable<object> collection)
         /*
         public static System.Collections.Generic.List<T> AsList<T>(this System.Collections.ObjectModel.Collection<object> collection)
         */
         {
-            System.Collections.Generic.List<T> resultList =
-                new System.Collections.Generic.List<T>(); //collection);
+            List<T> resultList =
+                new List<T>(); //collection);
 
             foreach (object element in collection) {
 
@@ -39,8 +39,8 @@ namespace PSTestLib
         
         public static T[] AsArray<T>(this System.Collections.ObjectModel.Collection<object> collection)
         {
-            System.Collections.Generic.List<T> resultList =
-                new System.Collections.Generic.List<T>(); //collection);
+            List<T> resultList =
+                new List<T>(); //collection);
             
             return resultList.ToArray();
         }

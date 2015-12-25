@@ -9,9 +9,6 @@
 
 namespace Tmx
 {
-    using System;
-    using System.Management.Automation;
-    
     /// <summary>
     /// Description of RMConnectServerCommand.
     /// </summary>
@@ -24,7 +21,7 @@ namespace Tmx
         internal override void Execute()
         {
             RMHelper.ConnectRMServer(
-                (RMConnectCmdletBase)this.Cmdlet);
+                (RMConnectCmdletBase)Cmdlet);
         }
     }
 }

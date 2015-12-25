@@ -9,9 +9,8 @@
 
 namespace TmxTest
 {
-    using System;
     // using NUnit;
-    using System.Diagnostics;
+
     //using System.Management.Automation;
     
     /// <summary>

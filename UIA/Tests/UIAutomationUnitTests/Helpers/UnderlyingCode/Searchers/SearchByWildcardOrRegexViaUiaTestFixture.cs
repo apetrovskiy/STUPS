@@ -9,11 +9,10 @@
 
 namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
 {
-    using System;
     using System.Collections.Generic;
     using System.Windows.Automation;
     using UIAutomation;
-    using MbUnit.Framework;using Xunit;using NUnit.Framework;
+    using Xunit;
     using System.Linq;
     using System.Management.Automation;
     
@@ -85,7 +84,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
             WildcardPattern txtValuePattern = new WildcardPattern(txtValue, options);
             */
             MbUnit.Framework.Assert.Count(expectedNumberOfElements, resultList);
-            Xunit.Assert.Equal(expectedNumberOfElements, resultList.Count);
+            Assert.Equal(expectedNumberOfElements, resultList.Count);
             
             // 20140312
 //            if (!string.IsNullOrEmpty(name)) {

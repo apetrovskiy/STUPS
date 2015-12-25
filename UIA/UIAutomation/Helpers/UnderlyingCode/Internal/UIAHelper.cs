@@ -625,7 +625,7 @@ namespace UIAutomation
             // 20131114
             //int counter)
             int counter,
-            System.Drawing.Point mousePoint)
+            Point mousePoint)
         {
             cmdlet.RunOnSleepScriptBlocks(cmdlet, null);
             Thread.Sleep(Preferences.TranscriptInterval);

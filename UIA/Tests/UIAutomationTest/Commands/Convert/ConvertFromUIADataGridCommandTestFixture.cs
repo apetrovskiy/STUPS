@@ -9,8 +9,6 @@
 
 namespace UIAutomationTest.Commands.Convert
 {
-    using System;
-    using MbUnit.Framework;using NUnit.Framework;
     using System.Management.Automation;
 
     /// <summary>

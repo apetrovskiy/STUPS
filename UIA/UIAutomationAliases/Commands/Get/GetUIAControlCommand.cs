@@ -9,7 +9,6 @@
 
 namespace UIAutomationAliases.Commands.Get
 {
-    using System;
     using System.Management.Automation;
     using UIAutomation.Commands;
     

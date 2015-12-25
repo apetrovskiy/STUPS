@@ -9,16 +9,12 @@
 
 namespace TlAddinUnitTests.TestPlans
 {
-    using System;
     using MbUnit.Framework;
-    using PSTestLib;
-    using Moq;
     //using Autofac;
     //using Autofac.Builder;
     using Tmx;
     using Meyn.TestLink;
-    using CookComputing.XmlRpc;
-    
+
     /// <summary>
     /// Description of GetTestPlansTestFixture.
     /// </summary>
@@ -304,8 +300,8 @@ namespace TlAddinUnitTests.TestPlans
                 cmdlet.TestProjectName = testProjectNames;
             }
 //cmdlet.WriteTrace(cmdlet, "getTestPlansByProjectName: 0001");
-            System.Collections.Generic.List<Meyn.TestLink.TestProject> testProjects =
-                new System.Collections.Generic.List<Meyn.TestLink.TestProject>();
+            System.Collections.Generic.List<TestProject> testProjects =
+                new System.Collections.Generic.List<TestProject>();
             testProjects.Add(TLAddinData.CurrentTestProject);
 //cmdlet.WriteTrace(cmdlet, "getTestPlansByProjectName: 0002");
             

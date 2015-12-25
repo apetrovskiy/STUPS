@@ -10,8 +10,7 @@
 namespace TestUtils
 {
     using System;
-    using System.Management.Automation;
-    
+
     /// <summary>
     /// Description of Win32Helper.
     /// </summary>

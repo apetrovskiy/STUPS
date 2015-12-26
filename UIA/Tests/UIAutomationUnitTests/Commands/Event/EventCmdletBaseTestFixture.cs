@@ -47,9 +47,7 @@ namespace UIAutomationUnitTests.Commands.Event
         internal IAutomation TestAutomation { get; set; }
         
         #region helpers
-        private void TestEvent(
-            EventCmdletBase cmdlet,
-            params AutomationProperty[] properties)
+        void TestEvent(EventCmdletBase cmdlet, params AutomationProperty[] properties)
         {
             // Arrange
             IAutomation automation = Substitute.For<IAutomation>();

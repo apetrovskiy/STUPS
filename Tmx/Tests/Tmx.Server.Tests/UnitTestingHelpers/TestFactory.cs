@@ -23,32 +23,45 @@ namespace Tmx.Server.Tests.UnitTestingHelpers
     {
         public static Browser GetBrowserForTestClientsModule()
         {
+            // 20160119
+            // http://stackoverflow.com/questions/24776929/nancy-testing-seems-slow-is-there-anything-im-should-be-doing-to-improve-perfo/25745960#25745960
             return new Browser(with => with.Modules(typeof(TestClientsModule), typeof(ServerControlModule), typeof(TestRunsModule)));
+            // return new Browser(with => with.Modules(typeof(TestClientsModule), typeof(ServerControlModule), typeof(TestRunsModule)).DisableAutoRegistrations());
         }
         
         public static Browser GetBrowserForTestTasksModule()
         {
+            // 20160119
             return new Browser(with => with.Modules(typeof(TestTasksModule), typeof(TestClientsModule))); // , typeof(ServerControlModule), typeof(TestRunsModule)));
+            // return new Browser(with => with.Modules(typeof(TestTasksModule), typeof(TestClientsModule)).DisableAutoRegistrations());
         }
         
         public static Browser GetBrowserForServerControlModule()
         {
+            // 20160119
             return new Browser(with => with.Modules(typeof(ServerControlModule)));
+            // return new Browser(with => with.Modules(typeof(ServerControlModule)).DisableAutoRegistrations());
         }
         
         public static Browser GetBrowserForTestRunsModule()
         {
+            // 20160119
             return new Browser(with => with.Modules(typeof(TestRunsModule), typeof(ServerControlModule)));
+            // return new Browser(with => with.Modules(typeof(TestRunsModule), typeof(ServerControlModule)).DisableAutoRegistrations());
         }
         
         public static Browser GetBrowserForTestResultsModule()
         {
+            // 20160119
             return new Browser(with => with.Modules(typeof(TestResultsModule)));
+            // return new Browser(with => with.Modules(typeof(TestResultsModule)).DisableAutoRegistrations());
         }
         
         public static Browser GetBrowserForTestDataModule()
         {
+            // 20160119
             return new Browser(with => with.Modules(typeof(TestDataModule)));
+            // return new Browser(with => with.Modules(typeof(TestDataModule)).DisableAutoRegistrations());
         }
         
         public static ITestClient GivenTestClient(string hostname, string username)

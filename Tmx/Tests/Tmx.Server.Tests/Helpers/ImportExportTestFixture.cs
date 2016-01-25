@@ -54,8 +54,9 @@ namespace Tmx.Server.Tests.Helpers
             testResultsImporter.MergeTestSuites(sourceTestSuites, suites);
             ThenThereAreNPlatformsInXdocument(2, sourceTestPlatforms);
             ThenThereAreNSuitesInXdocument(2, sourceTestSuites);
-
+            
             ThenTestResultNStatusIs(suites, "1", TestStatuses.Passed);
+            Xunit.Assert.Equal("text data", suites[0].TestScenarios[0].TestResults[0].Details[0].TextDetail);
             ThenTestResultNStatusIs(sourceTestSuites, "2", TestStatuses.Passed);
             ThenTestResultNStatusIs(sourceTestSuites, "3", TestStatuses.Failed);
             ThenTestResultNStatusIs(sourceTestSuites, "4", TestStatuses.KnownIssue);
@@ -277,6 +278,9 @@ namespace Tmx.Server.Tests.Helpers
                                 SuiteUniqueId = suiteUniqueId,
                                 ScenarioId = scenarioId,
                                 ScenarioUniqueId = scenarioUniqueId
+                                // 20160125
+                                ,
+                                Details = new List<ITestResultDetail>{ new TestResultDetail { DetailType = TestResultDetailTypes.Comment, TextDetail = "text data", DetailStatus = TestStatuses.Passed }}
                             },
                             new TestResult {
                                 Id = "2",

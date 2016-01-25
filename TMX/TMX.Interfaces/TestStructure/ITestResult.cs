@@ -29,6 +29,12 @@ namespace Tmx.Interfaces.TestStructure
         string Id { get; set; }
         [XmlElement("TestResultDetails", typeof(ITestResultDetail))]
         List<ITestResultDetail> Details { get; }
+        // 20160125
+        // List<ITestResultDetail> TestResultDetails { get; }
+
+        // 20160125
+        //List<ITestResultDetail> GetDetails();
+
         [XmlAttribute]
         string Status { get; }
         [XmlAttribute]

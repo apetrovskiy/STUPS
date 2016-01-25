@@ -67,6 +67,7 @@ namespace Tmx.Interfaces
         // [XmlInclude(typeof(List<ITestResultDetail>))]
         [XmlElement("TestResultDetails", typeof(ITestResultDetail))]
         public virtual List<ITestResultDetail> Details { get; protected internal set; }
+        // public List<ITestResultDetail> Details { get; protected internal set; }
         // public virtual List<ITestResultDetail> Details { get; set; }
         
         [XmlAttribute]
@@ -103,6 +104,13 @@ namespace Tmx.Interfaces
         public virtual List<object> Parameters { get; protected internal set; }
 
         string status;
+
+        // 20160125
+        //public List<ITestResultDetail> GetDetails()
+        //{
+        //    return Details;
+        //}
+
         [XmlAttribute]
         public virtual string Status { get { return status; } }
         // 20150805
@@ -314,5 +322,8 @@ namespace Tmx.Interfaces
 
         [XmlAttribute]
         public string Tag { get; set; }
+
+        // 20160125
+        // public virtual List<ITestResultDetail> TestResultDetails { get { return Details;} }
     }
 }

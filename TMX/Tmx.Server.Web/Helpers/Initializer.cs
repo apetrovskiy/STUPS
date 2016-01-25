@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Dynamic;
+    using System.Linq;
     using Core;
     using Core.Types.Remoting;
     using DotLiquid.NamingConventions;
@@ -46,14 +47,29 @@
             Template.RegisterSafeType(typeof(ServerControlCommands), member => member.ToString());
             Template.RegisterSafeType(typeof(TestLabStatuses), member => member.ToString());
             Template.RegisterSafeType(typeof(TestStatuses), member => member.ToString());
+
+            Template.RegisterSafeType(typeof(TestResultDetailTypes), member => member.ToString());
+
+            //Template.RegisterSafeType(typeof(List<ITestResultDetail>), member => member.ToString());
+            //Template.RegisterSafeType(typeof(List<TestResultDetail>), member => member.ToString());
+            // var list = new List<ITestResultDetail>();
+            // list.Count
+            // list[]
+            //Template.RegisterSafeType(typeof(List<ITestResultDetail>), new[] { "Count" });
+            //Template.RegisterSafeType(typeof(List<TestResultDetail>), new[] { "Count" });
+
             // specific types
             Template.RegisterSafeType(typeof(TestSuite), new[] { "Id", "Name", "Status", "Description", "TestScenarios", "PlatformId", "Statistics", "TimeSpent", "Timestamp", "Tags", "Statistics.All", "Statistics.Passed", "GetAll", "GetPassed", "GetFailed", "GetPassedButWithBadSmell", "GetNotTested" });
             Template.RegisterSafeType(typeof(TestScenario), new[] { "Id", "Name", "Status", "Description", "TestResults", "PlatformId", "Statistics", "TimeSpent", "Timestamp", "Tags", "TestCases", "Statistics.All", "Statistics.Passed", "GetAll", "GetPassed", "GetFailed", "GetPassedButWithBadSmell", "GetNotTested" });
             Template.RegisterSafeType(typeof(TestResult), new[] { "Id", "Name", "Status", "Description", "Origin", "PlatformId", "Timestamp", "Details", "ScriptName", "LineNumber", "Position", "Error", "Code", "Parameters", "TimeSpent", "Generated", "Screenshot", "ListDetailNames" });
+            // Template.RegisterSafeType(typeof(TestResult), new[] { "Id", "Name", "Status", "Description", "Origin", "PlatformId", "Timestamp", "Details", "GetDetails", "ScriptName", "LineNumber", "Position", "Error", "Code", "Parameters", "TimeSpent", "Generated", "Screenshot", "ListDetailNames" });
+            // Template.RegisterSafeType(typeof(TestResult), new[] { "Id", "Name", "Status", "Description", "Origin", "PlatformId", "Timestamp", "Details", "TestResultDetails", "ScriptName", "LineNumber", "Position", "Error", "Code", "Parameters", "TimeSpent", "Generated", "Screenshot", "ListDetailNames" });
             Template.RegisterSafeType(typeof(TestResultDetail), new[] { "Name", "Timestamp", "GetDetail", "DetailStatus", "DetailType", "TextDetail", "ErrorDetail", "ScreenshotDetail", "LogDetail", "ExternalData" });
             Template.RegisterSafeType(typeof(ITestSuite), new[] { "Id", "Name", "Status", "Description", "TestScenarios", "PlatformId", "Statistics", "TimeSpent", "Timestamp", "Tags", "Statistics.All", "Statistics.Passed", "GetAll", "GetPassed", "GetFailed", "GetPassedButWithBadSmell", "GetNotTested" });
             Template.RegisterSafeType(typeof(ITestScenario), new[] { "Id", "Name", "Status", "Description", "TestResults", "PlatformId", "Statistics", "TimeSpent", "Timestamp", "Tags", "TestCases", "Statistics.All", "Statistics.Passed", "GetAll", "GetPassed", "GetFailed", "GetPassedButWithBadSmell", "GetNotTested" });
             Template.RegisterSafeType(typeof(ITestResult), new[] { "Id", "Name", "Status", "Description", "Origin", "PlatformId", "Timestamp", "Details", "ScriptName", "LineNumber", "Position", "Error", "Code", "Parameters", "TimeSpent", "Generated", "Screenshot", "ListDetailNames" });
+            // Template.RegisterSafeType(typeof(ITestResult), new[] { "Id", "Name", "Status", "Description", "Origin", "PlatformId", "Timestamp", "Details", "GetDetails", "ScriptName", "LineNumber", "Position", "Error", "Code", "Parameters", "TimeSpent", "Generated", "Screenshot", "ListDetailNames" });
+            // Template.RegisterSafeType(typeof(ITestResult), new[] { "Id", "Name", "Status", "Description", "Origin", "PlatformId", "Timestamp", "Details", "TestResultDetails", "ScriptName", "LineNumber", "Position", "Error", "Code", "Parameters", "TimeSpent", "Generated", "Screenshot", "ListDetailNames" });
             Template.RegisterSafeType(typeof(ITestResultDetail), new[] { "Name", "Timestamp", "GetDetail", "DetailStatus", "DetailType", "TextDetail", "ErrorDetail", "ScreenshotDetail", "LogDetail", "ExternalData" });
             // Template.RegisterSafeType(typeof(TestWorkflow), new[] { "Id", "Name", "TestLabId", "Description", "ParametersPageName" });
             Template.RegisterSafeType(typeof(ITestWorkflow), new[] { "Id", "Name", "TestLabId", "Description", "ParametersPageName", "DefaultData", "IsDefault" }); // ??
@@ -81,6 +97,13 @@
             Template.RegisterSafeType(typeof(TestStat), new[] { "All", "Passed", "Failed", "PassedButWithBadSmell", "NotTested", "TimeSpent" });
             Template.RegisterSafeType(typeof(TestStat), member => member.ToString());
 
+            //RegisterViewModel(typeof(ITestResult));
+            //RegisterViewModel(typeof(TestResult));
+            //RegisterViewModel(typeof(ITestRun));
+            //RegisterViewModel(typeof(TestRun));
+            //RegisterViewModel(typeof(ICommonData));
+            //RegisterViewModel(typeof(CommonData));
+
             // just for copying the Nancy.ViewEngines.DotLiquid assembly to dependant projects
             var drop = new DynamicDrop(new ExpandoObject());
         }
@@ -90,5 +113,25 @@
             // Template.NamingConvention = new CSharpNamingConvention();
             Template.NamingConvention = new RubyNamingConvention();
         }
+
+        // http://blog.novanet.no/generate-html-in-the-backend/
+        //public static void RegisterViewModel(Type rootType)
+        //{
+        //    rootType
+        //       .Assembly
+        //       .GetTypes()
+        //       .Where(t => t.Namespace == rootType.Namespace)
+        //       .ToList()
+        //       .ForEach(RegisterSafeTypeWithAllProperties);
+        //}
+
+        //public static void RegisterSafeTypeWithAllProperties(Type type)
+        //{
+        //    Template.RegisterSafeType(type,
+        //       type
+        //       .GetProperties()
+        //       .Select(p => p.Name)
+        //       .ToArray());
+        //}
     }
 }

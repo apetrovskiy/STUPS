@@ -61,7 +61,7 @@ namespace Tmx.Core
                 new XAttribute("uniqueId", platform.UniqueId),
                 new XAttribute("id", platform.Id ?? string.Empty),
                 new XAttribute("name", platform.Name ?? string.Empty),
-                createXattribute("description", platform.Description ?? string.Empty) //,
+                CreateXattribute("description", platform.Description ?? string.Empty) //,
                 
 //                new XAttribute("created", platform.Created)
             );
@@ -91,15 +91,15 @@ namespace Tmx.Core
                                                  new XAttribute("id", suite.Id),
                                                  new XAttribute("name", suite.Name),
                                                  new XAttribute("status", suite.Status),
-                                                 createXattribute(xmlStruct.TimeSpentAttribute, Convert.ToInt32(suite.Statistics.TimeSpent)),
+                                                 CreateXattribute(xmlStruct.TimeSpentAttribute, Convert.ToInt32(suite.Statistics.TimeSpent)),
                                                  new XAttribute("all", suite.Statistics.All.ToString()),
                                                  new XAttribute("passed", suite.Statistics.Passed.ToString()),
-                                                 createXattribute(xmlStruct.FailedAttribute, suite.Statistics.Failed.ToString()),
+                                                 CreateXattribute(xmlStruct.FailedAttribute, suite.Statistics.Failed.ToString()),
                                                  new XAttribute("notTested", suite.Statistics.NotTested.ToString()),
                                                  new XAttribute("knownIssue", suite.Statistics.PassedButWithBadSmell.ToString()),
-                                                 createXattribute("description", suite.Description),
-                                                 createXattribute("platformId", suite.PlatformId),
-                                                 createXattribute("platformUniqueId", suite.PlatformUniqueId),
+                                                 CreateXattribute("description", suite.Description),
+                                                 CreateXattribute("platformId", suite.PlatformId),
+                                                 CreateXattribute("platformUniqueId", suite.PlatformUniqueId),
                                                  CreateScenariosXElementCommon(
                                                      suite,
                                                      // 20141122
@@ -131,7 +131,7 @@ namespace Tmx.Core
             var scenariosElement = 
                  new XElement(xmlStruct.ScenariosNode,
                               from scenario in testScenariosFiltered
-                              select getScenariosXElement(
+                              select GetScenariosXElement(
                                   suite, 
                                   scenario,
                                   // 20141122
@@ -146,7 +146,7 @@ namespace Tmx.Core
             return scenariosElement;
         }
         
-        XElement getScenariosXElement(
+        XElement GetScenariosXElement(
                 ITestSuite suite,
                 ITestScenario scenario,
                 IOrderedEnumerable<ITestResult> testResults,
@@ -158,15 +158,15 @@ namespace Tmx.Core
                              new XAttribute("id", scenario.Id),
                              new XAttribute("name", scenario.Name),
                              new XAttribute("status", scenario.Status),
-                             createXattribute(xmlStruct.TimeSpentAttribute, Convert.ToInt32(suite.Statistics.TimeSpent)),
+                             CreateXattribute(xmlStruct.TimeSpentAttribute, Convert.ToInt32(suite.Statistics.TimeSpent)),
                              new XAttribute("all", scenario.Statistics.All.ToString()),
                              new XAttribute("passed", scenario.Statistics.Passed.ToString()),
-                             createXattribute(xmlStruct.FailedAttribute, scenario.Statistics.Failed.ToString()),
+                             CreateXattribute(xmlStruct.FailedAttribute, scenario.Statistics.Failed.ToString()),
                              new XAttribute("notTested", scenario.Statistics.NotTested.ToString()),
                              new XAttribute("knownIssue", scenario.Statistics.PassedButWithBadSmell.ToString()),
-                             createXattribute("description", scenario.Description),
-                             createXattribute("platformId", scenario.PlatformId),
-                             createXattribute("platformUniqueId", scenario.PlatformUniqueId),
+                             CreateXattribute("description", scenario.Description),
+                             CreateXattribute("platformId", scenario.PlatformId),
+                             CreateXattribute("platformUniqueId", scenario.PlatformUniqueId),
                              CreateTestResultsXElementCommon(
                                  suite,
                                  scenario,
@@ -199,13 +199,13 @@ namespace Tmx.Core
             var testResultsElement =
                 new XElement(xmlStruct.TestResultsNode,
                              from testResult in testResultsFiltered
-                             select getTestResultsXElement(testResult, xmlStruct)
+                             select GetTestResultsXElement(testResult, xmlStruct)
                             );
 
             return testResultsElement;
         }
         
-        XElement getTestResultsXElement(
+        XElement GetTestResultsXElement(
                 ITestResult testResult,
                 IXMLElementsStruct xmlStruct)
         {
@@ -216,23 +216,23 @@ namespace Tmx.Core
                              new XAttribute("name", testResult.Name),
                              new XAttribute("status", testResult.Status),
                              new XAttribute("origin", testResult.Origin),
-                             createXattribute(xmlStruct.TimeSpentAttribute, Convert.ToInt32(testResult.TimeSpent)), // ??
-                             createXelement(
+                             CreateXattribute(xmlStruct.TimeSpentAttribute, Convert.ToInt32(testResult.TimeSpent)), // ??
+                             CreateXelement(
                                  "source",
-                                 createXattribute("scriptName", testResult.ScriptName),
-                                 createXattribute("lineNumber", testResult.LineNumber),
-                                 createXattribute("position", testResult.Position),
-                                 createXattribute("code", testResult.Code)
+                                 CreateXattribute("scriptName", testResult.ScriptName),
+                                 CreateXattribute("lineNumber", testResult.LineNumber),
+                                 CreateXattribute("position", testResult.Position),
+                                 CreateXattribute("code", testResult.Code)
                                 ),
-                             createXattribute(xmlStruct.TimeStampAttribute, testResult.Timestamp),
-                             createXelement(
+                             CreateXattribute(xmlStruct.TimeStampAttribute, testResult.Timestamp),
+                             CreateXelement(
                                  "error",
-                                 createXattribute("error", testResult.Error)
+                                 CreateXattribute("error", testResult.Error)
                                 ),
-                             createXattribute("screenshot", testResult.Screenshot),
-                             createXattribute("description", testResult.Description),
-                             createXattribute("platformId", testResult.PlatformId),
-                             createXattribute("platformUniqueId", testResult.PlatformUniqueId),
+                             CreateXattribute("screenshot", testResult.Screenshot),
+                             CreateXattribute("description", testResult.Description),
+                             CreateXattribute("platformId", testResult.PlatformId),
+                             CreateXattribute("platformUniqueId", testResult.PlatformUniqueId),
                              CreateTestResultDetailsXElement(
                                  testResult,
                                  xmlStruct)
@@ -253,21 +253,21 @@ namespace Tmx.Core
                 new XElement("details",
                              from testResultDetail in testResult.Details
                              select new XElement("detail", 
-                                                 createXattribute("name", testResultDetail.Name),
-                                                 createXattribute(xmlStruct.TimeSpentAttribute, testResultDetail.Timestamp),
-                                                 createXattribute("status", testResultDetail.DetailStatus)
+                                                 CreateXattribute("name", testResultDetail.Name),
+                                                 CreateXattribute(xmlStruct.TimeSpentAttribute, testResultDetail.Timestamp),
+                                                 CreateXattribute("status", testResultDetail.DetailStatus)
                                                 )
                             );
 
             return testResultDetailsElement;
         }
         
-        XAttribute createXattribute(string name, object valueObject)
+        XAttribute CreateXattribute(string name, object valueObject)
         {
             return null == valueObject ? null : new XAttribute(name, valueObject);
         }
         
-        XElement createXelement(string name, params object[] content)
+        XElement CreateXelement(string name, params object[] content)
         {
             return null == content[0] ? null : new XElement(name, content);
         }

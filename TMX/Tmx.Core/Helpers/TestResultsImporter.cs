@@ -82,7 +82,7 @@ namespace Tmx.Core
         {
             try {
                 
-                string pathToImportFile = cmdlet.Path;
+                var pathToImportFile = cmdlet.Path;
                 
                 if (!System.IO.File.Exists(pathToImportFile)) {
                     throw new Exception(
@@ -109,31 +109,31 @@ namespace Tmx.Core
             var platforms = from platform in xDoc.Descendants("testplatform")
                                   where platform.Attribute("name").Value != TestData.DefaultPlatformName
                                   select platform;
-            return importTestPlatforms(platforms);
+            return ImportTestPlatforms(platforms);
         }
         
-        List<ITestPlatform> importTestPlatforms(IEnumerable<XElement> platformElements)
+        List<ITestPlatform> ImportTestPlatforms(IEnumerable<XElement> platformElements)
         {
             var importedTestPlatforms = new List<ITestPlatform>();
             
             foreach (var platformElement in platformElements) {
-                bool addTestPlatform = false;
-                var testPlatform = importedTestPlatforms.FirstOrDefault(tp => tp.Id == getStringAttribute(platformElement, "id") &&
+                var addTestPlatform = false;
+                var testPlatform = importedTestPlatforms.FirstOrDefault(tp => tp.Id == GetStringAttribute(platformElement, "id") &&
 //                ITestPlatform testPlatform = null;
 //                try {
 //                    testPlatform = importedTestPlatforms.First(tp => tp.Id == getStringAttribute(platformElement, "id") &&
-                                                                        tp.Name == getStringAttribute(platformElement, "name") &&
-                                                                        tp.UniqueId == getGuidAttribute(platformElement, "uniqueId"));
+                                                                        tp.Name == GetStringAttribute(platformElement, "name") &&
+                                                                        tp.UniqueId == GetGuidAttribute(platformElement, "uniqueId"));
 //                }
 //                catch (Exception ee) {
 //Console.WriteLine(ee.Message);
 //                }
                 if (null == testPlatform) {
                     testPlatform = new TestPlatform {
-                        UniqueId = getGuidAttribute(platformElement, "uniqueId"),
-                        Id = getStringAttribute(platformElement, "id"),
-                        Name = getStringAttribute(platformElement, "name"),
-                        Description = getStringAttribute(platformElement, "description")
+                        UniqueId = GetGuidAttribute(platformElement, "uniqueId"),
+                        Id = GetStringAttribute(platformElement, "id"),
+                        Name = GetStringAttribute(platformElement, "name"),
+                        Description = GetStringAttribute(platformElement, "description")
                     };
                     addTestPlatform = true;
                 }
@@ -163,90 +163,90 @@ namespace Tmx.Core
             var testStatistics = ProxyFactory.Get<TestStatistics>();
             
             foreach (var suiteElement in suiteElements) {
-                string suiteDescription = string.Empty;
-                suiteDescription = getStringAttribute(suiteElement, "description");
+                var suiteDescription = string.Empty;
+                suiteDescription = GetStringAttribute(suiteElement, "description");
                 
-                bool addTestSuite = false;
-                var testSuite = importedTestSuites.FirstOrDefault(ts => ts.Id == getStringAttribute(suiteElement, "id") &&
-                                                         ts.Name == getStringAttribute(suiteElement, "name") &&
-                                                         ts.PlatformUniqueId == getGuidAttribute(suiteElement, "platformUniqueId"));
+                var addTestSuite = false;
+                var testSuite = importedTestSuites.FirstOrDefault(ts => ts.Id == GetStringAttribute(suiteElement, "id") &&
+                                                         ts.Name == GetStringAttribute(suiteElement, "name") &&
+                                                         ts.PlatformUniqueId == GetGuidAttribute(suiteElement, "platformUniqueId"));
                 
                 if (null == testSuite) {
                     testSuite = new TestSuite {
-                        UniqueId = getGuidAttribute(suiteElement, "uniqueId"),
-                        Id = getStringAttribute(suiteElement, "id"),
-                        Name = getStringAttribute(suiteElement, "name"),
-                        PlatformId = getStringAttribute(suiteElement, "platformId"),
-                        PlatformUniqueId = getGuidAttribute(suiteElement, "platformUniqueId"),
+                        UniqueId = GetGuidAttribute(suiteElement, "uniqueId"),
+                        Id = GetStringAttribute(suiteElement, "id"),
+                        Name = GetStringAttribute(suiteElement, "name"),
+                        PlatformId = GetStringAttribute(suiteElement, "platformId"),
+                        PlatformUniqueId = GetGuidAttribute(suiteElement, "platformUniqueId"),
                         Description = suiteDescription,
-                        TimeSpent = getDoubleAttribute(suiteElement, "timeSpent")
+                        TimeSpent = GetDoubleAttribute(suiteElement, "timeSpent")
                     };
                     addTestSuite = true;
                 }
                 
                 var scenarioElements = from scenarioElement in suiteElement.Descendants("scenario")
-                                            where getStringAttribute(scenarioElement, "name") != TestData.Autogenerated
-                                            && testSuite.PlatformUniqueId == getGuidAttribute(scenarioElement, "platformUniqueId")
+                                            where GetStringAttribute(scenarioElement, "name") != TestData.Autogenerated
+                                            && testSuite.PlatformUniqueId == GetGuidAttribute(scenarioElement, "platformUniqueId")
                                             select scenarioElement;
-                testSuite.TestScenarios.AddRange(importTestScenarios(scenarioElements, testSuite.Id, testSuite.UniqueId));
+                testSuite.TestScenarios.AddRange(ImportTestScenarios(scenarioElements, testSuite.Id, testSuite.UniqueId));
                 testStatistics.RefreshSuiteStatistics(testSuite, true);
-                setSuiteStatus(testSuite, true);
+                SetSuiteStatus(testSuite, true);
                 if (addTestSuite)
                    importedTestSuites.Add(testSuite);
             }
             return importedTestSuites;
         }
         
-        List<ITestScenario> importTestScenarios(IEnumerable<XElement> scenarioElements, string suiteId, Guid suiteUniqueId)
+        List<ITestScenario> ImportTestScenarios(IEnumerable<XElement> scenarioElements, string suiteId, Guid suiteUniqueId)
         {
             var importedTestScenarios = new List<ITestScenario>();
             if (null == scenarioElements) return importedTestScenarios;
             
             foreach (var scenarioElement in scenarioElements) {
-                string scenarioDescription = string.Empty;
-                scenarioDescription = getStringAttribute(scenarioElement, "description");
+                var scenarioDescription = string.Empty;
+                scenarioDescription = GetStringAttribute(scenarioElement, "description");
                 
-                bool addTestScenario = false;
-                var testScenario = importedTestScenarios.FirstOrDefault(tsc => tsc.Id == getStringAttribute(scenarioElement, "id") &&
-                                                               tsc.Name == getStringAttribute(scenarioElement, "name") &&
-                                                               tsc.PlatformUniqueId == getGuidAttribute(scenarioElement, "platformUniqueId"));
+                var addTestScenario = false;
+                var testScenario = importedTestScenarios.FirstOrDefault(tsc => tsc.Id == GetStringAttribute(scenarioElement, "id") &&
+                                                               tsc.Name == GetStringAttribute(scenarioElement, "name") &&
+                                                               tsc.PlatformUniqueId == GetGuidAttribute(scenarioElement, "platformUniqueId"));
                 
                 if (null == testScenario) {
                     testScenario = new TestScenario {
-                        UniqueId = getGuidAttribute(scenarioElement, "uniqueId"),
-                        Id = getStringAttribute(scenarioElement, "id"),
-                        Name = getStringAttribute(scenarioElement, "name"),
-                        PlatformId = getStringAttribute(scenarioElement, "platformId"),
-                        PlatformUniqueId = getGuidAttribute(scenarioElement, "platformUniqueId"),
+                        UniqueId = GetGuidAttribute(scenarioElement, "uniqueId"),
+                        Id = GetStringAttribute(scenarioElement, "id"),
+                        Name = GetStringAttribute(scenarioElement, "name"),
+                        PlatformId = GetStringAttribute(scenarioElement, "platformId"),
+                        PlatformUniqueId = GetGuidAttribute(scenarioElement, "platformUniqueId"),
                         Description = scenarioDescription,
-                        TimeSpent = getDoubleAttribute(scenarioElement, "timeSpent"),
+                        TimeSpent = GetDoubleAttribute(scenarioElement, "timeSpent"),
                         SuiteId = suiteId,
                         SuiteUniqueId = suiteUniqueId
                     };
                     addTestScenario = true;
                 }
                 var testResultElements = from testResultElement in scenarioElement.Descendants("testResult")
-                    where testScenario.PlatformUniqueId == getGuidAttribute(testResultElement, "platformUniqueId")
+                    where testScenario.PlatformUniqueId == GetGuidAttribute(testResultElement, "platformUniqueId")
                                   //where testResult.Attribute("name").Value != "autoclosed"
                 select testResultElement;
-                testScenario.TestResults.AddRange(importTestResults(testResultElements, testScenario.SuiteId, testScenario.SuiteUniqueId, testScenario.Id, testScenario.UniqueId));
+                testScenario.TestResults.AddRange(ImportTestResults(testResultElements, testScenario.SuiteId, testScenario.SuiteUniqueId, testScenario.Id, testScenario.UniqueId));
                 if (addTestScenario)
                     importedTestScenarios.Add(testScenario);
             }
             return importedTestScenarios;
         }
         
-        List<ITestResult> importTestResults(IEnumerable<XElement> testResultElements, string suiteId, Guid suiteUniqueId, string scenarioId, Guid scenarioUniqueId)
+        List<ITestResult> ImportTestResults(IEnumerable<XElement> testResultElements, string suiteId, Guid suiteUniqueId, string scenarioId, Guid scenarioUniqueId)
         {
             var importedTestResults = new List<ITestResult>();
             if (null == testResultElements) return importedTestResults;
             
             foreach (var testResultElement in testResultElements) {
-                var status = getTestResultStatus(testResultElement);
+                var status = GetTestResultStatus(testResultElement);
                 var origin = TestResultOrigins.Logical;
-                if ("TECHNICAL" == getStringAttribute(testResultElement, "origin").ToUpper())
+                if ("TECHNICAL" == GetStringAttribute(testResultElement, "origin").ToUpper())
                     origin = TestResultOrigins.Technical;
-                if ("AUTOMATIC" == getStringAttribute(testResultElement, "origin").ToUpper())
+                if ("AUTOMATIC" == GetStringAttribute(testResultElement, "origin").ToUpper())
                     origin = TestResultOrigins.Automatic;
 
                 /*
@@ -255,18 +255,18 @@ namespace Tmx.Core
 
                 */
 
-                string testResultDescription = string.Empty;
-                testResultDescription = getStringAttribute(testResultElement, "description");
+                var testResultDescription = string.Empty;
+                testResultDescription = GetStringAttribute(testResultElement, "description");
                 
-                bool addTestResult = false;
-                var testResult = importedTestResults.FirstOrDefault(tr => tr.Id == getStringAttribute(testResultElement, "id") &&
-                                                           tr.Name == getStringAttribute(testResultElement, "name"));
+                var addTestResult = false;
+                var testResult = importedTestResults.FirstOrDefault(tr => tr.Id == GetStringAttribute(testResultElement, "id") &&
+                                                           tr.Name == GetStringAttribute(testResultElement, "name"));
 
                 if (null == testResult) {
                     testResult = new TestResult {
-                        UniqueId = getGuidAttribute(testResultElement, "uniqueId"),
-                        Id = getStringAttribute(testResultElement, "id"),
-                        Name = getStringAttribute(testResultElement, "name"),
+                        UniqueId = GetGuidAttribute(testResultElement, "uniqueId"),
+                        Id = GetStringAttribute(testResultElement, "id"),
+                        Name = GetStringAttribute(testResultElement, "name"),
                         Description = testResultDescription,
                         // 20150127
                         // enStatus = (!passedValue ? TestResultStatuses.Failed : knownIssueValue ? TestResultStatuses.KnownIssue : passedValue ? TestResultStatuses.Passed : TestResultStatuses.NotTested),
@@ -279,17 +279,19 @@ namespace Tmx.Core
                     addTestResult = true;
                 }
                 // TODO: DI
-                (testResult as TestResult).SetTimestamp(getDateTimeAttribute(testResultElement, "timestamp"));
+                (testResult as TestResult).SetTimestamp(GetDateTimeAttribute(testResultElement, "timestamp"));
                 testResult.SetOrigin(origin);
-                testResult.SetTimeSpent(getDoubleAttribute(testResultElement, "timeSpent"));
-                testResult.PlatformId = getStringAttribute(testResultElement, "platformId");
-                testResult.PlatformUniqueId = getGuidAttribute(testResultElement, "platformUniqueId");
+                testResult.SetTimeSpent(GetDoubleAttribute(testResultElement, "timeSpent"));
+                testResult.PlatformId = GetStringAttribute(testResultElement, "platformId");
+                testResult.PlatformUniqueId = GetGuidAttribute(testResultElement, "platformUniqueId");
                 try {
                     var testResultDetails = from testResultDetail in testResultElement.Descendants("detail")
                                             select testResultDetail;
-                    testResult.Details.AddRange(importTestResultDetails(testResultDetails)); // , testResult);
+                    testResult.Details.AddRange(ImportTestResultDetails(testResultDetails)); // , testResult);
                 } catch (Exception e) {
                     //                                cmdlet.WriteVerbose(cmdlet, eImportDetails);
+                    // 20160125
+                    Console.WriteLine(e.Message);
                 }
                 if (addTestResult)
                     importedTestResults.Add(testResult);
@@ -297,21 +299,21 @@ namespace Tmx.Core
             return importedTestResults;
         }
 
-        TestStatuses getTestResultStatus(XElement testResultElement)
+        TestStatuses GetTestResultStatus(XElement testResultElement)
         {
-            return ("PASSED" == getStringAttribute(testResultElement, "status")) ? TestStatuses.Passed : ("FAILED" == getStringAttribute(testResultElement, "status")) ? TestStatuses.Failed : ("KNOWN ISSUE" == getStringAttribute(testResultElement, "status")) ? TestStatuses.KnownIssue : TestStatuses.NotRun;
+            return ("PASSED" == GetStringAttribute(testResultElement, "status")) ? TestStatuses.Passed : ("FAILED" == GetStringAttribute(testResultElement, "status")) ? TestStatuses.Failed : ("KNOWN ISSUE" == GetStringAttribute(testResultElement, "status")) ? TestStatuses.KnownIssue : TestStatuses.NotRun;
         }
         
-        List<ITestResultDetail> importTestResultDetails(IEnumerable<XElement> testResultDetailElements)
+        List<ITestResultDetail> ImportTestResultDetails(IEnumerable<XElement> testResultDetailElements)
         {
             var importedTestResultDetails = new List<ITestResultDetail>();
             if (null == testResultDetailElements) return importedTestResultDetails;
             
             foreach (var testResultDetailElement in testResultDetailElements) {
                 var detail = new TestResultDetail {
-                    TextDetail = getStringAttribute(testResultDetailElement, "name")
+                    TextDetail = GetStringAttribute(testResultDetailElement, "name")
                 };
-                string detailStatus = getStringAttribute(testResultDetailElement, "status");
+                var detailStatus = GetStringAttribute(testResultDetailElement, "status");
                 switch (detailStatus.ToUpper()) {
                     case "FAILED":
                         detail.DetailStatus = TestStatuses.Failed;
@@ -329,20 +331,22 @@ namespace Tmx.Core
                         detail.DetailStatus = TestStatuses.NotRun;
                         break;
                 }
+                // 20160125
+                importedTestResultDetails.Add(detail);
             }
             return importedTestResultDetails;
         }
         
-        internal void setSuiteStatus(ITestSuite testSuite, bool skipAutomatic)
+        internal void SetSuiteStatus(ITestSuite testSuite, bool skipAutomatic)
         {
-            int counterPassedResults = 0;
-            int counterKnownIssueResults = 0;
+            var counterPassedResults = 0;
+            var counterKnownIssueResults = 0;
             
             if (null != testSuite.TestScenarios && 0 < testSuite.TestScenarios.Count) {
                 
                 foreach (var scenario in testSuite.TestScenarios) {
                     
-                    setScenarioStatus(scenario, skipAutomatic);
+                    SetScenarioStatus(scenario, skipAutomatic);
                     
                     switch (scenario.enStatus) {
                         case TestStatuses.Passed:
@@ -378,10 +382,10 @@ namespace Tmx.Core
             }
         }
         
-        internal void setScenarioStatus(ITestScenario testScenario, bool skipAutomatic)
+        internal void SetScenarioStatus(ITestScenario testScenario, bool skipAutomatic)
         {
-            int counterPassedResults = 0;
-            int counterKnownIssueResults = 0;
+            var counterPassedResults = 0;
+            var counterKnownIssueResults = 0;
             
             if (null != testScenario.TestResults && 0 < testScenario.TestResults.Count) {
                 foreach (var testResult in testScenario.TestResults) {
@@ -437,7 +441,7 @@ namespace Tmx.Core
             }
         }
         
-        string getStringAttribute(XElement element, string name)
+        string GetStringAttribute(XElement element, string name)
         {
             try {
                 return element.Attribute(name).Value;
@@ -447,7 +451,7 @@ namespace Tmx.Core
             }
         }
         
-        double getDoubleAttribute(XElement element, string name)
+        double GetDoubleAttribute(XElement element, string name)
         {
             try {
                 return Convert.ToDouble(element.Attribute(name).Value);
@@ -457,7 +461,7 @@ namespace Tmx.Core
             }
         }
         
-        DateTime getDateTimeAttribute(XElement element, string name)
+        DateTime GetDateTimeAttribute(XElement element, string name)
         {
             try {
                 return Convert.ToDateTime(element.Attribute(name).Value);
@@ -467,7 +471,7 @@ namespace Tmx.Core
             }
         }
         
-        Guid getGuidAttribute(XElement element, string name)
+        Guid GetGuidAttribute(XElement element, string name)
         {
             try {
                 return new Guid(element.Attribute(name).Value);

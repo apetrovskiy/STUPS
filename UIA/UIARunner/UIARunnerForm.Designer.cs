@@ -1,5 +1,4 @@
-﻿using System;
-/*
+﻿/*
  * Created by SharpDevelop.
  * User: Alexander Petrovskiy
  * Date: 4/28/2012
@@ -88,9 +87,9 @@ namespace UiaRunner
             // menuStripMain
             // 
             this.menuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-                                    this.fileToolStripMenuItem,
-                                    this.scriptToolStripMenuItem,
-                                    this.helpToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.scriptToolStripMenuItem,
+            this.helpToolStripMenuItem});
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
             this.menuStripMain.Size = new System.Drawing.Size(681, 24);
@@ -100,9 +99,9 @@ namespace UiaRunner
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-                                    this.openToolStripMenuItem,
-                                    this.toolStripSeparator1,
-                                    this.exitToolStripMenuItem});
+            this.openToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F)));
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -132,9 +131,9 @@ namespace UiaRunner
             // scriptToolStripMenuItem
             // 
             this.scriptToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-                                    this.inputToolStripTextBox,
-                                    this.runToolStripMenuItem,
-                                    this.breakToolStripMenuItem});
+            this.inputToolStripTextBox,
+            this.runToolStripMenuItem,
+            this.breakToolStripMenuItem});
             this.scriptToolStripMenuItem.Name = "scriptToolStripMenuItem";
             this.scriptToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.S)));
             this.scriptToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
@@ -145,7 +144,6 @@ namespace UiaRunner
             this.inputToolStripTextBox.Name = "inputToolStripTextBox";
             this.inputToolStripTextBox.Size = new System.Drawing.Size(100, 23);
             this.inputToolStripTextBox.ModifiedChanged += new System.EventHandler(this.ToolStripTextBoxInputParametersModifiedChanged);
-            //this.inputToolStripTextBox.Click += new System.EventHandler(this.inputToolStripTextBoxClick);
             // 
             // runToolStripMenuItem
             // 
@@ -168,7 +166,7 @@ namespace UiaRunner
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-                                    this.aboutToolStripMenuItem});
+            this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.H)));
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
@@ -185,13 +183,13 @@ namespace UiaRunner
             // statusStripResults
             // 
             this.statusStripResults.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-                                    this.toolStripStatusLabelPassed,
-                                    this.toolStripStatusLabelPassedCount,
-                                    this.toolStripStatusLabelFailed,
-                                    this.toolStripStatusLabelFailedCount,
-                                    this.toolStripStatusLabelState,
-                                    this.toolStripStatusLabelAverage,
-                                    this.toolStripStatusLabelAverageCount});
+            this.toolStripStatusLabelPassed,
+            this.toolStripStatusLabelPassedCount,
+            this.toolStripStatusLabelFailed,
+            this.toolStripStatusLabelFailedCount,
+            this.toolStripStatusLabelState,
+            this.toolStripStatusLabelAverage,
+            this.toolStripStatusLabelAverageCount});
             this.statusStripResults.Location = new System.Drawing.Point(0, 394);
             this.statusStripResults.Name = "statusStripResults";
             this.statusStripResults.Size = new System.Drawing.Size(681, 22);
@@ -246,11 +244,11 @@ namespace UiaRunner
             // toolStrip
             // 
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-                                    this.toolStripButtonOpen,
-                                    this.toolStripSeparator2,
-                                    this.toolStripButtonRun,
-                                    this.toolStripButtonBreak,
-                                    this.toolStripTextBoxInput});
+            this.toolStripButtonOpen,
+            this.toolStripSeparator2,
+            this.toolStripButtonRun,
+            this.toolStripButtonBreak,
+            this.toolStripTextBoxInput});
             this.toolStrip.Location = new System.Drawing.Point(0, 24);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(681, 25);
@@ -259,7 +257,7 @@ namespace UiaRunner
             // toolStripButtonOpen
             // 
             this.toolStripButtonOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonOpen.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonOpen.Image")));
+            // this.toolStripButtonOpen.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonOpen.Image")));
             this.toolStripButtonOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonOpen.Name = "toolStripButtonOpen";
             this.toolStripButtonOpen.Size = new System.Drawing.Size(23, 22);
@@ -274,7 +272,7 @@ namespace UiaRunner
             // toolStripButtonRun
             // 
             this.toolStripButtonRun.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonRun.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRun.Image")));
+            // this.toolStripButtonRun.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRun.Image")));
             this.toolStripButtonRun.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonRun.Name = "toolStripButtonRun";
             this.toolStripButtonRun.Size = new System.Drawing.Size(23, 22);
@@ -283,7 +281,7 @@ namespace UiaRunner
             // toolStripButtonBreak
             // 
             this.toolStripButtonBreak.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonBreak.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonBreak.Image")));
+            // this.toolStripButtonBreak.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonBreak.Image")));
             this.toolStripButtonBreak.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonBreak.Name = "toolStripButtonBreak";
             this.toolStripButtonBreak.Size = new System.Drawing.Size(23, 22);
@@ -301,14 +299,14 @@ namespace UiaRunner
             this.dgvTestResults.AllowUserToDeleteRows = false;
             this.dgvTestResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTestResults.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-                                    this.colDateTime,
-                                    this.colStatus,
-                                    this.colName,
-                                    this.colLine,
-                                    this.colPosition,
-                                    this.colCode,
-                                    this.colError,
-                                    this.colScreenshot});
+            this.colDateTime,
+            this.colStatus,
+            this.colName,
+            this.colLine,
+            this.colPosition,
+            this.colCode,
+            this.colError,
+            this.colScreenshot});
             this.dgvTestResults.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvTestResults.Location = new System.Drawing.Point(0, 49);
             this.dgvTestResults.Name = "dgvTestResults";
@@ -382,7 +380,7 @@ namespace UiaRunner
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.statusStripResults);
             this.Controls.Add(this.menuStripMain);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            // this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStripMain;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -402,6 +400,7 @@ namespace UiaRunner
             ((System.ComponentModel.ISupportInitialize)(this.dgvTestResults)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
         private System.Windows.Forms.ToolStripTextBox toolStripTextBoxInput;
         private System.Windows.Forms.ToolStripTextBox inputToolStripTextBox;

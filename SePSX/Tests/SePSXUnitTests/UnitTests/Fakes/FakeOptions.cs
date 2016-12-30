@@ -17,8 +17,11 @@ namespace SePSXUnitTests
     /// </summary>
     public class FakeOptions : IOptions
     {
+    	ILogs logs;
+    	
         public FakeOptions()
         {
+        	// logs = new log
         }
         
         public ICookieJar Cookies {
@@ -32,7 +35,9 @@ namespace SePSXUnitTests
                 throw new NotImplementedException();
             }
         }
-        
+
+        public ILogs Logs { get { return logs; } }
+
         public ITimeouts Timeouts()
         {
             throw new NotImplementedException();

@@ -39,7 +39,7 @@ namespace Tmx.Server.Tests.Modules
             _browser = TestFactory.GetBrowserForServerControlModule();
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldCreateFirstWorkflowObjectAsJson()
         {
             var serverCommand = GivenServerCommand(ServerControlCommands.LoadConfiguraiton, TestConstants.Workflow01);
@@ -47,7 +47,7 @@ namespace Tmx.Server.Tests.Modules
             ThenThereShouldBeTheFollowingNumberOfWorkflowObjects(1);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldCreateFirstWorkflowObjectAsXml()
         {
             var serverCommand = GivenServerCommand(ServerControlCommands.LoadConfiguraiton, TestConstants.Workflow01);
@@ -55,7 +55,7 @@ namespace Tmx.Server.Tests.Modules
             ThenThereShouldBeTheFollowingNumberOfWorkflowObjects(1);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldCreateSecondWorkflowObjectAsJson()
         {
             var serverCommand01 = GivenServerCommand(ServerControlCommands.LoadConfiguraiton, TestConstants.Workflow01);
@@ -65,7 +65,7 @@ namespace Tmx.Server.Tests.Modules
             ThenThereShouldBeTheFollowingNumberOfWorkflowObjects(2);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldCreateSecondWorkflowObjectAsXml()
         {
             var serverCommand01 = GivenServerCommand(ServerControlCommands.LoadConfiguraiton, TestConstants.Workflow01);

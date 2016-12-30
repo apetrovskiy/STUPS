@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Tmx.Client.Xunit</RootNamespace>
     <AssemblyName>Tmx.Client.Xunit</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <NoWin32Manifest>False</NoWin32Manifest>
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>

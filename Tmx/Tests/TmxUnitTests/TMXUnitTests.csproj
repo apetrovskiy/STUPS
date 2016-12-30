@@ -7,7 +7,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>TMXUnitTests</RootNamespace>
     <AssemblyName>TMXUnitTests</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -124,23 +124,28 @@
     <Reference Include="Microsoft.CSharp">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="Mono.Cecil">
-      <HintPath>..\..\..\packages\NUnit.Engine.3.0.1\lib\Mono.Cecil.dll</HintPath>
+    <Reference Include="Mono.Cecil, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NUnit.Engine.3.5.0\lib\Mono.Cecil.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="nunit-agent">
-      <HintPath>..\..\..\packages\NUnit.Engine.3.0.1\lib\nunit-agent.exe</HintPath>
+    <Reference Include="nunit-agent, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NUnit.Engine.3.5.0\lib\nunit-agent.exe</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="nunit-agent-x86">
-      <HintPath>..\..\..\packages\NUnit.Engine.3.0.1\lib\nunit-agent-x86.exe</HintPath>
+    <Reference Include="nunit-agent-x86, Version=3.5.0.0, Culture=neutral, processorArchitecture=x86">
+      <HintPath>..\..\..\packages\NUnit.Engine.3.5.0\lib\nunit-agent-x86.exe</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="nunit.engine">
-      <HintPath>..\..\..\packages\NUnit.Engine.3.0.1\lib\nunit.engine.dll</HintPath>
+    <Reference Include="nunit.engine, Version=3.5.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NUnit.Engine.3.5.0\lib\nunit.engine.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="nunit.engine.api">
-      <HintPath>..\..\..\packages\NUnit.Engine.3.0.1\lib\nunit.engine.api.dll</HintPath>
+    <Reference Include="nunit.engine.api, Version=3.0.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NUnit.Engine.3.5.0\lib\nunit.engine.api.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="nunit.framework, Version=3.0.5813.39033, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\NUnit.3.0.1\lib\net20\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.5.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NUnit.3.5.0\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -238,6 +243,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

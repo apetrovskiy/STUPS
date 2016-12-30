@@ -59,7 +59,7 @@ namespace Tmx.Server.Tests.Modules
             TestFactory.GetAnotherTestRunWithStatus(TestRunStatuses.Pending, _workflow);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldProvideATaskToTestClientIfTheClientMatchesTheRule()
         {
             var expectedTask = GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0);
@@ -72,7 +72,7 @@ namespace Tmx.Server.Tests.Modules
             ThenTestClientIsBusy(ClientsCollection.Clients.First(client => client.Id == testClient.Id));
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         // public void Should_provide_no_task_to_test_client_if_the_client_does_not_match_the_rule()
         public void ShouldNotRegisterTestClientIfTheClientDoesNotMatchTheRule()
         {
@@ -83,7 +83,7 @@ namespace Tmx.Server.Tests.Modules
             ThenTestClientIsNotRegistered(testClient);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldProvideTheSecondTaskIfTheClientMatchesTheRule()
         {
             GivenLoadedTestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
@@ -99,7 +99,7 @@ namespace Tmx.Server.Tests.Modules
             ThenTestClientIsBusy(ClientsCollection.Clients.First(client => client.Id == registeredClient.Id));
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldNotProvideTheSecondTaskIfTheClientDoesNotMatchTheRule()
         {
             GivenLoadedTestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
@@ -113,7 +113,7 @@ namespace Tmx.Server.Tests.Modules
             ThenHttpResponseIsNotFound();
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldProvideTheSecondTaskIfTheClientMatchesTheRuleAndThereAreSeveralTasks()
         {
             GivenLoadedTestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
@@ -132,7 +132,7 @@ namespace Tmx.Server.Tests.Modules
             ThenTestClientIsBusy(ClientsCollection.Clients.First(client => client.Id == registeredClient.Id));
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldNotProvideTheSecondTaskIfTheClientDoesNotMatchTheRuleAndThereAreSeveral()
         {
             GivenLoadedTestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
@@ -148,7 +148,7 @@ namespace Tmx.Server.Tests.Modules
             ThenHttpResponseIsNotFound();
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldCancelAllFurtherTasksAndUnregisterClientsOnFail()
         {
             GivenLoadedTestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
@@ -178,7 +178,7 @@ namespace Tmx.Server.Tests.Modules
         }
         
         // 20150907
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldCancelAllFurtherTasksAndUnregisterClientsOnTestResultsFailed()
         {
             GivenLoadedTestTask(1, "task name", false, TestTaskStatuses.New, true, ".*h.*", 0);
@@ -257,7 +257,7 @@ namespace Tmx.Server.Tests.Modules
             ThenTestClientIsFree(registeredClient);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldNotProvideATaskBeforeTaskThisDependsOnIsAllocated()
         {
             GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 4);
@@ -269,7 +269,7 @@ namespace Tmx.Server.Tests.Modules
             ThenTestClientIsFree(registeredClient);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldProvideATaskOnlyAfterTaskThisDependsOnIsCompleted()
         {
             GivenAllocatedTestTask(4, "task name", true, TestTaskStatuses.CompletedSuccessfully, true, "another rule", 0);
@@ -283,7 +283,7 @@ namespace Tmx.Server.Tests.Modules
             ThenTestClientIsBusy(ClientsCollection.Clients.First(client => client.Id == registeredClient.Id));
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldProvideNoTaskToUnregisteredTestClient()
         {
             GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0);
@@ -295,7 +295,7 @@ namespace Tmx.Server.Tests.Modules
             ThenHttpResponseIsExpectationFailed();
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldProvideNoTaskToTestClientThatLostItsRegistration()
         {
             var givenTask01 = GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0);
@@ -340,7 +340,7 @@ namespace Tmx.Server.Tests.Modules
 //            ThenHttpResponseIsNotFound(response);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldProvideTaskByTaskOnLoadingNewTasks()
         {
             GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0);
@@ -368,7 +368,7 @@ namespace Tmx.Server.Tests.Modules
         }
         
         // ======================================== Lack of pending test runs ========================================================
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldProvideATaskToTestClientIfTheClientMatchesTheRuleAndThereAreNoTestRuns()
         {
             TestRunQueue.TestRuns.Skip(1).First().Status = TestRunStatuses.Running;
@@ -382,7 +382,7 @@ namespace Tmx.Server.Tests.Modules
             ThenTestClientIsBusy(ClientsCollection.Clients.First(client => client.Id == testClient.Id));
         }
         // ============================================================================================================================
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldProvideATaskToTwoTestClientsIfTheyMatchTheRule()
         {
             var expectedTask = GivenLoadedTestTask(5, "task name", false, TestTaskStatuses.New, true, TestClientHostnameExpected + "|" + TestClientHostnameAlternateExpected, 0);
@@ -403,7 +403,7 @@ namespace Tmx.Server.Tests.Modules
             ThenTestClientIsBusy(ClientsCollection.Clients.First(client => client.Id == testClient02.Id));
         }
         // ============================================================================================================================
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldProvideTasksToTwoTestClientsBasedOnHowTheyMatchRules()
         {
             var expectedTask01 = GivenLoadedTestTask(5, "task name 01", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0);
@@ -425,7 +425,7 @@ namespace Tmx.Server.Tests.Modules
             ThenTestClientIsBusy(ClientsCollection.Clients.First(client => client.Id == testClient02.Id));
         }
         // ============================================================================================================================
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldNotFailTestRunOnATaskFailedByTestResults()
         {
             var expectedTask01 = GivenLoadedTestTask(5, "task name 01", false, TestTaskStatuses.New, true, TestClientHostnameExpected, 0, TestStatuses.Failed);

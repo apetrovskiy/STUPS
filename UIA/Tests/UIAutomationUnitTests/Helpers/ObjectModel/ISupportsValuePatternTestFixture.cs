@@ -36,7 +36,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Value_ImplementsCommonPattern()
         {
 //            ISupportsInvokePattern invokableElement =
@@ -74,7 +74,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Assert.NotNull(refreshableElement as ISupportsRefresh);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Value_ImplementsPatternInQuestion()
         {
             var element =
@@ -85,7 +85,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Assert.NotNull(element as ISupportsValuePattern);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Value_DoesNotImplementOtherPatterns()
         {
             var element =
@@ -96,7 +96,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Assert.Null(element as ISupportsDockPattern);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Value_Value_Get()
         {
             // Arrange

@@ -39,7 +39,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
         #region helpers
         #endregion helpers
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void NoneCriteria_NoneElements()
         {
             // Arrange
@@ -57,7 +57,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Assert.Equal(false, result);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void NoneCriteria_OneElement()
         {
             // Arrange
@@ -76,7 +76,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Assert.Equal(false, result);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void NoneCriteria_ThreeElements()
         {
             // Arrange
@@ -101,7 +101,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Assert.Equal(false, result);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void OneCriterion_NoneElements()
         {
             // Arrange
@@ -121,7 +121,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Assert.Equal(false, result);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void OneCriterion_OneElement_Match_Name()
         {
             // Arrange
@@ -142,7 +142,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Assert.Equal(true, result);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void OneCriterion_OneElement_NoMatch_Name()
         {
             // Arrange
@@ -211,7 +211,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Assert.Equal(false, result);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void OneCriterion_OneElement_Match_AutomationId()
         {
             // Arrange
@@ -232,7 +232,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Assert.Equal(true, result);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void OneCriterion_OneElement_NoMatch_AutomationId()
         {
             // Arrange
@@ -253,7 +253,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Assert.Equal(false, result);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void OneCriterion_OneElement_Match_ClassName()
         {
             // Arrange
@@ -274,7 +274,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Assert.Equal(true, result);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void OneCriterion_OneElement_NoMatch_ClassName()
         {
             // Arrange
@@ -295,7 +295,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Assert.Equal(false, result);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void OneCriterion_ThreeElements_Match_Name()
         {
             // Arrange
@@ -319,7 +319,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Assert.Equal(true, result);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void OneCriterion_ThreeElements_NoMatch_Name()
         {
             // Arrange
@@ -343,7 +343,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Assert.Equal(false, result);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ThreeCriteria_NoneElements()
         {
             // Arrange
@@ -365,7 +365,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Assert.Equal(false, result);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ThreeCriteria_OneElement_Match_NameAutomationIdClassName()
         {
             // Arrange
@@ -388,7 +388,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Assert.Equal(true, result);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ThreeCriteria_OneElement_NoMatch_NameAutomationIdClassName()
         {
             // Arrange
@@ -411,7 +411,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Assert.Equal(false, result);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ThreeCriteria_ThreeElements_Match_NameAutomaitonIdClassName()
         {
             // Arrange
@@ -438,7 +438,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Types
             Assert.Equal(true, result);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ThreeCriteria_ThreeElements_NoMatch_NameAutomaitonIdClassName()
         {
             // Arrange

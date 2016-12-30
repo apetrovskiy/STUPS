@@ -239,7 +239,9 @@ namespace SePSXUnitTests
             }
             if (new Regex(".*\\s+.*").IsMatch(classNameToFind))
             {
-                throw new IllegalLocatorException("Compound class names are not supported. Consider searching for one class name and filtering the results.");
+                // temporarily
+                // throw new IllegalLocatorException("Compound class names are not supported. Consider searching for one class name and filtering the results.");
+                throw new NoSuchElementException("Compound class names are not supported. Consider searching for one class name and filtering the results.");
             }
             //
             //

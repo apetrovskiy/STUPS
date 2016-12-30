@@ -36,7 +36,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Toggle_ImplementsCommonPattern()
         {
 //            ISupportsInvokePattern invokableElement =
@@ -74,7 +74,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Assert.NotNull(refreshableElement as ISupportsRefresh);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Toggle_ImplementsPatternInQuestion()
         {
             var element =
@@ -85,7 +85,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Assert.NotNull(element as ISupportsTogglePattern);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Toggle_DoesNotImplementOtherPatterns()
         {
             var element =
@@ -96,7 +96,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Assert.Null(element as ISupportsValuePattern);
         }
         
-//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Toggle_Toggle()
 //        {
 //            // Arrange
@@ -109,7 +109,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            element.Toggle();
 //        }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Toggle_ToggleState_Indeterminate()
         {
             // Arrange
@@ -125,7 +125,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Assert.Equal(expectedValue, element.ToggleState);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Toggle_ToggleState_Off()
         {
             // Arrange
@@ -141,7 +141,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Assert.Equal(expectedValue, element.ToggleState);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Toggle_ToggleState_On()
         {
             // Arrange
@@ -157,7 +157,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Assert.Equal(expectedValue, element.ToggleState);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Toggle_Toggle_On()
         {
             // Arrange
@@ -182,7 +182,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Assert.Equal(expectedValue, element.ToggleState);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Toggle_Toggle_Off()
         {
             // Arrange

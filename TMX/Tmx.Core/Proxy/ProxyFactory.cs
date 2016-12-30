@@ -42,7 +42,7 @@
             }
             catch (Exception eProxification)
             {
-                var logger = LogManager.GetLogger(Tmx_Core_Resources.LogName);
+                var logger = LogManager.GetLogger(Resources.LogName);
                 logger.Error("Failed to proxify type {0}", typeof(T).Name);
                 logger.Error(eProxification);
             }
@@ -75,7 +75,7 @@
             }
             catch (Exception eProxification)
             {
-                var logger = LogManager.GetLogger(Tmx_Core_Resources.LogName);
+                var logger = LogManager.GetLogger(Resources.LogName);
                 logger.Error("Failed to proxify type {0}", typeof(T).Name);
                 logger.Error(eProxification);
             }

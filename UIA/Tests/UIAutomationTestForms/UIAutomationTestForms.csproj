@@ -245,15 +245,21 @@
     <Compile Include="FormsCollection\WinForms\WinFormsTripled.Designer.cs">
       <DependentUpon>WinFormsTripled.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormsCollection\WinForms\WinFormsWithGrid.cs" />
+    <Compile Include="FormsCollection\WinForms\WinFormsWithGrid.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormsCollection\WinForms\WinFormsWithGrid.Designer.cs">
       <DependentUpon>WinFormsWithGrid.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormsCollection\WinForms\WinFormsWithLists.cs" />
+    <Compile Include="FormsCollection\WinForms\WinFormsWithLists.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormsCollection\WinForms\WinFormsWithLists.Designer.cs">
       <DependentUpon>WinFormsWithLists.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormsCollection\WinForms\WinFormsWithMenus.cs" />
+    <Compile Include="FormsCollection\WinForms\WinFormsWithMenus.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormsCollection\WinForms\WinFormsWithMenus.Designer.cs">
       <DependentUpon>WinFormsWithMenus.cs</DependentUpon>
     </Compile>
@@ -358,27 +364,27 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FormsCollection\WinForms\WinFormsFull.resx">
+    <Resource Include="FormsCollection\WinForms\WinFormsFull.resx">
       <DependentUpon>WinFormsFull.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormsCollection\WinForms\WinFormsMedium.resx">
+    </Resource>
+    <Resource Include="FormsCollection\WinForms\WinFormsMedium.resx">
       <DependentUpon>WinFormsMedium.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormsCollection\WinForms\WinFormsOuter.resx">
+    </Resource>
+    <Resource Include="FormsCollection\WinForms\WinFormsOuter.resx">
       <DependentUpon>WinFormsOuter.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormsCollection\WinForms\WinFormsWithGrid.resx">
+    </Resource>
+    <Resource Include="FormsCollection\WinForms\WinFormsWithGrid.resx">
       <DependentUpon>WinFormsWithGrid.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormsCollection\WinForms\WinFormsWithLists.resx">
+    </Resource>
+    <Resource Include="FormsCollection\WinForms\WinFormsWithLists.resx">
       <DependentUpon>WinFormsWithLists.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormsCollection\WinForms\WinFormsWithMenus.resx">
+    </Resource>
+    <Resource Include="FormsCollection\WinForms\WinFormsWithMenus.resx">
       <DependentUpon>WinFormsWithMenus.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormsCollection\WinForms\WinFormsWizard.resx">
+    </Resource>
+    <Resource Include="FormsCollection\WinForms\WinFormsWizard.resx">
       <DependentUpon>WinFormsWizard.cs</DependentUpon>
-    </EmbeddedResource>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">

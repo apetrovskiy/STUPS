@@ -40,7 +40,7 @@ namespace UIAutomationUnitTests.Commands.Wizard
             WizardCollection.ResetData();
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        [Description("New-UiaWizard")]
 //        [Category("Fast")]
 //        [Category("Wizard")]
@@ -54,7 +54,7 @@ namespace UIAutomationUnitTests.Commands.Wizard
                 ((Wizard)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        [Description("New-UiaWizard")]
 //        [Category("Fast")]
 //        [Category("Wizard")]
@@ -68,7 +68,7 @@ namespace UIAutomationUnitTests.Commands.Wizard
                 ((Wizard)PSTestLib.UnitTestOutput.LastOutput[0]).Name);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        [Description("New-UiaWizard")]
 //        [Category("Fast")]
 //        [Category("Wizard")]

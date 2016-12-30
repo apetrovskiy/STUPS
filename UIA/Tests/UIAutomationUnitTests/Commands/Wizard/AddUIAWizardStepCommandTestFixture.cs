@@ -40,7 +40,7 @@ namespace UIAutomationUnitTests.Commands.Wizard
             WizardCollection.ResetData();
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        [Description("Add-UiaWizardStep")]
 //        [Category("Fast")]
 //        [Category("Wizard")]
@@ -54,7 +54,7 @@ namespace UIAutomationUnitTests.Commands.Wizard
                 ((Wizard)PSTestLib.UnitTestOutput.LastOutput[0]).Steps[0].Name);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        [Description("Add-UiaWizardStep")]
 //        [Category("Fast")]
 //        [Category("Wizard")]

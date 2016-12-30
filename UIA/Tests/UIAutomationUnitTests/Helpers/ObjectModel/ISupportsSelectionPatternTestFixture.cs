@@ -36,7 +36,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Selection_ImplementsCommonPattern()
         {
 //            ISupportsInvokePattern invokableElement =
@@ -74,7 +74,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Assert.NotNull(refreshableElement as ISupportsRefresh);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Selection_ImplementsPatternInQuestion()
         {
             var element =
@@ -85,7 +85,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Assert.NotNull(element as ISupportsSelectionPattern);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Selection_DoesNotImplementOtherPatterns()
         {
             var element =
@@ -96,7 +96,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Assert.Null(element as ISupportsValuePattern);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Selection_GetSelection()
         {
             // Arrange
@@ -119,7 +119,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Assert.Equal(expectedResult, result);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Selection_CanSelectMultiple()
         {
             // Arrange
@@ -135,7 +135,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Assert.Equal(expectedValue, element.CanSelectMultiple);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Selection_IsSelectionRequired()
         {
             // Arrange

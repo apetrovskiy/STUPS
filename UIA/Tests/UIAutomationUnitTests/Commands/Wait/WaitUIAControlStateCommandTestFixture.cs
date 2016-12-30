@@ -98,7 +98,7 @@ namespace UIAutomationUnitTests.Commands.Wait
                 false);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0_NoParam_HashtablesNull()
         {
             string name = string.Empty;
@@ -129,7 +129,7 @@ namespace UIAutomationUnitTests.Commands.Wait
                 false);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0_NoParam()
         {
             string name = string.Empty;
@@ -143,7 +143,7 @@ namespace UIAutomationUnitTests.Commands.Wait
                 false);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_NoParam()
         {
             string name = string.Empty;
@@ -163,7 +163,7 @@ namespace UIAutomationUnitTests.Commands.Wait
         #endregion no parameters
         
         #region ControlType + Class
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0_byControlTypeClass()
         {
             string name = string.Empty;
@@ -182,7 +182,7 @@ namespace UIAutomationUnitTests.Commands.Wait
                 false);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of4_byControlTypeClass()
         {
             string name = string.Empty;
@@ -206,7 +206,7 @@ namespace UIAutomationUnitTests.Commands.Wait
                 false);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of4_byControlTypeClass()
         {
             string name = string.Empty;
@@ -230,7 +230,7 @@ namespace UIAutomationUnitTests.Commands.Wait
                 true);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get2of4_byControlTypeClass_X2()
         {
             string name = string.Empty;
@@ -256,7 +256,7 @@ namespace UIAutomationUnitTests.Commands.Wait
                 true);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of4_byControlTypeClass_X2()
         {
             string name = string.Empty;
@@ -282,7 +282,7 @@ namespace UIAutomationUnitTests.Commands.Wait
                 false);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of4_byControlTypeClass_X5()
         {
             string name = string.Empty;
@@ -316,7 +316,7 @@ namespace UIAutomationUnitTests.Commands.Wait
                 true);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of4_byControlTypeClass_X5()
         {
             string name = string.Empty;

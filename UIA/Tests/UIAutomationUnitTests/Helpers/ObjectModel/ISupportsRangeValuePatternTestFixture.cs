@@ -36,7 +36,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void RangeValue_ImplementsCommonPattern()
         {
 //            ISupportsInvokePattern invokableElement =
@@ -74,7 +74,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Assert.NotNull(refreshableElement as ISupportsRefresh);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void RangeValue_ImplementsPatternInQuestion()
         {
             var element =
@@ -85,7 +85,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Assert.NotNull(element as ISupportsRangeValuePattern);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void RangeValue_DoesNotImplementOtherPatterns()
         {
             var element =
@@ -96,7 +96,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Assert.Null(element as ISupportsValuePattern);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void RangeValue_IsRangeReadOnly()
         {
             // Arrange
@@ -112,7 +112,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Assert.Equal(expectedValue, element.IsRangeReadOnly);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void RangeValue_LargeChange()
         {
             // Arrange
@@ -128,7 +128,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Assert.Equal(expectedValue, element.LargeChange);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void RangeValue_Maximum()
         {
             // Arrange
@@ -144,7 +144,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Assert.Equal(expectedValue, element.Maximum);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void RangeValue_Minimum()
         {
             // Arrange
@@ -160,7 +160,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Assert.Equal(expectedValue, element.Minimum);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void RangeValue_SmallChange()
         {
             // Arrange
@@ -176,7 +176,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Assert.Equal(expectedValue, element.SmallChange);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void RangeValue_RangeValue_Get()
         {
             // Arrange
@@ -192,7 +192,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Assert.Equal(expectedValue, element.RangeValue);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void RangeValue_RangeValue_Set()
         {
             // Arrange

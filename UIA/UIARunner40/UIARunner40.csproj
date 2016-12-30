@@ -7,7 +7,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>UIARunner</RootNamespace>
     <AssemblyName>UIARunner</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -178,12 +178,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="..\UIARunner\AboutForm.resx">
+    <Resource Include="..\UIARunner\AboutForm.resx">
       <Link>AboutForm.resx</Link>
-    </EmbeddedResource>
-    <EmbeddedResource Include="..\UIARunner\UIARunnerForm.resx">
+    </Resource>
+    <Resource Include="..\UIARunner\UIARunnerForm.resx">
       <Link>UIARunnerForm.resx</Link>
-    </EmbeddedResource>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\UIARunner\app.config">

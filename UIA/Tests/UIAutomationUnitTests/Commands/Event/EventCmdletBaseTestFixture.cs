@@ -177,7 +177,7 @@ namespace UIAutomationUnitTests.Commands.Event
         }
         #endregion helpers
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void FocusChangedEvent()
         {
             // Arrange
@@ -191,7 +191,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 cmdlet);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void InvokedEvent()
         {
             // Arrange
@@ -205,7 +205,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 cmdlet);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void MenuClosedEvent()
         {
             // Arrange
@@ -219,7 +219,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 cmdlet);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void MenuOpenedEvent()
         {
             // Arrange
@@ -233,7 +233,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 cmdlet);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void PropertyChangedEvent_GridPattern_ColumnCountProperty()
         {
             // Arrange
@@ -248,7 +248,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 GridPattern.ColumnCountProperty);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void PropertyChangedEvent_GridPattern_RowCountProperty()
         {
             // Arrange
@@ -263,7 +263,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 GridPattern.RowCountProperty);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void PropertyChangedEvent_RangeValuePattern_ValueProperty()
         {
             // Arrange
@@ -278,7 +278,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 RangeValuePattern.ValueProperty);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void PropertyChangedEvent_TablePattern_ColumnCountProperty()
         {
             // Arrange
@@ -293,7 +293,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 TablePattern.ColumnCountProperty);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void PropertyChangedEvent_TablePattern_RowCountProperty()
         {
             // Arrange
@@ -308,7 +308,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 TablePattern.RowCountProperty);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void PropertyChangedEvent_ValuePattern_ValueProperty()
         {
             // Arrange
@@ -323,7 +323,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 ValuePattern.ValueProperty);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void StructureChangedEvent()
         {
             // Arrange
@@ -337,7 +337,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 cmdlet);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void TextChangedEvent()
         {
             // Arrange
@@ -351,7 +351,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 cmdlet);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void TextSelectionChangedEvent()
         {
             // Arrange
@@ -365,7 +365,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 cmdlet);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ToolTipClosedEvent()
         {
             // Arrange
@@ -379,7 +379,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 cmdlet);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ToolTipOpenedEvent()
         {
             // Arrange
@@ -395,7 +395,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 cmdlet);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void WindowClosedEvent()
         {
             // Arrange
@@ -409,7 +409,7 @@ namespace UIAutomationUnitTests.Commands.Event
                 cmdlet);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void WindowOpenedEvent()
         {
             // Arrange

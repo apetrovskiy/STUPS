@@ -162,7 +162,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
         #endregion helpers
         
         #region no parameters
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0_NoParam()
         {
             string name = string.Empty;
@@ -180,7 +180,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_NoParam()
         {
             string name = string.Empty;
@@ -204,7 +204,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
         #endregion no parameters
         
         #region ControlType
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0_byControlType()
         {
             string name = string.Empty;
@@ -222,7 +222,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of3_byControlType()
         {
             string name = string.Empty;
@@ -244,7 +244,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of3_byControlType()
         {
             string name = string.Empty;
@@ -266,7 +266,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 1);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byControlType()
         {
             string name = string.Empty;
@@ -290,7 +290,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
         #endregion ControlType
         
         #region Name
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0_byName()
         {
             const string name = "*ame??atche*";
@@ -308,7 +308,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of3_byName()
         {
             const string name = "*ame??atche*";
@@ -330,7 +330,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of3_byName()
         {
             const string name = "*ame??atche*";
@@ -352,7 +352,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 1);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byName()
         {
             const string name = "*ame??atche*";
@@ -376,7 +376,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
         #endregion Name
         
         #region AutomationId
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0_byAutomationId()
         {
             string name = string.Empty;
@@ -395,7 +395,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of3_byAutomationId()
         {
             string name = string.Empty;
@@ -417,7 +417,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of3_byAutomationId()
         {
             string name = string.Empty;
@@ -439,7 +439,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 1);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byAutomationId()
         {
             string name = string.Empty;
@@ -463,7 +463,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
         #endregion AutomationId
         
         #region Class
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0_byClass()
         {
             string name = string.Empty;
@@ -481,7 +481,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of3_byClass()
         {
             string name = string.Empty;
@@ -503,7 +503,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of3_byClass()
         {
             string name = string.Empty;
@@ -525,7 +525,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 1);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byClass()
         {
             string name = string.Empty;
@@ -549,7 +549,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
         #endregion Class
         
         #region Value
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0_byValue()
         {
             string name = string.Empty;
@@ -567,7 +567,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of3_byValue()
         {
             string name = string.Empty;
@@ -589,7 +589,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of3_byValue()
         {
             string name = string.Empty;
@@ -611,7 +611,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 1);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byValue()
         {
             string name = string.Empty;
@@ -635,7 +635,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
         #endregion Value
         
         #region ControlType + Name
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0_byControlTypeName()
         {
             const string name = "*ame??atche*";
@@ -653,7 +653,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of4_byControlTypeName()
         {
             const string name = "*ame??atche*";
@@ -676,7 +676,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of4_byControlTypeName()
         {
             const string name = "*ame??atche*";
@@ -699,7 +699,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 1);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byControlTypeName()
         {
             const string name = "*ame??atche*";
@@ -723,7 +723,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
         #endregion ControlType + Name
         
         #region ControlType + AutomationId
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0_byControlTypeAutomationId()
         {
             string name = string.Empty;
@@ -741,7 +741,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of4_byControlTypeAutomationId()
         {
             string name = string.Empty;
@@ -764,7 +764,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of4_byControlTypeAutomationId()
         {
             string name = string.Empty;
@@ -787,7 +787,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 1);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byControlTypeAutomationId()
         {
             string name = string.Empty;
@@ -811,7 +811,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
         #endregion ControlType + AutomationId
         
         #region ControlType + Class
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0_byControlTypeClass()
         {
             string name = string.Empty;
@@ -829,7 +829,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of4_byControlTypeClass()
         {
             string name = string.Empty;
@@ -852,7 +852,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of4_byControlTypeClass()
         {
             string name = string.Empty;
@@ -875,7 +875,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 1);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byControlTypeClass()
         {
             string name = string.Empty;
@@ -899,7 +899,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
         #endregion ControlType + Class
         
         #region ControlType + Value
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0_byControlTypeValue()
         {
             string name = string.Empty;
@@ -917,7 +917,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of4_byControlTypeValue()
         {
             string name = string.Empty;
@@ -940,7 +940,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of4_byControlTypeValue()
         {
             string name = string.Empty;
@@ -963,7 +963,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 1);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byControlTypeValue()
         {
             string name = string.Empty;
@@ -987,7 +987,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
         #endregion ControlType + Value
         
         #region Name + AutomationId
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0_byNameAutomationId()
         {
             const string name = "*ame??atche*";
@@ -1005,7 +1005,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of4_byNameAutomationId()
         {
             const string name = "*ame??atche*";
@@ -1028,7 +1028,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of4_byNameAutomationId()
         {
             const string name = "*ame??atche*";
@@ -1051,7 +1051,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 1);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byNameAutomationId()
         {
             const string name = "*ame??atche*";
@@ -1075,7 +1075,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
         #endregion Name + AutomationId
         
         #region Name + Class
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0_byNameClass()
         {
             const string name = "*ame??atche*";
@@ -1093,7 +1093,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of4_byNameClass()
         {
             const string name = "*ame??atche*";
@@ -1116,7 +1116,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of4_byNameClass()
         {
             const string name = "*ame??atche*";
@@ -1139,7 +1139,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 1);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byNameClass()
         {
             const string name = "*ame??atche*";
@@ -1163,7 +1163,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
         #endregion Name + Class
         
         #region Name + Value
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0_byNameValue()
         {
             const string name = "*ame??atche*";
@@ -1181,7 +1181,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of4_byNameValue()
         {
             const string name = "*ame??atche*";
@@ -1204,7 +1204,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of4_byNameValue()
         {
             const string name = "*ame??atche*";
@@ -1227,7 +1227,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 1);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byNameValue()
         {
             const string name = "*ame??atche*";
@@ -1251,7 +1251,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
         #endregion Name + Value
         
         #region AutomationId + Class
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0_byAutomationIdClass()
         {
             string name = string.Empty;
@@ -1269,7 +1269,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of4_byAutomationIdClass()
         {
             string name = string.Empty;
@@ -1292,7 +1292,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of4_byAutomationIdClass()
         {
             string name = string.Empty;
@@ -1315,7 +1315,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 1);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byAutomationIdClass()
         {
             string name = string.Empty;
@@ -1339,7 +1339,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
         #endregion AutomationId + Class
         
         #region Name + AutomationId + Class + Value + ControlType
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0_byNameAutomationIdClassValueControlType()
         {
             const string name = "*ame??atche*";
@@ -1357,7 +1357,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of4_byNameAutomationIdClassValueControlType()
         {
             const string name = "*ame??atche*";
@@ -1380,7 +1380,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of4_byNameAutomationIdClassValueControlType()
         {
             const string name = "*ame??atche*";
@@ -1403,7 +1403,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Searchers
                 1);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byNameAutomationIdClassValueControlType()
         {
             const string name = "*ame??atche*";

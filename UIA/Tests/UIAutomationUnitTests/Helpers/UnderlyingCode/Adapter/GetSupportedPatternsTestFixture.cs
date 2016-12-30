@@ -39,7 +39,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Adapter
         #region helpers
         #endregion helpers
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void NoPatterns()
         {
             IFakeUiElement element =
@@ -55,7 +55,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Adapter
             Assert.Equal(0, element.GetSupportedPatterns().Count());
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void OnePattern()
         {
             IFakeUiElement element =
@@ -73,7 +73,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.Adapter
             // Xunit.Assert.Contains<IBasePattern>(AutomationFactory.GetPatternAdapter<IValuePattern>(AutomationFactory.GetUiElement(), null) as IBasePattern, element.GetSupportedPatterns());
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ThreePatterns()
         {
             IFakeUiElement element =

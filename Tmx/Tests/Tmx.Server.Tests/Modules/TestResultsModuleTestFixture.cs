@@ -60,25 +60,25 @@ namespace Tmx.Server.Tests.Modules
             _testRun = TestRunQueue.TestRuns.First();
         }
         
-//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Should_ignore_empty_results_collection()
 //        {
 //            Xunit.Assert.Equal(0, 1);
 //        }
 //        
-//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Should_add_test_suites_from_results_collection()
 //        {
 //            Xunit.Assert.Equal(0, 1);
 //        }
 //        
-//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Should_add_test_suites_and_test_scenarios_from_results_collection()
 //        {
 //            Xunit.Assert.Equal(0, 1);
 //        }
 //        
-//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Should_add_test_results_from_results_collection()
 //        {
 //            Xunit.Assert.Equal(0, 1);
@@ -99,7 +99,7 @@ namespace Tmx.Server.Tests.Modules
             ThenHttpResponseIsCreated();
         }
         
-//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Should_react_on_posting_bunch_of_data()
 //        {
 ////            var xDoc = XDocument.Load(@"../../Modules/TMX_report.xml");

@@ -47,7 +47,7 @@ namespace Tmx.Server.Tests.Modules
             _testRun = TestRunQueue.TestRuns.First();
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldAcceptCommonDataItemSentToEmptyCommonDataAsJson()
         {
             var commonDataItem = GivenCommonDataItem(ExpectedKey, ExpectedValue);
@@ -58,7 +58,7 @@ namespace Tmx.Server.Tests.Modules
             ThenCommonDataItemMatches(commonDataItem);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldAcceptCommonDataItemSentToEmptyCommonDataAsXml()
         {
             var commonDataItem = GivenCommonDataItem(ExpectedKey, ExpectedValue) as CommonDataItem;
@@ -69,7 +69,7 @@ namespace Tmx.Server.Tests.Modules
             ThenCommonDataItemMatches(commonDataItem);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldAcceptCommonDataItemSentToNonEmptyCommonDataAsJson()
         {
             GivenNonEmptyCommonData();
@@ -81,7 +81,7 @@ namespace Tmx.Server.Tests.Modules
             ThenCommonDataItemMatches(commonDataItem);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldAcceptCommonDataItemSentToNonEmptyCommonDataAsXml()
         {
             GivenNonEmptyCommonData();
@@ -93,7 +93,7 @@ namespace Tmx.Server.Tests.Modules
             ThenCommonDataItemMatches(commonDataItem);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldAcceptCommonDataItemSentForReplacementAsJson()
         {
             GivenNonEmptyCommonData();
@@ -106,7 +106,7 @@ namespace Tmx.Server.Tests.Modules
             ThenCommonDataItemMatches(commonDataItem);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldAcceptCommonDataItemSentForReplacementAsXml()
         {
             GivenNonEmptyCommonData();

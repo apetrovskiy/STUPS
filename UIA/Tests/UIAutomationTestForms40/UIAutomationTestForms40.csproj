@@ -7,7 +7,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>UIAutomationTestForms</RootNamespace>
     <AssemblyName>UIAutomationTestForms</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -33,6 +33,8 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -124,7 +126,10 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Management.Automation" />
+    <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.PowerShell.3.ReferenceAssemblies.1.0.0\lib\net4\System.Management.Automation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Presentation">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -237,18 +242,21 @@
     </Compile>
     <Compile Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsWithGrid.cs">
       <Link>FormsCollection\WinForms\WinFormsWithGrid.cs</Link>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsWithGrid.Designer.cs">
       <Link>FormsCollection\WinForms\WinFormsWithGrid.Designer.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsWithLists.cs">
       <Link>FormsCollection\WinForms\WinFormsWithLists.cs</Link>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsWithLists.Designer.cs">
       <Link>FormsCollection\WinForms\WinFormsWithLists.Designer.cs</Link>
     </Compile>
     <Compile Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsWithMenus.cs">
       <Link>FormsCollection\WinForms\WinFormsWithMenus.cs</Link>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="..\UIAutomationTestForms\FormsCollection\WinForms\WinFormsWithMenus.Designer.cs">
       <Link>FormsCollection\WinForms\WinFormsWithMenus.Designer.cs</Link>
@@ -290,6 +298,7 @@
       <Link>app.config</Link>
     </None>
     <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\PSTestLib\PSTestLibrary\PSTestLibrary.csproj">
@@ -368,4 +377,11 @@
     </Page>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
 </Project>

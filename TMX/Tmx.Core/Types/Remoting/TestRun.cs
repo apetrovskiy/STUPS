@@ -32,7 +32,7 @@ namespace Tmx.Core.Types.Remoting
                 new TestPlatform {
                     Id = TestData.DefaultPlatformId,
                     Name = TestData.DefaultPlatformName,
-                    Description = Tmx_Core_Resources.TestRun_TestRun_This_platform_has_been_created_automatically
+                    Description = Resources.TestRun_TestRun_This_platform_has_been_created_automatically
                 }
             };
             

@@ -79,8 +79,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Renci.SshNet">
-      <HintPath>..\..\packages\SSH.NET.2013.4.7\lib\net35\Renci.SshNet.dll</HintPath>
+    <Reference Include="Renci.SshNet, Version=2016.0.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SSH.NET.2016.0.0\lib\net35\Renci.SshNet.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -107,7 +108,6 @@
     <Compile Include="ObjectModel\VirtualMachinesSelector.cs" />
     <Compile Include="Types\VirtualMachine.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

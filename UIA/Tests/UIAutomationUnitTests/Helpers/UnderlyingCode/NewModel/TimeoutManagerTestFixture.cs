@@ -35,7 +35,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
         }
         
         // test cases?
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Timeout_0()
         {
             // Arrange
@@ -49,7 +49,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Assert.Equal(Preferences.OnSleepDelay, result);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Timeout_100()
         {
             // Arrange
@@ -63,7 +63,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Assert.Equal(Preferences.OnSleepDelay, result);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Timeout_5000()
         {
             // Arrange
@@ -77,7 +77,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Assert.Equal(250, result);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Timeout_20000()
         {
             // Arrange
@@ -91,7 +91,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Assert.Equal(500, result);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Timeout_60000()
         {
             // Arrange
@@ -105,7 +105,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Assert.Equal(1000, result);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Timeout_600000()
         {
             // Arrange
@@ -119,7 +119,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.NewModel
             Assert.Equal(6000, result);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Timeout_1200000()
         {
             // Arrange

@@ -52,7 +52,7 @@ namespace Tmx.Server.Tests.Modules
             _browser = TestFactory.GetBrowserForTestTasksModule();
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldRegisterTheFirstTestClientAsJson()
         {
             GivenActiveTestRun();
@@ -66,7 +66,7 @@ namespace Tmx.Server.Tests.Modules
             ThenTestClientIsFree(testClient);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldRegisterTheFirstTestClientAsXml()
         {
             GivenActiveTestRun();
@@ -80,7 +80,7 @@ namespace Tmx.Server.Tests.Modules
             ThenTestClientIsFree(testClient);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldRegisterTheSecondTestClientAsJson()
         {
             GivenActiveTestRun(TestClientHostnameExpected01, TestClientHostnameExpected02);
@@ -95,7 +95,7 @@ namespace Tmx.Server.Tests.Modules
             ThenTestClientIsFree(testClient02);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldRegisterTheSecondTestClientAsXml()
         {
             GivenActiveTestRun(TestClientHostnameExpected01, TestClientHostnameExpected02);
@@ -110,7 +110,7 @@ namespace Tmx.Server.Tests.Modules
             ThenTestClientIsFree(testClient02);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldBeNoClientsAfterUnregisteringTheOnlyTestClientAsJson()
         {
             GivenActiveTestRun(TestClientHostnameExpected02);
@@ -121,7 +121,7 @@ namespace Tmx.Server.Tests.Modules
             ThenThereIsTheNumberOfRegisteredClients(0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldBeNoClientsAfterUnregisteringTheOnlyTestClientAsXml()
         {
             GivenActiveTestRun(TestClientHostnameExpected02);
@@ -132,7 +132,7 @@ namespace Tmx.Server.Tests.Modules
             ThenThereIsTheNumberOfRegisteredClients(0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldBeOnlyOneClientAfterUnregisteringOneOfTwoTestClientsAsJson()
         {
             GivenActiveTestRun(TestClientHostnameExpected01, TestClientHostnameExpected02);
@@ -145,7 +145,7 @@ namespace Tmx.Server.Tests.Modules
             ThenIdOfTheFirstClientEquals(testClient02.Id);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldBeOnlyOneClientAfterUnregisteringOneOfTwoTestClientsAsXml()
         {
             GivenActiveTestRun(TestClientHostnameExpected01, TestClientHostnameExpected02);
@@ -159,7 +159,7 @@ namespace Tmx.Server.Tests.Modules
         }
         
         // ============================================= Detailed status ==============================================================
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldSetTestClientFirstStatusAsJson()
         {
             GivenActiveTestRun(TestClientHostnameExpected01);
@@ -171,7 +171,7 @@ namespace Tmx.Server.Tests.Modules
             Assert.Equal(TheCurrentDetailedStatus, ClientsCollection.Clients.First(client => client.Id == testClient01.Id).DetailedStatus);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldSetTestClientFirstStatusAsXml()
         {
             GivenActiveTestRun();
@@ -183,7 +183,7 @@ namespace Tmx.Server.Tests.Modules
             Assert.Equal(TheCurrentDetailedStatus, ClientsCollection.Clients.First(client => client.Id == testClient01.Id).DetailedStatus);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldSetTestClientSecondStatusAsJson()
         {
             GivenActiveTestRun();
@@ -196,7 +196,7 @@ namespace Tmx.Server.Tests.Modules
             Assert.Equal(TheLastDetailedStatus, ClientsCollection.Clients.First(client => client.Id == testClient01.Id).DetailedStatus);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldSetTestClientSecondStatusAsXml()
         {
             GivenActiveTestRun();
@@ -209,7 +209,7 @@ namespace Tmx.Server.Tests.Modules
             Assert.Equal(TheLastDetailedStatus, ClientsCollection.Clients.First(client => client.Id == testClient01.Id).DetailedStatus);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldSetTestClientEmptyStatusAsJson()
         {
             GivenActiveTestRun();
@@ -222,7 +222,7 @@ namespace Tmx.Server.Tests.Modules
             Assert.Equal(string.Empty, ClientsCollection.Clients.First(client => client.Id == testClient01.Id).DetailedStatus);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldSetTestClientEmptyStatusAsXml()
         {
             GivenActiveTestRun();
@@ -235,7 +235,7 @@ namespace Tmx.Server.Tests.Modules
             Assert.Equal(string.Empty, ClientsCollection.Clients.First(client => client.Id == testClient01.Id).DetailedStatus);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldNotSetTestClientStatusFromWrongClientIdAsJson()
         {
             GivenActiveTestRun();
@@ -249,7 +249,7 @@ namespace Tmx.Server.Tests.Modules
             Assert.Equal(TheCurrentDetailedStatus, ClientsCollection.Clients.First(client => client.Id == testClient01.Id).DetailedStatus);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldNotSetTestClientStatusFromWrongClientIdAsXml()
         {
             GivenActiveTestRun();
@@ -265,7 +265,7 @@ namespace Tmx.Server.Tests.Modules
         
         // cleaning up detailed status on finishing a task
         
-//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void ShouldSetTestClientSecondStatusAsJson()
 //        {
 //            const string detailedStatus01 = "the current status";
@@ -279,7 +279,7 @@ namespace Tmx.Server.Tests.Modules
 //            Xunit.Assert.Equal(detailedStatus02, ClientsCollection.Clients.First(client => client.Id == testClient01.Id).DetailedStatus);
 //        }
 //        
-//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void ShouldSetTestClientSecondStatusAsXml()
 //        {
 //            const string detailedStatus01 = "the current status";
@@ -297,7 +297,7 @@ namespace Tmx.Server.Tests.Modules
         
         
         // ============================================= Multi-workflow =============================================================
-//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Should_register_test_client_only_in_the_first_workflow_if_there_is_no_active_workflow()
 //        {
 //            var workflow01 = GivenLoadedWorkflow(1, "w1");
@@ -310,7 +310,7 @@ namespace Tmx.Server.Tests.Modules
 //            Xunit.Assert.Equal(workflow01.Id, ClientsCollection.Clients.First(client => client.Id == testClient.Id).WorkflowId);
 //        }
         
-//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Should_register_test_client_only_in_the_active_workflow_if_there_is_any()
 //        {
 //            GivenLoadedWorkflow(1, "w1");
@@ -323,7 +323,7 @@ namespace Tmx.Server.Tests.Modules
 //            Xunit.Assert.Equal(workflow02.Id, ClientsCollection.Clients.First(client => client.Id == testClient.Id).WorkflowId);
 //        }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldRegisterNewClientOnlyInOneTestRunAsJson()
         {
             var testRun = GivenActiveTestRun();
@@ -338,7 +338,7 @@ namespace Tmx.Server.Tests.Modules
             Assert.Equal(testRun.Id, testClient.TestRunId);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldRegisterNewClientOnlyInOneTestRunAsXml()
         {
             var testRun = GivenActiveTestRun();
@@ -372,7 +372,7 @@ namespace Tmx.Server.Tests.Modules
         }
         
         // ============================================= No active test runs =============================================================
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldNotRegisterATestClientIfThereAreNoActiveTestRunsOnlyPendingAsJson()
         {
             GivenPendingTestRun();
@@ -383,7 +383,7 @@ namespace Tmx.Server.Tests.Modules
             ThenHttpResponseIsExpectationFailed();
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldNotRegisterATestClientIfThereAreNoActiveTestRunsOnlyScheduledAsJson()
         {
             GivenScheduledTestRun();
@@ -394,7 +394,7 @@ namespace Tmx.Server.Tests.Modules
             ThenHttpResponseIsExpectationFailed();
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldNotRegisterATestClientIfThereAreNoActiveTestRunsOnlyCompletedAsJson()
         {
             GivenCompletedTestRun();
@@ -406,7 +406,7 @@ namespace Tmx.Server.Tests.Modules
         }
         
         // ============================================= Querying clients =============================================================
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldReturnAllRegisteredClientsAsJson()
         {
             GivenActiveTestRun(TestClientHostnameExpected01, TestClientHostnameExpected02, TestClientHostnameExpected03);
@@ -420,7 +420,7 @@ namespace Tmx.Server.Tests.Modules
             Assert.Equal(3, testClientCollection.Count);
         }
         
-//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Should_return_all_registered_clients_as_xml()
 //        {
 //            var testClient01 = GivenSendingRegistrationAsJson(GivenTestClient("testhost_01", "aaa_01"));
@@ -433,7 +433,7 @@ namespace Tmx.Server.Tests.Modules
 //            Xunit.Assert.Equal(3, testClientCollection.Count);
 //        }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldReturnNotFoundIfNoClientsRegisteredAsJson()
         {
             ClientsCollection.Clients.Clear();
@@ -444,7 +444,7 @@ namespace Tmx.Server.Tests.Modules
             Assert.Equal(null, testClientCollection);
         }
         
-//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Should_return_NotFound_if_no_clients_registered_as_xml()
 //        {
 //            ClientsCollection.Clients.Clear();
@@ -455,7 +455,7 @@ namespace Tmx.Server.Tests.Modules
 //            Xunit.Assert.Equal(null, testClientCollection);
 //        }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldReturnRegisteredClientByIdAsJson()
         {
             GivenActiveTestRun(TestClientHostnameExpected01,TestClientHostnameExpected02, TestClientHostnameExpected03);
@@ -469,7 +469,7 @@ namespace Tmx.Server.Tests.Modules
             ThenTestClientPropertiesWereApplied(testClientActual, 1);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldReturnRegisteredClientByIdAsXml()
         {
             GivenActiveTestRun(TestClientHostnameExpected01, TestClientHostnameExpected02, TestClientHostnameExpected03);
@@ -483,7 +483,7 @@ namespace Tmx.Server.Tests.Modules
             ThenTestClientPropertiesWereApplied(testClientActual, 1);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldReturnNotFoundIfNoClientsRegisteredAndByIdAsJson()
         {
             ClientsCollection.Clients.Clear();
@@ -494,7 +494,7 @@ namespace Tmx.Server.Tests.Modules
             Assert.Equal(null, testClientCollection);
         }
         
-//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Should_return_NotFound_if_no_clients_registered_and_by_Id_as_xml()
 //        {
 //            ClientsCollection.Clients.Clear();

@@ -158,7 +158,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         #endregion helpers
         
         #region no recursion
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of1_NoRecurison()
         {
             // Arrange
@@ -178,7 +178,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of1_NoRecurison()
         {
             // Arrange
@@ -198,7 +198,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                1);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of3_NoRecurison()
         {
             // Arrange
@@ -228,7 +228,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of3_NoRecurison()
         {
             // Arrange
@@ -258,7 +258,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                1);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_NoRecurison_TheSamePid()
         {
             // Arrange
@@ -325,7 +325,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         #endregion no recursion
         
         #region recursion
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of1_Name()
         {
             // Arrange
@@ -368,7 +368,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                1);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of1_AutomaitonId()
         {
             // Arrange
@@ -411,7 +411,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                1);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of1_ClassName()
         {
             // Arrange

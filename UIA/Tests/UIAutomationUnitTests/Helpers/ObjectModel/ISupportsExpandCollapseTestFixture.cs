@@ -38,7 +38,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ExpandCollapse_ImplementsCommonPattern()
         {
 //            ISupportsInvokePattern invokableElement =
@@ -76,7 +76,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.NotNull(refreshableElement as ISupportsRefresh);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ExpandCollapse_ImplementsPatternInQuestion()
         {
             var element =
@@ -87,7 +87,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.NotNull(element as ISupportsExpandCollapsePattern);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ExpandCollapse_DoesNotImplementOtherPatterns()
         {
             var element =
@@ -98,7 +98,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Null(element as ISupportsValuePattern);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ExpandCollapse_Expand_ExpandCollapseState()
         {
             // Arrange
@@ -115,7 +115,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Equal(expectedValue, element.ExpandCollapseState);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ExpandCollapse_Collapse_ExpandCollapseState()
         {
             // Arrange
@@ -132,7 +132,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Equal(expectedValue, element.ExpandCollapseState);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ExpandCollapse_LeafNode()
         {
             // Arrange
@@ -148,7 +148,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Equal(expectedValue, element.ExpandCollapseState);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ExpandCollapse_PartiallyExpanded()
         {
             // Arrange
@@ -164,7 +164,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Equal(expectedValue, element.ExpandCollapseState);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ExpandCollapse_Collapse()
         {
             // Arrange
@@ -186,7 +186,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Equal(expectedValue, element.ExpandCollapseState);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ExpandCollapse_Expand()
         {
             // Arrange

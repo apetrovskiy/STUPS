@@ -316,7 +316,7 @@ namespace Tmx
                     
                     currentTestResult.Name = closingTestResultName;
                 } else {
-                    currentTestResult.Name = Tmx_Core_Resources.TestData_AddTestResult_generated_test_result_name;
+                    currentTestResult.Name = Resources.TestData_AddTestResult_generated_test_result_name;
                 }
                 
             } else {

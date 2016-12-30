@@ -141,9 +141,9 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="..\..\UIA\UIAutomationSpy\SpyForm.resx">
+    <Resource Include="..\..\UIA\UIAutomationSpy\SpyForm.resx">
       <Link>SpyForm.resx</Link>
-    </EmbeddedResource>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PS\PSRunner\PSRunner.csproj">

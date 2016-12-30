@@ -54,7 +54,7 @@ namespace Tmx
             Username = Environment.UserName;
             UserDomainName = Environment.UserDomainName;
             Version = Environment.OSVersion.VersionString;
-            Architecture = Environment.GetEnvironmentVariable(Tmx_Core_Resources.TestPlatform_TestPlatform_PROCESSOR_ARCHITECTURE);
+            Architecture = Environment.GetEnvironmentVariable(Resources.TestPlatform_TestPlatform_PROCESSOR_ARCHITECTURE);
             
 //            Created = DateTime.Now;
         }

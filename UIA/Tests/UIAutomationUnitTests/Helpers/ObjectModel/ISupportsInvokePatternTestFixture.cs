@@ -36,7 +36,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Invoke_ImplementsCommonPattern()
         {
 //            ISupportsInvokePattern invokableElement =
@@ -74,7 +74,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.NotNull(refreshableElement as ISupportsRefresh);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Invoke_Invoke()
         {
             // Arrange
@@ -87,7 +87,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             element.Invoke();
         }
         
-//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Invoke_ImplementsPatternInQuestion()
 //        {
 //            ISupportsInvokePattern element =
@@ -97,7 +97,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            MbUnit.Framework.Assert.IsNotNull(element as ISupportsInvokePattern);
 //        }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Invoke_DoesNotImplementOtherPatterns()
         {
             var element =
@@ -108,7 +108,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Null(element as ISupportsValuePattern);
         }
         
-//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Invoke_Click()
 //        {
 //            // Arrange
@@ -121,7 +121,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            element.Click();
 //        }
 //        
-//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Invoke_DoubleClick()
 //        {
 //            // Arrange

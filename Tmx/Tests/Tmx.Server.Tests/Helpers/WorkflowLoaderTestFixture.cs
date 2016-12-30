@@ -35,7 +35,7 @@ namespace Tmx.Server.Tests.Helpers
             TestSettings.PrepareModuleTests();
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldAddNoTasksToTheCommonPoolOnAddingEmptyTaskCollection()
         {
             GivenThereAreTasksInCommonPool();
@@ -43,7 +43,7 @@ namespace Tmx.Server.Tests.Helpers
             ThenNumberOfCommonTasksIncreasedBy(0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldAdd8TasksToTheCommonPoolOnAddingATaskCollection()
         {
             GivenThereAreTasksInCommonPool();
@@ -51,7 +51,7 @@ namespace Tmx.Server.Tests.Helpers
             ThenNumberOfCommonTasksIncreasedBy(10);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldAddAWorkflowToTheCollection()
         {
             GivenThereAreTasksInCommonPool();
@@ -60,7 +60,7 @@ namespace Tmx.Server.Tests.Helpers
             ThenWorkflowHasBeenAdded(workflowId);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldAddTasksWithWorkflowId()
         {
             GivenThereAreTasksInCommonPool();
@@ -81,7 +81,7 @@ namespace Tmx.Server.Tests.Helpers
             ThenThereAreNumberOfTasksForSelectedWorkflow(10, workflowId);
         }
         
-//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Should_replace_workflow_on_adding_one_with_the_same_name()
 //        {
 //            // GivenThereAreTasksInCommonPool();

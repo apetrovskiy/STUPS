@@ -178,16 +178,18 @@
       <DependentUpon>SpyForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="SpyForm.SeleniumCode.cs" />
+    <Compile Include="SpyForm.SeleniumCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="SpyForm.resx">
+    <Resource Include="SpyForm.resx">
       <DependentUpon>SpyForm.Designer.cs</DependentUpon>
-    </EmbeddedResource>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PS\PSRunner\PSRunner.csproj">

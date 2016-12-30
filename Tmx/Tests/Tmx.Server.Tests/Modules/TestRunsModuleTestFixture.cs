@@ -48,7 +48,7 @@ namespace Tmx.Server.Tests.Modules
             _browser = TestFactory.GetBrowserForTestRunsModule();
         }
         
-        [Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldCreateFirstTestRunOfDefaultWorkflowRunningAsJson()
         {
             GivenFirstTestWorkflow(TestConstants.Workflow03);
@@ -64,7 +64,7 @@ namespace Tmx.Server.Tests.Modules
             var t1 = TestRunQueue.TestRuns[0];
         }
         
-        [Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldCreateSecondTestRunOfDefaultWorkflowObjectToAnotherWorkflowAndAnotherTestLabRunningAsJson()
         {
             GivenFirstTestWorkflow(TestConstants.Workflow03);
@@ -82,10 +82,10 @@ namespace Tmx.Server.Tests.Modules
             ThenThereShouldBeTheFollowingNumberOfTestRunObjects(2);
             ThenTestRunIsRunning(TestRunQueue.TestRuns[0]);
             ThenTestRunIsRunning(TestRunQueue.TestRuns[1]);
-            ThenTestRunIdIs(1, Guid.Parse(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId]));
+            ThenTestRunIdIs(1, Guid.Parse(_response.Headers[Resources.NewTestRun_lastTestRunId]));
         }
         
-        [Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldCreateFirstTestRunRunningAsJson()
         {
             GivenFirstTestWorkflow();
@@ -94,10 +94,10 @@ namespace Tmx.Server.Tests.Modules
             
             ThenThereShouldBeTheFollowingNumberOfTestRunObjects(1);
             ThenTestRunIsRunning(TestRunQueue.TestRuns[0]);
-            ThenTestRunIdIs(0, Guid.Parse(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId]));
+            ThenTestRunIdIs(0, Guid.Parse(_response.Headers[Resources.NewTestRun_lastTestRunId]));
         }
 
-        [Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldCreateFirstTestRunAndReturnItsId()
         {
             GivenFirstTestWorkflow();
@@ -106,10 +106,10 @@ namespace Tmx.Server.Tests.Modules
 
             ThenThereShouldBeTheFollowingNumberOfTestRunObjects(1);
             ThenTestRunIsRunning(TestRunQueue.TestRuns[0]);
-            ThenTestRunIdIs(0, Guid.Parse(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId]));
+            ThenTestRunIdIs(0, Guid.Parse(_response.Headers[Resources.NewTestRun_lastTestRunId]));
         }
         
-        [Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldCreateSecondTestRunObjectToAnotherWorkflowAndAnotherTestLabRunningAsJson()
         {
             GivenFirstTestWorkflow();
@@ -125,10 +125,10 @@ namespace Tmx.Server.Tests.Modules
             ThenThereShouldBeTheFollowingNumberOfTestRunObjects(2);
             ThenTestRunIsRunning(TestRunQueue.TestRuns[0]);
             ThenTestRunIsRunning(TestRunQueue.TestRuns[1]);
-            ThenTestRunIdIs(1, Guid.Parse(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId]));
+            ThenTestRunIdIs(1, Guid.Parse(_response.Headers[Resources.NewTestRun_lastTestRunId]));
         }
         
-        [Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldCreateSecondTestRunObjectToTheSameTestLabAndAnotherWorkflowPendingAsJson()
         {
             GivenFirstTestWorkflow();
@@ -140,10 +140,10 @@ namespace Tmx.Server.Tests.Modules
             ThenThereShouldBeTheFollowingNumberOfTestRunObjects(2);
             ThenTestRunIsRunning(TestRunQueue.TestRuns[0]);
             ThenTestRunIsPending(TestRunQueue.TestRuns[1]);
-            ThenTestRunIdIs(1, Guid.Parse(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId]));
+            ThenTestRunIdIs(1, Guid.Parse(_response.Headers[Resources.NewTestRun_lastTestRunId]));
         }
         
-        [Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldCreateSecondTestRunObjectToTheSameTestLabAndTheSameWorkflowPendingAsJson()
         {
             GivenFirstTestWorkflow();
@@ -154,10 +154,10 @@ namespace Tmx.Server.Tests.Modules
             ThenThereShouldBeTheFollowingNumberOfTestRunObjects(2);
             ThenTestRunIsRunning(TestRunQueue.TestRuns[0]);
             ThenTestRunIsPending(TestRunQueue.TestRuns[1]);
-            ThenTestRunIdIs(1, Guid.Parse(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId]));
+            ThenTestRunIdIs(1, Guid.Parse(_response.Headers[Resources.NewTestRun_lastTestRunId]));
         }
         
-        [Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldCreateSecondTestRunObjectToTheSameTestLabAndTheSameWorkflowAsCompletedRunningAsJson()
         {
             GivenFirstTestWorkflow();
@@ -170,10 +170,10 @@ namespace Tmx.Server.Tests.Modules
             ThenThereShouldBeTheFollowingNumberOfTestRunObjects(2);
             ThenTestRunIsCompleted(TestRunQueue.TestRuns[0]);
             ThenTestRunIsRunning(TestRunQueue.TestRuns[1]);
-            ThenTestRunIdIs(1, Guid.Parse(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId]));
+            ThenTestRunIdIs(1, Guid.Parse(_response.Headers[Resources.NewTestRun_lastTestRunId]));
         }
         
-        [Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldRunOnlyOneTestRunAfterCompletionOfThePreviousOneAsJson()
         {
             GivenFirstTestWorkflow();
@@ -192,10 +192,10 @@ namespace Tmx.Server.Tests.Modules
             ThenTestRunIsPending(TestRunQueue.TestRuns[2]);
             ThenTestRunIsPending(TestRunQueue.TestRuns[3]);
             ThenTestRunIsPending(TestRunQueue.TestRuns[4]);
-            ThenTestRunIdIs(4, Guid.Parse(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId]));
+            ThenTestRunIdIs(4, Guid.Parse(_response.Headers[Resources.NewTestRun_lastTestRunId]));
         }
         
-        [Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldRunOnlyOneTestRunAfterInterruptionOfThePreviousOneAsJson()
         {
             GivenFirstTestWorkflow();
@@ -214,11 +214,11 @@ namespace Tmx.Server.Tests.Modules
             ThenTestRunIsPending(TestRunQueue.TestRuns[2]);
             ThenTestRunIsPending(TestRunQueue.TestRuns[3]);
             ThenTestRunIsPending(TestRunQueue.TestRuns[4]);
-            ThenTestRunIdIs(4, Guid.Parse(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId]));
+            ThenTestRunIdIs(4, Guid.Parse(_response.Headers[Resources.NewTestRun_lastTestRunId]));
         }
 
         // 20150907
-        [Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldRunOnlyOneTestRunAfterInterruptionOfThePreviousOneByTestResultsAsJson()
         {
             GivenFirstTestWorkflow();
@@ -237,10 +237,10 @@ namespace Tmx.Server.Tests.Modules
             ThenTestRunIsPending(TestRunQueue.TestRuns[2]);
             ThenTestRunIsPending(TestRunQueue.TestRuns[3]);
             ThenTestRunIsPending(TestRunQueue.TestRuns[4]);
-            ThenTestRunIdIs(4, Guid.Parse(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId]));
+            ThenTestRunIdIs(4, Guid.Parse(_response.Headers[Resources.NewTestRun_lastTestRunId]));
         }
         
-        [Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldRunOnlyOneTestRunAfterCancellationOfThePreviousOneAsJson()
         {
             GivenFirstTestWorkflow();
@@ -259,7 +259,7 @@ namespace Tmx.Server.Tests.Modules
             ThenTestRunIsPending(TestRunQueue.TestRuns[2]);
             ThenTestRunIsPending(TestRunQueue.TestRuns[3]);
             ThenTestRunIsPending(TestRunQueue.TestRuns[4]);
-            ThenTestRunIdIs(4, Guid.Parse(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId]));
+            ThenTestRunIdIs(4, Guid.Parse(_response.Headers[Resources.NewTestRun_lastTestRunId]));
         }
         
         [Test][NUnit.Framework.Test]// [Fact]
@@ -274,7 +274,7 @@ namespace Tmx.Server.Tests.Modules
             WhenGettingTestRun(0);
             
             ThenResponseHasTestRunId(0);
-            ThenTestRunIdIs(0, Guid.Parse(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId]));
+            ThenTestRunIdIs(0, Guid.Parse(_response.Headers[Resources.NewTestRun_lastTestRunId]));
         }
         
         [Test][NUnit.Framework.Test]// [Fact]
@@ -305,7 +305,7 @@ namespace Tmx.Server.Tests.Modules
             // Assert.Equal(TestRunQueue.TestRuns[2], allTestRuns[2]);
         }
         
-        [Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldSetTestRunStatusCanceledOnCancelingOfPendingTestRun()
         {
             GivenFirstTestWorkflow();
@@ -318,7 +318,7 @@ namespace Tmx.Server.Tests.Modules
             ThenTestRunStatusIsCanceled(TestRunQueue.TestRuns[1]);
         }
         
-        [Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldSetTestRunStatusCancelingOnCancelingOfRunningTestRun()
         {
             GivenFirstTestWorkflow();
@@ -331,7 +331,7 @@ namespace Tmx.Server.Tests.Modules
             ThenTestRunStatusIsCanceled(TestRunQueue.TestRuns[0]);
         }
         
-        [Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldSetTestRunStatusCancelingOnCancelingOfRunningTestRunWithRegisteredClients()
         {
             var testRun = TestFactory.GetTestRunWithStatus(TestRunStatuses.Running, TestClientHostnameExpected01);
@@ -371,58 +371,58 @@ namespace Tmx.Server.Tests.Modules
         
         
         
-//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Should_add_one_task_to_the_common_pool_on_imporing_one_task()
 //        {
 //            Xunit.Assert.Equal(0, 1);
 //        }
 //        
-//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Should_add_all_tasks_to_the_common_pool_on_importing_several_tasks()
 //        {
 //            Xunit.Assert.Equal(0, 1);
 //        }
 //        
 //        // ==========================================================================================
-//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Should_add_one_task_to_one_client_pool()
 //        {
 //            Xunit.Assert.Equal(0, 1);
 //        }
 //        
-//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Should_add_all_tasks_to_one_client_pool()
 //        {
 //            Xunit.Assert.Equal(0, 1);
 //        }
 //        
 //        // ==========================================================================================
-//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Should_add_one_task_to_all_client_pools()
 //        {
 //            Xunit.Assert.Equal(0, 1);
 //        }
 //        
-//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Should_add_all_tasks_to_all_client_pools()
 //        {
 //            Xunit.Assert.Equal(0, 1);
 //        }
 //        
 //        // ==========================================================================================
-//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Should_add_no_tasks_to_not_matching_client_pools()
 //        {
 //            Xunit.Assert.Equal(0, 1);
 //        }
 //        
-//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Should_add_one_task_to_matching_client_pools()
 //        {
 //            Xunit.Assert.Equal(0, 1);
 //        }
 //        
-//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Should_add_all_tasks_to_matching_client_pools()
 //        {
 //            Xunit.Assert.Equal(0, 1);
@@ -577,7 +577,7 @@ namespace Tmx.Server.Tests.Modules
         // void ThenTestRunIdIs(Guid actualTestRunId)
         void ThenTestRunIdIs(int testRunNumber, Guid actualTestRunId)
         {
-            // Assert.Equal(_response.Headers[Tmx_Core_Resources.NewTestRun_lastTestRunId], actualTestRunId.ToString());
+            // Assert.Equal(_response.Headers[Resources.NewTestRun_lastTestRunId], actualTestRunId.ToString());
             // Assert.Equal(TestRunQueue.TestRuns[0].Id, actualTestRunId.ToString());
             // Assert.Equal(TestRunQueue.TestRuns[0].Id, actualTestRunId);
             Assert.Equal(TestRunQueue.TestRuns[testRunNumber].Id, actualTestRunId);

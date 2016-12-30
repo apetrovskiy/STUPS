@@ -220,7 +220,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         #endregion helpers
         
         #region for starters
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void NoResults_NullInput()
         {
             HasTimeoutCmdletBase cmdlet =
@@ -245,7 +245,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             MbUnit.Framework.Assert.AreEqual(0, resultList.Count);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void NoResults_ZeroInput()
         {
             HasTimeoutCmdletBase cmdlet =
@@ -270,7 +270,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             MbUnit.Framework.Assert.AreEqual(0, resultList.Count);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void OneResult_Name_Simple()
         {
             const string expectedName = "name";
@@ -308,7 +308,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
             MbUnit.Framework.Assert.Exists(resultList, e => e.GetCurrent().Name == expectedName);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ThreeResults()
         {
             const string expectedName = "name";
@@ -371,7 +371,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         #endregion for starters
         
         #region Name
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0_byName()
         {
             const string name = "aaa";
@@ -390,7 +390,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of3_byName_Wildcard()
         {
             // const string name = "aaa";
@@ -414,7 +414,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of3_byName_Regex()
         {
             // const string name = "aaa";
@@ -438,7 +438,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of3_byName_Wildcard()
         {
             const string name = "aaa";
@@ -462,7 +462,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 1);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of3_byName_Regex()
         {
             const string name = "aaa";
@@ -486,7 +486,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 1);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byName_Wildcard()
         {
             const string name = "aaa";
@@ -510,7 +510,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 3);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byName_Regex()
         {
             const string name = "aaa";
@@ -536,7 +536,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
         #endregion Name
         
         #region Value
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0_byValue()
         {
             string name = string.Empty;
@@ -555,7 +555,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of3_byValue_Wildcard()
         {
             string name = string.Empty;
@@ -578,7 +578,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of3_byValue_Regex()
         {
             string name = string.Empty;
@@ -601,7 +601,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of3_byValue_Wildcard()
         {
             string name = string.Empty;
@@ -625,7 +625,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 1);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of3_byValue_Regex()
         {
             string name = string.Empty;
@@ -649,7 +649,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 1);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byValue_Wildcard()
         {
             string name = string.Empty;
@@ -673,7 +673,7 @@ namespace UIAutomationUnitTests.Helpers.Inheritance
                 3);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byValue_Regex()
         {
             string name = string.Empty;

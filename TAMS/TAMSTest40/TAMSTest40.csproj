@@ -7,7 +7,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>TAMSTest40</RootNamespace>
     <AssemblyName>TAMSTest40</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <AppDesignerFolder>Properties</AppDesignerFolder>

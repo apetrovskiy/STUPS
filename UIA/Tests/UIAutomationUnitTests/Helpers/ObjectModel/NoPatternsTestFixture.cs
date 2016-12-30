@@ -34,7 +34,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void NoPatterns_ImplementsCommonPattern()
         {
 //            ISupportsInvokePattern invokableElement =

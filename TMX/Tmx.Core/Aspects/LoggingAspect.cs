@@ -8,7 +8,7 @@
     {
         public override void Intercept(IInvocation invocation)
         {
-            var logger = LogManager.GetLogger(Tmx_Core_Resources.LogName);
+            var logger = LogManager.GetLogger(Resources.LogName);
             var loggingString = invocation.TargetType.Namespace + "." + invocation.TargetType.Name + "." + invocation.Method.Name + "(";
             invocation.Arguments.ToList().ForEach(arg =>
             // invocation.Arguments.ForEach(arg =>

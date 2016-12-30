@@ -36,7 +36,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
         }
         
-//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void InvokePattern()
 //        {
 //            // Arrange
@@ -61,7 +61,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            // Assert.AreEqual(expectedValue, element.DockPosition);
 //        }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Highlighter()
         {
             // Arrange
@@ -80,7 +80,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Assert.AreEqual(expectedValue, element.DockPosition);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Navigation()
         {
             // Arrange
@@ -103,7 +103,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Assert.AreEqual(expectedValue, element.DockPosition);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Conversion()
         {
             // Arrange
@@ -122,7 +122,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Assert.AreEqual(expectedValue, element.DockPosition);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Refresh()
         {
             // Arrange
@@ -141,7 +141,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             // Assert.AreEqual(expectedValue, element.DockPosition);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Cached_On()
         {
             Preferences.UseElementsCached = true;
@@ -153,7 +153,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var testCachedParent = element.CachedParent;
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Cached_Off()
         {
             Preferences.UseElementsCached = false;
@@ -164,7 +164,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Null(element);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Current_On()
         {
             Preferences.UseElementsCurrent = true;
@@ -174,7 +174,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             var testCurrent = element.Current;
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Current_Off()
         {
             Preferences.UseElementsCurrent = false;

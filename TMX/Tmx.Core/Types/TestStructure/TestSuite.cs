@@ -95,7 +95,7 @@ namespace Tmx.Interfaces
                         _status = TestData.TestStateKnownIssue;
                         break;
                     default:
-                        throw new Exception(Tmx_Core_Resources.TestSuite_enStatus_Invalid_value_for_TestSuiteStatuses);
+                        throw new Exception(Resources.TestSuite_enStatus_Invalid_value_for_TestSuiteStatuses);
                 }
             }
         }

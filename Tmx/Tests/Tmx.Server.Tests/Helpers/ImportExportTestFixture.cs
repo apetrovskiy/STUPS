@@ -88,7 +88,7 @@ namespace Tmx.Server.Tests.Helpers
             ThenThereAreNSuitesInXdocument(4, sourceTestSuites);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldImportExportedDataTwiceWithoutDuplication()
         {
             var sourceTestPlatforms = new List<ITestPlatform>();
@@ -108,7 +108,7 @@ namespace Tmx.Server.Tests.Helpers
             ThenThereAreNSuitesInXdocument(2, sourceTestSuites);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldImportExportedDataThriceWithoutDuplication()
         {
             var sourceTestPlatforms = new List<ITestPlatform>();
@@ -131,7 +131,7 @@ namespace Tmx.Server.Tests.Helpers
             ThenThereAreNSuitesInXdocument(2, sourceTestSuites);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldImportExportedDataWithDuplicatesThriceWithoutDuplication()
         {
             var sourceTestPlatforms = new List<ITestPlatform>();
@@ -157,7 +157,7 @@ namespace Tmx.Server.Tests.Helpers
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////// filtering ////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldImportExportedDataWithExclusion()
         {
             var sourceTestPlatforms = new List<ITestPlatform>();
@@ -180,7 +180,14 @@ namespace Tmx.Server.Tests.Helpers
             ThenTestResultNStatusIs(sourceTestSuites, "4", TestStatuses.KnownIssue);
             ThenTestResultNStatusIs(sourceTestSuites, "5", TestStatuses.NotRun);
             */
+
+            // 20161226
+            /*
             ThenTestResultNStatusIs(sourceTestSuites, "3", TestStatuses.KnownIssue);
+            ThenTestResultNStatusIs(sourceTestSuites, "4", TestStatuses.KnownIssue);
+            ThenTestResultNStatusIs(sourceTestSuites, "5", TestStatuses.NotRun);
+            */
+            ThenTestResultNStatusIs(sourceTestSuites, "3", TestStatuses.Failed);
             ThenTestResultNStatusIs(sourceTestSuites, "4", TestStatuses.KnownIssue);
             ThenTestResultNStatusIs(sourceTestSuites, "5", TestStatuses.NotRun);
         }

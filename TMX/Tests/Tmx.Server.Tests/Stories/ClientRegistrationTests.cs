@@ -23,7 +23,10 @@
         const string BaseUrl = "http://localhost:12340";
         // TODO: set a universal path
         // const string PathToWorkflows = @"../../Data/";
-        const string PathToWorkflows = @"C:/Projects/PS/STUPS/TMX/Tests/Tmx.Server.Tests/Data/";
+        // const string PathToWorkflows = @"C:/Projects/PS/STUPS/TMX/Tests/Tmx.Server.Tests/Data/";
+        // 20161226
+        // const string PathToWorkflows = @"../../Data/";
+        public static string PathToWorkflows = TestContext.CurrentContext.TestDirectory + @"/Data/";
         const string Workflow01Name = "CRsuite";
         const string Workflow02Name = "NAC";
         const string Workflow04Name = "fourth";

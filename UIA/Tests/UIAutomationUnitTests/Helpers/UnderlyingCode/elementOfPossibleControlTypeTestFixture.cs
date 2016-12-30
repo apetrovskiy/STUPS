@@ -39,7 +39,7 @@ namespace UIAutomationUnitTests
             return new GetControlCollectionCmdletBase();
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
 //        [Category("Fast")]
         public void Nothing_to_compare()
@@ -57,7 +57,7 @@ namespace UIAutomationUnitTests
                     null));
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
 //        [Category("Fast")]
         public void No_ControlTypeArray()
@@ -75,7 +75,7 @@ namespace UIAutomationUnitTests
                     "Button"));
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
 //        [Category("Fast")]
         public void No_ControlType()
@@ -93,7 +93,7 @@ namespace UIAutomationUnitTests
                     null));
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
 //        [Category("Fast")]
         public void One_ControlType_That_Matches()
@@ -111,7 +111,7 @@ namespace UIAutomationUnitTests
                     "Button"));
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
 //        [Category("Fast")]
         public void One_ControlType_That_DoesNot_Match()
@@ -129,7 +129,7 @@ namespace UIAutomationUnitTests
                     "CheckBox"));
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
 //        [Category("Fast")]
         public void Three_ControlType_That_Match()
@@ -147,7 +147,7 @@ namespace UIAutomationUnitTests
                     "Button"));
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        [Description("GetControlCollectionCmdletBase.ElementOfPossibleControlType(string[], string)")]
 //        [Category("Fast")]
         public void Three_ControlType_That_DonT_Match()

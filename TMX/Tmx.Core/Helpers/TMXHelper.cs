@@ -39,8 +39,10 @@ namespace Tmx
 //                Console.WriteLine(ee.Message);
 //            }
         }
-        
-        internal static DateTime TestCaseStarted { get; set; }
+
+        // 20161223
+        // internal static DateTime TestCaseStarted { get; set; }
+        public static DateTime TestCaseStarted { get; set; }
         public static System.Windows.Forms.Form BannerForm { get; set; }
         
         // 20160116

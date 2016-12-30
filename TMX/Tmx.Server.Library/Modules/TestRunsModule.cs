@@ -75,7 +75,7 @@ namespace Tmx.Server.Library.Modules
                 .WithStatusCode(HttpStatusCode.Created)
                 .WithView(UrlList.ViewTestRuns_TestRunsPageName)
                 .WithModel((ExpandoObject)data)
-                .WithHeader(Tmx_Core_Resources.NewTestRun_lastTestRunId, currentTestRunId.ToString());
+                .WithHeader(Resources.NewTestRun_lastTestRunId, currentTestRunId.ToString());
         }
         
         Negotiator DeleteTestRun(Guid testRunId)

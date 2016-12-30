@@ -59,7 +59,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.ControlProviders
         #endregion helpers
         
         #region Name
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0_byName()
         {
             // Arrange
@@ -72,7 +72,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.ControlProviders
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of3_byName()
         {
             // Arrange
@@ -89,7 +89,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.ControlProviders
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of3_byName()
         {
             // Arrange
@@ -106,7 +106,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.ControlProviders
                 1);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byName()
         {
             // Arrange
@@ -125,7 +125,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.ControlProviders
         #endregion Name
         
         #region ControlType + Name
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0_byControlTypeName()
         {
             // Arrange
@@ -139,7 +139,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.ControlProviders
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of4_byControlTypeName()
         {
             // Arrange
@@ -158,7 +158,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.ControlProviders
                 1);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get2of4_byControlTypeName()
         {
             // Arrange
@@ -177,7 +177,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.ControlProviders
                 2);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byControlTypeName()
         {
             // Arrange
@@ -197,7 +197,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.ControlProviders
         #endregion ControlType + Name
         
         #region AutomationId
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of3_byAutomationId()
         {
             // Arrange
@@ -214,7 +214,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.ControlProviders
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of3_byAutomationId()
         {
             // Arrange
@@ -231,7 +231,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.ControlProviders
                 1);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byAutomationId()
         {
             // Arrange
@@ -250,7 +250,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.ControlProviders
         #endregion AutomationId
         
         #region ClassName
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of3_byClassName()
         {
             // Arrange
@@ -267,7 +267,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.ControlProviders
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of3_byClassName()
         {
             // Arrange
@@ -284,7 +284,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.ControlProviders
                 1);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byClassName()
         {
             // Arrange
@@ -303,7 +303,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.ControlProviders
         #endregion ClassName
         
         #region Value
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get0of3_byValue()
         {
             // Arrange
@@ -320,7 +320,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.ControlProviders
                 0);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get1of3_byValue()
         {
             // Arrange
@@ -337,7 +337,7 @@ namespace UIAutomationUnitTests.Helpers.UnderlyingCode.ControlProviders
                 1);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Get3of3_byValue()
         {
             // Arrange

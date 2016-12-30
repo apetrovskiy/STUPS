@@ -9,6 +9,8 @@
 
 namespace Tmx.Server.Tests
 {
+    using NUnit.Framework;
+
     /// <summary>
     /// Description of TestConstants.
     /// </summary>
@@ -16,8 +18,11 @@ namespace Tmx.Server.Tests
     {
         // TODO: set a universal path
         // public const string XmlPath = @"../../Data/";
-        public const string XmlPath = @"C:/Projects/PS/STUPS/TMX/Tests/Tmx.Server.Tests/Data/";
-        
+        // public const string XmlPath = @"C:/Projects/PS/STUPS/TMX/Tests/Tmx.Server.Tests/Data/";
+        // 20161226
+        // public const string XmlPath = @"../../Data/";
+        public static string XmlPath = TestContext.CurrentContext.TestDirectory + @"/Data/";
+
         public static string Workflow01 = XmlPath + "Workflow1.xml";
         public static string Workflow02 = XmlPath + "Workflow2.xml";
         public static string Workflow03 = XmlPath + "Workflow3.xml";

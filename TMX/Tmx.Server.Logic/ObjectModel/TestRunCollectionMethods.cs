@@ -20,11 +20,11 @@
         {
             CurrentTestRunId = Guid.Empty;
             if (null == testRunCommand)
-                testRunCommand = new TestRunCommand { TestRunName = formData[Tmx_Core_Resources.TestRunCommand_testRunName_param] ?? string.Empty, WorkflowName = formData[Tmx_Core_Resources.TestRunCommand_workflowName_param] ?? string.Empty };
+                testRunCommand = new TestRunCommand { TestRunName = formData[Resources.TestRunCommand_testRunName_param] ?? string.Empty, WorkflowName = formData[Resources.TestRunCommand_workflowName_param] ?? string.Empty };
             if (string.IsNullOrEmpty(testRunCommand.WorkflowName))
-                testRunCommand.WorkflowName = formData[Tmx_Core_Resources.TestRunCommand_workflowName_param] ?? string.Empty;
+                testRunCommand.WorkflowName = formData[Resources.TestRunCommand_workflowName_param] ?? string.Empty;
             if (string.IsNullOrEmpty(testRunCommand.TestRunName))
-                testRunCommand.TestRunName = formData[Tmx_Core_Resources.TestRunCommand_testRunName_param] ?? string.Empty;
+                testRunCommand.TestRunName = formData[Resources.TestRunCommand_testRunName_param] ?? string.Empty;
 
             return PrepareTestRun(testRunCommand, formData);
         }

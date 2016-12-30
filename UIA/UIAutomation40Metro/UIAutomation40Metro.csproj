@@ -7,7 +7,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>UIAutomation</RootNamespace>
     <AssemblyName>UIAutomation</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -140,7 +140,7 @@
       <HintPath>..\..\packages\Ninject.Extensions.NamedScope.3.2.0.0\lib\net40\Ninject.Extensions.NamedScope.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NLog.4.2.3\lib\net40\NLog.dll</HintPath>
+      <HintPath>..\..\packages\NLog.4.4.0\lib\net40\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PresentationCore">
@@ -155,7 +155,10 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Management.Automation" />
+    <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.PowerShell.3.ReferenceAssemblies.1.0.0\lib\net4\System.Management.Automation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Presentation">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -1032,7 +1035,6 @@
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Internal\Highligher.cs">
       <Link>Helpers\UnderlyingCode\Internal\Highligher.cs</Link>
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="..\UIAutomation\Helpers\UnderlyingCode\Internal\JavaHelper.cs">
       <Link>Helpers\UnderlyingCode\Internal\JavaHelper.cs</Link>
@@ -1361,8 +1363,8 @@
     <Compile Include="..\UIAutomation\Provider\UIAProvider.cs">
       <Link>Provider\UIAProvider.cs</Link>
     </Compile>
-    <Compile Include="..\UIAutomation\Resources\Resource.Designer.cs">
-      <Link>Resources\Resource.Designer.cs</Link>
+    <Compile Include="..\UIAutomation\Resources\Resource.cs">
+      <Link>Resources\Resource.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -1377,11 +1379,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="..\UIAutomation\Resources\Resource.resx">
-      <Link>Resources\Resource.resx</Link>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

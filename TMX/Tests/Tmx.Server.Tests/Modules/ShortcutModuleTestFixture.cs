@@ -49,7 +49,7 @@ namespace Tmx.Server.Tests.Modules
             _browser = new Browser(with => with.Modules(typeof(ShortcutModule), typeof(ServerControlModule)));
         }
         
-        [Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void ShouldCreateFirstTestRunOfDefaultWorkflowRunningAsJson()
         {
             GivenFirstTestWorkflow(TestConstants.Workflow03);

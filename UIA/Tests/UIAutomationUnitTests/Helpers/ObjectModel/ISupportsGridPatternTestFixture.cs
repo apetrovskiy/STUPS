@@ -37,7 +37,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Grid_ImplementsCommonPattern()
         {
 //            ISupportsInvokePattern invokableElement =
@@ -75,7 +75,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.NotNull(refreshableElement as ISupportsRefresh);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Grid_ImplementsExportPattern()
         {
             var exportableElement =
@@ -86,7 +86,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.NotNull(exportableElement as ISupportsExport);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Grid_ImplementsPatternInQuestion()
         {
             var element =
@@ -97,7 +97,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.NotNull(element as ISupportsGridPattern);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Grid_DoesNotImplementOtherPatterns()
         {
             var element =
@@ -108,7 +108,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Null(element as ISupportsValuePattern);
         }
         
-//        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+//        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
 //        public void Grid_GetItem()
 //        {
 //            // Arrange
@@ -122,7 +122,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
 //            element.GetItem(1, 1);
 //        }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Grid_ColumnCount()
         {
             // Arrange
@@ -138,7 +138,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Equal(expectedValue, element.GridColumnCount);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Grid_RowCount()
         {
             // Arrange
@@ -154,7 +154,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Equal(expectedValue, element.GridRowCount);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Grid_GetItem()
         {
             // Arrange

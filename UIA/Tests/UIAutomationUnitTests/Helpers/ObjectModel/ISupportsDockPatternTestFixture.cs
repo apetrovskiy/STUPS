@@ -38,7 +38,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
         {
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Dock_ImplementsCommonPattern()
         {
 //            ISupportsInvokePattern invokableElement =
@@ -73,7 +73,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             MbUnit.Framework.Assert.IsNotNull(refreshableElement as ISupportsRefresh);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Dock_ImplementsPatternInQuestion()
         {
             var element =
@@ -84,7 +84,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.NotNull(element as ISupportsDockPattern);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Dock_DoesNotImplementOtherPatterns()
         {
             var element =
@@ -95,7 +95,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Null(element as ISupportsValuePattern);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Dock_DockPosition()
         {
             // Arrange
@@ -112,7 +112,7 @@ namespace UIAutomationUnitTests.Helpers.ObjectModel
             Xunit.Assert.Equal(expectedValue, element.DockPosition);
         }
         
-        [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
+        [NUnit.Framework.Test] // [MbUnit.Framework.Test][NUnit.Framework.Test][Fact]
         public void Dock_SetDockPosition()
         {
             // Arrange
